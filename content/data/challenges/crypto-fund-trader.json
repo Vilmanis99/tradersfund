@@ -1,0 +1,65 @@
+[
+  {
+    "firmSlug": "crypto-fund-trader",
+    "productName": "CFT Challenge",
+    "productSlug": "crypto-fund-trader-default",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": null,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": null,
+        "refundable": true
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": null,
+    "payoutFrequency": "weekly",
+    "rules": {
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "/blog/crypto-fund-trader-review",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "SKELETON ENTRY \u2014 only firm-level aggregates from firms.json populated.",
+      "Per-tier pricing, exact profit targets, and DD% require editorial verification against the live firm page.",
+      "Set fields to null until verified \u2014 never invent."
+    ]
+  }
+]

@@ -1,0 +1,632 @@
+[
+  {
+    "name": "FTMO",
+    "founded": "2015",
+    "assets": [
+      "Forex",
+      "Crypto",
+      "Indices",
+      "Commodities",
+      "Stocks"
+    ],
+    "maxAllocation": "$2,000,000",
+    "platforms": [
+      "MT4",
+      "MT5",
+      "cTrader",
+      "DXTrade"
+    ],
+    "score": 9.2,
+    "logo": "/images/wp/2025/04/FTMO-icon-light.png",
+    "reviewUrl": "/blog/ftmo-review",
+    "profitSplitPct": 90,
+    "payoutFrequency": "bi-weekly",
+    "payoutMethods": [
+      "Bank wire",
+      "Skrill",
+      "Crypto"
+    ],
+    "drawdownType": "static",
+    "minTradingDays": 0,
+    "consistencyRule": null,
+    "scalingPlan": true,
+    "newsTradingAllowed": true,
+    "eaAllowed": true,
+    "overnightAllowed": true,
+    "weekendAllowed": true,
+    "copyTradingAllowed": false,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "FundedNext",
+    "founded": "2022",
+    "assets": [
+      "Forex",
+      "Crypto",
+      "Indices",
+      "Commodities"
+    ],
+    "maxAllocation": "$4,000,000",
+    "platforms": [
+      "MT4",
+      "MT5"
+    ],
+    "score": 8.8,
+    "logo": "/images/wp/2025/10/FundedNext-Logo.png",
+    "reviewUrl": "/blog/fundednext-review",
+    "affiliateUrl": "https://fundednext.com/?fpr=karlis56",
+    "profitSplitPct": 95,
+    "payoutFrequency": "on-demand",
+    "payoutMethods": [
+      "Bank wire",
+      "Rise",
+      "Crypto"
+    ],
+    "drawdownType": "static",
+    "minTradingDays": 0,
+    "consistencyRule": "40% profit-retention penalty on positions held during news-window releases (verified 2026-05-20)",
+    "scalingPlan": true,
+    "newsTradingAllowed": true,
+    "eaAllowed": true,
+    "overnightAllowed": true,
+    "weekendAllowed": true,
+    "copyTradingAllowed": false,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "FundingPips",
+    "founded": "2022",
+    "assets": [
+      "Forex",
+      "Indices",
+      "Commodities",
+      "Crypto"
+    ],
+    "maxAllocation": "$2,000,000",
+    "platforms": [
+      "MT5",
+      "cTrader",
+      "DXTrade"
+    ],
+    "score": 8.7,
+    "logo": "/images/wp/2025/10/Funding-Pips-Icon-White.webp",
+    "reviewUrl": "/blog/funding-pips-review",
+    "affiliateUrl": "https://app.fundingpips.com/register?referral_code=1d94705c",
+    "profitSplitPct": 100,
+    "payoutFrequency": "bi-weekly",
+    "payoutMethods": [
+      "Bank wire",
+      "Rise",
+      "Crypto"
+    ],
+    "drawdownType": "static",
+    "minTradingDays": 5,
+    "consistencyRule": null,
+    "scalingPlan": true,
+    "newsTradingAllowed": true,
+    "eaAllowed": true,
+    "overnightAllowed": true,
+    "weekendAllowed": true,
+    "copyTradingAllowed": false,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "E8 Markets",
+    "founded": "2021",
+    "assets": [
+      "Forex",
+      "Crypto",
+      "Indices",
+      "Commodities"
+    ],
+    "maxAllocation": "$1,000,000",
+    "platforms": [
+      "MT5"
+    ],
+    "score": 8.3,
+    "logo": "/images/wp/2025/05/e8-markets-rebrnded-after.png",
+    "reviewUrl": "/blog/e8-markets-review",
+    "profitSplitPct": 80,
+    "payoutFrequency": "bi-weekly",
+    "payoutMethods": [
+      "Bank wire",
+      "Crypto"
+    ],
+    "drawdownType": "static",
+    "minTradingDays": 0,
+    "consistencyRule": null,
+    "scalingPlan": true,
+    "newsTradingAllowed": true,
+    "eaAllowed": true,
+    "overnightAllowed": true,
+    "weekendAllowed": true,
+    "copyTradingAllowed": null,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "Alpha Capital",
+    "founded": "2023",
+    "assets": [
+      "Forex",
+      "Indices",
+      "Crypto",
+      "Commodities"
+    ],
+    "maxAllocation": "$2,000,000",
+    "platforms": [
+      "MT5",
+      "cTrader"
+    ],
+    "score": 8,
+    "logo": "/images/wp/2025/07/Alpha-Capital-Logo.png",
+    "reviewUrl": "/blog/alpha-capital-review",
+    "profitSplitPct": 80,
+    "payoutFrequency": "bi-weekly",
+    "payoutMethods": [
+      "Bank wire",
+      "Crypto"
+    ],
+    "drawdownType": "static",
+    "minTradingDays": 0,
+    "consistencyRule": null,
+    "scalingPlan": true,
+    "newsTradingAllowed": true,
+    "eaAllowed": true,
+    "overnightAllowed": true,
+    "weekendAllowed": true,
+    "copyTradingAllowed": null,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "Bright Funded",
+    "founded": "2023",
+    "assets": [
+      "Forex",
+      "Indices",
+      "Commodities"
+    ],
+    "maxAllocation": "$400,000",
+    "platforms": [
+      "MT5",
+      "TradeLocker"
+    ],
+    "score": 7.8,
+    "logo": "/images/wp/2025/05/bright_funded_logo1-e1746805353313.png",
+    "reviewUrl": "/blog/bright-funded-prop-firm",
+    "affiliateUrl": "https://brightfunded.com/a/nIfOFrQBTUK-00O1dIjiSQ",
+    "discountCode": "nIfOFrQBTUK-00O1dIjiSQ",
+    "discountPct": 10,
+    "profitSplitPct": 80,
+    "payoutFrequency": "monthly",
+    "payoutMethods": [
+      "Bank wire",
+      "Crypto"
+    ],
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "consistencyRule": null,
+    "scalingPlan": true,
+    "newsTradingAllowed": null,
+    "eaAllowed": true,
+    "overnightAllowed": true,
+    "weekendAllowed": null,
+    "copyTradingAllowed": null,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "OFP Funding",
+    "founded": "2022",
+    "assets": [
+      "Forex",
+      "Indices",
+      "Commodities",
+      "Crypto"
+    ],
+    "maxAllocation": "$5,000,000",
+    "platforms": [
+      "MT4",
+      "MT5"
+    ],
+    "score": 7.5,
+    "logo": "/images/wp/2025/06/OFP-Funding-Logo-No-BG-e1748882625405.png",
+    "reviewUrl": "/blog/ofp-funding-review",
+    "profitSplitPct": 90,
+    "payoutFrequency": "bi-weekly",
+    "payoutMethods": [
+      "Bank wire",
+      "Crypto"
+    ],
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "consistencyRule": null,
+    "scalingPlan": true,
+    "newsTradingAllowed": true,
+    "eaAllowed": true,
+    "overnightAllowed": true,
+    "weekendAllowed": true,
+    "copyTradingAllowed": null,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "Maven",
+    "founded": "2023",
+    "assets": [
+      "Forex",
+      "Indices",
+      "Commodities",
+      "Crypto"
+    ],
+    "maxAllocation": "$800,000",
+    "platforms": [
+      "MT5",
+      "TradeLocker"
+    ],
+    "score": 7.6,
+    "logo": "/images/wp/2025/06/Maven-prop-firm-logo-white-e1749993312719.png",
+    "reviewUrl": "/blog/maven-prop-firm-review",
+    "profitSplitPct": 80,
+    "payoutFrequency": "bi-weekly",
+    "payoutMethods": [
+      "Bank wire",
+      "Crypto"
+    ],
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "consistencyRule": null,
+    "scalingPlan": null,
+    "newsTradingAllowed": null,
+    "eaAllowed": true,
+    "overnightAllowed": true,
+    "weekendAllowed": null,
+    "copyTradingAllowed": null,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "FXIFY",
+    "founded": "2022",
+    "assets": [
+      "Forex",
+      "Indices",
+      "Commodities",
+      "Crypto"
+    ],
+    "maxAllocation": "$4,000,000",
+    "platforms": [
+      "MT4",
+      "MT5"
+    ],
+    "score": 8.1,
+    "logo": "/images/wp/2025/07/FXIFY-100.jpg",
+    "reviewUrl": "/blog/fxify-review",
+    "profitSplitPct": 90,
+    "payoutFrequency": "on-demand",
+    "payoutMethods": [
+      "Bank wire",
+      "Rise",
+      "Crypto"
+    ],
+    "drawdownType": "static",
+    "minTradingDays": 0,
+    "consistencyRule": null,
+    "scalingPlan": true,
+    "newsTradingAllowed": true,
+    "eaAllowed": true,
+    "overnightAllowed": true,
+    "weekendAllowed": true,
+    "copyTradingAllowed": null,
+    "countriesRestricted": [
+      "United States",
+      "Russia",
+      "Iran",
+      "North Korea"
+    ],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "Crypto Fund Trader",
+    "founded": "2023",
+    "assets": [
+      "Crypto",
+      "Forex",
+      "Indices"
+    ],
+    "maxAllocation": "$600,000",
+    "platforms": [
+      "MT5",
+      "cTrader"
+    ],
+    "score": 7.4,
+    "logo": "",
+    "reviewUrl": "/blog/crypto-fund-trader-review",
+    "profitSplitPct": 80,
+    "payoutFrequency": "weekly",
+    "payoutMethods": [
+      "Crypto",
+      "Bank wire"
+    ],
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "consistencyRule": null,
+    "scalingPlan": null,
+    "newsTradingAllowed": null,
+    "eaAllowed": null,
+    "overnightAllowed": true,
+    "weekendAllowed": true,
+    "copyTradingAllowed": null,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "Topstep",
+    "founded": "2012",
+    "assets": [
+      "Futures"
+    ],
+    "maxAllocation": "$500,000",
+    "platforms": [
+      "NinjaTrader",
+      "Quantower",
+      "TradingView"
+    ],
+    "score": 8.5,
+    "logo": "",
+    "reviewUrl": "/blog/topstep-review",
+    "profitSplitPct": 90,
+    "payoutFrequency": "on-demand",
+    "payoutMethods": [
+      "ACH",
+      "Bank wire"
+    ],
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "consistencyRule": null,
+    "scalingPlan": true,
+    "newsTradingAllowed": true,
+    "eaAllowed": true,
+    "overnightAllowed": false,
+    "weekendAllowed": false,
+    "copyTradingAllowed": null,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "My Funded Futures",
+    "founded": "2023",
+    "assets": [
+      "Futures"
+    ],
+    "maxAllocation": "$600,000",
+    "platforms": [
+      "NinjaTrader",
+      "Tradovate",
+      "TradingView"
+    ],
+    "score": 8.2,
+    "logo": "/images/wp/2025/07/My-Funded-Futures-Logo-1.png",
+    "reviewUrl": "/blog/my-funded-futures",
+    "profitSplitPct": 90,
+    "payoutFrequency": "on-demand",
+    "payoutMethods": [
+      "ACH",
+      "Bank wire",
+      "Crypto"
+    ],
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "consistencyRule": null,
+    "scalingPlan": true,
+    "newsTradingAllowed": true,
+    "eaAllowed": true,
+    "overnightAllowed": false,
+    "weekendAllowed": false,
+    "copyTradingAllowed": null,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "City Traders Imperium",
+    "founded": "2018",
+    "assets": [
+      "Forex",
+      "Indices",
+      "Commodities",
+      "Crypto"
+    ],
+    "maxAllocation": "$2,000,000",
+    "platforms": [
+      "MT5",
+      "cTrader"
+    ],
+    "score": 7.9,
+    "logo": "",
+    "reviewUrl": "/blog/city-traders-imperium-review",
+    "profitSplitPct": 70,
+    "payoutFrequency": "monthly",
+    "payoutMethods": [
+      "Bank wire",
+      "Crypto"
+    ],
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "consistencyRule": null,
+    "scalingPlan": true,
+    "newsTradingAllowed": null,
+    "eaAllowed": true,
+    "overnightAllowed": true,
+    "weekendAllowed": null,
+    "copyTradingAllowed": null,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "The Funded Trader",
+    "founded": "2021",
+    "assets": [
+      "Forex",
+      "Indices",
+      "Commodities",
+      "Crypto"
+    ],
+    "maxAllocation": "$1,500,000",
+    "platforms": [
+      "MT4",
+      "MT5",
+      "cTrader"
+    ],
+    "score": 7.7,
+    "logo": "",
+    "reviewUrl": "/blog/the-funded-trader-review",
+    "profitSplitPct": 90,
+    "payoutFrequency": "bi-weekly",
+    "payoutMethods": [
+      "Bank wire",
+      "Crypto",
+      "Rise"
+    ],
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "consistencyRule": null,
+    "scalingPlan": true,
+    "newsTradingAllowed": true,
+    "eaAllowed": true,
+    "overnightAllowed": true,
+    "weekendAllowed": true,
+    "copyTradingAllowed": null,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": null,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-04-24"
+  }
+]

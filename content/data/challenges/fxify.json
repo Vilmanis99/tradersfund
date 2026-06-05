@@ -1,0 +1,227 @@
+[
+  {
+    "firmSlug": "fxify",
+    "productName": "FXIFY One-Phase",
+    "productSlug": "fxify-one-phase",
+    "phases": 1,
+    "accountSizes": [
+      { "sizeUsd": 5000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 10000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 200000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 400000, "priceUsd": null, "refundable": true }
+    ],
+    "profitTargets": { "phase1": 10 },
+    "dailyLossPct": 4,
+    "maxLossPct": 10,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 1,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fxify.com/how-it-works",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "Promo: code NEW40 = 40% off One-Phase (expires 2026-05-31).",
+      "Pricing customizable at checkout (leverage/split/payout add-ons) — base prices not single-source.",
+      "Trailing max loss tracks equity high until funded threshold.",
+      "Split scales to 90% with add-ons; up to 100% on FXIFY Futures."
+    ]
+  },
+  {
+    "firmSlug": "fxify",
+    "productName": "FXIFY Two-Phase",
+    "productSlug": "fxify-two-phase",
+    "phases": 2,
+    "accountSizes": [
+      { "sizeUsd": 5000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 10000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 200000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 400000, "priceUsd": null, "refundable": true }
+    ],
+    "profitTargets": { "phase1": 10, "phase2": 5 },
+    "dailyLossPct": 4,
+    "maxLossPct": 10,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 1,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fxify.com/how-it-works",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "Standard two-step model with lower per-phase cost vs One-Phase at the same account size.",
+      "FXIFY3 promo code = 33% off most programs (expires 2026-05-31)."
+    ]
+  },
+  {
+    "firmSlug": "fxify",
+    "productName": "FXIFY Three-Phase",
+    "productSlug": "fxify-three-phase",
+    "phases": 3,
+    "accountSizes": [
+      { "sizeUsd": 5000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 10000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 1,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fxify.com/",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "Three-phase evaluation, lowest per-tier cost. Phase rules not on accessible public pages — verify before publishing."
+    ]
+  },
+  {
+    "firmSlug": "fxify",
+    "productName": "FXIFY Lightning",
+    "productSlug": "fxify-lightning",
+    "phases": 1,
+    "accountSizes": [
+      { "sizeUsd": 5000, "priceUsd": 59, "refundable": true },
+      { "sizeUsd": 10000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 25000, "priceUsd": null, "refundable": true }
+    ],
+    "profitTargets": { "phase1": 5 },
+    "dailyLossPct": 4,
+    "maxLossPct": 10,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": 7,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 1,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fxify.com/",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "7-day accelerated evaluation. Single phase, lower 5% profit target.",
+      "Lowest entry price in the lineup — from $59. Higher-tier pricing not verified."
+    ]
+  },
+  {
+    "firmSlug": "fxify",
+    "productName": "FXIFY Instant",
+    "productSlug": "fxify-instant",
+    "phases": 0,
+    "accountSizes": [
+      { "sizeUsd": 5000, "priceUsd": null, "refundable": false },
+      { "sizeUsd": 10000, "priceUsd": null, "refundable": false },
+      { "sizeUsd": 25000, "priceUsd": null, "refundable": false },
+      { "sizeUsd": 50000, "priceUsd": null, "refundable": false }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "trailing",
+    "minTradingDays": 0,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 90,
+    "payoutFirstDays": 1,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fxify.com/",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "No evaluation. Bi-weekly payouts on funded account. Split scales up to 90%.",
+      "Pricing not publicly published — varies by add-on selections at checkout."
+    ]
+  },
+  {
+    "firmSlug": "fxify",
+    "productName": "FXIFY Futures",
+    "productSlug": "fxify-futures",
+    "phases": 1,
+    "accountSizes": [
+      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 150000, "priceUsd": null, "refundable": true }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 100,
+    "payoutFirstDays": 3,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": true,
+      "weekend": false,
+      "overnight": false,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "futures",
+    "sourceUrl": "https://fxify.com/",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "Futures-only product. Up to 100% split. Funding in as little as 3 days.",
+      "Overnight/weekend restrictions follow futures-session norms.",
+      "Specific tier pricing and targets not on public pages."
+    ]
+  }
+]

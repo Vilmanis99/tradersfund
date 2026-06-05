@@ -1,0 +1,72 @@
+[
+  {
+    "firmSlug": "my-funded-futures",
+    "productName": "MFF Rapid",
+    "productSlug": "mff-rapid",
+    "phases": 1,
+    "accountSizes": [
+      { "sizeUsd": 25000, "priceUsd": null, "refundable": false },
+      { "sizeUsd": 50000, "priceUsd": null, "refundable": false },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": false }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 90,
+    "payoutFirstDays": 0,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": true,
+      "weekend": false,
+      "overnight": false,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "futures",
+    "sourceUrl": "https://myfundedfutures.com/rapid",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "Daily payouts (the 'Rapid' name comes from same-day payout cadence).",
+      "$100K request cap mentioned on homepage.",
+      "Pricing, drawdown specifics, profit targets not on accessible public pages."
+    ]
+  },
+  {
+    "firmSlug": "my-funded-futures",
+    "productName": "MFF Scale",
+    "productSlug": "mff-scale",
+    "phases": 1,
+    "accountSizes": [
+      { "sizeUsd": 50000, "priceUsd": null, "refundable": false },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": false }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 90,
+    "payoutFirstDays": null,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": true,
+      "weekend": false,
+      "overnight": false,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "futures",
+    "sourceUrl": "https://myfundedfutures.com/",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "Core scaling product. Most rule and pricing detail not accessible from public pages — verify before publishing.",
+      "Up to 90% profit share; scaling available up to $100K."
+    ]
+  }
+]

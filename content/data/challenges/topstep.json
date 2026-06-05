@@ -1,0 +1,42 @@
+[
+  {
+    "firmSlug": "topstep",
+    "productName": "Trading Combine",
+    "productSlug": "trading-combine",
+    "phases": 1,
+    "accountSizes": [
+      { "sizeUsd": 50000, "priceUsd": null, "refundable": false },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": false },
+      { "sizeUsd": 150000, "priceUsd": null, "refundable": false }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 90,
+    "payoutFirstDays": null,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": true,
+      "weekend": false,
+      "overnight": false,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "futures",
+    "sourceUrl": "https://www.topstep.com/faq",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "Combine pass rate: 16.8% per Topstep's published 2025 statistics page (https://www.topstep.com/blog/, captured 2026-05-20).",
+      "XFA advancement rate: 51.8% of Combine passers, per same 2025 published data.",
+      "Funded payout rate: 33.3% of XFA traders received payouts in 2025, per same source.",
+      "Live promotion rate: 0.71% of Express Funded traders, per same source.",
+      "Pricing, exact daily/max loss limits, and profit targets behind member-portal pages — not on FAQ.",
+      "Pass the Combine → Express Funded Account → Live Funded (invitation-only after consistency).",
+      "AeroPay payouts settle in <9 seconds when eligible."
+    ]
+  }
+]

@@ -1,0 +1,154 @@
+[
+  {
+    "firmSlug": "fundednext",
+    "productName": "Stellar 2-Step",
+    "productSlug": "stellar-2-step",
+    "phases": 2,
+    "accountSizes": [
+      { "sizeUsd": 6000, "priceUsd": 59.99, "refundable": true },
+      { "sizeUsd": 15000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": 549.99, "refundable": true },
+      { "sizeUsd": 200000, "priceUsd": 1099.99, "refundable": true }
+    ],
+    "profitTargets": { "phase1": 8, "phase2": 5 },
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 95,
+    "payoutFirstDays": null,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fundednext.com/",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "Pricing for $15K / $25K / $50K not verified on public pages — fill in before publishing.",
+      "News trading allowed on funded accounts but profit retention is 40% during news windows (i.e. trader earns only 60% of the news-window PnL).",
+      "24-hour payout guarantee or $1,000 bonus advertised — verify current terms."
+    ]
+  },
+  {
+    "firmSlug": "fundednext",
+    "productName": "Stellar 1-Step",
+    "productSlug": "stellar-1-step",
+    "phases": 1,
+    "accountSizes": [
+      { "sizeUsd": 6000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 15000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 95,
+    "payoutFirstDays": null,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fundednext.com/stellar-1-step",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "Marketing-page URL captured 404 on agent fetch — confirm current product URL.",
+      "Pricing per tier not verifiable from public pages — fill in before publishing."
+    ]
+  },
+  {
+    "firmSlug": "fundednext",
+    "productName": "Stellar Lite",
+    "productSlug": "stellar-lite",
+    "phases": 2,
+    "accountSizes": [
+      { "sizeUsd": 6000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 15000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": true }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": null,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fundednext.com/",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "Entry-level / lower-cost variant of Stellar 2-Step. Full rules and pricing not on public pages.",
+      "Profit split is lower than flagship Stellar — assumed 80% but verify before publishing."
+    ]
+  },
+  {
+    "firmSlug": "fundednext",
+    "productName": "Stellar Instant",
+    "productSlug": "stellar-instant",
+    "phases": 0,
+    "accountSizes": [
+      { "sizeUsd": 2000, "priceUsd": 59.99, "refundable": false },
+      { "sizeUsd": 5000, "priceUsd": 149.99, "refundable": false },
+      { "sizeUsd": 10000, "priceUsd": 299.99, "refundable": false },
+      { "sizeUsd": 20000, "priceUsd": 599.99, "refundable": false }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": 6,
+    "drawdownType": "trailing",
+    "minTradingDays": 0,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 70,
+    "payoutFirstDays": 0,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fundednext.com/stellar-instant",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "No evaluation — instant funded account. Higher up-front price, lower split (70–80% scaling).",
+      "Trailing 6% maximum loss; no daily-loss cap published.",
+      "Request payout immediately once 5% account growth is hit.",
+      "10% growth path doubles account balance instead of triggering a payout."
+    ]
+  }
+]

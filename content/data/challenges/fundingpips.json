@@ -1,0 +1,40 @@
+[
+  {
+    "firmSlug": "fundingpips",
+    "productName": "FundingPips 2-Step",
+    "productSlug": "fundingpips-2-step",
+    "phases": 2,
+    "accountSizes": [
+      { "sizeUsd": 10000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "static",
+    "minTradingDays": 5,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": null,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fundingpips.com/",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "WARNING: Almost all FundingPips public pages returned 403 to programmatic fetch. Treat every field as needing manual verification against the live site before publishing.",
+      "Split scales to 100% under their scaling plan after consistent payout milestones.",
+      "Min 5 trading days is the longest-running known requirement — verify it still applies in 2026."
+    ]
+  }
+]

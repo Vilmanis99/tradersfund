@@ -1,0 +1,65 @@
+[
+  {
+    "firmSlug": "ofp-funding",
+    "productName": "OFP Account",
+    "productSlug": "ofp-funding-default",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": null,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": null,
+        "refundable": false
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 90,
+    "payoutFirstDays": null,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "/blog/ofp-funding-review",
+    "sourceCapturedAt": "2026-05-20",
+    "notes": [
+      "SKELETON ENTRY \u2014 only firm-level aggregates from firms.json populated.",
+      "Per-tier pricing, exact profit targets, and DD% require editorial verification against the live firm page.",
+      "Set fields to null until verified \u2014 never invent."
+    ]
+  }
+]
