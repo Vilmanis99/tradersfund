@@ -12,6 +12,7 @@ import FirmCtaCard from '@/components/FirmCtaCard'
 import FirmAlternatives from '@/components/FirmAlternatives'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import AnimatedNumber from '@/components/AnimatedNumber'
+import MobileStickyCTA from '@/components/MobileStickyCTA'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -184,6 +185,19 @@ export default async function BlogPostPage({ params }: Props) {
           </aside>
         </div>
       </div>
+
+      {matchedFirm && (
+        <MobileStickyCTA
+          name={matchedFirm.name}
+          logo={matchedFirm.logo}
+          score={matchedFirm.score}
+          reviewUrl={matchedFirm.reviewUrl}
+          affiliateUrl={matchedFirm.affiliateUrl}
+          affiliateSlug={matchedFirm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}
+          discountCode={matchedFirm.discountCode}
+          discountPct={matchedFirm.discountPct}
+        />
+      )}
     </div>
   )
 }

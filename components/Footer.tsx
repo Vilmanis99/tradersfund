@@ -1,73 +1,147 @@
-'use client'
 import Link from 'next/link'
-import { TrendingUp } from 'lucide-react'
+import { TrendingUp, Twitter, Linkedin, MessageCircle, Youtube } from 'lucide-react'
 import NewsletterForm from './NewsletterForm'
+import AnimatedNumber from './AnimatedNumber'
+import { getAllFirms, getAllChallenges } from '@/lib/firms'
+import { getAllPosts } from '@/lib/mdx'
 
 export default function Footer() {
+  const firms = getAllFirms()
+  const challenges = getAllChallenges()
+  const posts = getAllPosts()
+
+  // Use the newest post's date as the "updated" anchor (falls back to today).
+  const newestDate = posts[0]?.date ? new Date(posts[0].date) : new Date()
+  const updatedLabel = newestDate.toLocaleDateString('en-US', {
+    month: 'short',
+    year: 'numeric',
+  })
+
+  const propFirmLinks = [
+    { label: 'Main Directory', href: '/main-table' },
+    { label: 'Best Firms in UK', href: '/best-prop-firms-in-uk' },
+    { label: 'Best Firms in US', href: '/best-prop-firms-in-us' },
+    { label: 'Cheapest Firms', href: '/cheapest-prop-firms' },
+    { label: 'Futures Firms', href: '/best-futures-prop-firms' },
+  ]
+  const reviewLinks = [
+    { label: 'FTMO Review', href: '/blog/ftmo-review' },
+    { label: 'FundedNext Review', href: '/blog/fundednext-review' },
+    { label: 'FundingPips Review', href: '/blog/funding-pips-review' },
+    { label: 'E8 Markets Review', href: '/blog/e8-markets-review' },
+    { label: 'Alpha Capital Review', href: '/blog/alpha-capital-review' },
+  ]
+  const companyLinks = [
+    { label: 'About Us', href: '/about' },
+    { label: 'How We Score Firms', href: '/methodology' },
+    { label: 'Authors', href: '/authors' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Disclaimers', href: '/disclaimers' },
+  ]
+
   return (
-    <footer style={{ background: 'var(--bg2)', borderTop: '1px solid var(--border)', marginTop: 'auto', padding: '3rem 1.5rem 2rem' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '2rem', marginBottom: '2.5rem' }}>
-          {/* Brand + Newsletter */}
-          <div>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', marginBottom: '1rem' }}>
-              <div style={{ width: 30, height: 30, borderRadius: 7, background: 'linear-gradient(135deg, #27a17b, #2dd4bf)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <TrendingUp size={15} color="#fff" />
-              </div>
-              <span style={{ color: '#fff', fontWeight: 800, fontSize: '1rem' }}>Traders Fund Hub</span>
-            </Link>
-            <p style={{ color: '#64748b', fontSize: '0.85rem', lineHeight: 1.7, marginBottom: '1rem' }}>
-              Your trusted source for prop firm reviews, comparisons, and trading education.
-            </p>
-            <p style={{ color: '#94a3b8', fontSize: '0.8rem', marginBottom: '0.5rem', fontWeight: 600 }}>Join the TFH family</p>
-            <NewsletterForm />
-          </div>
+    <footer className="footer-aurora">
+      <div className="aurora-orb aurora-orb--3 footer-orb" aria-hidden="true" />
+      <div className="footer-accent-line" aria-hidden="true" />
 
-          {/* Prop Firms */}
-          <div>
-            <h4 style={{ color: '#fff', fontWeight: 700, marginBottom: '0.75rem', fontSize: '0.9rem' }}>Prop Firms</h4>
-            {[
-              { label: 'Main Directory', href: '/main-table' },
-              { label: 'Best Firms in UK', href: '/best-prop-firms-in-uk' },
-              { label: 'Best Firms in US', href: '/best-prop-firms-in-us' },
-              { label: 'Cheapest Firms', href: '/cheapest-prop-firms' },
-              { label: 'Futures Firms', href: '/best-futures-prop-firms' },
-            ].map(l => <FooterLink key={l.href} {...l} />)}
+      <div className="footer-shell">
+        {/* Stats strip */}
+        <div className="footer-stats">
+          <div className="footer-stat">
+            <span className="footer-stat-num">
+              <AnimatedNumber value={firms.length} />
+            </span>
+            <span className="footer-stat-label">firms tracked</span>
           </div>
-
-          {/* Reviews */}
-          <div>
-            <h4 style={{ color: '#fff', fontWeight: 700, marginBottom: '0.75rem', fontSize: '0.9rem' }}>Top Reviews</h4>
-            {[
-              { label: 'FTMO Review', href: '/blog/ftmo-review' },
-              { label: 'FundedNext Review', href: '/blog/fundednext-review' },
-              { label: 'FundingPips Review', href: '/blog/funding-pips-review' },
-              { label: 'E8 Markets Review', href: '/blog/e8-markets-review' },
-              { label: 'Alpha Capital Review', href: '/blog/alpha-capital-review' },
-            ].map(l => <FooterLink key={l.href} {...l} />)}
+          <span className="footer-stat-divider" aria-hidden="true">·</span>
+          <div className="footer-stat">
+            <span className="footer-stat-num">
+              <AnimatedNumber value={challenges.length} />
+            </span>
+            <span className="footer-stat-label">challenges priced</span>
           </div>
-
-          {/* Company */}
-          <div>
-            <h4 style={{ color: '#fff', fontWeight: 700, marginBottom: '0.75rem', fontSize: '0.9rem' }}>Company</h4>
-            {[
-              { label: 'About Us', href: '/about' },
-              { label: 'How We Score Firms', href: '/methodology' },
-              { label: 'Authors', href: '/authors' },
-              { label: 'Blog', href: '/blog' },
-              { label: 'Contact', href: '/contact' },
-              { label: 'Privacy Policy', href: '/privacy-policy' },
-              { label: 'Disclaimers', href: '/disclaimers' },
-            ].map(l => <FooterLink key={l.href} {...l} />)}
+          <span className="footer-stat-divider" aria-hidden="true">·</span>
+          <div className="footer-stat">
+            <span className="footer-stat-num">
+              <AnimatedNumber value={posts.length} />
+            </span>
+            <span className="footer-stat-label">articles</span>
+          </div>
+          <span className="footer-stat-divider" aria-hidden="true">·</span>
+          <div className="footer-stat">
+            <span className="footer-stat-label">Updated</span>
+            <span className="footer-stat-num footer-stat-num--text">{updatedLabel}</span>
           </div>
         </div>
 
-        <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.5rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between', alignItems: 'center' }}>
-          <p style={{ color: '#475569', fontSize: '0.8rem' }}>
+        <div className="footer-grid">
+          {/* Brand + Newsletter — glass card */}
+          <div className="footer-brand-card">
+            <Link href="/" className="footer-brand">
+              <div className="footer-brand-mark">
+                <TrendingUp size={15} color="#fff" />
+              </div>
+              <span className="footer-brand-name">Traders Fund Hub</span>
+            </Link>
+            <p className="footer-brand-copy">
+              Your trusted source for prop firm reviews, comparisons, and trading education.
+            </p>
+            <p className="footer-brand-tagline">Join the TFH family</p>
+            <NewsletterForm />
+
+            <div className="footer-social">
+              <a href="#" aria-label="Twitter / X" className="footer-social-link">
+                <Twitter size={16} />
+              </a>
+              <a href="#" aria-label="LinkedIn" className="footer-social-link">
+                <Linkedin size={16} />
+              </a>
+              <a href="#" aria-label="Reddit" className="footer-social-link">
+                <MessageCircle size={16} />
+              </a>
+              <a href="#" aria-label="YouTube" className="footer-social-link">
+                <Youtube size={16} />
+              </a>
+            </div>
+          </div>
+
+          {/* Prop Firms */}
+          <div className="footer-col">
+            <h4 className="footer-eyebrow">Prop Firms</h4>
+            <ul className="footer-list">
+              {propFirmLinks.map(l => <FooterLink key={l.href} {...l} />)}
+            </ul>
+          </div>
+
+          {/* Latest reviews — green-tint eyebrow with pulse dot */}
+          <div className="footer-col">
+            <h4 className="footer-eyebrow footer-eyebrow--live">
+              <span className="hero-eyebrow-dot" aria-hidden="true" />
+              Latest reviews
+            </h4>
+            <ul className="footer-list">
+              {reviewLinks.map(l => <FooterLink key={l.href} {...l} />)}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div className="footer-col">
+            <h4 className="footer-eyebrow">Company</h4>
+            <ul className="footer-list">
+              {companyLinks.map(l => <FooterLink key={l.href} {...l} />)}
+            </ul>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <p className="footer-bottom-copyright">
             © {new Date().getFullYear()} Traders Fund Hub. All rights reserved.
           </p>
-          <p style={{ color: '#475569', fontSize: '0.75rem', maxWidth: 500 }}>
-            Disclaimer: Trading involves significant risk of loss. This site is for informational purposes only and does not constitute financial advice.
+          <p className="footer-bottom-disclaimer">
+            Disclaimer: Trading involves significant risk of loss. This site is for informational
+            purposes only and does not constitute financial advice.
           </p>
         </div>
       </div>
@@ -77,10 +151,8 @@ export default function Footer() {
 
 function FooterLink({ label, href }: { label: string; href: string }) {
   return (
-    <Link href={href} style={{ display: 'block', color: '#64748b', fontSize: '0.85rem', textDecoration: 'none', marginBottom: '0.4rem', transition: 'color 0.2s' }}
-      onMouseEnter={e => (e.currentTarget.style.color = '#94a3b8')}
-      onMouseLeave={e => (e.currentTarget.style.color = '#64748b')}>
-      {label}
-    </Link>
+    <li>
+      <Link href={href} className="footer-link">{label}</Link>
+    </li>
   )
 }

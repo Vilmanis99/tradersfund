@@ -5,18 +5,18 @@
     "productSlug": "stellar-2-step",
     "phases": 2,
     "accountSizes": [
-      { "sizeUsd": 6000, "priceUsd": 59.99, "refundable": true },
-      { "sizeUsd": 15000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": 549.99, "refundable": true },
+      { "sizeUsd": 6000,   "priceUsd": 59.99,   "refundable": true },
+      { "sizeUsd": 15000,  "priceUsd": 119.99,  "refundable": true },
+      { "sizeUsd": 25000,  "priceUsd": 199.99,  "refundable": true },
+      { "sizeUsd": 50000,  "priceUsd": 299.99,  "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": 549.99,  "refundable": true },
       { "sizeUsd": 200000, "priceUsd": 1099.99, "refundable": true }
     ],
     "profitTargets": { "phase1": 8, "phase2": 5 },
     "dailyLossPct": 5,
     "maxLossPct": 10,
-    "drawdownType": "static",
-    "minTradingDays": null,
+    "drawdownType": "balance-based",
+    "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 95,
@@ -31,11 +31,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fundednext.com/",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceCapturedAt": "2026-06-05",
     "notes": [
-      "Pricing for $15K / $25K / $50K not verified on public pages — fill in before publishing.",
-      "News trading allowed on funded accounts but profit retention is 40% during news windows (i.e. trader earns only 60% of the news-window PnL).",
-      "24-hour payout guarantee or $1,000 bonus advertised — verify current terms."
+      "Full pricing captured from fundednext.com home-page comparison table 2026-06-05.",
+      "News trading allowed on funded accounts but profit retention is 40% during news windows.",
+      "24-hour payout guarantee or $1,000 bonus advertised — verify current terms before each editorial refresh."
     ]
   },
   {
@@ -44,18 +44,18 @@
     "productSlug": "stellar-1-step",
     "phases": 1,
     "accountSizes": [
-      { "sizeUsd": 6000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 15000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+      { "sizeUsd": 6000,   "priceUsd": 117,    "refundable": true },
+      { "sizeUsd": 15000,  "priceUsd": 292.50, "refundable": true },
+      { "sizeUsd": 25000,  "priceUsd": 487.50, "refundable": true },
+      { "sizeUsd": 50000,  "priceUsd": 975,    "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": 1950,   "refundable": true },
+      { "sizeUsd": 200000, "priceUsd": 3900,   "refundable": true }
     ],
-    "profitTargets": null,
+    "profitTargets": { "phase1": 8 },
     "dailyLossPct": 5,
     "maxLossPct": 10,
-    "drawdownType": "static",
-    "minTradingDays": null,
+    "drawdownType": "balance-based",
+    "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 95,
@@ -69,11 +69,12 @@
       "copyTrading": false
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://fundednext.com/stellar-1-step",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://fundednext.com/",
+    "sourceCapturedAt": "2026-06-05",
     "notes": [
-      "Marketing-page URL captured 404 on agent fetch — confirm current product URL.",
-      "Pricing per tier not verifiable from public pages — fill in before publishing."
+      "Full pricing captured from fundednext.com home-page comparison table 2026-06-05.",
+      "Dedicated /stellar-1-step URL returned 404 at scrape time — site may have consolidated product pages.",
+      "Higher per-tier price than 2-Step reflects the single-phase shortcut to a funded account."
     ]
   },
   {
@@ -82,10 +83,10 @@
     "productSlug": "stellar-lite",
     "phases": 2,
     "accountSizes": [
-      { "sizeUsd": 6000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 15000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 6000,   "priceUsd": null, "refundable": true },
+      { "sizeUsd": 15000,  "priceUsd": null, "refundable": true },
+      { "sizeUsd": 25000,  "priceUsd": null, "refundable": true },
+      { "sizeUsd": 50000,  "priceUsd": null, "refundable": true },
       { "sizeUsd": 100000, "priceUsd": null, "refundable": true }
     ],
     "profitTargets": null,
@@ -107,10 +108,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fundednext.com/",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceCapturedAt": "2026-06-05",
     "notes": [
-      "Entry-level / lower-cost variant of Stellar 2-Step. Full rules and pricing not on public pages.",
-      "Profit split is lower than flagship Stellar — assumed 80% but verify before publishing."
+      "Entry-level / lower-cost variant of Stellar 2-Step. Listed in nav but no dedicated product page found.",
+      "Profit split is lower than flagship Stellar — assumed 80% but verify before publishing.",
+      "Per-tier USD pricing awaits manual capture."
     ]
   },
   {
@@ -119,8 +121,8 @@
     "productSlug": "stellar-instant",
     "phases": 0,
     "accountSizes": [
-      { "sizeUsd": 2000, "priceUsd": 59.99, "refundable": false },
-      { "sizeUsd": 5000, "priceUsd": 149.99, "refundable": false },
+      { "sizeUsd": 2000,  "priceUsd": 59.99,  "refundable": false },
+      { "sizeUsd": 5000,  "priceUsd": 149.99, "refundable": false },
       { "sizeUsd": 10000, "priceUsd": 299.99, "refundable": false },
       { "sizeUsd": 20000, "priceUsd": 599.99, "refundable": false }
     ],
@@ -131,7 +133,7 @@
     "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
-    "profitSplitPct": 70,
+    "profitSplitPct": 80,
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",
     "rules": {
@@ -143,12 +145,13 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fundednext.com/stellar-instant",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceCapturedAt": "2026-06-05",
     "notes": [
-      "No evaluation — instant funded account. Higher up-front price, lower split (70–80% scaling).",
+      "No evaluation — instant funded account. Higher up-front price, lower split (starts at 70%, scales to 80%).",
       "Trailing 6% maximum loss; no daily-loss cap published.",
-      "Request payout immediately once 5% account growth is hit.",
-      "10% growth path doubles account balance instead of triggering a payout."
+      "News trading allowed but at reduced 40% reward share during news windows.",
+      "Scaling plan doubles balance per 10% withdrawal up to $2M.",
+      "10% reset discount mentioned at scrape time (2026-06-05) — verify before quoting in editorial."
     ]
   }
 ]

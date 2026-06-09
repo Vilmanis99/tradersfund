@@ -1,65 +1,121 @@
 [
   {
     "firmSlug": "bright-funded",
-    "productName": "Bright Funded Challenge",
-    "productSlug": "bright-funded-default",
-    "phases": 2,
+    "productName": "Bright Funded 1-Step",
+    "productSlug": "bright-funded-1-step",
+    "phases": 1,
     "accountSizes": [
-      {
-        "sizeUsd": 5000,
-        "priceUsd": null,
-        "refundable": true
-      },
-      {
-        "sizeUsd": 10000,
-        "priceUsd": null,
-        "refundable": true
-      },
-      {
-        "sizeUsd": 25000,
-        "priceUsd": null,
-        "refundable": true
-      },
-      {
-        "sizeUsd": 50000,
-        "priceUsd": null,
-        "refundable": true
-      },
-      {
-        "sizeUsd": 100000,
-        "priceUsd": null,
-        "refundable": true
-      },
-      {
-        "sizeUsd": 200000,
-        "priceUsd": null,
-        "refundable": true
-      }
+      { "sizeUsd": 5000,   "priceUsd": null, "refundable": true },
+      { "sizeUsd": 10000,  "priceUsd": null, "refundable": true },
+      { "sizeUsd": 25000,  "priceUsd": null, "refundable": true },
+      { "sizeUsd": 50000,  "priceUsd": null, "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
     ],
     "profitTargets": null,
-    "dailyLossPct": null,
-    "maxLossPct": null,
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
     "drawdownType": "static",
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": null,
-    "profitSplitPct": 80,
+    "profitSplitPct": 100,
     "payoutFirstDays": null,
-    "payoutFrequency": "monthly",
+    "payoutFrequency": "weekly",
     "rules": {
-      "news": "restricted",
-      "weekend": false,
+      "news": true,
+      "weekend": true,
       "overnight": true,
       "ea": true,
       "copyTrading": false
     },
     "assetClass": "cfd",
-    "sourceUrl": "/blog/bright-funded-prop-firm",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://brightfunded.com/",
+    "sourceCapturedAt": "2026-06-05",
     "notes": [
-      "SKELETON ENTRY \u2014 only firm-level aggregates from firms.json populated.",
-      "Per-tier pricing, exact profit targets, and DD% require editorial verification against the live firm page.",
-      "Set fields to null until verified \u2014 never invent."
+      "Per-tier USD prices await capture from app.brightfunded.com (dashboard requires login).",
+      "Active sitewide promo (verify expiry): SUMMER30 — 30% off 1-Step.",
+      "Profit split shown as 'up to 100%' with scaling on the funded account."
+    ]
+  },
+  {
+    "firmSlug": "bright-funded",
+    "productName": "Bright Funded 2-Step Bright",
+    "productSlug": "bright-funded-2-step-bright",
+    "phases": 2,
+    "accountSizes": [
+      { "sizeUsd": 5000,   "priceUsd": null, "refundable": true },
+      { "sizeUsd": 10000,  "priceUsd": null, "refundable": true },
+      { "sizeUsd": 25000,  "priceUsd": null, "refundable": true },
+      { "sizeUsd": 50000,  "priceUsd": null, "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+    ],
+    "profitTargets": { "phase1": 8, "phase2": null },
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 100,
+    "payoutFirstDays": null,
+    "payoutFrequency": "weekly",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://brightfunded.com/",
+    "sourceCapturedAt": "2026-06-05",
+    "notes": [
+      "Per-tier USD prices await capture from app.brightfunded.com (dashboard requires login).",
+      "Active sitewide promo (verify expiry): SUMMER25 — 25% off 2-Step Bright.",
+      "Marketed as 'Best Value — Lowest Profit Target' on the dashboard configurator.",
+      "Phase 2 target not visible publicly — verify in dashboard."
+    ]
+  },
+  {
+    "firmSlug": "bright-funded",
+    "productName": "Bright Funded 2-Step Classic",
+    "productSlug": "bright-funded-2-step-classic",
+    "phases": 2,
+    "accountSizes": [
+      { "sizeUsd": 5000,   "priceUsd": null, "refundable": true },
+      { "sizeUsd": 10000,  "priceUsd": null, "refundable": true },
+      { "sizeUsd": 25000,  "priceUsd": null, "refundable": true },
+      { "sizeUsd": 50000,  "priceUsd": null, "refundable": true },
+      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
+      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 100,
+    "payoutFirstDays": null,
+    "payoutFrequency": "weekly",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://brightfunded.com/",
+    "sourceCapturedAt": "2026-06-05",
+    "notes": [
+      "Per-tier USD prices await capture from app.brightfunded.com (dashboard requires login).",
+      "Active sitewide promo (verify expiry): SUMMER15 — 15% off 2-Step Classic.",
+      "Marketed as 'Highest Drawdown Limit' on the dashboard configurator.",
+      "Phase targets not visible publicly — verify in dashboard."
     ]
   }
 ]

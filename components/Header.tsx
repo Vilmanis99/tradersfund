@@ -1,63 +1,57 @@
 import Link from 'next/link'
 import { TrendingUp } from 'lucide-react'
+import { getAllFirms } from '@/lib/firms'
 import HeaderNav from './HeaderNav'
 
-export const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Blog', href: '/blog' },
-  {
-    label: 'Prop Firms',
-    href: '/main-table',
-    children: [
-      { label: 'Main Directory', href: '/main-table' },
-      { label: 'Compare Firms', href: '/compare' },
-      { label: 'Filter by Feature', href: '/prop-firms' },
-      { label: 'Best in UK', href: '/best-prop-firms-in-uk' },
-      { label: 'Best in US', href: '/best-prop-firms-in-us' },
-      { label: 'Cheapest Firms', href: '/cheapest-prop-firms' },
-      { label: 'Futures Firms', href: '/best-futures-prop-firms' },
-      { label: 'Instant Funding', href: '/best-instant-funding-prop-firms' },
-    ],
-  },
-  {
-    label: 'Learn',
-    href: '/how-prop-firm-challenges-work',
-    children: [
-      { label: 'How Challenges Work', href: '/how-prop-firm-challenges-work' },
-      { label: 'True Cost Math', href: '/true-cost-of-prop-firm-challenges' },
-      { label: 'What is a Prop Firm?', href: '/blog/what-is-a-prop-firm' },
-    ],
-  },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-] as const
+// Re-export so existing call-sites that did `import { navLinks } from
+// '@/components/Header'` still work. New code should import from
+// '@/components/navLinks' directly.
+export { navLinks } from './navLinks'
+export type { NavLink } from './navLinks'
 
-export type NavLink = (typeof navLinks)[number]
+/**
+ * Format an ISO date (YYYY-MM-DD) into a short human-readable label, e.g.
+ * "Apr 24". Falls back gracefully if the input is missing or malformed.
+ */
+function formatShortDate(iso?: string): string {
+  if (!iso) return ''
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return ''
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+}
+
+/**
+ * Compute the most recent `lastUpdated` across all firms. This is the
+ * heartbeat we surface in the header pill — it signals editorial freshness
+ * without requiring a manual edit every release.
+ */
+function computeLastUpdated(): string {
+  const firms = getAllFirms()
+  const dates = firms
+    .map(f => f.lastUpdated)
+    .filter((d): d is string => Boolean(d))
+    .sort()
+  return dates.length ? dates[dates.length - 1] : ''
+}
 
 export default function Header() {
+  const lastUpdated = formatShortDate(computeLastUpdated())
+
   return (
-    <header style={{
-      position: 'sticky', top: 0, zIndex: 100,
-      background: 'rgba(20, 20, 26, 0.95)',
-      backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid var(--border)',
-    }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem', display: 'flex', alignItems: 'center', height: 64 }}>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginRight: 'auto' }}>
-          <div style={{
-            width: 34, height: 34, borderRadius: 8,
-            background: 'linear-gradient(135deg, #27a17b, #2dd4bf)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <TrendingUp size={18} color="#fff" aria-hidden="true" />
+    <header className="site-header">
+      <div className="site-header__inner">
+        <Link href="/" className="site-header__brand" aria-label="Traders Fund Hub home">
+          <div className="site-header__logo" aria-hidden="true">
+            <TrendingUp size={18} color="#fff" />
           </div>
-          <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fff' }}>
-            Traders <span className="gradient-text">Fund Hub</span>
+          <span className="site-header__wordmark">
+            Traders <span className="gradient-text--animated">Fund</span> Hub
           </span>
         </Link>
 
-        <HeaderNav />
+        <HeaderNav lastUpdated={lastUpdated} />
       </div>
+      <div className="site-header__aurora-line" aria-hidden="true" />
     </header>
   )
 }

@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Star, ExternalLink, Tag } from 'lucide-react'
+import { Star, ExternalLink } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
+import CopyableCodePill from './CopyableCodePill'
 
 function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -65,20 +66,7 @@ export default function FirmCtaCard({ firm }: { firm: Firm }) {
               <Star size={11} aria-hidden="true" /> {firm.score}
             </span>
             {firm.discountCode && firm.discountPct && (
-              <span
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 4,
-                  padding: '3px 9px', borderRadius: 999,
-                  background: 'rgba(245,158,11,0.15)',
-                  border: '1px solid rgba(245,158,11,0.35)',
-                  color: 'var(--gold)',
-                  fontSize: '0.72rem', fontWeight: 700,
-                  letterSpacing: '0.02em',
-                }}
-              >
-                <Tag size={11} aria-hidden="true" />
-                {firm.discountPct}% off — code {firm.discountCode}
-              </span>
+              <CopyableCodePill code={firm.discountCode} pct={firm.discountPct} />
             )}
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: 6, color: 'var(--muted)', fontSize: '0.82rem' }}>
