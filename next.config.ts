@@ -1,5 +1,46 @@
 import type { NextConfig } from 'next'
+import { getAllPosts, getAllPages } from './lib/mdx'
 
-const nextConfig: NextConfig = {}
+/**
+ * WordPress legacy: every blog post used to live at the site root
+ * (`tradersfundhub.com/fx-replay-review`). The Next.js redesign moved
+ * them all under `/blog/<slug>`. Without 301s, Google's indexed entries
+ * 404 and we lose every long-tail ranking we built up.
+ *
+ * Strategy: for every post whose slug doesn't collide with an explicit
+ * Next.js route or a `content/pages/` slug, emit a permanent (308 ≈ 301)
+ * redirect from `/<slug>` to `/blog/<slug>`.
+ */
+async function postRedirects() {
+  const posts = getAllPosts()
+  const pageSlugs = new Set(getAllPages().map(p => p.slug))
+
+  // Reserved = anything Next.js renders directly at a top-level path. If a
+  // post slug collides with one of these, the redirect would steal the
+  // dedicated route — explicitly exclude.
+  const reservedSlugs = new Set([
+    'blog', 'main-table', 'prop-firms', 'compare', 'go', 'api',
+    'authors', 'category',
+    'best-prop-firms-in-uk',
+    'best-prop-firms-in-us',
+    'cheapest-prop-firms',
+    'best-instant-funding-prop-firms',
+    'best-futures-prop-firms',
+  ])
+
+  return posts
+    .filter(p => !pageSlugs.has(p.slug) && !reservedSlugs.has(p.slug))
+    .map(p => ({
+      source: `/${p.slug}`,
+      destination: `/blog/${p.slug}`,
+      permanent: true,
+    }))
+}
+
+const nextConfig: NextConfig = {
+  async redirects() {
+    return await postRedirects()
+  },
+}
 
 export default nextConfig
