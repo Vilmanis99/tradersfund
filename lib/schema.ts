@@ -9,10 +9,43 @@ function slugify(name: string) {
 }
 
 /**
+ * Pull the bullet list that follows a `<h*>Pros</h*>` / `<h*>Cons</h*>`
+ * heading out of a review's rendered HTML. Used to populate Google's
+ * editorial pros-and-cons rich result (positiveNotes / negativeNotes).
+ * Returns [] when the heading or its list is absent — never invents notes.
+ */
+function extractNotes(html: string, heading: 'Pros' | 'Cons'): string[] {
+  const headingRe = new RegExp(
+    `<h[1-6][^>]*>\\s*(?:<strong>)?\\s*${heading}\\s*(?:</strong>)?\\s*</h[1-6]>`,
+    'i',
+  )
+  const m = headingRe.exec(html)
+  if (!m) return []
+  const after = html.slice(m.index + m[0].length)
+  const ul = /<ul[^>]*>([\s\S]*?)<\/ul>/i.exec(after)
+  if (!ul) return []
+  return Array.from(ul[1].matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi))
+    .map(li => li[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim())
+    .filter(Boolean)
+    .slice(0, 8)
+}
+
+function notesItemList(items: string[]) {
+  return {
+    '@type': 'ItemList',
+    itemListElement: items.map((name, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name,
+    })),
+  }
+}
+
+/**
  * If the post is a firm review, return a rich schema graph (Review +
  * AggregateRating nested inside). Otherwise return a plain Article schema.
  */
-export function postSchema(post: PostMeta, allFirms: Firm[]) {
+export function postSchema(post: PostMeta & { content?: string }, allFirms: Firm[]) {
   const postUrl = `${SITE}/blog/${post.slug}`
   const ogImage = `${postUrl}/opengraph-image`
   const firm = allFirms.find(f => f.reviewUrl === `/blog/${post.slug}`)
@@ -63,6 +96,10 @@ export function postSchema(post: PostMeta, allFirms: Firm[]) {
     ratingCount: 1,
   }
 
+  // Editorial pros/cons pulled from the review body (never invented).
+  const pros = post.content ? extractNotes(post.content, 'Pros') : []
+  const cons = post.content ? extractNotes(post.content, 'Cons') : []
+
   // Product node captures the actual purchasable challenges + price range.
   // Nested under Review.itemReviewed so Google can render price-rich result.
   const product = {
@@ -74,6 +111,8 @@ export function postSchema(post: PostMeta, allFirms: Firm[]) {
     ...(firm.logo ? { image: SITE + firm.logo } : {}),
     aggregateRating,
     ...(offers.length > 0 ? { offers } : {}),
+    ...(pros.length > 0 ? { positiveNotes: notesItemList(pros) } : {}),
+    ...(cons.length > 0 ? { negativeNotes: notesItemList(cons) } : {}),
   }
 
   const review = {

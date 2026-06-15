@@ -257,6 +257,49 @@ export const FEATURES: Feature[] = [
     ],
     lastReviewed: "2026-04-24",
   },
+  {
+    slug: 'overnight-holding',
+    label: 'Overnight Holding',
+    h1: 'Best Prop Firms That Allow Overnight Holding',
+    metaTitle: 'Best Prop Firms That Allow Overnight Holding (2026)',
+    metaDescription:
+      'Trend and swing traders can\'t close every position by the bell. Compare the prop firms that let you carry trades overnight — and check the swap and weekend rules.',
+    intro:
+      'Plenty of firms happily let you hold a position overnight — and plenty quietly force you flat at the session close. That single rule decides whether a multi-day trend trade is even possible. Every firm below allows overnight holding; mind the swap policy on forex and CFD, and confirm weekend rules separately if you carry into Friday.',
+    whyItMatters: [
+      {
+        icon: 'trending',
+        title: 'Trend trades need time',
+        body: 'A setup that plays out over three or four days dies instantly under a force-flat-at-close rule. Overnight holding is the baseline requirement for any swing or position strategy.',
+      },
+      {
+        icon: 'shield',
+        title: 'Most futures firms force you flat',
+        body: 'Futures prop firms like Topstep and My Funded Futures typically close all positions at session end. This list is the forex and CFD firms that let you carry — see the weekend-holding filter if you also hold through Friday.',
+      },
+      {
+        icon: 'clock',
+        title: 'Swap fees accrue while you sleep',
+        body: 'Holding forex or CFD positions overnight incurs swap/rollover charges. Over a multi-day hold these add up — check the firm\'s swap table before you assume "allowed" means "free".',
+      },
+    ],
+    filter: f => f.overnightAllowed === true,
+    faqs: [
+      {
+        q: 'Do all prop firms allow overnight holding?',
+        a: 'No. Most futures firms force every position flat at session close, and a few CFD firms restrict overnight holding on specific instruments. Always confirm in the rules before you carry a trade.',
+      },
+      {
+        q: 'Is overnight holding the same as weekend holding?',
+        a: 'No — and the distinction trips swing traders. A firm can allow overnight holding on weekdays but still force-close every position on Friday. If you hold into the weekend, check both rules separately.',
+      },
+      {
+        q: 'Are there fees for holding positions overnight?',
+        a: 'On forex and CFD accounts, yes — swap/rollover is charged (or occasionally credited) per night held. Crypto and some swap-free accounts differ. Read the firm\'s swap policy, not just its "overnight allowed" marketing line.',
+      },
+    ],
+    lastReviewed: "2026-06-04",
+  },
 ]
 
 export function getFeatureBySlug(slug: string): Feature | undefined {

@@ -25,13 +25,28 @@ export const metadata: Metadata = {
     url: 'https://tradersfundhub.com',
   },
   twitter: { card: 'summary_large_image' },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      // Allow full-size image previews (Google Discover + image-rich SERPs)
+      // and uncapped text snippets.
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className={inter.className} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }} suppressHydrationWarning>
+        {/* RSS autodiscovery — hoisted to <head> by React. Placed here (not in
+            metadata.alternates) so per-page canonical overrides can't drop it. */}
+        <link rel="alternate" type="application/rss+xml" title="Traders Fund Hub — Reviews & Guides" href="/feed.xml" />
         <Header />
         <main style={{ flex: 1 }}>
           {children}

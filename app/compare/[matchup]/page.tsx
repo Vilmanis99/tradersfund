@@ -19,6 +19,7 @@ import {
   jsonLd,
 } from '@/lib/schema'
 import ComparisonHero from '@/components/ComparisonHero'
+import ComparisonInfographic from '@/components/ComparisonInfographic'
 import ComparisonTable from '@/components/ComparisonTable'
 import ComparisonVerdict from '@/components/ComparisonVerdict'
 import FeatureFaq from '@/components/FeatureFaq'
@@ -147,6 +148,8 @@ export default async function ComparePage({ params }: Props) {
           <AffiliateDisclosure />
 
           <ComparisonHero firmA={firmA} firmB={firmB} />
+
+          <ComparisonInfographic firmA={firmA} firmB={firmB} rows={rows} />
 
           <ComparisonVerdict
             firmA={firmA}

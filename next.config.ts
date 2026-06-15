@@ -37,9 +37,28 @@ async function postRedirects() {
     }))
 }
 
+/**
+ * WordPress legacy archive URLs Google still has indexed. These pattern
+ * routes have no Next.js equivalent and were 404ing (or soft-404ing). Send
+ * them to the nearest sensible target with a permanent (308 ≈ 301) redirect
+ * so their accumulated link equity flows somewhere useful instead of dying.
+ */
+function legacyRedirects() {
+  return [
+    // Old RSS feed → the real feed route handler (app/feed.xml/route.ts).
+    { source: '/feed', destination: '/feed.xml', permanent: true },
+    { source: '/comments/feed', destination: '/feed.xml', permanent: true },
+    // WP author/tag archives → closest live hub.
+    { source: '/author/:slug*', destination: '/authors', permanent: true },
+    { source: '/tag/:slug*', destination: '/blog', permanent: true },
+    // WP blog pagination (/page/2, /page/3 …) → blog index.
+    { source: '/page/:n*', destination: '/blog', permanent: true },
+  ]
+}
+
 const nextConfig: NextConfig = {
   async redirects() {
-    return await postRedirects()
+    return [...(await postRedirects()), ...legacyRedirects()]
   },
 }
 

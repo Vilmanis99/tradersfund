@@ -3488,3 +3488,59 @@ a.bento-tile:hover,
 .mobile-overlay__social:focus-visible {
   outline: 2px solid var(--accent-light); outline-offset: 2px;
 }
+
+/* ── Featured firm spotlight (headline affiliate) ─────────────────── */
+.featured-spotlight {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--bg2), var(--bg3));
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+.featured-spotlight-orb {
+  position: absolute; top: -140px; right: -120px; opacity: 0.45; pointer-events: none;
+}
+.featured-spotlight-inner {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr; gap: 1.75rem;
+}
+@media (min-width: 820px) {
+  .featured-spotlight-inner { grid-template-columns: 1.6fr 1fr; align-items: center; }
+}
+.featured-spotlight-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.76rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--gold); background: rgba(245,158,11,0.12);
+  border: 1px solid rgba(245,158,11,0.3); padding: 5px 12px; border-radius: 999px;
+}
+.featured-spotlight-head { display: flex; align-items: center; gap: 14px; margin: 1.1rem 0 0.9rem; }
+.featured-spotlight-logo {
+  width: 60px; height: 60px; border-radius: 14px; background: var(--bg);
+  border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+  padding: 8px; flex-shrink: 0;
+}
+.featured-spotlight-name {
+  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; color: #fff; margin: 0; letter-spacing: -0.02em;
+}
+.featured-spotlight-score {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 0.85rem; color: var(--gold); font-weight: 600;
+}
+.featured-spotlight-pitch {
+  color: var(--text); font-size: 1rem; line-height: 1.65; margin: 0 0 1rem; max-width: 56ch;
+}
+.featured-spotlight-bullets { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
+.featured-spotlight-bullets li {
+  display: flex; align-items: flex-start; gap: 8px; color: var(--muted); font-size: 0.9rem; line-height: 1.5;
+}
+.featured-spotlight-bullets li svg { color: var(--accent-light); flex-shrink: 0; margin-top: 2px; }
+.featured-spotlight-cta { display: flex; flex-direction: column; gap: 0.9rem; align-items: stretch; }
+.featured-spotlight-offer {
+  text-align: center; background: var(--bg); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.1rem;
+}
+.featured-spotlight-offer-amount { font-size: 1.85rem; font-weight: 900; color: var(--gold); line-height: 1; }
+.featured-spotlight-offer-label { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+.featured-spotlight-button { width: 100%; justify-content: center; }
+.featured-spotlight-review { text-align: center; font-size: 0.85rem; color: var(--muted); text-decoration: none; }
+.featured-spotlight-review:hover { color: var(--accent-light); }

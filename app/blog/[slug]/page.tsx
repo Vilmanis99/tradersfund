@@ -9,6 +9,7 @@ import TableOfContents from '@/components/TableOfContents'
 import AuthorBio from '@/components/AuthorBio'
 import RelatedPosts from '@/components/RelatedPosts'
 import FirmCtaCard from '@/components/FirmCtaCard'
+import FirmStatPanel from '@/components/FirmStatPanel'
 import FirmAlternatives from '@/components/FirmAlternatives'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import AnimatedNumber from '@/components/AnimatedNumber'
@@ -54,6 +55,20 @@ function addHeadingIds(html: string): string {
   })
 }
 
+/**
+ * Inline markdown links to /go/* are monetized affiliate redirects. Google
+ * requires rel="sponsored" on paid links; the component CTAs already set it,
+ * but body-copy links rendered from raw HTML don't. Inject it (and open in a
+ * new tab) for any /go/ anchor that lacks a rel attribute.
+ */
+function addAffiliateRel(html: string): string {
+  return html.replace(/<a\b[^>]*>/gi, tag => {
+    if (!/href="\/go\//i.test(tag)) return tag
+    if (/\brel=/i.test(tag)) return tag
+    return tag.replace(/^<a\b/i, '<a rel="sponsored nofollow noopener" target="_blank"')
+  })
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   const post = getPostBySlug(slug)
@@ -61,7 +76,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   const wordCount = post.content.replace(/<[^>]+>/g, '').split(/\s+/).length
   const readTime = Math.ceil(wordCount / 200)
-  const contentWithIds = addHeadingIds(post.content)
+  const contentWithIds = addAffiliateRel(addHeadingIds(post.content))
 
   const allPosts = getAllPosts()
   const related = allPosts
@@ -137,6 +152,7 @@ export default async function BlogPostPage({ params }: Props) {
           <article>
             {matchedFirm && <AffiliateDisclosure />}
             {matchedFirm && <FirmCtaCard firm={matchedFirm} />}
+            {matchedFirm && <FirmStatPanel firm={matchedFirm} />}
 
             <TableOfContents html={contentWithIds} />
 

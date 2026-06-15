@@ -18,6 +18,7 @@ export default function Footer() {
   })
 
   const propFirmLinks = [
+    { label: 'Best Prop Firms 2026', href: '/best-prop-firms-2026' },
     { label: 'Main Directory', href: '/main-table' },
     { label: 'Best Firms in UK', href: '/best-prop-firms-in-uk' },
     { label: 'Best Firms in US', href: '/best-prop-firms-in-us' },

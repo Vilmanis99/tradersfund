@@ -12,6 +12,11 @@ interface Props { params: Promise<{ slug: string }> }
 // with the `SKIP` set in app/sitemap.ts.
 const RESERVED = ['blog', 'main-table', 'prop-firms', 'compare']
 
+// Only slugs returned by generateStaticParams() resolve. Any other
+// single-segment path (e.g. /feed, /random-junk) hard-404s instead of
+// soft-404ing with a 200 status — protects crawl budget.
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   const pages = getAllPages()
   return pages

@@ -8,6 +8,11 @@ import { ArrowRight, Folder } from 'lucide-react'
 
 interface Props { params: Promise<{ slug: string }> }
 
+// Only real category slugs (from generateStaticParams) resolve. A bogus
+// category like /category/nonsense-xyz now hard-404s instead of returning
+// a 200 soft-404 — closes the infinite low-quality-page surface.
+export const dynamicParams = false
+
 function slugToName(slug: string) {
   return slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 }

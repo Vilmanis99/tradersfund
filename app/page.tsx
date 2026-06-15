@@ -9,6 +9,7 @@ import NewsletterForm from '@/components/NewsletterForm'
 import Hero3D from '@/components/Hero3D'
 import AnimatedNumber from '@/components/AnimatedNumber'
 import TiltCard from '@/components/TiltCard'
+import FeaturedFirmSpotlight from '@/components/FeaturedFirmSpotlight'
 import {
   ArrowRight, ArrowUpRight, TrendingUp, Star, DollarSign, Zap, Percent,
   ShieldCheck, Sparkles, Crown, Flame, Clock, Calculator, Newspaper, Bot, CalendarDays,
@@ -57,6 +58,14 @@ export default function Home() {
       if (aDisc !== bDisc) return bDisc - aDisc
       return (b.score ?? 0) - (a.score ?? 0)
     })
+
+  // ── Headline affiliate spotlight ───────────────────────────────
+  // Bright Funded is our featured "start here" partner. Promoted via
+  // prominence (featured slot + discount), NOT by rigging its score — the
+  // leaderboard below stays purely score-sorted. Pitch/bullets are sourced
+  // facts only; we deliberately avoid the split number while firms.json (80%)
+  // and the challenge file (100%) disagree — reconcile before quoting it.
+  const featuredFirm = firms.find(f => f.name === 'Bright Funded')
 
   const cheapestChallenge = challenges
     .flatMap(c => c.accountSizes
@@ -320,6 +329,22 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ═══════════════════════════════ HEADLINE AFFILIATE SPOTLIGHT ═══════════════════════════════ */}
+      {featuredFirm && (
+        <FeaturedFirmSpotlight
+          firm={featuredFirm}
+          eyebrow="Start here · best for beginners"
+          pitch="New to funded trading? Bright Funded is the lowest-risk way to test the model — small entry sizes, forgiving static drawdown, and a standing 10% discount that cuts the cost of a first attempt."
+          bullets={[
+            'Entry account sizes from $5,000 — start small while you prove a strategy',
+            'Static drawdown (5% daily / 10% max) — the forgiving variant, not trailing',
+            'MT5 and browser-based TradeLocker — no desktop install required',
+            'Standing 10% discount with our code, applied at checkout',
+          ]}
+          fromParam="home-spotlight"
+        />
+      )}
 
       {/* ═══════════════════════════════ TRADER-VETTED PARTNERS ═══════════════════════════════ */}
       {partnerFirms.length > 0 && (

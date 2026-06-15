@@ -26,7 +26,7 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
   return (
     <ol className="leaderboard" style={{ counterReset: 'rank' }}>
       {ranked.map((item, i) => {
-        const { firm, highlight } = item
+        const { firm, highlight, note } = item
         const slug = firmSlug(firm.name)
         const isPartner = Boolean(firm.affiliateUrl)
         return (
@@ -67,6 +67,19 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
                 <span className="leader-meta-dot">•</span>
                 <span>Max {firm.maxAllocation}</span>
               </div>
+              {note && (
+                <p
+                  style={{
+                    margin: '0.4rem 0 0',
+                    color: 'var(--muted)',
+                    fontSize: '0.85rem',
+                    lineHeight: 1.55,
+                    maxWidth: '60ch',
+                  }}
+                >
+                  {note}
+                </p>
+              )}
             </div>
             <div className="leader-stats">
               <div className="leader-stat">

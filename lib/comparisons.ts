@@ -161,6 +161,164 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
       { q: 'What’s the catch with the trailing drawdown on both firms?', a: 'Both Topstep and MFF use trailing max drawdown — your loss limit tightens as your account grows but doesn’t loosen when you give back profit. A single bad day after a good run can blow the account even if you’re still net positive.' },
     ],
   },
+
+  'fundednext-vs-fundingpips': {
+    matchupSlug: 'fundednext-vs-fundingpips',
+    h1: 'FundedNext vs FundingPips (2026): Split-and-Speed vs the 100% Ceiling',
+    metaDescription:
+      'FundedNext vs FundingPips compared on profit split, payout speed, platforms, and rules. Two of the strongest 2022 CFD firms — here’s which wins for your strategy.',
+    tlDr:
+      'These are two of the best CFD firms launched in 2022, and the split is close to a coin-flip. FundingPips dangles a 100% scaling ceiling and adds cTrader; FundedNext answers with a 95% standard split, on-demand payouts, a $4M allocation, and zero minimum trading days. The deciding factors are speed and the small print: FundedNext pays faster but taxes news-window profit 40%, while FundingPips makes you trade at least 5 days before a payout. Pick FundedNext for fast cash and a big ceiling; pick FundingPips for the top split and cTrader.',
+    verdictByCategory: [
+      { category: 'Profit Split', winner: 'b', reason: 'FundingPips scales to 100% versus FundedNext’s 95% standard split — the highest ceiling in this matchup, once you clear the scaling milestones.' },
+      { category: 'Payout Speed', winner: 'a', reason: 'FundedNext supports on-demand payouts; FundingPips runs a bi-weekly cycle. If you want capital recycled fast, FundedNext wins clearly.' },
+      { category: 'Max Allocation', winner: 'a', reason: 'FundedNext scales to $4M against FundingPips’ $2M ceiling — double the headroom for traders who stack accounts.' },
+      { category: 'Minimum Trading Days', winner: 'a', reason: 'FundedNext requires zero minimum trading days; FundingPips imposes 5 before a payout, which constrains fast scalpers.' },
+      { category: 'Platform Coverage', winner: 'b', reason: 'FundingPips runs MT5, cTrader and DXTrade; FundedNext is MT4 and MT5 only. cTrader-native traders should lean FundingPips.' },
+      { category: 'News-Window Rule', winner: 'b', reason: 'FundingPips allows news trading cleanly, while FundedNext retains 40% of any profit made inside a Tier-1 news window even on a 95% account.' },
+    ],
+    whenToPickA:
+      'Pick FundedNext if you want on-demand payouts, a path to a $4M allocation, and no minimum-trading-day requirement — the combination that suits an active trader who wants cash out fast. The 95% split is excellent and reachable. The one thing to model first: if your edge involves trading the NFP/CPI/FOMC window, the 40% news-window retention quietly erases the split advantage during those events.',
+    whenToPickB:
+      'Pick FundingPips if you want the highest possible take (100% under the scaling plan), trade on cTrader, or trade through news without a retention penalty. You’ll accept a bi-weekly payout cycle and a 5-day minimum trading requirement in exchange. It’s the stronger pick for a patient, news-active trader chasing the top split.',
+    faqs: [
+      { q: 'Both are your affiliate partners — is this verdict biased?', a: 'No. We rank on the same editorial criteria we’d use for any firm, and the call goes whichever way the data points — here FundingPips genuinely wins the split and platforms while FundedNext wins speed and allocation. Partnerships affect prominence, never the verdict.' },
+      { q: 'Which is cheaper to start?', a: 'Entry fees are close at equivalent tiers, and both refund the challenge fee with your first payout. FundingPips often edges slightly cheaper at the smallest sizes; confirm the live price (and any active discount) before buying.' },
+      { q: 'Can I trade news on both?', a: 'Both allow news trading, but the economics differ: FundingPips treats news-window profit normally, whereas FundedNext retains 40% of profit generated inside a Tier-1 release window. For a news-driven strategy, that gap matters more than the headline split.' },
+    ],
+  },
+
+  'ftmo-vs-fxify': {
+    matchupSlug: 'ftmo-vs-fxify',
+    h1: 'FTMO vs FXIFY (2026): The Safe Default vs the Flexible Challenger',
+    metaDescription:
+      'FTMO vs FXIFY: same 90% split, very different firms. We compare payout speed, allocation, platforms, country access, and track record to pick a winner.',
+    tlDr:
+      'Both run a 90% split on static drawdown, so the headline number is a tie — the difference is everything around it. FTMO brings a 2015 track record, four platforms (including cTrader and DXTrade), single-stock CFDs, and no country restrictions. FXIFY counters with on-demand payouts, a $4M ceiling (double FTMO’s), and a customizable multi-product lineup — but it blocks the US, Russia, Iran, and North Korea. FTMO is the lower-risk default; FXIFY is the faster, bigger-ceiling pick if you’re outside its restricted regions.',
+    verdictByCategory: [
+      { category: 'Profit Split', winner: 'tie', reason: 'Both pay a 90% split on the funded account — a genuine wash on the headline economics.' },
+      { category: 'Payout Speed', winner: 'b', reason: 'FXIFY supports on-demand payouts from day one of funding; FTMO runs a bi-weekly cycle. FXIFY gets cash to a winner sooner.' },
+      { category: 'Max Allocation', winner: 'b', reason: 'FXIFY scales to $4M versus FTMO’s $2M ceiling — more room for traders who consistently pass and scale.' },
+      { category: 'Platform Coverage', winner: 'a', reason: 'FTMO covers MT4, MT5, cTrader and DXTrade; FXIFY is MT4 and MT5 only. cTrader and DXTrade traders need FTMO.' },
+      { category: 'Tradable Assets', winner: 'a', reason: 'FTMO adds single-stock CFDs to Forex, Crypto, Indices and Commodities; FXIFY’s list is narrower.' },
+      { category: 'Country Access', winner: 'a', reason: 'FTMO carries no published country restrictions; FXIFY blocks the US, Russia, Iran and North Korea. A dealbreaker if you’re in one of them.' },
+      { category: 'Track Record', winner: 'a', reason: 'FTMO has paid traders since 2015 through multiple industry shakeouts; FXIFY launched in 2022 with a clean but shorter record.' },
+    ],
+    whenToPickA:
+      'Pick FTMO if you trade cTrader or DXTrade, want single-stock CFDs, are in a region FXIFY restricts, or simply weight a decade-long payout history above a faster cycle. It remains the lowest-friction safe default in CFD prop trading — the firm has never retroactively tightened drawdown on existing funded traders.',
+    whenToPickB:
+      'Pick FXIFY if you want on-demand payouts, a $4M ceiling, and a customizable product lineup (One-Phase, Two-Phase, Lightning, Instant), and you’re outside its restricted countries. It’s the more flexible, faster-paying firm — the trade-offs are a shorter track record and an MT-only platform list.',
+    faqs: [
+      { q: 'Do FTMO and FXIFY have the same drawdown rules?', a: 'Both use static drawdown on their flagship plans, which is the forgiving variant — your loss floor is fixed and doesn’t trail your equity high. FXIFY’s Lightning product is the exception, using a trailing rule with a 7-day window, so check the specific product you buy.' },
+      { q: 'Can US traders use either firm?', a: 'No. FXIFY explicitly restricts US residents, and FTMO does not accept US clients either. US traders should look at futures firms like Topstep or My Funded Futures.' },
+      { q: 'Which is better value at the $100K tier?', a: 'They price similarly at $100K, and both refund the fee on first payout. FXIFY frequently runs discounts that undercut FTMO at checkout, so the live promo usually decides it — verify the current price before buying.' },
+    ],
+  },
+
+  'ftmo-vs-topstep': {
+    matchupSlug: 'ftmo-vs-topstep',
+    h1: 'FTMO vs Topstep (2026): CFD Forex vs Futures — Not the Same Decision',
+    metaDescription:
+      'FTMO vs Topstep is a CFD-vs-futures choice, not a like-for-like comparison. We break down who each firm is for, US access, drawdown rules, and holding rules.',
+    tlDr:
+      'These two don’t actually compete for the same trader. FTMO funds CFD/forex traders; Topstep funds futures traders on CME products. If you’re a US resident, the decision is nearly made for you: FTMO doesn’t accept US clients, and Topstep does. For everyone else it comes down to instrument and rules — FTMO uses forgiving static drawdown and allows overnight and weekend holds, while Topstep uses trailing drawdown and forces every position flat at session close. Choose by asset class first, then by rules.',
+    verdictByCategory: [
+      // matchup is alphabetised so "a" = FTMO, "b" = Topstep.
+      { category: 'Profit Split', winner: 'tie', reason: 'Both pay 90% on funded accounts. The split is identical — it’s not the deciding factor here.' },
+      { category: 'Drawdown Type', winner: 'a', reason: 'FTMO uses static drawdown (fixed loss floor); Topstep uses trailing drawdown that tightens as you profit. Static is materially easier to manage.' },
+      { category: 'Payout Speed', winner: 'b', reason: 'Topstep supports on-demand payouts; FTMO runs a bi-weekly cycle. Topstep gets cash out faster once eligible.' },
+      { category: 'Holding Rules', winner: 'a', reason: 'FTMO allows overnight and weekend holding; Topstep forces all positions flat at session close — standard for futures, but a hard stop for swing traders.' },
+      { category: 'US Access', winner: 'b', reason: 'Topstep accepts US-resident traders (CFTC-regulated futures path); FTMO does not accept US clients at all.' },
+      { category: 'Track Record', winner: 'b', reason: 'Topstep has operated since 2012 — slightly longer than FTMO’s 2015 start, and the pioneer of the futures-prop model.' },
+      { category: 'Max Allocation', winner: 'a', reason: 'FTMO scales to $2M total allocation; Topstep caps at $500K. More headroom on the CFD side.' },
+    ],
+    whenToPickA:
+      'Pick FTMO if you trade forex, indices, crypto, commodities or stock CFDs, want forgiving static drawdown, or need to hold positions overnight or across the weekend. It’s the wrong firm only if you trade futures or live in the US — both of which point you to Topstep instead.',
+    whenToPickB:
+      'Pick Topstep if you trade futures (ES, NQ, CL, GC and the rest) or you’re a US resident with no CFD option. The trade-offs are real: a trailing drawdown that punishes giving back profit, and a force-flat-at-close rule that rules out swing trades. In return you get the most structured path to funded in the futures world and a 2012 track record.',
+    faqs: [
+      { q: 'Can I compare FTMO and Topstep on price directly?', a: 'Not cleanly — they sell different products. FTMO prices CFD challenges by account size; Topstep prices a futures Trading Combine by contract limit. Compare them on fit (asset class, drawdown, holding rules), not headline fee.' },
+      { q: 'I’m a US trader — which should I pick?', a: 'Topstep. FTMO doesn’t accept US-resident clients, while Topstep is built around the CFTC-regulated futures route that’s the cleanest legal path for US funded traders.' },
+      { q: 'Which has easier drawdown rules?', a: 'FTMO. Its static drawdown fixes your loss floor at the starting balance, while Topstep’s trailing drawdown follows your equity high and can end the account on a normal retrace after a winning run.' },
+    ],
+  },
+
+  'fundednext-vs-fxify': {
+    matchupSlug: 'fundednext-vs-fxify',
+    h1: 'FundedNext vs FXIFY (2026): Near-Twins, Split by the Small Print',
+    metaDescription:
+      'FundedNext vs FXIFY: both 2022 firms, both on-demand payouts to a $4M ceiling on static drawdown. We compare the split, news rules, and country access that separate them.',
+    tlDr:
+      'On paper these two are near-twins: both launched in 2022, both pay on-demand to a $4M ceiling, both run static drawdown on MT4/MT5 with no minimum trading days. The separators are narrow but real. FundedNext carries a higher 95% split and no country restrictions; FXIFY counters with a cleaner news rule and a more customizable product lineup. For most traders the higher split wins — but a news trader should weigh FXIFY harder.',
+    verdictByCategory: [
+      { category: 'Profit Split', winner: 'a', reason: 'FundedNext’s 95% standard split beats FXIFY’s 90%. On identical-feeling accounts, that 5 points is the clearest edge.' },
+      { category: 'Payout Speed', winner: 'tie', reason: 'Both support on-demand payouts after the initial waiting period — a genuine tie on speed.' },
+      { category: 'Max Allocation', winner: 'tie', reason: 'Both scale to a $4M total allocation ceiling. No advantage either way for size traders.' },
+      { category: 'Country Access', winner: 'a', reason: 'FundedNext carries no published country restrictions; FXIFY blocks the US, Russia, Iran and North Korea.' },
+      { category: 'News-Window Rule', winner: 'b', reason: 'FXIFY treats news-window profit normally, while FundedNext retains 40% of profit made inside a Tier-1 release window. Advantage FXIFY for news traders.' },
+      { category: 'Product Range', winner: 'b', reason: 'FXIFY ships a wider, more customizable lineup (One-Phase, Two-Phase, Lightning, Instant) versus FundedNext’s Stellar family — more ways to tune the challenge to your style.' },
+    ],
+    whenToPickA:
+      'Pick FundedNext if you want the higher 95% split, trade from a region FXIFY restricts, or just want the simpler decision — it’s the same on-demand, $4M, static-drawdown structure with a better headline take. The caveat is the 40% news-window retention; if you don’t trade releases, it never bites.',
+    whenToPickB:
+      'Pick FXIFY if your edge involves news (no retention penalty), you want to fine-tune the challenge across its broader product range, and you’re outside its restricted countries. You give up 5 points of split for cleaner news economics and more product flexibility.',
+    faqs: [
+      { q: 'Are FundedNext and FXIFY really that similar?', a: 'On the core structure, yes — both are 2022 firms offering on-demand payouts, a $4M ceiling, static drawdown, MT4/MT5, and zero minimum trading days. The meaningful differences are the split (95% vs 90%), the news rule, country access, and product range.' },
+      { q: 'Which is better for a news trader?', a: 'FXIFY. FundedNext retains 40% of any profit earned inside a Tier-1 news window, which erodes its split advantage exactly when a news trader makes money. FXIFY treats that profit normally.' },
+      { q: 'Can US traders use either?', a: 'FXIFY explicitly restricts US residents. FundedNext does not accept US clients either. US traders should look at futures firms like Topstep or My Funded Futures.' },
+    ],
+  },
+
+  'fundingpips-vs-fxify': {
+    matchupSlug: 'fundingpips-vs-fxify',
+    h1: 'FundingPips vs FXIFY (2026): Top Split vs Speed and Ceiling',
+    metaDescription:
+      'FundingPips vs FXIFY compared on profit split, payout speed, allocation, platforms, and country access. Which 2022 CFD firm wins for your strategy?',
+    tlDr:
+      'Both are strong 2022 CFD firms on static drawdown, and the trade-off is clean. FundingPips leads on the take — a 100% scaling ceiling — and adds cTrader and DXTrade. FXIFY leads on the mechanics: on-demand payouts (versus bi-weekly), a $4M ceiling (double FundingPips’ $2M), and zero minimum trading days against FundingPips’ five. If you’re chasing the highest split and trade cTrader, FundingPips. If you want faster cash, a bigger ceiling, and no minimum-days rule, FXIFY — provided you’re outside its restricted countries.',
+    verdictByCategory: [
+      { category: 'Profit Split', winner: 'a', reason: 'FundingPips scales to 100% versus FXIFY’s 90%. The highest possible take in this matchup belongs to FundingPips.' },
+      { category: 'Payout Speed', winner: 'b', reason: 'FXIFY supports on-demand payouts; FundingPips runs a bi-weekly cycle. FXIFY recycles capital faster.' },
+      { category: 'Max Allocation', winner: 'b', reason: 'FXIFY scales to $4M against FundingPips’ $2M ceiling — double the headroom.' },
+      { category: 'Minimum Trading Days', winner: 'b', reason: 'FXIFY requires zero minimum trading days; FundingPips imposes 5 before a payout. Scalpers will prefer FXIFY.' },
+      { category: 'Platform Coverage', winner: 'a', reason: 'FundingPips runs MT5, cTrader and DXTrade; FXIFY is MT4 and MT5 only. cTrader traders need FundingPips.' },
+      { category: 'Country Access', winner: 'a', reason: 'FundingPips carries no published country restrictions; FXIFY blocks the US, Russia, Iran and North Korea.' },
+    ],
+    whenToPickA:
+      'Pick FundingPips if you want the highest split (100% under the scaling plan), trade on cTrader or DXTrade, or live in a region FXIFY restricts. You accept a bi-weekly payout cycle and a 5-day minimum trading requirement in exchange for the top take and broader platforms.',
+    whenToPickB:
+      'Pick FXIFY if you want on-demand payouts, a $4M ceiling, and no minimum-trading-day rule, and you’re outside its restricted countries. You trade 10 points of split ceiling for faster cash, double the allocation, and more flexibility on how fast you can withdraw.',
+    faqs: [
+      { q: 'Does FundingPips really pay 100%?', a: 'The 100% figure is the scaling-plan ceiling, not the starting rate. Most funded traders begin at 80–90% and unlock the top tier by hitting consecutive payout milestones. FXIFY’s 90% is its standard funded rate.' },
+      { q: 'Which gets me paid faster?', a: 'FXIFY. It supports on-demand payouts from day one of funding, while FundingPips runs a bi-weekly cycle and requires 5 minimum trading days before a first payout. For fast capital recycling, FXIFY wins.' },
+      { q: 'Can US traders use either firm?', a: 'FXIFY explicitly restricts US residents; FundingPips does not accept US clients either. US traders should look at futures firms such as Topstep or My Funded Futures.' },
+    ],
+  },
+
+  'bright-funded-vs-maven': {
+    matchupSlug: 'bright-funded-vs-maven',
+    h1: 'Bright Funded vs Maven (2026): Two Budget-Tier Firms, Compared',
+    metaDescription:
+      'Bright Funded vs Maven: both 2023 entry-tier firms on 80% splits, MT5 and TradeLocker, static drawdown. We compare payout cadence, allocation, and scaling.',
+    tlDr:
+      'These are two 2023 entry-tier firms with a lot in common: an 80% split, MT5 and TradeLocker support, and static drawdown. Maven pays bi-weekly and doubles the allocation ceiling ($800K vs $400K). Bright Funded answers with a published scaling plan and a standing 10% discount, but pays monthly. It’s a close call at the budget end — Maven for faster payouts and a bigger ceiling, Bright Funded for the scaling path and the discount.',
+    verdictByCategory: [
+      { category: 'Profit Split', winner: 'tie', reason: 'Both pay an 80% split on the funded account — identical headline economics at the entry tier.' },
+      { category: 'Payout Frequency', winner: 'b', reason: 'Maven pays bi-weekly; Bright Funded pays monthly. Maven gets you to cash twice as often.' },
+      { category: 'Max Allocation', winner: 'b', reason: 'Maven scales to $800K versus Bright Funded’s $400K ceiling — double the headroom for traders who stack.' },
+      { category: 'Scaling Plan', winner: 'a', reason: 'Bright Funded publishes a scaling plan; Maven has none listed. If a clear growth path matters, Bright Funded has it.' },
+      { category: 'Platforms', winner: 'tie', reason: 'Both run MT5 and TradeLocker — the same platform pairing, with TradeLocker’s browser-based access on each.' },
+    ],
+    whenToPickA:
+      'Pick Bright Funded if you want a defined scaling path from a budget-tier firm and want to use a standing 10% discount to lower the entry cost further. You accept a monthly payout cadence and a lower $400K ceiling in exchange. It suits a trader testing a strategy at small stakes who wants a clear route to a bigger account.',
+    whenToPickB:
+      'Pick Maven if you want faster (bi-weekly) payouts and a higher $800K allocation ceiling at the same 80% split. The trade-off is no published scaling plan, so the long-term growth path is less defined. It’s the better pick if cadence and ceiling matter more than a structured scaling program.',
+    faqs: [
+      { q: 'Bright Funded is your affiliate partner — does that change the verdict?', a: 'No. On the data, Maven genuinely wins payout cadence and allocation, and we say so. Bright Funded earns its edge on scaling and the discount, not on the partnership. We mark partners but don’t tilt the call.' },
+      { q: 'Are these firms safe at the budget tier?', a: 'Both are 2023 firms with shorter track records than the established names — normal for the entry tier. Treat either as a place to test a strategy at low stakes, and read the current rules page before paying. Use the discount where available to lower the cost of a failed attempt.' },
+      { q: 'Which is cheaper to start?', a: 'Both sit at the budget end. Bright Funded’s standing 10% discount can make it the cheaper entry once applied; confirm the live price on each before buying, since entry fees and promos shift.' },
+    ],
+  },
 }
 
 export function getOverlay(matchupSlug: string): ComparisonOverlay | undefined {
