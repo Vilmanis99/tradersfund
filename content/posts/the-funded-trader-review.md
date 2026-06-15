@@ -46,7 +46,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>Single 2-Step Challenge across standard account sizes ($5K through $200K, with stacking up to the $1.5M ceiling). Per-tier pricing and exact rule parameters require verification on <a href="/go/the-funded-trader">the live TFT site</a>. Data captured 2026-05-20.</p>
+<p>Single 2-Step Challenge across standard account sizes ($5K through $200K, with stacking up to the $1.5M ceiling). Per-tier pricing and exact rule parameters require verification on <a href="/go/the-funded-trader">the live TFT site</a>.</p>
 
 <p>Refundable fee on first payout — industry standard.</p>
 

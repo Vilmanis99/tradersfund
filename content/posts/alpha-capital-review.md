@@ -47,7 +47,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>Alpha Capital runs a single 2-Step evaluation model across standard account sizes ($5K, $10K, $25K, $50K, $100K, $200K). Phase 1 and Phase 2 profit targets, daily-loss caps, and per-tier pricing require verification on <a href="/go/alpha-capital">the live Alpha Capital site</a> — these fields are not yet confirmed in our data store (<code>content/data/challenges/alpha-capital.json</code>, captured 2026-05-20).</p>
+<p>Alpha Capital runs a single 2-Step evaluation model across standard account sizes ($5K, $10K, $25K, $50K, $100K, $200K). Phase 1 and Phase 2 profit targets, daily-loss caps, and per-tier pricing require verification on <a href="/go/alpha-capital">the live Alpha Capital site</a> — these fields are not yet independently confirmed.</p>
 
 <p>Challenge fee is refundable with the first payout — industry-standard mechanic.</p>
 

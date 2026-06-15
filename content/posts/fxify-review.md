@@ -72,7 +72,7 @@ type: "post"
 
 <p>Pricing is customisable at checkout — base price varies with the add-ons you select (leverage tier, payout frequency, profit split upgrade). The cheapest entry is the <strong>Lightning $5K at $59</strong>. Two-Phase tends to undercut One-Phase per phase at the same account size, which is the structural reason the Two-Phase exists.</p>
 
-<p>Account sizes available across the CFD lineup: $5K, $10K, $25K, $50K, $100K, $200K, $400K. Futures sizes: $25K, $50K, $100K, $150K. All data verified 2026-05-20 against <a href="/go/fxify">fxify.com</a>. Source: <code>content/data/challenges/fxify.json</code>.</p>
+<p>Account sizes available across the CFD lineup: $5K, $10K, $25K, $50K, $100K, $200K, $400K. Futures sizes: $25K, $50K, $100K, $150K. All data last verified against <a href="/go/fxify">fxify.com</a>.</p>
 
 <p><strong>Promo codes (verified 2026-05-20, both expire 2026-05-31):</strong></p>
 <ul class="wp-block-list">

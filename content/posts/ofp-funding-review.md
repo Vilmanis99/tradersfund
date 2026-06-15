@@ -48,7 +48,7 @@ type: "post"
 
 <p>OFP runs an instant-funding product across standard account sizes ($5K, $10K, $25K, $50K, $100K, $200K, and higher via stacking up to the $5M ceiling). There is <strong>no evaluation phase</strong> — pass-rate gating doesn't apply, since you're paying for a funded account directly.</p>
 
-<p>Per-tier pricing requires verification on <a href="/go/ofp-funding">the live OFP site</a>. Data captured 2026-05-20 from <code>content/data/challenges/ofp-funding.json</code>.</p>
+<p>Per-tier pricing requires verification on <a href="/go/ofp-funding">the live OFP site</a>.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 

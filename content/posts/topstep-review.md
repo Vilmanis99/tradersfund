@@ -65,7 +65,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Combine subscription is paid monthly until you pass or cancel. Per-tier pricing is published on the Topstep pricing page but rotates with promos — confirm on <a href="/go/topstep">topstep.com</a> before subscribing. Data sourced 2026-05-20 from Topstep FAQ and public statistics page.</p>
+<p>Combine subscription is paid monthly until you pass or cancel. Per-tier pricing is published on the Topstep pricing page but rotates with promos — confirm on <a href="/go/topstep">topstep.com</a> before subscribing.</p>
 
 <p>After passing the Combine, the trader activates an Express Funded Account (XFA) — a simulated trading environment that pays out real money. After demonstrating consistency on XFA (Topstep's exact criteria are internal), a small fraction of traders are invited to a Live Funded Account where they trade in real markets with up to $150K starting capital and the option to earn over $250K in Live performance bonuses.</p>
 

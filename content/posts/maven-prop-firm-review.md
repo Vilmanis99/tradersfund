@@ -44,7 +44,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>Single 2-Step Challenge across standard account sizes ($5K through $200K, with stacking up to the $800K ceiling). Per-tier pricing, profit targets, and daily loss caps require verification on <a href="/go/maven">the live Maven site</a>. Data captured 2026-05-20 from <code>content/data/challenges/maven.json</code>.</p>
+<p>Single 2-Step Challenge across standard account sizes ($5K through $200K, with stacking up to the $800K ceiling). Per-tier pricing, profit targets, and daily loss caps require verification on <a href="/go/maven">the live Maven site</a>.</p>
 
 <p>Challenge fee follows industry-standard refundable-on-first-payout structure (verify on signup page).</p>
 

@@ -45,7 +45,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>E8 Markets runs a single 2-Step Challenge model. Account sizes typically include $5K, $25K, $50K, $100K, $200K, plus higher tiers through their scaling plan. Per-tier pricing and exact profit-target percentages weren't reliably verified for this round — confirm on <a href="/go/e8-markets">e8markets.com</a> before purchase. Data captured 2026-05-20 from <code>content/data/challenges/e8-markets.json</code>.</p>
+<p>E8 Markets runs a single 2-Step Challenge model. Account sizes typically include $5K, $25K, $50K, $100K, $200K, plus higher tiers through their scaling plan. Per-tier pricing and exact profit-target percentages weren't reliably verified for this round — confirm on <a href="/go/e8-markets">e8markets.com</a> before purchase.</p>
 
 <p>The challenge fee is refundable with the first payout if you pass and meet payout conditions — same industry-standard mechanic as FTMO and FundedNext.</p>
 

@@ -67,7 +67,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Per-plan pricing and exact rule parameters require verification against the <a href="/go/my-funded-futures">live MFF site</a> — the firm's help center doesn't publish all plan rules on indexed public pages. Data captured 2026-05-20 from <code>content/data/challenges/my-funded-futures.json</code>.</p>
+<p>Per-plan pricing and exact rule parameters require verification against the <a href="/go/my-funded-futures">live MFF site</a> — the firm's help center doesn't publish all plan rules on indexed public pages.</p>
 
 <p><strong>Account stacking is allowed</strong> — traders can hold multiple plans simultaneously, scaling total exposure up to $600K combined.</p>
 

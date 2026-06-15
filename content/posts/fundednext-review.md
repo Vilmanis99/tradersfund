@@ -70,7 +70,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Pricing and rules verified 2026-05-20 against fundednext.com. Stellar 1-Step and Stellar Lite tier prices vary by current promotion — confirm on the <a href="/go/fundednext">FundedNext site</a> before purchase. Source: <code>content/data/challenges/fundednext.json</code>.</p>
+<p>Pricing and rules last verified against fundednext.com. Stellar 1-Step and Stellar Lite tier prices vary by current promotion — confirm on the <a href="/go/fundednext">FundedNext site</a> before purchase.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 

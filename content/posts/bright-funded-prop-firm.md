@@ -44,7 +44,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>Single 2-Step Challenge across standard account sizes ($5K, $10K, $25K, $50K, $100K, $200K). Per-tier pricing, exact profit targets, daily loss caps, and overnight/weekend specifics not on accessible public pages — confirm on <a href="/go/bright-funded">the live Bright Funded site</a> before purchase. Data captured 2026-05-20 from <code>content/data/challenges/bright-funded.json</code>.</p>
+<p>Single 2-Step Challenge across standard account sizes ($5K, $10K, $25K, $50K, $100K, $200K). Per-tier pricing, exact profit targets, daily loss caps, and overnight/weekend specifics not on accessible public pages — confirm on <a href="/go/bright-funded">the live Bright Funded site</a> before purchase.</p>
 
 <p>The challenge fee is industry-standard refundable on first payout.</p>
 

@@ -46,7 +46,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>Single 2-Step Challenge across standard account sizes ($5K through $200K). Per-tier pricing and exact rule parameters require verification on <a href="/go/crypto-fund-trader">the live CFT site</a>. Data captured 2026-05-20 from <code>content/data/challenges/crypto-fund-trader.json</code>.</p>
+<p>Single 2-Step Challenge across standard account sizes ($5K through $200K). Per-tier pricing and exact rule parameters require verification on <a href="/go/crypto-fund-trader">the live CFT site</a>.</p>
 
 <p>Refundable fee on first payout — industry-standard.</p>
 

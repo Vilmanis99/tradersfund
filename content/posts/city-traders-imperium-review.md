@@ -47,7 +47,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>Single 2-Step Challenge across standard account sizes ($5K through $200K, with stacking up to the $2M ceiling). <strong>No time limit on the evaluation phase</strong> — a structural advantage for swing and position traders who need weeks or months to demonstrate their edge. Per-tier pricing and exact rule parameters require verification on <a href="/go/city-traders-imperium">the live CTI site</a>. Data captured 2026-05-20.</p>
+<p>Single 2-Step Challenge across standard account sizes ($5K through $200K, with stacking up to the $2M ceiling). <strong>No time limit on the evaluation phase</strong> — a structural advantage for swing and position traders who need weeks or months to demonstrate their edge. Per-tier pricing and exact rule parameters require verification on <a href="/go/city-traders-imperium">the live CTI site</a>.</p>
 
 <p>The challenge fee follows the industry-standard refundable-on-first-payout structure.</p>
 

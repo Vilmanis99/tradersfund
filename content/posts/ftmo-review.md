@@ -64,7 +64,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Per-tier pricing is not posted on the FTMO challenge index page in 2026 — fees vary with periodic promotions. Confirm the current price on <a href="/go/ftmo">FTMO's challenge page</a> before purchasing. The challenge fee is refunded with your first payout if you pass and meet the payout conditions (data captured from <code>content/data/challenges/ftmo.json</code>, sourced 2026-05-20).</p>
+<p>Per-tier pricing is not posted on the FTMO challenge index page in 2026 — fees vary with periodic promotions. Confirm the current price on <a href="/go/ftmo">FTMO's challenge page</a> before purchasing. The challenge fee is refunded with your first payout if you pass and meet the payout conditions.</p>
 
 <p>The Scaling Plan is not a separate product — it's a progression applied to either challenge. After 4 calendar months on the same Rewards Account with an average net profit ≥10% and at least 2 payouts taken, the account is increased by 25% of the original starting balance and the split steps to 90%. The plan repeats until the account reaches $2M.</p>
 
