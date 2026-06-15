@@ -71,6 +71,8 @@ const BEST_2026_NOTES: Record<string, string> = {
     "The only firm here at a 100% split, and the only one with a 5-day minimum-trading-day rule. cTrader support makes it the pick for higher-frequency systems.",
   Topstep:
     "The futures veteran, funding traders since 2012. Trailing drawdown and a force-flat-at-session-close rule mean it's no home for anyone holding overnight.",
+  'Take Profit Trader':
+    "The most forgiving futures Test: no daily loss limit and a payout you can request on day one. The catch is an 80% starting split (90% only on PRO+) and a fixed-dollar trailing drawdown — verify current pricing on the live site.",
   'E8 Markets':
     "A clean mid-tier CFD option — but MT5-only and an 80% split that trails the leaders. You're buying simple static-drawdown rules, not top economics.",
   'My Funded Futures':

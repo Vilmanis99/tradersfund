@@ -162,6 +162,34 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
     ],
   },
 
+  'take-profit-trader-vs-topstep': {
+    matchupSlug: 'take-profit-trader-vs-topstep',
+    h1: 'Take Profit Trader vs Topstep (2026): No Daily Limit vs the Futures Veteran',
+    metaDescription:
+      'Take Profit Trader vs Topstep compared on profit split, drawdown, payouts, and track record. Our 2026 verdict on which futures prop firm wins for which trader.',
+    tlDr:
+      'Take Profit Trader is the more forgiving structure: no daily loss limit on any phase, end-of-day trailing on the evaluation, and a payout you can request on day one. Topstep is the veteran — funding futures traders since 2012, with a deeper trader-development ecosystem and a 90% split from the first funded dollar (Take Profit Trader starts at 80%, reaching 90% only on PRO+). Pick Take Profit Trader if daily-loss breaches keep ending your evaluations; pick Topstep for track record and structure.',
+    verdictByCategory: [
+      // NOTE: matchup is alphabetised so "a" = Take Profit Trader, "b" = Topstep.
+      { category: 'Profit Split', winner: 'b', reason: 'Topstep pays 90% on funded accounts from the start; Take Profit Trader starts at 80% on PRO and reaches 90% only on PRO+ after the first cleared payout.' },
+      { category: 'Daily Loss Limit', winner: 'a', reason: 'Take Profit Trader removed the daily loss limit on every phase in January 2025 — only the trailing line constrains you. That is its single biggest edge for traders who keep failing on daily breaches.' },
+      { category: 'Drawdown Style', winner: 'a', reason: 'Take Profit Trader’s Test uses end-of-day trailing — the loss line moves on the closing balance, so intraday give-back is forgiven. Topstep’s trailing max loss tracks the intraday high, which is harsher on a retrace.' },
+      { category: 'Payout Terms', winner: 'a', reason: 'On a funded PRO account, Take Profit Trader lets you request a payout on day one with no minimum-day rule and no cap, once past the buffer. Topstep gates early withdrawals behind more structured payout rules.' },
+      { category: 'Track Record', winner: 'b', reason: 'Topstep has funded futures traders since 2012 — the longest history in the category. Take Profit Trader launched in 2021 with a strong record but a shorter one.' },
+      { category: 'Trader Development', winner: 'b', reason: 'Topstep’s Trading Combine, coaching, and journaling tools are the deepest in futures prop. Take Profit Trader is leaner — fine for a self-directed trader, less so for someone still building discipline.' },
+      { category: 'Platform Coverage', winner: 'tie', reason: 'Both cover the futures mainstays — NinjaTrader and TradingView — across CQG/Rithmic/Tradovate feeds. Take Profit Trader adds Tradovate and Quantower; Topstep has its own TopstepX. Effective parity.' },
+    ],
+    whenToPickA:
+      'Pick Take Profit Trader if you scalp or day-trade index futures and have been knocked out of a Topstep or Apex evaluation by a daily-loss breach rather than a real drawdown. No daily limit, end-of-day trailing on the Test, and same-day payouts once funded make it the more forgiving path. Start on the $50K Test ($170/month, $2,000 trailing) — enough room for ES/NQ without overpaying while you prove the process.',
+    whenToPickB:
+      'Pick Topstep if you’re newer to futures and want structure: the Trading Combine, consistency coaching, and TopstepX are built to develop habits, not just gate funding. Topstep also pays the full 90% from your first funded dollar and carries 14 years of payout history — the lower-risk home if track record matters more to you than the no-daily-limit freedom Take Profit Trader offers.',
+    faqs: [
+      { q: 'Take Profit Trader vs Topstep — which is cheaper?', a: 'Both are monthly evaluation subscriptions. Take Profit Trader runs $150–$360/month plus a one-time $130 activation on passing; Topstep’s Trading Combine is priced similarly per tier. Take Profit Trader frequently runs a lifetime fee-discount code that can waive the activation — check our discount codes page for the current one.' },
+      { q: 'Does Take Profit Trader have a daily loss limit like Topstep?', a: 'No. Take Profit Trader removed the daily loss limit across all phases in January 2025; your only loss boundary is the end-of-day trailing drawdown. This is the clearest structural difference between the two firms.' },
+      { q: 'Which pays out faster, Take Profit Trader or Topstep?', a: 'Take Profit Trader lets you request a payout on the first funded day (once past the buffer) with no minimum-day requirement, typically clearing in ~1 business day. Topstep’s payout process is more structured. For getting cash out quickly, Take Profit Trader has the edge.' },
+    ],
+  },
+
   'fundednext-vs-fundingpips': {
     matchupSlug: 'fundednext-vs-fundingpips',
     h1: 'FundedNext vs FundingPips (2026): Split-and-Speed vs the 100% Ceiling',

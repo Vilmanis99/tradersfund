@@ -1,0 +1,48 @@
+[
+  {
+    "firmSlug": "take-profit-trader",
+    "productName": "Take Profit Trader Evaluation (Test)",
+    "productSlug": "take-profit-trader-test",
+    "phases": 1,
+    "accountSizes": [
+      { "sizeUsd": 25000,  "priceUsd": 150, "refundable": false },
+      { "sizeUsd": 50000,  "priceUsd": 170, "refundable": false },
+      { "sizeUsd": 75000,  "priceUsd": 245, "refundable": false },
+      { "sizeUsd": 100000, "priceUsd": 330, "refundable": false },
+      { "sizeUsd": 150000, "priceUsd": 360, "refundable": false }
+    ],
+    "profitTargets": { "phase1": 6 },
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "eod-trailing",
+    "minTradingDays": 5,
+    "maxTradingDays": null,
+    "consistencyRulePct": 50,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 1,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": "restricted",
+      "weekend": false,
+      "overnight": false,
+      "ea": true,
+      "copyTrading": false
+    },
+    "assetClass": "futures",
+    "sourceUrl": "https://takeprofittrader.com/",
+    "sourceCapturedAt": "2026-06-15",
+    "notes": [
+      "Prices are MONTHLY Test (evaluation) subscription fees, not one-time: $25K=$150, $50K=$170, $75K=$245, $100K=$330, $150K=$360.",
+      "One-time $130 PRO activation fee on passing (waived by lifetime-discount promos). Failed-test reset is a separate fee (~$100 — verify on live site).",
+      "Trailing drawdown is a FIXED USD amount per tier, not a percent: $25K=$1,500, $50K=$2,000, $75K=$2,500, $100K=$3,000, $150K=$4,500. maxLossPct left null because one percentage can't represent it.",
+      "Profit target 6% of account at every tier ($1,500 / $3,000 / $4,500 / $6,000 / $9,000).",
+      "No daily loss limit (removed across all phases Jan 2025). Drawdown is end-of-day trailing on Test, updating at 5 PM ET on the closing balance; sources disagree on whether the PRO funded account switches to intraday trailing — confirm on the live dashboard.",
+      "Profit split 80% on the PRO funded account, rising to 90% on PRO+ after the first payout clears the buffer. There is no max payout cap and no minimum trading-day requirement for withdrawals on PRO.",
+      "Futures only (CME / CBOT / NYMEX / COMEX). Positions must be flat before the daily 5 PM ET close — no true overnight or weekend holding.",
+      "News trading is restricted around high-impact releases (FOMC / NFP / CPI) during the Test — verify current blackout windows.",
+      "Withdrawals typically clear within ~1 business day via ACH/Plaid (US) or PayPal/Wise (international).",
+      "Figures cross-checked across multiple June 2026 third-party reviews; takeprofittrader.com blocks automated capture, so confirm pricing and rules on the live site/dashboard before relying on them.",
+      "Trustpilot 4.4/5 from ~9,250 reviews as of June 2026 (per public aggregate)."
+    ]
+  }
+]

@@ -628,5 +628,49 @@
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-04-24"
+  },
+  {
+    "name": "Take Profit Trader",
+    "founded": "2021",
+    "assets": [
+      "Futures"
+    ],
+    "maxAllocation": "$150,000",
+    "platforms": [
+      "NinjaTrader",
+      "TradingView",
+      "Tradovate",
+      "Quantower"
+    ],
+    "score": 8.3,
+    "logo": "",
+    "reviewUrl": "/blog/take-profit-trader-review",
+    "profitSplitPct": 90,
+    "payoutFrequency": "on-demand",
+    "payoutMethods": [
+      "ACH",
+      "PayPal",
+      "Wise"
+    ],
+    "drawdownType": "trailing",
+    "minTradingDays": 5,
+    "consistencyRule": "Test phase only: no single day may exceed 50% of the profit target. Removed once funded (PRO/PRO+).",
+    "scalingPlan": true,
+    "newsTradingAllowed": null,
+    "eaAllowed": true,
+    "overnightAllowed": false,
+    "weekendAllowed": false,
+    "copyTradingAllowed": false,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": 4.4,
+    "trustpilotCount": 9250,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-06-15"
   }
 ]
