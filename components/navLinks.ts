@@ -14,6 +14,7 @@ export const navLinks = [
       { label: 'Best Prop Firms 2026', href: '/best-prop-firms-2026' },
       { label: 'Main Directory', href: '/main-table' },
       { label: 'Compare Firms', href: '/compare' },
+      { label: 'Discount Codes', href: '/prop-firm-discount-codes' },
       { label: 'Filter by Feature', href: '/prop-firms' },
       { label: 'Best in UK', href: '/best-prop-firms-in-uk' },
       { label: 'Best in US', href: '/best-prop-firms-in-us' },

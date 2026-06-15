@@ -60,6 +60,7 @@ Traders Fund Hub helps traders choose a prop firm (a company that funds traders 
 - [Best Prop Firms 2026 (ranked)](${SITE}/best-prop-firms-2026): the overall opinionated ranking, with a one-line verdict on who each firm suits.
 - [Prop firm directory](${SITE}/main-table): every tracked firm, filterable by asset, platform, profit split, and payout speed.
 - [Compare firms](${SITE}/compare): head-to-head matchups for every firm pair, with editorial verdicts on the most-searched ones.
+- [Prop firm discount codes & deals](${SITE}/prop-firm-discount-codes): verified discount codes and partner offers, each stamped with the date we last checked it — expired codes are removed, never invented.
 - [How prop firm challenges work](${SITE}/how-prop-firm-challenges-work): the five-stage lifecycle from buying a challenge to first payout.
 - [How to pass a prop firm challenge](${SITE}/how-to-pass-a-prop-firm-challenge): a risk-first playbook with the rules that quietly end accounts.
 - [The true cost of prop firm challenges](${SITE}/true-cost-of-prop-firm-challenges): break-even math and R-multiple analysis per challenge.

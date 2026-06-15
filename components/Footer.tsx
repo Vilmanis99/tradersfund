@@ -23,6 +23,7 @@ export default function Footer() {
     { label: 'Best Firms in UK', href: '/best-prop-firms-in-uk' },
     { label: 'Best Firms in US', href: '/best-prop-firms-in-us' },
     { label: 'Cheapest Firms', href: '/cheapest-prop-firms' },
+    { label: 'Discount Codes', href: '/prop-firm-discount-codes' },
     { label: 'Futures Firms', href: '/best-futures-prop-firms' },
   ]
   const reviewLinks = [

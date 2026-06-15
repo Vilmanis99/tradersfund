@@ -39,7 +39,7 @@ type: "page"
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Firm</th><th style="padding: 8px 12px; text-align: left;">Product</th><th style="padding: 8px 12px; text-align: left;">$100K fee (USD)</th><th style="padding: 8px 12px; text-align: left;">Refundable?</th></tr></thead>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$549.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Yes, on first payout</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FXIFY</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">One-Phase (with NEW40)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$330 (40% off)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Yes</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FXIFY</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">One-Phase (promo applied)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$330 (with ~40% promo)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Yes</td></tr>
     <tr><td style="padding: 8px 12px;">FundedNext</td><td style="padding: 8px 12px;">Stellar Instant ($10K)</td><td style="padding: 8px 12px;">$299.99</td><td style="padding: 8px 12px;"><strong>No</strong></td></tr>
   </tbody>
 </table>

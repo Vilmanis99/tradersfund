@@ -3544,3 +3544,80 @@ a.bento-tile:hover,
 .featured-spotlight-button { width: 100%; justify-content: center; }
 .featured-spotlight-review { text-align: center; font-size: 0.85rem; color: var(--muted); text-decoration: none; }
 .featured-spotlight-review:hover { color: var(--accent-light); }
+
+/* ── Deals hub (/prop-firm-discount-codes) ────────────────────────── */
+.deals-filter {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;
+}
+.deals-filter-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; border-radius: 999px;
+  background: var(--bg2); border: 1px solid var(--border);
+  color: var(--muted); font-size: 0.85rem; font-weight: 600;
+  font-family: inherit; cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.deals-filter-btn:hover { color: var(--text); border-color: var(--accent); }
+.deals-filter-btn--active {
+  background: rgba(39,161,123,0.14); border-color: rgba(39,161,123,0.45); color: var(--accent-light);
+}
+.deals-filter-count {
+  font-size: 0.7rem; font-weight: 700; font-variant-numeric: tabular-nums;
+  background: var(--bg3); color: inherit; border-radius: 999px; padding: 1px 7px;
+}
+.deals-count { color: var(--muted); font-size: 0.82rem; margin: 0 0 1.25rem; }
+.deals-grid {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+.deal-card {
+  display: flex; flex-direction: column; gap: 0.7rem;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.1rem;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.deal-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.deal-card-head { display: flex; align-items: center; gap: 10px; }
+.deal-card-logo {
+  width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+  background: var(--bg); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; padding: 6px; overflow: hidden;
+}
+.deal-card-id { display: flex; flex-direction: column; min-width: 0; margin-right: auto; }
+.deal-card-name { font-weight: 800; color: #fff; font-size: 1rem; line-height: 1.2; }
+.deal-card-score { font-size: 0.75rem; color: var(--gold); font-weight: 600; }
+.deal-listed-pill {
+  display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px;
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  background: var(--bg3); border: 1px solid var(--border); color: var(--muted); flex-shrink: 0;
+}
+.deal-card-offer { display: flex; flex-direction: column; gap: 1px; }
+.deal-card-amount { font-size: 1.35rem; font-weight: 900; color: var(--gold); line-height: 1.1; }
+.deal-card-scope { font-size: 0.78rem; color: var(--muted); }
+.deal-card-pill-row { display: flex; }
+.deal-card-meta {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  font-size: 0.74rem; color: var(--muted); font-variant-numeric: tabular-nums;
+}
+.deal-card-verified { display: inline-flex; align-items: center; gap: 4px; color: var(--accent-light); }
+.deal-card-expires { display: inline-flex; align-items: center; gap: 4px; }
+.deal-card-note { font-size: 0.78rem; color: var(--muted); line-height: 1.5; margin: 0; }
+.deal-card-cta-row { margin-top: auto; padding-top: 0.3rem; }
+.deal-card-cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%; padding: 9px 14px; border-radius: 10px;
+  font-size: 0.9rem; font-weight: 700; text-decoration: none;
+}
+.deal-card-cta--ghost {
+  background: transparent; border: 1px solid var(--border); color: var(--text);
+  transition: border-color 0.15s, color 0.15s;
+}
+.deal-card-cta--ghost:hover { border-color: var(--accent); color: var(--accent-light); }
+.deal-crosslink {
+  display: inline-flex; align-items: center;
+  padding: 8px 14px; border-radius: 10px;
+  background: var(--bg2); border: 1px solid var(--border);
+  color: var(--accent-light); font-size: 0.88rem; font-weight: 600; text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+.deal-crosslink:hover { border-color: var(--accent); color: var(--accent2); }

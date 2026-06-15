@@ -5,6 +5,7 @@ import { FEATURES } from '@/lib/features'
 import { getAllCanonicalPairs } from '@/lib/comparisons'
 import { LANDINGS } from '@/lib/landings'
 import { AUTHORS } from '@/lib/authors'
+import { getAllDeals } from '@/lib/deals'
 
 const BASE_URL = 'https://tradersfundhub.com'
 
@@ -42,10 +43,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .sort()
     .at(-1) || new Date().toISOString()
 
+  // Deals hub lastmod tracks the newest verified-deal date (a custom route,
+  // so it must be listed here — it is neither an MDX page nor a LANDING).
+  const dealsLastModified = getAllDeals()
+    .map(d => d.verifiedOn)
+    .filter(Boolean)
+    .sort()
+    .at(-1) || firmsLastModified
+  const dealsLastDate = new Date(dealsLastModified)
+
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: firmsLastDate, changeFrequency: 'daily', priority: 1 },
     { url: `${BASE_URL}/blog`, lastModified: new Date(blogLastModified), changeFrequency: 'daily', priority: 0.9 },
     { url: `${BASE_URL}/main-table`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/prop-firm-discount-codes`, lastModified: dealsLastDate, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/prop-firms`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE_URL}/compare`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE_URL}/contact`, lastModified: new Date('2026-01-01'), changeFrequency: 'yearly', priority: 0.4 },

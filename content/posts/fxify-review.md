@@ -24,7 +24,7 @@ type: "post"
     <li>Profit split scales up to 90% on CFDs, up to 100% on FXIFY Futures.</li>
     <li>Drawdown is <strong>trailing</strong> (10% max, 4% daily) — meaningfully harder to manage than FTMO or FundedNext's static drawdown.</li>
     <li>US, Russia, Iran, and North Korea are not eligible. Verify residency before purchase.</li>
-    <li>Active promo codes (verified 2026-05-20): NEW40 = 40% off One-Phase, FXIFY3 = 33% off most programs. Both expire 2026-05-31.</li>
+    <li>FXIFY runs rotating promo codes (often 30–40% off) that change frequently — check the live <a href="/go/fxify">FXIFY site</a> or our <a href="/prop-firm-discount-codes">discount codes page</a> for what's active before you buy.</li>
   </ul>
 </div>
 
@@ -74,11 +74,7 @@ type: "post"
 
 <p>Account sizes available across the CFD lineup: $5K, $10K, $25K, $50K, $100K, $200K, $400K. Futures sizes: $25K, $50K, $100K, $150K. All data last verified against <a href="/go/fxify">fxify.com</a>.</p>
 
-<p><strong>Promo codes (verified 2026-05-20, both expire 2026-05-31):</strong></p>
-<ul class="wp-block-list">
-  <li><strong>NEW40</strong> — 40% off One-Phase</li>
-  <li><strong>FXIFY3</strong> — 33% off most programs</li>
-</ul>
+<p><strong>Promo codes.</strong> FXIFY runs frequent promo codes — typically 30–40% off — and they expire fast. Rather than print a code here that may be dead by the time you read this, we track the current one on our <a href="/prop-firm-discount-codes">prop firm discount codes page</a>; always confirm it still applies at checkout on <a href="/go/fxify">fxify.com</a>.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 
@@ -103,7 +99,7 @@ type: "post"
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product · Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 10% trailing DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day (4% cap)</th></tr></thead>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Lightning $5K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$59</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$74</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.15</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">One-Phase $5K (after NEW40)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$150</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$188</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.38</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">One-Phase $5K (with ~40% promo)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$150</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$188</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.38</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">One-Phase $100K (est.)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$540</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$675</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.07</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
     <tr><td style="padding: 8px 12px;">Two-Phase $100K (est.)</td><td style="padding: 8px 12px;">~$450</td><td style="padding: 8px 12px;">~$563</td><td style="padding: 8px 12px;">0.06</td><td style="padding: 8px 12px;">1</td></tr>
   </tbody>
@@ -163,7 +159,7 @@ type: "post"
 <p>Yes. FXIFY has operated since 2022, processes payouts on stated cadences, and the rules pages have been clarified rather than tightened on existing accounts. Trustpilot ratings hover around 4.7/5 from 200,000+ reviews across 200+ countries (per the firm's published metrics; independent verification limited because Trustpilot blocks programmatic fetching). Open complaints cluster around evaluation-phase rule-breach disputes — same pattern as every other major CFD prop.</p>
 
 <h3 class="wp-block-heading"><strong>Which FXIFY product is cheapest to break even on?</strong></h3>
-<p>The Lightning $5K at $59 has the lowest absolute break-even profit at ~$74 (80% split). It's also the riskiest because the 7-day evaluation cap forces the 5% profit target inside a week. For a more forgiving entry, the One-Phase $5K with the NEW40 code (40% off) is ~$150 → ~$188 break-even with no time limit.</p>
+<p>The Lightning $5K at $59 has the lowest absolute break-even profit at ~$74 (80% split). It's also the riskiest because the 7-day evaluation cap forces the 5% profit target inside a week. For a more forgiving entry, the One-Phase $5K with a typical ~40% promo applied is ~$150 → ~$188 break-even with no time limit.</p>
 
 <h3 class="wp-block-heading"><strong>Does FXIFY really allow Martingale and Grid strategies?</strong></h3>
 <p>Yes — explicitly. FXIFY's terms permit Martingale and Grid trading on both the evaluation and funded phases. This is unusual among major CFD prop firms. Most competitors disallow these strategies via the "high-risk strategy" or "abusive trading" clause; FXIFY does not.</p>
