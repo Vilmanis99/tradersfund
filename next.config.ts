@@ -45,6 +45,16 @@ async function postRedirects() {
  */
 function legacyRedirects() {
   return [
+    // The default *.vercel.app domain serves the same production build — a
+    // duplicate-content host. Send it to the canonical apex domain. (Safe:
+    // requests on tradersfundhub.com don't match the host condition, and
+    // Vercel doesn't edge-redirect the .vercel.app domain itself.)
+    {
+      source: '/:path*',
+      has: [{ type: 'host' as const, value: 'tradersfund.vercel.app' }],
+      destination: 'https://tradersfundhub.com/:path*',
+      permanent: true,
+    },
     // Old RSS feed → the real feed route handler (app/feed.xml/route.ts).
     { source: '/feed', destination: '/feed.xml', permanent: true },
     { source: '/comments/feed', destination: '/feed.xml', permanent: true },
