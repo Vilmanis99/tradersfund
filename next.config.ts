@@ -53,6 +53,10 @@ function legacyRedirects() {
     { source: '/tag/:slug*', destination: '/blog', permanent: true },
     // WP blog pagination (/page/2, /page/3 …) → blog index.
     { source: '/page/:n*', destination: '/blog', permanent: true },
+    // WP category pagination (/category/prop-firms/page/2 …) → the category
+    // page itself. Google still crawls these (visible in Search Console) and
+    // they were 404ing.
+    { source: '/category/:slug/page/:n*', destination: '/category/:slug', permanent: true },
   ]
 }
 
