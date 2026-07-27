@@ -15,10 +15,6 @@ export const dynamic = 'force-static'
  * right pages. Generated from the same data the site renders, so it stays
  * accurate without manual upkeep.
  */
-function firmSlug(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-}
-
 export async function GET() {
   const firms = getAllFirms()
   const posts = getAllPosts()

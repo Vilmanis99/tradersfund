@@ -1,65 +1,219 @@
 [
   {
     "firmSlug": "e8-markets",
-    "productName": "E8 Account",
-    "productSlug": "e8-markets-default",
-    "phases": 2,
+    "productName": "E8 One (Forex)",
+    "productSlug": "e8-one",
+    "phases": 1,
     "accountSizes": [
       {
         "sizeUsd": 5000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 48,
+        "refundable": false
       },
       {
         "sizeUsd": 10000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 88,
+        "refundable": false
       },
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 188,
+        "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 288,
+        "refundable": false
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 488,
+        "refundable": false
       },
       {
         "sizeUsd": 200000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 798,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 1598,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 500000,
+        "priceUsd": 1998,
+        "refundable": false
       }
     ],
-    "profitTargets": null,
-    "dailyLossPct": null,
-    "maxLossPct": null,
+    "profitTargets": {
+      "phase1": 9
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 6,
+    "drawdownType": "trailing",
+    "minTradingDays": 0,
+    "maxTradingDays": null,
+    "consistencyRulePct": 40,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 3,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": null,
+      "weekend": true,
+      "overnight": true,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Fully customizable: 'Set your drawdown (4-14%), profit target, and payout (80/90/100%)'. The captured numbers are the DEFAULT configuration shown on the pricing page (6% drawdown / 80% split). Prices for other drawdown/split combinations are not published in readable form and were not captured.",
+      "The E8 One help-centre article documents a different 'preset account' (6% profit target, 3% daily drawdown, 4% dynamic drawdown) and states 'This information is for the preset account. You can still customize some of the parameters at checkout.' The pricing page default is 6% drawdown / 9% target / 4% daily. These two official pages are inconsistent about which configuration is the preset - flagged, not reconciled.",
+      "Payout minimum: 'Your net profit (payout share) must be greater than 50% of your daily drawdown. Example: If you have a $100,000 account and your daily drawdown is 4%, the minimum amount required for a payout is $2,001.'",
+      "Leverage: Forex 1:30, Indices 1:15, metals 1:15, Crypto 1:1.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "e8-markets",
+    "productName": "E8 Pro (E8PRO v2, Forex)",
+    "productSlug": "e8-pro",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 32,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 68,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 148,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 228,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 488,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 998,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 2098,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 500000,
+        "priceUsd": 2598,
+        "refundable": false
+      }
+    ],
+    "profitTargets": {
+      "phase1": 8
+    },
+    "dailyLossPct": 2.5,
+    "maxLossPct": 8,
     "drawdownType": "static",
     "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
     "payoutFirstDays": null,
-    "payoutFrequency": "bi-weekly",
+    "payoutFrequency": "on-demand",
     "rules": {
-      "news": true,
+      "news": null,
       "weekend": true,
       "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "ea": null,
+      "copyTrading": null
     },
     "assetClass": "cfd",
-    "sourceUrl": "/blog/e8-markets-review",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://e8markets.com/e8-pro",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "SKELETON ENTRY \u2014 only firm-level aggregates from firms.json populated.",
-      "Per-tier pricing, exact profit targets, and DD% require editorial verification against the live firm page.",
-      "Set fields to null until verified \u2014 never invent."
+      "Customizable at checkout: drawdown 6/8/10% and profit split 80/100% (API: \"drawdowns\":[6,8,10],\"profit_splits\":[80,100]). Prices recorded are the base 8% drawdown / 80% split configuration only.",
+      "2% daily profit cap applies in both stages: '2% Daily Profit cap - In each day, the maximum profit you can make is 2%. If you make more, only 2% will be counted towards your profit target. For a $100,000 account, that's $2,000 profit cap per day.'",
+      "payoutFirstDays left null: no explicit day count is published. The site states payouts can be requested daily with 'Minimum profit for first and additional payouts: 1% of your initial balance' and 'On-demand does not apply to E8 Pro and E8 Zero models, as these products have daily payouts.' The firm's own JS config carries firstPayout:1 but that value is not published in human-readable copy, so it is not recorded.",
+      "Payout mechanism: 'first, 50% of your total profits is set aside as your requestable amount. Then, depending on your chosen plan, you receive up 100% of that amount.'",
+      "Leverage: Forex 1:30, Indices 1:15, metals 1:15.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "e8-markets",
+    "productName": "E8 Signature Forex",
+    "productSlug": "e8-signature",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 110,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 150,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 260,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 150000,
+        "priceUsd": 390,
+        "refundable": false
+      }
+    ],
+    "profitTargets": {
+      "phase1": 6
+    },
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "eod-trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": 35,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 3,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://e8markets.com/e8-signature",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "maxLossPct left NULL on purpose: the max loss is not a single percentage, it varies by account size. Verbatim: '$1,000 EOD - $25,000 account / $2,000 EOD - $50,000 account / $3,000 EOD - $100,000 account / $4,500 EOD - $150,000 account' (= 4% on $25K and $50K, 3% on $100K and $150K). The product page hero states '3-4% EOD drawdown'.",
+      "dailyLossPct left NULL on purpose: there is NO daily loss limit in the challenge stage. On the Performance account there is a soft limit, not a breach: '2% Daily pause - A soft daily loss limit based on your starting balance of the day. If your floating or closed loss reaches 2%, trading stops until the next day. Your account is not breached.'",
+      "minTradingDays left NULL: no minimum trading days figure is published for the challenge stage. For payouts: 'Minimum profitable days between each payout: 5 (does not apply for first payout)' and 'A profitable day is considered as a day where the realized closed PnL equals to 0.3% or more.'",
+      "maxTradingDays: 'Unlimited Trading Days - There is no time limit but you need to place and close at least one trade each 60 days.'",
+      "Minimum payout $100: 'Minimum payout is $100. Amounts are taken from your net profit. Meaning, with 80% payout, you need to request at least $125.'",
+      "Payout buffer: 'Before you can start requesting payout, you need to leave a buffer in your account in the same size as your EOD Dynamic Drawdown. The buffer can not be requested.'",
+      "Payout caps apply (published table on https://e8markets.com/e8-signature): 1st/2nd payout $1,000 ($25K), $1,250 ($50K), $2,250 ($100K), $3,250 ($150K); rising to $1,500 / $3,250 / $4,250 / $5,250 from the 5th payout onward.",
+      "Weekend/overnight 'Not allowed' is taken from the firm's own product comparison table (Weekend Holding: No; Overnight holding: No for E8 Signature) and corroborated by the forced daily flat at 23:00 server time. Note the firm's separate article 'Can I hold positions overnight and trade over the weekend?' lists only E8 One / E8 Pro / E8 Zero as allowed and does not mention E8 Signature at all.",
+      "Leverage: Forex 1:30, Indices 1:15, metals 1:15.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-07-27.json"
     ]
   }
 ]

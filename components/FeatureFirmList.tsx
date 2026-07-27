@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Star, ExternalLink, ArrowRight } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
+import TrustpilotRating from './TrustpilotRating'
 
 function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -98,6 +99,14 @@ export default function FeatureFirmList({
                 </div>
 
                 <ul className="feature-firm-stats" aria-label="Key terms">
+                  {/* Cited third-party figure, not our score — always shown,
+                      including when Trustpilot has suppressed the aggregate. */}
+                  <li>
+                    <span className="feature-firm-stat-label">Trustpilot</span>
+                    <span className="feature-firm-stat-value">
+                      <TrustpilotRating firm={firm} />
+                    </span>
+                  </li>
                   {firm.profitSplitPct != null && (
                     <li>
                       <span className="feature-firm-stat-label">Split</span>

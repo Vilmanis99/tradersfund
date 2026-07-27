@@ -1,10 +1,10 @@
 ---
-title: "Crypto Fund Trader Review 2026: The Crypto-First Prop Firm"
+title: "Crypto Fund Trader Review 2026: Five Products, One 80% Split"
 slug: "crypto-fund-trader-review"
 date: "2025-08-12 11:00:00"
-modified: "2026-05-20 12:00:00"
+modified: "2026-07-27 12:00:00"
 author: "Tara Mohseni"
-excerpt: "Crypto Fund Trader is one of the few prop firms that puts crypto first, not as an afterthought. Here's the realistic positioning for crypto-focused traders."
+excerpt: "Five CFT products, 24 priced tiers, 80% on every one — and an Instant account whose break-even lands at R = 1.00. Prices captured 2026-07-27."
 categories: ["Prop Firms"]
 tags: ["Crypto Fund Trader", "Prop Firm"]
 type: "post"
@@ -12,19 +12,19 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 
-<p>Crypto Fund Trader is the right pick for traders whose edge is specifically in crypto markets — Bitcoin, Ethereum, altcoins — and who want a prop firm that builds rules around crypto market structure rather than treating it as a side asset.</p>
+<p>Crypto-only traders who can clear a 2-phase evaluation — not the R = 1.00 Instant.</p>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul>
-    <li>Crypto-first prop firm — Crypto, Forex, and Indices, with crypto as the primary asset focus.</li>
-    <li>2-Step Challenge model with 80% profit split.</li>
-    <li><strong>Weekly payouts</strong> — faster than the bi-weekly industry standard.</li>
-    <li>Static drawdown — forgiving mechanic.</li>
-    <li>Platforms: MT5 and cTrader.</li>
-    <li>Founded 2023 — 3 years operating.</li>
-    <li>$600K maximum allocation through scaling.</li>
-    <li>Per-tier pricing and exact rule parameters require verification on the live site.</li>
+    <li>Five purchasable products: Evaluation (2-phase), Ascend (2-phase), Accelerated (1-phase), Instant (0-phase), and Break (1-phase) — 24 priced tiers in total.</li>
+    <li>Every product pays the same <strong>80%</strong> split at live stage; 90% is a paid add-on costing 20% of the evaluation price.</li>
+    <li>Drawdown type is <strong>not</strong> uniform: 10% static on Evaluation and Ascend, 6% trailing on Accelerated, 6% balance-based on Instant, 3–4% trailing on Break.</li>
+    <li>First payout is 15 traded days or every 30 calendar days on the phase products — not weekly. Weekly is a paid add-on that cuts the cycle to every 7 traded days.</li>
+    <li>Instant costs $475 for a $10,000 account against $110 for the same size on the 2-phase Evaluation.</li>
+    <li>Break is the cheapest route to a live account at $199 for $100,000, gated by a 40% single-day consistency rule at live stage.</li>
+    <li>Nothing on the site states the evaluation fee comes back when you pass.</li>
+    <li>Prices and rules captured from cryptofundtrader.com on 2026-07-27.</li>
   </ul>
 </div>
 
@@ -34,95 +34,221 @@ type: "post"
   <caption class="hidden-caption">Crypto Fund Trader at a glance</caption>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Founded</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2023 (3 years operating)</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Evaluation model</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2-Step Challenge</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Max allocation</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$600,000</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown type</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Static</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Weekly</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT5, cTrader</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Instruments</strong></td><td style="padding: 8px 12px; border-bottom: none;">Crypto, Forex, Indices</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Products sold</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Evaluation (2-phase), Ascend (2-phase), Accelerated (1-phase), Instant (0-phase), Break (1-phase)</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Largest purchasable tier</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$200,000</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Cheapest entry</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$40 — $5,000 Accelerated</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% on all five products; 90% add-on costs 20% of the evaluation price</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown type</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Varies by product — 10% static, 6% trailing, 6% balance-based, or 3–4% trailing</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown measured on</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Equity; daily limit resets at 12:05 AM UTC</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>First payout</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">15 traded days or every 30 calendar days (Evaluation, Accelerated); on demand at 10% profit (Instant, Break)</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Time limit</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">None — the FAQ states there is no maximum time limit to complete the evaluation</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MetaTrader 5, Match-Trader, Bybit</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Leverage</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Up to 1:100 on all three platforms</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Instruments</strong></td><td style="padding: 8px 12px; border-bottom: none;">540+ crypto pairs on MT5 and Match-Trader; 715+ on Bybit</td></tr>
   </tbody>
 </table>
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>Single 2-Step Challenge across standard account sizes ($5K through $200K). Per-tier pricing and exact rule parameters require verification on <a href="/go/crypto-fund-trader">the live CFT site</a>.</p>
+<p>CFT sells five products across 24 priced tiers, from $2,500 to $200,000. The three phase-based products share a size ladder ($5K to $200K); Instant tops out at $10,000 and Break starts at $25,000.</p>
 
-<p>Refundable fee on first payout — industry-standard.</p>
-
-<h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
-
-<p><strong>Crypto market structure matters here.</strong> Crypto markets run 24/7 — no session close, no overnight rule, no weekend gap risk in the same sense as FX or futures. CFT's rules accommodate this: weekend holding allowed, overnight allowed.</p>
-
-<p><strong>Static drawdown</strong> — 10% max loss anchored at starting balance.</p>
-
-<p><strong>News trading rules</strong> not documented in accessible sources — crypto market structure makes "news windows" less mechanically defined than in FX, so any restrictions would be product-specific. Verify directly.</p>
-
-<p><strong>EA / algorithmic trading allowed</strong> on MT5 and cTrader.</p>
-
-<p><strong>Scaling plan</strong> available — exact milestones not on accessible public pages.</p>
-
-<h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
-
-<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-  <caption class="hidden-caption">CFT break-even projection (estimates, 80% split)</caption>
-  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee (estimate)</th><th style="padding: 8px 12px; text-align: left;">Break-even (80%)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 10% DD</th></tr></thead>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem;">
+  <caption class="hidden-caption">Crypto Fund Trader products, prices and rule parameters</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product</th><th style="padding: 8px 12px; text-align: left;">Phases</th><th style="padding: 8px 12px; text-align: left;">Account size</th><th style="padding: 8px 12px; text-align: left;">Price (USD)</th><th style="padding: 8px 12px; text-align: left;">Profit target</th><th style="padding: 8px 12px; text-align: left;">Daily loss</th><th style="padding: 8px 12px; text-align: left;">Max loss</th><th style="padding: 8px 12px; text-align: left;">Split</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$100</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$125</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.13</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$300</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$375</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.08</td></tr>
-    <tr><td style="padding: 8px 12px;">$100K</td><td style="padding: 8px 12px;">~$500</td><td style="padding: 8px 12px;">$625</td><td style="padding: 8px 12px;">0.06</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Evaluation (Standard 2-Phase)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$58</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Evaluation (Standard 2-Phase)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$110</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Evaluation (Standard 2-Phase)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$240</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Evaluation (Standard 2-Phase)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$389</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Evaluation (Standard 2-Phase)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$660</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Evaluation (Standard 2-Phase)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$200,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,250</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Ascend Evaluation</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$45</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Ascend Evaluation</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$90</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Ascend Evaluation</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$225</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Ascend Evaluation</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$450</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Ascend Evaluation</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$899</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Ascend Evaluation</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$200,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,798</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Accelerated (1-Phase)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$40</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Accelerated (1-Phase)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$80</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Accelerated (1-Phase)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$219</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Accelerated (1-Phase)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$369</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Accelerated (1-Phase)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$619</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Accelerated (1-Phase)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$200,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,199</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Instant</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0 (instant)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,500</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$125</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% balance-based</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Instant</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0 (instant)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$240</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% balance-based</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Instant</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0 (instant)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$475</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% balance-based</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Break Challenge</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$70</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% ($1,250)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">None</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4% trailing ($1,000)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Break Challenge</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$139</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% ($3,000)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">None</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4% trailing ($2,000)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
+    <tr><td style="padding: 8px 12px;">Break Challenge</td><td style="padding: 8px 12px;">1</td><td style="padding: 8px 12px;">$100,000</td><td style="padding: 8px 12px;">$199</td><td style="padding: 8px 12px;">6% ($6,000)</td><td style="padding: 8px 12px;">None</td><td style="padding: 8px 12px;">3% trailing ($3,000)</td><td style="padding: 8px 12px;">80%</td></tr>
   </tbody>
 </table>
 
+<p>Pricing and rules above were captured from CFT's own pages on <strong>2026-07-27</strong>. For the current list, see <a href="/go/crypto-fund-trader">the live CFT site</a>. Three caveats belong with this table. First, CFT's marketing names (Evaluation, Ascend, Accelerated, Instant, Break) do not match the structural names its FAQ and terms use (2-Phase, 1-Phase, 3-Phase, Instant, Break); the Accelerated-to-1-Phase mapping is inferred because the homepage Accelerated row's 10% target, 4% daily loss and 6% max loss match the FAQ's 1-Phase figures exactly, not because the site states the equivalence. Second, the FAQ and terms also describe a 3-Phase evaluation (5% target in each of three phases, 5% daily loss, 5% max loss, first payout after 5 traded days), but no price or size table for it exists on the site, so it is not listed here. Third, the per-tier product pages at <code>/product/&lt;size&gt;-&lt;name&gt;-evaluation/</code> still appear in search results but now return HTTP 404, so the figures above come from the homepage pricing widget, the FAQ, the terms, and the dedicated Break page rather than per-tier spec sheets.</p>
+
+<p>One more gap worth naming: the <strong>refundable</strong> field is null for all 24 tiers because CFT never states anywhere that the evaluation fee is returned when you pass. Its refund policy grants only a 14-day withdrawal right that is lost the moment you open a position, and its terms say that on account cancellation you are not entitled to the reward or a refund of fees paid. Treat the entry fee as spent.</p>
+
+<h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
+
+<p><strong>Drawdown is not one rule here — it is four.</strong> On the 2-phase Evaluation and on Ascend, the maximum overall loss is fixed at 10% of the initial account balance: on a $100,000 account, the floor sits at $90,000 and does not move however much you make. On Accelerated the cap is 6% and it trails: it starts at 6% of the initial balance and rises as the account sets new highs, locking static at the opening balance once you are 6% in profit. On a $100,000 Accelerated account that is $6,000 of room that follows you up, against $10,000 that stays put on the Evaluation. Instant applies a 6% total loss limit stated against the account rather than a high-water mark. Break is tighter still: 4% trailing on the $25,000 and $50,000 accounts ($1,000 and $2,000) and 3% on the $100,000 account ($3,000), measured against the highest balance reached.</p>
+
+<p><strong>Daily loss.</strong> The 2-phase Evaluation and Ascend allow 5% in a day; Accelerated and Instant allow 4%; the Break page states no daily loss limit at all, leaving the trailing cap as Break's only loss gate. The daily figure is calculated from your balance at 12:05 AM UTC each day, and CFT's own update notes state that drawdown breach is assessed on <em>equity</em> — floating loss on an open position counts against the limit, it does not wait for the close.</p>
+
+<p><strong>Consistency.</strong> Only Break carries a documented consistency rule, and only at live stage: no single trading day may account for more than 40% of total profits. Phase 1 of Break has none. No consistency percentage is published for Evaluation, Ascend, Accelerated or Instant, which is a data gap rather than a confirmed absence.</p>
+
+<p><strong>A separate cap most traders miss:</strong> CFT's evaluation rules page limits daily and per-trade simulated profit to $10,000. On a $200,000 account that ceiling binds at 5% in a single day — well inside the 5% daily loss allowance — so a large winning position does not credit in full.</p>
+
+<p><strong>News, weekend and overnight are all allowed.</strong> The FAQ states news trading is permitted and that positions may be held overnight and over the weekend regardless of account type or instrument. Ascend is the exception: its terms bar opening or adding positions within two minutes either side of high-impact news or a market open, and bar raising aggregate theoretical loss above 2% of the initial balance in that window.</p>
+
+<p><strong>Automation is restricted, not banned.</strong> There is no blanket EA prohibition in CFT's documentation, but high-frequency trading is explicitly disallowed — the FAQ names programs, algorithms, bots and automated systems that execute a large number of trades in very short periods. Tick scalping and arbitrage are separately banned, and reverse trading is caught by a rule against holding opposite-direction positions simultaneously for 60 seconds or longer. Copy trading between different traders, third parties, groups or unrelated accounts is prohibited; Break is the one product where copying between your own accounts is permitted during evaluation, and even there it stops at the Break Final Stage.</p>
+
+<h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
+
+<p>Break-even profit is the fee divided by your profit split — the trading gain you have to produce before your 80% share of it repays what you spent. The R-multiple measures that figure against the dollar value of your maximum drawdown. R below 1 means the firm lets you lose more getting there than you need to make; R at or above 1 means you must out-earn your entire loss allowance simply to return to zero. Every number below is <code>computeTrueCost()</code> output from CFT's captured prices — see <a href="/true-cost-of-prop-firm-challenges">the true cost of prop firm challenges</a> for the method.</p>
+
+<p>The two 2-phase products carry identical rules — 8% then 5% targets, 5% daily loss, 10% static max — so the only thing separating them is price:</p>
+
+<!-- Evaluation (Standard 2-Phase) — generated by scripts/gen-truecost.mjs -->
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Evaluation (Standard 2-Phase) true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 10% max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day (5% daily cap)</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$58</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$73</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.14</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$110</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$138</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.14</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$240</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$300</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.12</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$389</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$486</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.10</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$660</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$825</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.08</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$200K</td><td style="padding: 8px 12px;">$1,250</td><td style="padding: 8px 12px;">$1,563</td><td style="padding: 8px 12px;">0.08</td><td style="padding: 8px 12px;">1</td></tr>
+  </tbody>
+</table>
+
+<!-- Ascend Evaluation — generated by scripts/gen-truecost.mjs -->
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Ascend Evaluation true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 10% max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day (5% daily cap)</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$45</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$56</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.11</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$90</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$113</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.11</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$225</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$281</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.11</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$450</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$563</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.11</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$899</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,124</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.11</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px;">$200K</td><td style="padding: 8px 12px;">$1,798</td><td style="padding: 8px 12px;">$2,248</td><td style="padding: 8px 12px;">0.11</td><td style="padding: 8px 12px;">2</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Ascend is priced at a flat 0.9% of account size at every tier</strong> — $45 on $5,000, $450 on $50,000, $1,798 on $200,000 — which is why its R-multiple never moves off 0.11. The standard Evaluation scales the other way: it costs 1.16% of size at $5,000 but only 0.63% at $200,000, so its R improves from 0.14 down to 0.08. The crossover sits between $25,000 and $50,000. Below it, Ascend is cheaper ($45 against $58 at $5,000); at $50,000 and above, the standard Evaluation is cheaper for an identical rule set — $660 against $899 at $100,000, and $1,250 against $1,798 at $200,000. A trader buying Ascend at $200,000 pays $548 more for the same 8%/5% targets and the same 10% static floor.</p>
+
+<p>That comparison carries a caveat. CFT's homepage lists 80% for Ascend, which is what the table above assumes, but its terms describe Ascend rewards as fixed dollar scholarships instead — $210 on $5,000, $420 on $10,000, $1,050 on $25,000, $2,100 on $50,000, $4,200 on $100,000, $8,400 on $200,000. Those are two different economic shapes, and the site does not reconcile them. If the fixed-scholarship reading is the operative one, Ascend's break-even column does not apply at all. Ask support to confirm which governs before buying an Ascend account.</p>
+
+<p>The 1-phase product is the cheapest way through at every shared tier, but the discount is paid for in drawdown room:</p>
+
+<!-- Accelerated (1-Phase) — generated by scripts/gen-truecost.mjs -->
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Accelerated (1-Phase) true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 6% trailing max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day (4% daily cap)</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$40</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.17</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$80</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.17</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$219</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$274</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.18</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$369</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$461</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.15</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$619</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$774</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.13</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$200K</td><td style="padding: 8px 12px;">$1,199</td><td style="padding: 8px 12px;">$1,499</td><td style="padding: 8px 12px;">0.12</td><td style="padding: 8px 12px;">1</td></tr>
+  </tbody>
+</table>
+
+<p>At $100,000 Accelerated costs $619 against the Evaluation's $660 — a $41 saving — yet its R is 0.13 against 0.08, because break-even is measured against $6,000 of trailing room rather than $10,000 of static room. The same pattern holds at $200,000: $51 cheaper, R of 0.12 against 0.08. What you buy for that $41 is one 10% target instead of a sequence of 8% and then 5%, and what you give up is 40% of your loss allowance plus the certainty of knowing where your floor is. For a trader who tends to give back open profit, the trailing mechanic is the expensive half of that trade.</p>
+
+<p>The instant-funding product inverts the arithmetic entirely, and this is the finding that matters most on this page:</p>
+
+<!-- Instant — generated by scripts/gen-truecost.mjs -->
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Instant true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 6% max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day (4% daily cap)</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,500</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$125</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$156</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1.04</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">7</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$240</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$300</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1.00</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6</td></tr>
+    <tr><td style="padding: 8px 12px;">$10K</td><td style="padding: 8px 12px;">$475</td><td style="padding: 8px 12px;">$594</td><td style="padding: 8px 12px;">0.99</td><td style="padding: 8px 12px;">6</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Instant sits at R = 1.00, give or take a hundredth, at all three tiers.</strong> At the $2,500 account you need $156 of profit to repay a $125 fee, against a total permitted loss of $150 — R = 1.04, meaning a trader who breaches has lost less than the profit they were chasing just to get level. The $10,000 Instant costs $475 where the same $10,000 on the 2-phase Evaluation costs $110: 4.3 times the price, for a 6% loss allowance instead of 10% and an R of 0.99 instead of 0.14. Measured on risk-adjusted terms, skipping the evaluation at CFT costs roughly seven times more.</p>
+
+<p>Break is the outlier in the other direction, and the reason its table has no R column:</p>
+
+<!-- Break Challenge — generated by scripts/gen-truecost.mjs -->
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Break Challenge true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$70</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$88</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$139</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$174</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$100K</td><td style="padding: 8px 12px;">$199</td><td style="padding: 8px 12px;">$249</td><td style="padding: 8px 12px;">1</td></tr>
+  </tbody>
+</table>
+
+<p>Break's maximum loss varies by tier — 4% on the $25,000 and $50,000 accounts, 3% on the $100,000 — so the data file records it as null at product level and no R-multiple is computed. The raw pairs still tell the story: $199 buys a $100,000 Break account whose break-even is $249 and whose trailing drawdown is $3,000. That is the cheapest headline in CFT's catalogue, roughly a third of the $660 Evaluation at the same size. The price of it is a 3% trailing stop measured off your highest balance and a 40% single-day consistency rule at live stage, which means a $6,000 profit run cannot include a single day contributing more than $2,400.</p>
+
+<p>Across all five products, no True-Cost figure assumes the fee comes back. CFT publishes no fee-refund promise, so unlike most CFD firms you should treat every fee in these tables as a sunk cost rather than a deposit.</p>
+
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p>CFT runs <strong>weekly payouts</strong> — faster than the bi-weekly standard at FTMO, FundedNext, FundingPips, and most CFD firms. Methods include crypto (USDT, BTC) and bank wire. Crypto rail is the headline given the firm's market focus — settlement typically in hours rather than days.</p>
+<p>On the phase-based products, the first payout comes after <strong>15 traded days, or alternatively every 30 calendar days</strong> — that is the FAQ's wording for the 2-phase Evaluation and the 1-phase Accelerated. It is a bi-weekly-equivalent cycle, not the weekly cadence CFT is sometimes credited with. Weekly is available, but as a paid add-on that reduces the cycle to every 7 traded days.</p>
 
-<p>Trustpilot ratings cluster around 4.5/5 from moderate volume.</p>
+<p>Instant and Break do not run on a day count at all. Instant pays on demand once the account reaches 10% simulated profit, with no minimum trading days; the same request also doubles the account size, and the FAQ describes scaling that way up to $1,280,000. The terms add a fallback: you can request a reward before hitting 10% if you have traded 15 days or 30 calendar days. Break payouts are listed as on-demand with no minimum trading days, subject to the 40% consistency rule.</p>
+
+<p>Ascend is the one product with no published payout timing. The FAQ says only that an Ascend trader can request a reward once the Phase 2 profit target is complete, with no additional profit percentage required, and gives no day count — so <code>payoutFirstDays</code> and <code>payoutFrequency</code> are both null in our data. We hold no verified Trustpilot capture for CFT, so this review makes no claim about its public review score; the payout mechanics above come from the firm's own FAQ and terms as read on 2026-07-27.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
 <ul class="wp-block-list">
-  <li><strong>Weekly payouts</strong> — fastest cadence among static-DD CFD competitors.</li>
-  <li><strong>Crypto-first rule design</strong> — weekend and 24/7 trading accommodated structurally.</li>
-  <li><strong>Static drawdown</strong> — forgiving mechanic.</li>
-  <li><strong>MT5 and cTrader support</strong> — broader than entry-tier firms.</li>
-  <li><strong>EAs allowed.</strong></li>
-  <li><strong>Crypto payouts</strong> — natural rail for the asset class.</li>
+  <li><strong>No time limit on any evaluation</strong> — the FAQ states there is no maximum time limit to complete it, so a 10% target has no expiry pressure behind it.</li>
+  <li><strong>Break at $199 for $100,000</strong> — break-even of $249, roughly a third the cost of the $660 Evaluation at the same account size.</li>
+  <li><strong>10% static drawdown on both 2-phase products</strong> — $10,000 of fixed room on a $100,000 account, against $6,000 that trails on Accelerated.</li>
+  <li><strong>News trading, overnight and weekend holding all explicitly allowed</strong> per the FAQ, regardless of account type or instrument (Ascend's two-minute news window is the sole exception).</li>
+  <li><strong>Standard Evaluation gets cheaper per dollar as size rises</strong> — 1.16% of account size at $5,000 falls to 0.63% at $200,000, taking R from 0.14 to 0.08.</li>
+  <li><strong>540+ crypto pairs on MT5 and Match-Trader, 715+ on Bybit</strong>, with leverage up to 1:100 on all three.</li>
+  <li><strong>No blanket EA ban</strong> — only high-frequency automation, tick scalping and arbitrage are named as prohibited.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Cons</strong></h2>
 
 <ul class="wp-block-list">
-  <li><strong>80% split</strong> — below FundedNext (95%) and FundingPips's scaling ceiling (100%).</li>
-  <li><strong>Limited instrument coverage</strong> — Crypto, Forex, Indices only. No Commodities or Stocks.</li>
-  <li><strong>3-year operating history</strong> — shorter than the giants.</li>
-  <li><strong>$600K max allocation</strong> — below FTMO ($2M) and FundedNext ($4M).</li>
-  <li><strong>Niche positioning means smaller community footprint</strong> — less peer-review signal.</li>
-  <li><strong>Rule documentation thin</strong> — verification requires the live site.</li>
+  <li><strong>Instant is priced at R = 1.00</strong> — $475 for a $10,000 account with a $600 loss allowance and a $594 break-even, against $110 for the same size on the 2-phase Evaluation.</li>
+  <li><strong>Ascend costs more than the identical standard Evaluation above $25,000</strong> — $899 against $660 at $100,000, and $1,798 against $1,250 at $200,000, for the same targets and the same 10% static cap.</li>
+  <li><strong>Ascend's reward structure is contradictory</strong> — the homepage says 80%, the terms list fixed scholarships ($4,200 on a $100,000 account), and nothing on the site reconciles the two.</li>
+  <li><strong>No fee-refund promise anywhere</strong> — the 14-day withdrawal right dies the moment you open a position, and the terms deny refunds on cancellation.</li>
+  <li><strong>$10,000 daily and per-trade profit cap</strong> — on a $200,000 account that binds at 5% in a day, so a large winner does not credit in full.</li>
+  <li><strong>Per-tier spec pages return HTTP 404</strong> — the <code>/product/&lt;size&gt;-&lt;name&gt;-evaluation/</code> URLs still in search indexes are dead, so tier-level rules can only be read off a homepage widget.</li>
+  <li><strong>Consistency rules published for one product only</strong> — Break's 40% live-stage rule is documented; Evaluation, Ascend, Accelerated and Instant have none stated either way.</li>
+  <li><strong>The advertised "Up to $300,000" does not match a purchasable product</strong> — the largest tier in the pricing widget is $200,000.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Who should pick Crypto Fund Trader</strong></h2>
 
-<p>A trader whose edge is specifically in crypto markets — BTC, ETH, altcoin scalping or swing trading — and who values weekend trading freedom plus weekly payouts. Crypto-first firms understand the asset class's 24/7 nature in ways that "crypto-also-supported" firms don't always replicate. The weekly payout cadence pairs well with high-frequency crypto strategies that need recycled capital.</p>
+<p>A crypto swing or position trader who can hold through weekends and wants a fixed floor: buy the standard Evaluation at $50,000 or above, where it undercuts Ascend on price and its R sits at 0.10 or better. The 10% static drawdown, the absence of any time limit, and explicit permission to hold overnight and over the weekend suit a trader running multi-day BTC or ETH positions rather than an intraday scalper — and the ban on high-frequency automation, tick scalping and arbitrage rules out the fastest strategies anyway. If your budget caps out near $200, the $100,000 Break account at $199 is the cheapest live-stage seat CFT sells, provided your equity curve can survive a 3% trailing stop and spread profit across days under the 40% rule.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid Crypto Fund Trader</strong></h2>
 
-<p>A trader whose edge is in FX, indices, or commodities specifically — CFT's instrument list is narrower than FTMO or FundedNext, and the firm's product design optimizes for crypto. For multi-asset CFD trading, <a href="/blog/ftmo-review">FTMO</a> or <a href="/blog/fundednext-review">FundedNext</a> are structurally better. Avoid also if you want the highest possible split — CFT's 80% is below the headline rates at FundedNext and FundingPips.</p>
+<p>Anyone who wants funded-from-day-one exposure should not buy CFT's Instant product: at R = 1.00 you must earn back your entire 6% loss allowance just to repay the fee, and the same $10,000 costs $110 through the 2-phase route. Multi-asset traders are also in the wrong place — CFT's instrument list is crypto pairs, so an FX or indices edge belongs at <a href="/blog/ftmo-review">FTMO</a> or <a href="/blog/fundednext-review">FundedNext</a>. Traders who need the fee back on a pass should look elsewhere too: CFT never states that it returns, where several competitors put a refund commitment in writing. And if you run bots or high-frequency execution, the FAQ's prohibition on automated systems placing large numbers of trades in short periods will catch you before the drawdown does.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
-<h3 class="wp-block-heading"><strong>Is Crypto Fund Trader legit in 2026?</strong></h3>
-<p>Yes — operating since 2023, processes weekly payouts on the funded side. Trustpilot ratings sit around 4.5/5 from moderate review volume. The firm's crypto-first positioning is genuine — rule design accommodates 24/7 markets rather than retrofitting CFD rules onto crypto.</p>
+<h3 class="wp-block-heading"><strong>How much does a Crypto Fund Trader challenge cost?</strong></h3>
+<p>From $40 for a $5,000 Accelerated account to $1,798 for a $200,000 Ascend account, across 24 priced tiers captured on 2026-07-27. The most-bought size, $100,000, ranges from $199 on Break to $899 on Ascend.</p>
 
-<h3 class="wp-block-heading"><strong>Why are weekly payouts unusual?</strong></h3>
-<p>Most CFD prop firms run bi-weekly or monthly cycles. Weekly is faster than the industry standard. For traders who treat funded-account profit as routine income, the faster cycle matters; for occasional withdrawals it's a minor advantage.</p>
+<h3 class="wp-block-heading"><strong>Is the Crypto Fund Trader fee refunded when you pass?</strong></h3>
+<p>The site never says so. The refund policy grants only a 14-day withdrawal right that lapses once you open a position, and the terms state that on account cancellation you are entitled to neither the reward nor a refund of fees paid.</p>
 
-<h3 class="wp-block-heading"><strong>Can I really hold crypto positions over the weekend?</strong></h3>
-<p>Yes — crypto markets run 24/7 so the "weekend" doesn't exist in the same sense as FX or futures. CFT's rules explicitly accommodate this. For FX positions on the platform, standard weekend-holding rules apply.</p>
+<h3 class="wp-block-heading"><strong>What is the profit split at Crypto Fund Trader?</strong></h3>
+<p>80% at live stage on all five products, with a paid 90% upgrade costing 20% of the evaluation price. Ascend is the exception to trust least: the terms list fixed dollar scholarships ($210 to $8,400 by size) instead of a percentage.</p>
 
-<h3 class="wp-block-heading"><strong>Can US residents use Crypto Fund Trader?</strong></h3>
-<p>Like most CFD prop firms with crypto exposure, US-resident acceptance varies and depends on the specific instrument set traded. Verify residency eligibility at signup. The crypto-CFD product faces more regulatory friction in the US than pure futures or US-domestic crypto exchanges.</p>
+<h3 class="wp-block-heading"><strong>Which Crypto Fund Trader product has the best break-even math?</strong></h3>
+<p>The standard 2-phase Evaluation at $100,000 and $200,000, both at R = 0.08. The worst is Instant, at R = 1.04 on the $2,500 account and R = 0.99 on the $10,000.</p>
 
-<h3 class="wp-block-heading"><strong>What's special about a "crypto-first" prop firm?</strong></h3>
-<p>The rule design assumes 24/7 markets, accommodates higher native crypto volatility in DD calculations, and prioritizes crypto-friendly payout rails. Generic CFD prop firms support crypto as a side asset; CFT designs around it as the primary use case.</p>
+<h3 class="wp-block-heading"><strong>Does Crypto Fund Trader pay weekly?</strong></h3>
+<p>Not by default. The first reward on the phase products comes after 15 traded days or every 30 calendar days; a paid add-on shortens the cycle to every 7 traded days. Instant and Break pay on demand at 10% profit with no minimum trading days.</p>
+
+<h3 class="wp-block-heading"><strong>Are EAs and bots allowed?</strong></h3>
+<p>There is no blanket ban, but high-frequency trading is prohibited — the FAQ names programs, algorithms, bots and automated systems executing a large number of trades in very short periods. Tick scalping, arbitrage, and opposite-direction positions held simultaneously for 60 seconds or longer are separately disallowed.</p>
+
+<h3 class="wp-block-heading"><strong>Can I hold positions over the weekend?</strong></h3>
+<p>Yes. The FAQ permits holding positions open overnight and over the weekend regardless of account type or instrument. Ascend adds one restriction: no opening or adding positions within two minutes either side of high-impact news or a market open.</p>

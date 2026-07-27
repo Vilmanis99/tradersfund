@@ -1,65 +1,559 @@
 [
   {
     "firmSlug": "maven",
-    "productName": "Maven Challenge",
-    "productSlug": "maven-default",
-    "phases": 2,
+    "productName": "Standard 1-Step",
+    "productSlug": "standard-1-step",
+    "phases": 1,
     "accountSizes": [
       {
+        "sizeUsd": 2000,
+        "priceUsd": 15,
+        "refundable": true
+      },
+      {
         "sizeUsd": 5000,
-        "priceUsd": null,
+        "priceUsd": 19,
         "refundable": true
       },
       {
         "sizeUsd": 10000,
-        "priceUsd": null,
+        "priceUsd": 37,
         "refundable": true
       },
       {
-        "sizeUsd": 25000,
-        "priceUsd": null,
+        "sizeUsd": 20000,
+        "priceUsd": 68,
         "refundable": true
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
+        "priceUsd": 170,
         "refundable": true
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
+        "priceUsd": 380,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 8
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 5,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 10,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": false,
+      "weekend": true,
+      "overnight": null,
+      "ea": false,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://maventrading.com/pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "maven",
+    "productName": "Standard 2-Step",
+    "productSlug": "standard-2-step",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 2000,
+        "priceUsd": 19,
         "refundable": true
       },
       {
-        "sizeUsd": 200000,
-        "priceUsd": null,
+        "sizeUsd": 5000,
+        "priceUsd": 22,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 44,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 88,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 220,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 440,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 8,
+      "phase2": 5
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 8,
+    "drawdownType": "static",
+    "minTradingDays": 3,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 10,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": false,
+      "weekend": true,
+      "overnight": null,
+      "ea": false,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://maventrading.com/pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "maven",
+    "productName": "Standard 3-Step",
+    "productSlug": "standard-3-step",
+    "phases": 3,
+    "accountSizes": [
+      {
+        "sizeUsd": 2000,
+        "priceUsd": 13,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 17,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 38,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 76,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 190,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 299,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 3,
+      "phase2": 3,
+      "phase3": 3
+    },
+    "dailyLossPct": 2,
+    "maxLossPct": 3,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 10,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": false,
+      "weekend": true,
+      "overnight": null,
+      "ea": false,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://maventrading.com/pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "maven",
+    "productName": "Instant",
+    "productSlug": "instant",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 2000,
+        "priceUsd": 15,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 19,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 37,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 68,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 170,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 380,
         "refundable": true
       }
     ],
     "profitTargets": null,
+    "dailyLossPct": 2,
+    "maxLossPct": 3,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": 20,
+    "profitSplitPct": 80,
+    "payoutFirstDays": null,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": null,
+      "ea": false,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://maventrading.com/pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "maven",
+    "productName": "Mini",
+    "productSlug": "mini",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 2000,
+        "priceUsd": 17,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 22,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 44,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 88,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 220,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 440,
+        "refundable": null
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": 2,
+    "maxLossPct": 3,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": 1,
+    "consistencyRulePct": 15,
+    "profitSplitPct": 70,
+    "payoutFirstDays": 1,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": null,
+      "weekend": true,
+      "overnight": null,
+      "ea": false,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://maventrading.com/pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "maven",
+    "productName": "Buy Now, Pay Later",
+    "productSlug": "buy-now-pay-later",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 2000,
+        "priceUsd": 5,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 5,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 5,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 5,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 5,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 5,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 4
+    },
+    "dailyLossPct": null,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": 20,
+    "profitSplitPct": 80,
+    "payoutFirstDays": null,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": null,
+      "ea": false,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://maventrading.com/pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "maven",
+    "productName": "OMO 2-Step",
+    "productSlug": "omo-2-step",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 2000,
+        "priceUsd": 19,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 32,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 62,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 122,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 238,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 472,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 6,
+      "phase2": 8
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 8,
+    "drawdownType": "static",
+    "minTradingDays": 4,
+    "maxTradingDays": 180,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 10,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": null,
+      "ea": false,
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://maventrading.com/pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "maven",
+    "productName": "Prediction Markets One-Step Essential",
+    "productSlug": "predictions-1-step",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 44,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 84,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 154,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 359,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 599,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 9
+    },
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 70,
+    "payoutFirstDays": null,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": true,
+      "weekend": null,
+      "overnight": null,
+      "ea": false,
+      "copyTrading": false
+    },
+    "assetClass": null,
+    "sourceUrl": "https://maventrading.com/pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "maven",
+    "productName": "Prediction Markets One-Step Elite",
+    "productSlug": "predictions-elite-1-step",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 74,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 139,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 259,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 599,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 999,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 9
+    },
     "dailyLossPct": null,
     "maxLossPct": null,
     "drawdownType": "static",
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": null,
-    "profitSplitPct": 80,
+    "profitSplitPct": 70,
     "payoutFirstDays": null,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": "restricted",
-      "weekend": false,
-      "overnight": true,
-      "ea": true,
+      "news": true,
+      "weekend": null,
+      "overnight": null,
+      "ea": false,
       "copyTrading": false
     },
-    "assetClass": "cfd",
-    "sourceUrl": "/blog/maven-prop-firm-review",
-    "sourceCapturedAt": "2026-05-20",
+    "assetClass": null,
+    "sourceUrl": "https://maventrading.com/pricing",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "SKELETON ENTRY \u2014 only firm-level aggregates from firms.json populated.",
-      "Per-tier pricing, exact profit targets, and DD% require editorial verification against the live firm page.",
-      "Set fields to null until verified \u2014 never invent."
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-07-27.json"
     ]
   }
 ]

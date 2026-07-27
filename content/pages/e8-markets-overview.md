@@ -14,7 +14,7 @@ type: "page"
   <header>
         <img src="/images/wp/2025/05/e8_markets_logo-e1746805381598.png" alt="E8 Markets logo">
           <h1>
-            <a href="/go-e8markets" target="_blank" rel="nofollow noreferrer noopener sponsored">E8 Markets</a>
+            <a href="/go/e8-markets" target="_blank" rel="nofollow noreferrer noopener sponsored">E8 Markets</a>
           </h1>
           CFD prop firm overview & details
           Headquarters
@@ -25,7 +25,7 @@ type: "page"
           $2,400,000
           Trustpilot
           4.5/5
-      <a href="/go-e8markets" target="_blank" rel="nofollow noreferrer noopener sponsored">Take Challenge</a>
+      <a href="/go/e8-markets" target="_blank" rel="nofollow noreferrer noopener sponsored">Take Challenge</a>
       <a href="/blog/e8-markets-review">Read Full Review</a>
   </header>
   <!-- Sticky Tabs -->
@@ -137,7 +137,7 @@ type: "page"
 					<h2>Payout Rules</h2>				
 		<p>E8 Markets' payout rules are as follows:</p><ul><li><strong>Profit Split:</strong> Up to <b>100%</b> of net profits are paid to the trader.</li><li><strong>First Payout: </strong>Some plans allow first payout as soon as <b>8 days</b> after the first trade on the funded account in certain evaluation models.</li><li><p><strong>Payout Frequency:</strong> Many programs offer “On-Demand” payout requests, and some models have bi-weekly payout access.</p></li></ul>		
 		<p>For more details about this prop firm, you can check out our comprehensive <a href="/blog/e8-markets-review">E8 Markets review</a>.</p>		
-					<a href="/go-e8markets" target="_blank" rel="nofollow">
+					<a href="/go/e8-markets" target="_blank" rel="nofollow">
 									Visit E8 Markets
 					</a>
   <strong>Affiliate Disclaimer:</strong> This post may contain affiliate links, which means we may receive a small commission if you choose to sign up or make a purchase through one of our links. This comes at no additional cost to you and helps us continue to create useful content for the trading community. We only recommend services we trust and personally use.

@@ -28,6 +28,23 @@ function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
+/**
+ * Non-firm partners we review (trade copiers, backtesters, social-trading
+ * platforms). They aren't in firms.json — that file is prop firms only — but
+ * their articles still carry "Visit X" CTAs pointing at /go/<slug>.
+ *
+ * Until an affiliate deal is signed, `affiliateUrl` stays null and the click
+ * lands on our own review instead of a dead end. Add the partner URL here the
+ * day the deal goes live; nothing else needs to change.
+ */
+const PARTNERS: Record<string, { affiliateUrl: string | null; fallback: string }> = {
+  'traders-connect': { affiliateUrl: null, fallback: '/blog/traders-connect-trade-copier' },
+  zulutrade: { affiliateUrl: null, fallback: '/blog/zulutrade-review' },
+  'fx-replay': { affiliateUrl: null, fallback: '/blog/fx-replay-review' },
+  copyfx: { affiliateUrl: null, fallback: '/blog/copyfx-review' },
+  '3commas': { affiliateUrl: null, fallback: '/blog/3commas-review' },
+}
+
 function decorateUtm(url: string, campaign: string): string {
   try {
     const u = new URL(url)
@@ -60,6 +77,13 @@ export async function GET(
   const from = url.searchParams.get('from') || 'unknown'
 
   if (!match) {
+    // Reviewed tools/platforms that aren't prop firms (see PARTNERS above).
+    const partner = PARTNERS[target]
+    if (partner) {
+      return partner.affiliateUrl
+        ? NextResponse.redirect(decorateUtm(partner.affiliateUrl, from), 302)
+        : NextResponse.redirect(new URL(partner.fallback, req.url), 302)
+    }
     return NextResponse.redirect(new URL('/main-table', req.url), 307)
   }
 

@@ -1,40 +1,335 @@
 [
   {
     "firmSlug": "fundingpips",
-    "productName": "FundingPips 2-Step",
-    "productSlug": "fundingpips-2-step",
+    "productName": "1 Step Flex",
+    "productSlug": "1-step-flex",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "refundable": null
+      }
+    ],
+    "profitTargets": {
+      "phase1": 12
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 12,
+    "drawdownType": "static",
+    "minTradingDays": 0,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 85,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Profit Concentration Policy (not a classic consistency rule): 'If a single trade idea accounts for more than 60% of the profit target in an evaluation phase, the Master Account created after passing will require 4 minimum profitable days before each reward can be requested.' A profitable day closes up 0.5%+ of account size. Applies to ALL account sizes on 1 Step Flex.",
+      "Striking System: warning at 1% floating loss on one trade idea; 2nd warning halves split to 42.5%, 3rd drops to 20%, 4th closes the account.",
+      "Minimum reward request is 1% of account size.",
+      "Inactivity breach after 30 consecutive days with no completed trade.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "fundingpips",
+    "productName": "2 Step Flex",
+    "productSlug": "2-step-flex",
     "phases": 2,
     "accountSizes": [
-      { "sizeUsd": 10000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+      {
+        "sizeUsd": 5000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "refundable": null
+      }
     ],
-    "profitTargets": null,
-    "dailyLossPct": null,
-    "maxLossPct": null,
+    "profitTargets": {
+      "phase1": 10,
+      "phase2": 6
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 12,
     "drawdownType": "static",
-    "minTradingDays": 5,
+    "minTradingDays": 0,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": null,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "profitSplitPct left null deliberately: there is no single split. The buyer picks 85% (no minimum trading days) or 95% (requires 3 profitable days of >=0.5% each per cycle) at purchase, locked for the life of the account. Both variants cost the same.",
+      "Risk Per Trade Idea Limit on Master Account only: 3% at $25K, 2% above $25K, does not apply below $25K.",
+      "Explicitly no consistency score on either split.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "fundingpips",
+    "productName": "2 Step Pro",
+    "productSlug": "2-step-pro",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 2500,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": null,
+        "refundable": null
+      }
+    ],
+    "profitTargets": {
+      "phase1": 6,
+      "phase2": 6
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 6,
+    "drawdownType": "static",
+    "minTradingDays": 1,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
-    "payoutFirstDays": null,
-    "payoutFrequency": "bi-weekly",
+    "payoutFirstDays": 7,
+    "payoutFrequency": "weekly",
     "rules": {
-      "news": true,
-      "weekend": true,
-      "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://fundingpips.com/",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "WARNING: Almost all FundingPips public pages returned 403 to programmatic fetch. Treat every field as needing manual verification against the live site before publishing.",
-      "Split scales to 100% under their scaling plan after consistent payout milestones.",
-      "Min 5 trading days is the longest-running known requirement — verify it still applies in 2026."
+      "Risk Per Trade Idea rule has been REMOVED on 2 Step Pro: 'Risk Per Trade Idea Removed. This rule no longer applies on 2 Step Pro accounts.'",
+      "Minimum reward request is 1% of the Master Account Size (including FundingPips' split).",
+      "$2.5K size is region-restricted ('in select countries') and is paid-evaluation only.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "fundingpips",
+    "productName": "2 Step Standard",
+    "productSlug": "2-step-standard",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 2500,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "refundable": null
+      }
+    ],
+    "profitTargets": {
+      "phase1": 8,
+      "phase2": 5
+    },
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": 3,
+    "maxTradingDays": null,
+    "consistencyRulePct": 35,
+    "profitSplitPct": null,
+    "payoutFirstDays": null,
+    "payoutFrequency": null,
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "profitSplitPct and payoutFrequency left null deliberately: there is no single value. Four selectable cycles, each with its own split - On Demand 90% (requires 35% consistency score and min 2% profit), Weekly 60% (7 days after first executed trade), Bi-Weekly 80% (every 14 calendar days), Monthly 100% (every 30 calendar days). Do NOT quote a single headline split for this product.",
+      "The 35% consistency rule applies ONLY to the On Demand cycle, not to the Weekly/Bi-Weekly/Monthly cycles or to the evaluation phases.",
+      "Risk Per Trade Idea rule has been REMOVED on 2 Step Standard.",
+      "Striking System (4 warnings) applies to Master Accounts above $25,000.",
+      "Legacy note from the page: 'Existing 2 Step Standard accounts with a 10% profit target will reset as 2 Step Flex' - the current Phase 1 target is 8%, not the older 10%.",
+      "Minimum reward request is 1% of the Master Account Size (including FundingPips' split).",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "fundingpips",
+    "productName": "FundingPips Zero",
+    "productSlug": "zero",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": null,
+        "refundable": null
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": 3,
+    "maxLossPct": 5,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": 15,
+    "profitSplitPct": 95,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "maxLossPct of 5% is a TRAILING limit on peak equity, not a static floor - it is not comparable like-for-like with the 6-12% static limits on the evaluation models. It locks at the starting account size once equity reaches 5% profit.",
+      "Max Open Risk Limit 1%: 'Floating PnL cannot exceed -1% of the starting account size at any time' - hard breach.",
+      "Risk Per Trade Idea: 3% below $50K, 2% at $50K and above.",
+      "Min Profitable Days: at least 7 profitable days (0.25%+ each) per rolling 30-day period - failing this is listed under hard breaches.",
+      "Reward eligibility needs all four of: consistency score <=15%, 7 profitable days in the rolling 30-day period, a 3% safety cushion (first 3% profit not eligible for reward), and biggest losing day not exceeding biggest winning day.",
+      "Reset available at a 20% discount for all account sizes.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-07-27.json"
     ]
   }
 ]

@@ -1,65 +1,319 @@
 [
   {
     "firmSlug": "alpha-capital",
-    "productName": "Alpha Capital Challenge",
-    "productSlug": "alpha-capital-default",
+    "productName": "Alpha One",
+    "productSlug": "alpha-one",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 50,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 99,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 197,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 297,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 497,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 997,
+        "refundable": false
+      }
+    ],
+    "profitTargets": {
+      "phase1": 10
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 6,
+    "drawdownType": "trailing",
+    "minTradingDays": 1,
+    "maxTradingDays": null,
+    "consistencyRulePct": 40,
+    "profitSplitPct": 80,
+    "payoutFirstDays": null,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "alpha-capital",
+    "productName": "Alpha Pro (6%)",
+    "productSlug": "alpha-pro-6",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 40,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 67,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 137,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 237,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 427,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 847,
+        "refundable": false
+      }
+    ],
+    "profitTargets": {
+      "phase1": 6,
+      "phase2": 6
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 6,
+    "drawdownType": "static",
+    "minTradingDays": 3,
+    "maxTradingDays": null,
+    "consistencyRulePct": 40,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://alphacapitalgroup.uk/posts/alpha-capital-rules-explained-drawdown-profit-targets-daily-loss-and-evaluation-rules-2026",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "alpha-capital",
+    "productName": "Alpha Swing",
+    "productSlug": "alpha-swing",
     "phases": 2,
     "accountSizes": [
       {
         "sizeUsd": 5000,
         "priceUsd": null,
-        "refundable": true
+        "refundable": false
       },
       {
         "sizeUsd": 10000,
         "priceUsd": null,
-        "refundable": true
+        "refundable": false
       },
       {
         "sizeUsd": 25000,
         "priceUsd": null,
-        "refundable": true
+        "refundable": false
       },
       {
         "sizeUsd": 50000,
         "priceUsd": null,
-        "refundable": true
+        "refundable": false
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 577,
+        "refundable": false
       },
       {
         "sizeUsd": 200000,
         "priceUsd": null,
-        "refundable": true
+        "refundable": false
+      }
+    ],
+    "profitTargets": {
+      "phase1": 10,
+      "phase2": 5
+    },
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": 3,
+    "maxTradingDays": null,
+    "consistencyRulePct": 40,
+    "profitSplitPct": 80,
+    "payoutFirstDays": null,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "alpha-capital",
+    "productName": "Alpha Three",
+    "productSlug": "alpha-three",
+    "phases": 3,
+    "accountSizes": [
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 67,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 157,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 247,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 397,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 697,
+        "refundable": false
+      }
+    ],
+    "profitTargets": {
+      "phase1": 8,
+      "phase2": 4,
+      "phase3": 4
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 6,
+    "drawdownType": "static",
+    "minTradingDays": 3,
+    "maxTradingDays": null,
+    "consistencyRulePct": 40,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "alpha-capital",
+    "productName": "Alpha Direct",
+    "productSlug": "alpha-direct",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 2500,
+        "priceUsd": null,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": null,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": null,
+        "refundable": false
       }
     ],
     "profitTargets": null,
-    "dailyLossPct": null,
-    "maxLossPct": null,
-    "drawdownType": "static",
-    "minTradingDays": 0,
+    "dailyLossPct": 3,
+    "maxLossPct": 5,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
     "maxTradingDays": null,
-    "consistencyRulePct": null,
-    "profitSplitPct": 80,
+    "consistencyRulePct": 15,
+    "profitSplitPct": 90,
     "payoutFirstDays": null,
-    "payoutFrequency": "bi-weekly",
+    "payoutFrequency": "on-demand",
     "rules": {
-      "news": true,
-      "weekend": true,
-      "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
     },
     "assetClass": "cfd",
-    "sourceUrl": "/blog/alpha-capital-review",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "SKELETON ENTRY \u2014 only firm-level aggregates from firms.json populated.",
-      "Per-tier pricing, exact profit targets, and DD% require editorial verification against the live firm page.",
-      "Set fields to null until verified \u2014 never invent."
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-07-27.json"
     ]
   }
 ]

@@ -1,9 +1,12 @@
 'use client'
 
-import { useEffect, useState, useCallback, useRef } from 'react'
+import { useEffect, useState, useCallback, useRef, useSyncExternalStore } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Star, ArrowRight, Tag, Check } from 'lucide-react'
+
+/** Hydration flag has no external source to subscribe to — never notifies. */
+const subscribeNoop = () => () => {}
 
 /**
  * Plain-JSON props mirror the subset of `Firm` this bar needs. We deliberately
@@ -32,23 +35,27 @@ export default function MobileStickyCTA(props: MobileStickyCTAProps) {
   const { name, logo, score, reviewUrl, affiliateUrl, affiliateSlug, discountCode, discountPct } = props
 
   const [visible, setVisible] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const [copied, setCopied] = useState(false)
   const copiedTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // Avoid SSR/CSR mismatch — only render after mount so the matchMedia + IO
-  // checks have run on the client.
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  // Avoid SSR/CSR mismatch — only render after hydration so the matchMedia +
+  // IO checks have run on the client. useSyncExternalStore gives us that
+  // without a setState-in-effect (which would cascade an extra render on
+  // every review page): the server snapshot is false, the client's is true.
+  const mounted = useSyncExternalStore(
+    subscribeNoop,
+    () => true,
+    () => false,
+  )
 
   useEffect(() => {
     if (typeof window === 'undefined') return
     const h1 = document.querySelector('h1')
     if (!h1) {
       // No hero to track — show immediately on mobile so the bar still works.
-      setVisible(true)
-      return
+      // Deferred a frame so the update lands outside the effect body.
+      const raf = requestAnimationFrame(() => setVisible(true))
+      return () => cancelAnimationFrame(raf)
     }
 
     const observer = new IntersectionObserver(

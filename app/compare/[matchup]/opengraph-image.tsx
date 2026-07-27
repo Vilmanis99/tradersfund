@@ -81,7 +81,7 @@ function FirmCard({
             padding: 16,
           }}
         >
-          <img src={logoSrc} width={88} height={88} style={{ objectFit: 'contain' }} />
+          <img src={logoSrc} alt="" width={88} height={88} style={{ objectFit: 'contain' }} />
         </div>
       ) : (
         <div

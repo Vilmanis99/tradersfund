@@ -1,80 +1,129 @@
 [
   {
     "firmSlug": "ftmo",
-    "productName": "FTMO Challenge (2-Step)",
-    "productSlug": "ftmo-challenge",
+    "productName": "FTMO Challenge: 2-Step",
+    "productSlug": "ftmo-challenge-2-step",
     "phases": 2,
     "accountSizes": [
-      { "sizeUsd": 10000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+      {
+        "sizeUsd": 200000,
+        "priceUsd": null,
+        "priceEur": 1080,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "priceEur": 540,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "priceEur": 345,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "priceEur": 250,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "priceEur": 89,
+        "refundable": true
+      }
     ],
-    "profitTargets": null,
-    "dailyLossPct": null,
-    "maxLossPct": null,
+    "profitTargets": {
+      "phase1": 10,
+      "phase2": 5
+    },
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
     "drawdownType": "static",
-    "minTradingDays": null,
+    "minTradingDays": 4,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
-    "payoutFirstDays": null,
-    "payoutFrequency": "bi-weekly",
+    "payoutFirstDays": 14,
+    "payoutFrequency": "on-demand",
     "rules": {
-      "news": "restricted",
-      "weekend": false,
-      "overnight": false,
-      "ea": true,
-      "copyTrading": false
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://ftmo.com/en/challenge/",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Standard 2-step model: Challenge phase → Verification phase → Funded.",
-      "Exact prices and profit targets not on public pages — verify on the challenge page before publishing.",
-      "News-trading and overnight/weekend restrictions apply on live (Rewards) accounts, NOT during evaluation — see /en/trading-rules/.",
-      "Swing account variant exists with looser overnight/weekend rules.",
-      "Split scales to 90% on Scaling Plan: 4 months tenure + 10% profit + 2 payouts taken."
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-07-27.json"
     ]
   },
   {
     "firmSlug": "ftmo",
-    "productName": "FTMO Challenge (1-Step)",
-    "productSlug": "ftmo-1-step",
+    "productName": "FTMO Challenge: 1-Step",
+    "productSlug": "ftmo-challenge-1-step",
     "phases": 1,
     "accountSizes": [
-      { "sizeUsd": 10000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+      {
+        "sizeUsd": 200000,
+        "priceUsd": null,
+        "priceEur": 999,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "priceEur": 499,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "priceEur": 319,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "priceEur": 199,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "priceEur": 79,
+        "refundable": false
+      }
     ],
-    "profitTargets": null,
-    "dailyLossPct": null,
-    "maxLossPct": null,
-    "drawdownType": "static",
+    "profitTargets": {
+      "phase1": 10
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 10,
+    "drawdownType": "eod-trailing",
     "minTradingDays": null,
     "maxTradingDays": null,
-    "consistencyRulePct": null,
-    "profitSplitPct": 80,
-    "payoutFirstDays": null,
-    "payoutFrequency": "bi-weekly",
+    "consistencyRulePct": 50,
+    "profitSplitPct": 90,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "on-demand",
     "rules": {
-      "news": "restricted",
-      "weekend": false,
-      "overnight": false,
-      "ea": true,
-      "copyTrading": false
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://ftmo.com/en/challenge/",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Single-phase variant introduced 2024 to compete with FundedNext Stellar 1-Step.",
-      "Targets, exact DD %, and pricing per tier not on public pages — verify on the challenge page before publishing.",
-      "Same Scaling Plan progression as the 2-Step product (80% → 90%)."
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-07-27.json"
     ]
   }
 ]

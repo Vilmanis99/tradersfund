@@ -1,0 +1,641 @@
+{
+  "firmSlug": "the-funded-trader",
+  "officialDomain": "https://thefundedtraderprogram.com",
+  "capturedAt": "2026-07-27",
+  "pagesRead": [
+    "https://www.thefundedtraderprogram.com/",
+    "https://www.thefundedtrader.com/",
+    "https://www.thefundedtraderprogram.com/wp-content/themes/tft-theme/assets/challenge-v2/challenge-scriptf49b.js?ver=1754730824",
+    "https://www.thefundedtraderprogram.com/wp-content/themes/tft-theme/assets/challenge-v2/challenge-v2.2-dataset.json",
+    "https://www.thefundedtraderprogram.com/terms-of-use/",
+    "https://help.thefundedtraderprogram.com/en/  (HTTP 404 - help centre is dead)",
+    "https://help.thefundedtraderprogram.com/en/articles/9206586-a-comprehensive-guide-to-the-funded-trader-payouts-account-scaling  (HTTP 404)"
+  ],
+  "accessNotes": "DOMAIN: both thefundedtrader.com and thefundedtraderprogram.com resolve and serve a BYTE-IDENTICAL homepage (241,435 bytes, verified with cmp). thefundedtraderprogram.com is canonical: the mirror's own wp-json oembed links self-reference thefundedtraderprogram.com, and the checkout dashboard, help subdomain and treasure-hunt subdomain all live under thefundedtraderprogram.com. JS-GATING: the on-page challenge configurator at https://thefundedtraderprogram.com/#challenge-v2 renders every value as a '-' placeholder in the static HTML; nothing is server-rendered. Resolved by reading the widget's own loader (challenge-script.js line 110: const jsonUrl = '/wp-content/themes/tft-theme/assets/challenge-v2/challenge-v2.2-dataset.json') and fetching that dataset - a public 819 KB file on the firm's own domain, and the exact source the public pricing widget renders from. Every figure recorded here comes from it. HELP CENTRE DEAD: help.thefundedtraderprogram.com returns HTTP 404 'Not found' on every URL including its root and all per-challenge 'Comprehensive Guide' articles that the homepage and the dataset itself link to (verified: Knight Pro 9930524, Royal 6293542, Royal Pro 10309003, Standard 6082934, payouts/scaling 9206586). intercom.help/thefundedtrader also 404s. WebFetch additionally got HTTP 403 on that subdomain; curl with a browser User-Agent got through to a genuine 404, confirming the content is gone rather than merely bot-blocked. Consequence: base profit split, overnight-holding rules, consistency rules and fee refundability could NOT be verified against an official source and are left null. STALE MARKETING: the homepage comparison table claims '$100k Challenge Price $489' for TFT, which matches NO product in the live dataset (100k prices are Knight $299, Knight Pro $349, Classic 1-Step $499, Royal $600, Royal Pro $319, Classic 2-Step $479, Dragon $299). The $489 figure was NOT used. PRODUCT SET: the live dataset sells 7 products. The 'Standard' and 'Rapid' challenges referenced in older TFT material are NOT in the current dataset; two 'Classic' products (1-Step and 2-Step) are new and are not mentioned in the homepage FAQ copy. ASSET CLASS: FAQ states 'This typically includes forex, commodities, indices, and crypto' on cTrader/Match-Trader/DXtrade -> recorded as cfd.",
+  "products": [
+    {
+      "productName": "Knight Challenge",
+      "productSlug": "knight",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 42,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"5,000\", \"price\": \"$42.00\""
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 70,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"10,000\", \"price\": \"$70.00\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 119,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"25,000\", \"price\": \"$119.00\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 179,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"50,000\", \"price\": \"$179.00\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 299,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"100,000\", \"price\": \"$299.00\""
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 549,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"200,000\", \"price\": \"$549.00\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 8,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": null,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": null,
+        "ea": true,
+        "copyTrading": true
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://www.thefundedtraderprogram.com/wp-content/themes/tft-theme/assets/challenge-v2/challenge-v2.2-dataset.json",
+      "fieldEvidence": {
+        "dailyLossPct": "\"dailyDrawdown\": \"3,000 (3%)\"",
+        "maxLossPct": "\"maximumDrawdown\": \"8,000 (8%)\"",
+        "drawdownType": "maximumDrawdown_info link text: \"Static\"",
+        "profitTargets": "\"profitTarget\": [\"10%\", \"None\"]",
+        "minTradingDays": "\"minimumTradingDays\": [\"5 Days\", \"None\"]",
+        "maxTradingDays": "\"maximumTradingDays\": [\"Unlimited\", \"Unlimited\"]",
+        "profitSplitPct": "\"payoutPercentage\": \"Up to 99%\"",
+        "payoutFirstDays": "\"firstReward\": \"Anytime\"",
+        "payoutFrequency": "\"subsequentReward\": \"Anytime\"",
+        "rules.news": "\"newsTrading\": [\"1\", \"1\"]  (1 = allowed, 0 = not allowed)",
+        "rules.weekend": "\"weekendHolding\": [\"1\", \"1\"]",
+        "rules.ea": "\"expertAdvisors\": [\"1\", \"1\"]",
+        "rules.copyTrading": "\"tradeCopier\": [\"1\", \"1\"]",
+        "theDailyMarch_consistency_adjacent": "\"theDailyMarch\": [\"5 Days with 1.00% per day\", \"2 Days with 1.00% per day\"]",
+        "rewardPolicy": "\"RewardPolicy\": [\"\", \"Up to 10% cap on all requests\"]",
+        "leverage": "\"leverage\": [\"1:30\", \"1:30\"]",
+        "maximumAllocation": "\"maximumAllocation\": [\"$2.5M\", \"$2.5M\"]",
+        "accountInfo_phase_column_order": "\"accountInfo\": [\"Phase 1\", \"Funded Stage\"]"
+      },
+      "notes": [
+        "profitSplitPct left null: the site publishes only a ceiling, \"Up to 99%\", not a base split. The base split is not stated on any reachable official page (the Payout Policy help article it links to is 404).",
+        "maxTradingDays null because the firm states \"Unlimited\" (no limit), not a number.",
+        "consistencyRulePct null: no percentage-of-total-profit consistency rule is published. Nearest published rule is \"The Daily March\" = [\"5 Days with 1.00% per day\", \"2 Days with 1.00% per day\"], a minimum-profitable-days requirement, not a percent cap.",
+        "refundable null for all sizes: the fee-refund question is not answered anywhere on a reachable official page.",
+        "Drawdown basis, verbatim link text in the dataset: daily = \"Balance\", overall = \"Static\".",
+        "overnight holding not present as a field in the firm dataset -> null.",
+        "Prices are identical across all three platforms offered (cTrader, Match-Trader, Platform_5); cTrader values recorded. These are list prices before any promo code (site displays code BACKTOBASICS15).",
+        "All rule values verified identical across every account size for this product (checked programmatically); only price varies by size."
+      ]
+    },
+    {
+      "productName": "Knight Pro Challenge",
+      "productSlug": "knight-pro",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 42,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"5,000\", \"price\": \"$42.00\""
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 64,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"10,000\", \"price\": \"$64.00\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 119,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"25,000\", \"price\": \"$119.00\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 179,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"50,000\", \"price\": \"$179.00\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 349,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"100,000\", \"price\": \"$349.00\""
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 649,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"200,000\", \"price\": \"$649.00\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 8,
+      "drawdownType": null,
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": null,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": null,
+        "ea": true,
+        "copyTrading": true
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://www.thefundedtraderprogram.com/wp-content/themes/tft-theme/assets/challenge-v2/challenge-v2.2-dataset.json",
+      "fieldEvidence": {
+        "dailyLossPct": "\"dailyDrawdown\": \"3,000 (3%)\"",
+        "maxLossPct": "\"maximumDrawdown\": \"8,000 (8%)\"",
+        "drawdownType": "maximumDrawdown_info link text: \"Relative\"",
+        "profitTargets": "\"profitTarget\": [\"10%\", \"None\"]",
+        "minTradingDays": "\"minimumTradingDays\": [\"1 Day\", \"None\"]",
+        "maxTradingDays": "\"maximumTradingDays\": [\"Unlimited\", \"Unlimited\"]",
+        "profitSplitPct": "\"payoutPercentage\": \"Up to 99%\"",
+        "payoutFirstDays": "\"firstReward\": \"Anytime\"",
+        "payoutFrequency": "\"subsequentReward\": \"Anytime\"",
+        "rules.news": "\"newsTrading\": [\"1\", \"1\"]  (1 = allowed, 0 = not allowed)",
+        "rules.weekend": "\"weekendHolding\": [\"1\", \"1\"]",
+        "rules.ea": "\"expertAdvisors\": [\"1\", \"1\"]",
+        "rules.copyTrading": "\"tradeCopier\": [\"1\", \"1\"]",
+        "theDailyMarch_consistency_adjacent": "\"theDailyMarch\": [\"3 Days with 1.00% per day\", \"\"]",
+        "rewardPolicy": "\"RewardPolicy\": [\"\", \"Up to 10% cap on all requests\"]",
+        "leverage": "\"leverage\": [\"1:30\", \"1:30\"]",
+        "maximumAllocation": "\"maximumAllocation\": [\"$2.5M\", \"$2.5M\"]",
+        "accountInfo_phase_column_order": "\"accountInfo\": [\"Phase 1\", \"Funded Stage\"]"
+      },
+      "notes": [
+        "profitSplitPct left null: the site publishes only a ceiling, \"Up to 99%\", not a base split. The base split is not stated on any reachable official page (the Payout Policy help article it links to is 404).",
+        "drawdownType left null: the firm labels max drawdown \"Relative\", which does not map cleanly onto static/trailing/eod-trailing/balance-based. Not inferred.",
+        "maxTradingDays null because the firm states \"Unlimited\" (no limit), not a number.",
+        "consistencyRulePct null: no percentage-of-total-profit consistency rule is published. Nearest published rule is \"The Daily March\" = [\"3 Days with 1.00% per day\", \"\"], a minimum-profitable-days requirement, not a percent cap.",
+        "refundable null for all sizes: the fee-refund question is not answered anywhere on a reachable official page.",
+        "Drawdown basis, verbatim link text in the dataset: daily = \"Balance\", overall = \"Relative\".",
+        "overnight holding not present as a field in the firm dataset -> null.",
+        "Prices are identical across all three platforms offered (cTrader, Match-Trader, Platform_5); cTrader values recorded. These are list prices before any promo code (site displays code BACKTOBASICS15).",
+        "All rule values verified identical across every account size for this product (checked programmatically); only price varies by size."
+      ]
+    },
+    {
+      "productName": "Classic 1-Step Challenge",
+      "productSlug": "classic-1-step",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 139,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"25,000\", \"price\": \"$139.00\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 269,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"50,000\", \"price\": \"$269.00\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 499,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"100,000\", \"price\": \"$499.00\""
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 989,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"200,000\", \"price\": \"$989.00\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 7,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": null,
+        "ea": true,
+        "copyTrading": true
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://www.thefundedtraderprogram.com/wp-content/themes/tft-theme/assets/challenge-v2/challenge-v2.2-dataset.json",
+      "fieldEvidence": {
+        "dailyLossPct": "\"dailyDrawdown\": \"3,000 (3%)\"",
+        "maxLossPct": "\"maximumDrawdown\": \"6,000 (6%)\"",
+        "drawdownType": "maximumDrawdown_info link text: \"Static\"",
+        "profitTargets": "\"profitTarget\": [\"10%\", \"None\"]",
+        "minTradingDays": "\"minimumTradingDays\": [\"3 Days\", \"None\"]",
+        "maxTradingDays": "\"maximumTradingDays\": [\"Unlimited\", \"Unlimited\"]",
+        "profitSplitPct": "\"payoutPercentage\": \"80%\"",
+        "payoutFirstDays": "\"firstReward\": \"7 Days\"",
+        "payoutFrequency": "\"subsequentReward\": \"14 Days\"",
+        "rules.news": "\"newsTrading\": [\"1\", \"1\"]  (1 = allowed, 0 = not allowed)",
+        "rules.weekend": "\"weekendHolding\": [\"1\", \"1\"]",
+        "rules.ea": "\"expertAdvisors\": [\"1\", \"1\"]",
+        "rules.copyTrading": "\"tradeCopier\": [\"1\", \"1\"]",
+        "theDailyMarch_consistency_adjacent": "\"theDailyMarch\": [\"\", \"\"]",
+        "rewardPolicy": "\"RewardPolicy\": [\"\"]",
+        "leverage": "\"leverage\": [\"1:30\", \"1:30\"]",
+        "maximumAllocation": "\"maximumAllocation\": [\"$1.5M\", \"$300K\"]",
+        "accountInfo_phase_column_order": "\"accountInfo\": [\"Phase 1\", \"Funded Stage\"]"
+      },
+      "notes": [
+        "maxTradingDays null because the firm states \"Unlimited\" (no limit), not a number.",
+        "consistencyRulePct null: no percentage-of-total-profit consistency rule is published. Nearest published rule is \"The Daily March\" = [\"\", \"\"], a minimum-profitable-days requirement, not a percent cap.",
+        "refundable null for all sizes: the fee-refund question is not answered anywhere on a reachable official page.",
+        "Drawdown basis, verbatim link text in the dataset: daily = \"Balance &amp; Equity\", overall = \"Static\".",
+        "overnight holding not present as a field in the firm dataset -> null.",
+        "Prices are identical across all three platforms offered (cTrader, Match-Trader, Platform_5); cTrader values recorded. These are list prices before any promo code (site displays code BACKTOBASICS15).",
+        "All rule values verified identical across every account size for this product (checked programmatically); only price varies by size."
+      ]
+    },
+    {
+      "productName": "Royal Challenge",
+      "productSlug": "royal",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 79,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"5,000\", \"price\": \"$79.00\""
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 139,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"10,000\", \"price\": \"$139.00\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 240,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"25,000\", \"price\": \"$240.00\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 360,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"50,000\", \"price\": \"$360.00\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 600,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"100,000\", \"price\": \"$600.00\""
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1100,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"200,000\", \"price\": \"$1,100.00\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": null,
+      "payoutFirstDays": 30,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": false,
+        "weekend": true,
+        "overnight": null,
+        "ea": true,
+        "copyTrading": true
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://www.thefundedtraderprogram.com/wp-content/themes/tft-theme/assets/challenge-v2/challenge-v2.2-dataset.json",
+      "fieldEvidence": {
+        "dailyLossPct": "\"dailyDrawdown\": \"5,000 (5%)\"",
+        "maxLossPct": "\"maximumDrawdown\": \"10,000 (10%)\"",
+        "drawdownType": "maximumDrawdown_info link text: \"Static\"",
+        "profitTargets": "\"profitTarget\": [\"8%\", \"5%\", \"None\"]",
+        "minTradingDays": "\"minimumTradingDays\": [\"5 Days\", \"5 Days\", \"None\"]",
+        "maxTradingDays": "\"maximumTradingDays\": [\"Unlimited\", \"Unlimited\", \"Unlimited\"]",
+        "profitSplitPct": "\"payoutPercentage\": \"Up to 99%\"",
+        "payoutFirstDays": "\"firstReward\": \"30 Days\"",
+        "payoutFrequency": "\"subsequentReward\": \"14 Days\"",
+        "rules.news": "\"newsTrading\": [\"0\", \"0\", \"0\"]  (1 = allowed, 0 = not allowed)",
+        "rules.weekend": "\"weekendHolding\": [\"1\", \"1\", \"1\"]",
+        "rules.ea": "\"expertAdvisors\": [\"1\", \"1\", \"1\"]",
+        "rules.copyTrading": "\"tradeCopier\": [\"1\", \"1\", \"1\"]",
+        "theDailyMarch_consistency_adjacent": "\"theDailyMarch\": [\"\", \"\", \"\"]",
+        "rewardPolicy": "\"RewardPolicy\": [\"\", \"\", \"Up to 10% cap on all requests\"]",
+        "leverage": "\"leverage\": [\"1:50\", \"1:50\", \"1:50\"]",
+        "maximumAllocation": "\"maximumAllocation\": [\"$1.5M\", \"$1.5M\", \"$600K\"]",
+        "accountInfo_phase_column_order": "\"accountInfo\": [\"Phase 1\", \"Phase 2\", \"Funded Stage\"]"
+      },
+      "notes": [
+        "profitSplitPct left null: the site publishes only a ceiling, \"Up to 99%\", not a base split. The base split is not stated on any reachable official page (the Payout Policy help article it links to is 404).",
+        "maxTradingDays null because the firm states \"Unlimited\" (no limit), not a number.",
+        "consistencyRulePct null: no percentage-of-total-profit consistency rule is published. Nearest published rule is \"The Daily March\" = [\"\", \"\", \"\"], a minimum-profitable-days requirement, not a percent cap.",
+        "refundable null for all sizes: the fee-refund question is not answered anywhere on a reachable official page.",
+        "Drawdown basis, verbatim link text in the dataset: daily = \"Balance &amp; Equity\", overall = \"Static\".",
+        "overnight holding not present as a field in the firm dataset -> null.",
+        "Prices are identical across all three platforms offered (cTrader, Match-Trader, Platform_5); cTrader values recorded. These are list prices before any promo code (site displays code BACKTOBASICS15).",
+        "Royal additionally sells a \"14_Day_Withdrawals\" add-on that changes the price; the \"None\" add-on prices are what is recorded here.",
+        "All rule values verified identical across every account size for this product (checked programmatically); only price varies by size."
+      ]
+    },
+    {
+      "productName": "Royal Pro Challenge",
+      "productSlug": "royal-pro",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 55,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"25,000\", \"price\": \"$55.00\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 105,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"50,000\", \"price\": \"$105.00\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 319,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"100,000\", \"price\": \"$319.00\""
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 579,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"200,000\", \"price\": \"$579.00\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": null,
+      "payoutFirstDays": 2,
+      "payoutFrequency": null,
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": null,
+        "ea": true,
+        "copyTrading": true
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://www.thefundedtraderprogram.com/wp-content/themes/tft-theme/assets/challenge-v2/challenge-v2.2-dataset.json",
+      "fieldEvidence": {
+        "dailyLossPct": "\"dailyDrawdown\": \"5,000 (5%)\"",
+        "maxLossPct": "\"maximumDrawdown\": \"10,000 (10%)\"",
+        "drawdownType": "maximumDrawdown_info link text: \"Static\"",
+        "profitTargets": "\"profitTarget\": [\"8%\", \"5%\", \"None\"]",
+        "minTradingDays": "\"minimumTradingDays\": [\"5 Days\", \"5 Days\", \"None\"]",
+        "maxTradingDays": "\"maximumTradingDays\": [\"Unlimited\", \"Unlimited\", \"Unlimited\"]",
+        "profitSplitPct": "\"payoutPercentage\": \"Up to 99%\"",
+        "payoutFirstDays": "\"firstReward\": \"2 Days\"",
+        "payoutFrequency": "\"subsequentReward\": \"2 Days\"",
+        "rules.news": "\"newsTrading\": [\"1\", \"1\", \"1\"]  (1 = allowed, 0 = not allowed)",
+        "rules.weekend": "\"weekendHolding\": [\"1\", \"1\", \"1\"]",
+        "rules.ea": "\"expertAdvisors\": [\"1\", \"1\", \"1\"]",
+        "rules.copyTrading": "\"tradeCopier\": [\"1\", \"1\", \"1\"]",
+        "theDailyMarch_consistency_adjacent": "\"theDailyMarch\": [\"5 Days with 1% per day\", \"3 Days with 1% per day\", \"2 Days with 1% per withdrawal period\"]",
+        "rewardPolicy": "\"RewardPolicy\": [\"\", \"\", \"Up to 10% cap on all requests\"]",
+        "leverage": "\"leverage\": [\"1:30\", \"1:30\", \"1:30\"]",
+        "maximumAllocation": "\"maximumAllocation\": [\"$1.5M\", \"$1.5M\", \"$600K\"]",
+        "accountInfo_phase_column_order": "\"accountInfo\": [\"Phase 1\", \"Phase 2\", \"Funded Stage\"]"
+      },
+      "notes": [
+        "profitSplitPct left null: the site publishes only a ceiling, \"Up to 99%\", not a base split. The base split is not stated on any reachable official page (the Payout Policy help article it links to is 404).",
+        "maxTradingDays null because the firm states \"Unlimited\" (no limit), not a number.",
+        "consistencyRulePct null: no percentage-of-total-profit consistency rule is published. Nearest published rule is \"The Daily March\" = [\"5 Days with 1% per day\", \"3 Days with 1% per day\", \"2 Days with 1% per withdrawal period\"], a minimum-profitable-days requirement, not a percent cap.",
+        "refundable null for all sizes: the fee-refund question is not answered anywhere on a reachable official page.",
+        "Drawdown basis, verbatim link text in the dataset: daily = \"Balance &amp; Equity\", overall = \"Static\".",
+        "overnight holding not present as a field in the firm dataset -> null.",
+        "Prices are identical across all three platforms offered (cTrader, Match-Trader, Platform_5); cTrader values recorded. These are list prices before any promo code (site displays code BACKTOBASICS15).",
+        "All rule values verified identical across every account size for this product (checked programmatically); only price varies by size."
+      ]
+    },
+    {
+      "productName": "Classic 2-Step Challenge",
+      "productSlug": "classic-2-step",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 129,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"25,000\", \"price\": \"$129.00\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 249,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"50,000\", \"price\": \"$249.00\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 479,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"100,000\", \"price\": \"$479.00\""
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 949,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"200,000\", \"price\": \"$949.00\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 8,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": null,
+        "ea": true,
+        "copyTrading": true
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://www.thefundedtraderprogram.com/wp-content/themes/tft-theme/assets/challenge-v2/challenge-v2.2-dataset.json",
+      "fieldEvidence": {
+        "dailyLossPct": "\"dailyDrawdown\": \"4,000 (4%)\"",
+        "maxLossPct": "\"maximumDrawdown\": \"8,000 (8%)\"",
+        "drawdownType": "maximumDrawdown_info link text: \"Static\"",
+        "profitTargets": "\"profitTarget\": [\"8%\", \"5%\", \"None\"]",
+        "minTradingDays": "\"minimumTradingDays\": [\"3 Days\", \"3 Days\", \"None\"]",
+        "maxTradingDays": "\"maximumTradingDays\": [\"Unlimited\", \"Unlimited\", \"Unlimited\"]",
+        "profitSplitPct": "\"payoutPercentage\": \"80%\"",
+        "payoutFirstDays": "\"firstReward\": \"14 Days\"",
+        "payoutFrequency": "\"subsequentReward\": \"14 Days\"",
+        "rules.news": "\"newsTrading\": [\"1\", \"1\", \"1\"]  (1 = allowed, 0 = not allowed)",
+        "rules.weekend": "\"weekendHolding\": [\"1\", \"1\", \"1\"]",
+        "rules.ea": "\"expertAdvisors\": [\"1\", \"1\", \"1\"]",
+        "rules.copyTrading": "\"tradeCopier\": [\"1\", \"1\", \"1\"]",
+        "theDailyMarch_consistency_adjacent": "\"theDailyMarch\": [\"\", \"\", \"\"]",
+        "rewardPolicy": "\"RewardPolicy\": [\"\"]",
+        "leverage": "\"leverage\": [\"1:50\", \"1:50\", \"1:50\"]",
+        "maximumAllocation": "\"maximumAllocation\": [\"$1.5M\", \"$1.5M\", \"$400K\"]",
+        "accountInfo_phase_column_order": "\"accountInfo\": [\"Phase 1\", \"Phase 2\", \"Funded Stage\"]"
+      },
+      "notes": [
+        "maxTradingDays null because the firm states \"Unlimited\" (no limit), not a number.",
+        "consistencyRulePct null: no percentage-of-total-profit consistency rule is published. Nearest published rule is \"The Daily March\" = [\"\", \"\", \"\"], a minimum-profitable-days requirement, not a percent cap.",
+        "refundable null for all sizes: the fee-refund question is not answered anywhere on a reachable official page.",
+        "Drawdown basis, verbatim link text in the dataset: daily = \"Balance\", overall = \"Static\".",
+        "overnight holding not present as a field in the firm dataset -> null.",
+        "Prices are identical across all three platforms offered (cTrader, Match-Trader, Platform_5); cTrader values recorded. These are list prices before any promo code (site displays code BACKTOBASICS15).",
+        "All rule values verified identical across every account size for this product (checked programmatically); only price varies by size."
+      ]
+    },
+    {
+      "productName": "Dragon Challenge",
+      "productSlug": "dragon",
+      "phases": 3,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 49,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"5,000\", \"price\": \"$49.00\""
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 55,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"10,000\", \"price\": \"$55.00\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 89,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"25,000\", \"price\": \"$89.00\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 159,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"50,000\", \"price\": \"$159.00\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 299,
+          "refundable": null,
+          "evidence": "\"balanceSelected\": \"100,000\", \"price\": \"$299.00\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5,
+        "phase3": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": null,
+      "payoutFirstDays": 7,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": false,
+        "weekend": false,
+        "overnight": null,
+        "ea": true,
+        "copyTrading": true
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://www.thefundedtraderprogram.com/wp-content/themes/tft-theme/assets/challenge-v2/challenge-v2.2-dataset.json",
+      "fieldEvidence": {
+        "dailyLossPct": "\"dailyDrawdown\": \"5,000 (5%)\"",
+        "maxLossPct": "\"maximumDrawdown\": \"10,000 (10%)\"",
+        "drawdownType": "maximumDrawdown_info link text: \"Static\"",
+        "profitTargets": "\"profitTarget\": [\"8%\", \"5%\", \"5%\", \"None\"]",
+        "minTradingDays": "\"minimumTradingDays\": [\"1 Day\", \"1 Day\", \"1 Day\", \"None\"]",
+        "maxTradingDays": "\"maximumTradingDays\": [\"Unlimited\", \"Unlimited\", \"Unlimited\", \"Unlimited\"]",
+        "profitSplitPct": "\"payoutPercentage\": \"Up to 99%\"",
+        "payoutFirstDays": "\"firstReward\": \"7 Days\"",
+        "payoutFrequency": "\"subsequentReward\": \"7 Days\"",
+        "rules.news": "\"newsTrading\": [\"0\", \"0\", \"0\", \"0\"]  (1 = allowed, 0 = not allowed)",
+        "rules.weekend": "\"weekendHolding\": [\"0\", \"0\", \"0\", \"0\"]",
+        "rules.ea": "\"expertAdvisors\": [\"1\", \"1\", \"1\", \"1\"]",
+        "rules.copyTrading": "\"tradeCopier\": [\"1\", \"1\", \"1\", \"1\"]",
+        "theDailyMarch_consistency_adjacent": "\"theDailyMarch\": [\"\", \"\", \"\", \"\"]",
+        "rewardPolicy": "\"RewardPolicy\": [\"\", \"\", \"\", \"Up to 10% cap on all requests\"]",
+        "leverage": "\"leverage\": [\"1:100\", \"1:100\", \"1:100\", \"1:100\"]",
+        "maximumAllocation": "\"maximumAllocation\": [\"$1.5M\", \"$1.5M\", \"$1.5M\", \"$600K\"]",
+        "accountInfo_phase_column_order": "\"accountInfo\": [\"Phase 1\", \"Phase 2\", \"Phase 3\", \"Funded Stage\"]"
+      },
+      "notes": [
+        "profitSplitPct left null: the site publishes only a ceiling, \"Up to 99%\", not a base split. The base split is not stated on any reachable official page (the Payout Policy help article it links to is 404).",
+        "maxTradingDays null because the firm states \"Unlimited\" (no limit), not a number.",
+        "consistencyRulePct null: no percentage-of-total-profit consistency rule is published. Nearest published rule is \"The Daily March\" = [\"\", \"\", \"\", \"\"], a minimum-profitable-days requirement, not a percent cap.",
+        "refundable null for all sizes: the fee-refund question is not answered anywhere on a reachable official page.",
+        "Drawdown basis, verbatim link text in the dataset: daily = \"Balance\", overall = \"Static\".",
+        "overnight holding not present as a field in the firm dataset -> null.",
+        "Prices are identical across all three platforms offered (cTrader, Match-Trader, Platform_5); cTrader values recorded. These are list prices before any promo code (site displays code BACKTOBASICS15).",
+        "All rule values verified identical across every account size for this product (checked programmatically); only price varies by size."
+      ]
+    }
+  ]
+}

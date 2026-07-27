@@ -222,6 +222,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
               >
                 <img
                   src={logoSrc}
+                  alt=""
                   width={72}
                   height={72}
                   style={{ objectFit: 'contain' }}

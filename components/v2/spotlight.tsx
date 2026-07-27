@@ -25,7 +25,7 @@ export default function Spotlight() {
     }
 
     let target = { x: window.innerWidth / 2, y: window.innerHeight * 0.4 }
-    let current = { ...target }
+    const current = { ...target }
     let raf = 0
 
     const onMove = (e: MouseEvent) => {

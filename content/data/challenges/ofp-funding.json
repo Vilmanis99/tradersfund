@@ -1,65 +1,512 @@
 [
   {
     "firmSlug": "ofp-funding",
-    "productName": "OFP Account",
-    "productSlug": "ofp-funding-default",
+    "productName": "Instant Classic (3% daily / 6% max drawdown)",
+    "productSlug": "instant-classic-3-daily-6-max-drawdown",
     "phases": 0,
     "accountSizes": [
       {
         "sizeUsd": 5000,
-        "priceUsd": null,
-        "refundable": false
+        "priceUsd": 35,
+        "refundable": true
       },
       {
         "sizeUsd": 10000,
-        "priceUsd": null,
-        "refundable": false
+        "priceUsd": 55,
+        "refundable": true
       },
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
-        "refundable": false
+        "priceUsd": 90,
+        "refundable": true
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
-        "refundable": false
+        "priceUsd": 175,
+        "refundable": true
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
-        "refundable": false
+        "priceUsd": 335,
+        "refundable": true
       },
       {
         "sizeUsd": 200000,
-        "priceUsd": null,
-        "refundable": false
+        "priceUsd": 665,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 300000,
+        "priceUsd": 1000,
+        "refundable": true
       }
     ],
     "profitTargets": null,
-    "dailyLossPct": null,
-    "maxLossPct": null,
+    "dailyLossPct": 3,
+    "maxLossPct": 6,
     "drawdownType": "static",
-    "minTradingDays": null,
+    "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
-    "profitSplitPct": 90,
-    "payoutFirstDays": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": true,
-      "weekend": true,
-      "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
     },
     "assetClass": "cfd",
-    "sourceUrl": "/blog/ofp-funding-review",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://ofpfunding.com/#pricing",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "SKELETON ENTRY \u2014 only firm-level aggregates from firms.json populated.",
-      "Per-tier pricing, exact profit targets, and DD% require editorial verification against the live firm page.",
-      "Set fields to null until verified \u2014 never invent."
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "ofp-funding",
+    "productName": "Instant Classic (5% daily / 10% max drawdown)",
+    "productSlug": "instant-classic-5-daily-10-max-drawdown",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 45,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 70,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 110,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 220,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 420,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 830,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 300000,
+        "priceUsd": 1250,
+        "refundable": true
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": 0,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://ofpfunding.com/#pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "ofp-funding",
+    "productName": "Instant Lite",
+    "productSlug": "instant-lite",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 150,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 200,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 390,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 5
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 5,
+    "drawdownType": "static",
+    "minTradingDays": 5,
+    "maxTradingDays": 30,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": null,
+    "payoutFrequency": "monthly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://ofpfunding.com/#pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "ofp-funding",
+    "productName": "Instant Plus (3% daily / 5% max drawdown)",
+    "productSlug": "instant-plus-3-daily-5-max-drawdown",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 125,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 300,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 600,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 1200,
+        "refundable": true
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": 3,
+    "maxLossPct": 5,
+    "drawdownType": "static",
+    "minTradingDays": 5,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://ofpfunding.com/#pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "ofp-funding",
+    "productName": "Instant Plus (5% daily / 10% max drawdown)",
+    "productSlug": "instant-plus-5-daily-10-max-drawdown",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 155,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 375,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 750,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 1500,
+        "refundable": true
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": 5,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://ofpfunding.com/#pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "ofp-funding",
+    "productName": "Instant Prime",
+    "productSlug": "instant-prime",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 190,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 255,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 340,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 565,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 1080,
+        "refundable": true
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": 10,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://ofpfunding.com/#pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "ofp-funding",
+    "productName": "Instant Pro",
+    "productSlug": "instant-pro",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 190,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 250,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 420,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 800,
+        "refundable": true
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": 3,
+    "maxLossPct": 6,
+    "drawdownType": "static",
+    "minTradingDays": 10,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://ofpfunding.com/#pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "ofp-funding",
+    "productName": "One Phase Challenge",
+    "productSlug": "one-phase-challenge",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 35,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 60,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 110,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 190,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 299,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 535,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 8
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 6,
+    "drawdownType": "static",
+    "minTradingDays": 5,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://ofpfunding.com/#pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "ofp-funding",
+    "productName": "Two Phase Challenge",
+    "productSlug": "two-phase-challenge",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 40,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 70,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 140,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 210,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 385,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 4
+    },
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": 5,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://ofpfunding.com/#pricing",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-07-27.json"
     ]
   }
 ]

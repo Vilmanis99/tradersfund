@@ -55,6 +55,35 @@ function legacyRedirects() {
       destination: 'https://tradersfundhub.com/:path*',
       permanent: true,
     },
+    // Same duplicate-host problem on www. Search Console (2026-07-27, last
+    // 90d) shows BOTH hosts indexed for the same content — e.g.
+    // www.../blog/e8-markets-review at 386 impressions alongside
+    // /blog/e8-markets-review at 93 — which splits ranking signals across
+    // two URLs for every page on the site. metadataBase already points
+    // canonicals at the apex, but a canonical is a hint; a 308 is not.
+    // Apex requests don't match the host condition, so this can't loop.
+    {
+      source: '/:path*',
+      has: [{ type: 'host' as const, value: 'www.tradersfundhub.com' }],
+      destination: 'https://tradersfundhub.com/:path*',
+      permanent: true,
+    },
+    // WordPress-era affiliate links used a hyphen (/go-ftmo); the Next.js
+    // route is a path segment (/go/ftmo). Every legacy link was hard-404ing —
+    // including the "Visit X" CTA buttons still embedded in migrated MDX and
+    // any external backlink pointing at them. Slug spellings differ between
+    // the two schemes (go-e8markets vs the firms.json slug e8-markets), so
+    // map them explicitly rather than with a wildcard.
+    { source: '/go-ftmo', destination: '/go/ftmo', permanent: true },
+    { source: '/go-fundingpips', destination: '/go/fundingpips', permanent: true },
+    { source: '/go-fundednext', destination: '/go/fundednext', permanent: true },
+    { source: '/go-e8markets', destination: '/go/e8-markets', permanent: true },
+    { source: '/go-brightfunded', destination: '/go/bright-funded', permanent: true },
+    { source: '/go-tradersconnect', destination: '/go/traders-connect', permanent: true },
+    { source: '/go-zulutrade', destination: '/go/zulutrade', permanent: true },
+    { source: '/go-fxreplay', destination: '/go/fx-replay', permanent: true },
+    { source: '/go-copyfx', destination: '/go/copyfx', permanent: true },
+    { source: '/go-3commas', destination: '/go/3commas', permanent: true },
     // Old RSS feed → the real feed route handler (app/feed.xml/route.ts).
     { source: '/feed', destination: '/feed.xml', permanent: true },
     { source: '/comments/feed', destination: '/feed.xml', permanent: true },

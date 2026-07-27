@@ -1,0 +1,308 @@
+{
+  "firmSlug": "e8-markets",
+  "officialDomain": "https://e8markets.com",
+  "capturedAt": "2026-07-27",
+  "pagesRead": [
+    "https://e8markets.com/",
+    "https://e8markets.com/compare-simfi-funded-accounts",
+    "https://e8markets.com/e8-one",
+    "https://e8markets.com/e8-pro",
+    "https://e8markets.com/e8-signature",
+    "https://e8markets.com/__sitemap__/en.xml",
+    "https://api.e8markets.com/api/v2/public/products",
+    "https://help.e8markets.com/en/articles/13106558-all-product-overviews-e8-one-vs-e8-zero-vs-e8-pro-vs-e8-signature",
+    "https://help.e8markets.com/en/articles/11775980-e8-one",
+    "https://help.e8markets.com/en/articles/15274219-e8-pro-forex",
+    "https://help.e8markets.com/en/articles/11755943-e8-signature-forex",
+    "https://help.e8markets.com/en/articles/15655062-e8-zero",
+    "https://help.e8markets.com/en/articles/15272556-everything-about-payouts-when-how-how-fast",
+    "https://help.e8markets.com/en/articles/9323884-payout-share-request-on-e8-one-and-e8-one-crypto",
+    "https://help.e8markets.com/en/articles/9453418-is-there-any-consistency-rule",
+    "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+    "https://help.e8markets.com/en/articles/5515409-can-i-use-indicators-or-expert-advisors-when-trading-the-e8-account",
+    "https://help.e8markets.com/en/articles/8811411-refund-policy"
+  ],
+  "accessNotes": "1) WebFetch was blocked by Cloudflare (HTTP 403) on every e8markets.com and help.e8markets.com URL. All content below was retrieved with curl + a desktop browser User-Agent, which returned HTTP 200. 2) e8markets.com is a Nuxt SPA. The pricing/configurator on https://e8markets.com/compare-simfi-funded-accounts is server-rendered ONLY for the default tab (Forex / E8 One / 6% drawdown / 80% payout). Tabs for E8 Pro and E8 Signature are rendered client-side and cannot be switched via any query parameter (verified against the page's JS bundle - no route-query tab selector exists). 3) The dedicated product pages /e8-pro and /e8-signature print the literal text 'Live pricing is unavailable right now. Configure any account on the challenges page instead.' in place of a price table when rendered server-side, so no prices are visible there. 4) The checkout host https://e8x.e8markets.com/orders/purchase is a JS-only shell (8.9 KB, no server-rendered prices). 5) Therefore E8 Pro and E8 Signature prices were taken from E8's own public products API at https://api.e8markets.com/api/v2/public/products - this is the exact endpoint the pricing page fetches (it is referenced as \"/v2/public/products\" in e8markets.com's own JS bundle, and the same object is embedded in https://e8markets.com/compare-simfi-funded-accounts/_payload.json). It is on the firm's own domain and returns plain readable JSON. E8 One prices from that API were cross-checked against the server-rendered HTML pricing cards and matched exactly ($488 list on $100K), which validates the API as the price source. 6) Prices recorded are LIST prices. A first-order promo code 'E8' is advertised on the page (10% off E8 One, 25% off E8 Pro and E8 Signature per the site's own JS config); discounted amounts are not recorded here. 7) Prices for E8 One and E8 Pro are the BASE configuration only (E8 One: 6% drawdown + 80% split; E8 Pro: 8% drawdown + 80% split). Both products are customizable at checkout and the price changes with the chosen drawdown and profit split. I could NOT read the price for any non-base configuration - the price formula is not published in human-readable form and the checkout is JS-gated. Those are left uncaptured rather than computed. 8) Crypto variants exist as separate SKUs (E8 One Crypto, E8 Pro Crypto, E8 Signature Crypto) with identical published prices and identical rule parameters in the same API object; they are not duplicated below. Leverage differs (Crypto 1:1). 9) E8 Zero and all futures products are sold on a separate brand/domain (e8futures.com, helpfutures.e8markets.com) and were NOT captured. The E8 Zero help article on help.e8markets.com is explicitly flagged 'Legacy product'. 10) The site is geo/entity-split: 'Access to the MT5 platform is restricted to US citizens'; services are not offered to residents of Cuba, Syria, Iran, Lebanon, Iraq, Yemen, North Korea, Russia, Ukraine, Belarus.",
+  "promoCode": {
+    "code": "E8",
+    "evidence": "Save $48 with code E8 on first order",
+    "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts"
+  },
+  "refundPolicy": {
+    "refundable": false,
+    "evidence": "At this moment, do not provide bonuses by refunding the fee with the first payout share. A refund of the initial fee is possible if: You are on phase 1 of your challenge, and there is no trading activity on the account you have purchased",
+    "sourceUrl": "https://help.e8markets.com/en/articles/8811411-refund-policy"
+  },
+  "products": [
+    {
+      "productName": "E8 One (Forex)",
+      "productSlug": "e8-one",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 48,
+          "refundable": false,
+          "evidence": "\"balances\":{\"5000\":{\"balance\":5000,\"price\":48}"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 88,
+          "refundable": false,
+          "evidence": "\"10000\":{\"balance\":10000,\"price\":88}"
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 188,
+          "refundable": false,
+          "evidence": "\"25000\":{\"balance\":25000,\"price\":188}"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 288,
+          "refundable": false,
+          "evidence": "\"50000\":{\"balance\":50000,\"price\":288}"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 488,
+          "refundable": false,
+          "evidence": "Account size $100K Recommended Price $440 $488 Save $48 with code E8 on first order (server-rendered pricing card at https://e8markets.com/compare-simfi-funded-accounts; API: \"100000\":{\"balance\":100000,\"price\":488})"
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 798,
+          "refundable": false,
+          "evidence": "\"200000\":{\"balance\":200000,\"price\":798}"
+        },
+        {
+          "sizeUsd": 400000,
+          "priceUsd": 1598,
+          "refundable": false,
+          "evidence": "\"400000\":{\"balance\":400000,\"price\":1598}"
+        },
+        {
+          "sizeUsd": 500000,
+          "priceUsd": 1998,
+          "refundable": false,
+          "evidence": "\"500000\":{\"balance\":500000,\"price\":1998}"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 9,
+        "phase2": null
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 6,
+      "drawdownType": "trailing",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 3,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "Allowed in the challenge stage without restriction; prohibited on the Performance account from 5 minutes before to 5 minutes after high-impact news releases",
+        "weekend": "Allowed",
+        "overnight": "Allowed",
+        "ea": "Allowed (one strategy per user; identical EAs across multiple users may lead to termination)",
+        "copyTrading": "Allowed between accounts that belong to you"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+      "fieldEvidence": {
+        "phases": "E8 One offers a clear 1-Step path to becoming an E8 Performance Trader in a single phase, making it the fastest challenge process we offer. (https://help.e8markets.com/en/articles/11775980-e8-one)",
+        "profitTargets.phase1": "Profit Target $9,000 - server-rendered $100K card on https://e8markets.com/compare-simfi-funded-accounts at the default 6% drawdown. Confirmed by 'Profit target Configurable - 1.5x your chosen drawdown. 6-21%' on https://e8markets.com/e8-one",
+        "dailyLossPct": "Daily drawdown $4,000 - server-rendered $100K card on https://e8markets.com/compare-simfi-funded-accounts. Confirmed by 'Daily drawdown Calculated at 66% of your drawdown. Hard breach. 3-9.2%' on https://e8markets.com/e8-one",
+        "maxLossPct": "Max drawdown $6,000 / Drawdown 6% Max - server-rendered $100K card on https://e8markets.com/compare-simfi-funded-accounts. API: \"max_total_drawdown\":6",
+        "drawdownType": "Dynamic Drawdown - Moves only when you close a profit. It becomes static once you reach the starting balance amount (https://help.e8markets.com/en/articles/13106558-all-product-overviews-e8-one-vs-e8-zero-vs-e8-pro-vs-e8-signature)",
+        "minTradingDays": "No minimum Trading days. (https://help.e8markets.com/en/articles/11775980-e8-one)",
+        "maxTradingDays": "Unlimited Trading Days - There is no time limit, but you need to place and close at least one trade every 60 days.",
+        "consistencyRulePct": "40% Best Day rule - With a 40% best-day rule, you must ensure that no single trading day exceeds more than 40% of your total generated profits. (applies on the SimFi Performance account only; there is no consistency rule in the challenge stage)",
+        "profitSplitPct": "Payout 80% - server-rendered $100K card. Selectable 80/90/100 at checkout: 'Select 80%, 90%, or 100% at checkout. Higher splits cost more upfront' (https://e8markets.com/e8-one). API: \"profit_splits\":[80,90,100]",
+        "payoutFirstDays": "With the On-demand feature, the earliest you can request a payout is 3 days after starting trading in the Performance stage, as long as all requirements are fulfilled. (https://e8markets.com/e8-one)",
+        "payoutFrequency": "Subsequent payouts On-demand - as soon as 3 days. (https://e8markets.com/e8-one)"
+      },
+      "notes": [
+        "Fully customizable: 'Set your drawdown (4-14%), profit target, and payout (80/90/100%)'. The captured numbers are the DEFAULT configuration shown on the pricing page (6% drawdown / 80% split). Prices for other drawdown/split combinations are not published in readable form and were not captured.",
+        "The E8 One help-centre article documents a different 'preset account' (6% profit target, 3% daily drawdown, 4% dynamic drawdown) and states 'This information is for the preset account. You can still customize some of the parameters at checkout.' The pricing page default is 6% drawdown / 9% target / 4% daily. These two official pages are inconsistent about which configuration is the preset - flagged, not reconciled.",
+        "Payout minimum: 'Your net profit (payout share) must be greater than 50% of your daily drawdown. Example: If you have a $100,000 account and your daily drawdown is 4%, the minimum amount required for a payout is $2,001.'",
+        "Leverage: Forex 1:30, Indices 1:15, metals 1:15, Crypto 1:1."
+      ]
+    },
+    {
+      "productName": "E8 Pro (E8PRO v2, Forex)",
+      "productSlug": "e8-pro",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 32,
+          "refundable": false,
+          "evidence": "\"5000\":{\"balance\":5000,\"price\":32}"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 68,
+          "refundable": false,
+          "evidence": "\"10000\":{\"balance\":10000,\"price\":68}"
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 148,
+          "refundable": false,
+          "evidence": "\"25000\":{\"balance\":25000,\"price\":148}"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 228,
+          "refundable": false,
+          "evidence": "\"50000\":{\"balance\":50000,\"price\":228}"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 488,
+          "refundable": false,
+          "evidence": "\"100000\":{\"balance\":100000,\"price\":488}"
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 998,
+          "refundable": false,
+          "evidence": "\"200000\":{\"balance\":200000,\"price\":998}"
+        },
+        {
+          "sizeUsd": 400000,
+          "priceUsd": 2098,
+          "refundable": false,
+          "evidence": "\"400000\":{\"balance\":400000,\"price\":2098}"
+        },
+        {
+          "sizeUsd": 500000,
+          "priceUsd": 2598,
+          "refundable": false,
+          "evidence": "\"500000\":{\"balance\":500000,\"price\":2598}"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": null
+      },
+      "dailyLossPct": 2.5,
+      "maxLossPct": 8,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "Allowed with no restrictions on both the challenge and Performance account",
+        "weekend": "Allowed",
+        "overnight": "Allowed",
+        "ea": "Allowed (one strategy per user)",
+        "copyTrading": "Allowed between accounts that belong to you"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://e8markets.com/e8-pro",
+      "fieldEvidence": {
+        "phases": "This is our 1-Step challenge - designed exclusively for traders looking for freedom in daily payouts, static drawdown with NO consistency rules, or payout caps. (https://help.e8markets.com/en/articles/15274219-e8-pro-forex)",
+        "profitTargets.phase1": "Profit target Fixed - hit it and you advance. 8% (https://e8markets.com/e8-pro). Also '8% Profit Target - Closed profit in your simulated trading account.'",
+        "dailyLossPct": "2.5% Daily Drawdown - Your account must not lose more than 2.5% of your initial balance in a single day. The limit you can not exceed is calculated from your starting balance.",
+        "maxLossPct": "8% Static drawdown - A fixed loss limit based on your initial balance. It never moves, except when a first payout is processed.",
+        "drawdownType": "Static drawdown From initial balance. Never trails. Hard breach. 8% (https://e8markets.com/e8-pro)",
+        "minTradingDays": "No minimum trading days (payout criteria list, https://help.e8markets.com/en/articles/15274219-e8-pro-forex)",
+        "maxTradingDays": "Unlimited Trading Days - There is no time limit but you need to place and close at least one trade each 60 days.",
+        "consistencyRulePct": "Consistency rule There is none - trade freely. None (https://e8markets.com/e8-pro)",
+        "profitSplitPct": "Payout Choose 80% or 100% at purchase - permanent. 80/100% (https://e8markets.com/e8-pro). API: \"profit_split\":80, \"profit_splits\":[80,100]",
+        "payoutFrequency": "Payout frequency: You can request every day! / 'Payout frequency Request daily with 1% minimum profit. Daily'"
+      },
+      "notes": [
+        "Customizable at checkout: drawdown 6/8/10% and profit split 80/100% (API: \"drawdowns\":[6,8,10],\"profit_splits\":[80,100]). Prices recorded are the base 8% drawdown / 80% split configuration only.",
+        "2% daily profit cap applies in both stages: '2% Daily Profit cap - In each day, the maximum profit you can make is 2%. If you make more, only 2% will be counted towards your profit target. For a $100,000 account, that's $2,000 profit cap per day.'",
+        "payoutFirstDays left null: no explicit day count is published. The site states payouts can be requested daily with 'Minimum profit for first and additional payouts: 1% of your initial balance' and 'On-demand does not apply to E8 Pro and E8 Zero models, as these products have daily payouts.' The firm's own JS config carries firstPayout:1 but that value is not published in human-readable copy, so it is not recorded.",
+        "Payout mechanism: 'first, 50% of your total profits is set aside as your requestable amount. Then, depending on your chosen plan, you receive up 100% of that amount.'",
+        "Leverage: Forex 1:30, Indices 1:15, metals 1:15."
+      ]
+    },
+    {
+      "productName": "E8 Signature Forex",
+      "productSlug": "e8-signature",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 110,
+          "refundable": false,
+          "evidence": "\"balances\":{\"25000\":{\"balance\":25000,\"price\":110}"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 150,
+          "refundable": false,
+          "evidence": "\"50000\":{\"balance\":50000,\"price\":150}"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 260,
+          "refundable": false,
+          "evidence": "\"100000\":{\"balance\":100000,\"price\":260}"
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 390,
+          "refundable": false,
+          "evidence": "\"150000\":{\"balance\":150000,\"price\":390}"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": null
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 35,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 3,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "Allowed with no restrictions on both the challenge and Performance account",
+        "weekend": "Not allowed",
+        "overnight": "Not allowed - all positions are closed by 23:00 server time and trading re-opens at 00:15 server time",
+        "ea": "Allowed on Forex and Crypto (not on Futures)",
+        "copyTrading": "Allowed between accounts that belong to you"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://e8markets.com/e8-signature",
+      "fieldEvidence": {
+        "phases": "This is our 1-Step challenge - designed exclusively for traders who value speed, clarity, and control. (https://help.e8markets.com/en/articles/11755943-e8-signature-forex)",
+        "profitTargets.phase1": "6% Profit Target - Closed profit in your simulated trading account.",
+        "drawdownType": "EOD Dynamic drawdown - A moving loss limit based on your highest end-of-day balance. It only updates once per day at market close (intraday equity swings do not move it). It locks permanently at the initial balance level.",
+        "consistencyRulePct": "35% Best Day rule - With a 35% best-day rule, you must ensure that no single trading day exceeds more than 35% of your total generated profits.",
+        "profitSplitPct": "Payout Your share of simulated performance. 80% (https://e8markets.com/e8-signature)",
+        "payoutFirstDays": "With on-demand rules on products such as E8 One or E8 Signature, the earliest first payout can be requested is 3 days from the start of your trading period in the performance stage. (https://help.e8markets.com/en/articles/15272556-everything-about-payouts-when-how-how-fast)"
+      },
+      "notes": [
+        "maxLossPct left NULL on purpose: the max loss is not a single percentage, it varies by account size. Verbatim: '$1,000 EOD - $25,000 account / $2,000 EOD - $50,000 account / $3,000 EOD - $100,000 account / $4,500 EOD - $150,000 account' (= 4% on $25K and $50K, 3% on $100K and $150K). The product page hero states '3-4% EOD drawdown'.",
+        "dailyLossPct left NULL on purpose: there is NO daily loss limit in the challenge stage. On the Performance account there is a soft limit, not a breach: '2% Daily pause - A soft daily loss limit based on your starting balance of the day. If your floating or closed loss reaches 2%, trading stops until the next day. Your account is not breached.'",
+        "minTradingDays left NULL: no minimum trading days figure is published for the challenge stage. For payouts: 'Minimum profitable days between each payout: 5 (does not apply for first payout)' and 'A profitable day is considered as a day where the realized closed PnL equals to 0.3% or more.'",
+        "maxTradingDays: 'Unlimited Trading Days - There is no time limit but you need to place and close at least one trade each 60 days.'",
+        "Minimum payout $100: 'Minimum payout is $100. Amounts are taken from your net profit. Meaning, with 80% payout, you need to request at least $125.'",
+        "Payout buffer: 'Before you can start requesting payout, you need to leave a buffer in your account in the same size as your EOD Dynamic Drawdown. The buffer can not be requested.'",
+        "Payout caps apply (published table on https://e8markets.com/e8-signature): 1st/2nd payout $1,000 ($25K), $1,250 ($50K), $2,250 ($100K), $3,250 ($150K); rising to $1,500 / $3,250 / $4,250 / $5,250 from the 5th payout onward.",
+        "Weekend/overnight 'Not allowed' is taken from the firm's own product comparison table (Weekend Holding: No; Overnight holding: No for E8 Signature) and corroborated by the forced daily flat at 23:00 server time. Note the firm's separate article 'Can I hold positions overnight and trade over the weekend?' lists only E8 One / E8 Pro / E8 Zero as allowed and does not mention E8 Signature at all.",
+        "Leverage: Forex 1:30, Indices 1:15, metals 1:15."
+      ]
+    }
+  ],
+  "notCaptured": [
+    "Prices for any non-base drawdown / profit-split configuration of E8 One and E8 Pro (JS-gated checkout, formula not published).",
+    "E8 Zero and all futures products (separate brand e8futures.com / helpfutures.e8markets.com) - not visited.",
+    "Crypto SKUs are not listed separately; API shows identical prices and parameters to the forex SKUs.",
+    "Any activation fee - the E8 One pricing cards explicitly render 'Contains activation fee: No Activation Fee'; no activation fee data was found for E8 Pro or E8 Signature."
+  ]
+}

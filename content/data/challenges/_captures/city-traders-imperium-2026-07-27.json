@@ -1,0 +1,373 @@
+{
+  "firmSlug": "city-traders-imperium",
+  "officialDomain": "https://citytradersimperium.com",
+  "capturedAt": "2026-07-27",
+  "pagesRead": [
+    "https://citytradersimperium.com/",
+    "https://citytradersimperium.com/1-step-challenge/",
+    "https://citytradersimperium.com/2-step-challenge/",
+    "https://citytradersimperium.com/instant-funding/",
+    "https://citytradersimperium.com/direct-funding/",
+    "https://citytradersimperium.com/funded-account-challenge-funding-program/"
+  ],
+  "pagesAttemptedAndFailed": [
+    {
+      "url": "https://helpcenter.citytradersimperium.com/en",
+      "problem": "HTTP 403 Forbidden - help center blocks automated fetch"
+    },
+    {
+      "url": "https://citytradersimperium.com/faqs/",
+      "problem": "HTTP 404 Not Found - FAQ link from nav does not resolve at this path"
+    },
+    {
+      "url": "https://citytradersimperium.com/wp-content/uploads/2025/09/CTI-FZCO-City-Traders-Imperium-Terms-Conditions.pdf",
+      "problem": "PDF returned as unparseable binary; no clauses could be read"
+    }
+  ],
+  "accessNotes": "The four product pages (1-Step, 2-Step, Instant Funding, Direct Funding) and the funding-program overview page rendered fully server-side and were readable - prices and rules tables came through cleanly. The Help Center (helpcenter.citytradersimperium.com) returns HTTP 403 to automated fetches and the /faqs/ path 404s, so FAQ-level detail (copy trading, account sharing, consistency, fee-refund mechanics) could NOT be verified. The Terms & Conditions PDF could not be parsed. Every price and rule below was read off the firm's own product pages; nothing here comes from aggregators or memory. One apparent conflict was found and resolved: the 1-Step page describes a high-watermark mechanism while the overview comparison table labels drawdowns tersely - a literal re-read of the comparison table's Max Drawdown row confirms both pages agree on '5% Trailing' for 1-Step. Prices were each confirmed by two independent reads of the same table.",
+  "products": [
+    {
+      "productName": "1-Step Challenge",
+      "productSlug": "1-step-challenge",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": 29,
+          "refundable": null,
+          "evidence": "$2,500 | $29"
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 49,
+          "refundable": null,
+          "evidence": "$5,000 | $49"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 79,
+          "refundable": null,
+          "evidence": "$10,000 | $79"
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 159,
+          "refundable": null,
+          "evidence": "$25,000 | $159"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 299,
+          "refundable": null,
+          "evidence": "$50,000 | $299"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 449,
+          "refundable": null,
+          "evidence": "$100,000 | $449"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": null
+      },
+      "dailyLossPct": null,
+      "maxLossPct": 5,
+      "drawdownType": "trailing",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 7,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "allowed",
+        "weekend": "allowed",
+        "overnight": "allowed",
+        "ea": "allowed",
+        "copyTrading": null
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+      "fieldEvidence": {
+        "profitTargets.phase1": "8% of starting balance",
+        "maxLossPct": "Max Drawdown: 5% Trailing",
+        "drawdownType": "Your drawdown floor is set by your high watermark, the highest balance your account has reached, minus a fixed 5% of your starting balance.",
+        "dailyLossPct": "Max Daily Drawdown - None (recorded as null: no daily loss limit published)",
+        "minTradingDays": "Min Profitable Trading Days: 3",
+        "maxTradingDays": "Time Limit: None (recorded as null: no maximum published)",
+        "profitSplitPct": "80% to 100%",
+        "payoutFirstDays": "First Payout: 7 days",
+        "payoutFrequency": "Weekly payouts",
+        "rules.news": "News Trading: Allowed",
+        "rules.weekend": "Weekend Holding: Allowed",
+        "rules.overnight": "Overnight Holding: Allowed",
+        "rules.ea": "Allowed (inc. third-party)"
+      },
+      "notes": [
+        "Profit split recorded as the published STARTING split of 80%; page advertises 'Up To 100%' via the VIP ladder (Bronze 90%, Silver 100%). The 100% figure is a top-tier ceiling, not the entry rate.",
+        "Note the EA rule differs from CTI's other products: 1-Step permits third-party EAs, while 2-Step/Instant/Direct restrict to personal EAs only.",
+        "consistencyRulePct left null - no consistency percentage is published on this page.",
+        "Max funding for this program is published as $400K."
+      ]
+    },
+    {
+      "productName": "2-Step Challenge",
+      "productSlug": "2-step-challenge",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": 39,
+          "refundable": null,
+          "evidence": "$2.5K | $39"
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 59,
+          "refundable": null,
+          "evidence": "$5K | $59"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 99,
+          "refundable": null,
+          "evidence": "$10K | $99"
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 199,
+          "refundable": null,
+          "evidence": "$25K | $199"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 329,
+          "refundable": null,
+          "evidence": "$50K | $329"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 549,
+          "refundable": null,
+          "evidence": "$100K | $549"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 7,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "allowed",
+        "weekend": "allowed",
+        "overnight": "allowed",
+        "ea": "personal EAs only - no third-party",
+        "copyTrading": null
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+      "fieldEvidence": {
+        "profitTargets.phase1": "10% of starting balance",
+        "profitTargets.phase2": "5% of starting balance",
+        "maxLossPct": "Max Static Drawdown: 10% of the initial balance",
+        "drawdownType": "Max Drawdown: 10% Static",
+        "dailyLossPct": "Max Daily Drawdown: 5% of start-of-day balance",
+        "minTradingDays": "Min Profitable Trading Days: 3 per phase",
+        "maxTradingDays": "Time Limit: None (recorded as null: no maximum published)",
+        "profitSplitPct": "80% to 100%",
+        "payoutFirstDays": "First Withdrawal: 7 days",
+        "payoutFrequency": "Weekly payouts",
+        "rules.news": "News Trading: Allowed",
+        "rules.weekend": "Weekend Holding: Allowed",
+        "rules.overnight": "Overnight Holding: Allowed",
+        "rules.ea": "Personal EAs only"
+      },
+      "notes": [
+        "Profit split recorded as the published STARTING split of 80%; VIP ladder advertises Bronze 90% and Silver 100%.",
+        "The page markets 'no hidden consistency requirements' but publishes NO consistency percentage - consistencyRulePct left null rather than 0, since an absence of a stated number is not the same as a stated zero.",
+        "Martingale is published as 'Not Allowed' on this product (contrast with 1-Step, where it is allowed).",
+        "Max funding for this program is published as $400K."
+      ]
+    },
+    {
+      "productName": "Instant Funding",
+      "productSlug": "instant-funding",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": 79,
+          "refundable": null,
+          "evidence": "$2,500 | $79"
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 139,
+          "refundable": null,
+          "evidence": "$5,000 | $139"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 259,
+          "refundable": null,
+          "evidence": "$10,000 | $259"
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 449,
+          "refundable": null,
+          "evidence": "$20,000 | $449"
+        },
+        {
+          "sizeUsd": 40000,
+          "priceUsd": 849,
+          "refundable": null,
+          "evidence": "$40,000 | $849"
+        },
+        {
+          "sizeUsd": 80000,
+          "priceUsd": 1599,
+          "refundable": null,
+          "evidence": "$80,000 | $1,599"
+        }
+      ],
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null
+      },
+      "dailyLossPct": null,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 50,
+      "payoutFirstDays": 5,
+      "payoutFrequency": null,
+      "rules": {
+        "news": "allowed",
+        "weekend": "allowed",
+        "overnight": "allowed",
+        "ea": "personal EAs only - no third-party",
+        "copyTrading": null
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+      "fieldEvidence": {
+        "maxLossPct": "Max Drawdown: 6% static from initial balance",
+        "drawdownType": "6% static from initial balance ... balance based drawdown",
+        "dailyLossPct": "Daily Drawdown: None (recorded as null: no daily loss limit published)",
+        "profitSplitPct": "Starting profit share: 50%",
+        "payoutFirstDays": "First Payout: 5 days (Fully Funded)",
+        "minTradingDays": "Min Profitable Days: - (dash printed, no number published)",
+        "maxTradingDays": "Time Limit: None (recorded as null: no maximum published)",
+        "rules.news": "News Trading: Allowed",
+        "rules.weekend": "Weekend Holding: Allowed",
+        "rules.overnight": "Overnight Holding: Allowed",
+        "rules.ea": "Personal EAs only - no third-party"
+      },
+      "notes": [
+        "No evaluation profit target - profitTargets null. The page instead publishes a 'Profit Target To Scale' (e.g. $125 on the $2,500 account) which is a scaling milestone, NOT a pass condition, so it is deliberately not recorded as a profit target.",
+        "Scaling published as '100% balance increase per 10% milestone', up to $2M per account and $4M across two accounts.",
+        "Profit split recorded as the published starting 50%; page states 'Fully Funded Level 1: 70% to 100%', VIP Bronze 90%, VIP Silver/Gold 100%.",
+        "payoutFrequency left null - the page states VIP Bronze unlocks 'Weekly payouts' and VIP Silver unlocks 'Anytime payouts', but publishes no baseline frequency for a new Instant account.",
+        "minTradingDays left null - the table prints a dash, which is not an explicit published number."
+      ]
+    },
+    {
+      "productName": "Direct Funding",
+      "productSlug": "direct-funding",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 229,
+          "refundable": null,
+          "evidence": "$5K | $229"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 399,
+          "refundable": null,
+          "evidence": "$10K | $399"
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 999,
+          "refundable": null,
+          "evidence": "$20K | $999"
+        },
+        {
+          "sizeUsd": 40000,
+          "priceUsd": 1999,
+          "refundable": null,
+          "evidence": "$40K | $1,999"
+        },
+        {
+          "sizeUsd": 80000,
+          "priceUsd": 3999,
+          "refundable": null,
+          "evidence": "$80K | $3,999"
+        }
+      ],
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null
+      },
+      "dailyLossPct": null,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 70,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "monthly",
+      "rules": {
+        "news": "allowed",
+        "weekend": "allowed",
+        "overnight": "allowed",
+        "ea": "personal EAs only - no third-party",
+        "copyTrading": null
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+      "fieldEvidence": {
+        "maxLossPct": "Max Drawdown: 6% static from initial balance",
+        "drawdownType": "6% Static",
+        "dailyLossPct": "Daily Drawdown: None (recorded as null: no daily loss limit published)",
+        "profitSplitPct": "70% from your first trade",
+        "payoutFirstDays": "First payout: On demand, from day 5",
+        "payoutFrequency": "Starts monthly, advances to weekly (Bronze), then on demand (Silver+)",
+        "rules.news": "News Trading: Allowed",
+        "rules.weekend": "Weekend Holds: Allowed",
+        "rules.overnight": "Overnight Holds: Allowed",
+        "rules.ea": "Personal EAs only - no third-party"
+      },
+      "notes": [
+        "No evaluation profit target. The published per-tier 'Profit Target To Scale' figures ($500 on $5K, $1,000 on $10K, $2,000 on $20K, $4,000 on $40K, $8,000 on $80K) are scaling milestones, not pass conditions.",
+        "Page states 'No Consistency Rules' - 'Your best day counts, not just your average'. consistencyRulePct still recorded as null because no percentage figure is published.",
+        "Profit split recorded as the published starting 70%; scales to 90% (Bronze) and up to 100% (Silver/Gold).",
+        "Max funding published as $4M."
+      ]
+    }
+  ],
+  "unverifiedFields": {
+    "refundable": "NULL ON EVERY TIER. The only refund language found on the firm's own pages is the footer disclosure: 'All fees paid are educational service fees for access to courses or skill assessment programmes. All fees are non-refundable except as outlined in our Refund Policy.' CTI does NOT publish, on any page read, the common prop-firm promise that the challenge fee is returned with the first payout. Do not assume it is refundable.",
+    "copyTrading": "NULL ON EVERY TIER. No product page mentions copy trading or account sharing. This would live in the Help Center or T&Cs, both of which were inaccessible.",
+    "consistencyRulePct": "NULL ON EVERY TIER. 2-Step and Direct Funding pages assert there are no consistency requirements in prose, but publish no percentage. Recorded as null rather than 0.",
+    "maxTradingDays": "NULL ON EVERY TIER. All four products publish 'Time Limit: None' - i.e. genuinely unlimited, not unknown.",
+    "dailyLossPct": "NULL on 1-Step, Instant and Direct - all three publish 'Daily Drawdown: None'. Only 2-Step has a daily limit (5%).",
+    "minTradingDays": "NULL on Instant and Direct - the tables print a dash rather than a number."
+  }
+}

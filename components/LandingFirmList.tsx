@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Star, ArrowUpRight, Handshake, Tag, ExternalLink, ArrowRight } from 'lucide-react'
+import { Star, Handshake, Tag, ExternalLink, ArrowRight } from 'lucide-react'
 import type { LandingFirm } from '@/lib/landings'
+import TrustpilotRating from '@/components/TrustpilotRating'
 
 const firmSlug = (name: string) =>
   name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -86,6 +87,14 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
                 <div className="leader-stat-label">Score</div>
                 <div className="leader-stat-value leader-stat-value--score">
                   <Star size={12} fill="currentColor" /> {firm.score.toFixed(1)}
+                </div>
+              </div>
+              {/* Our editorial score sits next to the crowd's — the pairing
+                  is the reason readers search "<firm> trustpilot" at all. */}
+              <div className="leader-stat">
+                <div className="leader-stat-label">Trustpilot</div>
+                <div className="leader-stat-value">
+                  <TrustpilotRating firm={firm} />
                 </div>
               </div>
               <div className="leader-stat leader-stat--hide-sm">

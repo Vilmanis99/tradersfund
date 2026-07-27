@@ -1,9 +1,16 @@
 import type { Firm } from '@/lib/firms'
+import { TrustpilotPanel } from './TrustpilotRating'
 
 /**
  * "At a glance" visual panel for a firm review — breaks up the long-form text
  * with an SVG score ring, a profit-split bar, and a grid of key-fact tiles.
  * Pure SVG/CSS, server component, all values sourced from the Firm record.
+ *
+ * The Trustpilot block sits directly under the score ring so our editorial
+ * score (out of 10) and the crowd's (out of 5) are read together — that
+ * pairing is the whole point for readers arriving on "<firm> trustpilot"
+ * queries. It stays visually separate from the ring so nobody mistakes a
+ * cited third-party figure for our rating.
  */
 
 function fmtTitle(v: string | null | undefined): string {
@@ -65,6 +72,12 @@ export default function FirmStatPanel({ firm }: { firm: Firm }) {
             <span style={{ width: 48, textAlign: 'right', fontSize: '0.9rem', fontWeight: 800, color: '#fff' }}>{split ? `${split}%` : '—'}</span>
           </div>
         </div>
+      </div>
+
+      {/* Cited Trustpilot figure — third-party, dated, and linked out for
+          verification. Never marked up as our own AggregateRating. */}
+      <div style={{ marginBottom: '1.1rem' }}>
+        <TrustpilotPanel firm={firm} />
       </div>
 
       {/* Stat tiles */}

@@ -1,65 +1,263 @@
 [
   {
     "firmSlug": "city-traders-imperium",
-    "productName": "CTI Challenge",
-    "productSlug": "city-traders-imperium-default",
-    "phases": 2,
+    "productName": "1-Step Challenge",
+    "productSlug": "1-step-challenge",
+    "phases": 1,
     "accountSizes": [
       {
+        "sizeUsd": 2500,
+        "priceUsd": 29,
+        "refundable": null
+      },
+      {
         "sizeUsd": 5000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 49,
+        "refundable": null
       },
       {
         "sizeUsd": 10000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 79,
+        "refundable": null
       },
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 159,
+        "refundable": null
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 299,
+        "refundable": null
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 449,
+        "refundable": null
+      }
+    ],
+    "profitTargets": {
+      "phase1": 8
+    },
+    "dailyLossPct": null,
+    "maxLossPct": 5,
+    "drawdownType": "trailing",
+    "minTradingDays": 3,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 7,
+    "payoutFrequency": "weekly",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": true,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Profit split recorded as the published STARTING split of 80%; page advertises 'Up To 100%' via the VIP ladder (Bronze 90%, Silver 100%). The 100% figure is a top-tier ceiling, not the entry rate.",
+      "Note the EA rule differs from CTI's other products: 1-Step permits third-party EAs, while 2-Step/Instant/Direct restrict to personal EAs only.",
+      "consistencyRulePct left null - no consistency percentage is published on this page.",
+      "Max funding for this program is published as $400K.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "city-traders-imperium",
+    "productName": "2-Step Challenge",
+    "productSlug": "2-step-challenge",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 2500,
+        "priceUsd": 39,
+        "refundable": null
       },
       {
-        "sizeUsd": 200000,
-        "priceUsd": null,
-        "refundable": true
+        "sizeUsd": 5000,
+        "priceUsd": 59,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 99,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 199,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 329,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 549,
+        "refundable": null
+      }
+    ],
+    "profitTargets": {
+      "phase1": 10,
+      "phase2": 5
+    },
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": 3,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 7,
+    "payoutFrequency": "weekly",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Profit split recorded as the published STARTING split of 80%; VIP ladder advertises Bronze 90% and Silver 100%.",
+      "The page markets 'no hidden consistency requirements' but publishes NO consistency percentage - consistencyRulePct left null rather than 0, since an absence of a stated number is not the same as a stated zero.",
+      "Martingale is published as 'Not Allowed' on this product (contrast with 1-Step, where it is allowed).",
+      "Max funding for this program is published as $400K.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "city-traders-imperium",
+    "productName": "Instant Funding",
+    "productSlug": "instant-funding",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 2500,
+        "priceUsd": 79,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 139,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 259,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 449,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 40000,
+        "priceUsd": 849,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 80000,
+        "priceUsd": 1599,
+        "refundable": null
       }
     ],
     "profitTargets": null,
     "dailyLossPct": null,
-    "maxLossPct": null,
+    "maxLossPct": 6,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 50,
+    "payoutFirstDays": 5,
+    "payoutFrequency": null,
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "No evaluation profit target - profitTargets null. The page instead publishes a 'Profit Target To Scale' (e.g. $125 on the $2,500 account) which is a scaling milestone, NOT a pass condition, so it is deliberately not recorded as a profit target.",
+      "Scaling published as '100% balance increase per 10% milestone', up to $2M per account and $4M across two accounts.",
+      "Profit split recorded as the published starting 50%; page states 'Fully Funded Level 1: 70% to 100%', VIP Bronze 90%, VIP Silver/Gold 100%.",
+      "payoutFrequency left null - the page states VIP Bronze unlocks 'Weekly payouts' and VIP Silver unlocks 'Anytime payouts', but publishes no baseline frequency for a new Instant account.",
+      "minTradingDays left null - the table prints a dash, which is not an explicit published number.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "city-traders-imperium",
+    "productName": "Direct Funding",
+    "productSlug": "direct-funding",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 229,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 399,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 999,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 40000,
+        "priceUsd": 1999,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 80000,
+        "priceUsd": 3999,
+        "refundable": null
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": 6,
     "drawdownType": "static",
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 70,
-    "payoutFirstDays": null,
+    "payoutFirstDays": 5,
     "payoutFrequency": "monthly",
     "rules": {
-      "news": "restricted",
-      "weekend": false,
+      "news": true,
+      "weekend": true,
       "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "ea": null,
+      "copyTrading": null
     },
     "assetClass": "cfd",
-    "sourceUrl": "/blog/city-traders-imperium-review",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "SKELETON ENTRY \u2014 only firm-level aggregates from firms.json populated.",
-      "Per-tier pricing, exact profit targets, and DD% require editorial verification against the live firm page.",
-      "Set fields to null until verified \u2014 never invent."
+      "No evaluation profit target. The published per-tier 'Profit Target To Scale' figures ($500 on $5K, $1,000 on $10K, $2,000 on $20K, $4,000 on $40K, $8,000 on $80K) are scaling milestones, not pass conditions.",
+      "Page states 'No Consistency Rules' - 'Your best day counts, not just your average'. consistencyRulePct still recorded as null because no percentage figure is published.",
+      "Profit split recorded as the published starting 70%; scales to 90% (Bronze) and up to 100% (Silver/Gold).",
+      "Max funding published as $4M.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-07-27.json"
     ]
   }
 ]

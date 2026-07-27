@@ -71,6 +71,23 @@ export interface Firm {
   ratings?: FirmRatings
   trustpilotScore?: number | null
   trustpilotCount?: number | null
+  /** Canonical Trustpilot profile URL, so a reader can check our figure. */
+  trustpilotUrl?: string
+  /**
+   * True when Trustpilot itself has removed the aggregate score —
+   * "This company's rating is unavailable due to a breach of our
+   * guidelines." Verified for E8 Markets, BrightFunded and OFP Funding on
+   * 2026-07-27.
+   *
+   * This is NOT the same state as `trustpilotScore: null` meaning "not yet
+   * captured", and the difference matters editorially: a suppressed rating
+   * is a stronger signal about a firm than any number would have been, and
+   * any score quoted for these firms elsewhere is stale or invented. Render
+   * the suppression, never a blank.
+   */
+  trustpilotRatingSuppressed?: boolean
+  /** ISO date the Trustpilot figures above were last verified. */
+  trustpilotCapturedAt?: string
   verifiedPayoutBadge?: boolean
 
   // ── Metadata ──
@@ -95,6 +112,19 @@ export interface ChallengeAccountSize {
   sizeUsd: number
   /** Challenge fee in USD for this tier. */
   priceUsd: number
+  /**
+   * Challenge fee in EUR, when the firm denominates the fee in euros even
+   * though the account is sized in dollars. FTMO does exactly this: the
+   * $100K tier's own tooltip reads "$100,000 FTMO Challenge for €439".
+   *
+   * Kept as a separate field rather than converted, because an FX rate
+   * applied at capture time would silently rot and would violate the
+   * "never invent numbers" rule in AGENTS.md. A review quoting a
+   * EUR-priced tier must say so and must not present a converted figure
+   * as the firm's price. computeTrueCost() works in a single currency —
+   * feed it priceEur to get a EUR-denominated break-even.
+   */
+  priceEur?: number | null
   /** True = fee refunded with the first payout (industry-standard). */
   refundable: boolean
 }
@@ -136,6 +166,24 @@ export interface Challenge {
   phases: 0 | 1 | 2 | 3
   /** Available account-size tiers and their pricing. */
   accountSizes: ChallengeAccountSize[]
+  /**
+   * How `priceUsd` should be read. Futures firms (Topstep, Take Profit
+   * Trader, My Funded Futures) bill the evaluation as a recurring monthly
+   * subscription that rebills until you pass or cancel — so `priceUsd` is
+   * a *rate*, not a total, and dividing it by the profit split produces a
+   * break-even figure that understates the real cost of getting funded.
+   *
+   * Defaults to 'one-off' when absent (the CFD-firm norm).
+   */
+  pricingModel?: 'one-off' | 'monthly-subscription'
+  /**
+   * One-time fee charged on passing, before the account goes live —
+   * Topstep's XFA activation is $149 on its Standard Path and $0 on its
+   * No Activation Fee Path. Null when the firm charges none or doesn't
+   * publish one. Must be added to the subscription spend to get a true
+   * cost to funded.
+   */
+  activationFeeUsd?: number | null
   /** Profit target per phase as a %. Null when the firm doesn't publish it. */
   profitTargets: ChallengeProfitTargets | null
   /** Maximum loss per day as a % of starting balance. Null when unpublished. */

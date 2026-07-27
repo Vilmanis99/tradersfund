@@ -24,6 +24,7 @@ import ComparisonTable from '@/components/ComparisonTable'
 import ComparisonVerdict from '@/components/ComparisonVerdict'
 import FeatureFaq from '@/components/FeatureFaq'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
+import { TrustpilotPanel } from '@/components/TrustpilotRating'
 
 interface Props { params: Promise<{ matchup: string }> }
 
@@ -167,6 +168,29 @@ export default async function ComparePage({ params }: Props) {
               Winning value on each row is marked. Ties are flagged. Empty cells mean we don&apos;t have that data point yet.
             </p>
             <ComparisonTable firmA={firmA} firmB={firmB} rows={rows} />
+          </section>
+
+          {/* Third-party reputation. Deliberately outside <ComparisonTable>:
+              these are cited Trustpilot figures on a 0–5 scale, not specs we
+              can declare a winner on, and a suppressed rating needs the full
+              warning treatment rather than a cell of text. No JSON-LD is
+              emitted for them — see lib/trustpilot.ts. */}
+          <section aria-label="Third-party reputation" style={{ marginTop: '2.5rem' }}>
+            <h2 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.6rem)', fontWeight: 800, color: '#fff', margin: '0 0 0.5rem', letterSpacing: '-0.01em' }}>
+              Trustpilot: {firmA.name} vs {firmB.name}
+            </h2>
+            <p style={{ color: 'var(--muted)', fontSize: '0.9rem', margin: 0 }}>
+              Scored out of 5 by Trustpilot users, not by us. Where Trustpilot has
+              pulled a firm&apos;s aggregate rating we say so rather than leaving a blank.
+            </p>
+            <div className="compare-when-grid">
+              {[firmA, firmB].map(f => (
+                <div key={f.name}>
+                  <h3 style={{ margin: '0 0 0.5rem', color: '#fff', fontSize: '1rem', fontWeight: 700 }}>{f.name}</h3>
+                  <TrustpilotPanel firm={f} />
+                </div>
+              ))}
+            </div>
           </section>
 
           {overlay && (overlay.whenToPickA || overlay.whenToPickB) && (

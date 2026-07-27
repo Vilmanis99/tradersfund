@@ -88,13 +88,18 @@ export function postSchema(post: PostMeta & { content?: string }, allFirms: Firm
     })
     .filter(Boolean)
 
-  const aggregateRating = {
-    '@type': 'AggregateRating',
-    ratingValue: firm.score,
-    bestRating: 10,
-    worstRating: 0,
-    ratingCount: 1,
-  }
+  // NO aggregateRating here — deliberately.
+  //
+  // Our editorial score is one publisher's rating, not an aggregate of
+  // many. Emitting it as AggregateRating with ratingCount: 1 is exactly
+  // the self-serving review markup Google's structured-data policy
+  // prohibits, and it was being emitted on ~126 pages at once — every
+  // firm review plus every compare and feature page. The downside is a
+  // sitewide manual action that strips star results from all of them.
+  //
+  // The compliant construct is Review.reviewRating below: a single named
+  // reviewer stating a single rating. That already renders the star
+  // result we want, so the aggregateRating blocks were pure risk.
 
   // Editorial pros/cons pulled from the review body (never invented).
   const pros = post.content ? extractNotes(post.content, 'Pros') : []
@@ -109,7 +114,6 @@ export function postSchema(post: PostMeta & { content?: string }, allFirms: Firm
     brand: { '@type': 'Brand', name: firm.name },
     url: SITE + firm.reviewUrl,
     ...(firm.logo ? { image: SITE + firm.logo } : {}),
-    aggregateRating,
     ...(offers.length > 0 ? { offers } : {}),
     ...(pros.length > 0 ? { positiveNotes: notesItemList(pros) } : {}),
     ...(cons.length > 0 ? { negativeNotes: notesItemList(cons) } : {}),
@@ -159,8 +163,9 @@ export function breadcrumbSchema(segments: Array<{ name: string; url?: string }>
 
 /**
  * ItemList of firms for /prop-firms/[feature] pages. Each list item nests
- * an Organization (the firm) with an aggregateRating so Google can render
- * a rich "Top 10" carousel for the page.
+ * an Organization (the firm) so Google can render a rich "Top 10" carousel
+ * for the page. No aggregateRating is attached — see reviewSchema() for why
+ * marking our own editorial score as an aggregate is a policy violation.
  */
 export function itemListSchema(firms: Firm[], featureLabel: string) {
   return {
@@ -176,13 +181,6 @@ export function itemListSchema(firms: Firm[], featureLabel: string) {
         name: firm.name,
         url: SITE + firm.reviewUrl,
         ...(firm.logo ? { logo: SITE + firm.logo } : {}),
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: firm.score,
-          bestRating: 10,
-          worstRating: 0,
-          ratingCount: 1,
-        },
       },
     })),
   }
@@ -227,13 +225,6 @@ export function comparisonItemListSchema(
         name: firm.name,
         url: SITE + firm.reviewUrl,
         ...(firm.logo ? { logo: SITE + firm.logo } : {}),
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: firm.score,
-          bestRating: 10,
-          worstRating: 0,
-          ratingCount: 1,
-        },
       },
     })),
   }
@@ -250,7 +241,14 @@ export function organizationSchema() {
     '@type': 'Organization',
     name: 'Traders Fund Hub',
     url: SITE,
-    logo: `${SITE}/favicon.ico`,
+    // Must be a raster/SVG image Google can actually read — .ico is not in
+    // the supported list and gets dropped. See app/logo.png/route.tsx.
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE}/logo.png`,
+      width: 512,
+      height: 512,
+    },
     description:
       'Independent prop-firm reviews, comparisons, and rule-change alerts. Every claim traces to a primary source.',
     sameAs: [
@@ -260,8 +258,14 @@ export function organizationSchema() {
 }
 
 /**
- * WebSite schema with SearchAction — lights up the sitelinks search box in
- * Google SERPs, lets users search the site directly from the search results.
+ * WebSite schema — names the site entity and links it to the publisher.
+ *
+ * Deliberately no `potentialAction`/SearchAction: the previous version
+ * declared `/blog?q={search_term_string}` as a search endpoint, but /blog
+ * ignores `q` entirely — the site has no search. Declaring an action that
+ * doesn't work is a false structured-data claim, and Google retired the
+ * sitelinks search box it used to feed, so it bought us nothing either way.
+ * Re-add it only if a real search route ships.
  */
 export function websiteSchema() {
   return {
@@ -269,14 +273,8 @@ export function websiteSchema() {
     '@type': 'WebSite',
     name: 'Traders Fund Hub',
     url: SITE,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${SITE}/blog?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
+    inLanguage: 'en',
+    publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: SITE },
   }
 }
 

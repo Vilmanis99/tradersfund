@@ -1,0 +1,377 @@
+{
+  "firmSlug": "crypto-fund-trader",
+  "officialDomain": "https://cryptofundtrader.com",
+  "pagesRead": [
+    "https://cryptofundtrader.com/",
+    "https://cryptofundtrader.com/faq/",
+    "https://cryptofundtrader.com/break-challenge/",
+    "https://cryptofundtrader.com/terms-and-conditions/",
+    "https://cryptofundtrader.com/evaluation-rules/",
+    "https://cryptofundtrader.com/last-updates-faq/",
+    "https://cryptofundtrader.com/refund-policy/",
+    "https://cryptofundtrader.com/choose-your-challenge/"
+  ],
+  "accessNotes": "Site is publicly readable, no geo-block or auth wall. THREE IMPORTANT CAVEATS: (1) The homepage pricing/spec area is a JS-driven tabbed widget. Two independent reads returned identical prices and identical spec rows; a third read conflated tabs and returned different loss limits for ACCELERATED (8%/5%/10% instead of 10%/4%/6%). Prices are treated as verified (2 identical reads + independent product-page confirmation for Break). Loss/target figures below are taken from /faq/ and /terms-and-conditions/, which state them in prose and agree with the two consistent homepage reads. (2) Product pages under /product/<size>-<name>-evaluation/ appear in search indexes but now return HTTP 404, so per-tier spec sheets could not be read. (3) The firm markets under names (Evaluation, Ascend, Accelerated, Instant, Break) but the FAQ/T&C state rules under structural names (2-Phase, 1-Phase, 3-Phase, Instant, Break). Mapping Accelerated -> '1-Phase' is supported by the homepage spec row (10% target / 4% daily / 6% max) matching the FAQ's 1-Phase figures exactly; it is corroboration, not proof. A '3-Phase' evaluation is described in the FAQ/T&C but is NOT sold on the homepage pricing widget, so it is omitted (no verifiable price). REFUNDABILITY: the site never states the evaluation fee is returned on a successful pass. The Refund Policy only grants a 14-day withdrawal right that is lost once a position is opened; T&C says 'In case of account(s) cancellation, you will not be entitled to the performance-based reward or the refund of the fees paid.' Because 'refunded on pass' is not stated either way, refundable is left null everywhere rather than guessed. PROFIT SPLIT: homepage spec rows say 80% at live stage for all products, and the Break page says 80%. T&C additionally lists a paid add-on: '90% Bonus Performance: Costs 20% of the evaluation price and increases your eligibility to receive up to 90%'. Conflictingly, T&C lists Ascend rewards as FIXED dollar scholarships ($210 on $5k, $420 on $10k, $1,050 on $25k, $2,100 on $50k, $4,200 on $100k, $8,400 on $200k) rather than a percentage split - flagged, not resolved. MIN TRADING DAYS: only Break and Instant are explicitly stated as zero; for the phase-based products no minimum is stated in prose, so null (not 0) is recorded. MAX TRADING DAYS: null because the FAQ states there is no time limit ('there is no maximum time limit to complete the evaluation'), i.e. unlimited rather than unknown.",
+  "products": [
+    {
+      "productName": "Evaluation (Standard 2-Phase)",
+      "productSlug": "evaluation",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 58,
+          "refundable": null,
+          "evidence": "$5,000: $58"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 110,
+          "refundable": null,
+          "evidence": "$10,000: $110"
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 240,
+          "refundable": null,
+          "evidence": "$25,000: $240"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 389,
+          "refundable": null,
+          "evidence": "$50,000: $389"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 660,
+          "refundable": null,
+          "evidence": "$100,000: $660"
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1250,
+          "refundable": null,
+          "evidence": "$200,000: $1,250"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 15,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "Allowed. FAQ: \"Yes. News trading is allowed. We want traders to have the freedom to trade using their own strategy and style.\"",
+        "weekend": "Allowed. FAQ: \"Yes. Traders are allowed to keep positions open overnight and over the weekend, regardless of the account type or instrument.\"",
+        "overnight": "Allowed. Same FAQ sentence as weekend.",
+        "ea": "Restricted. FAQ: \"High-frequency trading is not allowed. This includes using programs, algorithms, bots, or automated systems to execute a large number of trades within very short periods of time.\" Tick scalping and arbitrage are also listed as not allowed. A blanket EA ban is NOT stated.",
+        "copyTrading": "Prohibited across accounts. FAQ: \"Copy trading between different traders, third parties, groups, or unrelated accounts is prohibited.\""
+      },
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "fieldEvidence": {
+        "profitTargets.phase1": "T&C: Phase 1 requires \"8% of the demo initial capital\"",
+        "profitTargets.phase2": "T&C: Phase 2 requires \"5% of the demo initial capital\"",
+        "dailyLossPct": "FAQ: \"For the 2-Phase Evaluation, the daily maximum loss is 5%\" (calculated at \"12:05 AM UTC each day\")",
+        "maxLossPct": "FAQ: \"the maximum overall loss is fixed at 10% of the initial account balance\"",
+        "drawdownType": "FAQ describes the 10% as \"fixed at ... the initial account balance\" (i.e. static), in contrast to the 1-Phase product which it explicitly calls trailing.",
+        "profitSplitPct": "Homepage spec row: \"80%\" profit split (live stage). NOTE: T&C does not restate a base percentage and offers a paid upgrade: \"90% Bonus Performance: Costs 20% of the evaluation price and increases your eligibility to receive up to 90%\".",
+        "payoutFirstDays": "FAQ: \"You can request a scholarship reward after trading for at least 15 days, or alternatively, every 30 calendar days.\"",
+        "payoutFrequency": "Same sentence: every 15 traded days or every 30 calendar days. T&C notes a paid weekly add-on reducing this to every 7 traded days.",
+        "maxTradingDays": "FAQ: \"No. We want to give our traders as much freedom as possible, so there is no maximum time limit to complete the evaluation.\" Recorded as null = no limit.",
+        "minTradingDays": "NOT STATED in prose for this product. Homepage widget appeared to show 0 but that widget proved unreliable, so null is recorded rather than 0."
+      }
+    },
+    {
+      "productName": "Ascend Evaluation",
+      "productSlug": "ascend",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 45,
+          "refundable": null,
+          "evidence": "$5,000: $45"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 90,
+          "refundable": null,
+          "evidence": "$10,000: $90"
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 225,
+          "refundable": null,
+          "evidence": "$25,000: $225"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 450,
+          "refundable": null,
+          "evidence": "$50,000: $450"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 899,
+          "refundable": null,
+          "evidence": "$100,000: $899"
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1798,
+          "refundable": null,
+          "evidence": "$200,000: $1,798"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": "Restricted for Ascend specifically. T&C: \"Within two minutes before and after high-impact news or market opening, users must not open or add new positions, raise or aggregate maximum theoretical loss above 2% of the account initial balance.\"",
+        "weekend": "Allowed. FAQ: \"Yes. Traders are allowed to keep positions open overnight and over the weekend, regardless of the account type or instrument.\"",
+        "overnight": "Allowed. Same FAQ sentence.",
+        "ea": "Restricted. FAQ: \"High-frequency trading is not allowed. This includes using programs, algorithms, bots, or automated systems to execute a large number of trades within very short periods of time.\"",
+        "copyTrading": "Prohibited. T&C: \"Copy trading between Ascend accounts is prohibited, including coordinated or mirrored trading activity, such as similar entries, exits, instruments, trade direction, timing, or position sizing that cannot reasonably be attributed to coincidence.\""
+      },
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "fieldEvidence": {
+        "profitTargets": "T&C states Ascend uses the same targets as the 2-Phase evaluation (Phase 1 \"8% of the demo initial capital\", Phase 2 \"5% of the demo initial capital\"). Homepage spec row for ASCEND likewise showed Phase 1 8% / Phase 2 5%.",
+        "dailyLossPct": "T&C (2-Phase & Ascend): \"losses in any open or closed demo trades on the same day, which exceeded in total 5% of your balance at 12:05 AM UTC or 10% of the initial demo balance\"",
+        "maxLossPct": "Same T&C clause: \"10% of the initial demo balance\"",
+        "drawdownType": "Stated against \"the initial demo balance\", i.e. static/balance-based; no trailing language used for Ascend.",
+        "profitSplitPct": "Homepage spec row: \"80%\" (live stage). CONFLICT FLAGGED: T&C instead lists fixed Ascend scholarship amounts ($5k: $210, $10k: $420, $25k: $1,050, $50k: $2,100, $100k: $4,200, $200k: $8,400) rather than a percentage. Treat 80% as low-confidence.",
+        "payoutFirstDays": "NOT STATED for Ascend. FAQ says only \"if you have an Ascend account, you can request a scholarship reward once you complete the Phase 2 profit target. No additional profit percentage is required.\" - no day count given, so null.",
+        "payoutFrequency": "Not stated for Ascend specifically. null.",
+        "maxTradingDays": "FAQ: \"there is no maximum time limit to complete the evaluation.\" null = no limit."
+      }
+    },
+    {
+      "productName": "Accelerated (1-Phase)",
+      "productSlug": "accelerated",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 40,
+          "refundable": null,
+          "evidence": "$5,000: $40"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 80,
+          "refundable": null,
+          "evidence": "$10,000: $80"
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 219,
+          "refundable": null,
+          "evidence": "$25,000: $219"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 369,
+          "refundable": null,
+          "evidence": "$50,000: $369"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 619,
+          "refundable": null,
+          "evidence": "$100,000: $619"
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1199,
+          "refundable": null,
+          "evidence": "$200,000: $1,199"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": null
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 6,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 15,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "Allowed. FAQ: \"Yes. News trading is allowed. We want traders to have the freedom to trade using their own strategy and style.\"",
+        "weekend": "Allowed. FAQ: \"Yes. Traders are allowed to keep positions open overnight and over the weekend, regardless of the account type or instrument.\"",
+        "overnight": "Allowed. Same FAQ sentence.",
+        "ea": "Restricted. FAQ: \"High-frequency trading is not allowed. This includes using programs, algorithms, bots, or automated systems to execute a large number of trades within very short periods of time.\"",
+        "copyTrading": "Prohibited. FAQ: \"Copy trading between different traders, third parties, groups, or unrelated accounts is prohibited.\""
+      },
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "fieldEvidence": {
+        "profitTargets.phase1": "T&C: \"10% in the 1-phase evaluation\". Homepage ACCELERATED spec row independently showed a 10% profit target.",
+        "dailyLossPct": "FAQ: \"For the 1-Phase Evaluation, the daily maximum loss is 4%\". T&C: \"...exceeded in total 4% of your balance at 12:05 AM UTC or 6% based on the maximum demo balance\".",
+        "maxLossPct": "FAQ (1-Phase): trailing drawdown of \"6% of the initial account balance and moves upward as your account reaches new highs\".",
+        "drawdownType": "FAQ (1-Phase): \"6% of the initial account balance and moves upward as your account reaches new highs\". T&C adds: \"...6% based on the maximum demo balance until you make a 6% demo profit, at which point your trailing drawdown will remain static at the account's opening balance.\"",
+        "profitSplitPct": "Homepage spec row: \"80%\" (live stage). Paid upgrade available per T&C: \"90% Bonus Performance: Costs 20% of the evaluation price...\".",
+        "payoutFirstDays": "FAQ: \"You can request a scholarship reward after trading for at least 15 days, or alternatively, every 30 calendar days.\"",
+        "productMapping": "LOW-CONFIDENCE MAPPING: the FAQ/T&C never use the word 'Accelerated'; they say '1-Phase Evaluation'. Equivalence is inferred from the homepage ACCELERATED spec row (1 phase, 10% target, 4% daily, 6% max) matching the FAQ's 1-Phase figures exactly.",
+        "maxTradingDays": "FAQ: \"there is no maximum time limit to complete the evaluation.\" null = no limit."
+      }
+    },
+    {
+      "productName": "Instant",
+      "productSlug": "instant",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": 125,
+          "refundable": null,
+          "evidence": "$2,500: $125"
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 240,
+          "refundable": null,
+          "evidence": "$5,000: $240"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 475,
+          "refundable": null,
+          "evidence": "$10,000: $475"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": null
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 6,
+      "drawdownType": "balance-based",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 0,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "Allowed. FAQ: \"Yes. News trading is allowed. We want traders to have the freedom to trade using their own strategy and style.\"",
+        "weekend": "Allowed. FAQ: \"Yes. Traders are allowed to keep positions open overnight and over the weekend, regardless of the account type or instrument.\"",
+        "overnight": "Allowed. Same FAQ sentence.",
+        "ea": "Restricted. FAQ: \"High-frequency trading is not allowed. This includes using programs, algorithms, bots, or automated systems to execute a large number of trades within very short periods of time.\"",
+        "copyTrading": "Prohibited. FAQ: \"Copy trading between different traders, third parties, groups, or unrelated accounts is prohibited.\""
+      },
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "fieldEvidence": {
+        "profitTargets.phase1": "T&C (Instant): \"10% of the account must be exceeded\". FAQ: payout is triggered when \"your account reaches 10% simulated profit\".",
+        "dailyLossPct": "T&C (Instant/0-Phase): \"a demo loss of 4% of the account is allowed on a daily basis\"",
+        "maxLossPct": "T&C (Instant): \"total demo loss limit is limited to 6% of the account\"",
+        "drawdownType": "Stated as a percentage \"of the account\" with no trailing language, i.e. balance-based. NOTE: one homepage read described Instant's drawdown as trailing - unresolved conflict, treat drawdownType as low-confidence.",
+        "minTradingDays": "FAQ: \"you can request a 'Withdrawal & Update' once you reach 10% profit on your account, with no minimum days traded\"; also \"no minimum trading days requirement\".",
+        "payoutFirstDays": "Same quote - no minimum days traded; payout gated on 10% profit rather than a day count.",
+        "payoutFrequency": "On demand at each 10% profit. FAQ: \"You can scale your Intensive Account up to 1,280,000$ every time you get 10% of your simulated account and request the 'Withdrawal & Update' from the dashboard, your account will double in demo size by x2.\" T&C alternative: \"You can request a scholarship before reaching the 10% if you have traded a minimum of 15 days or 30 calendar days\".",
+        "profitSplitPct": "Homepage spec row: \"80%\" (live stage).",
+        "maxTradingDays": "FAQ: no maximum time limit. null = no limit."
+      }
+    },
+    {
+      "productName": "Break Challenge",
+      "productSlug": "break",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 70,
+          "refundable": null,
+          "evidence": "\"$25,000\" account: \"$70.00\"; profit target \"$1,250\"; trailing drawdown \"$1,000\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 139,
+          "refundable": null,
+          "evidence": "\"$50,000\" account: \"$139.00\"; profit target \"$3,000\"; trailing drawdown \"$2,000\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 199,
+          "refundable": null,
+          "evidence": "\"$100,000\" account: \"$199.00\"; profit target \"$6,000\"; trailing drawdown \"$3,000\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "trailing",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 0,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "Allowed. FAQ: \"Yes. News trading is allowed. We want traders to have the freedom to trade using their own strategy and style.\"",
+        "weekend": "Allowed. FAQ: \"Yes. Traders are allowed to keep positions open overnight and over the weekend, regardless of the account type or instrument.\"",
+        "overnight": "Allowed. Same FAQ sentence.",
+        "ea": "Restricted. FAQ: \"High-frequency trading is not allowed. This includes using programs, algorithms, bots, or automated systems to execute a large number of trades within very short periods of time.\"",
+        "copyTrading": "Partially allowed during evaluation. FAQ: copy trading is permitted \"only between the trader's own Break accounts\"; in the Break Final Stage it is not allowed."
+      },
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+      "fieldEvidence": {
+        "profitTargets": "VARIES BY TIER, so null at product level. T&C: Break $25k target is \"5% of the initial demo capital\"; Break $50k-$100k is \"6% of the initial demo capital\". The /break-challenge/ dollar figures ($1,250 / $3,000 / $6,000) match those percentages exactly.",
+        "dailyLossPct": "null - the /break-challenge/ page states \"No Daily Loss Limit\". The trailing limit below is the only loss cap.",
+        "maxLossPct": "VARIES BY TIER, so null at product level. FAQ: \"For $25,000 and $50,000 Break accounts, traders must not register losses...exceed 4% of the highest demo account balance reached.\" and \"For $100,000 Break accounts...exceed 3% of the highest demo account balance reached.\" Dollar amounts on /break-challenge/ ($1,000 / $2,000 / $3,000) confirm 4% / 4% / 3%.",
+        "drawdownType": "FAQ: measured against \"the highest demo account balance reached\" - trailing. T&C adds the \"trailing drawdown locks in the initial accounts balance\" after profit thresholds.",
+        "minTradingDays": "/break-challenge/: \"No Minimum Trading Days\". FAQ: \"no minimum trading days required\".",
+        "consistencyRulePct": "FAQ: \"No single trading day may account for more than 40% of the total profits generated\". /break-challenge/ Live Stage: \"40%\" - \"no one day's profit is more than 40% of your total profits\". Phase 1 has \"NO\" consistency rule; the 40% applies to the Live Stage only.",
+        "profitSplitPct": "/break-challenge/: \"80%\" on live stage accounts.",
+        "payoutFrequency": "/break-challenge/: \"Payouts on-demand: Yes\". FAQ confirms Break payouts are \"on demand\".",
+        "maxTradingDays": "FAQ: no maximum time limit. null = no limit."
+      }
+    }
+  ],
+  "globalRules": {
+    "reverseTrading": "Evaluation Rules page: \"It is not allowed to create trades in opposite directions with a simultaneous duration equal or higher than 60 seconds\". FAQ phrasing: \"Reverse trading is not allowed when opposite positions are opened at the same time for 60 seconds or longer\".",
+    "maxProfitPerDay": "Evaluation Rules page: \"The daily and/or per trade simulated profit limit is $10,000\". FAQ: \"maximum simulated profit allowed per day and/or per trade is $10,000\".",
+    "prohibitedStrategies": "Evaluation Rules page: high frequency trading, tick scalping, and arbitrage are banned. FAQ: \"Tick scalping is not allowed\", \"Arbitrage strategies are not allowed\".",
+    "leverage": "Homepage and /choose-your-challenge/: \"Leverage Up To 1:100\" on MetaTrader 5 and Match-Trader; Bybit \"custom leverage up to 1:100\".",
+    "instruments": "/choose-your-challenge/: MetaTrader 5 and Match-Trader \"+540 Crypto Pairs\"; Bybit \"+715 Crypto Pairs\".",
+    "paidAddOns": "T&C: \"90% Bonus Performance: Costs 20% of the evaluation price and increases your eligibility to receive up to 90%\". /last-updates-faq/: \"Daily Drawdown 6%: Costs 15% of the evaluation value\" and \"Max Drawdown 12%: This costs 25% of the value of the assessment\". A weekly payout add-on reduces the payout cycle to \"every 7 traded days\".",
+    "drawdownBasis": "/last-updates-faq/: \"Drawdown breach is based on equity\"."
+  },
+  "notCaptured": [
+    "3-Phase / Scholarship evaluation: rules are described in the FAQ and T&C (5% daily loss at 12:05 AM UTC, 5% max overall loss, 5% target in each of Phase 1/2/3, first payout after \"5 traded days\") but NO price or account-size table for it was found on the site, so it is omitted entirely rather than listed with null prices.",
+    "Per-tier product spec pages (/product/<size>-<name>-evaluation/) return HTTP 404 - could not obtain per-tier confirmation for Evaluation, Ascend, Accelerated, or Instant. Only Break has a working dedicated page.",
+    "Whether the evaluation fee is refunded on a successful pass - never stated on the site.",
+    "Minimum trading days for Evaluation, Ascend, and Accelerated evaluation phases - not stated in prose.",
+    "Consistency rule for Evaluation, Ascend, Accelerated, Instant - only Break's 40% rule is documented.",
+    "The homepage advertises \"Up to $300,000\" but the largest purchasable tier in the pricing widget is $200,000. The $300,000 figure could not be traced to a purchasable product, so no $300k tier is recorded."
+  ]
+}

@@ -1,72 +1,245 @@
 [
   {
     "firmSlug": "my-funded-futures",
-    "productName": "MFF Rapid",
-    "productSlug": "mff-rapid",
+    "productName": "Rapid",
+    "productSlug": "rapid",
     "phases": 1,
     "accountSizes": [
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": false },
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": false },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": false }
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 109,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 157,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 267,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 150000,
+        "priceUsd": 347,
+        "refundable": false
+      }
     ],
-    "profitTargets": null,
+    "profitTargets": {
+      "phase1": 6
+    },
     "dailyLossPct": null,
     "maxLossPct": null,
-    "drawdownType": "trailing",
-    "minTradingDays": null,
+    "drawdownType": "eod-trailing",
+    "minTradingDays": 2,
     "maxTradingDays": null,
-    "consistencyRulePct": null,
+    "consistencyRulePct": 50,
     "profitSplitPct": 90,
-    "payoutFirstDays": 0,
+    "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": true,
-      "weekend": false,
-      "overnight": false,
-      "ea": true,
-      "copyTrading": false
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
     },
     "assetClass": "futures",
-    "sourceUrl": "https://myfundedfutures.com/rapid",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://myfundedfutures.com/challenge",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Daily payouts (the 'Rapid' name comes from same-day payout cadence).",
-      "$100K request cap mentioned on homepage.",
-      "Pricing, drawdown specifics, profit targets not on accessible public pages."
-    ]
+      "Single-phase evaluation (\"steps\": 1, \"phase_based\": false). No Phase 2.",
+      "Monthly subscription: \"access_days\": 30, \"one_time\": false. Rapid 25K renews cheaper: \"renewal_price\": 97.0 vs first-month 109.0. Other sizes renew at the same price.",
+      "NO ACTIVATION FEE: returns \"activation_fee\": false and \"activation_price\": 0.0 on all four sizes.",
+      "maxLossPct left null because it VARIES by size: $1,000 on 25K (4%), $2,000 on 50K (4%), $3,000 on 100K (3%), $4,500 on 150K (3%) - API \"max_drawdown_amount\".",
+      "Drawdown is EOD-trailing during evaluation (\"drawdown_mode\": \"EOD\") but switches to intraday/real-time trailing once Sim Funded (\"drawdown_mode_in_funded\": \"RealTime\"). Help center calls the funded stage \"Intra-day trailing\".",
+      "Trailing drawdown locks $100 above starting balance (\"max_drawdown_limit\": 25100/50100/100100/150100).",
+      "dailyLossPct null: API \"daily_drawdown\": 0.0 and help center states Daily Loss Limit \"None\".",
+      "Consistency 50% applies in evaluation only (\"consistency_percentage_in_eval\": 0.5, \"consistency_percentage_in_funded\": 0.0).",
+      "Payout buffer must be cleared before withdrawal: \"buffer_amount\" 1100/2100/3100/4600. Minimum withdrawal $500.",
+      "Max position size (contracts): 3 / 5 / 8 / 10 by size.",
+      "Reset price for the 25K is $97 (\"reset_price\": 97.0); other sizes reset at full price.",
+      "Highest profit split of the four plans (90%) and fastest payouts (every 24h).",
+      "Corroborated at https://help.myfundedfutures.com/en/articles/13134709-rapid-plan-50k-a-comprehensive-look",
+      "PROMO ACTIVE at capture: coupon \"code\": \"300k\", \"amountOff\": 50.0, \"typeOff\": \"%\", \"recurring\": false - 50% off first month only. Prices above are undiscounted list prices.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-07-27.json"
+    ],
+    "pricingModel": "monthly-subscription",
+    "activationFeeUsd": 0
   },
   {
     "firmSlug": "my-funded-futures",
-    "productName": "MFF Scale",
-    "productSlug": "mff-scale",
+    "productName": "Flex",
+    "productSlug": "flex",
     "phases": 1,
     "accountSizes": [
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": false },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": false }
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 95,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 153,
+        "refundable": false
+      }
     ],
-    "profitTargets": null,
+    "profitTargets": {
+      "phase1": 6
+    },
     "dailyLossPct": null,
-    "maxLossPct": null,
-    "drawdownType": "trailing",
-    "minTradingDays": null,
+    "maxLossPct": 4,
+    "drawdownType": "eod-trailing",
+    "minTradingDays": 2,
     "maxTradingDays": null,
-    "consistencyRulePct": null,
-    "profitSplitPct": 90,
-    "payoutFirstDays": null,
+    "consistencyRulePct": 50,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 5,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": true,
-      "weekend": false,
-      "overnight": false,
-      "ea": true,
-      "copyTrading": false
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
     },
     "assetClass": "futures",
-    "sourceUrl": "https://myfundedfutures.com/",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://myfundedfutures.com/challenge",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Core scaling product. Most rule and pricing detail not accessible from public pages — verify before publishing.",
-      "Up to 90% profit share; scaling available up to $100K."
-    ]
+      "Single-phase evaluation (\"steps\": 1, \"phase_based\": false).",
+      "Monthly subscription: \"access_days\": 30, \"one_time\": false, renewal_price equals price.",
+      "NO ACTIVATION FEE: \"activation_fee\": false, \"activation_price\": 0.0.",
+      "maxLossPct = 4% is uniform across both sizes: $1,000 on 25K and $2,000 on 50K.",
+      "dailyLossPct null by default. Help center: \"None by default; optional $1,000 intraday soft pause available with DLL add-on\". API exposes a Flex 50K add-on product (id 88) carrying \"daily_drawdown\": 1000.0.",
+      "Withdrawals are CAPPED on Flex: \"capped_withdrawals\": true, \"withdrawal_cap_amount\": 1000.0 (25K) / 2000.0 (50K). Only 50% of profit is requestable (\"requestable_pct\": 0.5). Most restrictive payout structure of the four plans.",
+      "Sim-funded reset is expensive: \"sim_funded_reset_price\": 399.0 (25K) / 599.0 (50K).",
+      "First payout requires 5 winning days with $150+ net PnL each and $500 net profit (help center). API: \"initial_withdrawal_days\": 5, \"subsequent_withdrawal_days\": 5.",
+      "payoutFrequency recorded as on-demand: the real cadence is every 5 days, which has no matching enum value.",
+      "Minimum withdrawal $250 (25K) / $500 (50K). Max position size 2 / 3 contracts.",
+      "Corroborated at https://help.myfundedfutures.com/en/articles/15072271-flex-plan-50-000-a-comprehensive-guide",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-07-27.json"
+    ],
+    "pricingModel": "monthly-subscription",
+    "activationFeeUsd": 0
+  },
+  {
+    "firmSlug": "my-funded-futures",
+    "productName": "Pro",
+    "productSlug": "pro",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 227,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 344,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 150000,
+        "priceUsd": 477,
+        "refundable": false
+      }
+    ],
+    "profitTargets": {
+      "phase1": 6
+    },
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "eod-trailing",
+    "minTradingDays": 2,
+    "maxTradingDays": null,
+    "consistencyRulePct": 50,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "futures",
+    "sourceUrl": "https://myfundedfutures.com/challenge",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Single-phase evaluation (\"steps\": 1, \"phase_based\": false).",
+      "Monthly subscription: \"access_days\": 30, \"one_time\": false, renewal_price equals price.",
+      "NO ACTIVATION FEE: \"activation_fee\": false, \"activation_price\": 0.0. Help center: \"$0\" across all account tiers.",
+      "maxLossPct left null because it VARIES by size: $2,000 on 50K (4%), $3,000 on 100K (3%), $4,500 on 150K (3%).",
+      "dailyLossPct null: API \"daily_drawdown\": 0.0; help center explicitly \"No Daily Loss Limit\".",
+      "Consistency 50% in evaluation only; \"consistency_percentage_in_funded\": 0.0 (help center: \"None\" during sim-funded).",
+      "Payout buffer must be cleared: \"buffer_amount\" 2100 / 3100 / 4600. Minimum withdrawal $1,000 - the highest of the four plans.",
+      "Max position size (contracts): 3 / 6 / 9 by size.",
+      "Most expensive plan per account size and slowest first payout (14 days), but no withdrawal cap (\"capped_withdrawals\": false, \"requestable_pct\": 1.0).",
+      "Corroborated at https://help.myfundedfutures.com/en/articles/11802674-pro-plan-sim-funded-and-live-account-highlights",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-07-27.json"
+    ],
+    "pricingModel": "monthly-subscription",
+    "activationFeeUsd": 0
+  },
+  {
+    "firmSlug": "my-funded-futures",
+    "productName": "Builder",
+    "productSlug": "builder",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 105,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 153,
+        "refundable": false
+      }
+    ],
+    "profitTargets": {
+      "phase1": 6
+    },
+    "dailyLossPct": null,
+    "maxLossPct": 4,
+    "drawdownType": "eod-trailing",
+    "minTradingDays": 1,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 2,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "futures",
+    "sourceUrl": "https://myfundedfutures.com/challenge",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "The 50K tier is returned by the API under the internal name \"Builder 2.0K\" but its \"account_size\" is 50000.0 - it is the Builder 50K plan. Do NOT read \"2.0K\" as a $2,000 account.",
+      "Single-phase evaluation (\"steps\": 1, \"phase_based\": false).",
+      "Monthly subscription: \"access_days\": 30, \"one_time\": false, renewal_price equals price.",
+      "NO ACTIVATION FEE: \"activation_fee\": false, \"activation_price\": 0.0. Help center: \"There are absolutely no activation fees on any of our plans.\"",
+      "maxLossPct = 4% uniform: $1,000 on 25K, $2,000 on 50K.",
+      "consistencyRulePct null because Builder INVERTS the usual pattern: \"consistency_percentage_in_eval\": 0.0 (no consistency rule in evaluation) but \"consistency_percentage_in_funded\": 0.5 (50% once Sim Funded). Help center confirms \"no consistency requirement\" in eval and a \"50%\" consistency rule at payout.",
+      "dailyLossPct null at product level because it differs by size: API \"daily_drawdown\": 0.0 on Builder 25K but 1000.0 on Builder 50K. Help center describes it as a \"$1,000 - soft pause\", not a hard breach (\"dll_hard_breach\": 0.0).",
+      "Builder 50K is sold with two Max Loss Limit options at checkout. Help center: Default $153 with $2,000 Max EOD Drawdown; Add-On $125 with $1,500 Max EOD Drawdown. Only the Default ($153) is captured in accountSizes above.",
+      "Withdrawals CAPPED: \"capped_withdrawals\": true, \"withdrawal_cap_amount\": 1000.0 (25K) / 2000.0 (50K). Help center: \"Maximum Payout Per Cycle: $2,000\" and up to 5 sim payouts.",
+      "Limit of 1 Builder account per user. Inactivity rule: 7 calendar days.",
+      "payoutFrequency recorded as on-demand: real cadence is every 2 days (\"initial_withdrawal_days\": 2, \"subsequent_withdrawal_days\": 2). Live accounts pay \"Daily\".",
+      "Builder 25K is the newest product in the catalogue (\"created_at\": \"2026-07-07\"), added ~3 weeks before capture.",
+      "Corroborated at https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-07-27.json"
+    ],
+    "pricingModel": "monthly-subscription",
+    "activationFeeUsd": 0
   }
 ]

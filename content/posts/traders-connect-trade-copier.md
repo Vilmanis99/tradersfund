@@ -12,7 +12,7 @@ type: "post"
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"textColor":"black","gradient":"light-green-cyan-to-vivid-green-cyan","className":"is-style-fill","style":{"elements":{"link":{"color":{"text":"var:preset|color|black"}}}}} -->
-<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-black-color has-light-green-cyan-to-vivid-green-cyan-gradient-background has-text-color has-background has-link-color wp-element-button" href="/go-tradersconnect" target="_blank" rel="noreferrer noopener nofollow"><strong>Visit Traders Connect</strong></a></div>
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-black-color has-light-green-cyan-to-vivid-green-cyan-gradient-background has-text-color has-background has-link-color wp-element-button" href="/go/traders-connect" target="_blank" rel="noreferrer noopener nofollow"><strong>Visit Traders Connect</strong></a></div>
 </div>
 
 <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -175,7 +175,7 @@ type: "post"
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"textColor":"black","gradient":"light-green-cyan-to-vivid-green-cyan","className":"is-style-fill","style":{"elements":{"link":{"color":{"text":"var:preset|color|black"}}}}} -->
-<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-black-color has-light-green-cyan-to-vivid-green-cyan-gradient-background has-text-color has-background has-link-color wp-element-button" href="/go-tradersconnect" target="_blank" rel="noreferrer noopener nofollow"><strong>Visit Traders Connect</strong></a></div>
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-black-color has-light-green-cyan-to-vivid-green-cyan-gradient-background has-text-color has-background has-link-color wp-element-button" href="/go/traders-connect" target="_blank" rel="noreferrer noopener nofollow"><strong>Visit Traders Connect</strong></a></div>
 </div>
 
 <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>

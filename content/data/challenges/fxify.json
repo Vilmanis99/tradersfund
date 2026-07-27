@@ -1,59 +1,206 @@
 [
   {
     "firmSlug": "fxify",
-    "productName": "FXIFY One-Phase",
-    "productSlug": "fxify-one-phase",
+    "productName": "One Phase",
+    "productSlug": "one-phase",
     "phases": 1,
     "accountSizes": [
-      { "sizeUsd": 5000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 10000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 200000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 400000, "priceUsd": null, "refundable": true }
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 59,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 89,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 15000,
+        "priceUsd": 119,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 199,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 379,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 549,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 1049,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 2950,
+        "refundable": true
+      }
     ],
-    "profitTargets": { "phase1": 10 },
-    "dailyLossPct": 4,
-    "maxLossPct": 10,
+    "profitTargets": {
+      "phase1": 10
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 6,
     "drawdownType": "trailing",
-    "minTradingDays": null,
+    "minTradingDays": 5,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
-    "payoutFirstDays": 1,
-    "payoutFrequency": "on-demand",
+    "payoutFirstDays": null,
+    "payoutFrequency": "monthly",
     "rules": {
       "news": true,
       "weekend": true,
-      "overnight": true,
+      "overnight": null,
       "ea": true,
-      "copyTrading": false
+      "copyTrading": null
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://fxify.com/how-it-works",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://fxify.com/programs/one-phase/",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Pricing customizable at checkout (leverage/split/payout add-ons) — base prices not single-source.",
-      "Trailing max loss tracks equity high until funded threshold.",
-      "Split scales to 90% with add-ons; up to 100% on FXIFY Futures."
+      "Prices are LIST prices from the site's own inline CMS payload; site-wide coupons HOT20 (20% off) and NEW30 (30% off 2 Phase Pro) are applied at checkout and are NOT reflected here.",
+      "Max trading days \"Unlimited\" -> recorded as null.",
+      "Profit split: 80% standard, 90% via paid checkout upgrade. Headline value reads \"up to 90%\".",
+      "Leverage \"up to 50:1\"; standard is 30:1, upgradeable at checkout.",
+      "Platform: MT5, DXTrade or TradingView.",
+      "overnight-holding and copy-trading policies are not stated anywhere on the domain -> null.",
+      "Refundable fee 100%, paid with first withdrawal. \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\"",
+      "First payout is on-demand after the first closed trade (min 50 USD, 5 min trading days); thereafter monthly, or bi-weekly with a paid add-on.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
     ]
   },
   {
     "firmSlug": "fxify",
-    "productName": "FXIFY Two-Phase",
-    "productSlug": "fxify-two-phase",
+    "productName": "Two Phase Classic",
+    "productSlug": "two-phase-classic",
     "phases": 2,
     "accountSizes": [
-      { "sizeUsd": 5000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 10000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 200000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 400000, "priceUsd": null, "refundable": true }
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 59,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 89,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 15000,
+        "priceUsd": 119,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 199,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 379,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 549,
+        "refundable": true
+      }
     ],
-    "profitTargets": { "phase1": 10, "phase2": 5 },
+    "profitTargets": {
+      "phase1": 5,
+      "phase2": 10
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": 25,
+    "profitSplitPct": 80,
+    "payoutFirstDays": null,
+    "payoutFrequency": "monthly",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": null,
+      "ea": true,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fxify.com/programs/two-phase/",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Prices are LIST prices from the site's inline CMS payload; coupons HOT20 (20% off) / NEW30 (30% off 2 Phase Pro) apply at checkout.",
+      "minTradingDays left null: the CMS is self-contradictory for Two Phase - \"Minimum trading days\" appears as both \"4 days\" and \"5 days\", while the attached description says \"5 trading days per stage. Therefore a total of 10 minimum trading days across both stages of the 2 Phase assessment.\"",
+      "Profit split headline value renders as \"up to 100%\" but its own description says \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split\" - recorded 80 per the description; the 100% figure is unexplained.",
+      "overnight-holding and copy-trading policies not stated -> null.",
+      "Consistency Rule 25% applies to the Funded stage only (\"N/A\" in Phase 1 and Phase 2).",
+      "Fee refundable per site-wide statement: \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\"",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "fxify",
+    "productName": "Two Phase Standard",
+    "productSlug": "two-phase-standard",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 59,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 89,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 15000,
+        "priceUsd": 119,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 199,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 379,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 549,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 1049,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 2950,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 10,
+      "phase2": 5
+    },
     "dailyLossPct": 4,
     "maxLossPct": 10,
     "drawdownType": "trailing",
@@ -61,165 +208,390 @@
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
-    "payoutFirstDays": 1,
-    "payoutFrequency": "on-demand",
+    "payoutFirstDays": null,
+    "payoutFrequency": "monthly",
     "rules": {
       "news": true,
       "weekend": true,
-      "overnight": true,
+      "overnight": null,
       "ea": true,
-      "copyTrading": false
+      "copyTrading": null
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://fxify.com/how-it-works",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://fxify.com/programs/two-phase/",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Standard two-step model with lower per-phase cost vs One-Phase at the same account size."
+      "Prices are LIST prices from the site's inline CMS payload; coupons HOT20 (20% off) / NEW30 (30% off 2 Phase Pro) apply at checkout.",
+      "minTradingDays left null: the CMS is self-contradictory for Two Phase - \"Minimum trading days\" appears as both \"4 days\" and \"5 days\", while the attached description says \"5 trading days per stage. Therefore a total of 10 minimum trading days across both stages of the 2 Phase assessment.\"",
+      "Profit split headline value renders as \"up to 100%\" but its own description says \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split\" - recorded 80 per the description; the 100% figure is unexplained.",
+      "overnight-holding and copy-trading policies not stated -> null.",
+      "Phase 1 target (10%) is HIGHER than Phase 2 (5%) as published - this is what the table states, not a transcription error.",
+      "No consistency rule row shown for this variant -> null.",
+      "Refundable Fee row: \"100%\" in Phase 1.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
     ]
   },
   {
     "firmSlug": "fxify",
-    "productName": "FXIFY Three-Phase",
-    "productSlug": "fxify-three-phase",
+    "productName": "Two Phase Pro",
+    "productSlug": "two-phase-pro",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 129,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 225,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 375,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 599,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 150000,
+        "priceUsd": 849,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 1099,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 250000,
+        "priceUsd": 1350,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 4,
+      "phase2": 8
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 8,
+    "drawdownType": null,
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": null,
+    "payoutFrequency": "monthly",
+    "rules": {
+      "news": true,
+      "weekend": true,
+      "overnight": null,
+      "ea": true,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fxify.com/programs/two-phase/",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Prices are LIST prices from the site's inline CMS payload; coupons HOT20 (20% off) / NEW30 (30% off 2 Phase Pro) apply at checkout.",
+      "minTradingDays left null: the CMS is self-contradictory for Two Phase - \"Minimum trading days\" appears as both \"4 days\" and \"5 days\", while the attached description says \"5 trading days per stage. Therefore a total of 10 minimum trading days across both stages of the 2 Phase assessment.\"",
+      "Profit split headline value renders as \"up to 100%\" but its own description says \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split\" - recorded 80 per the description; the 100% figure is unexplained.",
+      "overnight-holding and copy-trading policies not stated -> null.",
+      "drawdownType null: this variant’s row is labelled only \"Max Loss Limit\" (8%) with no description and no static/trailing wording - not inferred.",
+      "Target of the NEW30 coupon: \"NEW TRADERS: 30% OFF 2 PHASE PRO\", code NEW30.",
+      "Smallest tier is $10k - there is no $5k Pro account.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "fxify",
+    "productName": "Three Phase",
+    "productSlug": "three-phase",
     "phases": 3,
     "accountSizes": [
-      { "sizeUsd": 5000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 10000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 39,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 59,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 15000,
+        "priceUsd": 79,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 149,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 249,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 399,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 799,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 1599,
+        "refundable": true
+      }
     ],
-    "profitTargets": null,
-    "dailyLossPct": null,
-    "maxLossPct": null,
-    "drawdownType": "trailing",
-    "minTradingDays": null,
+    "profitTargets": {
+      "phase1": 5,
+      "phase2": 5,
+      "phase3": 5
+    },
+    "dailyLossPct": 5,
+    "maxLossPct": 5,
+    "drawdownType": "static",
+    "minTradingDays": 5,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
-    "payoutFirstDays": 1,
-    "payoutFrequency": "on-demand",
+    "payoutFirstDays": null,
+    "payoutFrequency": "monthly",
     "rules": {
       "news": true,
       "weekend": true,
-      "overnight": true,
+      "overnight": null,
       "ea": true,
-      "copyTrading": false
+      "copyTrading": null
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://fxify.com/",
-    "sourceCapturedAt": "2026-05-20",
+    "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Three-phase evaluation, lowest per-tier cost. Phase rules not on accessible public pages — verify before publishing."
+      "Prices are LIST prices from the site's inline CMS payload; HOT20 (20% off) applies at checkout.",
+      "minTradingDays is 5 PER STAGE: \"The minimum time to complete the FXIFY™ Challenge is 5 trading days per stage. Therefore a total of 15 minimum trading days across all three stages.\"",
+      "Cheapest product on the site: $5k for $39.",
+      "Max drawdown equals the daily loss limit (both 5%) - as published.",
+      "overnight-holding and copy-trading policies not stated -> null.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
     ]
   },
   {
     "firmSlug": "fxify",
-    "productName": "FXIFY Lightning",
-    "productSlug": "fxify-lightning",
-    "phases": 1,
-    "accountSizes": [
-      { "sizeUsd": 5000, "priceUsd": 59, "refundable": true },
-      { "sizeUsd": 10000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": true }
-    ],
-    "profitTargets": { "phase1": 5 },
-    "dailyLossPct": 4,
-    "maxLossPct": 10,
-    "drawdownType": "trailing",
-    "minTradingDays": null,
-    "maxTradingDays": 7,
-    "consistencyRulePct": null,
-    "profitSplitPct": 80,
-    "payoutFirstDays": 1,
-    "payoutFrequency": "on-demand",
-    "rules": {
-      "news": true,
-      "weekend": true,
-      "overnight": true,
-      "ea": true,
-      "copyTrading": false
-    },
-    "assetClass": "cfd",
-    "sourceUrl": "https://fxify.com/",
-    "sourceCapturedAt": "2026-05-20",
-    "notes": [
-      "7-day accelerated evaluation. Single phase, lower 5% profit target.",
-      "Lowest entry price in the lineup — from $59. Higher-tier pricing not verified."
-    ]
-  },
-  {
-    "firmSlug": "fxify",
-    "productName": "FXIFY Instant",
-    "productSlug": "fxify-instant",
+    "productName": "Instant Funding Standard",
+    "productSlug": "instant-funding-standard",
     "phases": 0,
     "accountSizes": [
-      { "sizeUsd": 5000, "priceUsd": null, "refundable": false },
-      { "sizeUsd": 10000, "priceUsd": null, "refundable": false },
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": false },
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": false }
+      {
+        "sizeUsd": 1000,
+        "priceUsd": 69,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 2500,
+        "priceUsd": 119,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 229,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 449,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 899,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 1749,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 75000,
+        "priceUsd": 2499,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 4249,
+        "refundable": false
+      }
     ],
     "profitTargets": null,
-    "dailyLossPct": null,
-    "maxLossPct": null,
-    "drawdownType": "trailing",
-    "minTradingDays": 0,
-    "maxTradingDays": null,
-    "consistencyRulePct": null,
-    "profitSplitPct": 90,
-    "payoutFirstDays": 1,
-    "payoutFrequency": "bi-weekly",
-    "rules": {
-      "news": true,
-      "weekend": true,
-      "overnight": true,
-      "ea": true,
-      "copyTrading": false
-    },
-    "assetClass": "cfd",
-    "sourceUrl": "https://fxify.com/",
-    "sourceCapturedAt": "2026-05-20",
-    "notes": [
-      "No evaluation. Bi-weekly payouts on funded account. Split scales up to 90%.",
-      "Pricing not publicly published — varies by add-on selections at checkout."
-    ]
-  },
-  {
-    "firmSlug": "fxify",
-    "productName": "FXIFY Futures",
-    "productSlug": "fxify-futures",
-    "phases": 1,
-    "accountSizes": [
-      { "sizeUsd": 25000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 150000, "priceUsd": null, "refundable": true }
-    ],
-    "profitTargets": null,
-    "dailyLossPct": null,
-    "maxLossPct": null,
+    "dailyLossPct": 8,
+    "maxLossPct": 8,
     "drawdownType": "trailing",
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": null,
-    "profitSplitPct": 100,
-    "payoutFirstDays": 3,
-    "payoutFrequency": "on-demand",
+    "profitSplitPct": null,
+    "payoutFirstDays": null,
+    "payoutFrequency": null,
     "rules": {
-      "news": true,
-      "weekend": false,
-      "overnight": false,
-      "ea": true,
-      "copyTrading": false
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
     },
-    "assetClass": "futures",
-    "sourceUrl": "https://fxify.com/",
-    "sourceCapturedAt": "2026-05-20",
+    "assetClass": "cfd",
+    "sourceUrl": "https://fxify.com/programs/instant-funding/",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Futures-only product. Up to 100% split. Funding in as little as 3 days.",
-      "Overnight/weekend restrictions follow futures-session norms.",
-      "Specific tier pricing and targets not on public pages."
+      "Prices are LIST prices from the site's inline CMS payload. NOTE: the HOT20 summer coupon explicitly EXCLUDES Instant Lite - \"SUMMER SALE: 20% OFF (excl. Instant Lite)\".",
+      "No evaluation and no profit target - funded from purchase.",
+      "Fee is NOT refundable: \"Refund\" = \"No\".",
+      "payoutFrequency null: CMS feature says \"Payout Frequency\" = \"10 days\" while the Instant Funding page body says \"Instant Funding accounts offer payouts every 14 days\" - contradictory, so not recorded.",
+      "Withdrawal Policy = \"$50\" minimum.",
+      "overnight-holding and copy-trading policies not stated -> null.",
+      "profitSplitPct null: only \"Performance Split\" = \"Up to 90%\" is given, with no stated base split (unlike the phase products, which state 80% standard).",
+      "minTradingDays null: CMS gives \"Minimum Trading Day\" = \"N/A\" in two blocks and \"5 trading days\" in a third - contradictory.",
+      "Tier list runs $1k to $100K; the page headline claims \"Choose account sizes up to $50K\", which conflicts with the $75K and $100K tiers present in the table.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "fxify",
+    "productName": "Instant Funding Lite",
+    "productSlug": "instant-funding-lite",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 2500,
+        "priceUsd": 19,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 44,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 89,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 169,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 289,
+        "refundable": false
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": 3,
+    "maxLossPct": 4,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": 20,
+    "profitSplitPct": null,
+    "payoutFirstDays": null,
+    "payoutFrequency": null,
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fxify.com/programs/instant-funding/",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Prices are LIST prices from the site's inline CMS payload. NOTE: the HOT20 summer coupon explicitly EXCLUDES Instant Lite - \"SUMMER SALE: 20% OFF (excl. Instant Lite)\".",
+      "No evaluation and no profit target - funded from purchase.",
+      "Fee is NOT refundable: \"Refund\" = \"No\".",
+      "payoutFrequency null: CMS feature says \"Payout Frequency\" = \"10 days\" while the Instant Funding page body says \"Instant Funding accounts offer payouts every 14 days\" - contradictory, so not recorded.",
+      "Withdrawal Policy = \"$50\" minimum.",
+      "overnight-holding and copy-trading policies not stated -> null.",
+      "Lite prices are stored in the CMS WITHOUT a \"$\" prefix (e.g. \"price\":\"19\"); read as USD, consistent with every other tier on the site.",
+      "Explicitly excluded from the HOT20 20% summer discount.",
+      "Rules (news/weekend/EA) come from the shared Instant Funding feature block - the CMS does not split these per Standard/Lite variant.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "fxify",
+    "productName": "Lightning Challenge",
+    "productSlug": "lightning-challenge",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 59,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 149,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 249,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 399,
+        "refundable": true
+      }
+    ],
+    "profitTargets": {
+      "phase1": 5
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 4,
+    "drawdownType": "trailing",
+    "minTradingDays": 3,
+    "maxTradingDays": 5,
+    "consistencyRulePct": 30,
+    "profitSplitPct": null,
+    "payoutFirstDays": null,
+    "payoutFrequency": null,
+    "rules": {
+      "news": null,
+      "weekend": true,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Prices are LIST prices from the site's inline CMS payload; HOT20 (20% off) applies at checkout.",
+      "Smallest Lightning account is $10K - there is NO $5K Lightning tier.",
+      "Mandatory stop loss: \"Risk Management\" = \"Mandatory SL on every trade\"; table row \"Stop Loss Required?\" = \"Yes\".",
+      "Hard 5-day time limit: \"Maximum Trading Days\" = \"5 days\" (table \"Maximum Trading Days\": [\"5\", \"-\"]).",
+      "Leverage \"Up to 30:1\" - lower than the 50:1 available on the phase products.",
+      "profitSplitPct null: only \"Performance Split\" = \"Up to 90%\" given, no stated base split.",
+      "payoutFrequency null: not stated for Lightning.",
+      "\"Refund\" = \"Yes\" but no percentage is stated for Lightning - the \"1,2 and 3 Phase plans\" refund sentence does not name Lightning.",
+      "Platform value reads \"Platform 5\" (apparent CMS typo).",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
     ]
   }
 ]

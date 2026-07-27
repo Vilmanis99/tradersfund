@@ -108,16 +108,31 @@ type: "post"
 
   REVIEW BEFORE MERGE (editor checklist)
   ---------------------------------------------------------------
-  [ ] All 9 sections present in the order above
-  [ ] Zero banned phrases (search the file)
-  [ ] Every paragraph has a number/rule/source
-  [ ] Every challenge row cites sourceCapturedAt within 30 days
-  [ ] Math audit: one row of the True-Cost table reproduced by hand
-  [ ] All firm URLs in body go through /go/<firm-slug>
-  [ ] npx next build clean
-  [ ] Spot-check 3 numbers against the live firm page
-  [ ] (Optional) trader-friend review — reject any "reads like
-       marketing" feedback
+  Run `npm run audit` first — it mechanises every item marked [auto]
+  below, including reproducing the True-Cost table with the real
+  computeTrueCost() rather than by hand. `npm run audit -- --warn`
+  adds the advisory checks; `npm run audit -- <firm>` scopes to one
+  review. A non-zero exit means the review is not mergeable.
+
+  [auto] All 9 sections present in the order above
+  [auto] Zero banned phrases (search the file)
+  [auto] Every challenge row cites sourceCapturedAt within 30 days
+  [auto] sourceUrl is the firm's public URL, not one of our pages
+  [auto] Math audit: True-Cost rows reproduced by computeTrueCost()
+  [auto] All firm URLs in body go through /go/<firm-slug>
+  [auto] Word count within the floor/ceiling for this review's tier
+  [warn] Every paragraph has a number/rule/source
+  [warn] No dollar figures on a firm whose priceUsd is all null
+  [ ]    npx next build clean
+  [ ]    Spot-check 3 numbers against the live firm page
+  [ ]    (Optional) trader-friend review — reject any "reads like
+         marketing" feedback
+
+  A firm whose products carry different splits or drawdown caps needs
+  ONE TRUE-COST TABLE PER PRODUCT. A single table whose header says
+  "95% split / 10% max DD" cannot also carry rows for a product that
+  pays 80% against a 6% trailing cap — the numbers underneath stop
+  matching the assumptions stated above them.
 -->
 
 <!-- ============================================================

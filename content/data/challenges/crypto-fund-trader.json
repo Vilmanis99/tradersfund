@@ -1,65 +1,287 @@
 [
   {
     "firmSlug": "crypto-fund-trader",
-    "productName": "CFT Challenge",
-    "productSlug": "crypto-fund-trader-default",
+    "productName": "Evaluation (Standard 2-Phase)",
+    "productSlug": "evaluation",
     "phases": 2,
     "accountSizes": [
       {
         "sizeUsd": 5000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 58,
+        "refundable": null
       },
       {
         "sizeUsd": 10000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 110,
+        "refundable": null
       },
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 240,
+        "refundable": null
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 389,
+        "refundable": null
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 660,
+        "refundable": null
       },
       {
         "sizeUsd": 200000,
-        "priceUsd": null,
-        "refundable": true
+        "priceUsd": 1250,
+        "refundable": null
       }
     ],
-    "profitTargets": null,
-    "dailyLossPct": null,
-    "maxLossPct": null,
+    "profitTargets": {
+      "phase1": 8,
+      "phase2": 5
+    },
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 15,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "crypto",
+    "sourceUrl": "https://cryptofundtrader.com/",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "crypto-fund-trader",
+    "productName": "Ascend Evaluation",
+    "productSlug": "ascend",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 45,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 90,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 225,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 450,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 899,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 1798,
+        "refundable": null
+      }
+    ],
+    "profitTargets": {
+      "phase1": 8,
+      "phase2": 5
+    },
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
     "drawdownType": "static",
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
     "payoutFirstDays": null,
-    "payoutFrequency": "weekly",
+    "payoutFrequency": null,
     "rules": {
-      "news": "restricted",
-      "weekend": true,
-      "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
     },
-    "assetClass": "cfd",
-    "sourceUrl": "/blog/crypto-fund-trader-review",
-    "sourceCapturedAt": "2026-05-20",
+    "assetClass": "crypto",
+    "sourceUrl": "https://cryptofundtrader.com/",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "SKELETON ENTRY \u2014 only firm-level aggregates from firms.json populated.",
-      "Per-tier pricing, exact profit targets, and DD% require editorial verification against the live firm page.",
-      "Set fields to null until verified \u2014 never invent."
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "crypto-fund-trader",
+    "productName": "Accelerated (1-Phase)",
+    "productSlug": "accelerated",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 40,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 80,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 219,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 369,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 619,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 1199,
+        "refundable": null
+      }
+    ],
+    "profitTargets": {
+      "phase1": 10
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 6,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 15,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "crypto",
+    "sourceUrl": "https://cryptofundtrader.com/",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "crypto-fund-trader",
+    "productName": "Instant",
+    "productSlug": "instant",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 2500,
+        "priceUsd": 125,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 240,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 475,
+        "refundable": null
+      }
+    ],
+    "profitTargets": {
+      "phase1": 10
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 6,
+    "drawdownType": "balance-based",
+    "minTradingDays": 0,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 0,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "crypto",
+    "sourceUrl": "https://cryptofundtrader.com/",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-07-27.json"
+    ]
+  },
+  {
+    "firmSlug": "crypto-fund-trader",
+    "productName": "Break Challenge",
+    "productSlug": "break",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 70,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 139,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 199,
+        "refundable": null
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": null,
+    "maxLossPct": null,
+    "drawdownType": "trailing",
+    "minTradingDays": 0,
+    "maxTradingDays": null,
+    "consistencyRulePct": 40,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 0,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": null,
+      "weekend": null,
+      "overnight": null,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "crypto",
+    "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+    "sourceCapturedAt": "2026-07-27",
+    "notes": [
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-07-27.json"
     ]
   }
 ]

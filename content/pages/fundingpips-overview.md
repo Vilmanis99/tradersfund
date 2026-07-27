@@ -14,7 +14,7 @@ type: "page"
   <header>
         <img src="/images/wp/2025/10/Funding-Pips-Icon-White.webp" alt="FundingPips logo">
           <h1>
-            <a href="/go-fundingpips" target="_blank" rel="nofollow noreferrer noopener sponsored">FundingPips</a>
+            <a href="/go/fundingpips" target="_blank" rel="nofollow noreferrer noopener sponsored">FundingPips</a>
           </h1>
           CFD prop firm overview & details
           Headquarters
@@ -25,7 +25,7 @@ type: "page"
           $300,000
           Trustpilot
           4.5/5
-      <a href="/go-fundingpips" target="_blank" rel="nofollow noreferrer noopener sponsored">Take Challenge</a>
+      <a href="/go/fundingpips" target="_blank" rel="nofollow noreferrer noopener sponsored">Take Challenge</a>
       <a href="/blog/funding-pips-review">Read Full Review</a>
   </header>
   <!-- Sticky Tabs -->
@@ -141,7 +141,7 @@ type: "page"
 </ul>
 <p data-start="2592" data-end="2737">To qualify for the <strong data-start="2607" data-end="2631">On-Demand 90% payout</strong> (1-Step & 2-Step), traders need a 35% consistency score (no single day exceeding 35% of total profits).</p>		
 		<p>For more details about this prop firm, you can check out our full <a href="/blog/funding-pips-review">FundingPips review</a>.</p>		
-					<a href="/go-fundingpips" target="_blank" rel="nofollow">
+					<a href="/go/fundingpips" target="_blank" rel="nofollow">
 									Visit FundingPips
 					</a>
   <strong>Affiliate Disclaimer:</strong> This post may contain affiliate links, which means we may receive a small commission if you choose to sign up or make a purchase through one of our links. This comes at no additional cost to you and helps us continue to create useful content for the trading community. We only recommend services we trust and personally use.

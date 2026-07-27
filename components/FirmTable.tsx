@@ -3,6 +3,8 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Firm } from '@/lib/firms'
+import TrustpilotRating from './TrustpilotRating'
+import { formatCapturedAt } from '@/lib/trustpilot'
 import { Search, ArrowUpDown, ExternalLink, Handshake, Tag } from 'lucide-react'
 
 const ALL = 'All'
@@ -12,7 +14,7 @@ export default function FirmTable({ firms }: { firms: Firm[] }) {
   const [assetFilter, setAssetFilter] = useState(ALL)
   const [platformFilter, setPlatformFilter] = useState(ALL)
   const [minScore, setMinScore] = useState(0)
-  const [sortBy, setSortBy] = useState<'score' | 'name' | 'founded' | 'profitSplitPct'>('score')
+  const [sortBy, setSortBy] = useState<'score' | 'name' | 'founded' | 'profitSplitPct' | 'trustpilotScore'>('score')
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc')
 
   const allAssets = useMemo(() => {
@@ -34,6 +36,16 @@ export default function FirmTable({ firms }: { firms: Firm[] }) {
     if (platformFilter !== ALL) list = list.filter(f => f.platforms?.includes(platformFilter))
     if (minScore > 0) list = list.filter(f => f.score >= minScore)
     list.sort((a, b) => {
+      // Firms with no numeric Trustpilot score always sort last, whichever
+      // direction is active. A suppressed rating and an uncaptured one are
+      // both "no number" — neither means the firm scored zero, so neither
+      // should be ranked as the worst.
+      if (sortBy === 'trustpilotScore') {
+        const at = a.trustpilotScore ?? null
+        const bt = b.trustpilotScore ?? null
+        if (at == null || bt == null) return at == null && bt == null ? 0 : at == null ? 1 : -1
+        return sortDir === 'asc' ? at - bt : bt - at
+      }
       let av: string | number = a[sortBy] ?? (typeof a[sortBy] === 'number' ? -Infinity : '')
       let bv: string | number = b[sortBy] ?? (typeof b[sortBy] === 'number' ? -Infinity : '')
       if (typeof av === 'string') av = av.toLowerCase()
@@ -55,6 +67,18 @@ export default function FirmTable({ firms }: { firms: Firm[] }) {
   }
 
   const hasFilters = search || assetFilter !== ALL || platformFilter !== ALL || minScore > 0
+
+  // Per-row capture dates would be noise (they're captured in one pass), so
+  // the freshest one is stated once beneath the table — the figures are a
+  // dated snapshot, not a live feed.
+  const trustpilotCaptured = useMemo(() => {
+    const latest = firms
+      .map(f => f.trustpilotCapturedAt)
+      .filter((d): d is string => Boolean(d))
+      .sort()
+      .at(-1)
+    return formatCapturedAt(latest)
+  }, [firms])
 
   return (
     <div>
@@ -113,6 +137,7 @@ export default function FirmTable({ firms }: { firms: Firm[] }) {
                 { label: 'Split', col: 'profitSplitPct' as const },
                 { label: 'Platforms', col: null },
                 { label: 'Score', col: 'score' as const },
+                { label: 'Trustpilot', col: 'trustpilotScore' as const },
                 { label: 'Review', col: null },
               ].map(({ label, col }) => {
                 const isSorted = col && sortBy === col
@@ -136,7 +161,7 @@ export default function FirmTable({ firms }: { firms: Firm[] }) {
           </thead>
           <tbody>
             {filtered.length === 0 ? (
-              <tr><td colSpan={8} style={{ padding: '2rem', textAlign: 'center', color: '#64748b' }}>No firms found</td></tr>
+              <tr><td colSpan={9} style={{ padding: '2rem', textAlign: 'center', color: '#64748b' }}>No firms found</td></tr>
             ) : filtered.map((firm, i) => {
               const isPartner = Boolean(firm.affiliateUrl)
               return (
@@ -200,6 +225,10 @@ export default function FirmTable({ firms }: { firms: Firm[] }) {
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>{firm.platforms?.map(p => <span key={p} className="chip" style={{ background: 'rgba(39,161,123,0.1)', color: '#5eead4', borderColor: 'rgba(39,161,123,0.2)' }}>{p}</span>)}</div>
                 </td>
                 <td style={{ padding: '12px 16px' }}><span className="score-badge">★ {firm.score}</span></td>
+                {/* Cited Trustpilot figure — links straight to the profile so
+                    readers can verify. Never routed through /go/: this is a
+                    citation, not an affiliate destination. */}
+                <td style={{ padding: '12px 16px' }}><TrustpilotRating firm={firm} linked /></td>
                 <td style={{ padding: '12px 16px' }}>
                   <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                     {firm.affiliateUrl ? (
@@ -236,7 +265,12 @@ export default function FirmTable({ firms }: { firms: Firm[] }) {
           </tbody>
         </table>
       </div>
-      <p style={{ color: '#475569', fontSize: '0.8rem', marginTop: '0.75rem' }}>Showing {filtered.length} of {firms.length} firms</p>
+      <p style={{ color: '#475569', fontSize: '0.8rem', marginTop: '0.75rem' }}>
+        Showing {filtered.length} of {firms.length} firms
+        {trustpilotCaptured && (
+          <> · Trustpilot figures verified {trustpilotCaptured} — a dated snapshot, not a live feed</>
+        )}
+      </p>
     </div>
   )
 }

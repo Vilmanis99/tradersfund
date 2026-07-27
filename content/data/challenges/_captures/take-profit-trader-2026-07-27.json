@@ -1,0 +1,115 @@
+{
+  "firmSlug": "take-profit-trader",
+  "officialDomain": "https://takeprofittrader.com",
+  "pagesRead": [
+    "https://takeprofittrader.com/",
+    "https://takeprofittrader.com/accounts/api/subscriptions",
+    "https://takeprofittrader.com/accounts/api/subscriptions/products",
+    "https://takeprofittrader.com/terms",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-6-Be-Consistent",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15172219527581-PRO-Account-Profit-Split-Withdrawal-Rules",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15171929948829-Advantages-of-PRO",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431176505245-Trade-Copier-Policy",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/29660646764445-NOFEE40-PROMO-FAQS"
+  ],
+  "accessNotes": "Site is an Angular SPA on takeprofittrader.com (www.takeprofittrader.com 308-redirects to the apex). /pricing and /how-it-works do not exist (404) — everything lives on the homepage. The homepage IS server-prerendered, so the Test/PRO/PRO+ comparison table and the '$130 one-time fee' text are readable in the initial HTML. The per-tier price/parameter table is NOT prerendered: it is client-rendered from the firm's own public, unauthenticated JSON API at https://takeprofittrader.com/accounts/api/subscriptions (endpoint path recovered from their JS bundles: accountsUrl '/accounts' + '/api/subscriptions'). All five tier prices below come from that first-party endpoint on the firm's own domain and were re-fetched twice with identical results. No geo-block encountered. RECURRING vs ONE-TIME: the five tier prices are MONTHLY SUBSCRIPTION fees for the Test (evaluation) — they recur every month until you pass or cancel. The $130 PRO activation fee is a separate ONE-TIME charge paid when converting a passed Test into a PRO account; there is no monthly fee on PRO/PRO+ after that. Help-center (Zendesk) articles are the firm's official support portal but are on takeprofittraderhelp.zendesk.com, not the firm's own domain — they were used ONLY to corroborate qualitative rules and the 80/90 splits, never as the source of a price. Zendesk returns 403 to WebFetch but 200 to curl with a desktop User-Agent. A promo banner (code NOFEE40) currently advertises '40% Off For Life + Never Pay An Activation Fee'; the API's discountPrice field is null for every tier, so the prices recorded are undiscounted list prices.",
+  "capturedAt": "2026-07-27",
+  "products": [
+    {
+      "productName": "The Test (Evaluation) — monthly subscription",
+      "productSlug": "the-test",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 150,
+          "refundable": false,
+          "evidence": "{\"id\":2,\"name\":\"$ 25k\",\"price\":150,\"discountPrice\":null,\"balance\":25000,\"profitTarget\":1500,\"maxPositionSize\":3,\"dailyLossLimit\":500,\"eodTrailingDrawdown\":1500}"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 170,
+          "refundable": false,
+          "evidence": "{\"id\":3,\"name\":\"$ 50k\",\"price\":170,\"discountPrice\":null,\"balance\":50000,\"profitTarget\":3000,\"maxPositionSize\":6,\"dailyLossLimit\":1100,\"eodTrailingDrawdown\":2000}"
+        },
+        {
+          "sizeUsd": 75000,
+          "priceUsd": 245,
+          "refundable": false,
+          "evidence": "{\"id\":4,\"name\":\"$ 75k\",\"price\":245,\"discountPrice\":null,\"balance\":75000,\"profitTarget\":4500,\"maxPositionSize\":9,\"dailyLossLimit\":1600,\"eodTrailingDrawdown\":2500}"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 330,
+          "refundable": false,
+          "evidence": "{\"id\":5,\"name\":\"$ 100k\",\"price\":330,\"discountPrice\":null,\"balance\":100000,\"profitTarget\":6000,\"maxPositionSize\":12,\"dailyLossLimit\":2200,\"eodTrailingDrawdown\":3000}"
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 360,
+          "refundable": false,
+          "evidence": "{\"id\":6,\"name\":\"$ 150k\",\"price\":360,\"discountPrice\":null,\"balance\":150000,\"profitTarget\":9000,\"maxPositionSize\":15,\"dailyLossLimit\":3300,\"eodTrailingDrawdown\":4500}"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": null
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": 50,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 0,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "No news rule on the Test. Applies only after funding: 'All PRO and PRO+ accounts must be out of all positions, and have no open orders, one minute before, during, and after the major news event. This does not apply for test accounts and you are free to trade through all news events.'",
+        "weekend": null,
+        "overnight": "Not allowed. UTP #6: 'positions may not be held from one session to the next.' Dashboard rule string: 'Don't hold open positions past 17:00 EST'.",
+        "ea": "Not allowed. UTP #1: 'No Trading Bots or Algos. Automated trading systems, bots, or algorithmic execution tools are not permitted.'",
+        "copyTrading": "Allowed only across your own accounts, using an approved copier. 'TakeProfitTrader permits the use of trade copiers solely for managing accounts owned and controlled by you.' Approved list: Tradesyncer, TradeCopia, Affordable Indicators, Replikanto (Compliance Edition only), Flowbot (Compliance Edition only), platform-native tools."
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://takeprofittrader.com/",
+      "notes": [
+        "RECURRING: the five priceUsd values are MONTHLY subscription fees for the Test, not one-time challenge fees. Confirmed by the firm's own checkout consent string 'I agree to get billed every month and I acknowledge that I can cancel whenever I want' and by the NOFEE40 FAQ: 'that account's monthly subscription will always be 40% off ... As soon as you pass then the monthly subscription stops.'",
+        "ONE-TIME ACTIVATION FEE CONFIRMED AT $130 and still in force. Homepage comparison table row 'Fees for PRO Account' reads 'One Time $130 Fee' (vs 'Monthly Recurring' for competitors); its tooltip reads 'Your monthly fees go away completely once you become a PRO Trader. Pay a one time $130 PRO Account setup fee, and ZERO monthly fees after that.' The fee is charged when converting a passed Test to a PRO account.",
+        "ACTIVATION FEE CURRENTLY WAIVABLE VIA PROMO: a site-wide banner advertises 'Get 40% Off For Life + Never Pay An Activation Fee! Use Code: NOFEE40'. Per the NOFEE40 FAQ: 'you'll get a 40% lifetime discount off any account and have your $130 PRO account activation fees waived on that account for life'. Other codes seen in the help center (NOFEE30, NOFEE50, NOFEE100) do the same at different discount levels. The API's discountPrice is null for all tiers, so recorded prices are LIST prices before any promo code.",
+        "PROFIT SPLITS CONFIRMED — our held values are CORRECT. Homepage 'Your Take Profit Funded Journey' table: 'Profit split — Test: None | PRO: 80/20 | PRO+: 90/10'. Tooltip: 'In the PRO accounts you keep 80% of your profits above the buffer and 90% in PRO+ accounts.' Help center: 'In the PRO account, the profit split is 80/20, where the trader keeps 80% of the profits' and PRO+ 'Benefits: 90/10 profit split, where the trader keeps 90% of the profits'.",
+        "PRO+ IS INVITATION-ONLY, NOT A PURCHASABLE TIER: 'Once a trader becomes eligible for a PRO+ upgrade, an official invitation will be sent via email ... the decision to upgrade a trader to a PRO+ account is made solely at the discretion of Take Profit Trader.' The API lists $25k-$150k 'PRO+' and 'PRO+D' variants at price 0 (not separately purchasable). No second activation fee for PRO+ was stated anywhere on the firm's own domain — NOT verified, treat as unknown.",
+        "profitTargets.phase1 = 6 (percent) is uniform across all five tiers and is therefore recorded, not interpolated: 1500/25k, 3000/50k, 4500/75k, 6000/100k, 9000/150k all equal exactly 6.0%.",
+        "maxLossPct LEFT NULL DELIBERATELY — the drawdown is a fixed DOLLAR amount that is NOT a constant percentage across tiers: $25k=$1,500 (6.0%), $50k=$2,000 (4.0%), $75k=$2,500 (3.33%), $100k=$3,000 (3.0%), $150k=$4,500 (3.0%). Use the dollar figures, not a single percent. Independently corroborated by the help center's buffer-zone table, where buffer = max drawdown: 25k $26,500 / 50k $52,000 / 75k $77,500 / 100k $103,000 / 150k $154,500 — an exact match to the API's eodTrailingDrawdown values.",
+        "dailyLossPct LEFT NULL — CONFLICTING FIRST-PARTY SOURCES. The homepage 'Your Take Profit Funded Journey' table states 'Daily loss rule — Test: None | PRO: None | PRO+: None', yet the same site's subscriptions API returns non-zero dailyLossLimit values for every Test tier ($500/$1,100/$1,600/$2,200/$3,300) and the dashboard i18n still carries the string 'Don't hit or exceed the ${{value}} Daily Loss Limit'. These cannot both be current. Do not publish a daily-loss figure for TPT until this is resolved with support.",
+        "Drawdown type differs by account stage: Test = End-Of-Day trailing (updates at 5PM EST), PRO = INTRADAY trailing (trails unrealized profit in real time), PRO+ = End-Of-Day. 'The drawdown across all three account types will STOP trailing once it has reached the initial account balance.' drawdownType above describes the Test only.",
+        "BUFFER ZONE gates PRO withdrawals: 'you must build a buffer on the account first. You can withdraw your profits at 80% once you reach the level of your maximum drawdown'. PRO+ has no buffer requirement. Withdrawing profits still inside the buffer is only possible after the account is terminated, and is paid at 50% if <=60 days since account opening, 80% if >60 days.",
+        "payoutFirstDays = 0 from the homepage differences table row 'Minimum Days Until First Withdrawal — Take Profit: 0 days' (vs '20-60 Days' for competitors), plus 'Withdrawals — PRO: Day one'. Subject to the buffer requirement above.",
+        "minTradingDays = 5: 'you must trade for a minimum of 5 trading days. A trading day is defined as any day in which you place at least one trade.' maxTradingDays is null because there is explicitly no limit: 'You may take as long as you want to complete the test.'",
+        "consistencyRulePct = 50 applies to the TEST ONLY (homepage table: 'Consistency rule — Test: Yes | PRO: None | PRO+: None'): 'no single trading day may exceed 50% of your total net profits'. Breaching it does not fail the account — it raises the target: 'Updated Profit Goal = Net P/L x 2'.",
+        "50-EXECUTIONS RULE applies to PRO only, not the Test: 'In the PRO Accounts, we ask that you do no more than 50 executions per day.'",
+        "Max position size per tier (contracts): 25k=3, 50k=6, 75k=9, 100k=12, 150k=15. No scaling plan — same buying power in PRO as in the Test.",
+        "Commissions: '$5/$0.50 RT' (round-turn, mini/micro) on Test and PRO; broker rates on PRO+.",
+        "Up to 3 PRO account resets available (homepage differences table). Test reset pricing requires login (/accounts/api/Accounts/account-reset-price returns HTTP 401) — NOT captured.",
+        "refundable=false: TPT sells a cancellable monthly subscription, not a refundable one-time challenge fee, and no standard refund-on-pass policy exists on the firm's domain. Refunds appear only as limited-time promos (e.g. NOFEE100 refunds '100% of your first month's test subscription cost'). Treat as low-confidence.",
+        "Accounts are SIM through Test and PRO; only PRO+ is live-routed. 41 tradable CME/NYMEX/COMEX/CBOT futures symbols returned by /accounts/api/subscriptions/products.",
+        "Firm entity: TakeProfitTrader LLC. Brokers/data: Tradovate, NinjaTrader, Rithmic."
+      ],
+      "fieldEvidence": {
+        "maxLossPct": "NULL — not a constant percentage. API: \"eodTrailingDrawdown\":1500 on \"balance\":25000 but \"eodTrailingDrawdown\":4500 on \"balance\":150000. Help center corroboration: 'The buffer is equal to the maximum drawdown amount on your account. Account Size / Buffer Zone: 25k $26,500 | 50k $52,000 | 75k $77,500 | 100k $103,000 | 150k $154,500'",
+        "profitSplitPct": "'Profit split — Test: None | PRO: 80/20 | PRO+: 90/10' (homepage journey table); tooltip: 'In the PRO accounts you keep 80% of your profits above the buffer and 90% in PRO+ accounts.'",
+        "profitTargets.phase1": "API, uniform 6% across all tiers: \"balance\":25000,\"profitTarget\":1500 ... \"balance\":150000,\"profitTarget\":9000",
+        "dailyLossPct": "NULL — conflict. Homepage: 'Daily loss rule — Test: None | PRO: None | PRO+: None'. API same-day: \"name\":\"$ 50k\",\"dailyLossLimit\":1100",
+        "drawdownType": "'The drawdown is End Of Day on test accounts, meaning it updates at the end of the trading day (5PM EST). On the PRO accounts, the drawdown is intraday ... In PRO+, the drawdown is End Of Day, the same as in the test.'",
+        "minTradingDays": "'you must trade for a minimum of 5 trading days. A trading day is defined as any day in which you place at least one trade.'",
+        "maxTradingDays": "NULL by explicit statement: 'You may take as long as you want to complete the test, but you must meet the 5-day minimum.'",
+        "consistencyRulePct": "'no single trading day may exceed 50% of your total net profits. This is based on your net P/L.'",
+        "payoutFirstDays": "'Minimum Days Until First Withdrawal — Take Profit: 0 days' (vs 'Other Companies: 20-60 Days')",
+        "payoutFrequency": "'There's no withdrawal restrictions on your profits above the buffer. No minimum amount of profitable days you need to trade, no maximum amount you can withdraw, and no waiting for some random \"payout window\".'",
+        "activationFee": "'Fees for PRO Account — Take Profit: One Time $130 Fee | Other Companies: Monthly Recurring'; tooltip: 'Pay a one time $130 PRO Account setup fee, and ZERO monthly fees after that.'",
+        "pricesAreMonthly": "'I agree to get billed every month and I acknowledge that I can cancel whenever I want'; NOFEE40 FAQ: 'that account's monthly subscription will always be 40% off ... As soon as you pass then the monthly subscription stops.'"
+      }
+    }
+  ]
+}

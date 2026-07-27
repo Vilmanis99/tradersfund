@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getAllPosts, getAllPages } from '@/lib/mdx'
+import { getAllPosts, getAllPages, getAllCategories, getPostsByCategory } from '@/lib/mdx'
 import { getAllFirms } from '@/lib/firms'
 import { FEATURES } from '@/lib/features'
 import { getAllCanonicalPairs } from '@/lib/comparisons'
@@ -104,6 +104,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   })
 
+  // Category archives are prerendered (app/category/[slug]) and Google is
+  // already crawling them, but they were missing from the sitemap entirely —
+  // so they were only discoverable via in-page links. lastmod tracks the
+  // newest post in each category rather than a global date.
+  const categoryRoutes: MetadataRoute.Sitemap = getAllCategories().map(cat => {
+    const catPosts = getPostsByCategory(cat)
+    const latest = catPosts
+      .map(p => p.modified || p.date)
+      .filter(Boolean)
+      .sort()
+      .at(-1) || blogLastModified
+    return {
+      url: `${BASE_URL}/category/${cat.toLowerCase().replace(/\s+/g, '-')}`,
+      lastModified: new Date(latest),
+      changeFrequency: 'weekly' as const,
+      priority: 0.5,
+    }
+  })
+
   const postRoutes: MetadataRoute.Sitemap = posts.map(post => ({
     url: `${BASE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.modified || post.date),
@@ -132,6 +151,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...landingRoutes,
     ...authorRoutes,
     ...compareRoutes,
+    ...categoryRoutes,
     ...postRoutes,
     ...pageRoutes,
   ]

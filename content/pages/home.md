@@ -48,7 +48,6 @@ type: "page"
       0.0–5.0
       <button type="button" hidden>Reset</button>
 <table id="tablepress-8-no-2">
-<caption style="caption-side:bottom;text-align:left;border:none;background:none;margin:0;padding:0;"><a href="https://tradersfundhub.com/wp-admin/admin.php?page=tablepress&#038;action=edit&#038;table_id=8" rel="nofollow">Edit</a></caption>
 <thead>
 <tr>
 	<th>Firm</th><th>Founded in</th><th>Assets</th><th>Max Allocation</th><th>Platforms</th><th>Score / 5</th><th>Review</th>
@@ -64,7 +63,7 @@ cTrader</td><td>4.5<br />
 </td>
 </tr>
 <tr>
-	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="https://tradersfundhub.com/Fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
+	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="/blog/fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
 IndicesCommodities<br />
 </td><td>$300,000</td><td>MetaTrader 5MatchTrader<br />
 MetaTrader 4</td><td>4.8<br />
@@ -73,7 +72,7 @@ MetaTrader 4</td><td>4.8<br />
 </td>
 </tr>
 <tr>
-	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="https://tradersfundhub.com/Fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
+	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="/blog/fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
 IndicesCommodities<br />
 </td><td>$400,000</td><td>MetaTrader 5MatchTrader<br />
 cTrader</td><td>4.5<br />
@@ -82,7 +81,7 @@ cTrader</td><td>4.5<br />
 </td>
 </tr>
 <tr>
-	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="https://tradersfundhub.com/Fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
+	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="/blog/fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
 IndicesCommodities<br />
 </td><td>$400,000</td><td>MetaTrader 5MatchTrader<br />
 cTrader</td><td>4.5<br />
@@ -91,7 +90,7 @@ cTrader</td><td>4.5<br />
 </td>
 </tr>
 <tr>
-	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="https://tradersfundhub.com/Fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
+	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="/blog/fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
 IndicesCommodities<br />
 </td><td>$400,000</td><td>MetaTrader 5MatchTrader<br />
 cTrader</td><td>4.5<br />
@@ -100,7 +99,7 @@ cTrader</td><td>4.5<br />
 </td>
 </tr>
 <tr>
-	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="https://tradersfundhub.com/Fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
+	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="/blog/fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
 IndicesCommodities<br />
 </td><td>$400,000</td><td>MetaTrader 5MatchTrader<br />
 cTrader</td><td>4.5<br />
@@ -109,7 +108,7 @@ cTrader</td><td>4.5<br />
 </td>
 </tr>
 <tr>
-	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="https://tradersfundhub.com/Fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
+	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="/blog/fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
 IndicesCommodities<br />
 </td><td>$400,000</td><td>MetaTrader 5MatchTrader<br />
 cTrader</td><td>4.5<br />
@@ -118,7 +117,7 @@ cTrader</td><td>4.5<br />
 </td>
 </tr>
 <tr>
-	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="https://tradersfundhub.com/Fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
+	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="/blog/fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
 IndicesCommodities<br />
 </td><td>$400,000</td><td>MetaTrader 5MatchTrader<br />
 cTrader</td><td>4.5<br />
@@ -127,7 +126,7 @@ cTrader</td><td>4.5<br />
 </td>
 </tr>
 <tr>
-	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="https://tradersfundhub.com/Fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
+	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="/blog/fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
 IndicesCommodities<br />
 </td><td>$400,000</td><td>MetaTrader 5MatchTrader<br />
 cTrader</td><td>4.5<br />
@@ -136,7 +135,7 @@ cTrader</td><td>4.5<br />
 </td>
 </tr>
 <tr>
-	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="https://tradersfundhub.com/Fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
+	<td><img src="/images/wp/2025/10/FundedNext-Logo.png" alt="FundingPips Logo" width="15" height="15"> <a href="/blog/fundednext-review">FundedNext</a> </td><td>2022</td><td>ForexCrypto<br />
 IndicesCommodities<br />
 </td><td>$400,000</td><td>MetaTrader 5MatchTrader<br />
 cTrader</td><td>4.5<br />

@@ -1,4 +1,5 @@
 import { getPostsByCategory, getAllCategories } from '@/lib/mdx'
+import { breadcrumbSchema, jsonLd } from '@/lib/schema'
 import BlogCard from '@/components/BlogCard'
 import AnimatedNumber from '@/components/AnimatedNumber'
 import { notFound } from 'next/navigation'
@@ -47,8 +48,18 @@ export default async function CategoryPage({ params }: Props) {
   const allCats = getAllCategories()
   const currentSlug = slug
 
+  // Category archives were the only content route emitting no JSON-LD, so
+  // Google had no trail from Home → Blog → this archive.
+  const crumbs = breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name },
+  ])
+
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+
       {/* ═══════════════════════════════ HERO ═══════════════════════════════ */}
       <section className="blog-hero">
         <div className="aurora-orb aurora-orb--1" aria-hidden />

@@ -1,0 +1,782 @@
+{
+  "firmSlug": "maven",
+  "officialDomain": "https://maventrading.com",
+  "capturedAt": "2026-07-27",
+  "pagesRead": [
+    "https://maventrading.com/",
+    "https://maventrading.com/pricing",
+    "https://maventrading.com/faqs",
+    "https://maventrading.com/blog/maven-trading-launches-3-step-prop-firm-challenge"
+  ],
+  "accessNotes": "No geo-block or JS gate encountered. /pricing is server-rendered HTML: every challenge card (117 cards = 9 products x 5-6 account sizes x 1-3 platforms) is present in the raw HTML with data-plan / data-account-size / data-platform attributes and explicit data-detail-key/data-detail-value pairs, so all figures below were read from the firm's own markup, not from a JS-rendered view. Two caveats: (1) Every card contains a hidden overlay 'Sorry, this product is not available in your region.' that JS un-hides for restricted geos - so some products may be unpurchasable from some countries even though they render for me. (2) Prices differ by trading platform: MetaTrader 5 and Match-Trade are priced identically; cTrader is priced differently (usually higher on small sizes, lower on some large sizes). ALL prices recorded below are the MetaTrader 5 / Match-Trade prices. (3) Two promo coupons were live at capture time: 'ETERNAL' (10% off) and 'OMO' (40% off OMO challenges). priceUsd below is the UNDISCOUNTED list price (the struck-through figure); priceWithCouponUsd is the advertised coupon price. (4) CONFLICT: the /pricing cards state Prediction Markets max loss 'Phase 1 5% / Funded 8%' for BOTH tiers, while /faqs states Essential = 3% trailing and Elite = 5% static. Because the firm's own two pages disagree, maxLossPct is left null for both Prediction products.",
+  "products": [
+    {
+      "productName": "Standard 1-Step",
+      "productSlug": "standard-1-step",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 2000,
+          "priceUsd": 15,
+          "priceWithCouponUsd": 14,
+          "refundable": true,
+          "evidence": "Standard 1-Step $2k account $14 * $15 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 19,
+          "priceWithCouponUsd": 18,
+          "refundable": true,
+          "evidence": "Standard 1-Step $5k account $18 * $19 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 37,
+          "priceWithCouponUsd": 34,
+          "refundable": true,
+          "evidence": "Standard 1-Step $10k account $34 * $37 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 68,
+          "priceWithCouponUsd": 62,
+          "refundable": true,
+          "evidence": "Standard 1-Step $20k account $62 * $68 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 170,
+          "priceWithCouponUsd": 153,
+          "refundable": true,
+          "evidence": "Standard 1-Step $50k account $153 * $170 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 380,
+          "priceWithCouponUsd": 342,
+          "refundable": true,
+          "evidence": "Standard 1-Step $100k account $342 * $380 *Price with coupon. Refundable on the third withdrawal"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 5,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 10,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": false,
+        "weekend": true,
+        "overnight": null,
+        "ea": false,
+        "copyTrading": false
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://maventrading.com/pricing",
+      "fieldEvidence": {
+        "profitTargets.phase1": "Profit target Phase 1 8% (pricing card); FAQ 'What are the profit targets?' - 'One Step Challenge / Overall profit target: 8%'",
+        "dailyLossPct": "One Step Challenge / Daily Drawdown: 3% (based on the higher of your equity/balance at 00:00 UTC) [https://maventrading.com/faqs]",
+        "maxLossPct": "One Step Challenge / Max Drawdown: 5% (trailing off your highest watermark of equity) [https://maventrading.com/faqs]",
+        "drawdownType": "Pricing card tooltip on Max loss: 'Trailing drawdown. The max % loss allowed from your highest equity at any point'",
+        "consistencyRulePct": "Consistency score: No (tooltip: 'Not applicable for one step')",
+        "profitSplitPct": "The profit split is 80% across instant, one step, two step and three step. [https://maventrading.com/faqs]",
+        "payoutFirstDays": "You can request a withdrawal every 10 business days after your first trade. A full refund will be issued on the third withdrawal on your account. [https://maventrading.com/faqs]",
+        "payoutFrequency": "Payout frequency / Funded: 10 business days (pricing card)",
+        "minTradingDays": "NOT STATED for one-step. FAQ only specifies minimum profitable days for the two-step and OMO challenges. Left null deliberately.",
+        "maxTradingDays": "NOT STATED. FAQ 'Do I have any time restrictions?' only says 'Accounts must not be dormant for more than 30 calendar days.'",
+        "rules.news": "Traders cannot open or close trades 2 minutes either side of a red folder news event release. [https://maventrading.com/faqs]",
+        "rules.weekend": "Weekend holdings are permitted for all account types. [https://maventrading.com/faqs]",
+        "rules.ea": "EA: EAs are not permitted under any circumstances across all our platforms. [https://maventrading.com/faqs]",
+        "rules.copyTrading": "You cannot copy trade from another individual, if found, both users will be breached. [https://maventrading.com/faqs]",
+        "rules.overnight": "NOT STATED as an explicit permission. Left null."
+      }
+    },
+    {
+      "productName": "Standard 2-Step",
+      "productSlug": "standard-2-step",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 2000,
+          "priceUsd": 19,
+          "priceWithCouponUsd": 18,
+          "refundable": true,
+          "evidence": "Standard 2-Step $2k account $18 * $19 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 22,
+          "priceWithCouponUsd": 20,
+          "refundable": true,
+          "evidence": "Standard 2-Step $5k account $20 * $22 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 44,
+          "priceWithCouponUsd": 40,
+          "refundable": true,
+          "evidence": "Standard 2-Step $10k account $40 * $44 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 88,
+          "priceWithCouponUsd": 80,
+          "refundable": true,
+          "evidence": "Standard 2-Step $20k account $80 * $88 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 220,
+          "priceWithCouponUsd": 198,
+          "refundable": true,
+          "evidence": "Standard 2-Step $50k account $198 * $220 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 440,
+          "priceWithCouponUsd": 396,
+          "refundable": true,
+          "evidence": "Standard 2-Step $100k account $396 * $440 *Price with coupon. Refundable on the third withdrawal"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 8,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 10,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": false,
+        "weekend": true,
+        "overnight": null,
+        "ea": false,
+        "copyTrading": false
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://maventrading.com/pricing",
+      "fieldEvidence": {
+        "profitTargets": "Two Step Challenge / Phase 1: 8% / Phase 2: 5% [https://maventrading.com/faqs]; pricing card 'Profit target Phase 1 8% Phase 2 5%'",
+        "dailyLossPct": "Two Step Challenge / Daily Drawdown: 4% (Based on the higher of your equity/balance at 00:00 UTC) [https://maventrading.com/faqs]",
+        "maxLossPct": "Two Step Challenge / Max Drawdown: 8% (Static) [https://maventrading.com/faqs]",
+        "drawdownType": "Pricing card tooltip on Max loss: 'Static drawdown. The max % loss allowed from your starting balance.'",
+        "minTradingDays": "On our two-step challenge, you have to achieve 3 minimum profitable days of 0.5% on each phase to proceed. [https://maventrading.com/faqs] NOTE: these are minimum PROFITABLE days (>=0.5% gain), not merely trading days.",
+        "maxTradingDays": "NOT STATED. Left null.",
+        "consistencyRulePct": "Consistency score: No (tooltip: 'There is NO consistency score on two-step')",
+        "profitSplitPct": "The profit split is 80% across instant, one step, two step and three step. [https://maventrading.com/faqs]",
+        "payoutFirstDays": "You can request a withdrawal every 10 business days after your first trade. [https://maventrading.com/faqs]",
+        "payoutFrequency": "Payout frequency / Funded: 10 business days (pricing card)",
+        "rules.news": "Traders cannot open or close trades 2 minutes either side of a red folder news event release. [https://maventrading.com/faqs]",
+        "rules.weekend": "Weekend holdings are permitted for all account types. [https://maventrading.com/faqs]",
+        "rules.ea": "EAs are not permitted under any circumstances across all our platforms. [https://maventrading.com/faqs]",
+        "rules.copyTrading": "You cannot copy trade from another individual, if found, both users will be breached. [https://maventrading.com/faqs]"
+      }
+    },
+    {
+      "productName": "Standard 3-Step",
+      "productSlug": "standard-3-step",
+      "phases": 3,
+      "accountSizes": [
+        {
+          "sizeUsd": 2000,
+          "priceUsd": 13,
+          "priceWithCouponUsd": 12,
+          "refundable": true,
+          "evidence": "Standard 3-Step $2k account $12 * $13 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 17,
+          "priceWithCouponUsd": 16,
+          "refundable": true,
+          "evidence": "Standard 3-Step $5k account $16 * $17 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 38,
+          "priceWithCouponUsd": 35,
+          "refundable": true,
+          "evidence": "Standard 3-Step $10k account $35 * $38 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 76,
+          "priceWithCouponUsd": 69,
+          "refundable": true,
+          "evidence": "Standard 3-Step $20k account $69 * $76 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 190,
+          "priceWithCouponUsd": 171,
+          "refundable": true,
+          "evidence": "Standard 3-Step $50k account $171 * $190 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 299,
+          "priceWithCouponUsd": 270,
+          "refundable": true,
+          "evidence": "Standard 3-Step $100k account $270 * $299 *Price with coupon. Refundable on the third withdrawal"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 3,
+        "phase2": 3,
+        "phase3": 3
+      },
+      "dailyLossPct": 2,
+      "maxLossPct": 3,
+      "drawdownType": "static",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 10,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": false,
+        "weekend": true,
+        "overnight": null,
+        "ea": false,
+        "copyTrading": false
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://maventrading.com/pricing",
+      "fieldEvidence": {
+        "profitTargets": "Three Step Challenge / Phase 1: 3% / Phase 2: 3% / Phase 3: 3% [https://maventrading.com/faqs]",
+        "dailyLossPct": "Three Step Challenge / Daily Drawdown: 2% (based on the higher of your equity/balance at 00:00 UTC) [https://maventrading.com/faqs]",
+        "maxLossPct": "Three Step Challenge / Max Drawdown: 3% (Static) [https://maventrading.com/faqs]",
+        "drawdownType": "Pricing card tooltip on Max loss: 'Static drawdown. The max % loss allowed from your starting balance.'",
+        "minTradingDays": "NOT STATED for three-step. Left null.",
+        "maxTradingDays": "Blog page states 'Maven's 3-step challenge has no time restrictions! Traders can trade at their own pace' [https://maventrading.com/blog/maven-trading-launches-3-step-prop-firm-challenge] - recorded as null (unlimited).",
+        "consistencyRulePct": "Consistency score: No (tooltip text on the 3-step card reads 'There is NO consistency score on two-step')",
+        "profitSplitPct": "The profit split is 80% across instant, one step, two step and three step. [https://maventrading.com/faqs]",
+        "payoutFrequency": "Payout frequency / Funded: 10 business days (pricing card)"
+      }
+    },
+    {
+      "productName": "Instant",
+      "productSlug": "instant",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 2000,
+          "priceUsd": 15,
+          "priceWithCouponUsd": 14,
+          "refundable": true,
+          "evidence": "Instant $2k account $14 * $15 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 19,
+          "priceWithCouponUsd": 18,
+          "refundable": true,
+          "evidence": "Instant $5k account $18 * $19 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 37,
+          "priceWithCouponUsd": 34,
+          "refundable": true,
+          "evidence": "Instant $10k account $34 * $37 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 68,
+          "priceWithCouponUsd": 62,
+          "refundable": true,
+          "evidence": "Instant $20k account $62 * $68 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 170,
+          "priceWithCouponUsd": 153,
+          "refundable": true,
+          "evidence": "Instant $50k account $153 * $170 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 380,
+          "priceWithCouponUsd": 342,
+          "refundable": true,
+          "evidence": "Instant $100k account $342 * $380 *Price with coupon. Refundable on the third withdrawal"
+        }
+      ],
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null
+      },
+      "minWithdrawalProfitPct": 3,
+      "dailyLossPct": 2,
+      "maxLossPct": 3,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 20,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": null,
+        "ea": false,
+        "copyTrading": false
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://maventrading.com/pricing",
+      "fieldEvidence": {
+        "profitTargets": "No profit-target row is shown on the Instant pricing card. FAQ instead gives a withdrawal threshold: 'Instant Phase / Profit needed to withdraw: 3%'.",
+        "minWithdrawalProfitPct": "You must reach 3% minimum withdrawal in order to request a payout. If you have a $10,000 account, this account must reach $10,300 in order to reach a payout. [https://maventrading.com/faqs]",
+        "dailyLossPct": "Instant Challenge / Daily Drawdown: 2% (based on the higher of your equity/balance at 00:00 UTC) [https://maventrading.com/faqs]",
+        "maxLossPct": "Instant Challenge / Max Drawdown: 3% (Trailing) [https://maventrading.com/faqs]",
+        "drawdownType": "Pricing card tooltip on Max loss: 'Trailing drawdown. The max % loss allowed from your highest equity at any point'",
+        "consistencyRulePct": "You can only withdraw from your instant account when your consistency score is 20% or below. This is calculated by (your biggest winning day / total profit) * 100%. [https://maventrading.com/faqs]",
+        "profitSplitPct": "The profit split is 80% across instant, one step, two step and three step. [https://maventrading.com/faqs]",
+        "payoutFrequency": "Payout frequency / Funded: When Requirements are met (pricing card)",
+        "payoutFirstDays": "NOT STATED for Instant (the '10 business days' FAQ line is generic). Left null.",
+        "rules.news": "The News rule does not apply to our instant accounts. ... News trading for instant funding does not apply. [https://maventrading.com/faqs]"
+      }
+    },
+    {
+      "productName": "Mini",
+      "productSlug": "mini",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 2000,
+          "priceUsd": 17,
+          "priceWithCouponUsd": 16,
+          "refundable": null,
+          "evidence": "Mini $2k account $16 * $17 *Price with coupon."
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 22,
+          "priceWithCouponUsd": 20,
+          "refundable": null,
+          "evidence": "Mini $5k account $20 * $22 *Price with coupon."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 44,
+          "priceWithCouponUsd": 40,
+          "refundable": null,
+          "evidence": "Mini $10k account $40 * $44 *Price with coupon."
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 88,
+          "priceWithCouponUsd": 80,
+          "refundable": null,
+          "evidence": "Mini $20k account $80 * $88 *Price with coupon."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 220,
+          "priceWithCouponUsd": 198,
+          "refundable": null,
+          "evidence": "Mini $50k account $198 * $220 *Price with coupon."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 440,
+          "priceWithCouponUsd": 396,
+          "refundable": null,
+          "evidence": "Mini $100k account $396 * $440 *Price with coupon."
+        }
+      ],
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null
+      },
+      "minWithdrawalProfitPct": 3,
+      "dailyLossPct": 2,
+      "maxLossPct": 3,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": 1,
+      "consistencyRulePct": 15,
+      "profitSplitPct": 70,
+      "payoutFirstDays": 1,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": null,
+        "weekend": true,
+        "overnight": null,
+        "ea": false,
+        "copyTrading": false
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://maventrading.com/pricing",
+      "fieldEvidence": {
+        "priceNote": "The Mini card footnote reads only '*Price with coupon.' - unlike every other product it does NOT say 'Refundable on the third withdrawal', and Mini is a single-payout model, so refundable is left null.",
+        "minWithdrawalProfitPct": "You must hit at least 3% profit to be eligible for a payout. The payout split is 70%. [https://maventrading.com/faqs]",
+        "dailyLossPct": "2% Daily Drawdown - highest between balance and equity at 00:00 UTC [https://maventrading.com/faqs, Mini > What are the drawdown rules?]",
+        "maxLossPct": "3% Trailing Max Drawdown ... Note: The drawdown does not reset - it's active throughout the challenge. [https://maventrading.com/faqs]",
+        "drawdownType": "Pricing card tooltip on Max loss: 'Trailing drawdown. The max % loss allowed from your highest equity at any point.'",
+        "maxTradingDays": "You have 24 hours to trade on the account. The timer starts once you've placed your first trade. You must submit your payout within the 24-hour period. [https://maventrading.com/faqs]",
+        "consistencyRulePct": "Yes - there's a 15% consistency rule based on your highest trade. ... 'largest winning trade / total profit'. This must be less than 15% to get a payout. [https://maventrading.com/faqs]",
+        "profitSplitPct": "The payout split is 70%. [https://maventrading.com/faqs] (pricing card also shows 'Profit split 70%')",
+        "payoutFirstDays": "Payouts are processed the next day after your trading period ends. [https://maventrading.com/faqs]",
+        "payoutFrequency": "Pricing card: 'Payout frequency / Funded: 24 hours'. FAQ: 'Only one - it's a single payout model. After your first withdrawal, your account will be closed.'",
+        "otherRules": "You can only take one trade at any one time. The minimum hold time is 150s, any trades held beneath this time will not count towards profits. Also '1% max risk (difference between equity and balance)'. [https://maventrading.com/faqs]",
+        "rules.news": "NOT STATED specifically for Mini. Left null."
+      }
+    },
+    {
+      "productName": "Buy Now, Pay Later",
+      "productSlug": "buy-now-pay-later",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 2000,
+          "priceUsd": 5,
+          "payLaterUsd": 40,
+          "refundable": true,
+          "evidence": "Buy Now, Pay Later $2k account Pay now: $5 Pay later: $40 Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 5,
+          "payLaterUsd": 69,
+          "refundable": true,
+          "evidence": "Buy Now, Pay Later $5k account Pay now: $5 Pay later: $69 Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 5,
+          "payLaterUsd": 117,
+          "refundable": true,
+          "evidence": "Buy Now, Pay Later $10k account Pay now: $5 Pay later: $117 Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 5,
+          "payLaterUsd": 189,
+          "refundable": true,
+          "evidence": "Buy Now, Pay Later $20k account Pay now: $5 Pay later: $189 Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 5,
+          "payLaterUsd": 359,
+          "refundable": true,
+          "evidence": "Buy Now, Pay Later $50k account Pay now: $5 Pay later: $359 Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 5,
+          "payLaterUsd": 589,
+          "refundable": true,
+          "evidence": "Buy Now, Pay Later $100k account Pay now: $5 Pay later: $589 Refundable on the third withdrawal"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 4,
+        "phase2": null
+      },
+      "dailyLossPct": null,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "fundedDailyLossPct": 4,
+      "fundedMaxLossPct": 8,
+      "fundedDrawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 20,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": null,
+        "ea": false,
+        "copyTrading": false
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://maventrading.com/pricing",
+      "fieldEvidence": {
+        "priceStructure": "Buy Now Pay Later is a one-step evaluation that costs $5 to start. If you pass the evaluation, you then pay the remaining fee to activate your funded account. [https://maventrading.com/faqs] - priceUsd = the $5 upfront; payLaterUsd = the post-pass activation fee shown on the pricing card.",
+        "profitTargets.phase1": "Hit a 4% profit target while staying within a 10% maximum drawdown, and you unlock a funded account with instant withdrawal access [https://maventrading.com/faqs]",
+        "maxLossPct": "The 10% maximum drawdown is calculated statically from your starting balance - it does not trail. [https://maventrading.com/faqs] (evaluation phase)",
+        "dailyLossPct": "No. The evaluation has no daily drawdown limit on the evaluation phase. [https://maventrading.com/faqs] - null because none exists in the evaluation.",
+        "fundedDailyLossPct": "The funded stage has a 4% daily End-of-Day (EOD) drawdown limit. This is calculated on your balance or equity (whichever is higher), at the start of each day (00:00 UTC) and resets at 00:00 UTC. [https://maventrading.com/faqs]",
+        "fundedMaxLossPct": "Maximum drawdown changes to 8% trailing, calculated from your highest floating equity [https://maventrading.com/faqs]",
+        "minTradingDays": "No minimum trading days, [https://maventrading.com/faqs]",
+        "consistencyRulePct": "20% consistency score required before each withdrawal ... Before requesting a withdrawal, your largest winning day must not exceed 20% of your total profits. [https://maventrading.com/faqs] (funded stage only)",
+        "profitSplitPct": "Profit split remains 80% [https://maventrading.com/faqs]",
+        "payoutFrequency": "Pricing card: 'Payout frequency / Funded: Instant'",
+        "rules.news": "Yes. News trading is fully permitted during the evaluation with no restrictions. ... News trading remains allowed [funded] [https://maventrading.com/faqs]",
+        "otherRules": "Profit Rebuild: After a withdrawal, your loss limit is anchored to your original funded balance. Also 'M2 Account Saver activates'. Leverage stays at 75:1."
+      }
+    },
+    {
+      "productName": "OMO 2-Step",
+      "productSlug": "omo-2-step",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 2000,
+          "priceUsd": 19,
+          "priceWithCouponUsd": 9,
+          "refundable": true,
+          "evidence": "OMO 2-Step $2k account $9 * $19 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 32,
+          "priceWithCouponUsd": 15,
+          "refundable": true,
+          "evidence": "OMO 2-Step $5k account $15 * $32 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 62,
+          "priceWithCouponUsd": 38,
+          "refundable": true,
+          "evidence": "OMO 2-Step $10k account $38 * $62 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 122,
+          "priceWithCouponUsd": 74,
+          "refundable": true,
+          "evidence": "OMO 2-Step $20k account $74 * $122 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 238,
+          "priceWithCouponUsd": 143,
+          "refundable": true,
+          "evidence": "OMO 2-Step $50k account $143 * $238 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 472,
+          "priceWithCouponUsd": 284,
+          "refundable": true,
+          "evidence": "OMO 2-Step $100k account $284 * $472 *Price with coupon. Refundable on the third withdrawal"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": 8
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 8,
+      "drawdownType": "static",
+      "minTradingDays": 4,
+      "maxTradingDays": 180,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 10,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": null,
+        "ea": false,
+        "copyTrading": false
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://maventrading.com/pricing",
+      "fieldEvidence": {
+        "priceNote": "Coupon code 'OMO' gives 40% OFF OMO Challenges - the site banner reads '40% OFF OMO Challenges with code CODE: OMO'.",
+        "profitTargets": "6% profit target in Phase 1 / 8% profit target in Phase 2 [https://maventrading.com/faqs]",
+        "maxLossPct": "The max drawdown is static, 8%, and calculated from your starting balance. It does not trail. This applies across all three stages including funded. [https://maventrading.com/faqs]",
+        "dailyLossPct": "The daily End-of-Day (EOD) drawdown limit is 4%. This resets at 00:00 UTC each day and is calculated on your balance or equity - whichever is highest at the start of the day. [https://maventrading.com/faqs]",
+        "drawdownType": "Pricing card tooltip on Max loss: 'Static drawdown. The max % loss allowed from your starting balance.'",
+        "minTradingDays": "You must complete at least 4 minimum profitable days in each phase, including the funded stage. A day only counts if you generate a profit of at least 0.5% of your account balance on that day. [https://maventrading.com/faqs]",
+        "maxTradingDays": "Yes, the Two Step OMO has a maximum duration of 180 days across both evaluation phases combined. [https://maventrading.com/faqs]",
+        "consistencyRulePct": "Pricing card: 'Consistency score: No' (tooltip 'There is NO consistency score on two-step')",
+        "profitSplitPct": "Pricing card: 'Profit split 80%'. Note FAQ: M2 Account Saver first breach 'your profit split is permanently reduced to 50% for the remainder of the account'.",
+        "payoutFrequency": "Pricing card: 'Payout frequency / Funded: 10 business days'",
+        "rules.news": "News trading is fully permitted during Phase 1 and Phase 2 with no restrictions. In the funded stage, news trading is still allowed but any profit made during a news event is capped at 0.50% of your account balance. [https://maventrading.com/faqs]",
+        "otherRules": "150-second minimum hold time; withdrawal cap 6% of balance on first payout, 8% on second; M2 Account Saver triggers at 2% drawdown."
+      }
+    },
+    {
+      "productName": "Prediction Markets One-Step Essential",
+      "productSlug": "predictions-1-step",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 44,
+          "priceWithCouponUsd": 40,
+          "refundable": true,
+          "evidence": "1 Step $5k account $40 * $44 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 84,
+          "priceWithCouponUsd": 76,
+          "refundable": true,
+          "evidence": "1 Step $10k account $76 * $84 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 154,
+          "priceWithCouponUsd": 139,
+          "refundable": true,
+          "evidence": "1 Step $20k account $139 * $154 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 359,
+          "priceWithCouponUsd": 324,
+          "refundable": true,
+          "evidence": "1 Step $50k account $324 * $359 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 599,
+          "priceWithCouponUsd": 540,
+          "refundable": true,
+          "evidence": "1 Step $100k account $540 * $599 *Price with coupon. Refundable on the third withdrawal"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 9,
+        "phase2": null
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 70,
+      "payoutFirstDays": null,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": true,
+        "weekend": null,
+        "overnight": null,
+        "ea": false,
+        "copyTrading": false
+      },
+      "assetClass": "prediction-markets",
+      "sourceUrl": "https://maventrading.com/pricing",
+      "fieldEvidence": {
+        "profitTargets.phase1": "The profit target for both challenge types is 9%. There is no profit target on the funded stage. [https://maventrading.com/faqs]",
+        "maxLossPct": "LEFT NULL DUE TO CONFLICT BETWEEN THE FIRM'S OWN PAGES. /faqs: 'One-Step Essential uses Trailing Drawdown with a 3% max drawdown'. /pricing card for the same product: 'Max loss / Phase 1 5% / Funded 8%'. Not resolvable from published pages.",
+        "drawdownType": "One-Step Essential uses Trailing Drawdown with a 3% max drawdown [https://maventrading.com/faqs]",
+        "dailyLossPct": "No daily drawdown limits [https://maventrading.com/faqs] - i.e. none exists.",
+        "minTradingDays": "No minimum trading days [https://maventrading.com/faqs]",
+        "consistencyRulePct": "There is also no consistency rule. [https://maventrading.com/faqs]",
+        "profitSplitPct": "The profit split is 70%. Once you reach the funded stage, you withdraw 70% of the profits you make. [https://maventrading.com/faqs]",
+        "payoutFrequency": "Pricing card: 'Payout frequency / Funded: 10 business days'",
+        "rules.news": "there is no news trading restriction specific to the Prediction Markets challenge [https://maventrading.com/faqs]",
+        "rules.ea": "No use of EAs or scripts [https://maventrading.com/faqs]",
+        "otherRules": "You can generate a maximum of 3% of your starting account balance from any one question. If you generate more than this, the remaining profits will be nulled. Data feed 'comes from MatchTrade and follows the markets on Kalshi or Polymarket.'"
+      }
+    },
+    {
+      "productName": "Prediction Markets One-Step Elite",
+      "productSlug": "predictions-elite-1-step",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 74,
+          "priceWithCouponUsd": 67,
+          "refundable": true,
+          "evidence": "Elite 1-Step $5k account $67 * $74 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 139,
+          "priceWithCouponUsd": 126,
+          "refundable": true,
+          "evidence": "Elite 1-Step $10k account $126 * $139 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 259,
+          "priceWithCouponUsd": 234,
+          "refundable": true,
+          "evidence": "Elite 1-Step $20k account $234 * $259 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 599,
+          "priceWithCouponUsd": 540,
+          "refundable": true,
+          "evidence": "Elite 1-Step $50k account $540 * $599 *Price with coupon. Refundable on the third withdrawal"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 999,
+          "priceWithCouponUsd": 900,
+          "refundable": true,
+          "evidence": "Elite 1-Step $100k account $900 * $999 *Price with coupon. Refundable on the third withdrawal"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 9,
+        "phase2": null
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "static",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 70,
+      "payoutFirstDays": null,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": true,
+        "weekend": null,
+        "overnight": null,
+        "ea": false,
+        "copyTrading": false
+      },
+      "assetClass": "prediction-markets",
+      "sourceUrl": "https://maventrading.com/pricing",
+      "fieldEvidence": {
+        "profitTargets.phase1": "The profit target for both challenge types is 9%. [https://maventrading.com/faqs]",
+        "maxLossPct": "LEFT NULL DUE TO CONFLICT. /faqs: 'One-Step Elite uses Static Drawdown with a 5% max drawdown'. /pricing card: 'Max loss / Phase 1 5% / Funded 8%'. The 5% figure agrees for Phase 1 but the pages disagree on the funded-stage figure and the FAQ gives no funded number, so left null.",
+        "drawdownType": "One-Step Elite uses Static Drawdown with a 5% max drawdown [https://maventrading.com/faqs]",
+        "dailyLossPct": "No daily drawdown limits [https://maventrading.com/faqs]",
+        "minTradingDays": "No minimum trading days [https://maventrading.com/faqs]",
+        "consistencyRulePct": "There is also no consistency rule. [https://maventrading.com/faqs]",
+        "profitSplitPct": "The profit split is 70%. [https://maventrading.com/faqs]",
+        "payoutFrequency": "Pricing card: 'Payout frequency / Funded: 10 business days'"
+      }
+    }
+  ],
+  "firmWideNotes": {
+    "leverage": "Forex: 75:1 / Commodities: 20:1 / Indices: 20:1 / Precious metals: 20:1 [https://maventrading.com/faqs]",
+    "commission": "$2 USD commission per way ($4 USD round trip). $3 USD Precious Metals per way ($6 USD round trip). $3 USD Energy per way ($6 USD round trip). Digital ETF's, Indices, and Commodities have $0 commissions! [https://maventrading.com/faqs]",
+    "swap": "We have ZERO swap fees across all accounts. [https://maventrading.com/faqs]",
+    "withdrawalCap": "You are entitled to a maximum withdrawal of $10,000 per 30-day rolling cycle (per trader). [https://maventrading.com/faqs]",
+    "fundedCapitalCap": "You can have up to $200,000 in starting capital on funded, but you are entitled to scale the accounts to $1M (refer to scaling program). [https://maventrading.com/faqs]",
+    "scaling": "In order to scale, the trader must profit 10% over the course of 4 months (2.5% per month). The trader is also required to process at least 1 payout per month. Afterwards, the trader's account will be rewarded with a 25% increase. ... up to $1,000,000. [https://maventrading.com/faqs]",
+    "inactivity": "Accounts must not be dormant for more than 30 calendar days. Inactivity is defined as having no executed trades. [https://maventrading.com/faqs]",
+    "reviewTime": "Once you've passed the assessment, our team will review your account, which takes 1-3 days. [https://maventrading.com/faqs]",
+    "refundPolicy": "A full refund will be issued on the third withdrawal on your account. [https://maventrading.com/faqs]",
+    "profitCap5k": "If your total profit exceeds $5,000, your best trading day ... or singular trade ... may not exceed 50% of your profit in the funded stage payout cycle. [https://maventrading.com/faqs]",
+    "buybackPrices": "$2,000 Account = $200 / $5,000 Account = $400 / $10,000 Account = $750 / $20,000 Account = $1,400 / $50,000 Account = $3,500 / $100,000 Account = $6,000 [https://maventrading.com/faqs]",
+    "withdrawalFee": "Payments via Rise incur a $20 withdrawal fee. [https://maventrading.com/faqs]",
+    "platforms": "MetaTrader 5, cTrader, Match-Trade (per data-platform attributes on the pricing cards). cTrader pricing differs from MT5/Match-Trade; the figures above are the MT5/Match-Trade prices.",
+    "simulated": "Maven describes its funded accounts as simulated: 'A simulated account is what you will receive after passing our evaluation stages ... This is traded in a demo environment.' [https://maventrading.com/faqs]"
+  }
+}

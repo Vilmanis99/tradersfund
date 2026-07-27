@@ -20,21 +20,21 @@
     "logo": "/images/wp/2025/04/FTMO-icon-light.png",
     "reviewUrl": "/blog/ftmo-review",
     "profitSplitPct": 90,
-    "payoutFrequency": "bi-weekly",
+    "payoutFrequency": "on-demand",
     "payoutMethods": [
       "Bank wire",
       "Skrill",
       "Crypto"
     ],
     "drawdownType": "static",
-    "minTradingDays": 0,
+    "minTradingDays": 4,
     "consistencyRule": null,
     "scalingPlan": true,
     "newsTradingAllowed": true,
     "eaAllowed": true,
     "overnightAllowed": true,
     "weekendAllowed": true,
-    "copyTradingAllowed": false,
+    "copyTradingAllowed": null,
     "countriesRestricted": [],
     "ratings": {
       "conditions": null,
@@ -42,10 +42,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": null,
-    "trustpilotCount": null,
+    "trustpilotScore": 4.8,
+    "trustpilotCount": 47019,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/ftmo.com",
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "FundedNext",
@@ -88,10 +90,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": null,
-    "trustpilotCount": null,
+    "trustpilotScore": 4.5,
+    "trustpilotCount": 74352,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-04-24",
+    "trustpilotUrl": "https://www.trustpilot.com/review/fundednext.com",
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "FundingPips",
@@ -106,13 +110,13 @@
     "platforms": [
       "MT5",
       "cTrader",
-      "DXTrade"
+      "Match-Trader"
     ],
     "score": 8.7,
     "logo": "/images/wp/2025/10/Funding-Pips-Icon-White.webp",
     "reviewUrl": "/blog/funding-pips-review",
     "affiliateUrl": "https://app.fundingpips.com/register?referral_code=1d94705c",
-    "profitSplitPct": 100,
+    "profitSplitPct": 85,
     "payoutFrequency": "bi-weekly",
     "payoutMethods": [
       "Bank wire",
@@ -120,13 +124,13 @@
       "Crypto"
     ],
     "drawdownType": "static",
-    "minTradingDays": 5,
+    "minTradingDays": 0,
     "consistencyRule": null,
     "scalingPlan": true,
     "newsTradingAllowed": true,
     "eaAllowed": true,
     "overnightAllowed": true,
-    "weekendAllowed": true,
+    "weekendAllowed": false,
     "copyTradingAllowed": false,
     "countriesRestricted": [],
     "ratings": {
@@ -135,10 +139,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": null,
-    "trustpilotCount": null,
+    "trustpilotScore": 4.5,
+    "trustpilotCount": 63734,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/fundingpips.com",
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "E8 Markets",
@@ -157,7 +163,7 @@
     "logo": "/images/wp/2025/05/e8-markets-rebrnded-after.png",
     "reviewUrl": "/blog/e8-markets-review",
     "profitSplitPct": 80,
-    "payoutFrequency": "bi-weekly",
+    "payoutFrequency": "on-demand",
     "payoutMethods": [
       "Bank wire",
       "Crypto"
@@ -171,7 +177,18 @@
     "overnightAllowed": true,
     "weekendAllowed": true,
     "copyTradingAllowed": null,
-    "countriesRestricted": [],
+    "countriesRestricted": [
+      "Cuba",
+      "Syria",
+      "Iran",
+      "Lebanon",
+      "Iraq",
+      "Yemen",
+      "North Korea",
+      "Russia",
+      "Ukraine",
+      "Belarus"
+    ],
     "ratings": {
       "conditions": null,
       "support": null,
@@ -181,7 +198,10 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/e8markets.com",
+    "trustpilotRatingSuppressed": true,
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "Alpha Capital",
@@ -192,7 +212,7 @@
       "Crypto",
       "Commodities"
     ],
-    "maxAllocation": "$2,000,000",
+    "maxAllocation": "$400,000",
     "platforms": [
       "MT5",
       "cTrader"
@@ -206,8 +226,8 @@
       "Bank wire",
       "Crypto"
     ],
-    "drawdownType": "static",
-    "minTradingDays": 0,
+    "drawdownType": "trailing",
+    "minTradingDays": 1,
     "consistencyRule": null,
     "scalingPlan": true,
     "newsTradingAllowed": true,
@@ -222,10 +242,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": null,
-    "trustpilotCount": null,
+    "trustpilotScore": 4.7,
+    "trustpilotCount": 21119,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "Bright Funded",
@@ -246,8 +268,8 @@
     "affiliateUrl": "https://brightfunded.com/a/nIfOFrQBTUK-00O1dIjiSQ",
     "discountCode": "nIfOFrQBTUK-00O1dIjiSQ",
     "discountPct": 10,
-    "profitSplitPct": 80,
-    "payoutFrequency": "monthly",
+    "profitSplitPct": 100,
+    "payoutFrequency": "weekly",
     "payoutMethods": [
       "Bank wire",
       "Crypto"
@@ -271,7 +293,10 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/brightfunded.com",
+    "trustpilotRatingSuppressed": true,
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "OFP Funding",
@@ -282,15 +307,15 @@
       "Commodities",
       "Crypto"
     ],
-    "maxAllocation": "$5,000,000",
+    "maxAllocation": "$300,000",
     "platforms": [
-      "MT4",
-      "MT5"
+      "MT5",
+      "OFP Platform"
     ],
     "score": 7.5,
     "logo": "/images/wp/2025/06/OFP-Funding-Logo-No-BG-e1748882625405.png",
     "reviewUrl": "/blog/ofp-funding-review",
-    "profitSplitPct": 90,
+    "profitSplitPct": 80,
     "payoutFrequency": "bi-weekly",
     "payoutMethods": [
       "Bank wire",
@@ -302,51 +327,7 @@
     "scalingPlan": true,
     "newsTradingAllowed": true,
     "eaAllowed": true,
-    "overnightAllowed": true,
-    "weekendAllowed": true,
-    "copyTradingAllowed": null,
-    "countriesRestricted": [],
-    "ratings": {
-      "conditions": null,
-      "support": null,
-      "payouts": null,
-      "platform": null
-    },
-    "trustpilotScore": null,
-    "trustpilotCount": null,
-    "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
-  },
-  {
-    "name": "Maven",
-    "founded": "2023",
-    "assets": [
-      "Forex",
-      "Indices",
-      "Commodities",
-      "Crypto"
-    ],
-    "maxAllocation": "$800,000",
-    "platforms": [
-      "MT5",
-      "TradeLocker"
-    ],
-    "score": 7.6,
-    "logo": "/images/wp/2025/06/Maven-prop-firm-logo-white-e1749993312719.png",
-    "reviewUrl": "/blog/maven-prop-firm-review",
-    "profitSplitPct": 80,
-    "payoutFrequency": "bi-weekly",
-    "payoutMethods": [
-      "Bank wire",
-      "Crypto"
-    ],
-    "drawdownType": "static",
-    "minTradingDays": null,
-    "consistencyRule": null,
-    "scalingPlan": null,
-    "newsTradingAllowed": null,
-    "eaAllowed": true,
-    "overnightAllowed": true,
+    "overnightAllowed": null,
     "weekendAllowed": null,
     "copyTradingAllowed": null,
     "countriesRestricted": [],
@@ -359,7 +340,58 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/ofpfunding.com",
+    "trustpilotRatingSuppressed": true,
+    "trustpilotCapturedAt": "2026-07-27"
+  },
+  {
+    "name": "Maven",
+    "founded": "2023",
+    "assets": [
+      "Forex",
+      "Indices",
+      "Commodities",
+      "Crypto"
+    ],
+    "maxAllocation": "$1,000,000",
+    "platforms": [
+      "MT5",
+      "cTrader",
+      "Match-Trade"
+    ],
+    "score": 7.6,
+    "logo": "/images/wp/2025/06/Maven-prop-firm-logo-white-e1749993312719.png",
+    "reviewUrl": "/blog/maven-prop-firm-review",
+    "profitSplitPct": 80,
+    "payoutFrequency": "bi-weekly",
+    "payoutMethods": [
+      "Bank wire",
+      "Crypto"
+    ],
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "consistencyRule": null,
+    "scalingPlan": null,
+    "newsTradingAllowed": null,
+    "eaAllowed": false,
+    "overnightAllowed": null,
+    "weekendAllowed": null,
+    "copyTradingAllowed": null,
+    "countriesRestricted": [],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": null,
+    "trustpilotCount": 5151,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/maventrading.com",
+    "trustpilotRatingSuppressed": true,
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "FXIFY",
@@ -385,7 +417,7 @@
       "Rise",
       "Crypto"
     ],
-    "drawdownType": "static",
+    "drawdownType": "trailing",
     "minTradingDays": 0,
     "consistencyRule": null,
     "scalingPlan": true,
@@ -406,10 +438,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": null,
-    "trustpilotCount": null,
+    "trustpilotScore": 4.3,
+    "trustpilotCount": 6120,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/fxify.com",
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "Crypto Fund Trader",
@@ -419,16 +453,17 @@
       "Forex",
       "Indices"
     ],
-    "maxAllocation": "$600,000",
+    "maxAllocation": "$200,000",
     "platforms": [
       "MT5",
-      "cTrader"
+      "Match-Trader",
+      "Bybit"
     ],
     "score": 7.4,
     "logo": "",
     "reviewUrl": "/blog/crypto-fund-trader-review",
     "profitSplitPct": 80,
-    "payoutFrequency": "weekly",
+    "payoutFrequency": "bi-weekly",
     "payoutMethods": [
       "Crypto",
       "Bank wire"
@@ -450,9 +485,12 @@
       "platform": null
     },
     "trustpilotScore": null,
-    "trustpilotCount": null,
+    "trustpilotCount": 1140,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/cryptofundtrader.com",
+    "trustpilotRatingSuppressed": true,
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "Topstep",
@@ -475,9 +513,9 @@
       "ACH",
       "Bank wire"
     ],
-    "drawdownType": "trailing",
-    "minTradingDays": null,
-    "consistencyRule": null,
+    "drawdownType": "eod-trailing",
+    "minTradingDays": 2,
+    "consistencyRule": "50% of profit target",
     "scalingPlan": true,
     "newsTradingAllowed": true,
     "eaAllowed": true,
@@ -491,10 +529,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": null,
-    "trustpilotCount": null,
+    "trustpilotScore": 3.6,
+    "trustpilotCount": 14478,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/topstep.com",
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "My Funded Futures",
@@ -518,7 +558,7 @@
       "Bank wire",
       "Crypto"
     ],
-    "drawdownType": "trailing",
+    "drawdownType": "eod-trailing",
     "minTradingDays": null,
     "consistencyRule": null,
     "scalingPlan": true,
@@ -534,10 +574,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": null,
-    "trustpilotCount": null,
+    "trustpilotScore": 4.9,
+    "trustpilotCount": 20392,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/myfundedfutures.com",
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "City Traders Imperium",
@@ -578,10 +620,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": null,
-    "trustpilotCount": null,
+    "trustpilotScore": 4.2,
+    "trustpilotCount": 1633,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-04-24",
+    "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "The Funded Trader",
@@ -594,14 +638,14 @@
     ],
     "maxAllocation": "$1,500,000",
     "platforms": [
-      "MT4",
-      "MT5",
-      "cTrader"
+      "cTrader",
+      "Match-Trader",
+      "DXtrade"
     ],
     "score": 7.7,
     "logo": "",
     "reviewUrl": "/blog/the-funded-trader-review",
-    "profitSplitPct": 90,
+    "profitSplitPct": 80,
     "payoutFrequency": "bi-weekly",
     "payoutMethods": [
       "Bank wire",
@@ -614,7 +658,7 @@
     "scalingPlan": true,
     "newsTradingAllowed": true,
     "eaAllowed": true,
-    "overnightAllowed": true,
+    "overnightAllowed": null,
     "weekendAllowed": true,
     "copyTradingAllowed": null,
     "countriesRestricted": [],
@@ -624,10 +668,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": null,
-    "trustpilotCount": null,
+    "trustpilotScore": 2.9,
+    "trustpilotCount": 21965,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/thefundedtraderprogram.com",
+    "trustpilotCapturedAt": "2026-07-27"
   },
   {
     "name": "Take Profit Trader",
@@ -645,14 +691,14 @@
     "score": 8.3,
     "logo": "",
     "reviewUrl": "/blog/take-profit-trader-review",
-    "profitSplitPct": 90,
+    "profitSplitPct": 80,
     "payoutFrequency": "on-demand",
     "payoutMethods": [
       "ACH",
       "PayPal",
       "Wise"
     ],
-    "drawdownType": "trailing",
+    "drawdownType": "eod-trailing",
     "minTradingDays": 5,
     "consistencyRule": "Test phase only: no single day may exceed 50% of the profit target. Removed once funded (PRO/PRO+).",
     "scalingPlan": true,
@@ -668,9 +714,11 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": 4.4,
-    "trustpilotCount": 9250,
+    "trustpilotScore": 4.3,
+    "trustpilotCount": 10087,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-06-15"
+    "lastUpdated": "2026-07-27",
+    "trustpilotUrl": "https://www.trustpilot.com/review/takeprofittrader.com",
+    "trustpilotCapturedAt": "2026-07-27"
   }
 ]

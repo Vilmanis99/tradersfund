@@ -76,7 +76,7 @@ type: "post"
       <!-- Buttons Container -->
       <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
         <!-- First Button -->
-        <a href="/go-fundingpips" 
+        <a href="/go/fundingpips" 
            data-button
            target="_blank"
            rel="nofollow noopener noreferrer sponsored"
@@ -148,7 +148,7 @@ type: "post"
 
 <p>Therefore, it’s basically for traders who already know how to manage risk and trade with discipline. You skip the waiting, but every mistake costs more.</p>
 
-<p>The main idea behind <a href="/go-fundingpips" target="_blank" rel="noreferrer noopener nofollow sponsored">FundingPips Zero</a> is simple: reward consistency, not luck. You won’t pass by catching one big trade. You’ll have to show stable performance every day, and you will earn accordingly.</p>
+<p>The main idea behind <a href="/go/fundingpips" target="_blank" rel="noreferrer noopener nofollow sponsored">FundingPips Zero</a> is simple: reward consistency, not luck. You won’t pass by catching one big trade. You’ll have to show stable performance every day, and you will earn accordingly.</p>
 
 <h2 class="wp-block-heading">How FundingPips Zero Works</h2>
 
@@ -255,7 +255,7 @@ type: "post"
 
 <p>If you can manage risk tightly and trade with consistency, it’s a fast way to access capital without wasting time on evaluations. But if you’re still learning or trade aggressively, you’ll probably lose the account fast.</p>
 
-<p>So yes, <a href="/go-fundingpips" target="_blank" rel="noreferrer noopener nofollow sponsored">FundingPips Zero</a> is worth it, but only for traders who treat prop trading like a real business, and not gamble at an online casino.</p>
+<p>So yes, <a href="/go/fundingpips" target="_blank" rel="noreferrer noopener nofollow sponsored">FundingPips Zero</a> is worth it, but only for traders who treat prop trading like a real business, and not gamble at an online casino.</p>
 
 <h2 class="wp-block-heading">FAQs</h2>
 

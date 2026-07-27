@@ -190,7 +190,7 @@ export default function HeaderNav({ lastUpdated }: HeaderNavProps) {
               <div className="mobile-overlay__socials" aria-label="Social links">
                 <a href="#" aria-label="Twitter" className="mobile-overlay__social"><Twitter size={18} aria-hidden="true" /></a>
                 <a href="#" aria-label="GitHub" className="mobile-overlay__social"><Github size={18} aria-hidden="true" /></a>
-                <a href="/contact" aria-label="Contact" className="mobile-overlay__social"><Mail size={18} aria-hidden="true" /></a>
+                <Link href="/contact" aria-label="Contact" className="mobile-overlay__social"><Mail size={18} aria-hidden="true" /></Link>
               </div>
             </div>
           </div>

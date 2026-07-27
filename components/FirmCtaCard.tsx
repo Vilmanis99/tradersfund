@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Star, ExternalLink } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
 import CopyableCodePill from './CopyableCodePill'
+import TrustpilotRating from './TrustpilotRating'
 
 function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -68,6 +69,11 @@ export default function FirmCtaCard({ firm }: { firm: Firm }) {
             {firm.discountCode && firm.discountPct && (
               <CopyableCodePill code={firm.discountCode} pct={firm.discountPct} />
             )}
+            {/* Cited Trustpilot figure, sat beside our own score so the two
+                ratings read together above the fold. Unlinked here — the
+                verification link lives in the FirmStatPanel further down the
+                same page, so this doesn't compete with the affiliate CTA. */}
+            <TrustpilotRating firm={firm} label />
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: 6, color: 'var(--muted)', fontSize: '0.82rem' }}>
             {firm.profitSplitPct != null && <span><strong style={{ color: '#e2e8f0' }}>{firm.profitSplitPct}%</strong> split</span>}

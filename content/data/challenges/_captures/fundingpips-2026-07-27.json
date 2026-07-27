@@ -1,0 +1,528 @@
+{
+  "firmSlug": "fundingpips",
+  "officialDomain": "https://fundingpips.com",
+  "capturedAt": "2026-07-27",
+  "pagesRead": [
+    "https://help.fundingpips.com/hc/en-us",
+    "https://help.fundingpips.com/api/v2/help_center/en-us/articles.json?per_page=100",
+    "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Types",
+    "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+    "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+    "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+    "https://help.fundingpips.com/hc/en-us/articles/34505029138449-Trading-Conduct-and-Security-Standards",
+    "https://help.fundingpips.com/hc/en-us/articles/48174287980177-Risk-Per-Trade-Idea",
+    "https://help.fundingpips.com/hc/en-us/articles/45363484760209-Free-Trial"
+  ],
+  "pagesBlocked": [
+    "https://fundingpips.com/",
+    "https://fundingpips.com/pricing",
+    "https://fundingpips.com/challenges",
+    "https://fundingpips.com/trading-objectives",
+    "https://fundingpips.com/robots.txt",
+    "https://fundingpips.com/sitemap.xml",
+    "https://app.fundingpips.com/",
+    "https://dashboard.fundingpips.com/"
+  ],
+  "accessNotes": "NO PRICES CAPTURED. The entire www/apex domain fundingpips.com (and app./dashboard. subdomains) sits behind a Vercel bot-protection interstitial. Every request - WebFetch and direct curl with a real browser User-Agent - returned HTTP 429/403 with a 33KB HTML body whose <title> is 'Vercel Security Checkpoint'. This affects EVERY path including /pricing, /challenges, /trading-objectives, /robots.txt and /sitemap.xml. The purchase/checkout pricing table is therefore unreadable, so every priceUsd is null. The ONLY officially readable FundingPips property is the Zendesk help centre at help.fundingpips.com, which is an official FundingPips-operated subdomain and was reachable (HTTP 200) via its public Help Center API. All rule/percentage data below comes from there and every article was last updated 2026-07-24, three days before capture. IMPORTANT: help.fundingpips.com documents rules and account SIZES but never states a challenge purchase fee anywhere - the only fee references are relative reset discounts ('15% off the purchase price'). I deliberately did NOT use propfirmmatch, propfirmsfinder, brokeranalysis or any other aggregator that surfaced in search, so the '~$66 for the $10K tier' figure currently in our review remains UNVERIFIED and unsupported.",
+  "priceCaptureStatus": "FAILED_BOT_GATE",
+  "products": [
+    {
+      "productName": "1 Step Flex",
+      "productSlug": "1-step-flex",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Five account sizes : $5K, $10K, $25K, $50K, and $100K."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Five account sizes : $5K, $10K, $25K, $50K, and $100K."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Five account sizes : $5K, $10K, $25K, $50K, and $100K."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Five account sizes : $5K, $10K, $25K, $50K, and $100K."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Five account sizes : $5K, $10K, $25K, $50K, and $100K."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 12,
+        "phase2": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 12,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 85,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "Evaluation: no restrictions. Master Account: cannot open or close positions within a 10-minute window (5 min before / 5 min after) around a high-impact (red folder, Forex Factory) event on affected currencies; profits from such trades are deducted. Trades opened 5+ hours before the event are exempt. Purposely trading news is prohibited and leads to account closure.",
+        "weekend": "Permitted during evaluation. TEMPORARILY NOT ALLOWED on 1 Step Flex Master Accounts since 29 January 2026; system auto-closes open trades, not a hard breach.",
+        "overnight": "Allowed. Optional paid Swap-Free add-on (MT5 only, Forex and Metals) removes overnight swap charges.",
+        "ea": "Third-party EAs permitted only as a trade or risk manager; any other use causes denial and account closure. Personal EAs developed by you may fully automate with proof of ownership.",
+        "copyTrading": "Permitted between your own FundingPips accounts, and outbound to an external account. Prohibited between accounts owned by different users and inbound from external signal providers."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+      "sourceCapturedAt": "2026-07-27",
+      "articleUpdatedAt": "2026-07-24T15:02:28Z",
+      "fieldEvidence": {
+        "phase1Target": "Achieve a 12% profit target during Phase 1.",
+        "dailyLossPct": "Daily Loss Limit 3% Max daily loss from the higher of opening balance or equity.",
+        "maxLossPct": "Max Loss Limit 12% Your equity or balance cannot fall 12% below the starting account size.",
+        "drawdownType": "Max Loss Limit: 12% of the starting account size. The Max Loss Limit is based on the starting account size.",
+        "minTradingDays": "No minimum trading days : pass on your own schedule.",
+        "maxTradingDays": "No minimum trading days and no time limit to pass.",
+        "profitSplitPct": "1 Step Flex pays an 85% split on a Bi-Weekly cycle.",
+        "payoutFrequency": "85% Bi-Weekly reward : request a Reward every two weeks.",
+        "priceUsd": "NOT STATED on any readable fundingpips.com page - pricing page is bot-gated."
+      },
+      "notes": [
+        "Profit Concentration Policy (not a classic consistency rule): 'If a single trade idea accounts for more than 60% of the profit target in an evaluation phase, the Master Account created after passing will require 4 minimum profitable days before each reward can be requested.' A profitable day closes up 0.5%+ of account size. Applies to ALL account sizes on 1 Step Flex.",
+        "Striking System: warning at 1% floating loss on one trade idea; 2nd warning halves split to 42.5%, 3rd drops to 20%, 4th closes the account.",
+        "Minimum reward request is 1% of account size.",
+        "Inactivity breach after 30 consecutive days with no completed trade."
+      ]
+    },
+    {
+      "productName": "2 Step Flex",
+      "productSlug": "2-step-flex",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, and $100K."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, and $100K."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, and $100K."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, and $100K."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, and $100K."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 6
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 12,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": null,
+      "profitSplitOptions": [
+        85,
+        95
+      ],
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "Same 10-minute high-impact-news window restriction on the Master Account as other evaluation models.",
+        "weekend": "TEMPORARILY NOT ALLOWED on Master Accounts; close all trades before Friday market close. Not a hard breach.",
+        "overnight": "Allowed. Optional Swap-Free add-on (MT5 only, Forex and Metals).",
+        "ea": "Third-party EAs permitted only as a trade or risk manager; personal EAs may fully automate with proof of ownership.",
+        "copyTrading": "Permitted between your own accounts and outbound only; prohibited between different users and inbound from signal providers."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+      "sourceCapturedAt": "2026-07-27",
+      "articleUpdatedAt": "2026-07-24T15:02:16Z",
+      "fieldEvidence": {
+        "phase1Target": "Achieve a 10% profit target during Phase 1.",
+        "phase2Target": "Achieve a 6% profit target during Phase 2.",
+        "dailyLossPct": "Daily Loss Limit 4% Max daily loss from the higher of opening balance or equity.",
+        "maxLossPct": "Max Loss Limit 12% Your equity or balance cannot hit 12% below the starting account size at any time.",
+        "drawdownType": "Max Loss Limit: 12% of the starting account size. This is a static floor; it never moves.",
+        "minTradingDays": "No minimum trading days on the 85% split (pass as soon as you hit the target), or 3 profitable days on the 95% split.",
+        "profitSplitPct": "When you buy, you choose how you earn your rewards: an 85% split, passing each phase on its profit target, or a 95% split based on profitable days. Your choice is locked for the life of the account, and both cost the same.",
+        "consistencyRulePct": "There is no Consistency Score on either split.",
+        "payoutFrequency": "Rewards run on a single Bi-Weekly cycle: every 14 calendar days after your first executed trade on the Master Account.",
+        "priceUsd": "NOT STATED on any readable fundingpips.com page - pricing page is bot-gated."
+      },
+      "notes": [
+        "profitSplitPct left null deliberately: there is no single split. The buyer picks 85% (no minimum trading days) or 95% (requires 3 profitable days of >=0.5% each per cycle) at purchase, locked for the life of the account. Both variants cost the same.",
+        "Risk Per Trade Idea Limit on Master Account only: 3% at $25K, 2% above $25K, does not apply below $25K.",
+        "Explicitly no consistency score on either split."
+      ]
+    },
+    {
+      "productName": "2 Step Pro",
+      "productSlug": "2-step-pro",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K, plus $2.5K in select countries."
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K, plus $2.5K in select countries."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K, plus $2.5K in select countries."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K, plus $2.5K in select countries."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K, plus $2.5K in select countries."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K, plus $2.5K in select countries."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K, plus $2.5K in select countries."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": 6
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 7,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "10-minute high-impact-news window restriction applies on the Master Account; profits from trades opened or closed in the window are not counted.",
+        "weekend": "TEMPORARILY NOT ALLOWED on Master Accounts; close all trades before Friday market close. Not a hard breach.",
+        "overnight": "Allowed. Optional Swap-Free add-on (MT5 only, Forex and Metals).",
+        "ea": "Third-party EAs permitted only as a trade or risk manager; personal EAs may fully automate with proof of ownership.",
+        "copyTrading": "Permitted between your own accounts and outbound only; prohibited between different users and inbound from signal providers."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+      "sourceCapturedAt": "2026-07-27",
+      "articleUpdatedAt": "2026-07-24T15:01:28Z",
+      "fieldEvidence": {
+        "phase1Target": "Achieve a 6% profit target during Phase 1.",
+        "phase2Target": "Achieve a 6% profit target during Phase 2.",
+        "dailyLossPct": "Daily Loss Limit 3% Max daily loss from the higher of opening balance or equity.",
+        "maxLossPct": "Max Loss Limit 6% Your equity or balance cannot hit 6% below the starting account size at any time.",
+        "drawdownType": "Max Loss Limit: 6% of the starting account size. This is a static floor; it never moves.",
+        "minTradingDays": "Complete a minimum of 1 trading day to pass.",
+        "profitSplitPct": "Weekly reward cycle at 80% : available from your first trade on the Master Account.",
+        "payoutFrequency": "You can request a reward with an 80% profit split every 7 calendar days after your first executed trade on the Master Account.",
+        "priceUsd": "NOT STATED on any readable fundingpips.com page - pricing page is bot-gated."
+      },
+      "notes": [
+        "Risk Per Trade Idea rule has been REMOVED on 2 Step Pro: 'Risk Per Trade Idea Removed. This rule no longer applies on 2 Step Pro accounts.'",
+        "Minimum reward request is 1% of the Master Account Size (including FundingPips' split).",
+        "$2.5K size is region-restricted ('in select countries') and is paid-evaluation only."
+      ]
+    },
+    {
+      "productName": "2 Step Standard",
+      "productSlug": "2-step-standard",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, and $100K, plus $2.5K in select countries."
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, and $100K, plus $2.5K in select countries."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, and $100K, plus $2.5K in select countries."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, and $100K, plus $2.5K in select countries."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, and $100K, plus $2.5K in select countries."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, and $100K, plus $2.5K in select countries."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 35,
+      "profitSplitPct": null,
+      "profitSplitOptions": [
+        60,
+        80,
+        90,
+        100
+      ],
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": "News trading allowed on the Master Account with a 10-minute window restriction around high-impact events.",
+        "weekend": "TEMPORARILY NOT ALLOWED on Master Accounts; close all trades before Friday market close. Not a hard breach.",
+        "overnight": "Allowed. Optional Swap-Free add-on (MT5 only, Forex and Metals).",
+        "ea": "Third-party EAs permitted only as a trade or risk manager; personal EAs may fully automate with proof of ownership.",
+        "copyTrading": "Permitted between your own accounts and outbound only; prohibited between different users and inbound from signal providers."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "sourceCapturedAt": "2026-07-27",
+      "articleUpdatedAt": "2026-07-24T15:01:56Z",
+      "fieldEvidence": {
+        "phase1Target": "Achieve an 8% profit target during Phase 1.",
+        "phase2Target": "Achieve a 5% profit target during Phase 2.",
+        "dailyLossPct": "Daily Loss Limit 5% Max daily loss from the higher of opening balance or equity.",
+        "maxLossPct": "Max Loss Limit 10% Your equity or balance cannot hit 10% below the starting account size at any time.",
+        "drawdownType": "Max Loss Limit: 10% of the starting account size. This is a static floor; it never moves.",
+        "minTradingDays": "Complete a minimum of 3 trading days to pass.",
+        "consistencyRulePct": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward.",
+        "profitSplitPct": "Flexible reward cycles : Weekly 60%, Bi-Weekly 80%, Monthly 100%, or On Demand 90%.",
+        "newsRule": "News trading allowed on Master : with a 10-minute window restriction.",
+        "priceUsd": "NOT STATED on any readable fundingpips.com page - pricing page is bot-gated."
+      },
+      "notes": [
+        "profitSplitPct and payoutFrequency left null deliberately: there is no single value. Four selectable cycles, each with its own split - On Demand 90% (requires 35% consistency score and min 2% profit), Weekly 60% (7 days after first executed trade), Bi-Weekly 80% (every 14 calendar days), Monthly 100% (every 30 calendar days). Do NOT quote a single headline split for this product.",
+        "The 35% consistency rule applies ONLY to the On Demand cycle, not to the Weekly/Bi-Weekly/Monthly cycles or to the evaluation phases.",
+        "Risk Per Trade Idea rule has been REMOVED on 2 Step Standard.",
+        "Striking System (4 warnings) applies to Master Accounts above $25,000.",
+        "Legacy note from the page: 'Existing 2 Step Standard accounts with a 10% profit target will reset as 2 Step Flex' - the current Phase 1 target is 8%, not the older 10%.",
+        "Minimum reward request is 1% of the Master Account Size (including FundingPips' split)."
+      ]
+    },
+    {
+      "productName": "FundingPips Zero",
+      "productSlug": "zero",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Account sizes : $5K, $10K, $25K, $50K, $100K, and $200K."
+        }
+      ],
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 5,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 15,
+      "profitSplitPct": 95,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "PROHIBITED - hard breach. No position may be opened, closed, or held within 10 minutes before to 10 minutes after any high-impact (red, Forex Factory) event or speech on the affected currency.",
+        "weekend": "PROHIBITED - hard breach on all instruments. All positions must be fully closed before Friday market close; leaving any position open into the weekend is immediate account termination.",
+        "overnight": "Allowed intraday-to-intraday. Swap-Free add-on available, but weekend holds remain prohibited regardless of the add-on.",
+        "ea": "Third-party EAs permitted only as a trade or risk manager; personal EAs may fully automate with proof of ownership.",
+        "copyTrading": "Permitted between your own accounts and outbound only; prohibited between different users and inbound from signal providers."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+      "sourceCapturedAt": "2026-07-27",
+      "articleUpdatedAt": "2026-07-24T15:01:43Z",
+      "fieldEvidence": {
+        "phases": "No evaluation : live from day one, no multi-stage testing.",
+        "dailyLossPct": "Daily Loss Limit 3% Max daily loss from the higher of opening balance or equity.",
+        "maxLossPct": "Max Trailing Loss Limit 5% Trails your highest recorded equity. Locks at breakeven once 5% in profit.",
+        "drawdownType": "Max Trailing Loss Limit: 5% of your highest ever recorded equity. The trailing floor rises in step with your peak equity. It never moves down. Once your equity reaches 5% above the starting account size, the floor stops trailing and locks permanently at the starting account size.",
+        "consistencyRulePct": "Consistency Score 15% max. Your single largest winning day must not exceed 15% of your total cumulative profit.",
+        "profitSplitPct": "95% profit split : bi-weekly reward cycle.",
+        "payoutFrequency": "Every 14 calendar days after your first executed trade on the Master Account. 95% profit split on every reward.",
+        "priceUsd": "NOT STATED on any readable fundingpips.com page - pricing page is bot-gated."
+      },
+      "notes": [
+        "maxLossPct of 5% is a TRAILING limit on peak equity, not a static floor - it is not comparable like-for-like with the 6-12% static limits on the evaluation models. It locks at the starting account size once equity reaches 5% profit.",
+        "Max Open Risk Limit 1%: 'Floating PnL cannot exceed -1% of the starting account size at any time' - hard breach.",
+        "Risk Per Trade Idea: 3% below $50K, 2% at $50K and above.",
+        "Min Profitable Days: at least 7 profitable days (0.25%+ each) per rolling 30-day period - failing this is listed under hard breaches.",
+        "Reward eligibility needs all four of: consistency score <=15%, 7 profitable days in the rolling 30-day period, a 3% safety cushion (first 3% profit not eligible for reward), and biggest losing day not exceeding biggest winning day.",
+        "Reset available at a 20% discount for all account sizes."
+      ]
+    }
+  ],
+  "firmWideFacts": {
+    "commissionStandard": {
+      "forexPerLot": 5,
+      "metalsPerLot": 5,
+      "energies": 0,
+      "indices": 0,
+      "cryptoPct": 0.04,
+      "evidence": "Forex | $5 per lot | $10 per lot | Metals | $5 per lot | $10 per lot | Energies | No commission | Indices | No commission | Crypto | 0.04%",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex"
+    },
+    "commissionSwapFreeMt5": {
+      "forexPerLot": 10,
+      "metalsPerLot": 10,
+      "evidence": "Accounts with the Swap-Free Add-on (MT5 only) pay higher commission in exchange for no overnight swap fees."
+    },
+    "leverageStandard": {
+      "forex": "1:100",
+      "metals": "1:10",
+      "energies": "1:10",
+      "indices": "1:5",
+      "crypto": "1:2",
+      "evidence": "Forex | 1:100 | Metals | 1:10 | Energies | 1:10 | Indices | 1:5 | Crypto | 1:2"
+    },
+    "resetDiscounts": {
+      "phase1": "15% off the purchase price",
+      "phase2": "10% off the purchase price",
+      "master": "7% off the purchase price (excluding $100K accounts)",
+      "zero": "20% discount",
+      "note": "These are percentages off an unpublished base price - they do NOT let us derive absolute prices."
+    },
+    "inactivityDays": 30,
+    "platformTimezone": "UTC+3",
+    "platforms": [
+      "MetaTrader 5",
+      "cTrader",
+      "Match-Trader"
+    ],
+    "newsSource": "Forex Factory",
+    "vpnVpsAllowed": false,
+    "vpnEvidence": "Connecting to a VPN or VPS while accessing your trading account is not permitted.",
+    "freeTrial": {
+      "exists": true,
+      "costUsd": 0,
+      "durationDaysPerPhase": 14,
+      "models": [
+        "2 Step Standard",
+        "2 Step Pro"
+      ],
+      "evidence": "The Free Trial gives you a live MT5 trading environment that mirrors the 2 Step Standard or 2 Step Pro model, at no cost.",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/45363484760209-Free-Trial"
+    }
+  },
+  "fieldsThatStayedNull": [
+    "priceUsd for ALL 30 tiers across all 5 products - bot gate, no exceptions",
+    "refundable for ALL tiers - refund policy never stated in the readable help centre",
+    "maxTradingDays for all 5 products - 1 Step Flex explicitly states 'no time limit to pass'; the others simply never state a limit",
+    "profitTargets for FundingPips Zero - no evaluation phases exist",
+    "minTradingDays for FundingPips Zero - no evaluation phases exist",
+    "consistencyRulePct for 1 Step Flex and 2 Step Flex - 2 Step Flex explicitly states 'There is no Consistency Score on either split'",
+    "profitSplitPct for 2 Step Flex (85 or 95, buyer's choice) and 2 Step Standard (60/80/90/100 by cycle)",
+    "payoutFirstDays and payoutFrequency for 2 Step Standard - four different selectable cycles"
+  ],
+  "reviewCorrectionsNeeded": [
+    "The '~$66 for the $10K tier' figure in our review is UNSOURCED and must not be published as verified. No price on any readable FundingPips-owned page supports it.",
+    "Product lineup has changed: FundingPips now sells FIVE models - 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard, and Zero. Any review text describing a plain '1-Step / 2-Step / Zero' trio is stale.",
+    "2 Step Standard Phase 1 target is now 8% (was 10%); legacy 10%-target accounts reset as 2 Step Flex.",
+    "Weekend holding is currently NOT allowed on Master Accounts across models (temporary change in effect since 29 January 2026) - a review claiming weekend holding is permitted would be wrong as of 2026-07-27.",
+    "Zero's 5% max loss is TRAILING on peak equity, not static - do not tabulate it alongside the static limits without a qualifier."
+  ]
+}

@@ -1,0 +1,450 @@
+{
+  "firmSlug": "alpha-capital",
+  "officialDomain": "https://alphacapitalgroup.uk",
+  "capturedAt": "2026-07-27",
+  "pagesRead": [
+    "https://alphacapitalgroup.uk/",
+    "https://alphacapitalgroup.uk/product",
+    "https://alphacapitalgroup.uk/posts/alpha-capital-rules-explained-drawdown-profit-targets-daily-loss-and-evaluation-rules-2026",
+    "https://alphacapitalgroup.uk/posts/alpha-one-vs-alpha-pro-vs-alpha-swing-vs-alpha-three-2026",
+    "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+    "https://alphacapitalgroup.uk/cs/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+    "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
+    "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+    "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one",
+    "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+    "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+    "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+    "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+    "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+    "https://help.alphacapitalgroup.uk/en/articles/10102634-performance-fee-on-demand",
+    "https://help.alphacapitalgroup.uk/en/articles/10570531-performance-fee-bi-weekly",
+    "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+    "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+    "https://app.alphacapitalgroup.uk/FundingEvaluationPayments/89"
+  ],
+  "accessNotes": "MAJOR CAVEAT ON PRICING. The live checkout is JS-gated: https://alphacapitalgroup.uk/ renders its price widget as 'Total due: One-time payment $0.00' and https://app.alphacapitalgroup.uk/FundingEvaluationPayments/89 returns only the heading 'Alpha Capital' with no DOM content. The /product page lists plan NAMES only and states 'Evaluation fees start from $50 on the smallest Alpha One tier and scale with simulated account size' without a table. Therefore NO price in this capture was read off a live checkout. All prices come from Alpha Capital's OWN editorial page https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026, which self-reports 'Page Last Updated: June 1, 2026' - i.e. ~8 weeks stale as of 2026-07-27, and that page itself says to 'Confirm the price on product page'. Treat all priceUsd values as firm-published-but-unverified-against-checkout.\n\nPRICE CONFLICT (unresolved): https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict states 'Alpha Pro 25K (2-step): $197', while the cost page states 'Alpha Pro 25K 6% $25,000 $137'. These are two different pages on the same official domain disagreeing. Most likely explanation is that the $197 figure refers to a Pro 8% or 10% variant, but the firm does not say so. I did NOT resolve this and did NOT average it. Alpha Pro prices below are recorded ONLY for the 6% variant, as explicitly labelled on the cost page.\n\nNO PRICE TABLE EXISTS on any official page for Alpha Pro 8%, Alpha Pro 10%, Alpha Swing (except a single 100K data point), or Alpha Direct. The cost page explicitly defers: 'Alpha Pro is also available at 8% and 10% Phase 1 targets, and Alpha Swing supports overnight holds - each with different fees per size on /product.' Those are left null.\n\nVARIANT/PRICE MAPPING AMBIGUITY: Alpha One ships in 6%, 10% and 12% variants with DIFFERENT rules (see help centre article 10097421). The price table rows are labelled only 'Alpha One 5K', 'Alpha One 10K' etc. with no variant suffix, so it is NOT knowable which variant those prices buy. The rule figures recorded under the Alpha One product below are the 10% variant (the one the firm's own rules blog presents as the headline spec). Do not assume the listed prices correspond to the 10% variant.\n\nPAYOUT FREQUENCY CONFLICT (unresolved): help centre 'Performance fee bi-weekly' says bi-weekly is 'available on Alpha Pro/Three accounts', but the homepage and the rules blog both advertise 'Bi-Weekly or On-Demand' for Alpha One. I recorded the narrower help-centre position. Flagged rather than resolved.\n\nMAX TRADING DAYS: no time limit is published on any page read, for any plan. Recorded as null everywhere rather than as 'unlimited'.\n\nNo geo-blocking encountered. help.alphacapitalgroup.uk and app.alphacapitalgroup.uk are subdomains of the firm's own domain and were treated as official.",
+  "globalRules": {
+    "maxAllocationUsd": 400000,
+    "maxAllocationEvidence": "The maximum allocation is $400,000, which is shared across all five plans.",
+    "inactivityRule": "If no trade is placed for 30 consecutive days, the account is deactivated",
+    "refundPolicyEvidence": "All sales are final and no refund will be issued.",
+    "refundPolicyUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+    "eaEvidence": "Yes, Expert Advisors (EAs) are permitted on our MT5 platform; however, their use is strictly limited to risk management and trade assistance tools.",
+    "eaProhibitedEvidence": "Automated EAs that execute trades independently, without human oversight, are strictly prohibited and will not be approved under any circumstances.",
+    "copyTradingEvidence": "Engaging in copy trading from other groups, or duplicating trades from fellow traders, is strictly prohibited."
+  },
+  "products": [
+    {
+      "productName": "Alpha One",
+      "productSlug": "alpha-one",
+      "phases": 1,
+      "variantNote": "Sold in 6% / 10% / 12% variants with different targets and drawdowns. Figures below are the 10% variant. One 6%: target 6%, max DD 4% trailing, daily 3%. One 12%: target 12%, max DD 8% trailing, daily 5%, and 'All Alpha One plans are available up to $200k, with the exception of the One 12% plan, which is available up to $100k.'",
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 50,
+          "refundable": false,
+          "evidence": "Alpha One 5K $5,000 $50"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 99,
+          "refundable": false,
+          "evidence": "Alpha One 10K $10,000 $99"
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 197,
+          "refundable": false,
+          "evidence": "Alpha One 25K $25,000 $197"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 297,
+          "refundable": false,
+          "evidence": "Alpha One 50K $50,000 $297"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 497,
+          "refundable": false,
+          "evidence": "Alpha One 100K $100,000 $497"
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 997,
+          "refundable": false,
+          "evidence": "Alpha One 200K $200,000 $997"
+        }
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": null
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 6,
+      "drawdownType": "trailing",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "Allowed, with a 5-minute window on both sides of the event",
+        "weekend": "Allowed at every stage, including the Qualified Account",
+        "overnight": "Allowed - no separate overnight hold rule",
+        "ea": "Allowed on MT5 for risk management / trade assistance only; pre-approval required; fully automated EAs prohibited",
+        "copyTrading": "Restricted - own external account as Master allowed with proof of ownership; copying other groups or fellow traders prohibited; unavailable on cTrader, DX Trade, TradeLocker"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one",
+      "fieldEvidence": {
+        "profitTargets.phase1": "Phase 1 profit target: 10%",
+        "maxLossPct": "Max Drawdown (trailing per high water-mark): 6%",
+        "dailyLossPct": "Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%",
+        "drawdownType": "Max Drawdown (trailing per high water-mark)",
+        "minTradingDays": "Minimum trading days (Evaluation): 1",
+        "consistencyRulePct": "40% Best Day Rule - the net profits generated on your best day are divided by the total net profits on the account",
+        "profitSplitPct": "up to 80% of simulated profits",
+        "payoutFrequency": "Alpha Pro / Swing / One / Three / Direct accounts ... a minimum of 2% of gross profits on the account balance",
+        "rules.news": "5-minute window on both sides of the event",
+        "rules.weekend": "Allowed at every stage, including the Qualified Account",
+        "rules.overnight": "no separate overnight hold rule. You can hold positions overnight"
+      }
+    },
+    {
+      "productName": "Alpha Pro (6%)",
+      "productSlug": "alpha-pro-6",
+      "phases": 2,
+      "variantNote": "Also sold at 8% and 10% Phase 1 targets. Pro 8%: P1 8%, P2 5%, max DD 8% static, daily 4%. Pro 10%: P1 10%, P2 5%, max DD 10% static, daily 5%. No official price table published for the 8% or 10% variants.",
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 40,
+          "refundable": false,
+          "evidence": "Alpha Pro 5K 6% $5,000 $40"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 67,
+          "refundable": false,
+          "evidence": "Alpha Pro 10K 6% $10,000 $67"
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 137,
+          "refundable": false,
+          "evidence": "Alpha Pro 25K 6% $25,000 $137"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 237,
+          "refundable": false,
+          "evidence": "Alpha Pro 50K 6% $50,000 $237"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 427,
+          "refundable": false,
+          "evidence": "Alpha Pro 100K 6% $100,000 $427"
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 847,
+          "refundable": false,
+          "evidence": "Alpha Pro 200K 6% $200,000 $847"
+        }
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": 6
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "Allowed, with a 5-minute window on both sides of the event",
+        "weekend": "Allowed during Phase 1/2, NOT permitted on the Qualified Analyst account",
+        "overnight": "Allowed during the evaluation phases",
+        "ea": "Allowed on MT5 for risk management / trade assistance only; pre-approval required; fully automated EAs prohibited",
+        "copyTrading": "Restricted - own external account as Master allowed with proof of ownership; copying other groups or fellow traders prohibited; unavailable on cTrader, DX Trade, TradeLocker"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://alphacapitalgroup.uk/posts/alpha-capital-rules-explained-drawdown-profit-targets-daily-loss-and-evaluation-rules-2026",
+      "fieldEvidence": {
+        "profitTargets.phase1": "Pro 6% | P1 6% | P2 6% | Daily loss 3% | Max drawdown 6% static",
+        "profitTargets.phase2": "Pro 6% | P1 6% | P2 6% | Daily loss 3% | Max drawdown 6% static",
+        "maxLossPct": "6% static",
+        "dailyLossPct": "3%",
+        "drawdownType": "6% / 8% / 10% static",
+        "minTradingDays": "Minimum trading days (for each phase): 3",
+        "consistencyRulePct": "40% Best Day Rule - the net profits generated on your best day are divided by the total net profits on the account",
+        "profitSplitPct": "up to 80% of simulated profits",
+        "payoutFirstDays": "requests are made every 14 days, starting 14 days after your initial trade",
+        "payoutFrequency": "available on Alpha Pro/Three accounts",
+        "rules.news": "5-minute window on both sides of the event",
+        "rules.weekend": "Allowed during the evaluation phases but are not permitted on the Qualified Account stage"
+      }
+    },
+    {
+      "productName": "Alpha Swing",
+      "productSlug": "alpha-swing",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": null,
+          "refundable": false,
+          "evidence": null
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "refundable": false,
+          "evidence": null
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "refundable": false,
+          "evidence": null
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "refundable": false,
+          "evidence": null
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 577,
+          "refundable": false,
+          "evidence": "Alpha Swing 100K (2-step): $577"
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": null,
+          "refundable": false,
+          "evidence": null
+        }
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
+      "priceNote": "Only the 100K price is published anywhere on the official domain. All other Swing tier prices are null - the firm publishes no Swing price table. Account sizes listed come from 'Account sizes available across the board: $5,000, $10,000, $25,000, $50,000, $100,000, and $200,000.'",
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "Allowed, but a trade opened within 2 minutes before or up to 2 minutes after a high-impact release must stay open longer than 2 minutes to be valid",
+        "weekend": "Allowed at every stage, including the Qualified Account",
+        "overnight": "Allowed - plan is built for traders who hold positions overnight",
+        "ea": "Allowed on MT5 for risk management / trade assistance only; pre-approval required; fully automated EAs prohibited",
+        "copyTrading": "Restricted - own external account as Master allowed with proof of ownership; copying other groups or fellow traders prohibited; unavailable on cTrader, DX Trade, TradeLocker"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+      "fieldEvidence": {
+        "profitTargets.phase1": "Phase 1 profit target: 10%",
+        "profitTargets.phase2": "Phase 2 profit target: 5%",
+        "maxLossPct": "Max Drawdown (static): 10%",
+        "dailyLossPct": "Max Daily Drawdown (balance-based): 5%",
+        "drawdownType": "Max Drawdown (static): 10%",
+        "minTradingDays": "Minimum trading days (for each phase): 3",
+        "consistencyRulePct": "40% Best Day Rule - the net profits generated on your best day are divided by the total net profits on the account",
+        "profitSplitPct": "up to 80% of simulated profits",
+        "payoutFrequency": "Swing accounts are only available with the On-Demand payout type",
+        "rules.news": "Trading during major news events is allowed. However, if a trade is initiated within 2 minutes before or up to 2 minutes after a news release (a 4-minute window), its duration must exceed 2 minutes for the trade to be valid.",
+        "rules.weekend": "Phase 1/2: Holding trades over the weekend is allowed."
+      }
+    },
+    {
+      "productName": "Alpha Three",
+      "productSlug": "alpha-three",
+      "phases": 3,
+      "accountSizes": [
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 67,
+          "refundable": false,
+          "evidence": "Alpha Three 10K $10,000 $67"
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 157,
+          "refundable": false,
+          "evidence": "Alpha Three 25K $25,000 $157"
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 247,
+          "refundable": false,
+          "evidence": "Alpha Three 50K $50,000 $247"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 397,
+          "refundable": false,
+          "evidence": "Alpha Three 100K $100,000 $397"
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 697,
+          "refundable": false,
+          "evidence": "Alpha Three 200K $200,000 $697"
+        }
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+      "priceNote": "No $5,000 tier is listed for Alpha Three on the official price table. Not recorded rather than assumed absent.",
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 4,
+        "phase3": 4
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "Allowed, with a 5-minute window on both sides of the event",
+        "weekend": "Allowed at every stage, including the Qualified Account",
+        "overnight": null,
+        "ea": "Allowed on MT5 for risk management / trade assistance only; pre-approval required; fully automated EAs prohibited",
+        "copyTrading": "Restricted - own external account as Master allowed with proof of ownership; copying other groups or fellow traders prohibited; unavailable on cTrader, DX Trade, TradeLocker"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+      "fieldEvidence": {
+        "profitTargets.phase1": "Phase 1 profit target: 8%",
+        "profitTargets.phase2": "Phase 2 profit target: 4%",
+        "profitTargets.phase3": "Phase 3 profit target: 4%",
+        "maxLossPct": "Max Drawdown (static): 6%",
+        "dailyLossPct": "Max Daily Drawdown (calculated over the highest end-of-day balance or equity, which one is greater): 4%",
+        "drawdownType": "Max Drawdown (static): 6%",
+        "minTradingDays": "Minimum trading days (for each phase): 3",
+        "consistencyRulePct": "40% Best Day Rule - the net profits generated on your best day are divided by the total net profits on the account",
+        "profitSplitPct": "up to 80% of simulated profits",
+        "payoutFirstDays": "requests are made every 14 days, starting 14 days after your initial trade",
+        "payoutFrequency": "available on Alpha Pro/Three accounts",
+        "rules.weekend": "Allowed at every stage, including the Qualified Account"
+      }
+    },
+    {
+      "productName": "Alpha Direct",
+      "productSlug": "alpha-direct",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": null,
+          "refundable": false,
+          "evidence": null
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": null,
+          "refundable": false,
+          "evidence": null
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "refundable": false,
+          "evidence": null
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "refundable": false,
+          "evidence": null
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "refundable": false,
+          "evidence": null
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "refundable": false,
+          "evidence": null
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": null,
+          "refundable": false,
+          "evidence": null
+        }
+      ],
+      "priceSourceUrl": null,
+      "priceNote": "NO price published on any official page for any Alpha Direct tier. All priceUsd null. Account sizes are stated in the help centre article ($2.5k, $5k, $10k, $25k, $50k, $100k, $200k) but carry no fees.",
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 5,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 15,
+      "profitSplitPct": 90,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "Allowed, with a 5-minute window on both sides of the event",
+        "weekend": "Not allowed",
+        "overnight": null,
+        "ea": "Not allowed - Expert Advisors (EAs) are disabled on Alpha Direct accounts and cannot be used",
+        "copyTrading": "Restricted - own external account as Master allowed with proof of ownership; copying other groups or fellow traders prohibited; unavailable on cTrader, DX Trade, TradeLocker"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+      "fieldEvidence": {
+        "profitTargets.phase1": "n/a - the account is Qualified from purchase, there is no evaluation to pass",
+        "maxLossPct": "Max Drawdown (trailing per high-water mark): 5%",
+        "dailyLossPct": "Max Daily Drawdown (calculated over highest end-of-day balance or equity): 3%",
+        "drawdownType": "the max drawdown is trailing based on the high-water mark",
+        "consistencyRulePct": "Alpha Direct: 15%",
+        "profitSplitPct": "receive $900 with Alpha Direct's 90% split",
+        "payoutFrequency": "a 3% profit buffer must be reached first, and a minimum of 1% of gross profits is then required",
+        "rules.ea": "Expert Advisors (EAs) are disabled on Alpha Direct accounts and cannot be used"
+      }
+    }
+  ],
+  "fieldsLeftNull": [
+    "maxTradingDays - all 5 products, no time limit published anywhere",
+    "priceUsd - all Alpha Direct tiers (7 sizes)",
+    "priceUsd - 5 of 6 Alpha Swing tiers (only 100K published)",
+    "priceUsd - all Alpha Pro 8% and Alpha Pro 10% tiers (variants not price-tabled)",
+    "priceUsd - Alpha Three $5,000 tier (tier not listed)",
+    "payoutFirstDays - Alpha One, Alpha Swing, Alpha Direct (on-demand has no published waiting period)",
+    "minTradingDays - Alpha Direct",
+    "profitTargets - Alpha Direct (no target by design)",
+    "rules.overnight - Alpha Three, Alpha Direct"
+  ]
+}

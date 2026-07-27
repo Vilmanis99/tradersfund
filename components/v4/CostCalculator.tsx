@@ -84,24 +84,20 @@ export default function CostCalculator({ challenge, firmName }: Props) {
     [challenge.accountSizes],
   )
 
-  // Fallback: if we somehow get no priced tier, render a soft empty state.
-  if (tiers.length === 0) {
-    return (
-      <div className="v4-glass v4-glass-strong" style={{ padding: '2rem', color: 'var(--muted)' }}>
-        Calculator unavailable — no priced tiers in this challenge yet.
-      </div>
-    )
-  }
-
   // Slider index — drag through tiers; rAF-interpolated values keep numbers fluid.
   const [idx, setIdx] = useState(0)
-  const tier = tiers[Math.min(idx, tiers.length - 1)]
+
+  // NOTE: every hook below must run unconditionally. The empty-tier early
+  // return lives *after* the hook block — bailing out before it changed the
+  // hook count between renders (a challenge whose prices land later would
+  // crash with "rendered more hooks than during the previous render").
+  const tier: ChallengeAccountSize | undefined = tiers[Math.min(idx, tiers.length - 1)]
 
   const cost = useMemo(
     () =>
       computeTrueCost({
-        priceUsd: tier.priceUsd!,
-        sizeUsd: tier.sizeUsd,
+        priceUsd: tier?.priceUsd ?? 0,
+        sizeUsd: tier?.sizeUsd ?? 0,
         profitSplitPct: challenge.profitSplitPct,
         dailyLossPct: challenge.dailyLossPct,
         maxLossPct: challenge.maxLossPct,
@@ -109,11 +105,20 @@ export default function CostCalculator({ challenge, firmName }: Props) {
     [tier, challenge.profitSplitPct, challenge.dailyLossPct, challenge.maxLossPct],
   )
 
-  const animFee = useAnimatedNumber(tier.priceUsd!)
-  const animSize = useAnimatedNumber(tier.sizeUsd)
+  const animFee = useAnimatedNumber(tier?.priceUsd ?? 0)
+  const animSize = useAnimatedNumber(tier?.sizeUsd ?? 0)
   const animBreakEven = useAnimatedNumber(cost.breakEvenProfit)
   const animR = useAnimatedNumber(cost.rMultiple ?? 0)
   const animDays = useAnimatedNumber(cost.dayCount ?? 0)
+
+  // Fallback: if we somehow get no priced tier, render a soft empty state.
+  if (!tier) {
+    return (
+      <div className="v4-glass v4-glass-strong" style={{ padding: '2rem', color: 'var(--muted)' }}>
+        Calculator unavailable — no priced tiers in this challenge yet.
+      </div>
+    )
+  }
 
   const v = verdict(cost.rMultiple)
 

@@ -14,7 +14,7 @@ type: "page"
   <header>
         <img src="/images/wp/2025/04/FTMO-icon-light.png" alt="FTMO logo">
           <h1>
-            <a href="/go-ftmo" target="_blank" rel="nofollow noreferrer noopener sponsored">FTMO</a>
+            <a href="/go/ftmo" target="_blank" rel="nofollow noreferrer noopener sponsored">FTMO</a>
           </h1>
           CFD prop firm overview & details
           Headquarters
@@ -25,7 +25,7 @@ type: "page"
           $400,000
           Trustpilot
           4.8/5
-      <a href="/go-ftmo" target="_blank" rel="nofollow noreferrer noopener sponsored">Take Challenge</a>
+      <a href="/go/ftmo" target="_blank" rel="nofollow noreferrer noopener sponsored">Take Challenge</a>
       <a href="/blog/ftmo-review">Read Full Review</a>
   </header>
   <!-- Sticky Tabs -->
@@ -132,7 +132,7 @@ type: "page"
 					<h2>Payout Rules</h2>				
 		<p>FTMO Payout Rules are as follows:</p><ul><li><strong>Minimum Profit:</strong> Once you access a funded FTMO account, you are eligible for the profit split (exact minimum profit for first payout varies by contract).</li><li><strong>Profit Split:</strong> Up to <b>90%</b> of net profits are paid to the trader.</li><li><strong>First Payout:</strong> Typically within <b>14 to 3Y0 days</b> after your first trade on the funded account, depending on region and contract type. </li></ul>		
 		<p>For more details about this prop firm, you can check out our comprehensive <a href="/blog/ftmo-review">FTMO review</a>.</p>		
-					<a href="/go-ftmo" target="_blank" rel="nofollow">
+					<a href="/go/ftmo" target="_blank" rel="nofollow">
 									Visit FTMO
 					</a>
   <strong>Affiliate Disclaimer:</strong> This post may contain affiliate links, which means we may receive a small commission if you choose to sign up or make a purchase through one of our links. This comes at no additional cost to you and helps us continue to create useful content for the trading community. We only recommend services we trust and personally use.
