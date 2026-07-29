@@ -84,6 +84,17 @@ function legacyRedirects() {
     { source: '/go-fxreplay', destination: '/go/fx-replay', permanent: true },
     { source: '/go-copyfx', destination: '/go/copyfx', permanent: true },
     { source: '/go-3commas', destination: '/go/3commas', permanent: true },
+    // Consolidate the old implementation-shaped directory URL into the
+    // canonical comparison product. Next preserves unmatched query filters.
+    { source: '/main-table', destination: '/prop-firms', permanent: true },
+    // Retire four duplicated WordPress overview pages in favour of the
+    // current Reviews v2 articles. Config redirects return a real 308 at the
+    // HTTP layer; a render-time redirect on a prerendered page degrades to a
+    // 200 response with a meta refresh.
+    { source: '/ftmo-overview', destination: '/blog/ftmo-review', permanent: true },
+    { source: '/fundednext-overview', destination: '/blog/fundednext-review', permanent: true },
+    { source: '/fundingpips-overview', destination: '/blog/funding-pips-review', permanent: true },
+    { source: '/e8-markets-overview', destination: '/blog/e8-markets-review', permanent: true },
     // Old RSS feed → the real feed route handler (app/feed.xml/route.ts).
     { source: '/feed', destination: '/feed.xml', permanent: true },
     { source: '/comments/feed', destination: '/feed.xml', permanent: true },

@@ -1,30 +1,28 @@
 ---
-title: "My Funded Futures Review 2026: The Futures Challenger Worth Considering"
+title: "My Funded Futures Review 2026: 4 Plans, 11 Prices, $0 Activation"
 slug: "my-funded-futures"
-date: "2025-07-30 11:19:03"
-modified: "2026-05-20 12:00:00"
+date: "2025-07-15 10:00:00"
+modified: "2026-07-27 12:00:00"
 author: "Tara Mohseni"
-excerpt: "My Funded Futures runs five plans, daily payouts on Rapid, and Tradovate support. Here's why it's the realistic Topstep alternative — and where Topstep still wins."
+excerpt: "MFF now sells Rapid, Flex, Pro, and Builder with monthly fees from $95 to $477. Compare drawdown, payout buffers, caps, and true cost."
 categories: ["Prop Firms"]
-tags: ["My Funded Futures", "Prop Firm"]
+tags: ["My Funded Futures", "Futures Prop Firm"]
 type: "post"
 ---
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 
-<p>My Funded Futures is the right pick for experienced futures traders who want Tradovate access, daily payouts, and a more flexible plan structure than Topstep's single Combine.</p>
+<p>My Funded Futures suits futures traders who choose among 4 payout structures before subscribing.</p>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul>
-    <li>Futures-only — same asset class as Topstep, but with a more granular plan lineup.</li>
-    <li>Five evaluation products: Rapid, Scale, Builder, Flex, Pro. Each targets a different trading style and risk tolerance.</li>
-    <li>Rapid plan supports <strong>daily payouts</strong>, capped at $100K request limit.</li>
-    <li>90% profit share on funded accounts (standard).</li>
-    <li>Trailing maximum drawdown — same structural mechanic as Topstep, same gotchas.</li>
-    <li>Platforms: NinjaTrader, Tradovate, TradingView, Quantower, plus several proprietary feeds. <strong>Tradovate support</strong> is the key differentiator vs Topstep.</li>
-    <li>Founded November 2023 — a younger firm than Topstep (2012). Strong fundamentals so far but shorter track record.</li>
-    <li>Available in the United States.</li>
+    <li>The 2026-07-27 capture contains 4 current plans—Rapid, Flex, Pro, and Builder—across 11 exact monthly prices.</li>
+    <li>Every plan is a 1-phase evaluation with a 6% target and $0 activation fee.</li>
+    <li>Rapid pays a 90% split; Flex, Pro, and Builder pay 80%.</li>
+    <li>First reward eligibility ranges from 1 day on Rapid to 14 days on Pro, but payout buffers and caps can matter more than the headline cadence.</li>
+    <li>Evaluation drawdown is end-of-day trailing; Rapid changes to real-time trailing after funding.</li>
+    <li>India-specific country, checkout, KYC, and payout evidence has not been captured, so MFF is not in the India shortlist yet.</li>
   </ul>
 </div>
 
@@ -33,134 +31,164 @@ type: "post"
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
   <caption class="hidden-caption">My Funded Futures at a glance</caption>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Founded</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">November 2023 (~2.5 years operating)</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Headquarters</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Delaware, USA</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Evaluation models</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Rapid · Scale · Builder · Flex · Pro</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Max allocation</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$600K total via account stacking</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">90% standard</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown type</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Trailing</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">NinjaTrader, Tradovate, TradingView, Quantower</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Instruments</strong></td><td style="padding: 8px 12px; border-bottom: none;">Futures only — ES, NQ, GC, CL, micros, agricultural and ag futures</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Current plans</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Rapid, Flex, Pro, Builder</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Captured prices</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">11 monthly tiers from $95 to $477</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Activation fee</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$0 on all 4 plans</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit target</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% on every evaluation</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">NinjaTrader, Tradovate, TradingView</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>India evidence</strong></td><td style="padding: 8px 12px;">Country, checkout, KYC, and payout capture pending</td></tr>
   </tbody>
 </table>
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>MFF runs five evaluation plans, each tuned to a different trader profile. The plans share the underlying 90% split and trailing drawdown but differ in daily-loss rules, profit targets, and payout cadence.</p>
+<p>All 11 rows below use undiscounted first-month list prices from the 2026-07-27 capture. The pricing model is a 30-day subscription, so passing in month 2 or later adds another renewal; “cost to funded” in the true-cost section assumes a month-1 pass.</p>
 
-<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-  <caption class="hidden-caption">My Funded Futures plans</caption>
-  <thead>
-    <tr style="background: var(--bg3);">
-      <th style="padding: 8px 12px; text-align: left;">Plan</th>
-      <th style="padding: 8px 12px; text-align: left;">Phases</th>
-      <th style="padding: 8px 12px; text-align: left;">Key feature</th>
-      <th style="padding: 8px 12px; text-align: left;">Payouts</th>
-    </tr>
-  </thead>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">My Funded Futures plans and prices</caption>
+  <thead><tr style="background: var(--bg3);"><th>Plan</th><th>Phases</th><th>Account</th><th>Monthly fee</th><th>Target</th><th>Drawdown</th><th>Split</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Rapid</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Daily payouts</strong>; $100K request cap</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Daily (on-demand)</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Scale</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Core scaling model</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Builder</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Slower-progression variant</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Flex</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Looser daily-loss rules</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand</td></tr>
-    <tr><td style="padding: 8px 12px;">Pro</td><td style="padding: 8px 12px;">1</td><td style="padding: 8px 12px;">Highest account-size ceilings</td><td style="padding: 8px 12px;">On-demand</td></tr>
+    <tr><td>Rapid</td><td>1</td><td>$25K</td><td>$109</td><td>6%</td><td>EOD trailing, $1,000</td><td>90%</td></tr>
+    <tr><td>Rapid</td><td>1</td><td>$50K</td><td>$157</td><td>6%</td><td>EOD trailing, $2,000</td><td>90%</td></tr>
+    <tr><td>Rapid</td><td>1</td><td>$100K</td><td>$267</td><td>6%</td><td>EOD trailing, $3,000</td><td>90%</td></tr>
+    <tr><td>Rapid</td><td>1</td><td>$150K</td><td>$347</td><td>6%</td><td>EOD trailing, $4,500</td><td>90%</td></tr>
+    <tr><td>Flex</td><td>1</td><td>$25K</td><td>$95</td><td>6%</td><td>4% EOD trailing</td><td>80%</td></tr>
+    <tr><td>Flex</td><td>1</td><td>$50K</td><td>$153</td><td>6%</td><td>4% EOD trailing</td><td>80%</td></tr>
+    <tr><td>Pro</td><td>1</td><td>$50K</td><td>$227</td><td>6%</td><td>EOD trailing, $2,000</td><td>80%</td></tr>
+    <tr><td>Pro</td><td>1</td><td>$100K</td><td>$344</td><td>6%</td><td>EOD trailing, $3,000</td><td>80%</td></tr>
+    <tr><td>Pro</td><td>1</td><td>$150K</td><td>$477</td><td>6%</td><td>EOD trailing, $4,500</td><td>80%</td></tr>
+    <tr><td>Builder</td><td>1</td><td>$25K</td><td>$105</td><td>6%</td><td>4% EOD trailing</td><td>80%</td></tr>
+    <tr><td>Builder</td><td>1</td><td>$50K</td><td>$153</td><td>6%</td><td>4% EOD trailing</td><td>80%</td></tr>
   </tbody>
 </table>
 
-<p>Per-plan pricing and exact rule parameters require verification against the <a href="/go/my-funded-futures">live MFF site</a> — the firm's help center doesn't publish all plan rules on indexed public pages.</p>
-
-<p><strong>Account stacking is allowed</strong> — traders can hold multiple plans simultaneously, scaling total exposure up to $600K combined.</p>
+<p>Pricing and rules are current as of 2026-07-27. Rapid’s $109 25K tier renews at $97; the other captured tiers renew at list price. A temporary 50% first-month coupon was active at capture but is excluded from every table because it expires and does not lower later renewals.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 
-<p><strong>Trailing maximum drawdown.</strong> Same mechanic as Topstep — the loss line follows your equity high until you reach the funded threshold, then locks. Profit retention discipline matters more than entry strategy on MFF accounts.</p>
+<p><strong>Rapid:</strong> evaluation drawdown is end-of-day trailing, then becomes real-time trailing after funding and locks $100 above starting balance. Maximum loss varies by size—$1,000 on 25K, $2,000 on 50K, $3,000 on 100K, and $4,500 on 150K—so one percentage cannot describe all 4 tiers.</p>
 
-<p><strong>No overnight or weekend holding</strong> on most plans — futures session rules close all positions at CME close. The Flex plan documents looser daily-loss rules but does not change the session-close requirement.</p>
+<p>Rapid has no daily loss limit, needs 2 evaluation trading days, and applies a 50% consistency rule only in evaluation. A $1,000 best day therefore requires at least $2,000 total evaluation profit before that day is half or less of the total; the funded-stage consistency field is 0%.</p>
 
-<p><strong>News trading allowed</strong> — futures props don't enforce the CFD-style news windows. The CME session itself defines event boundaries; trading through NFP is normal.</p>
+<p><strong>Flex:</strong> both sizes use a 4% end-of-day trailing maximum loss and 2 minimum days. The default daily-loss field is blank because the base plan has no daily limit; an optional $1,000 intraday soft-pause add-on exists for the 50K tier and is not treated as the base rule.</p>
 
-<p><strong>EAs / algorithmic trading allowed</strong> on supported platforms (NinjaTrader, Tradovate). Copy-trading and signal-mirror services are not permitted.</p>
+<p>Flex applies a 50% evaluation consistency rule and caps withdrawals. Only 50% of profit is requestable, with maximum requests of $1,000 on 25K and $2,000 on 50K; a lower fee therefore does not mean unrestricted access to all funded profit.</p>
 
-<p><strong>No minimum trading days advertised.</strong> MFF's homepage explicitly references "unlimited trading days" — unlike some firms that gate the first payout behind a minimum day count, MFF lets faster traders request payouts immediately on Rapid.</p>
+<p><strong>Pro:</strong> the 50K, 100K, and 150K tiers use $2,000, $3,000, and $4,500 end-of-day trailing limits. Pro has no daily loss limit, requires 2 evaluation days, applies 50% consistency only during evaluation, and has no withdrawal cap after its payout buffer is cleared.</p>
 
-<p><strong>Plan-specific rules.</strong> Daily loss limits, profit targets, and contract caps vary per plan. The plan you pick is more about matching the firm's rules to your trading style than picking a "harder" or "easier" challenge. Verify the specific plan's terms on the live site.</p>
+<p><strong>Builder:</strong> the 25K and 50K base tiers use a 4% end-of-day trailing cap and need 1 evaluation day. Builder reverses the common consistency pattern: there is no evaluation consistency percentage, but a 50% rule applies after funding when the trader requests a reward.</p>
+
+<p>Builder’s daily-loss field is null because it differs by size: 25K has none, while the captured 50K default includes a $1,000 soft pause. The 50K checkout also exposed an alternate $125 option with a tighter $1,500 maximum drawdown; only the $153 default with $2,000 drawdown is represented in the main price table.</p>
+
+<p><strong>Trading permissions:</strong> all 4 products prohibit overnight holding and mark news, EAs, and copy trading as restricted. Weekend policy is not independently stated in the product records; because positions cannot stay open overnight, no review sentence should promise weekend holds.</p>
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 
-<p>MFF, like Topstep, runs a subscription-based evaluation. The funded side is post-activation simulated trading. Per-plan pricing isn't on a stable public URL so the table below shows the math given a placeholder activation fee — substitute your actual plan price.</p>
+<p>These 4 tables are generated by <a href="/true-cost-of-prop-firm-challenges"><code>computeTrueCost()</code></a> from the first-month subscription, captured split, and published risk fields. They assume a month-1 pass and $0 activation; each additional 30-day billing cycle increases the real cost.</p>
 
+<!-- Rapid — generated by scripts/gen-truecost.mjs -->
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-  <caption class="hidden-caption">MFF break-even projection</caption>
-  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Plan size</th><th style="padding: 8px 12px; text-align: left;">Activation (approx.)</th><th style="padding: 8px 12px; text-align: left;">Break-even (90% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 6% trailing DD est.</th></tr></thead>
+  <caption class="hidden-caption">Rapid true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Cost to funded (1 mo)</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (90% split)</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K Scale</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$0–$149</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$0–$166</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~0.06</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K Scale</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$0–$149</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$0–$166</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~0.03</td></tr>
-    <tr><td style="padding: 8px 12px;">$100K Rapid</td><td style="padding: 8px 12px;">monthly subscription</td><td style="padding: 8px 12px;">— monthly cost</td><td style="padding: 8px 12px;">N/A</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$109</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$121</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$157</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$174</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$267</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$297</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$150K</td><td style="padding: 8px 12px;">$347</td><td style="padding: 8px 12px;">$386</td><td style="padding: 8px 12px;">1</td></tr>
   </tbody>
 </table>
 
-<p><strong>MFF removed its $149 activation fee in July 2025 on most plans</strong> — confirm on the current pricing page, as the activation policy has changed at least once since the firm launched. The headline saving makes MFF cheaper end-to-end than Topstep for traders who pass on the first attempt; if you require multiple attempts (the standard case), Topstep's published 16.8% pass-rate transparency makes its all-in cost easier to predict.</p>
+<!-- Flex — generated by scripts/gen-truecost.mjs -->
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Flex true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Cost to funded (1 mo)</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 4% max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$95</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$119</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.12</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$50K</td><td style="padding: 8px 12px;">$153</td><td style="padding: 8px 12px;">$191</td><td style="padding: 8px 12px;">0.10</td><td style="padding: 8px 12px;">1</td></tr>
+  </tbody>
+</table>
+
+<!-- Pro — generated by scripts/gen-truecost.mjs -->
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Pro true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Cost to funded (1 mo)</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$227</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$284</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$344</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$430</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$150K</td><td style="padding: 8px 12px;">$477</td><td style="padding: 8px 12px;">$596</td><td style="padding: 8px 12px;">1</td></tr>
+  </tbody>
+</table>
+
+<!-- Builder — generated by scripts/gen-truecost.mjs -->
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Builder true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Cost to funded (1 mo)</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 4% max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$105</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$131</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.13</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$50K</td><td style="padding: 8px 12px;">$153</td><td style="padding: 8px 12px;">$191</td><td style="padding: 8px 12px;">0.10</td><td style="padding: 8px 12px;">1</td></tr>
+  </tbody>
+</table>
+
+<p>Rapid and Pro omit R-multiple because their maximum loss varies by tier and is stored as exact dollar notes rather than one product-wide percentage. The generated break-even still remains valid: for example, 1 month of Rapid 25K costs $109 and needs $121 gross profit at a 90% split.</p>
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p>Rapid plan offers <strong>daily payouts</strong> — request and receive within the same business day, subject to the $100K cap. Other plans run on-demand with typical settlement of same-day to 24 hours via ACH or wire.</p>
+<p>Rapid can request after 1 day and then every 24 hours, subject to clearing buffers of $1,100, $2,100, $3,100, or $4,600 by account size. The minimum withdrawal is $500 and the captured product has no payout cap.</p>
 
-<p><strong>Methods.</strong> ACH, bank wire, and crypto (USDT). Crypto rail is faster for international traders.</p>
+<p>Builder becomes eligible after 2 days, but funded withdrawals are capped at $1,000 on 25K and $2,000 on 50K. Builder applies a 50% funded consistency rule and allows up to 5 simulated payouts before the next account stage.</p>
 
-<p><strong>Fees.</strong> MFF covers standard ACH costs; wire fees pass through.</p>
+<p>Flex needs 5 winning days with at least $150 net PnL each and $500 net profit. It caps each request at $1,000 on 25K or $2,000 on 50K and allows only 50% of profit to be requested, making its “on-demand” enum less flexible than Rapid.</p>
 
-<p><strong>Real-world evidence.</strong> Community reports on Reddit r/Daytrading and r/FuturesPropFirms cluster around "same-day payouts deliver as promised" for Rapid (verified anecdotally on threads dated 2025-12 through 2026-04). Trustpilot listings show ratings around 4.6/5 in the same window.</p>
+<p>Pro has the slowest first window at 14 days and the highest minimum withdrawal at $1,000. Its buffers are $2,100, $3,100, and $4,600, but Pro does not cap withdrawals after the buffer and rule checks are satisfied.</p>
+
+<p>The aggregate firm record lists ACH, bank wire, and crypto and showed a 4.9/5 Trustpilot aggregate from 20,392 reviews on 2026-07-27. The verified-payout badge remains false, and India-specific access to those 3 rails is not yet source-captured.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
 <ul class="wp-block-list">
-  <li><strong>Tradovate support</strong> — the platform many US futures traders default to. Topstep doesn't support Tradovate; MFF does.</li>
-  <li><strong>Daily payouts on the Rapid plan</strong> — fastest payout cadence in the futures prop niche.</li>
-  <li><strong>Five plan variants</strong> let traders match the rule surface to their strategy: Scale for typical scaling, Flex for looser daily-loss tolerance, Builder for slower progression.</li>
-  <li><strong>$600K total allocation</strong> via account stacking — higher ceiling than Topstep's $150K combine size (though Topstep also supports stacking).</li>
-  <li><strong>Activation fee removed</strong> on most plans in mid-2025 — cheaper end-to-end than Topstep for first-attempt passers.</li>
-  <li><strong>90% standard split</strong> — parity with Topstep.</li>
-  <li><strong>"Unlimited trading days"</strong> — no minimum-day requirement gating the first payout.</li>
+  <li><strong>$0 activation fee on all 11 tiers</strong> keeps month-1 cost equal to the subscription price.</li>
+  <li><strong>Rapid pays a 90% split</strong> and permits a first request after 1 day.</li>
+  <li><strong>Builder requires only 1 evaluation day</strong> and starts at $105 for 25K.</li>
+  <li><strong>Rapid and Pro have no daily loss limit</strong>, avoiding a second hard percentage cap.</li>
+  <li><strong>All 4 products use the same 6% target</strong>, simplifying target comparison.</li>
+  <li><strong>Exact first-month prices exist for 11 rows</strong>, allowing generated break-even rather than estimates.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Cons</strong></h2>
 
 <ul class="wp-block-list">
-  <li><strong>Trailing maximum drawdown</strong> — same gotcha as Topstep. Profit retention discipline is required.</li>
-  <li><strong>~2.5 years operating history</strong> — meaningfully less than Topstep's 14. The firm has paid traders consistently so far but hasn't been tested through a real industry contraction.</li>
-  <li><strong>No published pass rate</strong> — Topstep publishes 16.8% openly; MFF doesn't, which makes realistic all-in cost projection harder.</li>
-  <li><strong>Five plans is a decision tax</strong> — Topstep's single Combine is faster to evaluate. MFF's flexibility comes with research overhead.</li>
-  <li><strong>No overnight or weekend holding</strong> — universal futures-prop limitation, but worth flagging.</li>
-  <li><strong>Trader development resources are thinner</strong> than Topstep — MFF emphasizes flexible rules over coaching. New traders may struggle without the structure Topstep provides.</li>
+  <li><strong>Monthly billing repeats every 30 days</strong>, so a month-2 pass costs more than every displayed month-1 true-cost row.</li>
+  <li><strong>Rapid switches from EOD to real-time trailing after funding</strong>, tightening the loss-line behavior at the stage where rewards begin.</li>
+  <li><strong>Flex allows only 50% of profit per request</strong> and caps withdrawals at $1,000 or $2,000.</li>
+  <li><strong>Builder adds a 50% consistency rule after funding</strong> even though evaluation has no consistency percentage.</li>
+  <li><strong>All 4 products prohibit overnight holding</strong> and restrict news, EAs, and copy trading.</li>
+  <li><strong>India evidence is incomplete</strong>, so country, checkout, KYC, and payout access cannot be promised to Indian residents.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Who should pick My Funded Futures</strong></h2>
 
-<p>An experienced futures trader who needs Tradovate (Topstep doesn't support it), wants daily payouts on Rapid, or wants a more flexible plan structure than Topstep's single Combine. The natural entry is the Scale plan at $50K to validate the rule mechanics, then stack into Rapid or Pro once consistency is demonstrated. MFF's higher $600K allocation ceiling rewards traders who consistently pass — strategy works best for systems with proven repeatability.</p>
+<p>An intraday futures trader who expects to pass inside 30 days and values early uncapped withdrawals should start by comparing Rapid 25K at $109 with Builder 25K at $105. Rapid costs $4 more but pays 90%, has no daily cap, and can request after 1 day; Builder uses an 80% split, a 4% trailing cap, and a 50% consistency rule after funding.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid My Funded Futures</strong></h2>
 
-<p>A new futures trader who hasn't built discipline yet — Topstep's coaching ecosystem and consistency framework will serve you better. A trader who values long operating history above all — Topstep's 14 years vs MFF's 2.5 is a real difference. And anyone whose strategy needs overnight or weekend holding — same universal futures restriction applies. For CFD trading, see <a href="/blog/ftmo-review">FTMO</a> or <a href="/blog/fundednext-review">FundedNext</a>.</p>
+<p>A swing trader who must hold overnight should avoid all 4 plans because overnight positions are prohibited. An India-based buyer should also wait until country, checkout, KYC, and payout access are captured; the current <a href="/best-prop-firms-in-india">India shortlist</a> excludes MFF for that evidence gap, not for a claimed ban.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
-<h3 class="wp-block-heading"><strong>Is My Funded Futures legit in 2026?</strong></h3>
-<p>Yes — MFF has operated continuously since November 2023, removed its $149 activation fee in mid-2025 as a competitive move, and processes daily payouts on the Rapid plan as advertised. Trustpilot ratings hover around 4.6/5. The track record is shorter than Topstep's, but the operational signals are positive.</p>
+<h3 class="wp-block-heading"><strong>What My Funded Futures plans are current in 2026?</strong></h3>
+<p>The 2026-07-27 capture contains Rapid, Flex, Pro, and Builder. The old Scale label is not among the 4 current product records and should not be used in price comparisons.</p>
 
-<h3 class="wp-block-heading"><strong>Topstep vs My Funded Futures — which should I pick?</strong></h3>
-<p>Topstep wins on track record (14 years vs 2.5), trader development resources, and pass-rate transparency. MFF wins on Tradovate support, daily payouts (Rapid), plan flexibility, and the removed activation fee. For new traders → Topstep. For experienced traders on Tradovate → MFF. See <a href="/compare/my-funded-futures-vs-topstep">our full head-to-head comparison</a>.</p>
+<h3 class="wp-block-heading"><strong>Does My Funded Futures charge an activation fee?</strong></h3>
+<p>No: activation is $0 on all 11 captured tiers. The recurring cost is the 30-day evaluation subscription, so every extra month before passing adds another renewal.</p>
 
-<h3 class="wp-block-heading"><strong>Can US residents use My Funded Futures?</strong></h3>
-<p>Yes — MFF is Delaware-based and accepts US residents. Same as Topstep.</p>
+<h3 class="wp-block-heading"><strong>Which MFF plan pays fastest?</strong></h3>
+<p>Rapid has the earliest first request at 1 day and then a 24-hour cadence. Builder is 2 days, Flex is 5 qualifying winning days, and Pro is 14 days.</p>
 
-<h3 class="wp-block-heading"><strong>What does the Rapid plan's $100K request cap mean?</strong></h3>
-<p>Daily payout requests on the Rapid plan are capped at $100,000 per request. If you accumulate more than $100K in funded-account profit, you split the withdrawal across multiple requests. This is a high enough ceiling that the cap doesn't bind for most traders.</p>
+<h3 class="wp-block-heading"><strong>Which MFF plan has the highest split?</strong></h3>
+<p>Rapid pays 90%; Flex, Pro, and Builder each pay 80%. A $109 Rapid 25K subscription therefore has a generated $121 break-even, while the $105 Builder 25K needs $131.</p>
 
-<h3 class="wp-block-heading"><strong>How does account stacking work?</strong></h3>
-<p>You can hold multiple MFF plan accounts simultaneously, each with its own balance and rules. Stacking lets traders run their strategy across $100K + $100K + $200K = $400K of total exposure. The drawdown rules apply per-account, not aggregated, so a bad day on one doesn't close another.</p>
+<h3 class="wp-block-heading"><strong>Can traders in India use My Funded Futures?</strong></h3>
+<p>There is not enough dated first-party evidence in the current capture to answer yes. Traders Fund Hub needs an India restriction-list check, working checkout method, KYC document list, and payout-route confirmation before adding MFF to the India shortlist.</p>
 
-<h3 class="wp-block-heading"><strong>Why is trailing drawdown the most important rule to understand?</strong></h3>
-<p>Trailing DD follows your equity high without loosening. On a $50K account that peaks at $52K, the loss line moves up by $2K and stays there even after a profit retrace. Most failed MFF accounts close because of trailing drawdown, not because the trader couldn't hit profit targets.</p>
-
-<h3 class="wp-block-heading"><strong>Is the MFF activation fee really removed?</strong></h3>
-<p>On most plans, yes — MFF removed the $149 post-evaluation activation fee in July 2025 as a competitive response to Topstep. A small number of legacy plan variants may still charge it. Confirm on the specific plan's checkout page before paying.</p>
+<h3 class="wp-block-heading"><strong>Does MFF allow overnight or automated trading?</strong></h3>
+<p>All 4 product records set overnight holding to false and mark EA use as restricted. News and copy trading are also restricted, so automation or event-driven systems need written plan-specific confirmation before purchase.</p>

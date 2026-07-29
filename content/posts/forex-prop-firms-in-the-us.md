@@ -2,7 +2,7 @@
 title: "Forex Prop Firms in the US: Are they Legal?"
 slug: "forex-prop-firms-in-the-us"
 date: "2024-09-17 16:54:12"
-modified: "2025-08-16 21:14:47"
+modified: "2026-07-28"
 author: "Edris Derakhshi"
 excerpt: "In this article, we analyze whether there are legal forex prop firms in the US, and from the options available, which ones stand out for US traders."
 categories: ["Prop Firms"]
@@ -93,13 +93,13 @@ type: "post"
 
 <p>MyFundedFutures operates legally in the US. But then again, it is not regulated by financial regulators like the SEC or CFTC. The reason is because it does not function as a broker or manage real funds. Instead, it offers virtual evaluations and funded accounts within the legal boundaries for prop firms.</p>
 
-<h3 class="wp-block-heading"><strong><a href="https://apextraderfunding.com/">Apex Trader Funding</a></strong></h3>
+<h3 class="wp-block-heading"><strong><a href="/blog/apex-trader-funding-review">Apex Trader Funding</a></strong></h3>
 
 <figure class="wp-block-image size-large"><img src="/images/wp/2024/09/Apex-Trader-Funding-1024x532.jpg" alt="Apex Trader Funding: One of the top futures prop firms in the US" class="wp-image-546"/></figure>
 
-<p>As one of the best futures prop firms in the US, Apex Trader Funding allows traders to trade futures, indices, commodities, and cryptocurrencies. The prop firm offers two different plans, the Rithmic plan and the Tradovate plan. Yet, the evaluation for both plans is only one phase. With ATF, traders can receive up to $300,000 in funding. You can also receive 100% of the first $25,000 profits per account and 90% Beyond That. There will also be two payouts per month, and interestingly, there’s no daily drawdown rule, but there's a <a href="/blog/what-is-prop-firm-consistency-rule">consistency rule</a>.</p>
+<p>Apex replaced its older plans on March 1, 2026 with 4 one-step paths: Intraday Trail or End-of-Day Trail, each sold as Standard or No Activation Fee. All 4 paths cover $25K, $50K, $100K and $150K sizes, can pass after 1 trading day and use a 100% split on approved Sim Funded payouts. The evaluation has no consistency rule; the Performance Account applies a 50% payout-consistency test.</p>
 
-<p>Apex Trader Funding operates legally in the US, but like other prop firms, it is not regulated by financial authorities since it does not act as a broker or manage client funds. Meanwhile, it is widely considered a legitimate prop firm with a strong track record.</p>
+<p>The EOD evaluation publishes daily loss limits of $500 / $1,000 / $1,500 / $2,000 by size, while Intraday has no separate evaluation DLL and follows its real-time trailing threshold. A first payout requires 5 qualifying days and a $500 minimum, and each new Performance Account closes after 6 approved payouts. Read the full <a href="/blog/apex-trader-funding-review">Apex Trader Funding review</a> before relying on an older Rithmic-versus-Tradovate plan table.</p>
 
 <h3 class="wp-block-heading"><strong><a href="https://alpha-futures.com/">Alpha Futures</a></strong></h3>
 
@@ -121,6 +121,6 @@ type: "post"
 
 <p>In this article, we’ve analyzed whether there are any legal forex prop firms in the US. While CFD prop firms cannot operate in the US or serve American citizens, US-based traders can use futures prop firms as a substitute.</p>
 
-<p>Some regulated prop firms in USA include TopStep, My Funded Futures, and Apex Trader Funding. While these are all reputable and legitimate firms, remember, none of them are regulated by the authorities. So, before purchasing a challenge, make sure to do your research to find the most suitable prop firms in the US for you.</p>
+<p>Futures evaluation firms available to many US traders include Topstep, My Funded Futures and Apex Trader Funding. These programs are not the same as a regulated retail broker account: the evaluation and first funded stage are generally simulated, with firm-specific payout contracts and risk rules. Verify the current user agreement, residency eligibility and challenge terms before purchasing.</p>
 
 <p>Thankfully, at Traders Fund Hub, we make the process of finding legitimate and suitable prop firms easier. Subscribe to our newsletter to receive the latest insights, which include prop firm and platform reviews, news and updates, and also the latest discounts and promotions in the prop firm industry.</p>

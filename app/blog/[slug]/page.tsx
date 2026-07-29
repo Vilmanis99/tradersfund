@@ -26,13 +26,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug)
   if (!post) return {}
   const path = `/blog/${slug}`
+  const firm = getAllFirms().find(candidate => candidate.reviewUrl === path)
+  const title = firm
+    ? `${firm.name} Review (2026): Fees & Rules`
+    : post.seoTitle || post.title
+  const description = firm
+    ? `${firm.name} review with source-dated fees, drawdown, payout rules, platforms, and True-Cost analysis for 2026.`
+    : post.seoDescription || post.excerpt || post.title
   return {
-    title: post.title,
-    description: post.excerpt || post.title,
+    title: { absolute: title },
+    description,
     alternates: { canonical: path },
     openGraph: {
-      title: post.title,
-      description: post.excerpt || post.title,
+      title,
+      description,
       url: path,
       type: 'article',
       publishedTime: post.date,
@@ -41,8 +48,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: post.title,
-      description: post.excerpt || post.title,
+      title,
+      description,
     },
   }
 }
@@ -55,17 +62,19 @@ function addHeadingIds(html: string): string {
   })
 }
 
-/**
- * Inline markdown links to /go/* are monetized affiliate redirects. Google
- * requires rel="sponsored" on paid links; the component CTAs already set it,
- * but body-copy links rendered from raw HTML don't. Inject it (and open in a
- * new tab) for any /go/ anchor that lacks a rel attribute.
- */
-function addAffiliateRel(html: string): string {
+/** Apply sponsored only to firms with a configured commercial relationship. */
+function addOutboundRel(html: string, affiliateSlugs: Set<string>): string {
   return html.replace(/<a\b[^>]*>/gi, tag => {
-    if (!/href="\/go\//i.test(tag)) return tag
-    if (/\brel=/i.test(tag)) return tag
-    return tag.replace(/^<a\b/i, '<a rel="sponsored nofollow noopener" target="_blank"')
+    const match = tag.match(/\bhref=(?:"|')\/go\/([^"'?/#]+)/i)
+    if (!match) return tag
+
+    const rel = affiliateSlugs.has(match[1].toLowerCase())
+      ? 'sponsored nofollow noopener'
+      : 'nofollow noopener'
+    const cleanTag = tag
+      .replace(/\s+rel=(?:"[^"]*"|'[^']*')/i, '')
+      .replace(/\s+target=(?:"[^"]*"|'[^']*')/i, '')
+    return cleanTag.replace(/^<a\b/i, `<a rel="${rel}" target="_blank"`)
   })
 }
 
@@ -74,16 +83,21 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(slug)
   if (!post) notFound()
 
+  const firms = getAllFirms()
+  const affiliateSlugs = new Set(
+    firms
+      .filter(firm => Boolean(firm.affiliateUrl))
+      .map(firm => firm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')),
+  )
   const wordCount = post.content.replace(/<[^>]+>/g, '').split(/\s+/).length
   const readTime = Math.ceil(wordCount / 200)
-  const contentWithIds = addAffiliateRel(addHeadingIds(post.content))
+  const contentWithIds = addOutboundRel(addHeadingIds(post.content), affiliateSlugs)
 
   const allPosts = getAllPosts()
   const related = allPosts
     .filter(p => p.slug !== slug && p.categories?.some(c => post.categories?.includes(c)))
     .slice(0, 3)
 
-  const firms = getAllFirms()
   const matchedFirm = firms.find(f => f.reviewUrl === `/blog/${slug}`)
   const postLd = postSchema(post, firms)
   const crumbsLd = breadcrumbSchema([
@@ -183,7 +197,11 @@ export default async function BlogPostPage({ params }: Props) {
               <h3 className="post-sidebar-title">Jump to the data</h3>
               <ul className="post-sidebar-list">
                 {[
-                  { label: 'Compare all firms', href: '/main-table' },
+                  { label: 'Compare all firms', href: '/prop-firms' },
+                  { label: 'Best in India', href: '/best-prop-firms-in-india' },
+                  { label: 'India challenge rules', href: '/best-prop-firms-in-india/challenge-comparison' },
+                  { label: 'India payout methods', href: '/best-prop-firms-in-india/payout-methods' },
+                  { label: 'India payout tax records', href: '/blog/prop-firm-payout-tax-india' },
                   { label: 'Best in the UK', href: '/best-prop-firms-in-uk' },
                   { label: 'Best in the US', href: '/best-prop-firms-in-us' },
                   { label: 'Cheapest options', href: '/cheapest-prop-firms' },

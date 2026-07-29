@@ -120,7 +120,7 @@
       "news": true,
       "weekend": true,
       "overnight": true,
-      "ea": null,
+      "ea": "restricted",
       "copyTrading": null
     },
     "assetClass": "cfd",
@@ -185,7 +185,7 @@
       "news": true,
       "weekend": true,
       "overnight": true,
-      "ea": null,
+      "ea": "restricted",
       "copyTrading": null
     },
     "assetClass": "cfd",
@@ -246,7 +246,7 @@
       "news": true,
       "weekend": true,
       "overnight": true,
-      "ea": null,
+      "ea": "restricted",
       "copyTrading": null
     },
     "assetClass": "cfd",

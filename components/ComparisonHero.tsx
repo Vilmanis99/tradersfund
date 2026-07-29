@@ -78,8 +78,9 @@ function FirmHeroCard({ firm }: { firm: Firm }) {
       </ul>
 
       <Link
-        href={`/go/${slug}`}
-        rel="sponsored nofollow noopener"
+        href={`/go/${slug}?from=compare`}
+        prefetch={false}
+        rel={firm.affiliateUrl ? 'sponsored nofollow noopener' : 'nofollow noopener'}
         target="_blank"
         className="btn-primary compare-firm-cta"
       >

@@ -48,7 +48,7 @@ export const FEATURES: Feature[] = [
     h1: 'Best Prop Firms That Allow Expert Advisors (EAs)',
     metaTitle: 'Best Prop Firms That Allow EAs in 2026 — Ranked & Compared',
     metaDescription:
-      'Ranked list of prop firms whose rules explicitly allow Expert Advisors and algorithmic trading. Profit splits, payout terms, and platforms compared side by side.',
+      'Compare prop firms that explicitly allow EAs and algorithmic trading, including profit splits, payout terms, drawdown rules, and platforms.',
     intro:
       'Looking for a prop firm that lets you run an EA or algorithmic system? The firms below explicitly permit Expert Advisors in their rules — not just market that they do. Each entry shows the profit split, payout schedule, and platform support that matters for algo traders.',
     whyItMatters: [
@@ -177,7 +177,7 @@ export const FEATURES: Feature[] = [
     h1: 'Best Prop Firms That Pay Out in Crypto',
     metaTitle: 'Prop Firms That Pay Out in Crypto (USDT, BTC) — 2026',
     metaDescription:
-      'Get your prop-firm profits in stablecoins or BTC. Compare the firms with crypto payout rails — usually faster than bank wire and available in more jurisdictions.',
+      'Compare prop firms with published crypto payout rails, including USDT and BTC options, payout timing, fees, and account rules.',
     intro:
       'Crypto payouts have become standard for prop firms catering to international traders. The firms below pay out in stablecoins (USDT, USDC) or BTC alongside traditional bank rails — typically faster, lower-fee, and available in jurisdictions where bank wires aren\'t.',
     whyItMatters: [
@@ -263,7 +263,7 @@ export const FEATURES: Feature[] = [
     h1: 'Best Prop Firms That Allow Overnight Holding',
     metaTitle: 'Best Prop Firms That Allow Overnight Holding (2026)',
     metaDescription:
-      'Trend and swing traders can\'t close every position by the bell. Compare the prop firms that let you carry trades overnight — and check the swap and weekend rules.',
+      'Compare prop firms that permit overnight positions, including their drawdown, payout, swap, and separate weekend-holding rules.',
     intro:
       'Plenty of firms happily let you hold a position overnight — and plenty quietly force you flat at the session close. That single rule decides whether a multi-day trend trade is even possible. Every firm below allows overnight holding; mind the swap policy on forex and CFD, and confirm weekend rules separately if you carry into Friday.',
     whyItMatters: [

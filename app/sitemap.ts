@@ -1,11 +1,14 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts, getAllPages, getAllCategories, getPostsByCategory } from '@/lib/mdx'
-import { getAllFirms } from '@/lib/firms'
+import { getAllChallenges, getAllFirms } from '@/lib/firms'
 import { FEATURES } from '@/lib/features'
 import { getAllCanonicalPairs } from '@/lib/comparisons'
 import { LANDINGS } from '@/lib/landings'
 import { AUTHORS } from '@/lib/authors'
 import { getAllDeals } from '@/lib/deals'
+import { INDIA_EVIDENCE } from '@/lib/india'
+import { INDIA_MATCHUPS, indiaMatchupPath } from '@/lib/indiaMatchups'
+import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 
 const BASE_URL = 'https://tradersfundhub.com'
 
@@ -17,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts()
   const pages = getAllPages()
   const firms = getAllFirms()
+  const challenges = getAllChallenges()
 
   // The most recent firm-data update — used as a defensible lastmod for
   // every route that's a function of `firms.json` (home, main-table,
@@ -51,13 +55,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .sort()
     .at(-1) || firmsLastModified
   const dealsLastDate = new Date(dealsLastModified)
+  const indiaEvidenceLastModified = INDIA_EVIDENCE
+    .map(entry => entry.capturedAt)
+    .sort()
+    .at(-1) || firmsLastModified
+  const indiaEvidenceLastDate = new Date(indiaEvidenceLastModified)
+  const challengeLastModified = [
+    ...challenges.map(challenge => challenge.sourceCapturedAt),
+    ...getChallengeWatchEntries().map(entry => entry.lastCheckedAt),
+  ].sort().at(-1) || firmsLastModified
+  const challengeLastDate = new Date(challengeLastModified)
+  const indiaMatchupLastDate = new Date(Math.max(
+    indiaEvidenceLastDate.getTime(),
+    challengeLastDate.getTime(),
+  ))
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: firmsLastDate, changeFrequency: 'daily', priority: 1 },
     { url: `${BASE_URL}/blog`, lastModified: new Date(blogLastModified), changeFrequency: 'daily', priority: 0.9 },
-    { url: `${BASE_URL}/main-table`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/prop-firm-discount-codes`, lastModified: dealsLastDate, changeFrequency: 'weekly', priority: 0.85 },
-    { url: `${BASE_URL}/prop-firms`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/best-prop-firms-in-india/compare`, lastModified: indiaMatchupLastDate, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/best-prop-firms-in-india/challenge-changes`, lastModified: indiaMatchupLastDate, changeFrequency: 'weekly', priority: 0.92 },
+    { url: `${BASE_URL}/best-prop-firms-in-india/challenge-comparison`, lastModified: indiaEvidenceLastDate, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/best-prop-firms-in-india/payout-methods`, lastModified: indiaEvidenceLastDate, changeFrequency: 'weekly', priority: 0.85 },
+    { url: `${BASE_URL}/prop-firm-challenges`, lastModified: challengeLastDate, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${BASE_URL}/prop-firm-challenge-changes`, lastModified: challengeLastDate, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/prop-firms`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/compare`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE_URL}/contact`, lastModified: new Date('2026-01-01'), changeFrequency: 'yearly', priority: 0.4 },
   ]
@@ -68,6 +91,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'weekly',
     priority: 0.75,
   }))
+  const indiaMatchupRoutes: MetadataRoute.Sitemap = Object.values(INDIA_MATCHUPS)
+    .map(matchup => ({
+      url: `${BASE_URL}${indiaMatchupPath(matchup)}`,
+      lastModified: indiaMatchupLastDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.88,
+    }))
 
   // Long-tail landings: /best-prop-firms-in-uk, /cheapest-prop-firms, etc.
   // These are data-driven, so lastmod tracks firms.json freshness.
@@ -134,7 +164,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // `home` is rendered as `/`, `blog`/`main-table`/`prop-firms` have dedicated
   // routes, `contact` is custom-handled in [slug]/page.tsx but still needs to
   // appear in the sitemap — added via staticRoutes instead to avoid double-emission.
-  const SKIP = new Set(['home', 'blog', 'main-table', 'prop-firms', 'compare', 'contact'])
+  const SKIP = new Set([
+    'home',
+    'blog',
+    'main-table',
+    'prop-firms',
+    'prop-firm-challenges',
+    'prop-firm-challenge-changes',
+    'compare',
+    'contact',
+    'ftmo-overview',
+    'fundednext-overview',
+    'fundingpips-overview',
+    'e8-markets-overview',
+  ])
 
   const pageRoutes: MetadataRoute.Sitemap = pages
     .filter(p => !SKIP.has(p.slug))
@@ -148,6 +191,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes,
     ...featureRoutes,
+    ...indiaMatchupRoutes,
     ...landingRoutes,
     ...authorRoutes,
     ...compareRoutes,

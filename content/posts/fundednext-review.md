@@ -1,10 +1,10 @@
 ---
-title: "FundedNext Review 2026: 95% Split, On-Demand Payouts, and a Real Trade-off"
+title: "FundedNext Review 2026: 22 Prices, 4 Rule Sets, and the India Checkout Test"
 slug: "fundednext-review"
 date: "2024-09-02 15:16:05"
-modified: "2026-05-20 12:00:00"
+modified: "2026-07-27"
 author: "Edris Derakhshi"
-excerpt: "FundedNext leads on headline economics — 95% split, on-demand payouts, $4M scaling ceiling. Here are the four challenge products and the specific gotchas to watch."
+excerpt: "FundedNext starts new accounts at an 80% split, not 95%. Compare all 22 global prices, payout cycles, news rules, and India payment checks."
 categories: ["Prop Firms"]
 tags: ["FundedNext", "Prop Firm"]
 type: "post"
@@ -12,179 +12,201 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 
-<p>FundedNext is the right pick for traders who prioritize payout speed and headline split over the longest possible track record.</p>
-
-<div class="key-takeaways">
-  <div class="title">Fast take</div>
-  <ul>
-    <li>Four product lines: Stellar 2-Step, Stellar 1-Step, Stellar Lite, and Stellar Instant. Plus a newer Futures plan.</li>
-    <li>Standard Stellar split is 95% — the highest in the major CFD prop tier without scaling milestones.</li>
-    <li>Payout frequency: on-demand on Stellar 2-Step and Instant; bi-weekly on the lower-tier Lite.</li>
-    <li>News trading is allowed on funded accounts, but FundedNext retains 40% of any news-window profit as a penalty — a real gotcha buried in the rules.</li>
-    <li>Static 10% max drawdown, 5% daily, on the main Stellar 2-Step. Stellar Instant uses a 6% trailing maximum loss.</li>
-    <li>Max allocation scales to $4,000,000 — double FTMO's $2M ceiling.</li>
-    <li>US residency not accepted. Other restrictions follow standard OFAC pattern.</li>
-  </ul>
-</div>
+<p>Choose Stellar 2-Step for a static 10% loss floor; choose Instant only if 6% trailing risk is acceptable.</p>
 
 <h2 class="wp-block-heading"><strong>Quick facts</strong></h2>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
   <caption class="hidden-caption">FundedNext at a glance</caption>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Founded</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2022 (4 years operating)</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Headquarters</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Dubai, UAE</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Evaluation models</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Stellar 2-Step · Stellar 1-Step · Stellar Lite · Stellar Instant</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Max allocation</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$200K starting, scaling to $4M</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">95% on Stellar 2-Step / 1-Step · 80% Lite · 70–80% Instant</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown type</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Static 10% max, 5% daily on Stellar (Instant uses 6% trailing)</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT4, MT5</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Instruments</strong></td><td style="padding: 8px 12px; border-bottom: none;">Forex, Indices, Commodities, Crypto</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Founded</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2022</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>CFD products captured</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4 products and 22 priced tiers</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Global list-price range</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$32.99–$1,099.99 before add-ons</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Starting funded split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% on challenges; 70% on Stellar Instant</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Funded allocation</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$300,000 aggregate; Stellar Lite capped at $200,000</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT4, MT5, cTrader, Match-Trader; platform restrictions vary</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>India availability signal</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">India was not among 20 restricted CFD countries on 2026-07-27</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Captured</strong></td><td style="padding: 8px 12px;">2026-07-27 from FundedNext plan and Help Center pages</td></tr>
   </tbody>
 </table>
+
+<p>The headline correction is the 80% base Reward Share. FundedNext’s 95% figure is a paid lifetime add-on, while new Stellar 1-Step, 2-Step, and Lite accounts start at 80% and can scale to 90%. Stellar Instant starts at 70% for Tiers 1–2 and reaches 80% only from Tier 3.</p>
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>FundedNext has the broadest product lineup of any flagship CFD prop firm in 2026. Pick by what you optimize for: fee, speed, or rule-flexibility.</p>
-
-<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-  <caption class="hidden-caption">FundedNext challenge products by account tier</caption>
-  <thead>
-    <tr style="background: var(--bg3);">
-      <th style="padding: 8px 12px; text-align: left;">Product</th>
-      <th style="padding: 8px 12px; text-align: left;">Phases</th>
-      <th style="padding: 8px 12px; text-align: left;">Account size</th>
-      <th style="padding: 8px 12px; text-align: left;">Fee</th>
-      <th style="padding: 8px 12px; text-align: left;">Daily / Max DD</th>
-      <th style="padding: 8px 12px; text-align: left;">Split</th>
-      <th style="padding: 8px 12px; text-align: left;">Payouts</th>
-    </tr>
-  </thead>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
+  <caption class="hidden-caption">FundedNext global CFD challenge prices and rule sets</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 9px; text-align: left;">Product</th><th style="padding: 8px 9px; text-align: left;">Phases</th><th style="padding: 8px 9px; text-align: left;">Account</th><th style="padding: 8px 9px; text-align: left;">Fee</th><th style="padding: 8px 9px; text-align: left;">Targets</th><th style="padding: 8px 9px; text-align: left;">Daily / max loss</th><th style="padding: 8px 9px; text-align: left;">Base split</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$6K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$59.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% / 10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">95%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$549.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% / 10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">95%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$200K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,099.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% / 10% static</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">95%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Stellar Instant</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$59.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">— / 6% trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">70%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand from day 1</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Stellar Instant</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$299.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">— / 6% trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">70%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand from day 1</td></tr>
-    <tr><td style="padding: 8px 12px;">Stellar Instant</td><td style="padding: 8px 12px;">0</td><td style="padding: 8px 12px;">$20K</td><td style="padding: 8px 12px;">$599.99</td><td style="padding: 8px 12px;">— / 6% trailing</td><td style="padding: 8px 12px;">70%</td><td style="padding: 8px 12px;">On-demand from day 1</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar 2-Step</td><td style="padding: 8px 9px;">2</td><td style="padding: 8px 9px;">$6K</td><td style="padding: 8px 9px;">$59.99</td><td style="padding: 8px 9px;">8% / 5%</td><td style="padding: 8px 9px;">5% / 10% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar 2-Step</td><td style="padding: 8px 9px;">2</td><td style="padding: 8px 9px;">$15K</td><td style="padding: 8px 9px;">$119.99</td><td style="padding: 8px 9px;">8% / 5%</td><td style="padding: 8px 9px;">5% / 10% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar 2-Step</td><td style="padding: 8px 9px;">2</td><td style="padding: 8px 9px;">$25K</td><td style="padding: 8px 9px;">$199.99</td><td style="padding: 8px 9px;">8% / 5%</td><td style="padding: 8px 9px;">5% / 10% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar 2-Step</td><td style="padding: 8px 9px;">2</td><td style="padding: 8px 9px;">$50K</td><td style="padding: 8px 9px;">$299.99</td><td style="padding: 8px 9px;">8% / 5%</td><td style="padding: 8px 9px;">5% / 10% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar 2-Step</td><td style="padding: 8px 9px;">2</td><td style="padding: 8px 9px;">$100K</td><td style="padding: 8px 9px;">$549.99</td><td style="padding: 8px 9px;">8% / 5%</td><td style="padding: 8px 9px;">5% / 10% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar 2-Step</td><td style="padding: 8px 9px;">2</td><td style="padding: 8px 9px;">$200K</td><td style="padding: 8px 9px;">$1,099.99</td><td style="padding: 8px 9px;">8% / 5%</td><td style="padding: 8px 9px;">5% / 10% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar 1-Step</td><td style="padding: 8px 9px;">1</td><td style="padding: 8px 9px;">$6K</td><td style="padding: 8px 9px;">$65.99</td><td style="padding: 8px 9px;">10%</td><td style="padding: 8px 9px;">3% / 6% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar 1-Step</td><td style="padding: 8px 9px;">1</td><td style="padding: 8px 9px;">$15K</td><td style="padding: 8px 9px;">$129.99</td><td style="padding: 8px 9px;">10%</td><td style="padding: 8px 9px;">3% / 6% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar 1-Step</td><td style="padding: 8px 9px;">1</td><td style="padding: 8px 9px;">$25K</td><td style="padding: 8px 9px;">$219.99</td><td style="padding: 8px 9px;">10%</td><td style="padding: 8px 9px;">3% / 6% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar 1-Step</td><td style="padding: 8px 9px;">1</td><td style="padding: 8px 9px;">$50K</td><td style="padding: 8px 9px;">$329.99</td><td style="padding: 8px 9px;">10%</td><td style="padding: 8px 9px;">3% / 6% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar 1-Step</td><td style="padding: 8px 9px;">1</td><td style="padding: 8px 9px;">$100K</td><td style="padding: 8px 9px;">$569.99</td><td style="padding: 8px 9px;">10%</td><td style="padding: 8px 9px;">3% / 6% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar 1-Step</td><td style="padding: 8px 9px;">1</td><td style="padding: 8px 9px;">$200K</td><td style="padding: 8px 9px;">$1,099.99</td><td style="padding: 8px 9px;">10%</td><td style="padding: 8px 9px;">3% / 6% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar Lite</td><td style="padding: 8px 9px;">2</td><td style="padding: 8px 9px;">$5K</td><td style="padding: 8px 9px;">$32.99</td><td style="padding: 8px 9px;">8% / 4%</td><td style="padding: 8px 9px;">4% / 8% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar Lite</td><td style="padding: 8px 9px;">2</td><td style="padding: 8px 9px;">$10K</td><td style="padding: 8px 9px;">$59.99</td><td style="padding: 8px 9px;">8% / 4%</td><td style="padding: 8px 9px;">4% / 8% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar Lite</td><td style="padding: 8px 9px;">2</td><td style="padding: 8px 9px;">$25K</td><td style="padding: 8px 9px;">$139.99</td><td style="padding: 8px 9px;">8% / 4%</td><td style="padding: 8px 9px;">4% / 8% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar Lite</td><td style="padding: 8px 9px;">2</td><td style="padding: 8px 9px;">$50K</td><td style="padding: 8px 9px;">$229.99</td><td style="padding: 8px 9px;">8% / 4%</td><td style="padding: 8px 9px;">4% / 8% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar Lite</td><td style="padding: 8px 9px;">2</td><td style="padding: 8px 9px;">$100K</td><td style="padding: 8px 9px;">$399.99</td><td style="padding: 8px 9px;">8% / 4%</td><td style="padding: 8px 9px;">4% / 8% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar Lite</td><td style="padding: 8px 9px;">2</td><td style="padding: 8px 9px;">$200K</td><td style="padding: 8px 9px;">$798.99</td><td style="padding: 8px 9px;">8% / 4%</td><td style="padding: 8px 9px;">4% / 8% static</td><td style="padding: 8px 9px;">80%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar Instant</td><td style="padding: 8px 9px;">0</td><td style="padding: 8px 9px;">$2K</td><td style="padding: 8px 9px;">$59</td><td style="padding: 8px 9px;">None</td><td style="padding: 8px 9px;">None / 6% trailing</td><td style="padding: 8px 9px;">70%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar Instant</td><td style="padding: 8px 9px;">0</td><td style="padding: 8px 9px;">$5K</td><td style="padding: 8px 9px;">$149</td><td style="padding: 8px 9px;">None</td><td style="padding: 8px 9px;">None / 6% trailing</td><td style="padding: 8px 9px;">70%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar Instant</td><td style="padding: 8px 9px;">0</td><td style="padding: 8px 9px;">$10K</td><td style="padding: 8px 9px;">$299</td><td style="padding: 8px 9px;">None</td><td style="padding: 8px 9px;">None / 6% trailing</td><td style="padding: 8px 9px;">70%</td></tr>
+    <tr><td style="padding: 8px 9px;">Stellar Instant</td><td style="padding: 8px 9px;">0</td><td style="padding: 8px 9px;">$20K</td><td style="padding: 8px 9px;">$599</td><td style="padding: 8px 9px;">None</td><td style="padding: 8px 9px;">None / 6% trailing</td><td style="padding: 8px 9px;">70%</td></tr>
   </tbody>
 </table>
 
-<p>Pricing and rules last verified against fundednext.com. Stellar 1-Step and Stellar Lite tier prices vary by current promotion — confirm on the <a href="/go/fundednext">FundedNext site</a> before purchase.</p>
+<p>Pricing and rules are current as of 2026-07-27. These are global USD list prices, not FundedNext’s separate US schedule, and they exclude promotions, swap-free pricing, EA add-ons, the 95% add-on, and the non-refundable $25 cTrader or Match-Trader platform charge. Check the final configuration through <a href="/go/fundednext">FundedNext</a>.</p>
+
+<p>The best low-fee comparison is $32.99 for $5K Stellar Lite versus $59.99 for $6K Stellar 2-Step. Lite saves $27 but reduces maximum loss from 10% to 8%, changes Phase 2 from 5% to 4%, and delays fee recovery until the third approved payout rather than the first.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 
-<p><strong>Stellar 2-Step targets.</strong> Phase 1 requires 8% net profit; Phase 2 requires 5%. Both must be achieved within their own phase — no carry-forward. The phases have no published time limit in 2026 (FundedNext removed the 30-day cap in 2024).</p>
+<p><strong>Stellar 2-Step.</strong> Each phase requires 5 separate trading days and targets 8% then 5%. On $100K, the daily loss limit is $5,000 and the static maximum-loss floor is $90,000. Floating and closed P&amp;L count toward the daily calculation, which resets at the FundedNext server’s midnight.</p>
 
-<p><strong>Static drawdown on Stellar.</strong> On a $100K Stellar 2-Step, the max loss line sits at $90K — fixed. The daily limit is 5% of the starting balance ($5K on $100K), measured from server-day start. This is the same mechanic as FTMO and is more forgiving than the trailing models used by Topstep or MFF.</p>
+<p><strong>Stellar 1-Step.</strong> The shortcut requires a 10% target over at least 2 trading days. Its 3% daily loss and 6% static maximum loss are substantially tighter: a $100K account breaches at $94,000 overall or after $3,000 of daily loss, even though the fee is $569.99 versus $549.99 for the 2-Step.</p>
 
-<p><strong>Trailing drawdown on Stellar Instant.</strong> The Instant variant uses a <strong>6% trailing maximum loss</strong> that follows your equity high until you reach the funded threshold. On a $10K Instant account, if your equity peaks at $11,000, your max loss line moves up to $10,340 — and stays there once you take a payout. This is materially harder to manage than static drawdown.</p>
+<p><strong>Stellar Lite.</strong> Lite uses 8% and 4% targets, 5 days per phase, a 4% daily limit, and an 8% static maximum-loss floor. On $100K, that means $4,000 daily room and an absolute $92,000 floor; the $399.99 fee is $150 below the equivalent 2-Step fee.</p>
 
-<p><strong>The 40% news-trading retention.</strong> This is the rule the marketing copy buries. News trading is permitted on funded accounts, but <strong>40% of any profit generated within a Tier-1 news window (NFP, CPI, FOMC, ECB rate decisions) is retained by FundedNext</strong> — you receive 60% of the news-window PnL, even on a 95%-split account. If news trading is your edge, factor this in.</p>
+<p><strong>Stellar Instant.</strong> There is no evaluation target, daily-loss cap, minimum-day rule, or consistency percentage. The trade-off is a 6% real-time trailing maximum loss: a $10K account starts with a $9,400 floor, a $200 profit lifts it to $9,600, and a $600 peak locks it at $10,000. The floor never moves down and does not reset after a payout.</p>
 
-<p><strong>Consistency rule.</strong> No published cap as a % of total profit on Stellar 2-Step in 2026. The Instant product has informal consistency expectations (no single day producing >50% of total profit before payout request).</p>
+<p><strong>News rule.</strong> Challenge phases allow high-impact news trading without an adjustment. On every funded product, trades executed from 5 minutes before through 5 minutes after a listed high-impact event receive only a 40% profit count, while 100% of losses remain. This is a 10-minute reward adjustment, not a rule that lets the trader keep 60% of normal credited profit.</p>
 
-<p><strong>Overnight, weekend, EA.</strong> All allowed across Stellar products. Copy trading via third-party signal services is not permitted.</p>
+<p><strong>Holding, EAs, and copying.</strong> Overnight and weekend holding are allowed, with swap charges included in loss calculations. EA use requires the paid EA option, MT4 or MT5, and a distinct strategy; automation is prohibited on cTrader and Match-Trader. Copying is restricted to the same trader’s challenge accounts up to $300,000 with a designated master, while copying between funded accounts is prohibited.</p>
+
+<p><strong>India KYC.</strong> FundedNext asks for a physical national ID, passport, or permanent residence permit plus a liveness check; a driving licence is not on the India document list. The firm says initial review usually takes 48 hours, may request a bank statement or utility bill issued within 3 months, and now renews profile-level KYC every 90 days.</p>
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 
-<p>Using <a href="/true-cost-of-prop-firm-challenges"><code>computeTrueCost()</code></a> — for FundedNext the math is favorable because the 95% split means the trader keeps almost the entire profit toward fee-refund.</p>
+<p>The 4 tables below come directly from <a href="/true-cost-of-prop-firm-challenges"><code>computeTrueCost()</code></a>. Break-even is fee ÷ starting Reward Share; R-multiple compares that gross-profit hurdle with each product’s published maximum loss, and days assume 1% account growth per trading day.</p>
 
+<!-- Stellar 2-Step — generated by scripts/gen-truecost.mjs -->
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-  <caption class="hidden-caption">FundedNext Stellar 2-Step true-cost projection</caption>
-  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (95% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 10% max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day (5% daily cap)</th></tr></thead>
+  <caption class="hidden-caption">Stellar 2-Step true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 10% max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day (5% daily cap)</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$6K Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$59.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$63</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.11</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$549.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$579</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.06</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px;">$200K Stellar 2-Step</td><td style="padding: 8px 12px;">$1,099.99</td><td style="padding: 8px 12px;">$1,158</td><td style="padding: 8px 12px;">0.06</td><td style="padding: 8px 12px;">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$6K Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$60</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$75</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.12</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$15K Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$120</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$150</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.10</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$200</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$250</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.10</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$300</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$375</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.07</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$550</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$687</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.07</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$200K Stellar 2-Step</td><td style="padding: 8px 12px;">$1,100</td><td style="padding: 8px 12px;">$1,375</td><td style="padding: 8px 12px;">0.07</td><td style="padding: 8px 12px;">1</td></tr>
   </tbody>
 </table>
 
-<p>Stellar Instant is a different product on both axes that drive this math: it pays an <strong>80% split, not 95%</strong>, and its ceiling is a <strong>6% trailing</strong> max loss rather than the 2-Step's 10% balance-based. Those terms need their own table — carrying the 2-Step's assumptions across to Instant overstates the break-even by roughly 14%.</p>
-
+<!-- Stellar 1-Step — generated by scripts/gen-truecost.mjs -->
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-  <caption class="hidden-caption">FundedNext Stellar Instant true-cost projection</caption>
-  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 6% trailing max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
+  <caption class="hidden-caption">Stellar 1-Step true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 6% max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day (3% daily cap)</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2K Stellar Instant</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$59.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$75</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.62</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K Stellar Instant</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$149.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$187</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.62</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K Stellar Instant</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$299.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$375</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.62</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4</td></tr>
-    <tr><td style="padding: 8px 12px;">$20K Stellar Instant</td><td style="padding: 8px 12px;">$599.99</td><td style="padding: 8px 12px;">$750</td><td style="padding: 8px 12px;">0.62</td><td style="padding: 8px 12px;">4</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$6K Stellar 1-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$66</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$82</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.23</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$15K Stellar 1-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$130</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$162</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.18</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K Stellar 1-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$220</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$275</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.18</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K Stellar 1-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$330</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$412</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.14</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K Stellar 1-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$570</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$712</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.12</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$200K Stellar 1-Step</td><td style="padding: 8px 12px;">$1,100</td><td style="padding: 8px 12px;">$1,375</td><td style="padding: 8px 12px;">0.11</td><td style="padding: 8px 12px;">1</td></tr>
   </tbody>
 </table>
 
-<p><strong>Reading the table.</strong> The 95% split makes Stellar 2-Step the cheapest CFD product to break even on per dollar of fee — R is 0.06 at $100K vs. ~0.07–0.11 on FTMO at the same tier. The catch is <strong>probability of passing</strong>: Stellar 2-Step has two phases to clear and the daily-DD cap is tight at 5% daily, so a single overleveraged session ends the account before the first payout.</p>
+<!-- Stellar Lite — generated by scripts/gen-truecost.mjs -->
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Stellar Lite true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 8% max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day (4% daily cap)</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K Stellar Lite</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$33</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$41</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.10</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K Stellar Lite</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$60</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$75</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.09</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K Stellar Lite</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$140</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$175</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.09</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K Stellar Lite</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$230</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$287</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.07</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K Stellar Lite</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$400</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$500</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.06</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$200K Stellar Lite</td><td style="padding: 8px 12px;">$799</td><td style="padding: 8px 12px;">$999</td><td style="padding: 8px 12px;">0.06</td><td style="padding: 8px 12px;">1</td></tr>
+  </tbody>
+</table>
 
-<p>Stellar Instant is roughly ten times more expensive on R-multiple — 0.62 against the 2-Step's 0.06 at $100K — because the 6% trailing max loss gives you only ~$120 of risk dollars on a $2K account, and the 80% split leaves 20% of every dollar with the firm on the way to the refund. R = 0.62 holds flat across all four Instant tiers: fee scales with account size, so the ratio doesn't improve as you go up. This is the structural reason Stellar Instant isn't a great pick for retail — the tight DD eats your edge before you accumulate the profit needed to refund the (non-refundable) fee.</p>
+<!-- Stellar Instant — generated by scripts/gen-truecost.mjs -->
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Stellar Instant true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (70% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 6% trailing max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2K Stellar Instant</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$59</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$84</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.70</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K Stellar Instant</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$149</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$213</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.71</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K Stellar Instant</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$299</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$427</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.71</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5</td></tr>
+    <tr><td style="padding: 8px 12px;">$20K Stellar Instant</td><td style="padding: 8px 12px;">$599</td><td style="padding: 8px 12px;">$856</td><td style="padding: 8px 12px;">0.71</td><td style="padding: 8px 12px;">5</td></tr>
+  </tbody>
+</table>
+
+<p>Stellar Instant’s R-multiple near 0.71 is the decisive cost warning: the $299 fee needs $427 of gross profit at a 70% split, against only $600 of initial loss room on $10K. Stellar Lite’s $399.99 $100K tier needs $500 against $8,000 of static loss room, an R-multiple of 0.06.</p>
+
+<p>These tables assume one purchase and no add-ons. A reset, swap-free option, $25 alternative-platform charge, EA permission, on-demand payout option, or lifetime 95% Reward Share changes the cash outlay; compare the final checkout total, not a promotional base card.</p>
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p>Stellar 2-Step funded accounts pay on-demand from the moment you take your first regular payout (typically 7–14 days into the account). The "24-hour payout guarantee" advertised on the homepage is real but has been refined in 2026 — confirm the current SLA before relying on it. Industry-typical complaint volume on Trustpilot is roughly proportional to user count; FundedNext sits at ~4.6/5 from 18,000+ reviews as of mid-2026.</p>
+<p><strong>Cycle timing differs by product.</strong> Stellar 1-Step uses 5-business-day reward cycles. Stellar 2-Step and Lite allow the first standard request after 21 days and later requests every 14 days. Stellar Instant can request on demand after 5% growth at an end-of-day check, or after 14 days when growth is at least 1% but below 5%.</p>
 
-<p><strong>Methods.</strong> Bank wire, Rise (B2B remittance), and crypto (USDT TRC-20 most common). The Rise rail is the fastest in practice for traders outside the US and EU — 1–3 business days settlement. Crypto settles in hours when the FundedNext side processes within the published SLA.</p>
+<p><strong>Refund timing differs too.</strong> Stellar 2-Step’s registration fee can be requested with the first approved Performance Reward. New Stellar 1-Step and Lite purchases wait until the third approved reward. Stellar Instant’s $59–$599 purchase is non-refundable because there is no evaluation pass milestone.</p>
 
-<p><strong>Fees.</strong> FundedNext absorbs Rise and crypto network fees. Bank wire fees pass through.</p>
+<p><strong>India payout routes.</strong> FundedNext lists USDT on TRC20/ERC20 and USDC on ERC20 from $20 up to $1,999, RiseWorks from $50 with no published maximum, and bank transfer from $1,000 to $50,000. Transfer-provider processing can reach 3.5%, so an Indian trader should compare the net INR received after network, provider, and local conversion costs.</p>
 
-<p><strong>Minimum.</strong> $100 USD minimum payout amount.</p>
+<p><strong>Processing claim.</strong> FundedNext says approved requests are processed within 24 hours, but that is the firm-side step rather than guaranteed bank settlement. KYC must show Approved before any Performance Reward; the 90-day renewal rule can disable payout requests even while trading remains available.</p>
+
+<p><strong>Independent signal.</strong> FundedNext showed 4.5 from 74,352 Trustpilot reviews in our 2026-07-27 capture. That volume is useful for issue discovery, but a star average cannot verify an individual account’s compliance review, news adjustment, or payout approval.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
 <ul class="wp-block-list">
-  <li><strong>95% standard split</strong> on Stellar 2-Step beats FTMO (80% → 90% scaled) and Topstep (90% on funded only) outright.</li>
-  <li><strong>$4M max allocation</strong> is the highest in the niche — double FTMO's $2M ceiling.</li>
-  <li><strong>Static drawdown on the flagship product</strong> (5% daily / 10% max), same forgiving mechanic as FTMO.</li>
-  <li><strong>On-demand payouts</strong> with $100 minimum and Rise/crypto rails. The most-frequent withdraw cadence among major CFD firms.</li>
-  <li><strong>Transparent pricing</strong> on the Stellar 2-Step ladder: $6K=$59.99, $100K=$549.99, $200K=$1,099.99. Unusual transparency for the niche.</li>
-  <li><strong>Stellar Lite exists as a budget entry</strong>, letting traders test the platform/UX before committing to flagship prices.</li>
+  <li>All 22 global list prices are now published, from $32.99 Lite to $1,099.99 flagship tiers.</li>
+  <li>Stellar 2-Step provides a static 10% maximum loss and 5% daily limit.</li>
+  <li>Stellar 1-Step can clear in 2 trading days and then pays on 5-business-day cycles.</li>
+  <li>Overnight and weekend holding are allowed on all 4 current CFD products.</li>
+  <li>India was absent from the 20-country restricted list captured on 2026-07-27.</li>
+  <li>Crypto starts at a $20 payout, below the $50 RiseWorks and $1,000 bank thresholds.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Cons</strong></h2>
 
 <ul class="wp-block-list">
-  <li><strong>The 40% news-window retention</strong> is a real tax on any trader whose edge involves macro releases. Allowed ≠ free.</li>
-  <li><strong>MT4 and MT5 only</strong>. No cTrader or DXTrade, which boxes out a meaningful chunk of algo traders.</li>
-  <li><strong>Stellar Instant 6% trailing drawdown</strong> is hostile to most trend strategies. The product looks attractive on payout speed but punishes profit retention.</li>
-  <li><strong>No US residency</strong>. Traders in restricted regions need to plan accordingly.</li>
-  <li><strong>4-year operating history</strong> — meaningfully less than FTMO (11) or Topstep (14). The track record is clean so far but shorter.</li>
-  <li><strong>Customer-support complaints on Trustpilot</strong> cluster around account-closure disputes during evaluation. Read the rules page word-by-word before paying.</li>
+  <li>The advertised 95% Reward Share is a paid add-on; the current base is 80% or 70% Instant.</li>
+  <li>Funded news-window trades receive only a 40% profit count during the 10-minute window.</li>
+  <li>Stellar Instant’s 6% trailing floor never resets downward after a payout.</li>
+  <li>EA usage needs a paid option and is unavailable on cTrader and Match-Trader.</li>
+  <li>cTrader or Match-Trader adds a non-refundable $25 platform fee.</li>
+  <li>Provider processing fees can reach 3.5%, material on a $20–$50 small withdrawal.</li>
+  <li>KYC renews every 90 days and must be Approved before a payout request.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Who should pick FundedNext</strong></h2>
 
-<p>A trader who wants <strong>the highest take-home-per-trade economics</strong> in the major CFD prop tier and doesn't rely on news as the core edge. Specifically: a swing or position trader with a system that doesn't need cTrader, comfortable on MT5, willing to clear two phases for the 95% upside. The Stellar 2-Step $100K tier at $549.99 with on-demand payouts is the conventional choice. Pair with a strict daily-loss rule — the 5% cap is tight if you stack trades.</p>
+<p>An Indian MT5 swing trader who can avoid the 10-minute news window should compare the $59.99 $6K Stellar 2-Step and $32.99 $5K Lite first. Choose 2-Step for the static 10% loss room and first-payout fee refund; choose Lite for the lower fee only if an 8% maximum loss and third-payout refund fit the plan.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid FundedNext</strong></h2>
 
-<p>A US-resident trader. A news trader (the 40% retention penalty erases the split advantage during news windows). A scalper running cTrader-native infrastructure (only MT4/MT5 supported). And traders who value a multi-cycle payout track record above all — FTMO's 11 years of payouts is the safer bet there.</p>
-
-<p>For futures-only traders, FundedNext's CFD lineup doesn't apply. See <a href="/blog/topstep-review">Topstep</a> or <a href="/blog/my-funded-futures">My Funded Futures</a>.</p>
+<p>A macro-news scalper should avoid the funded 40% profit-count rule, and an algorithmic cTrader user should avoid the EA restriction. A trader who needs instant access but cannot manage a real-time 6% trailing floor should not let Stellar Instant’s 0-phase label outweigh its 0.70–0.71 R-multiple.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
-<h3 class="wp-block-heading"><strong>Is FundedNext legit in 2026?</strong></h3>
+<h3 class="wp-block-heading"><strong>Can traders in India use FundedNext?</strong></h3>
+<p>India was not among FundedNext’s 20 restricted CFD countries on 2026-07-27. This indicates service availability, not Indian regulatory approval; use your exact legal name and Indian address for checkout and KYC, then compare the captured evidence on our <a href="/best-prop-firms-in-india">India prop-firm shortlist</a>.</p>
 
-<p>Yes, with the caveats above. FundedNext has operated continuously since 2022, processes payouts on stated cadences, and the rules pages have been clarified rather than tightened on existing accounts. Trustpilot sits at ~4.6/5 from 18K+ reviews. Open disputes are mostly evaluation-phase rule-breach claims, not payout failures.</p>
+<h3 class="wp-block-heading"><strong>Can an Indian trader pay by card?</strong></h3>
+<p>FundedNext’s international-card checkout accepts Visa, Mastercard, and Amex, and the cardholder name must match the account name. It also lists 30 cryptocurrencies; a Local Payment option is available only when the dashboard shows support for the user’s country.</p>
 
-<h3 class="wp-block-heading"><strong>What's the catch with the 95% profit split?</strong></h3>
+<h3 class="wp-block-heading"><strong>Is FundedNext’s base split really 95%?</strong></h3>
+<p>No. New Stellar 1-Step, 2-Step, and Lite accounts start at 80%, while Instant starts at 70%; 95% is a paid lifetime add-on, and standard scaling can raise challenge products to 90%.</p>
 
-<p>There isn't a catch on the headline number — Stellar 2-Step really does pay 95% on the funded account. The two pulls are: (1) you must clear two phases (8% then 5% target) to unlock it; (2) news-window PnL is taxed 40% regardless. Build your strategy to avoid news trading as a core mechanism and the 95% is real.</p>
+<h3 class="wp-block-heading"><strong>Which FundedNext plan is cheapest?</strong></h3>
+<p>Stellar Lite $5K is lowest at $32.99, with 8% and 4% targets, 4% daily loss, and 8% static maximum loss. The next entry is $59 for $2K Instant or $59.99 for $6K 2-Step.</p>
 
-<h3 class="wp-block-heading"><strong>How fast are FundedNext payouts?</strong></h3>
+<h3 class="wp-block-heading"><strong>How does the news rule work?</strong></h3>
+<p>On funded accounts, executions from 5 minutes before to 5 minutes after listed high-impact news receive a 40% profit count, while all losses remain. Challenge phases do not receive that adjustment.</p>
 
-<p>On Stellar 2-Step funded accounts: on-demand after the first regular payout. Settlement via crypto rail is typically same-day to 24 hours; Rise is 1–3 business days; bank wire is 3–5 business days. The "24-hour payout guarantee" is product-specific and subject to terms — read the current SLA at purchase.</p>
+<h3 class="wp-block-heading"><strong>When is the challenge fee refunded?</strong></h3>
+<p>Stellar 2-Step can request it with the first approved payout; new 1-Step and Lite purchases wait until the third. Stellar Instant has no refundable fee.</p>
 
-<h3 class="wp-block-heading"><strong>What's the difference between Stellar 1-Step and Stellar 2-Step?</strong></h3>
-
-<p>The 2-Step requires Phase 1 (8% target) → Phase 2 (5% target) → funded. The 1-Step folds both into a single phase with a higher consolidated target. The 1-Step is faster to clear for a confident trader but has less margin for error; the 2-Step's two-phase structure rewards traders who manage risk well even after hitting target.</p>
-
-<h3 class="wp-block-heading"><strong>Can I use FundedNext from the United States?</strong></h3>
-
-<p>No. US-resident traders are not eligible. The eligibility list also excludes Iran, North Korea, Syria, and several other OFAC-restricted regions. Use the firm's account-creation flow to verify your jurisdiction before paying.</p>
-
-<h3 class="wp-block-heading"><strong>What happens if I trade through an NFP release on a funded account?</strong></h3>
-
-<p>The position is allowed — but 40% of any profit accumulated within the news-window (typically ±2 minutes around the release, defined per-instrument) is retained by FundedNext. You receive 60% of the news-window PnL, which combined with the 95% split nets you ~57% of that profit instead of the usual 95%. If news trading is intentional, factor this into your sizing.</p>
-
-<h3 class="wp-block-heading"><strong>Is the challenge fee refundable?</strong></h3>
-
-<p>On Stellar 2-Step / 1-Step / Lite: yes, refunded with your first payout. On Stellar Instant: <strong>no</strong> — the fee is non-refundable, which combined with the 6% trailing DD is the reason most traders should avoid the Instant product unless they specifically need no-evaluation access.</p>
+<h3 class="wp-block-heading"><strong>What KYC does an Indian trader need?</strong></h3>
+<p>FundedNext accepts a physical national ID, passport, or permanent residence permit plus liveness verification, with review typically around 48 hours. It can request proof of address from the last 3 months, and profile KYC renews every 90 days.</p>

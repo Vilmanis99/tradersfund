@@ -1,0 +1,34 @@
+{
+  "firmSlug": "maven",
+  "capturedAt": "2026-07-28",
+  "rbiCheck": {
+    "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
+    "sourceListUpdatedAt": "2024-10-22",
+    "result": "not-found",
+    "searchedNames": ["Maven", "Maven Trading"]
+  },
+  "sources": [
+    {
+      "url": "https://maventrading.com/terms-and-conditions",
+      "claims": {
+        "country": "India is absent from the published 25-country restriction list.",
+        "conditions": "Service remains conditional on local law, sanctions, KYC, and third-party availability."
+      }
+    },
+    {
+      "url": "https://maventrading.com/faqs",
+      "claims": {
+        "checkout": "Maven publishes credit-card and other checkout options and requires the trader to own the card.",
+        "kyc": "Veriff accepts government-issued ID and requires identity details to match the trader.",
+        "payout": "India appears in the Rise-or-other-options group rather than the named direct-bank group.",
+        "fee": "Payments through Rise carry a published $20 withdrawal fee."
+      }
+    },
+    {
+      "url": "https://maventrading.com/pricing",
+      "claims": {
+        "currency": "Captured account sizes, fees, and after-pass amounts are displayed in USD."
+      }
+    }
+  ]
+}

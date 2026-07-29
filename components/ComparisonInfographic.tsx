@@ -13,7 +13,8 @@ const B_COLOR = '#2dd4bf'
 
 function parseAllocation(v: string | undefined): number {
   if (!v) return 0
-  return parseFloat(v.replace(/[^0-9.]/g, '')) || 0
+  const firstAmount = v.match(/\$?\s*([\d,]+(?:\.\d+)?)/)?.[1]
+  return parseFloat(firstAmount?.replace(/,/g, '') ?? '') || 0
 }
 
 function fmtAllocation(v: number): string {

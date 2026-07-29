@@ -65,7 +65,7 @@ export default function NewsletterForm() {
         required
       />
       <button type="submit" disabled={status === 'sending' || status === 'pending'}>
-        {status === 'sending' ? 'Sending…' : status === 'pending' ? 'Done' : 'Subscribe'}
+        {status === 'sending' ? 'Sending…' : status === 'pending' ? 'Confirm email' : 'Subscribe'}
       </button>
       {status === 'pending' && (
         <span role="status" style={{ color: '#22c55e', fontSize: '0.8rem', position: 'absolute', bottom: -20 }}>

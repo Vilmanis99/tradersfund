@@ -25,7 +25,7 @@ type: "post"
     <li>Minimum 2 trading days; best single day must stay under 50% of the profit target.</li>
     <li>90/10 split, on-demand payouts, $125 minimum, 50% of account balance per request.</li>
     <li>Topstep publishes its own pass rate: 16.8% of Combines initiated in 2025 were completed. Almost no competitor publishes anything comparable.</li>
-    <li>Trustpilot 3.6 from 14,478 reviews (verified 2026-07-27) — the second-lowest score among the 15 firms we cover.</li>
+    <li>Trustpilot 3.6 from 14,478 reviews (verified 2026-07-27) — the second-lowest score in our current tracked set.</li>
   </ul>
 </div>
 
@@ -153,7 +153,7 @@ type: "post"
 
 <p><strong>Settlement time.</strong> Topstep's payout policy as captured on 2026-07-27 documents the request window, minimum and caps but does not state a settlement duration, so this review no longer quotes one. An earlier version of this page cited a sub-10-second figure for a specific payment rail; that claim does not appear in the current published policy and has been removed.</p>
 
-<p><strong>Community signal.</strong> Trustpilot shows <a href="https://www.trustpilot.com/review/topstep.com">3.6 from 14,478 reviews</a> as of 2026-07-27. Among the 15 firms we track, only The Funded Trader (2.9) scores lower, and Topstep sits well below FTMO (4.8) and My Funded Futures (4.9). That is a substantial review base rather than a thin one, which makes the score harder to dismiss as noise. Weigh it against the fact that Topstep is one of the very few firms in the category publishing its own failure rates.</p>
+<p><strong>Community signal.</strong> Trustpilot shows <a href="https://www.trustpilot.com/review/topstep.com">3.6 from 14,478 reviews</a> as of 2026-07-27. In our current tracked set, only The Funded Trader (2.9) scores lower, and Topstep sits below FTMO (4.8) and My Funded Futures (4.9). That is a substantial review base rather than a thin one, which makes the score harder to dismiss as noise. Weigh it against the fact that Topstep publishes its own failure-rate data.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
@@ -165,7 +165,7 @@ type: "post"
   <li><strong>Three trading days to a first payout request</strong> via the Consistency route, against five winning days on the Standard route.</li>
   <li><strong>Free Reset Credit on every rebill</strong> — a trader who breaches once inside a billing month pays $0 rather than the $49–$199 reset price.</li>
   <li><strong>Trade copiers and automated strategies are permitted</strong> on Combine and Express Funded Accounts, and there is no blanket news ban — only full-size entries into scheduled major news are prohibited.</li>
-  <li><strong>14 years operating</strong>, the longest continuous history among the 15 firms we cover.</li>
+  <li><strong>14 years operating</strong>, the longest continuous history in our current tracked set.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Cons</strong></h2>

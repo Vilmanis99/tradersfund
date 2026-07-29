@@ -1,8 +1,10 @@
 ---
 title: "The True Cost of Prop Firm Challenges (And How to Calculate It)"
+seoTitle: "True Cost of Prop Firm Challenges: Calculator Guide"
 slug: "true-cost-of-prop-firm-challenges"
 date: "2026-05-20 12:00:00"
 description: "Every prop firm advertises 'up to 90% profit split'. None of them publish the trading profit you actually need to make to break even. Here's the math."
+seoDescription: "Calculate a prop-firm challenge's break-even profit, drawdown R-multiple, activation cost, and standardized days to recover the fee."
 type: "page"
 ---
 

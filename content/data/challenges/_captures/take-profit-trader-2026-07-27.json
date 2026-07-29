@@ -18,6 +18,8 @@
   "products": [
     {
       "productName": "The Test (Evaluation) — monthly subscription",
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 130,
       "productSlug": "the-test",
       "phases": 1,
       "accountSizes": [

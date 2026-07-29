@@ -34,12 +34,14 @@
     "payoutFirstDays": 3,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": "restricted",
+      "weekend": false,
+      "overnight": false,
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
+    "pricingModel": "monthly-subscription",
+    "activationFeeUsd": 149,
     "assetClass": "futures",
     "sourceUrl": "https://www.topstep.com/topstep-prop",
     "sourceCapturedAt": "2026-07-27",
@@ -64,9 +66,7 @@
       "ALLOWED INSTRUMENTS (footer disclosure, /topstep-prop): 'Topstep traders are allowed to trade Futures products only, listed on the following exchanges: CME, COMEX, NYMEX & CBOT. Topstep traders are prohibited from trading Stocks, Options, Forex, Spot Cryptocurrency, and CFDs.'",
       "BACK2FUNDED reactivation fees if the XFA is lost before first payout: '$50K XFA - $599', '$100K XFA - $699', '$150K XFA - $829'. Window: '30 calendar days from account closure' per the pricing article (the express-funded-account-rules page states 7 days for the offer to be accepted - the two Topstep pages disagree; not resolved).",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/topstep-2026-07-27.json"
-    ],
-    "pricingModel": "monthly-subscription",
-    "activationFeeUsd": 149
+    ]
   },
   {
     "firmSlug": "topstep",
@@ -103,12 +103,14 @@
     "payoutFirstDays": 3,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": "restricted",
+      "weekend": false,
+      "overnight": false,
+      "ea": true,
+      "copyTrading": true
     },
+    "pricingModel": "monthly-subscription",
+    "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
     "sourceCapturedAt": "2026-07-27",
@@ -122,8 +124,6 @@
       "ACCESS CAVEAT: the 'No activation fee' tab on https://www.topstep.com/topstep-prop is client-rendered and its prices are NOT present in the server HTML. These prices come from Topstep's own help-center pricing article on the help.topstep.com subdomain, not from the marketing page. Cross-check: the struck-through prices on the /topstep-prop cards ($85/$129/$199) equal these prices minus the stated $10/$20/$30 Responsible Trading Discount, which corroborates the table.",
       "PASS RATE (same published statistic): 'From January through December 2025, (a) 16.8% of all Trading Combines initiated were successfully completed and afforded the opportunity to advance to the Funded Level' - https://www.topstep.com/topstep-prop",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/topstep-2026-07-27.json"
-    ],
-    "pricingModel": "monthly-subscription",
-    "activationFeeUsd": 0
+    ]
   }
 ]

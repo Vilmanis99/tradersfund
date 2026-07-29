@@ -10,8 +10,8 @@ import path from 'path'
  *     (no coupon to type), we leave `code` empty and say so in `note`.
  *   • `verifiedOn` is the date we last checked the offer. It is rendered on the
  *     page, so freshness is always *stated*, never implied.
- *   • `expiresOn` deals are dropped by getAllDeals(), so a stale code is never
- *     displayed — we pull expired offers, we don't grey them out.
+ *   • Expired offers and offers not rechecked within 30 days are dropped by
+ *     getAllDeals(), so an old promotion is never presented as current.
  *
  * Owner workflow: this is the single file to edit. Add a verified deal to
  * content/data/deals.json and it appears on the hub on the next build — no
@@ -47,25 +47,31 @@ export interface Deal {
 
 const DEALS_PATH = path.join(process.cwd(), 'content/data/deals.json')
 
-/** Today as YYYY-MM-DD (UTC) — compared lexically against ISO dates, no TZ drift. */
-function todayIso(): string {
-  return new Date().toISOString().slice(0, 10)
-}
-
 function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
 /**
- * All curated deals with expired ones removed. A deal is expired when its
- * `expiresOn` is strictly before today, so a code is never shown stale.
+ * True only for a valid, non-future check performed within the last 30 days.
  */
-export function getAllDeals(): Deal[] {
+export function isDealFresh(deal: Pick<Deal, 'verifiedOn'>, now = new Date()): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(deal.verifiedOn)) return false
+  const verified = new Date(`${deal.verifiedOn}T00:00:00Z`)
+  if (Number.isNaN(verified.getTime())) return false
+  const ageDays = Math.floor((now.getTime() - verified.getTime()) / 86_400_000)
+  return ageDays >= 0 && ageDays <= 30
+}
+
+/** Return only non-expired offers whose verification is still fresh. */
+export function getAllDeals(now = new Date()): Deal[] {
   if (!fs.existsSync(DEALS_PATH)) return []
   const raw = fs.readFileSync(DEALS_PATH, 'utf-8')
   const deals = JSON.parse(raw) as Deal[]
-  const today = todayIso()
-  return deals.filter(d => !d.expiresOn || d.expiresOn >= today)
+  const today = now.toISOString().slice(0, 10)
+  return deals.filter(deal =>
+    isDealFresh(deal, now) &&
+    (!deal.expiresOn || deal.expiresOn >= today),
+  )
 }
 
 /** Non-expired deals for a single firm (slugified name). */

@@ -103,7 +103,7 @@ export default function MobileStickyCTA(props: MobileStickyCTAProps) {
 
   const hasAffiliate = Boolean(affiliateUrl)
   const ctaHref = hasAffiliate ? `/go/${affiliateSlug}?from=mobile-sticky` : reviewUrl
-  const ctaLabel = hasAffiliate ? 'Get funded' : 'Read review'
+  const ctaLabel = hasAffiliate ? 'View plans' : 'Read review'
 
   return (
     <div

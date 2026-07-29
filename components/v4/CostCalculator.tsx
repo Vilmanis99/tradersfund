@@ -14,7 +14,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Challenge, ChallengeAccountSize } from '@/lib/firms'
-import { computeTrueCost } from '@/lib/firms'
+import { computeTrueCost, minimumCostToFundedUsd } from '@/lib/firms'
 import { TrendingUp, DollarSign, Target, CalendarClock } from 'lucide-react'
 
 type Props = {
@@ -92,35 +92,51 @@ export default function CostCalculator({ challenge, firmName }: Props) {
   // hook count between renders (a challenge whose prices land later would
   // crash with "rendered more hooks than during the previous render").
   const tier: ChallengeAccountSize | undefined = tiers[Math.min(idx, tiers.length - 1)]
+  const tierCost = tier ? (minimumCostToFundedUsd(challenge, tier) ?? 0) : 0
 
   const cost = useMemo(
     () =>
       computeTrueCost({
-        priceUsd: tier?.priceUsd ?? 0,
+        priceUsd: tierCost,
         sizeUsd: tier?.sizeUsd ?? 0,
-        profitSplitPct: challenge.profitSplitPct,
-        dailyLossPct: challenge.dailyLossPct,
+        profitSplitPct: challenge.profitSplitPct ?? 0,
+        dailyLossPct:
+          tier?.dailyLossUsd != null && tier.sizeUsd > 0
+            ? (tier.dailyLossUsd / tier.sizeUsd) * 100
+            : challenge.dailyLossPct,
         maxLossPct: challenge.maxLossPct,
+        maxLossUsd: tier?.maxLossUsd,
       }),
-    [tier, challenge.profitSplitPct, challenge.dailyLossPct, challenge.maxLossPct],
+    [tier, tierCost, challenge.profitSplitPct, challenge.dailyLossPct, challenge.maxLossPct],
   )
 
-  const animFee = useAnimatedNumber(tier?.priceUsd ?? 0)
+  const animFee = useAnimatedNumber(tierCost)
   const animSize = useAnimatedNumber(tier?.sizeUsd ?? 0)
   const animBreakEven = useAnimatedNumber(cost.breakEvenProfit)
   const animR = useAnimatedNumber(cost.rMultiple ?? 0)
   const animDays = useAnimatedNumber(cost.dayCount ?? 0)
 
-  // Fallback: if we somehow get no priced tier, render a soft empty state.
-  if (!tier) {
+  // Fallback: a profit split is required for break-even math.
+  if (!tier || challenge.profitSplitPct == null) {
     return (
       <div className="v4-glass v4-glass-strong" style={{ padding: '2rem', color: 'var(--muted)' }}>
-        Calculator unavailable — no priced tiers in this challenge yet.
+        Calculator unavailable — a priced tier and verified profit split are required.
       </div>
     )
   }
 
   const v = verdict(cost.rMultiple)
+  const feeHint = challenge.pricingModel === 'monthly-subscription'
+    ? 'First billing cycle + activation floor'
+    : challenge.pricingModel === 'split-payment'
+      ? 'Includes required after-pass payment'
+      : tier?.activationFeeUsd || challenge.activationFeeUsd
+        ? 'Includes required activation fee'
+        : tier.refundable === true
+          ? 'Refundable on first payout'
+          : tier.refundable === false
+            ? 'Non-refundable'
+            : 'Refund status not verified'
 
   return (
     <div className="v4-glass v4-glass-strong" style={{ padding: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
@@ -194,9 +210,9 @@ export default function CostCalculator({ challenge, firmName }: Props) {
       >
         <Metric
           icon={<DollarSign size={16} aria-hidden />}
-          label="Listed fee"
+          label="Minimum cost to funded"
           value={fmtUsd(animFee)}
-          hint={tier.refundable ? 'Refundable on first payout' : 'Non-refundable'}
+          hint={feeHint}
         />
         <Metric
           icon={<TrendingUp size={16} aria-hidden />}

@@ -5,36 +5,73 @@
     "productSlug": "bright-funded-1-step",
     "phases": 1,
     "accountSizes": [
-      { "sizeUsd": 5000,   "priceUsd": null, "refundable": true },
-      { "sizeUsd": 10000,  "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000,  "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000,  "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+      {
+        "sizeUsd": 5000,
+        "priceUsd": null,
+        "priceEur": 49,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "priceEur": 97,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "priceEur": 197,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "priceEur": 297,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "priceEur": 497,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": null,
+        "priceEur": 997,
+        "refundable": true
+      }
     ],
-    "profitTargets": null,
-    "dailyLossPct": 5,
-    "maxLossPct": 10,
-    "drawdownType": "static",
-    "minTradingDays": null,
+    "profitTargets": {
+      "phase1": 10
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 6,
+    "drawdownType": "trailing",
+    "minTradingDays": 5,
     "maxTradingDays": null,
     "consistencyRulePct": null,
-    "profitSplitPct": 100,
-    "payoutFirstDays": null,
-    "payoutFrequency": "weekly",
+    "profitSplitPct": 80,
+    "payoutFirstDays": 30,
+    "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": true,
+      "news": "restricted",
       "weekend": true,
       "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://brightfunded.com/",
-    "sourceCapturedAt": "2026-06-05",
+    "sourceUrl": "https://brightfunded.com/1-step",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Per-tier USD prices await capture from app.brightfunded.com (dashboard requires login).",
-      "Profit split shown as 'up to 100%' with scaling on the funded account."
+      "All fees are EUR list prices. Temporary SUMMER30 pricing is deliberately excluded.",
+      "The 6% maximum drawdown trails the highest equity in real time and locks at the original balance after the account reaches 6% growth.",
+      "The base funded reward split is 80%; 90% is a paid add-on and 100% is available only through scaling.",
+      "The first standard payout window is 30 days after the first funded trade, then 14 days. Weekly or earlier cycles are paid add-ons.",
+      "News trading is unrestricted in evaluation but has a 10-minute execution restriction on funded accounts.",
+      "The separately advertised 100% challenge-fee refund is a checkout add-on, not included in the captured list price.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/bright-funded-2026-07-27.json"
     ]
   },
   {
@@ -43,37 +80,73 @@
     "productSlug": "bright-funded-2-step-bright",
     "phases": 2,
     "accountSizes": [
-      { "sizeUsd": 5000,   "priceUsd": null, "refundable": true },
-      { "sizeUsd": 10000,  "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000,  "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000,  "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+      {
+        "sizeUsd": 5000,
+        "priceUsd": null,
+        "priceEur": 47,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "priceEur": 87,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "priceEur": 187,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "priceEur": 277,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "priceEur": 477,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": null,
+        "priceEur": 947,
+        "refundable": true
+      }
     ],
-    "profitTargets": { "phase1": 8, "phase2": null },
-    "dailyLossPct": 5,
-    "maxLossPct": 10,
+    "profitTargets": {
+      "phase1": 8,
+      "phase2": 5
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 8,
     "drawdownType": "static",
-    "minTradingDays": null,
+    "minTradingDays": 5,
     "maxTradingDays": null,
     "consistencyRulePct": null,
-    "profitSplitPct": 100,
-    "payoutFirstDays": null,
-    "payoutFrequency": "weekly",
+    "profitSplitPct": 80,
+    "payoutFirstDays": 30,
+    "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": true,
+      "news": "restricted",
       "weekend": true,
       "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://brightfunded.com/",
-    "sourceCapturedAt": "2026-06-05",
+    "sourceUrl": "https://brightfunded.com/2-step-bright",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Per-tier USD prices await capture from app.brightfunded.com (dashboard requires login).",
-      "Marketed as 'Best Value — Lowest Profit Target' on the dashboard configurator.",
-      "Phase 2 target not visible publicly — verify in dashboard."
+      "All fees are EUR list prices. Temporary SUMMER25 pricing is deliberately excluded.",
+      "The 8% maximum drawdown is static; daily loss is 4% and both phases require 5 trading days.",
+      "Base funded split is 80%; the 90% figure on the plan card is an add-on ceiling.",
+      "The first standard payout window is 30 days, followed by 14-day cycles.",
+      "The separately advertised 100% challenge-fee refund is a checkout add-on, not included in the captured list price.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/bright-funded-2026-07-27.json"
     ]
   },
   {
@@ -82,37 +155,73 @@
     "productSlug": "bright-funded-2-step-classic",
     "phases": 2,
     "accountSizes": [
-      { "sizeUsd": 5000,   "priceUsd": null, "refundable": true },
-      { "sizeUsd": 10000,  "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000,  "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000,  "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": true },
-      { "sizeUsd": 200000, "priceUsd": null, "refundable": true }
+      {
+        "sizeUsd": 5000,
+        "priceUsd": null,
+        "priceEur": 49,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "priceEur": 97,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "priceEur": 197,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "priceEur": 297,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "priceEur": 497,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": null,
+        "priceEur": 997,
+        "refundable": true
+      }
     ],
-    "profitTargets": null,
+    "profitTargets": {
+      "phase1": 10,
+      "phase2": 5
+    },
     "dailyLossPct": 5,
     "maxLossPct": 10,
     "drawdownType": "static",
-    "minTradingDays": null,
+    "minTradingDays": 5,
     "maxTradingDays": null,
     "consistencyRulePct": null,
-    "profitSplitPct": 100,
-    "payoutFirstDays": null,
-    "payoutFrequency": "weekly",
+    "profitSplitPct": 80,
+    "payoutFirstDays": 30,
+    "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": true,
+      "news": "restricted",
       "weekend": true,
       "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://brightfunded.com/",
-    "sourceCapturedAt": "2026-06-05",
+    "sourceUrl": "https://brightfunded.com/2-step-classic",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Per-tier USD prices await capture from app.brightfunded.com (dashboard requires login).",
-      "Marketed as 'Highest Drawdown Limit' on the dashboard configurator.",
-      "Phase targets not visible publicly — verify in dashboard."
+      "All fees are EUR list prices. Temporary SUMMER15 pricing is deliberately excluded.",
+      "The 10% maximum drawdown is static; daily loss is 5% and both phases require 5 trading days.",
+      "Base funded split is 80%; the 90% figure on the plan card is an add-on ceiling.",
+      "The first standard payout window is 30 days, followed by 14-day cycles.",
+      "The separately advertised 100% challenge-fee refund is a checkout add-on, not included in the captured list price.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/bright-funded-2026-07-27.json"
     ]
   }
 ]

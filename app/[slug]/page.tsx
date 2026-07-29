@@ -5,12 +5,27 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Clock } from 'lucide-react'
 import ContactForm from '@/components/ContactForm'
+import { isContactDeliveryConfigured } from '@/lib/brevo'
 
 interface Props { params: Promise<{ slug: string }> }
 
 // Pages that have dedicated routes — don't handle them here. Keep in sync
 // with the `SKIP` set in app/sitemap.ts.
-const RESERVED = ['blog', 'main-table', 'prop-firms', 'compare']
+const RESERVED = [
+  'blog',
+  'main-table',
+  'prop-firms',
+  'prop-firm-challenges',
+  'prop-firm-challenge-changes',
+  'compare',
+]
+
+const LEGACY_OVERVIEW_SLUGS = new Set([
+  'ftmo-overview',
+  'fundednext-overview',
+  'fundingpips-overview',
+  'e8-markets-overview',
+])
 
 // Only slugs returned by generateStaticParams() resolve. Any other
 // single-segment path (e.g. /feed, /random-junk) hard-404s instead of
@@ -20,7 +35,10 @@ export const dynamicParams = false
 export async function generateStaticParams() {
   const pages = getAllPages()
   return pages
-    .filter(p => p.slug !== 'home' && !RESERVED.includes(p.slug))
+    .filter(p =>
+      p.slug !== 'home' &&
+      !RESERVED.includes(p.slug) &&
+      !LEGACY_OVERVIEW_SLUGS.has(p.slug))
     .map(p => ({ slug: p.slug }))
 }
 
@@ -29,28 +47,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (slug === 'contact') {
     return {
       title: 'Contact Us',
-      description: 'Send a message to the Traders Fund Hub team — we respond within one business day.',
+      description: 'Send a correction, evidence lead, or question to the Traders Fund Hub editorial team.',
       alternates: { canonical: '/contact' },
       openGraph: { title: 'Contact Us', url: '/contact', type: 'website' },
     }
   }
   const page = getPageBySlug(slug)
   if (!page) return {}
+  const title = page.seoTitle || page.title
+  const description = page.seoDescription || page.description || page.title
   return {
-    title: page.title,
-    description: page.description || page.title,
+    title: { absolute: title },
+    description,
     alternates: { canonical: `/${slug}` },
     openGraph: {
-      title: page.title,
-      description: page.description || page.title,
+      title,
+      description,
       url: `/${slug}`,
       type: 'article',
       modifiedTime: page.date,
     },
     twitter: {
       card: 'summary_large_image',
-      title: page.title,
-      description: page.description || page.title,
+      title,
+      description,
     },
   }
 }
@@ -80,6 +100,7 @@ export default async function DynamicPage({ params }: Props) {
 
   /* ── Contact page (custom) ────────────────────────────────────── */
   if (slug === 'contact') {
+    const contactEnabled = isContactDeliveryConfigured()
     const crumbs = breadcrumbSchema([
       { name: 'Home', url: '/' },
       { name: 'Contact' },
@@ -96,7 +117,7 @@ export default async function DynamicPage({ params }: Props) {
           <div className="home-shell" style={{ position: 'relative', zIndex: 1 }}>
             <div className="hero-eyebrow" style={{ marginBottom: '1.25rem' }}>
               <span className="hero-eyebrow-dot" />
-              Real humans · usually one business day
+              Editorial corrections · evidence leads
             </div>
             <h1 className="blog-hero-title">
               Have a tip, correction, or{' '}
@@ -113,7 +134,15 @@ export default async function DynamicPage({ params }: Props) {
         <section className="home-section" style={{ paddingTop: '2.5rem' }}>
           <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 1.5rem' }}>
             <div className="post-sidebar-card" style={{ padding: '2rem' }}>
-              <ContactForm />
+              {contactEnabled ? (
+                <ContactForm />
+              ) : (
+                <p style={{ color: 'var(--muted)', lineHeight: 1.7, margin: 0 }}>
+                  Message delivery is temporarily unavailable while the secure
+                  mail service is being configured. The form will return only
+                  after delivery has been verified.
+                </p>
+              )}
             </div>
           </div>
         </section>
@@ -184,7 +213,7 @@ export default async function DynamicPage({ params }: Props) {
               <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
                 Every firm, every challenge, every rule in one table.
               </p>
-              <Link href="/main-table" className="btn-primary btn-glow">
+              <Link href="/prop-firms" className="btn-primary btn-glow">
                 Open the comparison table <ArrowRight size={16} />
               </Link>
             </div>

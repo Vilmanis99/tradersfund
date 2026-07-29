@@ -7,7 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "audit": "node scripts/audit-reviews.mjs"
+    "audit": "node scripts/audit-reviews.mjs",
+    "crawl:release": "node scripts/release-crawl.mjs",
+    "crawl:release:strict": "node scripts/release-crawl.mjs --strict-lengths",
+    "preview:start": "node scripts/preview-server.mjs start",
+    "preview:stop": "node scripts/preview-server.mjs stop",
+    "preview:status": "node scripts/preview-server.mjs status",
+    "capture:preview": "node scripts/merge-capture.mjs",
+    "capture:freshness": "node scripts/challenge-freshness.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

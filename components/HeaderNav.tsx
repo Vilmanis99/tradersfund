@@ -2,15 +2,15 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { Menu, X, ChevronDown, GitCompare, Github, Twitter, Mail } from 'lucide-react'
+import { Menu, X, ChevronDown, GitCompare, Mail } from 'lucide-react'
 import { navLinks } from './navLinks'
 
 interface HeaderNavProps {
-  /** Human-formatted last-updated label (e.g. "Apr 24"). Empty hides the pill. */
-  lastUpdated?: string
+  /** Current source-check coverage, e.g. "13/15 source-checked". */
+  dataStatus?: string
 }
 
-export default function HeaderNav({ lastUpdated }: HeaderNavProps) {
+export default function HeaderNav({ dataStatus }: HeaderNavProps) {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
@@ -118,15 +118,15 @@ export default function HeaderNav({ lastUpdated }: HeaderNavProps) {
           )
         ))}
 
-        <Link href="/compare" className="nav-compare-chip" aria-label="Compare prop firms side-by-side">
+        <Link href="/prop-firm-challenges" className="nav-compare-chip" aria-label="Compare prop-firm challenge products">
           <GitCompare size={14} aria-hidden="true" />
-          Compare
+          Challenges
         </Link>
 
-        {lastUpdated && (
-          <div className="nav-update-pill" title={`Firm data last refreshed ${lastUpdated}`}>
+        {dataStatus && (
+          <div className="nav-update-pill" title={`Firm source-check coverage: ${dataStatus}`}>
             <span className="nav-update-pill__dot" aria-hidden="true" />
-            <span className="nav-update-pill__text">Updated {lastUpdated}</span>
+            <span className="nav-update-pill__text">{dataStatus}</span>
           </div>
         )}
       </nav>
@@ -183,13 +183,11 @@ export default function HeaderNav({ lastUpdated }: HeaderNavProps) {
             </nav>
 
             <div className="mobile-overlay__footer">
-              <Link href="/compare" className="btn-primary mobile-overlay__cta">
+              <Link href="/prop-firm-challenges" className="btn-primary mobile-overlay__cta">
                 <GitCompare size={16} aria-hidden="true" />
-                Compare firms
+                Compare challenges
               </Link>
-              <div className="mobile-overlay__socials" aria-label="Social links">
-                <a href="#" aria-label="Twitter" className="mobile-overlay__social"><Twitter size={18} aria-hidden="true" /></a>
-                <a href="#" aria-label="GitHub" className="mobile-overlay__social"><Github size={18} aria-hidden="true" /></a>
+              <div className="mobile-overlay__socials" aria-label="Contact">
                 <Link href="/contact" aria-label="Contact" className="mobile-overlay__social"><Mail size={18} aria-hidden="true" /></Link>
               </div>
             </div>

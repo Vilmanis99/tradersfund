@@ -28,6 +28,18 @@ import { TrustpilotPanel } from '@/components/TrustpilotRating'
 
 interface Props { params: Promise<{ matchup: string }> }
 
+function formatCheckedDate(value: string | undefined): string {
+  if (!value) return 'source date unavailable'
+  const date = new Date(`${value}T00:00:00Z`)
+  if (Number.isNaN(date.getTime())) return value
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
 /** Emit one static page per canonical (alphabetical) firm pair. */
 export async function generateStaticParams() {
   return getAllCanonicalPairs().map(p => ({ matchup: p.matchup }))
@@ -43,13 +55,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const canonical = canonicalMatchupSlug(firmSlug(firmA.name), firmSlug(firmB.name))
   const overlay = getOverlay(canonical)
-  const title = overlay?.h1 || `${firmA.name} vs ${firmB.name} — Prop Firm Comparison`
+  // Keep the search title focused on the exact comparison query. The more
+  // expressive editorial headline still renders as the page H1.
+  const title = `${firmA.name} vs ${firmB.name} (2026)`
   const description =
     overlay?.metaDescription ||
     `Compare ${firmA.name} and ${firmB.name} side by side: profit split, payouts, drawdown, platforms, rules. Updated for 2026.`
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: `/compare/${canonical}` },
     openGraph: { title, description, url: `/compare/${canonical}`, type: 'article' },
@@ -75,6 +89,12 @@ export default async function ComparePage({ params }: Props) {
   const overlay = getOverlay(canonical)
   const rows = buildSpecTable(firmA, firmB)
   const tlDr = overlay?.tlDr || computeFallbackTlDr(firmA, firmB, rows)
+  const comparisonCheckedAt =
+    overlay?.reviewedAt ||
+    [firmA.lastUpdated, firmB.lastUpdated]
+      .filter((value): value is string => Boolean(value))
+      .sort()
+      .at(-1)
 
   const matchupLabel = `${firmA.name} vs ${firmB.name}`
   // For ItemList, surface the winner side first when overlay supplies one.
@@ -157,7 +177,7 @@ export default async function ComparePage({ params }: Props) {
             firmB={firmB}
             tlDr={tlDr}
             categoryCalls={overlay?.verdictByCategory}
-            caption={overlay ? 'Editorial verdict · Updated May 2026' : 'Data-driven · Updated May 2026'}
+            caption={`${overlay ? 'Editorial verdict' : 'Data-driven comparison'} · checked ${formatCheckedDate(comparisonCheckedAt)}`}
           />
 
           <section aria-label="Side-by-side specifications">
@@ -235,7 +255,7 @@ export default async function ComparePage({ params }: Props) {
               <Link href="/compare" className="btn-primary btn-glow">
                 All comparisons <ArrowRight size={16} />
               </Link>
-              <Link href="/main-table" className="btn-outline">
+              <Link href="/prop-firms" className="btn-outline">
                 Full firm directory
               </Link>
             </div>

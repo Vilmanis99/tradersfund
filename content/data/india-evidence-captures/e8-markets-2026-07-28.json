@@ -1,0 +1,42 @@
+{
+  "firmSlug": "e8-markets",
+  "capturedAt": "2026-07-28",
+  "rbiCheck": {
+    "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
+    "sourceListUpdatedAt": "2024-10-22",
+    "result": "not-found",
+    "searchedNames": ["E8 Markets", "E8 Funding"]
+  },
+  "sources": [
+    {
+      "url": "https://help.e8markets.com/en/articles/5514278-accepted-countries",
+      "claims": {
+        "country": "India is listed under limited products rather than the restricted Forex and Crypto countries.",
+        "productLimit": "E8 Pro and E8 Signature are available at all sizes; E8 One is capped at $50,000 for India.",
+        "providerGate": "Payout availability also depends on WorkMarket or Rise onboarding."
+      }
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/5515027-how-to-pay-for-our-challenge-accounts",
+      "claims": {
+        "checkout": "Major credit cards, bank cards, and cryptocurrency are published purchase methods.",
+        "cryptoFee": "E8 tells buyers to account for network fees on crypto purchases."
+      }
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/6463833-is-verification-required",
+      "claims": {
+        "kyc": "Veriff accepts passport, ID card, driving licence, or residence permit.",
+        "review": "A post-challenge manual KYC review is normally completed within 24 hours."
+      }
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/15272556-everything-about-payouts-when-how-how-fast",
+      "claims": {
+        "payout": "WorkMarket provides bank transfers and Rise provides cash or cryptocurrency options.",
+        "fee": "E8 charges no payout commission, but its providers may charge method-dependent fees.",
+        "minimum": "The published minimum payout request is $100."
+      }
+    }
+  ]
+}

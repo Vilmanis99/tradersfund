@@ -1,0 +1,930 @@
+[
+  {
+    "firmSlug": "ftmo",
+    "firmName": "FTMO",
+    "capturedAt": "2026-07-27",
+    "restrictedJurisdictions": [
+      "Iran",
+      "Syria",
+      "Myanmar",
+      "North Korea",
+      "Afghanistan",
+      "Anguilla",
+      "Antarctica",
+      "Antigua and Barbuda",
+      "Republic of Belarus",
+      "Belize",
+      "Bhutan",
+      "Bouvet Island",
+      "Burundi",
+      "Cape Verde",
+      "Central African Republic",
+      "Chad",
+      "Cook Islands",
+      "Comoros",
+      "Republic of the Congo",
+      "Cuba",
+      "Djibouti",
+      "Dominica",
+      "Equatorial Guinea",
+      "Eritrea",
+      "Eswatini",
+      "Fiji",
+      "Gabon",
+      "Gambia",
+      "Grenada",
+      "Guinea",
+      "Guinea-Bissau",
+      "Holy See (Vatican City State)",
+      "Republic of Indonesia",
+      "Iraq",
+      "Kazakhstan",
+      "Kiribati",
+      "Kosovo",
+      "Kyrgyzstan",
+      "Lesotho",
+      "Liberia",
+      "Malawi",
+      "Mali",
+      "Mauritania",
+      "Marshall Islands",
+      "Micronesia",
+      "Nauru",
+      "Niger",
+      "Niue",
+      "Papua New Guinea",
+      "Russian Federation",
+      "Saint Barthélemy",
+      "Saint Kitts and Nevis",
+      "Saint Lucia",
+      "Saint Vincent and the Grenadines",
+      "Samoa",
+      "San Marino",
+      "Sao Tome and Principe",
+      "Seychelles",
+      "Sierra Leone",
+      "Solomon Islands",
+      "Somalia",
+      "South Sudan",
+      "Sudan",
+      "Suriname",
+      "Tajikistan",
+      "Timor-Leste",
+      "Tokelau",
+      "Tonga",
+      "Turkmenistan",
+      "Tuvalu",
+      "Ukraine (Crimea, Sevastopol, Donetsk, Kherson, Luhansk, and Zaporizhzhia)",
+      "Uzbekistan",
+      "Vanuatu",
+      "Venezuela",
+      "Western Sahara"
+    ],
+    "restrictionListComplete": false,
+    "payoutRails": [
+      "bank",
+      "card",
+      "crypto",
+      "skrill"
+    ],
+    "rbiAlert": {
+      "status": "named",
+      "sourceListUpdatedAt": "2024-10-22",
+      "summary": "FTMO appears as item 13 on the RBI Alert List. RBI says listed entities are not authorised to deal in forex under FEMA or operate a forex electronic trading platform.",
+      "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
+    },
+    "country": {
+      "status": "verified",
+      "summary": "India is absent from FTMO's named country and territory restrictions; sanctions-list and conditional-residency checks still apply.",
+      "sourceUrls": [
+        "https://ftmo.com/en/faq/who-can-join-ftmo/"
+      ]
+    },
+    "checkout": {
+      "status": "partial",
+      "summary": "FTMO publishes card, PayPal, Revolut Pay, Skrill, crypto, and bank-wire payment methods, but a successful Indian checkout is not independently tested.",
+      "sourceUrls": [
+        "https://ftmo.com/faq/what-payment-methods-are-available/"
+      ]
+    },
+    "kyc": {
+      "status": "verified",
+      "summary": "FTMO Identity requests a passport or national ID, proof of address issued within 6 months, and usually reviews personal profiles within 1 business day.",
+      "sourceUrls": [
+        "https://ftmo.com/en/faq/what-is-the-legal-relationship-between-an-ftmo-trader-and-ftmo-after-signing-the-ftmo-account-agreement/"
+      ]
+    },
+    "payout": {
+      "status": "partial",
+      "summary": "Published rails are bank wire, Visa Direct or Mastercard Send, Skrill, and crypto; Indian bank, card, and wallet delivery remain untested.",
+      "sourceUrls": [
+        "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/"
+      ]
+    },
+    "fees": {
+      "status": "verified",
+      "summary": "FTMO publishes no withdrawal commission, with minimum closed profit of $20 for bank wire and $50 for crypto because of transaction costs.",
+      "sourceUrls": [
+        "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/"
+      ]
+    },
+    "currency": {
+      "status": "verified",
+      "summary": "The captured FTMO Challenge fees are published in EUR even when the selected account balance is denominated in USD, creating an INR-to-EUR entry conversion.",
+      "sourceUrls": [
+        "https://ftmo.com/en/2-step-challenge/",
+        "https://ftmo.com/en/1-step-challenge/"
+      ]
+    },
+    "unresolved": "No completed Indian checkout, FTMO Identity approval, or payout receipt has been independently verified."
+  },
+  {
+    "firmSlug": "fundednext",
+    "firmName": "FundedNext",
+    "capturedAt": "2026-07-27",
+    "restrictedJurisdictions": [
+      "Bangladesh",
+      "Myanmar",
+      "Belarus",
+      "North Korea",
+      "Syria",
+      "Grenada",
+      "Chad",
+      "Malaysia",
+      "Belize",
+      "Antigua and Barbuda",
+      "Cape Verde",
+      "Tuvalu",
+      "Vietnam",
+      "Bouvet Island",
+      "Burundi",
+      "Cook Islands",
+      "Eritrea",
+      "Comoros",
+      "Sri Lanka",
+      "Fiji"
+    ],
+    "restrictionListComplete": true,
+    "payoutRails": [
+      "bank",
+      "crypto",
+      "rise"
+    ],
+    "rbiAlert": {
+      "status": "named",
+      "sourceListUpdatedAt": "2024-10-22",
+      "summary": "FundedNext appears as item 83 on the RBI Alert List. RBI says listed entities are not authorised to deal in forex under FEMA or operate a forex electronic trading platform.",
+      "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
+    },
+    "country": {
+      "status": "verified",
+      "summary": "India is absent from the 20-country CFD restriction list published on 2026-04-08.",
+      "sourceUrls": [
+        "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds"
+      ]
+    },
+    "checkout": {
+      "status": "partial",
+      "summary": "International card checkout names Visa, Mastercard, and Amex and requires the cardholder name to match; a successful Indian-card transaction is not independently tested.",
+      "sourceUrls": [
+        "https://help.fundednext.com/en/articles/13990618-how-to-complete-a-card-payment-at-fundednext-cfds"
+      ]
+    },
+    "kyc": {
+      "status": "verified",
+      "summary": "Physical national ID, passport, or residence permit plus liveness; review is usually 48 hours and profile KYC renews every 90 days.",
+      "sourceUrls": [
+        "https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process"
+      ]
+    },
+    "payout": {
+      "status": "partial",
+      "summary": "USDT/USDC starts at $20, Rise at $50, and bank transfer at $1,000; the exact rail offered to an Indian profile must be confirmed.",
+      "sourceUrls": [
+        "https://help.fundednext.com/en/articles/12673935-what-is-the-minimum-performance-reward-limit-for-fundednext"
+      ]
+    },
+    "fees": {
+      "status": "verified",
+      "summary": "The payout provider may deduct processing fees up to 3.5%, before any INR conversion cost.",
+      "sourceUrls": [
+        "https://help.fundednext.com/en/articles/12673935-what-is-the-minimum-performance-reward-limit-for-fundednext"
+      ]
+    },
+    "currency": {
+      "status": "verified",
+      "summary": "Global challenge list prices are in USD; cTrader or Match-Trader can add a non-refundable $25 platform fee.",
+      "sourceUrls": [
+        "https://fundednext.com/pt/plan"
+      ]
+    },
+    "unresolved": "No completed Indian card checkout or payout receipt has been independently verified."
+  },
+  {
+    "firmSlug": "fundingpips",
+    "firmName": "FundingPips",
+    "capturedAt": "2026-07-27",
+    "restrictedJurisdictions": [
+      "Iran",
+      "Vietnam",
+      "United Arab Emirates"
+    ],
+    "restrictionListComplete": false,
+    "payoutRails": [
+      "crypto"
+    ],
+    "rbiAlert": {
+      "status": "not-found",
+      "sourceListUpdatedAt": "2024-10-22",
+      "summary": "FundingPips was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
+    },
+    "country": {
+      "status": "verified",
+      "summary": "FundingPips says it serves 195+ countries, explicitly names Iran, Vietnam, and the UAE as restricted, and offers INR as an account currency; sanctions screening still applies.",
+      "sourceUrls": [
+        "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started"
+      ]
+    },
+    "checkout": {
+      "status": "partial",
+      "summary": "FundingPips publishes card, Google Pay, Apple Pay, Neteller, Skrill, Paysafe, crypto, and PayPal methods, with availability and fees varying by region.",
+      "sourceUrls": [
+        "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started"
+      ]
+    },
+    "kyc": {
+      "status": "verified",
+      "summary": "Post-evaluation KYC requests government ID, proof of address issued within 3 months, and a selfie; manual review can take up to 2 working days.",
+      "sourceUrls": [
+        "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started"
+      ]
+    },
+    "payout": {
+      "status": "partial",
+      "summary": "Crypto is the only published payout rail without a selected-region qualifier that excludes India from the displayed bank and card country lists.",
+      "sourceUrls": [
+        "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Your-Rewards-Your-Way"
+      ]
+    },
+    "fees": {
+      "status": "partial",
+      "summary": "FundingPips says crypto exchange, network, and processing costs are deducted, but does not publish a fixed India-specific total.",
+      "sourceUrls": [
+        "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Your-Rewards-Your-Way"
+      ]
+    },
+    "currency": {
+      "status": "partial",
+      "summary": "INR is available as an account currency, but challenge purchase prices were not accessible on a stable first-party public page during capture.",
+      "sourceUrls": [
+        "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started"
+      ]
+    },
+    "unresolved": "No completed Indian checkout, KYC approval, or payout receipt is verified; challenge fees and Indian bank, card, or Rise payout availability remain unpublished."
+  },
+  {
+    "firmSlug": "bright-funded",
+    "firmName": "Bright Funded",
+    "capturedAt": "2026-07-27",
+    "restrictedJurisdictions": [
+      "Cuba",
+      "Iran",
+      "North Korea",
+      "Syria",
+      "Vietnam",
+      "Pakistan"
+    ],
+    "restrictionListComplete": true,
+    "payoutRails": [
+      "bank",
+      "crypto"
+    ],
+    "rbiAlert": {
+      "status": "not-found",
+      "sourceListUpdatedAt": "2024-10-22",
+      "summary": "Bright Funded was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
+    },
+    "country": {
+      "status": "verified",
+      "summary": "India is absent from the 6-country restriction list published on 2026-04-20.",
+      "sourceUrls": [
+        "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded"
+      ]
+    },
+    "checkout": {
+      "status": "partial",
+      "summary": "Bright Funded documents card purchases and warns that processors may reject a cardholder-name mismatch; Indian-card acceptance is not independently tested.",
+      "sourceUrls": [
+        "https://help.brightfunded.com/en/articles/12000749-the-most-frequently-asked-general-questions"
+      ]
+    },
+    "kyc": {
+      "status": "partial",
+      "summary": "SumSub typically requires government ID and proof of address; accepted documents can vary by country and a risk review follows KYC.",
+      "sourceUrls": [
+        "https://help.brightfunded.com/en/articles/9973224-how-does-the-kyc-process-work",
+        "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account"
+      ]
+    },
+    "payout": {
+      "status": "partial",
+      "summary": "Published rails are EUR bank transfer and USDC on ERC-20; availability to the trader's Indian bank or wallet must be confirmed.",
+      "sourceUrls": [
+        "https://help.brightfunded.com/en/articles/9241681-how-can-i-get-paid"
+      ]
+    },
+    "fees": {
+      "status": "verified",
+      "summary": "Bright Funded says it adds no payout fee, but third-party network, bank, or FX charges can be $5–$50 in some cases.",
+      "sourceUrls": [
+        "https://help.brightfunded.com/en/articles/9241684-do-i-need-to-pay-charges-with-the-payouts"
+      ]
+    },
+    "currency": {
+      "status": "verified",
+      "summary": "Challenge list fees are in EUR while account balances are stated in USD, creating an entry-side FX variable for INR buyers.",
+      "sourceUrls": [
+        "https://brightfunded.com/2-step-bright"
+      ]
+    },
+    "unresolved": "No completed Indian card checkout, SumSub approval, or payout receipt has been independently verified."
+  },
+  {
+    "firmSlug": "fxify",
+    "firmName": "FXIFY",
+    "capturedAt": "2026-07-27",
+    "restrictedJurisdictions": [
+      "United States",
+      "Zimbabwe",
+      "Iran",
+      "Iraq",
+      "North Korea",
+      "Somalia",
+      "Vietnam",
+      "Burundi",
+      "Central African Republic",
+      "Ivory Coast",
+      "Liberia",
+      "Libya",
+      "Sudan",
+      "Cuba",
+      "Syria",
+      "Afghanistan",
+      "Yemen",
+      "Palestine",
+      "Myanmar",
+      "Nicaragua",
+      "Congo Republic",
+      "Crimea",
+      "Democratic Republic of the Congo",
+      "Eritrea",
+      "Guinea",
+      "Guinea-Bissau",
+      "Papua New Guinea",
+      "South Sudan",
+      "Vanuatu",
+      "Venezuela",
+      "Algeria",
+      "Russia",
+      "Belarus",
+      "Kenya",
+      "Ghana"
+    ],
+    "restrictionListComplete": true,
+    "payoutRails": [
+      "rise"
+    ],
+    "rbiAlert": {
+      "status": "not-found",
+      "sourceListUpdatedAt": "2024-10-22",
+      "summary": "FXIFY was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
+    },
+    "country": {
+      "status": "verified",
+      "summary": "India is absent from the current 35-jurisdiction restriction list shown across FXIFY's support pages.",
+      "sourceUrls": [
+        "https://fxify.com/faqs/all-faqs/"
+      ]
+    },
+    "checkout": {
+      "status": "partial",
+      "summary": "Terms permit payment card and other currently offered methods; a successful Indian-card transaction is not independently tested.",
+      "sourceUrls": [
+        "https://fxify.com/terms-and-conditions"
+      ]
+    },
+    "kyc": {
+      "status": "partial",
+      "summary": "SumSub requires ID, proof of address issued within 3 months, and a live image; Rise verification is also required for withdrawals.",
+      "sourceUrls": [
+        "https://fxify.com/faqs/all-faqs/how-to-verify-my-account/"
+      ]
+    },
+    "payout": {
+      "status": "partial",
+      "summary": "All standard requests use Rise, have a $50 minimum, and are usually processed within 3 business days after both verifications.",
+      "sourceUrls": [
+        "https://fxify.com/faqs/payouts/",
+        "https://fxify.com/faqs/all-faqs/how-do-i-withdraw-my-profits/"
+      ]
+    },
+    "fees": {
+      "status": "partial",
+      "summary": "FXIFY says there are no hidden assessment fees, but its Instant Funding FAQ warns that Rise may charge a withdrawal fee without publishing the amount.",
+      "sourceUrls": [
+        "https://fxify.com/faqs/all-faqs/do-you-charge-any-other-fees-other-than-the-initial-assessment-cost/",
+        "https://fxify.com/faqs/all-faqs/instant-funded-faq/are-there-any-hidden-fees-or-costs-i-should-be-aware-of/"
+      ]
+    },
+    "currency": {
+      "status": "verified",
+      "summary": "Challenge fees are based in USD; choosing another currency uses FXIFY's current conversion rate at checkout.",
+      "sourceUrls": [
+        "https://fxify.com/terms-and-conditions"
+      ]
+    },
+    "unresolved": "No completed Indian card checkout, dual KYC approval, or Rise payout receipt has been independently verified."
+  },
+  {
+    "firmSlug": "alpha-capital",
+    "firmName": "Alpha Capital",
+    "capturedAt": "2026-07-28",
+    "restrictedJurisdictions": [
+      "Afghanistan",
+      "Belarus",
+      "Burundi",
+      "Central African Republic",
+      "Chad",
+      "Democratic Republic of the Congo",
+      "Region of Crimea",
+      "Eritrea",
+      "Iran",
+      "Iraq",
+      "Cuba",
+      "North Korea",
+      "Libya",
+      "Myanmar",
+      "Somalia",
+      "Sudan",
+      "Russia",
+      "Republic of South Sudan",
+      "Syria",
+      "Yemen",
+      "Venezuela",
+      "Vietnam",
+      "Sanctioned areas of Ukraine (Donetsk, Luhansk, Crimea, Kherson, Zaporizhzhia)",
+      "Republic of Congo"
+    ],
+    "restrictionListComplete": true,
+    "payoutRails": [
+      "bank",
+      "rise",
+      "wise"
+    ],
+    "rbiAlert": {
+      "status": "not-found",
+      "sourceListUpdatedAt": "2024-10-22",
+      "summary": "Alpha Capital was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
+    },
+    "country": {
+      "status": "verified",
+      "summary": "India is absent from Alpha Capital's current 24-jurisdiction restriction list; nationality, residence, sanctions, and document checks still apply.",
+      "sourceUrls": [
+        "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations"
+      ]
+    },
+    "checkout": {
+      "status": "partial",
+      "summary": "Alpha Capital documents card, cryptocurrency, and PayPal purchases and requires the payment identity to match KYC, but an Indian checkout is not independently tested.",
+      "sourceUrls": [
+        "https://help.alphacapitalgroup.uk/en/articles/6933849-how-long-will-it-take-to-get-my-credentials",
+        "https://help.alphacapitalgroup.uk/en/articles/7883145-third-party-payments"
+      ]
+    },
+    "kyc": {
+      "status": "verified",
+      "summary": "Veriff KYC requires a government-issued passport, ID card, or driving licence plus a live selfie; the account holder must complete the check without a VPN or VPS.",
+      "sourceUrls": [
+        "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account"
+      ]
+    },
+    "payout": {
+      "status": "partial",
+      "summary": "Published rails are Rise, Wise, and bank transfer by WIRE, ACH, or SWIFT, with firm-side processing stated as up to 2 business days; delivery to an Indian profile remains untested.",
+      "sourceUrls": [
+        "https://help.alphacapitalgroup.uk/en/articles/6933755-how-do-i-get-paid-performance-fees"
+      ]
+    },
+    "fees": {
+      "status": "partial",
+      "summary": "Bi-weekly requests have a $100 gross minimum, but Alpha Capital does not publish the bank, Wise, Rise, or INR conversion charges an Indian recipient may face.",
+      "sourceUrls": [
+        "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+        "https://help.alphacapitalgroup.uk/en/articles/6933755-how-do-i-get-paid-performance-fees"
+      ]
+    },
+    "currency": {
+      "status": "verified",
+      "summary": "Captured evaluation sizes and list prices are published in USD; the live checkout remains the final source for promotions and the amount converted from INR.",
+      "sourceUrls": [
+        "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026"
+      ]
+    },
+    "unresolved": "No completed Indian checkout, Veriff approval, or Rise, Wise, or SWIFT payout receipt is independently verified; provider and INR conversion fees are unpublished, and several live product prices remain inaccessible or ambiguous."
+  },
+  {
+    "firmSlug": "e8-markets",
+    "firmName": "E8 Markets",
+    "capturedAt": "2026-07-28",
+    "restrictedJurisdictions": [
+      "Afghanistan",
+      "Albania",
+      "Algeria",
+      "Myanmar",
+      "Burundi",
+      "Belarus",
+      "Central African Republic",
+      "Cuba",
+      "Democratic Republic of the Congo",
+      "Republic of the Congo",
+      "Ethiopia",
+      "Iran",
+      "Iraq",
+      "Kosovo",
+      "Lebanon",
+      "Libya",
+      "Mali",
+      "Midway Islands",
+      "North Korea",
+      "Nicaragua",
+      "Pakistan",
+      "Russia",
+      "Samoa",
+      "Syria",
+      "Sudan",
+      "Somalia",
+      "South Sudan",
+      "Ukraine",
+      "United Arab Emirates",
+      "Venezuela",
+      "Vatican City State",
+      "West Bank",
+      "Western Sahara",
+      "Yemen",
+      "Zambia"
+    ],
+    "restrictionListComplete": true,
+    "payoutRails": [
+      "bank",
+      "crypto",
+      "rise"
+    ],
+    "productEligibility": {
+      "mode": "limited",
+      "includedProductSlugs": [
+        "e8-pro",
+        "e8-signature",
+        "e8-one"
+      ],
+      "accountSizeCapsUsd": {
+        "e8-one": 50000
+      },
+      "summary": "Indian profiles may purchase E8 Pro and E8 Signature at all published sizes, plus E8 One only up to $50,000.",
+      "sourceUrls": [
+        "https://help.e8markets.com/en/articles/5514278-accepted-countries"
+      ]
+    },
+    "rbiAlert": {
+      "status": "not-found",
+      "sourceListUpdatedAt": "2024-10-22",
+      "summary": "E8 Markets was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
+    },
+    "country": {
+      "status": "verified",
+      "summary": "E8 publishes India as a limited-product country: E8 Pro and E8 Signature at all sizes, and E8 One only up to $50,000; eligibility follows the verification document rather than current location.",
+      "sourceUrls": [
+        "https://help.e8markets.com/en/articles/5514278-accepted-countries"
+      ]
+    },
+    "checkout": {
+      "status": "partial",
+      "summary": "E8 publishes major credit and debit cards plus cryptocurrency checkout, but a successful Indian card or crypto purchase is not independently tested.",
+      "sourceUrls": [
+        "https://help.e8markets.com/en/articles/5515027-how-to-pay-for-our-challenge-accounts"
+      ]
+    },
+    "kyc": {
+      "status": "verified",
+      "summary": "Veriff accepts a passport, ID card, driving licence, or residence permit; a post-challenge manual check is normally completed within 24 hours.",
+      "sourceUrls": [
+        "https://help.e8markets.com/en/articles/6463833-is-verification-required"
+      ]
+    },
+    "payout": {
+      "status": "partial",
+      "summary": "Published providers are WorkMarket for bank transfer and Rise for cash or cryptocurrency; E8 says no direct crypto payout exists outside its partners, and Indian onboarding remains untested.",
+      "sourceUrls": [
+        "https://help.e8markets.com/en/articles/15272556-everything-about-payouts-when-how-how-fast"
+      ]
+    },
+    "fees": {
+      "status": "partial",
+      "summary": "E8 publishes a $100 minimum request and no firm commission, but WorkMarket or Rise can charge a method-dependent provider fee that is not fixed for India.",
+      "sourceUrls": [
+        "https://help.e8markets.com/en/articles/15272556-everything-about-payouts-when-how-how-fast"
+      ]
+    },
+    "currency": {
+      "status": "verified",
+      "summary": "Captured E8 One, E8 Pro, and E8 Signature list prices are published in USD; the live checkout remains the final source for the INR conversion and custom options.",
+      "sourceUrls": [
+        "https://e8markets.com/e8-one",
+        "https://e8markets.com/e8-pro",
+        "https://e8markets.com/e8-signature"
+      ]
+    },
+    "unresolved": "No completed Indian checkout, Veriff approval, WorkMarket bank receipt, or Rise cash or crypto receipt is independently verified; provider and INR conversion fees remain unpublished, and E8 One tiers above $50,000 are excluded for India."
+  },
+  {
+    "firmSlug": "city-traders-imperium",
+    "firmName": "City Traders Imperium",
+    "capturedAt": "2026-07-28",
+    "restrictedJurisdictions": [
+      "North Korea",
+      "Iran",
+      "Syria",
+      "Cuba",
+      "Russia"
+    ],
+    "restrictionListComplete": false,
+    "payoutRails": [
+      "bank",
+      "crypto"
+    ],
+    "rbiAlert": {
+      "status": "not-found",
+      "sourceListUpdatedAt": "2024-10-22",
+      "summary": "City Traders Imperium was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
+    },
+    "country": {
+      "status": "verified",
+      "summary": "India is absent from CTI's current 5-jurisdiction restriction statement; sanctions and local-law screening remain conditional, and an older terms PDF omits Russia from its shorter list.",
+      "sourceUrls": [
+        "https://citytradersimperium.com/2-step-challenge/",
+        "https://citytradersimperium.com/wp-content/uploads/2025/09/CTI-FZCO-City-Traders-Imperium-Terms-Conditions.pdf"
+      ]
+    },
+    "checkout": {
+      "status": "partial",
+      "summary": "CTI's terms document bank-transfer invoicing and payment-provider transaction charges, but the methods presented to an Indian checkout are not independently tested.",
+      "sourceUrls": [
+        "https://citytradersimperium.com/wp-content/uploads/2025/09/CTI-FZCO-City-Traders-Imperium-Terms-Conditions.pdf"
+      ]
+    },
+    "kyc": {
+      "status": "verified",
+      "summary": "SumSub KYC requests a government ID with at least 3 months remaining, proof of address issued within 3 months, and a live photo or video selfie.",
+      "sourceUrls": [
+        "https://citytradersimperium.com/wp-content/uploads/2025/04/City-Traders-Imperium-Terms-and-Conditions.pdf"
+      ]
+    },
+    "payout": {
+      "status": "partial",
+      "summary": "CTI publishes bank transfer and direct cryptocurrency wallet payouts, with requests processed after KYC and rule review; delivery to an Indian bank or wallet remains untested.",
+      "sourceUrls": [
+        "https://citytradersimperium.com/cti-payout-proof/"
+      ]
+    },
+    "fees": {
+      "status": "partial",
+      "summary": "CTI publishes fee-free bank transfers while cryptocurrency can carry service or network charges, but it does not publish an India-specific crypto or INR conversion total.",
+      "sourceUrls": [
+        "https://citytradersimperium.com/vip-program-payout/"
+      ]
+    },
+    "currency": {
+      "status": "verified",
+      "summary": "Captured CTI challenge and funding-program account sizes and list fees are published in USD; no fixed INR conversion is inferred.",
+      "sourceUrls": [
+        "https://citytradersimperium.com/1-step-challenge/",
+        "https://citytradersimperium.com/2-step-challenge/"
+      ]
+    },
+    "unresolved": "No completed Indian checkout, SumSub approval, bank payout, or direct-crypto payout receipt is independently verified; the live checkout mix and crypto or INR conversion fees remain unpublished."
+  },
+  {
+    "firmSlug": "maven",
+    "firmName": "Maven",
+    "capturedAt": "2026-07-28",
+    "restrictedJurisdictions": [
+      "Afghanistan",
+      "Belarus",
+      "Burkina Faso",
+      "Burundi",
+      "Central African Republic",
+      "Republic of the Congo",
+      "Cuba",
+      "Eritrea",
+      "Guinea",
+      "Guinea-Bissau",
+      "Guyana",
+      "Haiti",
+      "Iran",
+      "Mali",
+      "North Korea",
+      "Russia",
+      "Saint Lucia",
+      "Sierra Leone",
+      "Somalia",
+      "South Sudan",
+      "Sudan",
+      "Ukraine",
+      "Vanuatu",
+      "Venezuela",
+      "Yemen"
+    ],
+    "restrictionListComplete": true,
+    "payoutRails": [
+      "rise"
+    ],
+    "rbiAlert": {
+      "status": "not-found",
+      "sourceListUpdatedAt": "2024-10-22",
+      "summary": "Maven was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
+    },
+    "country": {
+      "status": "verified",
+      "summary": "India is absent from Maven's current 25-country restriction list; the terms also condition service on local law, sanctions, KYC, and third-party availability.",
+      "sourceUrls": [
+        "https://maventrading.com/terms-and-conditions"
+      ]
+    },
+    "checkout": {
+      "status": "partial",
+      "summary": "Maven publishes credit-card and other checkout options and requires the cardholder name to match KYC, but a successful Indian-card purchase is not independently tested.",
+      "sourceUrls": [
+        "https://maventrading.com/faqs"
+      ]
+    },
+    "kyc": {
+      "status": "verified",
+      "summary": "Veriff KYC accepts a passport, driving licence, residence permit, or ID card and requires the personal details and payment card to belong to the trader.",
+      "sourceUrls": [
+        "https://maventrading.com/faqs"
+      ]
+    },
+    "payout": {
+      "status": "partial",
+      "summary": "Maven explicitly places India in its Rise-or-other-options group rather than the named direct-bank group; the exact Indian Rise cash or crypto route remains untested.",
+      "sourceUrls": [
+        "https://maventrading.com/faqs"
+      ]
+    },
+    "fees": {
+      "status": "verified",
+      "summary": "Maven publishes a $20 fee for payments through Rise; any charge for an unnamed alternative or INR conversion remains outside the captured claim.",
+      "sourceUrls": [
+        "https://maventrading.com/faqs"
+      ]
+    },
+    "currency": {
+      "status": "verified",
+      "summary": "Captured Maven account sizes, challenge fees, pay-later amounts, and the $20 Rise fee are published in USD.",
+      "sourceUrls": [
+        "https://maventrading.com/pricing",
+        "https://maventrading.com/faqs"
+      ]
+    },
+    "unresolved": "No completed Indian credit-card checkout, Veriff approval, or Rise payout receipt is independently verified; the exact Rise withdrawal route and any INR conversion cost remain unpublished."
+  },
+  {
+    "firmSlug": "tradeify",
+    "firmName": "Tradeify",
+    "capturedAt": "2026-07-28",
+    "restrictedJurisdictions": [
+      "Afghanistan",
+      "Albania",
+      "Algeria",
+      "Andorra",
+      "Angola",
+      "Bahamas",
+      "Barbados",
+      "Belarus",
+      "Bosnia & Herzegovina",
+      "Botswana",
+      "Bulgaria",
+      "Burma (Myanmar)",
+      "Burundi",
+      "Cambodia",
+      "Central African Republic",
+      "Côte d'Ivoire",
+      "Crimea",
+      "Cuba",
+      "Democratic Republic of Congo",
+      "Ecuador",
+      "Ethiopia",
+      "Ghana",
+      "Iceland",
+      "Indonesia",
+      "Iran",
+      "Iraq",
+      "Israel",
+      "Jamaica",
+      "Kosovo",
+      "Laos",
+      "Lebanon",
+      "Liberia",
+      "Libya",
+      "Malaysia",
+      "Mauritius",
+      "Mongolia",
+      "Montenegro",
+      "Morocco",
+      "Nicaragua",
+      "North Korea",
+      "Pakistan",
+      "Panama",
+      "Papua New Guinea",
+      "Russia",
+      "Somalia",
+      "South Sudan",
+      "Sri Lanka",
+      "Sudan",
+      "Syria",
+      "Trinidad and Tobago",
+      "Tunisia",
+      "Turkey",
+      "Uganda",
+      "Ukraine",
+      "Venezuela",
+      "Vietnam",
+      "Yemen",
+      "Zimbabwe"
+    ],
+    "restrictionListComplete": true,
+    "payoutRails": [
+      "bank",
+      "crypto",
+      "rise"
+    ],
+    "rbiAlert": {
+      "status": "not-found",
+      "sourceListUpdatedAt": "2024-10-22",
+      "summary": "Tradeify and Tradeify Holdings Corp were not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
+    },
+    "country": {
+      "status": "verified",
+      "summary": "India is absent from Tradeify's complete restriction list and its sim-only list; Tradeify also publishes a dedicated guide addressing Indian futures traders.",
+      "sourceUrls": [
+        "https://help.tradeify.co/en/articles/10495888-rules-restricted-countries",
+        "https://tradeify.co/post/sebi-fo-new-rules-2026-us-futures-alternative"
+      ]
+    },
+    "checkout": {
+      "status": "partial",
+      "summary": "Tradeify markets its one-time Growth, Select, and Lightning purchases to Indian traders, but a completed Indian card or alternative-method checkout is not independently tested.",
+      "sourceUrls": [
+        "https://tradeify.co/post/sebi-fo-new-rules-2026-us-futures-alternative",
+        "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference"
+      ]
+    },
+    "kyc": {
+      "status": "partial",
+      "summary": "Rise onboarding requests government ID, selfie, address and an international Tax ID; successful Indian Tradeify and payout-provider verification remain untested.",
+      "sourceUrls": [
+        "https://help.tradeify.co/en/articles/12844518-rise-payouts-main-payout-method"
+      ]
+    },
+    "payout": {
+      "status": "partial",
+      "summary": "Tradeify explicitly describes Rise bank and crypto withdrawals for Indian traders and publishes Plane as an alternative provider; no Indian receipt is independently verified.",
+      "sourceUrls": [
+        "https://tradeify.co/post/sebi-fo-new-rules-2026-us-futures-alternative",
+        "https://help.tradeify.co/en/articles/12844518-rise-payouts-main-payout-method"
+      ]
+    },
+    "fees": {
+      "status": "partial",
+      "summary": "Tradeify describes the Rise Receive Payments account as free, but does not publish a fixed Indian bank, crypto, intermediary, or INR conversion total.",
+      "sourceUrls": [
+        "https://help.tradeify.co/en/articles/12844518-rise-payouts-main-payout-method"
+      ]
+    },
+    "currency": {
+      "status": "verified",
+      "summary": "All 16 captured Tradeify product-path tiers use the 12 USD base prices published for Growth, Select, and Lightning; no stale INR conversion is stored.",
+      "sourceUrls": [
+        "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference"
+      ]
+    },
+    "unresolved": "No completed Indian checkout, KYC approval, Rise or Plane onboarding, or Indian bank or crypto payout receipt is independently verified; current promotional checkout prices and INR conversion costs remain variable."
+  }
+]

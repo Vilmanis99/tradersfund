@@ -1,14 +1,25 @@
 import Link from 'next/link'
 import { ArrowRight, Clock, Flame, ShieldCheck } from 'lucide-react'
-import { breadcrumbSchema, itemListSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import AnimatedNumber from '@/components/AnimatedNumber'
+import IndiaCheckoutPlanner from '@/components/IndiaCheckoutPlanner'
+import IndiaEvidenceMatrix from '@/components/IndiaEvidenceMatrix'
+import IndiaEvidenceSubmissionForm from '@/components/IndiaEvidenceSubmissionForm'
+import IndiaFirmMatcher from '@/components/IndiaFirmMatcher'
+import IndiaRbiNotice from '@/components/IndiaRbiNotice'
 import LandingFirmList from '@/components/LandingFirmList'
+import { INDIA_EVIDENCE } from '@/lib/india'
+import { buildIndiaMatcherFirms } from '@/lib/indiaMatcher'
 import { buildLandingPayload, type Landing } from '@/lib/landings'
+import { isContactDeliveryConfigured } from '@/lib/brevo'
 
 export default function LandingPage({ landing }: { landing: Landing }) {
-  const { ranked, count } = buildLandingPayload(landing)
+  const { ranked, count, allFirms } = buildLandingPayload(landing)
   const firms = ranked.map(r => r.firm)
+  const indiaMatcherFirms = landing.slug === 'best-prop-firms-in-india'
+    ? buildIndiaMatcherFirms(firms)
+    : []
 
   const crumbs = breadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -17,12 +28,18 @@ export default function LandingPage({ landing }: { landing: Landing }) {
   const itemList = firms.length
     ? itemListSchema(firms, landing.h1)
     : null
+  const faq = landing.decisionGuide?.length
+    ? faqPageSchema(landing.decisionGuide.map(item => ({ q: item.title, a: item.body })))
+    : null
 
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       {itemList && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }} />
+      )}
+      {faq && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
       )}
 
       {/* ═══════════════════════════════ HERO ═══════════════════════════════ */}
@@ -50,6 +67,137 @@ export default function LandingPage({ landing }: { landing: Landing }) {
         </div>
       </section>
 
+      {landing.slug === 'best-prop-firms-in-india' && (
+        <IndiaRbiNotice evidence={INDIA_EVIDENCE} />
+      )}
+
+      {landing.slug === 'best-prop-firms-in-india' && (
+        <section className="home-section" style={{ paddingTop: '0.5rem', paddingBottom: '1rem' }}>
+          <div className="home-shell">
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '0.85rem',
+            }}>
+              <Link
+                href="/best-prop-firms-in-india/challenge-comparison"
+                className="post-sidebar-card"
+                style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+              >
+                <span className="bento-tile-eyebrow">India challenge comparison</span>
+                <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  Filter every sourced product rule
+                </strong>
+                <span style={{
+                  display: 'block',
+                  color: 'var(--muted)',
+                  fontSize: '0.8rem',
+                  lineHeight: 1.55,
+                  marginTop: '0.35rem',
+                }}>
+                  Compare steps, targets, loss limits, drawdown, timing and trading rules after the RBI screen.
+                </span>
+              </Link>
+              <Link
+                href="/best-prop-firms-in-india/challenge-changes"
+                className="post-sidebar-card"
+                style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+              >
+                <span className="bento-tile-eyebrow">India challenge changes</span>
+                <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  Follow material rule and price updates
+                </strong>
+                <span style={{
+                  display: 'block',
+                  color: 'var(--muted)',
+                  fontSize: '0.8rem',
+                  lineHeight: 1.55,
+                  marginTop: '0.35rem',
+                }}>
+                  Verified changes and open watches affecting exact products that still pass the India gate.
+                </span>
+              </Link>
+              <Link
+                href="/best-prop-firms-in-india/payout-methods"
+                className="post-sidebar-card"
+                style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+              >
+                <span className="bento-tile-eyebrow">India payout guide</span>
+                <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  Compare Bank, Wise, Rise and Crypto
+                </strong>
+                <span style={{
+                  display: 'block',
+                  color: 'var(--muted)',
+                  fontSize: '0.8rem',
+                  lineHeight: 1.55,
+                  marginTop: '0.35rem',
+                }}>
+                  Published rails, fee disclosures and the Indian verification gap for every screened firm.
+                </span>
+              </Link>
+              <Link
+                href="/best-prop-firms-in-india/compare"
+                className="post-sidebar-card"
+                style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+              >
+                <span className="bento-tile-eyebrow">India matchup library</span>
+                <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  Start with the decision, then choose the pair
+                </strong>
+                <span style={{
+                  display: 'block',
+                  color: 'var(--muted)',
+                  fontSize: '0.8rem',
+                  lineHeight: 1.55,
+                  marginTop: '0.35rem',
+                }}>
+                  Browse curated comparisons built around India eligibility, KYC, payout and exact product evidence.
+                </span>
+              </Link>
+              <Link
+                href="/blog/are-prop-firms-legal-in-india"
+                className="post-sidebar-card"
+                style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+              >
+                <span className="bento-tile-eyebrow">RBI &amp; FEMA guide</span>
+                <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  Check the legal and remittance questions
+                </strong>
+                <span style={{
+                  display: 'block',
+                  color: 'var(--muted)',
+                  fontSize: '0.8rem',
+                  lineHeight: 1.55,
+                  marginTop: '0.35rem',
+                }}>
+                  Alert List status, LRS margin restrictions, contract checks and tax-record guidance.
+                </span>
+              </Link>
+              <Link
+                href="/blog/prop-firm-payout-tax-india"
+                className="post-sidebar-card"
+                style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+              >
+                <span className="bento-tile-eyebrow">India tax-record guide</span>
+                <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  Reconcile every payout before filing
+                </strong>
+                <span style={{
+                  display: 'block',
+                  color: 'var(--muted)',
+                  fontSize: '0.8rem',
+                  lineHeight: 1.55,
+                  marginTop: '0.35rem',
+                }}>
+                  Official ITR boundaries, foreign-schedule questions and a free 24-column payout ledger.
+                </span>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ═══════════════════════════════ RANKED LIST ═══════════════════════════════ */}
       <section className="home-section" style={{ paddingTop: '1rem' }}>
         <div className="home-shell">
@@ -57,10 +205,10 @@ export default function LandingPage({ landing }: { landing: Landing }) {
             <div>
               <h2 className="section-title">
                 <Flame size={18} style={{ color: 'var(--accent-light)' }} />
-                Ranked & verified
+                Ranked & source-checked
               </h2>
               <p className="section-sub-text">
-                Partners marked. Numbers pulled live from{' '}
+                Partners marked. Numbers come from dated first-party captures under{' '}
                 <Link href="/methodology" style={{ color: 'var(--accent-light)' }}>
                   our methodology
                 </Link>
@@ -79,6 +227,65 @@ export default function LandingPage({ landing }: { landing: Landing }) {
           />
         </div>
       </section>
+
+      {landing.slug === 'best-prop-firms-in-india' && (
+        <IndiaFirmMatcher firms={indiaMatcherFirms} />
+      )}
+
+      {landing.slug === 'best-prop-firms-in-india' && (
+        <IndiaCheckoutPlanner firms={indiaMatcherFirms} />
+      )}
+
+      {landing.slug === 'best-prop-firms-in-india' && (
+        <IndiaEvidenceMatrix evidence={INDIA_EVIDENCE} firms={allFirms} />
+      )}
+
+      {landing.slug === 'best-prop-firms-in-india' && isContactDeliveryConfigured() && (
+        <IndiaEvidenceSubmissionForm
+          firms={INDIA_EVIDENCE.map(entry => ({ slug: entry.firmSlug, name: entry.firmName }))}
+        />
+      )}
+
+      {landing.decisionGuide && landing.decisionGuide.length > 0 && (
+        <section className="home-section">
+          <div className="home-shell" style={{ maxWidth: 900 }}>
+            <div className="section-head">
+              <div>
+                <h2 className="section-title">What Indian traders should verify</h2>
+                <p className="section-sub-text">
+                  Four checks to complete before paying for any evaluation.
+                </p>
+              </div>
+            </div>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '1rem',
+            }}>
+              {landing.decisionGuide.map(item => (
+                <article key={item.title} className="post-sidebar-card" style={{ padding: '1.35rem' }}>
+                  <h3 style={{
+                    color: '#fff',
+                    fontSize: '1rem',
+                    lineHeight: 1.35,
+                    margin: '0 0 0.65rem',
+                  }}>
+                    {item.title}
+                  </h3>
+                  <p style={{
+                    color: 'var(--text)',
+                    fontSize: '0.9rem',
+                    lineHeight: 1.65,
+                    margin: 0,
+                  }}>
+                    {item.body}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═══════════════════════════════ METHODOLOGY ═══════════════════════════════ */}
       <section className="home-section home-section--alt">
@@ -118,7 +325,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
               Filter every firm in the full directory by asset, platform, profit split, and payout speed.
             </p>
             <div className="cta-final-row">
-              <Link href="/main-table" className="btn-primary btn-glow">
+              <Link href="/prop-firms" className="btn-primary btn-glow">
                 Open the comparison table <ArrowRight size={16} />
               </Link>
               <Link href="/prop-firms" className="btn-outline">

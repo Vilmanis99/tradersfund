@@ -43,8 +43,8 @@ const FAQS = [
     a: "Every card shows the date we last checked the offer — that's the “Checked” line. We only print a code you can type at checkout when we've confirmed it applies; when a saving comes off automatically through our link, we say so instead of inventing a code. If a code expires, we remove it — you won't find a dead coupon greyed out here.",
   },
   {
-    q: "Why does a firm show 'Visit for current offers' instead of a code?",
-    a: "That firm's discount either rotates or applies automatically through our link, so there's no single code worth pinning to a date — click through and it's applied at checkout. Firms marked “Listed” aren't affiliate partners; we still track them so you can compare, but the link goes to our review, not a referral.",
+    q: "Why does a firm show 'No verified offer today'?",
+    a: "A firm without a checked offer shows “No verified offer today.” Partner buttons still use our disclosed affiliate link; listed firms link to our review. We do not imply that clicking creates a discount.",
   },
   {
     q: 'Do I pay more by using your link or code?',
@@ -52,7 +52,7 @@ const FAQS = [
   },
   {
     q: 'How often is this page updated?',
-    a: 'Codes are re-checked on a rolling basis and the page rebuilds daily, so an expired offer falls off within a day. The “Checked” date on each card is the real one — not a sitewide stamp we never touch.',
+    a: 'Offers are checked on a rolling basis and the page rebuilds daily. Any offer older than 30 days or past its expiry date is removed automatically; the “Checked” date belongs to that offer.',
   },
 ]
 
@@ -65,7 +65,7 @@ export default function Page() {
     const slug = slugify(firm.name)
     const deal = dealBySlug.get(slug)
     const isPartner = Boolean(firm.affiliateUrl)
-    const defaultLabel = isPartner ? 'Visit for current offers' : 'See review for pricing'
+    const defaultLabel = isPartner ? 'No verified offer today' : 'See review for pricing'
     return {
       firmName: firm.name,
       firmSlug: slug,
@@ -93,7 +93,7 @@ export default function Page() {
     return b.score - a.score
   })
 
-  const liveCount = rows.filter(r => r.pct != null || r.isPartner).length
+  const liveCount = rows.filter(r => r.pct != null).length
 
   const crumbs = breadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -143,7 +143,7 @@ export default function Page() {
         </p>
         <p style={{ color: 'var(--muted)', fontSize: '0.88rem', margin: 0 }}>
           Tracking <strong style={{ color: 'var(--accent-light)' }}>{rows.length} firms</strong> ·{' '}
-          {liveCount} with a live offer or partner link · the rest link straight to our review.
+          {liveCount} with a currently verified offer · partner status is shown separately.
         </p>
       </header>
 

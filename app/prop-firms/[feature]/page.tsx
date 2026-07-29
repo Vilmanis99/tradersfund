@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!feature) return {}
   const url = `/prop-firms/${feature.slug}`
   return {
-    title: feature.metaTitle,
+    title: { absolute: feature.metaTitle },
     description: feature.metaDescription,
     alternates: { canonical: url },
     openGraph: {
@@ -45,7 +45,7 @@ export default async function FeaturePage({ params }: Props) {
   const firms = getFirmsForFeature(slug)
   const siblings = FEATURES.filter(f => f.slug !== slug).slice(0, 4)
 
-  const itemLd = itemListSchema(firms, feature.label)
+  const itemLd = itemListSchema(firms, `Best Prop Firms — ${feature.label}`)
   const faqLd = faqPageSchema(feature.faqs)
   const crumbsLd = breadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -155,8 +155,8 @@ export default async function FeaturePage({ params }: Props) {
         </div>
         <p style={{ color: 'var(--muted)', fontSize: '0.85rem', marginTop: '1.25rem' }}>
           Or browse{' '}
-          <Link href="/main-table" style={{ color: 'var(--accent-light)' }}>
-            all 14 prop firms
+          <Link href="/prop-firms" style={{ color: 'var(--accent-light)' }}>
+            all tracked prop firms
           </Link>{' '}
           in the directory.
         </p>

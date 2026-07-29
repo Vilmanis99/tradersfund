@@ -1,0 +1,47 @@
+{
+  "firmSlug": "tradeify",
+  "capturedAt": "2026-07-28",
+  "rbiCheck": {
+    "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
+    "sourceListUpdatedAt": "2024-10-22",
+    "result": "not-found",
+    "searchedNames": [
+      "Tradeify",
+      "Tradeify Holdings Corp"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://help.tradeify.co/en/articles/10495888-rules-restricted-countries",
+      "claims": {
+        "country": "India is absent from both Tradeify's complete prohibition list and its evaluation-eligible/sim-only list."
+      }
+    },
+    {
+      "url": "https://tradeify.co/post/sebi-fo-new-rules-2026-us-futures-alternative",
+      "claims": {
+        "indiaIntent": "Tradeify publishes a dedicated guide for Indian traders that describes Growth, Select, Lightning, Rise payouts, bank transfers, cryptocurrency withdrawals, and Indian documentation considerations.",
+        "checkoutGap": "The guide markets the service to Indian residents but does not prove a completed Indian payment-card checkout."
+      }
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/12844518-rise-payouts-main-payout-method",
+      "claims": {
+        "kyc": "Rise onboarding requests government ID, selfie, address and an international Tax ID.",
+        "payout": "Published withdrawal choices are bank transfer, crypto tokens, and region-dependent local currencies; Tradeify approval normally moves funds into Rise within 24-48 hours.",
+        "fees": "The Receive Payments account is published as free, but Indian bank, crypto, FX, and intermediary withdrawal charges are not fixed."
+      }
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "claims": {
+        "currency": "All 12 current base list prices for Growth, Select, and Lightning are published in USD.",
+        "checkout": "Plans are one-time purchases with no recurring billing; the article does not name Indian card acceptance."
+      }
+    }
+  ],
+  "unresolvedConflicts": [
+    "No completed Indian checkout, KYC approval, Rise or Plane onboarding, or Indian payout receipt was independently verified.",
+    "The India-targeted marketing guide contains product-detail conflicts with the current help center, so current product and pricing tables control."
+  ]
+}

@@ -1,16 +1,17 @@
 import { NextResponse } from 'next/server'
 import { getAllFirms } from '@/lib/firms'
+import { INDIA_EVIDENCE_BY_SLUG } from '@/lib/india'
 
 /**
  * Affiliate redirect endpoint. Visiting /go/ftmo sends the user to the firm's
- * affiliate URL (when configured) or the firm's review page (fallback).
+ * affiliate URL (when configured) or its first-party public website.
  *
  * Centralising redirects here means:
  *   • Affiliate URLs live in one place (firms.json) — no scattered hardcoded
  *     /go-ftmo etc. links in MDX content.
  *   • We can layer click tracking, geo-routing, or A/B logic in one spot.
- *   • Outgoing links carry `rel="sponsored"` semantics via the redirect (and
- *     the caller still adds `rel="sponsored nofollow"` on the anchor).
+ *   • Paid links carry `rel="sponsored"` on the calling anchor. Organic
+ *     first-party links use nofollow/noopener without implying a partnership.
  *
  * Matching is on a slug derived from the firm name: lowercased, alphanumerics
  * only. So /go/ftmo, /go/fundednext, /go/funding-pips, /go/topstep, etc.
@@ -28,21 +29,50 @@ function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
+function campaignFrom(value: string | null) {
+  const campaign = value ? slugify(value).slice(0, 64) : ''
+  return campaign || 'unknown'
+}
+
+function isIndiaCampaign(placement: string) {
+  return placement === 'best-prop-firms-in-india' ||
+    placement.startsWith('india-matcher-') ||
+    placement.startsWith('india-inr-planner-')
+}
+
+function recordAffiliateClick(firm: string, placement: string) {
+  // Deliberately exclude IP, user-agent, referrer, and query-string data.
+  // Hosting logs can aggregate this event while partner dashboards attribute
+  // downstream conversions through the matching utm_campaign value.
+  console.info(JSON.stringify({
+    event: 'affiliate_click',
+    firm,
+    placement,
+  }))
+}
+
+function recordOfficialClick(firm: string, placement: string) {
+  console.info(JSON.stringify({
+    event: 'official_site_click',
+    firm,
+    placement,
+  }))
+}
+
 /**
  * Non-firm partners we review (trade copiers, backtesters, social-trading
  * platforms). They aren't in firms.json — that file is prop firms only — but
  * their articles still carry "Visit X" CTAs pointing at /go/<slug>.
  *
- * Until an affiliate deal is signed, `affiliateUrl` stays null and the click
- * lands on our own review instead of a dead end. Add the partner URL here the
- * day the deal goes live; nothing else needs to change.
+ * Affiliate URLs stay null until a deal is signed. The official URL remains
+ * available so "Visit" always means leaving for the named product.
  */
-const PARTNERS: Record<string, { affiliateUrl: string | null; fallback: string }> = {
-  'traders-connect': { affiliateUrl: null, fallback: '/blog/traders-connect-trade-copier' },
-  zulutrade: { affiliateUrl: null, fallback: '/blog/zulutrade-review' },
-  'fx-replay': { affiliateUrl: null, fallback: '/blog/fx-replay-review' },
-  copyfx: { affiliateUrl: null, fallback: '/blog/copyfx-review' },
-  '3commas': { affiliateUrl: null, fallback: '/blog/3commas-review' },
+const PARTNERS: Record<string, { affiliateUrl: string | null; officialUrl: string }> = {
+  'traders-connect': { affiliateUrl: null, officialUrl: 'https://tradersconnect.com/' },
+  zulutrade: { affiliateUrl: null, officialUrl: 'https://www.zulutrade.com/' },
+  'fx-replay': { affiliateUrl: null, officialUrl: 'https://www.fxreplay.com/' },
+  copyfx: { affiliateUrl: null, officialUrl: 'https://www.copyfx.com/' },
+  '3commas': { affiliateUrl: null, officialUrl: 'https://3commas.io/' },
 }
 
 function decorateUtm(url: string, campaign: string): string {
@@ -74,27 +104,45 @@ export async function GET(
   const target = slugify(firm)
   const match = getAllFirms().find(f => slugify(f.name) === target)
   const url = new URL(req.url)
-  const from = url.searchParams.get('from') || 'unknown'
+  const from = campaignFrom(url.searchParams.get('from'))
 
   if (!match) {
     // Reviewed tools/platforms that aren't prop firms (see PARTNERS above).
     const partner = PARTNERS[target]
     if (partner) {
-      return partner.affiliateUrl
-        ? NextResponse.redirect(decorateUtm(partner.affiliateUrl, from), 302)
-        : NextResponse.redirect(new URL(partner.fallback, req.url), 302)
+      if (partner.affiliateUrl) {
+        recordAffiliateClick(target, from)
+        return NextResponse.redirect(decorateUtm(partner.affiliateUrl, from), 302)
+      }
+      recordOfficialClick(target, from)
+      return NextResponse.redirect(partner.officialUrl, 302)
     }
-    return NextResponse.redirect(new URL('/main-table', req.url), 307)
+    return NextResponse.redirect(new URL('/prop-firms', req.url), 307)
   }
 
-  // If an affiliate URL exists, decorate it with UTMs. Otherwise the fallback
-  // is the internal review page — no UTM (would be noise).
+  const indiaEvidence = INDIA_EVIDENCE_BY_SLUG[target]
+  if (isIndiaCampaign(from) && indiaEvidence?.rbiAlert.status === 'named') {
+    console.info(JSON.stringify({
+      event: 'india_affiliate_click_blocked',
+      firm: target,
+      placement: from,
+      reason: 'rbi_alert_list',
+    }))
+    const guide = new URL('/blog/are-prop-firms-legal-in-india', req.url)
+    guide.searchParams.set('firm', target)
+    return NextResponse.redirect(guide, 302)
+  }
+
+  // Affiliate links receive campaign attribution. Organic first-party links
+  // do not receive affiliate UTMs, because that would mislabel the click.
   if (match.affiliateUrl) {
     const dest = decorateUtm(match.affiliateUrl, from)
+    recordAffiliateClick(target, from)
     // 302 (temporary) because affiliate URLs can change; we don't want
     // intermediaries caching the redirect.
     return NextResponse.redirect(dest, 302)
   }
 
-  return NextResponse.redirect(new URL(match.reviewUrl, req.url), 302)
+  recordOfficialClick(target, from)
+  return NextResponse.redirect(match.officialUrl, 302)
 }

@@ -7,9 +7,14 @@
     "https://fxify.com/programs/two-phase/",
     "https://fxify.com/programs/three-phase-challenge/",
     "https://fxify.com/programs/lightning-challenge/",
-    "https://fxify.com/programs/instant-funding/"
+    "https://fxify.com/programs/instant-funding/",
+    "https://fxify.com/faqs/all-faqs/",
+    "https://fxify.com/faqs/all-faqs/how-to-verify-my-account/",
+    "https://fxify.com/faqs/payouts/",
+    "https://fxify.com/faqs/all-faqs/how-do-i-withdraw-my-profits/",
+    "https://fxify.com/terms-and-conditions"
   ],
-  "accessNotes": "Pricing widget is client-rendered, so WebFetch's markdown conversion returned NO tier prices; it mis-reported a '$5k = $250' figure on every page, which is actually a Profit Target cell (\"$250 | 5%\"), NOT a price. Full pricing IS shipped in the initial HTML as an inline JSON payload; retrieved via curl with a desktop User-Agent and parsed directly. All five program pages ship the identical 54-tier payload (verified identical after parsing), so every product's data was cross-confirmed 5x. No geo-block or paywall encountered. ALL PRICES RECORDED ARE LIST PRICES: the payload holds undiscounted values, and promos are applied at checkout as WooCommerce coupons ('applied_coupons', 'discount_percent', 'discount_total' fields present in page JS). ACTIVE PROMOS AT CAPTURE: 'SUMMER SALE: 20% OFF (excl. Instant Lite)' code HOT20, expires 1 September 2026; and 'NEW TRADERS: 30% OFF 2 PHASE PRO' code NEW30, expires 31 December 2026. Neither is blended into priceUsd. NOT VERIFIABLE on the firm's domain: overnight-holding policy and copy-trading policy - no such fields exist in the site data, so they are null on every product.",
+  "accessNotes": "Pricing widget is client-rendered, so WebFetch's markdown conversion returned NO tier prices; it mis-reported a '$5k = $250' figure on every page, which is actually a Profit Target cell (\"$250 | 5%\"), NOT a price. Full pricing IS shipped in the initial HTML as an inline JSON payload; retrieved via curl with a desktop User-Agent and parsed directly. All five program pages ship the identical 54-tier payload (verified identical after parsing), so every product's data was cross-confirmed 5x. No geo-block or paywall encountered. ALL PRICES RECORDED ARE LIST PRICES: the payload holds undiscounted values, and promos are applied at checkout as WooCommerce coupons ('applied_coupons', 'discount_percent', 'discount_total' fields present in page JS). ACTIVE PROMOS AT CAPTURE: 'SUMMER SALE: 20% OFF (excl. Instant Lite)' code HOT20, expires 1 September 2026; and 'NEW TRADERS: 30% OFF 2 PHASE PRO' code NEW30, expires 31 December 2026. Neither is blended into priceUsd. INDIA SCREEN: India is absent from the current 35-jurisdiction restricted list repeated on FXIFY support pages. The support pages also publish SumSub ID/address/selfie checks, Rise KYC for withdrawals, a $50 minimum, and a usual 3-business-day processing window; no completed Indian checkout, KYC approval, or payout was independently tested. NOT VERIFIABLE on the firm's domain: overnight-holding policy and copy-trading policy - no such fields exist in the site data, so they are null on every product.",
   "capturedAt": "2026-07-27",
   "products": [
     {

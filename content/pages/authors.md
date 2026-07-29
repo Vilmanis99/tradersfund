@@ -2,12 +2,11 @@
 title: "Authors"
 slug: "authors"
 date: "2024-08-08 16:49:12"
-description: "Authors"
+description: "Meet the Traders Fund Hub authors covering prop-firm rules, challenge costs, payouts, trading education, and market analysis."
 type: "page"
 ---
 
-<h1>TFH Team</h1>				
-					<figure><img width="400" height="400" src="/images/wp/2024/08/Pic.jpeg" alt="Edris Derakhshi" /></figure><h2>Edris Derakhshi - Lead Content Strategies & SEO Manager</h2><p>My name is Edris, and I am the founder of TradingRage, which is a trading and investment content creation agency. I personally have been a funded forex and crypto trader and asset manager for the last 5 years. I’ve also been writing online content about finance and the financial markets, as it is my true passion. I’ve written numerous articles, landing pages, and market analyses (for popular websites like CryptoQuant and CryptoPotato.com). To wrap it up, I am a trader, money manager, and author.</p>				
+<figure><img width="400" height="400" src="/images/wp/2024/08/Pic.jpeg" alt="Edris Derakhshi" /></figure><h2>Edris Derakhshi - Lead Content Strategies & SEO Manager</h2><p>My name is Edris, and I am the founder of TradingRage, which is a trading and investment content creation agency. I personally have been a funded forex and crypto trader and asset manager for the last 5 years. I’ve also been writing online content about finance and the financial markets, as it is my true passion. I’ve written numerous articles, landing pages, and market analyses (for popular websites like CryptoQuant and CryptoPotato.com). To wrap it up, I am a trader, money manager, and author.</p>
 					<a href="http://www.linkedin.com/in/edris-derakhshi" target="_blank">
 						Linkedin
 											</a>

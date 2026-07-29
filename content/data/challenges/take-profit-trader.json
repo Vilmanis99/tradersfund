@@ -44,12 +44,14 @@
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "overnight": false,
+      "ea": false,
+      "copyTrading": "restricted"
     },
+    "pricingModel": "monthly-subscription",
+    "activationFeeUsd": 130,
     "assetClass": "futures",
     "sourceUrl": "https://takeprofittrader.com/",
     "sourceCapturedAt": "2026-07-27",
@@ -75,8 +77,6 @@
       "Accounts are SIM through Test and PRO; only PRO+ is live-routed. 41 tradable CME/NYMEX/COMEX/CBOT futures symbols returned by /accounts/api/subscriptions/products.",
       "Firm entity: TakeProfitTrader LLC. Brokers/data: Tradovate, NinjaTrader, Rithmic.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/take-profit-trader-2026-07-27.json"
-    ],
-    "pricingModel": "monthly-subscription",
-    "activationFeeUsd": 130
+    ]
   }
 ]

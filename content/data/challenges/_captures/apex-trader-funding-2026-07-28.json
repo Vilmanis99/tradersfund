@@ -1,0 +1,377 @@
+{
+  "firmSlug": "apex-trader-funding",
+  "officialDomain": "https://apextraderfunding.com",
+  "pagesRead": [
+    "https://apextraderfunding.com/",
+    "https://apextraderfunding.com/about/",
+    "https://apextraderfunding.com/help-center/status/status-updates/",
+    "https://apextraderfunding.com/help-center/evaluation-accounts-ea/intraday-trailing-drawdown-evaluations/",
+    "https://apextraderfunding.com/help-center/eod-trailing-drawdown-accounts/eod-evaluations/",
+    "https://apextraderfunding.com/help-center/intraday-trailing-drawdown-accounts/intraday-trailing-drawdown-performance-accounts-pa/",
+    "https://apextraderfunding.com/help-center/eod-trailing-drawdown-accounts/eod-performance-accounts-pa/",
+    "https://apextraderfunding.com/help-center/uncategorized/intraday-trailing-drawdown-payouts/",
+    "https://apextraderfunding.com/help-center/eod-trailing-drawdown-accounts/eod-payouts/",
+    "https://apextraderfunding.com/help-center/uncategorized/no-activation-fee-evaluations/",
+    "https://apextraderfunding.com/help-center/additional-helpful-items/daily-loss-limit-explained/",
+    "https://apextraderfunding.com/help-center/additional-helpful-items/50-consistency-requirement/",
+    "https://apextraderfunding.com/help-center/getting-started/prohibited-activities/",
+    "https://apextraderfunding.com/help-center/getting-started/futures-trading-times/",
+    "https://apextraderfunding.com/help-center/billing/inactivity-policy-on-performance-accounts-pa//",
+    "https://dashboard.apextraderfunding.com/agreement/user-agreement",
+    "https://www.trustpilot.com/review/apextraderfunding.com"
+  ],
+  "accessNotes": "Apex launched new EOD and Intraday products on March 1, 2026; prior products are Legacy and were excluded. The public product selector is dynamic and coupon-sensitive. A current first-party crawl of the default 25K Intraday Standard card exposed a $199 list evaluation fee, a $19.90 affiliate-code price, and a $59 activation fee. Older first-party crawl variants showed the activation fee at $69. The current $59 value is preserved for that one tier with the conflict disclosed; all other evaluation and standard-path activation prices are null because the live selected cards could not be independently exposed from this geography. No-Activation-Fee tiers record a verified $0 activation fee, but their higher evaluation prices remain null. This capture deliberately prefers incomplete pricing over copying numbers from competitor sites.",
+  "capturedAt": "2026-07-28",
+  "products": [
+    {
+      "productName": "Intraday Trail - Standard",
+      "productSlug": "intraday-trail-standard",
+      "pricingModel": "one-off",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 199,
+          "activationFeeUsd": 59,
+          "dailyLossUsd": null,
+          "maxLossUsd": 1000,
+          "refundable": null,
+          "evidence": "Current first-party product card: '25K INTRADAY TRAIL'; '$199.00'; 'One-Time Activation Fee $59'; 'Max Drawdown $1,000'. The displayed $19.90 coupon price was not recorded because it was tied to an affiliate-code URL."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "activationFeeUsd": null,
+          "dailyLossUsd": null,
+          "maxLossUsd": 2000,
+          "refundable": null,
+          "evidence": "Official Intraday Evaluation table: 50K profit target $3,000 and max drawdown $2,000. Current price and activation card were not independently exposed, so both are null."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "activationFeeUsd": null,
+          "dailyLossUsd": null,
+          "maxLossUsd": 3000,
+          "refundable": null,
+          "evidence": "Official Intraday Evaluation table: 100K profit target $6,000 and max drawdown $3,000. Current price and activation card were not independently exposed, so both are null."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": null,
+          "activationFeeUsd": null,
+          "dailyLossUsd": null,
+          "maxLossUsd": 4000,
+          "refundable": null,
+          "evidence": "Official Intraday Evaluation table: 150K profit target $9,000 and max drawdown $4,000. Current price and activation card were not independently exposed, so both are null."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "trailing",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 100,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "Restricted: normal-strategy news trading is allowed, but chasing news or placing orders on both sides to gamble on the outcome is prohibited.",
+        "weekend": "Not allowed: every position must be closed before the market close, so positions cannot remain open through the weekend.",
+        "overnight": "Not allowed: all trades must be closed before 4:59 PM ET and may resume at 6:00 PM ET.",
+        "ea": "Not allowed: automation, bots, scripts, algorithms, and preprogrammed order logic are prohibited.",
+        "copyTrading": "Restricted: automated copy trading is permitted only across accounts owned by the same user, from a manually traded originating account, with exact unaltered replication."
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://apextraderfunding.com/",
+      "notes": [
+        "NEW PRODUCT ONLY: Apex states that products bought after March 1, 2026 use the new Intraday/EOD structure; earlier recurring products are Legacy and are not represented here.",
+        "ONE-TIME EVALUATION: the new product card says 'ONE-TIME Fee. No Rebill. Eval Active for 30 Days' and says there are no resets.",
+        "PARTIAL PRICE CAPTURE: only the 25K Intraday Standard list fee ($199) and current activation fee ($59) were exposed by the first-party product card. The $19.90 coupon price was tied to an affiliate-code URL and is disclosed but not used in True-Cost math. Prices for 50K, 100K and 150K remain null.",
+        "ACTIVATION-FEE CONFLICT: current first-party crawl variants showed $59 on the 25K card; older first-party variants showed $69. The current $59 value is recorded and must be rechecked before purchase.",
+        "PROFIT TARGETS are $1,500 / $3,000 / $6,000 / $9,000 on $25K / $50K / $100K / $150K. Each equals 6% of the headline balance.",
+        "INTRADAY TRAILING DRAWDOWN follows the highest balance in real time, includes unrealized gains, and never moves down. Dollar caps are $1,000 / $2,000 / $3,000 / $4,000.",
+        "NO EVALUATION DAILY LOSS LIMIT applies on Intraday products; the real-time trailing threshold is the evaluation risk control.",
+        "ONE-DAY PASS: there is no minimum beyond one trading day, but the evaluation expires after 30 calendar days. A passed evaluation must be activated within 7 calendar days.",
+        "NO EVALUATION CONSISTENCY RULE applies. The Performance Account uses a 50% payout-consistency requirement: the largest profitable day must be below 50% of total profit since inception or the last approved payout.",
+        "PAYOUT ELIGIBILITY requires 5 qualifying trading days, a $500 minimum request, the drawdown-plus-$100 safety net, and the 50% consistency rule. Each Performance Account closes after its 6th approved payout.",
+        "100% PAYOUT SPLIT applies to approved Sim Funded Performance Account payouts.",
+        "INTRADAY PAYOUT-DAY MINIMUMS are $100 / $200 / $250 / $300 for $25K / $50K / $100K / $150K. The first-request caps are $1,000 / $1,500 / $2,000 / $2,500.",
+        "DAY TRADING ONLY: positions must be flat before 4:59 PM ET; trading may resume at 6:00 PM ET. This excludes overnight and weekend holding.",
+        "NEWS TRADING is restricted, not banned: normal-strategy trading is allowed, while news chasing, hedging and two-sided gambling orders are prohibited.",
+        "AUTOMATION is banned. Copying is restricted to the same user's accounts when the originating order is entered manually in real time and the receiving accounts mirror it exactly.",
+        "INACTIVITY: each new Performance Account needs at least 2 trading days with $50 or more net profit inside every rolling 30-day window; otherwise the PA can close permanently.",
+        "Performance Accounts are simulated. Apex may invite selected traders into a separate live program.",
+        "The published account path supports Rithmic, Tradovate and WealthCharts; certain EUREX products are available only through Tradovate."
+      ],
+      "fieldEvidence": {
+        "pricingModel": "Homepage: 'One Time Fees – No recurring billing'; card: 'ONE-TIME Fee. No Rebill. Eval Active for 30 Days.'",
+        "accountSizes[0].priceUsd": "Current 25K Intraday Trail Standard card: '$199.00' list and '$19.90 - (with Coupon Code)'. List price recorded.",
+        "accountSizes[0].activationFeeUsd": "Current 25K card: 'One-Time Activation Fee $59'.",
+        "profitTargets.phase1": "Official Intraday table: $1,500 / $3,000 / $6,000 / $9,000, equal to 6% of each account size.",
+        "drawdownType": "Official Intraday page: real-time trailing drawdown follows Peak Balance including unrealized gains.",
+        "minTradingDays": "Official Intraday page: no minimum trading-day requirement and may pass in one day.",
+        "consistencyRulePct": "Official Intraday page: evaluation consistency 'Not Applied'.",
+        "profitSplitPct": "Official PA pages: approved payouts use a 100% payout split.",
+        "payoutFirstDays": "Official Intraday payouts page: minimum 5 qualifying trading days.",
+        "payoutFrequency": "Official Intraday payouts page: 'Up to weekly payouts'."
+      }
+    },
+    {
+      "productName": "EOD Trail - Standard",
+      "productSlug": "eod-trail-standard",
+      "pricingModel": "one-off",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "activationFeeUsd": null,
+          "dailyLossUsd": 500,
+          "maxLossUsd": 1000,
+          "refundable": null,
+          "evidence": "Official EOD Evaluation table: 25K profit target $1,500, $1,000 max drawdown, $500 daily loss limit and 4 max contracts. Pricing card was not independently exposed."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "activationFeeUsd": null,
+          "dailyLossUsd": 1000,
+          "maxLossUsd": 2000,
+          "refundable": null,
+          "evidence": "Official EOD Evaluation table: 50K profit target $3,000, $2,000 max drawdown, $1,000 daily loss limit and 6 max contracts."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "activationFeeUsd": null,
+          "dailyLossUsd": 1500,
+          "maxLossUsd": 3000,
+          "refundable": null,
+          "evidence": "Official EOD Evaluation table: 100K profit target $6,000, $3,000 max drawdown, $1,500 daily loss limit and 8 max contracts."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": null,
+          "activationFeeUsd": null,
+          "dailyLossUsd": 2000,
+          "maxLossUsd": 4000,
+          "refundable": null,
+          "evidence": "Official EOD Evaluation table: 150K profit target $9,000, $4,000 max drawdown, $2,000 daily loss limit and 12 max contracts."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 100,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "Restricted: normal-strategy news trading is allowed, but chasing news or placing orders on both sides to gamble on the outcome is prohibited.",
+        "weekend": "Not allowed: every position must be closed before the market close, so positions cannot remain open through the weekend.",
+        "overnight": "Not allowed: all trades must be closed before 4:59 PM ET and may resume at 6:00 PM ET.",
+        "ea": "Not allowed: automation, bots, scripts, algorithms, and preprogrammed order logic are prohibited.",
+        "copyTrading": "Restricted: automated copy trading is permitted only across accounts owned by the same user, from a manually traded originating account, with exact unaltered replication."
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://apextraderfunding.com/",
+      "notes": [
+        "EOD STANDARD uses the same post-March 1, 2026 one-time 30-day evaluation model, but current evaluation and activation prices remain null because the selected product cards could not be independently exposed.",
+        "PROFIT TARGETS are $1,500 / $3,000 / $6,000 / $9,000, equal to 6% of $25K / $50K / $100K / $150K.",
+        "EOD DRAWDOWN is calculated from the end-of-day balance at market close and then enforced intraday during the following session. Dollar caps are $1,000 / $2,000 / $3,000 / $4,000.",
+        "EVALUATION DAILY LOSS LIMITS are $500 / $1,000 / $1,500 / $2,000. Reaching the DLL flattens positions and pauses trading for the session but does not fail the evaluation.",
+        "ONE-DAY PASS, 30-calendar-day evaluation access and 7-day activation deadline match the Intraday path.",
+        "NO EVALUATION CONSISTENCY RULE applies; the funded payout gate is the separate 50% consistency requirement.",
+        "PAYOUT ELIGIBILITY requires 5 qualifying trading days, a $500 minimum request, the drawdown-plus-$100 safety net, and no single day at or above 50% of total profit.",
+        "EOD QUALIFYING-DAY MINIMUMS are $100 / $250 / $300 / $350 for $25K / $50K / $100K / $150K.",
+        "EOD FIRST-REQUEST CAPS are $1,000 / $1,500 / $2,000 / $2,500. Each PA closes after 6 approved payouts.",
+        "The 100% payout split, day-trading cutoff, restricted news rule, automation ban, same-user copy restriction and inactivity rule match the Intraday path.",
+        "EOD Performance Accounts use tier-based contract and daily-loss scaling; the starting maximum contract counts are 2 / 4 / 6 / 10 across $25K / $50K / $100K / $150K."
+      ],
+      "fieldEvidence": {
+        "pricingModel": "Homepage: new products use one-time fees with no recurring billing.",
+        "profitTargets.phase1": "Official EOD table: $1,500 / $3,000 / $6,000 / $9,000, equal to 6%.",
+        "dailyLossPct": "Null because Apex publishes tier-specific dollar DLLs: $500 / $1,000 / $1,500 / $2,000.",
+        "maxLossPct": "Null because Apex publishes tier-specific max-loss dollars: $1,000 / $2,000 / $3,000 / $4,000.",
+        "drawdownType": "Official EOD page: drawdown calculated once at market close and enforced in the following session.",
+        "minTradingDays": "Official EOD page: no minimum trading days and may pass in one day.",
+        "profitSplitPct": "Official EOD PA page: 100% payout split.",
+        "payoutFirstDays": "Official EOD payout page: 5 qualifying trading days.",
+        "payoutFrequency": "Official EOD payout page: up to weekly payouts."
+      }
+    },
+    {
+      "productName": "Intraday Trail - No Activation Fee",
+      "productSlug": "intraday-trail-no-activation-fee",
+      "pricingModel": "one-off",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "activationFeeUsd": 0,
+          "dailyLossUsd": null,
+          "maxLossUsd": 1000,
+          "refundable": null,
+          "evidence": "Official No Activation Fee article confirms 25K Intraday availability and $0 PA activation. Intraday table gives $1,000 max drawdown. Evaluation price remains null."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "activationFeeUsd": 0,
+          "dailyLossUsd": null,
+          "maxLossUsd": 2000,
+          "refundable": null,
+          "evidence": "Official No Activation Fee article confirms 50K Intraday availability and $0 PA activation. Intraday table gives $2,000 max drawdown."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "activationFeeUsd": 0,
+          "dailyLossUsd": null,
+          "maxLossUsd": 3000,
+          "refundable": null,
+          "evidence": "Official No Activation Fee article confirms 100K Intraday availability and $0 PA activation. Intraday table gives $3,000 max drawdown."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": null,
+          "activationFeeUsd": 0,
+          "dailyLossUsd": null,
+          "maxLossUsd": 4000,
+          "refundable": null,
+          "evidence": "Official No Activation Fee article confirms 150K Intraday availability and $0 PA activation. Intraday table gives $4,000 max drawdown."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "trailing",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 100,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "Restricted: normal-strategy news trading is allowed, but chasing news or placing orders on both sides to gamble on the outcome is prohibited.",
+        "weekend": "Not allowed: every position must be closed before the market close, so positions cannot remain open through the weekend.",
+        "overnight": "Not allowed: all trades must be closed before 4:59 PM ET and may resume at 6:00 PM ET.",
+        "ea": "Not allowed: automation, bots, scripts, algorithms, and preprogrammed order logic are prohibited.",
+        "copyTrading": "Restricted: automated copy trading is permitted only across accounts owned by the same user, from a manually traded originating account, with exact unaltered replication."
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://apextraderfunding.com/",
+      "notes": [
+        "NO ACTIVATION FEE: Apex states that this path follows the same rules, drawdown, 30-day access and qualification process as Standard, but the PA activation price is $0.",
+        "EVALUATION PRICES for all 4 sizes remain null because the dynamic first-party cards could not be independently exposed. No competitor price was copied.",
+        "The 6% profit targets, $1,000 / $2,000 / $3,000 / $4,000 intraday trailing caps, one-day pass, 50% funded payout-consistency rule, 5 qualifying payout days, $500 minimum request, 100% split and 6-payout PA lifecycle match Intraday Standard.",
+        "The no-evaluation-DLL rule, 4:59 PM ET flattening deadline, restricted news rule, automation ban, same-user copy restriction and 2-days-at-$50 inactivity rule also match Intraday Standard."
+      ],
+      "fieldEvidence": {
+        "activationFeeUsd": "Official No Activation Fee article: after passing, total price to activate the PA is $0.",
+        "productAvailability": "Official table marks 25K, 50K, 100K and 150K Intraday Evaluation as available.",
+        "rules": "Official article: same rules and structure as Standard Evaluations."
+      }
+    },
+    {
+      "productName": "EOD Trail - No Activation Fee",
+      "productSlug": "eod-trail-no-activation-fee",
+      "pricingModel": "one-off",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "activationFeeUsd": 0,
+          "dailyLossUsd": 500,
+          "maxLossUsd": 1000,
+          "refundable": null,
+          "evidence": "Official No Activation Fee article confirms 25K EOD availability and $0 PA activation. EOD table gives $500 DLL and $1,000 max drawdown."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "activationFeeUsd": 0,
+          "dailyLossUsd": 1000,
+          "maxLossUsd": 2000,
+          "refundable": null,
+          "evidence": "Official No Activation Fee article confirms 50K EOD availability and $0 PA activation. EOD table gives $1,000 DLL and $2,000 max drawdown."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "activationFeeUsd": 0,
+          "dailyLossUsd": 1500,
+          "maxLossUsd": 3000,
+          "refundable": null,
+          "evidence": "Official No Activation Fee article confirms 100K EOD availability and $0 PA activation. EOD table gives $1,500 DLL and $3,000 max drawdown."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": null,
+          "activationFeeUsd": 0,
+          "dailyLossUsd": 2000,
+          "maxLossUsd": 4000,
+          "refundable": null,
+          "evidence": "Official No Activation Fee article confirms 150K EOD availability and $0 PA activation. EOD table gives $2,000 DLL and $4,000 max drawdown."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 100,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "Restricted: normal-strategy news trading is allowed, but chasing news or placing orders on both sides to gamble on the outcome is prohibited.",
+        "weekend": "Not allowed: every position must be closed before the market close, so positions cannot remain open through the weekend.",
+        "overnight": "Not allowed: all trades must be closed before 4:59 PM ET and may resume at 6:00 PM ET.",
+        "ea": "Not allowed: automation, bots, scripts, algorithms, and preprogrammed order logic are prohibited.",
+        "copyTrading": "Restricted: automated copy trading is permitted only across accounts owned by the same user, from a manually traded originating account, with exact unaltered replication."
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://apextraderfunding.com/",
+      "notes": [
+        "NO ACTIVATION FEE: Apex states that this path follows the same EOD rules, drawdown, 30-day access and qualification process as Standard, but the PA activation price is $0.",
+        "EVALUATION PRICES for all 4 sizes remain null because the dynamic first-party cards could not be independently exposed. No competitor price was copied.",
+        "The 6% profit targets, $500 / $1,000 / $1,500 / $2,000 evaluation DLLs, $1,000 / $2,000 / $3,000 / $4,000 EOD trailing caps, one-day pass, 50% funded payout-consistency rule, 5 qualifying payout days, $500 minimum request, 100% split and 6-payout PA lifecycle match EOD Standard.",
+        "The 4:59 PM ET flattening deadline, restricted news rule, automation ban, same-user copy restriction and 2-days-at-$50 inactivity rule also match EOD Standard."
+      ],
+      "fieldEvidence": {
+        "activationFeeUsd": "Official No Activation Fee article: after passing, total price to activate the PA is $0.",
+        "productAvailability": "Official table marks 25K, 50K, 100K and 150K EOD Evaluation as available.",
+        "rules": "Official article: same rules and structure as Standard Evaluations."
+      }
+    }
+  ]
+}

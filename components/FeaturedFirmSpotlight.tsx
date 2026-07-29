@@ -83,11 +83,12 @@ export default function FeaturedFirmSpotlight({
               {isPartner ? (
                 <Link
                   href={`/go/${slug}?from=${fromParam}`}
+                  prefetch={false}
                   rel="sponsored nofollow noopener"
                   target="_blank"
                   className="btn-primary btn-glow featured-spotlight-button"
                 >
-                  Get funded with {firm.name} <ExternalLink size={14} aria-hidden />
+                  View {firm.name} plans <ExternalLink size={14} aria-hidden />
                 </Link>
               ) : (
                 <Link href={firm.reviewUrl} className="btn-primary btn-glow featured-spotlight-button">

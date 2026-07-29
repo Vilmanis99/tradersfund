@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { startNewsletterDoubleOptIn } from '@/lib/brevo'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -28,21 +29,35 @@ export async function POST(req: Request) {
   }
 
   // Honeypot — bots fill hidden fields. Silently 200 so they don't retry.
-  if (body.company) return NextResponse.json({ ok: true, pending: true })
+  if (body.company) {
+    return NextResponse.json({
+      ok: true,
+      pending: true,
+      message: 'Check your inbox and confirm your subscription.',
+    })
+  }
 
   const email = body.email?.trim().toLowerCase()
   if (!email || !EMAIL_RE.test(email)) {
     return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
   }
 
-  // TODO(brevo): replace this stub with an actual Brevo contacts.create call.
-  // For now we log the submission so it's visible in dev / hosting logs and
-  // tell the user honestly that subscriptions aren't live yet.
-  console.log(`[newsletter] ${new Date().toISOString()} ${ip} ${email}`)
+  const subscription = await startNewsletterDoubleOptIn(email)
+  if (!subscription.ok) {
+    const configurationError = subscription.reason === 'configuration'
+    return NextResponse.json(
+      {
+        error: configurationError
+          ? 'Newsletter signup is not configured yet. Please try again later.'
+          : 'We could not start your subscription. Please try again in a few minutes.',
+      },
+      { status: configurationError ? 503 : 502 },
+    )
+  }
 
   return NextResponse.json({
     ok: true,
     pending: true,
-    message: "Thanks — we'll email you when subscriptions go live.",
+    message: 'Check your inbox and confirm your subscription.',
   })
 }

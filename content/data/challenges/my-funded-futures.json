@@ -39,12 +39,14 @@
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "overnight": false,
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
+    "pricingModel": "monthly-subscription",
+    "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://myfundedfutures.com/challenge",
     "sourceCapturedAt": "2026-07-27",
@@ -64,9 +66,7 @@
       "Corroborated at https://help.myfundedfutures.com/en/articles/13134709-rapid-plan-50k-a-comprehensive-look",
       "PROMO ACTIVE at capture: coupon \"code\": \"300k\", \"amountOff\": 50.0, \"typeOff\": \"%\", \"recurring\": false - 50% off first month only. Prices above are undiscounted list prices.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-07-27.json"
-    ],
-    "pricingModel": "monthly-subscription",
-    "activationFeeUsd": 0
+    ]
   },
   {
     "firmSlug": "my-funded-futures",
@@ -98,12 +98,14 @@
     "payoutFirstDays": 5,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "overnight": false,
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
+    "pricingModel": "monthly-subscription",
+    "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://myfundedfutures.com/challenge",
     "sourceCapturedAt": "2026-07-27",
@@ -120,9 +122,7 @@
       "Minimum withdrawal $250 (25K) / $500 (50K). Max position size 2 / 3 contracts.",
       "Corroborated at https://help.myfundedfutures.com/en/articles/15072271-flex-plan-50-000-a-comprehensive-guide",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-07-27.json"
-    ],
-    "pricingModel": "monthly-subscription",
-    "activationFeeUsd": 0
+    ]
   },
   {
     "firmSlug": "my-funded-futures",
@@ -159,12 +159,14 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "overnight": false,
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
+    "pricingModel": "monthly-subscription",
+    "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://myfundedfutures.com/challenge",
     "sourceCapturedAt": "2026-07-27",
@@ -180,9 +182,7 @@
       "Most expensive plan per account size and slowest first payout (14 days), but no withdrawal cap (\"capped_withdrawals\": false, \"requestable_pct\": 1.0).",
       "Corroborated at https://help.myfundedfutures.com/en/articles/11802674-pro-plan-sim-funded-and-live-account-highlights",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-07-27.json"
-    ],
-    "pricingModel": "monthly-subscription",
-    "activationFeeUsd": 0
+    ]
   },
   {
     "firmSlug": "my-funded-futures",
@@ -214,12 +214,14 @@
     "payoutFirstDays": 2,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "overnight": false,
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
+    "pricingModel": "monthly-subscription",
+    "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://myfundedfutures.com/challenge",
     "sourceCapturedAt": "2026-07-27",
@@ -238,8 +240,6 @@
       "Builder 25K is the newest product in the catalogue (\"created_at\": \"2026-07-07\"), added ~3 weeks before capture.",
       "Corroborated at https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-07-27.json"
-    ],
-    "pricingModel": "monthly-subscription",
-    "activationFeeUsd": 0
+    ]
   }
 ]

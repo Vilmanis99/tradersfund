@@ -2,7 +2,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getAllPosts, getAllCategories } from '@/lib/mdx'
-import { getAllFirms, getAllChallenges, computeTrueCost } from '@/lib/firms'
+import {
+  getAllFirms,
+  getAllChallenges,
+  computeTrueCost,
+  isChallengeFresh,
+  minimumCostToFundedUsd,
+} from '@/lib/firms'
 import { organizationSchema, websiteSchema, jsonLd } from '@/lib/schema'
 import BlogCard from '@/components/BlogCard'
 import NewsletterForm from '@/components/NewsletterForm'
@@ -10,10 +16,12 @@ import Hero3D from '@/components/Hero3D'
 import AnimatedNumber from '@/components/AnimatedNumber'
 import TiltCard from '@/components/TiltCard'
 import FeaturedFirmSpotlight from '@/components/FeaturedFirmSpotlight'
+import { isNewsletterConfigured } from '@/lib/brevo'
+import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import {
   ArrowRight, ArrowUpRight, TrendingUp, Star, DollarSign, Zap, Percent,
   ShieldCheck, Sparkles, Crown, Flame, Clock, Calculator, Newspaper, Bot, CalendarDays,
-  Handshake, Tag, ExternalLink,
+  Handshake, Tag, ExternalLink, Scale, FileCheck2, BellRing, MapPin,
 } from 'lucide-react'
 
 const firmSlug = (name: string) =>
@@ -24,7 +32,7 @@ const fmtMoney = (n: number) =>
 
 export const metadata: Metadata = {
   title: 'Best Prop Firm Reviews & Comparisons',
-  description: 'Independent prop-firm reviews, side-by-side comparisons, and rule-change alerts. 14 firms reviewed against the same rubric — no marketing fluff.',
+  description: 'Independent prop-firm reviews, side-by-side comparisons, and rule-change alerts. Every firm reviewed against the same rubric.',
   alternates: { canonical: '/' },
   openGraph: {
     title: 'Traders Fund Hub | Best Prop Firm Reviews & Comparisons',
@@ -35,10 +43,31 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
+  const newsletterEnabled = isNewsletterConfigured()
   const firms = getAllFirms()
   const challenges = getAllChallenges()
+  const changeWatchCount = getChallengeWatchEntries().length
   const posts = getAllPosts().slice(0, 6)
   const categories = getAllCategories()
+  const challengesByFirm = new Map(
+    firms.map(firm => {
+      const slug = firmSlug(firm.name)
+      return [slug, challenges.filter(challenge => challenge.firmSlug === slug)]
+    }),
+  )
+  const freshChallenges = challenges.filter(challenge => isChallengeFresh(challenge))
+  const freshFirmSlugs = new Set(
+    [...challengesByFirm.entries()]
+      .filter(([, firmChallenges]) =>
+        firmChallenges.length > 0 && firmChallenges.every(challenge => isChallengeFresh(challenge)))
+      .map(([slug]) => slug),
+  )
+  const freshFirmCount = freshFirmSlugs.size
+  const pricedChallengeCount = freshChallenges.filter(challenge =>
+    challenge.accountSizes.some(tier =>
+      (tier.priceUsd != null && tier.priceUsd > 0) ||
+      (tier.priceEur != null && tier.priceEur > 0)),
+  ).length
 
   // ── Superlatives across the dataset ────────────────────────────
   const ranked = [...firms].sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
@@ -51,7 +80,7 @@ export default function Home() {
   //     then (b) by our editorial score. The score leaderboard below
   //     stays purely score-sorted — rankings are not for sale.
   const partnerFirms = firms
-    .filter(f => f.affiliateUrl)
+    .filter(f => f.affiliateUrl && freshFirmSlugs.has(firmSlug(f.name)))
     .sort((a, b) => {
       const aDisc = a.discountPct ? 1 : 0
       const bDisc = b.discountPct ? 1 : 0
@@ -65,63 +94,89 @@ export default function Home() {
   // leaderboard below stays purely score-sorted. Pitch/bullets are sourced
   // facts only; we deliberately avoid the split number while firms.json (80%)
   // and the challenge file (100%) disagree — reconcile before quoting it.
-  const featuredFirm = firms.find(f => f.name === 'Bright Funded')
+  const featuredFirm = firms.find(f =>
+    f.name === 'Bright Funded' && freshFirmSlugs.has(firmSlug(f.name)))
 
-  const cheapestChallenge = challenges
+  const pricedTiers = freshChallenges
     .flatMap(c => c.accountSizes
-      .filter(t => t.priceUsd != null && t.priceUsd > 0)
-      .map(t => ({ ...t, challenge: c })))
-    .sort((a, b) => a.priceUsd - b.priceUsd)[0]
+      .map(t => ({
+        ...t,
+        challenge: c,
+        minimumCostUsd: minimumCostToFundedUsd(c, t),
+      })))
+    .filter((entry): entry is typeof entry & { minimumCostUsd: number } =>
+      entry.minimumCostUsd != null)
+  const cheapestChallenge = [...pricedTiers]
+    .sort((a, b) => a.minimumCostUsd - b.minimumCostUsd)[0]
   const cheapestFirm = cheapestChallenge
     ? firms.find(f => firmSlug(f.name) === cheapestChallenge.challenge.firmSlug)
     : undefined
 
-  const bestSplit = [...firms]
-    .filter(f => f.profitSplitPct != null)
+  const bestSplitChallenge = freshChallenges
+    .filter(challenge => challenge.profitSplitPct != null)
     .sort((a, b) => (b.profitSplitPct ?? 0) - (a.profitSplitPct ?? 0))[0]
+  const bestSplitFirm = bestSplitChallenge
+    ? firms.find(f => firmSlug(f.name) === bestSplitChallenge.firmSlug)
+    : undefined
 
-  const onDemandFirms = firms.filter(f => f.payoutFrequency === 'on-demand')
+  const onDemandFirmSlugs = new Set(
+    freshChallenges
+      .filter(challenge => challenge.payoutFrequency === 'on-demand')
+      .map(challenge => challenge.firmSlug),
+  )
+  const onDemandFirms = firms.filter(f => onDemandFirmSlugs.has(firmSlug(f.name)))
   const fastestPayout = onDemandFirms
     .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))[0]
 
   // ── True-cost demo using the cheapest entry ────────────────────
-  const demoChallenge = cheapestChallenge
+  const demoChallenge = pricedTiers
+    .filter(entry => entry.challenge.profitSplitPct != null)
+    .sort((a, b) => {
+      const aHasCostLayer = a.minimumCostUsd > (a.priceUsd ?? 0) ? 1 : 0
+      const bHasCostLayer = b.minimumCostUsd > (b.priceUsd ?? 0) ? 1 : 0
+      if (aHasCostLayer !== bHasCostLayer) return bHasCostLayer - aHasCostLayer
+      return a.minimumCostUsd - b.minimumCostUsd
+    })[0]
+  const demoFirm = demoChallenge
+    ? firms.find(f => firmSlug(f.name) === demoChallenge.challenge.firmSlug)
+    : undefined
   const demoCost = demoChallenge
     ? computeTrueCost({
-        priceUsd: demoChallenge.priceUsd!,
+        priceUsd: demoChallenge.minimumCostUsd,
         sizeUsd: demoChallenge.sizeUsd,
-        profitSplitPct: demoChallenge.challenge.profitSplitPct,
-        dailyLossPct: demoChallenge.challenge.dailyLossPct,
+        profitSplitPct: demoChallenge.challenge.profitSplitPct!,
+        dailyLossPct:
+          demoChallenge.dailyLossUsd != null && demoChallenge.sizeUsd > 0
+            ? (demoChallenge.dailyLossUsd / demoChallenge.sizeUsd) * 100
+            : demoChallenge.challenge.dailyLossPct,
         maxLossPct: demoChallenge.challenge.maxLossPct,
+        maxLossUsd: demoChallenge.maxLossUsd,
       })
     : null
 
-  const lastUpdated = firms
-    .map(f => f.lastUpdated)
-    .filter((d): d is string => !!d)
+  const lastUpdated = challenges
+    .map(challenge => challenge.sourceCapturedAt)
     .sort()
     .at(-1)
 
-  const totalChallenges = challenges.length
-
   // ── Picker presets (link straight into the main filter page) ───
   const assetPresets = [
-    { label: 'Forex', href: '/main-table?asset=Forex' },
-    { label: 'Crypto', href: '/main-table?asset=Crypto' },
-    { label: 'Futures', href: '/main-table?asset=Futures' },
-    { label: 'Indices', href: '/main-table?asset=Indices' },
+    { label: 'Forex', href: '/prop-firms?asset=Forex' },
+    { label: 'Crypto', href: '/prop-firms?asset=Crypto' },
+    { label: 'Futures', href: '/prop-firms?asset=Futures' },
+    { label: 'Indices', href: '/prop-firms?asset=Indices' },
   ]
   const sizePresets = [
-    { label: '$10K', href: '/main-table?size=10000' },
-    { label: '$50K', href: '/main-table?size=50000' },
-    { label: '$100K', href: '/main-table?size=100000' },
-    { label: '$200K+', href: '/main-table?size=200000' },
+    { label: '$10K', href: '/prop-firms?size=10000' },
+    { label: '$50K', href: '/prop-firms?size=50000' },
+    { label: '$100K', href: '/prop-firms?size=100000' },
+    { label: '$200K+', href: '/prop-firms?size=200000' },
   ]
   const stylePresets = [
-    { label: 'News trader', href: '/main-table?news=allowed' },
-    { label: 'EA / algo', href: '/main-table?ea=allowed' },
-    { label: 'Overnight hold', href: '/main-table?overnight=allowed' },
-    { label: 'Weekend hold', href: '/main-table?weekend=allowed' },
+    { label: 'News trader', href: '/prop-firms?news=allowed' },
+    { label: 'EA / algo', href: '/prop-firms?ea=allowed' },
+    { label: 'Overnight hold', href: '/prop-firms?overnight=allowed' },
+    { label: 'Weekend hold', href: '/prop-firms?weekend=allowed' },
   ]
 
   return (
@@ -139,37 +194,39 @@ export default function Home() {
 
         <div className="hero-shell hero-shell--split">
           <div className="hero-copy">
-            <Link href="/main-table" className="hero-eyebrow">
+            <Link href="/prop-firm-challenges" className="hero-eyebrow">
               <span className="hero-eyebrow-dot" />
               Live · <AnimatedNumber value={firms.length} duration={1100} /> firms ·{' '}
-              <AnimatedNumber value={totalChallenges} duration={1400} /> challenges priced
+              <AnimatedNumber value={freshChallenges.length} duration={1400} /> fresh products
               <ArrowRight size={12} />
             </Link>
 
             <h1 className="hero-title">
-              Trade <span className="gradient-text gradient-text--animated">other people&apos;s money</span>
-              <br />— find the firm that won&apos;t trap you.
+              Choose a prop firm by the <span className="gradient-text gradient-text--animated">rules</span>
+              <br />— not the account-size headline.
             </h1>
 
             <p className="hero-sub">
-              Every prop firm reviewed against the same rubric. Real prices, real
-              drawdown rules, real payout proofs — no marketing fluff, no buried
-              fine print.
+              Most challenge and funded stages are simulated. Compare source-dated
+              prices, drawdown, payout eligibility, and trading restrictions at product
+              level — plus a stricter evidence screen for India.
             </p>
 
             <div className="hero-cta-row">
-              <Link href="/main-table" className="btn-primary hero-cta-primary btn-glow">
-                Compare all {firms.length} firms <ArrowRight size={16} />
+              <Link href="/prop-firm-challenges" className="btn-primary hero-cta-primary btn-glow">
+                Compare {freshChallenges.length} challenge products <ArrowRight size={16} />
               </Link>
-              <Link href="/blog" className="btn-outline">
-                Read the reviews
+              <Link href="/best-prop-firms-in-india" className="btn-outline">
+                Open the India decision hub
               </Link>
             </div>
 
-            <div className="hero-newsletter">
-              <span className="hero-newsletter-label">Weekly rule-change digest</span>
-              <NewsletterForm />
-            </div>
+            {newsletterEnabled && (
+              <div className="hero-newsletter">
+                <span className="hero-newsletter-label">Weekly rule-change digest</span>
+                <NewsletterForm />
+              </div>
+            )}
           </div>
 
           <div className="hero-3d-wrap">
@@ -185,6 +242,45 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="decision-strip" aria-label="Evidence-first prop-firm decision tools">
+        <div className="home-shell">
+          <div className="decision-strip-grid">
+            <Link href="/prop-firm-challenges" className="decision-strip-card">
+              <span className="decision-strip-icon"><Scale size={17} aria-hidden="true" /></span>
+              <span className="decision-strip-copy">
+                <strong>{freshChallenges.length} product-level rows</strong>
+                <span>Filter, shortlist, and share 2–4 exact products</span>
+              </span>
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
+            <Link href="/methodology" className="decision-strip-card">
+              <span className="decision-strip-icon"><FileCheck2 size={17} aria-hidden="true" /></span>
+              <span className="decision-strip-copy">
+                <strong>First-party sources expire</strong>
+                <span>Every product leaves the table after 30 days</span>
+              </span>
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
+            <Link href="/prop-firm-challenge-changes" className="decision-strip-card">
+              <span className="decision-strip-icon"><BellRing size={17} aria-hidden="true" /></span>
+              <span className="decision-strip-copy">
+                <strong>{changeWatchCount} dated change notes</strong>
+                <span>Verified changes and unresolved source conflicts</span>
+              </span>
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
+            <Link href="/best-prop-firms-in-india" className="decision-strip-card">
+              <span className="decision-strip-icon"><MapPin size={17} aria-hidden="true" /></span>
+              <span className="decision-strip-copy">
+                <strong>India evidence screen</strong>
+                <span>RBI list, country terms, KYC, and payout rails</span>
+              </span>
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════════════════════════ BENTO KPI ═══════════════════════════════ */}
       <section className="home-section">
         <div className="home-shell">
@@ -196,7 +292,7 @@ export default function Home() {
                   <Clock size={13} /> Updated{' '}
                   {new Date(lastUpdated).toLocaleDateString('en-US', {
                     month: 'short', day: 'numeric', year: 'numeric',
-                  })}
+                  })} · {freshFirmCount}/{firms.length} firm datasets fresh
                 </>
               )}
             </span>
@@ -249,13 +345,13 @@ export default function Home() {
               <TiltCard className="bento-tile bento-tile--kpi" max={6}>
                 <Link href={cheapestFirm.reviewUrl} className="bento-tile-link">
                   <span className="bento-tile-eyebrow">
-                    <DollarSign size={12} /> Cheapest entry
+                    <DollarSign size={12} /> Lowest minimum cost
                   </span>
                   <div className="kpi-number">
-                    <AnimatedNumber value={cheapestChallenge.priceUsd!} prefix="$" decimals={0} />
+                    <AnimatedNumber value={cheapestChallenge.minimumCostUsd} prefix="$" decimals={0} />
                   </div>
                   <p className="bento-tile-body">
-                    {cheapestFirm.name} · {fmtMoney(cheapestChallenge.sizeUsd)} {cheapestChallenge.challenge.productName}
+                    {cheapestFirm.name} · {fmtMoney(cheapestChallenge.sizeUsd)} {cheapestChallenge.challenge.productName} · minimum to funded
                   </p>
                   <span className="bento-pick-meta" style={{ marginTop: 'auto', color: 'var(--accent-light)' }}>
                     See challenge <ArrowUpRight size={12} />
@@ -265,21 +361,21 @@ export default function Home() {
             )}
 
             {/* Best split */}
-            {bestSplit && (
+            {bestSplitChallenge && bestSplitFirm && (
               <TiltCard className="bento-tile bento-tile--kpi" max={6}>
-                <Link href={bestSplit.reviewUrl} className="bento-tile-link">
+                <Link href={bestSplitFirm.reviewUrl} className="bento-tile-link">
                   <span className="bento-tile-eyebrow">
-                    <Percent size={12} /> Best profit split
+                    <Percent size={12} /> Highest published split
                   </span>
                   <div className="kpi-number">
-                    <AnimatedNumber value={bestSplit.profitSplitPct!} suffix="%" />
+                    <AnimatedNumber value={bestSplitChallenge.profitSplitPct!} suffix="%" />
                   </div>
                   <p className="bento-tile-body">
-                    {bestSplit.name} keeps the most in your pocket — verified on the
-                    current funded-account spec.
+                    {bestSplitFirm.name} publishes the highest current funded-stage split.
+                    Eligibility and scaling rules still apply.
                   </p>
                   <span className="bento-pick-meta" style={{ marginTop: 'auto', color: 'var(--accent-light)' }}>
-                    Review {bestSplit.name} <ArrowUpRight size={12} />
+                    Review {bestSplitFirm.name} <ArrowUpRight size={12} />
                   </span>
                 </Link>
               </TiltCard>
@@ -290,11 +386,12 @@ export default function Home() {
               <TiltCard className="bento-tile bento-tile--kpi" max={6}>
                 <Link href={fastestPayout.reviewUrl} className="bento-tile-link">
                   <span className="bento-tile-eyebrow">
-                    <Zap size={12} /> Fastest payouts
+                    <Zap size={12} /> On-demand payout schedule
                   </span>
                   <div className="kpi-number kpi-number--text">On-demand</div>
                   <p className="bento-tile-body">
-                    {fastestPayout.name} pays whenever you ask — no fixed cycle to wait for.
+                    {fastestPayout.name} publishes on-demand requests. Profit, KYC, and
+                    eligibility rules still apply.
                   </p>
                   <span className="bento-pick-meta" style={{ marginTop: 'auto', color: 'var(--accent-light)' }}>
                     How it works <ArrowUpRight size={12} />
@@ -311,8 +408,8 @@ export default function Home() {
                   <div className="stat-cell-label">Firms reviewed</div>
                 </div>
                 <div className="stat-cell">
-                  <div className="stat-cell-value"><AnimatedNumber value={totalChallenges} /></div>
-                  <div className="stat-cell-label">Challenges priced</div>
+                  <div className="stat-cell-value"><AnimatedNumber value={pricedChallengeCount} /></div>
+                  <div className="stat-cell-label">Fresh priced products</div>
                 </div>
                 <div className="stat-cell">
                   <div className="stat-cell-value"><AnimatedNumber value={onDemandFirms.length} /></div>
@@ -322,7 +419,7 @@ export default function Home() {
                   <div className="stat-cell-value">
                     <ShieldCheck size={20} style={{ color: 'var(--accent-light)' }} />
                   </div>
-                  <div className="stat-cell-label">Independent · ad-free reviews</div>
+                  <div className="stat-cell-label">Source-dated product data</div>
                 </div>
               </div>
             </div>
@@ -334,13 +431,13 @@ export default function Home() {
       {featuredFirm && (
         <FeaturedFirmSpotlight
           firm={featuredFirm}
-          eyebrow="Start here · best for beginners"
-          pitch="New to funded trading? Bright Funded is the lowest-risk way to test the model — small entry sizes, forgiving static drawdown, and a standing 10% discount that cuts the cost of a first attempt."
+          eyebrow="Commercial partner · EUR-priced plans"
+          pitch="Bright Funded currently publishes 3 challenge paths. Compare the trailing 1-Step with its 2 static-drawdown variants, then judge the final cost and rule set for your account size."
           bullets={[
-            'Entry account sizes from $5,000 — start small while you prove a strategy',
-            'Static drawdown (5% daily / 10% max) — the forgiving variant, not trailing',
-            'MT5 and browser-based TradeLocker — no desktop install required',
-            'Standing 10% discount with our code, applied at checkout',
+            '3 source-checked products and 18 priced account tiers',
+            'Published entry price from €47 for the $5,000 tier',
+            'Trailing 1-Step plus 2 static-drawdown challenge variants',
+            'MT5 and TradeLocker listed in the current firm profile',
           ]}
           fromParam="home-spotlight"
         />
@@ -354,12 +451,12 @@ export default function Home() {
               <div>
                 <h2 className="section-title">
                   <Handshake size={20} style={{ color: 'var(--accent-light)' }} />
-                  Trader-vetted partners
+                  Commercial partners
                 </h2>
                 <p className="section-sub-text">
-                  We&apos;ve trialled, payout-verified, and partner with{' '}
+                  We have commercial relationships with{' '}
                   <AnimatedNumber value={partnerFirms.length} duration={800} />
-                  {' '}firms below. Direct sign-up links — and where we&apos;ve negotiated a discount, the code is right on the card.
+                  {' '}firms below. Affiliate relationships never change editorial scores; available discount codes appear on the card.
                 </p>
               </div>
               <Link href="/methodology" className="section-link">
@@ -406,7 +503,7 @@ export default function Home() {
                       ) : (
                         <div className="partner-discount partner-discount--empty">
                           <span style={{ color: 'var(--muted)', fontSize: '0.78rem' }}>
-                            Verified payouts · partner pricing
+                            Commercial partner · editorial score independent
                           </span>
                         </div>
                       )}
@@ -414,6 +511,7 @@ export default function Home() {
                       <div className="partner-card-actions">
                         <Link
                           href={`/go/${slug}?from=home-partners`}
+                          prefetch={false}
                           rel="sponsored nofollow noopener"
                           target="_blank"
                           className="btn-primary btn-glow partner-card-cta"
@@ -446,7 +544,7 @@ export default function Home() {
                 Scored on conditions, support, payouts and platform. Same rubric for every firm.
               </p>
             </div>
-            <Link href="/main-table" className="section-link">
+            <Link href="/prop-firms" className="section-link">
               See full table <ArrowRight size={14} />
             </Link>
           </div>
@@ -506,11 +604,12 @@ export default function Home() {
                   {isPartner ? (
                     <Link
                       href={`/go/${firmSlug(f.name)}?from=home-leaderboard`}
+                      prefetch={false}
                       rel="sponsored nofollow noopener"
                       target="_blank"
                       className="btn-primary btn-glow leader-cta"
                     >
-                      Get funded <ArrowUpRight size={14} />
+                      View plans <ArrowUpRight size={14} />
                     </Link>
                   ) : (
                     <Link href={f.reviewUrl} className="btn-outline leader-cta">
@@ -570,7 +669,7 @@ export default function Home() {
             </div>
 
             <div className="picker-foot">
-              <Link href="/main-table" className="btn-primary">
+              <Link href="/prop-firms" className="btn-primary">
                 Browse all firms <ArrowRight size={16} />
               </Link>
               <span className="picker-foot-note">
@@ -582,7 +681,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════ TRUE-COST DEMO ═══════════════════════════════ */}
-      {demoChallenge && demoCost && cheapestFirm && (
+      {demoChallenge && demoCost && demoFirm && (
         <section className="home-section home-section--alt">
           <div className="home-shell">
             <div className="truecost-card">
@@ -591,24 +690,25 @@ export default function Home() {
                   <Calculator size={12} /> The True-Cost calculator
                 </span>
                 <h2 className="truecost-title">
-                  A $59 challenge doesn&apos;t mean it costs <span className="gradient-text">$59.</span>
+                  A ${demoChallenge.priceUsd?.toFixed(0)} checkout can mean{' '}
+                  <span className="gradient-text">${demoChallenge.minimumCostUsd.toFixed(0)} to reach funded.</span>
                 </h2>
                 <p className="truecost-text">
-                  We compute the real economics for every challenge: what you have
+                  For priced challenges with verified terms, we compute what you have
                   to <em>actually</em> earn before the fee pays itself back, and
                   how that compares against the firm&apos;s max drawdown. Lower
                   R-multiple = better odds.
                 </p>
-                <Link href={cheapestFirm.reviewUrl} className="btn-outline">
-                  See full breakdown for {cheapestFirm.name} <ArrowRight size={16} />
+                <Link href={demoFirm.reviewUrl} className="btn-outline">
+                  See full breakdown for {demoFirm.name} <ArrowRight size={16} />
                 </Link>
               </div>
 
               <div className="truecost-stats">
                 <div className="truecost-stat">
-                  <div className="truecost-stat-label">Listed fee</div>
+                  <div className="truecost-stat-label">Minimum cost to funded</div>
                   <div className="truecost-stat-value">
-                    <AnimatedNumber value={demoChallenge.priceUsd!} prefix="$" />
+                    <AnimatedNumber value={demoChallenge.minimumCostUsd} prefix="$" />
                   </div>
                 </div>
                 <div className="truecost-stat truecost-stat--accent">
@@ -687,7 +787,7 @@ export default function Home() {
         <div className="home-shell">
           <div className="marquee-head">
             <Bot size={14} style={{ color: 'var(--muted)' }} />
-            <span className="marquee-head-text">Tracked firms · updated continuously</span>
+            <span className="marquee-head-text">Tracked firms · source dates shown</span>
           </div>
           <div className="marquee" aria-hidden>
             <div className="marquee-track">
@@ -717,20 +817,20 @@ export default function Home() {
               Your prop firm shouldn&apos;t be a <span className="gradient-text">surprise.</span>
             </h2>
             <p className="cta-final-sub">
-              Compare every major firm in one table. Filter by rule, payout
-              speed, instrument, and account size — see the answers before you
-              swipe the card.
+              Compare every fresh product in one table. Filter by fee, funded-cost
+              floor, drawdown, payout schedule, and trading rule before you pay.
             </p>
             <div className="cta-final-row">
-              <Link href="/main-table" className="btn-primary cta-final-primary">
-                Open the comparison table <ArrowRight size={18} />
+              <Link href="/prop-firm-challenges" className="btn-primary cta-final-primary">
+                Compare {freshChallenges.length} products <ArrowRight size={18} />
               </Link>
               <Link href="/compare" className="btn-outline">
                 Compare two firms head-to-head
               </Link>
             </div>
             <p className="cta-final-foot">
-              <CalendarDays size={12} /> {lastUpdated && `Data last verified ${lastUpdated}`}
+              <CalendarDays size={12} /> {freshFirmCount}/{firms.length} firm datasets fresh
+              {lastUpdated && ` · latest capture ${lastUpdated}`}
             </p>
           </div>
         </div>

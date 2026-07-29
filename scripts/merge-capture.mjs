@@ -13,25 +13,36 @@
  *
  *   node scripts/merge-capture.mjs                 # preview every capture
  *   node scripts/merge-capture.mjs --write         # apply
- *   node scripts/merge-capture.mjs maven --write   # apply one firm
+ *   node scripts/merge-capture.mjs maven --write --accept-changes
  *   node scripts/merge-capture.mjs --dir <path>    # alternate capture dir
+ *
+ * A write containing material product, price, risk, payout, or rule changes
+ * requires --accept-changes after the editor reviews the field-level diff.
+ * Capture dates and provenance notes do not count as material changes.
  */
 
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {
+  diffChallengeProducts,
+  formatChallengeValue,
+  summarizeChallengeChanges,
+} from './challenge-diff.mjs'
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const CHALLENGES = path.join(ROOT, 'content/data/challenges')
-const DEFAULT_CAPTURE_DIR =
-  'C:\\Users\\karli\\AppData\\Local\\Temp\\claude\\c--Users-karli-Documents-tradersfundhub\\ad1b1ea0-c880-4ba2-bd38-24775b14f844\\scratchpad'
+const DEFAULT_CAPTURE_DIR = path.join(os.tmpdir(), 'tradersfundhub-captures')
 
 const DRAWDOWN_TYPES = ['static', 'trailing', 'eod-trailing', 'balance-based']
 const PAYOUT_FREQUENCIES = ['weekly', 'bi-weekly', 'monthly', 'on-demand']
-const ASSET_CLASSES = ['cfd', 'futures', 'crypto']
+const ASSET_CLASSES = ['cfd', 'futures', 'crypto', 'prediction-markets']
+const PRICING_MODELS = ['one-off', 'monthly-subscription', 'split-payment']
 
 const argv = process.argv.slice(2)
 const write = argv.includes('--write')
+const acceptChanges = argv.includes('--accept-changes')
 const dirFlag = argv.indexOf('--dir')
 const captureDir = dirFlag >= 0 ? argv[dirFlag + 1] : DEFAULT_CAPTURE_DIR
 const only = argv.find((a, i) => !a.startsWith('--') && argv[i - 1] !== '--dir')
@@ -39,6 +50,13 @@ const only = argv.find((a, i) => !a.startsWith('--') && argv[i - 1] !== '--dir')
 /** Normalise "" / "null" / undefined to a real null. Agents serialise the
  *  string "null" for enum fields more often than you'd hope. */
 const nn = v => (v === undefined || v === '' || v === 'null' ? null : v)
+
+const validCaptureDate = value => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value ?? ''))) return false
+  const parsed = new Date(`${value}T00:00:00Z`)
+  if (Number.isNaN(parsed.getTime())) return false
+  return parsed.getTime() <= Date.now()
+}
 
 const num = v => {
   const x = nn(v)
@@ -51,11 +69,42 @@ const bool = v => {
   const x = nn(v)
   if (x === null) return null
   if (typeof x === 'boolean') return x
-  const s = String(x).toLowerCase()
-  if (s === 'restricted') return 'restricted'
+  const s = String(x).trim().toLowerCase()
   if (['true', 'yes', 'allowed'].includes(s)) return true
   if (['false', 'no', 'banned', 'prohibited'].includes(s)) return false
+  if (/^(not allowed|not permitted|prohibited|banned|disallowed)\b/.test(s)) return false
   return null
+}
+
+const projectRule = (where, field, value, problems) => {
+  const x = nn(value)
+  if (x === null || typeof x === 'boolean') return x
+  const s = String(x).trim().toLowerCase()
+  if (s === 'restricted') return 'restricted'
+
+  const exact = bool(x)
+  if (exact !== null) return exact
+  if (/^(restricted|partially allowed)\b/.test(s)) return 'restricted'
+  if (/\bpersonal .+ only\b|\bno third-party\b/.test(s)) return 'restricted'
+  if (/\brestriction\b/.test(s)) return 'restricted'
+  if (field === 'copyTrading' && /\b(immediate account closure|violation consequence)\b/.test(s)) {
+    return false
+  }
+
+  const allows = /\b(allowed|permitted|free to|no restrictions?|no news rule)\b/.test(s)
+  const bans = /\b(not allowed|not permitted|prohibited|banned|disallowed|cannot|can't|must be (?:out|flat|closed)|close all|no positions?)\b/.test(s)
+  const qualified = /\b(only|except|but|however|subject|restriction|window|third-party|publicly|commercially|evaluation|funded|master account|pro or pro\+|affected currencies?)\b/.test(s)
+
+  let projected = null
+  if (allows && (bans || qualified)) projected = 'restricted'
+  else if (allows) projected = true
+  else if (bans && qualified && field !== 'weekend') projected = 'restricted'
+  else if (bans) projected = false
+
+  if (nn(value) !== null && projected === null) {
+    problems.push(`${where}: rules.${field} is non-null but cannot be normalised: ${JSON.stringify(value)}`)
+  }
+  return projected
 }
 
 const enumOrNull = (v, allowed) => {
@@ -80,6 +129,14 @@ function projectProduct(firmSlug, p, capturedAt, problems) {
       // Firms that price in euros (FTMO) keep the figure in its own
       // currency — converting at capture time would bake in a stale FX rate.
       ...(num(t.priceEur) !== null ? { priceEur: num(t.priceEur) } : {}),
+      ...(num(t.payLaterUsd) !== null ? { payLaterUsd: num(t.payLaterUsd) } : {}),
+      ...(num(t.activationFeeUsd) !== null
+        ? { activationFeeUsd: num(t.activationFeeUsd) }
+        : {}),
+      ...(num(t.dailyLossUsd) !== null ? { dailyLossUsd: num(t.dailyLossUsd) } : {}),
+      // Futures firms commonly publish a fixed dollar drawdown per tier
+      // rather than one percentage shared by every account size.
+      ...(num(t.maxLossUsd) !== null ? { maxLossUsd: num(t.maxLossUsd) } : {}),
       // An unstated refund policy is not a refund promise. Preserve null.
       refundable: bool(t.refundable),
     }))
@@ -111,17 +168,6 @@ function projectProduct(firmSlug, p, capturedAt, problems) {
   const rules = p.rules ?? {}
   const notes = Array.isArray(p.notes) ? [...p.notes] : []
 
-  // Fields the Challenge type declares non-nullable. We still write null
-  // rather than guessing a default — a fabricated "static" drawdown is a
-  // worse outcome than a visible gap — but the caller must see it.
-  for (const [field, value] of [
-    ['drawdownType', enumOrNull(p.drawdownType, DRAWDOWN_TYPES)],
-    ['payoutFrequency', enumOrNull(p.payoutFrequency, PAYOUT_FREQUENCIES)],
-    ['profitSplitPct', num(p.profitSplitPct)],
-  ]) {
-    if (value === null) problems.push(`${where}: ${field} unresolved — writing null (schema expects a value)`)
-  }
-
   return {
     firmSlug,
     productName: nn(p.productName) ?? '(unnamed)',
@@ -132,6 +178,15 @@ function projectProduct(firmSlug, p, capturedAt, problems) {
     dailyLossPct: num(p.dailyLossPct),
     maxLossPct: num(p.maxLossPct),
     drawdownType: enumOrNull(p.drawdownType, DRAWDOWN_TYPES),
+    ...(p.fundedDailyLossPct !== undefined
+      ? { fundedDailyLossPct: num(p.fundedDailyLossPct) }
+      : {}),
+    ...(p.fundedMaxLossPct !== undefined
+      ? { fundedMaxLossPct: num(p.fundedMaxLossPct) }
+      : {}),
+    ...(p.fundedDrawdownType !== undefined
+      ? { fundedDrawdownType: enumOrNull(p.fundedDrawdownType, DRAWDOWN_TYPES) }
+      : {}),
     minTradingDays: num(p.minTradingDays),
     maxTradingDays: num(p.maxTradingDays),
     consistencyRulePct: num(p.consistencyRulePct),
@@ -139,18 +194,18 @@ function projectProduct(firmSlug, p, capturedAt, problems) {
     payoutFirstDays: num(p.payoutFirstDays),
     payoutFrequency: enumOrNull(p.payoutFrequency, PAYOUT_FREQUENCIES),
     rules: {
-      news: bool(rules.news),
-      weekend: bool(rules.weekend),
-      overnight: bool(rules.overnight),
-      ea: bool(rules.ea),
-      copyTrading: bool(rules.copyTrading),
+      news: projectRule(where, 'news', rules.news, problems),
+      weekend: projectRule(where, 'weekend', rules.weekend, problems),
+      overnight: projectRule(where, 'overnight', rules.overnight, problems),
+      ea: projectRule(where, 'ea', rules.ea, problems),
+      copyTrading: projectRule(where, 'copyTrading', rules.copyTrading, problems),
     },
     // Futures firms bill the evaluation monthly rather than once. Carrying
     // this through matters: gen-truecost.mjs uses it to print a cost-to-
     // funded total instead of quoting a monthly rate as if it were the
     // whole price.
-    ...(p.pricingModel === 'monthly-subscription'
-      ? { pricingModel: 'monthly-subscription' }
+    ...(enumOrNull(p.pricingModel, PRICING_MODELS)
+      ? { pricingModel: enumOrNull(p.pricingModel, PRICING_MODELS) }
       : {}),
     ...(num(p.activationFeeUsd) !== null ? { activationFeeUsd: num(p.activationFeeUsd) } : {}),
     assetClass,
@@ -169,11 +224,12 @@ if (!fs.existsSync(captureDir)) {
 
 const files = fs
   .readdirSync(captureDir)
-  .filter(f => /^capture-.+\.json$/.test(f))
+  .filter(f =>
+    /^(?:capture-.+|[a-z0-9-]+-\d{4}-\d{2}-\d{2})\.json$/.test(f))
   .filter(f => !only || f.includes(only))
 
 if (!files.length) {
-  console.log(`no capture-*.json files in ${captureDir}${only ? ` matching "${only}"` : ''}`)
+  console.log(`no capture JSON files in ${captureDir}${only ? ` matching "${only}"` : ''}`)
   process.exit(0)
 }
 
@@ -188,9 +244,22 @@ for (const file of files) {
     continue
   }
 
-  const firmSlug = capture.firmSlug
-  const capturedAt = capture.capturedAt ?? '2026-07-27'
+  const firmSlug = nn(capture.firmSlug)
+  const capturedAt = nn(capture.capturedAt)
   const problems = []
+  if (!firmSlug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(firmSlug)) {
+    problems.push(`invalid or missing firmSlug: ${JSON.stringify(firmSlug)}`)
+  }
+  if (!validCaptureDate(capturedAt)) {
+    problems.push(`capturedAt must be a real, non-future YYYY-MM-DD date; got ${JSON.stringify(capturedAt)}`)
+  }
+  if (problems.length) {
+    console.log(`\n✗ ${file}`)
+    for (const problem of problems) console.log(`  · ${problem}`)
+    blocked++
+    continue
+  }
+
   const products = (capture.products ?? []).map(p =>
     projectProduct(firmSlug, p, capturedAt, problems)
   )
@@ -200,6 +269,7 @@ for (const file of files) {
   const priorTiers = prior.flatMap(c => c.accountSizes ?? [])
   const newTiers = products.flatMap(c => c.accountSizes ?? [])
   const priced = newTiers.filter(t => t.priceUsd != null).length
+  const changes = diffChallengeProducts(prior, products)
 
   console.log(`\n${problems.length ? '⚠' : '✓'} ${firmSlug}  (${file})`)
   console.log(
@@ -207,8 +277,29 @@ for (const file of files) {
       `tiers ${priorTiers.length} → ${newTiers.length}   ` +
       `priced ${priorTiers.filter(t => t.priceUsd != null).length} → ${priced}`
   )
+  console.log(
+    `  material changes ${changes.length}` +
+      (changes.length
+        ? ` (${summarizeChallengeChanges(changes)})`
+        : ' (capture date/provenance ignored)'),
+  )
+  for (const item of changes.slice(0, 60)) {
+    console.log(
+      `  [${item.severity.toUpperCase()}][${item.category}] ` +
+      `${item.productName} · ${item.path}: ` +
+      `${formatChallengeValue(item.before)} → ${formatChallengeValue(item.after)}`,
+    )
+  }
+  if (changes.length > 60) {
+    console.log(`  · ${changes.length - 60} additional change(s) omitted from console output`)
+  }
   if (capture.accessNotes) console.log(`  access: ${capture.accessNotes}`)
   for (const p of problems) console.log(`  · ${p}`)
+  if (problems.length) {
+    console.log('  → SKIPPED: capture validation failed')
+    blocked++
+    continue
+  }
 
   // Guard against regression, not against unpriced captures as such.
   // Overwriting priced data with nulls loses real information. But when
@@ -227,6 +318,21 @@ for (const file of files) {
     console.log(
       `  → note: no USD prices resolved${eur ? ` (${eur} tier(s) priced in EUR)` : ''} — ` +
         `merging for the corrected rules and real sourceUrl; pricing gap stays visible`
+    )
+  }
+
+  if (write && changes.length && !acceptChanges) {
+    console.log(
+      '  → SKIPPED: material changes require editorial review; ' +
+      're-run with --accept-changes after checking the diff and challenge-watch draft',
+    )
+    blocked++
+    continue
+  }
+  if (write && changes.length) {
+    console.log(
+      '  → change review acknowledged; update content/data/challenge-watch.json ' +
+      'when the change affects a trader purchase decision',
     )
   }
 

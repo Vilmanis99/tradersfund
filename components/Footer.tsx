@@ -1,30 +1,50 @@
 import Link from 'next/link'
-import { TrendingUp, Twitter, Linkedin, MessageCircle, Youtube } from 'lucide-react'
+import { TrendingUp } from 'lucide-react'
 import NewsletterForm from './NewsletterForm'
 import AnimatedNumber from './AnimatedNumber'
-import { getAllFirms, getAllChallenges } from '@/lib/firms'
+import { getAllFirms, getAllChallenges, isChallengeFresh } from '@/lib/firms'
 import { getAllPosts } from '@/lib/mdx'
+import { isNewsletterConfigured } from '@/lib/brevo'
 
 export default function Footer() {
+  const newsletterEnabled = isNewsletterConfigured()
   const firms = getAllFirms()
   const challenges = getAllChallenges()
   const posts = getAllPosts()
+  const freshChallenges = challenges.filter(challenge => isChallengeFresh(challenge))
+  const pricedChallengeCount = freshChallenges.filter(challenge =>
+    challenge.accountSizes.some(tier =>
+      (tier.priceUsd != null && tier.priceUsd > 0) ||
+      (tier.priceEur != null && tier.priceEur > 0)),
+  ).length
 
-  // Use the newest post's date as the "updated" anchor (falls back to today).
-  const newestDate = posts[0]?.date ? new Date(posts[0].date) : new Date()
-  const updatedLabel = newestDate.toLocaleDateString('en-US', {
+  const latestCapture = challenges
+    .map(challenge => challenge.sourceCapturedAt)
+    .sort()
+    .at(-1)
+  const updatedLabel = latestCapture
+    ? new Date(`${latestCapture}T00:00:00Z`).toLocaleDateString('en-US', {
     month: 'short',
     year: 'numeric',
-  })
+      })
+    : 'Not available'
 
   const propFirmLinks = [
     { label: 'Best Prop Firms 2026', href: '/best-prop-firms-2026' },
-    { label: 'Main Directory', href: '/main-table' },
+    { label: 'Global Directory', href: '/prop-firms' },
+    { label: 'Compare Challenges', href: '/prop-firm-challenges' },
+    { label: 'Challenge Changes', href: '/prop-firm-challenge-changes' },
     { label: 'Best Firms in UK', href: '/best-prop-firms-in-uk' },
     { label: 'Best Firms in US', href: '/best-prop-firms-in-us' },
+    { label: 'Best Firms in India', href: '/best-prop-firms-in-india' },
+    { label: 'India Comparisons', href: '/best-prop-firms-in-india/compare' },
+    { label: 'India Challenge Changes', href: '/best-prop-firms-in-india/challenge-changes' },
     { label: 'Cheapest Firms', href: '/cheapest-prop-firms' },
     { label: 'Discount Codes', href: '/prop-firm-discount-codes' },
     { label: 'Futures Firms', href: '/best-futures-prop-firms' },
+    { label: 'Crypto Firms', href: '/best-crypto-prop-firms' },
+    { label: 'Swing Trading Firms', href: '/best-swing-trading-prop-firms' },
+    { label: 'How Challenges Work', href: '/how-prop-firm-challenges-work' },
   ]
   const reviewLinks = [
     { label: 'FTMO Review', href: '/blog/ftmo-review' },
@@ -60,9 +80,9 @@ export default function Footer() {
           <span className="footer-stat-divider" aria-hidden="true">·</span>
           <div className="footer-stat">
             <span className="footer-stat-num">
-              <AnimatedNumber value={challenges.length} />
+              <AnimatedNumber value={pricedChallengeCount} />
             </span>
-            <span className="footer-stat-label">challenges priced</span>
+            <span className="footer-stat-label">fresh priced products</span>
           </div>
           <span className="footer-stat-divider" aria-hidden="true">·</span>
           <div className="footer-stat">
@@ -90,23 +110,13 @@ export default function Footer() {
             <p className="footer-brand-copy">
               Your trusted source for prop firm reviews, comparisons, and trading education.
             </p>
-            <p className="footer-brand-tagline">Join the TFH family</p>
-            <NewsletterForm />
+            {newsletterEnabled && (
+              <>
+                <p className="footer-brand-tagline">Get the weekly rule-change digest</p>
+                <NewsletterForm />
+              </>
+            )}
 
-            <div className="footer-social">
-              <a href="#" aria-label="Twitter / X" className="footer-social-link">
-                <Twitter size={16} />
-              </a>
-              <a href="#" aria-label="LinkedIn" className="footer-social-link">
-                <Linkedin size={16} />
-              </a>
-              <a href="#" aria-label="Reddit" className="footer-social-link">
-                <MessageCircle size={16} />
-              </a>
-              <a href="#" aria-label="YouTube" className="footer-social-link">
-                <Youtube size={16} />
-              </a>
-            </div>
           </div>
 
           {/* Prop Firms */}

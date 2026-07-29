@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { sendContactEmail } from '@/lib/brevo'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -19,7 +20,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Too many requests. Try again in a minute.' }, { status: 429 })
   }
 
-  let body: { name?: string; email?: string; message?: string; company?: string }
+  let body: {
+    name?: string
+    email?: string
+    message?: string
+    company?: string
+    category?: string
+  }
   try {
     body = await req.json()
   } catch {
@@ -27,11 +34,17 @@ export async function POST(req: Request) {
   }
 
   // Honeypot — bots fill hidden fields.
-  if (body.company) return NextResponse.json({ ok: true, pending: true })
+  if (body.company) {
+    return NextResponse.json({
+      ok: true,
+      message: 'Thanks — your message was sent to our editorial inbox.',
+    })
+  }
 
   const name = body.name?.trim()
   const email = body.email?.trim().toLowerCase()
   const message = body.message?.trim()
+  const category = body.category === 'india-evidence' ? 'india-evidence' : 'contact'
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: 'All fields are required.' }, { status: 400 })
@@ -42,16 +55,25 @@ export async function POST(req: Request) {
   if (message.length < 10) {
     return NextResponse.json({ error: 'Message is too short.' }, { status: 400 })
   }
+  if (name.length > 100 || message.length > 5_000) {
+    return NextResponse.json({ error: 'Your message is too long.' }, { status: 400 })
+  }
 
-  // TODO(brevo): wire to actual delivery (transactional email, Slack webhook, etc).
-  // For now, log the submission so it's visible in dev / hosting logs and tell the
-  // user honestly that delivery isn't live yet — better than the old client-stub
-  // that silently lost every message.
-  console.log(`[contact] ${new Date().toISOString()} ${ip} ${name} <${email}>: ${message.slice(0, 120)}`)
+  const delivery = await sendContactEmail({ name, email, message, category })
+  if (!delivery.ok) {
+    const configurationError = delivery.reason === 'configuration'
+    return NextResponse.json(
+      {
+        error: configurationError
+          ? 'Contact delivery is not configured yet. Please try again later.'
+          : 'We could not send your message. Please try again in a few minutes.',
+      },
+      { status: configurationError ? 503 : 502 },
+    )
+  }
 
   return NextResponse.json({
     ok: true,
-    pending: true,
-    message: "Thanks — your message was logged. We'll respond when our contact pipeline is live.",
+    message: 'Thanks — your message was sent to our editorial inbox.',
   })
 }

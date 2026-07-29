@@ -50,10 +50,10 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
+      "news": "restricted",
+      "weekend": "restricted",
+      "overnight": "restricted",
+      "ea": "restricted",
       "copyTrading": null
     },
     "assetClass": "cfd",
@@ -113,10 +113,10 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
+      "news": "restricted",
+      "weekend": "restricted",
+      "overnight": "restricted",
+      "ea": "restricted",
       "copyTrading": null
     },
     "assetClass": "cfd",

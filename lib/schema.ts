@@ -1,4 +1,4 @@
-import { getChallengesByFirm } from './firms'
+import { getChallengesByFirm, isChallengeFresh } from './firms'
 import type { Firm } from './firms'
 import type { PostMeta } from './mdx'
 
@@ -42,8 +42,8 @@ function notesItemList(items: string[]) {
 }
 
 /**
- * If the post is a firm review, return a rich schema graph (Review +
- * AggregateRating nested inside). Otherwise return a plain Article schema.
+ * If the post is a firm review, return a rich Review graph.
+ * Otherwise return a plain Article schema.
  */
 export function postSchema(post: PostMeta & { content?: string }, allFirms: Firm[]) {
   const postUrl = `${SITE}/blog/${post.slug}`
@@ -68,19 +68,30 @@ export function postSchema(post: PostMeta & { content?: string }, allFirms: Firm
 
   if (!firm) return { '@context': 'https://schema.org', ...baseArticle }
 
-  // Build offers list from this firm's cheapest priced challenge per product.
-  // Skips tiers with null prices to keep schema valid for Google rich results.
+  // Emit only a current, complete checkout price. Monthly subscriptions,
+  // activation fees and split-payment products cannot be represented by a
+  // single unqualified Offer.price without misleading searchers.
   const challenges = getChallengesByFirm(slugify(firm.name))
   const offers = challenges
+    .filter(c =>
+      isChallengeFresh(c) &&
+      c.pricingModel !== 'monthly-subscription' &&
+      c.pricingModel !== 'split-payment' &&
+      (c.activationFeeUsd == null || c.activationFeeUsd === 0))
     .map(c => {
       const cheapest = c.accountSizes
-        .filter(t => t.priceUsd != null && t.priceUsd > 0)
-        .sort((a, b) => a.priceUsd - b.priceUsd)[0]
-      if (!cheapest) return null
+        .filter(t =>
+          t.priceUsd != null &&
+          t.priceUsd > 0 &&
+          (t.payLaterUsd == null || t.payLaterUsd === 0) &&
+          (t.activationFeeUsd == null || t.activationFeeUsd === 0))
+        .sort((a, b) => (a.priceUsd ?? Infinity) - (b.priceUsd ?? Infinity))[0]
+      const price = cheapest?.priceUsd
+      if (!cheapest || price == null) return null
       return {
         '@type': 'Offer',
         name: `${c.productName} — $${cheapest.sizeUsd.toLocaleString()} account`,
-        price: cheapest.priceUsd.toFixed(2),
+        price: price.toFixed(2),
         priceCurrency: 'USD',
         availability: 'https://schema.org/InStock',
         url: SITE + firm.reviewUrl,
@@ -167,11 +178,11 @@ export function breadcrumbSchema(segments: Array<{ name: string; url?: string }>
  * for the page. No aggregateRating is attached — see reviewSchema() for why
  * marking our own editorial score as an aggregate is a policy violation.
  */
-export function itemListSchema(firms: Firm[], featureLabel: string) {
+export function itemListSchema(firms: Firm[], listName: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `Best Prop Firms That Allow ${featureLabel}`,
+    name: listName,
     numberOfItems: firms.length,
     itemListElement: firms.map((firm, i) => ({
       '@type': 'ListItem',

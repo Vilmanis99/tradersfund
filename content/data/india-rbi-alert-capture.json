@@ -1,0 +1,55 @@
+{
+  "capturedAt": "2026-07-28",
+  "sourceListUpdatedAt": "2024-10-22",
+  "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
+  "sourceScope": "RBI says the Alert List contains entities not authorised to deal in forex under FEMA or operate a forex electronic trading platform, and may include promoters of unauthorised entities or ETPs.",
+  "sourceCaveat": "RBI says the list is non-exhaustive and an entity absent from it must not be assumed to be authorised.",
+  "namedMatches": [
+    {
+      "firmSlug": "ftmo",
+      "firmName": "FTMO",
+      "itemNumber": 13,
+      "listedWebsite": "https://ftmo.com/en"
+    },
+    {
+      "firmSlug": "fundednext",
+      "firmName": "FundedNext",
+      "itemNumber": 83,
+      "listedWebsite": "https://fundednext.com"
+    }
+  ],
+  "notFound": [
+    {
+      "firmSlug": "fundingpips",
+      "firmName": "FundingPips"
+    },
+    {
+      "firmSlug": "bright-funded",
+      "firmName": "Bright Funded"
+    },
+    {
+      "firmSlug": "fxify",
+      "firmName": "FXIFY"
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "firmName": "Alpha Capital"
+    },
+    {
+      "firmSlug": "e8-markets",
+      "firmName": "E8 Markets"
+    },
+    {
+      "firmSlug": "city-traders-imperium",
+      "firmName": "City Traders Imperium"
+    },
+    {
+      "firmSlug": "maven",
+      "firmName": "Maven"
+    },
+    {
+      "firmSlug": "tradeify",
+      "firmName": "Tradeify"
+    }
+  ]
+}

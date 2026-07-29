@@ -442,6 +442,7 @@
       "productName": "Buy Now, Pay Later",
       "productSlug": "buy-now-pay-later",
       "phases": 1,
+      "pricingModel": "split-payment",
       "accountSizes": [
         {
           "sizeUsd": 2000,

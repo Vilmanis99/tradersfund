@@ -1,0 +1,44 @@
+{
+  "firmSlug": "city-traders-imperium",
+  "capturedAt": "2026-07-28",
+  "rbiCheck": {
+    "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
+    "sourceListUpdatedAt": "2024-10-22",
+    "result": "not-found",
+    "searchedNames": ["City Traders Imperium", "CTI"]
+  },
+  "sources": [
+    {
+      "url": "https://citytradersimperium.com/2-step-challenge/",
+      "claims": {
+        "country": "The current page names North Korea, Iran, Syria, Cuba, and Russia as restricted and conditions use on local law.",
+        "currency": "The account sizes and one-time challenge fees are displayed in USD."
+      }
+    },
+    {
+      "url": "https://citytradersimperium.com/wp-content/uploads/2025/09/CTI-FZCO-City-Traders-Imperium-Terms-Conditions.pdf",
+      "claims": {
+        "checkout": "The terms describe bank-transfer invoices and make the client responsible for payment-provider transaction fees.",
+        "countryConflict": "The PDF lists four restricted jurisdictions and omits Russia, so completeness remains qualified."
+      }
+    },
+    {
+      "url": "https://citytradersimperium.com/wp-content/uploads/2025/04/City-Traders-Imperium-Terms-and-Conditions.pdf",
+      "claims": {
+        "kyc": "SumSub requests ID, proof of address issued within three months, and live photo or video verification."
+      }
+    },
+    {
+      "url": "https://citytradersimperium.com/cti-payout-proof/",
+      "claims": {
+        "payout": "CTI publishes bank-transfer and cryptocurrency-wallet withdrawals after KYC and rule review."
+      }
+    },
+    {
+      "url": "https://citytradersimperium.com/vip-program-payout/",
+      "claims": {
+        "fees": "Bank transfers are published as fee-free while cryptocurrency may carry service or network fees."
+      }
+    }
+  ]
+}

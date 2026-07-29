@@ -2,65 +2,52 @@
 title: How We Score Prop Firms
 slug: methodology
 date: 2026-06-04
-description: The rubric, weights, and verification process behind every Traders Fund Hub firm review.
+modified: 2026-07-29
+description: What the Traders Fund Hub score means, how product terms are verified, and how affiliate relationships are separated from rankings.
 type: page
 ---
 
-<h2>Our scoring rubric, in one paragraph</h2>
+<h2>What the 0–10 score means</h2>
 
-<p>Every firm in our directory is scored 0–10 on four axes, using the same rubric in the same order. We don&rsquo;t adjust the rubric to favour a firm we partner with, and we don&rsquo;t adjust it to penalise a firm we don&rsquo;t. The four axes are <strong>conditions</strong>, <strong>support</strong>, <strong>payouts</strong>, and <strong>platform</strong>. FTMO is our anchor reference at ~9 on most axes — when we score a new firm, we ask &ldquo;is this firm better or worse than FTMO at <em>X</em>?&rdquo; before we touch a number.</p>
+<p>Our 0–10 score is a directional editorial signal for shortlisting firms; it is not a mathematical result and it is not a substitute for the product table. We consider published trading conditions, payout access, operating history, support evidence, platform coverage, and rule transparency. The account-specific price, drawdown method, profit split, and payout gate remain the deciding facts.</p>
 
-<h2>The four axes</h2>
+<p>The score is deliberately separate from commercial status. An affiliate URL contributes 0 points, and a firm without a partnership can rank above a partner. We do not currently publish four calculated sub-scores because the conditions, support, payouts, and platform fields are not populated consistently enough across all 19 tracked firms.</p>
 
-<h3>1. Conditions</h3>
+<h2>How product terms are verified</h2>
 
-<p>Spreads, leverage, slippage, instrument coverage, and platform stability under load. A 10 means institutional-tier execution. A 5 means mediocre retail. We score this from the firm&rsquo;s real funded-account spec — not the demo, not the marketing page.</p>
+<p>Every numeric challenge claim in a firm review must trace to a <code>sourceUrl</code> and <code>sourceCapturedAt</code> in that firm&rsquo;s challenge dataset. A source must be owned by the firm; a Traders Fund Hub page cannot cite itself. Unverifiable figures are stored as <code>null</code> with an explanatory note instead of being estimated.</p>
 
-<h3>2. Support</h3>
+<p>The release audit enforces a 30-day capture window. We run the freshness queue at least weekly so the oldest product capture surfaces first, but “weekly queue” does not mean every firm changes every 7 days. A product outside the 30-day window fails the release check until its first-party terms are captured again.</p>
 
-<p>Response time, accuracy, and how the firm handles disputed account closures or rule-breach claims. We weigh public Discord and Reddit reports heavily here. A firm that &ldquo;passes&rdquo; the challenge stage but ghosts traders during payout disputes is scored down even when its product looks great on paper.</p>
-
-<h3>3. Payouts</h3>
-
-<p>Speed from approved request to bank or crypto delivery, fee burden, minimum thresholds, and historical reliability. We track this against the firm&rsquo;s claimed cycle — a firm that promises bi-weekly but delivers monthly gets penalised. Public payout proofs (with redacted PII) are how we calibrate this.</p>
-
-<h3>4. Platform</h3>
-
-<p>Native UI and dashboard quality, mobile parity, and account-management features. This is <strong>not</strong> the trading platform itself (that&rsquo;s under <em>Conditions</em>). It&rsquo;s the firm&rsquo;s own portal: does the dashboard show your current drawdown in real time, or do you have to calculate it from your equity curve?</p>
-
-<h2>How we verify numbers</h2>
-
-<p>Every numeric claim on every review traces back to a <code>sourceUrl</code> and <code>sourceCapturedAt</code> in our challenge dataset. Prices, profit splits, daily-drawdown percentages, payout cycles — all captured from the firm&rsquo;s public-facing pages, and re-verified on a rolling schedule. If a firm&rsquo;s website changes a number, we change ours within seven days or we flag the review as stale.</p>
-
-<p>If we can&rsquo;t verify a number against a primary source, we write <code>null</code> in the data and add a note explaining what we&rsquo;d need to confirm it. We never invent fills or estimate &ldquo;typical&rdquo; numbers.</p>
+<p>Material changes that can affect a purchase decision belong in the public challenge-change ledger. “Verified” means the new term is confirmed on a first-party page; “Watch” means a conflict or incomplete source still needs resolution. The ledger keeps the original observation date and a separate last-checked date so history is not rewritten during routine verification.</p>
 
 <h2>The True-Cost calculation</h2>
 
-<p>Every review&rsquo;s True-Cost table is computed in code, not by hand. The function takes the challenge price, account size, profit split, daily-loss cap, and max-loss cap, and returns three numbers:</p>
+<p>Every review&rsquo;s True-Cost table is generated by <code>computeTrueCost()</code> in <code>lib/firms.ts</code>. It uses the published fee, funded account size, profit split, and maximum-loss allowance. Subscription and activation fees are included when the product publishes them, and EUR-denominated fees remain in EUR rather than receiving a fixed exchange-rate conversion.</p>
 
 <ul>
-  <li><strong>Break-even profit</strong>: how much trader-side profit the funded account must generate before the first payout repays the challenge fee.</li>
-  <li><strong>R-multiple</strong>: break-even profit divided by the dollar value of the max-loss cap. <em>R &lt; 1</em> means the trader can afford to lose more than they need to make. <em>R &gt; 1</em> means the math is against them.</li>
-  <li><strong>Days to break even</strong>: how many trading days it would take at +1 % per day (capped at the firm&rsquo;s daily-loss limit).</li>
+  <li><strong>Break-even profit</strong> is the trader-side funded profit required to recover the published cost.</li>
+  <li><strong>R-multiple</strong> divides that break-even amount by the verified maximum-loss allowance.</li>
+  <li><strong>Days to break even</strong> is a standardized scenario at +1% per trading day, capped by the published daily-loss limit.</li>
 </ul>
 
-<p>You can see the function in <code>lib/firms.ts</code> if you want to audit our work. Same inputs always produce the same outputs.</p>
+<p>The table is a comparison model, not a promise that a trader will pass or receive a payout. The same inputs always produce the same outputs, and the review audit checks the table against the challenge dataset so hand-calculated values cannot drift.</p>
 
-<h2>How we handle affiliate relationships</h2>
+<h2>Affiliate relationships</h2>
 
-<p>We earn a commission on some firms when traders sign up through our links. We disclose this on every review page. Our scoring rubric does not change based on whether a firm is a partner. If anything, we&rsquo;re more critical of partners, because we don&rsquo;t want to send our readers to a firm that will burn them.</p>
+<p>We currently have affiliate links only for firms whose <code>affiliateUrl</code> is explicitly configured. Those outbound links are marked <code>sponsored</code>, and the relationship is disclosed on relevant pages. Other firms still link to their first-party public website through our central redirect, but those clicks are not labelled as sponsored.</p>
 
-<p>A firm being on our review list does not mean we have a partnership with them. We review firms because they matter to traders, not because they pay us.</p>
+<p>Affiliate status changes the destination and disclosure, not the score or source requirements. A commercial spotlight is labelled as a partner placement and may use only current, source-dated product facts; an unverified discount is removed after 30 days rather than presented as active.</p>
 
-<h2>What we don&rsquo;t do</h2>
+<h2>Evidence limits</h2>
 
 <ul>
-  <li>We don&rsquo;t accept sponsorship for &ldquo;positive review&rdquo; placement.</li>
-  <li>We don&rsquo;t hide negative findings to keep a partnership intact.</li>
-  <li>We don&rsquo;t republish firm press releases as &ldquo;news.&rdquo;</li>
-  <li>We don&rsquo;t score firms we haven&rsquo;t actually trialled or whose payout history we can&rsquo;t verify.</li>
+  <li>We do not claim that every firm has been personally trialled.</li>
+  <li>We do not award a verified-payout badge without documented payout evidence.</li>
+  <li>Trustpilot figures are displayed as third-party community signals, with their capture date, not as proof that an individual payout will succeed.</li>
+  <li>Missing or conflicting first-party terms stay visible as unknowns or watch items.</li>
 </ul>
 
 <h2>Spot a mistake?</h2>
 
-<p>Every review has a publication and last-updated date in the meta strip. If a number has gone stale or a rule has changed, <a href="/contact">tell us</a> and we&rsquo;ll fix it. Most corrections are live within 48 hours.</p>
+<p>Each review shows its publication or update date, and each challenge record carries its own source-capture date. If a price or rule has changed, use the <a href="/contact">contact page</a> and include the firm-owned source URL. We verify the evidence before changing the dataset or the public challenge ledger.</p>

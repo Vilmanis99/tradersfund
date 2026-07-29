@@ -13,7 +13,9 @@
     "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
     "https://help.fundingpips.com/hc/en-us/articles/34505029138449-Trading-Conduct-and-Security-Standards",
     "https://help.fundingpips.com/hc/en-us/articles/48174287980177-Risk-Per-Trade-Idea",
-    "https://help.fundingpips.com/hc/en-us/articles/45363484760209-Free-Trial"
+    "https://help.fundingpips.com/hc/en-us/articles/45363484760209-Free-Trial",
+    "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+    "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Your-Rewards-Your-Way"
   ],
   "pagesBlocked": [
     "https://fundingpips.com/",
@@ -524,5 +526,15 @@
     "2 Step Standard Phase 1 target is now 8% (was 10%); legacy 10%-target accounts reset as 2 Step Flex.",
     "Weekend holding is currently NOT allowed on Master Accounts across models (temporary change in effect since 29 January 2026) - a review claiming weekend holding is permitted would be wrong as of 2026-07-27.",
     "Zero's 5% max loss is TRAILING on peak equity, not static - do not tabulate it alongside the static limits without a qualifier."
-  ]
+  ],
+  "indiaEvidence": {
+    "country": "FundingPips says it serves 195+ countries, names Iran, Vietnam, and the United Arab Emirates as restricted residents, and offers INR as a selectable account currency. Its footer also invokes international sanctions lists, so the stored three-country list is explicitly non-exhaustive.",
+    "checkout": "Published purchase methods include Visa, Mastercard, Google Pay, Apple Pay, Neteller, Skrill, Paysafe, crypto, and PayPal. The page says availability and fees vary by region; no completed Indian payment is published.",
+    "kyc": "After passing, the process requests government ID, proof of address issued within 3 months, and a selfie. FundingPips says account review can take up to 2 working days, followed by up to 2 days for onboarding.",
+    "payout": "The rewards page publishes card, crypto, Rise, and bank rails, but card and bank are limited to displayed selected-region country lists that omit India. Rise has a $500 minimum and falls back to crypto when unsupported. Crypto is the only captured rail without an India-excluding selected-region list.",
+    "capturedFrom": [
+      "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+      "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Your-Rewards-Your-Way"
+    ]
+  }
 }

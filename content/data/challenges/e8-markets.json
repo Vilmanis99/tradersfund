@@ -59,11 +59,11 @@
     "payoutFirstDays": 3,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": true,
       "overnight": true,
-      "ea": null,
-      "copyTrading": null
+      "ea": true,
+      "copyTrading": true
     },
     "assetClass": "cfd",
     "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
@@ -136,11 +136,11 @@
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
+      "news": true,
       "weekend": true,
       "overnight": true,
-      "ea": null,
-      "copyTrading": null
+      "ea": true,
+      "copyTrading": true
     },
     "assetClass": "cfd",
     "sourceUrl": "https://e8markets.com/e8-pro",
@@ -194,11 +194,11 @@
     "payoutFirstDays": 3,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": true,
+      "weekend": false,
+      "overnight": false,
+      "ea": true,
+      "copyTrading": true
     },
     "assetClass": "cfd",
     "sourceUrl": "https://e8markets.com/e8-signature",

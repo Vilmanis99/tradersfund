@@ -44,11 +44,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": "restricted",
+      "weekend": "restricted",
+      "overnight": "restricted",
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
@@ -107,11 +107,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": "restricted",
+      "weekend": "restricted",
+      "overnight": "restricted",
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
@@ -179,11 +179,11 @@
     "payoutFirstDays": 7,
     "payoutFrequency": "weekly",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": "restricted",
+      "weekend": "restricted",
+      "overnight": "restricted",
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
@@ -246,11 +246,11 @@
     "payoutFirstDays": null,
     "payoutFrequency": null,
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": "restricted",
+      "weekend": "restricted",
+      "overnight": "restricted",
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
@@ -313,11 +313,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": false,
+      "weekend": false,
+      "overnight": "restricted",
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",

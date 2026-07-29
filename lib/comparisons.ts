@@ -64,6 +64,8 @@ export interface Faq { q: string; a: string }
 export interface ComparisonOverlay {
   /** Always alphabetical: e.g. "ftmo-vs-fundednext" */
   matchupSlug: string
+  /** ISO date when every hand-written claim was checked against both firms' current captures. */
+  reviewedAt?: string
   h1: string
   metaDescription: string
   tlDr: string
@@ -80,6 +82,38 @@ export interface ComparisonOverlay {
  * Pages without an entry here render a fully data-driven layout.
  */
 export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
+  'apex-trader-funding-vs-topstep': {
+    matchupSlug: 'apex-trader-funding-vs-topstep',
+    reviewedAt: '2026-07-28',
+    h1: 'Apex Trader Funding vs Topstep (2026): Speed vs Structure',
+    metaDescription:
+      'Apex Trader Funding vs Topstep on evaluation speed, drawdown, payout gates, profit split, automation and total cost using July 2026 first-party terms.',
+    tlDr:
+      'Apex wins on evaluation speed, choice and headline split: its new products can pass in 1 day, offer Intraday or EOD trailing drawdown, apply no evaluation consistency rule and pay 100% of approved Sim Funded requests. Topstep wins on payout access, pricing clarity and longevity: its shortest XFA route begins at 3 trading days with a $125 minimum, all 6 current price paths are verified, and the firm has operated since 2012. The hard Apex trade-off is the PA lifecycle — 5 qualifying days, a $500 request minimum and closure after 6 approved payouts.',
+    verdictByCategory: [
+      // Matchup is alphabetical, so "a" = Apex Trader Funding and "b" = Topstep.
+      { category: 'Evaluation Speed', winner: 'a', reason: 'Apex permits a 1-day pass with no evaluation consistency rule. Topstep requires at least 2 days and keeps the best day below a 50% Consistency Target.' },
+      { category: 'Approved Profit Split', winner: 'a', reason: 'Apex publishes a 100% split on approved Sim Funded PA payouts. Topstep’s standard XFA split is 90%, aside from a legacy-dashboard first-$10,000 exception.' },
+      { category: 'Drawdown Choice', winner: 'a', reason: 'Apex sells both real-time Intraday Trail and End-of-Day Trail evaluations at 4 sizes. Topstep’s current Trading Combine uses end-of-day trailing Maximum Loss Limit mechanics.' },
+      { category: 'First Payout Gate', winner: 'b', reason: 'Topstep’s shortest consistency path starts after 3 trading days with a $125 minimum request. Apex requires 5 qualifying profit days and a $500 minimum.' },
+      { category: 'Funded Account Longevity', winner: 'b', reason: 'Every new Apex PA closes after 6 approved payouts. Topstep has no equivalent fixed 6-request XFA lifecycle and can progress selected traders toward Live Funded.' },
+      { category: 'Automation', winner: 'b', reason: 'Apex prohibits bots, scripts and algorithmic execution. Topstep allows EAs and personal copy trading on its No Activation Fee path, subject to its trading rules.' },
+      { category: 'Pricing Transparency', winner: 'b', reason: 'Topstep’s 6 current monthly prices and $149/$0 activation paths were verified. Apex’s dynamic selector exposed only the $25K Intraday Standard list fee and activation total during this capture.' },
+      { category: 'Track Record', winner: 'b', reason: 'Topstep was founded in 2012, giving it a 9-year head start over Apex Trader Funding’s 2021 launch.' },
+      { category: 'Holding Rules', winner: 'tie', reason: 'Both are day-trading programs: Apex requires flat positions before 4:59 PM ET, and Topstep also prohibits overnight and weekend holding.' },
+    ],
+    whenToPickA:
+      'Pick Apex if you are a manual futures day trader who wants a 1-day evaluation, no evaluation consistency rule and a choice between intraday and end-of-day trailing risk. The $50K EOD path is the most balanced rule set on paper: a $3,000 target, $2,000 maximum loss and $1,000 session DLL. Confirm the live fee first because Apex’s selector and coupon prices change dynamically.',
+    whenToPickB:
+      'Pick Topstep if a $125 payout minimum, a 3-day shortest payout path, transparent pricing and no fixed 6-payout account closure matter more than Apex’s 100% headline split. Topstep is also the clear fit for approved automation users and traders who value a firm operating since 2012 over Apex’s faster 2026 product path.',
+    faqs: [
+      { q: 'Is Apex cheaper than Topstep?', a: 'Not enough Apex prices were independently verified for a full like-for-like answer. The captured $25K Intraday Standard Apex path was $199 list plus $59 activation, while Topstep’s verified current plans start at $49/month plus $149 activation or $95/month with $0 activation.' },
+      { q: 'Which firm can I pass faster?', a: 'Apex. Its new Intraday and EOD evaluations can pass after 1 trading day and have no evaluation consistency rule; Topstep requires at least 2 days and a 50% Consistency Target.' },
+      { q: 'Which firm lets me request less money sooner?', a: 'Topstep. Its shortest XFA route begins after 3 trading days with a $125 minimum, compared with Apex’s 5 qualifying days and $500 minimum.' },
+      { q: 'Can I run an automated futures strategy at Apex or Topstep?', a: 'Not at Apex, which bans bots and algorithmic execution. Topstep’s No Activation Fee path records EAs and personal copy trading as allowed, subject to current platform and conduct rules.' },
+    ],
+  },
+
   'ftmo-vs-fundednext': {
     matchupSlug: 'ftmo-vs-fundednext',
     h1: 'FTMO vs FundedNext (2026): Which Prop Firm Should You Pick?',
@@ -136,6 +170,7 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
 
   'my-funded-futures-vs-topstep': {
     matchupSlug: 'my-funded-futures-vs-topstep',
+    reviewedAt: '2026-07-27',
     h1: 'Topstep vs My Funded Futures (2026): Futures Pioneer vs the New Standard',
     metaDescription:
       'Topstep vs My Funded Futures compared on profit split, payouts, platforms and account sizes. Our 2026 verdict on the two leading US futures prop firms.',
@@ -162,8 +197,40 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
     ],
   },
 
+  'topstep-vs-tradeday': {
+    matchupSlug: 'topstep-vs-tradeday',
+    reviewedAt: '2026-07-28',
+    h1: 'Topstep vs TradeDay (2026): Structure vs Day-One Payout Access',
+    metaDescription:
+      'Topstep vs TradeDay compared on evaluation cost, drawdown, profit split, payout eligibility and rules using first-party data captured in July 2026.',
+    tlDr:
+      'Topstep is the cleaner default for traders who prioritize a 90% funded split, a $125 payout minimum and a 2-day minimum evaluation. TradeDay is the more configurable route: Quick Pay offers day-one funded requests, while Fast Pass keeps end-of-day drawdown and starts at an 80% split. The important catch is product selection — TradeDay Quick Pay begins at a 50% split below $4,000 of net Funded Sim profit, and its End-of-Day evaluation switches to intraday trailing after funding.',
+    verdictByCategory: [
+      // Matchup is alphabetised, so "a" = Topstep and "b" = TradeDay.
+      { category: 'Starting Profit Split', winner: 'a', reason: 'Topstep pays a 90% funded split. TradeDay starts at 50% below $4,000 net on Quick Pay or 80% on Fast Pass, reaching 90% only in Funded Live.' },
+      { category: 'First Payout Eligibility', winner: 'b', reason: 'TradeDay Quick Pay lists a day-one funded request with no payout buffer. Topstep’s shortest published payout path requires 3 trading days under its consistency option.' },
+      { category: 'Minimum Payout', winner: 'a', reason: 'Topstep publishes a $125 minimum payout request; TradeDay publishes a $250 minimum on both Quick Pay and Fast Pass.' },
+      { category: 'Evaluation Speed', winner: 'a', reason: 'Topstep says a Trading Combine can pass in as few as 2 days. TradeDay’s current cards require 3 days on Fast Pass or 5 days on Quick Pay.' },
+      { category: 'Evaluation Drawdown Choice', winner: 'b', reason: 'TradeDay offers intraday trailing and end-of-day trailing evaluation paths. Topstep’s current Combine uses one end-of-day trailing Maximum Loss Limit across its account paths.' },
+      { category: 'Funded Drawdown Continuity', winner: 'a', reason: 'Topstep keeps its end-of-day trailing Maximum Loss Limit logic into the XFA. TradeDay Quick Pay End of Day switches to intraday trailing after the evaluation; only Fast Pass keeps EOD mechanics.' },
+      { category: 'Activation Fee Choice', winner: 'tie', reason: 'TradeDay’s 9 current cards state no activation fee. Topstep offers a no-activation path but charges a higher monthly subscription; its lower-monthly Standard path adds $149 after passing.' },
+      { category: 'News Trading', winner: 'tie', reason: 'Both are restricted rather than fully open: TradeDay requires a 2-minute buffer on each side of tier-1 releases, while Topstep prohibits purposefully entering full size into scheduled major news.' },
+    ],
+    whenToPickA:
+      'Pick Topstep if a 90% split from the funded stage, a $125 minimum payout and a 2-day evaluation floor matter more than withdrawing on the first funded day. It is also the simpler choice for a trader who does not want TradeDay’s Quick Pay split ladder or an EOD-to-intraday drawdown change after passing.',
+    whenToPickB:
+      'Pick TradeDay if you want to choose between intraday and end-of-day evaluation drawdown and value Quick Pay’s day-one request more than its initial 50% split. Fast Pass is the better TradeDay route for traders who want an 80% Funded Sim split and EOD drawdown continuity, but it requires 5 profitable payout days and caps requests by tier.',
+    faqs: [
+      { q: 'Is TradeDay cheaper than Topstep?', a: 'At the prices captured July 28, 2026, TradeDay’s promotional monthly range was $59–$225. Topstep’s current paths were $49–$199 per month plus $149 activation, or $95–$229 per month with no activation. The cheaper first-month path depends on account size and whether you include Topstep’s after-pass fee.' },
+      { q: 'Which firm lets me request a payout sooner?', a: 'TradeDay Quick Pay lists a day-one funded request with no buffer and a $250 minimum. Topstep’s shortest published consistency path requires 3 trading days but lowers the request minimum to $125.' },
+      { q: 'Which drawdown is easier to manage?', a: 'For evaluation, both offer an end-of-day trailing route; TradeDay also offers intraday trailing. After passing, Topstep keeps EOD trailing, TradeDay Fast Pass keeps EOD trailing, and TradeDay Quick Pay uses intraday trailing — the exact product matters more than the firm name.' },
+      { q: 'Do Topstep and TradeDay allow overnight futures positions?', a: 'No. Both require day trading and positions closed by the session cutoff, so neither fits an overnight or weekend futures strategy.' },
+    ],
+  },
+
   'take-profit-trader-vs-topstep': {
     matchupSlug: 'take-profit-trader-vs-topstep',
+    reviewedAt: '2026-07-27',
     h1: 'Take Profit Trader vs Topstep (2026): No Daily Limit vs the Futures Veteran',
     metaDescription:
       'Take Profit Trader vs Topstep compared on profit split, drawdown, payouts, and track record. Our 2026 verdict on which futures prop firm wins for which trader.',
@@ -323,34 +390,29 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
     ],
   },
 
-  'bright-funded-vs-maven': {
-    matchupSlug: 'bright-funded-vs-maven',
-    h1: 'Bright Funded vs Maven (2026): Two Budget-Tier Firms, Compared',
-    metaDescription:
-      'Bright Funded vs Maven: both 2023 entry-tier firms on 80% splits, MT5 and TradeLocker, static drawdown. We compare payout cadence, allocation, and scaling.',
-    tlDr:
-      'These are two 2023 entry-tier firms with a lot in common: an 80% split, MT5 and TradeLocker support, and static drawdown. Maven pays bi-weekly and doubles the allocation ceiling ($800K vs $400K). Bright Funded answers with a published scaling plan and a standing 10% discount, but pays monthly. It’s a close call at the budget end — Maven for faster payouts and a bigger ceiling, Bright Funded for the scaling path and the discount.',
-    verdictByCategory: [
-      { category: 'Profit Split', winner: 'tie', reason: 'Both pay an 80% split on the funded account — identical headline economics at the entry tier.' },
-      { category: 'Payout Frequency', winner: 'b', reason: 'Maven pays bi-weekly; Bright Funded pays monthly. Maven gets you to cash twice as often.' },
-      { category: 'Max Allocation', winner: 'b', reason: 'Maven scales to $800K versus Bright Funded’s $400K ceiling — double the headroom for traders who stack.' },
-      { category: 'Scaling Plan', winner: 'a', reason: 'Bright Funded publishes a scaling plan; Maven has none listed. If a clear growth path matters, Bright Funded has it.' },
-      { category: 'Platforms', winner: 'tie', reason: 'Both run MT5 and TradeLocker — the same platform pairing, with TradeLocker’s browser-based access on each.' },
-    ],
-    whenToPickA:
-      'Pick Bright Funded if you want a defined scaling path from a budget-tier firm and want to use a standing 10% discount to lower the entry cost further. You accept a monthly payout cadence and a lower $400K ceiling in exchange. It suits a trader testing a strategy at small stakes who wants a clear route to a bigger account.',
-    whenToPickB:
-      'Pick Maven if you want faster (bi-weekly) payouts and a higher $800K allocation ceiling at the same 80% split. The trade-off is no published scaling plan, so the long-term growth path is less defined. It’s the better pick if cadence and ceiling matter more than a structured scaling program.',
-    faqs: [
-      { q: 'Bright Funded is your affiliate partner — does that change the verdict?', a: 'No. On the data, Maven genuinely wins payout cadence and allocation, and we say so. Bright Funded earns its edge on scaling and the discount, not on the partnership. We mark partners but don’t tilt the call.' },
-      { q: 'Are these firms safe at the budget tier?', a: 'Both are 2023 firms with shorter track records than the established names — normal for the entry tier. Treat either as a place to test a strategy at low stakes, and read the current rules page before paying. Use the discount where available to lower the cost of a failed attempt.' },
-      { q: 'Which is cheaper to start?', a: 'Both sit at the budget end. Bright Funded’s standing 10% discount can make it the cheaper entry once applied; confirm the live price on each before buying, since entry fees and promos shift.' },
-    ],
-  },
 }
 
 export function getOverlay(matchupSlug: string): ComparisonOverlay | undefined {
-  return COMPARISON_OVERLAYS[matchupSlug]
+  const overlay = COMPARISON_OVERLAYS[matchupSlug]
+  if (!overlay?.reviewedAt) return undefined
+
+  const parsed = parseMatchup(matchupSlug)
+  if (!parsed) return undefined
+
+  const firmA = findFirmBySlug(parsed.a)
+  const firmB = findFirmBySlug(parsed.b)
+  const latestFirmUpdate = [firmA?.lastUpdated, firmB?.lastUpdated]
+    .filter((value): value is string => Boolean(value))
+    .sort()
+    .at(-1)
+
+  // Hand-written copy fails closed when either firm's aggregate is newer.
+  // The page remains useful because it falls back to the current spec table.
+  if (!firmA || !firmB || !latestFirmUpdate || overlay.reviewedAt < latestFirmUpdate) {
+    return undefined
+  }
+
+  return overlay
 }
 
 /* ── Per-row comparison + winner algorithm ────────────────────── */
@@ -383,6 +445,7 @@ function fmtList(v: unknown): string {
 function fmtBool(v: unknown): string {
   if (v === true) return 'Yes'
   if (v === false) return 'No'
+  if (v === 'restricted') return 'Restricted'
   return '—'
 }
 
@@ -397,7 +460,8 @@ function fmtPct(v: unknown): string {
 
 function parseAllocation(v: unknown): number {
   if (typeof v !== 'string') return 0
-  const cleaned = v.replace(/[^0-9.]/g, '')
+  const firstAmount = v.match(/\$?\s*([\d,]+(?:\.\d+)?)/)?.[1]
+  const cleaned = firstAmount?.replace(/,/g, '') ?? ''
   return parseFloat(cleaned) || 0
 }
 
@@ -445,7 +509,12 @@ function compareWinner(kind: SpecKind, a: unknown, b: unknown): WinnerSide | nul
     }
     case 'boolean-true':
       if (a === b) return 'tie'
-      return a ? 'a' : 'b'
+      {
+        const rank = (value: unknown) =>
+          value === true ? 2 : value === 'restricted' ? 1 : value === false ? 0 : -1
+        const ra = rank(a), rb = rank(b)
+        return ra > rb ? 'a' : rb > ra ? 'b' : 'tie'
+      }
     case 'list-overlap': {
       const la = Array.isArray(a) ? a.length : 0
       const lb = Array.isArray(b) ? b.length : 0
@@ -481,7 +550,10 @@ export function buildSpecTable(firmA: Firm, firmB: Firm): SpecRow[] {
     { label: 'Founded', kind: 'display-only', getA: f => f.founded, getB: f => f.founded },
     { label: 'Platforms', kind: 'list-overlap', getA: f => f.platforms, getB: f => f.platforms, format: fmtList },
     { label: 'Assets', kind: 'list-overlap', getA: f => f.assets, getB: f => f.assets, format: fmtList },
-    { label: 'Payout Methods', kind: 'list-overlap', getA: f => f.payoutMethods ?? [], getB: f => f.payoutMethods ?? [], format: fmtList },
+    // Preserve unknown as unknown. Coercing a missing payout-method capture
+    // to [] made the other firm "win" by default even though the comparison
+    // had no evidence for one side.
+    { label: 'Payout Methods', kind: 'list-overlap', getA: f => f.payoutMethods, getB: f => f.payoutMethods, format: fmtList },
     { label: 'EAs Allowed', kind: 'boolean-true', getA: f => f.eaAllowed, getB: f => f.eaAllowed, format: fmtBool },
     { label: 'News Trading', kind: 'boolean-true', getA: f => f.newsTradingAllowed, getB: f => f.newsTradingAllowed, format: fmtBool },
     { label: 'Overnight Holding', kind: 'boolean-true', getA: f => f.overnightAllowed, getB: f => f.overnightAllowed, format: fmtBool },

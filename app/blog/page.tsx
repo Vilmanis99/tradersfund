@@ -202,7 +202,7 @@ export default function BlogPage() {
               Side-by-side specs, filtered by what actually matters to your style.
             </p>
             <div className="cta-final-row">
-              <Link href="/main-table" className="btn-primary btn-glow">
+              <Link href="/prop-firms" className="btn-primary btn-glow">
                 Open the comparison table <ArrowRight size={16} />
               </Link>
             </div>

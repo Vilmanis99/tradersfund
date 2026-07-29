@@ -134,7 +134,7 @@ export default async function CategoryPage({ params }: Props) {
             <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
               The full firm directory has every spec side-by-side.
             </p>
-            <Link href="/main-table" className="btn-primary btn-glow">
+            <Link href="/prop-firms" className="btn-primary btn-glow">
               Open the comparison table <ArrowRight size={16} />
             </Link>
           </div>

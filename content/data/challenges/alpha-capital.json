@@ -49,11 +49,11 @@
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one",
@@ -113,11 +113,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": "restricted",
+      "weekend": "restricted",
+      "overnight": "restricted",
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://alphacapitalgroup.uk/posts/alpha-capital-rules-explained-drawdown-profit-targets-daily-loss-and-evaluation-rules-2026",
@@ -177,11 +177,11 @@
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
@@ -237,11 +237,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
-      "weekend": null,
+      "news": "restricted",
+      "weekend": true,
       "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
@@ -303,11 +303,11 @@
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
-      "weekend": null,
+      "news": "restricted",
+      "weekend": false,
       "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "ea": false,
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",

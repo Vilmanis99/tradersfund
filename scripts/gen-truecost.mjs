@@ -19,7 +19,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { computeTrueCost } from '../lib/firms.ts'
+import { computeTrueCost, minimumCostToFundedUsd } from '../lib/firms.ts'
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 
@@ -44,8 +44,8 @@ const TH = 'padding: 8px 12px; text-align: left;'
 const TD = 'padding: 8px 12px; border-bottom: 1px solid var(--border);'
 const TD_LAST = 'padding: 8px 12px;'
 
-const money = n =>
-  '$' + Math.round(n).toLocaleString('en-US')
+const money = (n, currency = 'USD') =>
+  (currency === 'EUR' ? '€' : '$') + Math.round(n).toLocaleString('en-US')
 
 const sizeLabel = n =>
   n % 1000 === 0 ? `$${n / 1000}K` : `$${n.toLocaleString('en-US')}`
@@ -53,7 +53,7 @@ const sizeLabel = n =>
 const challenges = JSON.parse(fs.readFileSync(file, 'utf-8'))
 const products = challenges.filter(c => {
   if (onlyProduct && c.productName !== onlyProduct) return false
-  return (c.accountSizes ?? []).some(t => t.priceUsd != null)
+  return (c.accountSizes ?? []).some(t => t.priceUsd != null || t.priceEur != null)
 })
 
 if (!products.length) {
@@ -65,7 +65,12 @@ if (!products.length) {
 }
 
 for (const c of products) {
-  const tiers = (c.accountSizes ?? []).filter(t => t.priceUsd != null)
+  const accountSizes = c.accountSizes ?? []
+  const hasUsd = accountSizes.some(t => t.priceUsd != null)
+  const currency = hasUsd ? 'USD' : 'EUR'
+  const tiers = accountSizes.filter(t =>
+    currency === 'USD' ? t.priceUsd != null : t.priceEur != null
+  )
   const split = c.profitSplitPct
   const ddPct = c.maxLossPct
   const dailyPct = c.dailyLossPct
@@ -76,11 +81,21 @@ for (const c of products) {
   // is also what keeps the audit's fee-vs-JSON check from comparing a
   // composite against a single tier price.
   const subscription = c.pricingModel === 'monthly-subscription'
+  const splitPayment = c.pricingModel === 'split-payment'
   const activation = c.activationFeeUsd ?? 0
-  const costOf = price => (subscription ? price + activation : price)
-  const feeHeader = subscription
-    ? `Cost to funded (1 mo${activation ? ` + $${activation} activation` : ''})`
-    : 'Fee'
+  const hasTierActivation = tiers.some(t => t.activationFeeUsd != null)
+  const costOf = tier =>
+    currency === 'USD' ? minimumCostToFundedUsd(c, tier) : tier.priceEur
+  const feeHeader =
+    currency === 'EUR'
+      ? 'Fee (EUR)'
+      : subscription
+        ? `Cost to funded (1 mo${activation ? ` + $${activation} activation` : ''})`
+        : splitPayment
+          ? 'Cost to funded (upfront + after pass)'
+          : hasTierActivation
+            ? 'Cost to funded (fee + tier activation)'
+          : 'Fee'
 
   if (split == null) {
     console.error(`\n<!-- SKIPPED ${c.productName}: profitSplitPct is null, break-even is undefined -->`)
@@ -90,32 +105,67 @@ for (const c of products) {
   // Mirror the drawdown wording so a reader can see which cap the
   // R-multiple is measured against — "vs 10% max DD" vs "vs 6% trailing
   // max DD" are different claims.
+  // A EUR fee against a USD account has no honest R-multiple or day count
+  // until an EUR/USD rate is captured. The fee / split break-even remains
+  // valid in EUR-equivalent profit, so emit that and omit the mixed-currency
+  // columns instead of baking in an exchange rate that immediately rots.
+  const hasTierDollarDrawdown =
+    currency === 'USD' && tiers.some(t => t.maxLossUsd != null && t.maxLossUsd > 0)
+  const hasTierDollarDailyLoss =
+    currency === 'USD' && tiers.some(t => t.dailyLossUsd != null && t.dailyLossUsd > 0)
   const ddLabel =
-    ddPct == null
+    currency === 'EUR'
       ? null
-      : `R-multiple vs ${ddPct}%${c.drawdownType === 'trailing' ? ' trailing' : ''} max DD`
+      : hasTierDollarDrawdown
+        ? 'R-multiple vs tier max loss'
+        : ddPct == null
+          ? null
+          : `R-multiple vs ${ddPct}%${c.drawdownType === 'trailing' ? ' trailing' : ''} max DD`
   const daysLabel =
-    dailyPct != null ? `Days @ 1%/day (${dailyPct}% daily cap)` : 'Days @ 1%/day'
+    currency === 'EUR'
+      ? null
+      : dailyPct != null
+        ? `Days @ 1%/day (${dailyPct}% daily cap)`
+        : 'Days @ 1%/day'
 
-  const headers = ['Tier', feeHeader, `Break-even profit (${split}% split)`]
+  const headers = [
+    'Tier',
+    feeHeader,
+    `Break-even profit (${split}% split${currency === 'EUR' ? ', EUR' : ''})`,
+  ]
+  if (hasTierDollarDailyLoss) headers.push('Daily loss')
+  if (hasTierDollarDrawdown) headers.push('Max loss')
   if (ddLabel) headers.push(ddLabel)
-  headers.push(daysLabel)
+  if (daysLabel) headers.push(daysLabel)
 
   const rows = tiers.map((t, i) => {
+    const minimumCost = costOf(t)
+    if (minimumCost == null) return ''
+    const tierDailyLossPct =
+      t.dailyLossUsd != null && t.sizeUsd > 0
+        ? (t.dailyLossUsd / t.sizeUsd) * 100
+        : dailyPct ?? 100
     const { breakEvenProfit, rMultiple, dayCount } = computeTrueCost({
-      priceUsd: costOf(t.priceUsd),
+      priceUsd: minimumCost,
       sizeUsd: t.sizeUsd,
       profitSplitPct: split,
-      dailyLossPct: dailyPct ?? 100,
+      dailyLossPct: tierDailyLossPct,
       maxLossPct: ddPct,
+      maxLossUsd: t.maxLossUsd,
     })
     const td = i === tiers.length - 1 ? TD_LAST : TD
     const cells = [
       sizeLabel(t.sizeUsd),
-      money(costOf(t.priceUsd)),
-      money(breakEvenProfit),
+      money(minimumCost, currency),
+      money(breakEvenProfit, currency),
+      ...(hasTierDollarDailyLoss
+        ? [t.dailyLossUsd != null ? money(t.dailyLossUsd) : '—']
+        : []),
+      ...(hasTierDollarDrawdown
+        ? [t.maxLossUsd != null ? money(t.maxLossUsd) : '—']
+        : []),
       ...(ddLabel ? [rMultiple != null ? rMultiple.toFixed(2) : '—'] : []),
-      dayCount != null ? String(dayCount) : '—',
+      ...(daysLabel ? [dayCount != null ? String(dayCount) : '—'] : []),
     ]
     return `    <tr>${cells.map(v => `<td style="${td}">${v}</td>`).join('')}</tr>`
   })

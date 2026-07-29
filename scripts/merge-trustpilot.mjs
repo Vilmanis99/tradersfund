@@ -19,18 +19,33 @@
  */
 
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const FIRMS = path.join(ROOT, 'content/data/firms.json')
+const argv = process.argv.slice(2)
+const dirFlag = argv.indexOf('--dir')
 const CAPTURE_DIR =
-  'C:\\Users\\karli\\AppData\\Local\\Temp\\claude\\c--Users-karli-Documents-tradersfundhub\\ad1b1ea0-c880-4ba2-bd38-24775b14f844\\scratchpad'
+  dirFlag >= 0
+    ? argv[dirFlag + 1]
+    : path.join(os.tmpdir(), 'tradersfundhub-captures')
 
-const write = process.argv.includes('--write')
+const write = argv.includes('--write')
 const norm = s => String(s ?? '').toLowerCase().replace(/[^a-z0-9]/g, '')
+const validCaptureDate = value => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value ?? ''))) return false
+  const parsed = new Date(`${value}T00:00:00Z`)
+  return !Number.isNaN(parsed.getTime()) && parsed.getTime() <= Date.now()
+}
 
 const SUPPRESSED_RE = /breach of (our|their) guidelines|rating is unavailable|suppress/i
+
+if (!CAPTURE_DIR || !fs.existsSync(CAPTURE_DIR)) {
+  console.error(`capture dir not found: ${CAPTURE_DIR ?? '(missing --dir value)'}`)
+  process.exit(1)
+}
 
 const batches = fs
   .readdirSync(CAPTURE_DIR)
@@ -52,6 +67,11 @@ let applied = 0
 const unmatched = []
 
 for (const cap of captures) {
+  if (!validCaptureDate(cap.capturedAt)) {
+    console.log(`~ ${cap.firm ?? '(unnamed)'}: invalid or missing capturedAt — skipping`)
+    continue
+  }
+
   const capName = norm(cap.firm)
   // Capture names carry the legal suffix our firms.json omits ("Alpha
   // Capital Group" vs "Alpha Capital"), so accept a prefix match either way.
@@ -78,7 +98,7 @@ for (const cap of captures) {
   if (cap.trustpilotUrl) firm.trustpilotUrl = cap.trustpilotUrl
   if (suppressed) firm.trustpilotRatingSuppressed = true
   else delete firm.trustpilotRatingSuppressed
-  firm.trustpilotCapturedAt = cap.capturedAt ?? '2026-07-27'
+  firm.trustpilotCapturedAt = cap.capturedAt
 
   applied++
   console.log(

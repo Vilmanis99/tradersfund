@@ -322,31 +322,37 @@
       {
         "sizeUsd": 2000,
         "priceUsd": 5,
+        "payLaterUsd": 40,
         "refundable": true
       },
       {
         "sizeUsd": 5000,
         "priceUsd": 5,
+        "payLaterUsd": 69,
         "refundable": true
       },
       {
         "sizeUsd": 10000,
         "priceUsd": 5,
+        "payLaterUsd": 117,
         "refundable": true
       },
       {
         "sizeUsd": 20000,
         "priceUsd": 5,
+        "payLaterUsd": 189,
         "refundable": true
       },
       {
         "sizeUsd": 50000,
         "priceUsd": 5,
+        "payLaterUsd": 359,
         "refundable": true
       },
       {
         "sizeUsd": 100000,
         "priceUsd": 5,
+        "payLaterUsd": 589,
         "refundable": true
       }
     ],
@@ -356,6 +362,9 @@
     "dailyLossPct": null,
     "maxLossPct": 10,
     "drawdownType": "static",
+    "fundedDailyLossPct": 4,
+    "fundedMaxLossPct": 8,
+    "fundedDrawdownType": "trailing",
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 20,
@@ -369,6 +378,7 @@
       "ea": false,
       "copyTrading": false
     },
+    "pricingModel": "split-payment",
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
     "sourceCapturedAt": "2026-07-27",
@@ -491,7 +501,7 @@
       "ea": false,
       "copyTrading": false
     },
-    "assetClass": null,
+    "assetClass": "prediction-markets",
     "sourceUrl": "https://maventrading.com/pricing",
     "sourceCapturedAt": "2026-07-27",
     "notes": [
@@ -549,7 +559,7 @@
       "ea": false,
       "copyTrading": false
     },
-    "assetClass": null,
+    "assetClass": "prediction-markets",
     "sourceUrl": "https://maventrading.com/pricing",
     "sourceCapturedAt": "2026-07-27",
     "notes": [

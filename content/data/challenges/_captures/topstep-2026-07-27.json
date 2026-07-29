@@ -18,6 +18,8 @@
   "products": [
     {
       "productName": "Trading Combine - Standard Path",
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 149,
       "productSlug": "trading-combine-standard-path",
       "phases": 1,
       "accountSizes": [
@@ -98,6 +100,8 @@
     },
     {
       "productName": "Trading Combine - No Activation Fee Path",
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 0,
       "productSlug": "trading-combine-no-activation-fee-path",
       "phases": 1,
       "accountSizes": [

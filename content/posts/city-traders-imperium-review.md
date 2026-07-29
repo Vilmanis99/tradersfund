@@ -12,7 +12,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 
-<p>City Traders Imperium is the right pick for swing and position traders who need an unlimited-time evaluation environment and a long-horizon funded account structure.</p>
+<p>City Traders Imperium suits swing and position traders who need its 2-Step unlimited-time evaluation rule.</p>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>
@@ -138,7 +138,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p>CTI runs <strong>monthly payouts</strong> with bank wire and crypto methods. The slower cadence vs bi-weekly competitors is consistent with the firm's long-horizon trader positioning — monthly cycles pair naturally with swing/position trading.</p>
+<p>CTI runs <strong>1 payout window per month</strong> with bank wire and crypto methods. The slower cadence versus bi-weekly competitors fits the firm’s long-horizon swing and position structure.</p>
 
 <p>Community signal: Trustpilot reviews are present from CTI's 8-year operating history with a 4.5/5 cluster. Payout reliability through multiple market cycles is the meaningful credibility signal.</p>
 

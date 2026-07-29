@@ -1,0 +1,263 @@
+{
+  "firmSlug": "tradeday",
+  "officialDomain": "https://www.tradeday.com",
+  "pagesRead": [
+    "https://www.tradeday.com/",
+    "https://www.tradeday.com/how-it-works",
+    "https://www.tradeday.com/terms-and-conditions",
+    "https://www.tradeday.com/blog-posts/trading-economic-data-releases",
+    "https://www.tradeday.com/blog-posts/tradeday-2-0---the-next-evolution-of-prop-trading",
+    "https://www.tradeday.com/about",
+    "https://www.trustpilot.com/review/tradeday.com"
+  ],
+  "accessNotes": "TradeDay's current homepage exposes all nine TradeDay 2.0 pricing cards in server-rendered HTML. Prices captured here are the live 55%-off prices displayed on 2026-07-28 with code TDNEW, not the crossed-out list prices. The homepage and /how-it-works disagree on Fast Pass minimum evaluation days: the current product cards say 'Min trading days 3', while /how-it-works says 'No minimum on Fast Pass.' The specific live product cards were used and the conflict is preserved in notes. Older /our-pricing search results describe a previous product set and were not used. TradeDay states that subscriptions are non-refundable and rebill until passed or cancelled. No geo-block was encountered.",
+  "capturedAt": "2026-07-28",
+  "products": [
+    {
+      "productName": "Quick Pay - Intraday",
+      "productSlug": "quick-pay-intraday",
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 0,
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 59,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "Homepage card: 'Intraday' / '50k' / '$131' / '$59 per month'; 'Resets $59'; 'No activation fee'."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 108,
+          "maxLossUsd": 3000,
+          "refundable": false,
+          "evidence": "Homepage card: 'Intraday' / '100k' / '$240' / '$108 per month'; 'Resets $108'; 'No activation fee'."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 162,
+          "maxLossUsd": 4500,
+          "refundable": false,
+          "evidence": "Homepage card: 'Intraday' / '150k' / '$360' / '$162 per month'; 'Resets $162'; 'No activation fee'."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": null
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "trailing",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": 30,
+      "profitSplitPct": 50,
+      "payoutFirstDays": 1,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "Restricted: traders must be flat with no working orders from 2 minutes before until 2 minutes after a tier-1 economic release.",
+        "weekend": "Not allowed: TradeDay permits day trading only and all positions must close before the end of the session.",
+        "overnight": "Not allowed: TradeDay permits day trading only and all positions must close at least 10 minutes before the end of the session.",
+        "ea": "Restricted: third-party purchased trading bots or automated trading systems are prohibited, as are shared bots and software that creates an unfair advantage.",
+        "copyTrading": null
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://www.tradeday.com/",
+      "notes": [
+        "PROMOTIONAL MONTHLY PRICE: the captured prices ($59 / $108 / $162) are the live 55%-off prices displayed with code TDNEW on 2026-07-28. Crossed-out list prices are $131 / $240 / $360. Confirm the live checkout price before purchase because a promotional subscription price can change.",
+        "MONTHLY SUBSCRIPTION, not a one-off fee. TradeDay's terms say the evaluation fee is paid for access to the challenge and a new subscription payment produces an automatic reset. The homepage labels every captured fee 'per month'.",
+        "NO ACTIVATION FEE: each current product card says 'No activation fee'.",
+        "PROFIT TARGETS are stated in dollars: $3,000 on $50K, $6,000 on $100K and $9,000 on $150K. Each equals 6% of the headline account size.",
+        "TRAILING MAX DRAWDOWN is stated in dollars and is not uniform as a percentage: $2,000 on $50K (4%), $3,000 on $100K (3%) and $4,500 on $150K (3%). maxLossPct is therefore null instead of forcing one percentage across all tiers.",
+        "INTRADAY DRAWDOWN: the homepage says the maximum drawdown is calculated intraday. The previous pricing explainer defined Intraday TMD as tracking unrealized profits in real time and freezing at the starting balance.",
+        "FIVE-DAY PASS: the current Quick Pay cards say 'Min trading days 5'; /how-it-works repeats '5 days on Quick Pay'.",
+        "30% CONSISTENCY: every Quick Pay evaluation card states 'Consistency 30%'. No funded-stage consistency rule is listed: the Funded Sim block says 'Consistency: None'.",
+        "FIRST PAYOUT DAY: the Funded Sim block says 'Min Days to Payout: 1', 'Payout Buffer: None', 'Min Payout Request: $250' and 'Milestones: None'. The FAQ says a payout can be requested from any positive balance on day one and most requests are processed within 24 hours.",
+        "TIERED PROFIT SPLIT: Quick Pay Funded Sim pays '50/50 below $4k net profit, 80/20 above $4k net profit, 90/10 in Funded Live'. profitSplitPct is recorded as 50 because that is the trader's initial marginal split and produces the conservative first-dollar break-even calculation.",
+        "DAY TRADING ONLY: TradeDay's terms name the Permitted Times rule: 'Day-trading only and all positions must be closed at least 10 minutes prior to the end of any session.' This excludes overnight and weekend holds.",
+        "NEWS WINDOW: TradeDay's May 9, 2026 economic-release policy says traders must be flat, with no working orders, from 2 minutes before until 2 minutes after tier-1 releases.",
+        "AUTOMATION: the terms prohibit 'trading bots or Automated Trading Systems (ATS) purchased from a third party' and multiple users using the same bots or ATS. They also prohibit software, AI, ultra-high-speed or mass-data-entry systems that manipulate or create an unfair advantage. This is recorded as restricted, not a blanket EA ban.",
+        "COPY TRADING is null because TradeDay's public pages reviewed do not state a simple permitted/not-permitted rule for copying the same user's trades across personal accounts.",
+        "PERMITTED PRODUCTS are futures listed on CME, CBOT, NYMEX and COMEX. Stocks, options, forex, spot crypto and CFDs are not available.",
+        "REFUNDS: the homepage footer says all subscription fees are non-refundable except where required by law.",
+        "PASS-RATE DISCLOSURE: the homepage states that 36% of evaluation programs passed between January 2026 and June 2026 and warns that the simulation is difficult even for experienced traders.",
+        "FUNDED STAGE: TradeDay describes Funded Sim as simulated and publishes a defined route to Funded Live, where the profit split becomes 90%."
+      ],
+      "fieldEvidence": {
+        "pricingModel": "Each card labels the price 'per month'; TradeDay's terms describe the subscription payment and automatic reset on the next payment.",
+        "activationFeeUsd": "Current card: 'No activation fee'.",
+        "profitTargets.phase1": "Card values: 'Profit Target $3,000' / '$6,000' / '$9,000' for $50K / $100K / $150K.",
+        "maxLossPct": "Card values: '$2,000' / '$3,000' / '$4,500'. Null because these imply 4% / 3% / 3%, not one product-wide percentage.",
+        "drawdownType": "Current card: 'Trailing Max Drawdown ... calculated Intraday'.",
+        "minTradingDays": "Current card and /how-it-works: 'Min trading days 5' / '5 days on Quick Pay'.",
+        "consistencyRulePct": "Current card: 'Consistency 30%'.",
+        "profitSplitPct": "Funded Sim: '50/50 below $4k net profit, 80/20 above $4k net profit, 90/10 in Funded Live'.",
+        "payoutFirstDays": "Funded Sim: 'Min Days to Payout: 1'.",
+        "payoutFrequency": "FAQ: request a payout from any positive balance on day one; most requests processed within 24 hours."
+      }
+    },
+    {
+      "productName": "Quick Pay - End of Day",
+      "productSlug": "quick-pay-end-of-day",
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 0,
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 79,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "Homepage card: 'End of Day (Intraday Funded Drawdown)' / '50k' / '$175' / '$79 per month'; 'Resets $79'; 'No activation fee'."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 129,
+          "maxLossUsd": 3000,
+          "refundable": false,
+          "evidence": "Homepage card: 'End of Day (Intraday Funded Drawdown)' / '100k' / '$285' / '$129 per month'; 'Resets $129'; 'No activation fee'."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 180,
+          "maxLossUsd": 4500,
+          "refundable": false,
+          "evidence": "Homepage card: 'End of Day (Intraday Funded Drawdown)' / '150k' / '$400' / '$180 per month'; 'Resets $180'; 'No activation fee'."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": null
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "trailing",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": 30,
+      "profitSplitPct": 50,
+      "payoutFirstDays": 1,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "Restricted: traders must be flat with no working orders from 2 minutes before until 2 minutes after a tier-1 economic release.",
+        "weekend": "Not allowed: TradeDay permits day trading only and all positions must close before the end of the session.",
+        "overnight": "Not allowed: TradeDay permits day trading only and all positions must close at least 10 minutes before the end of the session.",
+        "ea": "Restricted: third-party purchased trading bots or automated trading systems are prohibited, as are shared bots and software that creates an unfair advantage.",
+        "copyTrading": null
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://www.tradeday.com/",
+      "notes": [
+        "PROMOTIONAL MONTHLY PRICE: the captured prices ($79 / $129 / $180) are the live 55%-off prices displayed with code TDNEW on 2026-07-28. Crossed-out list prices are $175 / $285 / $400.",
+        "MONTHLY SUBSCRIPTION with no activation fee. All subscription fees are non-refundable except where required by law.",
+        "The evaluation profit targets, dollar drawdown caps, five minimum trading days and 30% consistency rule match Quick Pay - Intraday.",
+        "EVALUATION DRAWDOWN is end-of-day trailing: the cards say it is 'calculated End of Day'. The former pricing explainer defined EOD TMD as tracking realized profit on the end-of-day balance and freezing at starting balance.",
+        "FUNDED DRAWDOWN CHANGES: the cards label this choice 'End of Day (Intraday Funded Drawdown)' and the Funded Sim block says the trailing maximum drawdown is calculated intraday. fundedDrawdownType is therefore trailing.",
+        "TIERED QUICK PAY SPLIT and day-one payout mechanics match Quick Pay - Intraday: 50% below $4,000 net, 80% above $4,000 net, 90% in Funded Live; $250 minimum request; no payout buffer.",
+        "The same day-trading-only, tier-1 news window, third-party automation restriction and futures-only rules apply.",
+        "Copy trading remains null because no simple public personal-account copying rule was verified."
+      ],
+      "fieldEvidence": {
+        "pricingModel": "Each card labels the fee 'per month'.",
+        "activationFeeUsd": "Current card: 'No activation fee'.",
+        "profitTargets.phase1": "Card values are $3,000 / $6,000 / $9,000, equal to 6%.",
+        "maxLossPct": "Card drawdown values are $2,000 / $3,000 / $4,500; null because percentages are nonuniform.",
+        "drawdownType": "Current cards: 'Trailing Max Drawdown ... calculated End of Day'.",
+        "fundedDrawdownType": "Product label: 'End of Day (Intraday Funded Drawdown)'.",
+        "minTradingDays": "Current cards: 'Min trading days 5'.",
+        "consistencyRulePct": "Current cards: 'Consistency 30%'.",
+        "profitSplitPct": "Funded Sim: '50/50 below $4k net profit, 80/20 above $4k net profit, 90/10 in Funded Live'.",
+        "payoutFirstDays": "Funded Sim: 'Min Days to Payout: 1'."
+      }
+    },
+    {
+      "productName": "Fast Pass - End of Day",
+      "productSlug": "fast-pass-end-of-day",
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 0,
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 85,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "Homepage card: 'End of Day' / '50k' / '$189' / '$85 per month'; 'Resets $85'; 'No activation fee'."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 149,
+          "maxLossUsd": 3000,
+          "refundable": false,
+          "evidence": "Homepage card: 'End of Day' / '100k' / '$330' / '$149 per month'; 'Resets $149'; 'No activation fee'."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 225,
+          "maxLossUsd": 4500,
+          "refundable": false,
+          "evidence": "Homepage card: 'End of Day' / '150k' / '$500' / '$225 per month'; 'Resets $225'; 'No activation fee'."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": null
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 45,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "Restricted: traders must be flat with no working orders from 2 minutes before until 2 minutes after a tier-1 economic release.",
+        "weekend": "Not allowed: TradeDay permits day trading only and all positions must close before the end of the session.",
+        "overnight": "Not allowed: TradeDay permits day trading only and all positions must close at least 10 minutes before the end of the session.",
+        "ea": "Restricted: third-party purchased trading bots or automated trading systems are prohibited, as are shared bots and software that creates an unfair advantage.",
+        "copyTrading": null
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://www.tradeday.com/",
+      "notes": [
+        "PROMOTIONAL MONTHLY PRICE: the captured prices ($85 / $149 / $225) are the live 55%-off prices displayed with code TDNEW on 2026-07-28. Crossed-out list prices are $189 / $330 / $500.",
+        "MONTHLY SUBSCRIPTION with no activation fee. All subscription fees are non-refundable except where required by law.",
+        "PROFIT TARGETS are $3,000 / $6,000 / $9,000, equal to 6% of $50K / $100K / $150K.",
+        "EOD TRAILING DRAWDOWN is $2,000 / $3,000 / $4,500. It is null as a percentage because those caps imply 4% / 3% / 3%. The funded Fast Pass cards also say the drawdown is calculated EOD.",
+        "MINIMUM-DAYS CONFLICT: the current product cards say 'Min trading days 3', while /how-it-works says 'No minimum on Fast Pass.' The more specific live cards are recorded as 3 and the conflict is unresolved.",
+        "45% CONSISTENCY applies during the evaluation. The funded Fast Pass block also lists 45% consistency.",
+        "FIRST PAYOUT requires five days: the funded blocks state 'Min Days to Payout: 5' and five profitable days, each at least $150 on $50K, $200 on $100K or $250 on $150K.",
+        "PAYOUT LIMITS: minimum request is $250. Maximum requests are $1,500 on $50K, $1,875 on $100K and $2,250 on $150K.",
+        "PROFIT SPLIT is 80% in Funded Sim and 90% in Funded Live.",
+        "POSITION LIMITS in Funded Sim begin at 2 / 3 / 4 contracts for $50K / $100K / $150K and scale by one contract for each $2,000 of end-of-day profit.",
+        "The same day-trading-only, tier-1 news window, third-party automation restriction and futures-only rules apply.",
+        "Copy trading remains null because no simple public personal-account copying rule was verified.",
+        "TradeDay's May 29, 2026 product announcement says Fast Pass is a three-day route, corroborating the live cards despite the contradictory /how-it-works sentence."
+      ],
+      "fieldEvidence": {
+        "pricingModel": "Each card labels the fee 'per month'.",
+        "activationFeeUsd": "Current card: 'No activation fee'.",
+        "profitTargets.phase1": "Card values are $3,000 / $6,000 / $9,000, equal to 6%.",
+        "maxLossPct": "Card drawdown values are $2,000 / $3,000 / $4,500; null because percentages are nonuniform.",
+        "drawdownType": "Current card: 'Trailing Max Drawdown ... calculated End of Day'.",
+        "minTradingDays": "Current product cards: 'Min trading days 3'; May 29 announcement: '3-day Fast Pass route'.",
+        "consistencyRulePct": "Current cards: 'Consistency 45%'.",
+        "profitSplitPct": "Funded Sim: 'Profit split: 80/20 Funded Sim, 90/10 Funded Live'.",
+        "payoutFirstDays": "Funded Sim: 'Min Days to Payout: 5' and 'Min Profitable Days: 5'.",
+        "payoutFrequency": "Payouts can be requested after the five-day requirement; TradeDay says most requests process within 24 hours."
+      }
+    }
+  ]
+}

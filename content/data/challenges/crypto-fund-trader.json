@@ -50,11 +50,11 @@
     "payoutFirstDays": 15,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "crypto",
     "sourceUrl": "https://cryptofundtrader.com/",
@@ -114,11 +114,11 @@
     "payoutFirstDays": null,
     "payoutFrequency": null,
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "crypto",
     "sourceUrl": "https://cryptofundtrader.com/",
@@ -177,11 +177,11 @@
     "payoutFirstDays": 15,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "crypto",
     "sourceUrl": "https://cryptofundtrader.com/",
@@ -225,11 +225,11 @@
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "crypto",
     "sourceUrl": "https://cryptofundtrader.com/",
@@ -271,11 +271,11 @@
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": null,
-      "weekend": null,
-      "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "news": true,
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "crypto",
     "sourceUrl": "https://cryptofundtrader.com/break-challenge/",

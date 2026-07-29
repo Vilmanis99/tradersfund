@@ -11,25 +11,25 @@ type: "page"
 <div class="key-takeaways">
   <div class="title">The five stages</div>
   <ol>
-    <li><strong>Buy the challenge</strong> — pay a refundable fee, pick an account size, accept the rules.</li>
-    <li><strong>Phase 1 evaluation</strong> — hit a profit target (typically 8–10%) without breaching daily or max drawdown.</li>
-    <li><strong>Phase 2 verification</strong> — repeat at a lower target (typically 5%), proving consistency.</li>
-    <li><strong>Funded account</strong> — trade real-economic-impact account, get paid your share of profits.</li>
-    <li><strong>First payout + scaling</strong> — claim the fee refund, take your share, unlock higher tiers.</li>
+    <li><strong>Choose the product</strong> — compare its one-time, split-payment, or recurring fee and accept its exact rules.</li>
+    <li><strong>Evaluation</strong> — if the product has a challenge, reach its published target without breaching daily or maximum loss.</li>
+    <li><strong>Verification</strong> — multi-step products add another target; one-step and phase-0 products do not.</li>
+    <li><strong>Funded stage</strong> — usually trade a simulated account under a profit-sharing contract; a live-capital stage exists only where the firm explicitly says so.</li>
+    <li><strong>Payout and optional scaling</strong> — meet every eligibility rule before requesting a profit share; refunds and scaling are product-specific.</li>
   </ol>
-  <p style="margin-top: 1rem; margin-bottom: 0;">1-step challenges fold stages 2 and 3 into one. Instant funding skips evaluation entirely (stages 2 and 3) and goes straight to a funded account. Every variant is a permutation of the same five stages.</p>
+  <p style="margin-top: 1rem; margin-bottom: 0;">“Instant funding” is industry shorthand for a phase-0 product, not proof that the trader receives live capital. Verify the account environment, loss calculation, payout threshold, and consistency rules before paying.</p>
 </div>
 
 <h2>Stage 1 — Buying the challenge</h2>
 
-<p>You pick a firm, an account size, and a challenge type, then pay a one-time fee. The fee is <strong>refundable with your first payout</strong> on standard evaluation products — you get it back when you start being paid. On <strong>instant funding</strong> products (FundedNext Stellar Instant, FXIFY Instant, OFP Funding), the fee is typically not refundable.</p>
+<p>You pick a firm, account size, and product, then pay the published one-time, split-payment, or recurring fee. Some products refund an evaluation fee after a qualifying payout; others never refund it or attach additional conditions. The current <a href="/prop-firm-challenges">product comparison</a> keeps the billing model visible instead of treating every checkout as the same kind of cost.</p>
 
 <p><strong>What the firm asks of you upfront:</strong></p>
 
 <ul class="wp-block-list">
-  <li>Email + basic identity. KYC (full identity verification with passport / ID upload) is usually deferred until you reach payout, not at signup.</li>
-  <li>Choice of trading platform — typically MT4, MT5, cTrader, or DXTrade. Once chosen on most firms it can be changed for new attempts but not mid-challenge.</li>
-  <li>Choice of standard vs swing account (FTMO specifically) — swing variants allow overnight and weekend holding but at different leverage tiers.</li>
+  <li>Email and identity details. The exact KYC stage and accepted documents vary by firm and country.</li>
+  <li>A platform choice from the options published for that product. Mid-account platform changes may be restricted.</li>
+  <li>A rule set covering news, overnight positions, weekend holding, automated trading, drawdown, and payout eligibility.</li>
 </ul>
 
 <p><strong>Real 2026 examples from our verified data</strong> (<a href="/blog/ftmo-review">FTMO</a>, <a href="/blog/fundednext-review">FundedNext</a>, <a href="/blog/fxify-review">FXIFY</a>):</p>
@@ -150,4 +150,4 @@ type: "page"
   <li><a href="/blog/funding-pips-review">FundingPips</a> — 100% scaling ceiling, cheapest at entry</li>
 </ul>
 
-<p>Or jump to <a href="/main-table">the full directory</a> or read <a href="/true-cost-of-prop-firm-challenges">the true-cost economics</a> if you want the math behind which challenge is structurally cheapest to break even on.</p>
+<p>Or jump to <a href="/prop-firms">the full directory</a> or read <a href="/true-cost-of-prop-firm-challenges">the true-cost economics</a> if you want the math behind which challenge is structurally cheapest to break even on.</p>

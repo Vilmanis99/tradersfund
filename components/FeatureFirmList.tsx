@@ -38,7 +38,7 @@ export default function FeatureFirmList({
         }}
       >
         No firms match this filter yet. Our directory is growing —{' '}
-        <Link href="/main-table" style={{ color: 'var(--accent-light)' }}>
+        <Link href="/prop-firms" style={{ color: 'var(--accent-light)' }}>
           browse all firms
         </Link>{' '}
         instead.
@@ -140,8 +140,9 @@ export default function FeatureFirmList({
 
               <div className="feature-firm-actions">
                 <Link
-                  href={`/go/${slug}`}
-                  rel="sponsored nofollow noopener"
+                  href={`/go/${slug}?from=feature-${slugify(featureLabel)}`}
+                  prefetch={false}
+                  rel={firm.affiliateUrl ? 'sponsored nofollow noopener' : 'nofollow noopener'}
                   target="_blank"
                   className="btn-primary feature-firm-cta"
                 >

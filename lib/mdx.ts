@@ -7,11 +7,15 @@ const pagesDir = path.join(process.cwd(), 'content/pages')
 
 export interface PostMeta {
   title: string
+  /** Optional search-result title; the visible article H1 remains `title`. */
+  seoTitle?: string
   slug: string
   date: string
   modified: string
   author: string
   excerpt: string
+  /** Optional search-result description; the visible deck remains `excerpt`. */
+  seoDescription?: string
   categories: string[]
   tags: string[]
   type: 'post'
@@ -19,9 +23,13 @@ export interface PostMeta {
 
 export interface PageMeta {
   title: string
+  /** Optional search-result title; the visible page H1 remains `title`. */
+  seoTitle?: string
   slug: string
   date: string
   description: string
+  /** Optional search-result description; the visible deck remains `description`. */
+  seoDescription?: string
   type: 'page'
 }
 

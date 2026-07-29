@@ -1,10 +1,43 @@
 ---
 title: "Privacy Policy"
 slug: "privacy-policy"
-date: "2024-08-08 16:49:24"
-description: "Privacy Policy"
+date: "2026-07-29"
+description: "How Traders Fund Hub handles contact messages, newsletter subscriptions, technical logs, and outbound links."
 type: "page"
 ---
 
-<h1>Privacy Policy</h1>				
-		<p>At Traders Fund Hub, accessible from https://tradersfundhub.com, safeguarding the privacy of our visitors is a top priority. This Privacy Policy outlines the types of information we collect and record, as well as how we use it.</p><p>If you have any questions or need further details about our Privacy Policy, please don’t hesitate to <a href="/contact">reach out to us</a>.</p><h2>Log Files</h2><p>Traders Fund Hub utilizes log files as part of a standard procedure. These files document visitors when they access our website, a practice common among hosting companies and part of their analytics services. The information gathered through log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamps, referring/exit pages, and possibly the number of clicks. This data is not linked to any information that can personally identify you. The purpose of this information is to analyze trends, administer the site, track user movement on the website, and gather demographic data.</p><h2>Privacy Policies</h2><p>For details on the privacy practices of our advertising partners, please consult their individual Privacy Policies.</p><p>Third-party ad servers or networks may use technologies like cookies, JavaScript, or Web Beacons in the advertisements and links that appear on Traders Fund Hub, which are sent directly to your browser. When this happens, they automatically receive your IP address. These technologies help measure the effectiveness of their advertising campaigns and/or personalize the ads you see on various websites.</p><p>Please note that Traders Fund Hub does not have access to or control over these cookies used by third-party advertisers.</p><h2>Third-Party Privacy Policies</h2><p>Traders Fund Hub’s Privacy Policy does not extend to other advertisers or websites. We recommend reviewing the Privacy Policies of these third-party ad servers for more detailed information, including their practices and instructions on how to opt out of certain options.</p><p>You can manage cookies through your browser settings. For more information on cookie management with specific browsers, visit the respective browser's website. </p><h2>Children’s Information</h2><p>Protecting children while they use the internet is another key concern for us. We encourage parents and guardians to be involved in, observe, and guide their children's online activities.</p><p>Traders Fund Hub does not knowingly collect any Personally Identifiable Information (PII) from children under the age of 13. If you believe your child has provided such information on our website, please <a href="/contact">contact us</a> immediately, and we will make every effort to promptly remove it from our records.</p><h2>Online Privacy Policy Only</h2><p>This Privacy Policy applies solely to our online activities and is relevant for visitors to our website regarding the information they share and/or collect on Traders Fund Hub. It does not apply to any information collected offline or through channels other than this website.</p><h2>Consent</h2><p>By using our website, you consent to our Privacy Policy and agree to its Terms and Conditions.</p>
+<h2>Information you choose to send</h2>
+
+<p>When the contact or India-evidence form is enabled, Traders Fund Hub collects the name, email address, message, and form category you submit. India evidence should never include an ID image, password, full payment-card or bank number, wallet address, tax identifier, or unredacted account ID.</p>
+
+<p>When the newsletter form is enabled, the submitted email address enters a double-opt-in flow. The address is not added to the newsletter list until the confirmation step is completed.</p>
+
+<h2>How form data is used</h2>
+
+<p>Contact and evidence submissions are used to answer questions, investigate corrections, and request redacted supporting material. Newsletter addresses are used for the rule-change digest and related Traders Fund Hub editorial updates. We do not sell submitted contact details.</p>
+
+<h2>Email service provider</h2>
+
+<p>Enabled forms are delivered through Brevo, our email and newsletter processor. Brevo receives the fields needed to send the message or complete double opt-in and processes them under its own privacy and security terms. Forms stay hidden when the required delivery configuration is unavailable.</p>
+
+<h2>Technical logs</h2>
+
+<p>Our hosting infrastructure may record standard request data such as IP address, browser or user-agent information, requested page, timestamp, referrer, response status, and security events. These logs are used for site operation, abuse prevention, debugging, and aggregate performance analysis.</p>
+
+<p>The central <code>/go/</code> redirect records the firm or product slug and placement label so we can compare page performance. The application event deliberately excludes the visitor&rsquo;s IP address, user agent, referrer, and submitted query-string data, although the hosting provider may still keep standard request logs.</p>
+
+<h2>Affiliate and external links</h2>
+
+<p>Some outbound firm links are affiliate links, clearly disclosed and marked as sponsored. The destination firm may record the referral and apply its own cookies or tracking under its privacy policy. Non-partner firms use a first-party public destination without affiliate campaign parameters.</p>
+
+<h2>Retention and choices</h2>
+
+<p>We keep editorial correspondence only as long as it is useful for the correction, evidence review, legal, security, or record-keeping purpose for which it was received. Newsletter recipients can use the unsubscribe option in an email. You can ask about a submitted message or request deletion through the <a href="/contact">contact page</a> when delivery is available.</p>
+
+<h2>Children</h2>
+
+<p>Traders Fund Hub is not directed to children under 13 and does not knowingly request personal information from them. If such information is identified, we will take reasonable steps to remove it.</p>
+
+<h2>Changes to this policy</h2>
+
+<p>This policy was last updated on 29 July 2026. Material changes will be reflected by updating the date on this page.</p>

@@ -2,7 +2,7 @@
 title: "Disclaimers"
 slug: "disclaimers"
 date: "2024-08-08 16:50:39"
-description: "Disclaimers"
+description: "Read the Traders Fund Hub risk, information, liability, and affiliate disclosures before using our prop-firm research."
 type: "page"
 ---
 

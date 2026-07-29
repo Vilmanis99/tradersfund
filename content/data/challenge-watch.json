@@ -1,0 +1,129 @@
+[
+  {
+    "id": "tradeify-list-vs-promotional-pricing",
+    "firmSlug": "tradeify",
+    "firmName": "Tradeify",
+    "productSlugs": [
+      "growth-evaluation",
+      "select-flex",
+      "select-daily",
+      "lightning-funded"
+    ],
+    "kind": "price-watch",
+    "status": "watch",
+    "observedAt": "2026-07-28",
+    "lastCheckedAt": "2026-07-28",
+    "title": "Tradeify list prices and homepage promotions can diverge",
+    "summary": "Tradeify's June 24 pricing reference maps 12 base purchases to account sizes, while the homepage advertises a changing percentage promotion and its server-readable pricing cards contain placeholder values.",
+    "traderImpact": "The comparison stores the stable list price, not a temporary coupon. Confirm the final discounted amount, reset cost, and product name in the logged-in checkout before paying.",
+    "sourceUrls": [
+      "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "https://tradeify.co/"
+    ]
+  },
+  {
+    "id": "lucid-trading-luciddaily-launch",
+    "firmSlug": "lucid-trading",
+    "firmName": "Lucid Trading",
+    "productSlugs": [
+      "luciddaily-dll-on-intraday",
+      "luciddaily-dll-on-eod",
+      "luciddaily-dll-off-intraday",
+      "luciddaily-dll-off-eod"
+    ],
+    "kind": "lineup-change",
+    "status": "watch",
+    "observedAt": "2026-07-28",
+    "lastCheckedAt": "2026-07-28",
+    "title": "LucidDaily launched with 4 configurable evaluation paths",
+    "summary": "LucidDaily combines DLL On or Off with Intraday or EOD evaluation drawdown. Every funded version switches to Intraday drawdown and permits daily payout requests after its buffer gate.",
+    "traderImpact": "The selected drawdown and DLL change both risk mechanics and price. Lucid did not expose stable public dollar prices during capture, so compare the exact checkout configuration rather than a generic LucidDaily fee.",
+    "sourceUrls": [
+      "https://support.lucidtrading.com/en/collections/19692910-luciddaily",
+      "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+      "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization"
+    ]
+  },
+  {
+    "id": "apex-new-product-lineup-2026",
+    "firmSlug": "apex-trader-funding",
+    "firmName": "Apex Trader Funding",
+    "productSlugs": [
+      "intraday-trail-standard",
+      "eod-trail-standard",
+      "intraday-trail-no-activation-fee",
+      "eod-trail-no-activation-fee"
+    ],
+    "kind": "lineup-change",
+    "status": "verified",
+    "observedAt": "2026-07-28",
+    "lastCheckedAt": "2026-07-28",
+    "effectiveAt": "2026-03-01",
+    "title": "Apex moved new purchases to 4 one-time evaluation paths",
+    "summary": "Products bought after 1 March 2026 use Intraday or EOD drawdown with Standard or No Activation Fee pricing. The prior recurring products are Legacy.",
+    "traderImpact": "Older Apex reviews can describe a different billing and drawdown structure. Match any comparison to the product name shown at checkout.",
+    "sourceUrls": [
+      "https://apextraderfunding.com/help-center/status/status-updates/",
+      "https://apextraderfunding.com/"
+    ]
+  },
+  {
+    "id": "tradeday-promotional-monthly-pricing",
+    "firmSlug": "tradeday",
+    "firmName": "TradeDay",
+    "productSlugs": [
+      "quick-pay-intraday",
+      "quick-pay-end-of-day",
+      "fast-pass-end-of-day"
+    ],
+    "kind": "price-watch",
+    "status": "watch",
+    "observedAt": "2026-07-28",
+    "lastCheckedAt": "2026-07-28",
+    "title": "TradeDay monthly prices were tied to a 55%-off promotion",
+    "summary": "The captured monthly fees used the TDNEW promotion shown on TradeDay's own product cards. Those prices can move when the campaign changes or ends.",
+    "traderImpact": "Treat the table price as a dated checkout snapshot, not a permanent subscription rate. Recheck the first month and reset price before paying.",
+    "sourceUrls": [
+      "https://www.tradeday.com/"
+    ]
+  },
+  {
+    "id": "fundingpips-standard-legacy-reset-split",
+    "firmSlug": "fundingpips",
+    "firmName": "FundingPips",
+    "productSlugs": [
+      "2-step-standard",
+      "2-step-flex"
+    ],
+    "kind": "rule-change",
+    "status": "verified",
+    "observedAt": "2026-07-27",
+    "lastCheckedAt": "2026-07-27",
+    "title": "FundingPips separates the current Standard path from legacy 10% resets",
+    "summary": "The current 2 Step Standard Phase 1 target is 8%. FundingPips says legacy Standard accounts carrying a 10% target reset as 2 Step Flex.",
+    "traderImpact": "A reset can place an older account into a different product rule set. Confirm the product name and target after any reset.",
+    "sourceUrls": [
+      "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex"
+    ]
+  },
+  {
+    "id": "alpha-capital-25k-pro-price-conflict",
+    "firmSlug": "alpha-capital",
+    "firmName": "Alpha Capital",
+    "productSlugs": [
+      "alpha-pro-6"
+    ],
+    "kind": "source-conflict",
+    "status": "watch",
+    "observedAt": "2026-07-27",
+    "lastCheckedAt": "2026-07-27",
+    "title": "Alpha Capital's own pages disagree on a 25K Pro price",
+    "summary": "One official cost page states $137 for the 25K Alpha Pro 6% variant, while a separate official review page states $197 for a 25K Alpha Pro without identifying the target variant.",
+    "traderImpact": "The $137 figure is retained only for the explicitly labelled 6% product. Verify the selected target and final checkout total before purchase.",
+    "sourceUrls": [
+      "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+      "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict"
+    ]
+  }
+]

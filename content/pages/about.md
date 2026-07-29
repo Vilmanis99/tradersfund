@@ -2,17 +2,10 @@
 title: "About"
 slug: "about"
 date: "2024-08-08 16:48:47"
-description: "About"
+description: "How Traders Fund Hub compares prop-firm costs, rules, payouts, and source-dated changes."
 type: "page"
 ---
 
-<h1>About Traders Fund Hub</h1>				
-		<p>Welcome to Traders Fund Hub, where professional traders help other traders unlock new opportunities for growth. Our mission is simple: to guide traders in finding the best funding solutions to scale their trading careers.</p><p>In the fast-paced world of trading, securing additional capital can be a game-changer. That’s why we’re here to provide you with expert reviews, insights, and actionable advice on the most effective methods for acquiring funding. Whether you’re looking into prop trading firms, exploring copy trading platforms, or seeking to approach private investors, our team has you covered.</p>		
+<p>Traders Fund Hub compares prop-firm products using source-dated prices, drawdown rules, payout terms, and a consistent True-Cost calculation. The goal is to help traders shortlist a product by its actual rules rather than by a headline account size or promotion.</p><p>Our global directory remains the core product. The India section adds a separate evidence gate for country access, RBI Alert List checks, product caps, and payout rails; passing that screen is not the same as regulatory authorisation.</p>
 															<img width="1366" height="768" src="/images/wp/2024/08/TFH-About-Us-Design.png" alt="TFH About Us Design" />															
-		<p>Our content is crafted by real traders who’ve been in the trenches, facing the same challenges you do. We understand the importance of reliable information and transparent reviews because we’ve been there. Our goal is to cut through the noise and present you with the best options, tailored to your trading style and goals.</p><p>At Traders Fund Hub, we believe in empowering traders with the knowledge they need to make informed decisions. Our in-depth reviews of prop firms, copy trading platforms, and other funding avenues are designed to give you a clear picture of what to expect and how to succeed. We also provide step-by-step guides and practical tips on how to approach investors, ensuring you’re fully prepared to make your pitch.</p><p>Whether you’re a seasoned trader looking to expand your capital or a newcomer eager to find your footing, we’re here to help you navigate the world of trading finance. Let us be your trusted partner on your journey to achieving greater AUM and reaching your trading goals.</p>		
-		<h3>
-							Thank you for choosing
-			Traders Fund Hub
-			
-						—where traders help traders succeed.
-		</h3>
+<p>Every challenge record must link to the firm&rsquo;s own public material and pass a 30-day freshness gate. Unknown figures stay unknown, material product changes enter the public watch ledger, and affiliate status contributes 0 points to the editorial score.</p><p>See <a href="/methodology">how we score and verify firms</a>, open the <a href="/prop-firm-challenges">global challenge comparison</a>, or use the <a href="/contact">contact page</a> to submit a correction when message delivery is available.</p>

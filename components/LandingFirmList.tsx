@@ -17,7 +17,7 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
     return (
       <p style={{ color: 'var(--muted)', textAlign: 'center', padding: '2rem' }}>
         No firms currently match these criteria.{' '}
-        <Link href="/main-table" style={{ color: 'var(--accent-light)' }}>
+        <Link href="/prop-firms" style={{ color: 'var(--accent-light)' }}>
           Browse all firms →
         </Link>
       </p>
@@ -108,11 +108,12 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
               {isPartner ? (
                 <Link
                   href={`/go/${slug}?from=${fromParam}`}
+                  prefetch={false}
                   rel="sponsored nofollow noopener"
                   target="_blank"
                   className="btn-primary btn-glow leader-cta"
                 >
-                  Get funded <ExternalLink size={12} />
+                  View plans <ExternalLink size={12} />
                 </Link>
               ) : (
                 <Link href={firm.reviewUrl} className="btn-outline leader-cta">

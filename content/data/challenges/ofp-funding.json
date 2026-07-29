@@ -52,11 +52,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
       "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
@@ -118,11 +118,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
       "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
@@ -166,11 +166,11 @@
     "payoutFirstDays": null,
     "payoutFrequency": "monthly",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
       "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
@@ -217,11 +217,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
       "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
@@ -268,11 +268,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
       "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
@@ -324,11 +324,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
       "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
@@ -375,11 +375,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
       "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
@@ -438,11 +438,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
       "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
@@ -496,11 +496,11 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": null,
+      "news": "restricted",
       "weekend": null,
       "overnight": null,
-      "ea": null,
-      "copyTrading": null
+      "ea": "restricted",
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",

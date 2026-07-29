@@ -61,7 +61,7 @@ type: "post"
 
 <p><strong>Consistency rule (Test only): 50%.</strong> No single day may be worth half or more of your total profit target. On the $50K Test the target is $3,000, so no day can contribute $1,500 or more. Make $1,800 in one session and that day is "too good" — you'll need to keep trading and grow the denominator until that day is under 50% of the total. The rule exists to stop a single lucky print from funding you. The good news: it <strong>disappears completely</strong> on PRO and PRO+. Once funded, there is no consistency rule at all.</p>
 
-<p><strong>Five-day minimum.</strong> You must trade on at least five separate days to clear the Test — a same-week pass is impossible by design. There is no maximum-days limit, so the Test never expires; you simply keep paying the monthly fee until you pass or stop.</p>
+<p><strong>5-day minimum.</strong> You must trade on at least 5 separate days to clear the Test—a 1-day pass is impossible by design. There is no maximum-days limit, so the Test keeps renewing at the monthly fee until you pass or stop.</p>
 
 <p><strong>News, EAs, overnight, weekend.</strong> Futures positions must be <strong>flat before the 5 PM ET daily close</strong> — there is no true overnight or weekend holding, which is standard for futures props and the same constraint Topstep and My Funded Futures impose. Automated strategies are allowed, but copy-trading another account is not. News trading is <strong>restricted</strong> around high-impact releases (FOMC, NFP, CPI) during the Test — confirm the current blackout windows before you build an event-driven entry around them.</p>
 

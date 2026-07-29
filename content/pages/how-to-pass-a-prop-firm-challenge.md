@@ -1,8 +1,10 @@
 ---
 title: "How to Pass a Prop Firm Challenge (2026): A Risk-First Playbook"
+seoTitle: "How to Pass a Prop Firm Challenge: Risk-First Plan"
 slug: "how-to-pass-a-prop-firm-challenge"
 date: "2026-06-15 12:00:00"
 description: "Most traders fail the challenge by breaching drawdown, not by missing the target. Here's the risk-first plan that actually passes — with the real numbers and the rules that quietly end accounts."
+seoDescription: "A risk-first prop-firm challenge plan covering position size, daily loss, maximum drawdown, profit targets, and product selection."
 type: "page"
 ---
 
@@ -70,17 +72,11 @@ type: "page"
 <p>Half of passing is choosing well. The structurally easiest evaluations to survive share three traits: <strong>static drawdown</strong>, <strong>no time limit</strong>, and a daily cap you can actually trade inside. A 90% split on a challenge you pass beats a 100% split on one you breach. If you're cost-sensitive, compare entry fees on the <a href="/cheapest-prop-firms">cheapest prop firms</a>; if you trade trends or hold positions for days, start with firms that allow <a href="/prop-firms/overnight-holding">overnight holding</a>.</p>
 
 <div style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
-  <strong style="color: #fff;">New here? Start small.</strong> If you're testing the prop-firm model for the first time, <a href="/blog/bright-funded-prop-firm">Bright Funded</a> is a low-stakes place to begin — entry sizes from $5,000 on forgiving static drawdown (5% daily / 10% max), and a standing <strong>10% discount</strong> that lowers the cost of a first attempt. <a href="/go/bright-funded?from=guide-howtopass" rel="sponsored nofollow noopener" target="_blank">Get funded with Bright Funded →</a>
+  <strong style="color: #fff;">New here? Start with the product, not the promotion.</strong> Use the <a href="/prop-firm-challenges">live challenge comparison</a> to filter current entry cost, drawdown type, loss room, payout schedule, and trading rules. A smaller headline account with static drawdown can be easier to manage than a larger account whose trailing threshold moves against open profit.
 </div>
 
 <h2>Where to go next</h2>
 
-<p>Run the break-even math before you buy — <a href="/true-cost-of-prop-firm-challenges">the true cost of a challenge</a> shows which fee structures are actually cheapest to clear. Then read the firms that consistently rank well for forgiving rules:</p>
+<p>Run the break-even math before you buy — <a href="/true-cost-of-prop-firm-challenges">the true cost of a challenge</a> shows why the checkout fee alone is not enough. Then compare current product rows instead of relying on a permanent “top 3”: prices, payout eligibility, minimum-day rules, and drawdown mechanics can change inside a month.</p>
 
-<ul class="wp-block-list">
-  <li><a href="/blog/ftmo-review">FTMO</a> — static drawdown, no time limit, the safe default.</li>
-  <li><a href="/blog/fundednext-review">FundedNext</a> — 95% split on static-DD Stellar 2-Step, but mind the news-window rule.</li>
-  <li><a href="/blog/funding-pips-review">FundingPips</a> — 100% scaling ceiling, 5-day minimum trading requirement.</li>
-</ul>
-
-<p>Or see the full opinionated ranking on <a href="/best-prop-firms-2026">the best prop firms in 2026</a>. Then do the boring thing that passes: size small, target slowly, and protect the line.</p>
+<p>Use the <a href="/prop-firm-challenge-changes">challenge-change ledger</a> to check what moved, then do the boring thing that passes: size small, target slowly, and protect the loss line.</p>

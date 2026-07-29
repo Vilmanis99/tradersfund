@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { TrendingUp } from 'lucide-react'
-import { getAllFirms } from '@/lib/firms'
+import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import HeaderNav from './HeaderNav'
 
 // Re-export so existing call-sites that did `import { navLinks } from
@@ -9,33 +9,22 @@ import HeaderNav from './HeaderNav'
 export { navLinks } from './navLinks'
 export type { NavLink } from './navLinks'
 
-/**
- * Format an ISO date (YYYY-MM-DD) into a short human-readable label, e.g.
- * "Apr 24". Falls back gracefully if the input is missing or malformed.
- */
-function formatShortDate(iso?: string): string {
-  if (!iso) return ''
-  const d = new Date(iso)
-  if (Number.isNaN(d.getTime())) return ''
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-}
-
-/**
- * Compute the most recent `lastUpdated` across all firms. This is the
- * heartbeat we surface in the header pill — it signals editorial freshness
- * without requiring a manual edit every release.
- */
-function computeLastUpdated(): string {
+function computeFreshnessLabel(): string {
   const firms = getAllFirms()
-  const dates = firms
-    .map(f => f.lastUpdated)
-    .filter((d): d is string => Boolean(d))
-    .sort()
-  return dates.length ? dates[dates.length - 1] : ''
+  const challenges = getAllChallenges()
+  const freshFirmCount = firms.filter(firm => {
+    const slug = firm.name.toLowerCase()
+      .replace(/&/g, 'and')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '')
+    const products = challenges.filter(challenge => challenge.firmSlug === slug)
+    return products.length > 0 && products.every(challenge => isChallengeFresh(challenge))
+  }).length
+  return `${freshFirmCount}/${firms.length} source-checked`
 }
 
 export default function Header() {
-  const lastUpdated = formatShortDate(computeLastUpdated())
+  const dataStatus = computeFreshnessLabel()
 
   return (
     <header className="site-header">
@@ -49,7 +38,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <HeaderNav lastUpdated={lastUpdated} />
+        <HeaderNav dataStatus={dataStatus} />
       </div>
       <div className="site-header__aurora-line" aria-hidden="true" />
     </header>

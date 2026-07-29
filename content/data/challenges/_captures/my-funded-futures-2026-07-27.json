@@ -22,6 +22,8 @@
   "products": [
     {
       "productName": "Rapid",
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 0,
       "productSlug": "rapid",
       "phases": 1,
       "accountSizes": [
@@ -100,6 +102,8 @@
     },
     {
       "productName": "Flex",
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 0,
       "productSlug": "flex",
       "phases": 1,
       "accountSizes": [
@@ -163,6 +167,8 @@
     },
     {
       "productName": "Pro",
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 0,
       "productSlug": "pro",
       "phases": 1,
       "accountSizes": [
@@ -231,6 +237,8 @@
     },
     {
       "productName": "Builder",
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 0,
       "productSlug": "builder",
       "phases": 1,
       "accountSizes": [

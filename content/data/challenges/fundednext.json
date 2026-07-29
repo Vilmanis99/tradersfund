@@ -5,37 +5,71 @@
     "productSlug": "stellar-2-step",
     "phases": 2,
     "accountSizes": [
-      { "sizeUsd": 6000,   "priceUsd": 59.99,   "refundable": true },
-      { "sizeUsd": 15000,  "priceUsd": 119.99,  "refundable": true },
-      { "sizeUsd": 25000,  "priceUsd": 199.99,  "refundable": true },
-      { "sizeUsd": 50000,  "priceUsd": 299.99,  "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": 549.99,  "refundable": true },
-      { "sizeUsd": 200000, "priceUsd": 1099.99, "refundable": true }
+      {
+        "sizeUsd": 6000,
+        "priceUsd": 59.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 15000,
+        "priceUsd": 119.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 199.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 299.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 549.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 1099.99,
+        "refundable": true
+      }
     ],
-    "profitTargets": { "phase1": 8, "phase2": 5 },
+    "profitTargets": {
+      "phase1": 8,
+      "phase2": 5
+    },
     "dailyLossPct": 5,
     "maxLossPct": 10,
-    "drawdownType": "balance-based",
-    "minTradingDays": 2,
+    "drawdownType": "static",
+    "minTradingDays": 5,
     "maxTradingDays": null,
     "consistencyRulePct": null,
-    "profitSplitPct": 95,
-    "payoutFirstDays": null,
-    "payoutFrequency": "on-demand",
+    "profitSplitPct": 80,
+    "payoutFirstDays": 21,
+    "payoutFrequency": "bi-weekly",
     "rules": {
       "news": "restricted",
       "weekend": true,
       "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://fundednext.com/",
-    "sourceCapturedAt": "2026-06-05",
+    "sourceUrl": "https://fundednext.com/pt/plan",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Full pricing captured from fundednext.com home-page comparison table 2026-06-05.",
-      "News trading allowed on funded accounts but profit retention is 40% during news windows.",
-      "24-hour payout guarantee or $1,000 bonus advertised — verify current terms before each editorial refresh."
+      "Prices are global USD list prices before promotions and exclude the non-refundable $25 cTrader or Match-Trader platform fee.",
+      "The current base Reward Share is 80%; 95% is a paid add-on and must not be presented as standard.",
+      "The registration fee is refundable with the first approved Performance Reward; platform fees are not.",
+      "First standard payout eligibility is after 21 days, then every 14 days.",
+      "News-window profits are reduced to a 40% count in the funded stage while 100% of losses remain.",
+      "INDIA AVAILABILITY: India is not among the 20 restricted CFD countries listed by FundedNext on April 8, 2026. This does not constitute regulatory approval or legal advice.",
+      "INDIA CHECKOUT: International Cards accepts Visa, Mastercard and Amex, with cardholder name required to match the FundedNext account. The site also advertises 30 cryptocurrencies; any Local Payment option is country-dependent and must appear in the user's dashboard.",
+      "KYC: physical national ID, passport or residence permit plus liveness check; the help center says review typically takes 48 hours and profile KYC renews every 90 days.",
+      "PAYOUT ROUTES: USDT/USDC can be requested from $20 up to $1,999 on standard routes, RiseWorks from $50, and bank transfer from $1,000 to $50,000. Provider processing fees can be up to 3.5%.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-07-27.json"
     ]
   },
   {
@@ -44,37 +78,66 @@
     "productSlug": "stellar-1-step",
     "phases": 1,
     "accountSizes": [
-      { "sizeUsd": 6000,   "priceUsd": 117,    "refundable": true },
-      { "sizeUsd": 15000,  "priceUsd": 292.50, "refundable": true },
-      { "sizeUsd": 25000,  "priceUsd": 487.50, "refundable": true },
-      { "sizeUsd": 50000,  "priceUsd": 975,    "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": 1950,   "refundable": true },
-      { "sizeUsd": 200000, "priceUsd": 3900,   "refundable": true }
+      {
+        "sizeUsd": 6000,
+        "priceUsd": 65.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 15000,
+        "priceUsd": 129.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 219.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 329.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 569.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 1099.99,
+        "refundable": true
+      }
     ],
-    "profitTargets": { "phase1": 8 },
-    "dailyLossPct": 5,
-    "maxLossPct": 10,
-    "drawdownType": "balance-based",
-    "minTradingDays": 3,
+    "profitTargets": {
+      "phase1": 10
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 6,
+    "drawdownType": "static",
+    "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": null,
-    "profitSplitPct": 95,
-    "payoutFirstDays": null,
-    "payoutFrequency": "on-demand",
+    "profitSplitPct": 80,
+    "payoutFirstDays": 5,
+    "payoutFrequency": "weekly",
     "rules": {
       "news": "restricted",
       "weekend": true,
       "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://fundednext.com/",
-    "sourceCapturedAt": "2026-06-05",
+    "sourceUrl": "https://help.fundednext.com/en/articles/8021119-can-i-reset-my-account-anytime",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Full pricing captured from fundednext.com home-page comparison table 2026-06-05.",
-      "Dedicated /stellar-1-step URL returned 404 at scrape time — site may have consolidated product pages.",
-      "Higher per-tier price than 2-Step reflects the single-phase shortcut to a funded account."
+      "Prices are global USD list prices from FundedNext's current reset table; they exclude promotions and the non-refundable $25 cTrader or Match-Trader platform fee.",
+      "The former review accidentally used 15% evaluation-reward amounts as challenge prices; these figures replace that category error.",
+      "The base Reward Share for new purchases is 80%, not 95%.",
+      "The refundable fee is available with the third successful Performance Reward for purchases on or after January 12, 2026.",
+      "Performance Rewards run on 5-business-day cycles.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-07-27.json"
     ]
   },
   {
@@ -83,36 +146,66 @@
     "productSlug": "stellar-lite",
     "phases": 2,
     "accountSizes": [
-      { "sizeUsd": 6000,   "priceUsd": null, "refundable": true },
-      { "sizeUsd": 15000,  "priceUsd": null, "refundable": true },
-      { "sizeUsd": 25000,  "priceUsd": null, "refundable": true },
-      { "sizeUsd": 50000,  "priceUsd": null, "refundable": true },
-      { "sizeUsd": 100000, "priceUsd": null, "refundable": true }
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 32.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 59.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 139.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 229.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 399.99,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 798.99,
+        "refundable": true
+      }
     ],
-    "profitTargets": null,
-    "dailyLossPct": null,
-    "maxLossPct": null,
+    "profitTargets": {
+      "phase1": 8,
+      "phase2": 4
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 8,
     "drawdownType": "static",
-    "minTradingDays": null,
+    "minTradingDays": 5,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
-    "payoutFirstDays": null,
+    "payoutFirstDays": 21,
     "payoutFrequency": "bi-weekly",
     "rules": {
       "news": "restricted",
       "weekend": true,
       "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://fundednext.com/",
-    "sourceCapturedAt": "2026-06-05",
+    "sourceUrl": "https://help.fundednext.com/en/articles/8021119-can-i-reset-my-account-anytime",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "Entry-level / lower-cost variant of Stellar 2-Step. Listed in nav but no dedicated product page found.",
-      "Profit split is lower than flagship Stellar — assumed 80% but verify before publishing.",
-      "Per-tier USD pricing awaits manual capture."
+      "Prices are global USD list prices and include the now-published $200K tier; promotions and the non-refundable $25 cTrader or Match-Trader fee are excluded.",
+      "The base funded Reward Share is 80%; the challenge stages themselves pay no reward share.",
+      "The refundable fee becomes available with the third approved Performance Reward.",
+      "First standard payout eligibility is 21 days, then every 14 days.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-07-27.json"
     ]
   },
   {
@@ -121,10 +214,26 @@
     "productSlug": "stellar-instant",
     "phases": 0,
     "accountSizes": [
-      { "sizeUsd": 2000,  "priceUsd": 59.99,  "refundable": false },
-      { "sizeUsd": 5000,  "priceUsd": 149.99, "refundable": false },
-      { "sizeUsd": 10000, "priceUsd": 299.99, "refundable": false },
-      { "sizeUsd": 20000, "priceUsd": 599.99, "refundable": false }
+      {
+        "sizeUsd": 2000,
+        "priceUsd": 59,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 149,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 299,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 599,
+        "refundable": false
+      }
     ],
     "profitTargets": null,
     "dailyLossPct": null,
@@ -133,25 +242,26 @@
     "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
-    "profitSplitPct": 80,
+    "profitSplitPct": 70,
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": true,
+      "news": "restricted",
       "weekend": true,
       "overnight": true,
-      "ea": true,
-      "copyTrading": false
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://fundednext.com/stellar-instant",
-    "sourceCapturedAt": "2026-06-05",
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641161-how-much-does-each-stellar-instant-account-cost",
+    "sourceCapturedAt": "2026-07-27",
     "notes": [
-      "No evaluation — instant funded account. Higher up-front price, lower split (starts at 70%, scales to 80%).",
-      "Trailing 6% maximum loss; no daily-loss cap published.",
-      "News trading allowed but at reduced 40% reward share during news windows.",
-      "Scaling plan doubles balance per 10% withdrawal up to $2M.",
-      "10% reset discount mentioned at scrape time (2026-06-05) — verify before quoting in editorial."
+      "Stellar Instant is a simulated instant-funded product with no evaluation phase and no refundable fee.",
+      "The starting Reward Share is 70%, not the 80% ceiling reached from Tier 3.",
+      "On-demand payout eligibility requires 5% account growth and an EOD check; 1%-to-under-5% growth uses a 14-day cycle.",
+      "The 6% maximum loss trails upward with profit, locks at starting balance, and does not reset after a withdrawal.",
+      "News-window profits are counted at only 40%; full losses remain.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-07-27.json"
     ]
   }
 ]

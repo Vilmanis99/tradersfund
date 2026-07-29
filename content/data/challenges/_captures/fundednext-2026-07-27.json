@@ -1,0 +1,360 @@
+{
+  "firmSlug": "fundednext",
+  "officialDomain": "https://fundednext.com",
+  "pagesRead": [
+    "https://fundednext.com/pt/plan",
+    "https://help.fundednext.com/en/articles/8021119-can-i-reset-my-account-anytime",
+    "https://help.fundednext.com/en/articles/11641161-how-much-does-each-stellar-instant-account-cost",
+    "https://help.fundednext.com/en/articles/8019914-what-is-the-maximum-daily-loss-limit",
+    "https://help.fundednext.com/en/articles/8019812-how-can-i-calculate-the-maximum-loss-limit",
+    "https://help.fundednext.com/en/articles/12729274-what-is-no-minimum-trading-days-in-fundednext",
+    "https://help.fundednext.com/en/articles/8020768-how-much-is-the-reward-share-in-fundednext",
+    "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
+    "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+    "https://help.fundednext.com/en/articles/11982358-does-fundednext-allow-holding-trades-over-the-night-weekend",
+    "https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext",
+    "https://help.fundednext.com/en/articles/8019805-what-is-the-copy-trading-rule-at-fundednext",
+    "https://help.fundednext.com/en/articles/11641381-what-will-be-my-performance-reward-from-the-stellar-instant-account",
+    "https://help.fundednext.com/en/articles/11641163-what-are-the-daily-loss-limit-and-the-maximum-loss-limit-for-the-stellar-instant-accounts",
+    "https://help.fundednext.com/en/articles/11641693-what-is-the-eligibility-criteria-for-my-performance-reward-in-the-stellar-instant-account",
+    "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
+    "https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process",
+    "https://help.fundednext.com/en/articles/13990618-how-to-complete-a-card-payment-at-fundednext-cfds",
+    "https://help.fundednext.com/en/articles/12673935-what-is-the-minimum-performance-reward-limit-for-fundednext"
+  ],
+  "accessNotes": "Global, non-US prices are captured. The public plan page exposed the Stellar 2-Step table; FundedNext's May 11, 2026 reset-price article exposes the original global prices for Stellar 1-Step, Stellar 2-Step and Stellar Lite. The separate USA price list is deliberately not used because India is the primary market. India is not among the 20 restricted countries published April 8, 2026; this is an availability observation, not Indian regulatory approval. Temporary promotions and paid add-ons are excluded.",
+  "capturedAt": "2026-07-27",
+  "products": [
+    {
+      "productName": "Stellar 2-Step",
+      "productSlug": "stellar-2-step",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 6000,
+          "priceUsd": 59.99,
+          "refundable": true,
+          "evidence": "Global plan table: '$6k Get Plan Fee: $59.99'; May 11 reset table confirms original purchase price $59.99."
+        },
+        {
+          "sizeUsd": 15000,
+          "priceUsd": 119.99,
+          "refundable": true,
+          "evidence": "Global plan table: '$15k Get Plan Fee: $119.99'."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 199.99,
+          "refundable": true,
+          "evidence": "Global plan table: '$25k Get Plan Fee: $199.99'."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 299.99,
+          "refundable": true,
+          "evidence": "Global plan table: '$50k Get Plan Fee: $299.99'."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 549.99,
+          "refundable": true,
+          "evidence": "Global plan table: '$100k Get Plan Fee: $549.99'."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1099.99,
+          "refundable": true,
+          "evidence": "Global plan table: '$200k Get Plan Fee: $1,099.99'."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 21,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fundednext.com/pt/plan",
+      "fieldEvidence": {
+        "profitTargets": "Global plan table and Help Center: 8% Phase 1, 5% Phase 2.",
+        "dailyLossPct": "Daily-loss article: Stellar 2-Step permits 5% of initial balance per day.",
+        "maxLossPct": "Maximum-loss article: Stellar 2-Step maximum loss is 10% of initial balance.",
+        "drawdownType": "The breach floor remains 90% of initial balance; profits add headroom rather than trail the floor.",
+        "minTradingDays": "Current plan and minimum-days articles require 5 trading days in each phase.",
+        "profitSplitPct": "Reward-share article: current new accounts start at 80%; 95% is an add-on.",
+        "payoutFirstDays": "June 22 reward schedule: first reward after 21 days, then every 14 days.",
+        "rules.news": "No evaluation restriction; funded profits inside the 5-minute-before/after window are counted at only 40%, so restricted.",
+        "rules.weekend": "Weekend holding is allowed.",
+        "rules.overnight": "Overnight holding is allowed; swaps count toward loss.",
+        "rules.ea": "EAs require a paid usage option and MT4/MT5; no automation on cTrader or Match-Trader.",
+        "rules.copyTrading": "Only own challenge accounts up to $300,000 with a designated master may copy; funded-account copying is prohibited."
+      },
+      "notes": [
+        "Prices are global USD list prices before promotions and exclude the non-refundable $25 cTrader or Match-Trader platform fee.",
+        "The current base Reward Share is 80%; 95% is a paid add-on and must not be presented as standard.",
+        "The registration fee is refundable with the first approved Performance Reward; platform fees are not.",
+        "First standard payout eligibility is after 21 days, then every 14 days.",
+        "News-window profits are reduced to a 40% count in the funded stage while 100% of losses remain.",
+        "INDIA AVAILABILITY: India is not among the 20 restricted CFD countries listed by FundedNext on April 8, 2026. This does not constitute regulatory approval or legal advice.",
+        "INDIA CHECKOUT: International Cards accepts Visa, Mastercard and Amex, with cardholder name required to match the FundedNext account. The site also advertises 30 cryptocurrencies; any Local Payment option is country-dependent and must appear in the user's dashboard.",
+        "KYC: physical national ID, passport or residence permit plus liveness check; the help center says review typically takes 48 hours and profile KYC renews every 90 days.",
+        "PAYOUT ROUTES: USDT/USDC can be requested from $20 up to $1,999 on standard routes, RiseWorks from $50, and bank transfer from $1,000 to $50,000. Provider processing fees can be up to 3.5%."
+      ]
+    },
+    {
+      "productName": "Stellar 1-Step",
+      "productSlug": "stellar-1-step",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 6000,
+          "priceUsd": 65.99,
+          "refundable": true,
+          "evidence": "May 11, 2026 global reset table: Stellar 1-Step $6K original purchase price '$65.99'."
+        },
+        {
+          "sizeUsd": 15000,
+          "priceUsd": 129.99,
+          "refundable": true,
+          "evidence": "May 11, 2026 global reset table: Stellar 1-Step $15K original purchase price '$129.99'."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 219.99,
+          "refundable": true,
+          "evidence": "May 11, 2026 global reset table: Stellar 1-Step $25K original purchase price '$219.99'."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 329.99,
+          "refundable": true,
+          "evidence": "May 11, 2026 global reset table: Stellar 1-Step $50K original purchase price '$329.99'."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 569.99,
+          "refundable": true,
+          "evidence": "May 11, 2026 global reset table: Stellar 1-Step $100K original purchase price '$569.99'."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1099.99,
+          "refundable": true,
+          "evidence": "May 11, 2026 global reset table: Stellar 1-Step $200K original purchase price '$1099.99'."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundednext.com/en/articles/8021119-can-i-reset-my-account-anytime",
+      "fieldEvidence": {
+        "profitTargets": "Current Stellar 1-Step FAQ: 10% profit target.",
+        "dailyLossPct": "Current rules article: 3% daily loss.",
+        "maxLossPct": "Current rules article: 6% maximum loss.",
+        "drawdownType": "Maximum loss is a fixed floor at 94% of initial balance.",
+        "minTradingDays": "Current minimum-days article: 2 challenge trading days.",
+        "profitSplitPct": "Current accounts purchased or reset on/after January 12, 2026 start at 80%.",
+        "payoutFirstDays": "June 22 reward schedule: performance rewards every 5 business days from the first cycle.",
+        "rules.news": "Funded-stage news-window profit count is 40%.",
+        "rules.weekend": "Weekend holding is allowed.",
+        "rules.overnight": "Overnight holding is allowed.",
+        "rules.ea": "Paid EA usage is limited to MetaTrader and has strategy restrictions.",
+        "rules.copyTrading": "Copying is limited to the same person's challenge accounts and prohibited between funded accounts."
+      },
+      "notes": [
+        "Prices are global USD list prices from FundedNext's current reset table; they exclude promotions and the non-refundable $25 cTrader or Match-Trader platform fee.",
+        "The former review accidentally used 15% evaluation-reward amounts as challenge prices; these figures replace that category error.",
+        "The base Reward Share for new purchases is 80%, not 95%.",
+        "The refundable fee is available with the third successful Performance Reward for purchases on or after January 12, 2026.",
+        "Performance Rewards run on 5-business-day cycles."
+      ]
+    },
+    {
+      "productName": "Stellar Lite",
+      "productSlug": "stellar-lite",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 32.99,
+          "refundable": true,
+          "evidence": "May 11, 2026 global reset table: Stellar Lite $5K original purchase price '$32.99'."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 59.99,
+          "refundable": true,
+          "evidence": "May 11, 2026 global reset table: Stellar Lite $10K original purchase price '$59.99'."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 139.99,
+          "refundable": true,
+          "evidence": "May 11, 2026 global reset table: Stellar Lite $25K original purchase price '$139.99'."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 229.99,
+          "refundable": true,
+          "evidence": "May 11, 2026 global reset table: Stellar Lite $50K original purchase price '$229.99'."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 399.99,
+          "refundable": true,
+          "evidence": "May 11, 2026 global reset table: Stellar Lite $100K original purchase price '$399.99'."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 798.99,
+          "refundable": true,
+          "evidence": "May 11, 2026 global reset table: Stellar Lite $200K original purchase price '$798.99'."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 4
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 8,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 21,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundednext.com/en/articles/8021119-can-i-reset-my-account-anytime",
+      "fieldEvidence": {
+        "profitTargets": "Current Stellar Lite FAQ: 8% in Phase 1 and 4% in Phase 2.",
+        "dailyLossPct": "Daily-loss article: Stellar Lite daily loss is 4%.",
+        "maxLossPct": "Maximum-loss article: Stellar Lite maximum loss is 8%.",
+        "drawdownType": "The breach floor remains 92% of initial balance.",
+        "minTradingDays": "Current profit-target and minimum-days articles require 5 days per phase.",
+        "profitSplitPct": "Current Stellar Lite funded reward share starts at 80%.",
+        "payoutFirstDays": "Current cycle article: 21 days for the first reward, then 14 days.",
+        "rules.news": "Funded-stage high-impact news profit count is 40%.",
+        "rules.weekend": "Weekend holding is allowed.",
+        "rules.overnight": "Overnight holding is allowed.",
+        "rules.ea": "Paid EA usage is limited to MetaTrader and restricted strategies.",
+        "rules.copyTrading": "Copying is limited to own challenge accounts; funded-account copying is prohibited."
+      },
+      "notes": [
+        "Prices are global USD list prices and include the now-published $200K tier; promotions and the non-refundable $25 cTrader or Match-Trader fee are excluded.",
+        "The base funded Reward Share is 80%; the challenge stages themselves pay no reward share.",
+        "The refundable fee becomes available with the third approved Performance Reward.",
+        "First standard payout eligibility is 21 days, then every 14 days."
+      ]
+    },
+    {
+      "productName": "Stellar Instant",
+      "productSlug": "stellar-instant",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 2000,
+          "priceUsd": 59,
+          "refundable": false,
+          "evidence": "Official Stellar Instant pricing article: '$2,000 Account | $59'."
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 149,
+          "refundable": false,
+          "evidence": "Official Stellar Instant pricing article: '$5,000 Account | $149'."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 299,
+          "refundable": false,
+          "evidence": "Official Stellar Instant pricing article: '$10,000 Account | $299'."
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 599,
+          "refundable": false,
+          "evidence": "Official Stellar Instant pricing article: '$20,000 Account | $599'."
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": 6,
+      "drawdownType": "trailing",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 70,
+      "payoutFirstDays": 0,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundednext.com/en/articles/11641161-how-much-does-each-stellar-instant-account-cost",
+      "fieldEvidence": {
+        "dailyLossPct": "Official rules: Stellar Instant has no daily loss limit.",
+        "maxLossPct": "Official rules: 6% trailing maximum loss.",
+        "drawdownType": "The loss floor trails profit upward and locks at the initial balance.",
+        "minTradingDays": "Official FAQ: no minimum trading days.",
+        "consistencyRulePct": "Official FAQ: no consistency rule.",
+        "profitSplitPct": "Official reward-share article: Tier 1 and Tier 2 start at 70%; 80% begins at Tier 3.",
+        "payoutFirstDays": "On-demand eligibility is available at the next EOD after 5% growth; otherwise 14-day eligibility applies above 1% growth.",
+        "rules.news": "Only 40% of profits in the 5-minute-before/after high-impact news window count.",
+        "rules.weekend": "Weekend holding is allowed.",
+        "rules.overnight": "Overnight holding is allowed.",
+        "rules.ea": "EA usage is platform- and add-on-dependent.",
+        "rules.copyTrading": "Allowed only between Stellar Instant accounts held by the same person."
+      },
+      "notes": [
+        "Stellar Instant is a simulated instant-funded product with no evaluation phase and no refundable fee.",
+        "The starting Reward Share is 70%, not the 80% ceiling reached from Tier 3.",
+        "On-demand payout eligibility requires 5% account growth and an EOD check; 1%-to-under-5% growth uses a 14-day cycle.",
+        "The 6% maximum loss trails upward with profit, locks at starting balance, and does not reset after a withdrawal.",
+        "News-window profits are counted at only 40%; full losses remain."
+      ]
+    }
+  ]
+}

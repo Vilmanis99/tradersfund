@@ -121,6 +121,7 @@ export default function FirmAlternatives({
                 {isPartner ? (
                   <Link
                     href={`/go/${firmSlug(firm.name)}?from=alternatives`}
+                    prefetch={false}
                     rel="sponsored nofollow noopener"
                     target="_blank"
                     className="btn-primary btn-glow"

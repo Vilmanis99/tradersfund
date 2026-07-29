@@ -1,8 +1,9 @@
-import { getAllFirms } from '@/lib/firms'
+import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { getAllPosts } from '@/lib/mdx'
 import { LANDINGS } from '@/lib/landings'
 import { FEATURES } from '@/lib/features'
 import { AUTHORS } from '@/lib/authors'
+import { INDIA_MATCHUPS, indiaMatchupPath } from '@/lib/indiaMatchups'
 
 const SITE = 'https://tradersfundhub.com'
 
@@ -18,7 +19,8 @@ export const dynamic = 'force-static'
 export async function GET() {
   const firms = getAllFirms()
   const posts = getAllPosts()
-  const challengesNote = '' // count omitted to avoid drift
+  const challenges = getAllChallenges().filter(challenge => isChallengeFresh(challenge))
+  const challengesNote = ` The product-level comparison currently contains ${challenges.length} source-fresh challenge products.`
 
   const byScore = [...firms].sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
 
@@ -45,6 +47,11 @@ export async function GET() {
   const authorLines = AUTHORS
     .map(a => `- [${a.name}](${SITE}/authors/${a.slug})`)
     .join('\n')
+  const indiaMatchupLines = Object.values(INDIA_MATCHUPS)
+    .map(matchup =>
+      `- [${matchup.title} for India](${SITE}${indiaMatchupPath(matchup)}): `
+      + matchup.metaDescription)
+    .join('\n')
 
   const body = `# Traders Fund Hub
 
@@ -54,7 +61,14 @@ Traders Fund Hub helps traders choose a prop firm (a company that funds traders 
 
 ## Core pages
 - [Best Prop Firms 2026 (ranked)](${SITE}/best-prop-firms-2026): the overall opinionated ranking, with a one-line verdict on who each firm suits.
-- [Prop firm directory](${SITE}/main-table): every tracked firm, filterable by asset, platform, profit split, and payout speed.
+- [Prop firm directory](${SITE}/prop-firms): every tracked firm with source-dated products, evaluation filters, direct comparisons, platforms, profit splits, and payout timing.
+- [Prop firm challenge comparison](${SITE}/prop-firm-challenges): product-level prices, funded-cost floors, targets, loss limits, drawdown, payouts, rules, first-party sources, and a dated change watch.
+- [Prop firm challenge changes](${SITE}/prop-firm-challenge-changes): a source-dated ledger of verified rule and lineup changes, price watches, unresolved source conflicts, and the practical impact on traders.
+- [Best prop firms in India](${SITE}/best-prop-firms-in-india): an India-specific ranking that applies the RBI Alert List and dated country-availability gate before commercial sorting.
+- [India prop-firm comparison library](${SITE}/best-prop-firms-in-india/compare): curated head-to-head matchups organized by India checkout, payout, KYC, risk-rule and product-choice questions.
+- [India prop-firm challenge changes](${SITE}/best-prop-firms-in-india/challenge-changes): verified changes and open watches filtered through current India eligibility, RBI and product-freshness gates.
+- [India prop-firm challenge comparison](${SITE}/best-prop-firms-in-india/challenge-comparison): source-dated product rules with RBI, country, KYC, payout and INR-planning evidence attached.
+${indiaMatchupLines}
 - [Compare firms](${SITE}/compare): head-to-head matchups for every firm pair, with editorial verdicts on the most-searched ones.
 - [Prop firm discount codes & deals](${SITE}/prop-firm-discount-codes): verified discount codes and partner offers, each stamped with the date we last checked it — expired codes are removed, never invented.
 - [How prop firm challenges work](${SITE}/how-prop-firm-challenges-work): the five-stage lifecycle from buying a challenge to first payout.

@@ -4,21 +4,9 @@ import path from 'path'
 /** Trailing = runs behind equity high-water mark. Static = fixed floor. */
 export type DrawdownType = 'static' | 'trailing' | 'eod-trailing' | 'balance-based'
 export type PayoutFrequency = 'weekly' | 'bi-weekly' | 'monthly' | 'on-demand'
+export type RuleAvailability = boolean | 'restricted' | null
 
-/**
- * 0–10 sub-ratings, editorial. Null = not yet rated.
- *
- * Rubric (apply consistently across firms — calibrate against FTMO as the
- * anchor reference at ~9 on most axes):
- * - `conditions`: spreads, leverage, slippage, instrument coverage, platform
- *   stability under load. 10 = institutional-tier. 5 = mediocre retail.
- * - `support`: response time, accuracy, handling of disputed account closures
- *   or rule-breach claims. Weigh public Discord/Reddit reports.
- * - `payouts`: speed of approved request → bank/crypto delivery, fee burden,
- *   minimum thresholds, historical reliability (no missed cycles).
- * - `platform`: native UI/dashboard quality, mobile parity, account-management
- *   features. NOT the trading platform itself (that's `conditions`).
- */
+/** Optional 0–10 editorial sub-ratings. Null means the axis is not yet rated. */
 export interface FirmRatings {
   conditions?: number | null
   support?: number | null
@@ -37,6 +25,8 @@ export interface Firm {
   logo: string
   /** Internal editorial review page. */
   reviewUrl: string
+  /** Firm-owned public website used when no affiliate partnership is configured. */
+  officialUrl: string
   /** External affiliate partner URL — empty string if not yet partnered. */
   affiliateUrl?: string
   /**
@@ -57,12 +47,12 @@ export interface Firm {
   consistencyRule?: string | null
   scalingPlan?: boolean | null
 
-  // ── Trading rules (true = allowed) ──
-  newsTradingAllowed?: boolean | null
-  eaAllowed?: boolean | null
-  overnightAllowed?: boolean | null
-  weekendAllowed?: boolean | null
-  copyTradingAllowed?: boolean | null
+  // ── Trading rules (true = allowed, restricted = conditional/product-dependent) ──
+  newsTradingAllowed?: RuleAvailability
+  eaAllowed?: RuleAvailability
+  overnightAllowed?: RuleAvailability
+  weekendAllowed?: RuleAvailability
+  copyTradingAllowed?: RuleAvailability
 
   // ── Availability ──
   countriesRestricted?: string[]
@@ -110,8 +100,8 @@ export interface Firm {
 export interface ChallengeAccountSize {
   /** Notional account capital in USD (e.g. 10000, 100000). */
   sizeUsd: number
-  /** Challenge fee in USD for this tier. */
-  priceUsd: number
+  /** Challenge fee in USD for this tier. Null when the firm does not publish it. */
+  priceUsd: number | null
   /**
    * Challenge fee in EUR, when the firm denominates the fee in euros even
    * though the account is sized in dollars. FTMO does exactly this: the
@@ -125,8 +115,33 @@ export interface ChallengeAccountSize {
    * feed it priceEur to get a EUR-denominated break-even.
    */
   priceEur?: number | null
-  /** True = fee refunded with the first payout (industry-standard). */
-  refundable: boolean
+  /**
+   * Additional amount due after the evaluation is passed. Maven's Buy Now,
+   * Pay Later product charges $5 up front and a tier-specific $40-$589 after
+   * passing; dropping this field makes the apparent cost wrong by up to 118x.
+   */
+  payLaterUsd?: number | null
+  /**
+   * One-time funded-account activation fee for this specific tier. Use this
+   * when a firm varies the fee by account size; it takes precedence over the
+   * product-wide Challenge.activationFeeUsd fallback.
+   */
+  activationFeeUsd?: number | null
+  /**
+   * Daily loss limit in USD when the firm publishes a different fixed cap
+   * for each tier. A null value means no verified dollar cap, not zero.
+   */
+  dailyLossUsd?: number | null
+  /**
+   * Lifetime loss limit in USD when the firm publishes a different fixed
+   * dollar cap for each tier. Futures firms commonly quote "$2,000 on the
+   * $50K account" instead of one product-wide percentage. Keeping the
+   * dollar value on the tier prevents us from inventing a percentage and
+   * still lets computeTrueCost() produce an auditable R-multiple.
+   */
+  maxLossUsd?: number | null
+  /** True = refundable, false = not refundable, null = not verified. */
+  refundable: boolean | null
 }
 
 export interface ChallengeProfitTargets {
@@ -140,15 +155,15 @@ export interface ChallengeProfitTargets {
 
 export interface ChallengeRules {
   /** true = allowed without penalty; false = banned; 'restricted' = allowed with conditions (see notes) */
-  news: boolean | 'restricted'
+  news: RuleAvailability
   /** Hold positions over the weekend? */
-  weekend: boolean
+  weekend: RuleAvailability
   /** Hold positions overnight (cash-session close to next-day open)? */
-  overnight: boolean
+  overnight: RuleAvailability
   /** Expert Advisors / algorithmic trading allowed? */
-  ea: boolean
+  ea: RuleAvailability
   /** Mirror/copy-trade other traders' positions allowed? */
-  copyTrading: boolean
+  copyTrading: RuleAvailability
 }
 
 export interface Challenge {
@@ -175,7 +190,7 @@ export interface Challenge {
    *
    * Defaults to 'one-off' when absent (the CFD-firm norm).
    */
-  pricingModel?: 'one-off' | 'monthly-subscription'
+  pricingModel?: 'one-off' | 'monthly-subscription' | 'split-payment'
   /**
    * One-time fee charged on passing, before the account goes live —
    * Topstep's XFA activation is $149 on its Standard Path and $0 on its
@@ -191,7 +206,13 @@ export interface Challenge {
   /** Maximum lifetime loss as a % of starting balance. */
   maxLossPct: number | null
   /** static / trailing / eod-trailing / balance-based. */
-  drawdownType: DrawdownType
+  drawdownType: DrawdownType | null
+  /** Funded-stage daily loss cap when it differs from the evaluation. */
+  fundedDailyLossPct?: number | null
+  /** Funded-stage maximum loss cap when it differs from the evaluation. */
+  fundedMaxLossPct?: number | null
+  /** Funded-stage drawdown method when it differs from the evaluation. */
+  fundedDrawdownType?: DrawdownType | null
   /** Minimum trading days to be eligible for funding/payout. Null = none. */
   minTradingDays: number | null
   /** Hard maximum trading days. Null = unlimited. */
@@ -199,12 +220,12 @@ export interface Challenge {
   /** Consistency rule as a % cap on a single day's contribution to total profit. */
   consistencyRulePct: number | null
   /** Profit split this product pays the trader (0–100). */
-  profitSplitPct: number
+  profitSplitPct: number | null
   /** Days until the first payout request can be raised on this product. */
   payoutFirstDays: number | null
-  payoutFrequency: PayoutFrequency
+  payoutFrequency: PayoutFrequency | null
   rules: ChallengeRules
-  assetClass: 'cfd' | 'futures' | 'crypto'
+  assetClass: 'cfd' | 'futures' | 'crypto' | 'prediction-markets'
   /** Public URL we sourced this data from. */
   sourceUrl: string
   /** ISO date when we last verified the data against `sourceUrl`. */
@@ -250,6 +271,39 @@ export function getAllChallenges(): Challenge[] {
 
 /* ── True-cost helper ──────────────────────────────────────────── */
 
+/**
+ * True when a challenge was verified within the editorial freshness window.
+ * Invalid or future-dated captures fail closed instead of looking fresh.
+ */
+export function isChallengeFresh(
+  challenge: Pick<Challenge, 'sourceCapturedAt'>,
+  now = new Date(),
+  maxAgeDays = 30,
+): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(challenge.sourceCapturedAt)) return false
+  const captured = new Date(`${challenge.sourceCapturedAt}T00:00:00Z`)
+  if (Number.isNaN(captured.getTime())) return false
+  const ageDays = Math.floor((now.getTime() - captured.getTime()) / 86_400_000)
+  return ageDays >= 0 && ageDays <= maxAgeDays
+}
+
+/**
+ * Minimum known cash outlay to reach the funded stage.
+ *
+ * For a monthly subscription this assumes a first-cycle pass and adds the
+ * activation fee. It is a floor, not an average: extra billing cycles and
+ * resets must be modelled separately. Split-payment products include both
+ * the checkout payment and the amount contractually due after passing.
+ */
+export function minimumCostToFundedUsd(
+  challenge: Pick<Challenge, 'pricingModel' | 'activationFeeUsd'>,
+  tier: Pick<ChallengeAccountSize, 'priceUsd' | 'payLaterUsd' | 'activationFeeUsd'>,
+): number | null {
+  if (tier.priceUsd == null || tier.priceUsd <= 0) return null
+  const activationFee = tier.activationFeeUsd ?? challenge.activationFeeUsd ?? 0
+  return tier.priceUsd + (tier.payLaterUsd ?? 0) + activationFee
+}
+
 export interface TrueCostInput {
   /** Challenge fee at the tier in question. */
   priceUsd: number
@@ -261,6 +315,12 @@ export interface TrueCostInput {
   dailyLossPct: number | null
   /** Lifetime max DD cap as a %, or null when unknown. */
   maxLossPct: number | null
+  /**
+   * Tier-specific lifetime max loss in USD. When present this is the
+   * authoritative denominator for R-multiple math and takes precedence
+   * over a product-wide percentage.
+   */
+  maxLossUsd?: number | null
 }
 
 export interface TrueCostBreakdown {
@@ -301,8 +361,16 @@ export function computeTrueCost(input: TrueCostInput): TrueCostBreakdown {
   const splitFrac = profitSplitPct / 100
   const breakEvenProfit = splitFrac > 0 ? priceUsd / splitFrac : 0
 
-  const maxLossUsd = maxLossPct != null ? sizeUsd * (maxLossPct / 100) : null
-  const rMultiple = maxLossUsd && maxLossUsd > 0 ? breakEvenProfit / maxLossUsd : null
+  const effectiveMaxLossUsd =
+    input.maxLossUsd != null
+      ? input.maxLossUsd
+      : maxLossPct != null
+        ? sizeUsd * (maxLossPct / 100)
+        : null
+  const rMultiple =
+    effectiveMaxLossUsd && effectiveMaxLossUsd > 0
+      ? breakEvenProfit / effectiveMaxLossUsd
+      : null
 
   let dayCount: number | null = null
   if (dailyLossPct != null && sizeUsd > 0 && breakEvenProfit > 0) {

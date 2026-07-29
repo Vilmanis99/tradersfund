@@ -86,6 +86,7 @@ export default function FirmCtaCard({ firm }: { firm: Firm }) {
       {hasAffiliate ? (
         <Link
           href={goUrl}
+          prefetch={false}
           rel="sponsored nofollow noopener"
           target="_blank"
           className="btn-primary btn-glow"
