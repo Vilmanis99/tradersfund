@@ -16,7 +16,7 @@ import ChallengeChangeFeed, {
   type ChallengeChangeCardData,
 } from '@/components/ChallengeChangeFeed'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
-import { getAllFirms } from '@/lib/firms'
+import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import {
   INDIA_EVIDENCE,
   passesIndiaRegulatoryCountryGate,
@@ -64,6 +64,19 @@ function firmSlug(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
+function affectedComparisonUrl(firm: string, productSlugs: string[]) {
+  const path = '/prop-firm-challenges'
+  if (!productSlugs.length) return `${path}#challenge-shortlist-heading`
+
+  const params = new URLSearchParams({
+    shortlist: productSlugs
+      .slice(0, 4)
+      .map(productSlug => `${firm}:${productSlug}`)
+      .join(','),
+  })
+  return `${path}?${params.toString()}#challenge-shortlist-heading`
+}
+
 const FAQS = [
   {
     q: 'What counts as a prop-firm challenge change?',
@@ -94,18 +107,38 @@ const FAQS = [
 export default function Page() {
   const entries = getChallengeWatchEntries()
   const firms = getAllFirms()
+  const challenges = getAllChallenges().filter(challenge => isChallengeFresh(challenge))
   const firmBySlug = new Map(firms.map(firm => [firmSlug(firm.name), firm]))
+  const challengeByKey = new Map(challenges.map(challenge => [
+    `${challenge.firmSlug}:${challenge.productSlug}`,
+    challenge,
+  ]))
   const indiaScreenedSlugs = new Set(
     INDIA_EVIDENCE
       .filter(passesIndiaRegulatoryCountryGate)
       .map(entry => entry.firmSlug),
   )
 
-  const feedEntries: ChallengeChangeCardData[] = entries.map(entry => ({
-    ...entry,
-    reviewUrl: firmBySlug.get(entry.firmSlug)?.reviewUrl || '/prop-firms',
-    indiaScreened: indiaScreenedSlugs.has(entry.firmSlug),
-  }))
+  const feedEntries: ChallengeChangeCardData[] = entries.map(entry => {
+    const affectedProducts = entry.productSlugs.flatMap(productSlug => {
+      const challenge = challengeByKey.get(`${entry.firmSlug}:${productSlug}`)
+      return challenge ? [challenge] : []
+    })
+    const affectedProductSlugs = affectedProducts.map(product => product.productSlug)
+    const completeProductMap = affectedProducts.length === entry.productSlugs.length
+    return {
+      ...entry,
+      reviewUrl: firmBySlug.get(entry.firmSlug)?.reviewUrl || '/prop-firms',
+      indiaScreened: indiaScreenedSlugs.has(entry.firmSlug),
+      ...(completeProductMap ? {
+        productNames: affectedProducts.map(product => product.productName),
+        comparisonUrl: affectedComparisonUrl(entry.firmSlug, affectedProductSlugs),
+        comparisonLabel: affectedProducts.length === 1
+          ? `Open ${affectedProducts[0].productName}`
+          : `Compare ${affectedProducts.length} affected products`,
+      } : {}),
+    }
+  })
 
   const trackedFirmCount = new Set(entries.map(entry => entry.firmSlug)).size
   const verifiedCount = entries.filter(entry => entry.status === 'verified').length
@@ -247,7 +280,7 @@ export default function Page() {
               First-party sources only
             </span>
           </div>
-          <ChallengeChangeFeed entries={feedEntries} />
+          <ChallengeChangeFeed entries={feedEntries} surface="global" />
         </div>
       </section>
 

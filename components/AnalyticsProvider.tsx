@@ -17,7 +17,9 @@ const CONSENT_CHANGE_EVENT = 'tfh:analytics-consent-changed'
 const SCROLL_THRESHOLDS = [25, 50, 75, 90] as const
 const HIGH_INTENT_STAGES = new Set([
   'india_comparison',
+  'india_updates',
   'challenge_comparison',
+  'challenge_updates',
   'comparison_directory',
   'firm_review',
   'head_to_head',
@@ -100,6 +102,7 @@ function journeyStage(pathname: string) {
   if (pathname === '/best-prop-firms-in-india/challenge-comparison') return 'india_comparison'
   if (pathname.startsWith('/best-prop-firms-in-india/challenge-changes')) return 'india_updates'
   if (pathname === '/prop-firm-challenges') return 'challenge_comparison'
+  if (pathname === '/prop-firm-challenge-changes') return 'challenge_updates'
   if (pathname === '/prop-firms') return 'firm_directory'
   if (pathname === '/compare') return 'comparison_directory'
   if (pathname.includes('-vs-') || pathname.includes('/compare/')) return 'head_to_head'

@@ -57,7 +57,7 @@ function dateLabel(value: string) {
 
 function affectedComparisonUrl(firmSlug: string, productSlugs: string[]) {
   const path = '/best-prop-firms-in-india/challenge-comparison'
-  if (productSlugs.length < 2) return path
+  if (!productSlugs.length) return `${path}#india-challenge-shortlist-heading`
 
   const params = new URLSearchParams({
     shortlist: productSlugs
@@ -66,7 +66,7 @@ function affectedComparisonUrl(firmSlug: string, productSlugs: string[]) {
       .join(','),
     priority: 'evidence',
   })
-  return `${path}?${params.toString()}`
+  return `${path}?${params.toString()}#india-challenge-shortlist-heading`
 }
 
 export default function Page() {
@@ -97,7 +97,7 @@ export default function Page() {
       ),
       comparisonLabel:
         affectedProducts.length === 1
-          ? 'Compare current India products'
+          ? `Open ${affectedProducts[0].name}`
           : `Compare ${affectedProducts.length} affected products`,
     }]
   })
@@ -277,7 +277,7 @@ export default function Page() {
               First-party sources only
             </span>
           </div>
-          <ChallengeChangeFeed entries={entries} />
+          <ChallengeChangeFeed entries={entries} surface="india" />
         </div>
       </section>
 

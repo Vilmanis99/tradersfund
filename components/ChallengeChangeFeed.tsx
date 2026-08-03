@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -10,6 +10,7 @@ import {
   MapPinCheck,
   Search,
 } from 'lucide-react'
+import { trackSiteEvent as track } from '@/lib/clientAnalytics'
 
 export type ChallengeChangeKind =
   | 'lineup-change'
@@ -40,6 +41,7 @@ export interface ChallengeChangeCardData {
 const FILTERS = [
   { value: 'all', label: 'All updates' },
   { value: 'verified', label: 'Verified' },
+  { value: 'watch', label: 'Open watches' },
   { value: 'price-watch', label: 'Price watches' },
   { value: 'rule-change', label: 'Rule changes' },
   { value: 'lineup-change', label: 'Lineup changes' },
@@ -47,6 +49,7 @@ const FILTERS = [
 ] as const
 
 type ChangeFilter = (typeof FILTERS)[number]['value']
+type ChangeSurface = 'global' | 'india'
 
 const MONTHS = [
   'Jan',
@@ -76,33 +79,63 @@ function kindLabel(kind: ChallengeChangeKind) {
   return 'Source conflict'
 }
 
+function entryMatches(
+  entry: ChallengeChangeCardData,
+  filter: ChangeFilter,
+  normalizedQuery: string,
+) {
+  const matchesFilter =
+    filter === 'all' ||
+    (filter === 'verified'
+      ? entry.status === 'verified'
+      : filter === 'watch'
+        ? entry.status === 'watch'
+        : entry.kind === filter)
+  const matchesQuery =
+    !normalizedQuery ||
+    [
+      entry.firmName,
+      entry.title,
+      entry.summary,
+      entry.traderImpact,
+      ...(entry.productNames || []),
+    ].some(value => value.toLowerCase().includes(normalizedQuery))
+  return matchesFilter && matchesQuery
+}
+
 export default function ChallengeChangeFeed({
   entries,
+  surface,
 }: {
   entries: ChallengeChangeCardData[]
+  surface: ChangeSurface
 }) {
   const [filter, setFilter] = useState<ChangeFilter>('all')
   const [query, setQuery] = useState('')
+  const committedSearchRef = useRef('')
+  const explorationTrackedRef = useRef(false)
 
   const visible = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase()
-    return entries.filter(entry => {
-      const matchesFilter =
-        filter === 'all' ||
-        (filter === 'verified'
-          ? entry.status === 'verified'
-          : entry.kind === filter)
-      const matchesQuery =
-        !normalizedQuery ||
-        [
-          entry.firmName,
-          entry.title,
-          entry.summary,
-          entry.traderImpact,
-        ].some(value => value.toLowerCase().includes(normalizedQuery))
-      return matchesFilter && matchesQuery
-    })
+    return entries.filter(entry => entryMatches(entry, filter, normalizedQuery))
   }, [entries, filter, query])
+
+  const commitSearch = () => {
+    const normalizedQuery = query.trim().toLowerCase()
+    if (!normalizedQuery) return
+    const searchKey = `${normalizedQuery}:${visible.length}`
+    if (committedSearchRef.current === searchKey) return
+    committedSearchRef.current = searchKey
+    if (!explorationTrackedRef.current) {
+      explorationTrackedRef.current = true
+      track('challenge_change_explore', {
+        surface,
+        method: 'search',
+        filter,
+        result_count: visible.length,
+      })
+    }
+  }
 
   return (
     <div>
@@ -114,6 +147,13 @@ export default function ChallengeChangeFeed({
             type="search"
             value={query}
             onChange={event => setQuery(event.target.value)}
+            onBlur={commitSearch}
+            onKeyDown={event => {
+              if (event.key === 'Enter') {
+                event.preventDefault()
+                commitSearch()
+              }
+            }}
             placeholder="Search firm, rule or change"
           />
         </label>
@@ -121,11 +161,7 @@ export default function ChallengeChangeFeed({
         <div className="change-feed-filters" aria-label="Filter challenge changes">
           {FILTERS.map(option => {
             const count = entries.filter(entry =>
-              option.value === 'all'
-                ? true
-                : option.value === 'verified'
-                  ? entry.status === 'verified'
-                  : entry.kind === option.value,
+              entryMatches(entry, option.value, query.trim().toLowerCase()),
             ).length
             return (
               <button
@@ -135,7 +171,24 @@ export default function ChallengeChangeFeed({
                 className={`change-feed-filter${
                   filter === option.value ? ' change-feed-filter--active' : ''
                 }`}
-                onClick={() => setFilter(option.value)}
+                onClick={() => {
+                  if (filter === option.value) return
+                  const resultCount = entries.filter(entry => entryMatches(
+                    entry,
+                    option.value,
+                    query.trim().toLowerCase(),
+                  )).length
+                  setFilter(option.value)
+                  if (!explorationTrackedRef.current) {
+                    explorationTrackedRef.current = true
+                    track('challenge_change_explore', {
+                      surface,
+                      method: 'filter',
+                      filter: option.value,
+                      result_count: resultCount,
+                    })
+                  }
+                }}
               >
                 {option.label}
                 <span>{count}</span>
@@ -213,6 +266,15 @@ export default function ChallengeChangeFeed({
                     href={sourceUrl}
                     target="_blank"
                     rel="nofollow noopener"
+                    data-analytics-ignore
+                    onClick={() => track('challenge_change_source_open', {
+                      surface,
+                      change_id: entry.id,
+                      firm: entry.firmSlug,
+                      kind: entry.kind,
+                      status: entry.status,
+                      source_index: index + 1,
+                    })}
                   >
                     First-party source
                     {entry.sourceUrls.length > 1 ? ` ${index + 1}` : ''}
@@ -220,12 +282,36 @@ export default function ChallengeChangeFeed({
                   </a>
                 ))}
                 {entry.comparisonUrl && entry.comparisonLabel && (
-                  <Link href={entry.comparisonUrl}>
+                  <Link
+                    href={entry.comparisonUrl}
+                    data-analytics-ignore
+                    onClick={() => track('challenge_change_next_step', {
+                      surface,
+                      change_id: entry.id,
+                      firm: entry.firmSlug,
+                      kind: entry.kind,
+                      status: entry.status,
+                      action: 'comparison',
+                      affected_product_count: entry.productNames?.length ?? 0,
+                    })}
+                  >
                     {entry.comparisonLabel}
                     <ArrowRight size={11} aria-hidden="true" />
                   </Link>
                 )}
-                <Link href={entry.reviewUrl}>
+                <Link
+                  href={entry.reviewUrl}
+                  data-analytics-ignore
+                  onClick={() => track('challenge_change_next_step', {
+                    surface,
+                    change_id: entry.id,
+                    firm: entry.firmSlug,
+                    kind: entry.kind,
+                    status: entry.status,
+                    action: 'review',
+                    affected_product_count: entry.productNames?.length ?? 0,
+                  })}
+                >
                   Read {entry.firmName} review
                   <ArrowRight size={11} aria-hidden="true" />
                 </Link>
