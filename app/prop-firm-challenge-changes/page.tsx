@@ -15,6 +15,7 @@ import {
 import ChallengeChangeFeed, {
   type ChallengeChangeCardData,
 } from '@/components/ChallengeChangeFeed'
+import { validateChallengeProductKeys } from '@/lib/challengeChangeFocus'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import {
@@ -113,6 +114,8 @@ export default function Page() {
     `${challenge.firmSlug}:${challenge.productSlug}`,
     challenge,
   ]))
+  const validProductKeys = validateChallengeProductKeys(challenges.map(challenge =>
+    `${challenge.firmSlug}:${challenge.productSlug}`))
   const indiaScreenedSlugs = new Set(
     INDIA_EVIDENCE
       .filter(passesIndiaRegulatoryCountryGate)
@@ -130,6 +133,7 @@ export default function Page() {
       ...entry,
       reviewUrl: firmBySlug.get(entry.firmSlug)?.reviewUrl || '/prop-firms',
       indiaScreened: indiaScreenedSlugs.has(entry.firmSlug),
+      productKeys: affectedProductSlugs.map(productSlug => `${entry.firmSlug}:${productSlug}`),
       ...(completeProductMap ? {
         productNames: affectedProducts.map(product => product.productName),
         comparisonUrl: affectedComparisonUrl(entry.firmSlug, affectedProductSlugs),
@@ -280,7 +284,7 @@ export default function Page() {
               First-party sources only
             </span>
           </div>
-          <ChallengeChangeFeed entries={feedEntries} surface="global" />
+          <ChallengeChangeFeed entries={feedEntries} surface="global" validProductKeys={validProductKeys} />
         </div>
       </section>
 

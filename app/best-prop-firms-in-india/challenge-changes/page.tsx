@@ -15,6 +15,7 @@ import {
 import ChallengeChangeFeed, {
   type ChallengeChangeCardData,
 } from '@/components/ChallengeChangeFeed'
+import { validateChallengeProductKeys } from '@/lib/challengeChangeFocus'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { buildIndiaMatcherFirms } from '@/lib/indiaMatcher'
 import { buildLandingPayload, getLandingBySlug } from '@/lib/landings'
@@ -76,6 +77,8 @@ export default function Page() {
   const { ranked } = buildLandingPayload(landing)
   const indiaFirms = buildIndiaMatcherFirms(ranked.map(entry => entry.firm))
   const firmBySlug = new Map(indiaFirms.map(firm => [firm.slug, firm]))
+  const validProductKeys = validateChallengeProductKeys(indiaFirms.flatMap(firm =>
+    firm.products.map(product => `${firm.slug}:${product.slug}`)))
   const globalEntries = getChallengeWatchEntries()
 
   const entries = globalEntries.flatMap<ChallengeChangeCardData>(entry => {
@@ -90,6 +93,7 @@ export default function Page() {
       ...entry,
       reviewUrl: firm.reviewUrl,
       indiaScreened: true,
+      productKeys: affectedProducts.map(product => `${firm.slug}:${product.slug}`),
       productNames: affectedProducts.map(product => product.name),
       comparisonUrl: affectedComparisonUrl(
         firm.slug,
@@ -103,8 +107,7 @@ export default function Page() {
   })
 
   const trackedFirmCount = new Set(entries.map(entry => entry.firmSlug)).size
-  const affectedProductKeys = new Set(entries.flatMap(entry =>
-    (entry.productNames || []).map(productName => `${entry.firmSlug}:${productName}`)))
+  const affectedProductKeys = new Set(entries.flatMap(entry => entry.productKeys))
   const affectedProductCount = affectedProductKeys.size
   const verifiedCount = entries.filter(entry => entry.status === 'verified').length
   const watchCount = entries.filter(entry => entry.status === 'watch').length
@@ -277,7 +280,7 @@ export default function Page() {
               First-party sources only
             </span>
           </div>
-          <ChallengeChangeFeed entries={entries} surface="india" />
+          <ChallengeChangeFeed entries={entries} surface="india" validProductKeys={validProductKeys} />
         </div>
       </section>
 

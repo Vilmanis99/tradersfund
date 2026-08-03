@@ -28,6 +28,12 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
+import {
+  countFocusedProductsWithUpdates,
+  focusChallengeChangeEntries,
+  parseChallengeChangeFocus,
+  validateChallengeProductKeys,
+} from '../lib/challengeChangeFocus.ts'
 import { computeTrueCost } from '../lib/firms.ts'
 import { diffChallengeProducts } from './challenge-diff.mjs'
 
@@ -1316,6 +1322,9 @@ function checkGlobalChallengeSurface() {
       'product.sourceUrl',
       'product.capturedAt',
       'ProductChangeSignals signals={product.changeSignals}',
+      'shortlistChangeHref(selectedRows)',
+      'challenge_change_shortlist_open',
+      '/prop-firm-challenge-changes?',
       'product.rules.ea',
       'Affiliate status contributes 0 ranking points',
       'rel="nofollow noopener"',
@@ -1338,6 +1347,7 @@ function checkGlobalChallengeSurface() {
       'alternates: { canonical: PATH }',
       'getChallengeWatchEntries()',
       'passesIndiaRegulatoryCountryGate',
+      'validateChallengeProductKeys',
       'ChallengeChangeFeed entries={feedEntries}',
       `SOCIAL_CARD_ENTRY_COUNT = ${entries.length}`,
       `SOCIAL_CARD_FIRM_COUNT = ${expectedFirmCount}`,
@@ -1370,6 +1380,12 @@ function checkGlobalChallengeSurface() {
       'entry.sourceUrls.map',
       'rel="nofollow noopener"',
       'Read {entry.firmName} review',
+      'parseChallengeChangeFocus',
+      'focusState.requested',
+      'challenge_change_shortlist_loaded',
+      'challenge_change_shortlist_action',
+      'Remove shortlist focus',
+      'aria-atomic="true"',
     ]
     for (const token of requiredTokens) {
       if (!component.includes(token)) {
@@ -1434,6 +1450,92 @@ function checkGlobalChallengeSurface() {
   if (rows.length) {
     console.log('\nâœ— Global challenge comparison')
     for (const row of rows) console.log(`  Â· ${row}`)
+  }
+  return rows.length
+}
+
+/**
+ * Shared shortlist links must never fall back to unrelated change notes when a
+ * product is stale, removed or outside the India gate. Exercise the same pure
+ * parser and matcher used by the client component so URL behavior cannot drift.
+ */
+function checkChallengeChangeFocusContract() {
+  const rows = []
+  const keys = [
+    'tradeify:growth-evaluation',
+    'alpha-capital:alpha-one',
+    'fundingpips:zero-program',
+    'maven:classic-challenge',
+    'e8-markets:e8-one',
+  ]
+  const validKeys = new Set(keys)
+  const entries = [
+    {
+      id: 'tradeify-watch',
+      productKeys: ['tradeify:growth-evaluation'],
+    },
+    {
+      id: 'fundingpips-watch',
+      productKeys: ['fundingpips:zero-program'],
+    },
+  ]
+  const expect = (condition, message) => {
+    if (!condition) rows.push(message)
+  }
+  const ids = focus =>
+    focusChallengeChangeEntries(entries, focus).map(entry => entry.id).join(',')
+
+  const watched = parseChallengeChangeFocus(keys[0], true, validKeys)
+  expect(ids(watched) === 'tradeify-watch', 'watched product focus does not match exactly')
+  expect(
+    countFocusedProductsWithUpdates(focusChallengeChangeEntries(entries, watched), watched.products) === 1,
+    'watched product coverage count is incorrect',
+  )
+
+  const mixed = parseChallengeChangeFocus(`${keys[0]},${keys[1]}`, true, validKeys)
+  expect(ids(mixed) === 'tradeify-watch', 'mixed watched/no-watch focus is incorrect')
+  expect(
+    countFocusedProductsWithUpdates(focusChallengeChangeEntries(entries, mixed), mixed.products) === 1,
+    'mixed focus must report one of two products with a dated note',
+  )
+
+  const noWatch = parseChallengeChangeFocus(keys[1], true, validKeys)
+  expect(ids(noWatch) === '', 'valid product without a watch must show zero notes')
+
+  const stale = parseChallengeChangeFocus('ftmo:ftmo-challenge-2-step', true, validKeys)
+  expect(
+    stale.requested && stale.unavailableCount === 1 && ids(stale) === '',
+    'stale or India-ineligible focus must not fall back to all notes',
+  )
+
+  const duplicate = parseChallengeChangeFocus(`${keys[0]},${keys[0]}`, true, validKeys)
+  expect(
+    duplicate.requestedCount === 1 && duplicate.products.length === 1,
+    'duplicate focus keys must be deduplicated',
+  )
+
+  const capped = parseChallengeChangeFocus(keys.join(','), true, validKeys)
+  expect(
+    capped.requestedCount === 4 && capped.products.length === 4,
+    'shared focus must be capped at four products',
+  )
+
+  const absent = parseChallengeChangeFocus(null, false, validKeys)
+  expect(
+    !absent.requested && focusChallengeChangeEntries(entries, absent).length === entries.length,
+    'an absent focus parameter must preserve the full ledger',
+  )
+
+  try {
+    validateChallengeProductKeys(['bad:key:with-extra-delimiter'])
+    rows.push('invalid product-key delimiters must fail validation')
+  } catch {
+    // Expected: share parsing depends on one colon between two lowercase slugs.
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Challenge shortlist-to-change contract')
+    for (const row of rows) console.log(`  · ${row}`)
   }
   return rows.length
 }
@@ -2004,7 +2106,11 @@ function checkIndiaChallengeSurface() {
       'india-compare-market',
       'product.entryPrice',
       'product.accountSizesUsd',
-      'ProductChangeSignals signals={product.changeSignals}',
+      'signals={product.changeSignals}',
+      'detailsPath="/best-prop-firms-in-india/challenge-changes"',
+      'shortlistChangeHref(selectedRows)',
+      'challenge_change_shortlist_open',
+      '/best-prop-firms-in-india/challenge-changes?',
       "url.searchParams.set('priority', priority)",
       'Context, not a universal winner',
       'Currency conversion is required',
@@ -2248,6 +2354,7 @@ function checkIndiaChallengeChangesSurface() {
       'getChallengeWatchEntries()',
       'entry.productSlugs.includes(product.slug)',
       'affectedComparisonUrl(',
+      'validateChallengeProductKeys',
       'SOCIAL_CARD_ENTRY_COUNT = 3',
       'SOCIAL_CARD_FIRM_COUNT = 3',
       'SOCIAL_CARD_PRODUCT_COUNT = 7',
@@ -2455,6 +2562,8 @@ const globalDirectoryErrors = checkGlobalDirectorySurface()
 totalErrors += globalDirectoryErrors
 const globalChallengeErrors = checkGlobalChallengeSurface()
 totalErrors += globalChallengeErrors
+const challengeChangeFocusErrors = checkChallengeChangeFocusContract()
+totalErrors += challengeChangeFocusErrors
 const challengeMonitoringErrors = checkChallengeMonitoringWorkflow()
 totalErrors += challengeMonitoringErrors
 const indiaEvidenceErrors = checkIndiaEvidence()

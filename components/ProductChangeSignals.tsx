@@ -24,9 +24,11 @@ function dateLabel(value: string) {
 export default function ProductChangeSignals({
   signals,
   compact = false,
+  detailsPath = '/prop-firm-challenge-changes',
 }: {
   signals: ChallengeProductSignal[]
   compact?: boolean
+  detailsPath?: string
 }) {
   if (!signals.length) return null
 
@@ -57,7 +59,7 @@ export default function ProductChangeSignals({
               <a href={signal.sourceUrl} target="_blank" rel="nofollow noopener">
                 Source <ExternalLink size={9} aria-hidden="true" />
               </a>
-              <Link href={`/prop-firm-challenge-changes#${signal.id}`}>
+              <Link href={`${detailsPath}#${signal.id}`}>
                 Details
               </Link>
             </footer>

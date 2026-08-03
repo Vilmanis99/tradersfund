@@ -3965,6 +3965,36 @@ a.bento-tile:hover,
   gap: 0.9rem;
   margin-bottom: 0.8rem;
 }
+.change-feed-focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 0.8rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(45, 212, 191, 0.28);
+  border-radius: 14px;
+  background: rgba(39, 161, 123, 0.08);
+}
+.change-feed-focus > div {
+  display: grid;
+  gap: 0.2rem;
+}
+.change-feed-focus strong {
+  color: #fff;
+  font-size: 0.78rem;
+}
+.change-feed-focus span {
+  color: #cbd5e1;
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+.change-feed-focus .btn-outline {
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.7rem;
+}
 .change-feed-search {
   width: min(100%, 520px);
   display: flex;
@@ -4304,6 +4334,13 @@ a.bento-tile:hover,
   }
 }
 @media (max-width: 640px) {
+  .change-feed-focus {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .change-feed-focus .btn-outline {
+    justify-content: center;
+  }
   .challenge-change-stat-grid,
   .challenge-change-method-grid,
   .challenge-change-principle-card {

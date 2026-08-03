@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {
   ArrowRight,
+  BellRing,
   Check,
   CircleAlert,
   Clipboard,
@@ -251,6 +252,13 @@ function evidenceStatusColor(status: IndiaMatcherFirm['country']['status']) {
 
 function shortlistKey(row: ProductRow) {
   return `${row.firm.slug}:${row.product.slug}`
+}
+
+function shortlistChangeHref(rows: ProductRow[]) {
+  const params = new URLSearchParams({
+    products: rows.map(shortlistKey).join(','),
+  })
+  return `/best-prop-firms-in-india/challenge-changes?${params.toString()}#india-change-ledger`
 }
 
 function indiaPlannerHref(row: ProductRow, accountSize: string) {
@@ -1052,6 +1060,20 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                       ? 'Copy decision link'
                       : 'Copy shortlist link'}
               </button>
+              {selectedRows.length > 0 && (
+                <Link
+                  href={shortlistChangeHref(selectedRows)}
+                  prefetch={false}
+                  className="btn-outline"
+                  data-analytics-ignore
+                  aria-label={`Check ${selectedRows.length} shortlisted product${selectedRows.length === 1 ? '' : 's'} for dated changes`}
+                  onClick={() => track('challenge_change_shortlist_open', {
+                    product_count: selectedRows.length,
+                  })}
+                >
+                  <BellRing size={13} aria-hidden="true" /> Check changes
+                </Link>
+              )}
               <button
                 type="button"
                 className="challenge-shortlist-clear"
@@ -1109,7 +1131,10 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         </button>
                       </div>
 
-                      <ProductChangeSignals signals={product.changeSignals} />
+                      <ProductChangeSignals
+                        signals={product.changeSignals}
+                        detailsPath="/best-prop-firms-in-india/challenge-changes"
+                      />
 
                       <dl className="challenge-shortlist-metrics">
                         <div>
@@ -1515,7 +1540,11 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.67rem' }}>
                           Captured {dateLabel(product.capturedAt)}
                         </span>
-                        <ProductChangeSignals signals={product.changeSignals} compact />
+                        <ProductChangeSignals
+                          signals={product.changeSignals}
+                          compact
+                          detailsPath="/best-prop-firms-in-india/challenge-changes"
+                        />
                         <a
                           href={product.sourceUrl}
                           target="_blank"

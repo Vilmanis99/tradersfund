@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {
   ArrowRight,
+  BellRing,
   Check,
   CircleAlert,
   Clipboard,
@@ -327,6 +328,13 @@ function compareNullable(
 
 function shortlistKey(row: GlobalChallengeRow) {
   return `${row.firm.slug}:${row.product.slug}`
+}
+
+function shortlistChangeHref(rows: GlobalChallengeRow[]) {
+  const params = new URLSearchParams({
+    products: rows.map(shortlistKey).join(','),
+  })
+  return `/prop-firm-challenge-changes?${params.toString()}#change-ledger`
 }
 
 function parseDecisionPriority(value: string | null): DecisionPriority {
@@ -1055,6 +1063,20 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                       ? 'Copy decision link'
                       : 'Copy shortlist link'}
               </button>
+              {selectedRows.length > 0 && (
+                <Link
+                  href={shortlistChangeHref(selectedRows)}
+                  prefetch={false}
+                  className="btn-outline"
+                  data-analytics-ignore
+                  aria-label={`Check ${selectedRows.length} shortlisted product${selectedRows.length === 1 ? '' : 's'} for dated changes`}
+                  onClick={() => track('challenge_change_shortlist_open', {
+                    product_count: selectedRows.length,
+                  })}
+                >
+                  <BellRing size={13} aria-hidden="true" /> Check changes
+                </Link>
+              )}
               <button
                 type="button"
                 className="challenge-shortlist-clear"
