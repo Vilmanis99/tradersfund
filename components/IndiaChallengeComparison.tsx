@@ -18,6 +18,7 @@ import {
   Trash2,
   X,
 } from 'lucide-react'
+import { track } from '@vercel/analytics'
 import ProductChangeSignals from '@/components/ProductChangeSignals'
 import type { DrawdownType, RuleAvailability } from '@/lib/firms'
 import type { IndiaMatcherFirm, IndiaMatcherProduct } from '@/lib/indiaMatcher'
@@ -163,16 +164,17 @@ function fundedFloorLabel(product: IndiaMatcherProduct) {
     : `${value} minimum to funded`
 }
 
+function compactAccountSize(value: number) {
+  if (value >= 1_000_000) return `$${value / 1_000_000}M`
+  if (value >= 1_000) return `$${value / 1_000}K`
+  return `$${value}`
+}
+
 function accountRange(sizes: number[]) {
   if (!sizes.length) return 'No tiers'
   const sorted = [...sizes].sort((a, b) => a - b)
-  const compact = (value: number) => {
-    if (value >= 1_000_000) return `$${value / 1_000_000}M`
-    if (value >= 1_000) return `$${value / 1_000}K`
-    return `$${value}`
-  }
-  if (sorted.length === 1) return compact(sorted[0])
-  return `${compact(sorted[0])}–${compact(sorted.at(-1)!)}`
+  if (sorted.length === 1) return compactAccountSize(sorted[0])
+  return `${compactAccountSize(sorted[0])}–${compactAccountSize(sorted.at(-1)!)}`
 }
 
 function profitTargetLabel(product: IndiaMatcherProduct) {
@@ -281,13 +283,29 @@ function numericWinners(
   }
 }
 
-function fundedFloorValue(product: IndiaMatcherProduct) {
-  const usd = product.pricedTiers.flatMap(tier =>
+function decisionTiers(product: IndiaMatcherProduct, accountSize: string) {
+  return accountSize === 'all'
+    ? product.pricedTiers
+    : product.pricedTiers.filter(tier => tier.sizeUsd === Number(accountSize))
+}
+
+function entryValue(product: IndiaMatcherProduct, accountSize: string) {
+  const tiers = decisionTiers(product, accountSize)
+  const usd = tiers.flatMap(tier => tier.price.currency === 'USD' ? [tier.price.amount] : [])
+  const eur = tiers.flatMap(tier => tier.price.currency === 'EUR' ? [tier.price.amount] : [])
+  if (usd.length && !eur.length) return { amount: Math.min(...usd), currency: 'USD' as const }
+  if (eur.length && !usd.length) return { amount: Math.min(...eur), currency: 'EUR' as const }
+  return null
+}
+
+function fundedFloorValue(product: IndiaMatcherProduct, accountSize: string) {
+  const tiers = decisionTiers(product, accountSize)
+  const usd = tiers.flatMap(tier =>
     tier.costToFundedUsd != null && tier.costToFundedUsd > 0
       ? [tier.costToFundedUsd]
       : [],
   )
-  const eur = product.pricedTiers.flatMap(tier =>
+  const eur = tiers.flatMap(tier =>
     tier.costToFundedEur != null && tier.costToFundedEur > 0
       ? [tier.costToFundedEur]
       : [],
@@ -301,9 +319,24 @@ function fundedFloorValue(product: IndiaMatcherProduct) {
   return null
 }
 
+function decisionMoneyLabel(
+  product: IndiaMatcherProduct,
+  field: 'entry' | 'funded',
+  accountSize: string,
+) {
+  const value = field === 'entry'
+    ? entryValue(product, accountSize)
+    : fundedFloorValue(product, accountSize)
+  if (value) return compactMoney(value.amount, value.currency)
+  return accountSize === 'all'
+    ? 'No comparable published value'
+    : `No verified ${compactAccountSize(Number(accountSize))} value`
+}
+
 function outcomeForPriority(
   rows: ProductRow[],
   priority: DecisionPriority,
+  accountSize: string,
 ): DecisionOutcome {
   const outcome = (
     title: string,
@@ -326,7 +359,7 @@ function outcomeForPriority(
   }
 
   if (priority === 'entry-cost') {
-    const prices = rows.map(row => row.product.entryPrice)
+    const prices = rows.map(row => entryValue(row.product, accountSize))
     if (prices.some(price => price == null)) {
       return outcome(
         'No defensible entry-cost winner',
@@ -342,20 +375,29 @@ function outcomeForPriority(
         'Use the INR planner with the current bank or card rate and markup before deciding.',
       )
     }
-    const result = numericWinners(rows, row => row.product.entryPrice!.amount, 'lowest')
+    const result = numericWinners(
+      rows,
+      row => entryValue(row.product, accountSize)!.amount,
+      'lowest',
+    )
     const currency = prices[0]!.currency
+    const sizeLabel = accountSize === 'all'
+      ? 'each product’s minimum published tier'
+      : `${compactAccountSize(Number(accountSize))} tiers`
     return outcome(
       `${selectedNames(result.winners)} ${
         result.winners.length === 1 ? 'has' : 'share'
       } the lowest published entry`,
-      `${compactMoney(result.value!, currency)} is the lowest selected face-value fee.`,
-      'This excludes card FX markup, taxes, resets, rebills, and any later activation fee.',
+      `${compactMoney(result.value!, currency)} is lowest across ${sizeLabel}.`,
+      accountSize === 'all'
+        ? 'Minimum fees may represent different account sizes and exclude card FX markup, taxes, resets, rebills, and activation fees.'
+        : 'This excludes card FX markup, taxes, resets, rebills, and any later activation fee.',
       result.winners,
     )
   }
 
   if (priority === 'funded-cost') {
-    const floors = rows.map(row => fundedFloorValue(row.product))
+    const floors = rows.map(row => fundedFloorValue(row.product, accountSize))
     if (floors.some(floor => floor == null)) {
       return outcome(
         'No complete funded-cost comparison',
@@ -373,16 +415,21 @@ function outcomeForPriority(
     }
     const result = numericWinners(
       rows,
-      row => fundedFloorValue(row.product)!.amount,
+      row => fundedFloorValue(row.product, accountSize)!.amount,
       'lowest',
     )
     const currency = floors[0]!.currency
+    const sizeLabel = accountSize === 'all'
+      ? 'each product’s minimum published tier'
+      : `${compactAccountSize(Number(accountSize))} tiers`
     return outcome(
       `${selectedNames(result.winners)} ${
         result.winners.length === 1 ? 'has' : 'share'
       } the lowest funded-cost floor`,
-      `${compactMoney(result.value!, currency)} is the minimum verified path among the selected products.`,
-      'Monthly figures assume a first-cycle pass; later rebills and resets remain separate.',
+      `${compactMoney(result.value!, currency)} is the lowest verified path across ${sizeLabel}.`,
+      accountSize === 'all'
+        ? 'Minimum floors may represent different account sizes; monthly figures assume a first-cycle pass and exclude later rebills and resets.'
+        : 'Monthly figures assume a first-cycle pass; later rebills and resets remain separate.',
       result.winners,
     )
   }
@@ -393,10 +440,10 @@ function outcomeForPriority(
       row => row.product.payoutFirstDays,
       'lowest',
     )
-    if (!result.winners.length) {
+    if (!result.winners.length || result.incomplete) {
       return outcome(
-        'First-payout timing is unverified',
-        'None of the selected products has a captured first-request day.',
+        'First-payout timing is incomplete',
+        'At least 1 selected product has no captured first-request day.',
         'Do not interpret an unpublished wait as immediate payout access.',
       )
     }
@@ -407,19 +454,25 @@ function outcomeForPriority(
       result.value === 0
         ? 'The published rule allows a request on demand, subject to its other payout gates.'
         : `The earliest captured request point is day ${result.value}.`,
-      result.incomplete
-        ? 'At least 1 selected product has unverified timing and could not be ranked.'
-        : 'Request timing is not receipt timing; consistency, buffer, KYC, and payout-rail gates still apply.',
+      'Request timing is not receipt timing; consistency, buffer, KYC, and payout-rail gates still apply.',
       result.winners,
     )
   }
 
   if (priority === 'loss-room') {
+    const drawdownTypes = new Set(rows.map(row => row.product.drawdownType))
+    if (drawdownTypes.has(null) || drawdownTypes.size !== 1) {
+      return outcome(
+        'Drawdown methods differ',
+        'A percentage cap is not enough to rank static, balance-based, trailing, and EOD-trailing limits together.',
+        'Choose products with the same drawdown method, then compare the percentage and exact calculation rule.',
+      )
+    }
     const result = numericWinners(rows, row => row.product.maxLossPct, 'highest')
-    if (!result.winners.length) {
+    if (!result.winners.length || result.incomplete) {
       return outcome(
         'Percentage loss room is not comparable',
-        'None of the selected products publishes a percentage maximum-loss cap in the captured data.',
+        'At least 1 selected product lacks a percentage maximum-loss cap in the captured data.',
         'Dollar drawdown and percentage drawdown must not be compared as if they were the same measure.',
       )
     }
@@ -428,9 +481,7 @@ function outcomeForPriority(
         result.winners.length === 1 ? 'has' : 'share'
       } the largest published percentage cap`,
       `${result.value}% is the largest captured maximum-loss percentage.`,
-      result.incomplete
-        ? 'At least 1 selected product uses an unverified or non-percentage limit and was not ranked.'
-        : 'Drawdown type and calculation timing can matter more than the headline percentage.',
+      'Calculation timing and intraday balance changes can still matter more than the headline percentage.',
       result.winners,
     )
   }
@@ -502,7 +553,13 @@ function FilterField({
       <select
         id={id}
         value={value}
-        onChange={event => onChange(event.target.value)}
+        onChange={event => {
+          onChange(event.target.value)
+          track('challenge_filter_used', {
+            surface: 'india',
+            filter: `${id.replace(/^india-(challenge|compare)-/, '')}:${event.target.value}`,
+          })
+        }}
         style={FIELD_STYLE}
       >
         {children}
@@ -546,18 +603,22 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
       const params = new URLSearchParams(window.location.search)
       const next = parseShortlist(params.get('shortlist'), validShortlistKeys)
       const priority = params.get('priority')
+      const size = params.get('size')
       setShortlist(current => sameKeys(current, next) ? current : next)
       setDecisionPriority(
         priority && VALID_DECISION_PRIORITIES.has(priority as DecisionPriority)
           ? priority as DecisionPriority
           : 'evidence',
       )
+      setAccountSize(
+        size && accountSizes.includes(Number(size)) ? size : 'all',
+      )
       setCopyState('idle')
     }
     syncFromUrl()
     window.addEventListener('popstate', syncFromUrl)
     return () => window.removeEventListener('popstate', syncFromUrl)
-  }, [validShortlistKeys])
+  }, [accountSizes, validShortlistKeys])
 
   useEffect(() => () => {
     if (copyResetRef.current) clearTimeout(copyResetRef.current)
@@ -570,8 +631,8 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
     [rowByShortlistKey, shortlist],
   )
   const decisionOutcome = useMemo(
-    () => outcomeForPriority(selectedRows, decisionPriority),
-    [decisionPriority, selectedRows],
+    () => outcomeForPriority(selectedRows, decisionPriority, accountSize),
+    [accountSize, decisionPriority, selectedRows],
   )
 
   const commitShortlist = (next: string[]) => {
@@ -596,15 +657,27 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
     const url = new URL(window.location.href)
     url.searchParams.set('priority', priority)
     window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
+    track('challenge_priority_used', { surface: 'india', priority })
+  }
+
+  const commitAccountSize = (size: string) => {
+    setAccountSize(size)
+    setCopyState('idle')
+    const url = new URL(window.location.href)
+    if (size === 'all') url.searchParams.delete('size')
+    else url.searchParams.set('size', size)
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
   }
 
   const toggleShortlist = (key: string) => {
     if (shortlist.includes(key)) {
       commitShortlist(shortlist.filter(value => value !== key))
+      track('challenge_shortlist_remove', { surface: 'india', product: key })
       return
     }
     if (shortlist.length < MAX_SHORTLIST) {
       commitShortlist([...shortlist, key])
+      track('challenge_shortlist_add', { surface: 'india', product: key })
     }
   }
 
@@ -626,6 +699,10 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
         if (!copied) throw new Error('Copy command was rejected')
       }
       setCopyState('copied')
+      track('challenge_shortlist_copied', {
+        surface: 'india',
+        count: selectedRows.length,
+      })
     } catch {
       setCopyState('error')
     }
@@ -666,16 +743,34 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
     setDrawdown('all')
     setAccountSize('all')
     setSort('evidence')
+    const url = new URL(window.location.href)
+    url.searchParams.delete('size')
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
+    track('challenge_filters_reset', { surface: 'india', matching_products: rows.length })
   }
   const campaign = `india-challenge-comparison-${market}-${program}-${rule}-${drawdown}`
+  const selectedSizeLabel = accountSize === 'all'
+    ? 'Minimum published entry'
+    : `${compactAccountSize(Number(accountSize))} published entry`
+  const fundedSizeLabel = accountSize === 'all'
+    ? 'Minimum funded-cost floor'
+    : `${compactAccountSize(Number(accountSize))} funded-cost floor`
   const decisionMatrixRows = [
     {
-      label: 'Published entry',
-      valueFor: (row: ProductRow) => priceRange(row.product),
+      label: selectedSizeLabel,
+      valueFor: (row: ProductRow) => decisionMoneyLabel(
+        row.product,
+        'entry',
+        accountSize,
+      ),
     },
     {
-      label: 'Funded-cost floor',
-      valueFor: (row: ProductRow) => fundedFloorLabel(row.product),
+      label: fundedSizeLabel,
+      valueFor: (row: ProductRow) => decisionMoneyLabel(
+        row.product,
+        'funded',
+        accountSize,
+      ),
     },
     {
       label: 'First payout request',
@@ -813,7 +908,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
               id="india-compare-size"
               label="Account size"
               value={accountSize}
-              onChange={setAccountSize}
+              onChange={commitAccountSize}
             >
               <option value="all">Any size</option>
               {accountSizes.map(size => (
@@ -1082,8 +1177,8 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         Selected-product decision memo
                       </h4>
                       <p>
-                        Choose the constraint that matters most. The selected priority stays in
-                        the shareable URL.
+                        Choose the constraint that matters most. The selected priority and account
+                        size stay in the shareable URL.
                       </p>
                     </div>
                     <label htmlFor="india-decision-priority">
@@ -1105,7 +1200,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                   </div>
 
                   <div className="india-decision-outcome" aria-live="polite">
-                    <span>Best fit for this priority</span>
+                    <span>Outcome for this priority</span>
                     <strong>{decisionOutcome.title}</strong>
                     <p>{decisionOutcome.reason}</p>
                     <small>

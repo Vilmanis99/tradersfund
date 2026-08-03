@@ -6,6 +6,7 @@ import Link from 'next/link'
 import {
   ArrowRight,
   Check,
+  CircleAlert,
   Clipboard,
   ExternalLink,
   Link2,
@@ -14,9 +15,11 @@ import {
   Scale,
   Search,
   SlidersHorizontal,
+  Target,
   Trash2,
   X,
 } from 'lucide-react'
+import { track } from '@vercel/analytics'
 import ProductChangeSignals from '@/components/ProductChangeSignals'
 import type { ChallengeProductSignal } from '@/lib/challengeWatch'
 import type {
@@ -82,9 +85,29 @@ type SortKey =
   | 'first-payout'
   | 'profit-split'
   | 'newest'
+type DecisionPriority =
+  | 'entry-cost'
+  | 'funded-cost'
+  | 'payout-speed'
+  | 'max-loss'
+  | 'profit-split'
+
+interface DecisionOutcome {
+  title: string
+  reason: string
+  caveat: string
+  winnerKeys: string[]
+}
 
 const INITIAL_ROWS = 25
 const MAX_SHORTLIST = 4
+const DECISION_PRIORITIES: Array<{ value: DecisionPriority; label: string }> = [
+  { value: 'entry-cost', label: 'Lowest published entry' },
+  { value: 'funded-cost', label: 'Lowest funded-cost floor' },
+  { value: 'payout-speed', label: 'Earliest payout request' },
+  { value: 'max-loss', label: 'Largest stated max-loss room' },
+  { value: 'profit-split', label: 'Highest stated profit split' },
+]
 
 const FIELD_STYLE = {
   width: '100%',
@@ -293,6 +316,173 @@ function shortlistKey(row: GlobalChallengeRow) {
   return `${row.firm.slug}:${row.product.slug}`
 }
 
+function parseDecisionPriority(value: string | null): DecisionPriority {
+  return DECISION_PRIORITIES.some(priority => priority.value === value)
+    ? value as DecisionPriority
+    : 'entry-cost'
+}
+
+function decisionMoney(
+  row: GlobalChallengeRow,
+  field: 'entry' | 'funded',
+  accountSize: string,
+) {
+  const tiers = accountSize === 'all'
+    ? row.product.tiers
+    : row.product.tiers.filter(tier => tier.sizeUsd === Number(accountSize))
+  const usdField = field === 'entry' ? 'priceUsd' : 'costToFundedUsd'
+  const eurField = field === 'entry' ? 'priceEur' : 'costToFundedEur'
+  const usd = tiers.flatMap(tier =>
+    tier[usdField] != null && tier[usdField]! > 0 ? [tier[usdField]!] : [])
+  const eur = tiers.flatMap(tier =>
+    tier[eurField] != null && tier[eurField]! > 0 ? [tier[eurField]!] : [])
+  if (usd.length && !eur.length) return { value: Math.min(...usd), currency: 'USD' as const }
+  if (eur.length && !usd.length) return { value: Math.min(...eur), currency: 'EUR' as const }
+  return null
+}
+
+function decisionMoneyLabel(
+  row: GlobalChallengeRow,
+  field: 'entry' | 'funded',
+  accountSize: string,
+) {
+  const money = decisionMoney(row, field, accountSize)
+  if (money) return compactMoney(money.value, money.currency)
+  return accountSize === 'all'
+    ? 'No comparable published value'
+    : `No verified ${compactAccountSize(Number(accountSize))} value`
+}
+
+function numericWinners(
+  rows: GlobalChallengeRow[],
+  valueFor: (row: GlobalChallengeRow) => number | null,
+  direction: 'lowest' | 'highest',
+) {
+  const known = rows.flatMap(row => {
+    const value = valueFor(row)
+    return value == null ? [] : [{ row, value }]
+  })
+  if (known.length !== rows.length || !known.length) return null
+  const best = direction === 'lowest'
+    ? Math.min(...known.map(entry => entry.value))
+    : Math.max(...known.map(entry => entry.value))
+  return {
+    value: best,
+    winners: known.filter(entry => entry.value === best).map(entry => entry.row),
+  }
+}
+
+function winnerTitle(rows: GlobalChallengeRow[]) {
+  return rows.map(row => `${row.firm.name} ${row.product.name}`).join(' and ')
+}
+
+function decisionOutcome(
+  rows: GlobalChallengeRow[],
+  priority: DecisionPriority,
+  accountSize: string,
+): DecisionOutcome {
+  const sizeLabel = accountSize === 'all'
+    ? 'each product\'s lowest published tier'
+    : `${compactAccountSize(Number(accountSize))} tiers`
+  const noWinner = (
+    title: string,
+    reason: string,
+    caveat: string,
+  ): DecisionOutcome => ({ title, reason, caveat, winnerKeys: [] })
+
+  if (priority === 'entry-cost' || priority === 'funded-cost') {
+    const field = priority === 'entry-cost' ? 'entry' : 'funded'
+    const values = rows.map(row => ({ row, money: decisionMoney(row, field, accountSize) }))
+    if (values.some(entry => !entry.money)) {
+      return noWinner(
+        priority === 'entry-cost' ? 'No defensible entry-fee winner' : 'No complete funded-cost winner',
+        `At least 1 selected product lacks a comparable ${field === 'entry' ? 'entry fee' : 'cost-to-funded figure'} for ${sizeLabel}.`,
+        'An unpublished value is unknown, not free. Verify the exact product and tier at checkout.',
+      )
+    }
+    const currencies = new Set(values.map(entry => entry.money!.currency))
+    if (currencies.size !== 1) {
+      return noWinner(
+        'Published currencies differ',
+        'The selected products cannot be ranked without introducing a temporary exchange rate.',
+        'Compare the final card or payment-provider total in one currency immediately before purchase.',
+      )
+    }
+    const best = Math.min(...values.map(entry => entry.money!.value))
+    const winners = values.filter(entry => entry.money!.value === best).map(entry => entry.row)
+    const currency = values[0].money!.currency
+    return {
+      title: `${winnerTitle(winners)} ${winners.length === 1 ? 'has' : 'share'} the lowest ${field === 'entry' ? 'published entry' : 'funded-cost floor'}`,
+      reason: `${compactMoney(best, currency)} is lowest across ${sizeLabel}.`,
+      caveat: field === 'entry'
+        ? accountSize === 'all'
+          ? 'Minimum fees may represent different account sizes; a low fee does not offset stricter drawdown, reset, consistency, or payout rules.'
+          : 'A low fee does not offset stricter drawdown, reset, consistency, or payout rules.'
+        : accountSize === 'all'
+          ? 'Minimum floors may represent different account sizes and exclude later rebills, resets, taxes, and payment fees.'
+          : 'The floor assumes a first-cycle pass and excludes later rebills, resets, taxes, and payment fees.',
+      winnerKeys: winners.map(shortlistKey),
+    }
+  }
+
+  if (priority === 'payout-speed') {
+    const result = numericWinners(rows, row => row.product.payoutFirstDays, 'lowest')
+    if (!result) {
+      return noWinner(
+        'First-payout timing is incomplete',
+        'At least 1 selected product has no verified first-request day.',
+        'Unknown timing must not be interpreted as immediate payout access.',
+      )
+    }
+    return {
+      title: `${winnerTitle(result.winners)} ${result.winners.length === 1 ? 'allows' : 'allow'} the earliest stated request`,
+      reason: result.value === 0 ? 'The published rule says on request.' : `The first published request point is day ${result.value}.`,
+      caveat: 'Request timing is not receipt timing; profit buffers, consistency, KYC, and payout-rail checks still apply.',
+      winnerKeys: result.winners.map(shortlistKey),
+    }
+  }
+
+  if (priority === 'max-loss') {
+    const drawdownTypes = new Set(rows.map(row => row.product.drawdownType))
+    if (drawdownTypes.has(null) || drawdownTypes.size !== 1) {
+      return noWinner(
+        'Drawdown methods differ',
+        'A percentage cap is not enough to rank static, balance-based, trailing, and EOD-trailing limits together.',
+        'Choose products with the same drawdown method, then compare the percentage and exact calculation rule.',
+      )
+    }
+    const result = numericWinners(rows, row => row.product.maxLossPct, 'highest')
+    if (!result) {
+      return noWinner(
+        'Max-loss formats are not fully comparable',
+        'At least 1 selected product lacks a percentage max-loss value.',
+        'Dollar and percentage loss caps must not be ranked as if they were the same measure.',
+      )
+    }
+    return {
+      title: `${winnerTitle(result.winners)} ${result.winners.length === 1 ? 'has' : 'share'} the largest stated percentage cap`,
+      reason: `${result.value}% is the largest published maximum-loss percentage in this shortlist.`,
+      caveat: 'Static, balance-based, trailing, and EOD-trailing drawdown can behave very differently despite the headline percentage.',
+      winnerKeys: result.winners.map(shortlistKey),
+    }
+  }
+
+  const result = numericWinners(rows, row => row.product.profitSplitPct, 'highest')
+  if (!result) {
+    return noWinner(
+      'Profit-split comparison is incomplete',
+      'At least 1 selected product has no verified starting split.',
+      'Do not substitute a promotional maximum split for an unpublished starting split.',
+    )
+  }
+  return {
+    title: `${winnerTitle(result.winners)} ${result.winners.length === 1 ? 'has' : 'share'} the highest stated starting split`,
+    reason: `${result.value}% is the highest verified starting split across the selected products.`,
+    caveat: 'A higher split does not show payout eligibility, frequency, buffer requirements, or successful receipt.',
+    winnerKeys: result.winners.map(shortlistKey),
+  }
+}
+
 function parseShortlist(value: string | null, validKeys: Set<string>) {
   if (!value) return []
   return [...new Set(value.split(',').map(key => key.trim()))]
@@ -325,7 +515,13 @@ function FilterField({
       <select
         id={id}
         value={value}
-        onChange={event => onChange(event.target.value)}
+        onChange={event => {
+          onChange(event.target.value)
+          track('challenge_filter_used', {
+            surface: 'global',
+            filter: `${id.replace('global-challenge-', '')}:${event.target.value}`,
+          })
+        }}
         style={FIELD_STYLE}
       >
         {children}
@@ -365,6 +561,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
   const [sort, setSort] = useState<SortKey>('score')
   const [showAll, setShowAll] = useState(false)
   const [shortlist, setShortlist] = useState<string[]>([])
+  const [decisionPriority, setDecisionPriority] = useState<DecisionPriority>('entry-cost')
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'error'>('idle')
   const copyResetRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -372,13 +569,18 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
     const syncFromUrl = () => {
       const params = new URLSearchParams(window.location.search)
       const next = parseShortlist(params.get('shortlist'), validShortlistKeys)
+      const size = params.get('size')
       setShortlist(current => sameKeys(current, next) ? current : next)
+      setDecisionPriority(parseDecisionPriority(params.get('priority')))
+      setAccountSize(
+        size && accountSizes.includes(Number(size)) ? size : 'all',
+      )
       setCopyState('idle')
     }
     syncFromUrl()
     window.addEventListener('popstate', syncFromUrl)
     return () => window.removeEventListener('popstate', syncFromUrl)
-  }, [validShortlistKeys])
+  }, [accountSizes, validShortlistKeys])
 
   useEffect(() => () => {
     if (copyResetRef.current) clearTimeout(copyResetRef.current)
@@ -390,6 +592,12 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
       .filter((row): row is GlobalChallengeRow => Boolean(row)),
     [rowByShortlistKey, shortlist],
   )
+  const selectedDecisionOutcome = useMemo(
+    () => selectedRows.length >= 2
+      ? decisionOutcome(selectedRows, decisionPriority, accountSize)
+      : null,
+    [accountSize, decisionPriority, selectedRows],
+  )
 
   const commitShortlist = (next: string[]) => {
     const clean = [...new Set(next)]
@@ -399,17 +607,41 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
     setCopyState('idle')
     const url = new URL(window.location.href)
     if (clean.length) url.searchParams.set('shortlist', clean.join(','))
-    else url.searchParams.delete('shortlist')
+    else {
+      url.searchParams.delete('shortlist')
+      url.searchParams.delete('priority')
+      setDecisionPriority('entry-cost')
+    }
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
+  }
+
+  const commitDecisionPriority = (priority: DecisionPriority) => {
+    setDecisionPriority(priority)
+    setCopyState('idle')
+    const url = new URL(window.location.href)
+    url.searchParams.set('priority', priority)
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
+    track('challenge_priority_used', { surface: 'global', priority })
+  }
+
+  const commitAccountSize = (size: string) => {
+    setAccountSize(size)
+    setCopyState('idle')
+    const url = new URL(window.location.href)
+    if (size === 'all') url.searchParams.delete('size')
+    else url.searchParams.set('size', size)
     window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
   }
 
   const toggleShortlist = (key: string) => {
     if (shortlist.includes(key)) {
       commitShortlist(shortlist.filter(value => value !== key))
+      track('challenge_shortlist_remove', { surface: 'global', product: key })
       return
     }
     if (shortlist.length < MAX_SHORTLIST) {
       commitShortlist([...shortlist, key])
+      track('challenge_shortlist_add', { surface: 'global', product: key })
     }
   }
 
@@ -431,6 +663,10 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
         if (!copied) throw new Error('Copy command was rejected')
       }
       setCopyState('copied')
+      track('challenge_shortlist_copied', {
+        surface: 'global',
+        count: selectedRows.length,
+      })
     } catch {
       setCopyState('error')
     }
@@ -511,10 +747,81 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
     setAccountSize('all')
     setSort('score')
     setShowAll(false)
+    const url = new URL(window.location.href)
+    url.searchParams.delete('size')
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
+    track('challenge_filters_reset', { surface: 'global', matching_products: rows.length })
   }
 
   const visibleRows = showAll ? rows : rows.slice(0, INITIAL_ROWS)
   const campaign = `challenge-directory-${market}-${program}-${pricing}-${style}`
+  const selectedSizeLabel = accountSize === 'all'
+    ? 'Minimum published entry'
+    : `${compactAccountSize(Number(accountSize))} published entry`
+  const fundedSizeLabel = accountSize === 'all'
+    ? 'Minimum funded-cost floor'
+    : `${compactAccountSize(Number(accountSize))} funded-cost floor`
+  const decisionMatrixRows = [
+    {
+      label: selectedSizeLabel,
+      valueFor: (row: GlobalChallengeRow) => decisionMoneyLabel(row, 'entry', accountSize),
+    },
+    {
+      label: fundedSizeLabel,
+      valueFor: (row: GlobalChallengeRow) => decisionMoneyLabel(row, 'funded', accountSize),
+    },
+    {
+      label: 'Evaluation',
+      valueFor: (row: GlobalChallengeRow) => (
+        `${phasesLabel(row.product.phases)} · ${profitTargetLabel(row.product)}`
+      ),
+    },
+    {
+      label: 'Maximum loss',
+      valueFor: (row: GlobalChallengeRow) => percentageOrTierDollars(
+        row.product.maxLossPct,
+        row.product.tiers,
+        'maxLossUsd',
+      ),
+    },
+    {
+      label: 'Drawdown method',
+      valueFor: (row: GlobalChallengeRow) => drawdownLabel(row.product.drawdownType),
+    },
+    {
+      label: 'First payout request',
+      valueFor: (row: GlobalChallengeRow) => payoutLabel(row.product),
+    },
+    {
+      label: 'Starting profit split',
+      valueFor: (row: GlobalChallengeRow) => (
+        row.product.profitSplitPct == null ? 'Unverified' : `${row.product.profitSplitPct}%`
+      ),
+    },
+    {
+      label: 'Trading rules',
+      valueFor: (row: GlobalChallengeRow) => (
+        `EA ${ruleLabel(row.product.rules.ea)} · News ${ruleLabel(row.product.rules.news)} · `
+        + `Overnight ${ruleLabel(row.product.rules.overnight)} · Weekend ${ruleLabel(row.product.rules.weekend)}`
+      ),
+    },
+    {
+      label: 'Dated change signal',
+      valueFor: (row: GlobalChallengeRow) => (
+        row.product.changeSignals.length
+          ? `${row.product.changeSignals.length} · ${
+            row.product.changeSignals.some(signal => signal.status === 'watch')
+              ? 'Open watch'
+              : 'Verified change'
+          }`
+          : 'No current product signal'
+      ),
+    },
+    {
+      label: 'Source captured',
+      valueFor: (row: GlobalChallengeRow) => dateLabel(row.product.capturedAt),
+    },
+  ]
 
   return (
     <section className="home-section home-section--alt" aria-labelledby="global-challenge-table-heading">
@@ -633,7 +940,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
               id="global-challenge-size"
               label="Account size"
               value={accountSize}
-              onChange={setAccountSize}
+              onChange={commitAccountSize}
             >
               <option value="all">Any size</option>
               {accountSizes.map(size => (
@@ -710,7 +1017,9 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                   ? 'Link copied'
                   : copyState === 'error'
                     ? 'Copy failed'
-                    : 'Copy shortlist link'}
+                    : selectedRows.length >= 2
+                      ? 'Copy decision link'
+                      : 'Copy shortlist link'}
               </button>
               <button
                 type="button"
@@ -839,6 +1148,102 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                   )
                 })}
               </div>
+              {selectedRows.length >= 2 && selectedDecisionOutcome && (
+                <section
+                  className="india-decision-memo"
+                  aria-labelledby="global-decision-memo-heading"
+                >
+                  <div className="india-decision-memo-head">
+                    <div>
+                      <span className="bento-tile-eyebrow">
+                        <Target size={12} aria-hidden="true" /> Context, not a universal winner
+                      </span>
+                      <h4 id="global-decision-memo-heading">
+                        Selected-product decision memo
+                      </h4>
+                      <p>
+                        Choose the constraint that matters most. The selected priority and account
+                        size stay in the shareable URL.
+                      </p>
+                    </div>
+                    <label htmlFor="global-decision-priority">
+                      <span>Decision priority</span>
+                      <select
+                        id="global-decision-priority"
+                        value={decisionPriority}
+                        onChange={event => commitDecisionPriority(
+                          event.target.value as DecisionPriority,
+                        )}
+                      >
+                        {DECISION_PRIORITIES.map(priority => (
+                          <option key={priority.value} value={priority.value}>
+                            {priority.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
+
+                  <div className="india-decision-outcome" aria-live="polite">
+                    <span>Outcome for this priority</span>
+                    <strong>{selectedDecisionOutcome.title}</strong>
+                    <p>{selectedDecisionOutcome.reason}</p>
+                    <small>
+                      <CircleAlert size={11} aria-hidden="true" />
+                      {selectedDecisionOutcome.caveat}
+                    </small>
+                  </div>
+
+                  <div className="india-decision-matrix-wrap">
+                    <table className="india-decision-matrix">
+                      <thead>
+                        <tr>
+                          <th scope="col">Decision factor</th>
+                          {selectedRows.map(row => {
+                            const key = shortlistKey(row)
+                            return (
+                              <th
+                                key={key}
+                                scope="col"
+                                className={
+                                  selectedDecisionOutcome.winnerKeys.includes(key)
+                                    ? 'india-decision-matrix-winner'
+                                    : undefined
+                                }
+                              >
+                                <span>{row.firm.name}</span>
+                                {row.product.name}
+                              </th>
+                            )
+                          })}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {decisionMatrixRows.map(metric => (
+                          <tr key={metric.label}>
+                            <th scope="row">{metric.label}</th>
+                            {selectedRows.map(row => {
+                              const key = shortlistKey(row)
+                              return (
+                                <td
+                                  key={key}
+                                  className={
+                                    selectedDecisionOutcome.winnerKeys.includes(key)
+                                      ? 'india-decision-matrix-winner'
+                                      : undefined
+                                  }
+                                >
+                                  {metric.valueFor(row)}
+                                </td>
+                              )
+                            })}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              )}
             </>
           )}
           <p className="sr-only" aria-live="polite">
