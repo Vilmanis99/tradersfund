@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -9,6 +9,7 @@ import {
   IndianRupee,
   ShieldCheck,
 } from 'lucide-react'
+import { trackSiteEvent as track } from '@/lib/clientAnalytics'
 import type { IndiaMatcherFirm } from '@/lib/indiaMatcher'
 
 const FIELD_STYLE = {
@@ -101,6 +102,46 @@ export default function IndiaCheckoutPlanner({ firms }: { firms: IndiaMatcherFir
   const [rateInput, setRateInput] = useState('')
   const [markupInput, setMarkupInput] = useState('0')
   const [otherChargesInput, setOtherChargesInput] = useState('0')
+  const contextualLoadRef = useRef('')
+  const completedEstimateRef = useRef('')
+
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const params = new URLSearchParams(window.location.search)
+      const requestedFirmSlug = params.get('costFirm')
+      const requestedProductSlug = params.get('costProduct')
+      if (!requestedFirmSlug || !requestedProductSlug) return
+
+      const requestedFirm = pricedFirms.find(firm => firm.slug === requestedFirmSlug)
+      const requestedProduct = requestedFirm?.products.find(
+        product => product.slug === requestedProductSlug,
+      )
+      if (!requestedFirm || !requestedProduct) return
+
+      const requestedSizeParam = params.get('costSize')
+      const requestedSize = requestedSizeParam == null ? null : Number(requestedSizeParam)
+      const requestedTierIndex = requestedSize != null && Number.isFinite(requestedSize)
+        ? requestedProduct.pricedTiers.findIndex(tier => tier.sizeUsd === requestedSize)
+        : -1
+      const nextTierIndex = requestedTierIndex >= 0 ? requestedTierIndex : 0
+      setFirmSlug(requestedFirm.slug)
+      setProductSlug(requestedProduct.slug)
+      setTierIndex(nextTierIndex)
+
+      const contextKey = `${requestedFirm.slug}:${requestedProduct.slug}:${nextTierIndex}`
+      if (contextualLoadRef.current !== contextKey) {
+        contextualLoadRef.current = contextKey
+        track('challenge_inr_planner_loaded', {
+          product: `${requestedFirm.slug}:${requestedProduct.slug}`,
+          size: String(requestedProduct.pricedTiers[nextTierIndex]?.sizeUsd ?? 'default'),
+        })
+      }
+    }
+
+    syncFromUrl()
+    window.addEventListener('popstate', syncFromUrl)
+    return () => window.removeEventListener('popstate', syncFromUrl)
+  }, [pricedFirms])
 
   const selectedFirm = pricedFirms.find(firm => firm.slug === firmSlug) ?? firstFirm
   const selectedProduct = selectedFirm?.products.find(product => product.slug === productSlug)
@@ -129,14 +170,29 @@ export default function IndiaCheckoutPlanner({ firms }: { firms: IndiaMatcherFir
     setFirmSlug(nextSlug)
     setProductSlug(nextFirm?.products[0]?.slug ?? '')
     setTierIndex(0)
+    track('challenge_inr_planner_use', { control: 'firm', selection: nextSlug })
   }
 
   const changeProduct = (nextSlug: string) => {
     setProductSlug(nextSlug)
     setTierIndex(0)
+    track('challenge_inr_planner_use', {
+      control: 'product',
+      selection: `${selectedFirm.slug}:${nextSlug}`,
+    })
   }
 
-  const campaign = `india-inr-planner-${selectedTier.price.currency.toLowerCase()}`
+  const changeTier = (nextIndex: number) => {
+    setTierIndex(nextIndex)
+    const nextTier = selectedProduct.pricedTiers[nextIndex]
+    track('challenge_inr_planner_use', {
+      control: 'tier',
+      selection: nextTier?.sizeUsd ?? 'unknown',
+    })
+  }
+
+  const productKey = `${selectedFirm.slug}:${selectedProduct.slug}`
+  const campaign = `india-inr-planner-${selectedProduct.slug}-${selectedTier.price.currency.toLowerCase()}`
   const actionHref = selectedFirm.isPartner
     ? `/go/${selectedFirm.slug}?from=${campaign}`
     : `${selectedFirm.reviewUrl}?from=india-inr-planner`
@@ -211,7 +267,7 @@ export default function IndiaCheckoutPlanner({ firms }: { firms: IndiaMatcherFir
                 <select
                   id="india-cost-tier"
                   value={tierIndex}
-                  onChange={event => setTierIndex(Number(event.target.value))}
+                  onChange={event => changeTier(Number(event.target.value))}
                   style={FIELD_STYLE}
                 >
                   {selectedProduct.pricedTiers.map((tier, index) => (
@@ -236,6 +292,20 @@ export default function IndiaCheckoutPlanner({ firms }: { firms: IndiaMatcherFir
                   placeholder={selectedTier.price.currency === 'USD' ? 'e.g. rate per US dollar' : 'e.g. rate per euro'}
                   value={rateInput}
                   onChange={event => setRateInput(event.target.value)}
+                  onBlur={event => {
+                    const rateValue = event.currentTarget.value.trim()
+                    const completionKey = `${productKey}:${selectedTier.sizeUsd}:${rateValue}`
+                    if (
+                      positiveNumber(rateValue) != null
+                      && completedEstimateRef.current !== completionKey
+                    ) {
+                      completedEstimateRef.current = completionKey
+                      track('challenge_inr_estimate_completed', {
+                        product: productKey,
+                        currency: selectedTier.price.currency,
+                      })
+                    }
+                  }}
                   style={FIELD_STYLE}
                 />
               </PlannerField>
@@ -369,6 +439,10 @@ export default function IndiaCheckoutPlanner({ firms }: { firms: IndiaMatcherFir
                   target="_blank"
                   rel="sponsored nofollow noopener"
                   className="btn-primary"
+                  onClick={() => track('challenge_offer_open', {
+                    surface: 'india-planner',
+                    product: productKey,
+                  })}
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
                   Check the live checkout <ExternalLink size={14} />
@@ -377,6 +451,10 @@ export default function IndiaCheckoutPlanner({ firms }: { firms: IndiaMatcherFir
                 <Link
                   href={actionHref}
                   className="btn-outline"
+                  onClick={() => track('challenge_review_open', {
+                    surface: 'india-planner',
+                    product: productKey,
+                  })}
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
                   Read the sourced review <ArrowRight size={14} />
@@ -388,7 +466,7 @@ export default function IndiaCheckoutPlanner({ firms }: { firms: IndiaMatcherFir
 
         <p style={{ margin: '0.8rem 0 0', color: 'var(--muted)', fontSize: '0.72rem', lineHeight: 1.55 }}>
           Exchange-rate, markup, and other-charge inputs are not sent with the outbound click. The campaign
-          label records only that the INR planner generated the click and whether the source fee was USD or EUR.
+          label records only the selected product placement and whether its published fee was USD or EUR.
         </p>
       </div>
     </section>

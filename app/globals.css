@@ -5319,6 +5319,69 @@ a.bento-tile:hover,
   font-weight: 850;
   text-decoration: none;
 }
+.india-shortlist-next-actions {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.55rem 0.8rem;
+}
+.challenge-product-index {
+  margin-top: 1rem;
+  color: var(--text);
+  background: rgba(9, 16, 24, 0.72);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.challenge-product-index summary {
+  padding: 0.85rem 1rem;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+.challenge-product-index > p {
+  margin: 0;
+  padding: 0 1rem 0.8rem;
+  color: var(--muted);
+  font-size: 0.67rem;
+  line-height: 1.55;
+}
+.challenge-product-index ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+.challenge-product-index li {
+  display: grid;
+  grid-template-columns: minmax(210px, 1.35fr) minmax(220px, 1fr) auto;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.62rem 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+  font-size: 0.64rem;
+}
+.challenge-product-index li:last-child { border-bottom: 0; }
+.challenge-product-index li > span:first-child {
+  display: grid;
+  gap: 0.1rem;
+  color: var(--text);
+}
+.challenge-product-index li strong { color: #fff; }
+.challenge-product-index li > span:nth-child(2) { color: var(--muted); }
+.challenge-product-index li > span:last-child {
+  display: flex;
+  gap: 0.6rem;
+}
+.challenge-product-index a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  color: var(--accent-light);
+  font-weight: 800;
+  text-decoration: none;
+}
 @media (max-width: 720px) {
   .challenge-shortlist {
     padding: 1rem;
@@ -5334,6 +5397,13 @@ a.bento-tile:hover,
   .india-shortlist-next-step {
     align-items: flex-start;
     flex-direction: column;
+  }
+  .india-shortlist-next-actions {
+    justify-content: flex-start;
+  }
+  .challenge-product-index li {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
   }
   .india-decision-memo {
     padding: 0.85rem;

@@ -269,11 +269,11 @@ export default function Home() {
               </span>
               <ArrowUpRight size={15} aria-hidden="true" />
             </Link>
-            <Link href="/best-prop-firms-in-india" className="decision-strip-card">
+            <Link href="/best-prop-firms-in-india/challenge-comparison" className="decision-strip-card">
               <span className="decision-strip-icon"><MapPin size={17} aria-hidden="true" /></span>
               <span className="decision-strip-copy">
-                <strong>India evidence screen</strong>
-                <span>RBI list, country terms, KYC, and payout rails</span>
+                <strong>India challenge comparison</strong>
+                <span>RBI screen, product rules, KYC, and payout evidence</span>
               </span>
               <ArrowUpRight size={15} aria-hidden="true" />
             </Link>

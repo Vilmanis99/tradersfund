@@ -18,7 +18,7 @@ import {
   Trash2,
   X,
 } from 'lucide-react'
-import { track } from '@vercel/analytics'
+import { trackSiteEvent as track } from '@/lib/clientAnalytics'
 import ProductChangeSignals from '@/components/ProductChangeSignals'
 import type { DrawdownType, RuleAvailability } from '@/lib/firms'
 import type { IndiaMatcherFirm, IndiaMatcherProduct } from '@/lib/indiaMatcher'
@@ -40,8 +40,8 @@ type DecisionPriority =
 const MAX_SHORTLIST = 4
 const DECISION_PRIORITIES: Array<{ value: DecisionPriority; label: string }> = [
   { value: 'evidence', label: 'Strongest India evidence' },
-  { value: 'entry-cost', label: 'Lowest published entry' },
-  { value: 'funded-cost', label: 'Lowest funded-cost floor' },
+  { value: 'entry-cost', label: 'Lowest entry at selected size' },
+  { value: 'funded-cost', label: 'Lowest funded cost at selected size' },
   { value: 'payout-speed', label: 'Earliest first payout request' },
   { value: 'loss-room', label: 'Largest percentage max-loss room' },
   { value: 'ea', label: 'EA compatibility' },
@@ -177,6 +177,12 @@ function accountRange(sizes: number[]) {
   return `${compactAccountSize(sorted[0])}–${compactAccountSize(sorted.at(-1)!)}`
 }
 
+function accountSizesForSelection(sizes: number[], accountSize: string) {
+  return accountSize === 'all'
+    ? sizes
+    : sizes.filter(size => size === Number(accountSize))
+}
+
 function profitTargetLabel(product: IndiaMatcherProduct) {
   if (product.phases === 0) return 'No evaluation'
   if (!product.profitTargets) return 'Unverified'
@@ -245,6 +251,20 @@ function evidenceStatusColor(status: IndiaMatcherFirm['country']['status']) {
 
 function shortlistKey(row: ProductRow) {
   return `${row.firm.slug}:${row.product.slug}`
+}
+
+function indiaPlannerHref(row: ProductRow, accountSize: string) {
+  const params = new URLSearchParams({
+    costFirm: row.firm.slug,
+    costProduct: row.product.slug,
+  })
+  if (
+    accountSize !== 'all'
+    && row.product.pricedTiers.some(tier => tier.sizeUsd === Number(accountSize))
+  ) {
+    params.set('costSize', accountSize)
+  }
+  return `/best-prop-firms-in-india?${params.toString()}#india-checkout-planner-heading`
 }
 
 function parseShortlist(value: string | null, validKeys: Set<string>) {
@@ -359,6 +379,13 @@ function outcomeForPriority(
   }
 
   if (priority === 'entry-cost') {
+    if (accountSize === 'all') {
+      return outcome(
+        'Choose one shared account size',
+        'Minimum fees can belong to different account sizes, so they are not an apples-to-apples cost comparison.',
+        'Use the account-size filter, then the memo can compare the same published tier across every selected product.',
+      )
+    }
     const prices = rows.map(row => entryValue(row.product, accountSize))
     if (prices.some(price => price == null)) {
       return outcome(
@@ -397,6 +424,13 @@ function outcomeForPriority(
   }
 
   if (priority === 'funded-cost') {
+    if (accountSize === 'all') {
+      return outcome(
+        'Choose one shared account size',
+        'Minimum cost-to-funded figures can belong to different account sizes and should not be ranked together.',
+        'Use the account-size filter to compare the same published tier across every selected product.',
+      )
+    }
     const floors = rows.map(row => fundedFloorValue(row.product, accountSize))
     if (floors.some(floor => floor == null)) {
       return outcome(
@@ -597,6 +631,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
   const [decisionPriority, setDecisionPriority] = useState<DecisionPriority>('evidence')
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'error'>('idle')
   const copyResetRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const decisionViewRef = useRef('')
 
   useEffect(() => {
     const syncFromUrl = () => {
@@ -634,6 +669,32 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
     () => outcomeForPriority(selectedRows, decisionPriority, accountSize),
     [accountSize, decisionPriority, selectedRows],
   )
+  const decisionWinnerRows = useMemo(
+    () => selectedRows.filter(row => decisionOutcome.winnerKeys.includes(shortlistKey(row))),
+    [decisionOutcome, selectedRows],
+  )
+  const plannerNextRows = decisionWinnerRows.length
+    ? decisionWinnerRows
+    : selectedRows.length === 1
+      ? selectedRows
+      : []
+  const pricedPlannerNextRows = plannerNextRows.filter(
+    row => row.product.pricedTiers.length > 0,
+  )
+
+  useEffect(() => {
+    if (selectedRows.length < 2) return
+    const viewKey = `${selectedRows.map(shortlistKey).join(',')}:${decisionPriority}:${accountSize}`
+    if (decisionViewRef.current === viewKey) return
+    decisionViewRef.current = viewKey
+    track('challenge_decision_viewed', {
+      surface: 'india',
+      priority: decisionPriority,
+      account_size: accountSize,
+      shortlist_count: selectedRows.length,
+      winner_count: decisionOutcome.winnerKeys.length,
+    })
+  }, [accountSize, decisionOutcome, decisionPriority, selectedRows])
 
   const commitShortlist = (next: string[]) => {
     const clean = [...new Set(next)]
@@ -748,7 +809,6 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
     window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
     track('challenge_filters_reset', { surface: 'india', matching_products: rows.length })
   }
-  const campaign = `india-challenge-comparison-${market}-${program}-${rule}-${drawdown}`
   const selectedSizeLabel = accountSize === 'all'
     ? 'Minimum published entry'
     : `${compactAccountSize(Number(accountSize))} published entry`
@@ -1054,15 +1114,22 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                       <dl className="challenge-shortlist-metrics">
                         <div>
                           <dt>Account sizes</dt>
-                          <dd>{accountRange(product.accountSizesUsd)}</dd>
+                          <dd>{accountRange(accountSizesForSelection(
+                            product.accountSizesUsd,
+                            accountSize,
+                          ))}</dd>
                         </div>
                         <div>
                           <dt>Published entry</dt>
-                          <dd>{priceRange(product)}</dd>
+                          <dd>{accountSize === 'all'
+                            ? priceRange(product)
+                            : decisionMoneyLabel(product, 'entry', accountSize)}</dd>
                         </div>
                         <div>
                           <dt>Funded-cost floor</dt>
-                          <dd>{fundedFloorLabel(product)}</dd>
+                          <dd>{accountSize === 'all'
+                            ? fundedFloorLabel(product)
+                            : decisionMoneyLabel(product, 'funded', accountSize)}</dd>
                         </div>
                         <div>
                           <dt>Evaluation</dt>
@@ -1155,7 +1222,13 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         <a href={product.sourceUrl} target="_blank" rel="nofollow noopener">
                           Product source <ExternalLink size={10} aria-hidden="true" />
                         </a>
-                        <Link href={firm.reviewUrl}>
+                        <Link
+                          href={firm.reviewUrl}
+                          onClick={() => track('challenge_review_open', {
+                            surface: 'india',
+                            product: key,
+                          })}
+                        >
                           Review <ArrowRight size={10} aria-hidden="true" />
                         </Link>
                       </div>
@@ -1264,9 +1337,34 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                   RBI “not found” is not RBI authorisation. Verify current checkout eligibility
                   before paying.
                 </span>
-                <Link href="/best-prop-firms-in-india#india-checkout-planner-heading">
-                  Estimate INR checkout cost <ArrowRight size={11} aria-hidden="true" />
-                </Link>
+                <div className="india-shortlist-next-actions">
+                  {pricedPlannerNextRows.length ? pricedPlannerNextRows.map(row => {
+                    const key = shortlistKey(row)
+                    return (
+                      <Link
+                        key={key}
+                        href={indiaPlannerHref(row, accountSize)}
+                        onClick={() => track('challenge_inr_planner_open', {
+                          surface: 'india',
+                          product: key,
+                        })}
+                      >
+                        Estimate {row.firm.name} {row.product.name} in INR
+                        <ArrowRight size={11} aria-hidden="true" />
+                      </Link>
+                    )
+                  }) : (
+                    <Link
+                      href="/best-prop-firms-in-india#india-checkout-planner-heading"
+                      onClick={() => track('challenge_inr_planner_open', {
+                        surface: 'india',
+                        product: 'no-comparable-winner',
+                      })}
+                    >
+                      Open the INR checkout planner <ArrowRight size={11} aria-hidden="true" />
+                    </Link>
+                  )}
+                </div>
               </div>
             </>
           )}
@@ -1309,10 +1407,10 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                 {rows.map(({ firm, product }) => {
                   const key = `${firm.slug}:${product.slug}`
                   const actionHref = firm.isPartner
-                    ? `/go/${firm.slug}?from=${campaign}`
+                    ? `/go/${firm.slug}?from=india-challenge-product-${product.slug}`
                     : firm.reviewUrl
                   return (
-                    <tr key={key}>
+                    <tr id={`india-challenge-product-${firm.slug}-${product.slug}`} key={key}>
                       <td style={{ padding: '0.75rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 92 }}>
                         <button
                           type="button"
@@ -1351,11 +1449,25 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>
-                        <strong style={{ display: 'block', color: product.entryPrice ? '#fff' : '#fcd34d', fontSize: '0.84rem' }}>
-                          {moneyLabel(product)}
+                        <strong style={{
+                          display: 'block',
+                          color: accountSize === 'all'
+                            ? product.entryPrice ? '#fff' : '#fcd34d'
+                            : decisionMoneyLabel(product, 'entry', accountSize).startsWith('No ')
+                              ? '#fcd34d'
+                              : '#fff',
+                          fontSize: '0.84rem',
+                        }}>
+                          {accountSize === 'all'
+                            ? moneyLabel(product)
+                            : decisionMoneyLabel(product, 'entry', accountSize)}
                         </strong>
                         <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.7rem', marginTop: '0.25rem' }}>
-                          {accountRange(product.accountSizesUsd)} · {product.accountSizesUsd.length} tier{product.accountSizesUsd.length === 1 ? '' : 's'}
+                          {accountRange(accountSizesForSelection(product.accountSizesUsd, accountSize))}
+                          {' · '}
+                          {accountSize === 'all'
+                            ? `${product.accountSizesUsd.length} tier${product.accountSizesUsd.length === 1 ? '' : 's'}`
+                            : 'selected tier'}
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>
@@ -1428,6 +1540,10 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                               target="_blank"
                               rel="sponsored nofollow noopener"
                               className="btn-primary"
+                              onClick={() => track('challenge_offer_open', {
+                                surface: 'india',
+                                product: key,
+                              })}
                               style={{ padding: '0.48rem 0.62rem', fontSize: '0.68rem' }}
                             >
                               Check current offer <ExternalLink size={11} />
@@ -1436,6 +1552,10 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                             <Link
                               href={actionHref}
                               className="btn-outline"
+                              onClick={() => track('challenge_review_open', {
+                                surface: 'india',
+                                product: key,
+                              })}
                               style={{ padding: '0.48rem 0.62rem', fontSize: '0.68rem' }}
                             >
                               Read review <ArrowRight size={11} />

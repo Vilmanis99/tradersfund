@@ -30,6 +30,7 @@ import {
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
 const PATH = '/prop-firm-challenges'
+const SITE = 'https://tradersfundhub.com'
 const SOCIAL_CARD_PRODUCT_COUNT = 89
 const SOCIAL_CARD_FIRM_COUNT = 19
 
@@ -191,7 +192,7 @@ export default function Page() {
     },
     {
       q: 'Can I save or share a challenge shortlist?',
-      a: 'Yes. Select 2 to 4 product rows and copy the generated URL. The shortlist lives in the query string, so it works without an account, cookie or saved profile and does not change the canonical comparison page.',
+      a: 'Yes. Select 2 to 4 product rows and copy the generated URL. It preserves the product keys, decision priority and selected account size without an account, cookie or saved profile, while the canonical remains the clean comparison page.',
     },
     {
       q: 'Does this global table confirm that a product is available in India?',
@@ -204,11 +205,24 @@ export default function Page() {
     { name: 'Challenge Comparison' },
   ])
   const faq = faqPageSchema(faqs)
+  const itemList = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Source-dated prop firm challenge products',
+    numberOfItems: rows.length,
+    itemListElement: rows.map((row, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `${SITE}${PATH}#challenge-product-${row.firm.slug}-${row.product.slug}`,
+      name: `${row.firm.name} ${row.product.name}`,
+    })),
+  }
 
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }} />
 
       <section className="blog-hero">
         <div className="aurora-orb aurora-orb--1" aria-hidden />
@@ -480,6 +494,12 @@ export default function Page() {
               </Link>
               <Link href="/true-cost-of-prop-firm-challenges" className="btn-outline">
                 Understand true-cost math
+              </Link>
+              <Link href="/how-prop-firm-challenges-work" className="btn-outline">
+                How challenges work
+              </Link>
+              <Link href="/how-to-pass-a-prop-firm-challenge" className="btn-outline">
+                Risk-first passing guide
               </Link>
             </div>
           </div>

@@ -38,6 +38,7 @@ export default function Footer() {
     { label: 'Best Firms in UK', href: '/best-prop-firms-in-uk' },
     { label: 'Best Firms in US', href: '/best-prop-firms-in-us' },
     { label: 'Best Firms in India', href: '/best-prop-firms-in-india' },
+    { label: 'India Challenge Comparison', href: '/best-prop-firms-in-india/challenge-comparison' },
     { label: 'India Comparisons', href: '/best-prop-firms-in-india/compare' },
     { label: 'India Challenge Changes', href: '/best-prop-firms-in-india/challenge-changes' },
     { label: 'Cheapest Firms', href: '/cheapest-prop-firms' },

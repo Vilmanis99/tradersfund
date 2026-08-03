@@ -65,9 +65,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...getChallengeWatchEntries().map(entry => entry.lastCheckedAt),
   ].sort().at(-1) || firmsLastModified
   const challengeLastDate = new Date(challengeLastModified)
+  const challengeComparisonLastDate = new Date(Math.max(
+    challengeLastDate.getTime(),
+    firmsLastDate.getTime(),
+  ))
   const indiaMatchupLastDate = new Date(Math.max(
     indiaEvidenceLastDate.getTime(),
-    challengeLastDate.getTime(),
+    challengeComparisonLastDate.getTime(),
   ))
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -76,9 +80,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/prop-firm-discount-codes`, lastModified: dealsLastDate, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/best-prop-firms-in-india/compare`, lastModified: indiaMatchupLastDate, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/best-prop-firms-in-india/challenge-changes`, lastModified: indiaMatchupLastDate, changeFrequency: 'weekly', priority: 0.92 },
-    { url: `${BASE_URL}/best-prop-firms-in-india/challenge-comparison`, lastModified: indiaEvidenceLastDate, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/best-prop-firms-in-india/challenge-comparison`, lastModified: indiaMatchupLastDate, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/best-prop-firms-in-india/payout-methods`, lastModified: indiaEvidenceLastDate, changeFrequency: 'weekly', priority: 0.85 },
-    { url: `${BASE_URL}/prop-firm-challenges`, lastModified: challengeLastDate, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${BASE_URL}/prop-firm-challenges`, lastModified: challengeComparisonLastDate, changeFrequency: 'weekly', priority: 0.95 },
     { url: `${BASE_URL}/prop-firm-challenge-changes`, lastModified: challengeLastDate, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/prop-firms`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/compare`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.8 },

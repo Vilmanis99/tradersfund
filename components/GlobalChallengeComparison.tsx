@@ -19,7 +19,7 @@ import {
   Trash2,
   X,
 } from 'lucide-react'
-import { track } from '@vercel/analytics'
+import { trackSiteEvent as track } from '@/lib/clientAnalytics'
 import ProductChangeSignals from '@/components/ProductChangeSignals'
 import type { ChallengeProductSignal } from '@/lib/challengeWatch'
 import type {
@@ -102,8 +102,8 @@ interface DecisionOutcome {
 const INITIAL_ROWS = 25
 const MAX_SHORTLIST = 4
 const DECISION_PRIORITIES: Array<{ value: DecisionPriority; label: string }> = [
-  { value: 'entry-cost', label: 'Lowest published entry' },
-  { value: 'funded-cost', label: 'Lowest funded-cost floor' },
+  { value: 'entry-cost', label: 'Lowest entry at selected size' },
+  { value: 'funded-cost', label: 'Lowest funded cost at selected size' },
   { value: 'payout-speed', label: 'Earliest payout request' },
   { value: 'max-loss', label: 'Largest stated max-loss room' },
   { value: 'profit-split', label: 'Highest stated profit split' },
@@ -203,13 +203,22 @@ function priceRange(tiers: GlobalChallengeTier[]) {
   return [usd, eur].filter((value): value is string => Boolean(value)).join(' / ') || 'Unverified'
 }
 
-function fundedFloorLabel(product: GlobalChallengeRow['product']) {
-  const usd = product.tiers.flatMap(tier =>
+function tiersForSize(tiers: GlobalChallengeTier[], accountSize: string) {
+  return accountSize === 'all'
+    ? tiers
+    : tiers.filter(tier => tier.sizeUsd === Number(accountSize))
+}
+
+function fundedFloorLabel(
+  product: GlobalChallengeRow['product'],
+  tiers = product.tiers,
+) {
+  const usd = tiers.flatMap(tier =>
     tier.costToFundedUsd != null && tier.costToFundedUsd > 0
       ? [tier.costToFundedUsd]
       : [],
   )
-  const eur = product.tiers.flatMap(tier =>
+  const eur = tiers.flatMap(tier =>
     tier.costToFundedEur != null && tier.costToFundedEur > 0
       ? [tier.costToFundedEur]
       : [],
@@ -294,8 +303,12 @@ function ruleColor(value: RuleAvailability) {
 function minimumTierValue(
   product: GlobalChallengeRow['product'],
   field: 'priceUsd' | 'costToFundedUsd',
+  accountSize: number | null = null,
 ) {
-  const values = product.tiers.flatMap(tier =>
+  const tiers = accountSize == null
+    ? product.tiers
+    : product.tiers.filter(tier => tier.sizeUsd === accountSize)
+  const values = tiers.flatMap(tier =>
     tier[field] != null && tier[field]! > 0 ? [tier[field]!] : [],
   )
   return values.length ? Math.min(...values) : null
@@ -392,6 +405,13 @@ function decisionOutcome(
 
   if (priority === 'entry-cost' || priority === 'funded-cost') {
     const field = priority === 'entry-cost' ? 'entry' : 'funded'
+    if (accountSize === 'all') {
+      return noWinner(
+        'Choose one shared account size',
+        'Minimum fees can belong to different account sizes, so they are not an apples-to-apples cost comparison.',
+        'Use the account-size filter, then the memo can compare the same published tier across every selected product.',
+      )
+    }
     const values = rows.map(row => ({ row, money: decisionMoney(row, field, accountSize) }))
     if (values.some(entry => !entry.money)) {
       return noWinner(
@@ -564,6 +584,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
   const [decisionPriority, setDecisionPriority] = useState<DecisionPriority>('entry-cost')
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'error'>('idle')
   const copyResetRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const decisionViewRef = useRef('')
 
   useEffect(() => {
     const syncFromUrl = () => {
@@ -598,6 +619,20 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
       : null,
     [accountSize, decisionPriority, selectedRows],
   )
+
+  useEffect(() => {
+    if (selectedRows.length < 2) return
+    const viewKey = `${selectedRows.map(shortlistKey).join(',')}:${decisionPriority}:${accountSize}`
+    if (decisionViewRef.current === viewKey) return
+    decisionViewRef.current = viewKey
+    track('challenge_decision_viewed', {
+      surface: 'global',
+      priority: decisionPriority,
+      account_size: accountSize,
+      shortlist_count: selectedRows.length,
+      winner_count: selectedDecisionOutcome?.winnerKeys.length ?? 0,
+    })
+  }, [accountSize, decisionPriority, selectedDecisionOutcome, selectedRows])
 
   const commitShortlist = (next: string[]) => {
     const clean = [...new Set(next)]
@@ -695,15 +730,15 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
       .sort((a, b) => {
         if (sort === 'entry-price') {
           return compareNullable(
-            minimumTierValue(a.product, 'priceUsd'),
-            minimumTierValue(b.product, 'priceUsd'),
+            minimumTierValue(a.product, 'priceUsd', selectedSize),
+            minimumTierValue(b.product, 'priceUsd', selectedSize),
             'asc',
           ) || a.product.name.localeCompare(b.product.name)
         }
         if (sort === 'funded-floor') {
           return compareNullable(
-            minimumTierValue(a.product, 'costToFundedUsd'),
-            minimumTierValue(b.product, 'costToFundedUsd'),
+            minimumTierValue(a.product, 'costToFundedUsd', selectedSize),
+            minimumTierValue(b.product, 'costToFundedUsd', selectedSize),
             'asc',
           ) || a.product.name.localeCompare(b.product.name)
         }
@@ -754,7 +789,6 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
   }
 
   const visibleRows = showAll ? rows : rows.slice(0, INITIAL_ROWS)
-  const campaign = `challenge-directory-${market}-${program}-${pricing}-${style}`
   const selectedSizeLabel = accountSize === 'all'
     ? 'Minimum published entry'
     : `${compactAccountSize(Number(accountSize))} published entry`
@@ -1083,15 +1117,18 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                       <dl className="challenge-shortlist-metrics">
                         <div>
                           <dt>Account sizes</dt>
-                          <dd>{accountRange(product.tiers)}</dd>
+                          <dd>{accountRange(tiersForSize(product.tiers, accountSize))}</dd>
                         </div>
                         <div>
                           <dt>Published entry</dt>
-                          <dd>{priceRange(product.tiers)}</dd>
+                          <dd>{priceRange(tiersForSize(product.tiers, accountSize))}</dd>
                         </div>
                         <div>
                           <dt>Funded-cost floor</dt>
-                          <dd>{fundedFloorLabel(product)}</dd>
+                          <dd>{fundedFloorLabel(
+                            product,
+                            tiersForSize(product.tiers, accountSize),
+                          )}</dd>
                         </div>
                         <div>
                           <dt>Evaluation</dt>
@@ -1140,7 +1177,13 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                         <a href={product.sourceUrl} target="_blank" rel="nofollow noopener">
                           Source <ExternalLink size={10} aria-hidden="true" />
                         </a>
-                        <Link href={firm.reviewUrl}>
+                        <Link
+                          href={firm.reviewUrl}
+                          onClick={() => track('challenge_review_open', {
+                            surface: 'global',
+                            product: key,
+                          })}
+                        >
                           Review <ArrowRight size={10} aria-hidden="true" />
                         </Link>
                       </div>
@@ -1364,14 +1407,16 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 205 }}>
-                        <strong style={{ display: 'block', color: priceRange(product.tiers) === 'Unverified' ? '#fcd34d' : '#fff', fontSize: '0.8rem' }}>
-                          {priceRange(product.tiers)}
+                        <strong style={{ display: 'block', color: priceRange(tiersForSize(product.tiers, accountSize)) === 'Unverified' ? '#fcd34d' : '#fff', fontSize: '0.8rem' }}>
+                          {priceRange(tiersForSize(product.tiers, accountSize))}
                         </strong>
                         <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.68rem', marginTop: '0.3rem' }}>
-                          {accountRange(product.tiers)} · {pricedTierLabel(product.tiers)}
+                          {accountRange(tiersForSize(product.tiers, accountSize))}
+                          {' · '}
+                          {pricedTierLabel(tiersForSize(product.tiers, accountSize))}
                         </span>
                         <span style={{ display: 'block', color: 'var(--accent-light)', fontSize: '0.68rem', marginTop: '0.35rem', fontWeight: 800 }}>
-                          {fundedFloorLabel(product)}
+                          {fundedFloorLabel(product, tiersForSize(product.tiers, accountSize))}
                         </span>
                         <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.65rem', marginTop: '0.25rem' }}>
                           {pricingLabel(product.pricingModel)}
@@ -1451,11 +1496,15 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                         <div style={{ marginTop: '0.65rem' }}>
                           {firm.isPartner ? (
                             <Link
-                              href={`/go/${firm.slug}?from=${campaign}`}
+                              href={`/go/${firm.slug}?from=challenge-product-${product.slug}`}
                               prefetch={false}
                               target="_blank"
                               rel="sponsored nofollow noopener"
                               className="btn-primary"
+                              onClick={() => track('challenge_offer_open', {
+                                surface: 'global',
+                                product: `${firm.slug}:${product.slug}`,
+                              })}
                               style={{ padding: '0.48rem 0.62rem', fontSize: '0.68rem' }}
                             >
                               Check current offer <ExternalLink size={11} />
@@ -1463,6 +1512,10 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                           ) : (
                             <Link
                               href={firm.reviewUrl}
+                              onClick={() => track('challenge_review_open', {
+                                surface: 'global',
+                                product: `${firm.slug}:${product.slug}`,
+                              })}
                               className="btn-outline"
                               style={{ padding: '0.48rem 0.62rem', fontSize: '0.68rem' }}
                             >
@@ -1497,6 +1550,45 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
             </p>
           </div>
         )}
+
+        <details className="challenge-product-index">
+          <summary>Browse all {initialRows.length} source-dated challenge products</summary>
+          <p>
+            This complete index is rendered with the page. Filters above remain the fastest way to
+            compare fees and rules; the list below keeps every tracked product discoverable.
+          </p>
+          <ul>
+            {initialRows.map(({ firm, product }) => {
+              const key = `${firm.slug}:${product.slug}`
+              return (
+                <li id={`challenge-product-${firm.slug}-${product.slug}`} key={key}>
+                  <span>
+                    <strong>{firm.name}</strong>
+                    {product.name}
+                  </span>
+                  <span>
+                    {phasesLabel(product.phases)} · {marketLabel(product.assetClass)} · captured{' '}
+                    {dateLabel(product.capturedAt)}
+                  </span>
+                  <span>
+                    <Link
+                      href={firm.reviewUrl}
+                      onClick={() => track('challenge_review_open', {
+                        surface: 'global-index',
+                        product: key,
+                      })}
+                    >
+                      Review
+                    </Link>
+                    <a href={product.sourceUrl} target="_blank" rel="nofollow noopener">
+                      Source <ExternalLink size={9} aria-hidden="true" />
+                    </a>
+                  </span>
+                </li>
+              )
+            })}
+          </ul>
+        </details>
 
         <p style={{ margin: '0.85rem 0 0', color: 'var(--muted)', fontSize: '0.7rem', lineHeight: 1.55 }}>
           “Unverified” stays unknown rather than becoming zero, unlimited or allowed. EUR prices remain in EUR.

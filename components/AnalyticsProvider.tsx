@@ -5,6 +5,11 @@ import Script from 'next/script'
 import { usePathname } from 'next/navigation'
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import { track as trackVercel } from '@vercel/analytics'
+import {
+  SITE_ANALYTICS_EVENT,
+  type SiteAnalyticsEventDetail,
+  type SiteEventProperties,
+} from '@/lib/clientAnalytics'
 import { OPEN_ANALYTICS_SETTINGS_EVENT } from './AnalyticsPreferencesButton'
 
 const CONSENT_STORAGE_KEY = 'tfh_analytics_consent_v1'
@@ -98,7 +103,9 @@ function journeyStage(pathname: string) {
   if (pathname === '/prop-firms') return 'firm_directory'
   if (pathname === '/compare') return 'comparison_directory'
   if (pathname.includes('-vs-') || pathname.includes('/compare/')) return 'head_to_head'
-  if (/^\/blog\/[^/]+-review\/?$/.test(pathname)) return 'firm_review'
+  if (
+    /^\/blog\/(?:[^/]+-review|bright-funded-prop-firm|my-funded-futures)\/?$/.test(pathname)
+  ) return 'firm_review'
   if (pathname.startsWith('/blog')) return 'editorial'
   return 'information'
 }
@@ -204,7 +211,7 @@ export default function AnalyticsProvider({
     const optionalAnalyticsGranted = consent === 'granted'
     const currentStage = journeyStage(pathname)
 
-    const trackEvent = (name: string, parameters: Record<string, string | number> = {}) => {
+    const trackEvent = (name: string, parameters: SiteEventProperties = {}) => {
       if (optionalAnalyticsGranted && gaMeasurementId && gaReady) {
         window.gtag?.('event', name, {
           ...parameters,
@@ -214,6 +221,13 @@ export default function AnalyticsProvider({
         })
       }
       if (optionalAnalyticsGranted && clarityProjectId && clarityReady) sendClarityEvent(name)
+    }
+
+    const handleSiteAnalyticsEvent = (event: Event) => {
+      if (!(event instanceof CustomEvent)) return
+      const detail = event.detail as SiteAnalyticsEventDetail | undefined
+      if (!detail?.name || !detail.properties) return
+      trackEvent(detail.name, detail.properties)
     }
 
     const handleClick = (event: MouseEvent) => {
@@ -285,6 +299,7 @@ export default function AnalyticsProvider({
     }
 
     document.addEventListener('click', handleClick)
+    window.addEventListener(SITE_ANALYTICS_EVENT, handleSiteAnalyticsEvent)
     window.addEventListener('scroll', handleScroll, { passive: true })
     const engagedTimer = optionalAnalyticsGranted
       ? window.setTimeout(() => trackEvent('engaged_30_seconds'), 30_000)
@@ -292,6 +307,7 @@ export default function AnalyticsProvider({
 
     return () => {
       document.removeEventListener('click', handleClick)
+      window.removeEventListener(SITE_ANALYTICS_EVENT, handleSiteAnalyticsEvent)
       window.removeEventListener('scroll', handleScroll)
       if (engagedTimer !== undefined) window.clearTimeout(engagedTimer)
     }

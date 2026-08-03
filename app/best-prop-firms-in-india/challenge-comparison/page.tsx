@@ -18,6 +18,7 @@ import { buildLandingPayload, getLandingBySlug } from '@/lib/landings'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
 const PATH = '/best-prop-firms-in-india/challenge-comparison'
+const SITE = 'https://tradersfundhub.com'
 const SOCIAL_CARD_PRODUCT_COUNT = 41
 const SOCIAL_CARD_FIRM_COUNT = 8
 
@@ -109,7 +110,7 @@ export default function Page() {
     },
     {
       q: 'Can I save or share an India challenge shortlist?',
-      a: 'Yes. Select 2 to 4 products, choose a decision priority and copy the generated URL. It preserves the exact product keys and priority while keeping the page canonical clean, and stores no identity, KYC document or payment data.',
+      a: 'Yes. Select 2 to 4 products, choose a decision priority and copy the generated URL. It preserves the exact product keys, priority and account size while keeping the page canonical clean, and stores no identity, KYC document or payment data.',
     },
     {
       q: 'Does the decision memo choose the best prop firm for everyone?',
@@ -123,11 +124,26 @@ export default function Page() {
     { name: 'Challenge Comparison' },
   ])
   const faq = faqPageSchema(faqs)
+  const itemList = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'India-screened prop firm challenge products',
+    numberOfItems: products.length,
+    itemListElement: firms
+      .flatMap(firm => firm.products.map(product => ({ firm, product })))
+      .map(({ firm, product }, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${SITE}${PATH}#india-challenge-product-${firm.slug}-${product.slug}`,
+        name: `${firm.name} ${product.name}`,
+      })),
+  }
 
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }} />
 
       <section className="blog-hero">
         <div className="aurora-orb aurora-orb--1" aria-hidden />
@@ -287,7 +303,7 @@ export default function Page() {
           <div className="section-head">
             <div>
               <h2 id="india-challenge-faq-heading" className="section-title">India challenge-comparison FAQ</h2>
-              <p className="section-sub-text">Five answers tied to the same regulatory and source gates.</p>
+              <p className="section-sub-text">{faqs.length} answers tied to the same regulatory and source gates.</p>
             </div>
           </div>
           <div style={{ display: 'grid', gap: '0.8rem' }}>

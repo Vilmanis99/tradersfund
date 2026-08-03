@@ -37,7 +37,8 @@ function campaignFrom(value: string | null) {
 function isIndiaCampaign(placement: string) {
   return placement === 'best-prop-firms-in-india' ||
     placement.startsWith('india-matcher-') ||
-    placement.startsWith('india-inr-planner-')
+    placement.startsWith('india-inr-planner-') ||
+    placement.startsWith('india-challenge-product-')
 }
 
 function recordAffiliateClick(firm: string, placement: string) {
