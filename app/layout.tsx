@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import AnalyticsProvider from '@/components/AnalyticsProvider'
+import VercelObservability from '@/components/VercelObservability'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://tradersfundhub.com'),
@@ -45,6 +48,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
+        <VercelObservability />
+        <Suspense fallback={null}>
+          <AnalyticsProvider
+            gaMeasurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+            clarityProjectId={process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID}
+          />
+        </Suspense>
       </body>
     </html>
   )

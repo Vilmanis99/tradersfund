@@ -3439,6 +3439,28 @@ a.bento-tile:hover,
   font-size: 0.8rem;
   margin: 0;
 }
+.footer-bottom-legal {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.footer-privacy-button {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.footer-privacy-button:hover,
+.footer-privacy-button:focus-visible {
+  color: #fff;
+}
 .footer-bottom-disclaimer {
   color: var(--muted);
   font-size: 0.75rem;
@@ -3450,6 +3472,85 @@ a.bento-tile:hover,
 @media (max-width: 720px) {
   .footer-bottom { flex-direction: column; align-items: flex-start; }
   .footer-bottom-disclaimer { max-width: none; }
+}
+
+/* Consent appears only when optional GA4 or Clarity IDs are configured. */
+.analytics-consent {
+  position: fixed;
+  z-index: 1000;
+  left: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  max-width: 920px;
+  margin-inline: auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  color: #f7f7fb;
+  background: rgba(20, 20, 26, 0.97);
+  border: 1px solid rgba(45, 212, 191, 0.38);
+  border-radius: 16px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(14px);
+}
+.analytics-consent-copy h2 {
+  margin: 0 0 0.35rem;
+  color: #fff;
+  font-size: 1rem;
+}
+.analytics-consent-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+.analytics-consent-copy a {
+  color: var(--accent-light);
+}
+.analytics-consent-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  flex: 0 0 auto;
+  gap: 0.5rem;
+}
+.analytics-consent-actions button {
+  min-height: 40px;
+  padding: 0.55rem 0.85rem;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.analytics-consent-accept {
+  color: #07130f;
+  background: var(--accent-light);
+  border: 1px solid var(--accent-light);
+}
+.analytics-consent-reject,
+.analytics-consent-cancel {
+  color: #f7f7fb;
+  background: transparent;
+  border: 1px solid var(--border);
+}
+.analytics-consent-cancel {
+  font-weight: 500 !important;
+}
+@media (max-width: 720px) {
+  .analytics-consent {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .analytics-consent-actions {
+    justify-content: stretch;
+  }
+  .analytics-consent-actions button {
+    flex: 1 1 140px;
+  }
 }
 
 /* ═══════════════════════════════ Sticky site header (aurora) ═══════════════════════════════

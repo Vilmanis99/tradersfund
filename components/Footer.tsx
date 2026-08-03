@@ -5,6 +5,7 @@ import AnimatedNumber from './AnimatedNumber'
 import { getAllFirms, getAllChallenges, isChallengeFresh } from '@/lib/firms'
 import { getAllPosts } from '@/lib/mdx'
 import { isNewsletterConfigured } from '@/lib/brevo'
+import AnalyticsPreferencesButton from './AnalyticsPreferencesButton'
 
 export default function Footer() {
   const newsletterEnabled = isNewsletterConfigured()
@@ -148,9 +149,14 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p className="footer-bottom-copyright">
-            © {new Date().getFullYear()} Traders Fund Hub. All rights reserved.
-          </p>
+          <div className="footer-bottom-legal">
+            <p className="footer-bottom-copyright">
+              © {new Date().getFullYear()} Traders Fund Hub. All rights reserved.
+            </p>
+            {(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID) && (
+              <AnalyticsPreferencesButton />
+            )}
+          </div>
           <p className="footer-bottom-disclaimer">
             Disclaimer: Trading involves significant risk of loss. This site is for informational
             purposes only and does not constitute financial advice.
