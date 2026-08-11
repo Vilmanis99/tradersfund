@@ -61,23 +61,23 @@
     "rules": {
       "news": true,
       "weekend": true,
-      "overnight": null,
+      "overnight": true,
       "ea": true,
-      "copyTrading": null
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/one-phase/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-08-10",
     "notes": [
       "Prices are LIST prices from the site's own inline CMS payload; site-wide coupons HOT20 (20% off) and NEW30 (30% off 2 Phase Pro) are applied at checkout and are NOT reflected here.",
       "Max trading days \"Unlimited\" -> recorded as null.",
       "Profit split: 80% standard, 90% via paid checkout upgrade. Headline value reads \"up to 90%\".",
       "Leverage \"up to 50:1\"; standard is 30:1, upgradeable at checkout.",
       "Platform: MT5, DXTrade or TradingView.",
-      "overnight-holding and copy-trading policies are not stated anywhere on the domain -> null.",
+      "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted.",
       "Refundable fee 100%, paid with first withdrawal. \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\"",
       "First payout is on-demand after the first closed trade (min 50 USD, 5 min trading days); thereafter monthly, or bi-weekly with a paid add-on.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-08-10.json"
     ]
   },
   {
@@ -133,21 +133,21 @@
     "rules": {
       "news": true,
       "weekend": true,
-      "overnight": null,
+      "overnight": true,
       "ea": true,
-      "copyTrading": null
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/two-phase/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-08-10",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload; coupons HOT20 (20% off) / NEW30 (30% off 2 Phase Pro) apply at checkout.",
       "minTradingDays left null: the CMS is self-contradictory for Two Phase - \"Minimum trading days\" appears as both \"4 days\" and \"5 days\", while the attached description says \"5 trading days per stage. Therefore a total of 10 minimum trading days across both stages of the 2 Phase assessment.\"",
       "Profit split headline value renders as \"up to 100%\" but its own description says \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split\" - recorded 80 per the description; the 100% figure is unexplained.",
-      "overnight-holding and copy-trading policies not stated -> null.",
+      "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted.",
       "Consistency Rule 25% applies to the Funded stage only (\"N/A\" in Phase 1 and Phase 2).",
       "Fee refundable per site-wide statement: \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\"",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-08-10.json"
     ]
   },
   {
@@ -213,22 +213,22 @@
     "rules": {
       "news": true,
       "weekend": true,
-      "overnight": null,
+      "overnight": true,
       "ea": true,
-      "copyTrading": null
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/two-phase/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-08-10",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload; coupons HOT20 (20% off) / NEW30 (30% off 2 Phase Pro) apply at checkout.",
       "minTradingDays left null: the CMS is self-contradictory for Two Phase - \"Minimum trading days\" appears as both \"4 days\" and \"5 days\", while the attached description says \"5 trading days per stage. Therefore a total of 10 minimum trading days across both stages of the 2 Phase assessment.\"",
       "Profit split headline value renders as \"up to 100%\" but its own description says \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split\" - recorded 80 per the description; the 100% figure is unexplained.",
-      "overnight-holding and copy-trading policies not stated -> null.",
+      "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted.",
       "Phase 1 target (10%) is HIGHER than Phase 2 (5%) as published - this is what the table states, not a transcription error.",
       "No consistency rule row shown for this variant -> null.",
       "Refundable Fee row: \"100%\" in Phase 1.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-08-10.json"
     ]
   },
   {
@@ -280,31 +280,32 @@
     "dailyLossPct": 4,
     "maxLossPct": 8,
     "drawdownType": null,
-    "minTradingDays": null,
+    "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
-    "payoutFirstDays": null,
-    "payoutFrequency": "monthly",
+    "payoutFirstDays": 10,
+    "payoutFrequency": null,
     "rules": {
       "news": true,
       "weekend": true,
-      "overnight": null,
+      "overnight": true,
       "ea": true,
-      "copyTrading": null
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/two-phase/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-08-10",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload; coupons HOT20 (20% off) / NEW30 (30% off 2 Phase Pro) apply at checkout.",
-      "minTradingDays left null: the CMS is self-contradictory for Two Phase - \"Minimum trading days\" appears as both \"4 days\" and \"5 days\", while the attached description says \"5 trading days per stage. Therefore a total of 10 minimum trading days across both stages of the 2 Phase assessment.\"",
+      "Product-scoped 2 Phase Pro FAQ resolves the generic Two Phase CMS contradiction: 3 profitable trading days per phase, each with at least 0.5% of initial balance profit.",
       "Profit split headline value renders as \"up to 100%\" but its own description says \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split\" - recorded 80 per the description; the 100% figure is unexplained.",
-      "overnight-holding and copy-trading policies not stated -> null.",
+      "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copy trading is explicitly not allowed on 2 Phase Pro.",
+      "First payout can be requested 10 calendar days after the first trade, after at least 3 profitable days; the 10-day cycle is not representable by the current payoutFrequency enum, so payoutFrequency remains null.",
       "drawdownType null: this variant’s row is labelled only \"Max Loss Limit\" (8%) with no description and no static/trailing wording - not inferred.",
       "Target of the NEW30 coupon: \"NEW TRADERS: 30% OFF 2 PHASE PRO\", code NEW30.",
       "Smallest tier is $10k - there is no $5k Pro account.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-08-10.json"
     ]
   },
   {
@@ -371,20 +372,20 @@
     "rules": {
       "news": true,
       "weekend": true,
-      "overnight": null,
+      "overnight": true,
       "ea": true,
-      "copyTrading": null
+      "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-08-10",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload; HOT20 (20% off) applies at checkout.",
       "minTradingDays is 5 PER STAGE: \"The minimum time to complete the FXIFY™ Challenge is 5 trading days per stage. Therefore a total of 15 minimum trading days across all three stages.\"",
       "Cheapest product on the site: $5k for $39.",
       "Max drawdown equals the daily loss limit (both 5%) - as published.",
-      "overnight-holding and copy-trading policies not stated -> null.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
+      "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-08-10.json"
     ]
   },
   {
@@ -442,29 +443,29 @@
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": null,
-    "payoutFirstDays": null,
-    "payoutFrequency": null,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
     "rules": {
       "news": false,
       "weekend": false,
       "overnight": null,
       "ea": false,
-      "copyTrading": null
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/instant-funding/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-08-10",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload. NOTE: the HOT20 summer coupon explicitly EXCLUDES Instant Lite - \"SUMMER SALE: 20% OFF (excl. Instant Lite)\".",
       "No evaluation and no profit target - funded from purchase.",
       "Fee is NOT refundable: \"Refund\" = \"No\".",
-      "payoutFrequency null: CMS feature says \"Payout Frequency\" = \"10 days\" while the Instant Funding page body says \"Instant Funding accounts offer payouts every 14 days\" - contradictory, so not recorded.",
+      "Product-scoped Instant Funding FAQ says the first payout is 14 days after the first trade and subsequent payouts are every 14 days (bi-weekly).",
       "Withdrawal Policy = \"$50\" minimum.",
-      "overnight-holding and copy-trading policies not stated -> null.",
+      "Copy trading is prohibited on Instant Funding accounts. A distinct overnight-holding rule was not verified -> overnight remains null.",
       "profitSplitPct null: only \"Performance Split\" = \"Up to 90%\" is given, with no stated base split (unlike the phase products, which state 80% standard).",
-      "minTradingDays null: CMS gives \"Minimum Trading Day\" = \"N/A\" in two blocks and \"5 trading days\" in a third - contradictory.",
+      "minTradingDays remains null: the product-scoped Standard FAQ says there is no minimum or maximum trading-day requirement; the 14-day first-payout wait is recorded separately.",
       "Tier list runs $1k to $100K; the page headline claims \"Choose account sizes up to $50K\", which conflicts with the $75K and $100K tiers present in the table.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-08-10.json"
     ]
   },
   {
@@ -503,33 +504,33 @@
     "dailyLossPct": 3,
     "maxLossPct": 4,
     "drawdownType": "trailing",
-    "minTradingDays": null,
+    "minTradingDays": 5,
     "maxTradingDays": null,
     "consistencyRulePct": 20,
     "profitSplitPct": null,
-    "payoutFirstDays": null,
+    "payoutFirstDays": 10,
     "payoutFrequency": null,
     "rules": {
       "news": false,
       "weekend": false,
       "overnight": null,
       "ea": false,
-      "copyTrading": null
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/instant-funding/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-08-10",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload. NOTE: the HOT20 summer coupon explicitly EXCLUDES Instant Lite - \"SUMMER SALE: 20% OFF (excl. Instant Lite)\".",
       "No evaluation and no profit target - funded from purchase.",
       "Fee is NOT refundable: \"Refund\" = \"No\".",
-      "payoutFrequency null: CMS feature says \"Payout Frequency\" = \"10 days\" while the Instant Funding page body says \"Instant Funding accounts offer payouts every 14 days\" - contradictory, so not recorded.",
+      "Product-scoped Lite FAQs require 5 trading days and 10 calendar days from the first trade before payout. The 10-day payout cycle is not representable by the current payoutFrequency enum, so payoutFrequency remains null.",
       "Withdrawal Policy = \"$50\" minimum.",
-      "overnight-holding and copy-trading policies not stated -> null.",
+      "Copy trading is prohibited on Instant Funding Lite. A distinct overnight-holding rule was not verified -> overnight remains null.",
       "Lite prices are stored in the CMS WITHOUT a \"$\" prefix (e.g. \"price\":\"19\"); read as USD, consistent with every other tier on the site.",
       "Explicitly excluded from the HOT20 20% summer discount.",
       "Rules (news/weekend/EA) come from the shared Instant Funding feature block - the CMS does not split these per Standard/Lite variant.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-08-10.json"
     ]
   },
   {
@@ -569,18 +570,18 @@
     "maxTradingDays": 5,
     "consistencyRulePct": 30,
     "profitSplitPct": null,
-    "payoutFirstDays": null,
-    "payoutFrequency": null,
+    "payoutFirstDays": 7,
+    "payoutFrequency": "bi-weekly",
     "rules": {
       "news": false,
       "weekend": true,
-      "overnight": null,
+      "overnight": true,
       "ea": false,
-      "copyTrading": null
+      "copyTrading": false
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-08-10",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload; HOT20 (20% off) applies at checkout.",
       "Smallest Lightning account is $10K - there is NO $5K Lightning tier.",
@@ -588,10 +589,11 @@
       "Hard 5-day time limit: \"Maximum Trading Days\" = \"5 days\" (table \"Maximum Trading Days\": [\"5\", \"-\"]).",
       "Leverage \"Up to 30:1\" - lower than the 50:1 available on the phase products.",
       "profitSplitPct null: only \"Performance Split\" = \"Up to 90%\" given, no stated base split.",
-      "payoutFrequency null: not stated for Lightning.",
-      "\"Refund\" = \"Yes\" but no percentage is stated for Lightning - the \"1,2 and 3 Phase plans\" refund sentence does not name Lightning.",
+      "First Lightning payout is available 7 days after the first trade; subsequent withdrawals are every 14 days (bi-weekly).",
+      "Official Lightning FAQ confirms a 100% refund alongside the first withdrawal.",
+      "Lightning permits overnight holding without restrictions; copy trading is explicitly prohibited.",
       "Platform value reads \"Platform 5\" (apparent CMS typo).",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-07-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-08-10.json"
     ]
   }
 ]

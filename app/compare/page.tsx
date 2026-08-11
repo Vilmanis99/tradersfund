@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { ArrowRight, Swords, Star } from 'lucide-react'
 import {
-  COMPARISON_OVERLAYS,
   findFirmBySlug,
+  getActiveOverlays,
   getAllCanonicalPairs,
 } from '@/lib/comparisons'
 import { breadcrumbSchema, jsonLd } from '@/lib/schema'
@@ -23,12 +23,12 @@ function truncateAtWord(s: string, max: number): string {
 export const metadata: Metadata = {
   title: 'Prop Firm Comparisons — Head-to-Head',
   description:
-    'Side-by-side comparisons of every major prop firm pair: FTMO vs FundedNext, Topstep vs My Funded Futures, and more. Verdicts, spec tables, and live data.',
+    'Compare major prop firms using product-level challenge economics, sourced rules, capture dates and side-by-side spec tables.',
   alternates: { canonical: '/compare' },
   openGraph: {
     title: 'Prop Firm Comparisons — Head-to-Head',
     description:
-      'Side-by-side comparisons of every major prop firm pair. Verdicts, spec tables, and live data.',
+      'Product-level challenge economics, sourced rules, capture dates and side-by-side spec tables for every major prop-firm pair.',
     url: '/compare',
     type: 'website',
   },
@@ -37,18 +37,19 @@ export const metadata: Metadata = {
 export default function CompareHubPage() {
   const allPairs = getAllCanonicalPairs()
 
-  // Curated matchups (have editorial overlay) first, in overlay-defined order.
-  const curatedSlugs = Object.keys(COMPARISON_OVERLAYS)
-  const curated = curatedSlugs
-    .map(slug => {
+  // Curated matchups first, but only after both aggregate and product claims
+  // pass the shared freshness gate used by the detail route.
+  const curated = getActiveOverlays()
+    .map(overlay => {
+      const slug = overlay.matchupSlug
       const [a, b] = slug.split('-vs-')
       const firmA = findFirmBySlug(a)
       const firmB = findFirmBySlug(b)
       if (!firmA || !firmB) return null
-      const overlay = COMPARISON_OVERLAYS[slug]
       return { slug, firmA, firmB, overlay }
     })
     .filter((x): x is NonNullable<typeof x> => x !== null)
+  const curatedSlugs = curated.map(({ slug }) => slug)
 
   // All other pairs, score-ranked sum (so prominent firms surface first).
   const restPairs = allPairs
@@ -73,19 +74,25 @@ export default function CompareHubPage() {
         <div className="home-shell" style={{ position: 'relative', zIndex: 1 }}>
           <div className="hero-eyebrow" style={{ marginBottom: '1.25rem' }}>
             <span className="hero-eyebrow-dot" />
-            <AnimatedNumber value={allPairs.length} duration={1300} /> matchups ·{' '}
-            <AnimatedNumber value={curated.length} duration={900} /> editorial verdicts
+            <AnimatedNumber value={allPairs.length} duration={1300} /> matchups
+            {curated.length > 0 ? (
+              <>
+                {' '}· <AnimatedNumber value={curated.length} duration={900} /> current editorial verdicts
+              </>
+            ) : (
+              <> · product-level evidence</>
+            )}
           </div>
 
           <h1 className="blog-hero-title">
-            Two firms enter,{' '}
-            <span className="gradient-text gradient-text--animated">one wins.</span>
+            Two firms compared,{' '}
+            <span className="gradient-text gradient-text--animated">product by product.</span>
           </h1>
 
           <p className="blog-hero-sub">
             Head-to-head breakdowns of every major prop-firm pair — profit
-            splits, payouts, drawdown rules, platforms, and a clear verdict on
-            who wins for which trader profile.
+            splits, payouts, drawdown rules, platforms, source dates, and the
+            trade-offs that matter for different trader profiles.
           </p>
         </div>
       </section>

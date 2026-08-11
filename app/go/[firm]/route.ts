@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server'
+import { isIndiaCampaign } from '@/lib/affiliateCampaign'
 import { getAllFirms } from '@/lib/firms'
 import { INDIA_EVIDENCE_BY_SLUG } from '@/lib/india'
+import {
+  outboundSlug,
+  REVIEWED_OUTBOUND_DESTINATIONS,
+} from '@/lib/outboundDestinations'
 
 /**
  * Affiliate redirect endpoint. Visiting /go/ftmo sends the user to the firm's
@@ -25,20 +30,9 @@ import { INDIA_EVIDENCE_BY_SLUG } from '@/lib/india'
  * show which placement drives conversions.
  */
 
-function slugify(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-}
-
 function campaignFrom(value: string | null) {
-  const campaign = value ? slugify(value).slice(0, 64) : ''
+  const campaign = value ? outboundSlug(value).slice(0, 64) : ''
   return campaign || 'unknown'
-}
-
-function isIndiaCampaign(placement: string) {
-  return placement === 'best-prop-firms-in-india' ||
-    placement.startsWith('india-matcher-') ||
-    placement.startsWith('india-inr-planner-') ||
-    placement.startsWith('india-challenge-product-')
 }
 
 function recordAffiliateClick(firm: string, placement: string) {
@@ -68,14 +62,6 @@ function recordOfficialClick(firm: string, placement: string) {
  * Affiliate URLs stay null until a deal is signed. The official URL remains
  * available so "Visit" always means leaving for the named product.
  */
-const PARTNERS: Record<string, { affiliateUrl: string | null; officialUrl: string }> = {
-  'traders-connect': { affiliateUrl: null, officialUrl: 'https://tradersconnect.com/' },
-  zulutrade: { affiliateUrl: null, officialUrl: 'https://www.zulutrade.com/' },
-  'fx-replay': { affiliateUrl: null, officialUrl: 'https://www.fxreplay.com/' },
-  copyfx: { affiliateUrl: null, officialUrl: 'https://www.copyfx.com/' },
-  '3commas': { affiliateUrl: null, officialUrl: 'https://3commas.io/' },
-}
-
 function decorateUtm(url: string, campaign: string): string {
   try {
     const u = new URL(url)
@@ -102,14 +88,14 @@ export async function GET(
   { params }: { params: Promise<{ firm: string }> }
 ) {
   const { firm } = await params
-  const target = slugify(firm)
-  const match = getAllFirms().find(f => slugify(f.name) === target)
+  const target = outboundSlug(firm)
+  const match = getAllFirms().find(f => outboundSlug(f.name) === target)
   const url = new URL(req.url)
   const from = campaignFrom(url.searchParams.get('from'))
 
   if (!match) {
     // Reviewed tools/platforms that aren't prop firms (see PARTNERS above).
-    const partner = PARTNERS[target]
+    const partner = REVIEWED_OUTBOUND_DESTINATIONS[target]
     if (partner) {
       if (partner.affiliateUrl) {
         recordAffiliateClick(target, from)

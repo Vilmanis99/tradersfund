@@ -5,6 +5,8 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import AnalyticsProvider from '@/components/AnalyticsProvider'
 import VercelObservability from '@/components/VercelObservability'
+import { getAllFirms } from '@/lib/firms'
+import { buildOutboundRelationships } from '@/lib/outboundDestinations'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://tradersfundhub.com'),
@@ -37,6 +39,8 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const outboundRelationships = buildOutboundRelationships(getAllFirms())
+
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }} suppressHydrationWarning>
@@ -53,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AnalyticsProvider
             gaMeasurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
             clarityProjectId={process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID}
+            outboundRelationships={outboundRelationships}
           />
         </Suspense>
       </body>

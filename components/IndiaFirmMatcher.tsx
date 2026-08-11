@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -15,11 +15,18 @@ import type {
   IndiaMatcherProduct,
 } from '@/lib/indiaMatcher'
 import type { IndiaPayoutRail } from '@/lib/india'
-
-type Strategy = 'manual' | 'ea' | 'news' | 'swing'
-type Program = 'any' | 'instant' | 'one-step' | 'multi-step'
-type Drawdown = 'any' | 'static' | 'trailing'
-type Payout = 'any' | IndiaPayoutRail
+import { trackSiteEvent as track } from '@/lib/clientAnalytics'
+import {
+  DEFAULT_INDIA_MATCHER_FILTERS,
+  indiaMatcherResultProperties,
+  indiaMatcherStateKey,
+  type IndiaMatcherChangedControl,
+  type IndiaMatcherDrawdown as Drawdown,
+  type IndiaMatcherFilters as MatcherFilters,
+  type IndiaMatcherPayout as Payout,
+  type IndiaMatcherProgram as Program,
+  type IndiaMatcherStrategy as Strategy,
+} from '@/lib/indiaMatcherAnalytics'
 
 interface MatcherResult extends IndiaMatcherFirm {
   matchingProducts: IndiaMatcherProduct[]
@@ -59,6 +66,23 @@ function matchesStrategy(product: IndiaMatcherProduct, strategy: Strategy) {
   return true
 }
 
+function matcherResults(firms: IndiaMatcherFirm[], filters: MatcherFilters) {
+  return firms
+    .filter(firm => filters.payout === 'any' || firm.payoutRails.includes(filters.payout))
+    .map(firm => ({
+      ...firm,
+      matchingProducts: firm.products.filter(product =>
+        matchesStrategy(product, filters.strategy) &&
+        matchesProgram(product, filters.program) &&
+        matchesDrawdown(product, filters.drawdown)),
+    }))
+    .filter(firm => firm.matchingProducts.length > 0)
+    .sort((a, b) =>
+      b.evidenceScore - a.evidenceScore ||
+      b.matchingProducts.length - a.matchingProducts.length ||
+      b.editorialScore - a.editorialScore)
+}
+
 function entryLabel(products: IndiaMatcherProduct[]) {
   const usd = products
     .map(product => product.entryPrice)
@@ -84,6 +108,7 @@ function formatDate(value: string) {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
+    timeZone: 'UTC',
   })
 }
 
@@ -135,31 +160,67 @@ export default function IndiaFirmMatcher({ firms }: { firms: IndiaMatcherFirm[] 
   const [program, setProgram] = useState<Program>('any')
   const [drawdown, setDrawdown] = useState<Drawdown>('any')
   const [payout, setPayout] = useState<Payout>('any')
+  const startedRef = useRef(false)
+  const lastResultKeyRef = useRef('')
 
   const results = useMemo<MatcherResult[]>(() => {
-    return firms
-      .filter(firm => payout === 'any' || firm.payoutRails.includes(payout))
-      .map(firm => ({
-        ...firm,
-        matchingProducts: firm.products.filter(product =>
-          matchesStrategy(product, strategy) &&
-          matchesProgram(product, program) &&
-          matchesDrawdown(product, drawdown)),
-      }))
-      .filter(firm => firm.matchingProducts.length > 0)
-      .sort((a, b) =>
-        b.evidenceScore - a.evidenceScore ||
-        b.matchingProducts.length - a.matchingProducts.length ||
-        b.editorialScore - a.editorialScore)
+    return matcherResults(firms, { strategy, program, drawdown, payout })
   }, [drawdown, firms, payout, program, strategy])
 
+  const trackMatcherState = (
+    changedControl: IndiaMatcherChangedControl,
+    nextFilters: MatcherFilters,
+  ) => {
+    const nextResults = matcherResults(firms, nextFilters)
+    const matchingProducts = nextResults.reduce(
+      (count, firm) => count + firm.matchingProducts.length,
+      0,
+    )
+    if (!startedRef.current) {
+      startedRef.current = true
+      track('challenge_matcher_started', { surface: 'india' })
+    }
+    const resultKey = indiaMatcherStateKey(nextFilters)
+    if (lastResultKeyRef.current === resultKey) return
+    lastResultKeyRef.current = resultKey
+    track('challenge_matcher_result', indiaMatcherResultProperties(
+      nextFilters,
+      changedControl,
+      nextResults.length,
+      matchingProducts,
+    ))
+  }
+
+  const changeStrategy = (next: Strategy) => {
+    trackMatcherState('strategy', { strategy: next, program, drawdown, payout })
+    setStrategy(next)
+  }
+
+  const changeProgram = (next: Program) => {
+    trackMatcherState('program', { strategy, program: next, drawdown, payout })
+    setProgram(next)
+  }
+
+  const changeDrawdown = (next: Drawdown) => {
+    trackMatcherState('drawdown', { strategy, program, drawdown: next, payout })
+    setDrawdown(next)
+  }
+
+  const changePayout = (next: Payout) => {
+    trackMatcherState('payout', { strategy, program, drawdown, payout: next })
+    setPayout(next)
+  }
+
   const reset = () => {
+    const changed = strategy !== 'manual' || program !== 'any' || drawdown !== 'any' || payout !== 'any'
+    if (!changed) return
     setStrategy('manual')
     setProgram('any')
     setDrawdown('any')
     setPayout('any')
+    trackMatcherState('reset', DEFAULT_INDIA_MATCHER_FILTERS)
   }
-  const campaign = `india-matcher-${strategy}-${program}-${drawdown}-${payout}`
+  const campaign = 'india-matcher-result'
 
   return (
     <section className="home-section" aria-labelledby="india-matcher-heading">
@@ -190,7 +251,7 @@ export default function IndiaFirmMatcher({ firms }: { firms: IndiaMatcherFirm[] 
               id="india-match-strategy"
               label="Trading style"
               value={strategy}
-              onChange={setStrategy}
+              onChange={changeStrategy}
               options={[
                 { value: 'manual', label: 'Manual intraday' },
                 { value: 'ea', label: 'EA / algorithm' },
@@ -202,7 +263,7 @@ export default function IndiaFirmMatcher({ firms }: { firms: IndiaMatcherFirm[] 
               id="india-match-program"
               label="Program format"
               value={program}
-              onChange={setProgram}
+              onChange={changeProgram}
               options={[
                 { value: 'any', label: 'Any format' },
                 { value: 'instant', label: 'Instant funding' },
@@ -214,7 +275,7 @@ export default function IndiaFirmMatcher({ firms }: { firms: IndiaMatcherFirm[] 
               id="india-match-drawdown"
               label="Drawdown preference"
               value={drawdown}
-              onChange={setDrawdown}
+              onChange={changeDrawdown}
               options={[
                 { value: 'any', label: 'Any verified model' },
                 { value: 'static', label: 'Static only' },
@@ -225,7 +286,7 @@ export default function IndiaFirmMatcher({ firms }: { firms: IndiaMatcherFirm[] 
               id="india-match-payout"
               label="Required payout rail"
               value={payout}
-              onChange={setPayout}
+              onChange={changePayout}
               options={[
                 { value: 'any', label: 'Any published rail' },
                 { value: 'bank', label: 'Bank transfer' },
@@ -433,8 +494,8 @@ export default function IndiaFirmMatcher({ firms }: { firms: IndiaMatcherFirm[] 
 
         <p style={{ margin: '0.85rem 0 0', color: 'var(--muted)', fontSize: '0.72rem', lineHeight: 1.5 }}>
           This is a strict rules-and-rail match, not regulatory advice or guaranteed Indian checkout, KYC,
-          or payout acceptance. Prices remain in the firm&apos;s published currency. A partner click records
-          only the selected filter labels for placement attribution.
+          or payout acceptance. Prices remain in the firm&apos;s published currency. Partner links record only
+          the matcher placement; aggregate filter use is measured with closed labels and result counts.
         </p>
       </div>
     </section>

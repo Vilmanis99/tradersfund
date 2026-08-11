@@ -1,9 +1,10 @@
 'use client'
 import { useState } from 'react'
+import { trackSiteEvent as track } from '@/lib/clientAnalytics'
 
 type Status = 'idle' | 'sending' | 'pending' | 'error'
 
-export default function NewsletterForm() {
+export default function NewsletterForm({ placement = 'unknown' }: { placement?: string }) {
   const [email, setEmail] = useState('')
   const [company, setCompany] = useState('') // honeypot
   const [status, setStatus] = useState<Status>('idle')
@@ -35,6 +36,9 @@ export default function NewsletterForm() {
       }
       setStatus('pending')
       setMessage(data.message || "Thanks — we'll be in touch.")
+      if (!company) {
+        track('newsletter_double_opt_in_started', { placement })
+      }
       setEmail('')
     } catch {
       setStatus('error')
@@ -43,7 +47,12 @@ export default function NewsletterForm() {
   }
 
   return (
-    <form className="newsletter-form" onSubmit={handleSubmit} noValidate>
+    <form
+      className="newsletter-form"
+      onSubmit={handleSubmit}
+      noValidate
+      data-clarity-mask="true"
+    >
       {/* Honeypot — hidden from real users, bots fill it. */}
       <input
         type="text"

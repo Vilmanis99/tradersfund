@@ -98,7 +98,7 @@
     "kind": "rule-change",
     "status": "verified",
     "observedAt": "2026-07-27",
-    "lastCheckedAt": "2026-07-27",
+    "lastCheckedAt": "2026-08-10",
     "title": "FundingPips separates the current Standard path from legacy 10% resets",
     "summary": "The current 2 Step Standard Phase 1 target is 8%. FundingPips says legacy Standard accounts carrying a 10% target reset as 2 Step Flex.",
     "traderImpact": "A reset can place an older account into a different product rule set. Confirm the product name and target after any reset.",

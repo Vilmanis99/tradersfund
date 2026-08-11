@@ -224,7 +224,7 @@ export default function Home() {
             {newsletterEnabled && (
               <div className="hero-newsletter">
                 <span className="hero-newsletter-label">Weekly rule-change digest</span>
-                <NewsletterForm />
+                <NewsletterForm placement="home-hero" />
               </div>
             )}
           </div>

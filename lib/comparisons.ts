@@ -1,5 +1,5 @@
 import type { Firm } from './firms'
-import { getAllFirms } from './firms'
+import { getAllFirms, getChallengesByFirm } from './firms'
 
 /* ── Slug helpers ─────────────────────────────────────────────── */
 
@@ -66,6 +66,11 @@ export interface ComparisonOverlay {
   matchupSlug: string
   /** ISO date when every hand-written claim was checked against both firms' current captures. */
   reviewedAt?: string
+  /**
+   * ISO date when the overlay was checked product-by-product against the
+   * challenge captures. Legacy overlays omit this and therefore fail closed.
+   */
+  challengeReviewedAt?: string
   h1: string
   metaDescription: string
   tlDr: string
@@ -394,7 +399,7 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
 
 export function getOverlay(matchupSlug: string): ComparisonOverlay | undefined {
   const overlay = COMPARISON_OVERLAYS[matchupSlug]
-  if (!overlay?.reviewedAt) return undefined
+  if (!overlay?.reviewedAt || !overlay.challengeReviewedAt) return undefined
 
   const parsed = parseMatchup(matchupSlug)
   if (!parsed) return undefined
@@ -405,14 +410,42 @@ export function getOverlay(matchupSlug: string): ComparisonOverlay | undefined {
     .filter((value): value is string => Boolean(value))
     .sort()
     .at(-1)
+  const latestProductCapture = [
+    ...getChallengesByFirm(parsed.a),
+    ...getChallengesByFirm(parsed.b),
+  ]
+    .map(challenge => challenge.sourceCapturedAt)
+    .filter(Boolean)
+    .sort()
+    .at(-1)
 
-  // Hand-written copy fails closed when either firm's aggregate is newer.
-  // The page remains useful because it falls back to the current spec table.
-  if (!firmA || !firmB || !latestFirmUpdate || overlay.reviewedAt < latestFirmUpdate) {
+  // Hand-written copy fails closed when either the aggregate or any product
+  // capture is newer. The page remains useful through its data-driven tables
+  // and generated product-level summary.
+  if (
+    !firmA ||
+    !firmB ||
+    !latestFirmUpdate ||
+    !latestProductCapture ||
+    overlay.reviewedAt < latestFirmUpdate ||
+    overlay.challengeReviewedAt < latestProductCapture
+  ) {
     return undefined
   }
 
   return overlay
+}
+
+/**
+ * Only expose editorial overlays that have passed the aggregate and
+ * product-capture freshness gate. Hub pages must use this projection rather
+ * than reading COMPARISON_OVERLAYS directly, otherwise stale copy can leak
+ * even while the individual matchup route correctly fails closed.
+ */
+export function getActiveOverlays(): ComparisonOverlay[] {
+  return Object.keys(COMPARISON_OVERLAYS)
+    .map(matchupSlug => getOverlay(matchupSlug))
+    .filter((overlay): overlay is ComparisonOverlay => Boolean(overlay))
 }
 
 /* ── Per-row comparison + winner algorithm ────────────────────── */

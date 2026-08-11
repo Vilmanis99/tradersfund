@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { trackSiteEvent as track } from '@/lib/clientAnalytics'
 
 type Status = 'idle' | 'sending' | 'pending' | 'error'
 
@@ -32,6 +33,9 @@ export default function ContactForm() {
       }
       setStatus('pending')
       setFeedback(data.message || "Thanks — we'll respond as soon as possible.")
+      if (!company) {
+        track('contact_submission_delivered', { surface: 'contact' })
+      }
       setName('')
       setEmail('')
       setMessage('')
@@ -51,7 +55,12 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit} noValidate>
+    <form
+      className="contact-form"
+      onSubmit={handleSubmit}
+      noValidate
+      data-clarity-mask="true"
+    >
       {/* Honeypot — hidden from real users, bots fill it. */}
       <input
         type="text"

@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 slug: "privacy-policy"
-date: "2026-08-03"
+date: "2026-08-10"
 description: "How Traders Fund Hub handles contact messages, analytics choices, technical logs, and outbound links."
 type: "page"
 ---
@@ -34,7 +34,7 @@ type: "page"
 
 <p>When configured, Google Analytics 4 measures page journeys, internal navigation, affiliate and external-link clicks, downloads, 25%, 50%, 75%, and 90% scroll depth, and 30-second engagement. Microsoft Clarity provides aggregate heatmaps and session replays. Both optional providers remain disabled until you select &ldquo;Accept analytics&rdquo;; advertising storage, advertising-user data, and advertising personalisation remain denied.</p>
 
-<p>Our custom journey events contain page paths and controlled labels such as a firm slug, product slug, change-note ID, filter category, account-size label, decision priority, or link placement. Shortlist focus keys remain in the shareable page URL so its recipient can reproduce the selection, but those keys, calculator exchange rates, markups, charges, search text, and shortlist query strings are not sent as custom event properties. Query strings and URL fragments are also stripped from Vercel Web Analytics and Speed Insights URLs. The events do not contain a submitted name, email address, message, form field value, account identifier, or full query string. Clarity form-content capture is not used as a source of editorial evidence or user profiling.</p>
+<p>Our custom journey events contain page paths and controlled labels such as a firm slug, product slug, change-note ID, filter category, account-size label, decision priority, or link placement. An individual controlled firm/product key may be sent when that exact item is added, removed, or opened. Complete shortlist combinations and shortlist query strings are not sent as custom event properties; neither are calculator exchange rates, markups, charges, or search text. Query strings and URL fragments are also stripped from Vercel Web Analytics and Speed Insights URLs. The events do not contain a submitted name, email address, message, form field value, account identifier, or full query string. Optional analytics forms are explicitly masked from Clarity capture and are not used as a source of editorial evidence or user profiling.</p>
 
 <h2>Your analytics choice</h2>
 
@@ -54,4 +54,4 @@ type: "page"
 
 <h2>Changes to this policy</h2>
 
-<p>This policy was last updated on 3 August 2026. Material changes will be reflected by updating the date on this page.</p>
+<p>This policy was last updated on 10 August 2026. Material changes will be reflected by updating the date on this page.</p>

@@ -276,12 +276,13 @@
     },
     "currency": {
       "status": "partial",
-      "summary": "INR is available as an account currency, but challenge purchase prices were not accessible on a stable first-party public page during capture.",
+      "summary": "INR is available as an account currency. FundingPips' 10 August 2026 first-party comparison exposes 27 USD list prices, while the final INR card conversion and 2 disputed $2.5K tiers remain unresolved.",
       "sourceUrls": [
-        "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started"
+        "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+        "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models"
       ]
     },
-    "unresolved": "No completed Indian checkout, KYC approval, or payout receipt is verified; challenge fees and Indian bank, card, or Rise payout availability remain unpublished."
+    "unresolved": "No completed Indian checkout, KYC approval, or payout receipt is verified; the 2 disputed $2.5K tiers and Indian bank, card, or Rise payout availability remain unresolved."
   },
   {
     "firmSlug": "bright-funded",
@@ -295,7 +296,7 @@
       "Vietnam",
       "Pakistan"
     ],
-    "restrictionListComplete": true,
+    "restrictionListComplete": false,
     "payoutRails": [
       "bank",
       "crypto"
@@ -308,9 +309,10 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from the 6-country restriction list published on 2026-04-20.",
+      "summary": "India is absent from both captured first-party lists. The 2 lists conflict: the help article names 6 restricted countries, while the Terms name 5 and omit Pakistan, so list completeness remains unresolved.",
       "sourceUrls": [
-        "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded"
+        "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded",
+        "https://brightfunded.com/terms-and-conditions"
       ]
     },
     "checkout": {
