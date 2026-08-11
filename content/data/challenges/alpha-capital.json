@@ -56,10 +56,10 @@
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+    "sourceCapturedAt": "2026-08-11",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-07-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-08-11.json"
     ]
   },
   {
@@ -115,15 +115,15 @@
     "rules": {
       "news": "restricted",
       "weekend": "restricted",
-      "overnight": "restricted",
+      "overnight": true,
       "ea": "restricted",
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://alphacapitalgroup.uk/posts/alpha-capital-rules-explained-drawdown-profit-targets-daily-loss-and-evaluation-rules-2026",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+    "sourceCapturedAt": "2026-08-11",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-07-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-08-11.json"
     ]
   },
   {
@@ -185,9 +185,9 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-08-11",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-07-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-08-11.json"
     ]
   },
   {
@@ -239,15 +239,15 @@
     "rules": {
       "news": "restricted",
       "weekend": true,
-      "overnight": null,
+      "overnight": true,
       "ea": "restricted",
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-08-11",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-07-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-08-11.json"
     ]
   },
   {
@@ -311,9 +311,9 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-08-11",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-07-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-08-11.json"
     ]
   }
 ]

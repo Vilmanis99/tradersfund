@@ -57,23 +57,17 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://www.lucidtrading.com/",
-    "sourceCapturedAt": "2026-07-28",
+    "sourceCapturedAt": "2026-08-11",
     "notes": [
-      "BASE PRICES ONLY: $135 / $185 / $285 / $370 for $25K / $50K / $100K / $150K. Lucid's indexed first-party cards also display changing coupon prices; no coupon price or code is stored because TradersFundHub has no Lucid affiliate agreement.",
-      "ONE-TIME FEE: Lucid says there is no subscription or automatic rebilling. Failed evaluations require a separately purchased reset.",
-      "NO ACTIVATION FEE: Lucid states that upgrading a LucidPro evaluation to funded costs $0.",
-      "TIER-SPECIFIC TARGETS: $1,250 / $3,000 / $6,000 / $9,000. These equal 5% on $25K and 6% on the other 3 tiers, so profitTargets is null rather than publishing one false product-wide percentage.",
-      "EOD TRAILING LOSS: maximum-loss amounts are $1,000 / $2,000 / $3,000 / $4,500. The line follows the highest closing balance and locks at starting balance plus $100 after the initial trail threshold.",
-      "DAILY LOSS: no DLL on $25K; fixed soft DLLs are $1,200 / $1,800 / $2,700 on $50K / $100K / $150K. A DLL stops trading for the session but is not a hard account breach unless the maximum-loss line is reached.",
-      "ONE-DAY EVALUATION: Lucid says LucidPro can pass in 1 trading day and has no published maximum duration.",
-      "FUNDED PAYOUT CONSISTENCY: the 40% field applies to the funded payout cycle, not the evaluation. Largest single-day profit divided by total cycle profit must be 40% or less.",
-      "PAYOUT GATES: LucidPro requires minimum cycle profit of $250 / $500 / $750 / $1,000 and profit above a buffer equal to initial max loss plus $100. There is no fixed payout window, so payoutFirstDays is null rather than guessed.",
-      "PAYOUT SPLIT AND CAPS: 90% to the trader. The first request caps are $1,000 / $2,000 / $2,500 / $3,000; later caps are $1,500 / $2,500 / $3,000 / $3,500.",
-      "DAY TRADING ONLY: positions close by 4:45 PM ET Monday-Friday; trading resumes at 6:00 PM ET Sunday-Thursday. This excludes overnight and weekend holding.",
-      "NEWS AND AUTOMATION: Lucid's general permitted-activities page allows news trading, automated systems and trade copiers. Copy trading is marked restricted because the terms prohibit trading for others, shared risk pooling, and coordinated same or opposite strategies across users.",
-      "REFUNDS: after any trading activity Lucid applies a strict no-refund policy; an unused-account refund is discretionary rather than guaranteed.",
-      "Capture provenance and per-field evidence: content/data/challenges/_captures/lucid-trading-2026-07-28.json",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-07-28.json"
+      "BASE PRICES ONLY: $135 / $185 / $285 / $370 for $25K / $50K / $100K / $150K. The live first-party result also showed temporary coupon prices of $94.50 / $129.50 / $199.50 / $259.00; those are not stored as durable prices.",
+      "TIER-SPECIFIC TARGETS: $1,250 / $3,000 / $6,000 / $9,000 equal 5% / 6% / 6% / 6%, so profitTargets stays null.",
+      "EOD TRAILING MLL: $1,000 / $2,000 / $3,000 / $4,500; the line locks at starting balance plus $100 after the trail threshold.",
+      "DLL: none on $25K; $1,200 / $1,800 / $2,700 on $50K / $100K / $150K. It is a soft session stop unless MLL is reached.",
+      "PAYOUT: 90% trader split, 40% payout-cycle consistency, $500 request minimum, tier profit goals of $250 / $500 / $750 / $1,000, buffer equal to initial MLL plus $100, and no fixed request window.",
+      "TRADING TIMES: positions auto-close by 4:45 PM ET Monday-Friday and reopen 6:00 PM ET Sunday-Thursday; overnight and weekend holding are therefore false.",
+      "GENERAL RULES: news and automated systems are allowed. Trade copiers are allowed, but coordinated strategies, third-party trading and pooled risk are prohibited, so copyTrading is restricted.",
+      "REFUNDS: after trading begins, Lucid says paid fees are not refundable; unused-account exceptions are discretionary rather than guaranteed.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-08-11.json"
     ]
   },
   {
@@ -131,20 +125,15 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account",
-    "sourceCapturedAt": "2026-07-28",
+    "sourceCapturedAt": "2026-08-11",
     "notes": [
-      "PRICE NOT VERIFIED: the live JavaScript configurator did not expose a stable first-party LucidFlex fee, so all 4 priceUsd values remain null.",
-      "ONE-TIME FEE AND $0 ACTIVATION: Lucid describes LucidFlex as non-recurring and says the funded upgrade has no activation fee.",
-      "TIER-SPECIFIC TARGETS: $1,250 / $3,000 / $6,000 / $9,000, equal to 5% / 6% / 6% / 6%; no false shared percentage is stored.",
-      "50% EVALUATION CONSISTENCY: largest single-day profit divided by total evaluation profit must be 50% or less. Lucid says the cushion supports a 2-day pass.",
-      "NO DLL: LucidFlex evaluation and funded accounts have no daily loss limit.",
-      "EOD TRAILING LOSS: $1,000 / $2,000 / $3,000 / $4,500 by tier. The line locks at starting balance plus $100; a payout also moves the Flex MLL to the locked level.",
-      "FUNDED SCALING: LucidFlex starts at 1 / 2 / 3 / 4 mini contracts and expands with simulated profit up to 2 / 4 / 6 / 10 minis.",
-      "PAYOUT GATE: 5 separate profitable days, with daily minimums of $100 / $150 / $200 / $250. There is no fixed request window after those days.",
-      "PAYOUT SPLIT AND CAPS: 90% to the trader; each request is 50% of account profit capped at $1,000 / $2,000 / $2,500 / $3,000, for up to 5 payouts before live review.",
-      "The general 4:45 PM ET flattening rule, unrestricted general news rule, permitted automation and restricted copy-trading interpretation match LucidPro.",
-      "Capture provenance and per-field evidence: content/data/challenges/_captures/lucid-trading-2026-07-28.json",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-07-28.json"
+      "PRICE NOT VERIFIED: the public checkout did not expose stable first-party LucidFlex dollar fees, so all 4 priceUsd values remain null.",
+      "ONE-TIME FEE AND $0 ACTIVATION: LucidFlex has no monthly rebilling and no funded upgrade activation fee.",
+      "TIER-SPECIFIC TARGETS: $1,250 / $3,000 / $6,000 / $9,000 equal 5% / 6% / 6% / 6%, so profitTargets stays null.",
+      "RISK: no DLL in evaluation or funded; EOD trailing MLL of $1,000 / $2,000 / $3,000 / $4,500 locks at starting balance plus $100.",
+      "PAYOUT: 5 separate profitable days at $100 / $150 / $200 / $250, 90% trader split, $500 minimum, 50% of profit capped at $1,000 / $2,000 / $2,500 / $3,000, and no fixed window after eligibility.",
+      "TRADING TIMES AND GENERAL RULES: 4:45 PM ET auto-close, no weekend/overnight holds, news and automation allowed, copy trading restricted to compliant non-coordinated use.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-08-11.json"
     ]
   },
   {
@@ -204,19 +193,14 @@
     "pricingModel": "one-off",
     "assetClass": "futures",
     "sourceUrl": "https://support.lucidtrading.com/en/articles/12890148-luciddirect-funded-account",
-    "sourceCapturedAt": "2026-07-28",
+    "sourceCapturedAt": "2026-08-11",
     "notes": [
       "STRAIGHT TO FUNDED: LucidDirect has 0 evaluation phases and begins in a simulated payout-eligible account.",
-      "PRICE NOT VERIFIED: the live JavaScript configurator did not expose a stable first-party LucidDirect purchase fee, so all 4 priceUsd values remain null.",
-      "EOD TRAILING LOSS: $1,000 / $2,000 / $3,500 / $5,000 by tier. The line locks at starting balance plus $100.",
-      "SOFT DLL: no fixed DLL on $25K; $1,200 / $2,100 / $3,000 on $50K / $100K / $150K. After the initial trail balance, DLL becomes 60% of the highest end-of-day profit and does not decrease.",
-      "20% PAYOUT CONSISTENCY: largest single-day profit divided by total cycle profit must be 20% or less after every request.",
-      "FIRST-CYCLE PROFIT GOALS: $1,500 / $3,000 / $6,000 / $9,000. Later-cycle goals are $1,250 / $2,500 / $3,500 / $4,500.",
-      "PAYOUT SPLIT AND CAPS: 90% to the trader. Payouts 1-3 cap at $1,000 / $2,000 / $2,500 / $3,000; payouts 4-5 cap at $1,000 / $2,500 / $3,000 / $3,500.",
-      "NO FIXED FIRST-DAY COUNT: Lucid says there is no payout window, but the 20% consistency and tier profit goal must be met. payoutFirstDays remains null.",
-      "The general 4:45 PM ET flattening rule, unrestricted general news rule, permitted automation and restricted copy-trading interpretation match LucidPro.",
-      "Capture provenance and per-field evidence: content/data/challenges/_captures/lucid-trading-2026-07-28.json",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-07-28.json"
+      "PRICE NOT VERIFIED: the public checkout did not expose stable first-party LucidDirect dollar fees, so all 4 priceUsd values remain null.",
+      "RISK: EOD trailing MLL of $1,000 / $2,000 / $3,500 / $5,000 locks at starting balance plus $100. Fixed DLL is none / $1,200 / $2,100 / $3,000, then becomes 60% of highest EOD profit after the trail threshold.",
+      "PAYOUT: 20% cycle consistency, 90% trader split, $500 request minimum, first-cycle profit goals $1,500 / $3,000 / $6,000 / $9,000, later goals $1,250 / $2,500 / $3,500 / $4,500, and no fixed request window.",
+      "TRADING TIMES AND GENERAL RULES: 4:45 PM ET auto-close, no weekend/overnight holds, news and automation allowed, copy trading restricted to compliant non-coordinated use.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-08-11.json"
     ]
   },
   {
@@ -269,8 +253,8 @@
     "payoutFrequency": "on-demand",
     "rules": {
       "news": "restricted",
-      "weekend": false,
-      "overnight": false,
+      "weekend": null,
+      "overnight": null,
       "ea": true,
       "copyTrading": "restricted"
     },
@@ -278,20 +262,14 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
-    "sourceCapturedAt": "2026-07-28",
+    "sourceCapturedAt": "2026-08-11",
     "notes": [
-      "LAUNCH-DAY PRICE GAP: LucidDaily launched with 4 configurations, but the live configurator price was not available in stable first-party HTML. All 4 tier prices remain null.",
-      "CHEAPEST CONFIGURATION: Lucid calls DLL On plus Intraday evaluation drawdown the lowest-priced LucidDaily option, without publishing stable dollar fees.",
-      "TIER-SPECIFIC TARGETS: $1,250 / $3,000 / $6,000 / $9,000, equal to 5% / 6% / 6% / 6%.",
-      "50% EVALUATION CONSISTENCY supports a two-day pass. Funded LucidDaily has no consistency rule.",
-      "DLL ON applies the same soft daily caps in evaluation and funded: $600 / $1,200 / $1,800 / $2,700.",
-      "INTRADAY TRAILING evaluation and funded MLLs are $1,000 / $2,000 / $3,000 / $4,500, locking at starting balance plus $100 after the trail threshold.",
-      "DAILY PAYOUT REQUESTS: no fixed window after eligibility, a $500 minimum, profit above the max-loss-plus-$100 buffer, and at least $1 positive profit since the previous request.",
-      "PAYOUT SPLIT is 90% to the trader. The request has no fixed sim-profit cap above the buffer, but daily profit of $6,000 / $8,000 / $10,000 / $12,000 triggers live movement.",
-      "NEWS RESTRICTION: LucidDaily funded accounts must be flat from 1 minute before through 1 minute after red-folder news; violation is a hard breach.",
-      "The 4:45 PM ET flattening rule, permitted automation and restricted copy-trading interpretation apply.",
-      "Capture provenance and per-field evidence: content/data/challenges/_captures/lucid-trading-2026-07-28.json",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-07-28.json"
+      "PRICE NOT VERIFIED: Lucid calls DLL On plus Intraday the cheapest LucidDaily configuration but publishes no stable dollar fees.",
+      "RISK: DLL of $600 / $1,200 / $1,800 / $2,700 applies in evaluation and funded. Intraday trailing MLL of $1,000 / $2,000 / $3,000 / $4,500 applies in both stages.",
+      "PAYOUT: 90% trader split, no funded consistency, requests on any eligible day, $500 minimum, MLL-plus-$100 buffer, and at least $1 positive profit since the prior request.",
+      "NEWS: evaluation/general news is allowed, but funded Daily requires flat positions from 1 minute before through 1 minute after U.S. high-impact USD events; the product-wide value is restricted.",
+      "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-08-11.json"
     ]
   },
   {
@@ -344,8 +322,8 @@
     "payoutFrequency": "on-demand",
     "rules": {
       "news": "restricted",
-      "weekend": false,
-      "overnight": false,
+      "weekend": null,
+      "overnight": null,
       "ea": true,
       "copyTrading": "restricted"
     },
@@ -353,14 +331,13 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
-    "sourceCapturedAt": "2026-07-28",
+    "sourceCapturedAt": "2026-08-11",
     "notes": [
-      "PRICE NOT VERIFIED: this mid-tier configuration publishes no stable dollar fees; all 4 priceUsd values remain null.",
-      "EVALUATION EOD, FUNDED INTRADAY: the evaluation trail moves from end-of-day balance, but every LucidDaily funded account switches to intraday trailing.",
-      "DLL ON applies $600 / $1,200 / $1,800 / $2,700 in both stages.",
-      "The tier targets, 50% evaluation consistency, 2-day minimum, 90% payout split, day-1-possible request, $500 minimum, buffer, red-folder news blackout and closing-time rules match the Intraday DLL On configuration.",
-      "Capture provenance and per-field evidence: content/data/challenges/_captures/lucid-trading-2026-07-28.json",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-07-28.json"
+      "PRICE NOT VERIFIED: Lucid calls DLL On plus EOD a mid-tier LucidDaily configuration but publishes no stable dollar fees.",
+      "RISK: DLL of $600 / $1,200 / $1,800 / $2,700 applies in both stages. Evaluation MLL is EOD trailing; funded MLL switches to Intraday trailing, with $1,000 / $2,000 / $3,000 / $4,500 limits.",
+      "PAYOUT and NEWS match the other LucidDaily variants: 90% split, daily eligible requests, $500 minimum, buffer and positive-profit gates, plus the funded U.S. high-impact USD news blackout.",
+      "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-08-11.json"
     ]
   },
   {
@@ -409,8 +386,8 @@
     "payoutFrequency": "on-demand",
     "rules": {
       "news": "restricted",
-      "weekend": false,
-      "overnight": false,
+      "weekend": null,
+      "overnight": null,
       "ea": true,
       "copyTrading": "restricted"
     },
@@ -418,14 +395,13 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
-    "sourceCapturedAt": "2026-07-28",
+    "sourceCapturedAt": "2026-08-11",
     "notes": [
-      "PRICE NOT VERIFIED: this mid-tier configuration publishes no stable dollar fees; all 4 priceUsd values remain null.",
-      "NO DLL applies during both evaluation and funded stages.",
-      "INTRADAY TRAILING applies during both stages with $1,000 / $2,000 / $3,000 / $4,500 tier maximums.",
-      "The tier targets, 50% evaluation consistency, 2-day minimum, 90% payout split, day-1-possible request, $500 minimum, buffer, red-folder news blackout and closing-time rules match the DLL On configurations.",
-      "Capture provenance and per-field evidence: content/data/challenges/_captures/lucid-trading-2026-07-28.json",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-07-28.json"
+      "PRICE NOT VERIFIED: Lucid calls DLL Off plus Intraday a mid-tier LucidDaily configuration but publishes no stable dollar fees.",
+      "RISK: no DLL in evaluation or funded. Intraday trailing MLL of $1,000 / $2,000 / $3,000 / $4,500 applies in both stages.",
+      "PAYOUT and NEWS match the other LucidDaily variants: 90% split, daily eligible requests, $500 minimum, buffer and positive-profit gates, plus the funded U.S. high-impact USD news blackout.",
+      "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-08-11.json"
     ]
   },
   {
@@ -474,8 +450,8 @@
     "payoutFrequency": "on-demand",
     "rules": {
       "news": "restricted",
-      "weekend": false,
-      "overnight": false,
+      "weekend": null,
+      "overnight": null,
       "ea": true,
       "copyTrading": "restricted"
     },
@@ -483,14 +459,13 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
-    "sourceCapturedAt": "2026-07-28",
+    "sourceCapturedAt": "2026-08-11",
     "notes": [
-      "PRICE NOT VERIFIED: Lucid calls DLL Off plus EOD the most expensive LucidDaily configuration but publishes no stable dollar fees; all 4 priceUsd values remain null.",
-      "NO DLL applies in evaluation and funded stages.",
-      "EVALUATION EOD, FUNDED INTRADAY: the evaluation trail moves from closing balance; the funded trail moves with real-time P&L.",
-      "The tier targets, 50% evaluation consistency, 2-day minimum, 90% payout split, day-1-possible request, $500 minimum, buffer, red-folder news blackout and closing-time rules match the other LucidDaily configurations.",
-      "Capture provenance and per-field evidence: content/data/challenges/_captures/lucid-trading-2026-07-28.json",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-07-28.json"
+      "PRICE NOT VERIFIED: Lucid calls DLL Off plus EOD the most expensive LucidDaily configuration but publishes no stable dollar fees.",
+      "RISK: no DLL in evaluation or funded. Evaluation MLL is EOD trailing; funded MLL switches to Intraday trailing, with $1,000 / $2,000 / $3,000 / $4,500 limits.",
+      "PAYOUT and NEWS match the other LucidDaily variants: 90% split, daily eligible requests, $500 minimum, buffer and positive-profit gates, plus the funded U.S. high-impact USD news blackout.",
+      "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-08-11.json"
     ]
   }
 ]

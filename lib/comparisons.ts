@@ -204,29 +204,29 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
 
   'topstep-vs-tradeday': {
     matchupSlug: 'topstep-vs-tradeday',
-    reviewedAt: '2026-07-28',
+    reviewedAt: '2026-08-11',
     h1: 'Topstep vs TradeDay (2026): Structure vs Day-One Payout Access',
     metaDescription:
-      'Topstep vs TradeDay compared on evaluation cost, drawdown, profit split, payout eligibility and rules using first-party data captured in July 2026.',
+      'Topstep vs TradeDay compared on evaluation cost, drawdown, profit split, payout eligibility and rules using first-party data captured through August 11, 2026.',
     tlDr:
-      'Topstep is the cleaner default for traders who prioritize a 90% funded split, a $125 payout minimum and a 2-day minimum evaluation. TradeDay is the more configurable route: Quick Pay offers day-one funded requests, while Fast Pass keeps end-of-day drawdown and starts at an 80% split. The important catch is product selection — TradeDay Quick Pay begins at a 50% split below $4,000 of net Funded Sim profit, and its End-of-Day evaluation switches to intraday trailing after funding.',
+      'Topstep is the cleaner default for traders who prioritize a 90% funded split, a $125 payout minimum and a 2-day minimum evaluation. TradeDay is the more configurable route: Quick Pay offers day-one funded requests, while Fast Pass keeps end-of-day drawdown and starts at an 80% split. The important catch is product selection — a full Quick Pay 80/20 request requires current profit above $4,000 before the withdrawal and more than $4,000 left afterward; requests made while current profit is below $4,000 are 50/50, and threshold-crossing requests are blended. Its End-of-Day evaluation also switches to intraday trailing after funding.',
     verdictByCategory: [
       // Matchup is alphabetised, so "a" = Topstep and "b" = TradeDay.
-      { category: 'Starting Profit Split', winner: 'a', reason: 'Topstep pays a 90% funded split. TradeDay starts at 50% below $4,000 net on Quick Pay or 80% on Fast Pass, reaching 90% only in Funded Live.' },
+      { category: 'Starting Profit Split', winner: 'a', reason: 'Topstep pays a 90% funded split. Quick Pay is 50/50 below $4,000 of current profit and reaches full 80/20 only when a request leaves more than $4,000; Fast Pass starts at 80%, while Funded Live pays 90%.' },
       { category: 'First Payout Eligibility', winner: 'b', reason: 'TradeDay Quick Pay lists a day-one funded request with no payout buffer. Topstep’s shortest published payout path requires 3 trading days under its consistency option.' },
       { category: 'Minimum Payout', winner: 'a', reason: 'Topstep publishes a $125 minimum payout request; TradeDay publishes a $250 minimum on both Quick Pay and Fast Pass.' },
-      { category: 'Evaluation Speed', winner: 'a', reason: 'Topstep says a Trading Combine can pass in as few as 2 days. TradeDay’s current cards require 3 days on Fast Pass or 5 days on Quick Pay.' },
+      { category: 'Evaluation Speed', winner: 'a', reason: 'Topstep says a Trading Combine can pass in as few as 2 days. TradeDay requires 5 days on Quick Pay; its Fast Pass cards say 3 days, while current help articles say no formal minimum and its 45% consistency rule still creates a 3-profitable-day mathematical floor.' },
       { category: 'Evaluation Drawdown Choice', winner: 'b', reason: 'TradeDay offers intraday trailing and end-of-day trailing evaluation paths. Topstep’s current Combine uses one end-of-day trailing Maximum Loss Limit across its account paths.' },
       { category: 'Funded Drawdown Continuity', winner: 'a', reason: 'Topstep keeps its end-of-day trailing Maximum Loss Limit logic into the XFA. TradeDay Quick Pay End of Day switches to intraday trailing after the evaluation; only Fast Pass keeps EOD mechanics.' },
-      { category: 'Activation Fee Choice', winner: 'tie', reason: 'TradeDay’s 9 current cards state no activation fee. Topstep offers a no-activation path but charges a higher monthly subscription; its lower-monthly Standard path adds $149 after passing.' },
+      { category: 'Activation Fee Choice', winner: 'tie', reason: 'TradeDay’s 9 unique product-size combinations across 18 platform cards state no activation fee. Topstep offers a no-activation path but charges a higher monthly subscription; its lower-monthly Standard path adds $149 after passing.' },
       { category: 'News Trading', winner: 'tie', reason: 'Both are restricted rather than fully open: TradeDay requires a 2-minute buffer on each side of tier-1 releases, while Topstep prohibits purposefully entering full size into scheduled major news.' },
     ],
     whenToPickA:
       'Pick Topstep if a 90% split from the funded stage, a $125 minimum payout and a 2-day evaluation floor matter more than withdrawing on the first funded day. It is also the simpler choice for a trader who does not want TradeDay’s Quick Pay split ladder or an EOD-to-intraday drawdown change after passing.',
     whenToPickB:
-      'Pick TradeDay if you want to choose between intraday and end-of-day evaluation drawdown and value Quick Pay’s day-one request more than its initial 50% split. Fast Pass is the better TradeDay route for traders who want an 80% Funded Sim split and EOD drawdown continuity, but it requires 5 profitable payout days and caps requests by tier.',
+      'Pick TradeDay if you want to choose between intraday and end-of-day evaluation drawdown and value Quick Pay’s day-one request more than its 50% low-profit payout tier. Fast Pass is the better TradeDay route for traders who want an 80% Funded Sim split and EOD drawdown continuity, but it requires 5 profitable payout days and caps requests by tier.',
     faqs: [
-      { q: 'Is TradeDay cheaper than Topstep?', a: 'At the prices captured July 28, 2026, TradeDay’s promotional monthly range was $59–$225. Topstep’s current paths were $49–$199 per month plus $149 activation, or $95–$229 per month with no activation. The cheaper first-month path depends on account size and whether you include Topstep’s after-pass fee.' },
+      { q: 'Is TradeDay cheaper than Topstep?', a: 'At the prices recaptured August 11, 2026, TradeDay’s promotional monthly range was $59–$225. Topstep’s current paths were $49–$199 per month plus $149 activation, or $95–$229 per month with no activation. The cheaper first-month path depends on account size and whether you include Topstep’s after-pass fee.' },
       { q: 'Which firm lets me request a payout sooner?', a: 'TradeDay Quick Pay lists a day-one funded request with no buffer and a $250 minimum. Topstep’s shortest published consistency path requires 3 trading days but lowers the request minimum to $125.' },
       { q: 'Which drawdown is easier to manage?', a: 'For evaluation, both offer an end-of-day trailing route; TradeDay also offers intraday trailing. After passing, Topstep keeps EOD trailing, TradeDay Fast Pass keeps EOD trailing, and TradeDay Quick Pay uses intraday trailing — the exact product matters more than the firm name.' },
       { q: 'Do Topstep and TradeDay allow overnight futures positions?', a: 'No. Both require day trading and positions closed by the session cutoff, so neither fits an overnight or weekend futures strategy.' },

@@ -23,9 +23,11 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
 const SITE = 'https://tradersfundhub.com'
 const PATH = '/best-prop-firms-in-india/challenge-changes'
-const SOCIAL_CARD_ENTRY_COUNT = 3
-const SOCIAL_CARD_FIRM_COUNT = 3
-const SOCIAL_CARD_PRODUCT_COUNT = 7
+const SOCIAL_CARD_ENTRY_COUNT = 12
+const SOCIAL_CARD_FIRM_COUNT = 6
+const SOCIAL_CARD_PRODUCT_COUNT = 16
+const SOCIAL_CARD_VERIFIED_COUNT = 2
+const SOCIAL_CARD_WATCH_COUNT = 10
 
 export const metadata: Metadata = {
   title: { absolute: 'Prop Firm Challenge Changes India (2026)' },
@@ -122,12 +124,16 @@ export default function Page() {
     entries.length !== SOCIAL_CARD_ENTRY_COUNT
     || trackedFirmCount !== SOCIAL_CARD_FIRM_COUNT
     || affectedProductCount !== SOCIAL_CARD_PRODUCT_COUNT
+    || verifiedCount !== SOCIAL_CARD_VERIFIED_COUNT
+    || watchCount !== SOCIAL_CARD_WATCH_COUNT
   ) {
     throw new Error(
       `Refresh the India challenge-changes social card: expected `
       + `${SOCIAL_CARD_ENTRY_COUNT} entries/${SOCIAL_CARD_FIRM_COUNT} firms/`
-      + `${SOCIAL_CARD_PRODUCT_COUNT} products, received `
-      + `${entries.length}/${trackedFirmCount}/${affectedProductCount}`,
+      + `${SOCIAL_CARD_PRODUCT_COUNT} products/${SOCIAL_CARD_VERIFIED_COUNT} verified/`
+      + `${SOCIAL_CARD_WATCH_COUNT} watches, received `
+      + `${entries.length}/${trackedFirmCount}/${affectedProductCount}/`
+      + `${verifiedCount}/${watchCount}`,
     )
   }
 

@@ -19,8 +19,8 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
 const PATH = '/best-prop-firms-in-india/challenge-comparison'
 const SITE = 'https://tradersfundhub.com'
-const SOCIAL_CARD_PRODUCT_COUNT = 41
-const SOCIAL_CARD_FIRM_COUNT = 8
+const SOCIAL_CARD_PRODUCT_COUNT = 44
+const SOCIAL_CARD_FIRM_COUNT = 9
 
 export const metadata: Metadata = {
   title: { absolute: 'India Prop Firm Challenge Comparison (2026)' },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Prop Firm Challenge Comparison India (2026)',
     description:
-      'Filter 41 sourced products across 8 India-screened firms.',
+      'Filter 44 sourced products across 9 India-screened firms.',
   },
 }
 
@@ -94,7 +94,7 @@ export default function Page() {
     },
     {
       q: 'Why are FTMO and FundedNext excluded from this India comparison?',
-      a: 'Both brands appear on the RBI Alert List dated 22 October 2024. Traders Fund Hub excludes named firms from India rankings, rule filters, INR planning and India affiliate placements.',
+      a: 'Both brands remain on the RBI Alert List updated 19 November 2025. Traders Fund Hub excludes named firms from India rankings, rule filters, INR planning and India affiliate placements.',
     },
     {
       q: 'Does appearing in this comparison mean a firm is RBI authorised?',

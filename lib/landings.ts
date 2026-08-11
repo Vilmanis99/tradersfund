@@ -288,7 +288,7 @@ export const LANDINGS: Landing[] = [
         body: 'No. We exclude firms named on the RBI Alert List, but RBI says the list is non-exhaustive and absence is not authorisation. A simulated account can still raise contract, remittance, tax, or regulatory questions that require qualified local advice.',
       },
     ],
-    lastReviewed: '2026-07-28',
+    lastReviewed: '2026-08-11',
   },
   {
     slug: 'cheapest-prop-firms',

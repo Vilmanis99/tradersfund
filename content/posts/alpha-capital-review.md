@@ -2,7 +2,7 @@
 title: "Alpha Capital Review 2026: Five Products, One $400K Ceiling"
 slug: "alpha-capital-review"
 date: "2025-07-23 09:44:31"
-modified: "2026-07-27 12:00:00"
+modified: "2026-08-11 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Alpha Capital sells five plans from a 1-phase Alpha One to a 90%-split Alpha Direct, all sharing a $400,000 ceiling. Every fee is non-refundable."
 categories: ["Prop Firms"]
@@ -40,7 +40,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% on evaluations, 90% on Alpha Direct</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown type</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Per product — 6% trailing (One), 5% trailing (Direct), 6–10% static (Pro / Three / Swing)</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Consistency rule</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">40% best-day on evaluations; 15% on Alpha Direct</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Bi-weekly on Alpha Pro and Alpha Three (first request at day 14); on-demand elsewhere</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Bi-weekly on Alpha Pro and Alpha Three (first request at day 14); on-demand elsewhere, with Alpha One's bi-weekly eligibility unresolved</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Fee refund</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">None — all sales final</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT5, cTrader</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Instruments</strong></td><td style="padding: 8px 12px; border-bottom: none;">Forex, Indices, Crypto, Commodities</td></tr>
@@ -88,7 +88,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Pricing and rules current as of 2026-07-27, captured from Alpha Capital's own pages. For the current list see <a href="/go/alpha-capital">the live Alpha Capital site</a> — and read the pricing caveat in the True-Cost section below before you treat any figure here as a checkout price.</p>
+<p>Pricing and rules are current as of 2026-08-11, captured from Alpha Capital's own pages. For the current list see <a href="/go/alpha-capital">the live Alpha Capital site</a> — and read the pricing caveat in the True-Cost section below before you treat any figure here as a checkout price.</p>
 
 <p>Three variants sit outside the table because the firm publishes rules for them but no fees. <strong>Alpha One ships in 6%, 10% and 12% forms</strong>: the 6% carries a 6% target with a 4% trailing max drawdown and a 3% daily cap, the 12% carries a 12% target with an 8% trailing cap and a 5% daily cap, and the firm states the 12% variant is capped at $100,000 while the others reach $200,000. The rules in the table above are the 10% variant. <strong>Alpha Pro also sells 8% and 10% variants</strong> — the 8% runs an 8% then 5% target against an 8% static drawdown and 4% daily cap; the 10% runs 10% then 5% against a 10% static drawdown and 5% daily cap. Neither has a published price table.</p>
 
@@ -104,7 +104,7 @@ type: "post"
 
 <p><strong>News trading is allowed with a timing window, not banned.</strong> Alpha One, Alpha Pro, Alpha Three and Alpha Direct impose a 5-minute window on both sides of a high-impact event. Alpha Swing works differently: a trade opened within 2 minutes before or up to 2 minutes after a release — a 4-minute window — must stay open longer than 2 minutes to count as valid.</p>
 
-<p><strong>Weekend holding is product-specific.</strong> Alpha One, Alpha Swing and Alpha Three allow it at every stage including the Qualified account. Alpha Pro allows it during Phase 1 and Phase 2 but <em>not</em> on the Qualified Analyst account — a rule change that lands after you have already paid and passed. Alpha Direct does not permit weekend holds at all. Overnight holds carry no separate restriction on Alpha One, and Alpha Swing is explicitly built for them.</p>
+<p><strong>Weekend and overnight holding are separate rules.</strong> Alpha One, Alpha Swing and Alpha Three allow weekend holding at every stage including the Qualified account. Alpha Pro allows weekends during Phase 1 and Phase 2 but <em>not</em> on the Qualified Analyst account; it still allows weekday overnight holds. Alpha One and Alpha Three also allow overnight holds, while Alpha Swing is explicitly built for longer-term positions. Alpha Direct bans weekend holding, and its current plan page publishes no separate overnight answer, so that field remains unverified rather than assumed.</p>
 
 <p><strong>Expert Advisors are restricted, not permitted.</strong> The help centre allows EAs on MT5 "strictly limited to risk management and trade assistance tools," subject to pre-approval, and states that "automated EAs that execute trades independently, without human oversight, are strictly prohibited and will not be approved under any circumstances." On Alpha Direct, EAs are disabled outright and cannot be used. Copy trading is similarly narrow: you may mirror your own external account as master if you prove ownership, but "engaging in copy trading from other groups, or duplicating trades from fellow traders, is strictly prohibited," and the feature is unavailable on cTrader, DX Trade and TradeLocker.</p>
 
@@ -114,7 +114,7 @@ type: "post"
 
 <p>Break-even profit is the fee divided by your profit split — the trading gain you must produce before your share of it repays what you spent. The R-multiple sets that figure against the dollar value of your maximum drawdown. R below 1 means the firm lets you lose more getting there than you need to make; R at or above 1 means you must out-earn your entire loss allowance just to get back to zero. Every figure below is <code>computeTrueCost()</code> output from Alpha Capital's published prices — see <a href="/true-cost-of-prop-firm-challenges">the true cost of prop firm challenges</a> for the method.</p>
 
-<p><strong>Read this before the tables.</strong> No price below was read off a live checkout. Alpha Capital's checkout is JavaScript-gated and renders "Total due: One-time payment $0.00" to a plain reader, and its /product page lists plan names with the sentence "Evaluation fees start from $50 on the smallest Alpha One tier" and no table. Every fee here comes from Alpha Capital's own cost article, which self-reports "Page Last Updated: June 1, 2026" — roughly 8 weeks stale at capture — and which itself tells readers to confirm the price on the product page. Two further gaps survive: the firm's own trader-verdict page prices Alpha Pro 25K at $197 while its cost page prices Alpha Pro 25K 6% at $137, a conflict we did not resolve and did not average, so only the labelled 6% figure is recorded; and the Alpha One price rows carry no variant suffix, so it is not knowable whether $497 buys the 6%, 10% or 12% version of that plan.</p>
+<p><strong>Read this before the tables.</strong> No price below was read off a live checkout. Alpha Capital's checkout is JavaScript-gated and renders "Total due: One-time payment $0.00" to a plain reader, and its /product page lists plan names with the sentence "Evaluation fees start from $50 on the smallest Alpha One tier" and no table. Every fee here comes from Alpha Capital's own cost article, which self-reports "Page Last Updated: June 1, 2026" — roughly 10 weeks old at the 2026-08-11 capture — and which itself tells readers to confirm the price on the product page. Two further gaps survive: the firm's own trader-verdict page prices Alpha Pro 25K at $197 while its cost page prices Alpha Pro 25K 6% at $137, a conflict we did not resolve and did not average, so only the labelled 6% figure is recorded; and the Alpha One price rows carry no variant suffix, so it is not knowable whether $497 buys the 6%, 10% or 12% version of that plan.</p>
 
 <!-- Alpha One — generated by scripts/gen-truecost.mjs -->
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
@@ -182,7 +182,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p>Alpha Capital runs two payout schemes. <strong>Bi-weekly</strong> works on a fixed cycle: "requests are made every 14 days, starting 14 days after your initial trade," so the earliest possible first payout is day 14. The help centre states bi-weekly is available on Alpha Pro and Alpha Three accounts — and this is an unresolved conflict, because the firm's homepage and its 2026 rules blog both advertise "Bi-Weekly or On-Demand" for Alpha One. We have recorded the narrower help-centre position; confirm your plan's cycle in the dashboard before you plan around a 14-day date.</p>
+<p>Alpha Capital runs two payout schemes. <strong>Bi-weekly</strong> works on a fixed cycle: "requests are made every 14 days, starting 14 days after your initial trade," so the earliest possible first payout is day 14. The help centre and 2026 rules article state bi-weekly is available on Alpha Pro and Alpha Three accounts — and this is an unresolved conflict, because the firm's homepage advertises "Bi-Weekly or On-Demand" with Alpha One selected. We have recorded the narrower rules/help position; confirm your plan's cycle in the dashboard before you plan around a 14-day date.</p>
 
 <p><strong>On-demand</strong> is the default on Alpha One, Alpha Swing and Alpha Direct, and it has no published waiting period at all — instead it has a size floor. Alpha Pro, Swing, One, Three and Direct accounts require a minimum of 2% of gross profits on the account balance before a request is valid. Alpha Direct adds a further gate: a 3% profit buffer must be reached first, after which the minimum request drops to 1% of gross profits. On a $100,000 Alpha Direct account that means clearing $3,000 of profit before your first request is even eligible.</p>
 
@@ -211,9 +211,9 @@ type: "post"
   <li><strong>Prices are not published at checkout.</strong> Every fee in this review traces to a firm blog post last updated June 1, 2026 — not a live cart — and that page itself tells readers to confirm on the product page.</li>
   <li><strong>The firm's own pages disagree on Alpha Pro 25K</strong>: $197 on the trader-verdict page, $137 on the cost page. Only the labelled 6% variant figure is recorded here.</li>
   <li><strong>Alpha One prices carry no variant label</strong> although the plan ships in 6%, 10% and 12% forms with different targets and drawdown caps — you cannot tell which variant $497 buys.</li>
-  <li><strong>Twelve product-tier combinations carry no published price at all</strong>: all 7 Alpha Direct sizes, 5 of 6 Alpha Swing sizes, plus the Alpha Pro 8%/10% variants and the Alpha Three $5,000 tier.</li>
+  <li><strong>Twelve captured product-tier combinations carry no published price at all</strong>: all 7 Alpha Direct sizes and 5 of 6 Alpha Swing sizes. The unrepresented Alpha Pro 8%/10% variants and Alpha Three $5,000 tier also lack an accessible published price.</li>
   <li><strong>Alpha Pro forbids weekend holds on the Qualified Analyst account</strong> even though it permits them in Phase 1 and Phase 2 — the rule tightens after you pay and pass.</li>
-  <li><strong>80% split on evaluations</strong> is below <a href="/blog/fundednext-review">FundedNext's 95%</a> and <a href="/blog/funding-pips-review">FundingPips's 100% scaling ceiling</a>.</li>
+  <li><strong>Evaluation plans stop at an 80% split</strong>, 10 percentage points below Alpha Direct's 90% split, while Alpha Direct publishes no fee for any of its 7 sizes.</li>
   <li><strong>A 30-day inactivity rule deactivates the account</strong> if no trade is placed for 30 consecutive days.</li>
 </ul>
 
@@ -223,7 +223,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should avoid Alpha Capital</strong></h2>
 
-<p>Anyone who runs a fully automated system: EAs that trade without human oversight "will not be approved under any circumstances," and they are disabled outright on Alpha Direct. Anyone who needs a refundable fee should look elsewhere too — most CFD firms return the entry cost with the first payout, and Alpha Capital's policy is that all sales are final. Traders chasing the highest split should compare against <a href="/blog/fundednext-review">FundedNext at 95%</a> before paying for an 80% evaluation, and traders who need more than $400,000 of allocation have hit this firm's stated ceiling on day one. Finally, if you want to know the price before you commit, note that we could not read a single fee off Alpha Capital's checkout — every figure here comes from the firm's own 8-week-old blog post.</p>
+<p>Anyone who runs a fully automated system should avoid Alpha Capital: EAs that trade without human oversight "will not be approved under any circumstances," and they are disabled outright on Alpha Direct. Anyone who needs a refundable fee should look elsewhere too because Alpha Capital's all-sales-final rule makes every failed attempt a sunk cost. Evaluation traders requiring more than an 80% split, or traders who need more than $400,000 of total allocation, also fall outside the published offer; the only 90% plan is Alpha Direct, whose fee remains undisclosed. Finally, no fee was readable in checkout on 2026-08-11 — the 18 captured prices still come from the firm's roughly 10-week-old cost article.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
@@ -234,7 +234,7 @@ type: "post"
 <p>No. The firm's refund-policy page states "All sales are final and no refund will be issued," and every account size in our data is flagged non-refundable. Budget the fee as a sunk cost, not a deposit returned with your first payout.</p>
 
 <h3 class="wp-block-heading"><strong>What is Alpha Capital's maximum allocation?</strong></h3>
-<p>$400,000, and the firm states it is shared across all five plans rather than granted per plan. Any older figure quoting a $2,000,000 ceiling does not match what Alpha Capital published as of 2026-07-27.</p>
+<p>$400,000, and the firm states it is shared across all five plans rather than granted per plan. Any older figure quoting a $2,000,000 ceiling does not match what Alpha Capital published as of 2026-08-11.</p>
 
 <h3 class="wp-block-heading"><strong>Does Alpha Capital offer a 1-step or instant-funding product?</strong></h3>
 <p>Yes, both. Alpha One is a single-phase evaluation with a 10% target and 1 minimum trading day; Alpha Direct is Qualified from purchase with no profit target, a 90% split, a 5% trailing drawdown and a 15% consistency rule. Alpha Direct's price is not published anywhere on the official site.</p>

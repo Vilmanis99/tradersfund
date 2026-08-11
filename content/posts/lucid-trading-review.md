@@ -2,9 +2,9 @@
 title: "Lucid Trading Review 2026: 7 Paths, but 24 Unpriced Tiers"
 slug: "lucid-trading-review"
 date: "2026-07-28"
-modified: "2026-07-28 20:00:00"
+modified: "2026-08-11 20:00:00"
 author: "Edris Derakhshi"
-excerpt: "LucidPro has 4 verified base fees and one-time billing; LucidDaily adds daily payouts, but its 16 launch-day tier prices remain unpublished."
+excerpt: "LucidPro has 4 verified base fees and one-time billing; Lucid's help center documents 16 LucidDaily tiers, but their prices and current homepage availability remain unresolved."
 categories: ["Prop Firms"]
 tags: ["Lucid Trading", "Prop Firm", "Futures Prop Firms"]
 type: "post"
@@ -20,11 +20,11 @@ type: "post"
 <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem;">
   <caption class="hidden-caption">Lucid Trading quick facts</caption>
   <tbody>
-    <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); width: 38%;">Public product paths</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">7 current paths across LucidPro, LucidFlex, LucidDirect and 4 LucidDaily configurations</td></tr>
+    <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); width: 38%;">Documented product paths</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">7 first-party paths across LucidPro, LucidFlex, LucidDirect and 4 LucidDaily configurations; the current homepage selector omits Daily</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Verified price coverage</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">4 of 28 account tiers; the other 24 remain null</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Billing model</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">One-time fee; no monthly rebilling</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Markets</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">CME, CBOT, NYMEX and COMEX futures</td></tr>
-    <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Profit split</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">90% to the trader on all 7 captured paths</td></tr>
+    <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Profit split</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">90% to the trader on all 7 documented paths</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Account range</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">$25,000 to $150,000; maximum 5 funded accounts per household</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Payout rails</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">WorkMarket bank transfer or PayPal internationally; BTC, ETH, LTC, USDT and USDC for international traders</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Trustpilot snapshot</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">4.6/5 from 4,871 reviews on 2026-07-28; 7% were 1-star</td></tr>
@@ -71,7 +71,7 @@ type: "post"
   </tbody>
 </table>
 </div>
-<p style="font-size: 0.82rem; color: var(--muted);">Pricing and rules were captured from Lucid Trading's first-party pages on 2026-07-28. The 4 LucidPro fees are undiscounted base prices; 24 Flex, Direct and Daily prices stay blank because the JavaScript configurator did not expose stable public figures. Confirm the selected plan on <a href="/go/lucid-trading">Lucid Trading's current checkout path</a> before paying.</p>
+<p style="font-size: 0.82rem; color: var(--muted);">Pricing and rules were captured from Lucid Trading's first-party pages on 2026-08-11. The 4 LucidPro fees are undiscounted base prices; 24 Flex, Direct and Daily prices stay blank because the JavaScript configurator did not expose stable public figures. Lucid's help center still documents 4 Daily configurations, but its current homepage selector exposes only Pro, Flex and Direct, so Daily purchase availability and final prices remain under watch. Confirm the selected plan on <a href="/go/lucid-trading">Lucid Trading's current checkout path</a> before paying.</p>
 
 <!-- SECTION 4 - Rule mechanics -->
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
@@ -83,9 +83,9 @@ type: "post"
 
 <p><strong>Consistency depends on the product and stage.</strong> LucidFlex and LucidDaily evaluations use largest-day profit ÷ total profit ≤ 50%; a $1,500 best day against $3,000 total is exactly 50%. LucidPro applies 40% only during funded payout cycles, while LucidDirect applies a stricter 20%; a $500 best day on $3,000 total is 16.7% and passes that gate.</p>
 
-<p><strong>News trading changes on LucidDaily.</strong> The general Permitted Activities rule allows scheduled and unscheduled news trades on Pro, Flex and Direct. LucidDaily funded accounts instead require traders to be flat from 1 minute before through 1 minute after red-folder news, and Lucid calls a violation a hard breach.</p>
+<p><strong>News trading changes on LucidDaily, but Lucid's own scope wording conflicts.</strong> The general Permitted Activities rule allows scheduled and unscheduled news trades on Pro, Flex and Direct, while a general Daily page broadly restricts red-folder events. The product-specific Daily funded rule narrows the 1-minute-before through 1-minute-after hard-breach window to releases that are both U.S. high-impact and USD. We retain <em>restricted</em> and follow the product-specific scope, but traders should confirm the exact calendar definition before trading news.</p>
 
-<p><strong>Every captured path is day trading only.</strong> Positions must close by 4:45 PM ET Monday-Friday and can reopen at 6:00 PM ET Sunday-Thursday. Automation and trade copiers are permitted, but HFT, more than 50% of profit from trades held 5 seconds or less, cross-account hedging, trading for another person and coordinated shared strategies are prohibited.</p>
+<p><strong>The current Allowed Trading Times rule makes Pro, Flex and Direct day trading only.</strong> Those 3 products must close by 4:45 PM ET Monday-Friday and can reopen at 6:00 PM ET Sunday-Thursday. The article does not name any of the 4 Daily configurations, so their overnight and weekend permissions remain unknown. Automation and trade copiers are permitted under the general rules, but HFT, more than 50% of profit from trades held 5 seconds or less, cross-account hedging, trading for another person and coordinated shared strategies are prohibited.</p>
 
 <!-- SECTION 5 - True cost -->
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
@@ -117,7 +117,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 <ul class="wp-block-list">
   <li>LucidPro publishes 4 one-time base fees from $135 to $370 and does not rebill monthly.</li>
-  <li>All 7 captured public paths state a $0 activation fee and a 90% trader split.</li>
+<li>All 7 documented paths use a 90% trader split; 6 paths publish a $0 activation fee, while LucidDirect's activation fee remains unverified.</li>
   <li>LucidFlex has no DLL in evaluation or funded stages and uses a 50% evaluation consistency rule.</li>
   <li>LucidDaily removes funded consistency entirely and permits day-1 requests after its buffer gate.</li>
   <li>The $25K-$150K lineup exposes both EOD and intraday evaluation drawdown choices.</li>
@@ -127,12 +127,12 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Cons</strong></h2>
 <ul class="wp-block-list">
-  <li>Only 4 of 28 captured tiers have verified prices; all 16 LucidDaily launch tiers remain unpriced.</li>
+  <li>Only 4 of 28 documented tiers have verified prices; all 16 LucidDaily tiers remain unpriced and the current homepage selector omits Daily.</li>
   <li>Every LucidDaily EOD evaluation switches to intraday trailing drawdown after funding.</li>
   <li>LucidDirect's 20% payout consistency can require at least 5 balanced profit days in practice.</li>
   <li>A $50K LucidPro request cannot use the $2,100 buffer protected by the $52,100 threshold.</li>
-  <li>All positions close by 4:45 PM ET, ruling out overnight and weekend futures strategies.</li>
-  <li>LucidDaily funded news trading has a hard-breach blackout from 1 minute before to 1 minute after red-folder events.</li>
+  <li>Pro, Flex and Direct positions close by 4:45 PM ET; the current hours rule does not say whether any of the 4 Daily configurations can hold overnight or through weekends.</li>
+<li>LucidDaily's product-specific funded rule applies a 1-minute-before to 1-minute-after hard-breach window to U.S. high-impact USD releases, while a broader general page creates an unresolved scope conflict.</li>
   <li>The refund rule becomes strict after 1 trade, while an unused-account refund remains discretionary.</li>
   <li>The 2026-07-28 Trustpilot snapshot showed 7% 1-star reviews and a same-day cluster of India-tagged complaints requiring extra verification.</li>
 </ul>
@@ -142,13 +142,13 @@ type: "post"
 <p>A U.S.-session ES, NQ or micro-futures day trader should compare the $50K LucidPro base fee of $185 when a one-time payment, $2,000 EOD trailing allowance and 1-day evaluation matter more than avoiding a $2,100 payout buffer. A trader who can produce 5 qualifying days and wants no DLL should compare LucidFlex after obtaining its current checkout price.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid Lucid Trading</strong></h2>
-<p>A swing trader holding after 4:45 PM ET, a LucidDaily news trader unwilling to respect the 2-minute blackout, or an Indian buyer who needs a completed local checkout and payout proof should wait. Compare <a href="/blog/topstep-review">Topstep</a> or <a href="/blog/tradeday-review">TradeDay</a> for fully priced alternatives, and use the <a href="/best-prop-firms-in-india">India evidence shortlist</a> rather than treating absence from Lucid's restriction list as regulatory approval.</p>
+<p>A Pro, Flex or Direct swing trader holding after 4:45 PM ET, a LucidDaily trader who needs verified overnight or weekend permission, or an Indian buyer who needs a completed local checkout and payout proof should wait. Daily traders must also accept the product-specific 2-minute U.S.-high-impact USD news window and verify its conflict with the broader general wording. Compare <a href="/blog/topstep-review">Topstep</a> or <a href="/blog/tradeday-review">TradeDay</a> for fully priced alternatives, and use the <a href="/best-prop-firms-in-india">India evidence shortlist</a> rather than treating absence from Lucid's restriction list as regulatory approval.</p>
 
 <!-- SECTION 9 - FAQ -->
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>How much does a Lucid Trading evaluation cost?</strong></h3>
-<p>Verified LucidPro base fees are $135 for $25K, $185 for $50K, $285 for $100K and $370 for $150K. The other 24 captured tier prices remain null because Lucid's JavaScript configurator did not expose stable public figures on 2026-07-28.</p>
+<p>Verified LucidPro base fees are $135 for $25K, $185 for $50K, $285 for $100K and $370 for $150K. The other 24 documented tier prices remain null because Lucid's JavaScript configurator did not expose stable public figures on 2026-08-11; the current homepage selector also omits all 4 Daily configurations.</p>
 
 <h3 class="wp-block-heading"><strong>Does Lucid Trading charge monthly fees?</strong></h3>
 <p>No. Lucid states that its accounts use one-time payments with 0 monthly subscription rebills; a failed evaluation needs a separately purchased reset.</p>
@@ -160,10 +160,10 @@ type: "post"
 <p>LucidDaily permits requests on any eligible day, including day 1, after profit exceeds the MLL-plus-$100 buffer and at least $1 net profit is made since the prior payout. Its minimum request is $500.</p>
 
 <h3 class="wp-block-heading"><strong>Does Lucid Trading allow news trading and EAs?</strong></h3>
-<p>Yes on general Pro, Flex and Direct rules: news trading and automated systems are permitted. LucidDaily funded news is restricted by a hard-breach window from 1 minute before through 1 minute after red-folder releases, while HFT and microscalping remain prohibited everywhere.</p>
+<p>Yes on general Pro, Flex and Direct rules: news trading and automated systems are permitted. LucidDaily's product-specific funded rule restricts releases that are both U.S. high-impact and USD from 1 minute before through 1 minute after, while a broader general page creates an unresolved scope conflict; HFT and microscalping remain prohibited everywhere.</p>
 
 <h3 class="wp-block-heading"><strong>Can Lucid Trading accounts hold overnight?</strong></h3>
-<p>No. Positions must close by 4:45 PM ET Monday-Friday and trading resumes at 6:00 PM ET Sunday-Thursday, preventing both overnight and weekend holding.</p>
+<p>No on Pro, Flex and Direct: the Allowed Trading Times rule requires those 3 products to close by 4:45 PM ET Monday-Friday and resume at 6:00 PM ET Sunday-Thursday. LucidDaily is not named in that current hours article, so overnight and weekend holding on its 4 configurations remains unverified.</p>
 
 <h3 class="wp-block-heading"><strong>Can traders in India use Lucid Trading?</strong></h3>
-<p>India is absent from Lucid's 80-jurisdiction restriction list captured on 2026-07-28, and international WorkMarket and crypto payouts are published. TradersFundHub has not independently verified an Indian card checkout, identity review or payout receipt, so Lucid is not yet included in the India-screened shortlist.</p>
+<p>India is absent from Lucid's 81-jurisdiction restriction list captured on 2026-07-28, and international WorkMarket and crypto payouts are published. TradersFundHub has not independently verified an Indian card checkout, identity review or payout receipt, so Lucid is not yet included in the India-screened shortlist.</p>

@@ -423,7 +423,7 @@ export default function IndiaCheckoutPlanner({ firms }: { firms: IndiaMatcherFir
                 day: 'numeric',
                 month: 'short',
                 year: 'numeric',
-              })}. This estimate is not a quote and does not assume a discount. Refund status:{' '}
+              })}. This estimate uses the captured fee as shown and applies no additional discount. It is not a quote; promotions can change or expire. Refund status:{' '}
               {selectedTier.refundable === true
                 ? 'published as refundable'
                 : selectedTier.refundable === false

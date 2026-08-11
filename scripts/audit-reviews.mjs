@@ -103,6 +103,7 @@ const INDIA_CAPTURED_EXPANSION_SLUGS = new Set([
   'city-traders-imperium',
   'maven',
   'tradeify',
+  'tradeday',
 ])
 const INDIA_PAYOUT_PAGE_FILE = path.join(
   ROOT,
@@ -727,6 +728,13 @@ function checkFirmAggregates() {
     ['overnightAllowed', c => c.rules?.overnight],
     ['copyTradingAllowed', c => c.rules?.copyTrading],
   ]
+  const RULE_FIELDS = new Set([
+    'eaAllowed',
+    'newsTradingAllowed',
+    'weekendAllowed',
+    'overnightAllowed',
+    'copyTradingAllowed',
+  ])
 
   let count = 0
   for (const firm of firms) {
@@ -743,8 +751,13 @@ function checkFirmAggregates() {
       if (declared == null) continue
       const observed = [...new Set(challenges.map(pick).filter(v => v != null))]
       if (!observed.length) continue
-      // The card states one value for a firm that may sell several
-      // products; it only has to match one of them to be defensible.
+      // `restricted` is the aggregate representation for a rule that varies
+      // across products, even when the product rows themselves are true/false.
+      if (RULE_FIELDS.has(field) && declared === 'restricted' && observed.length > 1) {
+        continue
+      }
+      // Other declared values must be present on at least one product. Mixed
+      // financial fields should be nulled when no single value is defensible.
       if (!observed.includes(declared)) {
         rows.push(`${field}: card says ${JSON.stringify(declared)}, products say ${observed.map(v => JSON.stringify(v)).join(' / ')}`)
       }
@@ -1397,6 +1410,10 @@ function checkGlobalChallengeSurface() {
     return publicSuffix
   }
 
+  const approvedSupportHosts = new Map([
+    ['tradeday', new Set(['tradeday.freshdesk.com'])],
+  ])
+
   for (const entry of entries) {
     if (!entry?.id || ids.has(entry.id)) {
       rows.push(`challenge-watch id is missing or duplicated: ${entry?.id ?? '(missing)'}`)
@@ -1474,7 +1491,14 @@ function checkGlobalChallengeSurface() {
         try {
           const parsed = new URL(sourceUrl)
           const root = officialRoot(parsed.hostname)
-          if (parsed.protocol !== 'https:' || !expectedRoot || root !== expectedRoot) {
+          const approvedSupportHost = approvedSupportHosts
+            .get(entry.firmSlug)
+            ?.has(parsed.hostname.toLowerCase())
+          if (
+            parsed.protocol !== 'https:'
+            || !expectedRoot
+            || (root !== expectedRoot && !approvedSupportHost)
+          ) {
             rows.push(`${entry.id}: source is not on the firm's first-party domain: ${sourceUrl}`)
           }
         } catch {
@@ -1545,6 +1569,8 @@ function checkGlobalChallengeSurface() {
   } else {
     const page = fs.readFileSync(CHALLENGE_CHANGES_PAGE_FILE, 'utf-8')
     const expectedFirmCount = new Set(entries.map(entry => entry.firmSlug)).size
+    const expectedVerifiedCount = entries.filter(entry => entry.status === 'verified').length
+    const expectedWatchCount = entries.filter(entry => entry.status === 'watch').length
     const requiredTokens = [
       "const PATH = '/prop-firm-challenge-changes'",
       'alternates: { canonical: PATH }',
@@ -1554,6 +1580,8 @@ function checkGlobalChallengeSurface() {
       'ChallengeChangeFeed entries={feedEntries}',
       `SOCIAL_CARD_ENTRY_COUNT = ${entries.length}`,
       `SOCIAL_CARD_FIRM_COUNT = ${expectedFirmCount}`,
+      `SOCIAL_CARD_VERIFIED_COUNT = ${expectedVerifiedCount}`,
+      `SOCIAL_CARD_WATCH_COUNT = ${expectedWatchCount}`,
       'Refresh the challenge-changes social card',
       'breadcrumbSchema',
       'faqPageSchema',
@@ -1953,6 +1981,7 @@ function checkIndiaEvidence() {
     'city-traders-imperium': ['citytradersimperium.com'],
     maven: ['maventrading.com'],
     tradeify: ['tradeify.co'],
+    tradeday: ['tradeday.com', 'tradeday.freshdesk.com'],
   }
   const seen = new Set()
   const rows = []
@@ -2548,8 +2577,8 @@ function checkIndiaChallengeSurface() {
       'buildIndiaMatcherFirms',
       "getLandingBySlug('best-prop-firms-in-india')",
       "entry.rbiAlert.status === 'named'",
-      'SOCIAL_CARD_PRODUCT_COUNT = 41',
-      'SOCIAL_CARD_FIRM_COUNT = 8',
+      'SOCIAL_CARD_PRODUCT_COUNT = 44',
+      'SOCIAL_CARD_FIRM_COUNT = 9',
       'Refresh the India challenge-comparison social card',
       'breadcrumbSchema',
       'faqPageSchema',
@@ -2823,9 +2852,11 @@ function checkIndiaChallengeChangesSurface() {
       'entry.productSlugs.includes(product.slug)',
       'affectedComparisonUrl(',
       'validateChallengeProductKeys',
-      'SOCIAL_CARD_ENTRY_COUNT = 3',
-      'SOCIAL_CARD_FIRM_COUNT = 3',
-      'SOCIAL_CARD_PRODUCT_COUNT = 7',
+      'SOCIAL_CARD_ENTRY_COUNT = 12',
+      'SOCIAL_CARD_FIRM_COUNT = 6',
+      'SOCIAL_CARD_PRODUCT_COUNT = 16',
+      'SOCIAL_CARD_VERIFIED_COUNT = 2',
+      'SOCIAL_CARD_WATCH_COUNT = 10',
       'Refresh the India challenge-changes social card',
       'Affiliate status contributes 0 points',
       'ChallengeChangeFeed entries={entries}',

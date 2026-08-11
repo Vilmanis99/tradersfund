@@ -1,0 +1,388 @@
+{
+  "firmSlug": "tradeify",
+  "officialDomain": "https://tradeify.co",
+  "capturedAt": "2026-08-11",
+  "pagesRead": [
+    "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+    "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+    "https://help.tradeify.co/en/articles/11083796-growth-funded-account-payout-policy",
+    "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+    "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+    "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+    "https://help.tradeify.co/en/articles/10495932-lightning-funded-account-payout-policy",
+    "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule",
+    "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+    "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
+    "https://help.tradeify.co/en/articles/10468318-guidelines-for-traders",
+    "https://help.tradeify.co/en/articles/13196343-tradovate-order-entry-copy-trading",
+    "https://tradeify.co/",
+    "https://tradeify.co/funded-trader-agreement"
+  ],
+  "accessNotes": "FIRST-PARTY-ONLY recapture on 2026-08-11. Tradeify's official Pricing Reference is now marked 'Updated this week' and still publishes the same 16 base purchase prices across Growth, Select and Lightning. The homepage promotion is temporary and internally inconsistent: the top banner advertises 40% off for five uses and then 30% off with code AUG through August 31 at 11:59 PM EST, while multiple CTA labels still say 35% off and the server-readable pricing cards contain placeholder values such as repeated $359/$251 prices, '?' targets, Lorem ipsum, $0, and code DASH. None of those promotional or placeholder amounts replaces a base price. The Pricing Reference also publishes a permanent 5-account 5% bundle discount for Growth 25K/50K and Select 25K/50K that can stack with an active promo code; single-account base prices remain the stored comparison values. Select 50K's reset fee is now $109, versus $95 in the 2026-07-28 provenance, but reset fees are not represented by the Challenge schema and no purchase price changed. Select is represented twice because one evaluation branches permanently after passing into materially different Flex and Daily funded risk/payout paths.",
+  "watchCheck": {
+    "id": "tradeify-list-vs-promotional-pricing",
+    "status": "watch",
+    "lastCheckedAt": "2026-08-11",
+    "result": "Conflict persists; stable base list prices are unchanged while the homepage carries an expiring promotion and placeholder card values.",
+    "sourceUrls": [
+      "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "https://tradeify.co/"
+    ],
+    "promoEvidence": "40% OFF 5 TIME USE, THEN 30% OFF; USE CODE: AUG; ENDS 31 AUGUST, 11:59PM EST",
+    "internalConflictEvidence": "Homepage CTAs still state 'Get funded - 35% OFF' and pricing cards show repeated $359/$251 plus 'Save $X with code DASH'."
+  },
+  "products": [
+    {
+      "productName": "Growth Evaluation",
+      "productSlug": "growth-evaluation",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 99,
+          "dailyLossUsd": 600,
+          "maxLossUsd": 1000,
+          "refundable": false,
+          "evidence": "Pricing Reference: Growth 25K is $99 one-time. Growth rules: $1,500 target, $600 soft DLL and $1,000 EOD trailing max drawdown."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 145,
+          "dailyLossUsd": 1250,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "Pricing Reference: Growth 50K is $145 one-time. Growth rules: $3,000 target, $1,250 soft DLL and $2,000 EOD trailing max drawdown."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 255,
+          "dailyLossUsd": 2500,
+          "maxLossUsd": 3500,
+          "refundable": false,
+          "evidence": "Pricing Reference: Growth 100K is $255 one-time. Growth rules: $6,000 target, $2,500 soft DLL and $3,500 EOD trailing max drawdown."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 369,
+          "dailyLossUsd": 3750,
+          "maxLossUsd": 5000,
+          "refundable": false,
+          "evidence": "Pricing Reference: Growth 150K is $369 one-time. Growth rules: $9,000 target, $3,750 soft DLL and $5,000 EOD trailing max drawdown."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": 35,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": false,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "notes": [
+        "BASE LIST PRICES: $99 / $145 / $255 / $369 for $25K / $50K / $100K / $150K. Expiring promotions and the five-account bundle discount are excluded from single-account base prices.",
+        "ONE-TIME AND $0 ACTIVATION: Growth has no subscription rebill and no simulated-funded activation fee.",
+        "SIX-PERCENT TARGET: $1,500 / $3,000 / $6,000 / $9,000 by tier.",
+        "SOFT DAILY LOSS: $600 / $1,250 / $2,500 / $3,750; reaching it stops trading for the day rather than failing the account by itself.",
+        "EOD TRAILING LOSS: $1,000 / $2,000 / $3,500 / $5,000; tier-specific dollar caps remain in accountSizes rather than a false shared percentage.",
+        "ONE-DAY PASS: Growth evaluation has no consistency rule and can pass after one trading day. The 35% stored value is the simulated-funded payout gate.",
+        "PAYOUT GATE: every request cycle needs five qualifying profit days with $100 / $150 / $200 / $250 minimum daily profit by tier.",
+        "NINETY-PERCENT SPLIT: simulated-funded requests pay 90% to the trader; Elite Live uses 80/20.",
+        "DAY TRADING ONLY: positions must close by 4:45 PM ET, so overnight and weekend holding are prohibited.",
+        "NEWS ALLOWED: the separate microscalping payout gate requires over 50% of trades and over 50% of profit to come from trades longer than 10 seconds.",
+        "AUTOMATION AND COPYING RESTRICTED: a provably personal non-HFT bot is conditional; copy trading is limited to accounts the trader owns and manages.",
+        "ALL SALES FINAL: purchases, resets and other fees are non-refundable."
+      ],
+      "fieldEvidence": {
+        "pricingModel": "All plans are one-time purchases with no recurring billing.",
+        "activationFeeUsd": "There are no activation fees for any current Tradeify account type.",
+        "profitTargets.phase1": "$1,500 / $3,000 / $6,000 / $9,000 equals 6% at each tier.",
+        "drawdownType": "Growth Evaluation uses an End of Day Trailing Max Drawdown.",
+        "minTradingDays": "1 day (can pass immediately).",
+        "maxTradingDays": "No time limit; null represents no finite maximum.",
+        "consistencyRulePct": "Growth Sim Funded Accounts use 35% for payout eligibility; Growth evaluation has none.",
+        "profitSplitPct": "Sim Funded accounts: 90% to trader / 10% to Tradeify.",
+        "payoutFirstDays": "Five or more qualifying profit trading days per request."
+      }
+    },
+    {
+      "productName": "Select Evaluation → Flex",
+      "productSlug": "select-flex",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 109,
+          "maxLossUsd": 1000,
+          "refundable": false,
+          "evidence": "Pricing Reference: Select 25K is $109 one-time. Evaluation and Flex both publish $1,000 EOD drawdown and no DLL."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 165,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "Pricing Reference: Select 50K is $165 one-time. Evaluation and Flex both publish $2,000 EOD drawdown and no DLL. Current reset fee is $109."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 265,
+          "maxLossUsd": 3000,
+          "refundable": false,
+          "evidence": "Pricing Reference: Select 100K is $265 one-time. Evaluation and Flex both publish $3,000 EOD drawdown and no DLL."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 369,
+          "maxLossUsd": 4500,
+          "refundable": false,
+          "evidence": "Pricing Reference: Select 150K is $369 one-time. Evaluation and Flex both publish $4,500 EOD drawdown and no DLL."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": false,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "notes": [
+        "BASE LIST PRICES: $109 / $165 / $265 / $369 for $25K / $50K / $100K / $150K. The same Select purchase later branches permanently into Flex or Daily.",
+        "RESET NON-SCHEMA CHANGE: Select 50K's current reset fee is $109, up from $95 in the July 28 capture; the $165 purchase price is unchanged.",
+        "ONE-TIME AND $0 ACTIVATION: Select has no subscription rebill and no activation fee.",
+        "SIX-PERCENT TARGET: $1,500 / $3,000 / $6,000 / $9,000 by tier.",
+        "THREE-DAY EVALUATION: Select requires 40% evaluation consistency, so no single trading day may exceed 40% of total evaluation profit.",
+        "NO DLL: Select evaluation and Flex funded mode publish no daily loss limit.",
+        "EOD TRAILING LOSS: $1,000 / $2,000 / $3,000 / $4,500 during evaluation and Select Flex funded mode.",
+        "PERMANENT FUNDED CHOICE: Flex is selected only after passing and cannot be switched to Daily on that account.",
+        "FLEX PAYOUT GATE: five winning days with $100 / $150 / $200 / $250 minimum profit by tier; request up to 50% of total profit within tier caps.",
+        "FUNDED CONSISTENCY: Select Flex has no funded consistency percentage despite the 40% evaluation gate.",
+        "NINETY-PERCENT SPLIT: simulated-funded requests pay 90% to the trader.",
+        "GENERAL RULES: positions close by 4:45 PM ET; news is allowed; same-owner copying and provably personal non-HFT automation are conditional.",
+        "ALL SALES FINAL: purchases, resets and other fees are non-refundable."
+      ],
+      "fieldEvidence": {
+        "pricingModel": "Select is a one-time evaluation purchase.",
+        "activationFeeUsd": "There are no activation fees for any current Tradeify account type.",
+        "profitTargets.phase1": "$1,500 / $3,000 / $6,000 / $9,000 equals 6% at each tier.",
+        "drawdownType": "Select evaluation and Flex funded use End of Day drawdown.",
+        "minTradingDays": "3 days due to the 40% consistency rule.",
+        "maxTradingDays": "No time limit; null represents no finite maximum.",
+        "consistencyRulePct": "40% during evaluation only; funded mode has none.",
+        "profitSplitPct": "Profit Split: 90 Trader / 10 Tradeify.",
+        "payoutFirstDays": "Payout frequency: every five winning days."
+      }
+    },
+    {
+      "productName": "Select Evaluation → Daily",
+      "productSlug": "select-daily",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 109,
+          "maxLossUsd": 1000,
+          "refundable": false,
+          "evidence": "Pricing Reference: Select 25K is $109 one-time. Evaluation has $1,000 EOD drawdown and no DLL; Daily funded later uses $1,000 drawdown and $500 DLL."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 165,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "Pricing Reference: Select 50K is $165 one-time. Evaluation has $2,000 EOD drawdown and no DLL; Daily funded later uses $2,000 drawdown and $1,000 DLL. Current reset fee is $109."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 265,
+          "maxLossUsd": 3000,
+          "refundable": false,
+          "evidence": "Pricing Reference: Select 100K is $265 one-time. Evaluation has $3,000 EOD drawdown and no DLL; Daily funded later uses $2,500 drawdown and $1,250 DLL."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 369,
+          "maxLossUsd": 4500,
+          "refundable": false,
+          "evidence": "Pricing Reference: Select 150K is $369 one-time. Evaluation has $4,500 EOD drawdown and no DLL; Daily funded later uses $3,500 drawdown and $1,750 DLL."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 1,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": false,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "notes": [
+        "BASE LIST PRICES: $109 / $165 / $265 / $369 for $25K / $50K / $100K / $150K. The purchase price is identical to Select Flex because the permanent choice occurs after passing.",
+        "RESET NON-SCHEMA CHANGE: Select 50K's current reset fee is $109, up from $95 in the July 28 capture; the $165 purchase price is unchanged.",
+        "ONE-TIME AND $0 ACTIVATION: Select has no subscription rebill and no activation fee.",
+        "SIX-PERCENT TARGET: $1,500 / $3,000 / $6,000 / $9,000 by tier.",
+        "THREE-DAY EVALUATION: Select requires 40% evaluation consistency.",
+        "EVALUATION RISK: no DLL and EOD trailing max loss of $1,000 / $2,000 / $3,000 / $4,500.",
+        "DAILY FUNDED RISK: DLL becomes $500 / $1,000 / $1,250 / $1,750 and max drawdown becomes $1,000 / $2,000 / $2,500 / $3,500.",
+        "PERMANENT FUNDED CHOICE: Daily is selected only after passing and cannot be switched to Flex on that account.",
+        "DAILY PAYOUT GATE: daily eligibility after exceeding the $1,100 / $2,100 / $2,600 / $3,600 buffer; minimum request $250.",
+        "DAILY CONTINUITY CAP: up to twice the profit earned between requests, capped at $600 / $1,000 / $1,500 / $2,500.",
+        "FUNDED CONSISTENCY: Select Daily has no funded consistency percentage despite the 40% evaluation gate.",
+        "NINETY-PERCENT SPLIT: simulated-funded requests pay 90% to the trader.",
+        "GENERAL RULES: positions close by 4:45 PM ET; news is allowed; same-owner copying and provably personal non-HFT automation are conditional.",
+        "ALL SALES FINAL: purchases, resets and other fees are non-refundable."
+      ],
+      "fieldEvidence": {
+        "pricingModel": "Select is a one-time evaluation purchase.",
+        "activationFeeUsd": "There are no activation fees for any current Tradeify account type.",
+        "profitTargets.phase1": "$1,500 / $3,000 / $6,000 / $9,000 equals 6% at each tier.",
+        "drawdownType": "Select evaluation and Daily funded use End of Day drawdown.",
+        "minTradingDays": "3 days due to the 40% consistency rule.",
+        "maxTradingDays": "No time limit; null represents no finite maximum.",
+        "consistencyRulePct": "40% during evaluation only; funded mode has none.",
+        "profitSplitPct": "Profit Split: 90% trader / 10% firm.",
+        "payoutFirstDays": "Payout frequency: daily eligibility after the buffer requirement."
+      }
+    },
+    {
+      "productName": "Lightning Funded",
+      "productSlug": "lightning-funded",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 345,
+          "dailyLossUsd": null,
+          "maxLossUsd": 1000,
+          "refundable": false,
+          "evidence": "Pricing Reference: Lightning 25K is $345 one-time. Current rules publish no DLL and $1,000 EOD trailing max drawdown."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 492,
+          "dailyLossUsd": 1250,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "Pricing Reference: Lightning 50K is $492 one-time. Current rules publish $1,250 soft DLL and $2,000 EOD trailing max drawdown."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 660,
+          "dailyLossUsd": 2500,
+          "maxLossUsd": 4000,
+          "refundable": false,
+          "evidence": "Pricing Reference: Lightning 100K is $660 one-time. Current rules publish $2,500 soft DLL and $4,000 EOD trailing max drawdown."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 796,
+          "dailyLossUsd": 3000,
+          "maxLossUsd": 5250,
+          "refundable": false,
+          "evidence": "Pricing Reference: Lightning 150K is $796 one-time. Current rules publish $3,000 soft DLL and $5,250 EOD trailing max drawdown."
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": 20,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 0,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": false,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "notes": [
+        "BASE LIST PRICES: $345 / $492 / $660 / $796 for $25K / $50K / $100K / $150K; no temporary promotional price is stored.",
+        "INSTANT SIMULATED FUNDING: Lightning has no evaluation phase, one-time billing, no activation fee and no reset option.",
+        "CURRENT RISK: no DLL on 25K; soft DLLs $1,250 / $2,500 / $3,000 on 50K / 100K / 150K. EOD trailing max loss is $1,000 / $2,000 / $4,000 / $5,250.",
+        "PAYOUT PROFIT GOALS: first request requires $1,500 / $3,000 / $6,000 / $9,000; these are payout eligibility goals, not an evaluation phase.",
+        "NO MINIMUM DAY COUNT: request eligibility follows the profit goal and consistency rule, with no minimum trading-day count.",
+        "PROGRESSIVE CONSISTENCY: 20% for payout 1, 25% for payout 2 and 30% thereafter on current accounts; stored 20% is the strict first-request gate.",
+        "NINETY-PERCENT SPLIT: simulated-funded requests pay 90% to the trader.",
+        "DAY TRADING ONLY: positions must close by 4:45 PM ET, so overnight and weekend holding are prohibited.",
+        "NEWS ALLOWED: the separate microscalping payout gate requires over 50% of trades and over 50% of profit to come from trades longer than 10 seconds.",
+        "AUTOMATION AND COPYING RESTRICTED: a provably personal non-HFT bot is conditional; copy trading is limited to accounts the trader owns and manages.",
+        "ALL SALES FINAL: a failed Lightning account requires a new purchase and no refund is offered."
+      ],
+      "fieldEvidence": {
+        "pricingModel": "Lightning is a one-time purchase with no recurring billing.",
+        "activationFeeUsd": "There are no activation fees for any current Tradeify account type.",
+        "profitTargets": "No evaluation; payout profit goals are not stored as evaluation targets.",
+        "drawdownType": "Lightning uses an End of Day Trailing Max Drawdown.",
+        "minTradingDays": "No Minimum Trading Day Count.",
+        "maxTradingDays": "No evaluation phase or finite trading period.",
+        "consistencyRulePct": "20% for first payout, 25% for second and 30% thereafter.",
+        "profitSplitPct": "Traders receive 90% of the payout amount requested.",
+        "payoutFirstDays": "No minimum trading-day count; recorded as 0."
+      }
+    }
+  ]
+}

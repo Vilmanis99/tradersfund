@@ -26,8 +26,10 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
 const SITE = 'https://tradersfundhub.com'
 const PATH = '/prop-firm-challenge-changes'
-const SOCIAL_CARD_ENTRY_COUNT = 6
-const SOCIAL_CARD_FIRM_COUNT = 6
+const SOCIAL_CARD_ENTRY_COUNT = 14
+const SOCIAL_CARD_FIRM_COUNT = 8
+const SOCIAL_CARD_VERIFIED_COUNT = 3
+const SOCIAL_CARD_WATCH_COUNT = 11
 
 const TITLE = 'Prop Firm Challenge Changes & Rule Updates (2026)'
 const DESCRIPTION =
@@ -154,11 +156,14 @@ export default function Page() {
   if (
     entries.length !== SOCIAL_CARD_ENTRY_COUNT
     || trackedFirmCount !== SOCIAL_CARD_FIRM_COUNT
+    || verifiedCount !== SOCIAL_CARD_VERIFIED_COUNT
+    || watchCount !== SOCIAL_CARD_WATCH_COUNT
   ) {
     throw new Error(
       `Refresh the challenge-changes social card: expected `
-      + `${SOCIAL_CARD_ENTRY_COUNT} entries/${SOCIAL_CARD_FIRM_COUNT} firms, `
-      + `received ${entries.length}/${trackedFirmCount}`,
+      + `${SOCIAL_CARD_ENTRY_COUNT} entries/${SOCIAL_CARD_FIRM_COUNT} firms/`
+      + `${SOCIAL_CARD_VERIFIED_COUNT} verified/${SOCIAL_CARD_WATCH_COUNT} watches, `
+      + `received ${entries.length}/${trackedFirmCount}/${verifiedCount}/${watchCount}`,
     )
   }
 

@@ -1,0 +1,54 @@
+{
+  "firmSlug": "tradeday",
+  "capturedAt": "2026-08-11",
+  "rbiCheck": {
+    "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
+    "sourceListUpdatedAt": "2025-11-19",
+    "result": "not-found",
+    "searchedNames": [
+      "TradeDay",
+      "TradeDay LLC",
+      "tradeday.com"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000123294-prohibited-countries",
+      "claims": [
+        "The published outright prohibition list contains 81 names and does not include India.",
+        "The restriction test covers citizenship, residence, and prolonged predominant trading location.",
+        "TradeDay describes separate Funded Sim limitations for Germany and Canada outside Ontario."
+      ]
+    },
+    {
+      "url": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008683-can-anyone-join-tradeday-",
+      "claims": [
+        "Funded onboarding uses broker, clearing-firm and Riseworks KYC/AML with government ID and address evidence."
+      ]
+    },
+    {
+      "url": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000120177-what-happens-if-a-subscription-payment-fails-",
+      "claims": [
+        "TradeDay publishes credit and debit card billing through NMI or Braintree, plus Google Pay, Apple Pay and PayPal."
+      ]
+    },
+    {
+      "url": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008898-what-are-the-payment-methods-for-my-trading-profits-",
+      "claims": [
+        "Riseworks offers bank-wire and crypto payout methods after invitation.",
+        "Published fees are $15 for an international bank wire, $2.50 plus gas for L1 crypto, and no TradeDay fee for L2 crypto."
+      ]
+    },
+    {
+      "url": "https://www.tradeday.com/",
+      "claims": [
+        "Nine unique product-size combinations across 18 platform cards display dollar-denominated promotional monthly fees from $59 to $225."
+      ]
+    }
+  ],
+  "unresolvedConflicts": [
+    "No Indian checkout, KYC approval, payout-provider invitation, bank-wire receipt, crypto receipt, or INR settlement was independently tested.",
+    "The displayed fees are tied to a 55%-off campaign rather than verified stable list prices.",
+    "First-party pages conflict on whether a funded-stage KYC failure produces a refund."
+  ]
+}

@@ -1,0 +1,543 @@
+{
+  "firmSlug": "lucid-trading",
+  "officialDomain": "https://lucidtrading.com",
+  "capturedAt": "2026-08-11",
+  "pagesRead": [
+    "https://www.lucidtrading.com/",
+    "https://lucidtrading.com/terms-of-use/",
+    "https://support.lucidtrading.com/en/",
+    "https://support.lucidtrading.com/en/articles/11404620-simulated-account-fees",
+    "https://support.lucidtrading.com/en/articles/11404628-accepted-payments-methods",
+    "https://support.lucidtrading.com/en/articles/11404636-restricted-countries",
+    "https://support.lucidtrading.com/en/articles/11404728-other-activities",
+    "https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times",
+    "https://support.lucidtrading.com/en/articles/12890325-payout-methods",
+    "https://support.lucidtrading.com/en/articles/12890029-lucidpro-evaluation-account",
+    "https://support.lucidtrading.com/en/articles/12890069-lucidpro-funded-account",
+    "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+    "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown",
+    "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account",
+    "https://support.lucidtrading.com/en/articles/12945795-lucidflex-funded-account",
+    "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts",
+    "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown",
+    "https://support.lucidtrading.com/en/articles/12890148-luciddirect-funded-account",
+    "https://support.lucidtrading.com/en/articles/12890164-luciddirect-payout-objectives",
+    "https://support.lucidtrading.com/en/articles/12890185-luciddirect-daily-loss-limit",
+    "https://support.lucidtrading.com/en/articles/12890192-luciddirect-drawdown",
+    "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+    "https://support.lucidtrading.com/en/articles/15997244-luciddaily-funded-account",
+    "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts",
+    "https://support.lucidtrading.com/en/articles/15998336-luciddaily-consistency",
+    "https://support.lucidtrading.com/en/articles/15998425-luciddaily-drawdown",
+    "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+    "https://support.lucidtrading.com/en/articles/16085900-luciddaily-daily-loss-limit"
+  ],
+  "accessNotes": "The public homepage and first-party search result captured on 2026-08-11 confirm LucidPro base prices of $135 / $185 / $285 / $370 and show separate temporary coupon prices; only the base prices are stored. The interactive JavaScript checkout was unavailable, so LucidFlex, LucidDirect and all four LucidDaily configurations remain unpriced. Lucid's current help center still defines four LucidDaily checkout configurations, while the current homepage product selector exposes Pro, Flex and Direct but not Daily and also renders legacy Black cards. This official-source lineup conflict remains unresolved. LucidBlack stays excluded because the help center labels it Legacy; LucidMaxx stays excluded because it is exclusive rather than a public challenge. The Allowed Trading Times article explicitly names Pro, Flex and Direct but not Daily, so LucidDaily weekend and overnight fields are null rather than inherited. Lucid's general Other Activities page describes Daily red-folder news broadly, while the product-specific funded page narrows the hard-breach window to events that are both U.S. high-impact and USD; the capture follows the product-specific page and retains news=restricted.",
+  "products": [
+    {
+      "productName": "LucidPro",
+      "productSlug": "lucidpro",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 135,
+          "maxLossUsd": 1000,
+          "refundable": false,
+          "evidence": "Current Lucid homepage card: 25K PRO EVAL, $135 base one-time payment, $1,250 target, $1,000 MLL, no DLL, free activation."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 185,
+          "dailyLossUsd": 1200,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "Current Lucid homepage card: 50K PRO EVAL, $185 base one-time payment, $3,000 target, $2,000 MLL, $1,200 DLL, free activation."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 285,
+          "dailyLossUsd": 1800,
+          "maxLossUsd": 3000,
+          "refundable": false,
+          "evidence": "Current Lucid homepage card: 100K PRO EVAL, $285 base one-time payment, $6,000 target, $3,000 MLL, $1,800 DLL, free activation."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 370,
+          "dailyLossUsd": 2700,
+          "maxLossUsd": 4500,
+          "refundable": false,
+          "evidence": "Current Lucid homepage card: 150K PRO EVAL, $370 base one-time payment, $9,000 target, $4,500 MLL, $2,700 DLL, free activation."
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 90,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": false,
+        "overnight": false,
+        "ea": true,
+        "copyTrading": "restricted"
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://www.lucidtrading.com/",
+      "notes": [
+        "BASE PRICES ONLY: $135 / $185 / $285 / $370 for $25K / $50K / $100K / $150K. The live first-party result also showed temporary coupon prices of $94.50 / $129.50 / $199.50 / $259.00; those are not stored as durable prices.",
+        "TIER-SPECIFIC TARGETS: $1,250 / $3,000 / $6,000 / $9,000 equal 5% / 6% / 6% / 6%, so profitTargets stays null.",
+        "EOD TRAILING MLL: $1,000 / $2,000 / $3,000 / $4,500; the line locks at starting balance plus $100 after the trail threshold.",
+        "DLL: none on $25K; $1,200 / $1,800 / $2,700 on $50K / $100K / $150K. It is a soft session stop unless MLL is reached.",
+        "PAYOUT: 90% trader split, 40% payout-cycle consistency, $500 request minimum, tier profit goals of $250 / $500 / $750 / $1,000, buffer equal to initial MLL plus $100, and no fixed request window.",
+        "TRADING TIMES: positions auto-close by 4:45 PM ET Monday-Friday and reopen 6:00 PM ET Sunday-Thursday; overnight and weekend holding are therefore false.",
+        "GENERAL RULES: news and automated systems are allowed. Trade copiers are allowed, but coordinated strategies, third-party trading and pooled risk are prohibited, so copyTrading is restricted.",
+        "REFUNDS: after trading begins, Lucid says paid fees are not refundable; unused-account exceptions are discretionary rather than guaranteed."
+      ],
+      "fieldEvidence": {
+        "pricingModel": "Homepage FAQ and Simulated Account Fees say trading accounts use one-time payments with no monthly rebilling.",
+        "activationFeeUsd": "LucidPro Evaluation and homepage cards state free / no activation fee.",
+        "minTradingDays": "LucidPro Evaluation says the evaluation can pass in one trading day.",
+        "consistencyRulePct": "LucidPro Payouts sets 40% in each funded payout cycle.",
+        "profitSplitPct": "LucidPro Payouts states 90% trader / 10% Lucid.",
+        "payoutFirstDays": "LucidPro Payouts publishes no fixed payout window, so no numeric day is stored."
+      }
+    },
+    {
+      "productName": "LucidFlex",
+      "productSlug": "lucidflex",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "maxLossUsd": 1000,
+          "refundable": false,
+          "evidence": "LucidFlex table: $25,000 size, $1,250 target, $1,000 MLL, 50% evaluation consistency; current public dollar price not verified."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "LucidFlex table: $50,000 size, $3,000 target, $2,000 MLL, 50% evaluation consistency; current public dollar price not verified."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "maxLossUsd": 3000,
+          "refundable": false,
+          "evidence": "LucidFlex table: $100,000 size, $6,000 target, $3,000 MLL, 50% evaluation consistency; current public dollar price not verified."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": null,
+          "maxLossUsd": 4500,
+          "refundable": false,
+          "evidence": "LucidFlex table: $150,000 size, $9,000 target, $4,500 MLL, 50% evaluation consistency; current public dollar price not verified."
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": 50,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": false,
+        "overnight": false,
+        "ea": true,
+        "copyTrading": "restricted"
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account",
+      "notes": [
+        "PRICE NOT VERIFIED: the public checkout did not expose stable first-party LucidFlex dollar fees, so all 4 priceUsd values remain null.",
+        "ONE-TIME FEE AND $0 ACTIVATION: LucidFlex has no monthly rebilling and no funded upgrade activation fee.",
+        "TIER-SPECIFIC TARGETS: $1,250 / $3,000 / $6,000 / $9,000 equal 5% / 6% / 6% / 6%, so profitTargets stays null.",
+        "RISK: no DLL in evaluation or funded; EOD trailing MLL of $1,000 / $2,000 / $3,000 / $4,500 locks at starting balance plus $100.",
+        "PAYOUT: 5 separate profitable days at $100 / $150 / $200 / $250, 90% trader split, $500 minimum, 50% of profit capped at $1,000 / $2,000 / $2,500 / $3,000, and no fixed window after eligibility.",
+        "TRADING TIMES AND GENERAL RULES: 4:45 PM ET auto-close, no weekend/overnight holds, news and automation allowed, copy trading restricted to compliant non-coordinated use."
+      ],
+      "fieldEvidence": {
+        "activationFeeUsd": "LucidFlex Evaluation states no activation fees to upgrade.",
+        "minTradingDays": "The 50% evaluation consistency requirement permits a minimum two-day pass.",
+        "consistencyRulePct": "LucidFlex Evaluation publishes 50% evaluation consistency; funded Flex has no consistency.",
+        "profitSplitPct": "LucidFlex Payouts states 90% trader / 10% Lucid.",
+        "payoutFirstDays": "LucidFlex Payouts requires 5 separate qualifying profitable days."
+      }
+    },
+    {
+      "productName": "LucidDirect",
+      "productSlug": "luciddirect",
+      "pricingModel": "one-off",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "maxLossUsd": 1000,
+          "refundable": false,
+          "evidence": "LucidDirect table: $25,000 size, $1,000 MLL, no fixed DLL; current public dollar price not verified."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "dailyLossUsd": 1200,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "LucidDirect table: $50,000 size, $2,000 MLL, $1,200 fixed DLL before scaling; current public dollar price not verified."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "dailyLossUsd": 2100,
+          "maxLossUsd": 3500,
+          "refundable": false,
+          "evidence": "LucidDirect table: $100,000 size, $3,500 MLL, $2,100 fixed DLL before scaling; current public dollar price not verified."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": null,
+          "dailyLossUsd": 3000,
+          "maxLossUsd": 5000,
+          "refundable": false,
+          "evidence": "LucidDirect table: $150,000 size, $5,000 MLL, $3,000 fixed DLL before scaling; current public dollar price not verified."
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 20,
+      "profitSplitPct": 90,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": false,
+        "overnight": false,
+        "ea": true,
+        "copyTrading": "restricted"
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://support.lucidtrading.com/en/articles/12890148-luciddirect-funded-account",
+      "notes": [
+        "STRAIGHT TO FUNDED: LucidDirect has 0 evaluation phases and begins in a simulated payout-eligible account.",
+        "PRICE NOT VERIFIED: the public checkout did not expose stable first-party LucidDirect dollar fees, so all 4 priceUsd values remain null.",
+        "RISK: EOD trailing MLL of $1,000 / $2,000 / $3,500 / $5,000 locks at starting balance plus $100. Fixed DLL is none / $1,200 / $2,100 / $3,000, then becomes 60% of highest EOD profit after the trail threshold.",
+        "PAYOUT: 20% cycle consistency, 90% trader split, $500 request minimum, first-cycle profit goals $1,500 / $3,000 / $6,000 / $9,000, later goals $1,250 / $2,500 / $3,500 / $4,500, and no fixed request window.",
+        "TRADING TIMES AND GENERAL RULES: 4:45 PM ET auto-close, no weekend/overnight holds, news and automation allowed, copy trading restricted to compliant non-coordinated use."
+      ],
+      "fieldEvidence": {
+        "phases": "LucidDirect Funded Account says straight-to-funded with no evaluation phase.",
+        "consistencyRulePct": "LucidDirect Payout Objectives sets 20% for every payout cycle.",
+        "profitSplitPct": "LucidDirect Payout Objectives states 90% trader / 10% Lucid.",
+        "payoutFirstDays": "LucidDirect Payout Objectives publishes no fixed payout window, so no numeric day is stored."
+      }
+    },
+    {
+      "productName": "LucidDaily - DLL On / Intraday",
+      "productSlug": "luciddaily-dll-on-intraday",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "dailyLossUsd": 600,
+          "maxLossUsd": 1000,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $25K, $1,250 target, $600 DLL when enabled, $1,000 MLL; configuration price not publicly verified."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "dailyLossUsd": 1200,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $50K, $3,000 target, $1,200 DLL when enabled, $2,000 MLL; configuration price not publicly verified."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "dailyLossUsd": 1800,
+          "maxLossUsd": 3000,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $100K, $6,000 target, $1,800 DLL when enabled, $3,000 MLL; configuration price not publicly verified."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": null,
+          "dailyLossUsd": 2700,
+          "maxLossUsd": 4500,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $150K, $9,000 target, $2,700 DLL when enabled, $4,500 MLL; configuration price not publicly verified."
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "trailing",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": 50,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 1,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": null,
+        "overnight": null,
+        "ea": true,
+        "copyTrading": "restricted"
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+      "notes": [
+        "PRICE NOT VERIFIED: Lucid calls DLL On plus Intraday the cheapest LucidDaily configuration but publishes no stable dollar fees.",
+        "RISK: DLL of $600 / $1,200 / $1,800 / $2,700 applies in evaluation and funded. Intraday trailing MLL of $1,000 / $2,000 / $3,000 / $4,500 applies in both stages.",
+        "PAYOUT: 90% trader split, no funded consistency, requests on any eligible day, $500 minimum, MLL-plus-$100 buffer, and at least $1 positive profit since the prior request.",
+        "NEWS: evaluation/general news is allowed, but funded Daily requires flat positions from 1 minute before through 1 minute after U.S. high-impact USD events; the product-wide value is restricted.",
+        "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null."
+      ],
+      "fieldEvidence": {
+        "activationFeeUsd": "LucidDaily Evaluation states no activation fee to upgrade.",
+        "drawdownType": "Customization and Drawdown define Intraday evaluation drawdown; every funded Daily account is Intraday.",
+        "minTradingDays": "LucidDaily's 50% evaluation consistency allows a minimum two-day pass.",
+        "consistencyRulePct": "50% applies in evaluation; funded Daily has no consistency.",
+        "profitSplitPct": "LucidDaily Payouts states 90% trader / 10% Lucid.",
+        "payoutFirstDays": "Funded Daily offers daily requests with no fixed window; earliest modeled day is 1 after eligibility."
+      }
+    },
+    {
+      "productName": "LucidDaily - DLL On / EOD",
+      "productSlug": "luciddaily-dll-on-eod",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "dailyLossUsd": 600,
+          "maxLossUsd": 1000,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $25K, $1,250 target, $600 DLL when enabled, $1,000 MLL; configuration price not publicly verified."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "dailyLossUsd": 1200,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $50K, $3,000 target, $1,200 DLL when enabled, $2,000 MLL; configuration price not publicly verified."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "dailyLossUsd": 1800,
+          "maxLossUsd": 3000,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $100K, $6,000 target, $1,800 DLL when enabled, $3,000 MLL; configuration price not publicly verified."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": null,
+          "dailyLossUsd": 2700,
+          "maxLossUsd": 4500,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $150K, $9,000 target, $2,700 DLL when enabled, $4,500 MLL; configuration price not publicly verified."
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "trailing",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": 50,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 1,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": null,
+        "overnight": null,
+        "ea": true,
+        "copyTrading": "restricted"
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+      "notes": [
+        "PRICE NOT VERIFIED: Lucid calls DLL On plus EOD a mid-tier LucidDaily configuration but publishes no stable dollar fees.",
+        "RISK: DLL of $600 / $1,200 / $1,800 / $2,700 applies in both stages. Evaluation MLL is EOD trailing; funded MLL switches to Intraday trailing, with $1,000 / $2,000 / $3,000 / $4,500 limits.",
+        "PAYOUT and NEWS match the other LucidDaily variants: 90% split, daily eligible requests, $500 minimum, buffer and positive-profit gates, plus the funded U.S. high-impact USD news blackout.",
+        "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null."
+      ]
+    },
+    {
+      "productName": "LucidDaily - DLL Off / Intraday",
+      "productSlug": "luciddaily-dll-off-intraday",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "maxLossUsd": 1000,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $25K, $1,250 target, no DLL when disabled, $1,000 MLL; configuration price not publicly verified."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $50K, $3,000 target, no DLL when disabled, $2,000 MLL; configuration price not publicly verified."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "maxLossUsd": 3000,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $100K, $6,000 target, no DLL when disabled, $3,000 MLL; configuration price not publicly verified."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": null,
+          "maxLossUsd": 4500,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $150K, $9,000 target, no DLL when disabled, $4,500 MLL; configuration price not publicly verified."
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "trailing",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": 50,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 1,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": null,
+        "overnight": null,
+        "ea": true,
+        "copyTrading": "restricted"
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+      "notes": [
+        "PRICE NOT VERIFIED: Lucid calls DLL Off plus Intraday a mid-tier LucidDaily configuration but publishes no stable dollar fees.",
+        "RISK: no DLL in evaluation or funded. Intraday trailing MLL of $1,000 / $2,000 / $3,000 / $4,500 applies in both stages.",
+        "PAYOUT and NEWS match the other LucidDaily variants: 90% split, daily eligible requests, $500 minimum, buffer and positive-profit gates, plus the funded U.S. high-impact USD news blackout.",
+        "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null."
+      ]
+    },
+    {
+      "productName": "LucidDaily - DLL Off / EOD",
+      "productSlug": "luciddaily-dll-off-eod",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "maxLossUsd": 1000,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $25K, $1,250 target, no DLL when disabled, $1,000 MLL; configuration price not publicly verified."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "maxLossUsd": 2000,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $50K, $3,000 target, no DLL when disabled, $2,000 MLL; configuration price not publicly verified."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "maxLossUsd": 3000,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $100K, $6,000 target, no DLL when disabled, $3,000 MLL; configuration price not publicly verified."
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": null,
+          "maxLossUsd": 4500,
+          "refundable": false,
+          "evidence": "LucidDaily tables: $150K, $9,000 target, no DLL when disabled, $4,500 MLL; configuration price not publicly verified."
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "trailing",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": 50,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 1,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": null,
+        "overnight": null,
+        "ea": true,
+        "copyTrading": "restricted"
+      },
+      "assetClass": "futures",
+      "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+      "notes": [
+        "PRICE NOT VERIFIED: Lucid calls DLL Off plus EOD the most expensive LucidDaily configuration but publishes no stable dollar fees.",
+        "RISK: no DLL in evaluation or funded. Evaluation MLL is EOD trailing; funded MLL switches to Intraday trailing, with $1,000 / $2,000 / $3,000 / $4,500 limits.",
+        "PAYOUT and NEWS match the other LucidDaily variants: 90% split, daily eligible requests, $500 minimum, buffer and positive-profit gates, plus the funded U.S. high-impact USD news blackout.",
+        "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null."
+      ]
+    }
+  ]
+}

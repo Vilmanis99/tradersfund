@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-07-28",
-  "sourceListUpdatedAt": "2024-10-22",
+  "capturedAt": "2026-08-11",
+  "sourceListUpdatedAt": "2025-11-19",
   "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
   "sourceScope": "RBI says the Alert List contains entities not authorised to deal in forex under FEMA or operate a forex electronic trading platform, and may include promoters of unauthorised entities or ETPs.",
   "sourceCaveat": "RBI says the list is non-exhaustive and an entity absent from it must not be assumed to be authorised.",
@@ -50,6 +50,10 @@
     {
       "firmSlug": "tradeify",
       "firmName": "Tradeify"
+    },
+    {
+      "firmSlug": "tradeday",
+      "firmName": "TradeDay"
     }
   ]
 }

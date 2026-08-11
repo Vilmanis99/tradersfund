@@ -403,6 +403,44 @@ if (indiaShortlistProbe.status !== 200) {
   }
 }
 
+const globalChangePath = '/prop-firm-challenge-changes'
+const globalChangeProbe = await fetchPage(new URL(globalChangePath, BASE))
+if (globalChangeProbe.status !== 200) {
+  errors.push(
+    `${globalChangePath}: HTTP ${globalChangeProbe.status || globalChangeProbe.error}`,
+  )
+} else {
+  const canonical = firstMatch(
+    globalChangeProbe.html,
+    /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["'][^>]*>/i,
+  ) || firstMatch(
+    globalChangeProbe.html,
+    /<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["'][^>]*>/i,
+  )
+  if (canonicalKey(canonical) !== canonicalKey(`${PRODUCTION_ORIGIN}${globalChangePath}`)) {
+    errors.push(`${globalChangePath}: incorrect canonical`)
+  }
+  const globalChangeText = textContent(globalChangeProbe.html)
+  for (const required of [
+    '14 dated updates',
+    '8 firms affected',
+    '3 verified changes',
+    '11 open watches',
+    'Showing 14 of 14 dated updates.',
+    'Alpha One prices do not identify the rule variant',
+    'Alpha Capital disagrees on Alpha One payout schedules',
+    'E8 Pro pages disagree on prices and configurable terms',
+    'E8 One pages disagree on the default target and drawdown',
+  ]) {
+    if (!globalChangeText.includes(required)) {
+      errors.push(`${globalChangePath}: missing ${required}`)
+    }
+  }
+  if (globalChangeProbe.html.includes('/go/')) {
+    errors.push(`${globalChangePath}: rendered an affiliate action`)
+  }
+}
+
 const indiaChangePath = '/best-prop-firms-in-india/challenge-changes'
 const indiaChangeProbe = await fetchPage(new URL(indiaChangePath, BASE))
 if (indiaChangeProbe.status !== 200) {
@@ -422,12 +460,17 @@ if (indiaChangeProbe.status !== 200) {
   }
   const indiaChangeText = textContent(indiaChangeProbe.html)
   for (const required of [
-    '3 India-screened updates',
-    '7 products',
-    'Showing 3 of 3 dated updates.',
+    '12 India-screened updates',
+    '6 eligible firms affected',
+    '16 products',
+    '10 open watches',
+    'Showing 12 of 12 dated updates.',
     'Tradeify list prices and homepage promotions can diverge',
     'FundingPips separates the current Standard path from legacy 10% resets',
     "Alpha Capital's own pages disagree on a 25K Pro price",
+    'Alpha One prices do not identify the rule variant',
+    'Alpha Capital disagrees on Alpha One payout schedules',
+    'E8 One pages disagree on the default target and drawdown',
     'Affected products',
     'Affiliate status contributes 0 points',
   ]) {

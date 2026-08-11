@@ -12,10 +12,10 @@
     "kind": "price-watch",
     "status": "watch",
     "observedAt": "2026-07-28",
-    "lastCheckedAt": "2026-07-28",
+    "lastCheckedAt": "2026-08-11",
     "title": "Tradeify list prices and homepage promotions can diverge",
-    "summary": "Tradeify's June 24 pricing reference maps 12 base purchases to account sizes, while the homepage advertises a changing percentage promotion and its server-readable pricing cards contain placeholder values.",
-    "traderImpact": "The comparison stores the stable list price, not a temporary coupon. Confirm the final discounted amount, reset cost, and product name in the logged-in checkout before paying.",
+    "summary": "Tradeify's June 24 pricing reference still maps 12 base purchases to account sizes. On 11 August, the homepage mixed 30%, 35%, and 40% promotion copy with placeholder card values; the Select 50K reset was $109 while its base purchase remained $165.",
+    "traderImpact": "The comparison stores the stable purchase price, not a temporary coupon or reset. Confirm the final discounted amount, reset cost, and product name in checkout before paying.",
     "sourceUrls": [
       "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
       "https://tradeify.co/"
@@ -34,14 +34,18 @@
     "kind": "lineup-change",
     "status": "watch",
     "observedAt": "2026-07-28",
-    "lastCheckedAt": "2026-07-28",
+    "lastCheckedAt": "2026-08-11",
     "title": "LucidDaily launched with 4 configurable evaluation paths",
-    "summary": "LucidDaily combines DLL On or Off with Intraday or EOD evaluation drawdown. Every funded version switches to Intraday drawdown and permits daily payout requests after its buffer gate.",
-    "traderImpact": "The selected drawdown and DLL change both risk mechanics and price. Lucid did not expose stable public dollar prices during capture, so compare the exact checkout configuration rather than a generic LucidDaily fee.",
+    "summary": "Lucid's help centre still documents 4 Daily variants, but the homepage selector omits Daily and its trading-hours page does not cover Daily. A general page broadly restricts red-folder news, while the funded-product page narrows the hard-breach window to U.S. high-impact USD events.",
+    "traderImpact": "Confirm that Daily is purchasable and verify the exact DLL, drawdown, price, overnight, weekend, and news-calendar scope at checkout; no stable public Daily price was captured.",
     "sourceUrls": [
       "https://support.lucidtrading.com/en/collections/19692910-luciddaily",
       "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
-      "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization"
+      "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+      "https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times",
+      "https://support.lucidtrading.com/en/articles/11404728-other-activities",
+      "https://support.lucidtrading.com/en/articles/15997244-luciddaily-funded-account",
+      "https://www.lucidtrading.com/"
     ]
   },
   {
@@ -79,12 +83,15 @@
     "kind": "price-watch",
     "status": "watch",
     "observedAt": "2026-07-28",
-    "lastCheckedAt": "2026-07-28",
+    "lastCheckedAt": "2026-08-11",
     "title": "TradeDay monthly prices were tied to a 55%-off promotion",
-    "summary": "The captured monthly fees used the TDNEW promotion shown on TradeDay's own product cards. Those prices can move when the campaign changes or ends.",
-    "traderImpact": "Treat the table price as a dated checkout snapshot, not a permanent subscription rate. Recheck the first month and reset price before paying.",
+    "summary": "The 55%-off TDNEW monthly fees were unchanged on 11 August, but crossed-out list prices still conflict with TradeDay's support table and reset prices differ across the homepage and billing articles.",
+    "traderImpact": "Treat the table price as a dated promotional snapshot. Recheck the first month, renewal, and reset totals before paying.",
     "sourceUrls": [
-      "https://www.tradeday.com/"
+      "https://www.tradeday.com/",
+      "https://tradeday.freshdesk.com/en/support/solutions/articles/103000304248-what-are-the-differences-between-each-account-size-",
+      "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008902-how-does-monthly-billing-work-",
+      "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008878-what-happens-when-the-subscription-renews-"
     ]
   },
   {
@@ -117,13 +124,174 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-07-27",
-    "lastCheckedAt": "2026-07-27",
+    "lastCheckedAt": "2026-08-11",
     "title": "Alpha Capital's own pages disagree on a 25K Pro price",
     "summary": "One official cost page states $137 for the 25K Alpha Pro 6% variant, while a separate official review page states $197 for a 25K Alpha Pro without identifying the target variant.",
     "traderImpact": "The $137 figure is retained only for the explicitly labelled 6% product. Verify the selected target and final checkout total before purchase.",
     "sourceUrls": [
       "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
       "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict"
+    ]
+  },
+  {
+    "id": "alpha-one-variant-price-mapping",
+    "firmSlug": "alpha-capital",
+    "firmName": "Alpha Capital",
+    "productSlugs": [
+      "alpha-one"
+    ],
+    "kind": "price-watch",
+    "status": "watch",
+    "observedAt": "2026-07-27",
+    "lastCheckedAt": "2026-08-11",
+    "title": "Alpha One prices do not identify the rule variant",
+    "summary": "Alpha's cost table labels tiers only as Alpha One, while its plan page documents 6%, 10% and 12% variants with different targets, drawdown limits and size caps. The captured rules use the 10% variant, but the fee-to-variant mapping is unresolved.",
+    "traderImpact": "Confirm the selected variant, its target, drawdown, account-size ceiling and final fee before paying; do not assume the stored fee buys the 10% rule set.",
+    "sourceUrls": [
+      "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+      "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12"
+    ]
+  },
+  {
+    "id": "alpha-one-payout-schedule-conflict",
+    "firmSlug": "alpha-capital",
+    "firmName": "Alpha Capital",
+    "productSlugs": [
+      "alpha-one"
+    ],
+    "kind": "source-conflict",
+    "status": "watch",
+    "observedAt": "2026-07-27",
+    "lastCheckedAt": "2026-08-11",
+    "title": "Alpha Capital disagrees on Alpha One payout schedules",
+    "summary": "The homepage advertises Bi-Weekly or On-Demand with Alpha One selected, while the 2026 rules article and bi-weekly help article limit bi-weekly payouts to Alpha Pro and Alpha Three. The data retains the narrower on-demand schedule for Alpha One.",
+    "traderImpact": "Confirm whether the purchased Alpha One account offers a 14-day cycle, on-demand requests or both before planning cash flow.",
+    "sourceUrls": [
+      "https://alphacapitalgroup.uk/",
+      "https://alphacapitalgroup.uk/posts/alpha-capital-rules-explained-drawdown-profit-targets-daily-loss-and-evaluation-rules-2026",
+      "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+      "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+    ]
+  },
+  {
+    "id": "e8-pro-current-page-vs-help-prices",
+    "firmSlug": "e8-markets",
+    "firmName": "E8 Markets",
+    "productSlugs": [
+      "e8-pro"
+    ],
+    "kind": "source-conflict",
+    "status": "watch",
+    "observedAt": "2026-08-11",
+    "lastCheckedAt": "2026-08-11",
+    "title": "E8 Pro pages disagree on prices and configurable terms",
+    "summary": "The current E8PRO v2 page lists $38 to $2,998 and fixed 8% target, 8% static drawdown and 2.5% daily-cap terms, with an 80% default or paid 100% add-on. Current help still shows the older $32 to $2,598 ladder, while an older custom-account article also lists 6%, 8% or 10% drawdown and a 90% payout variant.",
+    "traderImpact": "The comparison follows the current product-specific v2 page and does not infer variant prices. Confirm the size, drawdown, payout option, platform surcharge and final total in checkout.",
+    "sourceUrls": [
+      "https://e8pro.e8markets.com/best-simfi-funded-program-e8pro",
+      "https://e8markets.com/e8-pro",
+      "https://help.e8markets.com/en/articles/15274219-e8-pro-forex",
+      "https://help.e8markets.com/en/articles/13106558-all-product-overviews-e8-one-vs-e8-zero-vs-e8-pro-vs-e8-signature",
+      "https://help.e8markets.com/en/articles/8880316-what-is-the-custom-account"
+    ]
+  },
+  {
+    "id": "e8-one-default-parameter-conflict",
+    "firmSlug": "e8-markets",
+    "firmName": "E8 Markets",
+    "productSlugs": [
+      "e8-one"
+    ],
+    "kind": "source-conflict",
+    "status": "watch",
+    "observedAt": "2026-08-11",
+    "lastCheckedAt": "2026-08-11",
+    "title": "E8 One pages disagree on the default target and drawdown",
+    "summary": "The rendered configurator and product page default to a 9% target, 4% daily drawdown and 6% trailing maximum drawdown, while E8's help article calls 6% target, 3% daily and 4% dynamic drawdown the preset. The comparison follows the rendered configuration attached to the captured prices.",
+    "traderImpact": "Verify the selected target, daily limit and maximum drawdown in the order confirmation before trading; Indian profiles are additionally capped at the $50K E8 One tier.",
+    "sourceUrls": [
+      "https://e8markets.com/compare-simfi-funded-accounts",
+      "https://e8markets.com/e8-one",
+      "https://help.e8markets.com/en/articles/11775980-e8-one"
+    ]
+  },
+  {
+    "id": "maven-instant-payout-cadence-conflict",
+    "firmSlug": "maven",
+    "firmName": "Maven",
+    "productSlugs": [
+      "instant"
+    ],
+    "kind": "source-conflict",
+    "status": "watch",
+    "observedAt": "2026-08-11",
+    "lastCheckedAt": "2026-08-11",
+    "title": "Maven publishes conflicting Instant payout timing",
+    "summary": "Maven's pricing page says Instant payouts are available when requirements are met, while its FAQ and Terms specify a 10-business-day interval.",
+    "traderImpact": "The comparison leaves Instant payout timing unknown. Confirm the first eligible request date and later cadence in the selected account terms before purchase.",
+    "sourceUrls": [
+      "https://maventrading.com/pricing",
+      "https://maventrading.com/faqs",
+      "https://maventrading.com/terms-and-conditions"
+    ]
+  },
+  {
+    "id": "maven-prediction-max-loss-conflict",
+    "firmSlug": "maven",
+    "firmName": "Maven",
+    "productSlugs": [
+      "predictions-1-step",
+      "predictions-elite-1-step"
+    ],
+    "kind": "source-conflict",
+    "status": "watch",
+    "observedAt": "2026-07-27",
+    "lastCheckedAt": "2026-08-11",
+    "title": "Maven's Prediction pages disagree on loss limits",
+    "summary": "The pricing page presents a 5% Phase-1 and 8% funded maximum loss for both Prediction paths, while the FAQ describes Essential as 3% trailing and Elite as 5% static.",
+    "traderImpact": "Maximum-loss values remain unknown in the comparison. Confirm the exact Essential or Elite rule set shown in the account agreement before purchase.",
+    "sourceUrls": [
+      "https://maventrading.com/pricing",
+      "https://maventrading.com/faqs"
+    ]
+  },
+  {
+    "id": "tradeday-fast-pass-funded-consistency-2026",
+    "firmSlug": "tradeday",
+    "firmName": "TradeDay",
+    "productSlugs": [
+      "fast-pass-end-of-day"
+    ],
+    "kind": "rule-change",
+    "status": "verified",
+    "observedAt": "2026-08-11",
+    "lastCheckedAt": "2026-08-11",
+    "effectiveAt": "2026-07-26",
+    "title": "New TradeDay Fast Pass accounts use funded consistency",
+    "summary": "Fast Pass Funded Sim accounts opened on or after 26 July 2026 must meet 45% gross-profit consistency for each payout; older accounts retain no funded consistency objective.",
+    "traderImpact": "An account's open date now changes payout eligibility. Check whether the 45% rule applies before sizing a payout request.",
+    "sourceUrls": [
+      "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy"
+    ]
+  },
+  {
+    "id": "tradeday-fast-pass-rule-source-conflicts",
+    "firmSlug": "tradeday",
+    "firmName": "TradeDay",
+    "productSlugs": [
+      "fast-pass-end-of-day"
+    ],
+    "kind": "source-conflict",
+    "status": "watch",
+    "observedAt": "2026-08-11",
+    "lastCheckedAt": "2026-08-11",
+    "title": "TradeDay disagrees on Fast Pass days and a payout cap",
+    "summary": "The homepage says 3 minimum trading days while current support says no formal minimum; the 100K funded payout cap is $1,875 on the homepage and $1,850 in support.",
+    "traderImpact": "The comparison leaves the minimum-day field unknown and does not choose a disputed 100K cap. Confirm both rules for the exact account before purchase or payout.",
+    "sourceUrls": [
+      "https://www.tradeday.com/",
+      "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405229-what-is-fast-pass-",
+      "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy"
     ]
   }
 ]

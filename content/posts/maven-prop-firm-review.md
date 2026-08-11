@@ -2,7 +2,7 @@
 title: "Maven Prop Firm Review 2026: Nine Products, 80% Split, EAs Banned"
 slug: "maven-prop-firm-review"
 date: "2025-06-15 09:00:00"
-modified: "2026-07-27 12:00:00"
+modified: "2026-08-11 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Maven sells nine challenge products from $5 to $999 and pays 80% on the standard lineup — but bans EAs outright. Here is which product actually prices well."
 categories: ["Prop Firms"]
@@ -17,10 +17,10 @@ type: "post"
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul>
-    <li>Nine purchasable products at capture time — 1-Step, 2-Step, 3-Step, Instant, Mini, Buy Now Pay Later, OMO 2-Step, and two Prediction Markets tiers.</li>
+    <li>Nine products appeared in live pricing markup — 1-Step, 2-Step, 3-Step, Instant, Mini, Buy Now Pay Later, OMO 2-Step, and two Prediction Markets tiers — with checkout still subject to region.</li>
     <li>80% profit split on 1-Step, 2-Step, 3-Step, Instant, BNPL and OMO; 70% on Mini and both Prediction Markets tiers.</li>
     <li>Drawdown type is per-product: 8% static on the 2-Step, 3% static on the 3-Step, 5% trailing on the 1-Step, 3% trailing on Instant and Mini.</li>
-    <li>Withdrawals every 10 business days after your first trade on the evaluation products; the fee is refunded on your third withdrawal.</li>
+    <li>Withdrawals are every 10 business days on the Standard, OMO and Prediction products; BNPL can request on day 0 after its gates, while Maven's own pages conflict on Instant cadence.</li>
     <li>EAs are not permitted under any circumstances on any platform, and copy trading from another person breaches both accounts.</li>
     <li>Funded capital caps at $200,000 of starting balance, scaling to $1,000,000 at 25% per step; withdrawals are capped at $10,000 per rolling 30 days.</li>
     <li>Platforms are MetaTrader 5, cTrader and Match-Trade. Funded accounts are simulated, in the firm's own words.</li>
@@ -38,7 +38,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Max funded capital</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$200,000 starting balance, scaling to $1,000,000</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% standard; 70% on Mini and Prediction Markets</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown type</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Per-product — static on 2-Step / 3-Step / OMO, trailing on 1-Step / Instant / Mini</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Every 10 business days on evaluation products; on request on Instant and BNPL; single payout on Mini</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10 business days on Standard, OMO and Prediction products; day 0 on BNPL after its gates; Instant cadence unresolved; 1 payout on Mini</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Withdrawal cap</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10,000 per rolling 30 days per trader</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Leverage</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">75:1 forex; 20:1 indices, commodities and precious metals</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Costs</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$4 round-turn forex commission, $6 on precious metals and energy, $0 on indices and commodities, zero swap</td></tr>
@@ -52,7 +52,7 @@ type: "post"
 <p>Maven's pricing page carried nine distinct products at capture, each sold across five or six account sizes — 52 priced tiers in total. The table below gives the price ladder endpoints and the rule surface for each product; the per-tier fees for the five products most traders will actually shortlist appear in the True-Cost section below.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
-  <caption class="hidden-caption">Maven product lineup, captured 2026-07-27</caption>
+  <caption class="hidden-caption">Maven product lineup, captured 2026-08-11</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product</th><th style="padding: 8px 12px; text-align: left;">Phases</th><th style="padding: 8px 12px; text-align: left;">Account sizes</th><th style="padding: 8px 12px; text-align: left;">List price</th><th style="padding: 8px 12px; text-align: left;">Profit target</th><th style="padding: 8px 12px; text-align: left;">Daily loss</th><th style="padding: 8px 12px; text-align: left;">Max loss</th><th style="padding: 8px 12px; text-align: left;">Split</th></tr></thead>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Standard 1-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2K – $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$15 – $380</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
@@ -67,7 +67,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Pricing and rules above are current as of 2026-07-27, read from the pricing-card markup and FAQ on <a href="/go/maven">Maven's own site</a>. Four caveats attach to those figures. First, every price shown is the <strong>undiscounted list price</strong> — two coupons were live at capture, <code>ETERNAL</code> at 10% off and <code>OMO</code> at 40% off the OMO challenges, so a $100K Standard 2-Step advertised at $396 or a $100K OMO at $284 is a coupon price, not the list price. Second, the pricing cards are keyed by platform and <strong>cTrader is priced differently from MetaTrader 5 and Match-Trade</strong>; every figure here is the MT5 / Match-Trade price. Third, each card carries a hidden region-restriction overlay, so a product that renders for one buyer may be unpurchasable for another. Fourth, both Prediction Markets max-loss figures are left blank because Maven's pricing cards say 5% in phase one and 8% funded while its FAQ says 3% trailing for Essential and 5% static for Elite — the firm's own two pages contradict each other, and we do not publish a number we cannot source cleanly.</p>
+<p>Pricing and rules above are current as of 2026-08-11, read from the pricing-card markup and FAQ on <a href="/go/maven">Maven's own site</a>. Four caveats attach to those figures. First, every price shown is the <strong>undiscounted list price</strong> — two coupons were live at capture, <code>ETERNAL</code> at 10% off and <code>OMO</code> at 40% off the OMO challenges, so a $100K Standard 2-Step advertised at $396 or a $100K OMO at $284 is a coupon price, not the list price. Second, the pricing cards are keyed by platform and <strong>cTrader is priced differently from MetaTrader 5 and Match-Trade</strong>; every figure here is the MT5 / Match-Trade price. Third, each card carries a hidden region-restriction overlay, so a product that renders for one buyer may be unpurchasable for another. Fourth, both Prediction Markets max-loss figures are left blank because Maven's pricing cards say 5% in phase one and 8% funded while its FAQ says 3% trailing for Essential and 5% static for Elite — the firm's own two pages contradict each other, and we do not publish a number we cannot source cleanly.</p>
 
 <p>The fee is refundable on your third withdrawal on every product except Mini, whose card omits the refund line and which pays out once before closing the account.</p>
 
@@ -83,7 +83,7 @@ type: "post"
 
 <p><strong>EAs are banned outright</strong> — "not permitted under any circumstances across all our platforms," in Maven's phrasing. This is the single most consequential rule on the page and it reverses what this review previously stated. Copy trading from another individual breaches both accounts. Mini adds a one-position-at-a-time limit, a 150-second minimum hold time, and a 1% cap on the gap between equity and balance.</p>
 
-<p><strong>News trading depends on the product.</strong> On the Standard 1-, 2- and 3-Step you cannot open or close within two minutes either side of a red-folder release. The rule does not apply to Instant. On OMO and Buy Now, Pay Later, news trading is unrestricted through the evaluation; on the OMO funded stage it stays permitted but profit made during a news event is capped at 0.50% of account balance. Weekend holding is permitted on all account types. Overnight holding is not stated as an explicit permission anywhere in Maven's published pages, so we do not claim it.</p>
+<p><strong>News trading depends on the product.</strong> On the Standard 1-, 2- and 3-Step and Mini you cannot open or close within 2 minutes either side of a red-folder release. The rule does not apply to Instant or either Prediction product. BNPL is unrestricted, while OMO is unrestricted in evaluation but capped in funded: profit from any 1 news event cannot exceed 0.50% of account balance. Weekend holding is permitted on all 9 account types. Overnight holding is not stated as an explicit permission anywhere in Maven's published pages, so we do not claim it.</p>
 
 <p><strong>Scaling runs on performance plus payout activity.</strong> Profit 10% over four months — 2.5% a month — while processing at least one payout per month, and the account is increased 25%, repeatable to $1,000,000. Starting funded capital is capped at $200,000. Accounts must not go 30 calendar days without an executed trade. After you pass, account review takes 1–3 days. And Maven describes the funded stage in its own FAQ as a simulated demo environment.</p>
 
@@ -177,11 +177,11 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p>On the 1-Step, 2-Step, 3-Step and OMO, you can request a withdrawal <strong>every 10 business days after your first trade</strong>, and Maven issues a full refund of the challenge fee on your third withdrawal. Passing an evaluation adds a 1–3 day account review before the funded stage opens. Instant and Buy Now, Pay Later pay on request once their requirements are met rather than on a calendar. Mini processes the payout the day after your 24-hour trading window closes, then closes the account.</p>
+<p>On the 1-Step, 2-Step, 3-Step, OMO and both Prediction products, you can request a withdrawal <strong>every 10 business days</strong>, and Maven issues a full refund of the challenge fee on the third withdrawal. Passing an evaluation adds a 1–3 day account review before the funded stage opens. BNPL publishes day-0 access once its funded gates are met. Instant is unresolved: its pricing card says “when requirements are met,” while Maven's FAQ and Terms say every 10 business days, so we do not publish a cadence until the firm reconciles those 3 pages. Mini processes its single payout the day after the 24-hour trading window closes, then closes the account.</p>
 
 <p>Two ceilings bind harder than the cadence. Withdrawals are capped at <strong>$10,000 per rolling 30 days per trader</strong>, which caps a $100K funded account's realistic monthly draw regardless of performance, and OMO caps the first payout at 6% of balance and the second at 8%. Payments via Rise carry a $20 withdrawal fee. Maven charges no swap on any account and $4 round-turn commission on forex, $6 on precious metals and energy, $0 on indices and commodities.</p>
 
-<p>On community evidence we have nothing verified to report: our firm record carries no Trustpilot score or review count for Maven, and we will not quote a rating we have not captured. What is on the record from Maven's own FAQ is that the funded stage is a simulated demo environment and that a failed account can be repurchased at a fixed buyback price — $200 at $2K, $400 at $5K, $750 at $10K, $1,400 at $20K, $3,500 at $50K and $6,000 at $100K. Those buyback figures are 6–16× the original challenge fee.</p>
+<p>Trustpilot had suppressed Maven's aggregate rating when captured on 2026-07-27, although the profile still displayed 5,151 reviews; that count is not a usable score or proof of payout reliability. What is on the record from Maven's own FAQ is that the funded stage is a simulated demo environment and that a failed account can be repurchased at a fixed buyback price — $200 at $2K, $400 at $5K, $750 at $10K, $1,400 at $20K, $3,500 at $50K and $6,000 at $100K. Those buyback figures are 6–16× the original challenge fee.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
@@ -192,7 +192,7 @@ type: "post"
   <li><strong>8% static drawdown on the 2-Step and OMO</strong>, anchored to starting balance and not trailing — a $50K account keeps its $46,000 floor whatever the equity peak.</li>
   <li><strong>No consistency score on the 1-Step, 2-Step, 3-Step or OMO</strong>, so lumpy P&amp;L is not penalised on the evaluation products.</li>
   <li><strong>Zero swap fees and $0 commission on indices and commodities</strong>, with forex at $4 round turn.</li>
-  <li><strong>Weekend holding permitted on all account types</strong>, and no news restriction at all on Instant, OMO evaluation or BNPL evaluation.</li>
+  <li><strong>Weekend holding is permitted on all 9 account types</strong>, while Instant, BNPL and both Prediction products publish no news blackout; OMO is unrestricted only during its 2 evaluation phases.</li>
   <li><strong>Withdrawals every 10 business days</strong> on the evaluation lineup rather than monthly.</li>
 </ul>
 
@@ -206,7 +206,7 @@ type: "post"
   <li><strong>The 3-Step pairs a 2% daily cap with a 3% total cap</strong>: two near-limit days end the account, and you still must clear 3% three separate times.</li>
   <li><strong>Maven's own pages contradict each other</strong> on Prediction Markets max drawdown — pricing cards say 5%/8%, the FAQ says 3% trailing and 5% static.</li>
   <li><strong>OMO's first breach permanently cuts the split to 50%</strong> under the M2 Account Saver mechanic.</li>
-  <li><strong>Funded accounts are simulated</strong> by Maven's own description, and no Trustpilot score is on our record for the firm.</li>
+<li><strong>Funded accounts are simulated</strong> by Maven's own description; Trustpilot suppressed the aggregate rating while still displaying 5,151 reviews on 2026-07-27.</li>
   <li><strong>Advertised prices are coupon prices</strong> — <code>ETERNAL</code> at 10% and <code>OMO</code> at 40% were live at capture, so quoted figures elsewhere may not be the list price you pay later.</li>
 </ul>
 
@@ -216,7 +216,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should avoid Maven</strong></h2>
 
-<p>Any algorithmic or EA-based trader — the ban is absolute across MetaTrader 5, cTrader and Match-Trade, with no carve-out. Traders whose profits concentrate into one or two sessions should avoid Instant and Mini specifically, where 20% and 15% consistency tests gate every withdrawal. Traders who expect to draw more than $10,000 a month should look at a firm without a rolling-cap on withdrawals — <a href="/blog/fundednext-review">FundedNext</a> at a 95% split or <a href="/blog/funding-pips-review">FundingPips</a> with scaling toward 100% both price the split better. Anyone wanting a long operating record should prefer <a href="/blog/ftmo-review">FTMO</a> over a firm founded in 2023.</p>
+<p>Any algorithmic or EA-based trader — the ban is absolute across MetaTrader 5, cTrader and Match-Trade, with no carve-out. Traders whose profits concentrate into 1 or 2 sessions should avoid Instant and Mini specifically, where 20% and 15% consistency tests gate every withdrawal. Traders who expect to draw more than $10,000 a month should compare the currently captured payout rules in <a href="/blog/fundednext-review">FundedNext</a> and <a href="/blog/funding-pips-review">FundingPips</a> rather than relying on old headline split or scaling claims. Anyone wanting a longer operating record should compare <a href="/blog/ftmo-review">FTMO</a> with Maven's 2023 founding date.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
@@ -238,5 +238,5 @@ type: "post"
 <h3 class="wp-block-heading"><strong>What is Maven's Mini account?</strong></h3>
 <p>A single-payout product with a 24-hour trading window starting at your first trade, a 70% split, a 3% profit threshold to withdraw, a 15% cap on your largest trade as a share of total profit, one open position at a time and a 150-second minimum hold. From $5K up it costs the same as the Standard 2-Step, which pays 80% with no time limit.</p>
 
-<h3 class="wp-block-heading"><strong>Can US residents use Maven?</strong></h3>
-<p>Maven's pricing cards carry a hidden region-restriction overlay that JavaScript reveals for restricted geographies, so availability varies by country. All 117 pricing cards read at capture on 2026-07-27 carried that overlay, and no country list is published on the 4 accessible pages, so confirm eligibility on <a href="/go/maven">the live pricing page</a> before purchase rather than relying on a third-party summary.</p>
+<h3 class="wp-block-heading"><strong>Where is Maven unavailable, and can traders in India use it?</strong></h3>
+<p>Maven's 25-country restriction list captured on 2026-08-11 did not name India, but each of the 116 live platform cards still carries a region-restriction overlay that can block a product at checkout. Maven's FAQ places India in the group limited to Rise or unspecified “other options,” does not claim direct bank transfer for India, and states that Rise withdrawals cost $20. Confirm the selected product on <a href="/go/maven">the live pricing page</a>; no completed Indian checkout, KYC or payout receipt has been independently verified.</p>

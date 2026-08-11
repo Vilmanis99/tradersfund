@@ -2,7 +2,7 @@
 title: "Are Prop Firms Legal in India? RBI and FEMA Checklist (2026)"
 slug: "are-prop-firms-legal-in-india"
 date: "2026-07-28"
-modified: "2026-07-28"
+modified: "2026-08-11"
 author: "Edris Derakhshi"
 excerpt: "There is no safe blanket yes: RBI forex, ETP and remittance rules can apply differently to each prop-firm contract. Use this sourced checklist."
 categories: ["Prop Firms", "Educational"]
@@ -15,13 +15,13 @@ type: "post"
   <ul>
     <li><strong>Do not treat “prop firm” as a blanket legal category in India.</strong> The contract, payment purpose, trading venue, instruments, and payout structure determine which rules may apply.</li>
     <li><strong>RBI permits resident forex transactions only with authorised persons and for permitted purposes.</strong> Electronic transactions must use an RBI-authorised electronic trading platform or a recognised Indian exchange.</li>
-    <li><strong>FTMO and FundedNext are named on the RBI Alert List dated 22 October 2024.</strong> Traders Fund Hub excludes both from its India recommendation list and India affiliate CTAs.</li>
+    <li><strong>FTMO and FundedNext are named on the RBI Alert List updated 19 November 2025.</strong> Traders Fund Hub excludes both from its India recommendation list and India affiliate CTAs.</li>
     <li><strong>Not appearing on the Alert List is not approval.</strong> RBI describes the list as non-exhaustive and says absence must not be interpreted as authorisation.</li>
     <li><strong>A simulated-account label does not answer the legal question by itself.</strong> Obtain the exact contract and ask an authorised dealer bank or qualified Indian FEMA adviser how the payment and activity should be classified.</li>
   </ul>
 </div>
 
-<p><strong>Our conclusion as of 28 July 2026:</strong> there is no responsible one-word answer to “are prop firms legal in India?” The official material we reviewed does not create a blanket prop-firm approval or a blanket simulated-account exemption. RBI guidance instead focuses on what the resident actually does: who receives the foreign exchange, the purpose of the payment, whether a forex or derivative transaction is contracted, and whether the person or electronic platform is authorised.</p>
+<p><strong>Our conclusion as of 11 August 2026:</strong> there is no responsible one-word answer to “are prop firms legal in India?” The official material we reviewed does not create a blanket prop-firm approval or a blanket simulated-account exemption. RBI guidance instead focuses on what the resident actually does: who receives the foreign exchange, the purpose of the payment, whether a forex or derivative transaction is contracted, and whether the person or electronic platform is authorised.</p>
 
 <p>This guide is an evidence-based screening framework, not legal or tax advice. A firm accepting an Indian address, processing an Indian card, or completing KYC proves commercial availability only. None of those events proves that the underlying activity or remittance is permitted under FEMA.</p>
 
@@ -35,7 +35,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>The RBI Alert List Changes the India Shortlist</strong></h2>
 
-<p>The official <a href="https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235" target="_blank" rel="nofollow noopener">RBI Alert List</a>, dated 22 October 2024, names entities that are not authorised to deal in forex under FEMA or operate a forex ETP under the Electronic Trading Platforms Directions. It also says the list can include websites that appear to promote unauthorised entities or claim to provide training or advisory services.</p>
+<p>The official <a href="https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235" target="_blank" rel="nofollow noopener">RBI Alert List</a>, updated 19 November 2025, names entities that are not authorised to deal in forex under FEMA or operate a forex ETP under the Electronic Trading Platforms Directions. It also says the list can include websites that appear to promote unauthorised entities or claim to provide training or advisory services.</p>
 
 <table>
   <thead>
@@ -165,7 +165,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>Is FTMO legal for Indian traders?</strong></h3>
-<p>We do not label FTMO legal or recommend it to Indian residents. FTMO appears as item 13 on the RBI Alert List dated 22 October 2024, so it is excluded from our India ranking, matcher, INR planner, and India CTA.</p>
+<p>We do not label FTMO legal or recommend it to Indian residents. FTMO remains item 13 on the RBI Alert List updated 19 November 2025, so it is excluded from our India ranking, matcher, INR planner, and India CTA.</p>
 
 <h3 class="wp-block-heading"><strong>Is FundedNext legal in India?</strong></h3>
 <p>We do not label FundedNext legal or recommend it to Indian residents. FundedNext appears as item 83 on the same RBI Alert List and is excluded from every India recommendation surface on Traders Fund Hub.</p>
@@ -182,4 +182,4 @@ type: "post"
 <h3 class="wp-block-heading"><strong>Where should an Indian trader get a definitive answer?</strong></h3>
 <p>For the outward payment, ask the authorised dealer bank that will process it. For the contract and FEMA analysis, use an Indian lawyer qualified in foreign-exchange regulation. For payout and return reporting, use a chartered accountant who has reviewed the payor and documents.</p>
 
-<p><em>Source check completed 28 July 2026. The RBI Alert List itself displays an update date of 22 October 2024. We will revise this guide when RBI, SEBI, or the Income Tax Department publishes newer directly relevant guidance.</em></p>
+<p><em>Source check completed 11 August 2026. The RBI Alert List itself displays an update date of 19 November 2025. We will revise this guide when RBI, SEBI, or the Income Tax Department publishes newer directly relevant guidance.</em></p>

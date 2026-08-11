@@ -89,7 +89,7 @@
     ],
     "rbiAlert": {
       "status": "named",
-      "sourceListUpdatedAt": "2024-10-22",
+      "sourceListUpdatedAt": "2025-11-19",
       "summary": "FTMO appears as item 13 on the RBI Alert List. RBI says listed entities are not authorised to deal in forex under FEMA or operate a forex electronic trading platform.",
       "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
     },
@@ -172,7 +172,7 @@
     ],
     "rbiAlert": {
       "status": "named",
-      "sourceListUpdatedAt": "2024-10-22",
+      "sourceListUpdatedAt": "2025-11-19",
       "summary": "FundedNext appears as item 83 on the RBI Alert List. RBI says listed entities are not authorised to deal in forex under FEMA or operate a forex electronic trading platform.",
       "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
     },
@@ -235,8 +235,8 @@
     ],
     "rbiAlert": {
       "status": "not-found",
-      "sourceListUpdatedAt": "2024-10-22",
-      "summary": "FundingPips was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceListUpdatedAt": "2025-11-19",
+      "summary": "FundingPips was not found in the RBI Alert List dated 2025-11-19. RBI explicitly says absence from the list must not be treated as authorisation.",
       "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
     },
     "country": {
@@ -303,8 +303,8 @@
     ],
     "rbiAlert": {
       "status": "not-found",
-      "sourceListUpdatedAt": "2024-10-22",
-      "summary": "Bright Funded was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceListUpdatedAt": "2025-11-19",
+      "summary": "Bright Funded was not found in the RBI Alert List dated 2025-11-19. RBI explicitly says absence from the list must not be treated as authorisation.",
       "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
     },
     "country": {
@@ -400,8 +400,8 @@
     ],
     "rbiAlert": {
       "status": "not-found",
-      "sourceListUpdatedAt": "2024-10-22",
-      "summary": "FXIFY was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceListUpdatedAt": "2025-11-19",
+      "summary": "FXIFY was not found in the RBI Alert List dated 2025-11-19. RBI explicitly says absence from the list must not be treated as authorisation.",
       "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
     },
     "country": {
@@ -488,8 +488,8 @@
     ],
     "rbiAlert": {
       "status": "not-found",
-      "sourceListUpdatedAt": "2024-10-22",
-      "summary": "Alpha Capital was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceListUpdatedAt": "2025-11-19",
+      "summary": "Alpha Capital was not found in the RBI Alert List dated 2025-11-19. RBI explicitly says absence from the list must not be treated as authorisation.",
       "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
     },
     "country": {
@@ -602,8 +602,8 @@
     },
     "rbiAlert": {
       "status": "not-found",
-      "sourceListUpdatedAt": "2024-10-22",
-      "summary": "E8 Markets was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceListUpdatedAt": "2025-11-19",
+      "summary": "E8 Markets was not found in the RBI Alert List dated 2025-11-19. RBI explicitly says absence from the list must not be treated as authorisation.",
       "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
     },
     "country": {
@@ -670,8 +670,8 @@
     ],
     "rbiAlert": {
       "status": "not-found",
-      "sourceListUpdatedAt": "2024-10-22",
-      "summary": "City Traders Imperium was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceListUpdatedAt": "2025-11-19",
+      "summary": "City Traders Imperium was not found in the RBI Alert List dated 2025-11-19. RBI explicitly says absence from the list must not be treated as authorisation.",
       "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
     },
     "country": {
@@ -757,8 +757,8 @@
     ],
     "rbiAlert": {
       "status": "not-found",
-      "sourceListUpdatedAt": "2024-10-22",
-      "summary": "Maven was not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceListUpdatedAt": "2025-11-19",
+      "summary": "Maven was not found in the RBI Alert List dated 2025-11-19. RBI explicitly says absence from the list must not be treated as authorisation.",
       "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
     },
     "country": {
@@ -878,8 +878,8 @@
     ],
     "rbiAlert": {
       "status": "not-found",
-      "sourceListUpdatedAt": "2024-10-22",
-      "summary": "Tradeify and Tradeify Holdings Corp were not found in the RBI Alert List dated 2024-10-22. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceListUpdatedAt": "2025-11-19",
+      "summary": "Tradeify and Tradeify Holdings Corp were not found in the RBI Alert List dated 2025-11-19. RBI explicitly says absence from the list must not be treated as authorisation.",
       "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
     },
     "country": {
@@ -928,5 +928,149 @@
       ]
     },
     "unresolved": "No completed Indian checkout, KYC approval, Rise or Plane onboarding, or Indian bank or crypto payout receipt is independently verified; current promotional checkout prices and INR conversion costs remain variable."
+  },
+  {
+    "firmSlug": "tradeday",
+    "firmName": "TradeDay",
+    "capturedAt": "2026-08-11",
+    "restrictedJurisdictions": [
+      "Afghanistan",
+      "Albania",
+      "Algeria",
+      "Angola",
+      "Balkans",
+      "Barbados",
+      "Belarus",
+      "British Virgin Islands",
+      "Bosnia and Herzegovina",
+      "Botswana",
+      "Bulgaria",
+      "Burkina Faso",
+      "Burundi",
+      "Cameroon",
+      "Cayman Islands",
+      "Central African Republic",
+      "Cote d'Ivoire / Ivory Coast",
+      "Crimea Region of Ukraine",
+      "Croatia",
+      "Cuba",
+      "Democratic People's Republic of Korea (DPRK)",
+      "Democratic Republic of the Congo",
+      "Ecuador",
+      "Ethiopia",
+      "Ghana",
+      "Gibraltar",
+      "Guam",
+      "Guyana",
+      "Haiti",
+      "Iceland",
+      "Indonesia",
+      "Iran",
+      "Iraq",
+      "Jamaica",
+      "Jordan",
+      "Kosovo",
+      "Lao PDR",
+      "Lebanon",
+      "Liberia",
+      "Libya",
+      "Macedonia",
+      "Magnitsky",
+      "Mali",
+      "Malta",
+      "Mauritius",
+      "Monaco",
+      "Mongolia",
+      "Montenegro",
+      "Morocco",
+      "Mozambique",
+      "Myanmar (Burma)",
+      "Namibia",
+      "Nepal",
+      "Nicaragua",
+      "Nigeria",
+      "Pakistan",
+      "Panama",
+      "Papua New Guinea",
+      "Philippines",
+      "Puerto Rico",
+      "Romania",
+      "Russia",
+      "Senegal",
+      "Serbia",
+      "Slovenia",
+      "Somalia",
+      "South Africa",
+      "South Sudan",
+      "Sri Lanka",
+      "Sudan/Darfur",
+      "Syria",
+      "Tanzania",
+      "Trinidad and Tobago",
+      "Tunisia",
+      "Uganda",
+      "Ukraine",
+      "US Virgin Islands",
+      "Venezuela",
+      "Vietnam",
+      "Yemen",
+      "Zimbabwe"
+    ],
+    "restrictionListComplete": true,
+    "payoutRails": [
+      "bank",
+      "crypto",
+      "rise"
+    ],
+    "rbiAlert": {
+      "status": "not-found",
+      "sourceListUpdatedAt": "2025-11-19",
+      "summary": "TradeDay, TradeDay LLC, and tradeday.com were not found in the RBI Alert List dated 2025-11-19. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
+    },
+    "country": {
+      "status": "verified",
+      "summary": "India is absent from TradeDay's current 81-name outright prohibition list; the restriction test applies to citizenship, residence, and prolonged predominant trading location. Germany and Canada outside Ontario are separately limited to Funded Sim rather than blanket-banned.",
+      "sourceUrls": [
+        "https://tradeday.freshdesk.com/en/support/solutions/articles/103000123294-prohibited-countries",
+        "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008683-can-anyone-join-tradeday-"
+      ]
+    },
+    "checkout": {
+      "status": "partial",
+      "summary": "TradeDay publishes credit and debit card billing through NMI or Braintree, plus Google Pay, Apple Pay and PayPal, but no Indian payment attempt or final order total was independently tested.",
+      "sourceUrls": [
+        "https://tradeday.freshdesk.com/en/support/solutions/articles/103000120177-what-happens-if-a-subscription-payment-fails-"
+      ]
+    },
+    "kyc": {
+      "status": "verified",
+      "summary": "Funded onboarding runs broker, clearing-firm and Riseworks KYC/AML and requires a government-issued ID plus a bank statement or utility bill as address proof; this records the published documents, not successful Indian approval.",
+      "sourceUrls": [
+        "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008683-can-anyone-join-tradeday-"
+      ]
+    },
+    "payout": {
+      "status": "partial",
+      "summary": "TradeDay publishes Riseworks bank-wire and crypto withdrawals after a post-evaluation invitation; Indian provider onboarding, bank acceptance, wallet delivery and receipt remain untested.",
+      "sourceUrls": [
+        "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008898-what-are-the-payment-methods-for-my-trading-profits-"
+      ]
+    },
+    "fees": {
+      "status": "verified",
+      "summary": "TradeDay publishes $15 per international bank wire, $2.50 plus gas for L1 crypto and no fee for L2 crypto; it warns that country- and bank-related charges can be added.",
+      "sourceUrls": [
+        "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008898-what-are-the-payment-methods-for-my-trading-profits-"
+      ]
+    },
+    "currency": {
+      "status": "partial",
+      "summary": "TradeDay's 9 unique product-size combinations across 18 platform cards display dollar-denominated monthly fees from $59 to $225, but the Indian checkout's settlement currency, INR conversion and card-issuer charges remain untested.",
+      "sourceUrls": [
+        "https://www.tradeday.com/"
+      ]
+    },
+    "unresolved": "No completed Indian checkout, funded-stage broker, clearing-firm or Riseworks KYC approval, Riseworks invitation, Indian bank-wire or crypto payout receipt, or INR settlement has been independently verified. The final order currency, payment-method availability, FX, tax and processor costs, and variable country or bank surcharges remain unknown. The displayed fees are a 55%-off campaign, and first-party pages conflict on the refund due after a funded-stage KYC failure. Absence from the RBI Alert List is not authorisation."
   }
 ]
