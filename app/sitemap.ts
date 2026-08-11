@@ -89,12 +89,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/contact`, lastModified: new Date('2026-01-01'), changeFrequency: 'yearly', priority: 0.4 },
   ]
 
-  const featureRoutes: MetadataRoute.Sitemap = FEATURES.map(f => ({
-    url: `${BASE_URL}/prop-firms/${f.slug}`,
-    lastModified: firmsLastDate,
-    changeFrequency: 'weekly',
-    priority: 0.75,
-  }))
+  const featureRoutes: MetadataRoute.Sitemap = FEATURES.map(f => {
+    const reviewedAt = new Date(`${f.lastReviewed}T00:00:00Z`)
+    return {
+      url: `${BASE_URL}/prop-firms/${f.slug}`,
+      lastModified: new Date(Math.max(firmsLastDate.getTime(), reviewedAt.getTime())),
+      changeFrequency: 'weekly',
+      priority: 0.75,
+    }
+  })
   const indiaMatchupRoutes: MetadataRoute.Sitemap = Object.values(INDIA_MATCHUPS)
     .map(matchup => ({
       url: `${BASE_URL}${indiaMatchupPath(matchup)}`,

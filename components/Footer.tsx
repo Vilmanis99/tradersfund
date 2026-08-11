@@ -115,7 +115,7 @@ export default function Footer() {
             {newsletterEnabled && (
               <>
                 <p className="footer-brand-tagline">Get the weekly rule-change digest</p>
-                <NewsletterForm />
+                <NewsletterForm placement="footer" />
               </>
             )}
 

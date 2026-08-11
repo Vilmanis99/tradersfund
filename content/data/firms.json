@@ -218,20 +218,21 @@
     "reviewUrl": "/blog/funding-pips-review",
     "officialUrl": "https://fundingpips.com/",
     "affiliateUrl": "https://app.fundingpips.com/register?referral_code=1d94705c",
-    "profitSplitPct": 85,
-    "payoutFrequency": "bi-weekly",
+    "profitSplitPct": null,
+    "payoutFrequency": null,
     "payoutMethods": [
+      "Card",
       "Bank wire",
       "Rise",
       "Crypto"
     ],
-    "drawdownType": "static",
-    "minTradingDays": 0,
-    "consistencyRule": null,
+    "drawdownType": null,
+    "minTradingDays": null,
+    "consistencyRule": "Product-specific: 15%–35%, with profitable-day gates on some evaluations",
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
     "eaAllowed": "restricted",
-    "overnightAllowed": "restricted",
+    "overnightAllowed": true,
     "weekendAllowed": "restricted",
     "copyTradingAllowed": "restricted",
     "countriesRestricted": [
@@ -248,7 +249,7 @@
     "trustpilotScore": 4.5,
     "trustpilotCount": 63734,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-07-27",
+    "lastUpdated": "2026-08-10",
     "trustpilotUrl": "https://www.trustpilot.com/review/fundingpips.com",
     "trustpilotCapturedAt": "2026-07-27"
   },
@@ -431,9 +432,9 @@
     "payoutFrequency": "bi-weekly",
     "payoutMethods": [
       "Bank wire",
-      "Rise"
+      "Crypto"
     ],
-    "drawdownType": "static",
+    "drawdownType": null,
     "minTradingDays": 5,
     "consistencyRule": null,
     "scalingPlan": true,
@@ -459,7 +460,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-07-27",
+    "lastUpdated": "2026-08-10",
     "trustpilotUrl": "https://www.trustpilot.com/review/brightfunded.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-07-27"
@@ -599,28 +600,30 @@
     "maxAllocation": "$4,000,000",
     "platforms": [
       "MT4",
-      "MT5"
+      "MT5",
+      "DXTrade",
+      "TradingView"
     ],
     "score": 8.1,
     "logo": "/images/wp/2025/07/FXIFY-100.jpg",
     "reviewUrl": "/blog/fxify-review",
     "officialUrl": "https://fxify.com/",
     "profitSplitPct": 80,
-    "payoutFrequency": "monthly",
+    "payoutFrequency": null,
     "payoutMethods": [
       "Bank wire",
       "Rise",
       "Crypto"
     ],
-    "drawdownType": "trailing",
-    "minTradingDays": 0,
+    "drawdownType": null,
+    "minTradingDays": null,
     "consistencyRule": null,
     "scalingPlan": true,
     "newsTradingAllowed": true,
     "eaAllowed": true,
-    "overnightAllowed": true,
+    "overnightAllowed": null,
     "weekendAllowed": true,
-    "copyTradingAllowed": null,
+    "copyTradingAllowed": "restricted",
     "countriesRestricted": [
       "United States",
       "Zimbabwe",
@@ -667,7 +670,7 @@
     "trustpilotScore": 4.3,
     "trustpilotCount": 6120,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-07-27",
+    "lastUpdated": "2026-08-10",
     "trustpilotUrl": "https://www.trustpilot.com/review/fxify.com",
     "trustpilotCapturedAt": "2026-07-27"
   },

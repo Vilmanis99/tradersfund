@@ -10,6 +10,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { dirname, extname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { buildOutboundRelationships } from '../lib/outboundDestinations.ts'
 
 const args = process.argv.slice(2)
 const baseArg = args.find(value => !value.startsWith('--'))
@@ -18,7 +19,11 @@ const STRICT_LENGTHS = args.includes('--strict-lengths')
 const BASE = new URL(baseArg || 'http://127.0.0.1:3214')
 const PRODUCTION_ORIGIN = 'https://tradersfundhub.com'
 const CONCURRENCY = 12
+const REQUEST_TIMEOUT_MS = 15_000
 const PROJECT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
+const outboundRelationships = buildOutboundRelationships(JSON.parse(
+  readFileSync(join(PROJECT_ROOT, 'content/data/firms.json'), 'utf8'),
+))
 
 function decodeXml(value) {
   return value
@@ -77,16 +82,18 @@ async function mapConcurrent(values, worker) {
   return results
 }
 
-async function fetchPage(url, redirect = 'follow') {
+async function fetchPage(url, redirect = 'manual') {
   try {
     const response = await fetch(url, {
       redirect,
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
       headers: { 'user-agent': 'TradersFundHubReleaseAudit/1.0' },
     })
     return {
       url,
       status: response.status,
       contentType: response.headers.get('content-type') || '',
+      location: response.headers.get('location') || '',
       html: await response.text(),
     }
   } catch (error) {
@@ -94,6 +101,7 @@ async function fetchPage(url, redirect = 'follow') {
       url,
       status: 0,
       contentType: '',
+      location: '',
       html: '',
       error: error instanceof Error ? error.message : String(error),
     }
@@ -113,6 +121,8 @@ const uniqueSitemapUrls = [...new Set(sitemapUrls)]
 
 const errors = []
 const advisories = []
+
+console.log(`Crawling ${uniqueSitemapUrls.length} sitemap URLs at ${BASE.origin}...`)
 
 function sourceFiles(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
@@ -227,6 +237,32 @@ for (const page of pages) {
     imageCount += 1
     if (!/\balt=(?:"[^"]*"|'[^']*')/i.test(match[0])) {
       errors.push(`${path}: image without alt attribute`)
+    }
+  }
+
+  for (const match of page.html.matchAll(/<a\b[^>]*>/gi)) {
+    const tag = match[0]
+    const href = decodeXml(firstMatch(tag, /\bhref=["']([^"']+)["']/i))
+    if (!href) continue
+    const destination = new URL(href, page.productionUrl)
+    if (
+      destination.origin !== PRODUCTION_ORIGIN
+      || !destination.pathname.startsWith('/go/')
+    ) continue
+
+    const firmSlug = destination.pathname.split('/')[2]
+    const relationship = outboundRelationships[firmSlug]
+    if (!relationship) {
+      errors.push(`${path}: /go link points at unknown destination ${firmSlug}`)
+      continue
+    }
+    if (!destination.searchParams.get('from')) {
+      errors.push(`${path}: /go/${firmSlug} link has no controlled from placement`)
+    }
+    const rel = firstMatch(tag, /\brel=["']([^"']*)["']/i).toLowerCase()
+    const sponsored = rel.split(/\s+/).includes('sponsored')
+    if (sponsored !== (relationship === 'affiliate')) {
+      errors.push(`${path}: /go/${firmSlug} sponsored rel disagrees with outbound configuration`)
     }
   }
 
@@ -539,6 +575,73 @@ for (const matchup of [
   ) {
     errors.push(`${path}: rendered a bare affiliate destination`)
   }
+}
+
+const namedAffiliateIndiaRedirect = await fetchPage(new URL(
+  '/go/fundednext?from=best-prop-firms-in-india',
+  BASE,
+), 'manual')
+let namedAffiliateIndiaDestination = null
+try {
+  namedAffiliateIndiaDestination = new URL(namedAffiliateIndiaRedirect.location, BASE)
+} catch {
+  // The assertions below report the missing or malformed Location header.
+}
+if (
+  outboundRelationships.fundednext !== 'affiliate'
+  || namedAffiliateIndiaRedirect.status !== 302
+  || !namedAffiliateIndiaDestination
+  || namedAffiliateIndiaDestination.pathname
+    !== '/blog/are-prop-firms-legal-in-india'
+  || namedAffiliateIndiaDestination.searchParams.size !== 1
+  || namedAffiliateIndiaDestination.searchParams.get('firm') !== 'fundednext'
+) {
+  errors.push(
+    '/go/fundednext?from=best-prop-firms-in-india: RBI named affiliate redirect guard failed',
+  )
+}
+
+const screenedIndiaRedirect = await fetchPage(new URL(
+  '/go/fundingpips?from=india-matchup-fundingpips-fxify',
+  BASE,
+), 'manual')
+let screenedIndiaDestination = null
+try {
+  screenedIndiaDestination = new URL(screenedIndiaRedirect.location, BASE)
+} catch {
+  // The assertions below report the missing or malformed Location header.
+}
+if (
+  screenedIndiaRedirect.status !== 302
+  || !screenedIndiaDestination
+  || screenedIndiaDestination.origin === BASE.origin
+  || screenedIndiaDestination.searchParams.get('utm_campaign')
+    !== 'india-matchup-fundingpips-fxify'
+) {
+  errors.push(
+    '/go/fundingpips?from=india-matchup-…: screened India redirect failed',
+  )
+}
+
+const officialRedirect = await fetchPage(new URL(
+  '/go/ftmo?from=release-official-check',
+  BASE,
+), 'manual')
+let officialDestination = null
+try {
+  officialDestination = new URL(officialRedirect.location, BASE)
+} catch {
+  // The assertions below report the missing or malformed Location header.
+}
+if (
+  officialRedirect.status !== 302
+  || !officialDestination
+  || officialDestination.origin === BASE.origin
+  || officialDestination.searchParams.has('utm_source')
+  || officialDestination.searchParams.has('utm_medium')
+  || officialDestination.searchParams.has('utm_campaign')
+) {
+  errors.push('/go/ftmo?from=release-official-check: official redirect attribution failed')
 }
 
 console.log(`Release crawl — ${BASE.origin}`)

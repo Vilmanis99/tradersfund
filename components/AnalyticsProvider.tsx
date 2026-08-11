@@ -10,21 +10,17 @@ import {
   type SiteAnalyticsEventDetail,
   type SiteEventProperties,
 } from '@/lib/clientAnalytics'
+import {
+  goClickEventName,
+  isHighIntentJourneyStage,
+  journeyStage,
+} from '@/lib/analyticsTaxonomy'
+import type { OutboundRelationship } from '@/lib/outboundDestinations'
 import { OPEN_ANALYTICS_SETTINGS_EVENT } from './AnalyticsPreferencesButton'
 
 const CONSENT_STORAGE_KEY = 'tfh_analytics_consent_v1'
 const CONSENT_CHANGE_EVENT = 'tfh:analytics-consent-changed'
 const SCROLL_THRESHOLDS = [25, 50, 75, 90] as const
-const HIGH_INTENT_STAGES = new Set([
-  'india_comparison',
-  'india_updates',
-  'challenge_comparison',
-  'challenge_updates',
-  'comparison_directory',
-  'firm_review',
-  'head_to_head',
-])
-
 type AnalyticsConsent = 'unknown' | 'granted' | 'denied'
 type GtagCommand = 'config' | 'consent' | 'event' | 'js' | 'set'
 type ClarityCommand = 'consent' | 'consentv2' | 'event' | 'set'
@@ -95,24 +91,6 @@ function setOptionalConsent(consent: Exclude<AnalyticsConsent, 'unknown'>) {
   }
 }
 
-function journeyStage(pathname: string) {
-  if (pathname === '/') return 'home'
-  if (pathname === '/best-prop-firms-in-india') return 'india_hub'
-  if (pathname.startsWith('/best-prop-firms-in-india/compare')) return 'india_comparison'
-  if (pathname === '/best-prop-firms-in-india/challenge-comparison') return 'india_comparison'
-  if (pathname.startsWith('/best-prop-firms-in-india/challenge-changes')) return 'india_updates'
-  if (pathname === '/prop-firm-challenges') return 'challenge_comparison'
-  if (pathname === '/prop-firm-challenge-changes') return 'challenge_updates'
-  if (pathname === '/prop-firms') return 'firm_directory'
-  if (pathname === '/compare') return 'comparison_directory'
-  if (pathname.includes('-vs-') || pathname.includes('/compare/')) return 'head_to_head'
-  if (
-    /^\/blog\/(?:[^/]+-review|bright-funded-prop-firm|my-funded-futures)\/?$/.test(pathname)
-  ) return 'firm_review'
-  if (pathname.startsWith('/blog')) return 'editorial'
-  return 'information'
-}
-
 function safeLabel(value: string | null, fallback = 'unknown') {
   if (!value) return fallback
   const sanitized = value.toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 60)
@@ -148,9 +126,11 @@ function subscribeToNothing() {
 export default function AnalyticsProvider({
   gaMeasurementId: rawGaId,
   clarityProjectId: rawClarityId,
+  outboundRelationships,
 }: {
   gaMeasurementId?: string
   clarityProjectId?: string
+  outboundRelationships: Record<string, OutboundRelationship>
 }) {
   const pathname = usePathname() || '/'
   const gaMeasurementId = useMemo(() => validGaId(rawGaId), [rawGaId])
@@ -162,6 +142,7 @@ export default function AnalyticsProvider({
   const [gaReady, setGaReady] = useState(false)
   const [clarityReady, setClarityReady] = useState(false)
   const scrollDepths = useRef(new Set<number>())
+  const journeyViewRef = useRef('')
 
   useEffect(() => {
     const openSettings = () => {
@@ -193,10 +174,28 @@ export default function AnalyticsProvider({
   }, [clarityProjectId, consent, gaMeasurementId])
 
   useEffect(() => {
+    if (journeyViewRef.current === pathname) return
+    journeyViewRef.current = pathname
+    trackVercel('journey_view', { content_group: journeyStage(pathname) })
+  }, [pathname])
+
+  useEffect(() => {
     if (consent !== 'granted') return
     const stage = journeyStage(pathname)
 
     if (gaMeasurementId && gaReady) {
+      const sanitizedLocation = `${window.location.origin}${pathname}`
+      window.gtag?.('config', gaMeasurementId, {
+        update: true,
+        send_page_view: false,
+        page_location: sanitizedLocation,
+        page_path: pathname,
+      })
+      window.gtag?.('event', 'page_view', {
+        page_location: sanitizedLocation,
+        page_path: pathname,
+        content_group: stage,
+      })
       window.gtag?.('event', 'journey_view', {
         page_path: pathname,
         content_group: stage,
@@ -244,8 +243,10 @@ export default function AnalyticsProvider({
       if (destination.origin === window.location.origin && destination.pathname.startsWith('/go/')) {
         const firm = safeLabel(destination.pathname.split('/')[2])
         const placement = safeLabel(destination.searchParams.get('from'))
-        trackVercel('affiliate_click', { firm, placement })
-        trackEvent('affiliate_click', { firm, placement })
+        const eventName = goClickEventName(firm, outboundRelationships)
+        if (!eventName) return
+        trackVercel(eventName, { firm, placement })
+        trackEvent(eventName, { firm, placement })
         return
       }
 
@@ -271,7 +272,7 @@ export default function AnalyticsProvider({
 
       if (destination.pathname !== pathname) {
         const destinationStage = journeyStage(destination.pathname)
-        if (destinationStage !== currentStage && HIGH_INTENT_STAGES.has(destinationStage)) {
+        if (destinationStage !== currentStage && isHighIntentJourneyStage(destinationStage)) {
           trackVercel('journey_step', {
             from_stage: currentStage,
             to_stage: destinationStage,
@@ -314,7 +315,7 @@ export default function AnalyticsProvider({
       window.removeEventListener('scroll', handleScroll)
       if (engagedTimer !== undefined) window.clearTimeout(engagedTimer)
     }
-  }, [clarityProjectId, clarityReady, consent, gaMeasurementId, gaReady, pathname])
+  }, [clarityProjectId, clarityReady, consent, gaMeasurementId, gaReady, outboundRelationships, pathname])
 
   const updateConsent = (nextConsent: Exclude<AnalyticsConsent, 'unknown'>) => {
     memoryConsent = nextConsent
@@ -341,12 +342,15 @@ export default function AnalyticsProvider({
           id="tfh-google-analytics"
           src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
           strategy="afterInteractive"
-          onLoad={() => {
+          onReady={() => {
             ensureGtag()
             window.gtag?.('js', new Date())
             window.gtag?.('config', gaMeasurementId, {
               allow_google_signals: false,
               allow_ad_personalization_signals: false,
+              send_page_view: false,
+              page_location: `${window.location.origin}${pathname}`,
+              page_path: pathname,
             })
             setOptionalConsent('granted')
             setGaReady(true)
@@ -359,7 +363,7 @@ export default function AnalyticsProvider({
           id="tfh-microsoft-clarity"
           src={`https://www.clarity.ms/tag/${clarityProjectId}`}
           strategy="afterInteractive"
-          onLoad={() => {
+          onReady={() => {
             ensureClarity()
             setOptionalConsent('granted')
             setClarityReady(true)

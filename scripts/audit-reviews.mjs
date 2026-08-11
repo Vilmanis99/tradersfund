@@ -34,7 +34,26 @@ import {
   parseChallengeChangeFocus,
   validateChallengeProductKeys,
 } from '../lib/challengeChangeFocus.ts'
-import { computeTrueCost } from '../lib/firms.ts'
+import { isIndiaCampaign } from '../lib/affiliateCampaign.ts'
+import { challengeTierEconomics, computeTrueCost } from '../lib/firms.ts'
+import {
+  goClickEventName,
+  isHighIntentJourneyStage,
+  journeyStage,
+} from '../lib/analyticsTaxonomy.ts'
+import {
+  INDIA_MATCHER_DRAWDOWNS,
+  INDIA_MATCHER_PAYOUTS,
+  INDIA_MATCHER_PROGRAMS,
+  INDIA_MATCHER_STRATEGIES,
+  indiaMatcherResultProperties,
+  indiaMatcherStateKey,
+} from '../lib/indiaMatcherAnalytics.ts'
+import {
+  buildOutboundRelationships,
+  outboundSlug,
+} from '../lib/outboundDestinations.ts'
+import { decoratePostOutboundLinks } from '../lib/postOutboundLinks.ts'
 import { diffChallengeProducts } from './challenge-diff.mjs'
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -118,6 +137,12 @@ const INDIA_MATCHUP_SLUGS = [
   'fundingpips-vs-fxify',
   'bright-funded-vs-fxify',
 ]
+const AFFILIATE_REDIRECT_ROUTE_FILE = path.join(ROOT, 'app/go/[firm]/route.ts')
+const ANALYTICS_PROVIDER_FILE = path.join(ROOT, 'components/AnalyticsProvider.tsx')
+const INDIA_MATCHER_COMPONENT_FILE = path.join(ROOT, 'components/IndiaFirmMatcher.tsx')
+const ROOT_LAYOUT_FILE = path.join(ROOT, 'app/layout.tsx')
+const BLOG_POST_PAGE_FILE = path.join(ROOT, 'app/blog/[slug]/page.tsx')
+const PRIVACY_POLICY_FILE = path.join(ROOT, 'content/pages/privacy-policy.md')
 const INDIA_CHALLENGE_SOCIAL_FILE = path.join(
   ROOT,
   'app/best-prop-firms-in-india/challenge-comparison/opengraph-image.png',
@@ -883,18 +908,43 @@ function checkTrustAndCommercialSurface() {
   }
 
   const blogPage = fs.readFileSync(path.join(ROOT, 'app/blog/[slug]/page.tsx'), 'utf-8')
-  for (const token of ['affiliateSlugs.has', "'sponsored nofollow noopener'", "'nofollow noopener'"]) {
+  for (const token of ['decoratePostOutboundLinks', 'buildOutboundRelationships']) {
     if (!blogPage.includes(token)) {
       rows.push(`blog outbound-link rel guard is missing ${token}`)
+    }
+  }
+  const postLinkDecorator = fs.readFileSync(
+    path.join(ROOT, 'lib/postOutboundLinks.ts'),
+    'utf-8',
+  )
+  for (const token of [
+    "=== 'affiliate'",
+    "'sponsored nofollow noopener'",
+    "'nofollow noopener'",
+  ]) {
+    if (!postLinkDecorator.includes(token)) {
+      rows.push(`post outbound-link rel guard is missing ${token}`)
     }
   }
 
   const comparisons = fs.readFileSync(path.join(ROOT, 'lib/comparisons.ts'), 'utf-8')
   if (
     !comparisons.includes('overlay.reviewedAt < latestFirmUpdate') ||
-    !comparisons.includes('if (!overlay?.reviewedAt) return undefined')
+    !comparisons.includes('overlay.challengeReviewedAt < latestProductCapture') ||
+    !comparisons.includes('if (!overlay?.reviewedAt || !overlay.challengeReviewedAt) return undefined') ||
+    !comparisons.includes('export function getActiveOverlays()')
   ) {
-    rows.push('comparison overlays must fail closed when editorial copy is stale')
+    rows.push('comparison overlays must fail closed unless aggregate and product captures were reviewed')
+  }
+  const comparisonHub = fs.readFileSync(
+    path.join(ROOT, 'app/compare/page.tsx'),
+    'utf-8',
+  )
+  if (
+    !comparisonHub.includes('getActiveOverlays()') ||
+    comparisonHub.includes('COMPARISON_OVERLAYS[slug]')
+  ) {
+    rows.push('comparison hub must project editorial copy through the shared freshness gate')
   }
   const comparisonPage = fs.readFileSync(
     path.join(ROOT, 'app/compare/[matchup]/page.tsx'),
@@ -938,7 +988,15 @@ function checkTierDrawdownMathSurface() {
   const checks = [
     [
       'lib/firms.ts',
-      ['maxLossUsd?: number | null', 'input.maxLossUsd', 'effectiveMaxLossUsd'],
+      [
+        'maxLossUsd?: number | null',
+        'input.maxLossUsd',
+        'effectiveMaxLossUsd',
+        // challengeTierEconomics() is the single place the tier dollar cap is
+        // fed into computeTrueCost. Both the review generator and /compare
+        // delegate to it, so this token guards every renderer at once.
+        'maxLossUsd: tier.maxLossUsd',
+      ],
     ],
     [
       'scripts/merge-capture.mjs',
@@ -946,7 +1004,11 @@ function checkTierDrawdownMathSurface() {
     ],
     [
       'scripts/gen-truecost.mjs',
-      ['hasTierDollarDrawdown', "headers.push('Max loss')", 'maxLossUsd: t.maxLossUsd'],
+      ['hasTierDollarDrawdown', "headers.push('Max loss')", 'challengeTierEconomics'],
+    ],
+    [
+      'lib/challengeMatchup.ts',
+      ['challengeTierEconomics', 'tier.maxLossUsd'],
     ],
     [
       'scripts/audit-reviews.mjs',
@@ -989,6 +1051,9 @@ function checkTierFeeAndDailyLossSurface() {
         'activationFeeUsd?: number | null',
         'dailyLossUsd?: number | null',
         'tier.activationFeeUsd ?? challenge.activationFeeUsd',
+        // Tier dollar DLL must keep overriding the product-wide percentage
+        // inside the shared economics helper, not just in the generator.
+        'tier.dailyLossUsd != null',
       ],
     ],
     [
@@ -1021,6 +1086,144 @@ function checkTierFeeAndDailyLossSurface() {
 
   if (rows.length) {
     console.log('\n✗ Tier-specific fee and daily-loss math')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/**
+ * Execute the shared tier-economics path against synthetic products.
+ *
+ * The surface checks above protect wiring, but a source-token check can be
+ * satisfied by a comment and cannot prove precedence or arithmetic. These
+ * fixtures call the same helper used by scripts/gen-truecost.mjs and the
+ * product-level comparison renderer, so a regression must produce a real
+ * wrong value before this audit can pass.
+ */
+function checkTrueCostRuntimeFixtures() {
+  const rows = []
+
+  const product = overrides => ({
+    accountSizes: [],
+    pricingModel: 'one-off',
+    activationFeeUsd: null,
+    profitSplitPct: 80,
+    dailyLossPct: 4,
+    maxLossPct: 10,
+    ...overrides,
+  })
+  const tier = overrides => ({
+    sizeUsd: 10_000,
+    priceUsd: 100,
+    priceEur: null,
+    payLaterUsd: null,
+    activationFeeUsd: null,
+    dailyLossUsd: null,
+    maxLossUsd: null,
+    refundable: null,
+    ...overrides,
+  })
+
+  const expectNumber = (fixture, field, actual, expected, tolerance = 1e-9) => {
+    if (typeof actual !== 'number' || Math.abs(actual - expected) > tolerance) {
+      rows.push(`${fixture}: ${field} expected ${expected}, received ${String(actual)}`)
+    }
+  }
+  const expectNull = (fixture, field, actual) => {
+    if (actual !== null) {
+      rows.push(`${fixture}: ${field} expected null, received ${String(actual)}`)
+    }
+  }
+  const run = (name, challenge, accountTier) => {
+    const productWithTier = challenge.accountSizes.length
+      ? challenge
+      : { ...challenge, accountSizes: [accountTier] }
+    const result = challengeTierEconomics(productWithTier, accountTier)
+    if (!result) rows.push(`${name}: challengeTierEconomics returned null`)
+    return result
+  }
+
+  const oneOff = run('one-off USD', product(), tier())
+  if (oneOff) {
+    expectNumber('one-off USD', 'minimumCost', oneOff.minimumCost, 100)
+    expectNumber('one-off USD', 'breakEvenProfit', oneOff.breakEvenProfit, 125)
+    expectNumber('one-off USD', 'rMultiple', oneOff.rMultiple, 0.125)
+    expectNumber('one-off USD', 'dayCount', oneOff.dayCount, 2)
+  }
+
+  const productActivation = run(
+    'product activation',
+    product({ activationFeeUsd: 25 }),
+    tier(),
+  )
+  if (productActivation) {
+    expectNumber('product activation', 'minimumCost', productActivation.minimumCost, 125)
+  }
+
+  const tierActivation = run(
+    'tier activation precedence',
+    product({ activationFeeUsd: 25 }),
+    tier({ activationFeeUsd: 40 }),
+  )
+  if (tierActivation) {
+    expectNumber('tier activation precedence', 'minimumCost', tierActivation.minimumCost, 140)
+  }
+
+  const subscription = run(
+    'subscription activation',
+    product({ pricingModel: 'monthly-subscription', activationFeeUsd: 149 }),
+    tier({ priceUsd: 49 }),
+  )
+  if (subscription) {
+    expectNumber('subscription activation', 'minimumCost', subscription.minimumCost, 198)
+  }
+
+  const splitPayment = run(
+    'split-payment pay-later',
+    product({ pricingModel: 'split-payment' }),
+    tier({ priceUsd: 5, payLaterUsd: 40 }),
+  )
+  if (splitPayment) {
+    expectNumber('split-payment pay-later', 'minimumCost', splitPayment.minimumCost, 45)
+  }
+
+  const tierRisk = run(
+    'tier daily/max-loss override',
+    product({ dailyLossPct: 4, maxLossPct: 10 }),
+    tier({ priceUsd: 800, dailyLossUsd: 50, maxLossUsd: 200 }),
+  )
+  if (tierRisk) {
+    expectNumber('tier daily/max-loss override', 'breakEvenProfit', tierRisk.breakEvenProfit, 1_000)
+    expectNumber('tier daily/max-loss override', 'rMultiple', tierRisk.rMultiple, 5)
+    expectNumber('tier daily/max-loss override', 'dayCount', tierRisk.dayCount, 20)
+  }
+
+  const unknownDailyLoss = run(
+    'unknown daily-loss',
+    product({ dailyLossPct: null }),
+    tier(),
+  )
+  if (unknownDailyLoss) {
+    expectNull('unknown daily-loss', 'dayCount', unknownDailyLoss.dayCount)
+  }
+
+  const euro = run(
+    'EUR suppression',
+    product(),
+    tier({ priceUsd: null, priceEur: 100 }),
+  )
+  if (euro) {
+    if (euro.currency !== 'EUR') {
+      rows.push(`EUR suppression: currency expected EUR, received ${String(euro.currency)}`)
+    }
+    expectNumber('EUR suppression', 'minimumCost', euro.minimumCost, 100)
+    expectNumber('EUR suppression', 'breakEvenProfit', euro.breakEvenProfit, 125)
+    expectNull('EUR suppression', 'rMultiple', euro.rMultiple)
+    expectNull('EUR suppression', 'dayCount', euro.dayCount)
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Executable True-Cost fixtures')
     for (const row of rows) console.log(`  · ${row}`)
   }
   return rows.length
@@ -1569,6 +1772,7 @@ function checkChallengeMonitoringWorkflow() {
     '--accept-changes',
     'material changes require editorial review',
     'update content/data/challenge-watch.json',
+    "field === 'overnight' && /\\ballowed on weekdays?\\b/.test(s)",
   ]) {
     if (!merge.includes(token)) rows.push(`merge-capture is missing change gate: ${token}`)
   }
@@ -1798,12 +2002,12 @@ function checkIndiaEvidence() {
       rows.push(`${slug}: restrictionListComplete must be true or false`)
     } else if (
       entry.restrictionListComplete === false &&
-      !/sanction|non-exhaustive|conditional|dynamic/i.test(
+      !/sanction|non-exhaustive|conditional|dynamic|conflict|disagree|incomplete/i.test(
         `${entry.country?.summary ?? ''} ${entry.unresolved ?? ''}`
       )
     ) {
       rows.push(
-        `${slug}: a partial restriction list must disclose sanctions, conditional, or dynamic screening`
+        `${slug}: a partial restriction list must disclose why its coverage is incomplete`
       )
     }
 
@@ -2013,6 +2217,270 @@ function checkIndiaEvidence() {
  * Keep it data-derived, reachable, indexable, and free of direct affiliate
  * redirects so RBI-excluded firms cannot leak back in through hard-coded CTAs.
  */
+function checkIndiaAffiliateCampaignGuard() {
+  const rows = []
+  const indiaPlacements = [
+    'best-prop-firms-in-india',
+    'india-matcher-manual-any-any-any',
+    'india-inr-planner-estimate',
+    'india-challenge-product-1-step-flex',
+    'india-matchup-fundingpips-fxify',
+  ]
+  for (const placement of indiaPlacements) {
+    if (!isIndiaCampaign(placement)) {
+      rows.push(`India affiliate campaign guard misses ${placement}`)
+    }
+  }
+  for (const placement of ['compare', 'review-cta', 'unknown']) {
+    if (isIndiaCampaign(placement)) {
+      rows.push(`India affiliate campaign guard misclassifies ${placement}`)
+    }
+  }
+
+  const route = fs.existsSync(AFFILIATE_REDIRECT_ROUTE_FILE)
+    ? fs.readFileSync(AFFILIATE_REDIRECT_ROUTE_FILE, 'utf-8')
+    : ''
+  if (!route) {
+    rows.push('app/go/[firm]/route.ts is missing')
+  } else {
+    for (const token of [
+      "import { isIndiaCampaign } from '@/lib/affiliateCampaign'",
+      "isIndiaCampaign(from) && indiaEvidence?.rbiAlert.status === 'named'",
+      "event: 'india_affiliate_click_blocked'",
+    ]) {
+      if (!route.includes(token)) {
+        rows.push(`India affiliate redirect route is missing safeguard: ${token}`)
+      }
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ India affiliate campaign guard')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+function checkAnalyticsMeasurementContract() {
+  const rows = []
+
+  const stageFixtures = new Map([
+    ['/', 'home'],
+    ['/best-prop-firms-in-india/', 'india_hub'],
+    ['/best-prop-firms-in-india/payout-methods', 'india_payout'],
+    ['/best-prop-firms-in-india/compare/', 'india_matchup_directory'],
+    ['/best-prop-firms-in-india/fundingpips-vs-fxify', 'india_matchup'],
+    ['/best-prop-firms-in-india/challenge-comparison/', 'india_comparison'],
+    ['/best-prop-firms-in-india/challenge-changes', 'india_updates'],
+    ['/compare/ftmo-vs-fundingpips', 'head_to_head'],
+    ['/blog/ftmo-review/', 'firm_review'],
+  ])
+  for (const [pathname, expected] of stageFixtures) {
+    const actual = journeyStage(pathname)
+    if (actual !== expected) {
+      rows.push(`journeyStage(${pathname}) expected ${expected}, received ${actual}`)
+    }
+  }
+  if (!isHighIntentJourneyStage('india_hub')) {
+    rows.push('India hub must be high intent so payout-to-matcher navigation is measured')
+  }
+
+  const relationshipFixture = {
+    fundingpips: 'affiliate',
+    ftmo: 'official',
+  }
+  if (goClickEventName('fundingpips', relationshipFixture) !== 'affiliate_click') {
+    rows.push('Configured affiliate /go clicks must emit affiliate_click')
+  }
+  if (goClickEventName('ftmo', relationshipFixture) !== 'official_site_click') {
+    rows.push('Configured official /go clicks must emit official_site_click')
+  }
+  if (goClickEventName('unknown-firm', relationshipFixture) !== null) {
+    rows.push('Unknown /go slugs must not be classified as affiliate or official clicks')
+  }
+
+  const expectedPayloadKeys = [
+    'changed_control',
+    'drawdown',
+    'matching_firms',
+    'matching_products',
+    'payout',
+    'program',
+    'strategy',
+    'surface',
+  ]
+  const matcherStateKeys = new Set()
+  let matcherFixtureCount = 0
+  for (const strategy of INDIA_MATCHER_STRATEGIES) {
+    for (const program of INDIA_MATCHER_PROGRAMS) {
+      for (const drawdown of INDIA_MATCHER_DRAWDOWNS) {
+        for (const payout of INDIA_MATCHER_PAYOUTS) {
+          const filters = { strategy, program, drawdown, payout }
+          const payload = indiaMatcherResultProperties(
+            filters,
+            'strategy',
+            2,
+            7,
+          )
+          matcherFixtureCount += 1
+          matcherStateKeys.add(indiaMatcherStateKey(filters))
+          const keys = Object.keys(payload).sort()
+          if (keys.join('|') !== expectedPayloadKeys.join('|')) {
+            rows.push(`India matcher payload keys drifted for ${indiaMatcherStateKey(filters)}`)
+          }
+          if (
+            payload.surface !== 'india'
+            || payload.changed_control !== 'strategy'
+            || !Number.isInteger(payload.matching_firms)
+            || payload.matching_firms < 0
+            || !Number.isInteger(payload.matching_products)
+            || payload.matching_products < 0
+          ) {
+            rows.push(`India matcher payload values are invalid for ${indiaMatcherStateKey(filters)}`)
+          }
+          if (keys.some(key => /(^|_)(url|query|hash|email|name|kyc|payment|amount|rate|markup|charges?|id)(_|$)/i.test(key))) {
+            rows.push(`India matcher payload exposes a privacy-risk key for ${indiaMatcherStateKey(filters)}`)
+          }
+        }
+      }
+    }
+  }
+  if (matcherFixtureCount !== 336 || matcherStateKeys.size !== 336) {
+    rows.push(
+      `India matcher taxonomy expected 336 bounded states, received ${matcherFixtureCount}/${matcherStateKeys.size}`,
+    )
+  }
+
+  const fixtureRelationships = {
+    fundingpips: 'affiliate',
+    ftmo: 'official',
+  }
+  const decoratedAffiliate = decoratePostOutboundLinks(
+    '<p><a href="/go/fundingpips?coupon=SAVE&from=editor-value#terms" rel="nofollow" target="_self">Offer</a></p>',
+    fixtureRelationships,
+    'funding-pips_review',
+  )
+  if (
+    !decoratedAffiliate.includes(
+      'href="/go/fundingpips?coupon=SAVE&from=post-body-funding-pips-review#terms"',
+    )
+    || !decoratedAffiliate.includes('rel="sponsored nofollow noopener"')
+    || !decoratedAffiliate.includes('target="_blank"')
+    || decoratedAffiliate.includes('editor-value')
+    || new URL(
+      decoratedAffiliate.match(/href="([^"]+)"/)?.[1] ?? '/',
+      'https://tradersfundhub.com',
+    ).searchParams.get('from') !== outboundSlug('post-body-funding-pips_review')
+    || (decoratedAffiliate.match(/\srel=/g) ?? []).length !== 1
+    || (decoratedAffiliate.match(/\starget=/g) ?? []).length !== 1
+  ) {
+    rows.push('Post-body affiliate decorator failed its query/hash/from/rel fixture')
+  }
+  const decoratedOfficial = decoratePostOutboundLinks(
+    '<a href="/go/ftmo">Terms</a><a href="/about">About</a>',
+    fixtureRelationships,
+    'ftmo-review',
+  )
+  if (
+    !decoratedOfficial.includes('href="/go/ftmo?from=post-body-ftmo-review"')
+    || !decoratedOfficial.includes('rel="nofollow noopener"')
+    || decoratedOfficial.includes('sponsored')
+    || !decoratedOfficial.includes('<a href="/about">About</a>')
+  ) {
+    rows.push('Post-body official decorator failed its attribution/non-/go fixture')
+  }
+
+  const firms = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'))
+  const outboundRelationships = buildOutboundRelationships(firms)
+  let reviewBodyGoLinks = 0
+  for (const postSlug of Object.keys(REVIEW_TO_FIRM)) {
+    const postFile = path.join(POSTS, `${postSlug}.md`)
+    const body = matter(fs.readFileSync(postFile, 'utf-8')).content
+    const rendered = decoratePostOutboundLinks(body, outboundRelationships, postSlug)
+    for (const match of rendered.matchAll(/<a\b[^>]*\bhref=(["'])(\/go\/[^"']+)\1[^>]*>/gi)) {
+      reviewBodyGoLinks += 1
+      const tag = match[0]
+      const destination = new URL(match[2], 'https://tradersfundhub.com')
+      const firmSlug = destination.pathname.split('/')[2]
+      const expectedCampaign = `post-body-${postSlug}`
+      if (destination.searchParams.get('from') !== expectedCampaign) {
+        rows.push(`${postSlug}: body /go link lacks controlled ${expectedCampaign} attribution`)
+      }
+      const relationship = outboundRelationships[firmSlug]
+      if (!relationship) {
+        rows.push(`${postSlug}: body /go link points at unknown destination ${firmSlug}`)
+      }
+      const sponsored = /\brel=(["'])[^"']*\bsponsored\b[^"']*\1/i.test(tag)
+      if (sponsored !== (relationship === 'affiliate')) {
+        rows.push(`${postSlug}: ${firmSlug} sponsored rel disagrees with outbound configuration`)
+      }
+    }
+  }
+  if (reviewBodyGoLinks === 0) {
+    rows.push('Reviews v2 must exercise at least one rendered body /go attribution fixture')
+  }
+
+  const analyticsProviderSource = fs.existsSync(ANALYTICS_PROVIDER_FILE)
+    ? fs.readFileSync(ANALYTICS_PROVIDER_FILE, 'utf-8')
+    : ''
+  const optionalScriptBlocks = [
+    analyticsProviderSource.match(/id="tfh-google-analytics"[\s\S]*?\/>/)?.[0] ?? '',
+    analyticsProviderSource.match(/id="tfh-microsoft-clarity"[\s\S]*?\/>/)?.[0] ?? '',
+  ]
+  if (optionalScriptBlocks.some((block) => !block.includes('onReady={() => {') || block.includes('onLoad='))) {
+    rows.push('Optional analytics scripts must restore readiness with next/script onReady after consent remounts')
+  }
+
+  const sourceChecks = [
+    [ANALYTICS_PROVIDER_FILE, [
+      "trackVercel('journey_view'",
+      'send_page_view: false',
+      'page_location: sanitizedLocation',
+      'goClickEventName(firm, outboundRelationships)',
+      'if (!eventName) return',
+    ]],
+    [INDIA_MATCHER_COMPONENT_FILE, [
+      "track('challenge_matcher_started'",
+      "track('challenge_matcher_result'",
+      'lastResultKeyRef',
+      "const campaign = 'india-matcher-result'",
+      "timeZone: 'UTC'",
+    ]],
+    [ROOT_LAYOUT_FILE, ['buildOutboundRelationships(getAllFirms())']],
+    [BLOG_POST_PAGE_FILE, ['decoratePostOutboundLinks(', 'outboundRelationships,', 'slug,']],
+    [path.join(ROOT, 'components/NewsletterForm.tsx'), [
+      "track('newsletter_double_opt_in_started'",
+      'data-clarity-mask="true"',
+    ]],
+    [path.join(ROOT, 'components/ContactForm.tsx'), [
+      "track('contact_submission_delivered'",
+      'data-clarity-mask="true"',
+    ]],
+    [path.join(ROOT, 'components/IndiaEvidenceSubmissionForm.tsx'), [
+      'data-clarity-mask="true"',
+    ]],
+    [PRIVACY_POLICY_FILE, [
+      'An individual controlled firm/product key may be sent',
+      'Complete shortlist combinations and shortlist query strings are not sent',
+      'This policy was last updated on 10 August 2026',
+    ]],
+  ]
+  for (const [file, tokens] of sourceChecks) {
+    const source = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+    for (const token of tokens) {
+      if (!source.includes(token)) {
+        rows.push(`${path.relative(ROOT, file)} is missing analytics safeguard: ${token}`)
+      }
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Analytics measurement contract')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
 function checkIndiaPayoutSurface() {
   const rows = []
   if (!fs.existsSync(INDIA_PAYOUT_PAGE_FILE)) {
@@ -2558,6 +3026,8 @@ const tierDrawdownMathErrors = checkTierDrawdownMathSurface()
 totalErrors += tierDrawdownMathErrors
 const tierFeeAndDailyLossErrors = checkTierFeeAndDailyLossSurface()
 totalErrors += tierFeeAndDailyLossErrors
+const trueCostRuntimeFixtureErrors = checkTrueCostRuntimeFixtures()
+totalErrors += trueCostRuntimeFixtureErrors
 const globalDirectoryErrors = checkGlobalDirectorySurface()
 totalErrors += globalDirectoryErrors
 const globalChallengeErrors = checkGlobalChallengeSurface()
@@ -2568,6 +3038,10 @@ const challengeMonitoringErrors = checkChallengeMonitoringWorkflow()
 totalErrors += challengeMonitoringErrors
 const indiaEvidenceErrors = checkIndiaEvidence()
 totalErrors += indiaEvidenceErrors
+const indiaAffiliateCampaignGuardErrors = checkIndiaAffiliateCampaignGuard()
+totalErrors += indiaAffiliateCampaignGuardErrors
+const analyticsMeasurementContractErrors = checkAnalyticsMeasurementContract()
+totalErrors += analyticsMeasurementContractErrors
 const indiaPayoutSurfaceErrors = checkIndiaPayoutSurface()
 totalErrors += indiaPayoutSurfaceErrors
 const indiaChallengeSurfaceErrors = checkIndiaChallengeSurface()

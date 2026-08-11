@@ -14,6 +14,8 @@ import FirmAlternatives from '@/components/FirmAlternatives'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import AnimatedNumber from '@/components/AnimatedNumber'
 import MobileStickyCTA from '@/components/MobileStickyCTA'
+import { decoratePostOutboundLinks } from '@/lib/postOutboundLinks'
+import { buildOutboundRelationships } from '@/lib/outboundDestinations'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -62,36 +64,20 @@ function addHeadingIds(html: string): string {
   })
 }
 
-/** Apply sponsored only to firms with a configured commercial relationship. */
-function addOutboundRel(html: string, affiliateSlugs: Set<string>): string {
-  return html.replace(/<a\b[^>]*>/gi, tag => {
-    const match = tag.match(/\bhref=(?:"|')\/go\/([^"'?/#]+)/i)
-    if (!match) return tag
-
-    const rel = affiliateSlugs.has(match[1].toLowerCase())
-      ? 'sponsored nofollow noopener'
-      : 'nofollow noopener'
-    const cleanTag = tag
-      .replace(/\s+rel=(?:"[^"]*"|'[^']*')/i, '')
-      .replace(/\s+target=(?:"[^"]*"|'[^']*')/i, '')
-    return cleanTag.replace(/^<a\b/i, `<a rel="${rel}" target="_blank"`)
-  })
-}
-
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   const post = getPostBySlug(slug)
   if (!post) notFound()
 
   const firms = getAllFirms()
-  const affiliateSlugs = new Set(
-    firms
-      .filter(firm => Boolean(firm.affiliateUrl))
-      .map(firm => firm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')),
-  )
+  const outboundRelationships = buildOutboundRelationships(firms)
   const wordCount = post.content.replace(/<[^>]+>/g, '').split(/\s+/).length
   const readTime = Math.ceil(wordCount / 200)
-  const contentWithIds = addOutboundRel(addHeadingIds(post.content), affiliateSlugs)
+  const contentWithIds = decoratePostOutboundLinks(
+    addHeadingIds(post.content),
+    outboundRelationships,
+    slug,
+  )
 
   const allPosts = getAllPosts()
   const related = allPosts

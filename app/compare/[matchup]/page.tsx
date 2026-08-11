@@ -18,6 +18,11 @@ import {
   faqPageSchema,
   jsonLd,
 } from '@/lib/schema'
+import {
+  buildChallengeMatchup,
+  describeMatchup,
+} from '@/lib/challengeMatchup'
+import ChallengeMatchup from '@/components/ChallengeMatchup'
 import ComparisonHero from '@/components/ComparisonHero'
 import ComparisonInfographic from '@/components/ComparisonInfographic'
 import ComparisonTable from '@/components/ComparisonTable'
@@ -58,9 +63,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Keep the search title focused on the exact comparison query. The more
   // expressive editorial headline still renders as the page H1.
   const title = `${firmA.name} vs ${firmB.name} (2026)`
+
+  // Without an overlay every description was the same sentence with two names
+  // swapped in. The product count is read from the challenge files, so each
+  // page describes what it actually holds.
+  const productTotal = (() => {
+    const m = buildChallengeMatchup(
+      { name: firmA.name, slug: firmSlug(firmA.name) },
+      { name: firmB.name, slug: firmSlug(firmB.name) },
+    )
+    return m.hasData ? m.a.productCount + m.b.productCount : 0
+  })()
   const description =
     overlay?.metaDescription ||
-    `Compare ${firmA.name} and ${firmB.name} side by side: profit split, payouts, drawdown, platforms, rules. Updated for 2026.`
+    (productTotal
+      ? `${firmA.name} vs ${firmB.name}: compare ${productTotal} challenge products by funded cost, profit split, drawdown and payout rules using first-party data.`
+      : `Compare ${firmA.name} and ${firmB.name} side by side: profit split, payouts, drawdown, platforms, rules. Updated for 2026.`)
 
   return {
     title: { absolute: title },
@@ -88,9 +106,23 @@ export default async function ComparePage({ params }: Props) {
   // The data-driven helpers all assume alphabetical (firmA before firmB).
   const overlay = getOverlay(canonical)
   const rows = buildSpecTable(firmA, firmB)
-  const tlDr = overlay?.tlDr || computeFallbackTlDr(firmA, firmB, rows)
+
+  // Product-level data. The spec table above compares firm aggregates, which
+  // flatten every product a firm sells into one row per term — so a firm
+  // whose 1-Step and 2-Step disagree on split and drawdown shows only one of
+  // them. This section restores the detail from content/data/challenges.
+  const challengeMatchup = buildChallengeMatchup(
+    { name: firmA.name, slug: firmSlug(firmA.name) },
+    { name: firmB.name, slug: firmSlug(firmB.name) },
+  )
+  const matchupProse = describeMatchup(challengeMatchup)
+  const dataDrivenTlDr = challengeMatchup.hasData
+    ? matchupProse.slice(0, 2).join(' ')
+    : ''
+  const tlDr = overlay?.tlDr || dataDrivenTlDr || computeFallbackTlDr(firmA, firmB, rows)
   const comparisonCheckedAt =
-    overlay?.reviewedAt ||
+    overlay?.challengeReviewedAt ||
+    challengeMatchup.latestCapture ||
     [firmA.lastUpdated, firmB.lastUpdated]
       .filter((value): value is string => Boolean(value))
       .sort()
@@ -189,6 +221,8 @@ export default async function ComparePage({ params }: Props) {
             </p>
             <ComparisonTable firmA={firmA} firmB={firmB} rows={rows} />
           </section>
+
+          <ChallengeMatchup matchup={challengeMatchup} prose={matchupProse} />
 
           {/* Third-party reputation. Deliberately outside <ComparisonTable>:
               these are cited Trustpilot figures on a 0–5 scale, not specs we

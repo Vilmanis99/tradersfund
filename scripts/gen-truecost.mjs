@@ -19,7 +19,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { computeTrueCost, minimumCostToFundedUsd } from '../lib/firms.ts'
+import { challengeCurrency, challengeTierEconomics } from '../lib/firms.ts'
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 
@@ -66,8 +66,7 @@ if (!products.length) {
 
 for (const c of products) {
   const accountSizes = c.accountSizes ?? []
-  const hasUsd = accountSizes.some(t => t.priceUsd != null)
-  const currency = hasUsd ? 'USD' : 'EUR'
+  const currency = challengeCurrency(c)
   const tiers = accountSizes.filter(t =>
     currency === 'USD' ? t.priceUsd != null : t.priceEur != null
   )
@@ -84,8 +83,6 @@ for (const c of products) {
   const splitPayment = c.pricingModel === 'split-payment'
   const activation = c.activationFeeUsd ?? 0
   const hasTierActivation = tiers.some(t => t.activationFeeUsd != null)
-  const costOf = tier =>
-    currency === 'USD' ? minimumCostToFundedUsd(c, tier) : tier.priceEur
   const feeHeader =
     currency === 'EUR'
       ? 'Fee (EUR)'
@@ -139,20 +136,9 @@ for (const c of products) {
   if (daysLabel) headers.push(daysLabel)
 
   const rows = tiers.map((t, i) => {
-    const minimumCost = costOf(t)
-    if (minimumCost == null) return ''
-    const tierDailyLossPct =
-      t.dailyLossUsd != null && t.sizeUsd > 0
-        ? (t.dailyLossUsd / t.sizeUsd) * 100
-        : dailyPct ?? 100
-    const { breakEvenProfit, rMultiple, dayCount } = computeTrueCost({
-      priceUsd: minimumCost,
-      sizeUsd: t.sizeUsd,
-      profitSplitPct: split,
-      dailyLossPct: tierDailyLossPct,
-      maxLossPct: ddPct,
-      maxLossUsd: t.maxLossUsd,
-    })
+    const economics = challengeTierEconomics(c, t)
+    if (!economics) return ''
+    const { minimumCost, breakEvenProfit, rMultiple, dayCount } = economics
     const td = i === tiers.length - 1 ? TD_LAST : TD
     const cells = [
       sizeLabel(t.sizeUsd),

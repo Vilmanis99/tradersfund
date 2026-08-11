@@ -1,0 +1,299 @@
+{
+  "firmSlug": "bright-funded",
+  "officialDomain": "https://brightfunded.com",
+  "pagesRead": [
+    "https://brightfunded.com/1-step",
+    "https://brightfunded.com/2-step-bright",
+    "https://brightfunded.com/2-step-classic",
+    "https://brightfunded.com/how-it-works",
+    "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+    "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+    "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news",
+    "https://help.brightfunded.com/en/articles/9241699-can-i-use-ea",
+    "https://help.brightfunded.com/en/articles/9241709-is-copy-trading-allowed",
+    "https://help.brightfunded.com/en/articles/9268424-do-i-need-to-close-my-positions-overnight",
+    "https://help.brightfunded.com/en/articles/9268323-is-it-allowed-to-hold-positions-over-the-weekend",
+    "https://help.brightfunded.com/en/articles/9460023-can-i-get-a-refund-for-my-brightfunded-challenge",
+    "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded",
+    "https://brightfunded.com/terms-and-conditions"
+  ],
+  "accessNotes": "The three public plan pages exposed six USD-denominated account sizes with EUR list prices and lower Summer Promo prices. Only the struck-through EUR list prices are captured; SUMMER30, SUMMER25 and SUMMER15 prices are deliberately excluded because they are temporary promotions. BrightFunded's help-center restricted-country article lists Cuba, Iran, North Korea, Syria, Vietnam and Pakistan, while its Terms and Conditions list only the first five; this first-party conflict is unresolved. India appears in neither list as captured on 2026-08-10, but that is an availability observation rather than legal or regulatory approval. The reward-split article says the first request is after 30 days and subsequent requests every 14 days, but its add-on list also labels bi-weekly payouts as an add-on; the captured first-payout value remains the unambiguous 30-day default and the wording conflict is retained in notes.",
+  "capturedAt": "2026-08-10",
+  "products": [
+    {
+      "productName": "Bright Funded 1-Step",
+      "productSlug": "bright-funded-1-step",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceEur": 49,
+          "refundable": true,
+          "evidence": "The 1-Step plan card pairs '$5K Account' with list price '€49' and a separate '-30% Off' promo price of '€34.30'."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceEur": 97,
+          "refundable": true,
+          "evidence": "The 1-Step plan card pairs '$10K Account' with list price '€97' and promo price '€67.90'."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceEur": 197,
+          "refundable": true,
+          "evidence": "The 1-Step plan card pairs '$25K Account' with list price '€197' and promo price '€137.90'."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceEur": 297,
+          "refundable": true,
+          "evidence": "The 1-Step plan card pairs '$50K Account' with list price '€297' and promo price '€207.90'."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceEur": 497,
+          "refundable": true,
+          "evidence": "The 1-Step plan card pairs '$100K Account' with list price '€497' and promo price '€347.90'."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceEur": 997,
+          "refundable": true,
+          "evidence": "The 1-Step plan card pairs '$200K Account' with list price '€997' and promo price '€697.90'."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "trailing",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 30,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://brightfunded.com/1-step",
+      "fieldEvidence": {
+        "phases": "The plan is titled '1-Step Challenge' and the current-rules table has only a Phase 1 target for 1-Step.",
+        "profitTargets.phase1": "The plan card says 'Profit Target 10% Phase 1'; the current-rules table also lists 1-Step Phase 1 at 10%.",
+        "dailyLossPct": "Current-rules table: '1-Step | 3%' daily drawdown; the plan card also says 'Max. Daily Loss 3%'.",
+        "maxLossPct": "Current-rules table: '1-Step | 6% | Trailing'; the plan card also says 'Max. Total Loss 6%'.",
+        "drawdownType": "The current-rules article says trailing drawdown follows the highest equity and locks at the original balance after equity grows 6% above the initial balance.",
+        "minTradingDays": "Current-rules table: '1-Step | 5'; the plan cards say 'Min. Trading Days 5 Days'.",
+        "maxTradingDays": "The plan page says 'Unlimited Trading Period' and the Terms say the Challenge lasts for unlimited days; null represents no finite maximum.",
+        "consistencyRulePct": "The plan page says 'No Consistency Rules' and 'No rules on how you size, time, or distribute your trades'; null is retained because no percentage cap exists.",
+        "profitSplitPct": "The reward-split article says 'The Profit Split is 80/20 by default'; 90% requires an add-on and 100% requires scaling.",
+        "payoutFirstDays": "The reward-split article says the first Reward Split can be requested 30 days after the first funded trade.",
+        "payoutFrequency": "The reward-split article says subsequent Reward Splits can be requested bi-weekly (14 days).",
+        "rules.news": "Evaluation phases allow unrestricted news trading, but funded accounts prohibit execution during the 5 minutes before and after high-impact news; therefore restricted.",
+        "rules.weekend": "The weekend-holding article says traders may hold positions over the weekend.",
+        "rules.overnight": "The overnight-holding article says positions do not need to be closed overnight.",
+        "rules.ea": "The EA article says EAs are permitted but API and automated trading are not supported on DXtrade; therefore restricted across the product's platform choices.",
+        "rules.copyTrading": "The copy-trading article permits copying only among accounts owned by the same individual and prohibits third-party and signal copying; therefore restricted.",
+        "refundable": "The refund article allows a refund within 30 days only before any trade is made."
+      },
+      "notes": [
+        "All fees are EUR list prices. Temporary SUMMER30 pricing is deliberately excluded.",
+        "The 6% maximum drawdown trails the highest equity in real time and locks at the original balance after the account reaches 6% growth.",
+        "The base funded reward split is 80%; 90% is a paid add-on and 100% is available only through scaling.",
+        "The first standard payout window is 30 days after the first funded trade, then 14 days. The help article also calls bi-weekly payouts an add-on, creating an unresolved wording conflict; weekly or earlier cycles are paid add-ons.",
+        "News trading is unrestricted in evaluation but has a 10-minute execution restriction on funded accounts.",
+        "The separately advertised 100% challenge-fee refund is a checkout add-on, not included in the captured list price. The refundable tier flag instead records the standard unused-account refund within 30 days."
+      ]
+    },
+    {
+      "productName": "Bright Funded 2-Step Bright",
+      "productSlug": "bright-funded-2-step-bright",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceEur": 47,
+          "refundable": true,
+          "evidence": "The 2-Step Bright plan card pairs '$5K Account' with list price '€47' and a separate '-25% Off' promo price of '€35.25'."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceEur": 87,
+          "refundable": true,
+          "evidence": "The 2-Step Bright plan card pairs '$10K Account' with list price '€87' and promo price '€65.25'."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceEur": 187,
+          "refundable": true,
+          "evidence": "The 2-Step Bright plan card pairs '$25K Account' with list price '€187' and promo price '€140.25'."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceEur": 277,
+          "refundable": true,
+          "evidence": "The 2-Step Bright plan card pairs '$50K Account' with list price '€277' and promo price '€207.75'."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceEur": 477,
+          "refundable": true,
+          "evidence": "The 2-Step Bright plan card pairs '$100K Account' with list price '€477' and promo price '€357.75'."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceEur": 947,
+          "refundable": true,
+          "evidence": "The 2-Step Bright plan card pairs '$200K Account' with list price '€947' and promo price '€710.25'."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 8,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 30,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://brightfunded.com/2-step-bright",
+      "fieldEvidence": {
+        "phases": "The plan is titled '2-Step Bright Challenge' and publishes separate Phase 1 and Phase 2 targets.",
+        "profitTargets.phase1": "The plan cards and current-rules table publish an 8% Phase 1 target.",
+        "profitTargets.phase2": "The plan cards and current-rules table publish a 5% Phase 2 target.",
+        "dailyLossPct": "The plan cards and current-rules table publish 4% maximum daily loss.",
+        "maxLossPct": "The plan cards and current-rules table publish 8% maximum total loss.",
+        "drawdownType": "The current-rules article labels the 8% maximum drawdown 'Static' and defines static as fixed from the original balance.",
+        "minTradingDays": "The current-rules table says 5 per stage; the plan cards say 'Min. Trading Days 5 Days'.",
+        "maxTradingDays": "The plan page says 'Unlimited Trading Period' and the Terms say the Challenge and Verification last for unlimited days; null represents no finite maximum.",
+        "consistencyRulePct": "The plan page says 'No Consistency Rules'; null is retained because no percentage cap exists.",
+        "profitSplitPct": "The reward-split article says 'The Profit Split is 80/20 by default'; 90% requires an add-on and 100% requires scaling.",
+        "payoutFirstDays": "The reward-split article says the first Reward Split can be requested 30 days after the first funded trade.",
+        "payoutFrequency": "The reward-split article says subsequent Reward Splits can be requested bi-weekly (14 days).",
+        "rules.news": "Evaluation phases allow unrestricted news trading, but funded accounts prohibit execution during the 5 minutes before and after high-impact news; therefore restricted.",
+        "rules.weekend": "The weekend-holding article says traders may hold positions over the weekend.",
+        "rules.overnight": "The overnight-holding article says positions do not need to be closed overnight.",
+        "rules.ea": "The EA article says EAs are permitted but API and automated trading are not supported on DXtrade; therefore restricted across the product's platform choices.",
+        "rules.copyTrading": "The copy-trading article permits copying only among accounts owned by the same individual and prohibits third-party and signal copying; therefore restricted.",
+        "refundable": "The refund article allows a refund within 30 days only before any trade is made."
+      },
+      "notes": [
+        "All fees are EUR list prices. Temporary SUMMER25 pricing is deliberately excluded.",
+        "The 8% maximum drawdown is static; daily loss is 4% and both phases require 5 trading days each.",
+        "The base funded split is 80%; the 90% figure on the plan card is an add-on ceiling.",
+        "The first standard payout window is 30 days, followed by 14-day cycles. The help article also calls bi-weekly payouts an add-on, creating an unresolved wording conflict.",
+        "The separately advertised 100% challenge-fee refund is a checkout add-on, not included in the captured list price. The refundable tier flag instead records the standard unused-account refund within 30 days."
+      ]
+    },
+    {
+      "productName": "Bright Funded 2-Step Classic",
+      "productSlug": "bright-funded-2-step-classic",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceEur": 49,
+          "refundable": true,
+          "evidence": "The 2-Step Classic plan card pairs '$5K Account' with list price '€49' and a separate '-15% Off' promo price of '€41.65'."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceEur": 97,
+          "refundable": true,
+          "evidence": "The 2-Step Classic plan card pairs '$10K Account' with list price '€97' and promo price '€82.45'."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceEur": 197,
+          "refundable": true,
+          "evidence": "The 2-Step Classic plan card pairs '$25K Account' with list price '€197' and promo price '€167.45'."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceEur": 297,
+          "refundable": true,
+          "evidence": "The 2-Step Classic plan card pairs '$50K Account' with list price '€297' and promo price '€252.45'."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceEur": 497,
+          "refundable": true,
+          "evidence": "The 2-Step Classic plan card pairs '$100K Account' with list price '€497' and promo price '€422.45'."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceEur": 997,
+          "refundable": true,
+          "evidence": "The 2-Step Classic plan card pairs '$200K Account' with list price '€997' and promo price '€847.45'."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 30,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://brightfunded.com/2-step-classic",
+      "fieldEvidence": {
+        "phases": "The plan is titled '2-Step Classic Challenge' and publishes separate Phase 1 and Phase 2 targets.",
+        "profitTargets.phase1": "The plan cards and current-rules table publish a 10% Phase 1 target.",
+        "profitTargets.phase2": "The plan cards and current-rules table publish a 5% Phase 2 target.",
+        "dailyLossPct": "The plan cards and current-rules table publish 5% maximum daily loss.",
+        "maxLossPct": "The plan cards and current-rules table publish 10% maximum total loss.",
+        "drawdownType": "The current-rules article labels the 10% maximum drawdown 'Static' and defines static as fixed from the original balance.",
+        "minTradingDays": "The current-rules table says 5 per stage; the plan cards say 'Min. Trading Days 5 Days'.",
+        "maxTradingDays": "The plan page says 'Unlimited Trading Period' and the Terms say the Challenge and Verification last for unlimited days; null represents no finite maximum.",
+        "consistencyRulePct": "The plan page says 'No Consistency Rules'; null is retained because no percentage cap exists.",
+        "profitSplitPct": "The reward-split article says 'The Profit Split is 80/20 by default'; 90% requires an add-on and 100% requires scaling.",
+        "payoutFirstDays": "The reward-split article says the first Reward Split can be requested 30 days after the first funded trade.",
+        "payoutFrequency": "The reward-split article says subsequent Reward Splits can be requested bi-weekly (14 days).",
+        "rules.news": "Evaluation phases allow unrestricted news trading, but funded accounts prohibit execution during the 5 minutes before and after high-impact news; therefore restricted.",
+        "rules.weekend": "The weekend-holding article says traders may hold positions over the weekend.",
+        "rules.overnight": "The overnight-holding article says positions do not need to be closed overnight.",
+        "rules.ea": "The EA article says EAs are permitted but API and automated trading are not supported on DXtrade; therefore restricted across the product's platform choices.",
+        "rules.copyTrading": "The copy-trading article permits copying only among accounts owned by the same individual and prohibits third-party and signal copying; therefore restricted.",
+        "refundable": "The refund article allows a refund within 30 days only before any trade is made."
+      },
+      "notes": [
+        "All fees are EUR list prices. Temporary SUMMER15 pricing is deliberately excluded.",
+        "The 10% maximum drawdown is static; daily loss is 5% and both phases require 5 trading days each.",
+        "The base funded split is 80%; the 90% figure on the plan card is an add-on ceiling.",
+        "The first standard payout window is 30 days, followed by 14-day cycles. The help article also calls bi-weekly payouts an add-on, creating an unresolved wording conflict.",
+        "The separately advertised 100% challenge-fee refund is a checkout add-on, not included in the captured list price. The refundable tier flag instead records the standard unused-account refund within 30 days."
+      ]
+    }
+  ]
+}

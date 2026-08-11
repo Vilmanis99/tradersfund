@@ -1,0 +1,501 @@
+{
+  "firmSlug": "fundingpips",
+  "officialDomain": "https://fundingpips.com",
+  "capturedAt": "2026-08-10",
+  "pagesRead": [
+    "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+    "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+    "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+    "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models",
+    "https://help.fundingpips.com/hc/en-us/articles/48174287980177-Risk-Per-Trade-Idea",
+    "https://help.fundingpips.com/hc/en-us/articles/45363484760209-Free-Trial",
+    "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Your-Rewards-Your-Way",
+    "https://help.fundingpips.com/hc/en-us/articles/34505029138449-Trading-Conduct-and-Security-Standards",
+    "https://help.fundingpips.com/hc/en-us/articles/48982278587665-1-Step-Model"
+  ],
+  "pagesBlocked": [
+    "https://fundingpips.com/",
+    "https://fundingpips.com/products",
+    "https://fundingpips.com/trading-objectives",
+    "https://fundingpips.com/rewards",
+    "https://app.fundingpips.com/"
+  ],
+  "accessNotes": "The public fundingpips.com and app.fundingpips.com pages still returned HTTP 403 bot checkpoints. FundingPips' own Help Center remained readable through its public Zendesk API. The official Compare Account Models article (updated 2026-08-07) now contains an embedded USD price table, so 27 live listed tiers are priced from a FundingPips-owned source. No price was recorded for the disputed $2,500 tiers: today's Pro and Standard product pages and the comparison table start at $5K, while the older Free Trial article still says '$2,500 size is paid evaluations only.' The raw capture retains those two tiers with null prices and documents the conflict. The comparison script also retains prices for a legacy 10%-target Standard variant even though the current Standard article says that target is no longer offered; only current 8%-target prices are captured.",
+  "priceCaptureStatus": "PARTIAL_FIRST_PARTY",
+  "products": [
+    {
+      "productName": "1 Step Flex",
+      "productSlug": "1-step-flex",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 59,
+          "refundable": null,
+          "evidence": "Product page: 'Five account sizes: $5K, $10K, $25K, $50K, and $100K.' Official comparison price table: '1step': {5:59,10:99,25:210,50:322,100:566,200:null}.",
+          "refundableEvidence": "Rewards page says the 4th-reward refund applies to '1 Step', but it does not say whether that includes the current '1 Step Flex'; left null."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 99,
+          "refundable": null,
+          "evidence": "Product page lists $10K; official comparison price table maps 10 to $99 for 1step.",
+          "refundableEvidence": "Ambiguous '1 Step' versus '1 Step Flex' wording; left null."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 210,
+          "refundable": null,
+          "evidence": "Product page lists $25K; official comparison price table maps 25 to $210 for 1step.",
+          "refundableEvidence": "Ambiguous '1 Step' versus '1 Step Flex' wording; left null."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 322,
+          "refundable": null,
+          "evidence": "Product page lists $50K; official comparison price table maps 50 to $322 for 1step.",
+          "refundableEvidence": "Ambiguous '1 Step' versus '1 Step Flex' wording; left null."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 566,
+          "refundable": null,
+          "evidence": "Product page lists $100K; official comparison price table maps 100 to $566 for 1step.",
+          "refundableEvidence": "Ambiguous '1 Step' versus '1 Step Flex' wording; left null."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 12
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 12,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 85,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "Evaluation: no restrictions. Master Account: cannot open or close positions within a 10-minute window (5 minutes before and 5 minutes after) around a high-impact event on affected currencies; profits are deducted. Trades opened at least 5 hours before the event are exempt. Purposely trading news is prohibited.",
+        "weekend": "Permitted during evaluation. Temporarily not allowed on 1 Step Flex Master Accounts since 29 January 2026; open trades are automatically closed and this is not a hard breach.",
+        "overnight": "Allowed. Optional Swap-Free add-on on MT5 for Forex and Metals.",
+        "ea": "Third-party EAs permitted only as trade or risk managers; personal EAs may automate with proof of ownership.",
+        "copyTrading": "Permitted between the trader's own FundingPips accounts and outbound; prohibited between different users and inbound from external signal providers."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+      "sourceCapturedAt": "2026-08-10",
+      "articleUpdatedAt": "2026-08-10T07:51:09Z",
+      "fieldEvidence": {
+        "phases": "'One phase, to Master: a single Evaluation phase, then the Master Account.'",
+        "phase1Target": "'Achieve a 12% profit target during Phase 1.'",
+        "dailyLossPct": "'Daily Loss Limit 3%.'",
+        "maxLossPct": "'Max Loss Limit 12%.'",
+        "drawdownType": "'12% of the starting account size'; the page says the floor does not reset.",
+        "minTradingDays": "'No minimum trading days.'",
+        "maxTradingDays": "'No minimum trading days and no time limit to pass.'",
+        "profitSplitPct": "'Reward split 85%.'",
+        "payoutFirstDays": "'Request a Reward every two weeks' (14 calendar days).",
+        "payoutFrequency": "'Reward cycle Bi-Weekly.'",
+        "prices": "Official Compare Account Models embedded table: '1step': {5:59,10:99,25:210,50:322,100:566,200:null}."
+      },
+      "notes": [
+        "Profit Concentration Policy: if one trade idea exceeds 60% of the evaluation profit target, the resulting Master Account requires 4 profitable days (at least 0.5% net realized profit each) before every reward request. FundingPips says this applies to all 1 Step Flex account sizes.",
+        "Striking System on every Master size: warning at 1% floating loss on one trade idea; the 2nd warning halves the split, the 3rd reduces it to 20%, and the 4th closes the account.",
+        "Minimum reward request is 1% of account size; inactivity breach follows 30 consecutive days with no completed trade.",
+        "Refundability is unresolved. The rewards page promises a 4th-reward registration-fee refund for '1 Step', but FundingPips separately labels the legacy 1 Step Model as no longer offered and does not explicitly name 1 Step Flex in the refund promise. refundable stays null."
+      ]
+    },
+    {
+      "productName": "2 Step Flex",
+      "productSlug": "2-step-flex",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 32,
+          "refundable": false,
+          "evidence": "Product page lists $5K; official comparison price table maps 5 to $32 for 2flex.",
+          "refundableEvidence": "Rewards page: 'The 4th-reward refund does not apply on ... 2 Step Flex.'"
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 59,
+          "refundable": false,
+          "evidence": "Product page lists $10K; official comparison price table maps 10 to $59 for 2flex.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 159,
+          "refundable": false,
+          "evidence": "Product page lists $25K; official comparison price table maps 25 to $159 for 2flex.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 269,
+          "refundable": false,
+          "evidence": "Product page lists $50K; official comparison price table maps 50 to $269 for 2flex.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 555,
+          "refundable": false,
+          "evidence": "Product page lists $100K; official comparison price table maps 100 to $555 for 2flex.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 6
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 12,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": null,
+      "profitSplitOptions": [
+        85,
+        95
+      ],
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "No evaluation restriction. Master Account has a 10-minute high-impact-news window restriction; profits from affected trades are removed.",
+        "weekend": "Temporarily not allowed on Master Accounts since 29 January 2026; close all trades before Friday market close. Not a hard breach.",
+        "overnight": "Allowed. Optional Swap-Free add-on on MT5 for Forex and Metals.",
+        "ea": "Third-party EAs permitted only as trade or risk managers; personal EAs may automate with proof of ownership.",
+        "copyTrading": "Permitted between the trader's own accounts and outbound; prohibited between different users and inbound from signal providers."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+      "sourceCapturedAt": "2026-08-10",
+      "articleUpdatedAt": "2026-08-10T07:18:54Z",
+      "fieldEvidence": {
+        "phases": "'2-phase evaluation: Phase 1 (10%) + Phase 2 (6%).'",
+        "phase1Target": "'Achieve a 10% profit target during Phase 1.'",
+        "phase2Target": "'Achieve a 6% profit target during Phase 2.'",
+        "dailyLossPct": "'4% daily.'",
+        "maxLossPct": "'12% maximum loss limit.'",
+        "drawdownType": "'This is a static floor; it never moves.'",
+        "minTradingDays": "85% option has 'No minimum trading days'; 95% option requires 3 profitable days of at least 0.5% each. Stored 0 denotes the no-minimum option; see notes.",
+        "maxTradingDays": "FAQ: 'There is no time limit on either phase.'",
+        "consistencyRulePct": "'There is no Consistency Score on either split.'",
+        "profitSplitPct": "85% or 95%, selected at purchase; no single value.",
+        "payoutFirstDays": "'Every 14 calendar days after your first executed trade.'",
+        "payoutFrequency": "'Rewards run on a single Bi-Weekly cycle.'",
+        "prices": "Official comparison table: '2flex': {5:32,10:59,25:159,50:269,100:555,200:null}."
+      },
+      "notes": [
+        "No single profitSplitPct: buyer chooses 85% with no minimum trading days or 95% with 3 profitable days of at least 0.5% per phase/cycle; choice is locked and both cost the same.",
+        "Risk Per Trade Idea on the Master Account only: no limit below $25K, 3% at $25K, and 2% above $25K.",
+        "Profit Concentration Policy on new evaluation accounts at $25K and above created on or after 27 June 2026: above 60% from one trade idea adds 4 profitable days of at least 0.5% before each reward request for the lifetime of the Master Account.",
+        "The page contains conflicting reset FAQs: the current reset table says Phase 1 15%, Phase 2 10%, and Master 7% (excluding $100K), including inactivity; a later FAQ still says a 10% evaluation reset and excludes Master/inactivity. No reset amount is projected into the Challenge schema."
+      ]
+    },
+    {
+      "productName": "2 Step Pro",
+      "productSlug": "2-step-pro",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Official-source conflict: the Free Trial intro says '$2,500 size is paid evaluations only', but today's Pro product page and comparison table start at $5K and publish no $2.5K price.",
+          "refundableEvidence": "Tier availability is unresolved, so both price and refundability remain null even though the model is generally excluded from the 4th-reward refund."
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 29,
+          "refundable": false,
+          "evidence": "Product page lists $5K; official comparison price table maps 5 to $29 for 2pro.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 55,
+          "refundable": false,
+          "evidence": "Product page lists $10K; official comparison price table maps 10 to $55 for 2pro.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 134,
+          "refundable": false,
+          "evidence": "Product page lists $25K; official comparison price table maps 25 to $134 for 2pro.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 224,
+          "refundable": false,
+          "evidence": "Product page lists $50K; official comparison price table maps 50 to $224 for 2pro.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 422,
+          "refundable": false,
+          "evidence": "Product page lists $100K; official comparison price table maps 100 to $422 for 2pro.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 844,
+          "refundable": false,
+          "evidence": "Product page lists $200K; official comparison price table maps 200 to $844 for 2pro.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": 6
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 7,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "No evaluation restriction. Master Account has a 10-minute high-impact-news window restriction; profits from affected trades are removed.",
+        "weekend": "Temporarily not allowed on Master Accounts; close all trades before Friday market close. Not a hard breach.",
+        "overnight": "Allowed. Optional Swap-Free add-on on MT5 for Forex and Metals.",
+        "ea": "Third-party EAs permitted only as trade or risk managers; personal EAs may automate with proof of ownership.",
+        "copyTrading": "Permitted between the trader's own accounts and outbound; prohibited between different users and inbound from signal providers."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+      "sourceCapturedAt": "2026-08-10",
+      "articleUpdatedAt": "2026-08-10T07:14:20Z",
+      "fieldEvidence": {
+        "phases": "'2 Step Pro' and '6% profit target in both phases.'",
+        "phase1Target": "'Achieve a 6% profit target during Phase 1.'",
+        "phase2Target": "'Achieve a 6% profit target during Phase 2.'",
+        "dailyLossPct": "'3% daily loss.'",
+        "maxLossPct": "'6% max loss.'",
+        "drawdownType": "'This is a static floor; it never moves.'",
+        "minTradingDays": "'Minimum 1 trading day per phase.'",
+        "maxTradingDays": "FAQ: 'There is no time limit on either phase.'",
+        "profitSplitPct": "'Weekly reward cycle at 80%.'",
+        "payoutFirstDays": "'Every 7 calendar days after your first executed trade.'",
+        "payoutFrequency": "'Reward Cycle Weekly.'",
+        "prices": "Official comparison table: '2pro': {5:29,10:55,25:134,50:224,100:422,200:844}."
+      },
+      "notes": [
+        "Risk Per Trade Idea is removed on all 2 Step Pro sizes.",
+        "Profit Concentration Policy on new evaluation accounts at $25K and above created on or after 27 June 2026: above 60% from one trade idea adds 4 profitable days of at least 0.5% before every reward request.",
+        "$2.5K availability is unresolved: the Free Trial intro says it is paid-evaluation-only, while today's Pro page lists $5K-$200K and the official price table has no $2.5K key. It remains with priceUsd null until FundingPips resolves the conflict.",
+        "Minimum reward request is 1% of Master Account size."
+      ]
+    },
+    {
+      "productName": "2 Step Standard",
+      "productSlug": "2-step-standard",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Official-source conflict: Free Trial intro says '$2,500 size is paid evaluations only', but today's Standard page and comparison table start at $5K and publish no $2.5K price.",
+          "refundableEvidence": "Tier availability is unresolved, so both price and refundability remain null; the model-level 4th-reward refund is documented in notes."
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 36,
+          "refundable": true,
+          "evidence": "Product page lists $5K; official comparison price table maps the current 8% Standard target at 5 to $36.",
+          "refundableEvidence": "Registration fee refunded at 4th reward."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 66,
+          "refundable": true,
+          "evidence": "Product page lists $10K; official comparison price table maps the current 8% Standard target at 10 to $66.",
+          "refundableEvidence": "Registration fee refunded at 4th reward."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 177,
+          "refundable": true,
+          "evidence": "Product page lists $25K; official comparison price table maps the current 8% Standard target at 25 to $177.",
+          "refundableEvidence": "Registration fee refunded at 4th reward."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 299,
+          "refundable": true,
+          "evidence": "Product page lists $50K; official comparison price table maps the current 8% Standard target at 50 to $299.",
+          "refundableEvidence": "Registration fee refunded at 4th reward."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 544,
+          "refundable": true,
+          "evidence": "Product page lists $100K; official comparison price table maps the current 8% Standard target at 100 to $544.",
+          "refundableEvidence": "Registration fee refunded at 4th reward."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 35,
+      "profitSplitPct": null,
+      "profitSplitOptions": [
+        60,
+        80,
+        90,
+        100
+      ],
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": "No evaluation restriction. Master Account permits news trading with a 10-minute high-impact-news window restriction; profits from affected trades are removed.",
+        "weekend": "Temporarily not allowed on Master Accounts; close all trades before Friday market close. Not a hard breach.",
+        "overnight": "Allowed. Optional Swap-Free add-on on MT5 for Forex and Metals.",
+        "ea": "Third-party EAs permitted only as trade or risk managers; personal EAs may automate with proof of ownership.",
+        "copyTrading": "Permitted between the trader's own accounts and outbound; prohibited between different users and inbound from signal providers."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "sourceCapturedAt": "2026-08-10",
+      "articleUpdatedAt": "2026-08-10T07:11:23Z",
+      "fieldEvidence": {
+        "phases": "'2-phase evaluation: Phase 1 (8%) + Phase 2 (5%).'",
+        "phase1Target": "'Achieve an 8% profit target during Phase 1.'",
+        "phase2Target": "'Achieve a 5% profit target during Phase 2.'",
+        "dailyLossPct": "'Daily Loss Limit 5%.'",
+        "maxLossPct": "'Max Loss Limit 10%.'",
+        "drawdownType": "'This is a static floor; it never moves.'",
+        "minTradingDays": "'Complete a minimum of 3 trading days to pass.'",
+        "maxTradingDays": "FAQ: 'There is no time limit on either phase.'",
+        "consistencyRulePct": "On Demand only: 'A 35% consistency score must be achieved.'",
+        "profitSplitPct": "Weekly 60%, Bi-Weekly 80%, Monthly 100%, or On Demand 90%; no single value.",
+        "payoutFirstDays": "Conditional cycles: 7, 14, 30, or on demand; left null.",
+        "prices": "Official comparison table current target: '2std8': {5:36,10:66,25:177,50:299,100:544,200:null}."
+      },
+      "notes": [
+        "No single split or frequency: On Demand 90% requires a 35% consistency score and 2% minimum reward; Weekly 60% starts after 7 days, Bi-Weekly 80% after 14 days, and Monthly 100% after 30 days.",
+        "The 35% consistency score applies only to On Demand, not evaluation or the other three reward cycles.",
+        "Current 8%-target Standard uses the Striking System above $25K: warning at 1.2% floating loss; the 4th warning closes the account. Risk Per Trade Idea is not applicable. Legacy 10%-target accounts have different rules and are no longer offered.",
+        "Profit Concentration Policy on new evaluation accounts at $25K and above created on or after 27 June 2026 adds 4 profitable days of at least 0.5% before every reward when triggered.",
+        "$2.5K availability is unresolved and priceUsd remains null. The current page states the former 10% target stopped being offered on 24 July 2026; the comparison script still contains legacy 10%-target prices, which were not captured.",
+        "Registration fee is refunded only when the trader reaches the 4th reward, not immediately on passing."
+      ]
+    },
+    {
+      "productName": "FundingPips Zero",
+      "productSlug": "zero",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 60,
+          "refundable": false,
+          "evidence": "Product page lists $5K; official comparison price table maps 5 to $60 for zero.",
+          "refundableEvidence": "Rewards page explicitly excludes FundingPips Zero from the 4th-reward refund."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 88,
+          "refundable": false,
+          "evidence": "Product page lists $10K; official comparison price table maps 10 to $88 for zero.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 188,
+          "refundable": false,
+          "evidence": "Product page lists $25K; official comparison price table maps 25 to $188 for zero.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 244,
+          "refundable": false,
+          "evidence": "Product page lists $50K; official comparison price table maps 50 to $244 for zero.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 444,
+          "refundable": false,
+          "evidence": "Product page lists $100K; official comparison price table maps 100 to $444 for zero.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 888,
+          "refundable": false,
+          "evidence": "Product page lists $200K; official comparison price table maps 200 to $888 for zero.",
+          "refundableEvidence": "4th-reward refund explicitly does not apply."
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": 3,
+      "maxLossPct": 5,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 15,
+      "profitSplitPct": 95,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "Prohibited as a hard breach: no position may be opened, closed, or held from 10 minutes before to 10 minutes after a high-impact event or speech on the affected currency.",
+        "weekend": "Prohibited as a hard breach on all instruments; all positions must be fully closed before Friday market close.",
+        "overnight": "Allowed on weekdays. Swap-Free add-on is available, but weekend holds remain prohibited.",
+        "ea": "Third-party EAs permitted only as trade or risk managers; personal EAs may automate with proof of ownership.",
+        "copyTrading": "Permitted between the trader's own accounts and outbound; prohibited between different users and inbound from signal providers."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+      "sourceCapturedAt": "2026-08-10",
+      "articleUpdatedAt": "2026-07-31T07:36:20Z",
+      "fieldEvidence": {
+        "phases": "'No evaluation: live from day one.'",
+        "dailyLossPct": "'Daily Loss Limit 3%.'",
+        "maxLossPct": "'Max Trailing Loss Limit 5%.'",
+        "drawdownType": "'5% of your highest ever recorded equity'; it trails upward and locks at starting balance after 5% profit.",
+        "minTradingDays": "No evaluation exists; null.",
+        "maxTradingDays": "FAQ: 'There is no evaluation to pass and no deadline to hit.'",
+        "consistencyRulePct": "'Consistency Score 15% max.'",
+        "profitSplitPct": "'95% profit split.'",
+        "payoutFirstDays": "'Every 14 calendar days after your first executed trade.'",
+        "payoutFrequency": "'Reward Cycle Bi-Weekly.'",
+        "prices": "Official comparison table: 'zero': {5:60,10:88,25:188,50:244,100:444,200:888}."
+      },
+      "notes": [
+        "The 5% max loss trails peak equity and locks at starting balance after equity first reaches 5% profit; it is not comparable to a 5% static limit.",
+        "Max Open Risk is 1% combined floating loss. Risk Per Trade Idea is 3% below $50K and 2% at $50K and above.",
+        "At least 7 profitable days of 0.25% or more are required in every rolling 30-day period.",
+        "Reward eligibility also requires consistency at or below 15%, a 3% safety cushion, and largest loss no greater than largest win.",
+        "Reset is available at a 20% discount within 7 calendar days; inactivity is 30 days; minimum reward is 1% of account size."
+      ]
+    }
+  ],
+  "unresolvedConflicts": [
+    "The current Pro and Standard product pages and the official comparison/price table start at $5K, but the Free Trial article still states that the $2,500 size is available on paid evaluations. The capture preserves $2,500 with priceUsd null for those two products.",
+    "The current Standard page says the 10% target is no longer offered as of 24 July 2026, while the official comparison script still contains a 2std10 price row. Those legacy prices are excluded.",
+    "Refundability for current 1 Step Flex is unclear: the rewards article says '1 Step' receives a registration-fee refund at the 4th reward, but a separate article identifies the legacy 1 Step Model as no longer offered. No first-party page explicitly says '1 Step Flex' receives that refund, so refundable remains null.",
+    "The 2 Step Flex page contains contradictory reset FAQs; no reset field is projected into the Challenge schema."
+  ]
+}

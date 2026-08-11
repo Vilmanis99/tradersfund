@@ -3,12 +3,22 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { ArrowLeft, ArrowRight, Bot, Shield, Zap, Clock, TrendingUp, Newspaper, Calendar, Wallet } from 'lucide-react'
 import { FEATURES, getFeatureBySlug, getFirmsForFeature } from '@/lib/features'
+import {
+  buildFeatureEvidence,
+  describeFeature,
+  isProductLevelFeature,
+} from '@/lib/featureEvidence'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
+import FeatureEvidence from '@/components/FeatureEvidence'
 import FeatureFirmList from '@/components/FeatureFirmList'
 import FeatureFaq from '@/components/FeatureFaq'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 
 interface Props { params: Promise<{ feature: string }> }
+
+// Feature pages are an editorial allow-list. Unknown or retired slugs must be
+// real 404s rather than runtime-generated soft-404 responses.
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   return FEATURES.map(f => ({ feature: f.slug }))
@@ -44,6 +54,11 @@ export default async function FeaturePage({ params }: Props) {
 
   const firms = getFirmsForFeature(slug)
   const siblings = FEATURES.filter(f => f.slug !== slug).slice(0, 4)
+
+  // Product-level evidence appears before any outbound firm CTA, so a reader
+  // sees the qualifying product (and any conflicting products) before buying.
+  const evidence = buildFeatureEvidence(slug)
+  const evidenceSummary = isProductLevelFeature(slug) ? describeFeature(evidence, slug) : ''
 
   const itemLd = itemListSchema(firms, `Best Prop Firms — ${feature.label}`)
   const faqLd = faqPageSchema(feature.faqs)
@@ -91,7 +106,20 @@ export default async function FeaturePage({ params }: Props) {
 
       <AffiliateDisclosure />
 
+      <FeatureEvidence
+        evidence={evidence}
+        summary={evidenceSummary}
+        label={feature.label}
+      />
+
       <section aria-label={`${feature.label} firms, ranked`} style={{ marginBottom: '3rem' }}>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>
+          Ranked qualifying firms
+        </h2>
+        <p style={{ color: 'var(--muted)', fontSize: '0.92rem', margin: '0 0 1rem' }}>
+          Full product coverage ranks before partial coverage; editorial score
+          decides the order within each coverage group.
+        </p>
         <FeatureFirmList firms={firms} featureLabel={feature.label} />
       </section>
 

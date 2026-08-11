@@ -389,3 +389,89 @@ export function computeTrueCost(input: TrueCostInput): TrueCostBreakdown {
 
   return { breakEvenProfit, rMultiple, dayCount }
 }
+
+/* ── Tier economics ────────────────────────────────────────────── */
+
+export type ChallengeCurrency = 'USD' | 'EUR'
+
+/**
+ * Which currency a product's prices are published in.
+ *
+ * Decided per *product*, not per tier: a firm that denominates in euros
+ * (FTMO) leaves `priceUsd` null on every tier, and mixing the two inside
+ * one product's table would put a € row next to a $ row under a single
+ * header.
+ */
+export function challengeCurrency(
+  challenge: Pick<Challenge, 'accountSizes'>,
+): ChallengeCurrency {
+  return challenge.accountSizes.some(t => t.priceUsd != null) ? 'USD' : 'EUR'
+}
+
+export interface ChallengeTierEconomics {
+  currency: ChallengeCurrency
+  /** Minimum cash outlay to reach the funded stage, in `currency`. */
+  minimumCost: number
+  /** Profit needed at the firm's gross PnL to earn `minimumCost` back. */
+  breakEvenProfit: number
+  /**
+   * Null on EUR-priced tiers. The account is sized in USD, so a EUR
+   * break-even divided by a USD loss cap is a mixed-currency ratio — quoting
+   * one would bake in an exchange rate we never captured. Same reason
+   * `dayCount` is suppressed: its growth target is also EUR-over-USD.
+   */
+  rMultiple: number | null
+  dayCount: number | null
+}
+
+/**
+ * Trader-facing economics for one tier of one product.
+ *
+ * Both `scripts/gen-truecost.mjs` (which renders the Reviews v2 True-Cost
+ * tables) and the `/compare` pages call this, so a comparison can never
+ * quote different math from the review it links to.
+ *
+ * Returns null when the product publishes no profit split (break-even is
+ * undefined) or the tier has no verified price in the product's currency.
+ */
+export function challengeTierEconomics(
+  challenge: Pick<
+    Challenge,
+    'accountSizes' | 'pricingModel' | 'activationFeeUsd' | 'profitSplitPct' | 'dailyLossPct' | 'maxLossPct'
+  >,
+  tier: ChallengeAccountSize,
+): ChallengeTierEconomics | null {
+  const split = challenge.profitSplitPct
+  if (split == null || split <= 0) return null
+
+  const currency = challengeCurrency(challenge)
+  const minimumCost = currency === 'USD'
+    ? minimumCostToFundedUsd(challenge, tier)
+    : tier.priceEur ?? null
+  if (minimumCost == null || minimumCost <= 0) return null
+
+  // A tier publishing a dollar daily cap overrides the product-wide
+  // percentage. Preserve null when neither exists: the data model cannot
+  // distinguish a verified absence of a cap from an unpublished cap, so a
+  // numeric day count would manufacture a risk assumption.
+  const dailyLossPct = tier.dailyLossUsd != null && tier.sizeUsd > 0
+    ? (tier.dailyLossUsd / tier.sizeUsd) * 100
+    : challenge.dailyLossPct
+
+  const { breakEvenProfit, rMultiple, dayCount } = computeTrueCost({
+    priceUsd: minimumCost,
+    sizeUsd: tier.sizeUsd,
+    profitSplitPct: split,
+    dailyLossPct,
+    maxLossPct: challenge.maxLossPct,
+    maxLossUsd: tier.maxLossUsd,
+  })
+
+  return {
+    currency,
+    minimumCost,
+    breakEvenProfit,
+    rMultiple: currency === 'EUR' ? null : rMultiple,
+    dayCount: currency === 'EUR' ? null : dayCount,
+  }
+}

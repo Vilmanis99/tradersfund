@@ -1,0 +1,762 @@
+{
+  "firmSlug": "fxify",
+  "officialDomain": "https://fxify.com",
+  "pagesRead": [
+    "https://fxify.com/",
+    "https://fxify.com/programs/one-phase/",
+    "https://fxify.com/programs/two-phase/",
+    "https://fxify.com/programs/three-phase-challenge/",
+    "https://fxify.com/programs/lightning-challenge/",
+    "https://fxify.com/programs/instant-funding/",
+    "https://fxify.com/faqs/all-faqs/",
+    "https://fxify.com/faqs/all-faqs/how-to-verify-my-account/",
+    "https://fxify.com/faqs/payouts/",
+    "https://fxify.com/faqs/all-faqs/how-do-i-withdraw-my-profits/",
+    "https://fxify.com/faqs/all-faqs/do-i-need-to-close-positions-overnight/",
+    "https://fxify.com/faqs/all-faqs/is-copy-trading-allowed/",
+    "https://fxify.com/faqs/all-faqs/two-phase-pro/2-phase-pro-whats-the-max-and-minimum-trading-days-is-there-a-specific-time-window-to-complete-the-profit-targets/",
+    "https://fxify.com/faqs/all-faqs/two-phase-pro/2-phase-pro-whats-the-min-days-in-order-to-request-a-payout/",
+    "https://fxify.com/faqs/all-faqs/instant-funded-faq/whats-the-max-and-minimum-trading-days-is-there-a-specific-time-window-to-complete-the-profit-targets/",
+    "https://fxify.com/faqs/all-faqs/instant-funding-lite-faq/instant-funding-lite-after-purchasing-what-criteria-must-i-achieve-to-request-a-payout/",
+    "https://fxify.com/faqs/all-faqs/instant-funding-lite-faq/instant-funding-lite-whats-the-max-and-minimum-trading-days-is-there-a-specific-time-window-to-complete-the-profit-targets/",
+    "https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-can-i-hold-positions-overnight/",
+    "https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-do-i-get-a-refund-alongside-my-first-withdrawal/",
+    "https://fxify.com/terms-and-conditions"
+  ],
+  "accessNotes": "The five official program pages were rechecked on 2026-08-10. Their client-rendered pricing widget still shipped the same 8 products, 54 tiers and identical 116,834-character pricingTableData payload (SHA-256 prefix 287134D2B306FC2D), so every recorded tier price, target and drawdown was cross-confirmed across all five pages. A later CLI retry encountered Cloudflare, while the public renderer and same-day successful payload read remained available; no checkout was attempted. ALL PRICES RECORDED ARE LIST PRICES: current promos remain HOT20 (20% off, excluding Instant Lite, expires 1 September 2026) and NEW30 (30% off 2 Phase Pro, expires 31 December 2026), and neither coupon is blended into priceUsd. Product-scoped official FAQs resolve payout/minimum-day rules for 2 Phase Pro, Instant Funding Standard, Instant Funding Lite and Lightning, and resolve overnight/copy-trading rules. INDIA SCREEN: India is absent from the current restricted-jurisdiction list repeated on FXIFY pages. Official support pages publish SumSub ID/address/selfie checks, Rise KYC for withdrawals, a $50 minimum and usual processing within 3 business days; no completed Indian checkout, KYC approval or payout was independently tested.",
+  "capturedAt": "2026-08-10",
+  "products": [
+    {
+      "productName": "One Phase",
+      "productSlug": "one-phase",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 59,
+          "refundable": true,
+          "evidence": "One Phase pricing table: \"title\":\"$5k\" ... \"price\":\"$59\""
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 89,
+          "refundable": true,
+          "evidence": "One Phase pricing table: \"title\":\"$10k\" ... \"price\":\"$89\""
+        },
+        {
+          "sizeUsd": 15000,
+          "priceUsd": 119,
+          "refundable": true,
+          "evidence": "One Phase pricing table: \"title\":\"$15k\" ... \"price\":\"$119\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 199,
+          "refundable": true,
+          "evidence": "One Phase pricing table: \"title\":\"$25k\" ... \"price\":\"$199\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 379,
+          "refundable": true,
+          "evidence": "One Phase pricing table: \"title\":\"$50k\" ... \"price\":\"$379\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 549,
+          "refundable": true,
+          "evidence": "One Phase pricing table: \"title\":\"$100k\" ... \"price\":\"$549\""
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1049,
+          "refundable": true,
+          "evidence": "One Phase pricing table: \"title\":\"$200k\" ... \"price\":\"$1,049\""
+        },
+        {
+          "sizeUsd": 400000,
+          "priceUsd": 2950,
+          "refundable": true,
+          "evidence": "One Phase pricing table: \"title\":\"$400k\" ... \"price\":\"$2,950\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": null,
+        "phase3": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "trailing",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "monthly",
+      "rules": {
+        "news": "allowed",
+        "weekend": "allowed",
+        "overnight": "allowed",
+        "ea": "allowed",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fxify.com/programs/one-phase/",
+      "notes": [
+        "Prices are LIST prices from the site's own inline CMS payload; site-wide coupons HOT20 (20% off) and NEW30 (30% off 2 Phase Pro) are applied at checkout and are NOT reflected here.",
+        "Max trading days \"Unlimited\" -> recorded as null.",
+        "Profit split: 80% standard, 90% via paid checkout upgrade. Headline value reads \"up to 90%\".",
+        "Leverage \"up to 50:1\"; standard is 30:1, upgradeable at checkout.",
+        "Platform: MT5, DXTrade or TradingView.",
+        "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted.",
+        "Refundable fee 100%, paid with first withdrawal. \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\"",
+        "First payout is on-demand after the first closed trade (min 50 USD, 5 min trading days); thereafter monthly, or bi-weekly with a paid add-on."
+      ],
+      "fieldEvidence": {
+        "rules.overnight": "\"Yes, on the 1,2 and 3 Phase accounts you can hold positions overnight.\"",
+        "rules.copyTrading": "\"You can copy trades between your FXIFY accounts\"; external-account copying requires \"at least 30 days of trading history\" and per-account approval.",
+        "maxLossPct": "\"Max Trailing Drawdown\": \"6%\" - \"Trailing drawdown - 6% trails your closed trading balance until you reach 6% profits in your account.\"",
+        "dailyLossPct": "\"Daily Loss Limit\": \"3%\" - \"Daily Loss Limit is calculated based on the previous day’s end of day (5PM EST) balance.\"",
+        "profitTargets.phase1": "\"Profit Target\": \"$500 | 10%\" ($5k tier) - \"The profit target on the 1 phase assessment is set at 10%.\"",
+        "drawdownType": "\"Drawdown Type\" = \"Trailing\"",
+        "minTradingDays": "\"Minimum trading days\" = \"5 Days\"",
+        "profitSplitPct": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
+        "payoutFrequency": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\"",
+        "rules.news": "\"Trade Through News\" = \"Yes\"",
+        "rules.weekend": "\"Hold Over Weekend\" = \"Yes\"",
+        "rules.ea": "\"EAs Allowed\" = \"Yes\""
+      }
+    },
+    {
+      "productName": "Two Phase Classic",
+      "productSlug": "two-phase-classic",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 59,
+          "refundable": true,
+          "evidence": "Two Phase / Classic pricing table: \"title\":\"$5k\" ... \"price\":\"$59\""
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 89,
+          "refundable": true,
+          "evidence": "Two Phase / Classic pricing table: \"title\":\"$10k\" ... \"price\":\"$89\""
+        },
+        {
+          "sizeUsd": 15000,
+          "priceUsd": 119,
+          "refundable": true,
+          "evidence": "Two Phase / Classic pricing table: \"title\":\"$15k\" ... \"price\":\"$119\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 199,
+          "refundable": true,
+          "evidence": "Two Phase / Classic pricing table: \"title\":\"$25k\" ... \"price\":\"$199\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 379,
+          "refundable": true,
+          "evidence": "Two Phase / Classic pricing table: \"title\":\"$50k\" ... \"price\":\"$379\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 549,
+          "refundable": true,
+          "evidence": "Two Phase / Classic pricing table: \"title\":\"$100k\" ... \"price\":\"$549\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 5,
+        "phase2": 10,
+        "phase3": null
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 25,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "monthly",
+      "rules": {
+        "news": "allowed",
+        "weekend": "allowed",
+        "overnight": "allowed",
+        "ea": "allowed",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fxify.com/programs/two-phase/",
+      "notes": [
+        "Prices are LIST prices from the site's inline CMS payload; coupons HOT20 (20% off) / NEW30 (30% off 2 Phase Pro) apply at checkout.",
+        "minTradingDays left null: the CMS is self-contradictory for Two Phase - \"Minimum trading days\" appears as both \"4 days\" and \"5 days\", while the attached description says \"5 trading days per stage. Therefore a total of 10 minimum trading days across both stages of the 2 Phase assessment.\"",
+        "Profit split headline value renders as \"up to 100%\" but its own description says \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split\" - recorded 80 per the description; the 100% figure is unexplained.",
+        "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted.",
+        "Consistency Rule 25% applies to the Funded stage only (\"N/A\" in Phase 1 and Phase 2).",
+        "Fee refundable per site-wide statement: \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\""
+      ],
+      "fieldEvidence": {
+        "rules.overnight": "\"Yes, on the 1,2 and 3 Phase accounts you can hold positions overnight.\"",
+        "rules.copyTrading": "\"You can copy trades between your FXIFY accounts\"; external-account copying requires \"at least 30 days of trading history\" and per-account approval.",
+        "maxLossPct": "\"Max Static Drawdown\": \"10%\" - \"When you open the account, your Max Drawdown is set at 10% of your starting balance. This will be static for the life of the account.\"",
+        "dailyLossPct": "\"Daily Loss Limit\": \"4%\"",
+        "profitTargets": "$5k tier \"Profit Target\": [\"$250 | 5%\", \"$500 | 10%\", \"---\"]",
+        "consistencyRulePct": "\"Consistency Rule\": [\"N/A\", \"N/A\", \"25%\"]",
+        "profitSplitPct": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
+        "payoutFrequency": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\""
+      }
+    },
+    {
+      "productName": "Two Phase Standard",
+      "productSlug": "two-phase-standard",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 59,
+          "refundable": true,
+          "evidence": "Two Phase / Standard pricing table: \"title\":\"$5k\" ... \"price\":\"$59\""
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 89,
+          "refundable": true,
+          "evidence": "Two Phase / Standard pricing table: \"title\":\"$10k\" ... \"price\":\"$89\""
+        },
+        {
+          "sizeUsd": 15000,
+          "priceUsd": 119,
+          "refundable": true,
+          "evidence": "Two Phase / Standard pricing table: \"title\":\"$15k\" ... \"price\":\"$119\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 199,
+          "refundable": true,
+          "evidence": "Two Phase / Standard pricing table: \"title\":\"$25k\" ... \"price\":\"$199\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 379,
+          "refundable": true,
+          "evidence": "Two Phase / Standard pricing table: \"title\":\"$50k\" ... \"price\":\"$379\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 549,
+          "refundable": true,
+          "evidence": "Two Phase / Standard pricing table: \"title\":\"$100k\" ... \"price\":\"$549\""
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1049,
+          "refundable": true,
+          "evidence": "Two Phase / Standard pricing table: \"title\":\"$200k\" ... \"price\":\"$1,049\""
+        },
+        {
+          "sizeUsd": 400000,
+          "priceUsd": 2950,
+          "refundable": true,
+          "evidence": "Two Phase / Standard pricing table: \"title\":\"$400k\" ... \"price\":\"$2,950\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 5,
+        "phase3": null
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 10,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "monthly",
+      "rules": {
+        "news": "allowed",
+        "weekend": "allowed",
+        "overnight": "allowed",
+        "ea": "allowed",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fxify.com/programs/two-phase/",
+      "notes": [
+        "Prices are LIST prices from the site's inline CMS payload; coupons HOT20 (20% off) / NEW30 (30% off 2 Phase Pro) apply at checkout.",
+        "minTradingDays left null: the CMS is self-contradictory for Two Phase - \"Minimum trading days\" appears as both \"4 days\" and \"5 days\", while the attached description says \"5 trading days per stage. Therefore a total of 10 minimum trading days across both stages of the 2 Phase assessment.\"",
+        "Profit split headline value renders as \"up to 100%\" but its own description says \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split\" - recorded 80 per the description; the 100% figure is unexplained.",
+        "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted.",
+        "Phase 1 target (10%) is HIGHER than Phase 2 (5%) as published - this is what the table states, not a transcription error.",
+        "No consistency rule row shown for this variant -> null.",
+        "Refundable Fee row: \"100%\" in Phase 1."
+      ],
+      "fieldEvidence": {
+        "rules.overnight": "\"Yes, on the 1,2 and 3 Phase accounts you can hold positions overnight.\"",
+        "rules.copyTrading": "\"You can copy trades between your FXIFY accounts\"; external-account copying requires \"at least 30 days of trading history\" and per-account approval.",
+        "maxLossPct": "\"Max Trailing Drawdown\": \"10%\" - \"Trailing drawdown - 10% trails your closed trading balance until you reach 10% profits in your account.\"",
+        "dailyLossPct": "\"Daily Loss Limit\": \"4%\"",
+        "profitTargets": "$5k tier \"Profit Target\": [\"$500 | 10%\", \"$250 | 5%\", \"---\"]",
+        "profitSplitPct": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
+        "payoutFrequency": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\""
+      }
+    },
+    {
+      "productName": "Two Phase Pro",
+      "productSlug": "two-phase-pro",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 129,
+          "refundable": true,
+          "evidence": "Two Phase / Pro pricing table: \"title\":\"$10k\" ... \"price\":\"$129\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 225,
+          "refundable": true,
+          "evidence": "Two Phase / Pro pricing table: \"title\":\"$25k\" ... \"price\":\"$225\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 375,
+          "refundable": true,
+          "evidence": "Two Phase / Pro pricing table: \"title\":\"$50k\" ... \"price\":\"$375\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 599,
+          "refundable": true,
+          "evidence": "Two Phase / Pro pricing table: \"title\":\"$100k\" ... \"price\":\"$599\""
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 849,
+          "refundable": true,
+          "evidence": "Two Phase / Pro pricing table: \"title\":\"$150k\" ... \"price\":\"$849\""
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1099,
+          "refundable": true,
+          "evidence": "Two Phase / Pro pricing table: \"title\":\"$200k\" ... \"price\":\"$1,099\""
+        },
+        {
+          "sizeUsd": 250000,
+          "priceUsd": 1350,
+          "refundable": true,
+          "evidence": "Two Phase / Pro pricing table: \"title\":\"$250k\" ... \"price\":\"$1,350\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 4,
+        "phase2": 8,
+        "phase3": null
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 8,
+      "drawdownType": null,
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 10,
+      "payoutFrequency": null,
+      "rules": {
+        "news": "allowed",
+        "weekend": "allowed",
+        "overnight": "allowed",
+        "ea": "allowed",
+        "copyTrading": "not allowed"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fxify.com/programs/two-phase/",
+      "notes": [
+        "Prices are LIST prices from the site's inline CMS payload; coupons HOT20 (20% off) / NEW30 (30% off 2 Phase Pro) apply at checkout.",
+        "Product-scoped 2 Phase Pro FAQ resolves the generic Two Phase CMS contradiction: 3 profitable trading days per phase, each with at least 0.5% of initial balance profit.",
+        "Profit split headline value renders as \"up to 100%\" but its own description says \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split\" - recorded 80 per the description; the 100% figure is unexplained.",
+        "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copy trading is explicitly not allowed on 2 Phase Pro.",
+        "First payout can be requested 10 calendar days after the first trade, after at least 3 profitable days; the 10-day cycle is not representable by the current payoutFrequency enum, so payoutFrequency remains null.",
+        "drawdownType null: this variant’s row is labelled only \"Max Loss Limit\" (8%) with no description and no static/trailing wording - not inferred.",
+        "Target of the NEW30 coupon: \"NEW TRADERS: 30% OFF 2 PHASE PRO\", code NEW30.",
+        "Smallest tier is $10k - there is no $5k Pro account."
+      ],
+      "fieldEvidence": {
+        "minTradingDays": "\"The minimum number of trading days required is 3 profitable trading days per phase ... each day with 0.5% profit of the initial account balance.\"",
+        "payoutFirstDays": "\"the first payout can be requested 10 calendar days from when the first trade was placed\"",
+        "rules.overnight": "\"Yes, on the 1,2 and 3 Phase accounts you can hold positions overnight.\"",
+        "rules.copyTrading": "\"Copy trading is not allowed on ... 2 Phase PRO\"",
+        "maxLossPct": "\"Max Loss Limit\": [\"8%\", \"8%\", \"8%\"]",
+        "dailyLossPct": "\"Daily Loss Limit\": \"4%\"",
+        "profitTargets": "$10k tier \"Profit Target\": [\"$400 | 4%\", \"$800 | 8%\", \"---\"]",
+        "profitSplitPct": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
+        "payoutFrequency": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\""
+      }
+    },
+    {
+      "productName": "Three Phase",
+      "productSlug": "three-phase",
+      "phases": 3,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 39,
+          "refundable": true,
+          "evidence": "Three Phase pricing table: \"title\":\"$5k\" ... \"price\":\"$39\""
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 59,
+          "refundable": true,
+          "evidence": "Three Phase pricing table: \"title\":\"$10k\" ... \"price\":\"$59\""
+        },
+        {
+          "sizeUsd": 15000,
+          "priceUsd": 79,
+          "refundable": true,
+          "evidence": "Three Phase pricing table: \"title\":\"$15k\" ... \"price\":\"$79\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 149,
+          "refundable": true,
+          "evidence": "Three Phase pricing table: \"title\":\"$25k\" ... \"price\":\"$149\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 249,
+          "refundable": true,
+          "evidence": "Three Phase pricing table: \"title\":\"$50k\" ... \"price\":\"$249\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 399,
+          "refundable": true,
+          "evidence": "Three Phase pricing table: \"title\":\"$100k\" ... \"price\":\"$399\""
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 799,
+          "refundable": true,
+          "evidence": "Three Phase pricing table: \"title\":\"$200k\" ... \"price\":\"$799\""
+        },
+        {
+          "sizeUsd": 400000,
+          "priceUsd": 1599,
+          "refundable": true,
+          "evidence": "Three Phase pricing table: \"title\":\"$400k\" ... \"price\":\"$1,599\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 5,
+        "phase2": 5,
+        "phase3": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 5,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "monthly",
+      "rules": {
+        "news": "allowed",
+        "weekend": "allowed",
+        "overnight": "allowed",
+        "ea": "allowed",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
+      "notes": [
+        "Prices are LIST prices from the site's inline CMS payload; HOT20 (20% off) applies at checkout.",
+        "minTradingDays is 5 PER STAGE: \"The minimum time to complete the FXIFY™ Challenge is 5 trading days per stage. Therefore a total of 15 minimum trading days across all three stages.\"",
+        "Cheapest product on the site: $5k for $39.",
+        "Max drawdown equals the daily loss limit (both 5%) - as published.",
+        "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted."
+      ],
+      "fieldEvidence": {
+        "rules.overnight": "\"Yes, on the 1,2 and 3 Phase accounts you can hold positions overnight.\"",
+        "rules.copyTrading": "\"You can copy trades between your FXIFY accounts\"; external-account copying requires \"at least 30 days of trading history\" and per-account approval.",
+        "maxLossPct": "\"Max Drawdown\": \"5%\" - \"When you open the account, your Max Drawdown is set at 5% of your starting balance. This will be static for the life of the account.\"",
+        "dailyLossPct": "\"Daily Loss Limit\": \"5%\"",
+        "profitTargets": "$5k tier \"Profit Target\": [\"$250 | 5%\", \"$250 | 5%\", \"$250 | 5%\", \"---\"]",
+        "drawdownType": "\"Drawdown Type\" = \"Static\"",
+        "minTradingDays": "\"Minimum trading days\" = \"5 days\"",
+        "profitSplitPct": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
+        "payoutFrequency": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\""
+      }
+    },
+    {
+      "productName": "Instant Funding Standard",
+      "productSlug": "instant-funding-standard",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 1000,
+          "priceUsd": 69,
+          "refundable": false,
+          "evidence": "Instant Funding / Standard pricing table: \"title\":\"$1k\" ... \"price\":\"$69\""
+        },
+        {
+          "sizeUsd": 2500,
+          "priceUsd": 119,
+          "refundable": false,
+          "evidence": "Instant Funding / Standard pricing table: \"title\":\"$2.5k\" ... \"price\":\"$119\""
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 229,
+          "refundable": false,
+          "evidence": "Instant Funding / Standard pricing table: \"title\":\"$5k\" ... \"price\":\"$229\""
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 449,
+          "refundable": false,
+          "evidence": "Instant Funding / Standard pricing table: \"title\":\"$10k\" ... \"price\":\"$449\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 899,
+          "refundable": false,
+          "evidence": "Instant Funding / Standard pricing table: \"title\":\"$25k\" ... \"price\":\"$899\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 1749,
+          "refundable": false,
+          "evidence": "Instant Funding / Standard pricing table: \"title\":\"$50k\" ... \"price\":\"$1749\""
+        },
+        {
+          "sizeUsd": 75000,
+          "priceUsd": 2499,
+          "refundable": false,
+          "evidence": "Instant Funding / Standard pricing table: \"title\":\"$75K\" ... \"price\":\"$2499\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 4249,
+          "refundable": false,
+          "evidence": "Instant Funding / Standard pricing table: \"title\":\"$100K\" ... \"price\":\"$4249\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null,
+        "phase3": null
+      },
+      "dailyLossPct": 8,
+      "maxLossPct": 8,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": null,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "not allowed",
+        "weekend": "not allowed",
+        "overnight": null,
+        "ea": "not allowed",
+        "copyTrading": "not allowed"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fxify.com/programs/instant-funding/",
+      "notes": [
+        "Prices are LIST prices from the site's inline CMS payload. NOTE: the HOT20 summer coupon explicitly EXCLUDES Instant Lite - \"SUMMER SALE: 20% OFF (excl. Instant Lite)\".",
+        "No evaluation and no profit target - funded from purchase.",
+        "Fee is NOT refundable: \"Refund\" = \"No\".",
+        "Product-scoped Instant Funding FAQ says the first payout is 14 days after the first trade and subsequent payouts are every 14 days (bi-weekly).",
+        "Withdrawal Policy = \"$50\" minimum.",
+        "Copy trading is prohibited on Instant Funding accounts. A distinct overnight-holding rule was not verified -> overnight remains null.",
+        "profitSplitPct null: only \"Performance Split\" = \"Up to 90%\" is given, with no stated base split (unlike the phase products, which state 80% standard).",
+        "minTradingDays remains null: the product-scoped Standard FAQ says there is no minimum or maximum trading-day requirement; the 14-day first-payout wait is recorded separately.",
+        "Tier list runs $1k to $100K; the page headline claims \"Choose account sizes up to $50K\", which conflicts with the $75K and $100K tiers present in the table."
+      ],
+      "fieldEvidence": {
+        "payoutFirstDays": "\"The first payout can be requested 14 days after the first trade is placed\"",
+        "payoutFrequency": "\"any subsequent payout requests will also be on a bi-weekly basis, every 14 days\"",
+        "rules.copyTrading": "\"Copy trading is not allowed on ... Instant Funding accounts\"",
+        "maxLossPct": "\"Max Trailing Drawdown\": \"8%\" - \"The Max Trailing Drawdown is fixed at 8% of your starting balance, and it moves (or “trails”) your High Water Mark (“HWM”) until 8% profit made.\"",
+        "dailyLossPct": "\"Daily Loss Limit\": \"8%\"",
+        "drawdownType": "\"Drawdown Type\" = \"Trailing\"",
+        "rules.news": "\"Trade Through News\" = \"No\"",
+        "rules.weekend": "\"Hold Over Weekend\" = \"No\"",
+        "rules.ea": "\"EAs Allowed\" = \"No\""
+      }
+    },
+    {
+      "productName": "Instant Funding Lite",
+      "productSlug": "instant-funding-lite",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": 19,
+          "refundable": false,
+          "evidence": "Instant Funding / Lite pricing table: \"title\":\"$2.5k\" ... \"price\":\"19\""
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 44,
+          "refundable": false,
+          "evidence": "Instant Funding / Lite pricing table: \"title\":\"$5k\" ... \"price\":\"44\""
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 89,
+          "refundable": false,
+          "evidence": "Instant Funding / Lite pricing table: \"title\":\"$10k\" ... \"price\":\"89\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 169,
+          "refundable": false,
+          "evidence": "Instant Funding / Lite pricing table: \"title\":\"$25k\" ... \"price\":\"169\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 289,
+          "refundable": false,
+          "evidence": "Instant Funding / Lite pricing table: \"title\":\"$50k\" ... \"price\":\"289\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null,
+        "phase3": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 4,
+      "drawdownType": "trailing",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": 20,
+      "profitSplitPct": null,
+      "payoutFirstDays": 10,
+      "payoutFrequency": null,
+      "rules": {
+        "news": "not allowed",
+        "weekend": "not allowed",
+        "overnight": null,
+        "ea": "not allowed",
+        "copyTrading": "not allowed"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fxify.com/programs/instant-funding/",
+      "notes": [
+        "Prices are LIST prices from the site's inline CMS payload. NOTE: the HOT20 summer coupon explicitly EXCLUDES Instant Lite - \"SUMMER SALE: 20% OFF (excl. Instant Lite)\".",
+        "No evaluation and no profit target - funded from purchase.",
+        "Fee is NOT refundable: \"Refund\" = \"No\".",
+        "Product-scoped Lite FAQs require 5 trading days and 10 calendar days from the first trade before payout. The 10-day payout cycle is not representable by the current payoutFrequency enum, so payoutFrequency remains null.",
+        "Withdrawal Policy = \"$50\" minimum.",
+        "Copy trading is prohibited on Instant Funding Lite. A distinct overnight-holding rule was not verified -> overnight remains null.",
+        "Lite prices are stored in the CMS WITHOUT a \"$\" prefix (e.g. \"price\":\"19\"); read as USD, consistent with every other tier on the site.",
+        "Explicitly excluded from the HOT20 20% summer discount.",
+        "Rules (news/weekend/EA) come from the shared Instant Funding feature block - the CMS does not split these per Standard/Lite variant."
+      ],
+      "fieldEvidence": {
+        "minTradingDays": "\"complete 5 trading days, total 10 days from when the first trade was placed\"",
+        "payoutFirstDays": "\"total 10 days from when the first trade was placed\"",
+        "rules.copyTrading": "\"Copy trading is not allowed on Instant Funding LITE\"",
+        "maxLossPct": "\"Max Trailing Drawdown\": \"4%\" - \"The Max Trailing Drawdown is fixed at 4% of your starting balance, and it moves (or “trails”) your High Water Mark (“HWM”) until 4% profit made.\"",
+        "dailyLossPct": "\"Daily Loss Limit\": \"3%\"",
+        "consistencyRulePct": "\"Consistency\": \"20%\""
+      }
+    },
+    {
+      "productName": "Lightning Challenge",
+      "productSlug": "lightning-challenge",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 59,
+          "refundable": true,
+          "evidence": "Lightning pricing table: \"title\":\"$10K\" ... \"price\":\"$59\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 149,
+          "refundable": true,
+          "evidence": "Lightning pricing table: \"title\":\"$25K\" ... \"price\":\"$149\""
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 249,
+          "refundable": true,
+          "evidence": "Lightning pricing table: \"title\":\"$50K\" ... \"price\":\"$249\""
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 399,
+          "refundable": true,
+          "evidence": "Lightning pricing table: \"title\":\"$100K\" ... \"price\":\"$399\""
+        }
+      ],
+      "profitTargets": {
+        "phase1": 5,
+        "phase2": null,
+        "phase3": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 4,
+      "drawdownType": "trailing",
+      "minTradingDays": 3,
+      "maxTradingDays": 5,
+      "consistencyRulePct": 30,
+      "profitSplitPct": null,
+      "payoutFirstDays": 7,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "not allowed",
+        "weekend": "allowed",
+        "overnight": "allowed",
+        "ea": "not allowed",
+        "copyTrading": "not allowed"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+      "notes": [
+        "Prices are LIST prices from the site's inline CMS payload; HOT20 (20% off) applies at checkout.",
+        "Smallest Lightning account is $10K - there is NO $5K Lightning tier.",
+        "Mandatory stop loss: \"Risk Management\" = \"Mandatory SL on every trade\"; table row \"Stop Loss Required?\" = \"Yes\".",
+        "Hard 5-day time limit: \"Maximum Trading Days\" = \"5 days\" (table \"Maximum Trading Days\": [\"5\", \"-\"]).",
+        "Leverage \"Up to 30:1\" - lower than the 50:1 available on the phase products.",
+        "profitSplitPct null: only \"Performance Split\" = \"Up to 90%\" given, no stated base split.",
+        "First Lightning payout is available 7 days after the first trade; subsequent withdrawals are every 14 days (bi-weekly).",
+        "Official Lightning FAQ confirms a 100% refund alongside the first withdrawal.",
+        "Lightning permits overnight holding without restrictions; copy trading is explicitly prohibited.",
+        "Platform value reads \"Platform 5\" (apparent CMS typo)."
+      ],
+      "fieldEvidence": {
+        "payoutFirstDays": "\"For the Lightning account ... the first withdrawal can be requested after 7 days\"",
+        "payoutFrequency": "\"then any subsequent every 14 days, bi-weekly basis\"",
+        "accountSizes.refundable": "\"Yes, you will receive a 100% refund alongside your first withdrawal\"",
+        "rules.overnight": "\"Yes, traders in the Lightning Plan are allowed to hold positions overnight without any restrictions.\"",
+        "rules.copyTrading": "\"Copy trading is not allowed on ... the Lightning Plan\"",
+        "maxLossPct": "\"Max Trailing Drawdown\": [\"4%\", \"4%\"]",
+        "dailyLossPct": "\"Daily Loss Limit\": [\"3%\", \"3%\"]",
+        "profitTargets.phase1": "$10K tier \"Profit Target\": [\"$500 | 5%\", \"---\"]",
+        "minTradingDays": "\"Minimum Trading Days\" = \"3 days\"; table \"Minimum Trading Days\": [\"3\", \"3\"]",
+        "maxTradingDays": "\"Maximum Trading Days\" = \"5 days\"",
+        "consistencyRulePct": "\"Consistency Rule\" = \"30%\"",
+        "rules.news": "\"Trade Through News\" = \"No\"",
+        "rules.weekend": "\"Hold Over Weekend\" = \"Yes\"",
+        "rules.ea": "\"EAs Allowed\" = \"No\""
+      }
+    }
+  ]
+}

@@ -85,6 +85,10 @@ const projectRule = (where, field, value, problems) => {
   const exact = bool(x)
   if (exact !== null) return exact
   if (/^(restricted|partially allowed)\b/.test(s)) return 'restricted'
+  // Weekend holding has its own field. A sentence such as "overnight is
+  // allowed on weekdays, but weekend holds are prohibited" therefore means
+  // overnight=true and weekend=false, not a restricted overnight policy.
+  if (field === 'overnight' && /\ballowed on weekdays?\b/.test(s)) return true
   if (/\bpersonal .+ only\b|\bno third-party\b/.test(s)) return 'restricted'
   if (/\brestriction\b/.test(s)) return 'restricted'
   if (field === 'copyTrading' && /\b(immediate account closure|violation consequence)\b/.test(s)) {

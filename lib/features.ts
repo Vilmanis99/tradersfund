@@ -1,3 +1,8 @@
+import {
+  buildFeatureEvidence,
+  isProductLevelFeature,
+  qualifyingFirms,
+} from './featureEvidence'
 import type { Firm } from './firms'
 import { getAllFirms } from './firms'
 
@@ -27,8 +32,12 @@ export interface Feature {
   intro: string
   /** 3–4 bullets for the "Why this matters" section */
   whyItMatters: FeatureWhyBullet[]
-  /** Predicate over Firm → does this firm qualify? */
-  filter: (f: Firm) => boolean
+  /**
+   * Firm-level predicate. Only used by features with no per-product field
+   * (payout methods live on the firm, not the challenge). Product-level
+   * features resolve through lib/featureEvidence.ts instead and omit this.
+   */
+  filter?: (f: Firm) => boolean
   /** 2–4 FAQ entries — rendered as visible HTML + JSON-LD FAQPage */
   faqs: FeatureFaq[]
   /** ISO date string of last editorial review — drives the visible freshness pill. */
@@ -300,15 +309,136 @@ export const FEATURES: Feature[] = [
     ],
     lastReviewed: "2026-06-04",
   },
+
+  /* ── Product-level features ──────────────────────────────────────
+   * The entries below carry no `filter`: they resolve through
+   * lib/featureEvidence.ts against the challenge captures. Their prose
+   * deliberately explains mechanics rather than quoting firm figures —
+   * a hand-written number here would rot the moment a capture changes,
+   * and the generated section already carries every specific.
+   * ─────────────────────────────────────────────────────────────── */
+
+  {
+    slug: 'copy-trading',
+    label: 'Copy Trading',
+    h1: 'Prop Firms That Allow Copy Trading',
+    metaTitle: 'Prop Firms That Allow Copy Trading (2026) — By Product',
+    metaDescription:
+      'Which prop firms permit copy trading, product by product. Every verdict is read from that challenge product\'s own published terms, with capture dates.',
+    intro:
+      'Copy trading covers three different things — mirroring your own accounts, following a third-party signal, and having someone else trade for you — and firms rarely treat them the same way. The verdicts below come from each product\'s published rules rather than a single firm-wide setting, because the permission often changes between a firm\'s own plans.',
+    whyItMatters: [
+      {
+        icon: 'bot',
+        title: 'Copying yourself is not copying others',
+        body: 'Most firms separate mirroring between your own accounts from following an external signal. The first is frequently allowed, the second frequently is not, and the two are rarely stated in the same place.',
+      },
+      {
+        icon: 'shield',
+        title: 'Correlated flow is the real concern',
+        body: 'Firms manage risk across their funded book. Identical positions arriving from many accounts at once breaks that model, which is why copy restrictions tighten on instant-funding and one-step products first.',
+      },
+      {
+        icon: 'zap',
+        title: 'A breach is usually caught at withdrawal',
+        body: 'Copy-trading rules tend to be enforced during payout review, once the profit already exists. Confirming the rule before you trade costs nothing; confirming it after does.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Can I copy trades between my own funded accounts?',
+        a: 'Often yes, where both accounts are registered to the same person, though firms that allow it usually cap total correlated exposure. Firms banning all mirroring make no self-copying exception. Because this varies between products at the same firm, check the specific plan rather than the firm\'s marketing page.',
+      },
+      {
+        q: 'Does copy trading include following a signal provider?',
+        a: 'Usually yes, and it is the stricter case. A third-party signal means the firm cannot attribute the edge to you, which is what it is underwriting. Several firms allow Expert Advisors while still prohibiting signal copying, so an "EA allowed" line is not permission to copy.',
+      },
+      {
+        q: 'Why do rules differ between one firm\'s own products?',
+        a: 'Instant-funding and single-phase products expose the firm to more risk than a two-phase evaluation, so restrictions land there first. That is exactly why this page rates products rather than firms — a firm-level yes or no hides which plan carries the restriction.',
+      },
+    ],
+    lastReviewed: "2026-08-07",
+  },
+
+  /*
+   * Intentionally unpublished: `no-consistency-rule` and
+   * `no-minimum-trading-days`. The current Challenge fields cannot
+   * distinguish an explicitly confirmed absence from an unknown, omitted,
+   * or conflicted rule. Adding either slug to FEATURES would turn silence
+   * into a negative factual claim. Publish only after the schema gains a
+   * separate confirmed-none state and the captures are migrated.
+   */
+
+  {
+    slug: 'high-profit-split',
+    label: '90%+ Profit Split',
+    h1: 'Prop Firms Paying a 90% Profit Split or Higher',
+    metaTitle: 'Prop Firms With a 90%+ Profit Split (2026) — Per Product',
+    metaDescription:
+      'Challenge products publishing a 90% or higher profit split, read per product from the firm\'s own terms rather than from a best-case headline.',
+    intro:
+      'Profit splits are advertised per firm and paid per product. A firm promoting 90% commonly reaches it on one plan while its remaining plans pay less, and scaling-plan ceilings are quoted as though they were starting rates. Every figure below is the split the individual product publishes.',
+    whyItMatters: [
+      {
+        icon: 'wallet',
+        title: 'The split sets your break-even',
+        body: 'Your fee returns at fee divided by split. A $500 challenge on a 90% split needs $556 of profit to repay itself; the same fee at 70% needs $714. Every reset repeats the gap.',
+      },
+      {
+        icon: 'trending',
+        title: 'A ceiling is not a starting rate',
+        body: 'Scaling plans advertise the maximum reachable after milestones. What you are paid on your first withdrawal is the product rate at purchase, which is what this page records.',
+      },
+      {
+        icon: 'shield',
+        title: 'A high split is often funded by a harder rule',
+        body: 'Products at the top of a firm\'s split range frequently carry tighter drawdown or a consistency cap. Read the split beside the risk rules rather than on its own.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is a higher profit split always better?',
+        a: 'No. The split applies only to profit you are permitted to keep and withdraw. A 95% product with trailing drawdown and a tight consistency cap can pay less in practice than an 80% product with static drawdown and no cap. Compare the split against the rule set that governs it.',
+      },
+      {
+        q: 'Why does this page disagree with a firm\'s advertised split?',
+        a: 'We record what each product publishes rather than the firm\'s best case. Where a firm\'s own pages conflict with each other we mark the figure unverified instead of selecting the higher number, and note the conflict on our change watch.',
+      },
+      {
+        q: 'Do any firms pay a 100% split?',
+        a: 'Some publish a 100% rate on specific products or as a scaling ceiling. Where a product publishes it we record it. Where it is only reachable after milestones, the milestone terms — not the headline — decide what you are actually paid.',
+      },
+    ],
+    lastReviewed: "2026-08-07",
+  },
+
 ]
 
 export function getFeatureBySlug(slug: string): Feature | undefined {
   return FEATURES.find(f => f.slug === slug)
 }
 
+/**
+ * Firms qualifying for a feature.
+ *
+ * Product-level features resolve against the challenge captures, because the
+ * `filter` predicates below test the firm aggregate and that aggregate was
+ * demonstrably wrong in both directions — admitting FXIFY to the EA list
+ * while one of its products bans EAs, and excluding Topstep whose No
+ * Activation Fee Path allows them. `filter` survives only for features with
+ * no per-product field (payout methods live on the firm).
+ */
 export function getFirmsForFeature(slug: string): Firm[] {
   const feature = getFeatureBySlug(slug)
   if (!feature) return []
+  if (isProductLevelFeature(slug)) {
+    // buildFeatureEvidence orders full coverage before partial coverage and
+    // score-sorts inside each group. Preserve that safety signal in the CTA
+    // list instead of letting a high generic score outrank complete coverage.
+    return qualifyingFirms(buildFeatureEvidence(slug))
+  }
+  if (!feature.filter) return []
   return getAllFirms()
     .filter(feature.filter)
     .sort((a, b) => b.score - a.score)
@@ -318,6 +448,10 @@ export function getFeatureCounts(): Array<{ feature: Feature; count: number }> {
   const all = getAllFirms()
   return FEATURES.map(feature => ({
     feature,
-    count: all.filter(feature.filter).length,
+    // Same source as the page itself, so the hub can never advertise a count
+    // the list does not contain.
+    count: isProductLevelFeature(feature.slug)
+      ? qualifyingFirms(buildFeatureEvidence(feature.slug)).length
+      : feature.filter ? all.filter(feature.filter).length : 0,
   }))
 }

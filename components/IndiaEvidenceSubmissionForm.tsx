@@ -143,6 +143,7 @@ export default function IndiaEvidenceSubmissionForm({
             className="contact-form post-sidebar-card"
             onSubmit={handleSubmit}
             noValidate
+            data-clarity-mask="true"
             style={{ maxWidth: 'none', padding: '1.35rem' }}
           >
             <input
