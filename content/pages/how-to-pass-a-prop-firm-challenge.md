@@ -108,6 +108,8 @@ type: "page"
   </tbody>
 </table>
 
+<p>An attempt counter only works when its stop is enforced. The <a href="/blog/what-is-overtrading">overtrading guide</a> shows how to audit off-plan entries, size escalation, post-stop violations, and net results by trade order across 20 sessions.</p>
+
 <h2>8. Choose the rule set your strategy can actually follow</h2>
 
 <p>A static floor can simplify planning, but it does not automatically make a product cheaper or better. A no-maximum-day evaluation removes one source of time pressure, but minimum-day, news, consistency, holding, and payout gates still apply. Compare the <a href="/cheapest-prop-firms">entry prices</a>, then run the recovery math in the <a href="/true-cost-of-prop-firm-challenges">true-cost guide</a> instead of choosing by account headline or maximum advertised split.</p>

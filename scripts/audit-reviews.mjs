@@ -195,6 +195,10 @@ const DRAWDOWN_GUIDE_FILE = path.join(
   ROOT,
   'content/posts/balance-based-drawdown-vs-equity-based-drawdown.md',
 )
+const OVERTRADING_GUIDE_FILE = path.join(
+  ROOT,
+  'content/posts/what-is-overtrading.md',
+)
 const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
 const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
@@ -4087,6 +4091,376 @@ function checkDrawdownGuide() {
 }
 
 /**
+ * Overtrading copy must define the problem as observable plan drift rather
+ * than a universal trade count. Keep its current product examples, null-field
+ * caveat, hypothetical session math, audit worksheet, and commercial path
+ * tied to the structured records and raw captures that support them.
+ */
+function checkOvertradingGuide() {
+  const rows = []
+  if (!fs.existsSync(OVERTRADING_GUIDE_FILE)) {
+    console.log('\n✗ Overtrading guide')
+    console.log('  · content/posts/what-is-overtrading.md is missing')
+    return 1
+  }
+
+  const { data, content } = matter(fs.readFileSync(OVERTRADING_GUIDE_FILE, 'utf-8'))
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const attributedMarkup = (tag, attribute, key) => {
+    const match = content.match(
+      new RegExp(
+        `<${tag}[^>]*\\b${attribute}="${escapeRegExp(key)}"[^>]*>([\\s\\S]*?)<\\/${tag}>`,
+        'i',
+      ),
+    )
+    return match?.[1] ?? ''
+  }
+  const attributedText = (tag, attribute, key) =>
+    stripTags(attributedMarkup(tag, attribute, key)).replace(/\s+/g, ' ').trim()
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} evidence block is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+  const money = value => `$${value.toLocaleString('en-US')}`
+  const product = (firmSlug, productSlug) =>
+    loadChallenges(firmSlug)?.find(challenge => challenge.productSlug === productSlug)
+  const tier = (challenge, sizeUsd) =>
+    challenge?.accountSizes.find(account => account.sizeUsd === sizeUsd)
+
+  if (data.title !== 'What Is Overtrading? 7 Signs and a Stop System (2026)') {
+    rows.push('title must preserve definition, signs, control system, and current year')
+  }
+  if (data.seoTitle !== 'What Is Overtrading? Signs and How to Stop (2026)') {
+    rows.push('seoTitle must preserve the direct definition and prevention intent')
+  }
+  if (typeof data.seoTitle !== 'string' || data.seoTitle.length > 60) {
+    rows.push('seoTitle must stay at or below 60 characters')
+  }
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+  if (
+    !Array.isArray(data.tags) ||
+    !data.tags.includes('overtrading') ||
+    !data.tags.includes('risk management')
+  ) {
+    rows.push('tags must preserve overtrading and risk-management search intent')
+  }
+
+  expectFragments('overtrading definition', stripTags(content), [
+    'Overtrading is taking trades that exceed a tested trading plan',
+    'It is not defined by one universal number of orders',
+    'A 20-trade systematic strategy can remain on plan',
+    'actual decisions versus pre-session rules',
+  ])
+  expectFragments(
+    'planned-frequency distinction',
+    attributedText('table', 'data-overtrading-distinction', 'plan-vs-drift'),
+    ['Entry', 'Risk', 'Timing', 'Costs', 'Stop', 'Planned frequency', 'Overtrading drift'],
+  )
+
+  const fundedNext = product('fundednext', 'stellar-2-step')
+  const ftmo = product('ftmo', 'ftmo-challenge-1-step')
+  const fxify = product('fxify', 'lightning-challenge')
+  const fundedNextTier = tier(fundedNext, 100000)
+  const ftmoTier = tier(ftmo, 100000)
+  const fxifyTier = tier(fxify, 100000)
+
+  const requiredProducts = [
+    ['FundedNext Stellar 2-Step $100K', fundedNext, fundedNextTier],
+    ['FTMO 1-Step $100K', ftmo, ftmoTier],
+    ['FXIFY Lightning $100K', fxify, fxifyTier],
+  ]
+  for (const [label, challenge, accountTier] of requiredProducts) {
+    if (!challenge || !accountTier) rows.push(`${label} structured product or tier is missing`)
+  }
+
+  if (fundedNext && fundedNextTier) {
+    expectFragments(
+      'FundedNext overtrading-rule row',
+      attributedText('tr', 'data-overtrading-rule', 'fundednext:stellar-2-step'),
+      [
+        'FundedNext Stellar 2-Step $100K',
+        money(fundedNextTier.priceUsd),
+        `${fundedNext.dailyLossPct}% daily loss`,
+        `${fundedNext.maxLossPct}% ${fundedNext.drawdownType} maximum loss`,
+        `${fundedNext.minTradingDays} minimum trading days`,
+        'no maximum-day number recorded',
+        fundedNext.sourceCapturedAt,
+      ],
+    )
+    if (fundedNext.maxTradingDays !== null || fundedNext.drawdownType !== 'static') {
+      rows.push('FundedNext example lost its null maximum-day or static-drawdown caveat')
+    }
+  }
+
+  if (ftmo && ftmoTier) {
+    expectFragments(
+      'FTMO overtrading-rule row',
+      attributedText('tr', 'data-overtrading-rule', 'ftmo:ftmo-challenge-1-step'),
+      [
+        'FTMO 1-Step $100K',
+        `€${ftmoTier.priceEur}`,
+        `${ftmo.dailyLossPct}% daily loss`,
+        `${ftmo.maxLossPct}% balance-based end-of-day trailing maximum loss`,
+        `${ftmo.consistencyRulePct}% Best Day rule`,
+        ftmo.sourceCapturedAt,
+      ],
+    )
+    if (ftmo.drawdownType !== 'eod-trailing' || ftmo.consistencyRulePct !== 50) {
+      rows.push('FTMO 1-Step example lost its EOD-trailing or Best Day support')
+    }
+  }
+
+  if (fxify && fxifyTier) {
+    expectFragments(
+      'FXIFY Lightning overtrading-rule row',
+      attributedText('tr', 'data-overtrading-rule', 'fxify:lightning-challenge'),
+      [
+        'FXIFY Lightning $100K',
+        money(fxifyTier.priceUsd),
+        `${fxify.dailyLossPct}% daily loss`,
+        `${fxify.maxLossPct}% ${fxify.drawdownType} maximum loss`,
+        `${fxify.consistencyRulePct}% consistency`,
+        `${fxify.minTradingDays} minimum and ${fxify.maxTradingDays} maximum trading days`,
+        'mandatory stop loss',
+        fxify.sourceCapturedAt,
+      ],
+    )
+    if (
+      fxify.drawdownType !== 'trailing' ||
+      fxify.maxTradingDays !== 5 ||
+      fxify.consistencyRulePct !== 30 ||
+      !fxify.notes.some(note => note.includes('Mandatory stop loss'))
+    ) {
+      rows.push('FXIFY Lightning pressure example drifted from structured support')
+    }
+  }
+
+  const captureEvidence = (file, productSlug) => {
+    const capture = JSON.parse(fs.readFileSync(file, 'utf-8'))
+    const capturedProduct = capture.products?.find(
+      candidate => candidate.productSlug === productSlug,
+    )
+    if (!capturedProduct) return ''
+    return [
+      ...capturedProduct.accountSizes.flatMap(account =>
+        Object.values(account).filter(value => typeof value === 'string'),
+      ),
+      ...Object.values(capturedProduct.fieldEvidence ?? {}).filter(
+        value => typeof value === 'string',
+      ),
+      ...(capturedProduct.notes ?? []),
+    ].join(' ')
+  }
+  const fundedNextCapture = captureEvidence(
+    path.join(CHALLENGES, '_captures/fundednext-2026-07-27.json'),
+    'stellar-2-step',
+  )
+  const ftmoCapture = captureEvidence(
+    path.join(CHALLENGES, '_captures/ftmo-2026-07-27.json'),
+    'ftmo-challenge-1-step',
+  )
+  const fxifyCapture = captureEvidence(
+    path.join(CHALLENGES, '_captures/fxify-2026-08-10.json'),
+    'lightning-challenge',
+  )
+  for (const fragment of [
+    "'$100k Get Plan Fee: $549.99'",
+    'Stellar 2-Step permits 5% of initial balance per day',
+    'Stellar 2-Step maximum loss is 10% of initial balance',
+    'require 5 trading days in each phase',
+  ]) {
+    if (!fundedNextCapture.includes(fragment)) {
+      rows.push(`FundedNext raw capture is missing overtrading support: "${fragment}"`)
+    }
+  }
+  for (const fragment of [
+    '"price":"499"',
+    'Maximum Daily Loss is set as 3% from the initial balance',
+    'balance-based end-of-day trailing limit',
+    '"Best Day Rule" = 50%',
+  ]) {
+    if (!ftmoCapture.includes(fragment)) {
+      rows.push(`FTMO raw capture is missing overtrading support: "${fragment}"`)
+    }
+  }
+  for (const fragment of [
+    '"title":"$100K" ... "price":"$399"',
+    '"Max Trailing Drawdown": ["4%", "4%"]',
+    '"Daily Loss Limit": ["3%", "3%"]',
+    '"Minimum Trading Days" = "3 days"',
+    '"Maximum Trading Days" = "5 days"',
+    '"Consistency Rule" = "30%"',
+    'Mandatory SL on every trade',
+  ]) {
+    if (!fxifyCapture.includes(fragment)) {
+      rows.push(`FXIFY raw capture is missing overtrading support: "${fragment}"`)
+    }
+  }
+
+  const accountSize = 100000
+  const riskPct = 0.25
+  const plannedAttempts = 3
+  const actualAttempts = 6
+  const lossPerAttempt = accountSize * (riskPct / 100)
+  const plannedLoss = plannedAttempts * lossPerAttempt
+  const actualLoss = actualAttempts * lossPerAttempt
+  const unplannedLoss = actualLoss - plannedLoss
+  expectFragments(
+    'overtrading session-drift math',
+    attributedText('table', 'data-overtrading-math', 'session-drift'),
+    [
+      money(accountSize),
+      `${money(accountSize)} × ${riskPct}% = ${money(lossPerAttempt)}`,
+      `${plannedAttempts} attempts × ${money(lossPerAttempt)} = ${money(plannedLoss)}`,
+      `${actualAttempts} attempts × ${money(lossPerAttempt)} = ${money(actualLoss)}`,
+      `${money(actualLoss)} − ${money(plannedLoss)} = ${money(unplannedLoss)}`,
+      'planned session risk doubled',
+    ],
+  )
+  if (fundedNext && fundedNextTier) {
+    const firmDailyAmount =
+      fundedNextTier.sizeUsd * (fundedNext.dailyLossPct / 100)
+    expectFragments('firm-versus-personal limit explanation', stripTags(content), [
+      `captured ${fundedNext.dailyLossPct}% daily amount is ${money(firmDailyAmount)}`,
+      `${money(actualLoss)} session can remain inside that firm boundary`,
+      `breaching the hypothetical ${money(plannedLoss)} personal plan by ${money(unplannedLoss)}`,
+    ])
+  }
+
+  expectFragments(
+    'twenty-session audit',
+    attributedText('table', 'data-overtrading-audit', 'twenty-session'),
+    [
+      'Off-plan entry rate',
+      'Off-plan entries ÷ all entries × 100',
+      'Risk-escalation rate',
+      'Entries above planned size ÷ all entries × 100',
+      'Post-stop violations',
+      'Trade-order expectancy',
+      'Average net result for trades 1, 2, 3, and 4+',
+      'Turnover cost',
+    ],
+  )
+
+  const choiceMarkup = attributedMarkup('div', 'data-overtrading-choice', 'fundednext')
+  const choiceText = stripTags(choiceMarkup).replace(/\s+/g, ' ').trim()
+  if (fundedNext && fundedNextTier && fxify) {
+    expectFragments('FundedNext overtrading choice', choiceText, [
+      'Comparing the deadline field?',
+      `current $100K tier is ${money(fundedNextTier.priceUsd)}`,
+      `${fundedNext.dailyLossPct}% daily loss`,
+      `${fundedNext.maxLossPct}% ${fundedNext.drawdownType} maximum loss`,
+      `${fundedNext.minTradingDays} minimum trading days`,
+      'no verified maximum-day number',
+      'do not treat that null as proof of no deadline',
+      `FXIFY Lightning explicitly records a ${fxify.maxTradingDays}-day maximum`,
+      'confirm the live schedule before buying',
+    ])
+  }
+  for (const href of ['/blog/fundednext-review', '/go/fundednext']) {
+    if (!choiceMarkup.includes(`href="${href}"`)) {
+      rows.push(`FundedNext overtrading choice is missing ${href}`)
+    }
+  }
+
+  const requiredLinks = [
+    '/blog/what-is-copy-trading',
+    '/blog/fundednext-review',
+    '/blog/ftmo-review',
+    '/blog/fxify-review',
+    '/prop-firm-challenges',
+    '/how-to-pass-a-prop-firm-challenge',
+    '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+    '/true-cost-of-prop-firm-challenges',
+    '/go/fundednext',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+
+  const backlinkFiles = [
+    [CHALLENGE_PASSING_PAGE_FILE, 'challenge-passing pillar'],
+    [COPY_TRADING_GUIDE_FILE, 'copy-trading guide'],
+    [path.join(POSTS, 'what-is-prop-firm-consistency-rule.md'), 'consistency guide'],
+    [path.join(POSTS, 'is-prop-firm-trading-profitable.md'), 'profitability guide'],
+  ]
+  for (const [file, label] of backlinkFiles) {
+    const source = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+    if (!source.includes('/blog/what-is-overtrading')) {
+      rows.push(`${label} is missing an overtrading-guide backlink`)
+    }
+  }
+
+  const firms = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
+  )
+  const renderedContent = decoratePostOutboundLinks(
+    content,
+    buildOutboundRelationships(firms),
+    data.slug,
+  )
+  if (
+    !renderedContent.includes(
+      'href="/go/fundednext?from=post-body-what-is-overtrading"',
+    ) ||
+    !renderedContent.includes('rel="sponsored nofollow noopener"')
+  ) {
+    rows.push('rendered FundedNext CTA lacks controlled attribution or disclosure')
+  }
+
+  const faqSection = content.split('<h2>Frequently asked questions</h2>')[1] ?? ''
+  if ((faqSection.match(/<h3>/gi) ?? []).length !== 6) {
+    rows.push('overtrading guide must preserve 6 factual FAQs')
+  }
+  if (/href="https?:\/\//i.test(content)) {
+    rows.push('overtrading guide contains a bare external link')
+  }
+
+  const staleClaims = [
+    'What Is Overtrading and How to Stop it?',
+    'just can\'t stop trading',
+    'fastest ways to blow',
+    'extremely catastrophic',
+    'Trust me, I’ve been there',
+    'my $100K funded account',
+    'want and eagerly wait for you to breach',
+    'full-blown tilt mode',
+    'Get a life',
+    '2, 3, or max 4 trades',
+    'Demo when emotional',
+    'scratch the itch without wrecking',
+    'one solid trade a day is enough',
+    'the market always punishes',
+    'Take this seriously, or take the loss',
+    'crypoptionhub.com',
+    'avoids the captured 5-day maximum',
+  ]
+  const lowerContent = content.toLowerCase()
+  for (const claim of staleClaims) {
+    if (lowerContent.includes(claim.toLowerCase())) {
+      rows.push(`unsupported or stale overtrading claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Overtrading guide')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/**
  * Passing-service copy must not promote vendors whose terms and prices cannot
  * be verified. Keep the page focused on captured firm restrictions, explicit
  * cash math, account-control risk, and alternatives sold by the firms.
@@ -5347,6 +5721,8 @@ const trueCostPillarErrors = checkTrueCostPillar()
 totalErrors += trueCostPillarErrors
 const drawdownGuideErrors = checkDrawdownGuide()
 totalErrors += drawdownGuideErrors
+const overtradingGuideErrors = checkOvertradingGuide()
+totalErrors += overtradingGuideErrors
 const passingServicesGuideErrors = checkPassingServicesGuide()
 totalErrors += passingServicesGuideErrors
 const copyTradingGuideErrors = checkCopyTradingGuide()

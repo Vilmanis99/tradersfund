@@ -32,7 +32,7 @@ type: "post"
 
 <p>For example, imagine that a firm has a 30% consistency rule. So, no more than 30% of your total profits can come from a single day. Let’s say your profit target is $10,000. Under the consistency rule, the most you could earn from any one day’s trading is $3,000. If you go over that, you might not pass the firm’s evaluation. This is even if you hit the profit target and don’t break any other rule.</p>
 
-<p>The prop firm consistency rule might sound strict. But it also has some benefits for us traders. The most valuable benefit that has helped me personally is stopping you from blowing your challenges and funded accounts by over-leveraging or <a href="/blog/what-is-overtrading">overtrading</a>. Either way, you should spread your profits, or you’ll not pass prop firm challenges that have this rule.</p>
+<p>A consistency rule does not prevent <a href="/blog/what-is-overtrading">overtrading</a>. Extra same-day orders can concentrate more profit in the best day or consume loss room without improving the strategy. The relevant control is a pre-written attempt and session-risk limit; the consistency percentage remains a separate eligibility calculation.</p>
 
 <p><strong>Read More:</strong> <a href="/blog/ftmo-review">The Most Comprehensive FTMO Review in 2025</a></p>
 
