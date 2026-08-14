@@ -199,6 +199,10 @@ const OVERTRADING_GUIDE_FILE = path.join(
   ROOT,
   'content/posts/what-is-overtrading.md',
 )
+const PROFITABILITY_GUIDE_FILE = path.join(
+  ROOT,
+  'content/posts/is-prop-firm-trading-profitable.md',
+)
 const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
 const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
@@ -4461,6 +4465,469 @@ function checkOvertradingGuide() {
 }
 
 /**
+ * Profitability copy must measure realised trader cash rather than dashboard
+ * PnL or account-size headlines. Recompute every fee-recovery and scenario
+ * value, preserve source denominators, and keep conditional refunds and null
+ * base splits out of cash until their named requirements are satisfied.
+ */
+function checkProfitabilityGuide() {
+  const rows = []
+  if (!fs.existsSync(PROFITABILITY_GUIDE_FILE)) {
+    console.log('\n✗ Prop-firm profitability guide')
+    console.log('  · content/posts/is-prop-firm-trading-profitable.md is missing')
+    return 1
+  }
+
+  const { data, content } = matter(
+    fs.readFileSync(PROFITABILITY_GUIDE_FILE, 'utf-8'),
+  )
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const attributedMarkup = (tag, attribute, key) => {
+    const match = content.match(
+      new RegExp(
+        `<${tag}[^>]*\\b${attribute}="${escapeRegExp(key)}"[^>]*>([\\s\\S]*?)<\\/${tag}>`,
+        'i',
+      ),
+    )
+    return match?.[1] ?? ''
+  }
+  const attributedText = (tag, attribute, key) =>
+    stripTags(attributedMarkup(tag, attribute, key)).replace(/\s+/g, ' ').trim()
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} evidence block is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+  const amount = value =>
+    value.toLocaleString('en-US', {
+      minimumFractionDigits: Number.isInteger(value) ? 0 : 2,
+      maximumFractionDigits: 2,
+    })
+  const money = value => `$${amount(value)}`
+  const roundCents = value => Math.round(value * 100) / 100
+  const product = (firmSlug, productSlug) =>
+    loadChallenges(firmSlug)?.find(challenge => challenge.productSlug === productSlug)
+  const tier = (challenge, sizeUsd) =>
+    challenge?.accountSizes.find(account => account.sizeUsd === sizeUsd)
+
+  if (data.title !== 'Is Prop Firm Trading Profitable? The Net Cash Test (2026)') {
+    rows.push('title must preserve profitability, net cash, and current-year intent')
+  }
+  if (data.seoTitle !== 'Is Prop Firm Trading Profitable? Net Cash Test (2026)') {
+    rows.push('seoTitle must preserve the direct profitability intent')
+  }
+  if (typeof data.seoTitle !== 'string' || data.seoTitle.length > 60) {
+    rows.push('seoTitle must stay at or below 60 characters')
+  }
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+  if (
+    !Array.isArray(data.tags) ||
+    !data.tags.includes('prop firm profitability') ||
+    !data.tags.includes('funded trader payouts')
+  ) {
+    rows.push('tags must preserve profitability and payout search intent')
+  }
+
+  expectFragments('net-cash definition', stripTags(content), [
+    'Prop-firm trading is profitable for a trader only when approved cash payouts and refunds exceed every challenge',
+    'A positive simulated account balance is not cash income',
+    'a $100K account label is not $100,000 the trader can withdraw',
+    'net_cash_result = approved_payouts + refunds_received',
+    '- challenge_fees - subscriptions - activations',
+    '- resets - platform_add_ons - withdrawal_fees',
+  ])
+  expectFragments(
+    'cash-versus-dashboard definition',
+    attributedText('table', 'data-profitability-definition', 'cash-vs-dashboard'),
+    [
+      'Challenge or subscription payment',
+      'Simulated account profit',
+      'Do not count yet',
+      'Approved payout received',
+      'Conditional refund',
+      'Inflow only when received',
+    ],
+  )
+
+  const fundedNext = product('fundednext', 'stellar-2-step')
+  const ftmo = product('ftmo', 'ftmo-challenge-2-step')
+  const topstep = product('topstep', 'trading-combine-standard-path')
+  const fxify = product('fxify', 'lightning-challenge')
+  const fundedNextTier = tier(fundedNext, 100000)
+  const ftmoTier = tier(ftmo, 100000)
+  const topstepTier = tier(topstep, 100000)
+  const fxifyTier = tier(fxify, 100000)
+
+  const requiredProducts = [
+    ['FundedNext Stellar 2-Step $100K', fundedNext, fundedNextTier],
+    ['FTMO 2-Step $100K', ftmo, ftmoTier],
+    ['Topstep Standard Path $100K', topstep, topstepTier],
+    ['FXIFY Lightning $100K', fxify, fxifyTier],
+  ]
+  for (const [label, challenge, accountTier] of requiredProducts) {
+    if (!challenge || !accountTier) rows.push(`${label} structured product or tier is missing`)
+  }
+
+  const computedExamples = [
+    ['fundednext:stellar-2-step', 'FundedNext', fundedNext, fundedNextTier, '$'],
+    ['ftmo:ftmo-challenge-2-step', 'FTMO', ftmo, ftmoTier, '€'],
+    [
+      'topstep:trading-combine-standard-path',
+      'Topstep',
+      topstep,
+      topstepTier,
+      '$',
+    ],
+  ]
+  for (const [key, label, challenge, accountTier, symbol] of computedExamples) {
+    if (!challenge || !accountTier) continue
+    const economics = challengeTierEconomics(challenge, accountTier)
+    if (!economics) {
+      rows.push(`${label} fee-recovery economics unexpectedly became null`)
+      continue
+    }
+    expectFragments(
+      `${label} profitability-cost row`,
+      attributedText('tr', 'data-profitability-cost', key),
+      [
+        `${symbol}${amount(economics.minimumCost)}`,
+        `${challenge.profitSplitPct}%`,
+        `${symbol}${amount(economics.breakEvenProfit)}`,
+        challenge.sourceCapturedAt,
+      ],
+    )
+  }
+
+  if (fxify && fxifyTier) {
+    const economics = challengeTierEconomics(fxify, fxifyTier)
+    expectFragments(
+      'FXIFY profitability-cost row',
+      attributedText('tr', 'data-profitability-cost', 'fxify:lightning-challenge'),
+      [
+        'FXIFY Lightning $100K',
+        money(fxifyTier.priceUsd),
+        'Not verified',
+        'Not calculable',
+        '“Up to 90%” does not establish a base split',
+        fxify.sourceCapturedAt,
+      ],
+    )
+    if (fxify.profitSplitPct !== null || economics !== null) {
+      rows.push('FXIFY must remain uncalculated while its verified base split is null')
+    }
+  }
+
+  const captureEvidence = (file, productSlug) => {
+    const capture = JSON.parse(fs.readFileSync(file, 'utf-8'))
+    const capturedProduct = capture.products?.find(
+      candidate => candidate.productSlug === productSlug,
+    )
+    if (!capturedProduct) return ''
+    return [
+      ...capturedProduct.accountSizes.flatMap(account =>
+        Object.values(account).filter(value => typeof value === 'string'),
+      ),
+      ...Object.values(capturedProduct.fieldEvidence ?? {}).filter(
+        value => typeof value === 'string',
+      ),
+      ...(capturedProduct.notes ?? []),
+    ].join(' ')
+  }
+  const fundedNextCapture = captureEvidence(
+    path.join(CHALLENGES, '_captures/fundednext-2026-07-27.json'),
+    'stellar-2-step',
+  )
+  const ftmoCapture = captureEvidence(
+    path.join(CHALLENGES, '_captures/ftmo-2026-07-27.json'),
+    'ftmo-challenge-2-step',
+  )
+  const topstepCapture = captureEvidence(
+    path.join(CHALLENGES, '_captures/topstep-2026-07-27.json'),
+    'trading-combine-standard-path',
+  )
+  const fxifyCapture = captureEvidence(
+    path.join(CHALLENGES, '_captures/fxify-2026-08-10.json'),
+    'lightning-challenge',
+  )
+  for (const fragment of [
+    "'$100k Get Plan Fee: $549.99'",
+    'current base Reward Share is 80%',
+    'refundable with the first approved Performance Reward',
+    'First standard payout eligibility is after 21 days',
+    'non-refundable $25 cTrader or Match-Trader platform fee',
+  ]) {
+    if (!fundedNextCapture.includes(fragment)) {
+      rows.push(`FundedNext capture is missing profitability support: "${fragment}"`)
+    }
+  }
+  for (const fragment of [
+    '"price":"540"',
+    'receive 80% of the profit',
+    'paid fee is refunded with your first Reward withdrawal',
+  ]) {
+    if (!ftmoCapture.includes(fragment)) {
+      rows.push(`FTMO capture is missing profitability support: "${fragment}"`)
+    }
+  }
+  for (const fragment of [
+    'subscription fee rebills monthly until you pass the Trading Combine or cancel',
+    'Express Funded Activation Fee: $149',
+    'keep 90% of the profits',
+  ]) {
+    if (!topstepCapture.includes(fragment)) {
+      rows.push(`Topstep capture is missing profitability support: "${fragment}"`)
+    }
+  }
+  for (const fragment of [
+    '"title":"$100K" ... "price":"$399"',
+    'only "Performance Split" = "Up to 90%" given, no stated base split',
+  ]) {
+    if (!fxifyCapture.includes(fragment)) {
+      rows.push(`FXIFY capture is missing profitability support: "${fragment}"`)
+    }
+  }
+
+  if (fundedNext && fundedNextTier) {
+    const attempts = 3
+    const grossProfit = 2000
+    const totalPaid = roundCents(fundedNextTier.priceUsd * attempts)
+    const traderShare = roundCents(
+      grossProfit * (fundedNext.profitSplitPct / 100),
+    )
+    const refund = fundedNextTier.priceUsd
+    const cashReceived = roundCents(traderShare + refund)
+    const netCash = roundCents(cashReceived - totalPaid)
+    const ledger = attributedText(
+      'table',
+      'data-profitability-ledger',
+      'fundednext-three-attempts',
+    )
+    expectFragments('FundedNext three-attempt ledger', ledger, [
+      `${attempts} × ${money(fundedNextTier.priceUsd)} = ${money(totalPaid)}`,
+      money(grossProfit),
+      `${money(grossProfit)} × ${fundedNext.profitSplitPct}% = ${money(traderShare)}`,
+      `1 × ${money(refund)} = ${money(refund)}`,
+      `${money(traderShare)} + ${money(refund)} = ${money(cashReceived)}`,
+      `${money(cashReceived)} − ${money(totalPaid)} = ${money(netCash)}`,
+      'before excluded costs',
+    ])
+    expectFragments('FundedNext failure counterfactual', stripTags(content), [
+      `If all ${attempts} attempts fail, the ledger is negative ${money(totalPaid)}`,
+      'If the refund or payout is not approved, it cannot be booked as cash',
+    ])
+  }
+
+  if (topstep && topstepTier) {
+    const monthlyFee = topstepTier.priceUsd
+    const activationFee = topstep.activationFeeUsd
+    const recurring = attributedText(
+      'table',
+      'data-profitability-recurring',
+      'topstep-standard-100k',
+    )
+    for (const months of [1, 2, 3]) {
+      const subscriptionSpend = monthlyFee * months
+      const cashCost = subscriptionSpend + activationFee
+      const economics = computeTrueCost({
+        priceUsd: cashCost,
+        sizeUsd: topstepTier.sizeUsd,
+        profitSplitPct: topstep.profitSplitPct,
+        dailyLossPct: null,
+        maxLossPct: null,
+      })
+      expectFragments(`Topstep ${months}-month economics`, recurring, [
+        String(months),
+        `${money(subscriptionSpend)} + ${money(activationFee)} = ${money(cashCost)}`,
+        `${money(cashCost)} ÷ 0.90 = ${money(roundCents(economics.breakEvenProfit))}`,
+      ])
+    }
+  }
+
+  expectFragments(
+    'Topstep 2025 outcome statistics',
+    attributedText('table', 'data-profitability-stat', 'topstep-2025'),
+    [
+      'Trading Combines successfully completed',
+      '16.8%',
+      'All Trading Combines initiated',
+      'Participants advancing at least once',
+      '51.8%',
+      'Individuals who entered 1 or more Combines',
+      'Funded-level participants receiving a payout',
+      '33.3%',
+      'Individuals at the Funded Level',
+      'XFA participants called to a Live Funded Account',
+      '0.71%',
+      'Individuals trading in an Express Funded Account',
+    ],
+  )
+  for (const fragment of [
+    '16.8% of all Trading Combines initiated',
+    '51.8% of individual participants who entered one or more Trading Combines',
+    '33.3% of all individual participants at the Funded Level received a payout',
+    '0.71% of individual participants trading in an Express Funded Account',
+  ]) {
+    if (!topstepCapture.includes(fragment)) {
+      rows.push(`Topstep capture is missing outcome-stat support: "${fragment}"`)
+    }
+  }
+  expectFragments(
+    'outcome-stat denominator caveat',
+    stripTags(content).replace(/\s+/g, ' '),
+    [
+    'not a global prop-firm pass rate',
+    'The 16.8% initiation rate and 51.8% participant rate are not contradictory',
+    '1 ÷ 16.8% does not produce an honest “average attempts to pass”',
+    ],
+  )
+
+  expectFragments(
+    'pre-purchase profitability worksheet',
+    attributedText('table', 'data-profitability-gate', 'pre-purchase'),
+    [
+      'Exact product and tier',
+      'Maximum paid attempts',
+      'Verified base split',
+      'Rule-compatible sample',
+      'Cash receipt gates',
+      'Do not rely on cash before every gate can be met',
+    ],
+  )
+
+  const choiceMarkup = attributedMarkup(
+    'div',
+    'data-profitability-choice',
+    'fundednext',
+  )
+  const choiceText = stripTags(choiceMarkup).replace(/\s+/g, ' ').trim()
+  if (fundedNext && fundedNextTier) {
+    expectFragments('FundedNext profitability choice', choiceText, [
+      'Testing FundedNext’s economics?',
+      `current $100K list fee is ${money(fundedNextTier.priceUsd)}`,
+      `start at an ${fundedNext.profitSplitPct}% split`,
+      `first standard payout eligibility is recorded at ${fundedNext.payoutFirstDays} days`,
+      '$500.02 result above is a hypothetical 3-attempt cash ledger',
+      'not an earnings forecast',
+      'maximum attempt budget still fit',
+    ])
+  }
+  for (const href of ['/blog/fundednext-review', '/go/fundednext']) {
+    if (!choiceMarkup.includes(`href="${href}"`)) {
+      rows.push(`FundedNext profitability choice is missing ${href}`)
+    }
+  }
+
+  const requiredLinks = [
+    '/how-prop-firm-challenges-work',
+    '/blog/fundednext-review',
+    '/blog/ftmo-review',
+    '/blog/topstep-review',
+    '/blog/fxify-review',
+    '/true-cost-of-prop-firm-challenges',
+    '/blog/what-is-overtrading',
+    '/blog/prop-firm-scaling-plan',
+    '/blog/what-is-prop-firm-consistency-rule',
+    '/prop-firm-challenges',
+    '/prop-firm-challenge-changes',
+    '/how-to-pass-a-prop-firm-challenge',
+    '/blog/are-prop-firm-passing-services-worth-it',
+    '/blog/ftmo-free-trial-explained',
+    '/go/fundednext',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+
+  const backlinkFiles = [
+    [TRUE_COST_PILLAR_FILE, 'true-cost pillar'],
+    [CHALLENGE_LIFECYCLE_PAGE_FILE, 'challenge lifecycle pillar'],
+    [WHAT_IS_PROP_FIRM_GUIDE_FILE, 'prop-firm definition guide'],
+    [OVERTRADING_GUIDE_FILE, 'overtrading guide'],
+  ]
+  for (const [file, label] of backlinkFiles) {
+    const source = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+    if (!source.includes('/blog/is-prop-firm-trading-profitable')) {
+      rows.push(`${label} is missing a profitability-guide backlink`)
+    }
+  }
+
+  const lifecycle = fs.readFileSync(CHALLENGE_LIFECYCLE_PAGE_FILE, 'utf-8')
+  if (
+    !lifecycle.includes('structured maximum-day field is null') ||
+    lifecycle.includes('$5,000 daily cap. No time limit')
+  ) {
+    rows.push('challenge lifecycle lost the FundedNext null maximum-day caveat')
+  }
+
+  const firms = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
+  )
+  const renderedContent = decoratePostOutboundLinks(
+    content,
+    buildOutboundRelationships(firms),
+    data.slug,
+  )
+  if (
+    !renderedContent.includes(
+      'href="/go/fundednext?from=post-body-is-prop-firm-trading-profitable"',
+    ) ||
+    !renderedContent.includes('rel="sponsored nofollow noopener"')
+  ) {
+    rows.push('rendered FundedNext CTA lacks controlled attribution or disclosure')
+  }
+
+  const faqSection = content.split('<h2>Frequently asked questions</h2>')[1] ?? ''
+  if ((faqSection.match(/<h3>/gi) ?? []).length !== 6) {
+    rows.push('profitability guide must preserve 6 factual FAQs')
+  }
+  if (/href="https?:\/\//i.test(content)) {
+    rows.push('profitability guide contains a bare external link')
+  }
+
+  const staleClaims = [
+    'Sounds like free money',
+    'there’s money to be made',
+    'manage the hidden parts',
+    'hidden costs',
+    'many firms let you keep 80% to 90%',
+    'make 5% in a month',
+    '$4,000 to $4,500',
+    'Most prop firms also refund',
+    'somewhere around $500',
+    'chances are prop firm trading is profitable for you',
+    'far more profitable than trading your own small account',
+    'Same account. Same rules.',
+    'punish recklessness',
+    'risk-free prop firm trading',
+    'stick to the same percentage per trade',
+    'investopedia.com',
+    'Funding-Pips-100k-Challenge',
+  ]
+  const lowerContent = content.toLowerCase()
+  for (const claim of staleClaims) {
+    if (lowerContent.includes(claim.toLowerCase())) {
+      rows.push(`unsupported or stale profitability claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Prop-firm profitability guide')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/**
  * Passing-service copy must not promote vendors whose terms and prices cannot
  * be verified. Keep the page focused on captured firm restrictions, explicit
  * cash math, account-control risk, and alternatives sold by the firms.
@@ -5723,6 +6190,8 @@ const drawdownGuideErrors = checkDrawdownGuide()
 totalErrors += drawdownGuideErrors
 const overtradingGuideErrors = checkOvertradingGuide()
 totalErrors += overtradingGuideErrors
+const profitabilityGuideErrors = checkProfitabilityGuide()
+totalErrors += profitabilityGuideErrors
 const passingServicesGuideErrors = checkPassingServicesGuide()
 totalErrors += passingServicesGuideErrors
 const copyTradingGuideErrors = checkCopyTradingGuide()

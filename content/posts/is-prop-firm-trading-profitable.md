@@ -1,110 +1,176 @@
 ---
-title: "Is Prop Firm Trading Profitable in 2026?"
+title: "Is Prop Firm Trading Profitable? The Net Cash Test (2026)"
+seoTitle: "Is Prop Firm Trading Profitable? Net Cash Test (2026)"
 slug: "is-prop-firm-trading-profitable"
 date: "2025-09-24 17:22:03"
-modified: "2026-04-24 12:00:00"
+modified: "2026-08-14 12:00:00"
 author: "Edris Derakhshi"
-excerpt: "Is prop firm trading profitable? Learn the real costs, risks, and strategies that decide if trading with prop firms can bring steady profits."
+excerpt: "Prop-firm trading is profitable only when approved cash payouts and refunds exceed every attempt, activation, platform, and withdrawal cost."
+seoDescription: "Test prop-firm profitability using net cash, repeat-attempt costs, verified base splits, refund timing, payout gates, and current product examples."
 categories: ["Prop Firms"]
-tags: []
+tags: ["prop firm profitability", "prop firm costs", "funded trader payouts", "risk management"]
 type: "post"
 ---
 
-<p>Is prop firm trading profitable? Every trader asks this question at some point. You see the ads: trade a $100k account, keep 80% of profits, get paid every month. Sounds like free money, right?</p>
-
-<p>The truth is, prop firm trading can be profitable. But only if you know how to manage the hidden parts of it. I’m talking about risk, fees, commissions, and the mental game. Passing a challenge is one thing. Turning that funded account into steady payouts is something else.</p>
-
-<p>I’ve traded with multiple prop firms, and I can tell you this: there’s money to be made. But it’s not automatic. Without a real plan and a strategy, most traders end up paying more in fees than they ever withdraw.</p>
-
-<p>In this post, I’ll break down the real costs, the potential rewards, and what actually decides if prop firm trading is profitable or not.</p>
+<p><strong>Prop-firm trading is profitable for a trader only when approved cash payouts and refunds exceed every challenge, subscription, activation, reset, platform, and withdrawal cost across all attempts.</strong> A positive simulated account balance is not cash income, and a $100K account label is not $100,000 the trader can withdraw.</p>
 
 <div class="key-takeaways">
-  <div class="title">Key Takeaways</div>
-  <ul>
-    <li>Prop firm trading can be profitable, but only if you manage risk and follow the rules.</li>
-    <li>Fees, commissions, and resets often eat into profits if you don’t track them carefully.</li>
-    <li>Profit potential comes from larger accounts, high profit splits, and scaling plans.</li>
-    <li>Discipline and consistency matter more than chasing big wins.</li>
-    <li>A clear plan and strategy are what separate profitable traders from those who lose money.</li>
-  </ul>
+  <div class="title">Profitability in 5 checks</div>
+  <ol>
+    <li><strong>Use cash, not dashboard P&amp;L.</strong> Count only approved payouts and refunds actually received.</li>
+    <li><strong>Include every attempt.</strong> Two failed fees still belong in the cost basis when the third account pays.</li>
+    <li><strong>Use the verified base split.</strong> “Up to 90%” cannot support exact take-home math when the starting split is unpublished.</li>
+    <li><strong>Keep payout gates separate.</strong> Passing, reaching profit, requesting a payout, and receiving cash are 4 different events.</li>
+    <li><strong>Pre-commit the loss budget.</strong> If the maximum paid-attempt budget is unaffordable, the purchase is not economically viable.</li>
+  </ol>
 </div>
 
-<h2 class="wp-block-heading">The Real Costs of Prop Firm Trading</h2>
+<h2>What “profitable” means for a prop-firm trader</h2>
 
-<p>Trading prop firm capital isn’t free. Before you think about profits, you need to think about costs, and the first one is the challenge fee. Depending on the account size, it can run from 50 dollars to well over a thousand. And, if you fail, you pay again. Add resets and retries, and those numbers pile up quickly.</p>
+<pre style="background: var(--bg3); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>net_cash_result = approved_payouts + refunds_received
+                - challenge_fees - subscriptions - activations
+                - resets - platform_add_ons - withdrawal_fees</code></pre>
 
-<p>Then you’ve got <a href="https://www.investopedia.com/terms/s/spread.asp">spreads</a> and commissions. They might look small at first, but over dozens of trades, they eat into your profits. If you don’t factor them in, you’re lying to yourself about what you’re really making.</p>
+<p>The equation measures the trader’s cash result before personal taxes. It does not measure whether the prop-firm company is profitable, and it does not treat unapproved simulated profit as a receivable. Tax treatment depends on jurisdiction, legal status, and deductible-cost rules.</p>
 
-<p>Some prop firms also have hidden costs. Things like add-ons, platform fees, or stricter payout rules that force you to hold off on withdrawals. If you don’t read the fine print, you’ll be shocked when your “profit” doesn’t show up in your bank account.</p>
+<table data-profitability-definition="cash-vs-dashboard" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">What belongs in a prop-firm profitability calculation</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Item</th><th style="padding: 8px 12px; text-align: left;">Cash ledger treatment</th><th style="padding: 8px 12px; text-align: left;">Why</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Challenge or subscription payment</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Cost when paid</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">The cash has left the trader even if the account later passes</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Simulated account profit</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Do not count yet</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Rules, KYC, payout gates, and approval still apply</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Approved payout received</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Cash inflow</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">It is the realised trader share after the product’s payout process</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Conditional refund</strong></td><td style="padding: 8px 12px;">Inflow only when received</td><td style="padding: 8px 12px;">Refund timing and eligibility differ by product</td></tr>
+  </tbody>
+</table>
 
-<p>That’s why many traders fail to turn a profit. They ignore the costs and think the account balance equals money in their pocket. Well, it doesn’t.</p>
+<p>The <a href="/how-prop-firm-challenges-work">challenge lifecycle</a> separates purchase, evaluation, funded eligibility, payout request, and cash receipt. Skipping those gates is how a profitable-looking dashboard becomes a negative cash outcome.</p>
 
-<h2 class="wp-block-heading">The Profit Potential</h2>
+<h2>Current product economics: what the fee must earn back</h2>
 
-<p>Now let’s look at the upside. The main reason traders go for prop firm challenges is access to capital. Instead of risking $1,000 of your own money, you can trade $50k, $100k, or even more. That’s the real draw.</p>
+<p>“Fee-recovery profit” is the gross approved account profit whose trader share equals the captured minimum cost: <code>minimum cost ÷ base split</code>. It excludes a later conditional refund and does not predict that the trader will pass, reach the amount, or receive it.</p>
 
-<p>Profit splits are another big selling point. Many firms let you keep 80% to 90% of profits. On a $100k account, even a small monthly gain can mean a decent payout. For example, make 5% in a month, that’s $5,000. With an 80% split, you take home $4,000. That’s a huge difference compared to trading a small personal account.</p>
+<table data-profitability-costs="current-examples" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">Current fee-recovery examples for prop-firm products</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product / tier</th><th style="padding: 8px 12px; text-align: left;">Minimum cost</th><th style="padding: 8px 12px; text-align: left;">Base split</th><th style="padding: 8px 12px; text-align: left;">Fee-recovery profit</th><th style="padding: 8px 12px; text-align: left;">Important limit</th><th style="padding: 8px 12px; text-align: left;">Captured</th></tr></thead>
+  <tbody>
+    <tr data-profitability-cost="fundednext:stellar-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/fundednext-review">FundedNext Stellar 2-Step $100K</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$549.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$687.49</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Refund is conditional on the first approved Performance Reward</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-profitability-cost="ftmo:ftmo-challenge-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/ftmo-review">FTMO 2-Step $100K</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€540</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€675</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Keep the EUR fee separate from the USD account label</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-profitability-cost="topstep:trading-combine-standard-path"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/topstep-review">Topstep Standard Path $100K</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$248 floor</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">90%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$275.56</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Assumes 1 × $99 month plus $149 activation</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-profitability-cost="fxify:lightning-challenge"><td style="padding: 8px 12px;"><a href="/blog/fxify-review">FXIFY Lightning $100K</a></td><td style="padding: 8px 12px;">$399</td><td style="padding: 8px 12px;">Not verified</td><td style="padding: 8px 12px;">Not calculable</td><td style="padding: 8px 12px;">“Up to 90%” does not establish a base split</td><td style="padding: 8px 12px;">2026-08-10</td></tr>
+  </tbody>
+</table>
 
-<p>Some firms also offer scaling plans. If you trade consistently and protect capital, they’ll increase your balance over time. That means more potential profits without you putting in more of your own money.</p>
+<p>The first 3 computed rows use <code>challengeTierEconomics()</code>, which calls the same <code>computeTrueCost()</code> helper used by firm reviews. FXIFY Lightning remains uncalculated because its structured base split is null. The <a href="/true-cost-of-prop-firm-challenges">true-cost guide</a> explains refund-adjusted cost, loss-room ratios, and why missing inputs stay blank.</p>
 
-<p>So yes, the potential is there. But it only pays out if you can meet the rules and trade with control.</p>
+<h2>Worked cash ledger: 3 FundedNext attempts</h2>
 
-<p>You can try risk-free prop firm trading using the <a href="/blog/ftmo-free-trial-explained">FTMO free trial</a>, and see if it fits you or not.</p>
+<p>This example assumes 3 FundedNext Stellar 2-Step $100K purchases at the captured $549.99 list fee. The first 2 fail; the third produces a hypothetical $2,000 of approved gross profit, an 80% trader share, and 1 registration-fee refund. It excludes promotions, the separate $25 cTrader or Match-Trader fee, processing charges, slippage, and tax.</p>
 
-<h2 class="wp-block-heading">What Really Decides Profitability</h2>
+<table data-profitability-ledger="fundednext-three-attempts" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Hypothetical three-attempt FundedNext cash ledger</caption>
+  <tbody>
+    <tr><th style="padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border);">Cash paid for 3 attempts</th><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3 × $549.99 = $1,649.97</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border);">Hypothetical approved gross profit</th><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,000</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border);">Trader share</th><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,000 × 80% = $1,600</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border);">Refund received</th><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1 × $549.99 = $549.99</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border);">Total cash received</th><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,600 + $549.99 = $2,149.99</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left;">Net cash result</th><td style="padding: 8px 12px;">$2,149.99 − $1,649.97 = $500.02 before excluded costs</td></tr>
+  </tbody>
+</table>
 
-<p>This is where most traders get it wrong. Profitability in prop firm trading isn’t just about hitting targets. You should manage both yourself and your account.</p>
+<p>The same third account can show $2,000 of approved gross profit while the trader’s cumulative net cash is only $500.02 before excluded costs. If all 3 attempts fail, the ledger is negative $1,649.97. If the refund or payout is not approved, it cannot be booked as cash.</p>
 
-<p>The biggest factor is obviously the risk. If you don’t respect drawdown rules, you won’t last long enough to see a payout. Proper position sizing and keeping losses small, that’s the way to build something for the long-term.</p>
+<div data-profitability-choice="fundednext" style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
+  <strong style="color: #fff;">Testing FundedNext’s economics?</strong> Stellar 2-Step’s current $100K list fee is $549.99, new accounts start at an 80% split, and first standard payout eligibility is recorded at 21 days. The $500.02 result above is a hypothetical 3-attempt cash ledger, not an earnings forecast. Read the <a href="/blog/fundednext-review">FundedNext review</a>, then <a href="/go/fundednext">check FundedNext’s current plans</a> only if the live checkout, rule set, and maximum attempt budget still fit. We may earn a commission; the partnership does not change the displayed terms or editorial score.
+</div>
 
-<p>Then there’s having a plan. You can’t show up on the charts and execute whenever you want. A solid strategy, tested and proven, is the only way to stay consistent. Prop firms aren’t impressed by one big win. They want steady results.</p>
+<h2>Recurring billing changes the break-even point</h2>
 
-<p>Consistency is key. A trader who makes 2% month after month will outlast the one swinging for 20% and blowing accounts. Small, repeatable gains are what get you scaled up and paid. And in some cases, you should also abide by certain <a href="/blog/what-is-prop-firm-consistency-rule">prop firm consistency rules</a>, or you will fail.</p>
+<p>Topstep Standard Path at $100K records a $99 monthly subscription and a required $149 activation after passing. The subscription keeps rebilling until pass or cancellation, so “the fee” depends on paid months.</p>
 
-<p>And finally, mindset. Trading a $100k account feels different than trading $1k of your own. The numbers are bigger, the pressure is heavier. If you don’t learn to think in percentages, you’ll choke on the size.</p>
+<table data-profitability-recurring="topstep-standard-100k" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Topstep Standard Path cost by paid month</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Paid months</th><th style="padding: 8px 12px; text-align: left;">Cash cost to funded</th><th style="padding: 8px 12px; text-align: left;">Fee-recovery profit at 90%</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$99 + $149 = $248</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$248 ÷ 0.90 = $275.56</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$198 + $149 = $347</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$347 ÷ 0.90 = $385.56</td></tr>
+    <tr><td style="padding: 8px 12px;">3</td><td style="padding: 8px 12px;">$297 + $149 = $446</td><td style="padding: 8px 12px;">$446 ÷ 0.90 = $495.56</td></tr>
+  </tbody>
+</table>
 
-<h3 class="wp-block-heading">Example: Trading a FundingPips Account</h3>
+<p>The 1-month $248 floor is not a prediction of time to pass. Two paid months add $99 to both the cash cost and the amount the trader share must recover. Resets, reactivations, payout caps, and elapsed billing belong in the actual ledger, not in an advertised starting price.</p>
 
-<p>Let’s take <a href="/blog/funding-pips-review">FundingPips</a> as an example. Say you buy a $100k account. The fee for that account isn’t cheap. It’s somewhere around $500 for a 2-step challenge at the time of writing this post. So, the pressure is on from day one.</p>
+<h2>What public outcome statistics can—and cannot—prove</h2>
 
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/09/Funding-Pips-100k-Challenge-scaled.jpg" alt="Is prop firm trading profitable: FundingPips example" class="wp-image-2970"/></figure>
+<p>Topstep’s official 2025 disclosure is one of the few captured first-party datasets with named denominators. It describes Topstep participants and products during 2025; it is not a global prop-firm pass rate and cannot predict one trader’s result.</p>
 
-<p>Now, if you play it smart, the math works in your favor. Let’s say you aim for a steady 5% gain in a month. That’s $5,000 profit. With an 80–90% profit split, you’re taking home $4,000 to $4,500. Most prop firms also refund your challenge fee, making it a $5,000 payout, with $4,500 pure profit.</p>
+<table data-profitability-stat="topstep-2025" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Topstep 2025 trader performance statistics and denominators</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Published statistic</th><th style="padding: 8px 12px; text-align: left;">Rate</th><th style="padding: 8px 12px; text-align: left;">Denominator</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Trading Combines successfully completed</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">16.8%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">All Trading Combines initiated</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Participants advancing at least once</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">51.8%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Individuals who entered 1 or more Combines</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Funded-level participants receiving a payout</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">33.3%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Individuals at the Funded Level</td></tr>
+    <tr><td style="padding: 8px 12px;">XFA participants called to a Live Funded Account</td><td style="padding: 8px 12px;">0.71%</td><td style="padding: 8px 12px;">Individuals trading in an Express Funded Account</td></tr>
+  </tbody>
+</table>
 
-<p>But flip the script. You get greedy, risk too much, or <a href="/blog/what-is-overtrading">overtrade</a>, and hit the drawdown limit. One bad trade or a string of losses can make you lose your funded account. So, not only do you lose the chance to scale, but you’ll also lose the challenge fee.</p>
+<p>The 16.8% initiation rate and 51.8% participant rate are not contradictory; they use different denominators. Taking <code>1 ÷ 16.8%</code> does not produce an honest “average attempts to pass” because attempts are not independent and the disclosure does not provide each participant’s retry count or spend.</p>
 
-<p>Same account. Same rules. One trader makes a payout, the other blows up. The difference isn’t luck. It’s risk management and sticking to a proper plan.</p>
+<h2>What actually determines trader profitability</h2>
 
-<h2 class="wp-block-heading">So, Is Prop Firm Trading Profitable?</h2>
+<ol>
+  <li><strong>Net strategy expectancy:</strong> the tested average must remain positive after spread, commission, slippage, swaps, and the product’s instrument conditions.</li>
+  <li><strong>Rule fit:</strong> daily loss, static or trailing maximum loss, consistency, news, holding, stop-loss, and copy rules must match the execution method.</li>
+  <li><strong>Attempt discipline:</strong> the cash budget needs a maximum number of purchases; an unlimited retry plan has no bounded downside.</li>
+  <li><strong>Payout eligibility:</strong> minimum days, growth gates, best-day rules, payout cycles, KYC, and provider limits can delay or reduce cash receipt.</li>
+  <li><strong>Execution control:</strong> the <a href="/blog/what-is-overtrading">overtrading audit</a> measures off-plan entries, size escalation, and whether later trades add value after costs.</li>
+  <li><strong>Product economics:</strong> base split, refund timing, subscriptions, activations, add-ons, and withdrawal charges determine how much gross profit becomes net cash.</li>
+</ol>
 
-<p>The short answer is yes. Prop firm trading can be profitable. But not for everyone.</p>
+<p>A scaling ceiling does not repair negative expectancy or a negative cash ledger. The <a href="/blog/prop-firm-scaling-plan">scaling-plan guide</a> separates starting terms from conditional future allocation, while the <a href="/blog/what-is-prop-firm-consistency-rule">consistency guide</a> separates evaluation and payout calculations.</p>
 
-<p>You must manage risk and stick to a plan. A <a href="/blog/are-prop-firm-passing-services-worth-it">prop-firm passing service</a> may reach an evaluation target, but that does not prove the method is permitted, produce a repeatable funded-stage process, or guarantee an approved payout.</p>
+<h2>A pre-purchase profitability worksheet</h2>
 
-<p>Moreover, without discipline, it’s like a money pit. You’ll spend tons of your money on challenges and resets, only to blow accounts before seeing a payout. That’s why most traders walk away thinking prop firms are a scam. In reality, they just weren’t prepared.</p>
+<table data-profitability-gate="pre-purchase" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Inputs required before buying a prop-firm product</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Input</th><th style="padding: 8px 12px; text-align: left;">Record before checkout</th><th style="padding: 8px 12px; text-align: left;">Stop condition</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Exact product and tier</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">List price, currency, platform fee, activation, subscription, refund</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Do not buy from the account headline alone</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Maximum paid attempts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">All-in cost per attempt × maximum attempts</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Stop purchasing when the cash budget is spent</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Verified base split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Starting percentage, not “up to” marketing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Leave exact take-home math blank if null</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Rule-compatible sample</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Net expectancy, drawdown, trade frequency, holding time, news exposure</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Do not pay to discover an untested edge</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Cash receipt gates</strong></td><td style="padding: 8px 12px;">First payout date, minimum reward, consistency, KYC, provider fee</td><td style="padding: 8px 12px;">Do not rely on cash before every gate can be met</td></tr>
+  </tbody>
+</table>
 
-<p>At <a href="/">Traders Fund Hub</a>, we’ll help you get there. Our experts publish valuable insights, prop firm reviews, and even articles about trading strategies that can help you become a profitable funded trader. So, you’ve definitely come to the right place.</p>
+<p>Start with the <a href="/prop-firm-challenges">current product comparison</a>, check material changes in the <a href="/prop-firm-challenge-changes">challenge-change ledger</a>, and use the <a href="/how-to-pass-a-prop-firm-challenge">risk-plan worksheet</a> to translate the firm boundaries into a smaller personal session stop. A <a href="/blog/are-prop-firm-passing-services-worth-it">passing service</a> cannot substitute for a permitted, repeatable funded-stage process.</p>
 
-<h2 class="wp-block-heading">Tips to Get Profitable in Prop Firm Trading</h2>
+<p>A free trial can test platform workflow without another paid attempt, but it does not prove live execution or future payouts. The <a href="/blog/ftmo-free-trial-explained">FTMO free-trial guide</a> states exactly what the trial can and cannot validate.</p>
 
-<p>If you want to actually see profits with prop firms, you need more than just a good strategy. Here are a few tips to keep in mind:</p>
+<h2>Frequently asked questions</h2>
 
-<ul class="wp-block-list">
-<li>Start with a firm that fits your budget. If cost is a concern, look into our <a href="/cheapest-prop-firms">cheapest prop firms list</a> so you don’t burn too much on fees before you’re consistent.</li>
+<h3>Can prop-firm trading be profitable?</h3>
 
-<li>Keep risk small. Never raise your risk just because your account size is bigger. Stick to the same percentage per trade.</li>
+<p>Yes, but only as a trader-specific cash result. Approved payouts and refunds received must exceed every purchase, subscription, activation, reset, add-on, withdrawal charge, and other included cost across all attempts.</p>
 
-<li>Focus on steady results. Consistency is what unlocks scaling and payouts. Don’t chase that one big month to satisfy your ego or to post it on social media.</li>
+<h3>How much can a trader make on a $100K funded account?</h3>
 
-<li>Consider faster access to capital. Some traders do better with <a href="/best-instant-funding-prop-firms">instant funding prop firms</a>, since they can start trading right away without long evaluations.</li>
+<p>The account label does not set income. Cash depends on approved gross profit, the verified base split, payout gates, caps, fees, and rule compliance. A 5% simulated gain cannot be presented as a $5,000 withdrawal without those product-specific steps.</p>
 
-<li>Always track your trades. A simple journal helps you spot mistakes and build discipline over time.</li>
+<h3>Is simulated funded-account profit real money?</h3>
 
-<li>Backtest. Test your strategy on historical data. You can use a simple Excel or Google sheet, or dedicated software like <a href="/blog/fx-replay-review">FX Replay</a> to analyze your performance.</li>
-</ul>
+<p>Not by itself. It becomes trader cash only after the firm approves and sends a payout under the account agreement. Until then, the dashboard result remains subject to eligibility, review, and provider processing.</p>
 
-<h2 class="wp-block-heading">Conclusion</h2>
+<h3>How many challenge attempts should I budget?</h3>
 
-<p>Prop firm trading isn’t a guaranteed paycheck. But it’s a system that can reward discipline, and, of course, punish recklessness. The fees and strict rules make sure only consistent traders survive.</p>
+<p>Use a fixed cash amount the trader can afford to lose, divide it by the all-in attempt cost, and set that integer before the first purchase. Do not infer an attempt count by inverting a firm’s published pass rate.</p>
 
-<p>So, if you’ve got a plan, know how to manage risk, and trade with patience, then yes: chances are prop firm trading is profitable for you. In fact, it can be far more profitable than trading your own small account. But if you go in without control, it’ll cost you more than it pays.</p>
+<h3>Are prop-firm challenge fees refundable?</h3>
+
+<p>Refund rules are product-specific. FundedNext Stellar 2-Step records a refund with the first approved Performance Reward, FTMO 2-Step records a refundable fee, FundedNext Stellar Instant is non-refundable, and Topstep’s subscription is not a refundable challenge fee.</p>
+
+<h3>Does a profitable prop-firm company mean its traders are profitable?</h3>
+
+<p>No. Company profitability and trader net cash use different revenue, cost, and accounting data. Private firm finances also cannot be inferred from challenge prices, simulated balances, or one published participant statistic.</p>

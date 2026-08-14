@@ -160,4 +160,4 @@ type: "post"
 
 <h3>Can a no-time-limit challenge stop overtrading?</h3>
 
-<p>No product feature can enforce discipline by itself. Removing a maximum-day deadline can reduce calendar pressure, but targets, minimum days, drawdown, costs, and payout rules remain. Compare the full rule set and <a href="/true-cost-of-prop-firm-challenges">attempt economics</a> before paying for another challenge.</p>
+<p>No product feature can enforce discipline by itself. Removing a maximum-day deadline can reduce calendar pressure, but targets, minimum days, drawdown, costs, and payout rules remain. Compare the full rule set, calculate <a href="/true-cost-of-prop-firm-challenges">attempt economics</a>, and record every purchase and received payout in the <a href="/blog/is-prop-firm-trading-profitable">net-cash profitability ledger</a> before paying for another challenge.</p>

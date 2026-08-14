@@ -104,3 +104,5 @@ assumed_daily_growth = min(1%, captured_daily_loss_pct)</code></pre>
   <li><strong>Recheck current inputs.</strong> The <a href="/prop-firm-challenges">challenge comparison</a> exposes product-level prices and rules, while the <a href="/prop-firm-challenge-changes">change ledger</a> shows material updates.</li>
   <li><strong>Read the product context.</strong> The <a href="/blog/ftmo-review">FTMO review</a>, <a href="/blog/fundednext-review">FundedNext review</a>, and <a href="/blog/topstep-review">Topstep review</a> state the currency, refund, and billing assumptions beside their generated tables.</li>
 </ol>
+
+<p>Fee recovery is only 1 input in the trader’s result. Use the <a href="/blog/is-prop-firm-trading-profitable">prop-firm profitability guide</a> to combine approved payouts and refunds actually received with every paid attempt, subscription, activation, reset, platform add-on, and withdrawal cost.</p>

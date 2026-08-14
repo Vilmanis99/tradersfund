@@ -76,7 +76,7 @@ type: "page"
 
 <p>Do not assume the loss and trading-day conditions reset or change between stages unless the firm says so. The current product record should name one shared rule set or document each stage-specific exception.</p>
 
-<p>A 1-step product skips verification, but its target and time window still vary: FTMO 1-Step and FundedNext Stellar 1-Step publish 10% targets with no maximum trading-day limit in the current captures, while FXIFY Lightning publishes a 5% target inside a hard 5-day maximum.</p>
+<p>A 1-step product skips verification, but its target and time window still vary: FTMO 1-Step publishes a 10% target with no maximum trading-day limit; FundedNext Stellar 1-Step publishes a 10% target but its current structured maximum-day field is null and must not be interpreted as a verified deadline rule; FXIFY Lightning publishes a 5% target inside a hard 5-day maximum.</p>
 
 <h2>Stage 4 — The funded account</h2>
 
@@ -92,6 +92,8 @@ type: "page"
 <h2>Stage 5 — First payout and scaling</h2>
 
 <p>This is where payout eligibility, KYC, the profit split, minimum withdrawal, and any fee refund converge. A refundable flag does not always mean “first payout”: FundedNext Stellar 2-Step returns the registration fee with the first approved reward, while FundingPips 2 Step Standard records its refund only at the 4th reward. Phase-0 fees such as FundedNext Stellar Instant and FXIFY Instant Funding are non-refundable.</p>
+
+<p>The <a href="/blog/is-prop-firm-trading-profitable">net-cash profitability guide</a> turns those gates into a trader ledger: approved payouts and refunds received minus every attempt, subscription, activation, reset, platform, and withdrawal cost.</p>
 
 <p><strong>Time to first payout:</strong></p>
 
@@ -117,7 +119,7 @@ type: "page"
 
 <ol>
   <li><strong>Pay $549.99.</strong> Pick MT5, standard account.</li>
-  <li><strong>Phase 1</strong>: hit $8,000 profit (8%). Stay above $90,000 max-loss line and respect the $5,000 daily cap. No time limit.</li>
+  <li><strong>Phase 1</strong>: hit $8,000 profit (8%). Stay above the $90,000 maximum-loss line and respect the $5,000 daily cap. The current structured maximum-day field is null, so verify the live deadline rather than inferring one.</li>
   <li><strong>Phase 2</strong>: hit $5,000 profit (5%). Same drawdown rules.</li>
   <li><strong>Funded account activates.</strong> The base Reward Share is 80%, and the 5% daily / 10% static maximum-loss rules persist.</li>
   <li><strong>First payout eligibility</strong> begins after 21 days. On $1,500 of approved profit at the 80% base split, the trader share is $1,200; adding the $549.99 fee refund produces $1,749.99. Later standard payout windows run every 14 days.</li>

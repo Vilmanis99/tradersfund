@@ -83,7 +83,7 @@ type: "post"
 
 <p>On the products above, the direct purchase exposure is the fee structure rather than the displayed account balance. That does not mean the fee is always the only cost: failed retries, monthly rebills, resets, activation charges, platform fees, payout-provider charges, and paid rule add-ons can all change the cash total.</p>
 
-<p>Refund rules are product-specific. FundedNext Stellar 2-Step’s registration fee is refundable with the first approved reward, while Stellar Instant’s $299 fee is not refundable. Topstep Standard bills $99 each month until the trader passes or cancels and adds a $149 activation fee after passing. The <a href="/true-cost-of-prop-firm-challenges">true-cost guide</a> separates list fee, retry spend, refund-adjusted cash cost, and fee-recovery profit.</p>
+<p>Refund rules are product-specific. FundedNext Stellar 2-Step’s registration fee is refundable with the first approved reward, while Stellar Instant’s $299 fee is not refundable. Topstep Standard bills $99 each month until the trader passes or cancels and adds a $149 activation fee after passing. The <a href="/true-cost-of-prop-firm-challenges">true-cost guide</a> separates list fee, retry spend, refund-adjusted cash cost, and fee-recovery profit; the <a href="/blog/is-prop-firm-trading-profitable">profitability guide</a> then combines actual cash receipts with all attempts.</p>
 
 <h2>Rules that determine whether a payout is approved</h2>
 
