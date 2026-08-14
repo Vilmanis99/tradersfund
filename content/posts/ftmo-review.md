@@ -104,7 +104,7 @@ type: "post"
 
 <p><strong>Account ladders vary by currency.</strong> The same fee array applies across all seven denominations, but the balances differ: USD tops out at $200,000, GBP at £140,000, EUR and CHF at 160,000, CAD at $240,000, AUD at $260,000 and CZK at 4,000,000. If you price by balance-per-euro rather than by headline tier, the currency you pick changes the answer.</p>
 
-<p><strong>Scaling.</strong> FTMO's 80% 2-Step split "increases to 90% if Scaling Plan or Premium Programme conditions" are met — that much is published on the product page. The frequently repeated specifics (a 25% balance boost every four active months, scaling to $2,000,000) were <em>not</em> confirmed against a page we opened directly during the 2026-07-27 capture, so we flag them as unverified rather than restate them as terms. FTMO also advertises a free trial at ftmo.com/en/ftmo-free-trial/; its conditions are likewise uncaptured.</p>
+<p><strong>Scaling.</strong> FTMO's 80% 2-Step split "increases to 90% if Scaling Plan or Premium Programme conditions" are met — that much is published on the product page. The frequently repeated specifics (a 25% balance boost every four active months, scaling to $2,000,000) were <em>not</em> confirmed against a page we opened directly during the 2026-07-27 capture, so we flag them as unverified rather than restate them as terms. FTMO also offers a Free Trial; its separate 1-Step and 2-Step practice rules are checked in the <a href="/blog/ftmo-free-trial-explained">current FTMO Free Trial guide</a> rather than mixed into this paid-product table.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 

@@ -1,372 +1,167 @@
 ---
-title: "FTMO Free Trial: What it Is and How it Works"
+title: "FTMO Free Trial 2026: 1-Step vs 2-Step Rules"
+seoTitle: "FTMO Free Trial 2026: Rules & 14-Day Test Plan"
 slug: "ftmo-free-trial-explained"
 date: "2025-09-30 14:19:47"
-modified: "2025-10-03 18:23:42"
+modified: "2026-08-14"
 author: "Edris Derakhshi"
-excerpt: "The FTMO Free Trial is a valuable offering by the prop firm, as it lets you go through a risk-free FTMO challenge. Learn everything about it here."
+excerpt: "The FTMO Free Trial lasts 14 days, grants no funded account, and now has separate 1-Step and 2-Step rules. Compare both before paying."
+seoDescription: "FTMO Free Trial guide comparing current 1-Step and 2-Step rules, 14-day limits, drawdown math, paid challenges, and FundedNext's trial."
 categories: ["Prop Firms"]
-tags: []
+tags: ["FTMO", "Free Trial", "Prop Firm Challenge"]
 type: "post"
 ---
 
-<!-- Container with bottom border across entire layout -->
-<div style="border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 30px;">
+<h2>Verdict</h2>
 
-  <div class="ftmo-flex-container" style="display: flex; flex-wrap: nowrap; gap: 40px; align-items: flex-start; overflow-x: auto; margin-top: 10px;">
+<p>The FTMO Free Trial is a 14-day practice account, not an evaluation phase: passing it produces no FTMO Account and removes no step from a paid challenge. Use the 2-Step trial to test a 5% daily and 10% static loss structure; use the 1-Step trial to test a 3% daily limit, 10% end-of-day trailing loss, and 50% Best Day rule.</p>
 
-    <!-- Logo & Title + Table -->
-    <div style="flex-basis: 100%;">
-      <!-- Logo & Title -->
-      <div style="display: flex; align-items: center; margin-bottom: 20px;">
-        <img src="/images/wp/2025/04/FTMO-icon-dark.png" alt="FTMO Logo" style="height: 40px; margin-right: 15px;">
-        <h2 style="margin: 0; font-weight: bold;">FTMO Free Trial Overview</h2>
-      </div>
+<p>Start with FTMO when the purpose is to compare its 2 current challenge rule sets across MT4, MT5, cTrader, or DXTrade. Compare FundedNext when a single 14-day trial, 3 minimum days, MT5, and a completion-linked 5% coupon are more useful; its trial prohibits EAs and does not reproduce every paid FundedNext product.</p>
 
-      <!-- Table (scrollable if needed) -->
-      <div style="overflow-x: auto;">
-        <table style="min-width: 500px; width: 100%; border-collapse: collapse; border-spacing: 0; margin-bottom: 0; border: none;">
-          <caption class="hidden-caption">FTMO Free Trial Summary</caption>
-          <tbody>
-            <tr>
-              <td style="padding: 10px; border-bottom: 1px solid var(--border);"><strong>Trading Period</strong></td>
-              <td style="padding: 10px; border-bottom: 1px solid var(--border);">14 days</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px; border-bottom: 1px solid var(--border);"><strong>Profit Target</strong></td>
-              <td style="padding: 10px; border-bottom: 1px solid var(--border);">5%</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px; border-bottom: 1px solid var(--border);"><strong>Max Daily Loss</strong></td>
-              <td style="padding: 10px; border-bottom: 1px solid var(--border);">5%</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px; border-bottom: 1px solid var(--border);"><strong>Max Loss (Overall)</strong></td>
-              <td style="padding: 10px; border-bottom: 1px solid var(--border);">10%</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px; border-bottom: 1px solid var(--border);"><strong>Minimum Trading Days</strong></td>
-              <td style="padding: 10px; border-bottom: 1px solid var(--border);">5</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px; border-bottom: none;"><strong>Funding After Pass</strong></td>
-              <td style="padding: 10px; border-bottom: none;">No (trial is practice only)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Ratings & CTA -->
-    <div class="ratings-cta" style="min-width: 250px; flex-shrink: 0; margin-top: 70px;">
-      <h3 style="margin-top: 0; font-weight: bold;">Ratings</h3>
-      <div style="display: flex; align-items: center; margin-bottom: 10px;">
-        <div style="color: #f59e0b; font-size: 18px; margin-right: 10px;">★★★★★</div>
-        <span><strong>4.8</strong> on <strong>Trustpilot</strong></span>
-      </div>
-      <div style="display: flex; align-items: center; margin-bottom: 20px;">
-        <div style="color: #25b899; font-size: 18px; margin-right: 10px;">★★★★★</div>
-        <span><strong>4.9</strong> on <strong>TFH</strong></span>
-      </div>
-
-      <!-- Buttons Container -->
-      <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
-        <!-- First Button -->
-        <a href="/go/ftmo?from=post-cta" 
-           data-button
-           target="_blank"
-           rel="nofollow noopener noreferrer sponsored"
-           style="background: linear-gradient(135deg, #1e3a8a, #2563eb); 
-                  color: #fff; 
-                  padding: 12px 20px; 
-                  border-radius: 15px; 
-                  text-decoration: none; 
-                  display: inline-block; 
-                  box-shadow: 0 4px 15px rgba(0,0,0,0.15); 
-                  font-weight: bold !important; 
-                  text-align: center;
-                  max-width: 220px; 
-                  width: 100%;
-                  transition: transform 0.3s ease, box-shadow 0.3s ease;">
-          Start Free Trial
-        </a>
-
-        <!-- Second Green Button -->
-        <a href="/blog/ftmo-review" 
-           data-button
-           style="background: #31ba9a; 
-                  color: #fff; 
-                  padding: 12px 20px; 
-                  border-radius: 15px; 
-                  text-decoration: none; 
-                  display: inline-block; 
-                  box-shadow: 0 4px 15px rgba(0,0,0,0.15); 
-                  font-weight: bold !important; 
-                  text-align: center;
-                  max-width: 220px; 
-                  width: 100%;
-                  transition: transform 0.3s ease, box-shadow 0.3s ease;">
-          Read Full Review
-        </a>
-      </div>
-    </div>
-
-  </div>
+<div data-free-trial-cta="top" style="background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin: 20px 0;">
+  <p style="margin-top: 0;"><strong>Test before paying.</strong> FTMO permits 1 active Free Trial at a time and lets the trader delete it and start another. The outbound FTMO link is non-affiliate.</p>
+  <p style="margin-bottom: 0;"><a href="/go/ftmo">Open FTMO’s Free Trial</a> or read the <a href="/blog/ftmo-review">current FTMO review</a> before choosing a paid 1-Step or 2-Step account.</p>
 </div>
 
-<!-- Hover Animation + Responsive Fix -->
-<style>
-  a:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  }
+<h2>FTMO Free Trial quick facts</h2>
 
-  @media (max-width: 768px) {
-    .ftmo-flex-container {
-      display: none !important; /* Completely hide table + ratings + buttons */
-    }
-  }
-</style>
+<table data-free-trial-summary="ftmo" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">FTMO Free Trial facts captured on 2026-08-14</caption>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Price</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€0; no card payment</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Duration</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">14 days</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Trial choices</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1-Step or 2-Step rule set; each trial has 1 phase</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit target</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% on either trial</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Concurrent trials</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1 active Free Trial per client</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Maximum account size</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$200,000 in simulated capital</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT4, MT5, cTrader, and DXTrade</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Funding after passing</strong></td><td style="padding: 8px 12px;">No; a paid challenge still starts from Phase 1</td></tr>
+  </tbody>
+</table>
 
-<p>I’ve been out of the <a href="/blog/what-is-a-prop-firm">prop firm trading</a> world for a while now. Life threw a lot at me recently, and trading had to take a back seat. But now I’m ready to get back into it. I want to practice, sharpen my edge, and rebuild my confidence. That’s why I’m starting with the <strong>FTMO Free Trial</strong>, and in this article, I’ll share my review of it.</p>
+<p>The facts above were captured on 2026-08-14 from FTMO’s Free Trial landing page and its named Free Trial FAQ. The official FAQ says the trial is an abridged practice experience, allows 1 active account at a time, and does not create eligibility for an FTMO Account.</p>
 
-<p>FTMO has been around for years and is still the biggest name in the prop firm space. A lot of new firms have popped up with flashy features and different challenge models, but for me, the free trial FTMO offers still stands out for me. It’s simple, fair, and a great place for beginners to get started. I honestly think it gives FTMO an edge over most of its competitors.</p>
+<h2>FTMO 1-Step vs 2-Step Free Trial rules</h2>
 
-<h2 class="wp-block-heading">What Is the FTMO Free Trial?</h2>
+<table data-free-trial-rules="ftmo" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">FTMO 1-Step and 2-Step Free Trial rule comparison</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Rule</th><th style="padding: 8px 12px; text-align: left;">1-Step Free Trial</th><th style="padding: 8px 12px; text-align: left;">2-Step Free Trial</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Trial phases</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit target</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Minimum trading days</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No separate minimum captured; 50% Best Day still affects completion</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2 days</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Maximum daily loss</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Maximum loss</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% end-of-day trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Consistency gate</strong></td><td style="padding: 8px 12px;">50% Best Day rule</td><td style="padding: 8px 12px;">No percentage rule captured</td></tr>
+  </tbody>
+</table>
 
-<p>The <a href="/blog/ftmo-review">FTMO</a> Free Trial is a demo account that lets you test yourself under the same type of rules you’d face in the real FTMO Challenge. The main point is that it’s free to try. So, you don’t risk any money, like purchasing an FTMO challenge. Think of it as a practice round before you commit to the paid evaluation.</p>
+<p>The 2-Step Free Trial uses the paid 2-Step objectives except for 2 explicit adjustments: the Phase 1 target falls from 10% to 5%, and minimum trading days fall from 4 to 2. It does not include a free Verification phase, so reaching 5% completes only the practice account.</p>
 
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/09/FTMO-Free-Trial-Landing-Page-scaled.jpg" alt="FTMO Free Trial Landing Page" class="wp-image-2996"/></figure>
+<p>The 1-Step Free Trial uses the paid 1-Step objectives with 1 stated adjustment: the target falls from 10% to 5%. That leaves the 3% Maximum Daily Loss, 10% end-of-day trailing Maximum Loss, and 50% Best Day rule in place; exceeding 50% is a completion gate, not a hard breach.</p>
 
-<p>The main idea is simple: you get to trade like you would in the Challenge (same rules and limits apply), but with demo funds (this is the same as real challenges) and for a shorter period of time. So, it can help you see if you’re able to follow the FTMO challenge rules and manage risk while reaching profit targets.</p>
+<h2>Worked rule examples on a $100K trial</h2>
 
-<p>Make sure to understand that the FTMO challenge Free Trial is not a shortcut to funding. In fact, even if you hit all the targets and “pass” the trial, you won’t get a funded account. You’ll still need to pay and go through the official Challenge and Verification stages if you want to trade FTMO capital, <a href="/blog/prop-firm-scaling-plan">scale the account</a>, and get payouts.</p>
+<h3>2-Step: the static $90,000 floor</h3>
 
-<p>If you want to start prop trading with low risk, check out our full list of the <a href="/cheapest-prop-firms">cheapest prop firms</a> available.</p>
+<p>A $100,000 2-Step trial has a $5,000 daily-loss amount and a static $90,000 overall floor. If the account closes Day 1 at $104,000, the next day’s overall floor remains $90,000; the $4,000 gain does not move a static maximum-loss line.</p>
 
-<h2 class="wp-block-heading">How the FTMO Free Trial Works</h2>
+<h3>1-Step: the floor can move to $94,000</h3>
 
-<p>Signing up for the Free Trial FTMO offers is quite simple. You just go to their website, choose the Free Trial option, and register with your details. You can also do it from your client panel if you already have an account with the firm.</p>
+<p>A $100,000 1-Step trial starts with a $90,000 overall floor and a $3,000 daily-loss amount. If the highest end-of-day balance becomes $104,000, the next recalculation lifts the maximum-loss floor to $94,000; a later losing day does not lower it.</p>
 
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/09/FTMO-Free-Trial-Start.jpg" alt="Start FTMO Free Trial" class="wp-image-2997"/></figure>
+<h3>1-Step: a $3,000 best day needs $6,000 of positive-day profit</h3>
 
-<p>Once it’s set up, you’ll receive login credentials for the trading platform you pick.</p>
+<p>The 50% Best Day formula is <code>best day ÷ positive-days profit</code>. A $3,000 best day divided by $5,000 of positive-days profit equals 60%, so the 5% trial target alone is not enough; the positive-days total must reach at least $6,000 for that $3,000 day to equal 50%.</p>
 
-<p>You can choose between MT4, MT5, <a href="https://dx.trade/" target="_blank" rel="noreferrer noopener nofollow">DXtrade</a>, and <a href="https://ctrader.com/">cTrader</a>. You’ll also get to pick your account size, with virtual balances that are the same as the real Challenge options.</p>
+<p>Read the <a href="/blog/balance-based-drawdown-vs-equity-based-drawdown">drawdown guide</a> for static versus trailing floor behavior and the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> for the Best Day denominator before choosing the 1-Step trial.</p>
 
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/09/FTMO-Free-Trial-Details-scaled.jpg" alt="FTMO Free Trial Details" class="wp-image-2995"/></figure>
+<h2>Free Trial vs paid FTMO Challenge</h2>
 
-<p>You can also have a try at the FTMO Swing model using the free trial. It allows you to trade overnight and on weekends, and also during news releases. But the leverage is reduced from 100 to 30 compared to the regular challenge.</p>
+<table data-free-trial-paid-comparison="ftmo" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">FTMO Free Trial and paid challenge comparison at the $100K tier</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 10px; text-align: left;">Path</th><th style="padding: 8px 10px; text-align: left;">Fee</th><th style="padding: 8px 10px; text-align: left;">Target</th><th style="padding: 8px 10px; text-align: left;">Time / days</th><th style="padding: 8px 10px; text-align: left;">What passing unlocks</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">1-Step Free Trial</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">€0</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days; no separate minimum captured</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Practice result only</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Paid 1-Step $100K</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">€499; non-refundable</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">10%</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">No maximum-day limit captured</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Account review after 1 phase</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">2-Step Free Trial</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">€0</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days; 2 minimum days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Practice result only</td></tr>
+    <tr><td style="padding: 8px 10px;">Paid 2-Step $100K</td><td style="padding: 8px 10px;">€540; refundable with first approved reward</td><td style="padding: 8px 10px;">10% then 5%</td><td style="padding: 8px 10px;">No maximum-day limit; 4 minimum days per phase</td><td style="padding: 8px 10px;">Verification after Phase 1</td></tr>
+  </tbody>
+</table>
 
-<h2 class="wp-block-heading">Rules and Objectives</h2>
+<p>The paid comparison uses FTMO’s structured challenge capture dated 2026-07-27 and keeps prices in euros. A passed trial does not refund, discount, or replace either €499 1-Step or €540 2-Step at $100K; compare the full fee-recovery math in the <a href="/blog/ftmo-review">FTMO review</a> and <a href="/true-cost-of-prop-firm-challenges">True-Cost guide</a>.</p>
 
-<p>The FTMO Free Trial challenge is meant to mirror the real Challenge, but in a shorter and scaled-down format. You get the same type of rules and targets, just compressed into two weeks. This way, you can see if your strategy and mindset can work under FTMO’s framework.</p>
+<h2>A 14-day test plan that produces a decision</h2>
 
-<p>Here are the key rules you need to know:</p>
+<table data-free-trial-test-plan="14-day" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Four-stage FTMO Free Trial test plan</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Stage</th><th style="padding: 8px 12px; text-align: left;">Record</th><th style="padding: 8px 12px; text-align: left;">Decision gate</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Before Day 1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Chosen 1-Step or 2-Step formula, server reset time, personal session stop, and maximum risk per trade</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Every rule is written as a number or formula</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Days 1–4</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Balance, equity, floating P&amp;L, commissions, swaps, and rule distance after every session</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0 unexplained dashboard differences</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Days 5–10</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Rule deviations, revenge trades, size increases, and Best Day share where applicable</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0 hard-rule breaches and no unplanned size escalation</td></tr>
+    <tr><td style="padding: 8px 12px;">Days 11–14</td><td style="padding: 8px 12px;">Target progress, maximum drawdown used, largest loss, largest win, and positive-day distribution</td><td style="padding: 8px 12px;">Buy only if the same plan fits the paid target without a deadline</td></tr>
+  </tbody>
+</table>
 
-<ul class="wp-block-list">
-<li><strong>Trading Period:</strong> 14 calendar days (no extensions).</li>
+<p>A 14-day pass is weaker evidence than 14 days of rule-clean execution. If the result required oversized risk, a last-day target chase, or a 60% Best Day share, repeat the trial; the <a href="/blog/what-is-overtrading">overtrading guide</a> shows how to measure plan drift, while the <a href="/how-to-pass-a-prop-firm-challenge">challenge-passing guide</a> converts the result into a risk budget.</p>
 
-<li><strong>Minimum Trading Days:</strong> 5 days. You need to place at least one trade on five different days to meet this rule.</li>
+<h2>FTMO Free Trial vs FundedNext Free Trial</h2>
 
-<li><strong>Profit Target:</strong> 5% of the initial account balance. (For example, on a $100,000 trial account, you’d need to make $5,000 by the end of two weeks).</li>
+<table data-free-trial-comparison="ftmo-fundednext" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">FTMO and FundedNext Free Trial comparison captured on 2026-08-14</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 10px; text-align: left;">Field</th><th style="padding: 8px 10px; text-align: left;">FTMO 1-Step trial</th><th style="padding: 8px 10px; text-align: left;">FTMO 2-Step trial</th><th style="padding: 8px 10px; text-align: left;">FundedNext trial</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Duration</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days from first trade</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Target / minimum days</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5% / no separate minimum captured</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5% / 2 days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5% / 3 days</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Daily / maximum loss</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">3% / 10% EOD trailing</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5% / 10% static</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5% / 10% maximum</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Platform</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">4 FTMO choices</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">4 FTMO choices</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">MT5 outside the US; Match-Trader in the US</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>EA test</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Use must follow FTMO strategy restrictions</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Use must follow FTMO strategy restrictions</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Not permitted</td></tr>
+    <tr><td style="padding: 8px 10px;"><strong>Completion benefit</strong></td><td style="padding: 8px 10px;">No funded account or paid-step credit</td><td style="padding: 8px 10px;">No funded account or paid-step credit</td><td style="padding: 8px 10px;">5% CFD-plan coupon for eligible new users; valid 14 days</td></tr>
+  </tbody>
+</table>
 
-<li><strong>Maximum Daily Loss:</strong> 5% of the starting balance in a single day.</li>
+<p>FundedNext’s 1 trial also permits news trading and weekend holding, caps open positions at 30, offers $6,000–$200,000 balances, and has no reset option. Those trial rules do not prove how Stellar Lite, 1-Step, 2-Step, or Instant will behave after purchase; the <a href="/blog/fundednext-review">FundedNext review</a> compares all 4 paid products and 22 captured prices.</p>
 
-<li><strong>Maximum Loss (Overall):</strong> 10% of the starting balance across the entire trial.</li>
+<div data-free-trial-cta="fundednext" style="background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin: 20px 0;">
+  <p style="margin-top: 0;"><strong>Prefer FundedNext’s 3-day trial structure?</strong> Its 5% completion coupon applies only to eligible new users, lasts 14 days, covers CFD plans, and excludes resets.</p>
+  <p style="margin-bottom: 0;"><a href="/blog/fundednext-review">Check the paid-product rules first</a>, then <a href="/go/fundednext">open FundedNext’s current Free Trial and plans</a>. We may earn a commission if a later purchase qualifies; that relationship does not change the rule comparison.</p>
+</div>
 
-<li><strong>Account Types:</strong> You can choose from the same account sizes offered in the real Challenge (e.g., $10k, $25k, $50k, $100k, $200k virtual balance).</li>
+<h2>What a Free Trial can and cannot prove</h2>
+
+<ul>
+  <li><strong>It can test rule fit:</strong> 14 days expose whether the 3% or 5% daily limit, static or trailing floor, and 50% Best Day calculation match the strategy.</li>
+  <li><strong>It can test the workflow:</strong> 1 trial can expose platform friction, dashboard timing, commissions, swaps, and mistakes around the CE(S)T reset.</li>
+  <li><strong>It cannot prove payout eligibility:</strong> €0 practice accounts have no KYC approval, reward review, fee recovery, or bank settlement.</li>
+  <li><strong>It cannot reproduce a long sample:</strong> 14 days may contain too few trades for a low-frequency system and can reward a short favorable run.</li>
+  <li><strong>It cannot justify larger risk:</strong> a 5% target reached through one oversized day can still fail the 1-Step 50% Best Day gate or hide unsustainable execution.</li>
 </ul>
 
-<p>And here’s how the FTMO free trial compares to the real challenge:</p>
+<p>Use the global <a href="/prop-firm-challenges">challenge comparison</a> after the trial to compare the same phase count, loss type, starting split, payout gate, and fee-refund timing across current products.</p>
 
-<div style="overflow-x:auto;">
-  <table class="general-table">
-    <caption class="hidden-caption">FTMO Free Trial vs FTMO Challenge Rules</caption>
-    <thead>
-      <tr>
-        <th>Rule</th>
-        <th>Free Trial</th>
-        <th>FTMO Challenge</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="font-weight:bold;">Trading Period</td>
-        <td>14 days</td>
-        <td>30 days (Phase 1) + 60 days (Verification)</td>
-      </tr>
-      <tr>
-        <td style="font-weight:bold;">Profit Target</td>
-        <td>5%</td>
-        <td>10% (Phase 1), 5% (Verification)</td>
-      </tr>
-      <tr>
-        <td style="font-weight:bold;">Max Daily Loss</td>
-        <td>5%</td>
-        <td>5%</td>
-      </tr>
-      <tr>
-        <td style="font-weight:bold;">Max Loss (Overall)</td>
-        <td>10%</td>
-        <td>10%</td>
-      </tr>
-      <tr>
-        <td style="font-weight:bold;">Min Trading Days</td>
-        <td>5</td>
-        <td>4</td>
-      </tr>
-      <tr>
-        <td style="font-weight:bold;">Funding After Pass</td>
-        <td>No</td>
-        <td>Yes, after Verification</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<h2>Frequently asked questions</h2>
 
-<h2 class="wp-block-heading">Tools and Features Included</h2>
+<h3>Is the FTMO Free Trial really free?</h3>
 
-<p>For me, one of the best parts of the FTMO Free Trial demo is that it gives you access to many of the same tools you’d use in the real Challenge. So, you’ll get familiar with everything if it's your first time with the firm, and understand how FTMO tracks and analyzes your performance.</p>
+<p>Yes. The captured price is €0, and FTMO presents the account as a no-entry-fee practice experience. No payment is required to start the 14-day trial.</p>
 
-<p>Here’s what you get:</p>
+<h3>Does passing the FTMO Free Trial give me a funded account?</h3>
 
-<ul class="wp-block-list">
-<li><strong>Account MetriX:</strong> It’s FTMO’s detailed dashboard that shows your account’s performance. You can track your balance and equity, risk parameters, and whether you’re within the rules.</li>
+<p>No. Passing either 1-phase trial grants no FTMO Account and skips no paid stage. A trader must still buy and complete the selected 1-Step or 2-Step Evaluation Process.</p>
 
-<li><strong>Trading Journal:</strong> It will log your trades. You can write notes and also review your decisions. So, you won’t need a third-party trading journal software.</li>
+<h3>How many FTMO Free Trials can I take?</h3>
 
-<li><strong>Statistics Applications:</strong> These show things like win rate, average RRR, and other performance metrics.</li>
+<p>FTMO permits 1 active Free Trial per client at a time. The current landing page says the trader can delete the active trial and create another, or start a new one after the 14-day period.</p>
 
-<li><strong>Daily Equity Updates:</strong> They’ll update your account statistics every day, just like they would when you’re trading a real FTMO challenge.</li>
-</ul>
+<h3>Is the FTMO Free Trial 14 calendar days?</h3>
 
-<p>The main benefit of these tools is that they force you to approach trading like a professional. And let me tell you something, that’s exactly how to approach it if you want to get and remain funded and make a living off of trading.</p>
+<p>FTMO states a 14-day trial period. Because the live dashboard controls the exact expiry timestamp, record the displayed start and end time before placing Day 1’s trade.</p>
 
-<p>So, even though it’s a demo account, the analysis makes you treat every trade seriously.</p>
+<h3>Which FTMO Free Trial should I choose?</h3>
 
-<h2 class="wp-block-heading">Recent Updates (September 2025)</h2>
+<p>Choose the 2-Step trial to test a 5% daily limit, 10% static floor, and 2 minimum days. Choose the 1-Step trial to test a 3% daily limit, 10% end-of-day trailing floor, and 50% Best Day rule.</p>
 
-<p>FTMO keeps the Free Trial accounts up to date and also uses them to try new stuff. So, for example, sometimes new symbols or rule adjustments show up on the trial before they roll out fully to the paid accounts.</p>
+<h3>Is FundedNext’s Free Trial the same as FTMO’s?</h3>
 
-<p>Now, here are the most recent updates you should know about as of September 2025:</p>
-
-<div style="overflow-x:auto;">
-  <table class="general-table">
-    <caption class="hidden-caption">Recent Updates to FTMO Free Trial in 2025</caption>
-    <thead>
-      <tr>
-        <th>Update</th>
-        <th>Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="font-weight:bold;">Symbol Changes</td>
-        <td>In January 2025, <strong>FB</strong> was replaced with <strong>META</strong> on cTrader. Open FB positions had to be closed before the switch.</td>
-      </tr>
-      <tr>
-        <td style="font-weight:bold;">New Instruments</td>
-        <td><strong>HEATOIL.c</strong> (heating oil CFD) was added first on Free Trial servers, initially in “read-only” mode.</td>
-      </tr>
-      <tr>
-        <td style="font-weight:bold;">US Dollar Index</td>
-        <td><strong>DXY.cash</strong> was re-added, starting with Free Trial accounts before full rollout.</td>
-      </tr>
-      <tr>
-        <td style="font-weight:bold;">Platforms</td>
-        <td>Free Trial supports MT4, MT5, DXtrade, and now, also <strong>cTrader</strong>.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<h2 class="wp-block-heading">FTMO Free Trial vs Competitors</h2>
-
-<p>While the FTMO free trial account is my personal recommendation for any new prop firm traders, there are also some alternatives from competitors, which are listed below and compared to FTMO:</p>
-
-<div style="overflow-x:auto;">
-  <table class="general-table">
-    <caption class="hidden-caption">Prop Firms Offering Free Trials Comparison</caption>
-    <thead>
-      <tr>
-        <th>Prop Firm</th>
-        <th>Duration</th>
-        <th>Key Details</th>
-        <th>Visit</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="font-weight:bold;">FTMO</td>
-        <td>14 days</td>
-        <td>Mirrors the Challenge with 5% profit target, 5% daily loss limit, 10% overall loss. Includes Account MetriX, journal, and stats apps.</td>
-        <td style="text-align:center;">
-          <a href="/go/ftmo?from=post-cta" target="_blank" rel="nofollow noopener noreferrer sponsored" class="visit-btn">Visit</a>
-        </td>
-      </tr>
-      <tr>
-        <td style="font-weight:bold;">FTUK</td>
-        <td>14 days</td>
-        <td>Free simulated account based on their evaluation rules. No credit card needed, just registration.</td>
-        <td style="text-align:center;">
-          <a href="https://ftuk.com/" target="_blank" rel="nofollow noopener noreferrer" class="visit-btn">Visit</a>
-        </td>
-      </tr>
-      <tr>
-        <td style="font-weight:bold;">City Traders Imperium (CTI)</td>
-        <td>Not specified</td>
-        <td>“Challenge Free Trial” lets you test their platform and rules risk-free. Duration not listed.</td>
-        <td style="text-align:center;">
-          <a href="/go/city-traders-imperium?from=post-cta" target="_blank" rel="nofollow noopener noreferrer" class="visit-btn">Visit</a>
-        </td>
-      </tr>
-      <tr>
-        <td style="font-weight:bold;">FundedNext</td>
-        <td>14 days</td>
-        <td>Free trial introduced in 2025. Traders can test under real market conditions without financial risk.</td>
-        <td style="text-align:center;">
-          <a href="/go/fundednext?from=post-cta" target="_blank" rel="nofollow noopener noreferrer" class="visit-btn">Visit</a>
-        </td>
-      </tr>
-      <tr>
-        <td style="font-weight:bold;">E8 Markets</td>
-        <td>2 free trials every 28 days</td>
-        <td>Each trial gives a $100k simulated account on MatchTrader. No payouts, purely for practice.</td>
-        <td style="text-align:center;">
-          <a href="/go/e8-markets?from=post-cta" target="_blank" rel="nofollow noopener noreferrer sponsored" class="visit-btn">Visit</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<style>
-  .visit-btn {
-    background: linear-gradient(135deg, #23b79a, #1a9e85);
-    color: #fff !important;
-    padding: 6px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-block;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .visit-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    color: #fff !important;
-  }
-</style>
-
-<h2 class="wp-block-heading">Conclusion</h2>
-
-<p>The FTMO Free Trial gives you something more than just your usual demo account. It’s a way to test yourself under real evaluation rules, if you want to become funded by prop firms, without risking any money.</p>
-
-<p>For me, it’s the perfect starting point after being away from prop firm trading. It helps me rebuild confidence and get used to the structure again. And compared to other firms, FTMO’s trial still feels the most professional and realistic, which is something a lot of people like about FTMO overall.</p>
-
-<h2 class="wp-block-heading">FAQs</h2>
-
-<!-- wp:rank-math/faq-block {"questions":[{"id":"faq-question-1759239391106","title":"Is the FTMO Free Trial really free?","content":"Yes, it’s 100% free. You don’t need to pay or enter card details. You just register on FTMO’s website and get your demo credentials.","visible":true},{"id":"faq-question-1759239400451","title":"Can I take multiple FTMO free trials?","content":"Yes, but you can only have one active trial at a time. Once your 14 days are over, or if you delete it, you can register for another.","visible":true},{"id":"faq-question-1759239413332","title":"What happens if I pass the FTMO Free Trial?","content":"Passing the trial doesn’t give you a funded account. It’s only practice. To trade FTMO capital, you still need to buy and pass the official Challenge and Verification.","visible":true},{"id":"faq-question-1759239428649","title":"Is the FTMO Free Trial harder than the Challenge?","content":"Not really. The rules are the same, but the trial is shorter (14 days). The profit target is 5% instead of 10%, so it’s scaled down, but the time pressure makes it challenging.","visible":true},{"id":"faq-question-1759239444801","title":"Can I extend the 14-day period?","content":"No, extensions aren’t available. Once the trial ends, you’ll need to start a new one if you want more practice.","visible":true},{"id":"faq-question-1759239455050","title":"Can I use Expert Advisors (EAs) or algorithms in the FTMO Free Trial?","content":"Yes, FTMO allows EAs and automated strategies in both the Free Trial and the paid Challenge, as long as they don’t exploit platform errors or breaches of trading rules.","visible":true}],"listCssClasses":"faq, faq-item"} -->
-<div class="wp-block-rank-math-faq-block"><div class="rank-math-faq-item"><h3 class="rank-math-question">Is the FTMO Free Trial really free?</h3><div class="rank-math-answer">Yes, it’s 100% free. You don’t need to pay or enter card details. You just register on FTMO’s website and get your demo credentials.</div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">Can I take multiple FTMO free trials?</h3><div class="rank-math-answer">Yes, but you can only have one active trial at a time. Once your 14 days are over, or if you delete it, you can register for another.</div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">What happens if I pass the FTMO Free Trial?</h3><div class="rank-math-answer">Passing the trial doesn’t give you a funded account. It’s only practice. To trade FTMO capital, you still need to buy and pass the official Challenge and Verification.</div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">Is the FTMO Free Trial harder than the Challenge?</h3><div class="rank-math-answer">Not really. The rules are the same, but the trial is shorter (14 days). The profit target is 5% instead of 10%, so it’s scaled down, but the time pressure makes it challenging.</div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">Can I extend the 14-day period?</h3><div class="rank-math-answer">No, extensions aren’t available. Once the trial ends, you’ll need to start a new one if you want more practice.</div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">Can I use Expert Advisors (EAs) or algorithms in the FTMO Free Trial?</h3><div class="rank-math-answer">Yes, FTMO allows EAs and automated strategies in both the Free Trial and the paid Challenge, as long as they don’t exploit platform errors or breaches of trading rules.</div></div></div>
+<p>No. FundedNext uses 1 rule set with a 5% target, 3 minimum days, 5% daily loss, 10% maximum loss, a 30-position cap, and no EAs. FTMO offers separate 1-Step and 2-Step trial formulas and 4 platform choices.</p>

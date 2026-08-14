@@ -211,6 +211,14 @@ const FUNDINGPIPS_ZERO_GUIDE_FILE = path.join(
   ROOT,
   'content/posts/fundingpips-zero.md',
 )
+const FTMO_FREE_TRIAL_GUIDE_FILE = path.join(
+  ROOT,
+  'content/posts/ftmo-free-trial-explained.md',
+)
+const FREE_TRIAL_DATA_FILE = path.join(ROOT, 'content/data/free-trials.json')
+const NEXT_CONFIG_FILE = path.join(ROOT, 'next.config.ts')
+const ROOT_SLUG_PAGE_FILE = path.join(ROOT, 'app/[slug]/page.tsx')
+const SITEMAP_FILE = path.join(ROOT, 'app/sitemap.ts')
 const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
 const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
@@ -5383,6 +5391,356 @@ function checkConsistencyGuide() {
   return rows.length
 }
 
+/** Retired overview pages must stay consolidated into their canonical reviews. */
+function checkLegacyOverviewConsolidation() {
+  const rows = []
+  const config = fs.existsSync(NEXT_CONFIG_FILE)
+    ? fs.readFileSync(NEXT_CONFIG_FILE, 'utf-8')
+    : ''
+  const rootSlugPage = fs.existsSync(ROOT_SLUG_PAGE_FILE)
+    ? fs.readFileSync(ROOT_SLUG_PAGE_FILE, 'utf-8')
+    : ''
+  const sitemap = fs.existsSync(SITEMAP_FILE)
+    ? fs.readFileSync(SITEMAP_FILE, 'utf-8')
+    : ''
+  const redirects = new Map([
+    ['ftmo-overview', '/blog/ftmo-review'],
+    ['fundednext-overview', '/blog/fundednext-review'],
+    ['fundingpips-overview', '/blog/funding-pips-review'],
+    ['e8-markets-overview', '/blog/e8-markets-review'],
+  ])
+
+  if (!rootSlugPage.includes('!LEGACY_OVERVIEW_SLUGS.has(p.slug)')) {
+    rows.push('dynamic root-page generation no longer excludes legacy overview slugs')
+  }
+  if (!sitemap.includes('!SKIP.has(p.slug)')) {
+    rows.push('sitemap no longer filters its legacy-page skip set')
+  }
+
+  for (const [slug, destination] of redirects) {
+    const redirectPattern = new RegExp(
+      `source:\\s*['\"]/${slug}['\"]\\s*,\\s*destination:\\s*['\"]${destination}['\"]\\s*,\\s*permanent:\\s*true`,
+    )
+    if (!redirectPattern.test(config)) {
+      rows.push(`/${slug} is missing its permanent redirect to ${destination}`)
+    }
+    if (!rootSlugPage.includes(`'${slug}'`)) {
+      rows.push(`${slug} is missing from LEGACY_OVERVIEW_SLUGS`)
+    }
+    if (!sitemap.includes(`'${slug}'`)) {
+      rows.push(`${slug} is missing from the sitemap skip set`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Legacy overview consolidation')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/** Keep the FTMO practice guide tied to current FTMO and FundedNext sources. */
+function checkFtmoFreeTrialGuide() {
+  const rows = []
+  if (!fs.existsSync(FTMO_FREE_TRIAL_GUIDE_FILE)) {
+    console.log('\n✗ FTMO Free Trial guide')
+    console.log('  · content/posts/ftmo-free-trial-explained.md is missing')
+    return 1
+  }
+  if (!fs.existsSync(FREE_TRIAL_DATA_FILE)) {
+    console.log('\n✗ FTMO Free Trial guide')
+    console.log('  · content/data/free-trials.json is missing')
+    return 1
+  }
+
+  const captures = JSON.parse(fs.readFileSync(FREE_TRIAL_DATA_FILE, 'utf-8'))
+  const { data, content } = matter(
+    fs.readFileSync(FTMO_FREE_TRIAL_GUIDE_FILE, 'utf-8'),
+  )
+  const ftmo = captures.find(capture => capture.firmSlug === 'ftmo')
+  const fundedNext = captures.find(capture => capture.firmSlug === 'fundednext')
+  const captureSlugs = captures.map(capture => capture.firmSlug)
+  if (
+    captures.length !== 2 ||
+    new Set(captureSlugs).size !== 2 ||
+    !ftmo ||
+    !fundedNext
+  ) {
+    rows.push('free-trial data must contain exactly 1 FTMO and 1 FundedNext record')
+  }
+
+  for (const capture of captures) {
+    let source
+    try {
+      source = new URL(capture.sourceUrl)
+    } catch {
+      rows.push(`${capture.firmSlug} free-trial sourceUrl is invalid`)
+      continue
+    }
+    const expectedHost = capture.firmSlug === 'ftmo'
+      ? 'ftmo.com'
+      : 'help.fundednext.com'
+    if (source.hostname !== expectedHost) {
+      rows.push(`${capture.firmSlug} free-trial source must use ${expectedHost}`)
+    }
+    const capturedAt = new Date(`${capture.sourceCapturedAt}T00:00:00Z`)
+    const age = Math.floor((TODAY - capturedAt) / 86400000)
+    if (Number.isNaN(capturedAt.getTime()) || age < 0 || age > STALE_DAYS) {
+      rows.push(`${capture.firmSlug} free-trial capture is invalid or older than ${STALE_DAYS} days`)
+    }
+  }
+
+  if (data.title !== 'FTMO Free Trial 2026: 1-Step vs 2-Step Rules') {
+    rows.push('title must preserve FTMO Free Trial, year, and both product intents')
+  }
+  if (data.seoTitle !== 'FTMO Free Trial 2026: Rules & 14-Day Test Plan') {
+    rows.push('seoTitle no longer states rules and the 14-day test intent')
+  }
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+  if (data.modified !== ftmo?.sourceCapturedAt || data.modified !== fundedNext?.sourceCapturedAt) {
+    rows.push('guide modified date must equal both free-trial capture dates')
+  }
+
+  const tableText = (attribute, value) => {
+    const escaped = value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const match = content.match(
+      new RegExp(`<table[^>]*\\b${attribute}="${escaped}"[^>]*>([\\s\\S]*?)<\\/table>`, 'i'),
+    )
+    return match ? stripTags(match[1]).replace(/\s+/g, ' ').trim() : ''
+  }
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+
+  if (ftmo) {
+    const paid = loadChallenges('ftmo') ?? []
+    const trialOneStep = ftmo.products.find(
+      product => product.productSlug === 'ftmo-free-trial-1-step',
+    )
+    const trialTwoStep = ftmo.products.find(
+      product => product.productSlug === 'ftmo-free-trial-2-step',
+    )
+    const paidOneStep = paid.find(
+      product => product.productSlug === trialOneStep?.mapsToChallenge,
+    )
+    const paidTwoStep = paid.find(
+      product => product.productSlug === trialTwoStep?.mapsToChallenge,
+    )
+    for (const [label, trial, challenge] of [
+      ['1-Step', trialOneStep, paidOneStep],
+      ['2-Step', trialTwoStep, paidTwoStep],
+    ]) {
+      if (!trial || !challenge) {
+        rows.push(`${label} trial-to-paid product mapping is missing`)
+        continue
+      }
+      if (
+        trial.dailyLossPct !== challenge.dailyLossPct ||
+        trial.maxLossPct !== challenge.maxLossPct ||
+        trial.drawdownType !== challenge.drawdownType ||
+        trial.consistencyRulePct !== challenge.consistencyRulePct
+      ) {
+        rows.push(`${label} trial inherited risk fields drifted from its paid product`)
+      }
+    }
+    if (
+      ftmo.durationDays !== 14 ||
+      ftmo.maxConcurrentAccounts !== 1 ||
+      ftmo.maxAccountSizeUsd !== 200000 ||
+      ftmo.passGrantsFunding !== false ||
+      trialOneStep?.profitTargetPct !== 5 ||
+      trialOneStep?.minTradingDays !== null ||
+      trialTwoStep?.profitTargetPct !== 5 ||
+      trialTwoStep?.minTradingDays !== 2
+    ) {
+      rows.push('FTMO structured duration, access, target, or minimum-day facts drifted')
+    }
+    expectFragments(
+      'FTMO summary table',
+      tableText('data-free-trial-summary', 'ftmo'),
+      ['€0', '14 days', '1-Step', '2-Step', '5%', '1 active', '$200,000', ...ftmo.platforms],
+    )
+    expectFragments(
+      'FTMO rule table',
+      tableText('data-free-trial-rules', 'ftmo'),
+      ['3%', '5%', '10% end-of-day trailing', '10% static', '50% Best Day', '2 days'],
+    )
+    const paidOneTier = paidOneStep?.accountSizes.find(tier => tier.sizeUsd === 100000)
+    const paidTwoTier = paidTwoStep?.accountSizes.find(tier => tier.sizeUsd === 100000)
+    expectFragments(
+      'FTMO trial-to-paid table',
+      tableText('data-free-trial-paid-comparison', 'ftmo'),
+      [
+        `€${paidOneTier?.priceEur}`,
+        'non-refundable',
+        `€${paidTwoTier?.priceEur}`,
+        'refundable with first approved reward',
+        `${paidOneStep?.profitTargets.phase1}%`,
+        `${paidTwoStep?.profitTargets.phase1}% then ${paidTwoStep?.profitTargets.phase2}%`,
+        `${paidTwoStep?.minTradingDays} minimum days per phase`,
+      ],
+    )
+  }
+
+  if (fundedNext) {
+    if (
+      fundedNext.durationDays !== 14 ||
+      fundedNext.durationStarts !== 'first-trade' ||
+      fundedNext.phases !== 1 ||
+      fundedNext.profitTargetPct !== 5 ||
+      fundedNext.minTradingDays !== 3 ||
+      fundedNext.dailyLossPct !== 5 ||
+      fundedNext.maxLossPct !== 10 ||
+      fundedNext.eaAllowed !== false ||
+      fundedNext.maxOpenPositions !== 30 ||
+      fundedNext.resetAvailable !== false ||
+      fundedNext.completionCoupon?.discountPct !== 5 ||
+      fundedNext.completionCoupon?.validDays !== 14 ||
+      fundedNext.completionCoupon?.newUsersOnly !== true ||
+      fundedNext.completionCoupon?.appliesToResets !== false
+    ) {
+      rows.push('FundedNext structured trial or coupon facts drifted')
+    }
+    expectFragments(
+      'FTMO versus FundedNext table',
+      tableText('data-free-trial-comparison', 'ftmo-fundednext'),
+      [
+        `${fundedNext.durationDays} days from first trade`,
+        `${fundedNext.profitTargetPct}% / ${fundedNext.minTradingDays} days`,
+        `${fundedNext.dailyLossPct}% / ${fundedNext.maxLossPct}% maximum`,
+        fundedNext.platforms.nonUs,
+        fundedNext.platforms.us,
+        `${fundedNext.completionCoupon.discountPct}% CFD-plan coupon`,
+        `valid ${fundedNext.completionCoupon.validDays} days`,
+      ],
+    )
+  }
+
+  expectFragments('14-day test plan', tableText('data-free-trial-test-plan', '14-day'), [
+    'Before Day 1',
+    'Days 1–4',
+    'Days 5–10',
+    'Days 11–14',
+    '0 unexplained dashboard differences',
+    '0 hard-rule breaches',
+  ])
+  expectFragments('worked FTMO math', stripTags(content), [
+    '$104,000',
+    '$94,000',
+    '$3,000 best day divided by $5,000',
+    'equals 60%',
+    'at least $6,000',
+  ])
+
+  const sectionNames = [
+    'Verdict',
+    'FTMO Free Trial quick facts',
+    'FTMO 1-Step vs 2-Step Free Trial rules',
+    'Worked rule examples on a $100K trial',
+    'Free Trial vs paid FTMO Challenge',
+    'A 14-day test plan that produces a decision',
+    'FTMO Free Trial vs FundedNext Free Trial',
+    'What a Free Trial can and cannot prove',
+    'Frequently asked questions',
+  ]
+  let priorIndex = -1
+  for (const section of sectionNames) {
+    const index = content.indexOf(`<h2>${section}</h2>`)
+    if (index < 0) rows.push(`missing H2 section "${section}"`)
+    else if (index <= priorIndex) rows.push(`H2 section is out of order: "${section}"`)
+    priorIndex = Math.max(priorIndex, index)
+  }
+  const faq = content.split('<h2>Frequently asked questions</h2>')[1] ?? ''
+  if ((faq.match(/<h3>/g) ?? []).length !== 6) {
+    rows.push('Free Trial guide must preserve 6 factual FAQs')
+  }
+
+  const requiredLinks = [
+    '/go/ftmo',
+    '/go/fundednext',
+    '/blog/ftmo-review',
+    '/blog/fundednext-review',
+    '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+    '/blog/what-is-prop-firm-consistency-rule',
+    '/blog/what-is-overtrading',
+    '/how-to-pass-a-prop-firm-challenge',
+    '/true-cost-of-prop-firm-challenges',
+    '/prop-firm-challenges',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+  for (const [file, label] of [
+    [path.join(POSTS, 'ftmo-review.md'), 'FTMO review'],
+    [CHALLENGE_PASSING_PAGE_FILE, 'challenge-passing guide'],
+  ]) {
+    const source = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+    if (!source.includes('/blog/ftmo-free-trial-explained')) {
+      rows.push(`${label} is missing a backlink to the FTMO Free Trial guide`)
+    }
+  }
+
+  const firms = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
+  )
+  const rendered = decoratePostOutboundLinks(
+    content,
+    buildOutboundRelationships(firms),
+    data.slug,
+  )
+  const campaign = 'post-body-ftmo-free-trial-explained'
+  const ftmoTag = rendered.match(
+    new RegExp(`<a[^>]*href="/go/ftmo\\?from=${campaign}"[^>]*>`, 'i'),
+  )?.[0] ?? ''
+  const fundedNextTag = rendered.match(
+    new RegExp(`<a[^>]*href="/go/fundednext\\?from=${campaign}"[^>]*>`, 'i'),
+  )?.[0] ?? ''
+  if (!ftmoTag.includes('rel="nofollow noopener"')) {
+    rows.push('rendered FTMO trial link is not marked as a non-affiliate outbound link')
+  }
+  if (!fundedNextTag.includes('rel="sponsored nofollow noopener"')) {
+    rows.push('rendered FundedNext trial link lacks affiliate attribution and disclosure')
+  }
+  if (/href="https?:\/\//i.test(content)) {
+    rows.push('Free Trial guide contains a bare outbound URL instead of a controlled /go/ route')
+  }
+
+  const staleClaims = [
+    'Minimum Trading Days:</strong> 5',
+    '30 days (Phase 1) + 60 days',
+    'Recent Updates (September 2025)',
+    'biggest name in the prop firm space',
+    'personal recommendation',
+    'FTUK',
+    'City Traders Imperium (CTI)',
+    '2 free trials every 28 days',
+    'perfect starting point',
+  ]
+  for (const claim of staleClaims) {
+    if (content.toLowerCase().includes(claim.toLowerCase())) {
+      rows.push(`stale Free Trial claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ FTMO Free Trial guide')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
 /**
  * FundingPips Zero is a product-level commercial guide, so every fee, rule,
  * worked amount, comparison, review aggregate, and affiliate path must remain
@@ -7037,6 +7395,8 @@ const trueCostRuntimeFixtureErrors = checkTrueCostRuntimeFixtures()
 totalErrors += trueCostRuntimeFixtureErrors
 const globalDirectoryErrors = checkGlobalDirectorySurface()
 totalErrors += globalDirectoryErrors
+const legacyOverviewConsolidationErrors = checkLegacyOverviewConsolidation()
+totalErrors += legacyOverviewConsolidationErrors
 const globalChallengeErrors = checkGlobalChallengeSurface()
 totalErrors += globalChallengeErrors
 const challengeChangeFocusErrors = checkChallengeChangeFocusContract()
@@ -7073,6 +7433,8 @@ const consistencyGuideErrors = checkConsistencyGuide()
 totalErrors += consistencyGuideErrors
 const fundingPipsZeroGuideErrors = checkFundingPipsZeroGuide()
 totalErrors += fundingPipsZeroGuideErrors
+const ftmoFreeTrialGuideErrors = checkFtmoFreeTrialGuide()
+totalErrors += ftmoFreeTrialGuideErrors
 const passingServicesGuideErrors = checkPassingServicesGuide()
 totalErrors += passingServicesGuideErrors
 const copyTradingGuideErrors = checkCopyTradingGuide()

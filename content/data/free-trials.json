@@ -1,0 +1,79 @@
+[
+  {
+    "firmSlug": "ftmo",
+    "sourceUrl": "https://ftmo.com/en/faq/how-about-a-free-trial/",
+    "landingUrl": "https://ftmo.com/en/ftmo-free-trial/",
+    "sourceCapturedAt": "2026-08-14",
+    "durationDays": 14,
+    "maxConcurrentAccounts": 1,
+    "maxAccountSizeUsd": 200000,
+    "passGrantsFunding": false,
+    "platforms": ["MT4", "MT5", "cTrader", "DXTrade"],
+    "products": [
+      {
+        "productSlug": "ftmo-free-trial-1-step",
+        "mapsToChallenge": "ftmo-challenge-1-step",
+        "phases": 1,
+        "profitTargetPct": 5,
+        "minTradingDays": null,
+        "dailyLossPct": 3,
+        "maxLossPct": 10,
+        "drawdownType": "eod-trailing",
+        "consistencyRulePct": 50
+      },
+      {
+        "productSlug": "ftmo-free-trial-2-step",
+        "mapsToChallenge": "ftmo-challenge-2-step",
+        "phases": 1,
+        "profitTargetPct": 5,
+        "minTradingDays": 2,
+        "dailyLossPct": 5,
+        "maxLossPct": 10,
+        "drawdownType": "static",
+        "consistencyRulePct": null
+      }
+    ],
+    "notes": [
+      "FTMO's FAQ says the 2-Step trial uses paid 2-Step objectives except that the 10% target becomes 5% and 4 minimum days become 2.",
+      "FTMO's FAQ says the 1-Step trial uses paid 1-Step objectives except that the 10% target becomes 5%.",
+      "The landing page says each trader may have one active trial, may delete it and start another, and receives no automatic FTMO Account eligibility after passing."
+    ]
+  },
+  {
+    "firmSlug": "fundednext",
+    "sourceUrl": "https://help.fundednext.com/en/articles/8902893-fundednext-free-trial-rules",
+    "sourceCapturedAt": "2026-08-14",
+    "durationDays": 14,
+    "durationStarts": "first-trade",
+    "maxConcurrentAccounts": 1,
+    "minAccountSizeUsd": 6000,
+    "maxAccountSizeUsd": 200000,
+    "passGrantsFunding": false,
+    "phases": 1,
+    "profitTargetPct": 5,
+    "minTradingDays": 3,
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "weekendHoldingAllowed": true,
+    "newsTradingAllowed": true,
+    "eaAllowed": false,
+    "maxOpenPositions": 30,
+    "resetAvailable": false,
+    "platforms": {
+      "nonUs": "MT5",
+      "us": "Match-Trader"
+    },
+    "completionCoupon": {
+      "discountPct": 5,
+      "newUsersOnly": true,
+      "validDays": 14,
+      "appliesTo": "CFD plans",
+      "appliesToResets": false
+    },
+    "notes": [
+      "FundedNext's Help Center says the account disables after 14 calendar days from the first trade and has no reset option.",
+      "The completion coupon is generated after reaching the 5% target, applies to eligible new users and CFD plans, expires after 14 days, and excludes resets.",
+      "Non-US trial accounts use MT5; US trial accounts use Match-Trader."
+    ]
+  }
+]

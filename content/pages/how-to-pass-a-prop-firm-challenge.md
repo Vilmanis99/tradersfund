@@ -11,6 +11,8 @@ type: "page"
 
 <p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;">No position size or daily target can guarantee that you pass a prop-firm challenge. A useful plan does something narrower: it translates one product’s loss limits into a smaller personal stop, sizes each trade from that stop, and lists every rule that can end or delay the account. This worksheet uses product data captured on 2026-07-27 and 2026-08-10.</p>
 
+<p>Run the worksheet at €0 before paying when a matching practice account exists. The <a href="/blog/ftmo-free-trial-explained">current FTMO Free Trial guide</a> turns its 14-day 1-Step and 2-Step trials into a rule-fit test and compares the separate FundedNext trial without treating a demo pass as payout evidence.</p>
+
 <div class="key-takeaways">
   <div class="title">The risk-first plan</div>
   <ol>
