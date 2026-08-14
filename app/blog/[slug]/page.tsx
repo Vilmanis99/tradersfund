@@ -1,4 +1,4 @@
-import { getPostBySlug, getAllPosts } from '@/lib/mdx'
+import { getPostBySlug, getAllPostData, getAllPosts } from '@/lib/mdx'
 import { getAllFirms } from '@/lib/firms'
 import { postSchema, breadcrumbSchema, jsonLd } from '@/lib/schema'
 import { notFound } from 'next/navigation'
@@ -16,6 +16,7 @@ import AnimatedNumber from '@/components/AnimatedNumber'
 import MobileStickyCTA from '@/components/MobileStickyCTA'
 import { decoratePostOutboundLinks } from '@/lib/postOutboundLinks'
 import { buildOutboundRelationships } from '@/lib/outboundDestinations'
+import { rankRelatedPosts } from '@/lib/relatedPosts'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -29,12 +30,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {}
   const path = `/blog/${slug}`
   const firm = getAllFirms().find(candidate => candidate.reviewUrl === path)
-  const title = firm
+  const title = post.seoTitle || (firm
     ? `${firm.name} Review (2026): Fees & Rules`
-    : post.seoTitle || post.title
-  const description = firm
+    : post.title)
+  const description = post.seoDescription || (firm
     ? `${firm.name} review with source-dated fees, drawdown, payout rules, platforms, and True-Cost analysis for 2026.`
-    : post.seoDescription || post.excerpt || post.title
+    : post.excerpt || post.title)
   return {
     title: { absolute: title },
     description,
@@ -79,10 +80,8 @@ export default async function BlogPostPage({ params }: Props) {
     slug,
   )
 
-  const allPosts = getAllPosts()
-  const related = allPosts
-    .filter(p => p.slug !== slug && p.categories?.some(c => post.categories?.includes(c)))
-    .slice(0, 3)
+  const allPosts = getAllPostData()
+  const related = rankRelatedPosts(post, allPosts)
 
   const matchedFirm = firms.find(f => f.reviewUrl === `/blog/${slug}`)
   const postLd = postSchema(post, firms)
@@ -211,7 +210,6 @@ export default async function BlogPostPage({ params }: Props) {
           name={matchedFirm.name}
           logo={matchedFirm.logo}
           score={matchedFirm.score}
-          reviewUrl={matchedFirm.reviewUrl}
           affiliateUrl={matchedFirm.affiliateUrl}
           affiliateSlug={matchedFirm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}
           discountCode={matchedFirm.discountCode}

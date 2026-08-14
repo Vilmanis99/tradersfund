@@ -2,7 +2,7 @@
 title: "City Traders Imperium Review 2026: The Long-Horizon Funded Account"
 slug: "city-traders-imperium-review"
 date: "2025-08-05 10:00:00"
-modified: "2026-05-20 12:00:00"
+modified: "2026-08-14 12:00:00"
 author: "Tara Mohseni"
 excerpt: "CTI is the prop firm built for swing and position traders — no time limits, monthly payouts, and a $2M scaling ceiling. Here's the realistic positioning."
 categories: ["Prop Firms"]
@@ -170,7 +170,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should avoid City Traders Imperium</strong></h2>
 
-<p>A scalper or day trader — the 70% starting split punishes high-frequency strategies. <a href="/blog/fundednext-review">FundedNext at 95%</a> or <a href="/blog/funding-pips-review">FundingPips at scaling to 100%</a> are structurally better. A trader needing fast payouts — CTI's monthly cycle is the slowest in our covered set.</p>
+<p>A scalper or day trader should compare CTI’s 70% starting split with <a href="/blog/fundednext-review">FundedNext’s 80% base split</a> or <a href="/blog/funding-pips-review">FundingPips’ conditional path to 100%</a>. A trader needing frequent payouts should also weigh CTI’s monthly cycle against those product-level alternatives.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 

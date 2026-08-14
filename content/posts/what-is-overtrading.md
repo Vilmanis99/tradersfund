@@ -50,7 +50,7 @@ type: "post"
 
 <p>That’s why overtrading is so dangerous in this game.</p>
 
-<p>Most prop firms have a daily drawdown limit. Most either have<a href="/blog/balance-based-drawdown-vs-equity-based-drawdown"> equity-based drawdown or balance-based drawdown rules</a>. Some also impose <a href="/blog/what-is-prop-firm-consistency-rule">consistency rules</a>, and watch your lot size, or even your trading hours. You could be up 7% one day and out of the game the next just because you couldn’t stop clicking the button.</p>
+<p>Prop-firm products can combine daily loss with static, real-time trailing, or end-of-day trailing maximum loss. The <a href="/blog/balance-based-drawdown-vs-equity-based-drawdown">drawdown guide</a> separates the balance reference from the equity value that can trigger a breach. Some products also impose <a href="/blog/what-is-prop-firm-consistency-rule">consistency rules</a>, position caps, or trading-hour restrictions, so extra trades can create both strategy risk and rule risk.</p>
 
 <p>Let me put it this way: overtrading can both hurt your stats and blow your entire challenge or funded account.</p>
 

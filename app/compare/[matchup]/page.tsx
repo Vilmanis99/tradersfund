@@ -200,7 +200,7 @@ export default async function ComparePage({ params }: Props) {
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 1.5rem' }}>
           <AffiliateDisclosure />
 
-          <ComparisonHero firmA={firmA} firmB={firmB} />
+          <ComparisonHero firmA={firmA} firmB={firmB} campaign={canonical} />
 
           <ComparisonInfographic firmA={firmA} firmB={firmB} rows={rows} />
 

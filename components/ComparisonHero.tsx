@@ -12,17 +12,25 @@ import { firmSlug } from '@/lib/comparisons'
  * fold — justified because the comparison page's entire job is to let the
  * user click into either firm.
  */
-export default function ComparisonHero({ firmA, firmB }: { firmA: Firm; firmB: Firm }) {
+export default function ComparisonHero({
+  firmA,
+  firmB,
+  campaign,
+}: {
+  firmA: Firm
+  firmB: Firm
+  campaign: string
+}) {
   return (
     <div className="compare-hero-grid" aria-label="Firm summary">
-      <FirmHeroCard firm={firmA} />
+      <FirmHeroCard firm={firmA} campaign={campaign} />
       <div className="compare-hero-vs" aria-hidden="true">vs</div>
-      <FirmHeroCard firm={firmB} />
+      <FirmHeroCard firm={firmB} campaign={campaign} />
     </div>
   )
 }
 
-function FirmHeroCard({ firm }: { firm: Firm }) {
+function FirmHeroCard({ firm, campaign }: { firm: Firm; campaign: string }) {
   const slug = firmSlug(firm.name)
   return (
     <div className="card compare-firm-card">
@@ -78,7 +86,7 @@ function FirmHeroCard({ firm }: { firm: Firm }) {
       </ul>
 
       <Link
-        href={`/go/${slug}?from=compare`}
+        href={`/go/${slug}?from=compare-${campaign}`}
         prefetch={false}
         rel={firm.affiliateUrl ? 'sponsored nofollow noopener' : 'nofollow noopener'}
         target="_blank"

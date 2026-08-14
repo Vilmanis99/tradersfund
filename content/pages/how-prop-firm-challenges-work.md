@@ -1,12 +1,15 @@
 ---
 title: "How Prop Firm Challenges Work: The 5-Stage Lifecycle (2026)"
+seoTitle: "How Prop Firm Challenges Work: 5 Stages (2026)"
 slug: "how-prop-firm-challenges-work"
 date: "2026-05-20 12:00:00"
-description: "From buying the challenge to your first payout — the five stages every funded trader goes through, with real numbers from FTMO, FundedNext, FXIFY, and Topstep."
+modified: "2026-08-14 12:00:00"
+description: "Map any prop-firm product from checkout through evaluation, funded rules, payout eligibility, and optional scaling with source-dated examples."
+seoDescription: "Learn the 5 stages of a prop-firm challenge—from fee and evaluation to funded rules, payout eligibility and scaling—with current product examples."
 type: "page"
 ---
 
-<p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;">Every prop firm challenge follows the same five-stage lifecycle. The numbers and rules differ — but the structure is the same across FTMO, FundedNext, FXIFY, Topstep, and every other firm worth considering. This page walks the lifecycle end-to-end with live 2026 numbers, so you can evaluate any challenge against the same mental model.</p>
+<p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;">Any prop-firm product can be mapped to five decision stages: checkout, evaluation, verification, funded rules, and payout. A phase-0 product skips evaluation and verification, while a 1-step, 2-step, or 3-step product repeats the rule checks before the funded stage. If the retail model itself is unfamiliar, start with <a href="/blog/what-is-a-prop-firm">what a prop firm is</a>. The examples below use product data captured on 2026-07-27 and 2026-08-10.</p>
 
 <div class="key-takeaways">
   <div class="title">The five stages</div>
@@ -32,77 +35,81 @@ type: "page"
   <li>A rule set covering news, overnight positions, weekend holding, automated trading, drawdown, and payout eligibility.</li>
 </ul>
 
-<p><strong>Real 2026 examples from our verified data</strong> (<a href="/blog/ftmo-review">FTMO</a>, <a href="/blog/fundednext-review">FundedNext</a>, <a href="/blog/fxify-review">FXIFY</a>):</p>
+<p><strong>Source-dated list-price examples</strong> (<a href="/blog/ftmo-review">FTMO</a>, <a href="/blog/fundednext-review">FundedNext</a>, <a href="/blog/fxify-review">FXIFY</a>):</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
-  <caption class="hidden-caption">Sample challenge fees at $100K account size</caption>
-  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Firm</th><th style="padding: 8px 12px; text-align: left;">Product</th><th style="padding: 8px 12px; text-align: left;">$100K fee (USD)</th><th style="padding: 8px 12px; text-align: left;">Refundable?</th></tr></thead>
+  <caption class="hidden-caption">Source-dated product list-price examples without promotions</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Firm</th><th style="padding: 8px 12px; text-align: left;">Product</th><th style="padding: 8px 12px; text-align: left;">Account / list fee</th><th style="padding: 8px 12px; text-align: left;">Refundable?</th><th style="padding: 8px 12px; text-align: left;">Captured</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$549.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Yes, on first payout</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FXIFY</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">One-Phase (promo applied)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~$330 (with ~40% promo)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Yes</td></tr>
-    <tr><td style="padding: 8px 12px;">FundedNext</td><td style="padding: 8px 12px;">Stellar Instant ($10K)</td><td style="padding: 8px 12px;">$299.99</td><td style="padding: 8px 12px;"><strong>No</strong></td></tr>
+    <tr data-lifecycle-price="ftmo:ftmo-challenge-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FTMO</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K / €540</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Yes</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-lifecycle-price="fundednext:stellar-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K / $549.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Yes, first approved payout</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-lifecycle-price="fxify:one-phase"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FXIFY</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">One Phase</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K / $549</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Yes; product conditions apply</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-10</td></tr>
+    <tr data-lifecycle-price="fundednext:stellar-instant"><td style="padding: 8px 12px;">FundedNext</td><td style="padding: 8px 12px;">Stellar Instant</td><td style="padding: 8px 12px;">$10K / $299</td><td style="padding: 8px 12px;"><strong>No</strong></td><td style="padding: 8px 12px;">2026-07-27</td></tr>
   </tbody>
 </table>
 
+<p>The table keeps FTMO in euros because €540 is the firm’s published denomination for its $100K 2-Step. It uses FXIFY’s $549 list price rather than a temporary coupon and separates FundedNext’s refundable $549.99 evaluation fee from the non-refundable $299 Instant fee.</p>
+
 <h2>Stage 2 — Phase 1 evaluation</h2>
 
-<p>You trade with a simulated account loaded with the notional balance you bought (e.g. $100,000). The firm watches three things: did you hit the profit target, did you blow the daily drawdown, did you blow the max drawdown.</p>
+<p>You trade a simulated account with the notional size attached to the product. A $100,000 label is the rule-calculation base, not proof that $100,000 of live capital was deposited. Passing requires the published profit target and every named daily, maximum-loss, trading-day, and consistency condition.</p>
 
-<p><strong>Profit target</strong>: typically 8–10% on Phase 1. On FundedNext Stellar 2-Step at $100K, that's $8,000 of net trading profit. There's no time limit on most modern challenges — FTMO removed its 30-day cap in 2023, FundedNext followed in 2024. FXIFY's Lightning is the exception with a hard 7-day window.</p>
+<p><strong>Profit target</strong>: typically 8–10% on Phase 1. On FundedNext Stellar 2-Step at $100K, that is $8,000 of net trading profit. The current FundedNext record sets no maximum trading-day limit, so the 8% target does not need to be rushed.</p>
 
-<p><strong>Daily drawdown</strong>: typically 5% of starting balance, anchored to the equity at server-day start (usually UTC midnight). On a $100K account that's a $5,000 intraday loss line. A profitable morning <strong>does not</strong> extend your afternoon allowance — the cap is fixed at server-day open, regardless of your floating high.</p>
+<p><strong>Daily loss</strong> is product-specific. FundedNext Stellar 2-Step publishes 5%, which equals $5,000 on a $100K account; Stellar 1-Step publishes 3%, or $3,000 on the same notional size. The reset time and balance-versus-equity formula still need to be read in the named product rule.</p>
 
-<p><strong>Maximum drawdown</strong>: typically 10%. Two flavors:</p>
+<p><strong>Maximum loss</strong> can be static, trailing, or end-of-day trailing:</p>
 
 <ul class="wp-block-list">
-  <li><strong>Static</strong> (FTMO, FundedNext, FundingPips, E8 Markets, OFP): the loss line is fixed at the starting balance — $90,000 on a $100K account, period. It does not move as you profit. This is the forgiving variant.</li>
-  <li><strong>Trailing</strong> (FXIFY, Topstep, My Funded Futures): the loss line follows your equity high. If your equity peaks at $103,000, your max-loss line moves up to $92,700 and locks once you reach the funded stage. This is the punishing variant — profit retention discipline matters.</li>
+  <li><strong>Static:</strong> FundedNext Stellar 2-Step uses a 10% fixed maximum loss, so the $100K floor starts at $90,000 and does not rise with profit. FundingPips 2 Step Pro also uses static loss, but its cap is 6%, proving that drawdown type and drawdown size are separate decisions.</li>
+  <li><strong>Trailing:</strong> FundedNext Stellar Instant starts with a 6% trailing maximum loss; FXIFY Lightning uses 4% trailing. Each product defines which high-water mark moves the floor and when it locks.</li>
+  <li><strong>End-of-day trailing:</strong> Topstep’s Trading Combine updates its maximum-loss line from end-of-day balance and monitors it intraday. The $100K Standard Path publishes a $3,000 maximum-loss amount rather than one firm-wide percentage.</li>
 </ul>
 
-<p>Hit any one of those three (miss the target, breach daily, breach max), and the account ends. Most firms then offer a discounted "reset" fee — typically $50–$200 — to try again.</p>
+<p>Breaching the daily or maximum loss ends the account; failing to reach a target leaves the evaluation incomplete. Reset and repurchase terms vary by firm, so the next attempt should be treated as a new cash cost until the checkout states otherwise.</p>
 
 <h2>Stage 3 — Phase 2 verification</h2>
 
-<p>Standard 2-step challenges (FTMO, FundedNext Stellar 2-Step, FXIFY Two-Phase, most major firms) require a verification phase before funding. The structure is the same as Phase 1 with one change: <strong>the profit target drops</strong> — typically from 8–10% down to 4–5%.</p>
+<p>A 2-step or 3-step product adds another evaluation target before funding, but the target does not always fall. FundedNext Stellar 2-Step moves from 8% to 5%; FXIFY Two Phase Standard moves from 10% to 5%; FXIFY Two Phase Classic moves from 5% to 10%; and FXIFY Three Phase repeats 5% across all 3 stages.</p>
 
-<p>The lower target is intentional. Phase 1 proves you can hit a target. Phase 2 proves you can do it again without taking outsized risk. The firms aren't testing whether you can scalp 10% in a day — they're testing whether you can stay disciplined after a successful Phase 1.</p>
+<p>The product name therefore does not reveal the workload. At $100K, FundedNext Stellar 2-Step asks for $8,000 then $5,000, while FXIFY Two Phase Classic asks for $5,000 then $10,000. Compare both stages before treating every “2-step” label as the same 8% / 5% path.</p>
 
-<p>The drawdown rules from Phase 1 carry forward unchanged. Many traders breach Phase 2 after passing Phase 1 because the lower target creates over-confidence and oversized positions.</p>
+<p>Do not assume the loss and trading-day conditions reset or change between stages unless the firm says so. The current product record should name one shared rule set or document each stage-specific exception.</p>
 
-<p>1-step challenges (FTMO 1-Step, FundedNext Stellar 1-Step, FXIFY One-Phase) fold this stage into Stage 2 — you hit a single target (typically 10%) and skip verification. Single-phase products are faster to pass for a confident trader but less forgiving — a single mistake costs the whole evaluation.</p>
+<p>A 1-step product skips verification, but its target and time window still vary: FTMO 1-Step and FundedNext Stellar 1-Step publish 10% targets with no maximum trading-day limit in the current captures, while FXIFY Lightning publishes a 5% target inside a hard 5-day maximum.</p>
 
 <h2>Stage 4 — The funded account</h2>
 
 <p>You pass the evaluation phases. The firm activates a <strong>funded account</strong> — usually still simulated trading, but with payouts tied to real PnL. Key things change at this stage:</p>
 
 <ul class="wp-block-list">
-  <li><strong>Profit target requirement disappears.</strong> You're now just trading; the firm wants you to be consistently profitable, not to hit a specific number per period.</li>
-  <li><strong>Drawdown rules continue to apply.</strong> If you breach daily or max drawdown on the funded account, the account ends and you lose the funded relationship. Some firms (FTMO, FundedNext) let you re-purchase the challenge at a discount; others don't.</li>
-  <li><strong>Restrictions tighten on a few firms.</strong> FTMO restricts news trading on the funded "Rewards" account (it was allowed during evaluation). Other firms (FundedNext, FXIFY) keep rules consistent across stages.</li>
-  <li><strong>The profit split applies.</strong> Standard rates: 80% (FTMO base, E8, Alpha Capital, Maven, Bright Funded, CFT, CTI), 90% (Topstep, MFF, FTMO scaled, TFT, OFP), 95% (FundedNext Stellar 2-Step/1-Step), up to 100% (FundingPips scaled, FXIFY Futures).</li>
+  <li><strong>The evaluation target usually disappears.</strong> Phase-0 products can still attach a growth threshold to payout eligibility, so “no evaluation” does not mean “no profit gate.”</li>
+  <li><strong>Drawdown rules continue to apply.</strong> If you breach the named daily or maximum-loss rule on the funded account, the account ends and any new evaluation or reset becomes another purchase decision.</li>
+  <li><strong>Restrictions can tighten after evaluation.</strong> FundedNext credits only 40% of eligible funded-stage profit made inside its Tier-1 news window while 100% of losses remain, so evaluation-stage permission does not mean full funded-stage economics.</li>
+  <li><strong>The profit split applies.</strong> FundedNext challenge products start at an 80% base Reward Share and Stellar Instant starts at 70%; 95% is a paid add-on, not the standard split. Other firms use their own base and scaled rates, which should be compared at the product level.</li>
 </ul>
 
 <h2>Stage 5 — First payout and scaling</h2>
 
-<p>This is where the "refundable challenge fee" promise turns into actual money. You request a payout from the funded account. The firm verifies your KYC (now required), processes the payout, and returns your challenge fee with your first paid payout on refundable products.</p>
+<p>This is where payout eligibility, KYC, the profit split, minimum withdrawal, and any fee refund converge. A refundable flag does not always mean “first payout”: FundedNext Stellar 2-Step returns the registration fee with the first approved reward, while FundingPips 2 Step Standard records its refund only at the 4th reward. Phase-0 fees such as FundedNext Stellar Instant and FXIFY Instant Funding are non-refundable.</p>
 
 <p><strong>Time to first payout:</strong></p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
-  <caption class="hidden-caption">First-payout timing across firms</caption>
-  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Firm</th><th style="padding: 8px 12px; text-align: left;">First payout available</th><th style="padding: 8px 12px; text-align: left;">After that, cadence</th></tr></thead>
+  <caption class="hidden-caption">Product-specific first-payout timing from current captures</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Firm / product</th><th style="padding: 8px 12px; text-align: left;">First eligibility</th><th style="padding: 8px 12px; text-align: left;">Later cadence / gate</th><th style="padding: 8px 12px; text-align: left;">Captured</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FTMO</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">30 days after activation</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Bi-weekly</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">~7–14 days, then on-demand</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FXIFY evaluation products</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Day 1 ($50 minimum)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Topstep XFA</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">After minimum winning days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand via AeroPay (&lt;9s)</td></tr>
-    <tr><td style="padding: 8px 12px;">FundingPips</td><td style="padding: 8px 12px;">~14 days post 5 trading days</td><td style="padding: 8px 12px;">Bi-weekly</td></tr>
+    <tr data-lifecycle-payout="ftmo:ftmo-challenge-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FTMO 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">14 days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On demand after eligibility</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-lifecycle-payout="fundednext:stellar-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">21 days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Every 14 days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-lifecycle-payout="fxify:lightning-challenge"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FXIFY Lightning</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">7 days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Every 14 days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-10</td></tr>
+    <tr data-lifecycle-payout="topstep:trading-combine-standard-path"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Topstep XFA Consistency path</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3 trading days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On demand; $125 minimum</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-lifecycle-payout="fundingpips:2-step-pro"><td style="padding: 8px 12px;">FundingPips 2 Step Pro</td><td style="padding: 8px 12px;">7 days</td><td style="padding: 8px 12px;">Weekly; 1% minimum reward</td><td style="padding: 8px 12px;">2026-08-10</td></tr>
   </tbody>
 </table>
 
-<p><strong>Payment methods:</strong> Bank wire (universal, slowest, sometimes pass-through fees), crypto USDT (typically TRC-20, fastest internationally, firm covers network fee), Rise / B2B remittance (for traders outside US/EU), ACH (US-domestic only, for Topstep / MFF).</p>
+<p><strong>Payout method is a separate decision from payout cadence.</strong> A 7-day eligibility rule does not promise that every bank, crypto, Rise, ACH, or remittance rail is available in the trader’s country. For a source-by-source example, use the <a href="/best-prop-firms-in-india/payout-methods">India payout-method matrix</a>; elsewhere, verify the same rail, minimum, fee, and identity requirements on the firm’s own payout page.</p>
 
-<p><strong>Scaling:</strong> after sustained funded performance, most firms increase the account size and / or the profit split. FTMO's Scaling Plan: 4 calendar months on the same Rewards Account with ≥10% average net profit and at least 2 payouts taken triggers a 25% account-size increase and the split moves from 80% to 90%. The plan repeats until the account reaches $2M. FundingPips has a similar progression that takes the split from 80% to 100%. Topstep and MFF scale by promoting from XFA to Live Funded with up to $250K in performance bonuses, but only 0.71% of XFA traders reach Live (Topstep's published 2025 figure).</p>
+<p><strong>Scaling is optional and conditional.</strong> Do not use a maximum allocation or “up to” split to evaluate the first purchase. Start with the product’s base split, first-payout gate, and funded loss rule; then compare the current firm-level allocation fields in the <a href="/prop-firms">prop-firm directory</a>. A scaling ceiling that requires later milestones is not part of the day-1 economics.</p>
 
 <h2>Three worked walkthroughs</h2>
 
@@ -112,42 +119,43 @@ type: "page"
   <li><strong>Pay $549.99.</strong> Pick MT5, standard account.</li>
   <li><strong>Phase 1</strong>: hit $8,000 profit (8%). Stay above $90,000 max-loss line and respect the $5,000 daily cap. No time limit.</li>
   <li><strong>Phase 2</strong>: hit $5,000 profit (5%). Same drawdown rules.</li>
-  <li><strong>Funded account activates.</strong> 95% profit split. Continue trading. Drawdown rules persist.</li>
-  <li><strong>First payout</strong> ~7–14 days in. KYC verification. Request payout (e.g., $1,500 in profit). FundedNext takes 5% = $75; you receive $1,425. Plus the $549.99 fee refund. Total to your account: $1,974.99. Subsequent payouts on-demand without the fee-refund line.</li>
+  <li><strong>Funded account activates.</strong> The base Reward Share is 80%, and the 5% daily / 10% static maximum-loss rules persist.</li>
+  <li><strong>First payout eligibility</strong> begins after 21 days. On $1,500 of approved profit at the 80% base split, the trader share is $1,200; adding the $549.99 fee refund produces $1,749.99. Later standard payout windows run every 14 days.</li>
 </ol>
 
-<h3>B. 1-step path on FXIFY Lightning $5K</h3>
+<h3>B. 1-step path on FXIFY Lightning $10K</h3>
 
 <ol>
-  <li><strong>Pay $59.</strong> Pick MT5.</li>
-  <li><strong>Lightning</strong>: hit $250 profit (5%) within 7 calendar days. Stay above the trailing 10% max-loss line. Respect 4% daily cap ($200).</li>
-  <li><strong>Funded account activates.</strong> 80% profit split (with add-ons can be higher). On-demand payouts from day 1.</li>
-  <li><strong>First payout</strong> as soon as you have $50+ profit. FXIFY's 80% means a $100 net profit pays you $80. Fee refund applies on the first payout. Total recovered against the $59 fee: positive after a single $100 profitable trade.</li>
+  <li><strong>Pay the $59 list fee.</strong> The smallest published Lightning tier is $10K; there is no $5K Lightning account in the 2026-08-10 capture.</li>
+  <li><strong>Reach $500 of profit.</strong> The target is 5%, with at least 3 trading days and a hard 5-day maximum. Every trade requires a stop loss.</li>
+  <li><strong>Respect $300 daily / $400 trailing maximum loss.</strong> Lightning publishes a 3% daily cap and 4% trailing maximum loss on $10K.</li>
+  <li><strong>Do not assume an 80% base split.</strong> FXIFY publishes only “up to 90%” for Lightning, so the structured record leaves the base split null rather than inventing one.</li>
+  <li><strong>First payout eligibility begins after 7 days.</strong> Later withdrawals run every 14 days, and the $59 registration fee is refundable with the first withdrawal.</li>
 </ol>
 
 <h3>C. Instant path on FundedNext Stellar Instant $10K</h3>
 
 <ol>
-  <li><strong>Pay $299.99.</strong> Pick MT5. <strong>Fee is not refundable.</strong></li>
+  <li><strong>Pay $299.</strong> Pick MT5. <strong>Fee is not refundable.</strong></li>
   <li><strong>Skip evaluation entirely.</strong> You're funded immediately on a simulated $10K account.</li>
   <li><strong>Trade with 6% trailing max-loss</strong> (much tighter than evaluation products). 70% profit split. No daily cap published, but the tight trailing rule is the real risk.</li>
-  <li><strong>Request a payout</strong> once you've hit a 5% gain ($500 in profit). Receive $500 × 70% = $350. Net of the non-refundable $299.99 fee, your real-money outcome is $50 — i.e. <strong>you need to take a payout before the fee + tight DD math turns against you.</strong> Instant funding is the most expensive path; it's only worth it for traders with a proven edge who would otherwise pay multiple evaluation attempts.</li>
+  <li><strong>Request a payout</strong> after the named 5% growth threshold ($500 in profit). At the 70% starting split, $500 × 70% = $350; net of the non-refundable $299 fee, the cash result is $51 before processing charges. The 6% trailing maximum loss remains the main structural constraint.</li>
 </ol>
 
-<h2>The single biggest rule that ends accounts</h2>
+<h2>The loss rule to model before paying</h2>
 
-<p><strong>Trailing maximum drawdown</strong> on futures and instant products. More funded accounts close because of trailing-DD math after a profitable run than because traders couldn't hit profit targets in the first place. If you can't articulate exactly where your drawdown floor sits after a $X profitable day, do not put real money on a trailing-DD product. Static drawdown firms (FTMO, FundedNext Stellar 2-Step, FundingPips) are structurally easier to manage and worth the slightly lower headline split for most traders.</p>
+<p><strong>Trailing maximum loss</strong> can move after a profitable day even when the account remains above its starting balance. Before paying, calculate the floor after a specific gain: FundedNext Stellar Instant trails by 6%, FXIFY Lightning by 4%, and Topstep publishes tier-specific dollar limits under an end-of-day trailing formula. Static products such as FundedNext Stellar 2-Step and FundingPips 2 Step Pro keep the loss floor fixed, but their 10% and 6% caps still produce different dollar buffers.</p>
 
 <h2>Want to compare specific firms?</h2>
 
 <p>Every claim on this page is sourced to our verified challenge data. See the per-firm reviews for the full details:</p>
 
 <ul class="wp-block-list">
-  <li><a href="/blog/ftmo-review">FTMO</a> — the longest operating history, static DD</li>
-  <li><a href="/blog/fundednext-review">FundedNext</a> — 95% split flagship, multiple product variants</li>
-  <li><a href="/blog/fxify-review">FXIFY</a> — six challenge products including Lightning and Instant</li>
-  <li><a href="/blog/topstep-review">Topstep</a> — the futures pioneer with published pass-rate stats</li>
-  <li><a href="/blog/funding-pips-review">FundingPips</a> — 100% scaling ceiling, cheapest at entry</li>
+  <li><a href="/blog/ftmo-review">FTMO</a> — 2 euro-priced paths with 80% and 90% base splits</li>
+  <li><a href="/blog/fundednext-review">FundedNext</a> — 80% base split on 3 evaluations plus the 70% starting Instant path</li>
+  <li><a href="/blog/fxify-review">FXIFY</a> — 8 captured products with static, trailing, and unresolved drawdown fields</li>
+  <li><a href="/blog/topstep-review">Topstep</a> — 2 monthly billing paths plus 3-day and 5-winning-day XFA payout routes</li>
+  <li><a href="/blog/funding-pips-review">FundingPips</a> — 5 products with weekly, bi-weekly, and choice-based reward cycles</li>
 </ul>
 
-<p>Or jump to <a href="/prop-firms">the full directory</a> or read <a href="/true-cost-of-prop-firm-challenges">the true-cost economics</a> if you want the math behind which challenge is structurally cheapest to break even on.</p>
+<p>Or jump to <a href="/prop-firms">the full directory</a>, build an execution worksheet with the <a href="/how-to-pass-a-prop-firm-challenge">risk-first passing plan</a>, or read <a href="/true-cost-of-prop-firm-challenges">the true-cost economics</a> if you want the math behind which challenge is structurally cheapest to break even on.</p>

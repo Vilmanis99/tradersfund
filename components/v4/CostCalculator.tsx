@@ -8,8 +8,9 @@
  * interpolation between previous and target values (no jumpy snap).
  * Numbers animate frame-by-frame via requestAnimationFrame.
  *
- * Uses computeTrueCost() from lib/firms — verdict is derived from
- * the resulting R-multiple per the rubric in lib/firms.ts.
+ * Uses computeTrueCost() from lib/firms. The output is descriptive: it
+ * compares checkout cost with captured loss room without predicting whether
+ * a trader will pass, receive a payout, or recover a refundable fee.
  */
 
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -70,13 +71,6 @@ const fmtBigUsd = (n: number) => {
   return `$${Math.round(n)}`
 }
 
-function verdict(r: number | null): { label: string; cls: string } {
-  if (r == null) return { label: 'Unknown math', cls: 'v4-verdict-mid' }
-  if (r < 0.3) return { label: 'Favourable', cls: 'v4-verdict-good' }
-  if (r < 0.8) return { label: 'Workable', cls: 'v4-verdict-mid' }
-  return { label: 'Math against you', cls: 'v4-verdict-bad' }
-}
-
 export default function CostCalculator({ challenge, firmName }: Props) {
   // Only show tiers that have a known price — interactive math needs $.
   const tiers: ChallengeAccountSize[] = useMemo(
@@ -125,7 +119,6 @@ export default function CostCalculator({ challenge, firmName }: Props) {
     )
   }
 
-  const v = verdict(cost.rMultiple)
   const feeHint = challenge.pricingModel === 'monthly-subscription'
     ? 'First billing cycle + activation floor'
     : challenge.pricingModel === 'split-payment'
@@ -133,7 +126,7 @@ export default function CostCalculator({ challenge, firmName }: Props) {
       : tier?.activationFeeUsd || challenge.activationFeeUsd
         ? 'Includes required activation fee'
         : tier.refundable === true
-          ? 'Refundable on first payout'
+          ? 'Refundable; timing and conditions vary'
           : tier.refundable === false
             ? 'Non-refundable'
             : 'Refund status not verified'
@@ -148,8 +141,8 @@ export default function CostCalculator({ challenge, firmName }: Props) {
             {firmName} <span style={{ color: 'var(--muted)', fontWeight: 600 }}>· {challenge.productName}</span>
           </h3>
         </div>
-        <span className={`v4-pill ${v.cls}`} style={{ border: '1px solid currentColor' }}>
-          <Target size={14} aria-hidden /> {v.label}
+        <span className="v4-pill v4-verdict-mid" style={{ border: '1px solid currentColor' }}>
+          <Target size={14} aria-hidden /> Source-dated model
         </span>
       </div>
 
@@ -216,29 +209,29 @@ export default function CostCalculator({ challenge, firmName }: Props) {
         />
         <Metric
           icon={<TrendingUp size={16} aria-hidden />}
-          label="Break-even profit"
+          label="Fee-recovery profit"
           value={fmtUsd(animBreakEven)}
-          hint={`at ${challenge.profitSplitPct}% split`}
+          hint={`Gross profit whose ${challenge.profitSplitPct}% share equals cost`}
         />
         <Metric
           icon={<Target size={16} aria-hidden />}
-          label="R-multiple"
+          label="Cost / loss-room ratio"
           value={cost.rMultiple == null ? '—' : animR.toFixed(2)}
           hint={
             cost.rMultiple == null
-              ? 'Need max-loss %'
-              : cost.rMultiple < 0.3
-                ? 'Risk room > target'
-                : cost.rMultiple < 0.8
-                  ? 'Tight but tradeable'
-                  : 'Target > risk room'
+              ? 'Need a verified max-loss amount'
+              : 'Fee-recovery profit ÷ starting max-loss amount'
           }
         />
         <Metric
           icon={<CalendarClock size={16} aria-hidden />}
-          label="Days to break even"
+          label="Standardized growth days"
           value={cost.dayCount == null ? '—' : Math.round(animDays).toString()}
-          hint={cost.dayCount == null ? 'Need daily-loss %' : 'at 1%/day disciplined'}
+          hint={
+            cost.dayCount == null
+              ? 'Need a verified daily-loss field'
+              : 'At assumed 1% compounded growth; not a forecast'
+          }
         />
       </div>
     </div>

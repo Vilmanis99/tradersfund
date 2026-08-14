@@ -124,10 +124,15 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
         </Link>
 
         {dataStatus && (
-          <div className="nav-update-pill" title={`Firm source-check coverage: ${dataStatus}`}>
+          <Link
+            href="/prop-firm-challenge-changes"
+            className="nav-update-pill"
+            title={`Open challenge changes. Firm source-check coverage: ${dataStatus}`}
+            aria-label={`Open challenge changes. Firm source-check coverage: ${dataStatus}`}
+          >
             <span className="nav-update-pill__dot" aria-hidden="true" />
             <span className="nav-update-pill__text">{dataStatus}</span>
-          </div>
+          </Link>
         )}
       </nav>
 

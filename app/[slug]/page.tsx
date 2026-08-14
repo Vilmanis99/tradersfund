@@ -56,6 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!page) return {}
   const title = page.seoTitle || page.title
   const description = page.seoDescription || page.description || page.title
+  const modifiedTime = page.modified || page.date
   return {
     title: { absolute: title },
     description,
@@ -65,7 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url: `/${slug}`,
       type: 'article',
-      modifiedTime: page.date,
+      modifiedTime,
     },
     twitter: {
       card: 'summary_large_image',
@@ -76,7 +77,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 /* ── Article schema for static pages — Google E-E-A-T signal ─────── */
-function articleSchema({ title, description, slug, date }: { title: string; description: string; slug: string; date?: string }) {
+function articleSchema({
+  title,
+  description,
+  slug,
+  date,
+  modified,
+}: {
+  title: string
+  description: string
+  slug: string
+  date?: string
+  modified?: string
+}) {
   const url = `https://tradersfundhub.com/${slug}`
   return {
     '@context': 'https://schema.org',
@@ -85,7 +98,7 @@ function articleSchema({ title, description, slug, date }: { title: string; desc
     description,
     url,
     mainEntityOfPage: url,
-    ...(date ? { datePublished: date, dateModified: date } : {}),
+    ...(date ? { datePublished: date, dateModified: modified || date } : {}),
     publisher: {
       '@type': 'Organization',
       name: 'Traders Fund Hub',
@@ -163,6 +176,7 @@ export default async function DynamicPage({ params }: Props) {
     description: page.description || page.title,
     slug,
     date: page.date,
+    modified: page.modified,
   })
 
   return (
@@ -177,10 +191,10 @@ export default async function DynamicPage({ params }: Props) {
         <div className="aurora-grid" aria-hidden />
 
         <div className="home-shell" style={{ position: 'relative', zIndex: 1 }}>
-          {page.date && (
+          {(page.modified || page.date) && (
             <div className="hero-eyebrow" style={{ marginBottom: '1.25rem' }}>
               <Clock size={12} />
-              Last updated {new Date(page.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+              Last updated {new Date(page.modified || page.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             </div>
           )}
           <h1 className="blog-hero-title" style={isLegalPage ? { fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)' } : undefined}>

@@ -26,7 +26,10 @@ export interface PageMeta {
   /** Optional search-result title; the visible page H1 remains `title`. */
   seoTitle?: string
   slug: string
+  /** Original publication date. */
   date: string
+  /** Optional last substantive editorial update. */
+  modified?: string
   description: string
   /** Optional search-result description; the visible deck remains `description`. */
   seoDescription?: string
@@ -52,6 +55,17 @@ export function getAllPosts(): PostMeta[] {
   const posts = files.map(file => {
     const { data } = readMdx(path.join(postsDir, file))
     return data as PostMeta
+  })
+  return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
+}
+
+/** Full post records for server-only relevance work such as related links. */
+export function getAllPostData(): PostData[] {
+  if (!fs.existsSync(postsDir)) return []
+  const files = fs.readdirSync(postsDir).filter(f => f.endsWith('.md') && !f.startsWith('_'))
+  const posts = files.map(file => {
+    const { data, content } = readMdx(path.join(postsDir, file))
+    return { ...(data as PostMeta), content }
   })
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
 }

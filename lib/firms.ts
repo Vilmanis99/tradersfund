@@ -325,22 +325,22 @@ export interface TrueCostInput {
 
 export interface TrueCostBreakdown {
   /**
-   * Trader profit needed at the firm's gross PnL to net the fee back —
-   * i.e. priceUsd / (profitSplitPct / 100). This is what the trader has to
-   * generate before the first payout pays the fee back.
+   * Fee-recovery profit (legacy API name): gross trading profit whose trader
+   * share equals the captured minimum cost. A later fee refund is excluded
+   * because its timing and conditions are separate product rules.
+   * Formula: priceUsd / (profitSplitPct / 100).
    */
   breakEvenProfit: number
   /**
-   * R-multiple: break-even profit / max permissible loss in dollars.
-   * R < 1 means the trader can lose more than they need to make to break
-   * even (favorable risk math). R > 1 means the math is against them.
+   * Cost / starting-loss-room ratio (legacy API name): fee-recovery profit
+   * divided by the captured maximum-loss amount. This is descriptive, not a
+   * pass probability, trading risk/reward ratio, or safety verdict.
    */
   rMultiple: number | null
   /**
-   * Number of trading days to break even at 1% daily account growth,
-   * capped by the firm's daily-loss limit (i.e. capped at 1× the daily
-   * cap so a single bad day still leaves slack). Null when the inputs
-   * lack daily DD data.
+   * Standardized comparison days at an assumed 1% compounded account-growth
+   * rate, bounded by the captured daily-loss percentage. This is not a payout
+   * wait, forecast, or attainable minimum. Null without captured daily loss.
    */
   dayCount: number | null
 }
@@ -350,11 +350,11 @@ export interface TrueCostBreakdown {
  * v2 review markdown (hand-rendered into tables) and any future
  * <TrueCost> component.
  *
- * Worked example — FXIFY $5K One-Phase ($59 fee, 80% split, 4% daily,
- * 10% max DD):
- *   breakEvenProfit = 59 / 0.80 = $73.75
- *   rMultiple      = 73.75 / (5000 × 0.10) = 0.15  (very favorable)
- *   dayCount       = ceil(log(1 + 73.75 / 5000) / log(1 + 0.01)) ≈ 2 days
+ * Worked example — FundedNext Stellar 2-Step $100K ($549.99 fee, 80%
+ * split, 5% daily, 10% max loss):
+ *   breakEvenProfit = 549.99 / 0.80 = $687.4875
+ *   rMultiple       = 687.4875 / (100000 × 0.10) = 0.06874875
+ *   dayCount        = ceil(log(1 + 687.4875 / 100000) / log(1 + 0.01)) = 1
  */
 export function computeTrueCost(input: TrueCostInput): TrueCostBreakdown {
   const { priceUsd, sizeUsd, profitSplitPct, dailyLossPct, maxLossPct } = input
@@ -374,12 +374,11 @@ export function computeTrueCost(input: TrueCostInput): TrueCostBreakdown {
 
   let dayCount: number | null = null
   if (dailyLossPct != null && sizeUsd > 0 && breakEvenProfit > 0) {
-    // Required gross PnL on the account to net `breakEvenProfit` to the
-    // trader is `breakEvenProfit` itself — the split applies after the
-    // firm releases payout, not on the running PnL.
+    // `breakEvenProfit` is already the required gross account PnL; the split
+    // applies when the firm releases the trader's share. Refunds are excluded.
     const targetGrowth = breakEvenProfit / sizeUsd
-    // Cap daily growth at the daily-loss limit (a realistic worst-case
-    // shows what *can* be made on a green day without tripping risk).
+    // Preserve the site's standardized 1% comparison rate. The daily-loss
+    // value only bounds that assumption; it does not imply symmetric upside.
     const dailyCapFrac = dailyLossPct / 100
     const dailyGrowth = Math.min(0.01, dailyCapFrac)
     if (dailyGrowth > 0) {

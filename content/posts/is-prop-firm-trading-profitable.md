@@ -79,7 +79,7 @@ type: "post"
 
 <p>The short answer is yes. Prop firm trading can be profitable. But not for everyone.</p>
 
-<p>You must manage risk and stick to a plan. That’s the only way you can build real income from it. There are shortcuts like <a href="/blog/are-prop-firm-passing-services-worth-it">prop firm passing services</a>, but even they won’t continue trading on your account after passing the challenge.</p>
+<p>You must manage risk and stick to a plan. A <a href="/blog/are-prop-firm-passing-services-worth-it">prop-firm passing service</a> may reach an evaluation target, but that does not prove the method is permitted, produce a repeatable funded-stage process, or guarantee an approved payout.</p>
 
 <p>Moreover, without discipline, it’s like a money pit. You’ll spend tons of your money on challenges and resets, only to blow accounts before seeing a payout. That’s why most traders walk away thinking prop firms are a scam. In reality, they just weren’t prepared.</p>
 

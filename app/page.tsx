@@ -89,13 +89,48 @@ export default function Home() {
     })
 
   // ── Headline affiliate spotlight ───────────────────────────────
-  // Bright Funded is our featured "start here" partner. Promoted via
-  // prominence (featured slot + discount), NOT by rigging its score — the
-  // leaderboard below stays purely score-sorted. Pitch/bullets are sourced
-  // facts only; we deliberately avoid the split number while firms.json (80%)
-  // and the challenge file (100%) disagree — reconcile before quoting it.
+  // FundedNext is the featured commercial partner. Its premium placement is
+  // separate from the score-sorted leaderboard, and the visible product facts
+  // are derived from the same freshness-gated challenge records used below.
+  const featuredFirmSlug = 'fundednext'
   const featuredFirm = firms.find(f =>
-    f.name === 'Bright Funded' && freshFirmSlugs.has(firmSlug(f.name)))
+    firmSlug(f.name) === featuredFirmSlug && freshFirmSlugs.has(featuredFirmSlug))
+  const featuredChallenges = freshChallenges.filter(
+    challenge => challenge.firmSlug === featuredFirmSlug,
+  )
+  const featuredPricedTiers = featuredChallenges.flatMap(challenge =>
+    challenge.accountSizes.flatMap(tier => tier.priceUsd == null ? [] : [{
+      challenge,
+      tier,
+      priceUsd: tier.priceUsd,
+    }]),
+  )
+  const featuredEntryTier = [...featuredPricedTiers]
+    .sort((a, b) => a.priceUsd - b.priceUsd)[0]
+  const featuredEvaluationCount = featuredChallenges.filter(
+    challenge => challenge.phases > 0,
+  ).length
+  const featuredStaticEvaluationCount = featuredChallenges.filter(
+    challenge => challenge.phases > 0 && challenge.drawdownType === 'static',
+  ).length
+  const featuredInstantChallenge = featuredChallenges.find(
+    challenge => challenge.phases === 0,
+  )
+  const featuredPitch = featuredInstantChallenge
+    ? `FundedNext currently publishes ${featuredEvaluationCount} evaluation paths plus ${featuredInstantChallenge.productName}. Compare phase count, loss limits, payout timing, and final checkout cost before choosing.`
+    : `FundedNext currently publishes ${featuredEvaluationCount} source-checked evaluation paths. Compare phase count, loss limits, payout timing, and final checkout cost before choosing.`
+  const featuredBullets = [
+    `${featuredChallenges.length} source-checked products and ${featuredPricedTiers.length} priced account tiers`,
+    ...(featuredEntryTier ? [
+      `Published entry price from $${featuredEntryTier.priceUsd.toFixed(2)} for the ${fmtMoney(featuredEntryTier.tier.sizeUsd)} ${featuredEntryTier.challenge.productName}`,
+    ] : []),
+    ...(featuredInstantChallenge?.maxLossPct != null ? [
+      `${featuredStaticEvaluationCount} static-drawdown evaluations; ${featuredInstantChallenge.maxLossPct}% trailing maximum loss on ${featuredInstantChallenge.productName}`,
+    ] : []),
+    ...(featuredFirm ? [
+      `${featuredFirm.platforms.join(', ')} listed in the current firm profile`,
+    ] : []),
+  ]
 
   const pricedTiers = freshChallenges
     .flatMap(c => c.accountSizes
@@ -431,15 +466,10 @@ export default function Home() {
       {featuredFirm && (
         <FeaturedFirmSpotlight
           firm={featuredFirm}
-          eyebrow="Commercial partner · EUR-priced plans"
-          pitch="Bright Funded currently publishes 3 challenge paths. Compare the trailing 1-Step with its 2 static-drawdown variants, then judge the final cost and rule set for your account size."
-          bullets={[
-            '3 source-checked products and 18 priced account tiers',
-            'Published entry price from €47 for the $5,000 tier',
-            'Trailing 1-Step plus 2 static-drawdown challenge variants',
-            'MT5 and TradeLocker listed in the current firm profile',
-          ]}
-          fromParam="home-spotlight"
+          eyebrow={`Commercial partner · ${featuredChallenges.length} plan types`}
+          pitch={featuredPitch}
+          bullets={featuredBullets}
+          fromParam="home-fundednext-spotlight"
         />
       )}
 
@@ -687,20 +717,20 @@ export default function Home() {
             <div className="truecost-card">
               <div className="truecost-copy">
                 <span className="bento-tile-eyebrow">
-                  <Calculator size={12} /> The True-Cost calculator
+                  <Calculator size={12} /> Source-dated fee-recovery model
                 </span>
                 <h2 className="truecost-title">
                   A ${demoChallenge.priceUsd?.toFixed(0)} checkout can mean{' '}
                   <span className="gradient-text">${demoChallenge.minimumCostUsd.toFixed(0)} to reach funded.</span>
                 </h2>
                 <p className="truecost-text">
-                  For priced challenges with verified terms, we compute what you have
-                  to <em>actually</em> earn before the fee pays itself back, and
-                  how that compares against the firm&apos;s max drawdown. Lower
-                  R-multiple = better odds.
+                  For priced challenges with a verified base split, this calculates
+                  the gross account profit whose trader share equals the minimum
+                  captured cost. The loss-room ratio is descriptive; it does not
+                  predict refunds, retries, payouts, or the odds of passing.
                 </p>
-                <Link href={demoFirm.reviewUrl} className="btn-outline">
-                  See full breakdown for {demoFirm.name} <ArrowRight size={16} />
+                <Link href="/true-cost-of-prop-firm-challenges" className="btn-outline">
+                  Understand the model <ArrowRight size={16} />
                 </Link>
               </div>
 
@@ -712,7 +742,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="truecost-stat truecost-stat--accent">
-                  <div className="truecost-stat-label">Break-even profit</div>
+                  <div className="truecost-stat-label">Fee-recovery profit</div>
                   <div className="truecost-stat-value">
                     <AnimatedNumber value={demoCost.breakEvenProfit} prefix="$" />
                   </div>
@@ -720,22 +750,22 @@ export default function Home() {
                 </div>
                 {demoCost.rMultiple != null && (
                   <div className="truecost-stat">
-                    <div className="truecost-stat-label">R-multiple</div>
+                    <div className="truecost-stat-label">Cost / loss-room ratio</div>
                     <div className="truecost-stat-value">
                       <AnimatedNumber value={demoCost.rMultiple} suffix="×" decimals={2} />
                     </div>
                     <div className="truecost-stat-hint">
-                      {demoCost.rMultiple < 0.5 ? 'Favourable' : demoCost.rMultiple < 1 ? 'Workable' : 'Math against you'}
+                      Fee-recovery profit ÷ starting max-loss amount
                     </div>
                   </div>
                 )}
                 {demoCost.dayCount != null && (
                   <div className="truecost-stat">
-                    <div className="truecost-stat-label">Days to break even</div>
+                    <div className="truecost-stat-label">Standardized growth days</div>
                     <div className="truecost-stat-value">
-                      ~<AnimatedNumber value={demoCost.dayCount} />
+                      <AnimatedNumber value={demoCost.dayCount} />
                     </div>
-                    <div className="truecost-stat-hint">at +1% / day</div>
+                    <div className="truecost-stat-hint">At assumed 1% compounded growth; not a forecast</div>
                   </div>
                 )}
               </div>

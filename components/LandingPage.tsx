@@ -1,5 +1,13 @@
 import Link from 'next/link'
-import { ArrowRight, Clock, Flame, ShieldCheck } from 'lucide-react'
+import {
+  ArrowRight,
+  BellRing,
+  Clock,
+  Database,
+  Flame,
+  ShieldCheck,
+  WalletCards,
+} from 'lucide-react'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import AnimatedNumber from '@/components/AnimatedNumber'
@@ -17,9 +25,23 @@ import { isContactDeliveryConfigured } from '@/lib/brevo'
 export default function LandingPage({ landing }: { landing: Landing }) {
   const { ranked, count, allFirms } = buildLandingPayload(landing)
   const firms = ranked.map(r => r.firm)
-  const indiaMatcherFirms = landing.slug === 'best-prop-firms-in-india'
+  const isIndia = landing.slug === 'best-prop-firms-in-india'
+  const indiaMatcherFirms = isIndia
     ? buildIndiaMatcherFirms(firms)
     : []
+  const indiaProducts = indiaMatcherFirms.flatMap(firm => firm.products)
+  const indiaChangeCount = new Set(
+    indiaProducts.flatMap(product => product.changeSignals.map(signal => signal.id)),
+  ).size
+  const indiaEntryFloor = (['USD', 'EUR'] as const).flatMap(currency => {
+    const prices = indiaProducts
+      .map(product => product.entryPrice)
+      .filter(price => price?.currency === currency)
+      .map(price => price!.amount)
+    if (!prices.length) return []
+    const amount = Math.min(...prices).toLocaleString('en-US', { maximumFractionDigits: 2 })
+    return [currency === 'USD' ? `$${amount}` : `€${amount}`]
+  }).join(' / ')
 
   const crumbs = breadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -58,6 +80,55 @@ export default function LandingPage({ landing }: { landing: Landing }) {
 
           <h1 className="blog-hero-title">{landing.h1}</h1>
           <p className="blog-hero-sub">{landing.intro}</p>
+
+          {isIndia && (
+            <>
+              <div
+                className="challenge-change-stat-grid"
+                style={{ marginTop: '1.5rem' }}
+                aria-label="Current India screening snapshot"
+              >
+                <article className="post-sidebar-card challenge-change-stat">
+                  <ShieldCheck size={16} aria-hidden="true" />
+                  <strong>{`${count}/${allFirms.length}`}</strong>
+                  <span>tracked firms pass every India publication gate</span>
+                </article>
+                <article className="post-sidebar-card challenge-change-stat">
+                  <Database size={16} aria-hidden="true" />
+                  <strong>{indiaProducts.length}</strong>
+                  <span>fresh India-eligible products with first-party sources</span>
+                </article>
+                <article className="post-sidebar-card challenge-change-stat">
+                  <WalletCards size={16} aria-hidden="true" />
+                  <strong>{indiaEntryFloor || 'Source needed'}</strong>
+                  <span>lowest published entry, keeping USD and EUR separate</span>
+                </article>
+                <article className="post-sidebar-card challenge-change-stat">
+                  <BellRing size={16} aria-hidden="true" />
+                  <strong>{indiaChangeCount}</strong>
+                  <span>current verified changes and open source watches</span>
+                </article>
+              </div>
+              <div className="challenge-change-hero-actions">
+                <Link href="/best-prop-firms-in-india/challenge-comparison" className="btn-primary btn-glow">
+                  Compare {indiaProducts.length} products <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+                <Link href="#india-matcher-heading" className="btn-outline">
+                  Find my rules fit
+                </Link>
+                <Link href="/best-prop-firms-in-india/challenge-changes" className="btn-outline">
+                  Check {indiaChangeCount} live notes
+                </Link>
+              </div>
+              <p style={{ color: 'var(--muted)', fontSize: '0.76rem', lineHeight: 1.55, margin: '0.85rem 0 0' }}>
+                Ranking order uses India evidence completeness first and editorial score second.
+                Affiliate status and coupon size add 0 points.{' '}
+                <Link href="#india-evidence-heading" style={{ color: 'var(--accent-light)' }}>
+                  Inspect every source and open gap.
+                </Link>
+              </p>
+            </>
+          )}
         </div>
       </section>
 
@@ -67,11 +138,11 @@ export default function LandingPage({ landing }: { landing: Landing }) {
         </div>
       </section>
 
-      {landing.slug === 'best-prop-firms-in-india' && (
+      {isIndia && (
         <IndiaRbiNotice evidence={INDIA_EVIDENCE} />
       )}
 
-      {landing.slug === 'best-prop-firms-in-india' && (
+      {isIndia && (
         <section className="home-section" style={{ paddingTop: '0.5rem', paddingBottom: '1rem' }}>
           <div className="home-shell">
             <div style={{
@@ -203,9 +274,12 @@ export default function LandingPage({ landing }: { landing: Landing }) {
         <div className="home-shell">
           <div className="section-head">
             <div>
-              <h2 className="section-title">
+              <h2
+                id={isIndia ? 'india-ranked-firms-heading' : undefined}
+                className="section-title"
+              >
                 <Flame size={18} style={{ color: 'var(--accent-light)' }} />
-                Ranked & source-checked
+                Ranked &amp; source-checked
               </h2>
               <p className="section-sub-text">
                 Partners marked. Numbers come from dated first-party captures under{' '}
@@ -228,19 +302,19 @@ export default function LandingPage({ landing }: { landing: Landing }) {
         </div>
       </section>
 
-      {landing.slug === 'best-prop-firms-in-india' && (
+      {isIndia && (
         <IndiaFirmMatcher firms={indiaMatcherFirms} />
       )}
 
-      {landing.slug === 'best-prop-firms-in-india' && (
+      {isIndia && (
         <IndiaCheckoutPlanner firms={indiaMatcherFirms} />
       )}
 
-      {landing.slug === 'best-prop-firms-in-india' && (
+      {isIndia && (
         <IndiaEvidenceMatrix evidence={INDIA_EVIDENCE} firms={allFirms} />
       )}
 
-      {landing.slug === 'best-prop-firms-in-india' && isContactDeliveryConfigured() && (
+      {isIndia && isContactDeliveryConfigured() && (
         <IndiaEvidenceSubmissionForm
           firms={INDIA_EVIDENCE.map(entry => ({ slug: entry.firmSlug, name: entry.firmName }))}
         />
@@ -318,20 +392,44 @@ export default function LandingPage({ landing }: { landing: Landing }) {
       <section className="home-section">
         <div className="home-shell">
           <div className="cta-final" style={{ maxWidth: 560 }}>
-            <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
-              Need a different cut of the data?
-            </h2>
-            <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
-              Filter every firm in the full directory by asset, platform, profit split, and payout speed.
-            </p>
-            <div className="cta-final-row">
-              <Link href="/prop-firms" className="btn-primary btn-glow">
-                Open the comparison table <ArrowRight size={16} />
-              </Link>
-              <Link href="/prop-firms" className="btn-outline">
-                Browse by rule
-              </Link>
-            </div>
+            {isIndia ? (
+              <>
+                <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
+                  Move from a screened firm to the exact product
+                </h2>
+                <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
+                  Compare current rules, verify the payout route, then recheck any live change before paying.
+                </p>
+                <div className="cta-final-row">
+                  <Link href="/best-prop-firms-in-india/challenge-comparison" className="btn-primary btn-glow">
+                    Compare India products <ArrowRight size={16} />
+                  </Link>
+                  <Link href="/best-prop-firms-in-india/payout-methods" className="btn-outline">
+                    Check payout rails
+                  </Link>
+                  <Link href="/best-prop-firms-in-india/challenge-changes" className="btn-outline">
+                    Review live changes
+                  </Link>
+                </div>
+              </>
+            ) : (
+              <>
+                <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
+                  Need a different cut of the data?
+                </h2>
+                <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
+                  Filter every firm in the full directory by asset, platform, profit split, and payout speed.
+                </p>
+                <div className="cta-final-row">
+                  <Link href="/prop-firms" className="btn-primary btn-glow">
+                    Open the comparison table <ArrowRight size={16} />
+                  </Link>
+                  <Link href="/prop-firms" className="btn-outline">
+                    Browse by rule
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>

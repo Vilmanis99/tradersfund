@@ -10,7 +10,10 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { dirname, extname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { buildOutboundRelationships } from '../lib/outboundDestinations.ts'
+import {
+  buildOutboundRelationships,
+  outboundSlug,
+} from '../lib/outboundDestinations.ts'
 
 const args = process.argv.slice(2)
 const baseArg = args.find(value => !value.startsWith('--'))
@@ -21,9 +24,14 @@ const PRODUCTION_ORIGIN = 'https://tradersfundhub.com'
 const CONCURRENCY = 12
 const REQUEST_TIMEOUT_MS = 15_000
 const PROJECT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const outboundRelationships = buildOutboundRelationships(JSON.parse(
+const firmRecords = JSON.parse(
   readFileSync(join(PROJECT_ROOT, 'content/data/firms.json'), 'utf8'),
-))
+)
+const outboundRelationships = buildOutboundRelationships(firmRecords)
+const firmByReviewPath = new Map(firmRecords.map(firm => [
+  new URL(firm.reviewUrl, PRODUCTION_ORIGIN).pathname,
+  firm,
+]))
 
 function decodeXml(value) {
   return value
@@ -198,6 +206,16 @@ for (const page of pages) {
   if (/\bhref=["']#["']/i.test(page.html)) {
     errors.push(`${path}: contains an href="#" placeholder`)
   }
+  const reviewedFirm = firmByReviewPath.get(path)
+  if (reviewedFirm) {
+    const slug = outboundSlug(reviewedFirm.name)
+    if (!page.html.includes(`/go/${slug}?from=review-cta`)) {
+      errors.push(`${path}: review CTA does not open the configured firm destination`)
+    }
+    if (page.html.includes('Read full review')) {
+      errors.push(`${path}: review CTA links back to the current review`)
+    }
+  }
   pageIds.set(path, new Set(
     [...page.html.matchAll(/\bid=(?:"([^"]+)"|'([^']+)')/gi)]
       .map(match => decodeHtml(match[1] || match[2])),
@@ -324,6 +342,40 @@ const internalResults = await mapConcurrent(
 for (const result of internalResults) {
   if (result.status < 200 || result.status >= 400) {
     errors.push(`${new URL(result.url).pathname}: internal link returned ${result.status || result.error}`)
+  }
+}
+
+const indiaLandingPath = '/best-prop-firms-in-india'
+const indiaLandingProbe = await fetchPage(new URL(indiaLandingPath, BASE))
+if (indiaLandingProbe.status !== 200) {
+  errors.push(
+    `${indiaLandingPath}: HTTP ${indiaLandingProbe.status || indiaLandingProbe.error}`,
+  )
+} else {
+  const indiaLandingText = textContent(indiaLandingProbe.html)
+  for (const required of [
+    'Best Prop Firms in India 2026: RBI Alert-List Checked | TFH',
+    '9/19 tracked firms pass every India publication gate',
+    '44 fresh India-eligible products with first-party sources',
+    'lowest published entry, keeping USD and EUR separate',
+    '12 current verified changes and open source watches',
+    'Compare 44 products',
+    'Ranking order uses India evidence completeness first and editorial score second.',
+    'Affiliate status and coupon size add 0 points.',
+    'India evidence',
+  ]) {
+    if (!indiaLandingText.includes(required)) {
+      errors.push(`${indiaLandingPath}: missing ${required}`)
+    }
+  }
+  for (const required of [
+    'href="/best-prop-firms-in-india"',
+    'href="/prop-firm-challenge-changes"',
+    '/go/e8-markets?from=best-prop-firms-in-india',
+  ]) {
+    if (!indiaLandingProbe.html.includes(required)) {
+      errors.push(`${indiaLandingPath}: missing ${required}`)
+    }
   }
 }
 

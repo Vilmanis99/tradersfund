@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Star, Handshake, Tag, ExternalLink, ArrowRight } from 'lucide-react'
+import { Star, Handshake, Tag, ExternalLink, ArrowRight, ShieldCheck } from 'lucide-react'
 import type { LandingFirm } from '@/lib/landings'
 import TrustpilotRating from '@/components/TrustpilotRating'
 
@@ -84,9 +84,13 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
             </div>
             <div className="leader-stats">
               <div className="leader-stat">
-                <div className="leader-stat-label">Score</div>
+                <div className="leader-stat-label">{item.metricLabel ?? 'Score'}</div>
                 <div className="leader-stat-value leader-stat-value--score">
-                  <Star size={12} fill="currentColor" /> {firm.score.toFixed(1)}
+                  {item.metricValue ? (
+                    <><ShieldCheck size={12} /> {item.metricValue}</>
+                  ) : (
+                    <><Star size={12} fill="currentColor" /> {firm.score.toFixed(1)}</>
+                  )}
                 </div>
               </div>
               {/* Our editorial score sits next to the crowd's — the pairing
@@ -120,9 +124,21 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
                   Review <ArrowRight size={14} />
                 </Link>
               )}
-              <Link href={firm.reviewUrl} className="leader-secondary">
-                Deep dive →
-              </Link>
+              {isPartner ? (
+                <Link href={firm.reviewUrl} className="leader-secondary">
+                  Deep dive →
+                </Link>
+              ) : (
+                <Link
+                  href={`/go/${slug}?from=${fromParam}`}
+                  prefetch={false}
+                  rel="nofollow noopener"
+                  target="_blank"
+                  className="leader-secondary"
+                >
+                  Official site <ExternalLink size={11} />
+                </Link>
+              )}
             </div>
           </li>
         )

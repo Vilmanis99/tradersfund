@@ -104,6 +104,12 @@ export default async function FeaturePage({ params }: Props) {
         {feature.intro}
       </p>
 
+      {slug === 'copy-trading' && (
+        <p style={{ color: 'var(--muted)', maxWidth: 700, margin: '-0.5rem 0 1.5rem', fontSize: '0.92rem', lineHeight: 1.65 }}>
+          New to account mirroring? Read <Link href="/blog/what-is-copy-trading" style={{ color: 'var(--accent-light)', fontWeight: 700 }}>how copy trading works</Link> before comparing product permissions.
+        </p>
+      )}
+
       <AffiliateDisclosure />
 
       <FeatureEvidence

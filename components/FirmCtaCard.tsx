@@ -10,9 +10,9 @@ function slugify(name: string) {
 }
 
 /**
- * Responsive firm CTA card. Renders above firm-review content so the primary
- * affiliate action is always visible on mobile (replaces the legacy inline
- * `.ftmo-flex-container` markup that was display:none on mobile).
+ * Responsive firm CTA card. Renders above firm-review content so the current
+ * official or affiliate destination is always visible on mobile (replaces the
+ * legacy inline `.ftmo-flex-container` markup that was display:none on mobile).
  *
  * Drives entirely from firms.json — no hand-coded HTML per firm.
  */
@@ -83,26 +83,17 @@ export default function FirmCtaCard({ firm }: { firm: Firm }) {
         </div>
       </div>
 
-      {hasAffiliate ? (
-        <Link
-          href={goUrl}
-          prefetch={false}
-          rel="sponsored nofollow noopener"
-          target="_blank"
-          className="btn-primary btn-glow"
-          style={{ whiteSpace: 'nowrap' }}
-        >
-          Visit {firm.name} <ExternalLink size={14} aria-hidden="true" />
-        </Link>
-      ) : (
-        <Link
-          href={firm.reviewUrl}
-          className="btn-outline"
-          style={{ whiteSpace: 'nowrap' }}
-        >
-          Read full review
-        </Link>
-      )}
+      <Link
+        href={goUrl}
+        prefetch={false}
+        rel={hasAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}
+        target="_blank"
+        className={hasAffiliate ? 'btn-primary btn-glow' : 'btn-outline'}
+        style={{ whiteSpace: 'nowrap' }}
+      >
+        {hasAffiliate ? `Visit ${firm.name}` : 'View official plans'}{' '}
+        <ExternalLink size={14} aria-hidden="true" />
+      </Link>
 
       <style>{`
         @media (max-width: 600px) {
@@ -117,8 +108,8 @@ export default function FirmCtaCard({ firm }: { firm: Firm }) {
         }
       `}</style>
       {!hasAffiliate && (
-        <span hidden data-affiliate-status="pending">
-          Affiliate link not configured for {firm.name}; redirecting to review page.
+        <span hidden data-outbound-relationship="official">
+          This link opens {firm.name}&apos;s official website without affiliate tracking.
         </span>
       )}
     </aside>

@@ -1,81 +1,151 @@
 ---
-title: "Balance Based Drawdown vs Equity Based Drawdown"
+title: "Balance vs Equity Drawdown: Prop Firm Rules Explained (2026)"
+seoTitle: "Balance vs Equity Drawdown in Prop Firms (2026)"
 slug: "balance-based-drawdown-vs-equity-based-drawdown"
 date: "2024-11-21 17:51:30"
-modified: "2025-10-06 17:59:34"
+modified: "2026-08-14 12:00:00"
 author: "Edris Derakhshi"
-excerpt: "There are some key differences between balance based drawdown prop firms and those that implement equity based drawdown that I will discuss in this article."
+excerpt: "Balance and equity describe what a prop firm measures; static and trailing describe how its loss floor moves. Learn the formulas with current product examples."
+seoDescription: "Learn how balance- and equity-based drawdown differ from static, real-time trailing, and end-of-day trailing prop-firm loss rules, with worked examples."
 categories: ["Prop Firms"]
-tags: ["Prop Firm", "prop firm rules"]
+tags: ["prop firm drawdown", "daily loss", "trailing drawdown", "risk management"]
 type: "post"
 ---
 
-<p>Drawdown is one of the most important terms you’ll encounter in your trading career and even in finance. Yet, with the growing popularity of <a href="/blog/what-is-a-prop-firm">prop firms</a> over the last few years, drawdown has even become more important. It is, in fact, a very crucial factor I personally consider as a funded trader. In this article, I’ll focus on <strong>the differences between balance based and equity based drawdowns</strong>. I will also clarify why I think it’s best for you to go for balance based drawdown prop firms.</p>
+<p>Balance-based and equity-based drawdown describe which account value a rule references or observes. Static, real-time trailing, and end-of-day trailing describe how the breach floor moves. Those are separate dimensions: a balance-based limit can trail, and a limit calculated from balance can still be breached when account equity touches the floor.</p>
 
 <div class="key-takeaways">
-  <div class="title">Key Takeaways</div>
-  <ul>
-    <li><strong>Balance based drawdown</strong> offers static and predictable loss limits, making it ideal for low-risk strategies and traders seeking consistency.</li>
-    <li><strong>Equity based drawdown</strong> adjusts dynamically with floating profits and losses, providing flexibility but requiring careful monitoring to avoid breaches.</li>
-    <li>Choosing balance-based drawdown prop firms can simplify risk management and reduce stress for funded traders.</li>
-    <li>Effective drawdown management, including position sizing and risk reduction during losing streaks, is essential for maintaining funded accounts.</li>
-  </ul>
+  <div class="title">Drawdown in five checks</div>
+  <ol>
+    <li><strong>Balance is closed P&amp;L.</strong> Equity is balance plus floating profit or loss, with any included trading costs.</li>
+    <li><strong>Ask what sets the threshold.</strong> It can be initial balance, midnight balance, closed balance, or a high-water mark.</li>
+    <li><strong>Ask what is monitored.</strong> A firm can calculate a floor from balance and enforce it against real-time equity.</li>
+    <li><strong>Name the movement.</strong> Static, intraday trailing, and end-of-day trailing floors behave differently after profit.</li>
+    <li><strong>Track 2 limits separately.</strong> Daily loss and overall maximum loss can use different anchors, percentages, and reset times.</li>
+  </ol>
 </div>
 
-<h2 class="wp-block-heading"><strong>What Is Drawdown in Trading?</strong></h2>
+<h2>Balance drawdown and equity drawdown defined</h2>
 
-<p><a href="https://www.investopedia.com/terms/d/drawdown.asp" target="_blank" rel="noreferrer noopener">Drawdown</a> is the reduction in your account balance or equity from a peak to a subsequent low. It’s actually a measure of how much you’ve lost during a series of trades before recovering or hitting new highs on your account.</p>
+<p><strong>Balance</strong> is the account value after closed trades and posted charges. If a $10,000 account closes a $300 loss, its balance becomes $9,700. An open position with $200 of unrealised profit does not change that balance.</p>
 
-<p>Let me present a good drawdown example. Say your trading account starts with a balance of $10,000, and after a losing streak, your balance drops to $9,200. The drawdown is calculated as the difference between the peak balance and the lowest point, divided by the peak balance. In this case, the drawdown is 8%.</p>
+<p><strong>Equity</strong> is the current account value after including open profit and loss. With a $9,700 balance and $200 floating profit, equity is $9,900. If that position instead shows a $500 floating loss, equity is $9,200.</p>
 
-<h2 class="wp-block-heading"><strong>What is Balance Based Drawdown in Prop Firms?</strong></h2>
+<p>Market drawdown is often measured as <code>(peak value − current value) ÷ peak value</code>. A prop-firm breach rule is more specific: it defines a threshold, an observed account value, an update schedule, and what happens when the observed value reaches or crosses that threshold.</p>
 
-<p>As you should already know, prop firms are companies that grant you additional capital to trade on if you are able to pass their challenge. Both the challenge phase and the funded phase for almost any prop firm I’ve seen, including the big ones like <a href="/blog/ftmo-review">FTMO</a> and <a href="/blog/fundednext-review">FundedNext</a> or the <a href="/blog/bright-funded-prop-firm">Bright funded</a>,  have a maximum drawdown limit, both overall and daily. If you lose more than your drawdown limit, you’ll lose the challenge or your funded account.</p>
+<h2>The four questions hidden inside a “drawdown” label</h2>
 
-<p>Now, when we say balance based drawdown, we’re essentially talking about how the prop firm calculates your drawdown. In balance based drawdown prop firms, your maximum loss limit is calculated with reference to your starting balance of the day or your account’s initial balance. So, they don’t consider any unrealized profits, and your drawdown limit remains static.</p>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Four dimensions of a prop-firm drawdown rule</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Dimension</th><th style="padding: 8px 12px; text-align: left;">Question</th><th style="padding: 8px 12px; text-align: left;">Possible answers</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Reference value</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">What sets the permitted loss amount or floor?</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Initial balance, midnight balance, closed balance, equity high-water mark</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Observed value</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">What is compared with the floor?</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Balance, equity, or a stated combination including costs</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Update timing</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">When can the floor rise or reset?</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Never, real time, end of day, midnight, after a payout</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Terminal behaviour</strong></td><td style="padding: 8px 12px;">Can the floor fall, lock, or reset?</td><td style="padding: 8px 12px;">One-way trail, lock at starting balance, payout reset, no reset</td></tr>
+  </tbody>
+</table>
 
-<p>Now, let’s clarify things with a simple balance based drawdown example. Imagine your starting balance on the challenge is $10,000, and the daily drawdown limit is set at 5%. Your maximum allowable loss for the day would be $500. So, the limit is $9,500, and it doesn’t change even if your equity rises or falls during the day. This is an example of a balance based daily drawdown.</p>
+<p>The words “balance based” do not answer all 4 questions. FTMO 1-Step is the clearest counterexample: its maximum loss is described as balance-based and end-of-day trailing. The limit can increase but not decrease, and the captured rule resets it after a reward withdrawal.</p>
 
-<p>Moreover, balance based drawdown prop firms also calculate the overall maximum drawdown by taking your initial account balance as a reference. I mean, if your account balance reaches $10,600 after a few days, and the maximum drawdown for the challenge is 10%, you won’t lose the challenge if losses bring your account down to $9,600. Your loss limit will remain at $9,000, which is 10% below your initial account balance of $10,000.</p>
+<h2>Current product examples</h2>
 
-<h2 class="wp-block-heading"><strong>What Is Equity Based Drawdown in Prop Firms?</strong></h2>
+<p>The table uses structured product records and their underlying firm captures from 2026-07-27. Prices identify the exact $100K or $10K tier; the focus is the loss calculation, not which firm is universally easier.</p>
 
-<p>Equity based drawdown prop firms have a more dynamic approach to calculating your loss limits. Equity is the sum of your account balance plus any unrealized profits or losses from open trades. So, in a nutshell, when your challenge has equity based drawdown rules, both realized and unrealized profits or losses are taken into account for calculations.</p>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">Current static and trailing prop-firm drawdown examples</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product</th><th style="padding: 8px 12px; text-align: left;">Daily loss</th><th style="padding: 8px 12px; text-align: left;">Maximum loss</th><th style="padding: 8px 12px; text-align: left;">Floor behaviour</th><th style="padding: 8px 12px; text-align: left;">Captured</th></tr></thead>
+  <tbody>
+    <tr data-drawdown-example="ftmo:ftmo-challenge-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/ftmo-review">FTMO 2-Step $100K (€540)</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% of initial balance; daily floor uses midnight balance minus $5,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static; $90,000 floor</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">The maximum floor does not trail; equity must remain above it, including open P&amp;L, commissions, and swaps</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-drawdown-example="fundednext:stellar-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/fundednext-review">FundedNext Stellar 2-Step $100K ($549.99)</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% daily loss</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static; $90,000 floor</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Profits add headroom instead of moving the maximum-loss floor</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-drawdown-example="ftmo:ftmo-challenge-1-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/ftmo-review">FTMO 1-Step $100K (€499)</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3% of initial balance; recalculated daily at 00:00 CE(S)T</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% balance-based end-of-day trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">The floor can increase but never decrease and resets after a reward withdrawal</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-drawdown-example="fundednext:stellar-instant"><td style="padding: 8px 12px;"><a href="/blog/fundednext-review">FundedNext Stellar Instant $10K ($299)</a></td><td style="padding: 8px 12px;">No daily-loss percentage captured</td><td style="padding: 8px 12px;">6% real-time trailing; $9,400 starting floor</td><td style="padding: 8px 12px;">The floor trails profit, locks at $10,000, and does not reset after a withdrawal</td><td style="padding: 8px 12px;">2026-07-27</td></tr>
+  </tbody>
+</table>
 
-<p>Unlike balance based drawdown, which remains static, equity based drawdown continuously adjusts based on your account’s current equity. I mean, your drawdown limit changes as your open positions move.</p>
+<p>These 4 rows show why a firm-level label is insufficient. FundedNext sells both static and real-time trailing products. FTMO sells a static 2-Step and a balance-based end-of-day trailing 1-Step. Compare the named product in the <a href="/prop-firm-challenges">challenge table</a> rather than classifying an entire firm as “balance based” or “equity based.”</p>
 
-<p>To break it down, let’s analyze an equity based drawdown example. Imagine your starting balance of the day is $10,000, and you open a trade that goes into $700 unrealized profit (the position is still open). So, your equity is now $10,700, and if the daily drawdown is set at 5%, your maximum loss limit for the day increases to $535 (5% of $10,700). As a result, your daily drawdown limit is no longer $9,500 (5% below your starting balance), but it’s $10,165 (5% below your peak equity), and if you go below this level, you’ll fail the challenge or lose your account.</p>
+<div data-drawdown-choice="fundednext" style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
+  <strong style="color: #fff;">Comparing FundedNext’s 2 paths?</strong> Stellar 2-Step’s $100K tier has a static $90,000 maximum-loss floor, while Stellar Instant’s $10K tier starts with a trailing $9,400 floor. Read the <a href="/blog/fundednext-review">FundedNext review</a> for all 4 products, payout rules, and current list fees. If the terms fit your strategy, <a href="/go/fundednext">view FundedNext’s current plans</a>. We may earn a commission; the partnership does not change the displayed terms or editorial score.
+</div>
 
-<p>The same calculations are true for the overall drawdown limit. Say you’ve ended your last trading day with $10,800, and you have no open position ($800 realized profits). For the next day, your overall drawdown limit will be 10% of your peak account balance ($10,800), which is $1,080. So, if your equity falls below $9,720 in the following days, you’ll lose the challenge or the funded account.</p>
+<h2>Three worked floor calculations</h2>
 
-<p>Note that in these examples, your drawdown limit is tracking and not fixed. Unlike most balance based drawdown prop firms, those with equity based drawdown limits also have a tracking maximum overall loss rule.</p>
+<table data-drawdown-math="worked-floors" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Worked static, daily, and trailing loss-floor calculations</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Rule</th><th style="padding: 8px 12px; text-align: left;">Calculation</th><th style="padding: 8px 12px; text-align: left;">Result</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K static 10% maximum loss</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100,000 × (1 − 0.10)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$90,000 fixed floor</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FTMO 2-Step daily floor after a $101K midnight balance</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$101,000 − ($100,000 × 0.05)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$96,000 daily floor; $90,000 maximum floor still applies</td></tr>
+    <tr><td style="padding: 8px 12px;">$10K Instant 6% trailing amount after a $10,200 high</td><td style="padding: 8px 12px;">$10,200 − ($10,000 × 0.06)</td><td style="padding: 8px 12px;">$9,600 trailing floor</td></tr>
+  </tbody>
+</table>
 
-<p><strong>Read more:</strong><a href="/blog/fundingpips-zero"> Is the FundingPips Zero model legit?</a></p>
+<p>The daily and maximum floors operate simultaneously. In the FTMO example, equity at $95,900 breaches the $96,000 daily floor even though it remains above the $90,000 overall floor. At the next reset, the daily threshold can change; the static maximum floor does not.</p>
 
-<h2 class="wp-block-heading"><strong>Balance Based Drawdown vs Equity Based Drawdown</strong></h2>
+<p>For Stellar Instant, the trailing amount is 6% of the $10,000 starting size, or $600. A $10,200 high lifts the floor from $9,400 to $9,600. Once the account reaches a $10,600 high, the floor locks at the $10,000 starting balance rather than continuing above it.</p>
 
-<p>To compare balance based drawdown vs equity based drawdown, you should understand that their main differences lie in their predictability and flexibility. Balance based drawdown prop firms use static loss limits, which are calculated on the initial balance of the challenge or funded account or the starting balance of the specific trading day.</p>
+<h2>Static, real-time trailing, and end-of-day trailing</h2>
 
-<p>Meanwhile, equity based drawdown calculations adjust your overall and daily loss limit based on your account’s floating profits and losses. Each method offers its own set of advantages and disadvantages, but what I can say based on my own experience is that going for balance-based prop firms is always a better choice.</p>
+<h3>Static maximum loss</h3>
 
-<p>Here’s a clear breakdown of their differences, pros, and cons:</p>
+<p>A static floor is anchored to the initial balance and does not rise with profit. On a $100K account with 10% static maximum loss, $90,000 remains the overall boundary whether the account has never been profitable or has previously closed at $105,000. The extra profit creates headroom above the unchanged floor.</p>
 
-<h2 class="wp-block-heading"><strong>Pro Tips for Managing Prop Firm Drawdown Rules</strong></h2>
+<h3>Real-time trailing maximum loss</h3>
 
-<p>Managing both balance based and equity based drawdowns is critical for getting funded and keeping your funded account. So, let me present some tips based on my personal experience over the last few years of trading as a funded trader.</p>
+<p>A real-time trail can rise while profit raises the product’s defined high-water mark. The source must state whether that high-water mark uses balance, equity, or closed profit and whether the trail locks. A floating gain that briefly lifts an equity-based high-water mark can tighten the floor before the trade closes.</p>
 
-<p>First and foremost, go for balance based drawdown prop firms and challenge types and relieve yourself of all the headaches of equity based drawdown. As I’ve mentioned earlier, balance based drawdown prop firms have a clear and static maximum loss limit for both challenge and funded phases. This makes it predictable, and you’ll keep your mental capacity for the actual trading rather than worrying about equity calculations.</p>
+<h3>End-of-day trailing maximum loss</h3>
 
-<p>Second, remember that risk management is everything. If you want to manage prop firm drawdown, you must have a clear risk management plan. This is something most traders don’t even consider, and that’s what makes them fail. A simple rule of thumb I like is to never risk more than 1-2% on a single trade idea and to avoid <a href="/blog/what-is-overtrading">overtrading</a> at all costs. Also, always set a stop-loss because you’ll never know what’ll happen.</p>
+<p>An end-of-day trail updates at the firm’s named daily checkpoint instead of every tick. FTMO 1-Step describes its maximum loss as balance-based end-of-day trailing: the floor can rise after the daily calculation, cannot move down, and resets when a reward is withdrawn. “End of day” still needs a timezone; FTMO’s daily calculation uses 00:00 CE(S)T.</p>
 
-<p>Lastly, let me present my own strategy when I go into drawdown. Imagine I have a $10,000 account, and for my first trading day, I lose 2% on 2 trades (risk 1% per trade). After losing 2% of my account, I like to reduce my risk to half, which is 0.5% per trade idea. When my drawdown goes beyond 5%, I will reduce the risk per trade to %0.25. This strategy slows down how quickly I go into drawdown when I’m having a losing streak and gives me a chance to recover. This way, getting back to breakeven might take longer, but most prop firms like the <a href="/blog/funding-pips-review">Funding Pips</a> or <a href="/blog/maven-prop-firm-review">Maven </a>don’t have a time limit these days, so why would you be in a hurry?</p>
+<h2>Daily loss is a separate calculation</h2>
 
-<p>If you also need to backtest your strategies to make sure they work, take a look at this <a href="/blog/fx-replay-review">FX Replay review</a> to find out how to do so.</p>
+<p>A product’s daily limit can use a midnight balance even when its maximum floor is static or trailing. FTMO 2-Step sets the daily threshold as the balance at midnight CE(S)T minus 5% of initial balance. With $101,000 at midnight on a $100K account, the daily floor is $96,000—not 5% below $101,000.</p>
 
-<h2 class="wp-block-heading"><strong>Conclusion</strong></h2>
+<p>Open losses, closed losses, commissions, and swaps can count toward the observed equity even when the permitted loss amount is based on initial balance. That is why “balance-based daily loss” does not mean floating loss is ignored. Record the formula and the enforcement value separately.</p>
 
-<p>You should clearly understand prop firm drawdown rules if you want to become a funded trader. Whether it’s the static and predictable nature of balance based drawdown prop firm challenges or the dynamic structure of equity based drawdown ones, knowing how these rules work can make all the difference.</p>
+<h2>How payouts and profits can change the floor</h2>
 
-<p>Based on my experience as a funded trader, I strongly recommend choosing balance based drawdown prop firms. Their fixed maximum loss limits allow you to focus on your trading without stressing out about tracking your equity all the time.&nbsp;</p>
+<p>A payout can reduce balance, reset a trail, leave a locked floor unchanged, or have another product-specific effect. FundedNext Stellar Instant explicitly states that its locked trailing floor does not reset after a withdrawal. FTMO 1-Step states that its end-of-day maximum-loss limit resets when a reward is withdrawn.</p>
 
-<p>If you’re serious about prop trading and want to stay updated on the latest developments, tips, and reviews in the prop firm space, join the Traders Fund Hub community. Simply enter your email in the sidebar to stay informed and get exclusive insights delivered straight to your inbox.</p>
+<p>Before requesting cash, calculate the post-payout distance between expected balance or equity and the active floor. The payout schedule and profit split belong in the <a href="/true-cost-of-prop-firm-challenges">true-cost analysis</a>, while the breach threshold belongs in the risk worksheet; neither number should be inferred from the other.</p>
+
+<h2>A drawdown worksheet before each session</h2>
+
+<ol>
+  <li><strong>Write the initial balance and loss amount.</strong> Do not use the account headline without the product percentage or dollar rule.</li>
+  <li><strong>Record the current daily anchor.</strong> Save the balance, equity, timezone, and reset timestamp used by the firm.</li>
+  <li><strong>Record the current maximum floor.</strong> Copy it from the dashboard if the rule trails; do not reconstruct it from memory.</li>
+  <li><strong>Add open and closed exposure.</strong> Include floating P&amp;L, commissions, swaps, and correlated positions if the rule observes equity.</li>
+  <li><strong>Set a personal stop above both firm floors.</strong> The smaller remaining buffer controls the session.</li>
+  <li><strong>Recalculate after a new high or payout.</strong> Confirm whether the floor moved, locked, or reset.</li>
+</ol>
+
+<p>The <a href="/how-to-pass-a-prop-firm-challenge">challenge risk-plan worksheet</a> turns these firm boundaries into position size and a personal session stop. For a shortlist limited to products explicitly recorded as static, use the <a href="/prop-firms/static-drawdown">static-drawdown comparison</a>; a null drawdown type is excluded rather than guessed.</p>
+
+<h2>Frequently asked questions</h2>
+
+<h3>Is balance-based drawdown always static?</h3>
+
+<p>No. FTMO 1-Step records a balance-based end-of-day trailing maximum loss. “Balance based” names the reference value; “trailing” names how the floor moves.</p>
+
+<h3>Can floating loss breach a balance-based rule?</h3>
+
+<p>Yes, when the firm calculates the threshold from balance but compares real-time equity with it. FTMO 2-Step’s static $90,000 floor on $100K includes open positions, commissions, and swaps in the observed equity.</p>
+
+<h3>Does floating profit always raise a trailing floor?</h3>
+
+<p>No. A real-time equity trail may react to floating profit, while a closed-balance or end-of-day trail may wait for another event. Read the high-water-mark definition and update timing for the exact product.</p>
+
+<h3>Which drawdown type is safest?</h3>
+
+<p>There is no universal safest type. Static floors are easier to project, but suitability also depends on the loss percentage, daily rule, strategy holding period, fees, payout effects, and personal stop. Compare remaining dollar room rather than the label alone.</p>
+
+<h3>Does a payout reset trailing drawdown?</h3>
+
+<p>It depends on the product. FTMO 1-Step records a reward-withdrawal reset, while FundedNext Stellar Instant states that its locked floor does not reset after withdrawal.</p>
+
+<h3>How often should I recalculate a prop-firm loss floor?</h3>
+
+<p>Check before the session, after the firm’s daily reset, after any new trailing high, before and after a payout, and whenever the product terms change. Use the <a href="/prop-firm-challenge-changes">challenge-change ledger</a> to monitor material updates.</p>

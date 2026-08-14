@@ -36,6 +36,7 @@ import {
 } from '../lib/challengeChangeFocus.ts'
 import { isIndiaCampaign } from '../lib/affiliateCampaign.ts'
 import { challengeTierEconomics, computeTrueCost } from '../lib/firms.ts'
+import { rankFirmAlternatives } from '../lib/firmAlternatives.ts'
 import {
   goClickEventName,
   isHighIntentJourneyStage,
@@ -54,6 +55,7 @@ import {
   outboundSlug,
 } from '../lib/outboundDestinations.ts'
 import { decoratePostOutboundLinks } from '../lib/postOutboundLinks.ts'
+import { rankRelatedPosts, relatedPostScore } from '../lib/relatedPosts.ts'
 import { diffChallengeProducts } from './challenge-diff.mjs'
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -161,6 +163,39 @@ const INDIA_CHALLENGE_CHANGES_SOCIAL_ALT_FILE = path.join(
   'app/best-prop-firms-in-india/challenge-changes/opengraph-image.alt.txt',
 )
 const INDIA_TAX_GUIDE_FILE = path.join(ROOT, 'content/posts/prop-firm-payout-tax-india.md')
+const CHALLENGE_LIFECYCLE_PAGE_FILE = path.join(
+  ROOT,
+  'content/pages/how-prop-firm-challenges-work.md',
+)
+const CHALLENGE_PASSING_PAGE_FILE = path.join(
+  ROOT,
+  'content/pages/how-to-pass-a-prop-firm-challenge.md',
+)
+const TRUE_COST_PILLAR_FILE = path.join(
+  ROOT,
+  'content/pages/true-cost-of-prop-firm-challenges.md',
+)
+const SCALING_PLAN_GUIDE_FILE = path.join(
+  ROOT,
+  'content/posts/prop-firm-scaling-plan.md',
+)
+const WHAT_IS_PROP_FIRM_GUIDE_FILE = path.join(
+  ROOT,
+  'content/posts/what-is-a-prop-firm.md',
+)
+const COPY_TRADING_GUIDE_FILE = path.join(
+  ROOT,
+  'content/posts/what-is-copy-trading.md',
+)
+const PASSING_SERVICES_GUIDE_FILE = path.join(
+  ROOT,
+  'content/posts/are-prop-firm-passing-services-worth-it.md',
+)
+const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
+const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
+const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
+const COMPARISON_ROUTE_FILE = path.join(ROOT, 'app/compare/[matchup]/page.tsx')
+const COMPARISONS_FILE = path.join(ROOT, 'lib/comparisons.ts')
 const INDIA_PAYOUT_TEMPLATE_FILE = path.join(
   ROOT,
   'public/templates/india-prop-firm-payout-records.csv',
@@ -940,6 +975,40 @@ function checkTrustAndCommercialSurface() {
     }
   }
 
+  const firmCta = fs.readFileSync(
+    path.join(ROOT, 'components/FirmCtaCard.tsx'),
+    'utf-8',
+  )
+  for (const token of [
+    'href={goUrl}',
+    "hasAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'",
+    "hasAffiliate ? `Visit ${firm.name}` : 'View official plans'",
+  ]) {
+    if (!firmCta.includes(token)) {
+      rows.push(`review CTA is missing outbound safeguard: ${token}`)
+    }
+  }
+  if (firmCta.includes('href={firm.reviewUrl}') || firmCta.includes('Read full review')) {
+    rows.push('review CTA must not link back to the current review')
+  }
+
+  const mobileCta = fs.readFileSync(
+    path.join(ROOT, 'components/MobileStickyCTA.tsx'),
+    'utf-8',
+  )
+  for (const token of [
+    'const ctaHref = `/go/${affiliateSlug}?from=mobile-sticky`',
+    "hasAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'",
+    "hasAffiliate ? 'View plans' : 'Official site'",
+  ]) {
+    if (!mobileCta.includes(token)) {
+      rows.push(`mobile review CTA is missing outbound safeguard: ${token}`)
+    }
+  }
+  if (mobileCta.includes('reviewUrl')) {
+    rows.push('mobile review CTA must not accept a self-link destination')
+  }
+
   const comparisons = fs.readFileSync(path.join(ROOT, 'lib/comparisons.ts'), 'utf-8')
   if (
     !comparisons.includes('overlay.reviewedAt < latestFirmUpdate') ||
@@ -986,6 +1055,55 @@ function checkTrustAndCommercialSurface() {
 
   if (rows.length) {
     console.log('\n✗ Trust and commercial integrity')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/** Partnership data may change badges and rel values, never recommendations. */
+function checkFirmAlternativeNeutrality() {
+  const rows = []
+  const firms = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
+  )
+  const selectedNames = (current, candidates) =>
+    rankFirmAlternatives(current, candidates).map(firm => firm.name)
+  const baseline = new Map(
+    firms.map(current => [current.name, selectedNames(current, firms)]),
+  )
+  const toggled = firms.map(firm => ({
+    ...firm,
+    affiliateUrl: firm.affiliateUrl
+      ? ''
+      : `https://affiliate-toggle.invalid/${encodeURIComponent(firm.name)}`,
+  }))
+
+  for (const current of firms) {
+    const expected = baseline.get(current.name)
+    const reversed = selectedNames(current, [...firms].reverse())
+    if (JSON.stringify(reversed) !== JSON.stringify(expected)) {
+      rows.push(`${current.name}: alternatives depend on input order`)
+    }
+  }
+  for (const current of toggled) {
+    const selected = selectedNames(current, toggled)
+    if (JSON.stringify(selected) !== JSON.stringify(baseline.get(current.name))) {
+      rows.push(`${current.name}: alternatives depend on affiliate configuration`)
+    }
+  }
+
+  const topstep = firms.find(firm => firm.name === 'Topstep')
+  const topstepAlternatives = topstep ? rankFirmAlternatives(topstep, firms) : []
+  if (
+    topstepAlternatives.length !== 3
+    || topstepAlternatives.some(firm =>
+      !firm.assets.some(asset => asset.toLowerCase() === 'futures'))
+  ) {
+    rows.push('Topstep alternatives must be 3 futures-relevant firms')
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Affiliate-neutral firm alternatives')
     for (const row of rows) console.log(`  · ${row}`)
   }
   return rows.length
@@ -3047,12 +3165,1815 @@ function checkIndiaTaxGuide() {
   return rows.length
 }
 
+/**
+ * The challenge-lifecycle pillar deliberately quotes several products instead
+ * of restating every firm's catalog. Keep those examples tied to the same
+ * structured records that power the comparison pages, so a refreshed capture
+ * cannot leave an old fee or payout cadence behind in this high-intent guide.
+ */
+function checkChallengeLifecyclePillar() {
+  const rows = []
+  if (!fs.existsSync(CHALLENGE_LIFECYCLE_PAGE_FILE)) {
+    console.log('\n✗ Challenge lifecycle pillar')
+    console.log('  · content/pages/how-prop-firm-challenges-work.md is missing')
+    return 1
+  }
+
+  const { data, content } = matter(
+    fs.readFileSync(CHALLENGE_LIFECYCLE_PAGE_FILE, 'utf-8'),
+  )
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const rowText = (attribute, key) => {
+    const match = content.match(
+      new RegExp(
+        `<tr[^>]*\\b${attribute}="${escapeRegExp(key)}"[^>]*>([\\s\\S]*?)<\\/tr>`,
+        'i',
+      ),
+    )
+    return match ? stripTags(match[1]).replace(/\s+/g, ' ').trim() : ''
+  }
+  const product = (firmSlug, productSlug) => {
+    const record = loadChallenges(firmSlug)?.find(
+      challenge => challenge.productSlug === productSlug,
+    )
+    if (!record) rows.push(`${firmSlug}:${productSlug} is missing from challenge data`)
+    return record
+  }
+  const formatAmount = value =>
+    Number.isInteger(value) ? String(value) : value.toFixed(2)
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} row or section is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+
+  if (data.seoTitle !== 'How Prop Firm Challenges Work: 5 Stages (2026)') {
+    rows.push('seoTitle must preserve the lifecycle search intent and current year')
+  }
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+
+  const priceExamples = [
+    ['ftmo', 'ftmo-challenge-2-step', 100000, 'priceEur', '€'],
+    ['fundednext', 'stellar-2-step', 100000, 'priceUsd', '$'],
+    ['fxify', 'one-phase', 100000, 'priceUsd', '$'],
+    ['fundednext', 'stellar-instant', 10000, 'priceUsd', '$'],
+  ]
+  for (const [firmSlug, productSlug, sizeUsd, priceField, currency] of priceExamples) {
+    const key = `${firmSlug}:${productSlug}`
+    const record = product(firmSlug, productSlug)
+    if (!record) continue
+    const tier = record.accountSizes.find(account => account.sizeUsd === sizeUsd)
+    if (!tier || tier[priceField] == null) {
+      rows.push(`${key} has no captured ${sizeUsd} ${priceField} tier`)
+      continue
+    }
+    const refund = tier.refundable === true ? 'Yes' : tier.refundable === false ? 'No' : null
+    expectFragments(
+      `${key} price`,
+      rowText('data-lifecycle-price', key),
+      [
+        `$${sizeUsd / 1000}K`,
+        `${currency}${formatAmount(tier[priceField])}`,
+        record.sourceCapturedAt,
+        ...(refund ? [refund] : []),
+      ],
+    )
+  }
+
+  const payoutExamples = [
+    ['ftmo', 'ftmo-challenge-2-step', 'On demand'],
+    ['fundednext', 'stellar-2-step', 'Every 14 days'],
+    ['fxify', 'lightning-challenge', 'Every 14 days'],
+    ['topstep', 'trading-combine-standard-path', 'On demand'],
+    ['fundingpips', '2-step-pro', 'Weekly'],
+  ]
+  for (const [firmSlug, productSlug, cadence] of payoutExamples) {
+    const key = `${firmSlug}:${productSlug}`
+    const record = product(firmSlug, productSlug)
+    if (!record) continue
+    expectFragments(
+      `${key} payout`,
+      rowText('data-lifecycle-payout', key),
+      [`${record.payoutFirstDays}`, cadence, record.sourceCapturedAt],
+    )
+  }
+
+  const topstep = product('topstep', 'trading-combine-standard-path')
+  const fundingPipsPro = product('fundingpips', '2-step-pro')
+  const topstepPayoutRow = rowText(
+    'data-lifecycle-payout',
+    'topstep:trading-combine-standard-path',
+  )
+  const fundingPipsPayoutRow = rowText(
+    'data-lifecycle-payout',
+    'fundingpips:2-step-pro',
+  )
+  if (
+    !topstep?.notes.some(note => note.includes('Minimum Payout: $125')) ||
+    !topstepPayoutRow.includes('$125 minimum')
+  ) {
+    rows.push('Topstep $125 payout minimum must remain supported by its capture notes')
+  }
+  if (
+    !fundingPipsPro?.notes.some(note => note.includes('Minimum reward request is 1%')) ||
+    !fundingPipsPayoutRow.includes('1% minimum reward')
+  ) {
+    rows.push('FundingPips 1% payout minimum must remain supported by its capture notes')
+  }
+
+  const lightning = product('fxify', 'lightning-challenge')
+  const lightningStart = content.indexOf('<h3>B. 1-step path on FXIFY Lightning')
+  const lightningEnd = content.indexOf('<h3>', lightningStart + 1)
+  const lightningSection = lightningStart >= 0
+    ? content.slice(lightningStart, lightningEnd > lightningStart ? lightningEnd : undefined)
+    : ''
+  if (lightning) {
+    const tier = [...lightning.accountSizes]
+      .filter(account => account.priceUsd != null)
+      .sort((a, b) => a.sizeUsd - b.sizeUsd)[0]
+    const targetUsd = tier.sizeUsd * lightning.profitTargets.phase1 / 100
+    const dailyLossUsd = tier.sizeUsd * lightning.dailyLossPct / 100
+    const maxLossUsd = tier.sizeUsd * lightning.maxLossPct / 100
+    expectFragments('FXIFY Lightning walkthrough', lightningSection, [
+      `$${tier.sizeUsd / 1000}K`,
+      `$${formatAmount(tier.priceUsd)}`,
+      `$${formatAmount(targetUsd)}`,
+      `${lightning.profitTargets.phase1}%`,
+      `${lightning.minTradingDays} trading days`,
+      `${lightning.maxTradingDays}-day maximum`,
+      `$${formatAmount(dailyLossUsd)} daily`,
+      `$${formatAmount(maxLossUsd)} trailing`,
+      'base split null',
+      `${lightning.payoutFirstDays} days`,
+      'refundable with the first withdrawal',
+    ])
+    if (lightning.profitSplitPct !== null) {
+      rows.push('FXIFY Lightning walkthrough assumes a null structured base split')
+    }
+  }
+
+  const requiredLinks = [
+    '/prop-firm-challenges',
+    '/blog/ftmo-review',
+    '/blog/fundednext-review',
+    '/blog/fxify-review',
+    '/blog/topstep-review',
+    '/blog/funding-pips-review',
+    '/best-prop-firms-in-india/payout-methods',
+    '/prop-firms',
+    '/how-to-pass-a-prop-firm-challenge',
+    '/true-cost-of-prop-firm-challenges',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+
+  const staleClaims = [
+    'promo applied',
+    '~$330',
+    '$299.99',
+    '30 days after activation',
+    'FXIFY evaluation products',
+    'On-demand payouts from day 1',
+    'Lightning $5K',
+    '95% profit split',
+    'six challenge products',
+    '0.71%',
+    '~14 days',
+  ]
+  const lowerContent = content.toLowerCase()
+  for (const claim of staleClaims) {
+    if (lowerContent.includes(claim.toLowerCase())) {
+      rows.push(`stale claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Challenge lifecycle pillar')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/** The passing guide's product examples and arithmetic must move with captures. */
+function checkChallengePassingPillar() {
+  const rows = []
+  if (!fs.existsSync(CHALLENGE_PASSING_PAGE_FILE)) {
+    console.log('\n✗ Challenge passing pillar')
+    console.log('  · content/pages/how-to-pass-a-prop-firm-challenge.md is missing')
+    return 1
+  }
+
+  const { data, content } = matter(
+    fs.readFileSync(CHALLENGE_PASSING_PAGE_FILE, 'utf-8'),
+  )
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const attributedText = (tag, attribute, key) => {
+    const match = content.match(
+      new RegExp(
+        `<${tag}[^>]*\\b${attribute}="${escapeRegExp(key)}"[^>]*>([\\s\\S]*?)<\\/${tag}>`,
+        'i',
+      ),
+    )
+    return match ? stripTags(match[1]).replace(/\s+/g, ' ').trim() : ''
+  }
+  const product = (firmSlug, productSlug) => {
+    const record = loadChallenges(firmSlug)?.find(
+      challenge => challenge.productSlug === productSlug,
+    )
+    if (!record) rows.push(`${firmSlug}:${productSlug} is missing from challenge data`)
+    return record
+  }
+  const money = value => `$${new Intl.NumberFormat('en-US', {
+    maximumFractionDigits: 2,
+  }).format(value)}`
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} row or section is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+
+  if (data.seoTitle !== 'How to Pass a Prop Firm Challenge: Risk Plan (2026)') {
+    rows.push('seoTitle must preserve passing intent, risk-plan distinction, and year')
+  }
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+
+  const planExamples = [
+    ['ftmo', 'ftmo-challenge-2-step', 100000],
+    ['fundednext', 'stellar-2-step', 100000],
+    ['fxify', 'lightning-challenge', 10000],
+    ['fundingpips', '2-step-pro', 100000],
+  ]
+  for (const [firmSlug, productSlug, sizeUsd] of planExamples) {
+    const key = `${firmSlug}:${productSlug}`
+    const record = product(firmSlug, productSlug)
+    if (!record) continue
+    if (!record.accountSizes.some(account => account.sizeUsd === sizeUsd)) {
+      rows.push(`${key} has no captured ${sizeUsd} tier`)
+      continue
+    }
+    const targets = Object.values(record.profitTargets ?? {})
+      .filter(value => value != null)
+      .map(value => `${value}%`)
+      .join(' then ')
+    const dayFragments = record.maxTradingDays == null
+      ? [`${record.minTradingDays} minimum`, 'no maximum captured']
+      : [`${record.minTradingDays} minimum`, `${record.maxTradingDays} maximum`]
+    expectFragments(
+      `${key} plan`,
+      attributedText('tr', 'data-pass-plan', key),
+      [
+        `$${sizeUsd / 1000}K`,
+        targets,
+        `${record.dailyLossPct}% daily`,
+        `${record.maxLossPct}% ${record.drawdownType} max`,
+        ...dayFragments,
+        record.sourceCapturedAt,
+      ],
+    )
+  }
+
+  const fundedNext = product('fundednext', 'stellar-2-step')
+  if (fundedNext) {
+    const tier = fundedNext.accountSizes.find(account => account.sizeUsd === 100000)
+    const dailyThreshold = tier.sizeUsd * fundedNext.dailyLossPct / 100
+    const personalStop = dailyThreshold * 0.20
+    const perAttempt = personalStop / 2
+    expectFragments(
+      'FundedNext risk-budget example',
+      attributedText('table', 'data-pass-risk-example', 'fundednext:stellar-2-step'),
+      [
+        `${fundedNext.dailyLossPct}%`,
+        '$100K',
+        money(dailyThreshold),
+        '20%',
+        money(personalStop),
+        money(perAttempt),
+      ],
+    )
+    const phase1Usd = tier.sizeUsd * fundedNext.profitTargets.phase1 / 100
+    const phase2Usd = tier.sizeUsd * fundedNext.profitTargets.phase2 / 100
+    expectFragments('FundedNext target math', content, [
+      money(phase1Usd),
+      money(phase2Usd),
+      money(400),
+      `${phase1Usd / 400} sessions`,
+    ])
+    const staticFloor = tier.sizeUsd * (1 - fundedNext.maxLossPct / 100)
+    expectFragments('FundedNext static floor', content, [money(staticFloor)])
+  }
+
+  const fundingPipsPro = product('fundingpips', '2-step-pro')
+  if (fundingPipsPro) {
+    const tier = fundingPipsPro.accountSizes.find(account => account.sizeUsd === 100000)
+    const staticFloor = tier.sizeUsd * (1 - fundingPipsPro.maxLossPct / 100)
+    expectFragments('FundingPips static floor', content, [money(staticFloor)])
+  }
+
+  const lightning = product('fxify', 'lightning-challenge')
+  if (lightning) {
+    if (!content.includes(`${lightning.consistencyRulePct}% consistency rule`)) {
+      rows.push('FXIFY Lightning consistency percentage drifted from challenge data')
+    }
+    if (
+      !lightning.notes.some(note => note.includes('Mandatory stop loss')) ||
+      !content.includes('requires a stop loss on every trade')
+    ) {
+      rows.push('FXIFY Lightning mandatory-stop claim lost its capture-note support')
+    }
+  }
+
+  const topstep = product('topstep', 'trading-combine-standard-path')
+  if (
+    !topstep?.notes.some(note =>
+      note.includes("'$100K' -> '$3,000'"),
+    ) ||
+    !content.includes('$3,000 maximum-loss amount')
+  ) {
+    rows.push('Topstep $100K maximum-loss amount must remain supported by capture notes')
+  }
+
+  const requiredLinks = [
+    '/how-prop-firm-challenges-work',
+    '/prop-firm-challenges',
+    '/prop-firms/static-drawdown',
+    '/prop-firms/news-trading',
+    '/prop-firms/overnight-holding',
+    '/blog/what-is-prop-firm-consistency-rule',
+    '/cheapest-prop-firms',
+    '/true-cost-of-prop-firm-challenges',
+    '/prop-firm-challenge-changes',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+
+  const staleClaims = [
+    'almost every failed evaluation',
+    'the target is the easy half',
+    'daily drawdown is typically 5%',
+    'usually UTC midnight',
+    'five losers in a row before',
+    'FundingPips requires 5 trading days',
+    "I've blown one of these",
+    'more funded accounts die here',
+    '~1%/day',
+    'standard two-step evaluation asks for an 8%',
+  ]
+  const lowerContent = content.toLowerCase()
+  for (const claim of staleClaims) {
+    if (lowerContent.includes(claim.toLowerCase())) {
+      rows.push(`unsupported or stale claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Challenge passing pillar')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/** True-cost copy must preserve the calculator's scope and captured inputs. */
+function checkTrueCostPillar() {
+  const rows = []
+  if (!fs.existsSync(TRUE_COST_PILLAR_FILE)) {
+    console.log('\n✗ True-cost pillar')
+    console.log('  · content/pages/true-cost-of-prop-firm-challenges.md is missing')
+    return 1
+  }
+
+  const { data, content } = matter(fs.readFileSync(TRUE_COST_PILLAR_FILE, 'utf-8'))
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const rowText = key => {
+    const match = content.match(
+      new RegExp(
+        `<tr[^>]*\\bdata-true-cost-example="${escapeRegExp(key)}"[^>]*>([\\s\\S]*?)<\\/tr>`,
+        'i',
+      ),
+    )
+    return match ? stripTags(match[1]).replace(/\s+/g, ' ').trim() : ''
+  }
+  const product = (firmSlug, productSlug) => {
+    const record = loadChallenges(firmSlug)?.find(
+      challenge => challenge.productSlug === productSlug,
+    )
+    if (!record) rows.push(`${firmSlug}:${productSlug} is missing from challenge data`)
+    return record
+  }
+  const amount = value =>
+    Number.isInteger(value)
+      ? value.toLocaleString('en-US')
+      : value.toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} row or section is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+
+  if (data.seoTitle !== 'Prop Firm Challenge True Cost: Fee-Recovery Math') {
+    rows.push('seoTitle must preserve true-cost intent and define fee recovery')
+  }
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+
+  const examples = [
+    ['fundednext', 'stellar-2-step', 100000],
+    ['fundednext', 'stellar-instant', 10000],
+    ['ftmo', 'ftmo-challenge-2-step', 100000],
+    ['topstep', 'trading-combine-standard-path', 100000],
+  ]
+  for (const [firmSlug, productSlug, sizeUsd] of examples) {
+    const key = `${firmSlug}:${productSlug}`
+    const record = product(firmSlug, productSlug)
+    if (!record) continue
+    const tier = record.accountSizes.find(account => account.sizeUsd === sizeUsd)
+    const economics = tier ? challengeTierEconomics(record, tier) : null
+    if (!tier || !economics) {
+      rows.push(`${key} has no calculable ${sizeUsd} tier economics`)
+      continue
+    }
+    const symbol = economics.currency === 'EUR' ? '€' : '$'
+    const fragments = [
+      `$${sizeUsd / 1000}K`,
+      `${symbol}${amount(economics.minimumCost)}`,
+      `${record.profitSplitPct}%`,
+      `${symbol}${amount(economics.breakEvenProfit)}`,
+      record.sourceCapturedAt,
+    ]
+    if (economics.rMultiple != null) fragments.push(economics.rMultiple.toFixed(3))
+    if (economics.dayCount != null) fragments.push(String(economics.dayCount))
+    expectFragments(`${key} true-cost`, rowText(key), fragments)
+  }
+
+  const fundedNext = product('fundednext', 'stellar-2-step')
+  if (fundedNext) {
+    const tier = fundedNext.accountSizes.find(account => account.sizeUsd === 100000)
+    const economics = challengeTierEconomics(fundedNext, tier)
+    const attemptCount = 3
+    const initialPaid = tier.priceUsd * attemptCount
+    const receivedRefund = tier.priceUsd
+    const netCost = initialPaid - receivedRefund
+    const retryRecoveryProfit = netCost / (fundedNext.profitSplitPct / 100)
+    expectFragments('FundedNext retry example', content, [
+      `${attemptCount} FundedNext`,
+      `$${amount(tier.priceUsd)}`,
+      `$${amount(initialPaid)}`,
+      `$${amount(receivedRefund)}`,
+      `$${amount(netCost)}`,
+      `$${amount(retryRecoveryProfit)}`,
+    ])
+    const traderShare = economics.breakEvenProfit * fundedNext.profitSplitPct / 100
+    const cashReceipt = traderShare + receivedRefund
+    expectFragments('FundedNext refund example', content, [
+      `$${amount(economics.breakEvenProfit)}`,
+      `$${amount(traderShare)}`,
+      `$${amount(cashReceipt)}`,
+      `${fundedNext.payoutFirstDays} days`,
+    ])
+  }
+
+  const topstep = product('topstep', 'trading-combine-standard-path')
+  if (topstep) {
+    const tier = topstep.accountSizes.find(account => account.sizeUsd === 100000)
+    const oneMonthCost = tier.priceUsd + topstep.activationFeeUsd
+    const twoMonthCost = tier.priceUsd * 2 + topstep.activationFeeUsd
+    const oneMonthRecovery = oneMonthCost / (topstep.profitSplitPct / 100)
+    const twoMonthRecovery = twoMonthCost / (topstep.profitSplitPct / 100)
+    expectFragments('Topstep recurring-cost example', content, [
+      `$${amount(tier.priceUsd)} per month`,
+      `$${amount(topstep.activationFeeUsd)} activation`,
+      `$${amount(oneMonthCost)}`,
+      `$${amount(oneMonthRecovery)}`,
+      `$${amount(twoMonthCost)}`,
+      `$${amount(twoMonthRecovery)}`,
+    ])
+  }
+
+  const lightning = product('fxify', 'lightning-challenge')
+  if (
+    lightning?.profitSplitPct !== null ||
+    !content.includes('<code>profitSplitPct</code> is null') ||
+    !content.includes('fee-recovery profit is undefined')
+  ) {
+    rows.push('FXIFY Lightning must remain uncalculated while its base split is null')
+  }
+
+  const requiredLinks = [
+    '/how-to-pass-a-prop-firm-challenge',
+    '/how-prop-firm-challenges-work',
+    '/prop-firm-challenges',
+    '/prop-firm-challenge-changes',
+    '/blog/ftmo-review',
+    '/blog/fundednext-review',
+    '/blog/topstep-review',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+
+  const calculatorSurfaces = [
+    [COST_CALCULATOR_FILE, 'reusable calculator'],
+    [HOMEPAGE_FILE, 'homepage calculator'],
+  ]
+  for (const [file, label] of calculatorSurfaces) {
+    const calculator = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+    for (const required of [
+      'Fee-recovery profit',
+      'Cost / loss-room ratio',
+      'Standardized growth days',
+    ]) {
+      if (!calculator.includes(required)) rows.push(`${label} is missing "${required}"`)
+    }
+    for (const verdict of ['Favourable', 'Workable', 'Math against you', 'better odds']) {
+      if (calculator.includes(verdict)) rows.push(`${label} restored verdict "${verdict}"`)
+    }
+  }
+
+  const staleClaims = [
+    '$489 FTMO',
+    'FXIFY Lightning $5K',
+    'at 80% split with 10% trailing',
+    'the "average buyer" pays',
+    'estimates cluster in 8–14%',
+    'R-multiple is above 0.5',
+    'realistic days @ 1%/day',
+    'a realistic floor',
+    'break-even is the first profitable trade',
+    'favorable risk math',
+    'R = 1.0+ is hostile',
+  ]
+  const lowerContent = content.toLowerCase()
+  for (const claim of staleClaims) {
+    if (lowerContent.includes(claim.toLowerCase())) {
+      rows.push(`unsupported or stale true-cost claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ True-cost pillar')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/**
+ * Passing-service copy must not promote vendors whose terms and prices cannot
+ * be verified. Keep the page focused on captured firm restrictions, explicit
+ * cash math, account-control risk, and alternatives sold by the firms.
+ */
+function checkPassingServicesGuide() {
+  const rows = []
+  if (!fs.existsSync(PASSING_SERVICES_GUIDE_FILE)) {
+    console.log('\n✗ Passing-services guide')
+    console.log('  · content/posts/are-prop-firm-passing-services-worth-it.md is missing')
+    return 1
+  }
+
+  const { data, content } = matter(
+    fs.readFileSync(PASSING_SERVICES_GUIDE_FILE, 'utf-8'),
+  )
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const attributedText = (tag, attribute, key) => {
+    const match = content.match(
+      new RegExp(
+        `<${tag}[^>]*\\b${attribute}="${escapeRegExp(key)}"[^>]*>([\\s\\S]*?)<\\/${tag}>`,
+        'i',
+      ),
+    )
+    return match ? stripTags(match[1]).replace(/\s+/g, ' ').trim() : ''
+  }
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} evidence block is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+
+  if (data.title !== 'Prop Firm Passing Services: Rules, Costs and Risks (2026)') {
+    rows.push('title must preserve passing-service, cost, risk, and current-year intent')
+  }
+  if (data.seoTitle !== 'Prop Firm Passing Services: Risks and Rules (2026)') {
+    rows.push('seoTitle must preserve the passing-service risk intent')
+  }
+  if (data.seoTitle.length > 60) rows.push('seoTitle must stay at or below 60 characters')
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+  if (!Array.isArray(data.tags) || !data.tags.includes('account sharing')) {
+    rows.push('tags must preserve the account-sharing distinction')
+  }
+
+  const fundedNext = loadChallenges('fundednext') ?? []
+  const fundedNextEvaluation = fundedNext.filter(challenge => challenge.phases > 0)
+  const fundedNextInstant = fundedNext.find(challenge => challenge.phases === 0)
+  const fundedNextRestricted = fundedNext.filter(
+    challenge => challenge.rules.copyTrading === 'restricted',
+  )
+  const fundedNextDates = new Set(fundedNext.map(challenge => challenge.sourceCapturedAt))
+  expectFragments(
+    'FundedNext passing rules',
+    attributedText('tr', 'data-passing-rule', 'fundednext'),
+    [
+      `All ${fundedNext.length} products`,
+      `${fundedNextEvaluation.length} evaluation paths`,
+      'same person’s challenge accounts',
+      'prohibit funded-account copying',
+      'Instant permits copying only between the same person’s Instant accounts',
+      [...fundedNextDates][0],
+    ],
+  )
+  const fundedNextCapture = fs.readFileSync(
+    path.join(CHALLENGES, '_captures/fundednext-2026-07-27.json'),
+    'utf-8',
+  )
+  if (
+    fundedNextRestricted.length !== fundedNext.length ||
+    fundedNextEvaluation.length !== 3 ||
+    !fundedNextInstant ||
+    fundedNextDates.size !== 1 ||
+    !fundedNextCapture.includes('funded-account copying is prohibited') ||
+    !fundedNextCapture.includes('same person')
+  ) {
+    rows.push('FundedNext copy restrictions or source evidence drifted')
+  }
+
+  const maven = loadChallenges('maven') ?? []
+  const mavenCopyProhibited = maven.filter(
+    challenge => challenge.rules.copyTrading === false,
+  )
+  const mavenEaProhibited = maven.filter(challenge => challenge.rules.ea === false)
+  const mavenDates = new Set(maven.map(challenge => challenge.sourceCapturedAt))
+  expectFragments(
+    'Maven passing rules',
+    attributedText('tr', 'data-passing-rule', 'maven'),
+    [
+      `All ${maven.length} products`,
+      'copying from another individual',
+      'both users breached',
+      'EAs are not permitted',
+      [...mavenDates][0],
+    ],
+  )
+  const mavenCapture = fs.readFileSync(
+    path.join(CHALLENGES, '_captures/maven-2026-08-11.json'),
+    'utf-8',
+  )
+  if (
+    maven.length !== 9 ||
+    mavenCopyProhibited.length !== maven.length ||
+    mavenEaProhibited.length !== maven.length ||
+    mavenDates.size !== 1 ||
+    !mavenCapture.includes('both users will be breached') ||
+    !mavenCapture.includes('EAs are not permitted under any circumstances')
+  ) {
+    rows.push('Maven copy/EA restrictions or raw-capture support drifted')
+  }
+
+  const ofp = loadChallenges('ofp-funding') ?? []
+  const ofpProhibited = ofp.filter(challenge => challenge.rules.copyTrading === false)
+  const ofpDates = new Set(ofp.map(challenge => challenge.sourceCapturedAt))
+  expectFragments(
+    'OFP Funding passing rules',
+    attributedText('tr', 'data-passing-rule', 'ofp-funding'),
+    [
+      `All ${ofp.length} captured products`,
+      'internal and external mirroring',
+      'same trader',
+      'immediate account closure',
+      [...ofpDates][0],
+    ],
+  )
+  const ofpCapture = fs.readFileSync(
+    path.join(CHALLENGES, '_captures/ofp-funding-2026-07-27.json'),
+    'utf-8',
+  )
+  if (
+    ofp.length !== 9 ||
+    ofpProhibited.length !== ofp.length ||
+    ofpDates.size !== 1 ||
+    !ofpCapture.includes('Violation Consequence: Immediate account closure')
+  ) {
+    rows.push('OFP Funding prohibition or raw-capture support drifted')
+  }
+
+  const challengeFee = 100
+  const serviceFee = 250
+  const attempts = 3
+  const refund = 100
+  const challengeSpend = challengeFee * attempts
+  const serviceSpend = serviceFee * attempts
+  const totalPaid = challengeSpend + serviceSpend
+  const netCost = totalPaid - refund
+  const money = value => `$${value.toLocaleString('en-US')}`
+  expectFragments(
+    'three-attempt cost example',
+    attributedText('table', 'data-passing-cost', 'three-attempt-hypothetical'),
+    [
+      `${attempts} × ${money(challengeFee)}`,
+      money(challengeSpend),
+      `${attempts} × ${money(serviceFee)}`,
+      money(serviceSpend),
+      `${money(challengeSpend)} + ${money(serviceSpend)}`,
+      money(totalPaid),
+      `−${money(refund)}`,
+      `${money(totalPaid)} − ${money(refund)}`,
+      `${money(netCost)} before any payout share or provider charge`,
+    ],
+  )
+
+  if (fundedNextInstant) {
+    const tier = fundedNextInstant.accountSizes.find(account => account.sizeUsd === 10000)
+    expectFragments(
+      'FundedNext Instant alternative',
+      attributedText(
+        'div',
+        'data-passing-alternative',
+        'fundednext:stellar-instant',
+      ),
+      [
+        'simulated phase-0 product',
+        '$10K',
+        `$${tier.priceUsd}`,
+        `${fundedNextInstant.profitSplitPct}% reward share`,
+        `${fundedNextInstant.maxLossPct}% ${fundedNextInstant.drawdownType}`,
+        'non-refundable',
+        '5% growth',
+        'end-of-day check',
+      ],
+    )
+    if (
+      tier.refundable !== false ||
+      !fundedNextInstant.notes.some(note => note.includes('requires 5% account growth'))
+    ) {
+      rows.push('FundedNext Instant alternative lost its refund or payout-gate support')
+    }
+  }
+
+  const requiredLinks = [
+    '/blog/what-is-a-prop-firm',
+    '/blog/what-is-copy-trading',
+    '/blog/what-is-prop-firm-consistency-rule',
+    '/how-prop-firm-challenges-work',
+    '/blog/fundednext-review',
+    '/blog/maven-prop-firm-review',
+    '/blog/ofp-funding-review',
+    '/prop-firms/copy-trading',
+    '/true-cost-of-prop-firm-challenges',
+    '/how-to-pass-a-prop-firm-challenge',
+    '/blog/ftmo-free-trial-explained',
+    '/prop-firm-challenges',
+    '/best-instant-funding-prop-firms',
+    '/prop-firm-challenge-changes',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+
+  const backlinkFiles = [
+    [CHALLENGE_PASSING_PAGE_FILE, 'challenge-passing pillar'],
+    [WHAT_IS_PROP_FIRM_GUIDE_FILE, 'prop-firm definition guide'],
+    [COPY_TRADING_GUIDE_FILE, 'copy-trading guide'],
+    [path.join(POSTS, 'is-prop-firm-trading-profitable.md'), 'profitability guide'],
+  ]
+  for (const [file, label] of backlinkFiles) {
+    const source = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+    if (!source.includes('/blog/are-prop-firm-passing-services-worth-it')) {
+      rows.push(`${label} is missing a passing-services backlink`)
+    }
+  }
+
+  if (!content.includes('href="/go/fundednext"')) {
+    rows.push('FundedNext phase-0 CTA is missing its controlled /go/ route')
+  }
+  const firms = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
+  )
+  const renderedContent = decoratePostOutboundLinks(
+    content,
+    buildOutboundRelationships(firms),
+    data.slug,
+  )
+  if (
+    !renderedContent.includes(
+      'href="/go/fundednext?from=post-body-are-prop-firm-passing-services-worth-it"',
+    ) ||
+    !renderedContent.includes('rel="sponsored nofollow noopener"')
+  ) {
+    rows.push('rendered FundedNext CTA lacks controlled attribution or disclosure')
+  }
+
+  if ((content.match(/<h3>/gi) ?? []).length !== 6) {
+    rows.push('passing-services guide must preserve 6 factual FAQs')
+  }
+  if (/href="https?:\/\//i.test(content)) {
+    rows.push('passing-services guide contains a bare external vendor link')
+  }
+
+  const staleClaims = [
+    'Best Prop Firm Passing Services',
+    'Seyoxx Trades',
+    'Forex Green Pips',
+    'Prop Firm Live Signals',
+    'Pass My Prop Firms',
+    'avoid IP detection',
+    'designed to make you fail',
+    'guarantee that they will pass',
+    'much more competent than most traders',
+    'get blacklisted',
+    'Fiverr Gigs',
+    'Trustpilot',
+    '$7,000',
+    '$1,460',
+    '$3,500',
+  ]
+  const lowerContent = content.toLowerCase()
+  for (const claim of staleClaims) {
+    if (lowerContent.includes(claim.toLowerCase())) {
+      rows.push(`unsupported or stale passing-service claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Passing-services guide')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/**
+ * Copy-trading copy must distinguish software mechanics from investment
+ * outcomes. Preserve the worked sizing math and current product-level prop
+ * rules instead of restoring platform promotion or blanket legality claims.
+ */
+function checkCopyTradingGuide() {
+  const rows = []
+  if (!fs.existsSync(COPY_TRADING_GUIDE_FILE)) {
+    console.log('\n✗ Copy-trading guide')
+    console.log('  · content/posts/what-is-copy-trading.md is missing')
+    return 1
+  }
+
+  const { data, content } = matter(fs.readFileSync(COPY_TRADING_GUIDE_FILE, 'utf-8'))
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const attributedText = (tag, attribute, key) => {
+    const match = content.match(
+      new RegExp(
+        `<${tag}[^>]*\\b${attribute}="${escapeRegExp(key)}"[^>]*>([\\s\\S]*?)<\\/${tag}>`,
+        'i',
+      ),
+    )
+    return match ? stripTags(match[1]).replace(/\s+/g, ' ').trim() : ''
+  }
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} evidence block is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+
+  if (data.title !== 'What Is Copy Trading? How It Works and Its Risks (2026)') {
+    rows.push('title must preserve copy-trading definition, risk, and current-year intent')
+  }
+  if (data.seoTitle !== 'What Is Copy Trading? How It Works and Risks (2026)') {
+    rows.push('seoTitle must preserve the direct search intent')
+  }
+  if (data.seoTitle.length > 60) {
+    rows.push('seoTitle must stay at or below 60 characters')
+  }
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+
+  const sourceEquity = 50000
+  const followerEquity = 5000
+  const sourceLots = 1
+  const grossReturnPct = 5
+  const performanceFeePct = 20
+  const equityRatio = followerEquity / sourceEquity
+  const followerLots = sourceLots * equityRatio
+  const grossResult = followerEquity * grossReturnPct / 100
+  const performanceFee = grossResult * performanceFeePct / 100
+  const netResult = grossResult - performanceFee
+  const money = value => `$${value.toLocaleString('en-US')}`
+  expectFragments(
+    'equity-proportional sizing example',
+    attributedText('table', 'data-copy-math', 'equity-proportional'),
+    [
+      money(sourceEquity),
+      money(followerEquity),
+      equityRatio.toFixed(2),
+      `${sourceLots.toFixed(2)} provider lot × ${equityRatio.toFixed(2)}`,
+      `${followerLots.toFixed(2)} follower lot`,
+      `hypothetical ${grossReturnPct}%`,
+      money(grossResult),
+      `${money(grossResult)} × ${performanceFeePct}%`,
+      money(performanceFee),
+      `${money(grossResult)} − ${money(performanceFee)}`,
+      `${money(netResult)} before execution and other costs`,
+    ],
+  )
+
+  const fxify = loadChallenges('fxify') ?? []
+  const fxifyRestricted = fxify.filter(
+    challenge => challenge.rules.copyTrading === 'restricted',
+  )
+  const fxifyProhibited = fxify.filter(
+    challenge => challenge.rules.copyTrading === false,
+  )
+  const fxifyDates = new Set(fxify.map(challenge => challenge.sourceCapturedAt))
+  expectFragments(
+    'FXIFY copy rules',
+    attributedText('tr', 'data-copy-rule', 'fxify'),
+    [
+      `${fxifyRestricted.length} restricted products`,
+      `${fxifyProhibited.length} prohibited products`,
+      `${fxifyRestricted.length} phase products`,
+      'own-account copying',
+      'approval',
+      '30-day named statement',
+      'Two Phase Pro',
+      'both Instant products',
+      'Lightning',
+      [...fxifyDates][0],
+    ],
+  )
+  if (
+    fxify.length !== 8 ||
+    fxifyDates.size !== 1 ||
+    !fxifyRestricted.every(challenge =>
+      challenge.notes.some(note =>
+        note.includes("Copying between a trader's own FXIFY accounts is allowed"),
+      ),
+    ) ||
+    !fxifyRestricted.every(challenge =>
+      challenge.notes.some(note => note.includes('30-day named trading statement')),
+    )
+  ) {
+    rows.push('FXIFY product counts or restricted-copy evidence drifted')
+  }
+
+  const ofp = loadChallenges('ofp-funding') ?? []
+  const ofpProhibited = ofp.filter(challenge => challenge.rules.copyTrading === false)
+  const ofpDates = new Set(ofp.map(challenge => challenge.sourceCapturedAt))
+  expectFragments(
+    'OFP Funding copy rules',
+    attributedText('tr', 'data-copy-rule', 'ofp-funding'),
+    [
+      `all ${ofpProhibited.length} captured products`,
+      'prohibited',
+      'internal and external mirroring',
+      'same trader',
+      [...ofpDates][0],
+    ],
+  )
+  if (ofp.length !== 9 || ofpProhibited.length !== ofp.length || ofpDates.size !== 1) {
+    rows.push('OFP Funding product count, prohibition, or capture date drifted')
+  }
+
+  const requiredLinks = [
+    '/blog/traders-connect-trade-copier',
+    '/category/copy-trading',
+    '/blog/what-is-overtrading',
+    '/blog/fxify-review',
+    '/blog/ofp-funding-review',
+    '/prop-firms/copy-trading',
+    '/prop-firm-challenge-changes',
+    '/blog/are-prop-firm-passing-services-worth-it',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+
+  const featurePage = fs.readFileSync(
+    path.join(ROOT, 'app/prop-firms/[feature]/page.tsx'),
+    'utf-8',
+  )
+  if (
+    !featurePage.includes("slug === 'copy-trading'") ||
+    !featurePage.includes('href="/blog/what-is-copy-trading"')
+  ) {
+    rows.push('product-level copy-trading page is missing its contextual backlink')
+  }
+
+  const imagePath = path.join(
+    ROOT,
+    'public/images/wp/2025/06/copy-trading-final.jpg',
+  )
+  if (
+    !fs.existsSync(imagePath) ||
+    !content.includes('alt="One experienced trader sending copy-trade instructions to three follower accounts"')
+  ) {
+    rows.push('copy-trading explainer image or descriptive alt text is missing')
+  }
+  if ((content.match(/<img\b/gi) ?? []).length !== 1) {
+    rows.push('copy-trading guide must preserve one relevant explainer image')
+  }
+  if ((content.match(/<h3>[^<]+<\/h3>/gi) ?? []).length !== 8) {
+    rows.push('copy-trading guide must preserve 2 risk subsections and 6 FAQs')
+  }
+  if (/href="https?:\/\//i.test(content)) {
+    rows.push('guide contains a bare external platform link')
+  }
+
+  const staleClaims = [
+    'Grow Your AUM and Build Reputation',
+    'one of the smartest ways',
+    'earn without being a pro',
+    'Win-win for both sides',
+    'their capital is also tied to your account',
+    'Scaling Without Extra Risk',
+    'in most countries, it is allowed',
+    'Copy trading is legal, and you can start',
+    'the more people who copy your trades, the more your AUM',
+    'chances are you’ll attract loyal followers',
+    'capital.com',
+    'etoro.com',
+    'bitget.com',
+    'avatrade.com',
+  ]
+  const lowerContent = content.toLowerCase()
+  for (const claim of staleClaims) {
+    if (lowerContent.includes(claim.toLowerCase())) {
+      rows.push(`unsupported or stale copy-trading claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Copy-trading guide')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/**
+ * The definition guide is an entry point to the site's entire prop-firm topic
+ * cluster. Its examples must show genuinely different product models without
+ * restoring generic fees, invented business-model claims, or ambiguous funded
+ * account language.
+ */
+function checkWhatIsPropFirmGuide() {
+  const rows = []
+  if (!fs.existsSync(WHAT_IS_PROP_FIRM_GUIDE_FILE)) {
+    console.log('\n✗ What-is-a-prop-firm guide')
+    console.log('  · content/posts/what-is-a-prop-firm.md is missing')
+    return 1
+  }
+
+  const { data, content } = matter(
+    fs.readFileSync(WHAT_IS_PROP_FIRM_GUIDE_FILE, 'utf-8'),
+  )
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const rowText = key => {
+    const match = content.match(
+      new RegExp(
+        `<tr[^>]*\\bdata-prop-firm-example="${escapeRegExp(key)}"[^>]*>([\\s\\S]*?)<\\/tr>`,
+        'i',
+      ),
+    )
+    return match ? stripTags(match[1]).replace(/\s+/g, ' ').trim() : ''
+  }
+  const product = (firmSlug, productSlug) => {
+    const record = loadChallenges(firmSlug)?.find(
+      challenge => challenge.productSlug === productSlug,
+    )
+    if (!record) rows.push(`${firmSlug}:${productSlug} is missing from challenge data`)
+    return record
+  }
+  const amount = value => Number.isInteger(value)
+    ? value.toLocaleString('en-US')
+    : value.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} example row is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+
+  if (data.title !== 'What Is a Prop Firm? How Retail Funding Works (2026)') {
+    rows.push('title must answer the definition intent and preserve the current year')
+  }
+  if (data.seoTitle !== data.title || data.seoTitle.length > 60) {
+    rows.push('seoTitle must match the direct-answer title and stay at or below 60 characters')
+  }
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+
+  const challengeFiles = fs.readdirSync(CHALLENGES)
+    .filter(file => file.endsWith('.json'))
+  const phaseCounts = challengeFiles.flatMap(file =>
+    JSON.parse(fs.readFileSync(path.join(CHALLENGES, file), 'utf-8'))
+      .map(challenge => challenge.phases),
+  )
+  const minPhases = Math.min(...phaseCounts)
+  const maxPhases = Math.max(...phaseCounts)
+  if (!content.includes(`${minPhases} to ${maxPhases} evaluation phases`)) {
+    rows.push('catalog phase range drifted from the structured challenge data')
+  }
+
+  const fundedNextTwoStep = product('fundednext', 'stellar-2-step')
+  if (fundedNextTwoStep) {
+    const tier = fundedNextTwoStep.accountSizes.find(account => account.sizeUsd === 100000)
+    expectFragments(
+      'FundedNext Stellar 2-Step',
+      rowText('fundednext:stellar-2-step'),
+      [
+        '$100K',
+        `$${amount(tier.priceUsd)}`,
+        'refundable',
+        `${fundedNextTwoStep.phases} phases`,
+        `${fundedNextTwoStep.profitTargets.phase1}% then ${fundedNextTwoStep.profitTargets.phase2}%`,
+        `${fundedNextTwoStep.dailyLossPct}% daily`,
+        `${fundedNextTwoStep.maxLossPct}% ${fundedNextTwoStep.drawdownType}`,
+        `${fundedNextTwoStep.profitSplitPct}%`,
+        `${fundedNextTwoStep.payoutFirstDays} days`,
+        '14 days',
+        fundedNextTwoStep.sourceCapturedAt,
+      ],
+    )
+    if (
+      tier.refundable !== true ||
+      !fundedNextTwoStep.notes.some(note =>
+        note.includes('refundable with the first approved Performance Reward'),
+      )
+    ) {
+      rows.push('FundedNext 2-Step first-reward refund lost its capture support')
+    }
+  }
+
+  const fundedNextInstant = product('fundednext', 'stellar-instant')
+  if (fundedNextInstant) {
+    const tier = fundedNextInstant.accountSizes.find(account => account.sizeUsd === 10000)
+    expectFragments(
+      'FundedNext Stellar Instant',
+      rowText('fundednext:stellar-instant'),
+      [
+        '$10K',
+        `$${amount(tier.priceUsd)}`,
+        'non-refundable',
+        `${fundedNextInstant.phases} phases`,
+        `${fundedNextInstant.maxLossPct}% ${fundedNextInstant.drawdownType}`,
+        'no daily-loss percentage captured',
+        `${fundedNextInstant.profitSplitPct}%`,
+        '5% growth',
+        fundedNextInstant.sourceCapturedAt,
+      ],
+    )
+    if (
+      tier.refundable !== false ||
+      fundedNextInstant.dailyLossPct !== null ||
+      !fundedNextInstant.notes.some(note => note.includes('requires 5% account growth'))
+    ) {
+      rows.push('FundedNext Instant refund, daily-loss, or payout-gate support drifted')
+    }
+  }
+
+  const ftmo = product('ftmo', 'ftmo-challenge-2-step')
+  if (ftmo) {
+    const tier = ftmo.accountSizes.find(account => account.sizeUsd === 100000)
+    expectFragments(
+      'FTMO 2-Step',
+      rowText('ftmo:ftmo-challenge-2-step'),
+      [
+        '$100K',
+        `€${amount(tier.priceEur)}`,
+        'refundable',
+        `${ftmo.phases} phases`,
+        `${ftmo.profitTargets.phase1}% then ${ftmo.profitTargets.phase2}%`,
+        `${ftmo.dailyLossPct}% daily`,
+        `${ftmo.maxLossPct}% ${ftmo.drawdownType}`,
+        `${ftmo.minTradingDays} minimum days`,
+        `${ftmo.profitSplitPct}%`,
+        `${ftmo.payoutFirstDays} days`,
+        ftmo.sourceCapturedAt,
+      ],
+    )
+    const rawCapture = fs.readFileSync(
+      path.join(CHALLENGES, '_captures/ftmo-2026-07-27.json'),
+      'utf-8',
+    )
+    if (
+      tier.refundable !== true ||
+      !rawCapture.includes('the paid fee is refunded with your first Reward withdrawal')
+    ) {
+      rows.push('FTMO 2-Step first-reward refund lost its raw-capture support')
+    }
+  }
+
+  const topstep = product('topstep', 'trading-combine-standard-path')
+  if (topstep) {
+    const tier = topstep.accountSizes.find(account => account.sizeUsd === 100000)
+    expectFragments(
+      'Topstep Standard Path',
+      rowText('topstep:trading-combine-standard-path'),
+      [
+        '$100K',
+        `$${amount(tier.priceUsd)} monthly`,
+        `$${amount(topstep.activationFeeUsd)} activation`,
+        `${topstep.phases} phase`,
+        `${topstep.profitTargets.phase1}% target`,
+        '$3,000 end-of-day trailing',
+        `${topstep.profitSplitPct}%`,
+        `${topstep.payoutFirstDays} trading days`,
+        '5 winning days',
+        '$150',
+        topstep.sourceCapturedAt,
+      ],
+    )
+    if (
+      !topstep.notes.some(note => note.includes('rebills monthly until you pass')) ||
+      !topstep.notes.some(note => note.includes("'$100K' -> '$3,000'")) ||
+      !topstep.notes.some(note => note.includes('five (5) $150 winning trading days'))
+    ) {
+      rows.push('Topstep subscription, loss, or payout-path support drifted')
+    }
+  }
+
+  const requiredLinks = [
+    '/prop-firms',
+    '/how-prop-firm-challenges-work',
+    '/prop-firm-challenges',
+    '/blog/fundednext-review',
+    '/blog/ftmo-review',
+    '/blog/topstep-review',
+    '/true-cost-of-prop-firm-challenges',
+    '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+    '/blog/what-is-prop-firm-consistency-rule',
+    '/how-to-pass-a-prop-firm-challenge',
+    '/prop-firm-challenge-changes',
+    '/prop-firm-discount-codes',
+    '/best-instant-funding-prop-firms',
+    '/blog/are-prop-firm-passing-services-worth-it',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+
+  const backlinkFiles = [
+    [path.join(ROOT, 'components/navLinks.ts'), 'Learn navigation'],
+    [CHALLENGE_LIFECYCLE_PAGE_FILE, 'challenge lifecycle'],
+    [SCALING_PLAN_GUIDE_FILE, 'scaling guide'],
+  ]
+  for (const [file, label] of backlinkFiles) {
+    const source = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+    if (!source.includes('/blog/what-is-a-prop-firm')) {
+      rows.push(`${label} is missing a backlink to the definition guide`)
+    }
+  }
+
+  if (!content.includes('href="/go/fundednext"')) {
+    rows.push('FundedNext CTA is missing its controlled /go/ route')
+  }
+  const firms = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
+  )
+  const renderedContent = decoratePostOutboundLinks(
+    content,
+    buildOutboundRelationships(firms),
+    data.slug,
+  )
+  if (
+    !renderedContent.includes(
+      'href="/go/fundednext?from=post-body-what-is-a-prop-firm"',
+    ) ||
+    !renderedContent.includes('rel="sponsored nofollow noopener"')
+  ) {
+    rows.push('rendered FundedNext CTA lacks controlled attribution or disclosure')
+  }
+  if (/href="https?:\/\//i.test(content)) {
+    rows.push('guide contains a bare outbound URL instead of a controlled internal route')
+  }
+
+  const staleClaims = [
+    'The Best Source of Funding',
+    'one of the most popular and quickest sources',
+    'retail trailer',
+    'the primary revenue of any prop trading firm',
+    'your profits are not real',
+    'make you fail',
+    'can always pass prop firm challenges with ease',
+    'their savior',
+    'Impatient Traders',
+    'you won’t regret',
+    'arguably the best way to go',
+    'paid $500 for it',
+  ]
+  const lowerContent = content.toLowerCase()
+  for (const claim of staleClaims) {
+    if (lowerContent.includes(claim.toLowerCase())) {
+      rows.push(`unsupported or stale definition claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ What-is-a-prop-firm guide')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/**
+ * Scaling copy previously mixed firm ceilings, base product splits, paid
+ * add-ons, and unsupported milestone schedules. Keep the replacement table
+ * tied to the aggregate and product records instead of letting those figures
+ * drift back into an unsourced ranking.
+ */
+function checkScalingPlanGuide() {
+  const rows = []
+  if (!fs.existsSync(SCALING_PLAN_GUIDE_FILE)) {
+    console.log('\n✗ Scaling-plan guide')
+    console.log('  · content/posts/prop-firm-scaling-plan.md is missing')
+    return 1
+  }
+
+  const { data, content } = matter(fs.readFileSync(SCALING_PLAN_GUIDE_FILE, 'utf-8'))
+  const firms = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
+  )
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const rowText = slug => {
+    const match = content.match(
+      new RegExp(
+        `<tr[^>]*\\bdata-scaling-evidence="${escapeRegExp(slug)}"[^>]*>([\\s\\S]*?)<\\/tr>`,
+        'i',
+      ),
+    )
+    return match ? stripTags(match[1]).replace(/\s+/g, ' ').trim() : ''
+  }
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} evidence row is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+
+  if (data.seoTitle !== 'Prop Firm Scaling Plans Explained (2026)') {
+    rows.push('seoTitle must preserve scaling-plan intent and current year')
+  }
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+
+  const specs = [
+    {
+      slug: 'fundednext',
+      name: 'FundedNext',
+      splitFragments: ['80%', '3 evaluations', '70%', 'Instant'],
+      countFragments: [[80, 3], [70, 1]],
+      nullCount: 0,
+    },
+    {
+      slug: 'ftmo',
+      name: 'FTMO',
+      splitFragments: ['80%', '2-Step', '90%', '1-Step'],
+      countFragments: [[80, 1], [90, 1]],
+      nullCount: 0,
+    },
+    {
+      slug: 'fundingpips',
+      name: 'FundingPips',
+      splitFragments: ['80%', '85%', '95%', 'selected payout structure'],
+      countFragments: [[80, 1], [85, 1], [95, 1]],
+      nullCount: 2,
+    },
+    {
+      slug: 'fxify',
+      name: 'FXIFY',
+      splitFragments: ['80%', '5 phase products', 'unstated on 3 products'],
+      countFragments: [[80, 5]],
+      nullCount: 3,
+    },
+  ]
+
+  for (const spec of specs) {
+    const firm = firms.find(candidate => candidate.name === spec.name)
+    const challenges = loadChallenges(spec.slug)
+    if (!firm || !challenges) {
+      rows.push(`${spec.name} aggregate or challenge data is missing`)
+      continue
+    }
+    const text = rowText(spec.slug)
+    expectFragments(spec.name, text, [
+      firm.maxAllocation,
+      firm.lastUpdated,
+      ...spec.splitFragments,
+    ])
+    for (const [split, expectedCount] of spec.countFragments) {
+      const actualCount = challenges.filter(challenge => challenge.profitSplitPct === split).length
+      if (actualCount !== expectedCount) {
+        rows.push(
+          `${spec.name} challenge data now has ${actualCount} products at ${split}%, expected ${expectedCount}; refresh the guide`,
+        )
+      }
+    }
+    const actualNullCount = challenges.filter(
+      challenge => challenge.profitSplitPct == null,
+    ).length
+    if (actualNullCount !== spec.nullCount) {
+      rows.push(
+        `${spec.name} challenge data now has ${actualNullCount} unstated base splits, expected ${spec.nullCount}; refresh the guide`,
+      )
+    }
+    const captureDates = new Set(challenges.map(challenge => challenge.sourceCapturedAt))
+    if (captureDates.size !== 1 || !captureDates.has(firm.lastUpdated)) {
+      rows.push(`${spec.name} aggregate and challenge record dates no longer align`)
+    }
+  }
+
+  const requiredLinks = [
+    '/how-prop-firm-challenges-work',
+    '/true-cost-of-prop-firm-challenges',
+    '/how-to-pass-a-prop-firm-challenge',
+    '/blog/what-is-prop-firm-consistency-rule',
+    '/prop-firm-challenges',
+    '/prop-firm-challenge-changes',
+    '/blog/fundednext-review',
+    '/blog/ftmo-review',
+    '/blog/funding-pips-review',
+    '/blog/fxify-review',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+  if (!content.includes('href="/go/fundednext"')) {
+    rows.push('FundedNext CTA is missing its controlled /go/ route')
+  }
+  const renderedContent = decoratePostOutboundLinks(
+    content,
+    buildOutboundRelationships(firms),
+    data.slug,
+  )
+  if (
+    !renderedContent.includes(
+      'href="/go/fundednext?from=post-body-prop-firm-scaling-plan"',
+    )
+  ) {
+    rows.push('rendered FundedNext CTA is missing post-body attribution')
+  }
+  if (!renderedContent.includes('rel="sponsored nofollow noopener"')) {
+    rows.push('rendered FundedNext CTA is missing sponsored and nofollow disclosure')
+  }
+  if (/href="https?:\/\//i.test(content)) {
+    rows.push('guide contains a bare outbound URL instead of a /go/ route')
+  }
+
+  const staleClaims = [
+    'Top 5 Prop Firms with the Best Scaling Plans',
+    'allows you to scale all the way up to $4 million',
+    'personal favorite',
+    'lost the account in a day',
+    'gold standard',
+    'Hot Seat',
+    'E8X dashboard',
+    'https://fundednext.com/blog',
+  ]
+  const lowerContent = content.toLowerCase()
+  for (const claim of staleClaims) {
+    if (lowerContent.includes(claim.toLowerCase())) {
+      rows.push(`unsupported or stale scaling claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Scaling-plan guide')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/** Keep the highest-intent FundedNext matchup current and attributable. */
+function checkFundedNextComparisonOverlay() {
+  const rows = []
+  const comparisons = fs.existsSync(COMPARISONS_FILE)
+    ? fs.readFileSync(COMPARISONS_FILE, 'utf-8')
+    : ''
+  const overlayMatch = comparisons.match(
+    /'ftmo-vs-fundednext':\s*\{([\s\S]*?)\n\s*\},\n\n\s*'ftmo-vs-fundingpips':/,
+  )
+  const overlayText = overlayMatch?.[1] ?? ''
+  if (!overlayText) {
+    rows.push('ftmo-vs-fundednext overlay source block is missing')
+  } else {
+    const ftmo = loadChallenges('ftmo') ?? []
+    const fundedNext = loadChallenges('fundednext') ?? []
+    const product = (challenges, slug) =>
+      challenges.find(challenge => challenge.productSlug === slug)
+    const tier = (challenge, sizeUsd) =>
+      challenge?.accountSizes.find(account => account.sizeUsd === sizeUsd)
+
+    const ftmoTwoStep = product(ftmo, 'ftmo-challenge-2-step')
+    const ftmoOneStep = product(ftmo, 'ftmo-challenge-1-step')
+    const stellarTwoStep = product(fundedNext, 'stellar-2-step')
+    const stellarOneStep = product(fundedNext, 'stellar-1-step')
+    const stellarLite = product(fundedNext, 'stellar-lite')
+    const stellarInstant = product(fundedNext, 'stellar-instant')
+    const latestCapture = [...ftmo, ...fundedNext]
+      .map(challenge => challenge.sourceCapturedAt)
+      .sort()
+      .at(-1)
+
+    if (
+      !overlayText.includes("reviewedAt: '2026-08-14'") ||
+      !overlayText.includes("challengeReviewedAt: '2026-08-14'") ||
+      '2026-08-14' < latestCapture
+    ) {
+      rows.push('ftmo-vs-fundednext editorial and challenge review dates are not current')
+    }
+    const metaDescription = overlayText.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1] ?? ''
+    if (metaDescription.length < 120 || metaDescription.length > 160) {
+      rows.push('ftmo-vs-fundednext meta description must be between 120 and 160 characters')
+    }
+    const categoryCount = (overlayText.match(/\{ category:/g) ?? []).length
+    const faqCount = (overlayText.match(/\{ q:/g) ?? []).length
+    if (categoryCount !== 7 || faqCount !== 5) {
+      rows.push('ftmo-vs-fundednext must preserve 7 category calls and 5 factual FAQs')
+    }
+
+    const expectedFragments = [
+      `${ftmo.length} evaluation products`,
+      `${fundedNext.length} product paths`,
+      `${ftmoOneStep.profitSplitPct}%`,
+      `${stellarInstant.profitSplitPct}%`,
+      `${ftmoTwoStep.payoutFirstDays} days`,
+      `${stellarOneStep.payoutFirstDays} days`,
+      `${stellarTwoStep.payoutFirstDays} days`,
+      `€${tier(ftmoTwoStep, 100000).priceEur}`,
+      `€${tier(ftmoOneStep, 100000).priceEur}`,
+      `$${tier(stellarTwoStep, 100000).priceUsd}`,
+      `$${tier(stellarOneStep, 100000).priceUsd}`,
+      `$${tier(stellarLite, 100000).priceUsd}`,
+      `${stellarOneStep.maxLossPct}% static`,
+      `${ftmoOneStep.consistencyRulePct}% Best Day`,
+    ]
+    for (const fragment of expectedFragments) {
+      if (!overlayText.includes(fragment)) {
+        rows.push(`ftmo-vs-fundednext overlay is missing current fact "${fragment}"`)
+      }
+    }
+
+    const staleClaims = [
+      'FundedNext’s 95% standard split',
+      'FundedNext scales to $4M',
+      'limited to MT4 and MT5',
+      'no country restrictions',
+      '7–10 days sooner',
+      'lowest probability of a payout dispute',
+      'Both firms allow EAs, news trading',
+    ]
+    for (const claim of staleClaims) {
+      if (overlayText.includes(claim)) rows.push(`stale matchup claim returned: "${claim}"`)
+    }
+  }
+
+  const additionalOverlays = [
+    {
+      slug: 'fundednext-vs-fundingpips',
+      nextSlug: 'ftmo-vs-fxify',
+      categoryCount: 7,
+      faqCount: 5,
+      expected: [
+        '9 captured products',
+        '4 paths',
+        '5 models',
+        '$399.99',
+        '$422',
+        '5 days',
+        '7 days',
+        '12% static',
+        '100% monthly',
+        '95% on Zero',
+        'fourth reward',
+      ],
+      stale: [
+        '95% standard split',
+        '$4M allocation',
+        'zero minimum trading days',
+        'FundingPips imposes 5',
+        'FundingPips treats news-window profit normally',
+      ],
+    },
+    {
+      slug: 'fundednext-vs-fxify',
+      nextSlug: 'fundingpips-vs-fxify',
+      categoryCount: 7,
+      faqCount: 5,
+      expected: [
+        '12 captured products',
+        '4 paths',
+        '8 products',
+        '$399.99',
+        '$399',
+        '5 days',
+        '7 days',
+        '80%',
+        '70%',
+        'up to 90%',
+        '40%',
+        'DXTrade',
+        'TradingView',
+      ],
+      stale: [
+        '95% standard split',
+        '$4M ceiling',
+        'Both support on-demand payouts',
+        'no country restrictions',
+        'same on-demand, $4M, static-drawdown structure',
+      ],
+    },
+  ]
+  for (const spec of additionalOverlays) {
+    const block = comparisons.match(
+      new RegExp(
+        `'${spec.slug}':\\s*\\{([\\s\\S]*?)\\n\\s*\\},\\n\\n\\s*'${spec.nextSlug}':`,
+      ),
+    )?.[1] ?? ''
+    if (!block) {
+      rows.push(`${spec.slug} overlay source block is missing`)
+      continue
+    }
+    if (
+      !block.includes("reviewedAt: '2026-08-14'") ||
+      !block.includes("challengeReviewedAt: '2026-08-14'")
+    ) {
+      rows.push(`${spec.slug} review dates are not current`)
+    }
+    const metaDescription = block.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1] ?? ''
+    if (metaDescription.length < 120 || metaDescription.length > 160) {
+      rows.push(`${spec.slug} meta description must be between 120 and 160 characters`)
+    }
+    const categoryCount = (block.match(/\{ category:/g) ?? []).length
+    const faqCount = (block.match(/\{ q:/g) ?? []).length
+    if (categoryCount !== spec.categoryCount || faqCount !== spec.faqCount) {
+      rows.push(
+        `${spec.slug} must preserve ${spec.categoryCount} category calls and ${spec.faqCount} FAQs`,
+      )
+    }
+    for (const fragment of spec.expected) {
+      if (!block.includes(fragment)) rows.push(`${spec.slug} is missing "${fragment}"`)
+    }
+    for (const claim of spec.stale) {
+      if (block.includes(claim)) rows.push(`${spec.slug} restored stale claim "${claim}"`)
+    }
+  }
+
+  const hero = fs.existsSync(COMPARISON_HERO_FILE)
+    ? fs.readFileSync(COMPARISON_HERO_FILE, 'utf-8')
+    : ''
+  const route = fs.existsSync(COMPARISON_ROUTE_FILE)
+    ? fs.readFileSync(COMPARISON_ROUTE_FILE, 'utf-8')
+    : ''
+  if (!hero.includes('from=compare-${campaign}')) {
+    rows.push('comparison outbound links do not carry matchup-specific attribution')
+  }
+  if (!route.includes('campaign={canonical}')) {
+    rows.push('comparison route does not pass its canonical matchup campaign')
+  }
+
+  if (rows.length) {
+    console.log('\n✗ FundedNext commercial comparison')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/** Related links must be relevant, deterministic, unique, and never self-link. */
+function checkRelatedPostSelection() {
+  const rows = []
+  const posts = fs.readdirSync(POSTS)
+    .filter(file => file.endsWith('.md') && !file.startsWith('_'))
+    .map(file => {
+      const { data, content } = matter(fs.readFileSync(path.join(POSTS, file), 'utf-8'))
+      return { ...data, content }
+    })
+  const bySlug = new Map(posts.map(post => [post.slug, post]))
+
+  for (const current of posts) {
+    const selected = rankRelatedPosts(current, posts)
+    const selectedSlugs = selected.map(post => post.slug)
+    const relevantCount = posts.filter(candidate =>
+      candidate.slug !== current.slug && relatedPostScore(current, candidate) > 0
+    ).length
+    const expectedCount = Math.min(3, relevantCount)
+
+    if (selected.length !== expectedCount) {
+      rows.push(`${current.slug}: expected ${expectedCount} related posts, found ${selected.length}`)
+    }
+    if (selectedSlugs.includes(current.slug)) {
+      rows.push(`${current.slug}: related posts include a self-link`)
+    }
+    if (new Set(selectedSlugs).size !== selectedSlugs.length) {
+      rows.push(`${current.slug}: related posts contain a duplicate`)
+    }
+    if (selected.some(candidate => relatedPostScore(current, bySlug.get(candidate.slug)) <= 0)) {
+      rows.push(`${current.slug}: related posts contain a zero-signal filler`)
+    }
+
+    const reversed = rankRelatedPosts(current, [...posts].reverse()).map(post => post.slug)
+    if (JSON.stringify(reversed) !== JSON.stringify(selectedSlugs)) {
+      rows.push(`${current.slug}: related-post order depends on filesystem input order`)
+    }
+  }
+
+  const fixtures = new Map([
+    ['fundednext-review', ['what-is-prop-firm-consistency-rule', 'ftmo-review']],
+    ['ftmo-review', ['ftmo-free-trial-explained']],
+    ['prop-firm-payout-tax-india', ['are-prop-firms-legal-in-india']],
+    ['wyckoff-pattern', ['what-is-prop-firm-consistency-rule']],
+    ['traders-connect-trade-copier', ['what-is-copy-trading']],
+  ])
+  for (const [slug, required] of fixtures) {
+    const current = bySlug.get(slug)
+    if (!current) {
+      rows.push(`${slug}: related-post audit fixture is missing its source post`)
+      continue
+    }
+    const selected = new Set(rankRelatedPosts(current, posts).map(post => post.slug))
+    for (const requiredSlug of required) {
+      if (!selected.has(requiredSlug)) {
+        rows.push(`${slug}: related posts are missing ${requiredSlug}`)
+      }
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Related-post relevance')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
 const aggregateErrors = checkFirmAggregates()
 totalErrors += aggregateErrors
 const firmCoverageErrors = checkFirmCoverage()
 totalErrors += firmCoverageErrors
 const trustAndCommercialErrors = checkTrustAndCommercialSurface()
 totalErrors += trustAndCommercialErrors
+const firmAlternativeNeutralityErrors = checkFirmAlternativeNeutrality()
+totalErrors += firmAlternativeNeutralityErrors
 const tierDrawdownMathErrors = checkTierDrawdownMathSurface()
 totalErrors += tierDrawdownMathErrors
 const tierFeeAndDailyLossErrors = checkTierFeeAndDailyLossSurface()
@@ -3081,6 +5002,24 @@ const indiaChallengeChangesSurfaceErrors = checkIndiaChallengeChangesSurface()
 totalErrors += indiaChallengeChangesSurfaceErrors
 const indiaTaxGuideErrors = checkIndiaTaxGuide()
 totalErrors += indiaTaxGuideErrors
+const challengeLifecyclePillarErrors = checkChallengeLifecyclePillar()
+totalErrors += challengeLifecyclePillarErrors
+const challengePassingPillarErrors = checkChallengePassingPillar()
+totalErrors += challengePassingPillarErrors
+const trueCostPillarErrors = checkTrueCostPillar()
+totalErrors += trueCostPillarErrors
+const passingServicesGuideErrors = checkPassingServicesGuide()
+totalErrors += passingServicesGuideErrors
+const copyTradingGuideErrors = checkCopyTradingGuide()
+totalErrors += copyTradingGuideErrors
+const whatIsPropFirmGuideErrors = checkWhatIsPropFirmGuide()
+totalErrors += whatIsPropFirmGuideErrors
+const scalingPlanGuideErrors = checkScalingPlanGuide()
+totalErrors += scalingPlanGuideErrors
+const fundedNextComparisonOverlayErrors = checkFundedNextComparisonOverlay()
+totalErrors += fundedNextComparisonOverlayErrors
+const relatedPostSelectionErrors = checkRelatedPostSelection()
+totalErrors += relatedPostSelectionErrors
 
 if (clean.length) {
   console.log(`\n✓ clean: ${clean.length}`)

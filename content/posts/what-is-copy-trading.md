@@ -1,219 +1,182 @@
 ---
-title: "Copy Trading: Grow Your AUM and Build Reputation"
+title: "What Is Copy Trading? How It Works and Its Risks (2026)"
+seoTitle: "What Is Copy Trading? How It Works and Risks (2026)"
 slug: "what-is-copy-trading"
 date: "2025-06-11 15:51:55"
-modified: "2025-08-16 21:04:21"
+modified: "2026-08-14 12:00:00"
 author: "Tara Mohseni"
-excerpt: "Copy trading helps you make money from your trading performance. By generating successful trades, you can attract copiers and grow your AUM."
+excerpt: "Copy trading automatically replicates another account’s trade instructions. Learn how sizing, fees, slippage and prop-firm restrictions change the result."
+seoDescription: "Learn how copy trading works, how copied positions are sized, why follower results differ, which costs matter, and how prop-firm restrictions apply."
 categories: ["Copy Trading"]
-tags: []
+tags: ["copy trading", "trade copiers", "social trading", "risk management"]
 type: "post"
 ---
 
-<p>So, you're a skilled trader and want to make more money and boost your reputation, too?<br>Why not try a copy trading platform?</p>
+<p>Copy trading is a process that sends one account’s trade instructions to another account automatically. The receiving account can copy an entry, position size, stop loss, take profit, modification, and close. Automation reduces manual execution, but it does not guarantee the same price, percentage return, or risk on both accounts.</p>
 
-<p>Not sure how it works or if it’s actually worth it? I get it, and yeah, I know some of you are also worried about whether copy trading is even legit. Totally fair!</p>
-
-<p>But stick with me through this article. I’ll break it all down, show you how copy trading can help grow your AUM (assets under management), and share some of the best platforms and apps to get started. Keep scrolling!</p>
-
-<h2 class="wp-block-heading">What Is Copy Trading?</h2>
-
-<figure class="wp-block-image size-full is-resized rounded-img"><img src="/images/wp/2025/06/copy-trading-final.jpg" alt="Copy Trading Overview" class="wp-image-1991" style="width:840px;height:auto"/></figure>
-
-<p>If you’re a skilled trader, there are some ways to grow your AUM (Assets Under Management). This can not only help you make money from your trading knowledge but also build trust and boost your credibility in the trading world.</p>
-
-<p>One method that really works? Copy trading. But what is copy trading exactly?</p>
-
-<p>It’s a method where other people copy your trades automatically, instead of trading on their own. If they trust your performance, they can link their accounts to yours and become your followers. Every trade you make is copied to their accounts in real time, based on how much money they’ve invested.&nbsp;</p>
-
-<p>Now here’s the good part: when your trades are profitable, you earn your own profit plus a little extra. Most platforms give you a performance fee, which is basically a small share of your followers’ profits. That’s money in your pocket. And another good part: their capital is also tied to your account. The total funds they commit become part of your managed assets: your AUM. So the more followers you have, the bigger your AUM, and the more you earn!</p>
-
-<h2 class="wp-block-heading">How Does Copy Trading Work?</h2>
-
-<p>Sure, understanding “what is copy trading” in theory sounds pretty simple. But if you’ve read our other articles, you know we don’t just skim the surface; we go deep. That’s why I want to give you a real example to show exactly how it works.</p>
-
-<p>Let’s say I’m a pro forex trader. Someone who is interested in forex copy trading has been watching my trading performance and decided to invest $5,000 and copy my trades.</p>
-
-<p>Now, imagine I open a 1-lot EUR/USD trade using my $50,000 account. The platform scales everything down for the follower, so since their account is one-tenth the size of mine ($5,000 vs $50,000), they get a 0.1-lot position.&nbsp;</p>
-
-<p>Here’s where it gets interesting: if I make $500 on that trade, they make $50. Same percentage, same timing, same result. Now, over the course of a month, let’s say, make a 5% return. That means their $5,000 turns into $5,250 ($5,000* %5= $250). From that $250 profit, a 20% performance fee is paid to me, that’s $50, and they keep the remaining $200 as pure profit.</p>
-
-<p>So basically, they get to ride the markets passively, without making a single decision themselves. And I earn from both my own trading and the profits I generate for others. Win-win for both sides.</p>
-
-<h2 class="wp-block-heading">Copy Trading Vs Mirror Trading Vs Social Trading</h2>
-
-<p>There are a bunch of ways to grow your AUM and make money from your trades, and some of them sound super similar: terms like copy trading, mirror trading, and social trading. But as a trader, it’s important to know the difference so you can figure out what works best for you.</p>
-
-<p><strong>Copy trading</strong> is all about <em>you</em>. People follow <em>your</em> trades, the ones you execute based on your personal analysis and strategy. And here’s the cool part: they can still choose to stop a trade if they want. So they’re copying you, but they’ve got some control.</p>
-
-<p><strong>Mirror trading</strong>, though, is a bit different. It’s more about following a system or algorithm than a specific trader. Let’s say you’ve built a strategy that buys EUR/USD whenever the RSI shows a bullish divergence. Now, when someone chooses to follow it, every time your system places a trade, it happens on their account too, automatically, with no manual control. Their account mirrors yours 100%.</p>
-
-<p>Then there’s <strong>social trading</strong>, which is kinda like a mix between a trading community and copy trading. Think of it as a social network for traders, where people share trade ideas, discuss strategies, post their performance, and even follow or copy each other. It’s more interactive and flexible, and great if you want both insight and automation.</p>
-
-<div style="overflow-x:auto;">
-  <table class="general-table">
-    <caption class="hidden-caption">Copy Trading Methods Comparison</caption>
-    <thead>
-      <tr>
-        <th style="text-align: center;">Mirror Trading</th>
-        <th style="text-align: center;">Social Trading</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="text-align: center;">Followers mirror your full strategy (Automatically)</td>
-        <td style="text-align: center;">Traders share trades/ideas, and users choose to copy them</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="key-takeaways">
+  <div class="title">Copy trading in five points</div>
+  <ol>
+    <li><strong>Three parties are involved.</strong> A provider generates the trade, a follower authorises copying, and software or a venue transmits the instruction.</li>
+    <li><strong>Sizing is a separate decision.</strong> Fixed lots, multipliers, equity ratios, and risk-based sizing can produce different exposure from the same signal.</li>
+    <li><strong>Results diverge.</strong> Latency, spread, slippage, symbol mapping, leverage, minimum lot size, and fees can separate provider and follower returns.</li>
+    <li><strong>Follower capital is not automatically provider AUM.</strong> The funds normally remain in the follower’s account; each platform defines how copied capital is reported.</li>
+    <li><strong>Prop-firm permission is product-specific.</strong> Copying your own accounts, following a third party, and letting another person trade are 3 different rule questions.</li>
+  </ol>
 </div>
 
-<h2 class="wp-block-heading">The Best Copy Trading Platforms (What to Look for in a Copy Trading App)</h2>
+<h2>What is copy trading?</h2>
 
-<p>Now you know that copy trading is one of the smartest ways to turn your trading skills into real profit. To do so, various apps and platforms let you do it. Some of the copy trading platforms include:</p>
+<p>Copy trading links a source account to one or more receiving accounts. When the source opens or changes a position, the copying system creates a corresponding instruction for each receiver according to its sizing and risk settings. The provider does not automatically own, pool, or control the follower’s cash merely because a trade is copied.</p>
 
-<ul class="wp-block-list">
-<li><strong><a href="https://capital.com" target="_blank" rel="noreferrer noopener nofollow">Capital.com</a></strong></li>
+<figure class="wp-block-image size-full is-resized rounded-img"><img src="/images/wp/2025/06/copy-trading-final.jpg" alt="One experienced trader sending copy-trade instructions to three follower accounts" class="wp-image-1991" style="width:840px;height:auto"/><figcaption>A source trade can be sent to several receiving accounts, but every receiver still needs its own size, broker, margin, and risk controls.</figcaption></figure>
 
-<li><strong><a href="https://etoro.com" target="_blank" data-type="link" data-id="etoro.com" rel="noreferrer noopener nofollow">eToro</a></strong></li>
+<p>The labels vary by platform. The source can be called a provider, leader, master, strategy, or signal. The receiver can be called a follower, investor, copier, slave, or child account. Those names describe the direction of the instruction; they do not prove that the source trader is licensed to manage money or that the follower has delegated every decision.</p>
 
-<li><strong><a href="https://www.zulutrade.com/" target="_blank" rel="noreferrer noopener nofollow">ZuluTrade</a></strong></li>
+<h2>How copy trading works in six steps</h2>
 
-<li><strong><a href="https://www.bitget.com/" target="_blank" rel="noreferrer noopener nofollow">Bitget</a></strong></li>
-
-<li><strong><a href="https://www.avatrade.com/" target="_blank" rel="noreferrer noopener nofollow">AvaTrade</a></strong></li>
-
-<li><strong><a href="/blog/3commas-review">3Commas</a> </strong>(Crypto Platform)</li>
-</ul>
-
-<p>But here’s the thing: choosing the best copy trading platform is not just about signing up; you must select the one that fits your style and goals. Here’s what to look out for:</p>
-
-<h3 class="wp-block-heading">Fast Execution</h3>
-
-<p>In trading, even a split second can make or break a deal. Especially if you're a scalper, you’ll need a platform with lightning-fast execution. It also ensures your followers get the best results possible, staying in sync with your trades.</p>
-
-<h3 class="wp-block-heading">Broker Compatibility&nbsp;</h3>
-
-<p>Are you focused on forex? Crypto? Stocks? Make sure the platform supports the markets you trade and the broker you use. Check whether it supports platforms like MetaTrader, cTrader, or whatever you prefer.</p>
-
-<h3 class="wp-block-heading">User-Friendly Interface</h3>
-
-<p>Let’s be honest! Everyone wants to make money from the start, but trading isn’t something that brings you profit from day one. Copy trading is the key, especially for beginners or anyone who wants to earn without being a pro yet. That’s why using an app with a clean, easy-to-use interface makes things smoother, not just for you, but for your followers too. The easier it is for them, the more likely they’ll stick around. Recently, I had the chance to work with some smooth and user-friendly platforms like ZuluTrade and CopyFX. If you're not familiar with them, I highly recommend checking out our articles titled "<a href="/blog/zulutrade-review">ZuluTrade Review</a>" and "<a href="/blog/copyfx-review">CopyFX Review</a>".</p>
-
-<h3 class="wp-block-heading">Regulation & Security</h3>
-
-<p>Always double-check that the platform is safe and regulated. Look into its track record: has it had any shady or illegal issues? If a platform isn’t trustworthy, it can scare off followers and hurt your AUM growth.</p>
-
-<h3 class="wp-block-heading">Payout & Revenue Model</h3>
-
-<p>Platforms that allow you to increase your AUM come with different payout models. For example, prop firms such as E8 Markets, FTMO, or Funding Pips use a profit split model with varying percentages. Now, when it comes to copy trading, it's not just about trading well! You also want to get paid fairly.&nbsp;</p>
-
-<p>Go for platforms that offer solid revenue structures. Some use performance fees (like taking 20% of your copiers’ profits), and others offer fixed monthly subscriptions, or even spread/commission sharing (you get a share of the broker fees generated by your copiers).&nbsp;</p>
-
-<h3 class="wp-block-heading">Platform Popularity</h3>
-
-<p>To grow your AUM, you need followers, and for that, the platform’s reach matters. The bigger and more active the user base, the faster you can scale. Look at how many active users there are. Does the platform promote top traders? Will you be featured in rankings or marketing campaigns? All of that helps you get noticed and gain more followers.</p>
-
-<h2 class="wp-block-heading">Is Copy Trading Profitable? (Pros and Cons)</h2>
-
-<p>As I mentioned earlier, using this method is one of the best ways to grow your AUM, and with that comes a chance for higher income. But it doesn’t stop there. Copy trading can actually open up even more opportunities, like:</p>
-
-<h3 class="wp-block-heading">Personal Branding</h3>
-
-<p>If you trade consistently and deliver good results, people will start noticing. You’ll build a solid reputation and attract more followers. That can really level up your personal brand and help you grow a community around your work.</p>
-
-<h3 class="wp-block-heading">Scaling Without Extra Risk</h3>
-
-<p>One of the best parts? You don’t have to risk more of your own money to scale up. Other traders invest in your performance, so when you win, you’re not just winning for yourself; your financial goals get bigger without putting in extra capital. It’s a win-win.</p>
-
-<p>But, it’s not all sunshine and rainbows. As a trader, there are some challenges that you might struggle with.</p>
-
-<h3 class="wp-block-heading">Technical Issues</h3>
-
-<p>Stuff like latency, slippage, or spread differences can mean your trades get copied with a slight delay or at different prices. These small differences can add up, and sometimes your followers might get frustrated if their results don’t match yours exactly. That’s just part of the game.</p>
-
-<h3 class="wp-block-heading">Psychological Pressure</h3>
-
-<p>Knowing that lots of people are watching and copying your trades can really get in your head. Even when things are going well, that pressure can mess with your focus. And yeah, it gets more intense as your AUM and follower count grow. You’re not just trading for yourself anymore, and that changes everything.</p>
-
-<div class="pros-cons-table">
-  <table>
-    <thead>
-      <tr>
-        <th>Pros</th>
-        <th>Cons</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>✅ AUM Growth</td>
-        <td>❌ Technical Issues with Platforms</td>
-      </tr>
-      <tr>
-        <td>✅ Personal Branding</td>
-        <td>❌ Psychological Pressure</td>
-      </tr>
-      <tr>
-        <td>✅ Scaling Without Extra Risk and Money</td>
-        <td>❌ Responsibility Shift (you’re no longer trading just for yourself)</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<h2 class="wp-block-heading">Is Copy Trading Legit?</h2>
-
-<p>If you think copy trading could be a good choice for you, one of your concerns might be whether it’s actually legal. The truth is, in most countries, it is allowed and not restricted by law.</p>
-
-<p>However, in some countries like the U.S., things are more tightly controlled. Copy trading is legal there too, but it’s heavily regulated. Agencies like the SEC and CFTC are in charge of making sure platforms follow the rules for securities and commodity trading. Basically, they make sure everything runs by the book</p>
-
-<p>However, if you’re trading with prop firms such as <a href="/blog/e8-markets-review">E8 Markets</a>, <a href="/blog/funding-pips-review">Funding Pips</a>, <a href="/blog/bright-funded-prop-firm">Bright Funded</a>, or <a href="/blog/maven-prop-firm-review">Maven Prop Firm</a>, the rules can be a bit different. Some firms don’t allow you to copy trades between accounts or from other traders, so it’s important to read their policies carefully before you start. On the other side, this action is available on some firms like Topstep. You can read more about this platform on our article which is called "<a href="/blog/topstep-review">Topstep Review 2025</a>".</p>
-
-<h2 class="wp-block-heading">How to Get Started with Copy Trading</h2>
-
-<p>Now that you’ve got a solid idea of “what is copy trading” and how it works, you might be wondering: how do you get started?</p>
-
-<p>Here’s the basic process:</p>
-
-<ol class="wp-block-list">
-<li>First, find a trustworthy platform. I already pointed out some key things to look for, so keep those in mind when choosing your app.</li>
-
-<li>Next, make sure you go through the platform’s setup steps. This usually means agreeing to their terms, verifying your identity (KYC), and sometimes meeting a minimum capital requirement.</li>
-
-<li>Once that’s done, connect your trading account and trade just like you normally would.</li>
-
-<li>The more people who copy your trades, the more your AUM (and earnings) go up. You can grow your audience by sharing your unique copy link on social media or in trading forums, posting updates about your performance, and being real with your results.</li>
+<ol>
+  <li><strong>The follower chooses a source.</strong> Selection can be based on a public profile, a private connection, a strategy marketplace, or another account owned by the same trader.</li>
+  <li><strong>The follower sets allocation rules.</strong> These can include a fixed lot, multiplier, equity percentage, maximum open trades, symbol allow-list, and loss stop.</li>
+  <li><strong>The source submits an order.</strong> The system reads the instrument, direction, order type, size, entry, stop, target, and later modifications.</li>
+  <li><strong>The receiving venue checks the order.</strong> Available margin, market hours, symbol name, contract specification, and minimum lot size can accept, resize, delay, or reject it.</li>
+  <li><strong>The follower gets a separate fill.</strong> That fill can be better or worse than the source price, particularly during fast markets or on different brokers.</li>
+  <li><strong>Fees and reporting are applied.</strong> Spread, commission, financing, platform charges, and any performance fee are calculated under the follower’s own account terms.</li>
 </ol>
 
-<h2 class="wp-block-heading">Common Mistakes in Copy Trading</h2>
+<p>A copied order is therefore an instruction, not a guaranteed duplicate outcome. If the source closes at 1.08500 and the follower closes at 1.08480, both followed the same direction but realised different results.</p>
 
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/06/What-Is-Copy-Trading-Infographic-1.jpg" alt="Copy trading mistakes to avoid" class="wp-image-2001"/></figure>
+<h2>A copy-trading sizing example</h2>
 
-<p>If you’re a signal provider or a skilled trader working on a copy trading platform, even with a solid track record, you can’t just sit back and relax. You still need to stay on top of your trades and avoid some behaviors that can seriously mess things up.</p>
+<p>The table is hypothetical and assumes identical instruments, leverage, fills, and account currency. It demonstrates equity-proportional sizing; it is not a forecast or a platform default.</p>
 
-<h3 class="wp-block-heading">Ignoring Risk Management</h3>
+<table data-copy-math="equity-proportional" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Hypothetical equity-proportional copy-trading calculation</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Input or result</th><th style="padding: 8px 12px; text-align: left;">Calculation</th><th style="padding: 8px 12px; text-align: left;">Value</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Provider equity</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Given</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50,000</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Follower equity</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Given</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5,000</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Equity ratio</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5,000 ÷ $50,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.10</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Copied size</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1.00 provider lot × 0.10</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.10 follower lot</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Follower gross result</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5,000 × hypothetical 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$250</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Hypothetical performance fee</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$250 × 20%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50</td></tr>
+    <tr><td style="padding: 8px 12px;">Follower result after that fee</td><td style="padding: 8px 12px;">$250 − $50</td><td style="padding: 8px 12px;">$200 before execution and other costs</td></tr>
+  </tbody>
+</table>
 
-<p>Risk management isn’t just for beginners; it’s a mindset that every trader needs, no matter how good you are. Things like random position sizes, trading without stop losses, or overleveraging just because you're feeling confident are all risky moves and can lead to losing your followers. To avoid this, try to stick with a set risk per trade, like 1% or 2% of your capital. Keep your position sizing steady, use stop losses, and don’t let your emotions take the wheel.</p>
+<p>The idealised $200 result can be lower, zero, or negative after spread, commission, financing, slippage, currency conversion, and different fills. A 20% performance fee is only an example; actual platforms can use subscriptions, volume rebates, profit shares, high-water marks, or no provider payment.</p>
 
-<h3 class="wp-block-heading">Overtrading</h3>
+<h2>Copy trading vs mirror trading vs social trading</h2>
 
-<p>You don’t have to trade just for the sake of trading. If the market’s slow or the setup isn’t clear, it’s totally fine to sit it out. Forcing trades or trying to bounce back too fast after a loss (aka revenge trading) can have a negative effect and decrease your credibility. Read more about <a href="/blog/what-is-overtrading">what overtrading is and how you can stop it</a> here.</p>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Copy trading, mirror trading, and social trading compared</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Method</th><th style="padding: 8px 12px; text-align: left;">What is followed</th><th style="padding: 8px 12px; text-align: left;">Automation level</th><th style="padding: 8px 12px; text-align: left;">Follower control</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Copy trading</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Another account’s trade instructions</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Usually automatic after connection</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Can include size caps, stops, pause, or manual close</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Mirror trading</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">A defined strategy or algorithm</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Strategy rules generate the orders</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Normally set through strategy allocation and stop controls</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Social trading</strong></td><td style="padding: 8px 12px;">Profiles, statistics, posts, and trade ideas</td><td style="padding: 8px 12px;">Can be manual, automatic, or both</td><td style="padding: 8px 12px;">The user can observe, discuss, follow, or copy</td></tr>
+  </tbody>
+</table>
 
-<h3 class="wp-block-heading">Poor Drawdown Management</h3>
+<p>A trade copier is the technical mechanism that transmits orders. A social platform adds discovery, profiles, statistics, and communication around that mechanism. The <a href="/blog/traders-connect-trade-copier">trade-copier review</a> illustrates a standalone account-linking tool, while the <a href="/category/copy-trading">copy-trading category</a> contains platform-specific reviews.</p>
 
-<p>One thing many traders overlook is drawdown. Even if you’re usually profitable, a big dip, especially a sudden one, can scare people off, as not everyone following you has the same risk tolerance or account size. Also, most platforms show drawdown stats right on your profile; keeping it low is key if you want to keep your credibility.</p>
+<h2>Four common position-sizing modes</h2>
 
-<h3 class="wp-block-heading">Inconsistency</h3>
+<ul class="wp-block-list">
+  <li><strong>Fixed lot:</strong> every receiver uses the same selected size. A 1.00-lot source can become 0.10 lots only if the follower explicitly sets 0.10.</li>
+  <li><strong>Lot multiplier:</strong> the receiving size equals the source size multiplied by a factor such as 0.25 or 2.00.</li>
+  <li><strong>Equity proportional:</strong> the source position is scaled by the receiver-to-source equity ratio, as in the 0.10 example above.</li>
+  <li><strong>Risk based:</strong> the receiver targets a percentage or dollar loss using its own equity, stop distance, tick value, and contract specification.</li>
+</ul>
 
-<p>Imagine posting trades every week, then going silent for a whole month. That’s not gonna fly. Markets move fast, and your followers expect regular activity. If you disappear too often, they’ll move on to someone else! Simple as that.</p>
+<p>Equity proportional does not always mean equal risk. If one account has 30:1 leverage and another has 100:1, or if a broker maps gold to a different contract size, the same lot ratio can consume different margin. A missing stop loss also prevents a copier from knowing the intended maximum loss.</p>
 
-<p>And just like your presence, your trading needs that same level of discipline. Have a clear strategy; whether it’s price action, ICT trading, chart patterns, or <a href="/blog/wyckoff-pattern">Wyckoff patterns</a>. What matters is staying committed and improving it over time.</p>
+<h2>Why copied results differ from the source</h2>
 
-<h2 class="wp-block-heading">Final Thoughts: Is Copy Trading Worth It?</h2>
+<ul class="wp-block-list">
+  <li><strong>Latency:</strong> the follower order reaches its venue after the source order.</li>
+  <li><strong>Spread and slippage:</strong> each account can receive a different bid, ask, or fill.</li>
+  <li><strong>Symbol mapping:</strong> EURUSD, EURUSD.a, and EUR/USD may need an explicit mapping; an incorrect mapping can reject the order.</li>
+  <li><strong>Contract specifications:</strong> lot value, tick size, minimum volume, and volume step can differ.</li>
+  <li><strong>Margin and leverage:</strong> the follower may lack enough free margin even when the source can open the trade.</li>
+  <li><strong>Account settings:</strong> a receiver can cap size, skip symbols, close early, or stop copying at a loss threshold.</li>
+  <li><strong>Costs:</strong> commissions, financing, performance fees, subscriptions, and currency conversion are account-specific.</li>
+</ul>
 
-<p>Now that you know how it works and how you can earn from it, the big question is: is it worth it? Well, that depends. This method isn’t right for everyone, but for many skilled traders, it can be a great way to grow their brand and income. If you use a trusted platform, stick to strong risk habits, stay consistent, and keep delivering results, chances are you’ll attract loyal followers, and yep, that means more AUM and more profit.</p>
+<p>These differences are most visible in short-duration strategies. When a source targets a few ticks, a 1-second delay and a wider spread can consume a larger share of the expected move than they would on a multi-day position.</p>
 
-<h2 class="wp-block-heading">FAQ</h2>
+<h2>Copy-trading costs to record</h2>
 
-<!-- wp:rank-math/faq-block {"questions":[{"id":"faq-question-1749536725695","title":"How Does Copy Trading Work?","content":"By copy trading, copiers can copy your trades, and you will get a part of their profit too.","visible":true},{"id":"faq-question-1749536774760","title":"Is Copy Trading Legit?","content":"Yes. Copy trading is legal, and you can start it on many regulated platforms. ","visible":true},{"id":"faq-question-1749536810281","title":"Is Copy Trading for Beginners?","content":"Copy trading allows beginner traders to copy other advanced traders' trades and make money from the beginning.","visible":true},{"id":"faq-question-1749536876251","title":"What Is the Best Copy Trading Strategy?","content":"The best copy trading strategy depends on your trading style. What works well for one person might not be suitable for you. That’s why it's important to understand your own risk tolerance and goals before following someone else's trades or generating trades.","visible":true}],"listCssClasses":"faq, faq-item"} -->
-<div class="wp-block-rank-math-faq-block"><div class="rank-math-faq-item"><h3 class="rank-math-question">How Does Copy Trading Work?</h3><div class="rank-math-answer">By copy trading, copiers can copy your trades, and you will get a part of their profit too.</div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">Is Copy Trading Legit?</h3><div class="rank-math-answer">Yes. Copy trading is legal, and you can start it on many regulated platforms. </div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">Is Copy Trading for Beginners?</h3><div class="rank-math-answer">Copy trading allows beginner traders to copy other advanced traders' trades and make money from the beginning.</div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">What Is the Best Copy Trading Strategy?</h3><div class="rank-math-answer">The best copy trading strategy depends on your trading style. What works well for one person might not be suitable for you. That’s why it's important to understand your own risk tolerance and goals before following someone else's trades or generating trades.</div></div></div>
+<p>A “free” copy button does not prove that copying has no cost. Build a cash-and-execution checklist with 7 fields: spread, commission, overnight financing, performance fee, platform subscription, copier licence, and deposit or withdrawal charges. Record whether a performance fee uses gross profit, net profit, a high-water mark, or another calculation.</p>
+
+<p>Provider compensation also varies. A provider may receive a percentage of eligible follower profit, a fixed subscription, a share of trading volume revenue, or no payment. The follower should compare the all-in cost; the provider should verify what activity is rewarded, because volume-based compensation can create a different incentive from performance-based compensation.</p>
+
+<h2>Risks for followers and providers</h2>
+
+<h3>Follower checks</h3>
+
+<p>A return chart needs context. Record the track-record length, maximum drawdown, longest losing period, open-position treatment, leverage, average holding time, number of simultaneous positions, and whether deposits or withdrawals distort the displayed percentage. A 50% return and a 50% drawdown do not cancel out: a $10,000 account that falls to $5,000 needs a 100% gain to return to $10,000.</p>
+
+<p>Copying several providers does not guarantee diversification. If 3 sources all buy correlated USD pairs or the same equity index, separate profile names can still create one concentrated exposure. Aggregate risk across all copied positions before adding another provider.</p>
+
+<h3>Provider checks</h3>
+
+<p>A provider cannot assume followers receive identical execution. Disclose the instruments, typical holding time, leverage, maximum planned risk, and whether stops are always attached. Avoid changing the strategy merely to appear active; the <a href="/blog/what-is-overtrading">overtrading guide</a> explains why extra trades can increase exposure without improving the setup.</p>
+
+<p>Public performance can also change incentives. Follower counts, rankings, and fee thresholds may reward short-term returns while hiding tail risk. A provider needs the same drawdown limit and shutdown rule before and after followers arrive.</p>
+
+<h2>Copy trading on prop-firm accounts</h2>
+
+<p>Prop firms commonly separate 3 activities: mirroring accounts owned by the same trader, following an external signal, and allowing a third party to operate the account. A product can permit the first, require approval for the second, and prohibit the third. “EA allowed” is not proof that all 3 forms of copying are permitted.</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Current examples of product-level prop-firm copy-trading rules</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Firm</th><th style="padding: 8px 12px; text-align: left;">Captured product result</th><th style="padding: 8px 12px; text-align: left;">What to verify</th><th style="padding: 8px 12px; text-align: left;">Captured</th></tr></thead>
+  <tbody>
+    <tr data-copy-rule="fxify"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/fxify-review">FXIFY</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4 restricted products and 4 prohibited products</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">The 4 phase products allow own-account copying; external copying needs approval and a 30-day named statement. Two Phase Pro, both Instant products, and Lightning prohibit copying.</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-10</td></tr>
+    <tr data-copy-rule="ofp-funding"><td style="padding: 8px 12px;"><a href="/blog/ofp-funding-review">OFP Funding</a></td><td style="padding: 8px 12px;">Copy trading is prohibited on all 9 captured products</td><td style="padding: 8px 12px;">The captured rule covers internal and external mirroring, including accounts owned by the same trader.</td><td style="padding: 8px 12px;">2026-07-27</td></tr>
+  </tbody>
+</table>
+
+<p>The live <a href="/prop-firms/copy-trading">prop-firm copy-trading comparison</a> reads product-level verdicts from the challenge captures and shows their dates. Recheck the selected product before connecting a copier, and use the <a href="/prop-firm-challenge-changes">change ledger</a> to identify material rule updates.</p>
+
+<p>A passing service is a separate risk: it gives another party control or signals intended to complete an evaluation. The <a href="/blog/are-prop-firm-passing-services-worth-it">passing-services guide</a> explains why a completed target can still lead to account closure if the method violates the firm’s conduct rules.</p>
+
+<h2>How to evaluate a copy-trading setup</h2>
+
+<ol>
+  <li><strong>Define the relationship.</strong> Decide whether this is self-copying, following another trader, mirroring an algorithm, or account management.</li>
+  <li><strong>Verify permission.</strong> Check the broker, platform, prop-firm product, jurisdiction, and account agreement separately.</li>
+  <li><strong>Test symbol mapping.</strong> Confirm every instrument, contract size, and minimum volume on a demo or smallest permitted size.</li>
+  <li><strong>Set receiving-account risk.</strong> Choose a sizing method, maximum position, maximum simultaneous exposure, and equity stop.</li>
+  <li><strong>Measure divergence.</strong> Compare source and follower entry, exit, slippage, fees, and rejected trades over a representative sample.</li>
+  <li><strong>Define failure behaviour.</strong> Decide what happens to open trades if the provider disconnects, the copier stops, or the receiver loses connectivity.</li>
+  <li><strong>Review the full cost.</strong> Include execution costs and platform/provider charges rather than only the displayed subscription.</li>
+  <li><strong>Keep a manual kill switch.</strong> Know how to pause new orders and whether existing positions remain open or close.</li>
+</ol>
+
+<h2>Frequently asked questions</h2>
+
+<h3>Is copy trading suitable for beginners?</h3>
+
+<p>Automation does not remove the need to understand position size, leverage, drawdown, and fees. A beginner who cannot explain the receiving account’s maximum loss should not treat another trader’s profile as a substitute for risk knowledge.</p>
+
+<h3>Will a follower earn the same percentage as the provider?</h3>
+
+<p>Not necessarily. Equal percentage performance requires compatible sizing, instruments, leverage, fills, costs, and timing. Any difference in those inputs can make the follower’s return higher or lower.</p>
+
+<h3>Is a trade copier the same as a copy-trading platform?</h3>
+
+<p>A trade copier is the order-transmission tool. A copy-trading platform can also provide source discovery, statistics, allocation, billing, and social features. One platform may include a copier, but the terms are not interchangeable.</p>
+
+<h3>Can copy trading lose money?</h3>
+
+<p>Yes. The source can lose, the follower can receive a worse fill, or incorrect sizing can create more exposure than intended. Historical returns and follower counts do not cap the next loss.</p>
+
+<h3>Is copy trading legal everywhere?</h3>
+
+<p>There is no global yes-or-no answer. Treatment can depend on jurisdiction, instrument, platform, provider compensation, marketing, and whether the activity becomes regulated account management or investment advice. Check the applicable provider agreement and local requirements rather than relying on a generic legality claim.</p>
+
+<h3>Do prop firms allow copy trading?</h3>
+
+<p>Some products allow own-account mirroring, some require approval, and others prohibit all copying. Check the exact product in the <a href="/prop-firms/copy-trading">dated product-level comparison</a>; a firm-wide yes or no can hide plan-specific restrictions.</p>

@@ -8,10 +8,10 @@ const firmSlug = (name: string) =>
   name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 /**
- * Prominent "start here / editor's pick" spotlight for our headline affiliate.
- * Promotes via prominence — featured placement, the discount, a strong CTA —
- * while the score and the score-leaderboard below stay honest. The pitch and
- * bullets are passed in (sourced facts), so the component never invents claims.
+ * Prominent, explicitly disclosed spotlight for our headline commercial partner.
+ * Promotes via prominence and a strong CTA while the score and the
+ * score-leaderboard below stay independent. The pitch and
+ * bullets are passed in as sourced facts, so the component never invents claims.
  */
 export default function FeaturedFirmSpotlight({
   firm,

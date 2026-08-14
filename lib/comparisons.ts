@@ -121,28 +121,32 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
 
   'ftmo-vs-fundednext': {
     matchupSlug: 'ftmo-vs-fundednext',
-    h1: 'FTMO vs FundedNext (2026): Which Prop Firm Should You Pick?',
+    reviewedAt: '2026-08-14',
+    challengeReviewedAt: '2026-08-14',
+    h1: 'FTMO vs FundedNext (2026): 2 Products vs 4 Paths',
     metaDescription:
-      'FTMO vs FundedNext compared on profit split, payout speed, platforms, and rules. Our 2026 verdict on which prop firm wins for which trader profile.',
+      'FTMO vs FundedNext using current 2026 fees, base splits, drawdowns, refund timing, payout gates, platforms and 6 captured challenge products.',
     tlDr:
-      'FTMO is the choice when payout reliability and a decade-long track record matter more than headline percentages — its 90% split is paid bi-weekly with a payout history that has survived multiple industry shakeouts. FundedNext wins on the numbers: a 95% split, on-demand payouts, and a $4M scaling ceiling that doubles FTMO’s. Pick FundedNext if you want flexibility and faster cash; pick FTMO if you want the lowest probability of a payout dispute.',
+      'FTMO offers 2 evaluation products: a refundable 80% 2-Step with a 10% static maximum loss, and a non-refundable 90% 1-Step with a 10% end-of-day trailing line and 50% Best Day rule. FundedNext offers 3 evaluations at an 80% base split plus a 70% Stellar Instant path; its advertised 95% is a paid add-on, not the starting rate. Pick FTMO for the verified 90% base option, euro pricing and a 2015 operating history. Pick FundedNext for 4 product paths, a static 1-Step, or its 5-day first-payout gate on Stellar 1-Step.',
     verdictByCategory: [
-      { category: 'Profit Split', winner: 'b', reason: 'FundedNext’s 95% standard split beats FTMO’s 90% ceiling outright, and is reachable without a scaling milestone on the right plan.' },
-      { category: 'Payout Speed', winner: 'b', reason: 'FundedNext supports on-demand payouts versus FTMO’s bi-weekly cycle, which matters if you trade size and want capital recycled fast.' },
-      { category: 'Payout Reliability', winner: 'a', reason: 'FTMO has paid traders consistently since 2015 with no major rule-change controversies; FundedNext is solid but has a shorter track record.' },
-      { category: 'Platform Coverage', winner: 'a', reason: 'FTMO supports MT4, MT5, cTrader and DXTrade; FundedNext is limited to MT4 and MT5, which boxes out cTrader-native traders.' },
-      { category: 'Tradable Assets', winner: 'a', reason: 'FTMO offers Forex, Crypto, Indices, Commodities and Stocks; FundedNext drops Stocks from the list.' },
-      { category: 'Max Allocation', winner: 'b', reason: 'FundedNext scales to $4M in total allocation versus FTMO’s $2M ceiling, giving more headroom for size traders.' },
-      { category: 'Rule Flexibility', winner: 'tie', reason: 'Both firms allow EAs, news trading, overnight holds and weekend positions on static drawdown — a genuine wash on the day-to-day rule surface.' },
+      { category: 'Highest Verified Base Split', winner: 'a', reason: 'FTMO 1-Step starts at 90%. FundedNext starts its 3 evaluations at 80% and Stellar Instant at 70%; 95% is sold as an add-on.' },
+      { category: 'Product Choice', winner: 'b', reason: 'FundedNext has 4 captured paths—2-Step, 1-Step, Lite and phase-0 Instant—against FTMO’s 2 evaluation products.' },
+      { category: 'Fastest First-Payout Gate', winner: 'b', reason: 'FundedNext Stellar 1-Step records 5 days before first eligibility. Both FTMO products record 14 days; FundedNext’s other paths use different gates.' },
+      { category: 'Static 1-Step Option', winner: 'b', reason: 'FundedNext Stellar 1-Step uses a 6% static maximum loss. FTMO 1-Step uses a 10% end-of-day trailing line plus a 50% Best Day rule.' },
+      { category: 'Platform Coverage', winner: 'tie', reason: 'Both publish MT4, MT5 and cTrader. FTMO additionally lists DXTrade, while FundedNext lists Match-Trader.' },
+      { category: 'Operating History', winner: 'a', reason: 'FTMO was founded in 2015; FundedNext was founded in 2022. This is an age comparison, not a payout guarantee.' },
+      { category: 'Aggregate Allocation Field', winner: 'a', reason: 'The current firm records list $2,000,000 for FTMO and $300,000 for FundedNext; scaling milestones still require separate verification.' },
     ],
     whenToPickA:
-      'Pick FTMO if you trade cTrader or DXTrade, want exposure to individual stocks alongside Forex, or simply care more about a multi-year payout track record than a 5-point split difference. UK and EU traders looking for the lowest-friction safe default still default to FTMO for a reason — the firm has weathered multiple industry cleanups without disrupting funded traders.',
+      'Pick FTMO if the exact product trade-off fits: 2-Step gives a refundable €540 $100K route at an 80% base split, 5% daily loss and 10% static maximum loss; 1-Step costs €499 at $100K, starts at 90%, and exchanges the refund for a 3% daily cap, end-of-day trailing loss and 50% Best Day rule. FTMO also fits a trader who needs DXTrade or individual-stock CFDs. Verify the storefront for your country because the captured euro terms do not cover FTMO’s separate US routing.',
     whenToPickB:
-      'Pick FundedNext if you want a higher headline split, on-demand withdrawals, and a path to a $4M allocation. Its Stellar 1-step model is also more forgiving on profit targets than the FTMO two-step Challenge, so it’s the better pick for traders who’ve washed out of an FTMO verification phase. The trade-off is a shorter track record and a narrower platform list.',
+      'Pick FundedNext if product choice matters more than a universal 90% base split. At $100K, Lite lists $399.99 with an 8% static maximum loss, Stellar 2-Step lists $549.99 with 10% static loss, and Stellar 1-Step lists $569.99 with 6% static loss and a 5-day first-payout gate. All 3 evaluations start at 80%; the 95% share is a paid option. Model the funded-stage 40% news-profit credit and the third-reward refund on new 1-Step and Lite purchases before checkout.',
     faqs: [
-      { q: 'Is FundedNext cheaper than FTMO?', a: 'At equivalent account sizes, FundedNext’s challenges generally undercut FTMO by 10–20%, and the Stellar Lite model is cheaper still. The fee is refunded with your first payout on both firms.' },
-      { q: 'Can US traders use FTMO or FundedNext?', a: 'Neither firm accepts US-resident clients due to CFD regulations. US traders should look at futures-only firms like Topstep or My Funded Futures, or US-facing CFD firms (verify residency rules before purchasing).' },
-      { q: 'Which firm pays out faster after a winning trade?', a: 'FundedNext supports on-demand payouts after the initial waiting period, processed in 1–3 business days. FTMO runs a bi-weekly cycle but processes within 1–2 business days once requested. In practice, FundedNext gets cash to a winning trader 7–10 days sooner on average.' },
+      { q: 'Is FundedNext cheaper than FTMO at $100K?', a: 'The currencies differ, so a percentage comparison needs a live FX rate. Captured list fees are €540 for FTMO 2-Step and €499 for FTMO 1-Step, versus $549.99 for FundedNext Stellar 2-Step, $569.99 for Stellar 1-Step and $399.99 for Stellar Lite.' },
+      { q: 'Which has the higher starting profit split?', a: 'FTMO 1-Step starts at 90%. FTMO 2-Step and all 3 FundedNext evaluations start at 80%, while FundedNext Stellar Instant starts at 70%. FundedNext’s 95% figure is a paid add-on, not the base split.' },
+      { q: 'Which has the faster captured first-payout gate?', a: 'FundedNext Stellar 1-Step records 5 days and weekly later payouts. FTMO 1-Step and 2-Step both record 14 days with on-demand requests after eligibility. FundedNext Stellar 2-Step and Lite record 21 days and bi-weekly payouts.' },
+      { q: 'When are the fees refunded?', a: 'FTMO 2-Step and FundedNext Stellar 2-Step attach the registration-fee refund to the first approved reward. FTMO 1-Step and FundedNext Stellar Instant are non-refundable; new FundedNext 1-Step and Lite purchases wait until the third approved reward.' },
+      { q: 'Does the FundedNext partnership change this verdict?', a: 'No. FundedNext outbound links are disclosed affiliate links; FTMO is not configured as a partner. The category calls use the same captured product fields, and the overlay automatically disappears when either firm or challenge capture becomes newer than this review.' },
     ],
   },
 
@@ -264,27 +268,32 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
 
   'fundednext-vs-fundingpips': {
     matchupSlug: 'fundednext-vs-fundingpips',
-    h1: 'FundedNext vs FundingPips (2026): Split-and-Speed vs the 100% Ceiling',
+    reviewedAt: '2026-08-14',
+    challengeReviewedAt: '2026-08-14',
+    h1: 'FundedNext vs FundingPips (2026): 4 Paths vs 5 Models',
     metaDescription:
-      'FundedNext vs FundingPips compared on profit split, payout speed, platforms, and rules. Two of the strongest 2022 CFD firms — here’s which wins for your strategy.',
+      'FundedNext vs FundingPips using 2026 prices, 9 captured products, base or selectable splits, payout gates, drawdowns, platforms and refund timing.',
     tlDr:
-      'These are two of the best CFD firms launched in 2022, and the split is close to a coin-flip. FundingPips dangles a 100% scaling ceiling and adds cTrader; FundedNext answers with a 95% standard split, on-demand payouts, a $4M allocation, and zero minimum trading days. The deciding factors are speed and the small print: FundedNext pays faster but taxes news-window profit 40%, while FundingPips makes you trade at least 5 days before a payout. Pick FundedNext for fast cash and a big ceiling; pick FundingPips for the top split and cTrader.',
+      'FundedNext’s 4 paths use an 80% base split on 3 evaluations and 70% on Instant; its 95% share is a paid add-on. FundingPips has 5 models: fixed captured splits of 85% on 1 Step Flex, 80% on 2 Step Pro and 95% on Zero, plus buyer-selected split-and-payout structures on 2 Step Flex and Standard. At $100K, FundedNext Lite lists $399.99 against FundingPips 2 Step Pro at $422, while FundingPips offers the wider 12% static cap on its Flex products. Choose the exact product, not one firm-wide split or payout label.',
     verdictByCategory: [
-      { category: 'Profit Split', winner: 'b', reason: 'FundingPips scales to 100% versus FundedNext’s 95% standard split — the highest ceiling in this matchup, once you clear the scaling milestones.' },
-      { category: 'Payout Speed', winner: 'a', reason: 'FundedNext supports on-demand payouts; FundingPips runs a bi-weekly cycle. If you want capital recycled fast, FundedNext wins clearly.' },
-      { category: 'Max Allocation', winner: 'a', reason: 'FundedNext scales to $4M against FundingPips’ $2M ceiling — double the headroom for traders who stack accounts.' },
-      { category: 'Minimum Trading Days', winner: 'a', reason: 'FundedNext requires zero minimum trading days; FundingPips imposes 5 before a payout, which constrains fast scalpers.' },
-      { category: 'Platform Coverage', winner: 'b', reason: 'FundingPips runs MT5, cTrader and DXTrade; FundedNext is MT4 and MT5 only. cTrader-native traders should lean FundingPips.' },
-      { category: 'News-Window Rule', winner: 'b', reason: 'FundingPips allows news trading cleanly, while FundedNext retains 40% of any profit made inside a Tier-1 news window even on a 95% account.' },
+      { category: 'Highest Captured Split Option', winner: 'b', reason: 'FundingPips Standard publishes a 100% monthly choice and Zero records 95%. FundedNext evaluations start at 80%; 95% is a paid add-on.' },
+      { category: 'Cheapest $100K List Fee', winner: 'a', reason: 'FundedNext Stellar Lite lists $399.99. FundingPips 2 Step Pro is its cheapest verified $100K route at $422; the products carry different targets and loss caps.' },
+      { category: 'Shortest Numeric First-Payout Gate', winner: 'a', reason: 'FundedNext Stellar 1-Step records 5 days. FundingPips 2 Step Pro records 7 days; its other fixed cycles start at 14 days.' },
+      { category: 'Widest Static Maximum Loss', winner: 'b', reason: 'FundingPips 1 Step Flex and 2 Step Flex record 12% static caps. FundedNext’s widest captured static cap is 10% on Stellar 2-Step.' },
+      { category: 'Product Choice', winner: 'b', reason: 'FundingPips has 5 captured models against FundedNext’s 4 paths, including selectable payout structures that cannot be flattened into one firm-wide rate.' },
+      { category: 'Platform Coverage', winner: 'a', reason: 'Both list MT5, cTrader and Match-Trader; FundedNext additionally lists MT4.' },
+      { category: 'Refund Coverage', winner: 'a', reason: 'FundedNext’s 3 evaluation fees are refundable at the first or third approved reward. FundingPips Standard waits for the fourth reward, 3 products are non-refundable, and 1 Step Flex remains unresolved.' },
     ],
     whenToPickA:
-      'Pick FundedNext if you want on-demand payouts, a path to a $4M allocation, and no minimum-trading-day requirement — the combination that suits an active trader who wants cash out fast. The 95% split is excellent and reachable. The one thing to model first: if your edge involves trading the NFP/CPI/FOMC window, the 40% news-window retention quietly erases the split advantage during those events.',
+      'Pick FundedNext if a lower $100K list fee, MT4, or an earlier numeric payout gate matters. Stellar Lite is $399.99 at $100K with an 8% static cap; Stellar 1-Step is $569.99 with a 6% static cap, 2 minimum evaluation days and first payout eligibility after 5 days. All evaluations start at 80%, and new 1-Step or Lite fees wait until the third approved reward. Avoid treating the paid 95% add-on or funded-stage 40% news-profit credit as a default term.',
     whenToPickB:
-      'Pick FundingPips if you want the highest possible take (100% under the scaling plan), trade on cTrader, or trade through news without a retention penalty. You’ll accept a bi-weekly payout cycle and a 5-day minimum trading requirement in exchange. It’s the stronger pick for a patient, news-active trader chasing the top split.',
+      'Pick FundingPips if the chosen split-and-payout structure fits the strategy. 2 Step Pro lists $422 at $100K with 6% and 6% targets, a 6% static cap, 1 minimum day, an 80% split and a 7-day weekly reward cycle. Standard instead offers 60% weekly, 80% bi-weekly, 90% on demand or 100% monthly, each with its own gate. The 12% Flex caps provide more starting room, but their split choices, profitable-day conditions and refund treatment must be read separately.',
     faqs: [
-      { q: 'Both are your affiliate partners — is this verdict biased?', a: 'No. We rank on the same editorial criteria we’d use for any firm, and the call goes whichever way the data points — here FundingPips genuinely wins the split and platforms while FundedNext wins speed and allocation. Partnerships affect prominence, never the verdict.' },
-      { q: 'Which is cheaper to start?', a: 'Entry fees are close at equivalent tiers, and both refund the challenge fee with your first payout. FundingPips often edges slightly cheaper at the smallest sizes; confirm the live price (and any active discount) before buying.' },
-      { q: 'Can I trade news on both?', a: 'Both allow news trading, but the economics differ: FundingPips treats news-window profit normally, whereas FundedNext retains 40% of profit generated inside a Tier-1 release window. For a news-driven strategy, that gap matters more than the headline split.' },
+      { q: 'Which is cheaper at the $100K tier?', a: 'FundedNext Stellar Lite is the lowest captured list fee at $399.99. FundingPips 2 Step Pro is $422, Zero is $444, Standard is $544, 2 Step Flex is $555 and 1 Step Flex is $566. Compare targets, split and drawdown before using fee alone.' },
+      { q: 'Which has the higher profit split?', a: 'It depends on the product. FundedNext evaluations start at 80% and Instant at 70%. FundingPips records fixed splits of 85% on 1 Step Flex, 80% on 2 Step Pro and 95% on Zero; Flex and Standard use selectable structures, including Standard’s 100% monthly choice.' },
+      { q: 'Which gets to a first payout sooner?', a: 'The shortest numeric capture is FundedNext Stellar 1-Step at 5 days, followed by FundingPips 2 Step Pro at 7 days. FundedNext 2-Step and Lite record 21 days; FundingPips Flex and Zero products record 14 days.' },
+      { q: 'Do both refund the challenge fee?', a: 'No. FundedNext 2-Step refunds with the first approved reward, while new 1-Step and Lite purchases wait until the third; Instant is non-refundable. FundingPips Standard waits until the fourth reward, 2 Step Flex, Pro and Zero are non-refundable, and 1 Step Flex remains unresolved.' },
+      { q: 'Both are affiliate partners—does that decide the winner?', a: 'No. Both outbound routes are disclosed affiliate links. The verdict names product-level trade-offs instead of one overall winner, and it automatically disappears when either firm or product capture becomes newer than this review.' },
     ],
   },
 
@@ -345,27 +354,32 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
 
   'fundednext-vs-fxify': {
     matchupSlug: 'fundednext-vs-fxify',
-    h1: 'FundedNext vs FXIFY (2026): Near-Twins, Split by the Small Print',
+    reviewedAt: '2026-08-14',
+    challengeReviewedAt: '2026-08-14',
+    h1: 'FundedNext vs FXIFY (2026): 4 Paths vs 8 Products',
     metaDescription:
-      'FundedNext vs FXIFY: both 2022 firms, both on-demand payouts to a $4M ceiling on static drawdown. We compare the split, news rules, and country access that separate them.',
+      'FundedNext vs FXIFY using 2026 prices, 12 captured products, verified base splits, payout gates, drawdowns, platforms, automation and refund rules.',
     tlDr:
-      'On paper these two are near-twins: both launched in 2022, both pay on-demand to a $4M ceiling, both run static drawdown on MT4/MT5 with no minimum trading days. The separators are narrow but real. FundedNext carries a higher 95% split and no country restrictions; FXIFY counters with a cleaner news rule and a more customizable product lineup. For most traders the higher split wins — but a news trader should weigh FXIFY harder.',
+      'FundedNext has 4 paths with every base split quantified: 80% on 3 evaluations and 70% on Stellar Instant. FXIFY has 8 products; its 5 phase products record an 80% base split, while both Instant variants and Lightning publish only “up to 90%” and remain null in structured data. At $100K, FXIFY Three Phase and Lightning list $399 versus FundedNext Lite at $399.99, but Lightning lacks a verified base split. Pick FundedNext for a fully quantified 4-product set and static evaluation drawdowns; pick FXIFY for broader product, platform and phase-product rule choice.',
     verdictByCategory: [
-      { category: 'Profit Split', winner: 'a', reason: 'FundedNext’s 95% standard split beats FXIFY’s 90%. On identical-feeling accounts, that 5 points is the clearest edge.' },
-      { category: 'Payout Speed', winner: 'tie', reason: 'Both support on-demand payouts after the initial waiting period — a genuine tie on speed.' },
-      { category: 'Max Allocation', winner: 'tie', reason: 'Both scale to a $4M total allocation ceiling. No advantage either way for size traders.' },
-      { category: 'Country Access', winner: 'a', reason: 'FundedNext carries no published country restrictions; FXIFY blocks the US, Russia, Iran and North Korea.' },
-      { category: 'News-Window Rule', winner: 'b', reason: 'FXIFY treats news-window profit normally, while FundedNext retains 40% of profit made inside a Tier-1 release window. Advantage FXIFY for news traders.' },
-      { category: 'Product Range', winner: 'b', reason: 'FXIFY ships a wider, more customizable lineup (One-Phase, Two-Phase, Lightning, Instant) versus FundedNext’s Stellar family — more ways to tune the challenge to your style.' },
+      { category: 'Base-Split Completeness', winner: 'a', reason: 'All 4 FundedNext products have captured base splits. FXIFY leaves 3 of 8 products null because “up to 90%” does not establish a starting percentage.' },
+      { category: 'Product Choice', winner: 'b', reason: 'FXIFY has 8 captured products across 0-, 1-, 2- and 3-phase paths. FundedNext has 4.' },
+      { category: 'Cheapest $100K List Fee', winner: 'b', reason: 'FXIFY Three Phase and Lightning list $399, compared with FundedNext Stellar Lite at $399.99. Lightning’s base split remains unverified.' },
+      { category: 'Shortest Numeric First-Payout Gate', winner: 'a', reason: 'FundedNext Stellar 1-Step records 5 days. FXIFY Lightning records 7 days; several FXIFY products use different or unresolved first-payout fields.' },
+      { category: 'Drawdown-Field Completeness', winner: 'a', reason: 'FundedNext captures drawdown type and cap for all 4 paths. FXIFY has static, trailing and unresolved drawdown fields across its 8 products.' },
+      { category: 'Phase-Product News and EA Permission', winner: 'b', reason: 'FXIFY’s 5 phase products record news trading and EAs as allowed. FundedNext funded accounts reduce eligible Tier-1-window profit to 40%, and EA access is a paid, platform-limited option.' },
+      { category: 'Platform Choice', winner: 'tie', reason: 'Both list MT4 and MT5. FundedNext adds cTrader and Match-Trader; FXIFY adds DXTrade and TradingView.' },
     ],
     whenToPickA:
-      'Pick FundedNext if you want the higher 95% split, trade from a region FXIFY restricts, or just want the simpler decision — it’s the same on-demand, $4M, static-drawdown structure with a better headline take. The caveat is the 40% news-window retention; if you don’t trade releases, it never bites.',
+      'Pick FundedNext if you want every starting split and drawdown field quantified before checkout. Stellar Lite is $399.99 at $100K with an 80% split and 8% static cap; Stellar 1-Step is $569.99 with an 80% split, 6% static cap and 5-day first-payout gate. The costs are the funded-stage 40% news-profit credit, paid EA access and delayed third-reward fee refunds on new 1-Step and Lite purchases. Do not price the 95% add-on as the base product.',
     whenToPickB:
-      'Pick FXIFY if your edge involves news (no retention penalty), you want to fine-tune the challenge across its broader product range, and you’re outside its restricted countries. You give up 5 points of split for cleaner news economics and more product flexibility.',
+      'Pick FXIFY if 8-product choice, DXTrade or TradingView, or phase-product news and EA permission outweighs data gaps on 3 base splits. At $100K, Three Phase costs $399 with 5% targets in 3 stages, a 5% static cap and 80% split; Lightning also costs $399 but has a 5% target, 4% trailing cap, hard 5-day maximum and no verified base split. Both Instant products likewise require a split check before exact fee-recovery math.',
     faqs: [
-      { q: 'Are FundedNext and FXIFY really that similar?', a: 'On the core structure, yes — both are 2022 firms offering on-demand payouts, a $4M ceiling, static drawdown, MT4/MT5, and zero minimum trading days. The meaningful differences are the split (95% vs 90%), the news rule, country access, and product range.' },
-      { q: 'Which is better for a news trader?', a: 'FXIFY. FundedNext retains 40% of any profit earned inside a Tier-1 news window, which erodes its split advantage exactly when a news trader makes money. FXIFY treats that profit normally.' },
-      { q: 'Can US traders use either?', a: 'FXIFY explicitly restricts US residents. FundedNext does not accept US clients either. US traders should look at futures firms like Topstep or My Funded Futures.' },
+      { q: 'Which is cheaper at $100K?', a: 'FXIFY Three Phase and Lightning are $399; FundedNext Stellar Lite is $399.99. The 99-cent gap is less important than the rules: Three Phase has 3 stages and an 80% split, Lightning trails at 4% with no verified base split, and Lite uses 2 stages with an 8% static cap.' },
+      { q: 'Which has the higher base profit split?', a: 'FundedNext evaluations and FXIFY’s 5 phase products all record 80%. FundedNext Instant records 70%. FXIFY’s 2 Instant variants and Lightning publish only “up to 90%,” so an exact starting split is not verified.' },
+      { q: 'Which has the faster first-payout gate?', a: 'FundedNext Stellar 1-Step has the shortest numeric capture at 5 days. FXIFY Lightning records 7 days, Two Phase Pro and Instant Lite 10 days, and Instant Standard 14 days; other phase-product first-payout fields are blank or use later monthly cycles.' },
+      { q: 'Which is better for EAs or news trading?', a: 'FXIFY’s 5 phase products record both as allowed. FundedNext requires paid EA permission on MT4 or MT5, prohibits it on cTrader and Match-Trader, and credits only 40% of eligible funded-stage profit inside its Tier-1 news window.' },
+      { q: 'Is FundedNext an affiliate while FXIFY is not?', a: 'Yes. FundedNext outbound links are disclosed affiliate links; FXIFY uses its public first-party destination. Commercial status contributes 0 points, and this overlay fails closed when either product capture becomes newer than its review date.' },
     ],
   },
 

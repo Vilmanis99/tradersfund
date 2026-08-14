@@ -1,10 +1,12 @@
 ---
 title: "FundedNext Review 2026: 22 Prices, 4 Rule Sets, and the India Checkout Test"
+seoTitle: "FundedNext Review 2026: Fees, Rules & Payouts"
 slug: "fundednext-review"
 date: "2024-09-02 15:16:05"
-modified: "2026-07-27"
+modified: "2026-08-14"
 author: "Edris Derakhshi"
 excerpt: "FundedNext starts new accounts at an 80% split, not 95%. Compare all 22 global prices, payout cycles, news rules, and India payment checks."
+seoDescription: "FundedNext review with 22 current prices, an 80% base split, and Stellar Lite, 1-Step, 2-Step and Instant rules, payouts, platforms and India access."
 categories: ["Prop Firms"]
 tags: ["FundedNext", "Prop Firm"]
 type: "post"
@@ -13,6 +15,8 @@ type: "post"
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 
 <p>Choose Stellar 2-Step for a static 10% loss floor; choose Instant only if 6% trailing risk is acceptable.</p>
+
+<p>If FundedNext’s 40% funded news-window credit or 6% Instant trailing floor conflicts with the strategy, compare the 2 current paths in the <a href="/blog/ftmo-review">FTMO review</a>; the products use different prices, drawdown rules, and payout terms.</p>
 
 <h2 class="wp-block-heading"><strong>Quick facts</strong></h2>
 

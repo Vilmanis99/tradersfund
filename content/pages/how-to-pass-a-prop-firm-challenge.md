@@ -1,82 +1,135 @@
 ---
-title: "How to Pass a Prop Firm Challenge (2026): A Risk-First Playbook"
-seoTitle: "How to Pass a Prop Firm Challenge: Risk-First Plan"
+title: "How to Pass a Prop Firm Challenge: A Risk Plan (2026)"
+seoTitle: "How to Pass a Prop Firm Challenge: Risk Plan (2026)"
 slug: "how-to-pass-a-prop-firm-challenge"
 date: "2026-06-15 12:00:00"
-description: "Most traders fail the challenge by breaching drawdown, not by missing the target. Here's the risk-first plan that actually passes — with the real numbers and the rules that quietly end accounts."
-seoDescription: "A risk-first prop-firm challenge plan covering position size, daily loss, maximum drawdown, profit targets, and product selection."
+modified: "2026-08-14 12:00:00"
+description: "Build a prop-firm challenge plan from the product's exact target, drawdown, trading-day, and consistency rules before placing the first trade."
+seoDescription: "Build a prop-firm challenge risk plan from exact loss limits, targets, trading days, consistency rules, and position-size math."
 type: "page"
 ---
 
-<p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;">Most traders think passing a challenge is about hitting the profit target. It isn't. The target is the easy half. Almost every failed evaluation ends the same way — a breached daily or maximum drawdown, usually on a day the trader felt confident. Pass the challenge by treating it as a risk problem first and a profit problem second.</p>
+<p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;">No position size or daily target can guarantee that you pass a prop-firm challenge. A useful plan does something narrower: it translates one product’s loss limits into a smaller personal stop, sizes each trade from that stop, and lists every rule that can end or delay the account. This worksheet uses product data captured on 2026-07-27 and 2026-08-10.</p>
 
 <div class="key-takeaways">
-  <div class="title">The plan in five lines</div>
-  <ul>
-    <li>Size every position off the <strong>daily loss line</strong>, not your account balance.</li>
-    <li>Risk <strong>0.5–1% per trade</strong> so a losing streak can't breach the daily cap.</li>
-    <li>Reach the target at <strong>~1%/day</strong> — an 8% target is eight clean days, not one heroic one.</li>
-    <li>Know exactly where your <strong>maximum drawdown floor</strong> sits, especially on trailing-DD products.</li>
-    <li>Pick a forgiving challenge — <strong>static drawdown, no time limit</strong> — before you pay.</li>
-  </ul>
+  <div class="title">The risk-first plan</div>
+  <ol>
+    <li><strong>Name the exact product</strong> — a firm can sell static, trailing, 1-step, 2-step, and phase-0 paths with different rules.</li>
+    <li><strong>Record the firm’s loss lines</strong> — daily, maximum, static, trailing, or end-of-day trailing.</li>
+    <li><strong>Set a smaller personal session stop</strong> — the firm’s breach threshold is an emergency boundary, not a suggested risk budget.</li>
+    <li><strong>Size from the stop</strong> — planned loss divided by the instrument’s loss per unit at the stop distance.</li>
+    <li><strong>Check non-price gates</strong> — trading days, consistency, news, holding, stop-loss, payout, and refund rules.</li>
+  </ol>
 </div>
 
-<h2>Passing is a risk problem, not a profit problem</h2>
+<h2>1. Start with the exact product, not the account headline</h2>
 
-<p>A standard two-step evaluation asks for an 8% profit target in Phase 1 and 5% in Phase 2. Those numbers sound demanding until you compare them to the thing that actually ends accounts: a 5% daily drawdown and a 10% maximum drawdown. You have months to make 8% — there's no time limit on most modern challenges (FTMO dropped its 30-day cap in 2023, FundedNext followed). You have one bad afternoon to lose 5%.</p>
+<p>A “$100K challenge” is a notional rule base, not a complete risk specification. Before planning a trade, copy the target, daily loss, maximum loss, drawdown type, minimum days, and maximum days from the named product. The <a href="/how-prop-firm-challenges-work">five-stage challenge guide</a> explains where each rule applies; this page turns those rules into an execution plan.</p>
 
-<p>So the entire game is staying inside the drawdown lines long enough for a normal edge to compound to the target. Traders who blow challenges almost never blow them by failing to make money. They blow them by making money, getting confident, sizing up, and giving it all back through the daily cap in a single session.</p>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Current product rules used in the risk-plan examples</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product / tier</th><th style="padding: 8px 12px; text-align: left;">Target path</th><th style="padding: 8px 12px; text-align: left;">Loss controls</th><th style="padding: 8px 12px; text-align: left;">Trading days</th><th style="padding: 8px 12px; text-align: left;">Captured</th></tr></thead>
+  <tbody>
+    <tr data-pass-plan="ftmo:ftmo-challenge-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FTMO 2-Step $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% daily / 10% static max</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4 minimum; no maximum captured</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-pass-plan="fundednext:stellar-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext Stellar 2-Step $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% daily / 10% static max</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5 minimum; no maximum captured</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-pass-plan="fxify:lightning-challenge"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FXIFY Lightning $10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3% daily / 4% trailing max</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3 minimum / 5 maximum</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-10</td></tr>
+    <tr data-pass-plan="fundingpips:2-step-pro"><td style="padding: 8px 12px;">FundingPips 2 Step Pro $100K</td><td style="padding: 8px 12px;">6% then 6%</td><td style="padding: 8px 12px;">3% daily / 6% static max</td><td style="padding: 8px 12px;">1 minimum; no maximum captured</td><td style="padding: 8px 12px;">2026-08-10</td></tr>
+  </tbody>
+</table>
 
-<h2>Size every trade off the daily loss line</h2>
+<p>The table shows why no universal “standard challenge” exists. FTMO 2-Step starts at 10%, FundedNext Stellar 2-Step starts at 8%, FundingPips 2 Step Pro repeats 6%, and FXIFY Lightning combines a 5% target with a hard 5-day maximum. Use the <a href="/prop-firm-challenges">current challenge comparison</a> to filter the full product set before choosing a plan.</p>
 
-<p>On a $100,000 account, the daily drawdown is typically 5% — a <strong>$5,000</strong> intraday loss line, anchored to your equity at the server-day open (usually UTC midnight). Here's the rule almost no one internalises: a profitable morning <em>does not</em> extend your afternoon allowance. The cap is fixed at open, regardless of how high your floating profit climbed.</p>
+<h2>2. Turn the firm limit into a personal session stop</h2>
 
-<p>Work it backwards. If your line is $5,000 and you risk <strong>1% ($1,000) per trade</strong>, you can take five losers in a row before the day ends you. Risk 0.5% ($500) and that becomes ten. Now ask: what's the longest losing streak your strategy has ever printed? If it's six and you're risking 1%, you are one normal streak away from a breach. That single calculation — streak length versus per-trade risk versus the daily line — is the difference between passing and resetting.</p>
+<p>The distance to a firm’s breach line is not the amount to risk. Open positions, closed losses, commissions, swaps, slippage, and the firm’s balance-versus-equity formula can all consume room. Record the official reset time and calculation method from the product rule page, then place a personal stop comfortably inside that boundary.</p>
 
-<h2>Your maximum drawdown is your real account size</h2>
+<p>The following $100K FundedNext example is intentionally hypothetical. The 5% daily threshold is captured product data; the 20% safety fraction and 2-attempt limit are planning inputs, not FundedNext rules or a promise of safety.</p>
 
-<p>The 10% maximum drawdown is the hard floor. On a $100K account that's a $90,000 line — and how it behaves depends entirely on the drawdown type, which is the single most important thing to check before you buy.</p>
+<table data-pass-risk-example="fundednext:stellar-2-step" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Illustrative personal risk budget inside the FundedNext daily threshold</caption>
+  <tbody>
+    <tr><th style="padding: 8px 12px; text-align: left;">Published daily threshold</th><td style="padding: 8px 12px;">5% of $100K = $5,000</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left;">Illustrative safety fraction</th><td style="padding: 8px 12px;">20% of the firm threshold</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left;">Personal session stop</th><td style="padding: 8px 12px;">$5,000 × 20% = $1,000</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left;">Maximum new attempts</th><td style="padding: 8px 12px;">2</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left;">Planned loss per attempt</th><td style="padding: 8px 12px;">$1,000 ÷ 2 = $500 before costs</td></tr>
+  </tbody>
+</table>
+
+<p>At a $1,000 personal stop, the second $500 planned loss consumes the whole personal budget; it is not permission for a third attempt. If multiple positions can lose together, their combined stop losses must fit inside the same $500 attempt budget. Lower the size again when gaps or slippage can exceed the entered stop.</p>
+
+<h2>3. Calculate position size from the stop distance</h2>
+
+<p>Use one formula for each instrument: <strong>position units = planned trade loss ÷ loss per unit at the stop</strong>. If the planned trade loss is $500 and one unit would lose $250 at the chosen stop, the arithmetic ceiling is 2 units. Round down to the platform’s valid size and include commission, spread, and slippage before submitting the order.</p>
+
+<p>The “loss per unit” input changes across forex lots, futures contracts, CFDs, and crypto. Do not transfer a lot-size calculator from one asset class into another. A fixed 0.5% or 1% rule is not automatically safe when positions are correlated, stops can gap, or the remaining drawdown room is smaller than the starting allowance.</p>
+
+<h2>4. Estimate the target from tested expectancy</h2>
+
+<p>A profit target is a destination, not a daily quota. FundedNext Stellar 2-Step requires $8,000 in Phase 1 and $5,000 in Phase 2 on the $100K tier. If a tested strategy averaged $400 per session after wins, losses, and trading costs, the Phase-1 estimate would be $8,000 ÷ $400 = 20 sessions. Variance can make the realised path shorter or longer, and Phase-1 profit does not satisfy the separate Phase-2 target.</p>
+
+<p>Do not invent a 1% daily target to force the calendar. Use a representative sample from the same instrument, session, stop method, and risk size. If the sample has negative or unknown expectancy, a paid challenge is an expensive place to discover that result.</p>
+
+<h2>5. Track the maximum-loss floor after every session</h2>
 
 <ul class="wp-block-list">
-  <li><strong>Static drawdown</strong> (FTMO, FundedNext Stellar 2-Step, FundingPips): the floor is fixed at $90,000 and never moves. As you profit, the gap above the floor widens. This is the forgiving variant, and for most traders it's worth a slightly lower headline split.</li>
-  <li><strong>Trailing drawdown</strong> (Topstep, My Funded Futures, FXIFY Lightning): the floor follows your equity high. Peak at $103,000 and your floor ratchets up to roughly $92,700. Give back a normal retrace and you've breached — while still up on the day. This is the rule that ends more funded accounts than any other.</li>
+  <li><strong>Static maximum loss:</strong> FundedNext Stellar 2-Step keeps a 10% fixed cap, so its $100K starting floor is $90,000. FundingPips 2 Step Pro is also static, but its 6% cap produces a different $94,000 starting floor.</li>
+  <li><strong>Trailing maximum loss:</strong> FXIFY Lightning publishes a 4% trailing cap. Calculate the line using FXIFY’s named high-water-mark formula rather than assuming that every trailing product moves at the same time.</li>
+  <li><strong>End-of-day trailing:</strong> Topstep’s Trading Combine updates from end-of-day balance and publishes tier-specific dollar amounts; the $100K Standard Path records a $3,000 maximum-loss amount, not one universal percentage.</li>
 </ul>
 
-<p>If you cannot say exactly where your floor sits after a $2,000 profitable day, do not trade a trailing-DD product with real money behind it. Browse <a href="/prop-firms/static-drawdown">firms with static drawdown</a> instead — the math is simply easier to survive.</p>
+<p>Write the current line into the plan before the next session. A static product offers a stable floor, while a trailing product can reduce give-back room after profit. Neither label tells you the daily cap, target, price, or payout rules; compare those fields separately in the <a href="/prop-firms/static-drawdown">static-drawdown directory</a>.</p>
 
-<h2>Hit the target slowly</h2>
+<p>Static, real-time trailing, and end-of-day trailing limits update differently. Use the <a href="/blog/balance-based-drawdown-vs-equity-based-drawdown">drawdown calculation guide</a> to separate the reference balance, observed equity, update time, and payout-reset behaviour before copying a floor into the session sheet.</p>
 
-<p>An 8% target at roughly +1% a day is eight clean trading days. There is no prize for getting there in two. Speed is where over-leverage creeps in: you take a 3% day, feel unstoppable, double your size, and hand it back. Set a daily profit goal of about 1%, and when you hit it, stop. The trader who makes 1% on twelve quiet days passes; the trader who makes 4% on Monday and gives back 6% on Tuesday does not.</p>
-
-<p>A worked example on a FundedNext Stellar 2-Step $100K ($549.99 fee, 95% split, static drawdown): Phase 1 is $8,000 of profit, Phase 2 is $5,000. At 1%/day with a 60% win rate risking 0.75% per trade, that's a few unremarkable weeks. The fee comes back with your first payout, and 95% of what you make after that is yours. Nothing about that plan requires a hot streak — it requires not breaching.</p>
-
-<h2>What actually fails traders</h2>
-
-<p>These are the rules the marketing copy buries — the ones that end accounts after the hard part looked done:</p>
+<h2>6. Put every account-ending rule on one checklist</h2>
 
 <ul class="wp-block-list">
-  <li><strong>Trailing-drawdown math after a winning run.</strong> Covered above, and worth repeating: more funded accounts die here than anywhere else.</li>
-  <li><strong>The daily cap anchored at server open.</strong> Your $5,000 line is measured from the balance at UTC midnight, not from your intraday high. Floating profit is not a buffer.</li>
-  <li><strong>News-window rules.</strong> Some firms void trades opened seconds around Tier-1 releases (NFP, CPI, FOMC); others tax the profit. FundedNext, for instance, retains 40% of any profit made inside a news window even on a 95% account. If your edge is news, read the rule before you pay — see <a href="/prop-firms/news-trading">firms that allow news trading</a>.</li>
-  <li><strong>Minimum trading days.</strong> FundingPips requires 5 trading days before payout. Pass the target in three and you still wait — fine, unless you assumed otherwise.</li>
-  <li><strong>Consistency rules.</strong> Some firms cap how much of your total profit can come from a single day. One outsized winner can delay or void a payout. Read our <a href="/blog/what-is-prop-firm-consistency-rule">guide to the consistency rule</a> before you swing for one big day.</li>
-  <li><strong>Revenge trading after the first loss.</strong> Not a firm rule — a human one. The reset fee is cheap; the tilt after a breach is expensive. Walk away on a red day at the daily goal in either direction.</li>
+  <li><strong>Trading-day gates:</strong> the 4 products in the table range from 1 minimum day on FundingPips 2 Step Pro to FXIFY Lightning’s 3-day minimum and 5-day maximum.</li>
+  <li><strong>Consistency:</strong> FXIFY Lightning records a 30% consistency rule. A large winning day can therefore change what remains necessary even when the target is close.</li>
+  <li><strong>Mandatory protection:</strong> FXIFY Lightning requires a stop loss on every trade; a profitable trade can still violate that named rule if it was opened without one.</li>
+  <li><strong>News windows:</strong> FundedNext credits only 40% of eligible funded-stage profit inside its Tier-1 window while 100% of losses remain. Check the <a href="/prop-firms/news-trading">current news-trading comparison</a> before building a release-day plan.</li>
+  <li><strong>Overnight and weekend holding:</strong> permission differs by product and stage. Match the account to the strategy using the <a href="/prop-firms/overnight-holding">overnight-holding directory</a>.</li>
+  <li><strong>Payout and refund:</strong> passing an evaluation does not itself create a payout or return the fee. First-payout days, minimum rewards, KYC, and refund timing remain separate gates.</li>
+  <li><strong>Account control:</strong> third-party trading, shared credentials, copied signals, and vendor EAs can carry separate restrictions. Check the <a href="/blog/are-prop-firm-passing-services-worth-it">passing-services risk guide</a> before giving another person or tool access.</li>
 </ul>
 
-<h2>I've blown one of these in a day — here's the lesson</h2>
+<p>A consistency percentage can describe evaluation, payout eligibility, or both, depending on the product. The <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> shows how to distinguish the calculation base before one large day changes the plan.</p>
 
-<p>The first time I moved from a small personal account to a funded $50K, I sized like the number was real money I had to make back fast. I lost the account before the first week was out — not because my strategy stopped working, but because I took position sizes my strategy never called for. The account size is a target to protect, not a stake to chase. Trade the challenge exactly like you traded the demo that earned you the confidence to buy it.</p>
+<h2>7. Use a before, during, and after-session control sheet</h2>
 
-<h2>Pick a forgiving challenge before you start</h2>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Prop-firm challenge session control sheet</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">When</th><th style="padding: 8px 12px; text-align: left;">Record</th><th style="padding: 8px 12px; text-align: left;">Stop condition</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Before</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Official daily and maximum-loss room, personal session stop, event windows, open positions</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Do not open if a rule or current line is unresolved</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>During</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Combined open and closed P&amp;L, estimated costs, attempt count, correlated exposure</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Stop at the personal limit, before the firm threshold</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>After</strong></td><td style="padding: 8px 12px;">Closing balance/equity, next daily reset, trailing high-water mark, days completed</td><td style="padding: 8px 12px;">Recalculate size if the remaining buffer changed</td></tr>
+  </tbody>
+</table>
 
-<p>Half of passing is choosing well. The structurally easiest evaluations to survive share three traits: <strong>static drawdown</strong>, <strong>no time limit</strong>, and a daily cap you can actually trade inside. A 90% split on a challenge you pass beats a 100% split on one you breach. If you're cost-sensitive, compare entry fees on the <a href="/cheapest-prop-firms">cheapest prop firms</a>; if you trade trends or hold positions for days, start with firms that allow <a href="/prop-firms/overnight-holding">overnight holding</a>.</p>
+<h2>8. Choose the rule set your strategy can actually follow</h2>
+
+<p>A static floor can simplify planning, but it does not automatically make a product cheaper or better. A no-maximum-day evaluation removes one source of time pressure, but minimum-day, news, consistency, holding, and payout gates still apply. Compare the <a href="/cheapest-prop-firms">entry prices</a>, then run the recovery math in the <a href="/true-cost-of-prop-firm-challenges">true-cost guide</a> instead of choosing by account headline or maximum advertised split.</p>
 
 <div style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
-  <strong style="color: #fff;">New here? Start with the product, not the promotion.</strong> Use the <a href="/prop-firm-challenges">live challenge comparison</a> to filter current entry cost, drawdown type, loss room, payout schedule, and trading rules. A smaller headline account with static drawdown can be easier to manage than a larger account whose trailing threshold moves against open profit.
+  <strong style="color: #fff;">Recheck the record before checkout.</strong> Challenge terms can move after this worksheet is published. Review the <a href="/prop-firm-challenge-changes">challenge-change ledger</a>, open the source-linked product row, and recalculate every dollar amount if the target, loss cap, drawdown type, or fee changed.
 </div>
 
-<h2>Where to go next</h2>
+<h2>Frequently asked questions</h2>
 
-<p>Run the break-even math before you buy — <a href="/true-cost-of-prop-firm-challenges">the true cost of a challenge</a> shows why the checkout fee alone is not enough. Then compare current product rows instead of relying on a permanent “top 3”: prices, payout eligibility, minimum-day rules, and drawdown mechanics can change inside a month.</p>
+<h3>How much should I risk per trade in a prop-firm challenge?</h3>
 
-<p>Use the <a href="/prop-firm-challenge-changes">challenge-change ledger</a> to check what moved, then do the boring thing that passes: size small, target slowly, and protect the loss line.</p>
+<p>There is no universal percentage. Start with a personal session stop inside the product’s firm threshold, divide it across the maximum number of simultaneous or sequential losses in the plan, and size the trade from its stop distance. Include correlated positions and trading costs in the same budget.</p>
+
+<h3>How quickly can I pass?</h3>
+
+<p>The answer depends on the target, tested expectancy, minimum days, and any maximum-day rule. FundedNext Stellar 2-Step has no captured maximum trading days, while FXIFY Lightning has a hard 5-day maximum. Neither product guarantees that a profitable strategy reaches its target in a fixed number of days.</p>
+
+<h3>Should I stop after a profitable session?</h3>
+
+<p>A firm rule may not require it, but the written plan should define when new risk stops for the session. A profit quota should not override the personal loss stop, a consistency calculation, a maximum-day limit, or the strategy’s tested entry conditions.</p>
+
+<h3>What happens if I breach a loss limit?</h3>
+
+<p>The account normally ends under the named breach rule. Do not assume a discounted reset or free retry: treat another attempt as a new cash cost until the product’s current checkout and rule page state otherwise.</p>

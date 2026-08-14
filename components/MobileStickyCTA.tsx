@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback, useRef, useSyncExternalStore } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Star, ArrowRight, Tag, Check } from 'lucide-react'
 
 /** Hydration flag has no external source to subscribe to — never notifies. */
@@ -17,7 +16,6 @@ export interface MobileStickyCTAProps {
   name: string
   logo: string
   score: number
-  reviewUrl: string
   affiliateUrl?: string
   affiliateSlug: string
   discountCode?: string
@@ -32,7 +30,7 @@ export interface MobileStickyCTAProps {
  * no h1 is found, but that shouldn't happen on review pages.
  */
 export default function MobileStickyCTA(props: MobileStickyCTAProps) {
-  const { name, logo, score, reviewUrl, affiliateUrl, affiliateSlug, discountCode, discountPct } = props
+  const { name, logo, score, affiliateUrl, affiliateSlug, discountCode, discountPct } = props
 
   const [visible, setVisible] = useState(false)
   const [copied, setCopied] = useState(false)
@@ -102,8 +100,8 @@ export default function MobileStickyCTA(props: MobileStickyCTAProps) {
   if (!mounted) return null
 
   const hasAffiliate = Boolean(affiliateUrl)
-  const ctaHref = hasAffiliate ? `/go/${affiliateSlug}?from=mobile-sticky` : reviewUrl
-  const ctaLabel = hasAffiliate ? 'View plans' : 'Read review'
+  const ctaHref = `/go/${affiliateSlug}?from=mobile-sticky`
+  const ctaLabel = hasAffiliate ? 'View plans' : 'Official site'
 
   return (
     <div
@@ -155,22 +153,15 @@ export default function MobileStickyCTA(props: MobileStickyCTAProps) {
           </div>
         </div>
 
-        {hasAffiliate ? (
-          <a
-            href={ctaHref}
-            target="_blank"
-            rel="sponsored nofollow noopener"
-            className="mobile-cta-bar-cta"
-          >
-            {ctaLabel}
-            <ArrowRight size={14} aria-hidden="true" />
-          </a>
-        ) : (
-          <Link href={ctaHref} className="mobile-cta-bar-cta">
-            {ctaLabel}
-            <ArrowRight size={14} aria-hidden="true" />
-          </Link>
-        )}
+        <a
+          href={ctaHref}
+          target="_blank"
+          rel={hasAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}
+          className="mobile-cta-bar-cta"
+        >
+          {ctaLabel}
+          <ArrowRight size={14} aria-hidden="true" />
+        </a>
       </div>
     </div>
   )

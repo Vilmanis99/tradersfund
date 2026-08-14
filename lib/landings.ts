@@ -39,6 +39,9 @@ export interface LandingFirm {
   sortKey: number
   /** A short stat displayed under the firm name on the landing card. */
   highlight: string
+  /** Optional landing-specific metric shown in place of the generic score. */
+  metricLabel?: string
+  metricValue?: string
   /**
    * Optional one-line editorial verdict ("who it's for / the catch"), shown
    * under the stat line. Lets a ranking read as opinionated, not a bare
@@ -51,7 +54,7 @@ export interface Landing {
   slug: string
   /** Visible in the hero + browser tab. */
   h1: string
-  /** <title> tag — keep under 60 chars. */
+  /** Page-title portion — keep under 54 chars so the root ` | TFH` template stays under 60. */
   metaTitle: string
   /** <meta description> — keep under 160 chars. */
   metaDescription: string
@@ -234,7 +237,7 @@ export const LANDINGS: Landing[] = [
   {
     slug: 'best-prop-firms-in-india',
     h1: 'Best Prop Firms for Indian Traders (2026)',
-    metaTitle: 'Best Prop Firms in India (2026): Fees, KYC & Payouts',
+    metaTitle: 'Best Prop Firms in India 2026: RBI Alert-List Checked',
     metaDescription:
       'Compare India-screened prop firms using dated country, KYC and payout evidence, product-level rules, and a bank-rate INR checkout estimator.',
     intro:
@@ -259,10 +262,13 @@ export const LANDINGS: Landing[] = [
           const challenges = indiaEligibleChallenges(slug, evidence)
           const methods = (firm.payoutMethods || [])
             .filter(method => /wire|crypto|skrill|rise/i.test(method))
+          const evidenceScore = indiaEvidenceScore(evidence)
           return {
             firm,
-            sortKey: indiaEvidenceScore(evidence) * 100 + firm.score,
+            sortKey: evidenceScore * 100 + firm.score,
             highlight: `${minimumPublishedEntry(challenges)} entry · ${methods.slice(0, 2).join(' / ')}`,
+            metricLabel: 'India evidence',
+            metricValue: `${evidenceScore}/12`,
             note: `${evidence.country.summary} ${evidence.payout.summary}`,
           }
         })

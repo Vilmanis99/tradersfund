@@ -190,7 +190,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter(p => !SKIP.has(p.slug))
     .map(page => ({
       url: `${BASE_URL}/${page.slug}`,
-      lastModified: new Date(page.date),
+      lastModified: new Date(page.modified || page.date),
       changeFrequency: 'monthly',
       priority: 0.6,
     }))

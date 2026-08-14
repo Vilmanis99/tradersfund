@@ -2,7 +2,7 @@
 title: "FTMO Review 2026: Euro-Priced, 80% on the 2-Step, 90% on the 1-Step"
 slug: "ftmo-review"
 date: "2024-08-30 10:30:24"
-modified: "2026-07-27 12:00:00"
+modified: "2026-08-14 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "FTMO publishes per-tier pricing — in euros, not dollars. €89–€1,080 for the refundable 2-Step at 80%, €79–€999 for the non-refundable 1-Step at 90%."
 categories: ["Prop Firms"]
@@ -198,7 +198,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>Cons</strong></h2>
 
 <ul class="wp-block-list">
-  <li><strong>80% is the real 2-Step split, not 90%.</strong> FTMO markets "up to 90%" on the pricing widget, but the product page states you receive 80%, rising to 90% only under Scaling Plan or Premium Programme conditions. FundedNext starts at 95% and FundingPips scales to 100%.</li>
+  <li><strong>80% is the real 2-Step split, not 90%.</strong> FTMO markets "up to 90%" on the pricing widget, but the product page states you receive 80%, rising to 90% only under Scaling Plan or Premium Programme conditions. <a href="/blog/fundednext-review">FundedNext</a> also starts challenge products at 80%, with 95% sold as a paid add-on; FundingPips reaches 100% only through scaling conditions.</li>
   <li><strong>The 1-Step fee is never refunded.</strong> €79–€999 is a permanent cost even if you pass, which erases most of the apparent advantage of its 10-point-higher split at the smaller tiers.</li>
   <li><strong>The 1-Step's trailing drawdown and 3% daily limit are strictly tighter</strong> than the 2-Step's static 10% and 5% daily. The end-of-day limit "can only increase, but never decrease", so profitable days permanently raise your floor.</li>
   <li><strong>Fees are charged in euros against dollar-sized accounts.</strong> If you earn and bank in USD, your real cost moves with EUR/USD between purchase and refund, and FTMO publishes no USD price to hedge against.</li>
@@ -213,7 +213,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should avoid FTMO</strong></h2>
 
-<p>A trader whose edge concentrates into a few large days should avoid the 1-Step specifically: the 50% Best Day rule plus a 3% daily limit and an end-of-day trailing floor punish exactly that profile, and the €499 fee on the $100,000 tier is gone whether you pass or not. Anyone optimising for headline split should compare FundedNext at 95% or FundingPips at 100% before paying 80% on the 2-Step. Futures-only traders have no product here at all — FTMO sells CFD evaluations, so Topstep or My Funded Futures are the relevant comparisons.</p>
+<p>A trader whose edge concentrates into a few large days should avoid the 1-Step specifically: the 50% Best Day rule plus a 3% daily limit and an end-of-day trailing floor punish exactly that profile, and the €499 fee on the $100,000 tier is gone whether you pass or not. Anyone comparing headline splits should model FundedNext’s 80% base versus its paid 95% add-on and FundingPips’ conditional 100% scaling path instead of treating those ceilings as standard. Futures-only traders have no product here at all — FTMO sells CFD evaluations, so Topstep or My Funded Futures are the relevant comparisons.</p>
 
 <p><strong>US traders: check before you pay.</strong> ftmo.com declares an <code>hreflang="en-US"</code> alternate pointing at ftmo.oanda.com — a different domain and a different entity for the US market — and its region switcher routes "United States" there. We deliberately did not capture pricing or terms from that domain, so nothing in this review — none of the 10 euro prices, neither drawdown model, neither profit split — can be assumed to apply to a US-based trader. Verify on the storefront you are actually routed to.</p>
 

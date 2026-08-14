@@ -7,6 +7,7 @@
 export const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Blog', href: '/blog' },
+  { label: 'India', href: '/best-prop-firms-in-india' },
   {
     label: 'Prop Firms',
     href: '/prop-firms',
@@ -18,7 +19,6 @@ export const navLinks = [
       { label: 'Compare Firms', href: '/compare' },
       { label: 'Discount Codes', href: '/prop-firm-discount-codes' },
       { label: 'Filter by Feature', href: '/prop-firms#focused-rule-lists' },
-      { label: 'Best in India', href: '/best-prop-firms-in-india' },
       { label: 'India Comparisons', href: '/best-prop-firms-in-india/compare' },
       { label: 'India Challenge Changes', href: '/best-prop-firms-in-india/challenge-changes' },
       { label: 'India Challenge Rules', href: '/best-prop-firms-in-india/challenge-comparison' },

@@ -1,25 +1,16 @@
 import Link from 'next/link'
 import { ArrowRight, ArrowUpRight, Handshake, Tag, Star } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
+import { rankFirmAlternatives } from '@/lib/firmAlternatives'
 
 const firmSlug = (name: string) =>
   name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
-/** Jaccard similarity over two string arrays. */
-function overlapScore(a: string[] = [], b: string[] = []) {
-  if (!a.length || !b.length) return 0
-  const A = new Set(a)
-  const B = new Set(b)
-  let intersect = 0
-  for (const v of A) if (B.has(v)) intersect++
-  return intersect / (A.size + B.size - intersect)
-}
-
 /**
  * Renders alternatives at the end of a firm review:
- * - Partners (affiliate-enabled firms) bubble to the top with their full CTA
- *   so non-partner-page traffic has a clear conversion path.
- * - The remaining slots are filled by similarity (asset + platform overlap).
+ * - Alternatives are selected only by asset and platform relevance, with
+ *   editorial score and name used as deterministic tie-breakers.
+ * - Partnership presentation is applied only after the alternatives are set.
  *
  * Affiliate disclosure: every partner row is marked "Partner" so users see
  * the relationship before they click.
@@ -31,21 +22,7 @@ export default function FirmAlternatives({
   current: Firm
   allFirms: Firm[]
 }) {
-  const others = allFirms.filter(f => f.name !== current.name)
-
-  // Score every other firm. Partners get a flat boost so they beat any
-  // non-partner with even mediocre similarity — they're the conversion path.
-  const ranked = others
-    .map(f => ({
-      firm: f,
-      score:
-        overlapScore(current.assets, f.assets) * 2 +
-        overlapScore(current.platforms, f.platforms) +
-        (f.affiliateUrl ? 5 : 0),
-    }))
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3)
-    .map(x => x.firm)
+  const ranked = rankFirmAlternatives(current, allFirms)
 
   if (!ranked.length) return null
 

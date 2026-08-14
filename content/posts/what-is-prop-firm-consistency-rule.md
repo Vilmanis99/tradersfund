@@ -1,10 +1,12 @@
 ---
 title: "What Is Consistency Rule in Prop Firms?"
+seoTitle: "Prop Firm Consistency Rule: How It Works (2026)"
 slug: "what-is-prop-firm-consistency-rule"
 date: "2024-11-22 17:13:02"
-modified: "2025-10-06 17:58:20"
+modified: "2026-08-14 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "The prop firm consistency rule is one of the ways firms can make you fail challenges. However, you can also use this rule to your advantage."
+seoDescription: "Learn how prop-firm consistency rules cap single-day profits, affect payouts, and change across firms, with worked examples and practical risk controls."
 categories: ["Prop Firms"]
 tags: ["Prop Firm", "prop firm rules"]
 type: "post"
@@ -82,14 +84,14 @@ type: "post"
 
 <p>Prop firms have different approaches to the consistency rule.  So, it’s important to know what you’re signing up for when choosing a firm. Some firms have strict consistency requirements, while others don’t have a consistency rule at all. The sweet spot is to find a firm with rules that fit your trading style. For example, in our article about the <a href="/blog/funding-pips-review">Funding Pips review</a>, we discussed the Funding Pips consistency rule, which is about 15% for one of its accounts. </p>
 
-<p>Most top prop firms have strict consistency rules to keep traders consistent and make gamblers fail. This means they may set a specific threshold, like limiting the percentage of your profits that can come from any single day’s trading. Here are some of the best firms that enforce the consistency rule:</p>
+<p>Consistency treatment varies by product: some firms cap the percentage of total profit that can come from one day, some publish a score, and some current products have no numerical consistency percentage. These examples need to be checked at product level:</p>
 
 <ul class="wp-block-list">
-<li><strong><a href="https://ftmo.com/en/" target="_blank" rel="noreferrer noopener">FTMO</a>:</strong> Utilizes a Consistency Score to assess traders’ performance stability.</li>
+<li><strong><a href="/blog/ftmo-review">FTMO</a>:</strong> Uses a named Best Day / consistency condition on its 1-Step product rather than applying one percentage to every plan.</li>
 
-<li><strong><a href="https://fundednext.com/" target="_blank" rel="noreferrer noopener">FundedNext</a>:</strong> Requires consistency, particularly in their Express Consistency accounts.</li>
+<li><strong><a href="/blog/fundednext-review">FundedNext</a>:</strong> Current Stellar 1-Step, 2-Step, Lite, and Instant captures have no numerical consistency percentage; payout eligibility and copy-trading rules still vary by product.</li>
 
-<li><strong><a href="https://fundingpips.com/" target="_blank" rel="noreferrer noopener">Funding Pips</a>:</strong> Enforces consistency as a core requirement for its funded traders.</li>
+<li><strong><a href="/blog/funding-pips-review">Funding Pips</a>:</strong> Product-specific consistency and payout conditions should be checked against the current review rather than treated as one firm-wide percentage.</li>
 
 <li><strong>The 5%ers:</strong> Implements a consistency rule to ensure traders maintain steady performance.</li>
 
@@ -101,8 +103,6 @@ type: "post"
 
 <li><strong>E8 Markets</strong><span style="box-sizing: border-box; margin: 0px; padding: 0px;">&nbsp;requires traders to adhere to a consistency rule to maintain funding. You can</span> find more details about this at our <a href="/blog/e8-markets-review">E8 Markets Review</a>!</li>
 </ul>
-
-<p><strong>Read more:</strong> <a href="/blog/fundednext-review">FundedNext review 2025</a></p>
 
 <h2 class="wp-block-heading"><strong>Tips for Adapting to the Consistency Rule</strong></h2>
 
