@@ -191,6 +191,10 @@ const PASSING_SERVICES_GUIDE_FILE = path.join(
   ROOT,
   'content/posts/are-prop-firm-passing-services-worth-it.md',
 )
+const DRAWDOWN_GUIDE_FILE = path.join(
+  ROOT,
+  'content/posts/balance-based-drawdown-vs-equity-based-drawdown.md',
+)
 const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
 const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
@@ -3750,6 +3754,339 @@ function checkTrueCostPillar() {
 }
 
 /**
+ * Drawdown copy must keep four separate concepts explicit: reference value,
+ * observed value, floor movement, and update/reset timing. Tie every current
+ * example and worked result back to structured challenge data plus the raw
+ * firm capture so a familiar but incorrect balance=static shortcut cannot
+ * return unnoticed.
+ */
+function checkDrawdownGuide() {
+  const rows = []
+  if (!fs.existsSync(DRAWDOWN_GUIDE_FILE)) {
+    console.log('\n✗ Balance/equity drawdown guide')
+    console.log(
+      '  · content/posts/balance-based-drawdown-vs-equity-based-drawdown.md is missing',
+    )
+    return 1
+  }
+
+  const { data, content } = matter(fs.readFileSync(DRAWDOWN_GUIDE_FILE, 'utf-8'))
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const attributedMarkup = (tag, attribute, key) => {
+    const match = content.match(
+      new RegExp(
+        `<${tag}[^>]*\\b${attribute}="${escapeRegExp(key)}"[^>]*>([\\s\\S]*?)<\\/${tag}>`,
+        'i',
+      ),
+    )
+    return match?.[1] ?? ''
+  }
+  const attributedText = (tag, attribute, key) =>
+    stripTags(attributedMarkup(tag, attribute, key)).replace(/\s+/g, ' ').trim()
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} evidence block is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+  const money = value => `$${value.toLocaleString('en-US')}`
+  const product = (firmSlug, productSlug) =>
+    loadChallenges(firmSlug)?.find(challenge => challenge.productSlug === productSlug)
+  const tier = (challenge, sizeUsd) =>
+    challenge?.accountSizes.find(account => account.sizeUsd === sizeUsd)
+
+  if (data.title !== 'Balance vs Equity Drawdown: Prop Firm Rules Explained (2026)') {
+    rows.push('title must preserve the balance/equity distinction and current-year intent')
+  }
+  if (data.seoTitle !== 'Balance vs Equity Drawdown in Prop Firms (2026)') {
+    rows.push('seoTitle must preserve the direct prop-firm drawdown intent')
+  }
+  if (typeof data.seoTitle !== 'string' || data.seoTitle.length > 60) {
+    rows.push('seoTitle must stay at or below 60 characters')
+  }
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+  if (!Array.isArray(data.tags) || !data.tags.includes('trailing drawdown')) {
+    rows.push('tags must preserve trailing-drawdown search intent')
+  }
+
+  const ftmoTwoStep = product('ftmo', 'ftmo-challenge-2-step')
+  const ftmoOneStep = product('ftmo', 'ftmo-challenge-1-step')
+  const fundedNextTwoStep = product('fundednext', 'stellar-2-step')
+  const fundedNextInstant = product('fundednext', 'stellar-instant')
+  const ftmoTwoStepTier = tier(ftmoTwoStep, 100000)
+  const ftmoOneStepTier = tier(ftmoOneStep, 100000)
+  const fundedNextTwoStepTier = tier(fundedNextTwoStep, 100000)
+  const fundedNextInstantTier = tier(fundedNextInstant, 10000)
+
+  const requiredProducts = [
+    ['FTMO 2-Step $100K', ftmoTwoStep, ftmoTwoStepTier],
+    ['FTMO 1-Step $100K', ftmoOneStep, ftmoOneStepTier],
+    ['FundedNext Stellar 2-Step $100K', fundedNextTwoStep, fundedNextTwoStepTier],
+    ['FundedNext Stellar Instant $10K', fundedNextInstant, fundedNextInstantTier],
+  ]
+  for (const [label, challenge, accountTier] of requiredProducts) {
+    if (!challenge || !accountTier) rows.push(`${label} structured product or tier is missing`)
+  }
+
+  if (ftmoTwoStep && ftmoTwoStepTier) {
+    const floor = ftmoTwoStepTier.sizeUsd * (1 - ftmoTwoStep.maxLossPct / 100)
+    expectFragments(
+      'FTMO 2-Step drawdown example',
+      attributedText('tr', 'data-drawdown-example', 'ftmo:ftmo-challenge-2-step'),
+      [
+        'FTMO 2-Step $100K',
+        `€${ftmoTwoStepTier.priceEur}`,
+        `${ftmoTwoStep.dailyLossPct}% of initial balance`,
+        `${ftmoTwoStep.maxLossPct}% ${ftmoTwoStep.drawdownType}`,
+        `${money(floor)} floor`,
+        ftmoTwoStep.sourceCapturedAt,
+      ],
+    )
+    if (ftmoTwoStep.drawdownType !== 'static') {
+      rows.push('FTMO 2-Step must remain a static maximum-loss example')
+    }
+  }
+
+  if (fundedNextTwoStep && fundedNextTwoStepTier) {
+    const floor =
+      fundedNextTwoStepTier.sizeUsd * (1 - fundedNextTwoStep.maxLossPct / 100)
+    expectFragments(
+      'FundedNext Stellar 2-Step drawdown example',
+      attributedText('tr', 'data-drawdown-example', 'fundednext:stellar-2-step'),
+      [
+        'FundedNext Stellar 2-Step $100K',
+        money(fundedNextTwoStepTier.priceUsd),
+        `${fundedNextTwoStep.dailyLossPct}% daily loss`,
+        `${fundedNextTwoStep.maxLossPct}% ${fundedNextTwoStep.drawdownType}`,
+        `${money(floor)} floor`,
+        fundedNextTwoStep.sourceCapturedAt,
+      ],
+    )
+    if (fundedNextTwoStep.drawdownType !== 'static') {
+      rows.push('FundedNext Stellar 2-Step must remain a static maximum-loss example')
+    }
+  }
+
+  if (ftmoOneStep && ftmoOneStepTier) {
+    expectFragments(
+      'FTMO 1-Step drawdown example',
+      attributedText('tr', 'data-drawdown-example', 'ftmo:ftmo-challenge-1-step'),
+      [
+        'FTMO 1-Step $100K',
+        `€${ftmoOneStepTier.priceEur}`,
+        `${ftmoOneStep.dailyLossPct}% of initial balance`,
+        `${ftmoOneStep.maxLossPct}% balance-based end-of-day trailing`,
+        'can increase but never decrease',
+        'resets after a reward withdrawal',
+        ftmoOneStep.sourceCapturedAt,
+      ],
+    )
+    if (ftmoOneStep.drawdownType !== 'eod-trailing') {
+      rows.push('FTMO 1-Step must remain the end-of-day trailing example')
+    }
+  }
+
+  if (fundedNextInstant && fundedNextInstantTier) {
+    const lossAmount =
+      fundedNextInstantTier.sizeUsd * (fundedNextInstant.maxLossPct / 100)
+    const startingFloor = fundedNextInstantTier.sizeUsd - lossAmount
+    expectFragments(
+      'FundedNext Stellar Instant drawdown example',
+      attributedText('tr', 'data-drawdown-example', 'fundednext:stellar-instant'),
+      [
+        'FundedNext Stellar Instant $10K',
+        money(fundedNextInstantTier.priceUsd),
+        'No daily-loss percentage captured',
+        `${fundedNextInstant.maxLossPct}% real-time ${fundedNextInstant.drawdownType}`,
+        `${money(startingFloor)} starting floor`,
+        `locks at ${money(fundedNextInstantTier.sizeUsd)}`,
+        'does not reset after a withdrawal',
+        fundedNextInstant.sourceCapturedAt,
+      ],
+    )
+    if (
+      fundedNextInstant.dailyLossPct !== null ||
+      fundedNextInstant.drawdownType !== 'trailing'
+    ) {
+      rows.push('FundedNext Stellar Instant trailing/no-daily-loss example drifted')
+    }
+  }
+
+  const ftmoCapture = fs.readFileSync(
+    path.join(CHALLENGES, '_captures/ftmo-2026-07-27.json'),
+    'utf-8',
+  )
+  const fundedNextCapture = fs.readFileSync(
+    path.join(CHALLENGES, '_captures/fundednext-2026-07-27.json'),
+    'utf-8',
+  )
+  for (const fragment of [
+    'Account balance at midnight CE(S)T minus 5% of the initial account balance',
+    'account equity, not balance',
+    'balance-based end-of-day trailing',
+    'can only increase, but never decrease',
+    'when a Reward is withdrawn',
+  ]) {
+    if (!ftmoCapture.includes(fragment)) {
+      rows.push(`FTMO raw capture is missing drawdown support: "${fragment}"`)
+    }
+  }
+  for (const fragment of [
+    'breach floor remains 90% of initial balance',
+    'loss floor trails profit upward and locks at the initial balance',
+    'does not reset after a withdrawal',
+  ]) {
+    if (!fundedNextCapture.toLowerCase().includes(fragment.toLowerCase())) {
+      rows.push(`FundedNext raw capture is missing drawdown support: "${fragment}"`)
+    }
+  }
+
+  const initialBalance = 100000
+  const staticFloor = initialBalance * (1 - ftmoTwoStep?.maxLossPct / 100)
+  const midnightBalance = 101000
+  const dailyFloor =
+    midnightBalance - initialBalance * (ftmoTwoStep?.dailyLossPct / 100)
+  const instantInitial = fundedNextInstantTier?.sizeUsd
+  const instantLossAmount = instantInitial * (fundedNextInstant?.maxLossPct / 100)
+  const instantHigh = 10200
+  const instantFloor = instantHigh - instantLossAmount
+  const instantStartingFloor = instantInitial - instantLossAmount
+  const instantLockHigh = 10600
+  const instantLockedFloor = Math.min(
+    instantInitial,
+    instantLockHigh - instantLossAmount,
+  )
+  expectFragments(
+    'worked drawdown-floor math',
+    attributedText('table', 'data-drawdown-math', 'worked-floors'),
+    [
+      `${money(initialBalance)} × (1 − 0.10)`,
+      `${money(staticFloor)} fixed floor`,
+      `${money(midnightBalance)} − (${money(initialBalance)} × 0.05)`,
+      `${money(dailyFloor)} daily floor`,
+      `${money(instantHigh)} − (${money(instantInitial)} × 0.06)`,
+      `${money(instantFloor)} trailing floor`,
+    ],
+  )
+  expectFragments('Instant lock explanation', stripTags(content), [
+    `or ${money(instantLossAmount)}`,
+    `lifts the floor from ${money(instantStartingFloor)} to ${money(instantFloor)}`,
+    `${money(instantLockHigh)} high`,
+    `locks at the ${money(instantLockedFloor)} starting balance`,
+  ])
+
+  const choiceMarkup = attributedMarkup('div', 'data-drawdown-choice', 'fundednext')
+  const choiceText = stripTags(choiceMarkup).replace(/\s+/g, ' ').trim()
+  if (fundedNextTwoStep && fundedNextTwoStepTier && fundedNextInstantTier) {
+    const staticFloor =
+      fundedNextTwoStepTier.sizeUsd * (1 - fundedNextTwoStep.maxLossPct / 100)
+    const instantFloor =
+      fundedNextInstantTier.sizeUsd * (1 - fundedNextInstant.maxLossPct / 100)
+    expectFragments('FundedNext drawdown choice', choiceText, [
+      'Stellar 2-Step',
+      '$100K tier',
+      `static ${money(staticFloor)} maximum-loss floor`,
+      'Stellar Instant',
+      '$10K tier',
+      `trailing ${money(instantFloor)} floor`,
+      'all 4 products',
+    ])
+  }
+  for (const href of ['/blog/fundednext-review', '/go/fundednext']) {
+    if (!choiceMarkup.includes(`href="${href}"`)) {
+      rows.push(`FundedNext drawdown choice is missing ${href}`)
+    }
+  }
+
+  const requiredLinks = [
+    '/blog/ftmo-review',
+    '/blog/fundednext-review',
+    '/prop-firm-challenges',
+    '/true-cost-of-prop-firm-challenges',
+    '/how-to-pass-a-prop-firm-challenge',
+    '/prop-firms/static-drawdown',
+    '/prop-firm-challenge-changes',
+    '/go/fundednext',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+
+  const backlinkFiles = [
+    [WHAT_IS_PROP_FIRM_GUIDE_FILE, 'prop-firm definition guide'],
+    [PASSING_SERVICES_GUIDE_FILE, 'passing-services guide'],
+    [CHALLENGE_PASSING_PAGE_FILE, 'challenge-passing pillar'],
+    [path.join(POSTS, 'what-is-overtrading.md'), 'overtrading guide'],
+  ]
+  for (const [file, label] of backlinkFiles) {
+    const source = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+    if (!source.includes('/blog/balance-based-drawdown-vs-equity-based-drawdown')) {
+      rows.push(`${label} is missing a drawdown-guide backlink`)
+    }
+  }
+
+  const firms = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
+  )
+  const renderedContent = decoratePostOutboundLinks(
+    content,
+    buildOutboundRelationships(firms),
+    data.slug,
+  )
+  if (
+    !renderedContent.includes(
+      'href="/go/fundednext?from=post-body-balance-based-drawdown-vs-equity-based-drawdown"',
+    ) ||
+    !renderedContent.includes('rel="sponsored nofollow noopener"')
+  ) {
+    rows.push('rendered FundedNext CTA lacks controlled attribution or disclosure')
+  }
+
+  const faqSection = content.split('<h2>Frequently asked questions</h2>')[1] ?? ''
+  if ((faqSection.match(/<h3>/gi) ?? []).length !== 6) {
+    rows.push('drawdown guide must preserve 6 factual FAQs')
+  }
+  if (/href="https?:\/\//i.test(content)) {
+    rows.push('drawdown guide contains a bare external link')
+  }
+
+  const staleClaims = [
+    'it’s best for you to go for balance based',
+    'always a better choice',
+    'go for balance based drawdown prop firms',
+    'limit increases to $535',
+    '$10,165',
+    '%0.25',
+    'never risk more than 1-2%',
+    'don’t have a time limit these days',
+    'my own strategy',
+    'strongly recommend choosing balance based',
+    'investopedia.com',
+  ]
+  const lowerContent = content.toLowerCase()
+  for (const claim of staleClaims) {
+    if (lowerContent.includes(claim.toLowerCase())) {
+      rows.push(`unsupported or stale drawdown claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Balance/equity drawdown guide')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
+/**
  * Passing-service copy must not promote vendors whose terms and prices cannot
  * be verified. Keep the page focused on captured firm restrictions, explicit
  * cash math, account-control risk, and alternatives sold by the firms.
@@ -5008,6 +5345,8 @@ const challengePassingPillarErrors = checkChallengePassingPillar()
 totalErrors += challengePassingPillarErrors
 const trueCostPillarErrors = checkTrueCostPillar()
 totalErrors += trueCostPillarErrors
+const drawdownGuideErrors = checkDrawdownGuide()
+totalErrors += drawdownGuideErrors
 const passingServicesGuideErrors = checkPassingServicesGuide()
 totalErrors += passingServicesGuideErrors
 const copyTradingGuideErrors = checkCopyTradingGuide()
