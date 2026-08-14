@@ -203,6 +203,10 @@ const PROFITABILITY_GUIDE_FILE = path.join(
   ROOT,
   'content/posts/is-prop-firm-trading-profitable.md',
 )
+const CONSISTENCY_GUIDE_FILE = path.join(
+  ROOT,
+  'content/posts/what-is-prop-firm-consistency-rule.md',
+)
 const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
 const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
@@ -4928,6 +4932,454 @@ function checkProfitabilityGuide() {
 }
 
 /**
+ * Consistency-rule copy must distinguish the calculation stage, numerator,
+ * denominator, threshold, consequence, and cutoff. Keep each current example
+ * tied to its product record and raw capture, preserve the generic worked math,
+ * and never turn a null structured percentage into a firm-wide claim.
+ */
+function checkConsistencyGuide() {
+  const rows = []
+  if (!fs.existsSync(CONSISTENCY_GUIDE_FILE)) {
+    console.log('\nâœ— Consistency-rule guide')
+    console.log('  Â· content/posts/what-is-prop-firm-consistency-rule.md is missing')
+    return 1
+  }
+
+  const { data, content } = matter(
+    fs.readFileSync(CONSISTENCY_GUIDE_FILE, 'utf-8'),
+  )
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const attributedMarkup = (tag, attribute, key) => {
+    const match = content.match(
+      new RegExp(
+        `<${tag}[^>]*\\b${attribute}="${escapeRegExp(key)}"[^>]*>([\\s\\S]*?)<\\/${tag}>`,
+        'i',
+      ),
+    )
+    return match?.[1] ?? ''
+  }
+  const attributedText = (tag, attribute, key) =>
+    stripTags(attributedMarkup(tag, attribute, key)).replace(/\s+/g, ' ').trim()
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} evidence block is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+  const money = value => `$${value.toLocaleString('en-US')}`
+  const product = (firmSlug, productSlug) =>
+    loadChallenges(firmSlug)?.find(challenge => challenge.productSlug === productSlug)
+  const tier = (challenge, sizeUsd) =>
+    challenge?.accountSizes.find(account => account.sizeUsd === sizeUsd)
+  const captureEvidence = (file, productSlug) => {
+    const capture = JSON.parse(fs.readFileSync(file, 'utf-8'))
+    const capturedProduct = capture.products?.find(
+      candidate => candidate.productSlug === productSlug,
+    )
+    if (!capturedProduct) return ''
+    return [
+      ...capturedProduct.accountSizes.flatMap(account =>
+        Object.values(account).filter(value => typeof value === 'string'),
+      ),
+      ...Object.values(capturedProduct.fieldEvidence ?? {}).filter(
+        value => typeof value === 'string',
+      ),
+      ...(capturedProduct.notes ?? []),
+    ].join(' ')
+  }
+
+  if (data.title !== 'Prop Firm Consistency Rule: Formulas and Examples (2026)') {
+    rows.push('title must preserve consistency-rule, formula, examples, and current-year intent')
+  }
+  if (data.seoTitle !== 'Prop Firm Consistency Rule: Examples (2026)') {
+    rows.push('seoTitle must preserve the primary search intent and current year')
+  }
+  if (typeof data.seoTitle !== 'string' || data.seoTitle.length > 60) {
+    rows.push('seoTitle must stay at or below 60 characters')
+  }
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+  if (
+    !Array.isArray(data.tags) ||
+    !data.tags.includes('prop firm consistency rule') ||
+    !data.tags.includes('risk management')
+  ) {
+    rows.push('tags must preserve consistency-rule and risk-management search intent')
+  }
+
+  expectFragments('consistency definition', stripTags(content), [
+    'A prop-firm consistency rule measures whether too much of an account\'s result came from its best trading day',
+    'The percentage alone is incomplete',
+    'Positive Days\' Profit',
+    'fixed Profit Target',
+    'There is no safe firm-wide shortcut',
+  ])
+  expectFragments(
+    'six-field consistency definition',
+    attributedText('table', 'data-consistency-definition', 'six-fields'),
+    [
+      'Stage',
+      'Numerator',
+      'Denominator',
+      'Threshold',
+      'Consequence',
+      'Cutoff and reset',
+      'A best-day test is not a lot-size test',
+    ],
+  )
+
+  const ftmoOneStep = product('ftmo', 'ftmo-challenge-1-step')
+  const ftmoTwoStep = product('ftmo', 'ftmo-challenge-2-step')
+  const topstep = product('topstep', 'trading-combine-standard-path')
+  const fundingPipsZero = product('fundingpips', 'zero')
+  const fxifyTwoPhase = product('fxify', 'two-phase-classic')
+  const fundedNextInstant = product('fundednext', 'stellar-instant')
+  const fundedNextInstantTier = tier(fundedNextInstant, 10000)
+  const topstepTier = tier(topstep, 100000)
+
+  for (const [label, challenge] of [
+    ['FTMO 1-Step', ftmoOneStep],
+    ['FTMO 2-Step', ftmoTwoStep],
+    ['Topstep Standard Path', topstep],
+    ['FundingPips Zero', fundingPipsZero],
+    ['FXIFY Two Phase Classic', fxifyTwoPhase],
+    ['FundedNext Stellar Instant', fundedNextInstant],
+  ]) {
+    if (!challenge) rows.push(`${label} structured product is missing`)
+  }
+  if (!fundedNextInstantTier) rows.push('FundedNext Stellar Instant $10K tier is missing')
+  if (!topstepTier) rows.push('Topstep Standard Path $100K tier is missing')
+
+  if (ftmoOneStep) {
+    expectFragments(
+      'FTMO 1-Step consistency row',
+      attributedText('tr', 'data-consistency-example', 'ftmo:ftmo-challenge-1-step'),
+      [
+        'FTMO 1-Step',
+        `${ftmoOneStep.consistencyRulePct}% Best Day rule`,
+        'Challenge and reward',
+        'Positive Days\' Profit',
+        'Continue earning profit until no single day exceeds 50%',
+        ftmoOneStep.sourceCapturedAt,
+      ],
+    )
+    if (ftmoOneStep.consistencyRulePct !== 50) {
+      rows.push('FTMO 1-Step Best Day percentage drifted from challenge data')
+    }
+  }
+
+  if (topstep) {
+    expectFragments(
+      'Topstep Combine consistency row',
+      attributedText(
+        'tr',
+        'data-consistency-example',
+        'topstep:trading-combine-standard-path',
+      ),
+      [
+        'Topstep Standard Path',
+        `${topstep.consistencyRulePct}% Consistency Target`,
+        'Trading Combine',
+        'Profit Target',
+        'increase the Consistency Target',
+        topstep.sourceCapturedAt,
+      ],
+    )
+    expectFragments(
+      'Topstep XFA consistency row',
+      attributedText('tr', 'data-consistency-example', 'topstep:xfa-consistency-path'),
+      [
+        '40% best-day limit',
+        'Payout path',
+        'total profit',
+        'at least 3 trading days with 1 trade per day',
+        topstep.sourceCapturedAt,
+      ],
+    )
+  }
+
+  if (fundingPipsZero) {
+    expectFragments(
+      'FundingPips Zero consistency row',
+      attributedText('tr', 'data-consistency-example', 'fundingpips:zero'),
+      [
+        'FundingPips Zero',
+        `${fundingPipsZero.consistencyRulePct}% maximum Consistency Score`,
+        'Reward eligibility',
+        'full denominator not recorded',
+        '7 profitable days of at least 0.25% in each rolling 30-day period',
+        fundingPipsZero.sourceCapturedAt,
+      ],
+    )
+  }
+
+  if (fxifyTwoPhase) {
+    expectFragments(
+      'FXIFY Two Phase consistency row',
+      attributedText('tr', 'data-consistency-example', 'fxify:two-phase-classic'),
+      [
+        'FXIFY Two Phase Classic',
+        `${fxifyTwoPhase.consistencyRulePct}% Consistency Rule`,
+        'Funded stage only',
+        'N/A in Phase 1 and Phase 2',
+        'Full denominator is not recorded',
+        fxifyTwoPhase.sourceCapturedAt,
+      ],
+    )
+  }
+
+  if (fundedNextInstant) {
+    expectFragments(
+      'FundedNext Instant consistency row',
+      attributedText('tr', 'data-consistency-example', 'fundednext:stellar-instant'),
+      [
+        'FundedNext Stellar Instant',
+        'No consistency rule in the captured official FAQ',
+        'Phase-0 simulated instant-funded product',
+        `${fundedNextInstant.maxLossPct}% ${fundedNextInstant.drawdownType} maximum loss`,
+        fundedNextInstant.sourceCapturedAt,
+      ],
+    )
+    if (fundedNextInstant.consistencyRulePct !== null) {
+      rows.push('FundedNext Instant consistency field is no longer null')
+    }
+  }
+  if (ftmoTwoStep?.consistencyRulePct !== null) {
+    rows.push('FTMO 2-Step consistency field is no longer null')
+  }
+
+  const captureChecks = [
+    [
+      captureEvidence(
+        path.join(CHALLENGES, '_captures/ftmo-2026-07-27.json'),
+        'ftmo-challenge-1-step',
+      ),
+      [
+        '"Best Day Rule" = 50%',
+        'Positive Days\' Profit',
+        'Applies to both the challenge and to reward withdrawal',
+      ],
+      'FTMO 1-Step',
+    ],
+    [
+      captureEvidence(
+        path.join(CHALLENGES, '_captures/ftmo-2026-07-27.json'),
+        'ftmo-challenge-2-step',
+      ),
+      ['Explicitly NOT applied to this product'],
+      'FTMO 2-Step',
+    ],
+    [
+      captureEvidence(
+        path.join(CHALLENGES, '_captures/topstep-2026-07-27.json'),
+        'trading-combine-standard-path',
+      ),
+      [
+        'best single day should stay below 50% of your Profit Target',
+        'Keep your best day within 40% of total profit',
+        'Trade at least three (3) days with at least one (1) trade per day',
+      ],
+      'Topstep',
+    ],
+    [
+      captureEvidence(
+        path.join(CHALLENGES, '_captures/fundingpips-2026-08-10.json'),
+        'zero',
+      ),
+      [
+        'Consistency Score 15% max',
+        'At least 7 profitable days of 0.25% or more',
+      ],
+      'FundingPips Zero',
+    ],
+    [
+      captureEvidence(
+        path.join(CHALLENGES, '_captures/fxify-2026-08-10.json'),
+        'two-phase-classic',
+      ),
+      ['"Consistency Rule": ["N/A", "N/A", "25%"]', 'Funded stage only'],
+      'FXIFY Two Phase Classic',
+    ],
+    [
+      captureEvidence(
+        path.join(CHALLENGES, '_captures/fundednext-2026-07-27.json'),
+        'stellar-instant',
+      ),
+      ['Official FAQ: no consistency rule'],
+      'FundedNext Stellar Instant',
+    ],
+  ]
+  for (const [evidence, fragments, label] of captureChecks) {
+    for (const fragment of fragments) {
+      if (!evidence.includes(fragment)) {
+        rows.push(`${label} raw capture is missing consistency support: "${fragment}"`)
+      }
+    }
+  }
+
+  const bestDay = 1200
+  const currentProfit = 3000
+  const limitPct = 30
+  const currentScore = (bestDay / currentProfit) * 100
+  const requiredProfit = bestDay / (limitPct / 100)
+  const additionalProfit = requiredProfit - currentProfit
+  expectFragments(
+    'best-day consistency math',
+    attributedText('table', 'data-consistency-math', 'best-day-share'),
+    [
+      `${money(bestDay)} / ${money(currentProfit)} x 100 = ${currentScore}%`,
+      `${limitPct}%`,
+      `${money(bestDay)} / 0.${limitPct} = ${money(requiredProfit)}`,
+      `${money(requiredProfit)} - ${money(currentProfit)} = ${money(additionalProfit)}`,
+    ],
+  )
+
+  if (topstep && topstepTier) {
+    const target = topstepTier.sizeUsd * (topstep.profitTargets.phase1 / 100)
+    const limitAmount = target * (topstep.consistencyRulePct / 100)
+    expectFragments('Topstep target-based example', stripTags(content), [
+      'captured $100K Standard Path',
+      `Profit Target is ${money(target)}`,
+      `${topstep.consistencyRulePct}% is ${money(limitAmount)}`,
+      'A $3,500 best day is 58.33% of that fixed target',
+      'can increase the Consistency Target',
+    ])
+  }
+
+  expectFragments(
+    'consistency rule sheet',
+    attributedText('table', 'data-consistency-checklist', 'rule-sheet'),
+    [
+      'Before checkout',
+      'Before session',
+      'After session',
+      'Before payout',
+      'Exact product, stage, numerator, denominator, percentage, consequence, and source date',
+      'Use the firm\'s timezone and dashboard cutoff',
+      'Treat every named gate as independent until approved',
+    ],
+  )
+
+  const choiceMarkup = attributedMarkup('div', 'data-consistency-choice', 'fundednext')
+  const choiceText = stripTags(choiceMarkup).replace(/\s+/g, ' ').trim()
+  if (fundedNextInstant && fundedNextInstantTier) {
+    expectFragments('FundedNext consistency choice', choiceText, [
+      'Comparing a captured no-consistency-rule option?',
+      'official FAQ capture says there is no consistency rule',
+      `current $10K tier costs ${money(fundedNextInstantTier.priceUsd)}`,
+      `starts at a ${fundedNextInstant.profitSplitPct}% Reward Share`,
+      'is non-refundable',
+      `uses a ${fundedNextInstant.maxLossPct}% ${fundedNextInstant.drawdownType} maximum loss`,
+      'removing 1 gate does not make the product low-risk',
+    ])
+    if (fundedNextInstantTier.refundable !== false) {
+      rows.push('FundedNext Instant CTA lost its non-refundable support')
+    }
+  }
+  for (const href of ['/blog/fundednext-review', '/go/fundednext']) {
+    if (!choiceMarkup.includes(`href="${href}"`)) {
+      rows.push(`FundedNext consistency choice is missing ${href}`)
+    }
+  }
+
+  const requiredLinks = [
+    '/blog/ftmo-review',
+    '/blog/topstep-review',
+    '/blog/fundingpips-zero',
+    '/blog/fxify-review',
+    '/blog/fundednext-review',
+    '/prop-firm-challenges',
+    '/prop-firm-challenge-changes',
+    '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+    '/blog/what-is-overtrading',
+    '/blog/is-prop-firm-trading-profitable',
+    '/how-to-pass-a-prop-firm-challenge',
+    '/how-prop-firm-challenges-work',
+    '/go/fundednext',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+
+  const backlinkFiles = [
+    [CHALLENGE_LIFECYCLE_PAGE_FILE, 'challenge lifecycle pillar'],
+    [CHALLENGE_PASSING_PAGE_FILE, 'challenge-passing pillar'],
+    [TRUE_COST_PILLAR_FILE, 'true-cost pillar'],
+    [WHAT_IS_PROP_FIRM_GUIDE_FILE, 'prop-firm definition guide'],
+    [OVERTRADING_GUIDE_FILE, 'overtrading guide'],
+    [PROFITABILITY_GUIDE_FILE, 'profitability guide'],
+    [path.join(POSTS, 'fundednext-review.md'), 'FundedNext review'],
+    [path.join(POSTS, 'fundingpips-zero.md'), 'FundingPips Zero guide'],
+  ]
+  for (const [file, label] of backlinkFiles) {
+    const source = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+    if (!source.includes('/blog/what-is-prop-firm-consistency-rule')) {
+      rows.push(`${label} is missing a consistency-guide backlink`)
+    }
+  }
+
+  const firms = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
+  )
+  const renderedContent = decoratePostOutboundLinks(
+    content,
+    buildOutboundRelationships(firms),
+    data.slug,
+  )
+  if (
+    !renderedContent.includes(
+      'href="/go/fundednext?from=post-body-what-is-prop-firm-consistency-rule"',
+    ) ||
+    !renderedContent.includes('rel="sponsored nofollow noopener"')
+  ) {
+    rows.push('rendered FundedNext CTA lacks controlled attribution or disclosure')
+  }
+
+  const faqSection = content.split('<h2>Frequently asked questions</h2>')[1] ?? ''
+  if ((faqSection.match(/<h3>/gi) ?? []).length !== 6) {
+    rows.push('consistency guide must preserve 6 factual FAQs')
+  }
+  if (/href="https?:\/\//i.test(content)) {
+    rows.push('consistency guide contains a bare external link')
+  }
+
+  const staleClaims = [
+    'one of the fundamental rules you\'ll find in most prop firms',
+    'sole revenue source for most prop firms',
+    'failed challenge fees',
+    'obstacle that separates gamblers from true traders',
+    'if you really are a consistently profitable trader, you have nothing to worry about',
+    'Makarios Consistency Rule Calculator',
+    'Funded Wizard Consistency Calculator',
+    'Fast Track Trading Consistency Calculator',
+    'PropScholar Consistency Rule Check',
+    'The Most Comprehensive FTMO Review in 2025',
+    'strongly recommend',
+    'game-changer',
+  ]
+  const lowerContent = content.toLowerCase()
+  for (const claim of staleClaims) {
+    if (lowerContent.includes(claim.toLowerCase())) {
+      rows.push(`unsupported or stale consistency claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\nâœ— Consistency-rule guide')
+    for (const row of rows) console.log(`  Â· ${row}`)
+  }
+  return rows.length
+}
+
+/**
  * Passing-service copy must not promote vendors whose terms and prices cannot
  * be verified. Keep the page focused on captured firm restrictions, explicit
  * cash math, account-control risk, and alternatives sold by the firms.
@@ -6120,7 +6572,6 @@ function checkRelatedPostSelection() {
     ['fundednext-review', ['what-is-prop-firm-consistency-rule', 'ftmo-review']],
     ['ftmo-review', ['ftmo-free-trial-explained']],
     ['prop-firm-payout-tax-india', ['are-prop-firms-legal-in-india']],
-    ['wyckoff-pattern', ['what-is-prop-firm-consistency-rule']],
     ['traders-connect-trade-copier', ['what-is-copy-trading']],
   ])
   for (const [slug, required] of fixtures) {
@@ -6192,6 +6643,8 @@ const overtradingGuideErrors = checkOvertradingGuide()
 totalErrors += overtradingGuideErrors
 const profitabilityGuideErrors = checkProfitabilityGuide()
 totalErrors += profitabilityGuideErrors
+const consistencyGuideErrors = checkConsistencyGuide()
+totalErrors += consistencyGuideErrors
 const passingServicesGuideErrors = checkPassingServicesGuide()
 totalErrors += passingServicesGuideErrors
 const copyTradingGuideErrors = checkCopyTradingGuide()

@@ -144,7 +144,7 @@ type: "post"
 
 <figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/10/FundingPips-Zero-Overview-scaled.jpg" alt="FundingPips Zero Overview" class="wp-image-3085"/></figure>
 
-<p>Unlike the usual two-step or one-step challenges, there’s no profit target to hit before getting funded. But that doesn’t mean it’s easy. The Zero model comes with much tighter limits. I mean, the drawdown limits are smaller, and there are certain <a href="/blog/what-is-prop-firm-consistency-rule">consistency rules</a>.</p>
+<p>Unlike a 1-step or 2-step evaluation, Zero has no evaluation profit target. Its reward gates include a 15% maximum Consistency Score and at least 7 profitable days of 0.25% or more in each rolling 30-day period; the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> keeps those 2 tests separate.</p>
 
 <p>Therefore, it’s basically for traders who already know how to manage risk and trade with discipline. You skip the waiting, but every mistake costs more.</p>
 

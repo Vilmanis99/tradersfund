@@ -20,7 +20,7 @@ type: "page"
     <li><strong>Funded stage</strong> — usually trade a simulated account under a profit-sharing contract; a live-capital stage exists only where the firm explicitly says so.</li>
     <li><strong>Payout and optional scaling</strong> — meet every eligibility rule before requesting a profit share; refunds and scaling are product-specific.</li>
   </ol>
-  <p style="margin-top: 1rem; margin-bottom: 0;">“Instant funding” is industry shorthand for a phase-0 product, not proof that the trader receives live capital. Verify the account environment, loss calculation, payout threshold, and consistency rules before paying.</p>
+  <p style="margin-top: 1rem; margin-bottom: 0;">“Instant funding” is industry shorthand for a phase-0 product, not proof that the trader receives live capital. Verify the account environment, loss calculation, payout threshold, and the product-specific formula in the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> before paying.</p>
 </div>
 
 <h2>Stage 1 — Buying the challenge</h2>

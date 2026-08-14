@@ -79,7 +79,7 @@ type: "post"
 
 <p><strong>Stellar Lite.</strong> Lite uses 8% and 4% targets, 5 days per phase, a 4% daily limit, and an 8% static maximum-loss floor. On $100K, that means $4,000 daily room and an absolute $92,000 floor; the $399.99 fee is $150 below the equivalent 2-Step fee.</p>
 
-<p><strong>Stellar Instant.</strong> There is no evaluation target, daily-loss cap, minimum-day rule, or consistency percentage. The trade-off is a 6% real-time trailing maximum loss: a $10K account starts with a $9,400 floor, a $200 profit lifts it to $9,600, and a $600 peak locks it at $10,000. The floor never moves down and does not reset after a payout.</p>
+<p><strong>Stellar Instant.</strong> There is no evaluation target, daily-loss cap, minimum-day rule, or consistency percentage. The trade-off is a 6% real-time trailing maximum loss: a $10K account starts with a $9,400 floor, a $200 profit lifts it to $9,600, and a $600 peak locks it at $10,000. The floor never moves down and does not reset after a payout; the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> compares that captured absence with 15%–50% product rules.</p>
 
 <p><strong>News rule.</strong> Challenge phases allow high-impact news trading without an adjustment. On every funded product, trades executed from 5 minutes before through 5 minutes after a listed high-impact event receive only a 40% profit count, while 100% of losses remain. This is a 10-minute reward adjustment, not a rule that lets the trader keep 60% of normal credited profit.</p>
 

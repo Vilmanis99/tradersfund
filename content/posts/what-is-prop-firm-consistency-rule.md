@@ -1,151 +1,153 @@
 ---
-title: "What Is Consistency Rule in Prop Firms?"
-seoTitle: "Prop Firm Consistency Rule: How It Works (2026)"
+title: "Prop Firm Consistency Rule: Formulas and Examples (2026)"
+seoTitle: "Prop Firm Consistency Rule: Examples (2026)"
 slug: "what-is-prop-firm-consistency-rule"
 date: "2024-11-22 17:13:02"
 modified: "2026-08-14 12:00:00"
 author: "Edris Derakhshi"
-excerpt: "The prop firm consistency rule is one of the ways firms can make you fail challenges. However, you can also use this rule to your advantage."
-seoDescription: "Learn how prop-firm consistency rules cap single-day profits, affect payouts, and change across firms, with worked examples and practical risk controls."
+excerpt: "A prop-firm consistency rule can compare the best day with total profit, positive-day profit, or a target. Learn the formulas, stages, and consequences."
+seoDescription: "Learn how prop-firm consistency rules work, compare current 15%-50% product examples, and calculate the extra profit needed after a large best day."
 categories: ["Prop Firms"]
-tags: ["Prop Firm", "prop firm rules"]
+tags: ["prop firm consistency rule", "prop firm rules", "risk management"]
 type: "post"
 ---
 
-<p>As a funded prop firm trader with over six years of trading experience, I’ve come across just about every rule <a href="/blog/what-is-a-prop-firm">prop firms</a> have. One of the most important and sometimes frustrating rules is the prop firm consistency rule. This rule is designed to make sure that you maintain steady profits rather than relying on a few big wins in lots of small losses. It sounds simple, but it can actually impact how you trade every day.</p>
-
-<p>In this article, I’ll break down what the consistency rule is, why it matters, and how it affects your trading strategy. I’ll also cover the differences between firms that use this rule and those that don’t. Bear with me, as understanding this rule can be a game-changer.</p>
+<p><strong>A prop-firm consistency rule measures whether too much of an account's result came from its best trading day.</strong> It can affect evaluation, funded-stage eligibility, or a payout request. The percentage alone is incomplete: a 50% rule can compare the best day with Positive Days' Profit at 1 firm and with a fixed Profit Target at another.</p>
 
 <div class="key-takeaways">
-  <div class="title">Key Takeaways</div>
-  <ul>
-    <li>The consistency rule is designed to promote steady, reliable profits, ensuring traders avoid relying on just a few big wins.</li>
-    <li>By limiting high-risk trades, it encourages disciplined trading habits and better risk management, which are crucial for long-term success.</li>
-    <li>Each prop firm has its own consistency requirements and thresholds, so understanding these rules before starting can save you from failed evaluations.</li>
-    <li>Tools like consistency rule calculators can help you monitor profit distribution and trade sizes to minimize the risk of violating prop firm consistency rules.</li>
-  </ul>
+  <div class="title">Consistency rules in 5 checks</div>
+  <ol>
+    <li><strong>Identify the stage.</strong> The rule may apply during evaluation, after funding, before a payout, or in more than 1 stage.</li>
+    <li><strong>Find the denominator.</strong> Total net profit, Positive Days' Profit, and a fixed Profit Target produce different answers.</li>
+    <li><strong>Read the consequence.</strong> Exceeding a threshold can extend the target or delay eligibility rather than automatically breach the account.</li>
+    <li><strong>Treat each product separately.</strong> FTMO 1-Step records a 50% Best Day rule, while FTMO 2-Step explicitly does not apply that objective in the current capture.</li>
+    <li><strong>Do not confuse rule families.</strong> Best-day, lot-size, profitable-day, and strategy-consistency conditions are separate tests.</li>
+  </ol>
 </div>
 
-<h2 class="wp-block-heading"><strong>What Is Consistency Rule in Prop Firms?</strong></h2>
+<h2>What is a prop-firm consistency rule?</h2>
 
-<p>The prop firm consistency rule is one of the fundamental rules you’ll find in most prop firms. They claim it to be there to keep you steady and disciplined. The rule limits the amount of profit you can make in a single day. This means you can’t rely on one or two big trades to hit your target. Instead, you need to show consistent results over time.</p>
+<p>A best-day consistency rule compares the account's most profitable closed trading day with a named profit base. A product can use that calculation to decide whether the evaluation is complete or whether a reward can be requested. The named day boundary, open-position treatment, reset event, and required inequality can all change the result.</p>
 
-<p>For example, imagine that a firm has a 30% consistency rule. So, no more than 30% of your total profits can come from a single day. Let’s say your profit target is $10,000. Under the consistency rule, the most you could earn from any one day’s trading is $3,000. If you go over that, you might not pass the firm’s evaluation. This is even if you hit the profit target and don’t break any other rule.</p>
+<p>There is no safe firm-wide shortcut. Current captures show a 50% Best Day rule on FTMO 1-Step but no Best Day objective on FTMO 2-Step; FundingPips applies a 35% score only to the On Demand reward cycle on 2-Step Standard; and FXIFY applies its 25% Two Phase Classic percentage only in the funded stage. The exact product and stage matter more than the brand name.</p>
 
-<p>A consistency rule does not prevent <a href="/blog/what-is-overtrading">overtrading</a>. Extra same-day orders can concentrate more profit in the best day or consume loss room without improving the strategy. The relevant control is a pre-written attempt and session-risk limit; the consistency percentage remains a separate eligibility calculation.</p>
+<h2>The 6 fields that define the rule</h2>
 
-<p><strong>Read More:</strong> <a href="/blog/ftmo-review">The Most Comprehensive FTMO Review in 2025</a></p>
+<table data-consistency-definition="six-fields" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Six fields needed to interpret a prop-firm consistency rule</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Field</th><th style="padding: 8px 12px; text-align: left;">Question to answer</th><th style="padding: 8px 12px; text-align: left;">Why it changes the result</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Stage</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Evaluation, funded account, payout, or scaling?</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">A 25% funded rule can be N/A during 2 evaluation phases.</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Numerator</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Best closed day, largest trade, or another result?</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">A best-day test is not a lot-size test.</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Denominator</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Net profit, positive-day profit, or Profit Target?</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">The same $3,000 day can pass 1 formula and miss another.</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Threshold</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Below, at or below, or no more than the percentage?</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">A strict “below 50%” boundary differs from “no more than 50%.”</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Consequence</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Breach, delayed payout, extra profit, or a higher target?</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Exceeding the figure does not always close the account.</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Cutoff and reset</strong></td><td style="padding: 8px 12px;">Which timezone closes the day, and when does the calculation restart?</td><td style="padding: 8px 12px;">Trades spanning 00:00 or a payout can move between calculation windows.</td></tr>
+  </tbody>
+</table>
 
-<h2 class="wp-block-heading"><strong>Purpose of the Consistency Rule</strong></h2>
+<p>If any 1 of these 6 fields is missing, do not reverse-engineer it from a percentage badge. Record the missing field and confirm it in the product's current rules before paying or requesting a reward.</p>
 
-<p>The consistency rule prop firms enforce isn’t just a formality. It’s actually there for both good and bad reasons. Prop firms themselves claim that this rule can encourage you and me to manage our risk carefully. Well, it’s not wrong. At least, it has helped me become more consistent and a better risk manager.</p>
+<h2>Three consistency-rule structures</h2>
 
-<p>Yet, that’s not the full story. You might already know that the sole revenue source for most prop firms is the challenge fee, especially the failed challenge fees, as there are no refunds or payouts from them in the future. This means net profit.</p>
+<h3>1. Best day divided by an applicable profit total</h3>
 
-<p>So, each time a trader has to buy a new challenge due to failing the consistency rule, it adds to the firm’s profits. I know this seems frustrating and even evil, but remember that prop firms are businesses. They should make money to keep operating, and they can’t do so with your simulated trades.</p>
+<p>When the product explicitly uses a profit-share formula, the calculation is <code>best-day profit / applicable profit total x 100</code>. FTMO 1-Step names Positive Days' Profit as the denominator. Topstep's XFA Consistency payout path instead records total profit and a 40% limit. Those denominators should not be silently treated as identical.</p>
 
-<p>Some prop firm funding models, like <a href="/blog/fundingpips-zero">FundingPips Zero</a>, implement strict consistency rules to only keep traders who can manage their risk effectively funded.</p>
+<h3>2. Best day compared with a fixed target</h3>
 
-<h2 class="wp-block-heading"><strong>How the Prop Firm Consistency Rule Affects You</strong></h2>
+<p>Topstep's Trading Combine uses a 50% Consistency Target against the Profit Target. Its captured rule says the best day should stay below 50% of that target to avoid increasing the Consistency Target. This is not the same calculation as dividing the best day by whatever net profit is currently on the account.</p>
 
-<p>The prop firm consistency rule has a big impact on how you can approach trading. With this rule in place, you’re pushed to focus on strategies such as using chart patterns, price actions, smart money, <a href="/blog/wyckoff-pattern">Wyckoff patterns</a>, and other methods that provide steady, reliable gains. You can’t just go for big or bet on the NFP and hope for the best. You need to think in terms of long-term growth and showcase consistent results.</p>
+<h3>3. A published score with product-specific eligibility</h3>
 
-<p>This rule means that you’re likely using smaller, calculated trades instead of high-risk setups. It’s all about building a track record that reflects control, not luck.</p>
+<p>Some current product pages publish a percentage without enough captured text to reconstruct the complete formula. FundingPips Zero records a 15% maximum Consistency Score as a reward condition, while FXIFY Two Phase Classic records 25% only for the funded stage. In those cases, the honest calculation is “not fully captured,” not a guessed best-day denominator.</p>
 
-<p>Moreover, a lot of firms also have something called a <strong>lot size consistency rule</strong>. This is a way to keep trade sizes consistent. In practice, it means that you can’t suddenly jump into large positions after several small ones. The prop firm wants to see that your trade sizes are predictable.&nbsp;</p>
+<p>A lot-size consistency rule is separate. It can compare position sizes, contracts, or risk per trade even when a product has no best-day percentage. Likewise, a minimum profitable-day condition counts qualifying days; it does not calculate the share contributed by the largest day.</p>
 
-<p>I guess this explanation is already clear enough and should help you figure out which kinds of strategies you can use and which you can’t, as they might break the prop firm consistency rule. Nevertheless, if you really are a consistently profitable trader, you have nothing to worry about.</p>
+<h2>Current product examples: 15% to 50% does not mean the same thing</h2>
 
-<p><strong>Read More:</strong> <a href="/blog/forex-prop-firms-in-the-us">Are Forex Prop Firms Legal in the US?</a></p>
+<table data-consistency-examples="current-products" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
+  <caption class="hidden-caption">Current product-level prop-firm consistency examples</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product</th><th style="padding: 8px 12px; text-align: left;">Published rule</th><th style="padding: 8px 12px; text-align: left;">Stage and denominator</th><th style="padding: 8px 12px; text-align: left;">Captured consequence or caveat</th><th style="padding: 8px 12px; text-align: left;">Captured</th></tr></thead>
+  <tbody>
+    <tr data-consistency-example="ftmo:ftmo-challenge-1-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/ftmo-review">FTMO 1-Step</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">50% Best Day rule</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Challenge and reward; Positive Days' Profit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Continue earning profit until no single day exceeds 50%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-consistency-example="topstep:trading-combine-standard-path"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/topstep-review">Topstep Standard Path</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">50% Consistency Target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Trading Combine; Profit Target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">A larger best day can increase the Consistency Target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-consistency-example="topstep:xfa-consistency-path"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/topstep-review">Topstep XFA Consistency path</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">40% best-day limit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Payout path; total profit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Also requires at least 3 trading days with 1 trade per day</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-consistency-example="fundingpips:zero"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/fundingpips-zero">FundingPips Zero</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">15% maximum Consistency Score</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Reward eligibility; full denominator not recorded</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Also records 7 profitable days of at least 0.25% in each rolling 30-day period</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-10</td></tr>
+    <tr data-consistency-example="fxify:two-phase-classic"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/fxify-review">FXIFY Two Phase Classic</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">25% Consistency Rule</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Funded stage only; N/A in Phase 1 and Phase 2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Full denominator is not recorded in the current capture</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-10</td></tr>
+    <tr data-consistency-example="fundednext:stellar-instant"><td style="padding: 8px 12px;"><a href="/blog/fundednext-review">FundedNext Stellar Instant</a></td><td style="padding: 8px 12px;">No consistency rule in the captured official FAQ</td><td style="padding: 8px 12px;">Phase-0 simulated instant-funded product</td><td style="padding: 8px 12px;">Still has a 6% trailing maximum loss and separate payout gates</td><td style="padding: 8px 12px;">2026-07-27</td></tr>
+  </tbody>
+</table>
 
-<h2 class="wp-block-heading"><strong>The Benefits and Drawbacks of the Consistency Rule</strong></h2>
+<p>The table is a dated product snapshot, not a permanent firm list. Use the <a href="/prop-firm-challenges">product comparison</a> for the current structured fields and the <a href="/prop-firm-challenge-changes">challenge-change ledger</a> for material rule updates. A null percentage means no verified numeric field unless the source explicitly says the rule does not apply.</p>
 
-<p>Interestingly, the prop firm consistency rule has its share of both pros and cons. Let’s start with the benefits it can bring to your trading:</p>
+<h2>Consistency-rule calculator: the best-day share formula</h2>
 
-<ul class="wp-block-list">
-<li><strong>Encourages Consistency:</strong> The prop firm consistency rule Forces you to focus on reliable, consistent gains instead of big, risky trades. This goes a long way in helping you build the mindset of a consistently profitable trader.</li>
+<p>This worked example applies only when the firm's rule explicitly uses <code>best day / applicable profit total</code>. Assume the best day is $1,200, the current applicable profit total is $3,000, and the maximum is 30%.</p>
 
-<li><strong>Improves Risk Management:</strong> I’ve said it before, and I will again. Profitable traders are expert risk managers. The consistency rule prop firms impose can improve your risk management skills significantly.</li>
+<table data-consistency-math="best-day-share" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Worked 30 percent best-day consistency calculation</caption>
+  <tbody>
+    <tr><th style="padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border);">Current consistency</th><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,200 / $3,000 x 100 = 40%</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border);">Maximum allowed</th><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">30%</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border);">Required applicable profit total</th><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,200 / 0.30 = $4,000</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left;">Additional applicable profit needed</th><td style="padding: 8px 12px;">$4,000 - $3,000 = $1,000</td></tr>
+  </tbody>
+</table>
 
-<li><strong>Develops Good Habits:</strong> The consistency rule makes you more disciplined, which is a huge benefit in the long run. We all promise to become disciplined when we get funded. This rule helps you actually do so right away and build good habits.</li>
-</ul>
+<p>The reusable formula is <code>required applicable profit = best-day profit / decimal limit</code>. Then calculate <code>additional profit = max(0, required applicable profit - current applicable profit)</code>. If a later day exceeds $1,200, the numerator changes and the calculation must be run again.</p>
 
-<p>There are also some drawbacks and challenges associated with the prop firm consistency rule. The most prominent ones include:</p>
+<p>Do not use this calculator for Topstep's Combine target rule. On the captured $100K Standard Path, the Profit Target is $6,000 and 50% is $3,000. A $3,500 best day is 58.33% of that fixed target, so it can increase the Consistency Target; it is not automatically the same as failing a 50% best-day-to-total-profit test.</p>
 
-<ul class="wp-block-list">
-<li><strong>Reduced Flexibility:</strong> It limits your ability to take advantage of high-risk, high-reward setups. This is especially damaging if your strategy relies on high risk-reward setups.</li>
+<div data-consistency-choice="fundednext" style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
+  <strong style="color: #fff;">Comparing a captured no-consistency-rule option?</strong> FundedNext Stellar Instant's official FAQ capture says there is no consistency rule. The current $10K tier costs $299, starts at a 70% Reward Share, is non-refundable, and uses a 6% trailing maximum loss, so removing 1 gate does not make the product low-risk. Read the <a href="/blog/fundednext-review">FundedNext review</a>, then <a href="/go/fundednext">check FundedNext's live Stellar Instant terms</a> only if the trailing-loss and payout rules fit the strategy. We may earn a commission; the partnership does not change the displayed terms or editorial score.
+</div>
 
-<li><strong>Makes Everything Harder:</strong> You can’t rely on one or two big wins to pass a challenge or get a payout anymore. The consistency rule can even make your challenge phase take longer.</li>
-</ul>
+<h2>How consistency interacts with drawdown and overtrading</h2>
 
-<p><strong>Read More:</strong> <a href="/blog/are-prop-firm-passing-services-worth-it">What Are Prop Firm Passing Services?</a></p>
+<p>Consistency does not replace daily or maximum loss. A trader can be below a 30% best-day cap and still breach a 4% trailing loss boundary. Conversely, one large profitable day can preserve the loss buffer but delay evaluation or payout eligibility. The <a href="/blog/balance-based-drawdown-vs-equity-based-drawdown">drawdown guide</a> explains why static, intraday-trailing, and end-of-day-trailing floors need separate calculations.</p>
 
-<h2 class="wp-block-heading"><strong>How the Consistency Rule Varies Among Prop Firms</strong></h2>
+<p>Trying to “dilute” a large best day by forcing extra trades can create <a href="/blog/what-is-overtrading">plan drift</a>. Additional low-quality orders add spread, commission, and loss exposure; they do not guarantee that the applicable profit denominator will rise. A pre-written session stop remains binding even when the consistency score is above its threshold.</p>
 
-<p>Prop firms have different approaches to the consistency rule.  So, it’s important to know what you’re signing up for when choosing a firm. Some firms have strict consistency requirements, while others don’t have a consistency rule at all. The sweet spot is to find a firm with rules that fit your trading style. For example, in our article about the <a href="/blog/funding-pips-review">Funding Pips review</a>, we discussed the Funding Pips consistency rule, which is about 15% for one of its accounts. </p>
+<p>The cash consequence also depends on stage. A payout-only rule can leave evaluation status unchanged while delaying realised income. The <a href="/blog/is-prop-firm-trading-profitable">net-cash profitability test</a> counts a reward only when approved and received, not when dashboard profit first appears.</p>
 
-<p>Consistency treatment varies by product: some firms cap the percentage of total profit that can come from one day, some publish a score, and some current products have no numerical consistency percentage. These examples need to be checked at product level:</p>
+<h2>A pre-purchase and daily consistency worksheet</h2>
 
-<ul class="wp-block-list">
-<li><strong><a href="/blog/ftmo-review">FTMO</a>:</strong> Uses a named Best Day / consistency condition on its 1-Step product rather than applying one percentage to every plan.</li>
+<table data-consistency-checklist="rule-sheet" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
+  <caption class="hidden-caption">Prop-firm consistency rule worksheet</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">When</th><th style="padding: 8px 12px; text-align: left;">Record</th><th style="padding: 8px 12px; text-align: left;">Control</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Before checkout</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Exact product, stage, numerator, denominator, percentage, consequence, and source date</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Do not buy if the formula is material to the strategy but remains unclear</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Before session</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Current best day, applicable profit base, rule headroom, session-risk stop</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Keep the personal stop below the firm's breach boundaries</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>After session</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Closed-day profit, new best day, recalculated score, remaining target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Use the firm's timezone and dashboard cutoff</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Before payout</strong></td><td style="padding: 8px 12px;">Consistency, profitable days, safety cushion, minimum reward, KYC, and open positions</td><td style="padding: 8px 12px;">Treat every named gate as independent until approved</td></tr>
+  </tbody>
+</table>
 
-<li><strong><a href="/blog/fundednext-review">FundedNext</a>:</strong> Current Stellar 1-Step, 2-Step, Lite, and Instant captures have no numerical consistency percentage; payout eligibility and copy-trading rules still vary by product.</li>
+<p>The broader <a href="/how-to-pass-a-prop-firm-challenge">challenge risk-plan worksheet</a> converts firm limits into pre-session controls, while the <a href="/how-prop-firm-challenges-work">challenge lifecycle</a> shows where evaluation, funded status, payout eligibility, and cash receipt separate.</p>
 
-<li><strong><a href="/blog/funding-pips-review">Funding Pips</a>:</strong> Product-specific consistency and payout conditions should be checked against the current review rather than treated as one firm-wide percentage.</li>
+<h2>Frequently asked questions</h2>
 
-<li><strong>The 5%ers:</strong> Implements a consistency rule to ensure traders maintain steady performance.</li>
+<h3>What is the consistency rule in a prop firm?</h3>
 
-<li><strong><a href="/blog/maven-prop-firm-review">Maven</a>:</strong> Applies a consistency rule to promote disciplined trading habits.</li>
+<p>It is a product rule that measures profit concentration, commonly using the best trading day. The calculation can compare that day with Positive Days' Profit, total profit, or a fixed Profit Target, and it can apply during evaluation or before a payout.</p>
 
-<li><strong>Alpha Capital Group:</strong> Implements a consistency rule to ensure traders maintain steady performance.</li>
+<h3>How do I calculate a 30% consistency rule?</h3>
 
-<li><strong>My Funded FX:</strong> Enforces consistency to encourage stable trading practices.</li>
+<p>Only for a best-day share formula, divide the best-day profit by the firm's named applicable profit total and multiply by 100. A $1,200 best day divided by $3,000 is 40%; reducing that to 30% with the same best day requires a $4,000 applicable total.</p>
 
-<li><strong>E8 Markets</strong><span style="box-sizing: border-box; margin: 0px; padding: 0px;">&nbsp;requires traders to adhere to a consistency rule to maintain funding. You can</span> find more details about this at our <a href="/blog/e8-markets-review">E8 Markets Review</a>!</li>
-</ul>
+<h3>Does exceeding a consistency percentage fail the account?</h3>
 
-<h2 class="wp-block-heading"><strong>Tips for Adapting to the Consistency Rule</strong></h2>
+<p>Not always. FTMO 1-Step says the trader must continue until the Best Day is no more than 50% of Positive Days' Profit, while Topstep says a best day above 50% of the Combine Profit Target can increase the Consistency Target. The product's stated consequence controls.</p>
 
-<p>I’ve passed several challenges and also failed a lot more. So, let me give you some tips, based on my experience, to help you adapt to the prop firm consistency rule:</p>
+<h3>Can a losing day change the consistency score?</h3>
 
-<ul class="wp-block-list">
-<li><strong>Focus on Smaller, Balanced Trades:</strong> Go for steady gains rather than catching big swings with tight stop losses. Spread your profits across multiple trades with higher win rates.</li>
+<p>It depends on the denominator. A calculation based on Positive Days' Profit treats losing days differently from one based on net total profit. Do not include or exclude losses until the product terms define the applicable profit base.</p>
 
-<li><strong>Have a Defined Strategy:</strong> Think about an ideal but sustainable profit distribution over time. Have a clear trading strategy, and make sure this strategy can help you achieve a similar distribution of profits.</li>
+<h3>Is a lot-size consistency rule the same as a best-day rule?</h3>
 
-<li><strong>Use it to Build a Track Record:</strong> To become a professional trader working with private investors, you need a track record. Use this rule as an opportunity to learn how you can build one.</li>
+<p>No. A best-day rule measures profit concentration, while a lot-size rule measures changes in position or contract size. A product may use either test, both tests, or neither.</p>
 
-<li><strong>Just Do it:</strong> Finally, for most of you, the best tip is to just do what you do best. If you have a proven profitable strategy, stick to it and don’t worry about the prop firm consistency rule. It’s actually a hurdle for gamblers, not real traders.</li>
+<h3>Which prop-firm products have no consistency rule?</h3>
 
-<li><strong>Use a Prop Firm Consistency Rule Calculator:</strong> If you’re still worried and can’t shake the feeling of failing the challenge, use a consistency rule calculator. These tools will help you play by the rules and not stress it out.</li>
-</ul>
-
-<p>You can use backtesting software tools like <a href="/blog/fx-replay-review">FX Replay </a>to practice and adapt your strategies using historical data, or you can even trade on demo accounts for live market conditions.</p>
-
-<h2 class="wp-block-heading"><strong>Prop Firm Consistency Rule Calculators</strong></h2>
-
-<p>A prop firm consistency rule calculator is a very useful tool for satisfying the consistency rule. These calculators help you stay within the firm’s requirements. They track things like profit distribution and trade sizes to help you remain consistent and not break any limits.</p>
-
-<p>Here are some of the best consistency rule calculators:</p>
-
-<ul class="wp-block-list">
-<li>Makarios Consistency Rule Calculator</li>
-
-<li>Funded Wizard Consistency Calculator</li>
-
-<li>Fast Track Trading Consistency Calculator</li>
-
-<li>PropScholar Consistency Rule Check</li>
-</ul>
-
-<h2 class="wp-block-heading"><strong>Infographic: Consistency Rule</strong></h2>
-
-<figure class="wp-block-image aligncenter size-full is-resized rounded-img"><img src="/images/wp/2024/11/Prop-Firm-Consistency-Rule-Infographic.jpg" alt="What Is Prop Firm Consistency Rule: An Infographic" class="wp-image-756" style="width:620px;height:auto"/></figure>
-
-<h2 class="wp-block-heading"><strong>Conclusion</strong></h2>
-
-<p>The prop firm consistency rule might feel frustrating at first, especially if you’ve failed a challenge due to breaking it. But it can actually be valuable for serious traders. I mean, this rule can teach you discipline and encourage building good habits.</p>
-
-<p>Yes, it’s challenging, especially if you’re used to going for high-risk trades. But remember, the consistency rule is an obstacle that separates gamblers from true traders. If you embrace the rule and adapt your strategy to align with it, you’re setting yourself up for long-term consistency and success.</p>
-
-<p>Stay steady, stay disciplined, and keep focused on your goals. It might be tough, but playing by the prop firm consistency rule is one of the best ways to prove you’ve got what it takes to be a professional trader.</p>
+<p>Current captures explicitly record no Best Day objective for FTMO 2-Step and no consistency rule for FundedNext Stellar Instant. That finding is product-specific and dated 2026-07-27; verify the live rules because another product from either firm can differ.</p>
