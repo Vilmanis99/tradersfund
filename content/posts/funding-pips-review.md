@@ -92,7 +92,7 @@ type: "post"
 
 <p><strong>2 Step Standard:</strong> targets are 8% then 5%, with a 5% daily and 10% static maximum loss plus 3 minimum trading days. Its 35% consistency rule applies only when the trader chooses the 90% on-demand payout cycle, not during evaluation or on the other 3 payout cycles.</p>
 
-<p><strong>FundingPips Zero:</strong> there is no evaluation target, but the funded account uses a 3% daily and 5% trailing maximum loss. The first 3% profit is a safety cushion, reward eligibility needs 7 profitable days of at least 0.25% in a rolling 30-day period, and the largest losing day cannot exceed the largest winning day.</p>
+<p><strong><a href="/blog/fundingpips-zero">FundingPips Zero</a>:</strong> there is no evaluation target, but the funded account uses a 3% daily and 5% trailing maximum loss. The first 3% profit is a safety cushion, reward eligibility needs 7 profitable days of at least 0.25% in a rolling 30-day period, and the largest losing day cannot exceed the largest winning day.</p>
 
 <p><strong>Weekday overnight holding is allowed, but weekend holding is not.</strong> The 4 evaluation products allow ordinary overnight positions; the optional MT5 Swap-Free add-on changes financing charges on Forex and Metals, not permission to hold. Zero also permits weekday overnight holding but treats a weekend position as a hard breach. News, weekend, EA, and copy-trading conditions still require product-specific checks.</p>
 

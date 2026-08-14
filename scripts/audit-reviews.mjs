@@ -207,6 +207,10 @@ const CONSISTENCY_GUIDE_FILE = path.join(
   ROOT,
   'content/posts/what-is-prop-firm-consistency-rule.md',
 )
+const FUNDINGPIPS_ZERO_GUIDE_FILE = path.join(
+  ROOT,
+  'content/posts/fundingpips-zero.md',
+)
 const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
 const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
@@ -5380,6 +5384,428 @@ function checkConsistencyGuide() {
 }
 
 /**
+ * FundingPips Zero is a product-level commercial guide, so every fee, rule,
+ * worked amount, comparison, review aggregate, and affiliate path must remain
+ * tied to the structured product records and their first-party captures.
+ */
+function checkFundingPipsZeroGuide() {
+  const rows = []
+  if (!fs.existsSync(FUNDINGPIPS_ZERO_GUIDE_FILE)) {
+    console.log('\nâœ— FundingPips Zero guide')
+    console.log('  Â· content/posts/fundingpips-zero.md is missing')
+    return 1
+  }
+
+  const { data, content } = matter(
+    fs.readFileSync(FUNDINGPIPS_ZERO_GUIDE_FILE, 'utf-8'),
+  )
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const attributedMarkup = (tag, attribute, key) => {
+    const match = content.match(
+      new RegExp(
+        `<${tag}[^>]*\\b${attribute}="${escapeRegExp(key)}"[^>]*>([\\s\\S]*?)<\\/${tag}>`,
+        'i',
+      ),
+    )
+    return match?.[1] ?? ''
+  }
+  const attributedText = (tag, attribute, key) =>
+    stripTags(attributedMarkup(tag, attribute, key)).replace(/\s+/g, ' ').trim()
+  const expectFragments = (label, text, fragments) => {
+    if (!text) {
+      rows.push(`${label} evidence block is missing`)
+      return
+    }
+    for (const fragment of fragments) {
+      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+    }
+  }
+  const amount = value =>
+    value.toLocaleString('en-US', {
+      minimumFractionDigits: Number.isInteger(value) ? 0 : 2,
+      maximumFractionDigits: 2,
+    })
+  const money = value => `$${amount(value)}`
+  const product = (firmSlug, productSlug) =>
+    loadChallenges(firmSlug)?.find(challenge => challenge.productSlug === productSlug)
+  const tier = (challenge, sizeUsd) =>
+    challenge?.accountSizes.find(account => account.sizeUsd === sizeUsd)
+  const captureProduct = (file, productSlug) => {
+    const capture = JSON.parse(fs.readFileSync(file, 'utf-8'))
+    return capture.products?.find(candidate => candidate.productSlug === productSlug)
+  }
+  const evidenceText = capturedProduct => {
+    if (!capturedProduct) return ''
+    return [
+      ...capturedProduct.accountSizes.flatMap(account =>
+        Object.values(account).filter(value => typeof value === 'string'),
+      ),
+      ...Object.values(capturedProduct.fieldEvidence ?? {}).filter(
+        value => typeof value === 'string',
+      ),
+      ...Object.values(capturedProduct.rules ?? {}).filter(
+        value => typeof value === 'string',
+      ),
+      ...(capturedProduct.notes ?? []),
+    ].join(' ')
+  }
+
+  if (data.title !== 'FundingPips Zero Review 2026: Fees, Rules, Payouts') {
+    rows.push('title must preserve product, year, fee, rule, and payout intent')
+  }
+  if (data.seoTitle !== 'FundingPips Zero Review 2026: Fees, Rules, Payouts') {
+    rows.push('seoTitle must preserve the primary product-review search intent')
+  }
+  if (typeof data.seoTitle !== 'string' || data.seoTitle.length > 60) {
+    rows.push('seoTitle must stay at or below 60 characters')
+  }
+  if (
+    typeof data.seoDescription !== 'string' ||
+    data.seoDescription.length < 120 ||
+    data.seoDescription.length > 160
+  ) {
+    rows.push('seoDescription must be between 120 and 160 characters')
+  }
+  if (
+    !Array.isArray(data.tags) ||
+    !data.tags.includes('FundingPips Zero') ||
+    !data.tags.includes('instant funding')
+  ) {
+    rows.push('tags must preserve FundingPips Zero and instant-funding intent')
+  }
+
+  const zero = product('fundingpips', 'zero')
+  const instant = product('fundednext', 'stellar-instant')
+  const zero10k = tier(zero, 10000)
+  const zero100k = tier(zero, 100000)
+  const instant10k = tier(instant, 10000)
+  if (!zero) rows.push('FundingPips Zero structured product is missing')
+  if (!instant) rows.push('FundedNext Stellar Instant structured product is missing')
+  if (!zero10k || !zero100k) rows.push('FundingPips Zero $10K or $100K tier is missing')
+  if (!instant10k) rows.push('FundedNext Stellar Instant $10K tier is missing')
+
+  if (zero) {
+    const fees = zero.accountSizes.map(account => account.priceUsd)
+    expectFragments(
+      'FundingPips Zero quick facts',
+      attributedText('table', 'data-zero-facts', 'current'),
+      [
+        '0 evaluation phases; no evaluation profit target',
+        `${money(Math.min(...fees))}–${money(Math.max(...fees))} across ${zero.accountSizes.length} tiers; all non-refundable`,
+        `${zero.dailyLossPct}%`,
+        `${zero.maxLossPct}% ${zero.drawdownType} from peak equity`,
+        '1% combined floating Max Open Risk',
+        `${zero.consistencyRulePct}% maximum Consistency Score`,
+        `Every ${zero.payoutFirstDays} calendar days after the first executed trade; ${zero.payoutFrequency}`,
+        `${zero.profitSplitPct}%`,
+        zero.sourceCapturedAt,
+      ],
+    )
+    if (zero.phases !== 0 || zero.profitTargets !== null) {
+      rows.push('FundingPips Zero no-evaluation support drifted from challenge data')
+    }
+    if (zero.accountSizes.some(account => account.refundable !== false)) {
+      rows.push('FundingPips Zero pricing is no longer uniformly non-refundable')
+    }
+
+    for (const account of zero.accountSizes) {
+      expectFragments(
+        `FundingPips Zero ${account.sizeUsd} price row`,
+        attributedText('tr', 'data-zero-price', String(account.sizeUsd)),
+        [
+          `$${account.sizeUsd / 1000}K`,
+          money(account.priceUsd),
+          'No',
+          zero.sourceCapturedAt,
+        ],
+      )
+    }
+  }
+
+  const zeroCapture = captureProduct(
+    path.join(CHALLENGES, '_captures/fundingpips-2026-08-10.json'),
+    'zero',
+  )
+  const instantCapture = captureProduct(
+    path.join(CHALLENGES, '_captures/fundednext-2026-07-27.json'),
+    'stellar-instant',
+  )
+  const zeroEvidence = evidenceText(zeroCapture)
+  const instantEvidence = evidenceText(instantCapture)
+  for (const fragment of [
+    'No evaluation: live from day one',
+    'Daily Loss Limit 3%',
+    'Max Trailing Loss Limit 5%',
+    'Consistency Score 15% max',
+    '95% profit split',
+    'Every 14 calendar days after your first executed trade',
+    'Max Open Risk is 1% combined floating loss',
+    'Risk Per Trade Idea is 3% below $50K and 2% at $50K and above',
+    'At least 7 profitable days of 0.25% or more',
+    'a 3% safety cushion, and largest loss no greater than largest win',
+    'Reset is available at a 20% discount within 7 calendar days',
+    'Prohibited as a hard breach: no position may be opened, closed, or held from 10 minutes before to 10 minutes after',
+    'Prohibited as a hard breach on all instruments',
+  ]) {
+    if (!zeroEvidence.includes(fragment)) {
+      rows.push(`FundingPips Zero raw capture is missing: "${fragment}"`)
+    }
+  }
+  for (const fragment of [
+    'Stellar Instant has no daily loss limit',
+    'Official FAQ: no consistency rule',
+    '6% trailing maximum loss',
+    'Tier 1 and Tier 2 start at 70%',
+    'Weekend holding is allowed',
+    'On-demand eligibility is available at the next EOD after 5% growth',
+  ]) {
+    if (!instantEvidence.includes(fragment)) {
+      rows.push(`FundedNext Instant raw capture is missing: "${fragment}"`)
+    }
+  }
+
+  if (zero100k && zero) {
+    const startingLoss = zero100k.sizeUsd * (zero.maxLossPct / 100)
+    const secondPeak = zero100k.sizeUsd * 1.02
+    const lockPeak = zero100k.sizeUsd * 1.05
+    expectFragments(
+      'FundingPips Zero trailing-loss example',
+      attributedText('table', 'data-zero-drawdown', '100k'),
+      [
+        money(zero100k.sizeUsd),
+        money(startingLoss),
+        money(zero100k.sizeUsd - startingLoss),
+        money(secondPeak),
+        money(secondPeak - startingLoss),
+        money(lockPeak),
+        `${money(zero100k.sizeUsd)}; floor locks`,
+      ],
+    )
+    const dailyAmount = zero100k.sizeUsd * (zero.dailyLossPct / 100)
+    const openRisk = zero100k.sizeUsd * 0.01
+    const tradeIdeaRisk = zero100k.sizeUsd * 0.02
+    expectFragments('FundingPips Zero independent risk controls', stripTags(content), [
+      `${money(dailyAmount)} of daily room`,
+      `${money(openRisk)} of combined floating loss`,
+      `captured $100K figure is ${money(tradeIdeaRisk)}`,
+      `smaller ${money(openRisk)} open-risk ceiling`,
+    ])
+
+    const profitableDay = zero100k.sizeUsd * 0.0025
+    const safetyCushion = zero100k.sizeUsd * 0.03
+    const minimumReward = zero100k.sizeUsd * 0.01
+    expectFragments(
+      'FundingPips Zero reward gates',
+      attributedText('table', 'data-zero-reward-gates', '100k'),
+      [
+        `Every ${zero.payoutFirstDays} calendar days after the first trade`,
+        '7 days of at least 0.25% in each rolling 30-day period',
+        `Each qualifying day needs at least ${money(profitableDay)}`,
+        `Score at or below ${zero.consistencyRulePct}%`,
+        'full denominator is not recorded',
+        '3% before reward eligibility',
+        money(safetyCushion),
+        'Largest loss cannot exceed largest win',
+        '1% of account size',
+        money(minimumReward),
+      ],
+    )
+  }
+
+  if (zero && instant && zero10k && instant10k) {
+    const zeroEconomics = challengeTierEconomics(zero, zero10k)
+    const instantEconomics = challengeTierEconomics(instant, instant10k)
+    if (!zeroEconomics || !instantEconomics) {
+      rows.push('instant-product fee-recovery economics are not calculable')
+    } else {
+      expectFragments(
+        'FundingPips Zero versus FundedNext comparison',
+        attributedText('table', 'data-zero-comparison', '10k-instant'),
+        [
+          `${money(zero10k.priceUsd)} / non-refundable`,
+          `${money(instant10k.priceUsd)} / non-refundable`,
+          `${zero.profitSplitPct}%`,
+          `${instant.profitSplitPct}%`,
+          money(Math.round(zeroEconomics.breakEvenProfit * 100) / 100),
+          money(Math.round(instantEconomics.breakEvenProfit * 100) / 100),
+          `${zero.dailyLossPct}%`,
+          'Official FAQ records no daily loss limit',
+          `${zero.maxLossPct}% ${zero.drawdownType}`,
+          `${instant.maxLossPct}% ${instant.drawdownType}`,
+          `${zero.consistencyRulePct}% maximum score`,
+          'Official FAQ records no consistency rule',
+          '20-minute hard-breach window',
+          'Only 40% of profits count in the 10-minute window; full losses remain',
+          zero.sourceCapturedAt,
+          instant.sourceCapturedAt,
+        ],
+      )
+      const feeDifference = instant10k.priceUsd - zero10k.priceUsd
+      const splitDifference = zero.profitSplitPct - instant.profitSplitPct
+      const drawdownDifference = instant.maxLossPct - zero.maxLossPct
+      expectFragments('instant-product decision trade-off', stripTags(content), [
+        `costs ${money(feeDifference)} more at $10K`,
+        `starts ${splitDifference} percentage points lower on Reward Share`,
+        `provides ${drawdownDifference} percentage point more trailing room`,
+      ])
+    }
+    if (instant.dailyLossPct !== null || instant.consistencyRulePct !== null) {
+      rows.push('FundedNext Instant comparison lost its null structured fields')
+    }
+  }
+
+  const firms = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
+  )
+  const fundingPipsFirm = firms.find(firm => firm.name === 'FundingPips')
+  if (!fundingPipsFirm) {
+    rows.push('FundingPips aggregate firm record is missing')
+  } else {
+    expectFragments('FundingPips review aggregate caveat', stripTags(content), [
+      `${fundingPipsFirm.trustpilotScore}/5`,
+      fundingPipsFirm.trustpilotCount.toLocaleString('en-US'),
+      fundingPipsFirm.trustpilotCapturedAt,
+      'third-party sentiment signal',
+      'does not prove',
+    ])
+  }
+
+  const fundingPipsChoice = attributedMarkup(
+    'div',
+    'data-zero-choice',
+    'fundingpips',
+  )
+  const fundingPipsChoiceText = stripTags(fundingPipsChoice).replace(/\s+/g, ' ').trim()
+  if (zero && zero10k) {
+    expectFragments('FundingPips Zero commercial choice', fundingPipsChoiceText, [
+      `current $10K list fee is ${money(zero10k.priceUsd)}`,
+      `split is ${zero.profitSplitPct}%`,
+      'fee is non-refundable',
+      '1% open-risk',
+      `${zero.consistencyRulePct}% consistency`,
+      'news, weekend, and reward gates',
+    ])
+  }
+  for (const href of ['/blog/funding-pips-review', '/go/fundingpips']) {
+    if (!fundingPipsChoice.includes(`href="${href}"`)) {
+      rows.push(`FundingPips Zero commercial choice is missing ${href}`)
+    }
+  }
+
+  const fundedNextChoice = attributedMarkup(
+    'div',
+    'data-zero-choice',
+    'fundednext',
+  )
+  const fundedNextChoiceText = stripTags(fundedNextChoice).replace(/\s+/g, ' ').trim()
+  if (instant && instant10k) {
+    expectFragments('FundedNext Instant alternative', fundedNextChoiceText, [
+      `current $10K fee is ${money(instant10k.priceUsd)}`,
+      `starting Reward Share is ${instant.profitSplitPct}%`,
+      `${instant.maxLossPct}% ${instant.drawdownType} maximum loss`,
+      'higher price, lower split, and news-window adjustment',
+    ])
+  }
+  for (const href of ['/blog/fundednext-review', '/go/fundednext']) {
+    if (!fundedNextChoice.includes(`href="${href}"`)) {
+      rows.push(`FundedNext Instant alternative is missing ${href}`)
+    }
+  }
+
+  const requiredLinks = [
+    '/blog/funding-pips-review',
+    '/best-instant-funding-prop-firms',
+    '/how-prop-firm-challenges-work',
+    '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+    '/blog/what-is-overtrading',
+    '/blog/what-is-prop-firm-consistency-rule',
+    '/blog/is-prop-firm-trading-profitable',
+    '/blog/fundednext-review',
+    '/true-cost-of-prop-firm-challenges',
+    '/prop-firm-challenge-changes',
+    '/go/fundingpips',
+    '/go/fundednext',
+  ]
+  for (const href of requiredLinks) {
+    if (!content.includes(`href="${href}"`)) rows.push(`missing internal link to ${href}`)
+  }
+
+  const backlinkFiles = [
+    [path.join(POSTS, 'funding-pips-review.md'), 'FundingPips review'],
+    [CONSISTENCY_GUIDE_FILE, 'consistency guide'],
+    [CHALLENGE_LIFECYCLE_PAGE_FILE, 'challenge lifecycle pillar'],
+    [TRUE_COST_PILLAR_FILE, 'true-cost pillar'],
+  ]
+  for (const [file, label] of backlinkFiles) {
+    const source = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+    if (!source.includes('/blog/fundingpips-zero')) {
+      rows.push(`${label} is missing a FundingPips Zero backlink`)
+    }
+  }
+
+  const renderedContent = decoratePostOutboundLinks(
+    content,
+    buildOutboundRelationships(firms),
+    data.slug,
+  )
+  for (const firmSlug of ['fundingpips', 'fundednext']) {
+    if (
+      !renderedContent.includes(
+        `href="/go/${firmSlug}?from=post-body-fundingpips-zero"`,
+      )
+    ) {
+      rows.push(`rendered ${firmSlug} link lacks post-body attribution`)
+    }
+  }
+  if (!renderedContent.includes('rel="sponsored nofollow noopener"')) {
+    rows.push('rendered FundingPips Zero affiliate links lack sponsored disclosure')
+  }
+
+  const faqSection = content.split('<h2>Frequently asked questions</h2>')[1] ?? ''
+  if ((faqSection.match(/<h3>/gi) ?? []).length !== 6) {
+    rows.push('FundingPips Zero guide must preserve 6 factual FAQs')
+  }
+  if (/href="https?:\/\//i.test(content)) {
+    rows.push('FundingPips Zero guide contains a bare external link')
+  }
+
+  const staleClaims = [
+    'Quickest Way to Funding?',
+    '$499 fee for the $100K account',
+    '<td>$69</td>',
+    '<td>$99</td>',
+    '<td>$199</td>',
+    '<td>$299</td>',
+    '4.6</strong> on <strong>Trustpilot',
+    '4.7</strong> on <strong>TFH',
+    'most traders fail before seeing a payout',
+    'payouts are real',
+    'typically processed within 24',
+    'Hot Seat',
+    '100% payouts',
+    'solid option',
+    'one of the more reliable instant funding models',
+    'no second chances or resets',
+    'FundingPips-Zero-Trustpilot.jpg',
+    'worth it, but only',
+    'They pay traders',
+    'strong presence',
+  ]
+  const lowerContent = content.toLowerCase()
+  for (const claim of staleClaims) {
+    if (lowerContent.includes(claim.toLowerCase())) {
+      rows.push(`unsupported or stale FundingPips Zero claim returned: "${claim}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\nâœ— FundingPips Zero guide')
+    for (const row of rows) console.log(`  Â· ${row}`)
+  }
+  return rows.length
+}
+
+/**
  * Passing-service copy must not promote vendors whose terms and prices cannot
  * be verified. Keep the page focused on captured firm restrictions, explicit
  * cash math, account-control risk, and alternatives sold by the firms.
@@ -6645,6 +7071,8 @@ const profitabilityGuideErrors = checkProfitabilityGuide()
 totalErrors += profitabilityGuideErrors
 const consistencyGuideErrors = checkConsistencyGuide()
 totalErrors += consistencyGuideErrors
+const fundingPipsZeroGuideErrors = checkFundingPipsZeroGuide()
+totalErrors += fundingPipsZeroGuideErrors
 const passingServicesGuideErrors = checkPassingServicesGuide()
 totalErrors += passingServicesGuideErrors
 const copyTradingGuideErrors = checkCopyTradingGuide()

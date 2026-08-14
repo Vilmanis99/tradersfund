@@ -83,7 +83,7 @@ type: "page"
 <p>You pass the evaluation phases. The firm activates a <strong>funded account</strong> — usually still simulated trading, but with payouts tied to real PnL. Key things change at this stage:</p>
 
 <ul class="wp-block-list">
-  <li><strong>The evaluation target usually disappears.</strong> Phase-0 products can still attach a growth threshold to payout eligibility, so “no evaluation” does not mean “no profit gate.”</li>
+  <li><strong>The evaluation target usually disappears.</strong> Phase-0 products can still attach payout gates: the current <a href="/blog/fundingpips-zero">FundingPips Zero guide</a> records 7 qualifying profitable days, a 15% Consistency Score, and a 3% safety cushion despite having no evaluation target.</li>
   <li><strong>Drawdown rules continue to apply.</strong> If you breach the named daily or maximum-loss rule on the funded account, the account ends and any new evaluation or reset becomes another purchase decision.</li>
   <li><strong>Restrictions can tighten after evaluation.</strong> FundedNext credits only 40% of eligible funded-stage profit made inside its Tier-1 news window while 100% of losses remain, so evaluation-stage permission does not mean full funded-stage economics.</li>
   <li><strong>The profit split applies.</strong> FundedNext challenge products start at an 80% base Reward Share and Stellar Instant starts at 70%; 95% is a paid add-on, not the standard split. Other firms use their own base and scaled rates, which should be compared at the product level.</li>
