@@ -3,7 +3,11 @@ import { ArrowRight, ArrowUpRight, Handshake, Tag, Star } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
 import { rankFirmAlternatives } from '@/lib/firmAlternatives'
 import { firmSlug } from '@/lib/comparisons'
-import { comparisonHref, getFreshFirmEvidence } from '@/lib/relatedComparisons'
+import {
+  comparisonHref,
+  getFreshComparisonEvidence,
+  getFreshFirmEvidence,
+} from '@/lib/relatedComparisons'
 
 function formatCaptureDate(value: string | null) {
   if (!value) return 'refresh pending'
@@ -33,9 +37,10 @@ export default function FirmAlternatives({
   current: Firm
   allFirms: Firm[]
 }) {
-  const ranked = rankFirmAlternatives(current, allFirms)
+  const allRanked = rankFirmAlternatives(current, allFirms, allFirms.length)
+  const ranked = allRanked.slice(0, 3)
 
-  if (!ranked.length) return null
+  if (!allRanked.length) return null
 
   return (
     <section
@@ -143,6 +148,75 @@ export default function FirmAlternatives({
           )
         })}
       </div>
+
+      <details
+        data-firm-comparison-index={firmSlug(current.name)}
+        style={{
+          marginTop: '1rem',
+          padding: '0.9rem 1rem',
+          background: 'var(--bg3)',
+          border: '1px solid var(--border)',
+          borderRadius: 12,
+        }}
+      >
+        <summary style={{ color: '#fff', cursor: 'pointer', fontWeight: 700 }}>
+          All {allRanked.length} {current.name} comparisons
+        </summary>
+        <p style={{ color: 'var(--muted)', fontSize: '0.8rem', margin: '0.75rem 0' }}>
+          Ordered by asset and platform overlap. Each link opens the exact product-level
+          matchup; partnership does not affect inclusion or order.
+        </p>
+        <ul
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
+            gap: '0.5rem',
+            listStyle: 'none',
+            padding: 0,
+            margin: 0,
+          }}
+        >
+          {allRanked.map(firm => {
+            const href = comparisonHref(current, firm)
+            const evidence = getFreshComparisonEvidence(current, firm)
+            return (
+              <li key={firm.name}>
+                <Link
+                  href={href}
+                  data-firm-comparison-link={href}
+                  data-comparison-products={evidence.productCount}
+                  data-comparison-sources={evidence.sourceCount}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '0.75rem',
+                    minHeight: 52,
+                    padding: '0.65rem 0.75rem',
+                    color: '#fff',
+                    background: 'var(--bg2)',
+                    border: '1px solid var(--border)',
+                    borderRadius: 9,
+                    textDecoration: 'none',
+                  }}
+                >
+                  <span>
+                    <strong style={{ display: 'block', fontSize: '0.82rem' }}>
+                      {current.name} vs {firm.name}
+                    </strong>
+                    <small style={{ color: 'var(--muted)', fontSize: '0.72rem' }}>
+                      {evidence.productCount} products · {evidence.sourceCount}{' '}
+                      {evidence.sourceCount === 1 ? 'source' : 'sources'} · checked{' '}
+                      {formatCaptureDate(evidence.latestCapture)}
+                    </small>
+                  </span>
+                  <ArrowRight size={12} aria-hidden="true" />
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </details>
     </section>
   )
 }

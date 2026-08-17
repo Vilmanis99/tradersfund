@@ -26,6 +26,7 @@ import { rankFirmAlternatives } from '../lib/firmAlternatives.ts'
 import {
   buildRelatedComparisons,
   comparisonHref,
+  getFreshComparisonEvidence,
   getFreshFirmEvidence,
 } from '../lib/relatedComparisons.ts'
 
@@ -370,6 +371,18 @@ for (const productionUrl of uniqueSitemapUrls) {
   const inlinkCount = internalInlinks.get(path)?.size ?? 0
   if (inlinkCount < 5) {
     errors.push(`${path}: focused rule page has only ${inlinkCount} unique internal inlinks`)
+  }
+}
+
+// Every exact matchup must be reachable from the comparison hub and from the
+// review page for each participating firm. This distributes discovery across
+// the complete 171-page library instead of concentrating links on a few firms.
+for (const productionUrl of uniqueSitemapUrls) {
+  const path = new URL(productionUrl).pathname
+  if (!path.startsWith('/compare/')) continue
+  const inlinkCount = internalInlinks.get(path)?.size ?? 0
+  if (inlinkCount < 3) {
+    errors.push(`${path}: comparison page has only ${inlinkCount} unique internal inlinks`)
   }
 }
 
@@ -2169,6 +2182,48 @@ if (fundedNextReviewProbe.status !== 200) {
       }
     }
   }
+
+  const expectedComparisonFirms = fundedNextFirm
+    ? rankFirmAlternatives(fundedNextFirm, firmRecords, firmRecords.length)
+    : []
+  const comparisonIndexTags = [...alternativeSection.matchAll(
+    /<a\b[^>]*\bdata-firm-comparison-link=["'][^"']+["'][^>]*>/gi,
+  )].map(match => match[0])
+  const renderedComparisonHrefs = comparisonIndexTags.map(tag =>
+    firstMatch(tag, /\bdata-firm-comparison-link=["']([^"']+)["']/i),
+  )
+  const expectedComparisonHrefs = expectedComparisonFirms.map(firm =>
+    comparisonHref(fundedNextFirm, firm),
+  )
+  if (
+    !alternativeSection.includes('data-firm-comparison-index="fundednext"')
+    || JSON.stringify(renderedComparisonHrefs) !== JSON.stringify(expectedComparisonHrefs)
+  ) {
+    errors.push(`${fundedNextReviewPath}: review comparison index is incomplete or out of order`)
+  }
+  expectedComparisonFirms.forEach((firm, index) => {
+    const href = expectedComparisonHrefs[index]
+    const evidence = getFreshComparisonEvidence(fundedNextFirm, firm)
+    const tag = comparisonIndexTags[index] || ''
+    const linkContent = firstMatch(
+      alternativeSection,
+      new RegExp(
+        `<a[^>]*data-firm-comparison-link=["']${href}["'][^>]*>([\\s\\S]*?)<\\/a>`,
+        'i',
+      ),
+    )
+    const linkText = textContent(linkContent)
+    if (
+      !tag.includes(`href="${href}"`)
+      || !tag.includes(`data-comparison-products="${evidence.productCount}"`)
+      || !tag.includes(`data-comparison-sources="${evidence.sourceCount}"`)
+      || !linkText.includes(`FundedNext vs ${firm.name}`)
+      || !linkText.includes(`${evidence.productCount} products`)
+      || !linkText.includes(`checked ${formatCaptureDate(evidence.latestCapture)}`)
+    ) {
+      errors.push(`${fundedNextReviewPath}: ${firm.name} comparison-index evidence is incomplete`)
+    }
+  })
 }
 
 const ftmoFundedNextPath = '/compare/ftmo-vs-fundednext'

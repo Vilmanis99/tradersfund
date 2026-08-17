@@ -40,6 +40,7 @@ import { rankFirmAlternatives } from '../lib/firmAlternatives.ts'
 import {
   buildRelatedComparisons,
   comparisonHref,
+  getFreshComparisonEvidence,
   getFreshFirmEvidence,
 } from '../lib/relatedComparisons.ts'
 import {
@@ -1181,6 +1182,20 @@ function checkFirmAlternativeNeutrality() {
     if (!evidence.productCount || !evidence.sourceCount || !evidence.latestCapture) {
       rows.push(`${firm.name}: review alternative evidence is not current and attributable`)
     }
+    const comparisonFirms = rankFirmAlternatives(firm, firms, firms.length)
+    const comparisonHrefs = comparisonFirms.map(candidate => comparisonHref(firm, candidate))
+    if (
+      comparisonFirms.length !== firms.length - 1
+      || new Set(comparisonHrefs).size !== firms.length - 1
+    ) {
+      rows.push(`${firm.name}: review comparison index must cover every other firm once`)
+    }
+    for (const candidate of comparisonFirms) {
+      const pairEvidence = getFreshComparisonEvidence(firm, candidate)
+      if (!pairEvidence.productCount || !pairEvidence.sourceCount || !pairEvidence.latestCapture) {
+        rows.push(`${firm.name} vs ${candidate.name}: comparison-index evidence is incomplete`)
+      }
+    }
   }
 
   for (let leftIndex = 0; leftIndex < firms.length; leftIndex += 1) {
@@ -1240,6 +1255,12 @@ function checkFirmAlternativeNeutrality() {
     'data-alternative-products={evidence.productCount}',
     'data-alternative-sources={evidence.sourceCount}',
     'data-alternative-comparison={compareHref}',
+    'data-firm-comparison-index={firmSlug(current.name)}',
+    'data-firm-comparison-link={href}',
+    'data-comparison-products={evidence.productCount}',
+    'data-comparison-sources={evidence.sourceCount}',
+    'All {allRanked.length} {current.name} comparisons',
+    'Each link opens the exact product-level',
     'first-party',
     'checked {formatCaptureDate(evidence.latestCapture)}',
   ]) {
@@ -1276,6 +1297,7 @@ function checkFirmAlternativeNeutrality() {
   }
   for (const fragment of [
     'export function getFreshFirmEvidence',
+    'export function getFreshComparisonEvidence',
     'export function comparisonHref',
     'export function buildRelatedComparisons',
     'rankFirmAlternatives(',
@@ -1299,6 +1321,8 @@ function checkFirmAlternativeNeutrality() {
     'generic comparison related links do not match the shared selector',
     'editorial comparison related links do not match the shared selector',
     'review alternatives do not link to their exact comparisons',
+    'review comparison index is incomplete or out of order',
+    'comparison page has only ${inlinkCount} unique internal inlinks',
   ]) {
     if (!releaseCrawl.includes(fragment)) {
       rows.push(`release crawl is missing related-link safeguard "${fragment}"`)

@@ -34,6 +34,25 @@ export function getFreshFirmEvidence(firm: Pick<Firm, 'name'>): FreshFirmEvidenc
   }
 }
 
+/** Current combined evidence for an exact firm pair. */
+export function getFreshComparisonEvidence(
+  left: Pick<Firm, 'name'>,
+  right: Pick<Firm, 'name'>,
+): FreshFirmEvidence {
+  const products = [left, right].flatMap(firm =>
+    getChallengesByFirm(firmSlug(firm.name)).filter(challenge => isChallengeFresh(challenge)),
+  )
+
+  return {
+    productCount: products.length,
+    sourceCount: new Set(products.map(product => product.sourceUrl)).size,
+    latestCapture: products
+      .map(product => product.sourceCapturedAt)
+      .sort()
+      .at(-1) ?? null,
+  }
+}
+
 export function comparisonHref(left: Pick<Firm, 'name'>, right: Pick<Firm, 'name'>) {
   return `/compare/${canonicalMatchupSlug(firmSlug(left.name), firmSlug(right.name))}`
 }
@@ -85,10 +104,7 @@ export function buildRelatedComparisons(
       const [left, right] = firmSlug(anchor.name) < firmSlug(candidate.name)
         ? [anchor, candidate]
         : [candidate, anchor]
-      const products = [
-        ...getChallengesByFirm(firmSlug(anchor.name)),
-        ...getChallengesByFirm(firmSlug(candidate.name)),
-      ].filter(challenge => isChallengeFresh(challenge))
+      const pairEvidence = getFreshComparisonEvidence(anchor, candidate)
 
       seen.add(matchup)
       rows.push({
@@ -96,12 +112,7 @@ export function buildRelatedComparisons(
         href: `/compare/${matchup}`,
         label: `${left.name} vs ${right.name}`,
         anchorName: anchor.name,
-        productCount: anchorEvidence.productCount + candidateEvidence.productCount,
-        sourceCount: new Set(products.map(product => product.sourceUrl)).size,
-        latestCapture: [anchorEvidence.latestCapture, candidateEvidence.latestCapture]
-          .filter((value): value is string => Boolean(value))
-          .sort()
-          .at(-1) ?? null,
+        ...pairEvidence,
       })
       addedForAnchor += 1
     }
