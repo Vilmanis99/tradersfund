@@ -37,6 +37,9 @@ const firmRecords = JSON.parse(
 const ukAccessEvidence = JSON.parse(
   readFileSync(join(PROJECT_ROOT, 'content/data/uk-access-evidence.json'), 'utf8'),
 )
+const usAccessEvidence = JSON.parse(
+  readFileSync(join(PROJECT_ROOT, 'content/data/us-access-evidence.json'), 'utf8'),
+)
 const cryptoMarketEvidence = JSON.parse(
   readFileSync(join(PROJECT_ROOT, 'content/data/crypto-market-evidence.json'), 'utf8'),
 )
@@ -541,7 +544,7 @@ for (const backlinkPath of [
 }
 
 const ukLandingPath = '/best-prop-firms-in-uk'
-const ukEvidenceIsFresh = sourceCapturedAt => {
+const accessEvidenceIsFresh = sourceCapturedAt => {
   const captured = new Date(`${sourceCapturedAt}T00:00:00Z`)
   if (Number.isNaN(captured.getTime())) return false
   const now = new Date()
@@ -559,7 +562,7 @@ const expectedUkFirms = ukAccessEvidence.firms.flatMap(evidence => {
     return product && isChallengeFresh(product) ? [product] : []
   })
   return firm
-    && ukEvidenceIsFresh(evidence.sourceCapturedAt)
+    && accessEvidenceIsFresh(evidence.sourceCapturedAt)
     && products.length === evidence.productSlugs.length
     ? [{ firm, evidence, products }]
     : []
@@ -689,6 +692,151 @@ for (const backlinkPath of [
     errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
   } else if (!backlinkProbe.html.includes('href="/best-prop-firms-in-uk"')) {
     errors.push(`${backlinkPath}: missing contextual UK-ranking backlink`)
+  }
+}
+
+const usLandingPath = '/best-prop-firms-in-us'
+const expectedUsFirms = usAccessEvidence.firms.flatMap(evidence => {
+  const firm = firmRecords.find(candidate => outboundSlug(candidate.name) === evidence.firmSlug)
+  const productsBySlug = new Map(
+    getChallengesByFirm(evidence.firmSlug).map(product => [product.productSlug, product]),
+  )
+  const products = evidence.productSlugs.flatMap(productSlug => {
+    const product = productsBySlug.get(productSlug)
+    return product && isChallengeFresh(product) ? [product] : []
+  })
+  return firm
+    && accessEvidenceIsFresh(evidence.sourceCapturedAt)
+    && products.length === evidence.productSlugs.length
+    ? [{ firm, evidence, products }]
+    : []
+}).sort((a, b) => b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
+const expectedUsProductCount = expectedUsFirms.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
+const usLandingProbe = await fetchPage(new URL(usLandingPath, BASE))
+if (usLandingProbe.status !== 200) {
+  errors.push(`${usLandingPath}: HTTP ${usLandingProbe.status || usLandingProbe.error}`)
+} else {
+  const usText = textContent(usLandingProbe.html)
+  const cards = [...usLandingProbe.html.matchAll(
+    /<li class="leader-row[^"]*"[^>]*>([\s\S]*?)<\/li>/gi,
+  )].map(match => ({ html: match[0], text: textContent(match[1]) }))
+  const itemListCount = (usLandingProbe.html.match(/"@type":"ItemList"/g) ?? []).length
+
+  if (cards.length !== expectedUsFirms.length) {
+    errors.push(`${usLandingPath}: rendered ${cards.length} firms, expected ${expectedUsFirms.length}`)
+  }
+  if (expectedUsFirms.length !== 4 || expectedUsProductCount !== 14) {
+    errors.push(
+      `${usLandingPath}: evidence fixture must resolve to 4 firms and 14 products; received ${expectedUsFirms.length} and ${expectedUsProductCount}`,
+    )
+  }
+  if (itemListCount !== 1) {
+    errors.push(`${usLandingPath}: rendered ${itemListCount} ItemLists, expected 1`)
+  }
+
+  expectedUsFirms.forEach(({ firm, evidence, products }, index) => {
+    const card = cards[index]
+    const productLabel = `${products.length} U.S.-mapped ${products.length === 1 ? 'product' : 'products'}`
+    const accessLabel = evidence.accessStatus === 'explicit' ? 'Direct' : 'Policy'
+    if (!card || !card.text.includes(firm.name)) {
+      errors.push(`${usLandingPath}: rank ${index + 1} should be ${firm.name}`)
+      return
+    }
+    for (const required of [
+      productLabel,
+      `US access ${accessLabel}`,
+      `checked ${evidence.sourceCapturedAt}`,
+      `Score ${firm.score.toFixed(1)}`,
+    ]) {
+      if (!card.text.includes(required)) {
+        errors.push(`${usLandingPath}: ${firm.name} card is missing ${required}`)
+      }
+    }
+    for (const product of products.slice(0, 2)) {
+      if (!card.text.includes(product.productName)) {
+        errors.push(`${usLandingPath}: ${firm.name} card is missing ${product.productName}`)
+      }
+    }
+    if (!card.html.includes(`href="${evidence.sourceUrl}"`)) {
+      errors.push(`${usLandingPath}: ${firm.name} card is missing its U.S.-access source`)
+    }
+  })
+
+  const expectedDescription =
+    'Compare 4 policy-checked prop firms for U.S. traders across 14 exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.'
+  const renderedDescription = decodeHtml(firstMatch(
+    usLandingProbe.html,
+    /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+  ) || firstMatch(
+    usLandingProbe.html,
+    /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+  ))
+  if (renderedDescription !== expectedDescription) {
+    errors.push(`${usLandingPath}: meta description does not match the 4-firm/14-product snapshot`)
+  }
+
+  for (const required of [
+    'Best Prop Firms for US Traders (2026): 4 Checked | TFH',
+    'Best Prop Firms for U.S. Traders (2026): 4 Policy-Checked',
+    '4 policy-checked firms across 14 mapped products',
+    'U.S. access is not a regulatory badge.',
+    'What U.S. traders should verify',
+    'Does access mean the firm is CFTC-registered?',
+    'Is the first funded stage simulated or live?',
+    'Are futures and CFD paths interchangeable?',
+    'What must match before a U.S. payout?',
+    'Choose the product, not a U.S. badge',
+    'Verify the FundedNext 5% coupon',
+  ]) {
+    if (!usText.includes(required)) errors.push(`${usLandingPath}: missing ${required}`)
+  }
+  for (const required of [
+    'href="https://www.cftc.gov/check"',
+    'href="https://www.nfa.futures.org/basicnet/"',
+    'href="/prop-firm-challenges?market=futures"',
+    'href="/prop-firm-challenges"',
+    'href="/best-futures-prop-firms"',
+    'href="/blog/fundednext-review"',
+    'href="/prop-firm-discount-codes"',
+    'href="/prop-firm-challenge-changes"',
+  ]) {
+    if (!usLandingProbe.html.includes(required)) errors.push(`${usLandingPath}: missing ${required}`)
+  }
+
+  const fundedNextCta = [...usLandingProbe.html.matchAll(/<a\b[^>]*>/gi)]
+    .map(match => match[0])
+    .find(tag => tag.includes('href="/go/fundednext?from=best-prop-firms-in-us"'))
+  if (
+    !fundedNextCta
+    || !fundedNextCta.includes('rel="sponsored nofollow noopener"')
+    || !fundedNextCta.includes('target="_blank"')
+  ) {
+    errors.push(`${usLandingPath}: FundedNext ranking CTA is missing affiliate attribution`)
+  }
+  if (
+    usText.includes('CFTC-aware')
+    || usText.includes('CFTC-regulated path')
+    || usText.includes('only fully unambiguous legal path')
+  ) {
+    errors.push(`${usLandingPath}: restored unsafe regulatory wording`)
+  }
+}
+
+for (const backlinkPath of [
+  '/blog/fundednext-review',
+  '/blog/tradeify-review',
+  '/blog/topstep-review',
+  '/blog/apex-trader-funding-review',
+  '/how-prop-firm-challenges-work',
+]) {
+  const backlinkProbe = await fetchPage(new URL(backlinkPath, BASE))
+  if (backlinkProbe.status !== 200) {
+    errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
+  } else if (!backlinkProbe.html.includes('href="/best-prop-firms-in-us"')) {
+    errors.push(`${backlinkPath}: missing contextual U.S.-ranking backlink`)
   }
 }
 

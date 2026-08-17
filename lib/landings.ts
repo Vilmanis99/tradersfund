@@ -109,6 +109,7 @@ interface UsAccessEvidence {
   firmName: string
   accessStatus: 'explicit' | 'policy-supported'
   assetClass: 'cfd' | 'futures'
+  productSlugs: string[]
   platformConstraint: string
   sourceUrl: string
   secondarySourceUrl?: string
@@ -152,8 +153,9 @@ interface CryptoMarketWatch {
   nextStep: string
 }
 
+const US_ACCESS_EVIDENCE = rawUsAccessEvidence.firms as UsAccessEvidence[]
 const US_ACCESS_EVIDENCE_BY_SLUG = new Map(
-  (rawUsAccessEvidence.firms as UsAccessEvidence[]).map(evidence => [
+  US_ACCESS_EVIDENCE.map(evidence => [
     evidence.firmSlug,
     evidence,
   ]),
@@ -253,6 +255,11 @@ function ukProductsForEvidence(evidence: UkAccessEvidence): Challenge[] {
   return freshMappedProducts(evidence.firmSlug, evidence.productSlugs)
 }
 
+function usProductsForEvidence(evidence: UsAccessEvidence): Challenge[] {
+  if (!isAccessEvidenceFresh(evidence.sourceCapturedAt)) return []
+  return freshMappedProducts(evidence.firmSlug, evidence.productSlugs)
+}
+
 const CURRENT_CRYPTO_SNAPSHOT = CRYPTO_MARKET_EVIDENCE.flatMap(evidence => {
   const products = cryptoProductsForEvidence(evidence)
   return products.length ? [{ evidence, products }] : []
@@ -269,6 +276,16 @@ const CURRENT_UK_SNAPSHOT = UK_ACCESS_EVIDENCE.flatMap(evidence => {
 })
 const CURRENT_UK_FIRM_COUNT = CURRENT_UK_SNAPSHOT.length
 const CURRENT_UK_PRODUCT_COUNT = CURRENT_UK_SNAPSHOT.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
+
+const CURRENT_US_SNAPSHOT = US_ACCESS_EVIDENCE.flatMap(evidence => {
+  const products = usProductsForEvidence(evidence)
+  return products.length ? [{ evidence, products }] : []
+})
+const CURRENT_US_FIRM_COUNT = CURRENT_US_SNAPSHOT.length
+const CURRENT_US_PRODUCT_COUNT = CURRENT_US_SNAPSHOT.reduce(
   (total, entry) => total + entry.products.length,
   0,
 )
@@ -484,27 +501,22 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-prop-firms-in-us',
-    h1: 'Best Prop Firms for US Traders (2026): 4 Verified',
-    metaTitle: 'Best Prop Firms for US Traders (2026)',
+    h1: `Best Prop Firms for U.S. Traders (2026): ${CURRENT_US_FIRM_COUNT} Policy-Checked`,
+    metaTitle: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Checked`,
     metaDescription:
-      'Compare 4 prop firms with current first-party US-access evidence, including futures and CFD paths, platform limits, reviews, and dated eligibility sources.',
+      `Compare ${CURRENT_US_FIRM_COUNT} policy-checked prop firms for U.S. traders across ${CURRENT_US_PRODUCT_COUNT} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`,
     intro:
-      'These 4 firms publish current first-party evidence supporting at least 1 path for U.S. residents. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, product, KYC route, and payout method is available. Recheck the linked policy and final checkout before paying.',
+      `These ${CURRENT_US_FIRM_COUNT} firms publish current first-party evidence supporting ${CURRENT_US_PRODUCT_COUNT} explicitly mapped product paths for U.S. residents. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
     sortDir: 'desc',
-    rank: firms => {
-      return firms
-        .flatMap(firm => {
+    rank: firms => firms
+      .flatMap(firm => {
           const slug = firmSlug(firm.name)
           const evidence = US_ACCESS_EVIDENCE_BY_SLUG.get(slug)
-          const challenges = getChallengesByFirm(slug)
-          if (
-            !evidence ||
-            !isAccessEvidenceFresh(evidence.sourceCapturedAt) ||
-            !challenges.length ||
-            !challenges.every(challenge => isChallengeFresh(challenge))
-          ) {
-            return []
-          }
+          if (!evidence) return []
+          const products = usProductsForEvidence(evidence)
+          if (!products.length) return []
+          const shownProducts = products.slice(0, 2).map(product => product.productName)
+          const moreCount = products.length - shownProducts.length
           const assetLabel = evidence.assetClass === 'futures' ? 'Futures' : 'CFD'
           const platformLabel = evidence.assetClass === 'cfd'
             ? ' · Match-Trader only'
@@ -512,21 +524,20 @@ export const LANDINGS: Landing[] = [
           return [{
             firm,
             sortKey: firm.score,
-            highlight: `${assetLabel} · ${challenges.length} current product paths${platformLabel}`,
-            note: evidence.decisionNote,
-            metricLabel: 'US evidence',
-            metricValue: evidence.accessStatus === 'explicit' ? 'Direct' : 'Policy',
+            highlight: `${products.length} U.S.-mapped ${products.length === 1 ? 'product' : 'products'} · ${assetLabel}${platformLabel}`,
+            note: `${joinNatural(shownProducts)}${moreCount > 0 ? `, plus ${moreCount} more` : ''}. ${evidence.decisionNote}`,
+            trailingMetricLabel: 'US access',
+            trailingMetricValue: evidence.accessStatus === 'explicit' ? 'Direct' : 'Policy',
             evidence: {
               label: evidence.evidenceLabel,
               url: evidence.sourceUrl,
               capturedAt: evidence.sourceCapturedAt,
             },
           }]
-        })
-        .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name))
-    },
+      })
+      .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
     methodology:
-      'A firm appears only when a first-party U.S.-access policy was captured within 30 days and every structured product record is also within the 30-day freshness gate. A missing restriction is not enough. The order uses our editorial score; affiliate status, coupon size and asset class add 0 points. Access evidence does not establish CFTC or NFA registration, legal status, payout approval, or availability in every state.',
+      'A firm appears only when a first-party U.S.-access policy was captured within 30 days and every explicitly mapped product record is also current. A missing restriction is not enough. Editorial score sets the order; affiliate status, coupon size, product count, asset class and platform add 0 points. Access evidence does not establish CFTC or NFA registration, legal status, payout approval, or availability in every state.',
     decisionGuide: [
       {
         title: 'Does access mean the firm is CFTC-registered?',
@@ -538,14 +549,14 @@ export const LANDINGS: Landing[] = [
       },
       {
         title: 'Are futures and CFD paths interchangeable?',
-        body: 'No. Futures products use exchange-listed contracts and product-specific market hours. FundedNext’s captured U.S. CFD path uses Match-Trader and cannot be treated as an MT4, MT5, or CME futures account.',
+        body: `No. This snapshot maps ${CURRENT_US_PRODUCT_COUNT} exact products: futures paths use exchange-listed contracts and product-specific market hours, while FundedNext’s 4 U.S. CFD paths use Match-Trader and cannot be treated as MT4, MT5, or CME futures accounts.`,
       },
       {
         title: 'What must match before a U.S. payout?',
         body: 'Check legal name, residency, KYC, tax form and bank-country rules. Apex publishes U.S.-residency-matched ACH requirements, while Topstep lists W-9 handling for U.S. persons.',
       },
     ],
-    lastReviewed: '2026-08-15',
+    lastReviewed: '2026-08-17',
   },
   {
     slug: 'best-prop-firms-in-india',

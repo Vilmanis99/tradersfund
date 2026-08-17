@@ -5716,10 +5716,27 @@ function checkUkLandingCluster() {
 function checkUsLandingConsolidation() {
   const rows = []
   const expected = new Map([
-    ['fundednext', { name: 'FundedNext', host: 'help.fundednext.com', status: 'explicit' }],
-    ['tradeify', { name: 'Tradeify', host: 'help.tradeify.co', status: 'explicit' }],
-    ['topstep', { name: 'Topstep', host: 'help.topstep.com', status: 'policy-supported' }],
-    ['apex-trader-funding', { name: 'Apex Trader Funding', host: 'apextraderfunding.com', status: 'explicit' }],
+    ['fundednext', {
+      name: 'FundedNext', host: 'help.fundednext.com', status: 'explicit',
+      products: ['stellar-2-step', 'stellar-1-step', 'stellar-lite', 'stellar-instant'],
+    }],
+    ['tradeify', {
+      name: 'Tradeify', host: 'help.tradeify.co', status: 'explicit',
+      products: ['growth-evaluation', 'select-flex', 'select-daily', 'lightning-funded'],
+    }],
+    ['topstep', {
+      name: 'Topstep', host: 'help.topstep.com', status: 'policy-supported',
+      products: ['trading-combine-standard-path', 'trading-combine-no-activation-fee-path'],
+    }],
+    ['apex-trader-funding', {
+      name: 'Apex Trader Funding', host: 'apextraderfunding.com', status: 'explicit',
+      products: [
+        'intraday-trail-standard',
+        'eod-trail-standard',
+        'intraday-trail-no-activation-fee',
+        'eod-trail-no-activation-fee',
+      ],
+    }],
   ])
   const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
   const slugify = name =>
@@ -5770,6 +5787,9 @@ function checkUsLandingConsolidation() {
     if (!['cfd', 'futures'].includes(entry.assetClass)) {
       rows.push(`${slug}: assetClass must be cfd or futures`)
     }
+    if (JSON.stringify(entry.productSlugs) !== JSON.stringify(spec.products)) {
+      rows.push(`${slug}: productSlugs must map the ${spec.products.length} verified products exactly`)
+    }
     if (!entry.platformConstraint || !entry.evidenceLabel || !entry.decisionNote) {
       rows.push(`${slug}: platform constraint, evidence label and decision note are required`)
     }
@@ -5817,10 +5837,29 @@ function checkUsLandingConsolidation() {
     if (!challenges?.length) {
       rows.push(`${slug}: no challenge data found`)
     } else {
+      const challengeBySlug = new Map(
+        challenges.map(challenge => [challenge.productSlug, challenge]),
+      )
+      const mapped = spec.products.flatMap(productSlug => {
+        const challenge = challengeBySlug.get(productSlug)
+        if (!challenge) rows.push(`${slug}: mapped product ${productSlug} is missing`)
+        return challenge ? [challenge] : []
+      })
+      if (mapped.length !== spec.products.length) {
+        rows.push(`${slug}: mapped product coverage is incomplete`)
+      }
       const freshnessErrors = []
-      checkSourceFreshness(challenges, freshnessErrors)
+      checkSourceFreshness(mapped, freshnessErrors)
       for (const error of freshnessErrors) rows.push(`${slug}: ${error}`)
     }
+  }
+
+  const expectedProductCount = [...expected.values()].reduce(
+    (total, spec) => total + spec.products.length,
+    0,
+  )
+  if (expectedProductCount !== 14) {
+    rows.push(`U.S. evidence fixture must map 14 products, received ${expectedProductCount}`)
   }
 
   const landings = read(LANDINGS_CONFIG_FILE)
@@ -5830,21 +5869,24 @@ function checkUsLandingConsolidation() {
   if (!landingBlock) {
     rows.push('best-prop-firms-in-us landing config is missing')
   } else {
-    const description = landingBlock.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1] ?? ''
-    if (description.length < 120 || description.length > 160) {
+    const expectedDescription =
+      `Compare ${expected.size} policy-checked prop firms for U.S. traders across ${expectedProductCount} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`
+    if (expectedDescription.length < 120 || expectedDescription.length > 160) {
       rows.push('U.S. landing meta description must be between 120 and 160 characters')
     }
     const requiredFragments = [
-      "h1: 'Best Prop Firms for US Traders (2026): 4 Verified'",
-      "metaTitle: 'Best Prop Firms for US Traders (2026)'",
+      'h1: `Best Prop Firms for U.S. Traders (2026): ${CURRENT_US_FIRM_COUNT} Policy-Checked`',
+      'metaTitle: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Checked`',
+      'CURRENT_US_PRODUCT_COUNT} exact futures and CFD products',
       'US_ACCESS_EVIDENCE_BY_SLUG.get(slug)',
-      'isAccessEvidenceFresh(evidence.sourceCapturedAt)',
-      'challenges.every(challenge => isChallengeFresh(challenge))',
+      'usProductsForEvidence(evidence)',
+      'U.S.-mapped ${products.length === 1',
+      'joinNatural(shownProducts)',
       'sortKey: firm.score',
-      "metricLabel: 'US evidence'",
+      "trailingMetricLabel: 'US access'",
       'A missing restriction is not enough.',
-      'affiliate status, coupon size and asset class add 0 points',
-      "lastReviewed: '2026-08-15'",
+      'affiliate status, coupon size, product count, asset class and platform add 0 points',
+      `lastReviewed: '${capture?.capturedAt}'`,
     ]
     for (const fragment of requiredFragments) {
       if (!landingBlock.includes(fragment)) {
@@ -5856,6 +5898,8 @@ function checkUsLandingConsolidation() {
       'CFTC-regulated path',
       'only fully unambiguous legal path',
       'countriesRestricted',
+      "metricLabel: 'US evidence'",
+      'const challenges = getChallengesByFirm(slug)',
     ]) {
       if (landingBlock.includes(staleClaim)) {
         rows.push(`U.S. landing restored unsafe eligibility logic: "${staleClaim}"`)
@@ -5863,6 +5907,16 @@ function checkUsLandingConsolidation() {
     }
     if ((landingBlock.match(/title:\s*'/g) ?? []).length !== 4) {
       rows.push('U.S. landing must keep exactly 4 decision-guide questions')
+    }
+  }
+  for (const fragment of [
+    'function usProductsForEvidence(evidence: UsAccessEvidence): Challenge[]',
+    'freshMappedProducts(evidence.firmSlug, evidence.productSlugs)',
+    'const CURRENT_US_FIRM_COUNT = CURRENT_US_SNAPSHOT.length',
+    'const CURRENT_US_PRODUCT_COUNT = CURRENT_US_SNAPSHOT.reduce',
+  ]) {
+    if (!landings.includes(fragment)) {
+      rows.push(`U.S. landing helper is missing "${fragment}"`)
     }
   }
 
@@ -5891,10 +5945,16 @@ function checkUsLandingConsolidation() {
     "const isUs = landing.slug === 'best-prop-firms-in-us'",
     'U.S. access is not a regulatory badge.',
     'https://www.cftc.gov/check',
+    'https://www.nfa.futures.org/basicnet/',
     'What U.S. traders should verify',
     'href="/prop-firm-challenges"',
+    "href: '/prop-firm-challenges?market=futures'",
+    '10 futures paths',
     'href="/best-futures-prop-firms"',
-    'href="/blog/fundednext-review"',
+    "href: '/blog/fundednext-review'",
+    "href: '/prop-firm-discount-codes'",
+    'Verify the FundedNext 5% coupon',
+    "href: '/prop-firm-challenge-changes'",
   ]) {
     if (!landingPage.includes(fragment)) {
       rows.push(`U.S. landing component is missing "${fragment}"`)
@@ -5944,6 +6004,23 @@ function checkUsLandingConsolidation() {
     const content = read(path.join(POSTS, file))
     if (!content.includes('href="/best-prop-firms-in-us"')) {
       rows.push(`${file}: missing contextual backlink to the U.S. comparison`)
+    }
+  }
+  if (!read(CHALLENGE_LIFECYCLE_PAGE_FILE).includes('href="/best-prop-firms-in-us"')) {
+    rows.push('challenge lifecycle pillar is missing its contextual U.S. comparison backlink')
+  }
+
+  const crawler = read(RELEASE_CRAWL_FILE)
+  for (const fragment of [
+    "const usLandingPath = '/best-prop-firms-in-us'",
+    'expectedUsFirms',
+    'expectedUsProductCount',
+    '14 products',
+    'href="/go/fundednext?from=best-prop-firms-in-us"',
+    'missing contextual U.S.-ranking backlink',
+  ]) {
+    if (!crawler.includes(fragment)) {
+      rows.push(`release crawl is missing U.S.-ranking safeguard: "${fragment}"`)
     }
   }
 

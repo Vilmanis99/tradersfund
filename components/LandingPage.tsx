@@ -52,7 +52,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                 ? 'What crypto traders should verify'
                 : 'What Indian traders should verify'
   const decisionSub = isUs
-    ? 'Four access, contract and payout checks to complete before paying.'
+    ? 'Four access, product, contract and payout checks to complete before paying.'
     : isUk
       ? 'Four policy, FCA, currency and product checks before paying.'
       : isSwing
@@ -532,9 +532,73 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   rel="nofollow noopener"
                   style={{ color: 'var(--accent-light)', fontWeight: 700 }}
                 >
-                  Open the CFTC registration checklist.
+                  Open the CFTC registration checklist
+                </a>{' '}
+                and{' '}
+                <a
+                  href="https://www.nfa.futures.org/basicnet/"
+                  target="_blank"
+                  rel="nofollow noopener"
+                  style={{ color: 'var(--accent-light)', fontWeight: 700 }}
+                >
+                  search NFA BASIC directly.
                 </a>
               </span>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '0.85rem',
+              marginTop: '0.85rem',
+            }}>
+              {[
+                {
+                  href: '/prop-firm-challenges?market=futures',
+                  eyebrow: '10 futures paths',
+                  title: 'Compare the mapped futures products',
+                  body: 'Filter the current product table to Tradeify, Topstep, Apex and other captured futures paths.',
+                },
+                {
+                  href: '/blog/fundednext-review',
+                  eyebrow: '4 CFD paths',
+                  title: 'Review FundedNext before checkout',
+                  body: 'Compare the 4 rule sets, then use the separate U.S. price schedule and Match-Trader constraint.',
+                },
+                {
+                  href: '/prop-firm-discount-codes',
+                  eyebrow: 'Conditional offer',
+                  title: 'Verify the FundedNext 5% coupon',
+                  body: 'The checked offer is earned through the Free Trial; it is not a public checkout code.',
+                },
+                {
+                  href: '/prop-firm-challenge-changes',
+                  eyebrow: 'Change watch',
+                  title: 'Recheck current product changes',
+                  body: 'Review dated rule changes and unresolved first-party conflicts before paying.',
+                },
+              ].map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="post-sidebar-card"
+                  style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+                >
+                  <span className="bento-tile-eyebrow">{item.eyebrow}</span>
+                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                    {item.title}
+                  </strong>
+                  <span style={{
+                    display: 'block',
+                    color: 'var(--muted)',
+                    fontSize: '0.8rem',
+                    lineHeight: 1.55,
+                    marginTop: '0.35rem',
+                  }}>
+                    {item.body}
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
@@ -893,9 +957,11 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                     ? 'Editorial ranking with current product evidence'
                     : isUk
                       ? '8 policy-checked firms across 34 mapped products'
-                      : isCrypto
-                        ? '7 evidence-backed firms across 32 mapped products'
-                        : 'Ranked & source-checked'}
+                      : isUs
+                        ? '4 policy-checked firms across 14 mapped products'
+                        : isCrypto
+                          ? '7 evidence-backed firms across 32 mapped products'
+                          : 'Ranked & source-checked'}
               </h2>
               <p className="section-sub-text">
                 {isCheapest ? (
@@ -912,6 +978,11 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   <>
                     Editorial score sets the order; every card links the current country policy.
                     Partnership, headquarters, company registration and payout rails add 0 points.
+                  </>
+                ) : isUs ? (
+                  <>
+                    Editorial score sets the order; every card names current product coverage and links its access source.
+                    Partnership, coupon size, product count, asset class and platform add 0 points.
                   </>
                 ) : isCrypto ? (
                   <>
@@ -1069,8 +1140,8 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   <Link href="/best-futures-prop-firms" className="btn-outline">
                     Compare futures firms
                   </Link>
-                  <Link href="/blog/fundednext-review" className="btn-outline">
-                    Check FundedNext CFD
+                  <Link href="/prop-firm-discount-codes" className="btn-outline">
+                    Check current offers
                   </Link>
                 </div>
               </>

@@ -109,7 +109,7 @@ type: "page"
   </tbody>
 </table>
 
-<p><strong>Payout method is a separate decision from payout cadence.</strong> A 7-day eligibility rule does not promise that every bank, crypto, Rise, ACH, or remittance rail is available in the trader’s country. For a source-by-source example, use the <a href="/best-prop-firms-in-india/payout-methods">India payout-method matrix</a>; elsewhere, verify the same rail, minimum, fee, and identity requirements on the firm’s own payout page.</p>
+<p><strong>Payout method is a separate decision from payout cadence.</strong> A 7-day eligibility rule does not promise that every bank, crypto, Rise, ACH, or remittance rail is available in the trader’s country. The <a href="/best-prop-firms-in-us">U.S. comparison</a> maps 14 current products while keeping country access separate from CFTC or NFA status, and the <a href="/best-prop-firms-in-india/payout-methods">India payout-method matrix</a> compares published rails source by source; elsewhere, verify the same minimum, fee, identity, and bank-country requirements on the firm’s own payout page.</p>
 
 <p><strong>Scaling is optional and conditional.</strong> Do not use a maximum allocation or “up to” split to evaluate the first purchase. Start with the product’s base split, first-payout gate, and funded loss rule; then compare the current firm-level allocation fields in the <a href="/prop-firms">prop-firm directory</a>. A scaling ceiling that requires later milestones is not part of the day-1 economics.</p>
 
