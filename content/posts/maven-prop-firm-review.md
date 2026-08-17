@@ -2,7 +2,7 @@
 title: "Maven Prop Firm Review 2026: Nine Products, 80% Split, EAs Banned"
 slug: "maven-prop-firm-review"
 date: "2025-06-15 09:00:00"
-modified: "2026-08-11 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Maven sells nine challenge products from $5 to $999 and pays 80% on the standard lineup — but bans EAs outright. Here is which product actually prices well."
 categories: ["Prop Firms"]
@@ -70,6 +70,8 @@ type: "post"
 <p>Pricing and rules above are current as of 2026-08-11, read from the pricing-card markup and FAQ on <a href="/go/maven">Maven's own site</a>. Four caveats attach to those figures. First, every price shown is the <strong>undiscounted list price</strong> — two coupons were live at capture, <code>ETERNAL</code> at 10% off and <code>OMO</code> at 40% off the OMO challenges, so a $100K Standard 2-Step advertised at $396 or a $100K OMO at $284 is a coupon price, not the list price. Second, the pricing cards are keyed by platform and <strong>cTrader is priced differently from MetaTrader 5 and Match-Trade</strong>; every figure here is the MT5 / Match-Trade price. Third, each card carries a hidden region-restriction overlay, so a product that renders for one buyer may be unpurchasable for another. Fourth, both Prediction Markets max-loss figures are left blank because Maven's pricing cards say 5% in phase one and 8% funded while its FAQ says 3% trailing for Essential and 5% static for Elite — the firm's own two pages contradict each other, and we do not publish a number we cannot source cleanly.</p>
 
 <p>The fee is refundable on your third withdrawal on every product except Mini, whose card omits the refund line and which pays out once before closing the account.</p>
+
+<p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> keeps Maven Instant and Mini as 2 products because their 80% versus 70% splits, $15 versus $17 entry floors, and 20% versus 15% payout consistency rules differ.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 

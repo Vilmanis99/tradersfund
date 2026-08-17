@@ -2,7 +2,7 @@
 title: "FundingPips Review 2026: 5 Models and 27 Verified Fees"
 slug: "funding-pips-review"
 date: "2025-05-08 18:09:27"
-modified: "2026-08-10 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "FundingPips has 27 first-party fees across 5 models. Compare true cost, drawdowns, payout cycles, the 2 unresolved $2.5K tiers, and India caveats."
 categories: ["Prop Firms"]
@@ -81,6 +81,8 @@ type: "post"
 </table>
 
 <p>Pricing and rules are current as of 2026-08-10 and come from FundingPips-owned Help Center pages. The 27 listed fees do not reuse temporary coupons or competitor data; the 2 unresolved $2.5K rows remain blank because FundingPips’ own pages conflict.</p>
+
+<p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> places FundingPips Zero’s 6 priced tiers, 95% split, 5% trailing maximum loss, and 14-day first-payout field beside all other current no-evaluation products.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 

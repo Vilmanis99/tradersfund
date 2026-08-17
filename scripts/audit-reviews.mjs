@@ -5971,6 +5971,199 @@ function checkFuturesLandingCluster() {
   return rows.length
 }
 
+/** Keep instant-funding eligibility product-level and every qualifying review connected. */
+function checkInstantFundingCluster() {
+  const rows = []
+  const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+  const landings = read(LANDINGS_CONFIG_FILE)
+  const block = landings.match(
+    /slug:\s*'best-instant-funding-prop-firms'([\s\S]*?)slug:\s*'best-futures-prop-firms'/,
+  )?.[1] ?? ''
+
+  if (!block) {
+    rows.push('best-instant-funding-prop-firms landing config is missing')
+  } else {
+    const metaTitle = block.match(/metaTitle:\s*'([^']+)'/)?.[1] ?? ''
+    const description = block.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1] ?? ''
+    if (metaTitle.length > 54) {
+      rows.push('instant-funding meta title must leave room for the root title suffix')
+    }
+    if (description.length < 120 || description.length > 160) {
+      rows.push('instant-funding meta description must be between 120 and 160 characters')
+    }
+    for (const fragment of [
+      'function freshInstantProducts(firm: Firm): Challenge[]',
+      'isChallengeFresh(challenge) && challenge.phases === 0',
+      'const products = freshInstantProducts(firm)',
+      'products.flatMap(product => product.accountSizes.flatMap',
+      'minimumCostToFundedUsd(product, tier)',
+      "metricLabel: 'Products'",
+      'url: evidenceProduct.sourceUrl',
+      'capturedAt: evidenceProduct.sourceCapturedAt',
+      'Every qualifying product contributes to the card',
+      'affiliate status, product count, price, profit split, drawdown type, and payout speed add 0 points',
+      'Does phase 0 mean the account trades live capital?',
+      'How does the maximum-loss line move?',
+      'How much loss room repays the one-time fee?',
+      'What unlocks the first payout?',
+      "lastReviewed: '2026-08-17'",
+    ]) {
+      if (!landings.includes(fragment) && !block.includes(fragment)) {
+        rows.push(`instant-funding landing is missing "${fragment}"`)
+      }
+    }
+    for (const staleClaim of [
+      'challenges.find((c: Challenge) => c.phases === 0)',
+      'const instant = challenges.find',
+      'instant.accountSizes',
+      'Lower-profit-split "instant" products',
+    ]) {
+      if (block.includes(staleClaim)) {
+        rows.push(`instant-funding landing restored first-product logic: "${staleClaim}"`)
+      }
+    }
+    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
+      rows.push('instant-funding landing must keep exactly 4 product-level decision questions')
+    }
+  }
+
+  const landingPage = read(LANDING_PAGE_COMPONENT_FILE)
+  for (const fragment of [
+    "const isInstant = landing.slug === 'best-instant-funding-prop-firms'",
+    'What instant-funding buyers should verify',
+    'Four account-stage, loss-line, cost and payout checks before paying.',
+    "href: '/prop-firm-challenges?program=instant'",
+    "href: '/how-prop-firm-challenges-work'",
+    "href: '/true-cost-of-prop-firm-challenges'",
+    "href: '/blog/what-is-prop-firm-consistency-rule'",
+    'Compare the exact phase-0 product',
+    'href="/prop-firm-challenges?program=instant"',
+  ]) {
+    if (!landingPage.includes(fragment)) {
+      rows.push(`instant-funding landing component is missing "${fragment}"`)
+    }
+  }
+
+  const challengeComparison = read(GLOBAL_CHALLENGE_COMPONENT_FILE)
+  for (const fragment of [
+    'function parseProgramFilter(value: string | null): ProgramFilter',
+    "setProgram(parseProgramFilter(params.get('program')))",
+    'const commitProgram = (value: ProgramFilter)',
+    "url.searchParams.set('program', value)",
+    "url.searchParams.delete('program')",
+    'onChange={value => commitProgram(value as ProgramFilter)}',
+  ]) {
+    if (!challengeComparison.includes(fragment)) {
+      rows.push(`global challenge comparison is missing phase-0 filter safeguard: "${fragment}"`)
+    }
+  }
+
+  const reviewFiles = [
+    'alpha-capital-review.md',
+    'city-traders-imperium-review.md',
+    'crypto-fund-trader-review.md',
+    'fundednext-review.md',
+    'funding-pips-review.md',
+    'fxify-review.md',
+    'lucid-trading-review.md',
+    'maven-prop-firm-review.md',
+    'ofp-funding-review.md',
+    'tradeify-review.md',
+  ]
+  for (const file of reviewFiles) {
+    if (!read(path.join(POSTS, file)).includes('href="/best-instant-funding-prop-firms"')) {
+      rows.push(`${file}: missing contextual backlink to the instant-funding comparison`)
+    }
+  }
+
+  const ctiFile = path.join(POSTS, 'city-traders-imperium-review.md')
+  const ctiRaw = read(ctiFile)
+  const cti = ctiRaw ? matter(ctiRaw) : { data: {}, content: '' }
+  const ctiProducts = loadChallenges('city-traders-imperium') ?? []
+  if (cti.data.modified !== '2026-08-17 12:00:00') {
+    rows.push('CTI review modified date must match the 4-product correction')
+  }
+  if (ctiProducts.length !== 4) {
+    rows.push(`CTI review expects 4 product records, received ${ctiProducts.length}`)
+  }
+  const money = amount => `$${amount.toLocaleString('en-US', {
+    minimumFractionDigits: Number.isInteger(amount) ? 0 : 2,
+    maximumFractionDigits: 2,
+  })}`
+  for (const product of ctiProducts) {
+    const match = cti.content.match(new RegExp(
+      `<tr[^>]*\\bdata-cti-product-summary="${product.productSlug}"[^>]*>([\\s\\S]*?)<\\/tr>`,
+      'i',
+    ))
+    if (!match) {
+      rows.push(`${product.productName}: CTI product summary row is missing`)
+      continue
+    }
+    const cells = cellTexts(match[1])
+    const prices = product.accountSizes.flatMap(tier =>
+      tier.priceUsd == null ? [] : [tier.priceUsd],
+    )
+    const expected = [
+      product.productName,
+      String(product.phases),
+      String(product.accountSizes.length),
+      `${money(Math.min(...prices))}–${money(Math.max(...prices))}`,
+      product.profitTargets
+        ? Object.values(product.profitTargets).join('% / ') + '%'
+        : 'None',
+      `${product.maxLossPct}% ${product.drawdownType}`,
+      `${product.profitSplitPct}%`,
+    ]
+    if (JSON.stringify(cells) !== JSON.stringify(expected)) {
+      rows.push(`${product.productName}: CTI summary does not match structured product data`)
+    }
+  }
+  for (const staleClaim of [
+    'Single 2-Step Challenge',
+    'Single product line',
+    'no Instant or 1-Step variants',
+    '4.5/5 cluster',
+    '70% standard, scaling up',
+    'industry-typical paths',
+    'due to CFTC restrictions',
+  ]) {
+    if (cti.content.includes(staleClaim)) {
+      rows.push(`CTI review restored stale or unsupported copy: "${staleClaim}"`)
+    }
+  }
+  for (const fragment of [
+    '4 products and 23 priced tiers',
+    'All 23 refundable fields remain unverified',
+    '4.2/5 from 1,633 reviews',
+    'Instant Funding and Direct Funding both set phases to 0',
+  ]) {
+    if (!cti.content.includes(fragment)) {
+      rows.push(`CTI review is missing corrected evidence: "${fragment}"`)
+    }
+  }
+
+  const crawler = read(RELEASE_CRAWL_FILE)
+  for (const fragment of [
+    "const instantLandingPath = '/best-instant-funding-prop-firms'",
+    'expectedInstantFirms',
+    'expectedInstantProductCount',
+    'challenge.phases === 0',
+    "const instantProgramProbePath = '/prop-firm-challenges?program=instant'",
+    'canonical includes instant program state',
+    "const ctiReviewPath = '/blog/city-traders-imperium-review'",
+  ]) {
+    if (!crawler.includes(fragment)) {
+      rows.push(`release crawl is missing instant-funding safeguard: "${fragment}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\nâœ— Instant-funding landing and review cluster')
+    for (const row of rows) console.log(`  Â· ${row}`)
+  }
+  return rows.length
+}
+
 /** Keep the strongest converting review product-specific, disclosed, and attributable. */
 function checkFundedNextAffiliatePath() {
   const rows = []
@@ -8056,6 +8249,8 @@ const swingFeatureClusterErrors = checkSwingFeatureCluster()
 totalErrors += swingFeatureClusterErrors
 const futuresLandingClusterErrors = checkFuturesLandingCluster()
 totalErrors += futuresLandingClusterErrors
+const instantFundingClusterErrors = checkInstantFundingCluster()
+totalErrors += instantFundingClusterErrors
 const fundedNextAffiliatePathErrors = checkFundedNextAffiliatePath()
 totalErrors += fundedNextAffiliatePathErrors
 const globalChallengeErrors = checkGlobalChallengeSurface()

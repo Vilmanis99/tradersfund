@@ -2,7 +2,7 @@
 title: "Crypto Fund Trader Review 2026: Five Products, One 80% Split"
 slug: "crypto-fund-trader-review"
 date: "2025-08-12 11:00:00"
-modified: "2026-07-27 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Five CFT products, 24 priced tiers, 80% on every one — and an Instant account whose break-even lands at R = 1.00. Prices captured 2026-07-27."
 categories: ["Prop Firms"]
@@ -86,6 +86,8 @@ type: "post"
 <p>Pricing and rules above were captured from CFT's own pages on <strong>2026-07-27</strong>. For the current list, see <a href="/go/crypto-fund-trader">the live CFT site</a>. Three caveats belong with this table. First, CFT's marketing names (Evaluation, Ascend, Accelerated, Instant, Break) do not match the structural names its FAQ and terms use (2-Phase, 1-Phase, 3-Phase, Instant, Break); the Accelerated-to-1-Phase mapping is inferred because the homepage Accelerated row's 10% target, 4% daily loss and 6% max loss match the FAQ's 1-Phase figures exactly, not because the site states the equivalence. Second, the FAQ and terms also describe a 3-Phase evaluation (5% target in each of three phases, 5% daily loss, 5% max loss, first payout after 5 traded days), but no price or size table for it exists on the site, so it is not listed here. Third, the per-tier product pages at <code>/product/&lt;size&gt;-&lt;name&gt;-evaluation/</code> still appear in search results but now return HTTP 404, so the figures above come from the homepage pricing widget, the FAQ, the terms, and the dedicated Break page rather than per-tier spec sheets.</p>
 
 <p>One more gap worth naming: the <strong>refundable</strong> field is null for all 24 tiers because CFT never states anywhere that the evaluation fee is returned when you pass. Its refund policy grants only a 14-day withdrawal right that is lost the moment you open a position, and its terms say that on account cancellation you are not entitled to the reward or a refund of fees paid. Treat the entry fee as spent.</p>
+
+<p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> places CFT Instant’s 3 priced tiers, 80% split, and 6% balance-based maximum loss beside every other current no-evaluation product without treating the firm name as the rule set.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 

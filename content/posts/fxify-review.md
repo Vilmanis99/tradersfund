@@ -2,7 +2,7 @@
 title: "FXIFY Review 2026: 8 Products, 54 Prices, and No Single Drawdown Rule"
 slug: "fxify-review"
 date: "2025-08-26 09:25:39"
-modified: "2026-08-10 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "FXIFY gives rule-sensitive traders 8 CFD products, but trailing, static, unknown, and product-specific restrictions make the exact plan matter."
 categories: ["Prop Firms"]
@@ -118,6 +118,8 @@ type: "post"
 </table>
 
 <p>Pricing and rules were captured from FXIFY’s public program pages and product-scoped FAQs on 2026-08-10. Confirm the final price, Indian card acceptance, KYC availability, and any coupon on the routed <a href="/go/fxify">FXIFY checkout</a>; a temporary discount changes the fee but not the captured drawdown math.</p>
+
+<p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> keeps FXIFY Instant Standard and Instant Lite as 2 separate products because their 8% and 4% trailing maximum-loss caps, prices, and first-payout fields do not match.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 

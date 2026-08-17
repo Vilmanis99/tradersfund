@@ -527,6 +527,15 @@ function parseMarketFilter(value: string | null): MarketFilter {
     : 'all'
 }
 
+function parseProgramFilter(value: string | null): ProgramFilter {
+  return value === 'instant'
+    || value === 'one-step'
+    || value === 'two-step'
+    || value === 'three-step'
+    ? value
+    : 'all'
+}
+
 function sameKeys(a: string[], b: string[]) {
   return a.length === b.length && a.every((key, index) => key === b[index])
 }
@@ -610,6 +619,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
       const size = params.get('size')
       setShortlist(current => sameKeys(current, next) ? current : next)
       setDecisionPriority(parseDecisionPriority(params.get('priority')))
+      setProgram(parseProgramFilter(params.get('program')))
       setMarket(parseMarketFilter(params.get('market')))
       setAccountSize(
         size && accountSizes.includes(Number(size)) ? size : 'all',
@@ -691,6 +701,14 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
     const url = new URL(window.location.href)
     if (value === 'all') url.searchParams.delete('market')
     else url.searchParams.set('market', value)
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
+  }
+
+  const commitProgram = (value: ProgramFilter) => {
+    setProgram(value)
+    const url = new URL(window.location.href)
+    if (value === 'all') url.searchParams.delete('program')
+    else url.searchParams.set('program', value)
     window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
   }
 
@@ -811,6 +829,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
     const url = new URL(window.location.href)
     url.searchParams.delete('size')
     url.searchParams.delete('market')
+    url.searchParams.delete('program')
     window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
     track('challenge_filters_reset', { surface: 'global', matching_products: rows.length })
   }
@@ -943,7 +962,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
               id="global-challenge-program"
               label="Evaluation"
               value={program}
-              onChange={value => setProgram(value as ProgramFilter)}
+              onChange={value => commitProgram(value as ProgramFilter)}
             >
               <option value="all">All programmes</option>
               <option value="instant">Instant funding</option>

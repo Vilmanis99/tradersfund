@@ -543,6 +543,150 @@ if (futuresMarketProbe.status !== 200) {
   }
 }
 
+const instantLandingPath = '/best-instant-funding-prop-firms'
+const expectedInstantFirms = firmRecords.flatMap(firm => {
+  const products = getChallengesByFirm(outboundSlug(firm.name)).filter(challenge =>
+    isChallengeFresh(challenge) && challenge.phases === 0,
+  )
+  return products.length ? [{ firm, products }] : []
+})
+const expectedInstantProductCount = expectedInstantFirms.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
+const instantLandingProbe = await fetchPage(new URL(instantLandingPath, BASE))
+if (instantLandingProbe.status !== 200) {
+  errors.push(
+    `${instantLandingPath}: HTTP ${instantLandingProbe.status || instantLandingProbe.error}`,
+  )
+} else {
+  const instantText = textContent(instantLandingProbe.html)
+  const cards = [...instantLandingProbe.html.matchAll(
+    /<li class="leader-row[^"]*"[^>]*>([\s\S]*?)<\/li>/gi,
+  )].map(match => ({ html: match[0], text: textContent(match[1]) }))
+  const evidenceDateCount = (instantText.match(/checked 2026-/g) ?? []).length
+  if (cards.length !== expectedInstantFirms.length) {
+    errors.push(
+      `${instantLandingPath}: rendered ${cards.length} firms, expected ${expectedInstantFirms.length}`,
+    )
+  }
+  if (evidenceDateCount !== expectedInstantFirms.length) {
+    errors.push(
+      `${instantLandingPath}: rendered ${evidenceDateCount} dated card sources, expected ${expectedInstantFirms.length}`,
+    )
+  }
+  let renderedProductCount = 0
+  for (const { firm, products } of expectedInstantFirms) {
+    const card = cards.find(candidate => candidate.text.includes(firm.name))
+    const countLabel = `${products.length} current phase-0 ${products.length === 1 ? 'product' : 'products'}`
+    if (!card) {
+      errors.push(`${instantLandingPath}: missing qualifying firm ${firm.name}`)
+      continue
+    }
+    if (!card.text.includes(countLabel)) {
+      errors.push(`${instantLandingPath}: ${firm.name} card is missing ${countLabel}`)
+    } else {
+      renderedProductCount += products.length
+    }
+  }
+  if (renderedProductCount !== expectedInstantProductCount) {
+    errors.push(
+      `${instantLandingPath}: represented ${renderedProductCount} products, expected ${expectedInstantProductCount}`,
+    )
+  }
+  for (const required of [
+    'Best Instant Funding Prop Firms (2026) — Compared | TFH',
+    'What instant-funding buyers should verify',
+    'Does phase 0 mean the account trades live capital?',
+    'How does the maximum-loss line move?',
+    'How much loss room repays the one-time fee?',
+    'What unlocks the first payout?',
+  ]) {
+    if (!instantText.includes(required)) {
+      errors.push(`${instantLandingPath}: missing ${required}`)
+    }
+  }
+  for (const required of [
+    'href="/prop-firm-challenges?program=instant"',
+    'href="/how-prop-firm-challenges-work"',
+    'href="/true-cost-of-prop-firm-challenges"',
+    'href="/blog/what-is-prop-firm-consistency-rule"',
+  ]) {
+    if (!instantLandingProbe.html.includes(required)) {
+      errors.push(`${instantLandingPath}: missing ${required}`)
+    }
+  }
+  if (
+    instantText.includes('Lower-profit-split "instant" products')
+    || instantText.includes('live capital from day one')
+  ) {
+    errors.push(`${instantLandingPath}: restored unsupported instant-funding copy`)
+  }
+}
+
+const instantProgramProbePath = '/prop-firm-challenges?program=instant'
+const instantProgramProbe = await fetchPage(new URL(instantProgramProbePath, BASE))
+if (instantProgramProbe.status !== 200) {
+  errors.push(
+    `${instantProgramProbePath}: HTTP ${instantProgramProbe.status || instantProgramProbe.error}`,
+  )
+} else {
+  const instantProgramCanonical = firstMatch(
+    instantProgramProbe.html,
+    /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["'][^>]*>/i,
+  ) || firstMatch(
+    instantProgramProbe.html,
+    /<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["'][^>]*>/i,
+  )
+  if (canonicalKey(instantProgramCanonical) !== canonicalKey(
+    `${PRODUCTION_ORIGIN}/prop-firm-challenges`,
+  )) {
+    errors.push(`${instantProgramProbePath}: canonical includes instant program state`)
+  }
+  if (!instantProgramProbe.html.includes('<option value="instant">Instant funding</option>')) {
+    errors.push(`${instantProgramProbePath}: instant programme option is missing`)
+  }
+}
+
+const ctiReviewPath = '/blog/city-traders-imperium-review'
+const ctiReviewProbe = await fetchPage(new URL(ctiReviewPath, BASE))
+if (ctiReviewProbe.status !== 200) {
+  errors.push(`${ctiReviewPath}: HTTP ${ctiReviewProbe.status || ctiReviewProbe.error}`)
+} else {
+  const ctiText = textContent(ctiReviewProbe.html)
+  const summaryRows = (
+    ctiReviewProbe.html.match(/<tr[^>]*\bdata-cti-product-summary=/gi) ?? []
+  ).length
+  if (summaryRows !== 4) {
+    errors.push(`${ctiReviewPath}: rendered ${summaryRows} product summaries, expected 4`)
+  }
+  for (const required of [
+    'City Traders Imperium Review 2026: Fees & Rules',
+    'City Traders Imperium Review 2026: 4 Products, 23 Prices',
+    '4 products and 23 priced tiers',
+    'All 23 refundable fields remain unverified',
+    '4.2/5 from 1,633 reviews',
+    'Instant Funding and Direct Funding both set phases to 0',
+  ]) {
+    if (!ctiText.includes(required)) {
+      errors.push(`${ctiReviewPath}: missing ${required}`)
+    }
+  }
+  if (!ctiReviewProbe.html.includes('href="/best-instant-funding-prop-firms"')) {
+    errors.push(`${ctiReviewPath}: missing instant-funding comparison link`)
+  }
+  for (const staleClaim of [
+    'Single 2-Step Challenge',
+    'Single product line',
+    'no Instant or 1-Step variants',
+    '4.5/5 cluster',
+  ]) {
+    if (ctiText.includes(staleClaim)) {
+      errors.push(`${ctiReviewPath}: restored stale claim ${staleClaim}`)
+    }
+  }
+}
+
 const fundedNextReviewPath = '/blog/fundednext-review'
 const fundedNextReviewProbe = await fetchPage(new URL(fundedNextReviewPath, BASE))
 if (fundedNextReviewProbe.status !== 200) {

@@ -2,7 +2,7 @@
 title: "OFP Funding Review 2026: Nine Products, 45 Priced Tiers, One $300K Ceiling"
 slug: "ofp-funding-review"
 date: "2025-04-22 12:00:00"
-modified: "2026-07-27 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "OFP sells nine products between $35 and $1,500 at an 80% base split. The cheap evaluations price at R = 0.02; Instant Plus costs six times more."
 categories: ["Prop Firms"]
@@ -102,6 +102,8 @@ type: "post"
 </table>
 
 <p>Pricing and rules current as of 2026-07-27, captured from <a href="/go/ofp-funding">OFP's own pricing widget</a>. Every price above is the 80% profit-split tier; the same account at a 100% split costs roughly 20% more, so the $100K Instant Classic (5%/10%) moves from $420 to $504. One caveat on provenance: ofpfunding.com renders its pricing table client-side, so only the Instant Lite $50,000 column is present in the server HTML. Every other figure comes from the firm's own embedded pricing payload — the data that draws the visible widget — and the Instant Lite column matched it field for field, including the $150 price, 3% daily, 5% max, 5% target, 5 minimum days and 30-day duration.</p>
+
+<p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> counts all 7 OFP no-evaluation rule sets instead of selecting only the first Instant Classic variant; daily loss, maximum loss, payout timing, and prices vary across those 7 products.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 

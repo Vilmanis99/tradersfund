@@ -16,7 +16,7 @@ type: "post"
 
 <p>Choose Stellar 2-Step for a static 10% loss floor; choose Instant only if 6% trailing risk is acceptable.</p>
 
-<p>If FundedNext’s 40% funded news-window credit or 6% Instant trailing floor conflicts with the strategy, use the <a href="/compare/ftmo-vs-fundednext">product-level FTMO vs FundedNext comparison</a>; it keeps EUR and USD fees separate while comparing 2 FTMO paths with FundedNext’s 4 products.</p>
+<p>If FundedNext’s 40% funded news-window credit or 6% Instant trailing floor conflicts with the strategy, use the <a href="/compare/ftmo-vs-fundednext">product-level FTMO vs FundedNext comparison</a>; it keeps EUR and USD fees separate while comparing 2 FTMO paths with FundedNext’s 4 products, and the <a href="/blog/ftmo-review">FTMO review</a> documents the 2 underlying rule sets.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
   <caption class="hidden-caption">Which FundedNext product fits which rule priority?</caption>
@@ -87,6 +87,8 @@ type: "post"
 <p><strong>U.S. residents.</strong> Do not use this global table as a U.S. checkout quote. Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links FundedNext’s separate USA Client Guide and records the Match-Trader-only platform rule; recheck that first-party guide and the final checkout before purchase.</p>
 
 <p>The best low-fee comparison is $32.99 for $5K Stellar Lite versus $59.99 for $6K Stellar 2-Step. Lite saves $27 but reduces maximum loss from 10% to 8%, changes Phase 2 from 5% to 4%, and delays fee recovery until the third approved payout rather than the first.</p>
+
+<p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> places Stellar Instant’s 4 priced tiers, 70% starting split, 6% trailing maximum loss, and on-demand payout gate beside 18 other current no-evaluation products.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 

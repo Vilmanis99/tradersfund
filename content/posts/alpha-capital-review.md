@@ -2,7 +2,7 @@
 title: "Alpha Capital Review 2026: Five Products, One $400K Ceiling"
 slug: "alpha-capital-review"
 date: "2025-07-23 09:44:31"
-modified: "2026-08-11 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Alpha Capital sells five plans from a 1-phase Alpha One to a 90%-split Alpha Direct, all sharing a $400,000 ceiling. Every fee is non-refundable."
 categories: ["Prop Firms"]
@@ -93,6 +93,8 @@ type: "post"
 <p>Three variants sit outside the table because the firm publishes rules for them but no fees. <strong>Alpha One ships in 6%, 10% and 12% forms</strong>: the 6% carries a 6% target with a 4% trailing max drawdown and a 3% daily cap, the 12% carries a 12% target with an 8% trailing cap and a 5% daily cap, and the firm states the 12% variant is capped at $100,000 while the others reach $200,000. The rules in the table above are the 10% variant. <strong>Alpha Pro also sells 8% and 10% variants</strong> — the 8% runs an 8% then 5% target against an 8% static drawdown and 4% daily cap; the 10% runs 10% then 5% against a 10% static drawdown and 5% daily cap. Neither has a published price table.</p>
 
 <p><strong>The evaluation fee does not come back.</strong> Alpha Capital's refund-policy page states plainly: "All sales are final and no refund will be issued." That is a departure from the refundable-on-first-payout mechanic most CFD firms advertise, and it changes the arithmetic in the next two sections — the fee is a sunk cost, not a deposit.</p>
+
+<p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> includes Alpha Direct as 1 current no-evaluation path while keeping all 7 unpublished entry fees visibly unverified instead of manufacturing a cheapest price.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 

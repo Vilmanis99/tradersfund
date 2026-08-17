@@ -76,6 +76,8 @@ type: "post"
 <p><strong>Futures comparison.</strong> The <a href="/best-futures-prop-firms">product-level futures comparison</a> places Lucid Trading’s 7 current paths beside other one-time-fee and monthly products while keeping product-specific drawdown, payout split and first-party capture dates visible.</p>
 
 <!-- SECTION 4 - Rule mechanics -->
+<p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> includes LucidDirect as 1 no-evaluation path, but keeps its 4 unpublished prices visible as an evidence gap rather than inferring a minimum cost.</p>
+
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 <p><strong>EOD trailing drawdown moves after the close.</strong> A $50K LucidPro account starts with a $2,000 maximum-loss allowance, so its initial floor is $48,000. If the highest closing balance becomes $51,000, the next floor becomes $49,000. Once the balance exceeds the $52,100 initial-trail threshold, the line locks at $50,100 instead of continuing upward.</p>
 

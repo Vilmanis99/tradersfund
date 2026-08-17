@@ -1,10 +1,12 @@
 ---
-title: "City Traders Imperium Review 2026: The Long-Horizon Funded Account"
+title: "City Traders Imperium Review 2026: 4 Products, 23 Prices"
+seoTitle: "City Traders Imperium Review 2026: Fees & Rules"
 slug: "city-traders-imperium-review"
 date: "2025-08-05 10:00:00"
-modified: "2026-08-14 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
-excerpt: "CTI is the prop firm built for swing and position traders — no time limits, monthly payouts, and a $2M scaling ceiling. Here's the realistic positioning."
+excerpt: "Compare 4 CTI products, 23 current prices, 50%–80% starting splits, static versus trailing drawdown, and phase-0 true cost."
+seoDescription: "City Traders Imperium review covering 4 products, 23 prices, instant and evaluation paths, drawdown, splits, payout gates, and true cost."
 categories: ["Prop Firms"]
 tags: ["City Traders Imperium", "Prop Firm"]
 type: "post"
@@ -12,19 +14,20 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 
-<p>City Traders Imperium suits swing and position traders who need its 2-Step unlimited-time evaluation rule.</p>
+<p>CTI’s 2-Step Challenge has the strongest captured loss-room trade-off: a 10% static maximum loss and 80% starting split, versus 6% static loss caps and 50%–70% starting splits on its 2 phase-0 products.</p>
+
+<p>Traders paying to skip an evaluation should compare CTI’s Instant Funding and Direct Funding with all 19 current products on the <a href="/best-instant-funding-prop-firms">instant-funding comparison</a>; the 2 CTI paths have materially different entry fees and starting splits.</p>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul>
-    <li>UK-based prop firm operating since 2018 — one of the older firms in our covered set.</li>
-    <li>2-Step Challenge model with no time limit on the evaluation phase.</li>
-    <li>70% starting profit split — lower than market headline but with scaling to higher tiers.</li>
-    <li>$2M maximum allocation via scaling.</li>
-    <li>Static drawdown — forgiving mechanic.</li>
-    <li>Monthly payout cadence.</li>
-    <li>Platforms: MT5 and cTrader.</li>
-    <li>Positioned for traders with longer time horizons rather than scalpers or news traders.</li>
+    <li>4 products and 23 priced tiers were captured from CTI’s first-party pages on 2026-07-27.</li>
+    <li>1-Step and 2-Step are evaluation paths; Instant Funding and Direct Funding both record 0 phases.</li>
+    <li>Starting splits are 80% on both evaluations, 50% on Instant Funding, and 70% on Direct Funding.</li>
+    <li>1-Step uses 5% trailing drawdown; the other 3 products use static 6% or 10% caps.</li>
+    <li>All 4 captured rule sets allow news, overnight, and weekend trading.</li>
+    <li>1-Step allows third-party EAs; the other 3 paths restrict EA use to personal systems.</li>
+    <li>Entry prices run from $29 on 1-Step $2.5K to $3,999 on Direct Funding $80K.</li>
   </ul>
 </div>
 
@@ -35,11 +38,11 @@ type: "post"
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Founded</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2018 (8 years operating)</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Headquarters</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">London, United Kingdom</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Evaluation model</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2-Step Challenge, no time limit</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Max allocation</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,000,000</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">70% standard, scaling up</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown type</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Static</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Monthly</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Current products</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4 products: 2 evaluation and 2 phase-0 paths</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Priced tiers</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">23 tiers from $29 to $3,999</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Starting splits</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">50%, 70%, or 80% by product</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Maximum loss</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% trailing, 6% static, or 10% static</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>First payout field</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">7 days on evaluations; 5 days on phase-0 products</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT5, cTrader</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Instruments</strong></td><td style="padding: 8px 12px; border-bottom: none;">Forex, Indices, Commodities, Crypto</td></tr>
   </tbody>
@@ -47,23 +50,30 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>Single 2-Step Challenge across standard account sizes ($5K through $200K, with stacking up to the $2M ceiling). <strong>No time limit on the evaluation phase</strong> — a structural advantage for swing and position traders who need weeks or months to demonstrate their edge. Per-tier pricing and exact rule parameters require verification on <a href="/go/city-traders-imperium">the live CTI site</a>.</p>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">CTI product-level fees and risk rules</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 10px; text-align: left;">Product</th><th style="padding: 8px 10px; text-align: left;">Phases</th><th style="padding: 8px 10px; text-align: left;">Priced tiers</th><th style="padding: 8px 10px; text-align: left;">Fee range</th><th style="padding: 8px 10px; text-align: left;">Target</th><th style="padding: 8px 10px; text-align: left;">Maximum loss</th><th style="padding: 8px 10px; text-align: left;">Starting split</th></tr></thead>
+  <tbody>
+    <tr data-cti-product-summary="1-step-challenge"><td style="padding: 8px 10px;">1-Step Challenge</td><td style="padding: 8px 10px;">1</td><td style="padding: 8px 10px;">6</td><td style="padding: 8px 10px;">$29–$449</td><td style="padding: 8px 10px;">8%</td><td style="padding: 8px 10px;">5% trailing</td><td style="padding: 8px 10px;">80%</td></tr>
+    <tr data-cti-product-summary="2-step-challenge"><td style="padding: 8px 10px;">2-Step Challenge</td><td style="padding: 8px 10px;">2</td><td style="padding: 8px 10px;">6</td><td style="padding: 8px 10px;">$39–$549</td><td style="padding: 8px 10px;">10% / 5%</td><td style="padding: 8px 10px;">10% static</td><td style="padding: 8px 10px;">80%</td></tr>
+    <tr data-cti-product-summary="instant-funding"><td style="padding: 8px 10px;">Instant Funding</td><td style="padding: 8px 10px;">0</td><td style="padding: 8px 10px;">6</td><td style="padding: 8px 10px;">$79–$1,599</td><td style="padding: 8px 10px;">None</td><td style="padding: 8px 10px;">6% static</td><td style="padding: 8px 10px;">50%</td></tr>
+    <tr data-cti-product-summary="direct-funding"><td style="padding: 8px 10px;">Direct Funding</td><td style="padding: 8px 10px;">0</td><td style="padding: 8px 10px;">5</td><td style="padding: 8px 10px;">$229–$3,999</td><td style="padding: 8px 10px;">None</td><td style="padding: 8px 10px;">6% static</td><td style="padding: 8px 10px;">70%</td></tr>
+  </tbody>
+</table>
 
-<p>The challenge fee follows the industry-standard refundable-on-first-payout structure.</p>
+<p>All 23 prices and rules were captured from CTI’s 4 product pages on 2026-07-27. Every tier’s refundable field remains null because the captured pages do not publish a product-specific fee-return promise; null is not treated as refundable. Recheck the selected tier through <a href="/go/city-traders-imperium">CTI’s live product pages</a> before paying.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 
-<p><strong>No time limit on evaluation</strong> is CTI's signature feature. Most CFD prop firms cap evaluation phases at 30 days or impose a "minimum trading days within X period" rule. CTI removes both — a swing trader who needs 3 months to hit 10% profit can do that without rule pressure.</p>
+<p><strong>1-Step trades phase count for a moving floor.</strong> The 8% target and 3 minimum trading days sit above a 5% trailing maximum loss. At $100K, the initial $95,000 floor can rise behind a new high-water mark; the captured product starts at an 80% split.</p>
 
-<p><strong>Static drawdown</strong> — 10% max loss anchored at starting balance.</p>
+<p><strong>2-Step keeps the maximum-loss line static.</strong> Its 10% and 5% targets, 5% daily limit, 10% static maximum loss, and 3 minimum trading days apply across 6 priced tiers. The starting split is 80%, while the product notes treat 90%–100% as later VIP levels rather than the base share.</p>
 
-<p><strong>EA / algorithmic trading allowed</strong> on MT5 and cTrader.</p>
+<p><strong>Both phase-0 paths remove the evaluation target, not the loss rule.</strong> Instant Funding and Direct Funding each use a 6% static maximum loss and a 5-day first-payout field. Instant starts at 50%; Direct starts at 70% and records a monthly payout frequency.</p>
 
-<p><strong>Overnight holding allowed</strong>; weekend holding not consistently documented in accessible sources.</p>
+<p><strong>Trading permissions are product-specific.</strong> All 4 records allow news, overnight, and weekend trading. Third-party EAs are allowed on 1-Step, while 2-Step, Instant, and Direct restrict EA use to the trader’s personal system; copy-trading fields remain unverified.</p>
 
-<p><strong>News trading rules</strong> not fully published — treat as restricted on evaluation, allowed on funded, until verified.</p>
-
-<p><strong>Scaling plan</strong> brings the profit split from 70% starting toward higher tiers (industry-typical paths reach 80–90% on the longest-tenured accounts).</p>
+<p><strong>No captured consistency percentage means no percentage claim.</strong> Direct Funding’s page says “No Consistency Rules,” but the structured field stays null because no numeric formula is published. The same null treatment applies to the other 3 products rather than silently converting missing evidence to 0%.</p>
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 
@@ -138,53 +148,53 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p>CTI runs <strong>1 payout window per month</strong> with bank wire and crypto methods. The slower cadence versus bi-weekly competitors fits the firm’s long-horizon swing and position structure.</p>
+<p><strong>Evaluation payouts are recorded at 7 days and weekly thereafter.</strong> Both 1-Step and 2-Step carry that structured timing. Direct Funding records a 5-day first-payout field and monthly frequency; Instant Funding records 5 days but leaves the baseline frequency null because weekly and anytime access are published only for later VIP levels.</p>
 
-<p>Community signal: Trustpilot reviews are present from CTI's 8-year operating history with a 4.5/5 cluster. Payout reliability through multiple market cycles is the meaningful credibility signal.</p>
+<p><strong>Trustpilot is context, not payout proof.</strong> CTI displayed 4.2/5 from 1,633 reviews in the 2026-07-27 aggregate capture. TradersFundHub’s verified-payout badge remains false, so the third-party average cannot establish that a specific 5-day or 7-day request will be approved.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
 <ul class="wp-block-list">
-  <li><strong>No time limit on evaluation</strong> — uncommon among CFD props. FTMO and FundedNext both removed time limits in 2023–24 but most other firms still enforce 30-day caps.</li>
-  <li><strong>8-year operating history</strong> — third-longest in our covered set (after Topstep and FTMO).</li>
-  <li><strong>$2M max allocation</strong> — matches FTMO.</li>
-  <li><strong>Static drawdown</strong> — forgiving mechanic.</li>
-  <li><strong>cTrader and MT5 both supported.</strong></li>
-  <li><strong>UK-based operating entity.</strong></li>
+  <li><strong>23 published prices</strong> cover 4 products and account sizes from $2.5K to $100K on evaluations and up to $80K on phase-0 paths.</li>
+  <li><strong>2-Step provides a 10% static maximum loss</strong>, twice the 1-Step product’s 5% trailing allowance.</li>
+  <li><strong>Both evaluation products start at an 80% split</strong> and record a 7-day first-payout field with weekly frequency.</li>
+  <li><strong>All 4 product records allow news, overnight, and weekend trading.</strong></li>
+  <li><strong>1-Step permits third-party EAs</strong>, while the other 3 paths retain personal-EA permission.</li>
+  <li><strong>MT5 and cTrader are both listed</strong> in the current aggregate platform record.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Cons</strong></h2>
 
 <ul class="wp-block-list">
-  <li><strong>70% starting split</strong> is the lowest headline rate in our covered set. Scaling helps but the entry economics are unfavorable.</li>
-  <li><strong>Monthly payouts</strong> — slower than the bi-weekly industry standard.</li>
-  <li><strong>No MT4 or DXTrade.</strong></li>
-  <li><strong>Pricing not on stable public URLs</strong> — verification requires the live site.</li>
-  <li><strong>Lower review volume on Trustpilot</strong> than the giants — operating history is long but community footprint is moderate.</li>
-  <li><strong>Single product line</strong> — no Instant or 1-Step variants.</li>
+  <li><strong>Instant Funding starts at a 50% split</strong>, requiring $158 gross profit to recover the $79 $2.5K fee against only $150 of maximum loss.</li>
+  <li><strong>Direct Funding reaches a 1.19 R-multiple</strong> on its $20K, $40K, and $80K tiers under the generated True-Cost method.</li>
+  <li><strong>All 23 refundable fields remain unverified</strong>, so no fee-return promise is included in the cost model.</li>
+  <li><strong>Instant Funding’s baseline payout frequency is unpublished</strong>; later VIP weekly or anytime labels do not prove the starting schedule.</li>
+  <li><strong>Copy-trading permission is unverified</strong> on all 4 current products.</li>
+  <li><strong>No MT4 or DXtrade appears</strong> in the 2-platform aggregate record.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Who should pick City Traders Imperium</strong></h2>
 
-<p>A swing or position trader whose strategy needs weeks-to-months of evaluation time to demonstrate. The no-time-limit feature is structurally unique. Pair with a system that doesn't need fast payouts (monthly cadence works) and an 8-year operating history matters more to you than a higher headline split.</p>
+<p>A trader who wants 10% static loss room should compare the $39–$549 2-Step tiers first; the path starts at an 80% split and records weekly payouts after a 7-day first gate. A trader who specifically needs 0 evaluation phases can compare both CTI phase-0 paths, but should price their 50%–70% splits and 6% loss caps against the wider <a href="/best-instant-funding-prop-firms">instant-funding product set</a>.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid City Traders Imperium</strong></h2>
 
-<p>A scalper or day trader should compare CTI’s 70% starting split with <a href="/blog/fundednext-review">FundedNext’s 80% base split</a> or <a href="/blog/funding-pips-review">FundingPips’ conditional path to 100%</a>. A trader needing frequent payouts should also weigh CTI’s monthly cycle against those product-level alternatives.</p>
+<p>A buyer who needs a verified fee refund should avoid all 4 paths until CTI publishes one at product level. A phase-0 buyer unable to absorb an R-multiple near or above 1 should avoid Instant and Direct, while a trader requiring third-party EAs should exclude the 3 personal-EA-only paths and inspect 1-Step separately.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
-<h3 class="wp-block-heading"><strong>Is City Traders Imperium legit in 2026?</strong></h3>
-<p>Yes — operating since 2018 (8 years), processes monthly payouts on the funded side. Trustpilot ratings sit around 4.5/5. The 8-year track record is meaningful credibility — only Topstep (14 years) and FTMO (11 years) have longer operating histories in our covered set.</p>
+<h3 class="wp-block-heading"><strong>What evidence does this CTI review verify?</strong></h3>
+<p>The review verifies 4 product rule sets and 23 prices captured from CTI pages on 2026-07-27. The separate Trustpilot capture records 4.2/5 from 1,633 reviews, but the site has no verified-payout badge and does not treat that aggregate as proof of an individual payout.</p>
 
-<h3 class="wp-block-heading"><strong>Why is CTI's profit split lower than competitors?</strong></h3>
-<p>CTI prices itself as a long-horizon firm rather than a high-frequency one. The 70% starting split is the structural cost of the no-time-limit feature — swing and position traders who would otherwise pay for multiple FTMO/FundedNext retries because the 30-day evaluation is too tight may find CTI's all-in cost lower, even with the lower per-payout split.</p>
+<h3 class="wp-block-heading"><strong>What starting profit split does CTI pay?</strong></h3>
+<p>The answer depends on the product: 1-Step and 2-Step start at 80%, Direct Funding starts at 70%, and Instant Funding starts at 50%. Later 90%–100% VIP figures are scaling levels, not the 4 captured starting shares.</p>
 
-<h3 class="wp-block-heading"><strong>What's the no-time-limit feature actually worth?</strong></h3>
-<p>For swing traders running positions over weeks or months, it's structural. For day traders or scalpers who naturally trade every day, it has no value — the 30-day cap at other firms doesn't constrain you. The feature pays off only for strategies whose natural cadence is longer than 30 days.</p>
+<h3 class="wp-block-heading"><strong>Does CTI offer instant funding?</strong></h3>
+<p>Yes. Instant Funding and Direct Funding both set phases to 0 and use a 6% static maximum loss. Instant has 6 tiers from $79 to $1,599 with a 50% starting split; Direct has 5 tiers from $229 to $3,999 with a 70% starting split.</p>
 
-<h3 class="wp-block-heading"><strong>Can US residents use City Traders Imperium?</strong></h3>
-<p>No. Like most CFD prop firms, CTI doesn't accept US residents due to CFTC restrictions.</p>
+<h3 class="wp-block-heading"><strong>When is the first CTI payout?</strong></h3>
+<p>The structured records show 7 days for 1-Step and 2-Step and 5 days for Instant and Direct. Evaluation frequency is weekly, Direct frequency is monthly, and Instant’s baseline frequency remains unverified.</p>
 
-<h3 class="wp-block-heading"><strong>How high does the split scale?</strong></h3>
-<p>CTI's published scaling milestones aren't fully documented in accessible sources, but industry-typical paths reach 80% or higher after sustained funded performance. Verify exact tier thresholds on the firm's live site.</p>
+<h3 class="wp-block-heading"><strong>Does CTI refund the purchase fee?</strong></h3>
+<p>No product-specific refund conclusion is verified. All 23 captured account-size records set refundable to null, so this review excludes a fee return from every True-Cost table and tells the buyer to confirm the selected product before paying.</p>

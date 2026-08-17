@@ -204,6 +204,19 @@ function freshFuturesProducts(firm: Firm): Challenge[] {
   )
 }
 
+function freshInstantProducts(firm: Firm): Challenge[] {
+  return getChallengesByFirm(firmSlug(firm.name)).filter(challenge =>
+    isChallengeFresh(challenge) && challenge.phases === 0,
+  )
+}
+
+function formatUsd(amount: number): string {
+  return `$${amount.toLocaleString('en-US', {
+    minimumFractionDigits: Number.isInteger(amount) ? 0 : 2,
+    maximumFractionDigits: 2,
+  })}`
+}
+
 function drawdownLabel(value: Challenge['drawdownType']): string {
   if (value === 'eod-trailing') return 'EOD trailing'
   if (value === 'balance-based') return 'balance-based'
@@ -436,41 +449,76 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-instant-funding-prop-firms',
-    h1: 'Best Instant-Funding Prop Firms (2026)',
-    metaTitle: 'Best Instant-Funding Prop Firms (2026)',
+    h1: 'Best Instant Funding Prop Firms (2026)',
+    metaTitle: 'Best Instant Funding Prop Firms (2026) — Compared',
     metaDescription:
-      'Compare phase-0 prop-firm products with no evaluation stage, using current fees, drawdown, payout terms, and trading rules.',
+      'Compare fresh phase-0 prop-firm products by entry cost, drawdown, profit split, payout gates, account stage, reviews, and dated first-party sources.',
     intro:
-      '“Instant funding” products skip the evaluation phase and start under funded-stage rules. Many still use simulated accounts, and the trade-off is usually a lower split, tighter loss room, or extra payout conditions. This list includes only firms with a current phase-0 product capture.',
+      'Every ranked firm has at least 1 product captured within 30 days whose structured phase count is 0. That means the product skips an evaluation target; it does not prove that the account uses live firm capital. Compare the loss line, total known cost, starting split, and payout gate on the exact product before paying.',
     sortDir: 'desc',
-    rank: firms => {
-      const out: LandingFirm[] = []
-      for (const firm of firms) {
-        const challenges = getChallengesByFirm(firmSlug(firm.name))
-          .filter(challenge => isChallengeFresh(challenge))
-        const instant = challenges.find((c: Challenge) => c.phases === 0)
-        if (!instant) continue
-        const cheapest = instant.accountSizes
-          .map(tier => ({
-            tier,
-            minimumCostUsd: minimumCostToFundedUsd(instant, tier),
-          }))
-          .filter((entry): entry is typeof entry & { minimumCostUsd: number } =>
-            entry.minimumCostUsd != null)
-          .sort((a, b) => a.minimumCostUsd - b.minimumCostUsd)[0]
-        out.push({
+    rank: firms => firms
+      .flatMap(firm => {
+        const products = freshInstantProducts(firm)
+        if (!products.length) return []
+
+        const priced = products.flatMap(product => product.accountSizes.flatMap(tier => {
+          const minimumCostUsd = minimumCostToFundedUsd(product, tier)
+          return minimumCostUsd == null ? [] : [{ product, tier, minimumCostUsd }]
+        })).sort((a, b) => a.minimumCostUsd - b.minimumCostUsd)
+        const cheapest = priced[0]
+        const drawdowns = [...new Set(products.map(product =>
+          drawdownLabel(product.drawdownType),
+        ))].sort()
+        const splits = [...new Set(products.flatMap(product =>
+          product.profitSplitPct == null ? [] : [product.profitSplitPct],
+        ))].sort((a, b) => a - b)
+        const payoutGates = [...new Set(products.map(product =>
+          product.payoutFirstDays == null
+            ? 'first-payout gate unverified'
+            : product.payoutFirstDays === 0
+              ? 'on-demand eligibility'
+              : `${product.payoutFirstDays}-day first-payout gate`,
+        ))].sort()
+        const shownProducts = products.slice(0, 3).map(product => product.productName)
+        const moreCount = products.length - shownProducts.length
+        const evidenceProduct = cheapest?.product ?? products[0]
+
+        return [{
           firm,
           sortKey: firm.score,
-          highlight: cheapest
-            ? `${instant.productName} · minimum $${cheapest.minimumCostUsd.toFixed(0)} to funded`
-            : instant.productName,
-        })
-      }
-      return out.sort((a, b) => b.sortKey - a.sortKey)
-    },
+          highlight: `${products.length} current phase-0 ${products.length === 1 ? 'product' : 'products'} · ${cheapest ? `minimum known cost ${formatUsd(cheapest.minimumCostUsd)}` : 'price unverified'}`,
+          metricLabel: 'Products',
+          metricValue: products.length.toString(),
+          note: `${joinNatural(shownProducts)}${moreCount > 0 ? `, plus ${moreCount} more` : ''}. Captured drawdown: ${joinNatural(drawdowns)}; published ${splits.length === 1 ? 'split' : 'splits'}: ${splits.length ? `${splits.join('–')}%` : 'unverified'}; ${joinNatural(payoutGates)}.`,
+          evidence: {
+            label: `${evidenceProduct.productName} source`,
+            url: evidenceProduct.sourceUrl,
+            capturedAt: evidenceProduct.sourceCapturedAt,
+          },
+        }]
+      })
+      .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
     methodology:
-      'A firm is "instant-funding" only if it ships a product where phases = 0 (no evaluation challenge). Lower-profit-split "instant" products are shown alongside the cheapest tier we can verify.',
-    lastReviewed: REVIEW_DATE,
+      'A firm qualifies only when at least 1 structured product captured within 30 days sets phases to 0. Every qualifying product contributes to the card; missing prices or starting splits stay visibly unverified. The order uses our editorial score, while affiliate status, product count, price, profit split, drawdown type, and payout speed add 0 points. “Instant” describes the missing evaluation phase, not verified live-capital execution.',
+    decisionGuide: [
+      {
+        title: 'Does phase 0 mean the account trades live capital?',
+        body: 'No. Phase 0 proves only that the structured product has no evaluation target. Treat funded, simulated-funded, and live-capital execution as separate account-stage claims, then verify the agreement for the selected product.',
+      },
+      {
+        title: 'How does the maximum-loss line move?',
+        body: 'Static, balance-based, real-time trailing, and end-of-day trailing rules create different risk. Model the initial floor, what raises it, whether it locks, and whether a payout resets it before comparing headline account sizes.',
+      },
+      {
+        title: 'How much loss room repays the one-time fee?',
+        body: 'Use minimum known cost and starting profit split to calculate gross break-even, then divide by the product’s verified maximum loss. A low checkout price can still consume a large share of the available loss room.',
+      },
+      {
+        title: 'What unlocks the first payout?',
+        body: 'A phase-0 purchase can still require profitable days, a consistency score, a safety cushion, minimum growth, or a waiting period. Verify every payout gate and whether the purchase fee is refundable before checkout.',
+      },
+    ],
+    lastReviewed: '2026-08-17',
   },
   {
     slug: 'best-futures-prop-firms',

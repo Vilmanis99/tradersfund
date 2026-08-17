@@ -29,20 +29,25 @@ export default function LandingPage({ landing }: { landing: Landing }) {
   const isUs = landing.slug === 'best-prop-firms-in-us'
   const isSwing = landing.slug === 'best-swing-trading-prop-firms'
   const isFutures = landing.slug === 'best-futures-prop-firms'
+  const isInstant = landing.slug === 'best-instant-funding-prop-firms'
   const decisionHeading = isUs
     ? 'What U.S. traders should verify'
     : isSwing
       ? 'What swing traders should verify'
       : isFutures
         ? 'What futures traders should verify'
-        : 'What Indian traders should verify'
+        : isInstant
+          ? 'What instant-funding buyers should verify'
+          : 'What Indian traders should verify'
   const decisionSub = isUs
     ? 'Four access, contract and payout checks to complete before paying.'
     : isSwing
       ? 'Four product-level checks before carrying a position across sessions.'
       : isFutures
         ? 'Four product, billing, account-stage and registration checks before paying.'
-        : 'Four checks to complete before paying for any evaluation.'
+        : isInstant
+          ? 'Four account-stage, loss-line, cost and payout checks before paying.'
+          : 'Four checks to complete before paying for any evaluation.'
   const indiaMatcherFirms = isIndia
     ? buildIndiaMatcherFirms(firms)
     : []
@@ -244,6 +249,66 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   eyebrow: 'Change watch',
                   title: 'Recheck current rule changes',
                   body: 'Review dated product changes and unresolved first-party source conflicts before checkout.',
+                },
+              ].map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="post-sidebar-card"
+                  style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+                >
+                  <span className="bento-tile-eyebrow">{item.eyebrow}</span>
+                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                    {item.title}
+                  </strong>
+                  <span style={{
+                    display: 'block',
+                    color: 'var(--muted)',
+                    fontSize: '0.8rem',
+                    lineHeight: 1.55,
+                    marginTop: '0.35rem',
+                  }}>
+                    {item.body}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isInstant && (
+        <section className="home-section" style={{ paddingTop: 0, paddingBottom: '1rem' }}>
+          <div className="home-shell">
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '0.85rem',
+            }}>
+              {[
+                {
+                  href: '/prop-firm-challenges?program=instant',
+                  eyebrow: 'Exact products',
+                  title: 'Compare every phase-0 product',
+                  body: 'Open the full product table with the instant-funding filter already selected.',
+                },
+                {
+                  href: '/how-prop-firm-challenges-work',
+                  eyebrow: 'Account stage',
+                  title: 'Separate funded from live capital',
+                  body: 'Map checkout, evaluation, funded rules and payout eligibility without assuming the execution environment.',
+                },
+                {
+                  href: '/true-cost-of-prop-firm-challenges',
+                  eyebrow: 'Fee economics',
+                  title: 'Measure cost against loss room',
+                  body: 'Convert the fee and starting split into gross break-even, then compare it with verified maximum loss.',
+                },
+                {
+                  href: '/blog/what-is-prop-firm-consistency-rule',
+                  eyebrow: 'Payout gates',
+                  title: 'Check consistency formulas',
+                  body: 'A phase-0 product can still delay payout through profitable-day, cushion, growth or consistency conditions.',
                 },
               ].map(item => (
                 <Link
@@ -659,6 +724,26 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   </Link>
                   <Link href="/prop-firm-challenge-changes" className="btn-outline">
                     Review current changes
+                  </Link>
+                </div>
+              </>
+            ) : isInstant ? (
+              <>
+                <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
+                  Compare the exact phase-0 product
+                </h2>
+                <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
+                  Filter all current products first, then test the fee, loss line and payout gates against the strategy.
+                </p>
+                <div className="cta-final-row">
+                  <Link href="/prop-firm-challenges?program=instant" className="btn-primary btn-glow">
+                    Compare instant products <ArrowRight size={16} />
+                  </Link>
+                  <Link href="/true-cost-of-prop-firm-challenges" className="btn-outline">
+                    Check true cost
+                  </Link>
+                  <Link href="/how-prop-firm-challenges-work" className="btn-outline">
+                    Check account stages
                   </Link>
                 </div>
               </>

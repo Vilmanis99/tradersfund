@@ -2,7 +2,7 @@
 title: "Tradeify Review 2026: 16 Priced Tiers and 3 Funding Routes"
 slug: "tradeify-review"
 date: "2026-07-28"
-modified: "2026-08-15 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Tradeify publishes 16 priced futures product-size combinations with EOD drawdown and 90% simulated payouts, but each route has a different consistency gate."
 categories: ["Prop Firms"]
@@ -64,6 +64,8 @@ type: "post"
 <p><strong>U.S. access.</strong> Tradeify’s Rules – Restricted Countries policy explicitly names the U.S. as an eligible example. Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links that dated first-party source and keeps eligibility separate from any CFTC or NFA registration claim.</p>
 
 <!-- SECTION 4 - Rule mechanics -->
+<p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> includes Lightning Funded as 1 no-evaluation path with 4 prices, a 90% split, a 20% first-payout consistency rule, and EOD-trailing maximum loss.</p>
+
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 <p><strong>EOD trailing drawdown moves after the session.</strong> A $50K Growth account begins with a $2,000 maximum-loss allowance and an initial $48,000 floor. If the end-of-day balance closes at $51,000, the next floor becomes $49,000; an intraday $51,500 peak that closes at $50,400 does not move the line to $49,500.</p>
 
