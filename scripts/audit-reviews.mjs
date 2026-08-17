@@ -252,6 +252,9 @@ const SITEMAP_FILE = path.join(ROOT, 'app/sitemap.ts')
 const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
 const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
+const COMPARISON_HUB_FILE = path.join(ROOT, 'app/compare/page.tsx')
+const COMPARISON_DIRECTORY_FILE = path.join(ROOT, 'components/ComparisonDirectory.tsx')
+const COMPARISON_DIRECTORY_LIB_FILE = path.join(ROOT, 'lib/comparisonDirectory.ts')
 const COMPARISON_ROUTE_FILE = path.join(ROOT, 'app/compare/[matchup]/page.tsx')
 const CHALLENGE_MATCHUP_COMPONENT_FILE = path.join(ROOT, 'components/ChallengeMatchup.tsx')
 const CHALLENGE_MATCHUP_LIB_FILE = path.join(ROOT, 'lib/challengeMatchup.ts')
@@ -9286,6 +9289,107 @@ function checkFundedNextComparisonOverlay() {
   return rows.length
 }
 
+/** Keep the complete comparison library discoverable, searchable and evidence-led. */
+function checkComparisonHub() {
+  const rows = []
+  const hub = fs.existsSync(COMPARISON_HUB_FILE)
+    ? fs.readFileSync(COMPARISON_HUB_FILE, 'utf-8')
+    : ''
+  const directory = fs.existsSync(COMPARISON_DIRECTORY_FILE)
+    ? fs.readFileSync(COMPARISON_DIRECTORY_FILE, 'utf-8')
+    : ''
+  const directoryLib = fs.existsSync(COMPARISON_DIRECTORY_LIB_FILE)
+    ? fs.readFileSync(COMPARISON_DIRECTORY_LIB_FILE, 'utf-8')
+    : ''
+  const css = fs.readFileSync(path.join(ROOT, 'app/globals.css'), 'utf-8')
+  const crawl = fs.existsSync(RELEASE_CRAWL_FILE)
+    ? fs.readFileSync(RELEASE_CRAWL_FILE, 'utf-8')
+    : ''
+
+  for (const fragment of [
+    'const ALL_PAIRS = getAllCanonicalPairs()',
+    'freshChallenges(slug).length',
+    'Prop Firm Comparisons (2026): ${ALL_PAIRS.length} Matchups',
+    'Prop firm comparisons,',
+    'pairEvidence(',
+    'data-curated-matchup={slug}',
+    'data-product-count={evidence.productCount}',
+    'data-source-count={evidence.sourceCount}',
+    'data-evidence-date={evidence.evidenceDate ?? undefined}',
+    '<ComparisonDirectory rows={directoryRows} />',
+    'href="/prop-firm-challenges"',
+    'href="/cheapest-prop-firms"',
+    'href="/prop-firm-challenge-changes"',
+  ]) {
+    if (!hub.includes(fragment)) {
+      rows.push(`comparison hub is missing evidence/search contract "${fragment}"`)
+    }
+  }
+  if (hub.includes('<Star') || hub.includes('★ {firmA.score}')) {
+    rows.push('comparison hub restored score-only matchup evidence')
+  }
+
+  for (const fragment of [
+    "'use client'",
+    'type="search"',
+    'aria-controls="comparison-directory-results"',
+    'data-comparison-result-count',
+    'filterComparisonRows(rows, query)',
+    "trackSiteEvent('comparison_directory_search'",
+    'query_length: normalizedQuery.length',
+    'result_count: visible.length',
+    'data-comparison-matchup={row.matchup}',
+    'data-product-count={row.productCount}',
+    'data-source-count={row.sourceCount}',
+    'data-evidence-date={row.evidenceDate ?? undefined}',
+    'Latest evidence <time',
+  ]) {
+    if (!directory.includes(fragment)) {
+      rows.push(`comparison directory is missing interaction/evidence contract "${fragment}"`)
+    }
+  }
+  if (directory.includes('query: normalizedQuery') || directory.includes('query: query')) {
+    rows.push('comparison directory analytics must not send the raw search query')
+  }
+  for (const fragment of [
+    'export function normalizeComparisonQuery',
+    'export function filterComparisonRows',
+    'normalizedQuery ? matchesQuery(row, normalizedQuery) : !row.editorial',
+    'Number(b.editorial) - Number(a.editorial)',
+  ]) {
+    if (!directoryLib.includes(fragment)) {
+      rows.push(`comparison search helper is missing "${fragment}"`)
+    }
+  }
+  for (const fragment of [
+    '.comparison-paths',
+    '.comparison-directory-search',
+    '.comparison-directory-count',
+    '.comparison-directory-empty',
+  ]) {
+    if (!css.includes(fragment)) rows.push(`comparison hub CSS is missing ${fragment}`)
+  }
+  for (const fragment of [
+    "const comparisonHubPath = '/compare'",
+    'data-comparison-matchup',
+    'data-curated-matchup',
+    "filterComparisonRows(expectedSearchRows, 'FTMO FundedNext')",
+    "filterComparisonRows(expectedSearchRows, 'FundedNext')",
+    'comparison hub rendered ${matchupTags.size} unique matchup links',
+    'href="/compare/ftmo-vs-fundednext"',
+  ]) {
+    if (!crawl.includes(fragment)) {
+      rows.push(`release crawl is missing comparison-hub safeguard "${fragment}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Comparison hub')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
 /** Related links must be relevant, deterministic, unique, and never self-link. */
 function checkRelatedPostSelection() {
   const rows = []
@@ -9435,6 +9539,8 @@ const whatIsPropFirmGuideErrors = checkWhatIsPropFirmGuide()
 totalErrors += whatIsPropFirmGuideErrors
 const scalingPlanGuideErrors = checkScalingPlanGuide()
 totalErrors += scalingPlanGuideErrors
+const comparisonHubErrors = checkComparisonHub()
+totalErrors += comparisonHubErrors
 const fundedNextComparisonOverlayErrors = checkFundedNextComparisonOverlay()
 totalErrors += fundedNextComparisonOverlayErrors
 const relatedPostSelectionErrors = checkRelatedPostSelection()

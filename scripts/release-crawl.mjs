@@ -21,6 +21,7 @@ import {
   minimumCostToFundedUsd,
 } from '../lib/firms.ts'
 import { getAllDeals } from '../lib/deals.ts'
+import { filterComparisonRows } from '../lib/comparisonDirectory.ts'
 
 const args = process.argv.slice(2)
 const baseArg = args.find(value => !value.startsWith('--'))
@@ -370,6 +371,151 @@ const internalResults = await mapConcurrent(
 for (const result of internalResults) {
   if (result.status < 200 || result.status >= 400) {
     errors.push(`${new URL(result.url).pathname}: internal link returned ${result.status || result.error}`)
+  }
+}
+
+const comparisonHubPath = '/compare'
+const comparisonHubProbe = await fetchPage(new URL(comparisonHubPath, BASE))
+if (comparisonHubProbe.status !== 200) {
+  errors.push(
+    `${comparisonHubPath}: HTTP ${comparisonHubProbe.status || comparisonHubProbe.error}`,
+  )
+} else {
+  const comparisonHubText = textContent(comparisonHubProbe.html)
+  const eligibleFirms = firmRecords.map(firm => {
+    const slug = outboundSlug(firm.name)
+    return {
+      firm,
+      slug,
+      products: getChallengesByFirm(slug).filter(challenge => isChallengeFresh(challenge)),
+    }
+  }).filter(entry => entry.products.length)
+  const expectedPairCount = eligibleFirms.length * (eligibleFirms.length - 1) / 2
+  const expectedProductCount = eligibleFirms.reduce(
+    (total, entry) => total + entry.products.length,
+    0,
+  )
+  const expectedTitle = `Prop Firm Comparisons (2026): ${expectedPairCount} Matchups`
+  const expectedDescription =
+    `Compare ${eligibleFirms.length} prop firms across ${expectedPairCount} head-to-head matchups and `
+    + `${expectedProductCount} fresh products, with source-dated fees, rules, drawdowns and payouts.`
+  const title = textContent(firstMatch(
+    comparisonHubProbe.html,
+    /<title[^>]*>([\s\S]*?)<\/title>/i,
+  ))
+  const description = decodeHtml(firstMatch(
+    comparisonHubProbe.html,
+    /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+  ) || firstMatch(
+    comparisonHubProbe.html,
+    /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+  ))
+  const canonical = firstMatch(
+    comparisonHubProbe.html,
+    /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["'][^>]*>/i,
+  ) || firstMatch(
+    comparisonHubProbe.html,
+    /<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["'][^>]*>/i,
+  )
+  const h1 = textContent(firstMatch(
+    comparisonHubProbe.html,
+    /<h1\b[^>]*>([\s\S]*?)<\/h1>/i,
+  ))
+
+  if (title !== expectedTitle) {
+    errors.push(`${comparisonHubPath}: incorrect title ${title}`)
+  }
+  if (description !== expectedDescription) {
+    errors.push(`${comparisonHubPath}: current evidence meta description is missing`)
+  }
+  if (canonicalKey(canonical) !== canonicalKey(`${PRODUCTION_ORIGIN}${comparisonHubPath}`)) {
+    errors.push(`${comparisonHubPath}: incorrect canonical`)
+  }
+  if (h1 !== 'Prop firm comparisons, product by product.') {
+    errors.push(`${comparisonHubPath}: incorrect search-intent H1 ${h1}`)
+  }
+  for (const required of [
+    `${expectedPairCount} matchups`,
+    `${eligibleFirms.length} firms`,
+    `${expectedProductCount} current products`,
+    `Search all ${expectedPairCount}`,
+    'type="search"',
+    'data-comparison-directory="true"',
+    'data-comparison-result-count="true"',
+    'href="/prop-firm-challenges"',
+    'href="/cheapest-prop-firms"',
+    'href="/prop-firm-challenge-changes"',
+    'href="/compare/ftmo-vs-fundednext"',
+  ]) {
+    if (!comparisonHubText.includes(required) && !comparisonHubProbe.html.includes(required)) {
+      errors.push(`${comparisonHubPath}: missing ${required}`)
+    }
+  }
+
+  const matchupTags = new Map()
+  for (const expression of [
+    /<a\b[^>]*\bdata-curated-matchup="([^"]+)"[^>]*>/gi,
+    /<a\b[^>]*\bdata-comparison-matchup="([^"]+)"[^>]*>/gi,
+  ]) {
+    for (const match of comparisonHubProbe.html.matchAll(expression)) {
+      if (matchupTags.has(match[1])) {
+        errors.push(`${comparisonHubPath}: duplicate matchup link ${match[1]}`)
+      }
+      matchupTags.set(match[1], match[0])
+    }
+  }
+  if (matchupTags.size !== expectedPairCount) {
+    errors.push(
+      `${comparisonHubPath}: comparison hub rendered ${matchupTags.size} unique matchup links, expected ${expectedPairCount}`,
+    )
+  }
+  const expectedSearchRows = []
+  for (let a = 0; a < eligibleFirms.length; a += 1) {
+    for (let b = a + 1; b < eligibleFirms.length; b += 1) {
+      const firmA = eligibleFirms[a]
+      const firmB = eligibleFirms[b]
+      const matchup = [firmA.slug, firmB.slug].sort().join('-vs-')
+      const tag = matchupTags.get(matchup)
+      const products = [...firmA.products, ...firmB.products]
+      const sourceCount = new Set(products.map(product => product.sourceUrl)).size
+      const evidenceDate = products.map(product => product.sourceCapturedAt).sort().at(-1)
+      expectedSearchRows.push({
+        matchup,
+        firmAName: firmA.firm.name,
+        firmBName: firmB.firm.name,
+        productCount: products.length,
+        sourceCount,
+        evidenceDate,
+        editorial: matchup === 'ftmo-vs-fundednext',
+      })
+      if (
+        !tag
+        || !tag.includes(`data-product-count="${products.length}"`)
+        || !tag.includes(`data-source-count="${sourceCount}"`)
+        || !tag.includes(`data-evidence-date="${evidenceDate}"`)
+      ) {
+        errors.push(`${comparisonHubPath}: ${matchup} is missing fresh product/source evidence`)
+      }
+    }
+  }
+  const exactSearch = filterComparisonRows(expectedSearchRows, 'FTMO FundedNext')
+  const fundedNextSearch = filterComparisonRows(expectedSearchRows, 'FundedNext')
+  if (
+    exactSearch.length !== 1
+    || exactSearch[0]?.matchup !== 'ftmo-vs-fundednext'
+    || fundedNextSearch.length !== eligibleFirms.length - 1
+    || !fundedNextSearch.some(row => row.matchup === 'ftmo-vs-fundednext')
+  ) {
+    errors.push(`${comparisonHubPath}: comparison directory search logic failed`)
+  }
+  const fundedNextCurated = [...comparisonHubProbe.html.matchAll(
+    /<a\b[^>]*\bdata-curated-matchup="ftmo-vs-fundednext"[^>]*>/gi,
+  )][0]?.[0]
+  if (!fundedNextCurated) {
+    errors.push(`${comparisonHubPath}: current FTMO-vs-FundedNext editorial path is not featured`)
+  }
+  if (comparisonHubText.includes('★ 9') || comparisonHubText.includes('★ 8')) {
+    errors.push(`${comparisonHubPath}: restored score-only matchup tiles`)
   }
 }
 
