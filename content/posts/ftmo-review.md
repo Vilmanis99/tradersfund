@@ -2,7 +2,7 @@
 title: "FTMO Review 2026: Euro-Priced, 80% on the 2-Step, 90% on the 1-Step"
 slug: "ftmo-review"
 date: "2024-08-30 10:30:24"
-modified: "2026-08-14 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "FTMO publishes per-tier pricing — in euros, not dollars. €89–€1,080 for the refundable 2-Step at 80%, €79–€999 for the non-refundable 1-Step at 90%."
 categories: ["Prop Firms"]
@@ -105,6 +105,8 @@ type: "post"
 <p><strong>Account ladders vary by currency.</strong> The same fee array applies across all seven denominations, but the balances differ: USD tops out at $200,000, GBP at £140,000, EUR and CHF at 160,000, CAD at $240,000, AUD at $260,000 and CZK at 4,000,000. If you price by balance-per-euro rather than by headline tier, the currency you pick changes the answer.</p>
 
 <p><strong>Scaling.</strong> FTMO's 80% 2-Step split "increases to 90% if Scaling Plan or Premium Programme conditions" are met — that much is published on the product page. The frequently repeated specifics (a 25% balance boost every four active months, scaling to $2,000,000) were <em>not</em> confirmed against a page we opened directly during the 2026-07-27 capture, so we flag them as unverified rather than restate them as terms. FTMO also offers a Free Trial; its separate 1-Step and 2-Step practice rules are checked in the <a href="/blog/ftmo-free-trial-explained">current FTMO Free Trial guide</a> rather than mixed into this paid-product table.</p>
+
+<p><strong>FundedNext comparison.</strong> The <a href="/compare/ftmo-vs-fundednext">product-level FTMO vs FundedNext comparison</a> keeps FTMO’s EUR fees separate from FundedNext’s USD fees and contrasts these 2 FTMO paths with 4 FundedNext products using the same 2026-07-27 capture date.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 

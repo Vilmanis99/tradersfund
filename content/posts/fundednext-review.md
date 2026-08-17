@@ -3,7 +3,7 @@ title: "FundedNext Review 2026: 22 Prices, 4 Rule Sets, and the India Checkout T
 seoTitle: "FundedNext Review 2026: Fees, Rules & Payouts"
 slug: "fundednext-review"
 date: "2024-09-02 15:16:05"
-modified: "2026-08-15"
+modified: "2026-08-17"
 author: "Edris Derakhshi"
 excerpt: "FundedNext starts new accounts at an 80% split, not 95%. Compare all 22 global prices, payout cycles, news rules, and India payment checks."
 seoDescription: "FundedNext review with 22 current prices, an 80% base split, and Stellar Lite, 1-Step, 2-Step and Instant rules, payouts, platforms and India access."
@@ -16,7 +16,22 @@ type: "post"
 
 <p>Choose Stellar 2-Step for a static 10% loss floor; choose Instant only if 6% trailing risk is acceptable.</p>
 
-<p>If FundedNext’s 40% funded news-window credit or 6% Instant trailing floor conflicts with the strategy, compare the 2 current paths in the <a href="/blog/ftmo-review">FTMO review</a>; the products use different prices, drawdown rules, and payout terms.</p>
+<p>If FundedNext’s 40% funded news-window credit or 6% Instant trailing floor conflicts with the strategy, use the <a href="/compare/ftmo-vs-fundednext">product-level FTMO vs FundedNext comparison</a>; it keeps EUR and USD fees separate while comparing 2 FTMO paths with FundedNext’s 4 products.</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
+  <caption class="hidden-caption">Which FundedNext product fits which rule priority?</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 9px; text-align: left;">Product</th><th style="padding: 8px 9px; text-align: left;">Start here only when</th><th style="padding: 8px 9px; text-align: left;">Lowest list fee</th><th style="padding: 8px 9px; text-align: left;">Loss rule</th><th style="padding: 8px 9px; text-align: left;">First reward / fee return</th></tr></thead>
+  <tbody>
+    <tr data-fundednext-product-fit="stellar-2-step"><td style="padding: 8px 9px;"><strong>Stellar 2-Step</strong></td><td style="padding: 8px 9px;">10% static room matters more than completing 2 phases</td><td style="padding: 8px 9px;">$59.99 for $6K</td><td style="padding: 8px 9px;">5% daily / 10% static max</td><td style="padding: 8px 9px;">21 days / first approved reward</td></tr>
+    <tr data-fundednext-product-fit="stellar-1-step"><td style="padding: 8px 9px;"><strong>Stellar 1-Step</strong></td><td style="padding: 8px 9px;">1 phase and a 5-business-day cycle matter more than 6% max room</td><td style="padding: 8px 9px;">$65.99 for $6K</td><td style="padding: 8px 9px;">3% daily / 6% static max</td><td style="padding: 8px 9px;">5 business days / third approved reward</td></tr>
+    <tr data-fundednext-product-fit="stellar-lite"><td style="padding: 8px 9px;"><strong>Stellar Lite</strong></td><td style="padding: 8px 9px;">The $32.99 entry matters more than an 8% max-loss cap</td><td style="padding: 8px 9px;">$32.99 for $5K</td><td style="padding: 8px 9px;">4% daily / 8% static max</td><td style="padding: 8px 9px;">21 days / third approved reward</td></tr>
+    <tr data-fundednext-product-fit="stellar-instant"><td style="padding: 8px 9px;"><strong>Stellar Instant</strong></td><td style="padding: 8px 9px;">0-phase access matters more than a 6% trailing floor</td><td style="padding: 8px 9px;">$59 for $2K</td><td style="padding: 8px 9px;">No daily cap / 6% trailing max</td><td style="padding: 8px 9px;">On demand after 5% growth / no refund</td></tr>
+  </tbody>
+</table>
+
+<div class="post-sidebar-card" data-fundednext-conversion="product-fit" style="border-left: 3px solid var(--gold); padding: 1rem 1.15rem; margin: 1.1rem 0;">
+  <p style="margin: 0;"><strong>Matched a rule set?</strong> Recheck the selected account size, platform fee, add-ons, refund timing, and funded-stage rules before paying. <a data-affiliate-placement="product-fit" href="/go/fundednext">Open FundedNext’s current plans</a>. We may earn a commission; the partnership contributes 0 points to the verdict or product comparison.</p>
+</div>
 
 <h2 class="wp-block-heading"><strong>Quick facts</strong></h2>
 

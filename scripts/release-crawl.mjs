@@ -543,6 +543,81 @@ if (futuresMarketProbe.status !== 200) {
   }
 }
 
+const fundedNextReviewPath = '/blog/fundednext-review'
+const fundedNextReviewProbe = await fetchPage(new URL(fundedNextReviewPath, BASE))
+if (fundedNextReviewProbe.status !== 200) {
+  errors.push(
+    `${fundedNextReviewPath}: HTTP ${fundedNextReviewProbe.status || fundedNextReviewProbe.error}`,
+  )
+} else {
+  const fundedNextText = textContent(fundedNextReviewProbe.html)
+  const productFitRows = (
+    fundedNextReviewProbe.html.match(/<tr[^>]*\bdata-fundednext-product-fit=/gi) ?? []
+  ).length
+  if (productFitRows !== 4) {
+    errors.push(`${fundedNextReviewPath}: rendered ${productFitRows} product-fit rows, expected 4`)
+  }
+  for (const required of [
+    'Which FundedNext product fits which rule priority?',
+    'Stellar 2-Step',
+    'Stellar 1-Step',
+    'Stellar Lite',
+    'Stellar Instant',
+    'partnership contributes 0 points',
+  ]) {
+    if (!fundedNextText.includes(required)) {
+      errors.push(`${fundedNextReviewPath}: missing ${required}`)
+    }
+  }
+  for (const required of [
+    'data-fundednext-conversion="product-fit"',
+    'data-affiliate-placement="product-fit"',
+    'href="/go/fundednext?from=post-body-fundednext-review-product-fit"',
+    'href="/compare/ftmo-vs-fundednext"',
+  ]) {
+    if (!fundedNextReviewProbe.html.includes(required)) {
+      errors.push(`${fundedNextReviewPath}: missing ${required}`)
+    }
+  }
+  const productFitCta = [...fundedNextReviewProbe.html.matchAll(/<a\b[^>]*>/gi)]
+    .map(match => match[0])
+    .find(tag => tag.includes(
+      'href="/go/fundednext?from=post-body-fundednext-review-product-fit"',
+    ))
+  if (
+    !productFitCta
+    || !productFitCta.includes('rel="sponsored nofollow noopener"')
+    || !productFitCta.includes('target="_blank"')
+  ) {
+    errors.push(`${fundedNextReviewPath}: product-fit CTA is not disclosed as sponsored`)
+  }
+}
+
+const fundedNextAffiliateProbePath = '/go/fundednext?from=post-body-fundednext-review-product-fit'
+const fundedNextAffiliateProbe = await fetchPage(
+  new URL(fundedNextAffiliateProbePath, BASE),
+  'manual',
+)
+let fundedNextAffiliateDestination = null
+try {
+  fundedNextAffiliateDestination = new URL(fundedNextAffiliateProbe.location, BASE)
+} catch {
+  // The assertions below report the missing or malformed Location header.
+}
+if (
+  fundedNextAffiliateProbe.status !== 302
+  || !fundedNextAffiliateDestination
+  || fundedNextAffiliateDestination.origin === BASE.origin
+  || fundedNextAffiliateDestination.hostname.replace(/^www\./, '') !== 'fundednext.com'
+  || fundedNextAffiliateDestination.searchParams.get('fpr') !== 'karlis56'
+  || fundedNextAffiliateDestination.searchParams.get('utm_source') !== 'tradersfundhub'
+  || fundedNextAffiliateDestination.searchParams.get('utm_medium') !== 'affiliate'
+  || fundedNextAffiliateDestination.searchParams.get('utm_campaign')
+    !== 'post-body-fundednext-review-product-fit'
+) {
+  errors.push(`${fundedNextAffiliateProbePath}: affiliate destination or attribution failed`)
+}
+
 const shortlistProbe = await fetchPage(new URL(
   '/prop-firm-challenges?shortlist=topstep%3Atrading-combine-standard-path%2Capex-trader-funding%3Aeod-trail-standard',
   BASE,

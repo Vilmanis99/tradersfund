@@ -54,7 +54,10 @@ import {
   buildOutboundRelationships,
   outboundSlug,
 } from '../lib/outboundDestinations.ts'
-import { decoratePostOutboundLinks } from '../lib/postOutboundLinks.ts'
+import {
+  decoratePostOutboundLinks,
+  postBodyCampaign,
+} from '../lib/postOutboundLinks.ts'
 import { rankRelatedPosts, relatedPostScore } from '../lib/relatedPosts.ts'
 import { diffChallengeProducts } from './challenge-diff.mjs'
 
@@ -2562,6 +2565,21 @@ function checkAnalyticsMeasurementContract() {
   ) {
     rows.push('Post-body affiliate decorator failed its query/hash/from/rel fixture')
   }
+  const decoratedPlacement = decoratePostOutboundLinks(
+    '<a data-affiliate-placement="Product Fit!" href="/go/fundednext?from=editor-value">Plans</a>',
+    { fundednext: 'affiliate' },
+    'fundednext-review',
+  )
+  if (
+    !decoratedPlacement.includes(
+      'href="/go/fundednext?from=post-body-fundednext-review-product-fit"',
+    )
+    || !decoratedPlacement.includes('data-affiliate-placement="Product Fit!"')
+    || decoratedPlacement.includes('editor-value')
+    || !decoratedPlacement.includes('rel="sponsored nofollow noopener"')
+  ) {
+    rows.push('Post-body affiliate decorator failed its controlled placement fixture')
+  }
   const decoratedOfficial = decoratePostOutboundLinks(
     '<a href="/go/ftmo">Terms</a><a href="/about">About</a>',
     fixtureRelationships,
@@ -2588,7 +2606,10 @@ function checkAnalyticsMeasurementContract() {
       const tag = match[0]
       const destination = new URL(match[2], 'https://tradersfundhub.com')
       const firmSlug = destination.pathname.split('/')[2]
-      const expectedCampaign = `post-body-${postSlug}`
+      const placement = tag.match(
+        /\bdata-affiliate-placement=(["'])([^"']+)\1/i,
+      )?.[2]
+      const expectedCampaign = postBodyCampaign(postSlug, placement)
       if (destination.searchParams.get('from') !== expectedCampaign) {
         rows.push(`${postSlug}: body /go link lacks controlled ${expectedCampaign} attribution`)
       }
@@ -5950,6 +5971,127 @@ function checkFuturesLandingCluster() {
   return rows.length
 }
 
+/** Keep the strongest converting review product-specific, disclosed, and attributable. */
+function checkFundedNextAffiliatePath() {
+  const rows = []
+  const reviewFile = path.join(POSTS, 'fundednext-review.md')
+  const ftmoReviewFile = path.join(POSTS, 'ftmo-review.md')
+  const reviewRaw = fs.existsSync(reviewFile) ? fs.readFileSync(reviewFile, 'utf-8') : ''
+  const ftmoRaw = fs.existsSync(ftmoReviewFile) ? fs.readFileSync(ftmoReviewFile, 'utf-8') : ''
+  const parsed = reviewRaw ? matter(reviewRaw) : { data: {}, content: '' }
+  const challenges = loadChallenges('fundednext') ?? []
+
+  if (challenges.length !== 4) {
+    rows.push(`FundedNext product-fit table expects 4 current products, received ${challenges.length}`)
+  }
+  const pricedTierCount = challenges.reduce(
+    (total, challenge) => total + challenge.accountSizes.filter(
+      tier => tier.priceUsd != null,
+    ).length,
+    0,
+  )
+  if (pricedTierCount !== 22) {
+    rows.push(`FundedNext product-fit table expects 22 priced tiers, received ${pricedTierCount}`)
+  }
+
+  const refundText = new Map([
+    ['stellar-2-step', 'first approved reward'],
+    ['stellar-1-step', 'third approved reward'],
+    ['stellar-lite', 'third approved reward'],
+    ['stellar-instant', 'no refund'],
+  ])
+  for (const challenge of challenges) {
+    const rowMatches = [...parsed.content.matchAll(new RegExp(
+      `<tr[^>]*\\bdata-fundednext-product-fit="${challenge.productSlug}"[^>]*>([\\s\\S]*?)<\\/tr>`,
+      'gi',
+    ))]
+    if (rowMatches.length !== 1) {
+      rows.push(`${challenge.productName}: expected exactly 1 product-fit row`)
+      continue
+    }
+    const rowText = stripTags(rowMatches[0][1]).replace(/\s+/g, ' ').trim()
+    const cheapest = challenge.accountSizes
+      .filter(tier => tier.priceUsd != null)
+      .sort((a, b) => a.priceUsd - b.priceUsd)[0]
+    if (!cheapest) {
+      rows.push(`${challenge.productName}: no priced tier available for product-fit row`)
+      continue
+    }
+    const price = `$${cheapest.priceUsd.toLocaleString('en-US', {
+      minimumFractionDigits: Number.isInteger(cheapest.priceUsd) ? 0 : 2,
+      maximumFractionDigits: 2,
+    })}`
+    const size = `$${cheapest.sizeUsd / 1000}K`
+    const expectedFragments = [
+      challenge.productName,
+      price,
+      size,
+      challenge.dailyLossPct == null ? 'No daily cap' : `${challenge.dailyLossPct}% daily`,
+      `${challenge.maxLossPct}%`,
+      challenge.drawdownType,
+      challenge.payoutFirstDays === 0 ? 'On demand' : `${challenge.payoutFirstDays}`,
+      refundText.get(challenge.productSlug),
+    ]
+    for (const fragment of expectedFragments) {
+      if (fragment && !rowText.includes(fragment)) {
+        rows.push(`${challenge.productName}: product-fit row is missing ${fragment}`)
+      }
+    }
+  }
+  if ((parsed.content.match(/data-fundednext-product-fit=/g) ?? []).length !== 4) {
+    rows.push('FundedNext verdict must keep exactly 4 attributed product-fit rows')
+  }
+
+  for (const fragment of [
+    'data-fundednext-conversion="product-fit"',
+    'data-affiliate-placement="product-fit"',
+    'href="/go/fundednext"',
+    'partnership contributes 0 points',
+    'href="/compare/ftmo-vs-fundednext"',
+  ]) {
+    if (!parsed.content.includes(fragment)) {
+      rows.push(`FundedNext review is missing conversion safeguard: ${fragment}`)
+    }
+  }
+  if (parsed.data.modified !== '2026-08-17') {
+    rows.push('FundedNext review modified date must match the product-fit review date')
+  }
+  if (!ftmoRaw.includes('href="/compare/ftmo-vs-fundednext"')) {
+    rows.push('FTMO review is missing its contextual link to the FundedNext comparison')
+  }
+
+  const decorator = fs.readFileSync(path.join(ROOT, 'lib/postOutboundLinks.ts'), 'utf-8')
+  for (const fragment of [
+    'export function postBodyCampaign',
+    'data-affiliate-placement',
+    'postBodyCampaign(routeSlug, placement)',
+  ]) {
+    if (!decorator.includes(fragment)) {
+      rows.push(`post-body attribution is missing placement safeguard: ${fragment}`)
+    }
+  }
+
+  const crawler = fs.readFileSync(RELEASE_CRAWL_FILE, 'utf-8')
+  for (const fragment of [
+    "const fundedNextReviewPath = '/blog/fundednext-review'",
+    'post-body-fundednext-review-product-fit',
+    'data-fundednext-product-fit=',
+    "'/go/fundednext?from=post-body-fundednext-review-product-fit'",
+    "searchParams.get('fpr') !== 'karlis56'",
+    "searchParams.get('utm_campaign')",
+  ]) {
+    if (!crawler.includes(fragment)) {
+      rows.push(`release crawl is missing FundedNext conversion safeguard: ${fragment}`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\nâœ— FundedNext product and affiliate path')
+    for (const row of rows) console.log(`  Â· ${row}`)
+  }
+  return rows.length
+}
+
 /** Keep the FTMO practice guide tied to current FTMO and FundedNext sources. */
 function checkFtmoFreeTrialGuide() {
   const rows = []
@@ -7914,6 +8056,8 @@ const swingFeatureClusterErrors = checkSwingFeatureCluster()
 totalErrors += swingFeatureClusterErrors
 const futuresLandingClusterErrors = checkFuturesLandingCluster()
 totalErrors += futuresLandingClusterErrors
+const fundedNextAffiliatePathErrors = checkFundedNextAffiliatePath()
+totalErrors += fundedNextAffiliatePathErrors
 const globalChallengeErrors = checkGlobalChallengeSurface()
 totalErrors += globalChallengeErrors
 const challengeChangeFocusErrors = checkChallengeChangeFocusContract()

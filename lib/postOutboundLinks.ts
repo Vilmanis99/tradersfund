@@ -4,6 +4,12 @@ function safeCampaignPart(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48)
 }
 
+export function postBodyCampaign(routeSlug: string, placement?: string | null) {
+  const base = `post-body-${safeCampaignPart(routeSlug)}`
+  const suffix = placement ? safeCampaignPart(placement) : ''
+  return suffix ? `${base}-${suffix}`.slice(0, 64).replace(/-$/g, '') : base
+}
+
 function setCampaign(href: string, campaign: string) {
   const url = new URL(href, 'https://tradersfundhub.com')
   url.searchParams.set('from', campaign)
@@ -16,11 +22,14 @@ export function decoratePostOutboundLinks(
   outboundRelationships: Readonly<Record<string, OutboundRelationship>>,
   routeSlug: string,
 ) {
-  const campaign = `post-body-${safeCampaignPart(routeSlug)}`
   return html.replace(/<a\b[^>]*>/gi, tag => {
     const hrefMatch = tag.match(/\bhref=(["'])(\/go\/([^"'?/#]+)[^"']*)\1/i)
     if (!hrefMatch) return tag
 
+    const placement = tag.match(
+      /\bdata-affiliate-placement=(["'])([^"']+)\1/i,
+    )?.[2]
+    const campaign = postBodyCampaign(routeSlug, placement)
     const rel = outboundRelationships[hrefMatch[3].toLowerCase()] === 'affiliate'
       ? 'sponsored nofollow noopener'
       : 'nofollow noopener'
