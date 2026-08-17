@@ -14,6 +14,7 @@ import {
   passesIndiaProductGate,
   type IndiaFirmEvidence,
 } from './india'
+import rawUsAccessEvidence from '@/content/data/us-access-evidence.json'
 
 /**
  * Long-tail landing pages — "best prop firms in UK", "cheapest", "best
@@ -48,6 +49,12 @@ export interface LandingFirm {
    * leaderboard. Omit on landings where the stat speaks for itself.
    */
   note?: string
+  /** Dated first-party support for a geographic or product-access claim. */
+  evidence?: {
+    label: string
+    url: string
+    capturedAt: string
+  }
 }
 
 export interface Landing {
@@ -73,6 +80,37 @@ export interface Landing {
 }
 
 const REVIEW_DATE = '2026-07-27'
+const ACCESS_EVIDENCE_MAX_AGE_DAYS = 30
+
+interface UsAccessEvidence {
+  firmSlug: string
+  firmName: string
+  accessStatus: 'explicit' | 'policy-supported'
+  assetClass: 'cfd' | 'futures'
+  platformConstraint: string
+  sourceUrl: string
+  secondarySourceUrl?: string
+  sourcePublishedAt?: string
+  sourceCapturedAt: string
+  evidenceLabel: string
+  decisionNote: string
+}
+
+const US_ACCESS_EVIDENCE_BY_SLUG = new Map(
+  (rawUsAccessEvidence.firms as UsAccessEvidence[]).map(evidence => [
+    evidence.firmSlug,
+    evidence,
+  ]),
+)
+
+function isAccessEvidenceFresh(sourceCapturedAt: string) {
+  const captured = new Date(`${sourceCapturedAt}T00:00:00Z`)
+  if (Number.isNaN(captured.getTime())) return false
+  const now = new Date()
+  const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
+  const ageDays = Math.floor((todayUtc - captured.getTime()) / 86400000)
+  return ageDays >= 0 && ageDays <= ACCESS_EVIDENCE_MAX_AGE_DAYS
+}
 
 function minimumPublishedEntry(challenges: Challenge[]) {
   const usd = challenges.flatMap(challenge =>
@@ -206,33 +244,68 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-prop-firms-in-us',
-    h1: 'Best Prop Firms for US Traders (2026)',
-    metaTitle: 'Best Prop Firms for US Traders in 2026 — Ranked',
+    h1: 'Best Prop Firms for US Traders (2026): 4 Verified',
+    metaTitle: 'Best Prop Firms for US Traders (2026)',
     metaDescription:
-      'Prop firms ranked for US-based traders: CFTC-aware, futures-friendly, ACH/bank-wire payouts. Updated 2026.',
+      'Compare 4 prop firms with current first-party US-access evidence, including futures and CFD paths, platform limits, reviews, and dated eligibility sources.',
     intro:
-      'US-resident traders face the tightest restrictions in the prop industry — most CFD-only firms outright restrict the US, while futures firms (CFTC-regulated path) are the dominant home for US traders. The list below filters for firms that explicitly accept the US.',
+      'These 4 firms publish current first-party evidence supporting at least 1 path for U.S. residents. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, product, KYC route, and payout method is available. Recheck the linked policy and final checkout before paying.',
     sortDir: 'desc',
     rank: firms => {
-      const eligible = firms.filter(f => {
-        const restricted = f.countriesRestricted || []
-        if (restricted.includes('US') || restricted.includes('United States') || restricted.includes('USA')) return false
-        // Bias toward futures and firms with broad US-friendly payout methods.
-        return true
-      })
-      return eligible
-        .map(firm => ({
-          firm,
-          sortKey: firm.score + (firm.assets?.includes('Futures') ? 0.3 : 0),
-          highlight: firm.assets?.includes('Futures')
-            ? `Futures · ${firm.profitSplitPct ?? '—'}% split`
-            : `${firm.assets?.slice(0, 2).join(' · ')} · ${firm.profitSplitPct ?? '—'}% split`,
-        }))
-        .sort((a, b) => b.sortKey - a.sortKey)
+      return firms
+        .flatMap(firm => {
+          const slug = firmSlug(firm.name)
+          const evidence = US_ACCESS_EVIDENCE_BY_SLUG.get(slug)
+          const challenges = getChallengesByFirm(slug)
+          if (
+            !evidence ||
+            !isAccessEvidenceFresh(evidence.sourceCapturedAt) ||
+            !challenges.length ||
+            !challenges.every(challenge => isChallengeFresh(challenge))
+          ) {
+            return []
+          }
+          const assetLabel = evidence.assetClass === 'futures' ? 'Futures' : 'CFD'
+          const platformLabel = evidence.assetClass === 'cfd'
+            ? ' · Match-Trader only'
+            : ''
+          return [{
+            firm,
+            sortKey: firm.score,
+            highlight: `${assetLabel} · ${challenges.length} current product paths${platformLabel}`,
+            note: evidence.decisionNote,
+            metricLabel: 'US evidence',
+            metricValue: evidence.accessStatus === 'explicit' ? 'Direct' : 'Policy',
+            evidence: {
+              label: evidence.evidenceLabel,
+              url: evidence.sourceUrl,
+              capturedAt: evidence.sourceCapturedAt,
+            },
+          }]
+        })
+        .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name))
     },
     methodology:
-      'A firm is included if it does not list the US in its countries-restricted list. Futures-capable firms get a small ranking nudge because the CFTC-regulated futures route is the only fully unambiguous legal path for US-resident funded traders.',
-    lastReviewed: REVIEW_DATE,
+      'A firm appears only when a first-party U.S.-access policy was captured within 30 days and every structured product record is also within the 30-day freshness gate. A missing restriction is not enough. The order uses our editorial score; affiliate status, coupon size and asset class add 0 points. Access evidence does not establish CFTC or NFA registration, legal status, payout approval, or availability in every state.',
+    decisionGuide: [
+      {
+        title: 'Does access mean the firm is CFTC-registered?',
+        body: 'No. The CFTC says certain derivatives businesses and individuals must register and recommends checking NFA BASIC. A firm’s U.S.-access page proves only what the firm currently says it offers.',
+      },
+      {
+        title: 'Is the first funded stage simulated or live?',
+        body: 'Read the named contract. Topstep describes its Express Funded Account as simulated before a possible Live Funded Account, while each firm publishes a different transition and payout structure.',
+      },
+      {
+        title: 'Are futures and CFD paths interchangeable?',
+        body: 'No. Futures products use exchange-listed contracts and product-specific market hours. FundedNext’s captured U.S. CFD path uses Match-Trader and cannot be treated as an MT4, MT5, or CME futures account.',
+      },
+      {
+        title: 'What must match before a U.S. payout?',
+        body: 'Check legal name, residency, KYC, tax form and bank-country rules. Apex publishes U.S.-residency-matched ACH requirements, while Topstep lists W-9 handling for U.S. persons.',
+      },
+    ],
+    lastReviewed: '2026-08-15',
   },
   {
     slug: 'best-prop-firms-in-india',

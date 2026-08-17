@@ -26,6 +26,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
   const { ranked, count, allFirms } = buildLandingPayload(landing)
   const firms = ranked.map(r => r.firm)
   const isIndia = landing.slug === 'best-prop-firms-in-india'
+  const isUs = landing.slug === 'best-prop-firms-in-us'
   const indiaMatcherFirms = isIndia
     ? buildIndiaMatcherFirms(firms)
     : []
@@ -137,6 +138,31 @@ export default function LandingPage({ landing }: { landing: Landing }) {
           <AffiliateDisclosure />
         </div>
       </section>
+
+      {isUs && (
+        <section className="home-section" style={{ paddingTop: 0, paddingBottom: '1rem' }}>
+          <div className="home-shell">
+            <div
+              className="post-sidebar-card"
+              style={{ borderLeft: '3px solid var(--gold)', padding: '1.15rem 1.3rem' }}
+            >
+              <strong style={{ color: '#fff' }}>U.S. access is not a regulatory badge.</strong>{' '}
+              <span style={{ color: 'var(--text)', lineHeight: 1.65 }}>
+                Each ranked firm has a dated first-party access source, but the CFTC says
+                registration and disciplinary history should be checked separately in NFA BASIC.{' '}
+                <a
+                  href="https://www.cftc.gov/check"
+                  target="_blank"
+                  rel="nofollow noopener"
+                  style={{ color: 'var(--accent-light)', fontWeight: 700 }}
+                >
+                  Open the CFTC registration checklist.
+                </a>
+              </span>
+            </div>
+          </div>
+        </section>
+      )}
 
       {isIndia && (
         <IndiaRbiNotice evidence={INDIA_EVIDENCE} />
@@ -325,9 +351,13 @@ export default function LandingPage({ landing }: { landing: Landing }) {
           <div className="home-shell" style={{ maxWidth: 900 }}>
             <div className="section-head">
               <div>
-                <h2 className="section-title">What Indian traders should verify</h2>
+                <h2 className="section-title">
+                  {isUs ? 'What U.S. traders should verify' : 'What Indian traders should verify'}
+                </h2>
                 <p className="section-sub-text">
-                  Four checks to complete before paying for any evaluation.
+                  {isUs
+                    ? 'Four access, contract and payout checks to complete before paying.'
+                    : 'Four checks to complete before paying for any evaluation.'}
                 </p>
               </div>
             </div>
@@ -409,6 +439,26 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   </Link>
                   <Link href="/best-prop-firms-in-india/challenge-changes" className="btn-outline">
                     Review live changes
+                  </Link>
+                </div>
+              </>
+            ) : isUs ? (
+              <>
+                <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
+                  Choose the product, not a U.S. badge
+                </h2>
+                <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
+                  Compare current rules first, then recheck the firm’s U.S. policy and your exact checkout configuration.
+                </p>
+                <div className="cta-final-row">
+                  <Link href="/prop-firm-challenges" className="btn-primary btn-glow">
+                    Compare current products <ArrowRight size={16} />
+                  </Link>
+                  <Link href="/best-futures-prop-firms" className="btn-outline">
+                    Compare futures firms
+                  </Link>
+                  <Link href="/blog/fundednext-review" className="btn-outline">
+                    Check FundedNext CFD
                   </Link>
                 </div>
               </>

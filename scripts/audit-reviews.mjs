@@ -216,6 +216,15 @@ const FTMO_FREE_TRIAL_GUIDE_FILE = path.join(
   'content/posts/ftmo-free-trial-explained.md',
 )
 const FREE_TRIAL_DATA_FILE = path.join(ROOT, 'content/data/free-trials.json')
+const US_ACCESS_EVIDENCE_FILE = path.join(
+  ROOT,
+  'content/data/us-access-evidence.json',
+)
+const LANDINGS_CONFIG_FILE = path.join(ROOT, 'lib/landings.ts')
+const LANDING_PAGE_COMPONENT_FILE = path.join(ROOT, 'components/LandingPage.tsx')
+const LANDING_FIRM_LIST_FILE = path.join(ROOT, 'components/LandingFirmList.tsx')
+const MDX_FILE = path.join(ROOT, 'lib/mdx.ts')
+const RETIRED_CONTENT_FILE = path.join(ROOT, 'lib/retiredContent.ts')
 const NEXT_CONFIG_FILE = path.join(ROOT, 'next.config.ts')
 const ROOT_SLUG_PAGE_FILE = path.join(ROOT, 'app/[slug]/page.tsx')
 const SITEMAP_FILE = path.join(ROOT, 'app/sitemap.ts')
@@ -692,7 +701,7 @@ function auditTrueCostTable(table, errors, warnings, challenges) {
  *  sourced claim. Heuristic by nature, so this only ever warns. */
 function checkFactDensity(body, warnings) {
   const ruleWords =
-    /\b(drawdown|consistency|profit split|payout|leverage|phase|trailing|static|scaling|breach|EA|news|weekend|overnight|refund|min(?:imum)? trading days)\b/i
+    /\b(drawdown|consistency|profit split|payout|leverage|phase|trailing|static|scaling|breach|EA|news|weekend|overnight|refund|eligibility|KYC|platform|restricted countries|min(?:imum)? trading days)\b/i
   const paras = [...body.matchAll(/<p>([\s\S]*?)<\/p>/gi)].map(m =>
     stripTags(m[1]).replace(/\s+/g, ' ').trim()
   )
@@ -5439,6 +5448,274 @@ function checkLegacyOverviewConsolidation() {
   return rows.length
 }
 
+/**
+ * The U.S. landing replaces an overlapping legacy article and makes a
+ * narrower claim: current first-party access evidence, not legal approval.
+ * Keep the evidence set small, fresh, source-linked, and reachable from each
+ * ranked review so the consolidation cannot silently regress into a
+ * restriction-list guess or two competing indexable URLs.
+ */
+function checkUsLandingConsolidation() {
+  const rows = []
+  const expected = new Map([
+    ['fundednext', { name: 'FundedNext', host: 'help.fundednext.com', status: 'explicit' }],
+    ['tradeify', { name: 'Tradeify', host: 'help.tradeify.co', status: 'explicit' }],
+    ['topstep', { name: 'Topstep', host: 'help.topstep.com', status: 'policy-supported' }],
+    ['apex-trader-funding', { name: 'Apex Trader Funding', host: 'apextraderfunding.com', status: 'explicit' }],
+  ])
+  const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+  const slugify = name =>
+    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
+  let capture = null
+  if (!fs.existsSync(US_ACCESS_EVIDENCE_FILE)) {
+    rows.push('content/data/us-access-evidence.json is missing')
+  } else {
+    try {
+      capture = JSON.parse(read(US_ACCESS_EVIDENCE_FILE))
+    } catch (error) {
+      rows.push(`U.S. access evidence is invalid JSON (${error.message})`)
+    }
+  }
+
+  const entries = Array.isArray(capture?.firms) ? capture.firms : []
+  const capturedSlugs = entries.map(entry => entry.firmSlug)
+  const expectedSlugs = [...expected.keys()].sort()
+  if (
+    entries.length !== expected.size
+    || new Set(capturedSlugs).size !== expected.size
+    || JSON.stringify([...capturedSlugs].sort()) !== JSON.stringify(expectedSlugs)
+  ) {
+    rows.push(`U.S. evidence must contain exactly ${expectedSlugs.join(', ')}`)
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(capture?.capturedAt ?? '')) {
+    rows.push('U.S. evidence root capturedAt must be an ISO date')
+  }
+
+  const firms = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
+  )
+  const firmsBySlug = new Map(firms.map(firm => [slugify(firm.name), firm]))
+  for (const [slug, spec] of expected) {
+    const matches = entries.filter(entry => entry.firmSlug === slug)
+    if (matches.length !== 1) {
+      rows.push(`${slug}: expected exactly 1 access-evidence record`)
+      continue
+    }
+    const entry = matches[0]
+    if (entry.firmName !== spec.name) {
+      rows.push(`${slug}: firmName must be ${spec.name}`)
+    }
+    if (entry.accessStatus !== spec.status) {
+      rows.push(`${slug}: accessStatus must be ${spec.status}`)
+    }
+    if (!['cfd', 'futures'].includes(entry.assetClass)) {
+      rows.push(`${slug}: assetClass must be cfd or futures`)
+    }
+    if (!entry.platformConstraint || !entry.evidenceLabel || !entry.decisionNote) {
+      rows.push(`${slug}: platform constraint, evidence label and decision note are required`)
+    }
+    if (entry.sourceCapturedAt !== capture?.capturedAt) {
+      rows.push(`${slug}: sourceCapturedAt must match the root capture date`)
+    }
+    const captured = new Date(`${entry.sourceCapturedAt}T00:00:00Z`)
+    const age = Math.floor((TODAY - captured) / 86400000)
+    if (Number.isNaN(captured.getTime()) || age < 0 || age > STALE_DAYS) {
+      rows.push(`${slug}: access evidence is outside the ${STALE_DAYS}-day freshness gate`)
+    }
+
+    for (const [field, sourceUrl] of [
+      ['sourceUrl', entry.sourceUrl],
+      ['secondarySourceUrl', entry.secondarySourceUrl],
+    ]) {
+      if (!sourceUrl) {
+        if (field === 'sourceUrl') rows.push(`${slug}: sourceUrl is required`)
+        continue
+      }
+      try {
+        const source = new URL(sourceUrl)
+        if (source.protocol !== 'https:') {
+          rows.push(`${slug}.${field}: source must use HTTPS`)
+        }
+        if (
+          source.hostname !== spec.host
+          && !source.hostname.endsWith(`.${spec.host}`)
+        ) {
+          rows.push(`${slug}.${field}: ${source.hostname} is not the approved first-party host`)
+        }
+      } catch {
+        rows.push(`${slug}.${field}: invalid source URL`)
+      }
+    }
+
+    const firm = firmsBySlug.get(slug)
+    if (!firm) {
+      rows.push(`${slug}: no matching firms.json record`)
+    } else if ((firm.countriesRestricted ?? []).some(country =>
+      /^(us|usa|united states)$/i.test(country.trim()))) {
+      rows.push(`${slug}: firms.json contradicts the captured U.S. access evidence`)
+    }
+    const challenges = loadChallenges(slug)
+    if (!challenges?.length) {
+      rows.push(`${slug}: no challenge data found`)
+    } else {
+      const freshnessErrors = []
+      checkSourceFreshness(challenges, freshnessErrors)
+      for (const error of freshnessErrors) rows.push(`${slug}: ${error}`)
+    }
+  }
+
+  const landings = read(LANDINGS_CONFIG_FILE)
+  const landingBlock = landings.match(
+    /slug:\s*'best-prop-firms-in-us'([\s\S]*?)slug:\s*'best-prop-firms-in-india'/,
+  )?.[1] ?? ''
+  if (!landingBlock) {
+    rows.push('best-prop-firms-in-us landing config is missing')
+  } else {
+    const description = landingBlock.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1] ?? ''
+    if (description.length < 120 || description.length > 160) {
+      rows.push('U.S. landing meta description must be between 120 and 160 characters')
+    }
+    const requiredFragments = [
+      "h1: 'Best Prop Firms for US Traders (2026): 4 Verified'",
+      "metaTitle: 'Best Prop Firms for US Traders (2026)'",
+      'US_ACCESS_EVIDENCE_BY_SLUG.get(slug)',
+      'isAccessEvidenceFresh(evidence.sourceCapturedAt)',
+      'challenges.every(challenge => isChallengeFresh(challenge))',
+      'sortKey: firm.score',
+      "metricLabel: 'US evidence'",
+      'A missing restriction is not enough.',
+      'affiliate status, coupon size and asset class add 0 points',
+      "lastReviewed: '2026-08-15'",
+    ]
+    for (const fragment of requiredFragments) {
+      if (!landingBlock.includes(fragment)) {
+        rows.push(`U.S. landing is missing "${fragment}"`)
+      }
+    }
+    for (const staleClaim of [
+      'CFTC-aware',
+      'CFTC-regulated path',
+      'only fully unambiguous legal path',
+      'countriesRestricted',
+    ]) {
+      if (landingBlock.includes(staleClaim)) {
+        rows.push(`U.S. landing restored unsafe eligibility logic: "${staleClaim}"`)
+      }
+    }
+    if ((landingBlock.match(/title:\s*'/g) ?? []).length !== 4) {
+      rows.push('U.S. landing must keep exactly 4 decision-guide questions')
+    }
+  }
+
+  const firmList = read(LANDING_FIRM_LIST_FILE)
+  for (const fragment of [
+    'item.evidence.url',
+    'item.evidence.label',
+    'item.evidence.capturedAt',
+    'rel="nofollow noopener"',
+    'href={`/go/${slug}?from=${fromParam}`}',
+    'rel="sponsored nofollow noopener"',
+  ]) {
+    if (!firmList.includes(fragment)) {
+      rows.push(`landing firm list is missing "${fragment}"`)
+    }
+  }
+  const evidenceLinkBlock = firmList.match(
+    /\{item\.evidence && \(([\s\S]*?)\)\}/,
+  )?.[1] ?? ''
+  if (evidenceLinkBlock.includes('sponsored')) {
+    rows.push('first-party evidence links must not be marked sponsored')
+  }
+
+  const landingPage = read(LANDING_PAGE_COMPONENT_FILE)
+  for (const fragment of [
+    "const isUs = landing.slug === 'best-prop-firms-in-us'",
+    'U.S. access is not a regulatory badge.',
+    'https://www.cftc.gov/check',
+    'What U.S. traders should verify',
+    'href="/prop-firm-challenges"',
+    'href="/best-futures-prop-firms"',
+    'href="/blog/fundednext-review"',
+  ]) {
+    if (!landingPage.includes(fragment)) {
+      rows.push(`U.S. landing component is missing "${fragment}"`)
+    }
+  }
+
+  const retired = read(RETIRED_CONTENT_FILE)
+  if (!retired.includes("'forex-prop-firms-in-the-us': '/best-prop-firms-in-us'")) {
+    rows.push('retired U.S. article is not mapped to the canonical landing')
+  }
+  const mdx = read(MDX_FILE)
+  if (
+    !mdx.includes("import { isRetiredPostSlug } from './retiredContent'")
+    || (mdx.match(/filter\(post => !isRetiredPostSlug\(post\.slug\)\)/g) ?? []).length !== 2
+  ) {
+    rows.push('retired posts must be filtered from both metadata and full-content loaders')
+  }
+  const blogRoute = read(BLOG_POST_PAGE_FILE)
+  if (!blogRoute.includes('getAllPosts().map(p => ({ slug: p.slug }))')) {
+    rows.push('blog static params no longer use the filtered post loader')
+  }
+  const sitemap = read(SITEMAP_FILE)
+  if (!sitemap.includes('const posts = getAllPosts()') || !sitemap.includes('const postRoutes')) {
+    rows.push('sitemap no longer derives blog URLs from the filtered post loader')
+  }
+
+  const config = read(NEXT_CONFIG_FILE)
+  for (const fragment of [
+    "import { RETIRED_POST_REDIRECTS } from './lib/retiredContent'",
+    'Object.entries(RETIRED_POST_REDIRECTS).flatMap',
+    '{ source: `/${slug}`, destination, permanent: true }',
+    '{ source: `/blog/${slug}`, destination, permanent: true }',
+    '...retiredPostRedirects()',
+  ]) {
+    if (!config.includes(fragment)) {
+      rows.push(`retired-post redirect config is missing "${fragment}"`)
+    }
+  }
+
+  const reviewFiles = [
+    'fundednext-review.md',
+    'tradeify-review.md',
+    'topstep-review.md',
+    'apex-trader-funding-review.md',
+  ]
+  for (const file of reviewFiles) {
+    const content = read(path.join(POSTS, file))
+    if (!content.includes('href="/best-prop-firms-in-us"')) {
+      rows.push(`${file}: missing contextual backlink to the U.S. comparison`)
+    }
+  }
+
+  const retiredPath = path.join(POSTS, 'forex-prop-firms-in-the-us.md')
+  for (const directory of [path.join(ROOT, 'app'), path.join(ROOT, 'components'), path.join(ROOT, 'lib'), POSTS]) {
+    const stack = [directory]
+    while (stack.length) {
+      const current = stack.pop()
+      for (const dirent of fs.readdirSync(current, { withFileTypes: true })) {
+        const fullPath = path.join(current, dirent.name)
+        if (dirent.isDirectory()) {
+          stack.push(fullPath)
+        } else if (
+          fullPath !== retiredPath
+          && /\.(?:md|ts|tsx)$/.test(dirent.name)
+          && read(fullPath).includes('/blog/forex-prop-firms-in-the-us')
+        ) {
+          rows.push(`${path.relative(ROOT, fullPath)} still links to the retired U.S. article`)
+        }
+      }
+    }
+  }
+
+  if (rows.length) {
+    console.log('\nâœ— U.S. landing consolidation')
+    for (const row of rows) console.log(`  Â· ${row}`)
+  }
+  return rows.length
+}
+
 /** Keep the FTMO practice guide tied to current FTMO and FundedNext sources. */
 function checkFtmoFreeTrialGuide() {
   const rows = []
@@ -7397,6 +7674,8 @@ const globalDirectoryErrors = checkGlobalDirectorySurface()
 totalErrors += globalDirectoryErrors
 const legacyOverviewConsolidationErrors = checkLegacyOverviewConsolidation()
 totalErrors += legacyOverviewConsolidationErrors
+const usLandingConsolidationErrors = checkUsLandingConsolidation()
+totalErrors += usLandingConsolidationErrors
 const globalChallengeErrors = checkGlobalChallengeSurface()
 totalErrors += globalChallengeErrors
 const challengeChangeFocusErrors = checkChallengeChangeFocusContract()

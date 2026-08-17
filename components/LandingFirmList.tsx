@@ -81,6 +81,26 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
                   {note}
                 </p>
               )}
+              {item.evidence && (
+                <a
+                  href={item.evidence.url}
+                  target="_blank"
+                  rel="nofollow noopener"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 5,
+                    marginTop: '0.45rem',
+                    color: 'var(--accent-light)',
+                    fontSize: '0.76rem',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                  }}
+                >
+                  {item.evidence.label} · checked {item.evidence.capturedAt}
+                  <ExternalLink size={10} aria-hidden="true" />
+                </a>
+              )}
             </div>
             <div className="leader-stats">
               <div className="leader-stat">

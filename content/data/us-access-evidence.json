@@ -1,0 +1,53 @@
+{
+  "capturedAt": "2026-08-15",
+  "firms": [
+    {
+      "firmSlug": "fundednext",
+      "firmName": "FundedNext",
+      "accessStatus": "explicit",
+      "assetClass": "cfd",
+      "platformConstraint": "Match-Trader for U.S. CFD accounts",
+      "sourceUrl": "https://help.fundednext.com/en/articles/12673271-usa-client-guide-at-fundednext-cfd-accounts-platforms-rewards",
+      "sourcePublishedAt": "2026-06-16",
+      "sourceCapturedAt": "2026-08-15",
+      "evidenceLabel": "Explicit U.S. guide",
+      "decisionNote": "FundedNext's USA guide lists all 4 captured CFD products for U.S. clients and limits those accounts to Match-Trader. This is access evidence, not U.S. regulatory approval."
+    },
+    {
+      "firmSlug": "tradeify",
+      "firmName": "Tradeify",
+      "accessStatus": "explicit",
+      "assetClass": "futures",
+      "platformConstraint": "Futures evaluation; live-account eligibility remains policy-dependent",
+      "sourceUrl": "https://help.tradeify.co/en/articles/10495888-rules-restricted-countries",
+      "sourcePublishedAt": "2026-04-02",
+      "sourceCapturedAt": "2026-08-15",
+      "evidenceLabel": "U.S. named eligible",
+      "decisionNote": "Tradeify's restricted-country policy explicitly uses the U.S. as an eligible-country example and does not place it in the Sim Funded-only table. KYC and current account rules still apply."
+    },
+    {
+      "firmSlug": "topstep",
+      "firmName": "Topstep",
+      "accessStatus": "policy-supported",
+      "assetClass": "futures",
+      "platformConstraint": "TopstepX; eligibility depends on citizenship, residency, and KYC",
+      "sourceUrl": "https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep",
+      "secondarySourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+      "sourceCapturedAt": "2026-08-15",
+      "evidenceLabel": "Policy + U.S. payout",
+      "decisionNote": "Topstep's current eligibility tables do not place U.S. clients in the ineligible or XFA-only groups, and its payout policy publishes W-9 and U.S.-bank routes. Verify the exact profile before purchase."
+    },
+    {
+      "firmSlug": "apex-trader-funding",
+      "firmName": "Apex Trader Funding",
+      "accessStatus": "explicit",
+      "assetClass": "futures",
+      "platformConstraint": "Futures evaluation with U.S.-residency-matched ACH payouts",
+      "sourceUrl": "https://apextraderfunding.com/terms-of-use/",
+      "secondarySourceUrl": "https://apextraderfunding.com/help-center/additional-helpful-items/payout-method-us-based-users/",
+      "sourceCapturedAt": "2026-08-15",
+      "evidenceLabel": "Intended for U.S. users",
+      "decisionNote": "Apex's terms say the program is intended for U.S. users; its U.S. payout guide requires matching U.S. residency and ACH bank details. Apex also states it is not an FCM or broker-dealer."
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { isRetiredPostSlug } from './retiredContent'
 
 const postsDir = path.join(process.cwd(), 'content/posts')
 const pagesDir = path.join(process.cwd(), 'content/pages')
@@ -55,7 +56,7 @@ export function getAllPosts(): PostMeta[] {
   const posts = files.map(file => {
     const { data } = readMdx(path.join(postsDir, file))
     return data as PostMeta
-  })
+  }).filter(post => !isRetiredPostSlug(post.slug))
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
 }
 
@@ -66,7 +67,7 @@ export function getAllPostData(): PostData[] {
   const posts = files.map(file => {
     const { data, content } = readMdx(path.join(postsDir, file))
     return { ...(data as PostMeta), content }
-  })
+  }).filter(post => !isRetiredPostSlug(post.slug))
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
 }
 

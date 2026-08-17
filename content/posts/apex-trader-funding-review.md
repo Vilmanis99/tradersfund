@@ -2,7 +2,7 @@
 title: "Apex Trader Funding Review 2026: New Rules, Real Trade-Offs"
 slug: "apex-trader-funding-review"
 date: "2026-07-28"
-modified: "2026-07-28"
+modified: "2026-08-15"
 author: "Edris Derakhshi"
 excerpt: "Apex offers one-day futures evaluations and a 100% payout split, but dynamic pricing, trailing risk and a six-payout PA limit require care."
 categories: ["Prop Firms"]
@@ -63,6 +63,8 @@ type: "post"
   </tbody>
 </table>
 <p style="font-size: 0.82rem; color: var(--muted);">Rules and the single verified list price were captured from Apex's new-product selector and help center on 2026-07-28. Pricing is dynamic and coupon-dependent; confirm all 16 current checkout totals before paying.</p>
+
+<p><strong>U.S. access.</strong> Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links Apex’s Terms of Use and its Payout Method for US-Based Users guide. Those first-party pages support access and ACH requirements; they do not turn Apex into an FCM or broker-dealer.</p>
 
 <!-- SECTION 4 - Rule mechanics -->
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>

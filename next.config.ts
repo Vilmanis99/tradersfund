@@ -1,5 +1,6 @@
 import type { NextConfig } from 'next'
 import { getAllPosts, getAllPages } from './lib/mdx'
+import { RETIRED_POST_REDIRECTS } from './lib/retiredContent'
 
 /**
  * WordPress legacy: every blog post used to live at the site root
@@ -35,6 +36,19 @@ async function postRedirects() {
       destination: `/blog/${p.slug}`,
       permanent: true,
     }))
+}
+
+/**
+ * Posts retired for search-intent overlap need both their WordPress root URL
+ * and their former /blog URL to reach the surviving canonical in one hop.
+ * getAllPosts() excludes these slugs from every public collection, so keep
+ * their redirects in this explicit registry instead of deriving them above.
+ */
+function retiredPostRedirects() {
+  return Object.entries(RETIRED_POST_REDIRECTS).flatMap(([slug, destination]) => [
+    { source: `/${slug}`, destination, permanent: true },
+    { source: `/blog/${slug}`, destination, permanent: true },
+  ])
 }
 
 /**
@@ -112,7 +126,11 @@ function legacyRedirects() {
 
 const nextConfig: NextConfig = {
   async redirects() {
-    return [...(await postRedirects()), ...legacyRedirects()]
+    return [
+      ...(await postRedirects()),
+      ...retiredPostRedirects(),
+      ...legacyRedirects(),
+    ]
   },
 }
 

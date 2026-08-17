@@ -2,7 +2,7 @@
 title: "Tradeify Review 2026: 16 Priced Tiers and 3 Funding Routes"
 slug: "tradeify-review"
 date: "2026-07-28"
-modified: "2026-08-11 22:00:00"
+modified: "2026-08-15 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Tradeify publishes 16 priced futures product-size combinations with EOD drawdown and 90% simulated payouts, but each route has a different consistency gate."
 categories: ["Prop Firms"]
@@ -60,6 +60,8 @@ type: "post"
 </table>
 </div>
 <p style="font-size: 0.82rem; color: var(--muted);">List prices and current rules were captured from Tradeify's first-party pages on 2026-08-11. Select appears twice because its single evaluation leads to a permanent Flex or Daily funded choice with different payout and risk rules. The homepage promotion is not applied to these base fees; confirm the product and final amount through <a href="/go/tradeify">Tradeify's current checkout path</a>. The Select $50K purchase remained $165, while its separately published reset fee was $109.</p>
+
+<p><strong>U.S. access.</strong> Tradeify’s Rules – Restricted Countries policy explicitly names the U.S. as an eligible example. Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links that dated first-party source and keeps eligibility separate from any CFTC or NFA registration claim.</p>
 
 <!-- SECTION 4 - Rule mechanics -->
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
