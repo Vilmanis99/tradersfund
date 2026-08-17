@@ -5971,6 +5971,128 @@ function checkFuturesLandingCluster() {
   return rows.length
 }
 
+/** Keep the core ranking fresh, product-backed, and connected to its supporting guides. */
+function checkOverallLandingCluster() {
+  const rows = []
+  const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+  const landings = read(LANDINGS_CONFIG_FILE)
+  const block = landings.match(
+    /slug:\s*'best-prop-firms-2026'([\s\S]*?)slug:\s*'best-prop-firms-in-uk'/,
+  )?.[1] ?? ''
+
+  const snapshot = fs.readdirSync(CHALLENGES)
+    .filter(file => file.endsWith('.json'))
+    .flatMap(file => {
+      const products = JSON.parse(read(path.join(CHALLENGES, file))).filter(challenge => {
+        const captured = new Date(`${challenge.sourceCapturedAt}T00:00:00Z`)
+        const ageDays = Math.floor((TODAY - captured) / 86_400_000)
+        return !Number.isNaN(captured.getTime()) && ageDays >= 0 && ageDays <= STALE_DAYS
+      })
+      return products.length ? [{ file, products }] : []
+    })
+  const productCount = snapshot.reduce((total, entry) => total + entry.products.length, 0)
+  const tierCount = snapshot.reduce((total, entry) => total + entry.products.reduce(
+    (subtotal, product) => subtotal + product.accountSizes.length,
+    0,
+  ), 0)
+
+  if (!block) {
+    rows.push('best-prop-firms-2026 landing config is missing')
+  } else {
+    for (const fragment of [
+      'const CURRENT_OVERALL_SNAPSHOT = getAllFirms().flatMap',
+      'const CURRENT_OVERALL_FIRM_COUNT = CURRENT_OVERALL_SNAPSHOT.length',
+      'const CURRENT_OVERALL_PRODUCT_COUNT = CURRENT_OVERALL_SNAPSHOT.reduce',
+      'function freshProductsForFirm(firm: Firm): Challenge[]',
+      'const products = freshProductsForFirm(firm)',
+      'if (!products.length) return []',
+      'const tierCount = products.reduce',
+      'const splits = [...new Set(products.flatMap',
+      'const drawdowns = [...new Set(products.map',
+      'url: evidenceProduct.sourceUrl',
+      'capturedAt: evidenceProduct.sourceCapturedAt',
+      'Affiliate status, coupon size, product count, tier count, account headline, and maximum advertised split add 0 points',
+      'Does rank 1 mean best for every strategy?',
+      'Are the editorial score and product facts the same measure?',
+      'How should USD, EUR, and recurring prices be compared?',
+      'What should be rechecked immediately before purchase?',
+      "lastReviewed: '2026-08-17'",
+    ]) {
+      if (!landings.includes(fragment) && !block.includes(fragment)) {
+        rows.push(`overall landing is missing "${fragment}"`)
+      }
+    }
+    for (const staleClaim of [
+      "highlight: `${firm.profitSplitPct",
+      "${firm.payoutFrequency",
+      'Every major prop firm ranked',
+      'drawdown type (static beats trailing for most traders)',
+    ]) {
+      if (block.includes(staleClaim)) {
+        rows.push(`overall landing restored aggregate or unsupported copy: "${staleClaim}"`)
+      }
+    }
+    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
+      rows.push('overall landing must keep exactly 4 ranking-use questions')
+    }
+  }
+
+  if (snapshot.length !== 19 || productCount !== 89 || tierCount !== 453) {
+    rows.push(
+      `overall snapshot expects 19 fresh firms, 89 products and 453 tiers; received ${snapshot.length}, ${productCount} and ${tierCount}`,
+    )
+  }
+
+  const landingPage = read(LANDING_PAGE_COMPONENT_FILE)
+  for (const fragment of [
+    "const isOverall = landing.slug === 'best-prop-firms-2026'",
+    'How to use an overall ranking',
+    'Editorial ranking with current product evidence',
+    "href: '/prop-firm-challenges'",
+    "href: '/compare/ftmo-vs-fundednext'",
+    "href: '/cheapest-prop-firms'",
+    "href: '/prop-firm-challenge-changes'",
+    'Move from firm rank to the exact product',
+    'Partnership status, coupon size and product count add 0 points.',
+  ]) {
+    if (!landingPage.includes(fragment)) {
+      rows.push(`overall landing component is missing "${fragment}"`)
+    }
+  }
+
+  const backlinkFiles = [
+    path.join(ROOT, 'content/posts/what-is-a-prop-firm.md'),
+    path.join(ROOT, 'content/posts/is-prop-firm-trading-profitable.md'),
+    path.join(ROOT, 'content/pages/how-prop-firm-challenges-work.md'),
+    path.join(ROOT, 'content/pages/true-cost-of-prop-firm-challenges.md'),
+  ]
+  for (const file of backlinkFiles) {
+    if (!read(file).includes('href="/best-prop-firms-2026"')) {
+      rows.push(`${path.relative(ROOT, file)}: missing contextual overall-ranking backlink`)
+    }
+  }
+
+  const crawler = read(RELEASE_CRAWL_FILE)
+  for (const fragment of [
+    "const overallLandingPath = '/best-prop-firms-2026'",
+    'expectedOverallFirms',
+    'expectedOverallProductCount',
+    'expectedOverallTierCount',
+    'Compare FTMO and FundedNext',
+    'href="/go/fundednext?from=best-prop-firms-2026"',
+  ]) {
+    if (!crawler.includes(fragment)) {
+      rows.push(`release crawl is missing overall-ranking safeguard: "${fragment}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Overall ranking, fresh products and internal links')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
 /** Keep the minimum-cost landing complete without inventing a cross-currency rank. */
 function checkCheapestLandingCluster() {
   const rows = []
@@ -8398,6 +8520,8 @@ const swingFeatureClusterErrors = checkSwingFeatureCluster()
 totalErrors += swingFeatureClusterErrors
 const futuresLandingClusterErrors = checkFuturesLandingCluster()
 totalErrors += futuresLandingClusterErrors
+const overallLandingClusterErrors = checkOverallLandingCluster()
+totalErrors += overallLandingClusterErrors
 const cheapestLandingClusterErrors = checkCheapestLandingCluster()
 totalErrors += cheapestLandingClusterErrors
 const instantFundingClusterErrors = checkInstantFundingCluster()

@@ -3,7 +3,7 @@ title: "What Is a Prop Firm? How Retail Funding Works (2026)"
 seoTitle: "What Is a Prop Firm? How Retail Funding Works (2026)"
 slug: "what-is-a-prop-firm"
 date: "2024-08-22 14:02:06"
-modified: "2026-08-14 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "A prop firm gives traders access to a rule-based account and pays an agreed share of approved profits. Learn how evaluations, fees and funded stages differ."
 seoDescription: "Learn what a retail prop firm is, how challenges and funded accounts work, which fees and rules matter, and what ‘funded’ really means in 2026."
@@ -121,6 +121,8 @@ type: "post"
   <li><strong>Read the dated review.</strong> Check the source date beside every numeric claim and treat null fields as unresolved.</li>
   <li><strong>Recheck before purchase.</strong> Prices and rules can change after a review is published.</li>
 </ol>
+
+<p>The <a href="/best-prop-firms-2026">2026 best-prop-firms ranking</a> applies that separation to 19 firms and 89 fresh product records: editorial score creates the shortlist, while each card exposes current product coverage and a dated first-party source before the trader chooses a fee or rule set.</p>
 
 <div style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
   <strong style="color: #fff;">Considering FundedNext?</strong> Its current capture contains 4 distinct paths: 3 evaluations start at an 80% base share, while Stellar Instant starts at 70%. Read the <a href="/blog/fundednext-review">full FundedNext review</a> for fees, refund timing, news treatment, and payout gates. If those terms fit your strategy, <a href="/go/fundednext">view FundedNext’s current plans</a>. We may earn a commission; the partnership does not change the editorial score or displayed terms.

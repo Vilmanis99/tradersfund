@@ -397,6 +397,142 @@ if (indiaLandingProbe.status !== 200) {
   }
 }
 
+const overallLandingPath = '/best-prop-firms-2026'
+const expectedOverallFirms = firmRecords.flatMap(firm => {
+  const products = getChallengesByFirm(outboundSlug(firm.name)).filter(challenge =>
+    isChallengeFresh(challenge),
+  )
+  return products.length ? [{ firm, products }] : []
+}).sort((a, b) => b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
+const expectedOverallProductCount = expectedOverallFirms.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
+const expectedOverallTierCount = expectedOverallFirms.reduce(
+  (total, entry) => total + entry.products.reduce(
+    (subtotal, product) => subtotal + product.accountSizes.length,
+    0,
+  ),
+  0,
+)
+const overallLandingProbe = await fetchPage(new URL(overallLandingPath, BASE))
+if (overallLandingProbe.status !== 200) {
+  errors.push(
+    `${overallLandingPath}: HTTP ${overallLandingProbe.status || overallLandingProbe.error}`,
+  )
+} else {
+  const overallText = textContent(overallLandingProbe.html)
+  const cards = [...overallLandingProbe.html.matchAll(
+    /<li class="leader-row[^"]*"[^>]*>([\s\S]*?)<\/li>/gi,
+  )].map(match => ({ html: match[0], text: textContent(match[1]) }))
+  const evidenceDateCount = (overallText.match(/checked 2026-/g) ?? []).length
+  const itemListCount = (overallLandingProbe.html.match(/"@type":"ItemList"/g) ?? []).length
+  let representedProducts = 0
+  let representedTiers = 0
+
+  if (cards.length !== expectedOverallFirms.length) {
+    errors.push(
+      `${overallLandingPath}: rendered ${cards.length} firms, expected ${expectedOverallFirms.length}`,
+    )
+  }
+  if (evidenceDateCount !== expectedOverallFirms.length) {
+    errors.push(
+      `${overallLandingPath}: rendered ${evidenceDateCount} dated sources, expected ${expectedOverallFirms.length}`,
+    )
+  }
+  if (itemListCount !== 1) {
+    errors.push(`${overallLandingPath}: rendered ${itemListCount} ItemLists, expected 1`)
+  }
+
+  for (const [index, { firm, products }] of expectedOverallFirms.entries()) {
+    const tierCount = products.reduce(
+      (total, product) => total + product.accountSizes.length,
+      0,
+    )
+    const productLabel = `${products.length} current ${products.length === 1 ? 'product' : 'products'}`
+    const tierLabel = `${tierCount} account tiers`
+    const card = cards[index]
+    if (!card || !card.text.includes(firm.name)) {
+      errors.push(`${overallLandingPath}: rank ${index + 1} should be ${firm.name}`)
+      continue
+    }
+    if (!card.text.includes(productLabel) || !card.text.includes(tierLabel)) {
+      errors.push(`${overallLandingPath}: ${firm.name} is missing ${productLabel} · ${tierLabel}`)
+      continue
+    }
+    representedProducts += products.length
+    representedTiers += tierCount
+  }
+  if (representedProducts !== expectedOverallProductCount) {
+    errors.push(
+      `${overallLandingPath}: represented ${representedProducts} products, expected ${expectedOverallProductCount}`,
+    )
+  }
+  if (representedTiers !== expectedOverallTierCount) {
+    errors.push(
+      `${overallLandingPath}: represented ${representedTiers} tiers, expected ${expectedOverallTierCount}`,
+    )
+  }
+
+  for (const required of [
+    `Best Prop Firms (2026): ${expectedOverallFirms.length} Ranked & Reviewed | TFH`,
+    `${expectedOverallFirms.length} firms each have at least 1 product capture inside the 30-day freshness window`,
+    `covering ${expectedOverallProductCount} current products in total`,
+    'How to use an overall ranking',
+    'Does rank 1 mean best for every strategy?',
+    'Are the editorial score and product facts the same measure?',
+    'How should USD, EUR, and recurring prices be compared?',
+    'What should be rechecked immediately before purchase?',
+    'Compare FTMO and FundedNext',
+    'Partnership status, coupon size and product count add 0 points.',
+  ]) {
+    if (!overallText.includes(required)) {
+      errors.push(`${overallLandingPath}: missing ${required}`)
+    }
+  }
+  for (const required of [
+    'href="/prop-firm-challenges"',
+    'href="/compare/ftmo-vs-fundednext"',
+    'href="/cheapest-prop-firms"',
+    'href="/prop-firm-challenge-changes"',
+    'href="/true-cost-of-prop-firm-challenges"',
+  ]) {
+    if (!overallLandingProbe.html.includes(required)) {
+      errors.push(`${overallLandingPath}: missing ${required}`)
+    }
+  }
+  const fundedNextCta = [...overallLandingProbe.html.matchAll(/<a\b[^>]*>/gi)]
+    .map(match => match[0])
+    .find(tag => tag.includes('href="/go/fundednext?from=best-prop-firms-2026"'))
+  if (
+    !fundedNextCta
+    || !fundedNextCta.includes('rel="sponsored nofollow noopener"')
+    || !fundedNextCta.includes('target="_blank"')
+  ) {
+    errors.push(`${overallLandingPath}: FundedNext ranking CTA is missing affiliate attribution`)
+  }
+  if (
+    overallText.includes('Every major prop firm ranked')
+    || overallText.includes('static beats trailing for most traders')
+  ) {
+    errors.push(`${overallLandingPath}: restored aggregate or unsupported ranking copy`)
+  }
+}
+
+for (const backlinkPath of [
+  '/blog/what-is-a-prop-firm',
+  '/blog/is-prop-firm-trading-profitable',
+  '/how-prop-firm-challenges-work',
+  '/true-cost-of-prop-firm-challenges',
+]) {
+  const backlinkProbe = await fetchPage(new URL(backlinkPath, BASE))
+  if (backlinkProbe.status !== 200) {
+    errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
+  } else if (!backlinkProbe.html.includes('href="/best-prop-firms-2026"')) {
+    errors.push(`${backlinkPath}: missing contextual overall-ranking backlink`)
+  }
+}
+
 const swingLandingPath = '/best-swing-trading-prop-firms'
 const expectedSwingFirms = firmRecords.flatMap(firm => {
   const products = getChallengesByFirm(outboundSlug(firm.name)).filter(challenge =>

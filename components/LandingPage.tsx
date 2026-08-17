@@ -31,6 +31,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
   const isFutures = landing.slug === 'best-futures-prop-firms'
   const isInstant = landing.slug === 'best-instant-funding-prop-firms'
   const isCheapest = landing.slug === 'cheapest-prop-firms'
+  const isOverall = landing.slug === 'best-prop-firms-2026'
   const decisionHeading = isUs
     ? 'What U.S. traders should verify'
     : isSwing
@@ -41,7 +42,9 @@ export default function LandingPage({ landing }: { landing: Landing }) {
           ? 'What instant-funding buyers should verify'
           : isCheapest
             ? 'What price-first buyers should verify'
-            : 'What Indian traders should verify'
+            : isOverall
+              ? 'How to use an overall ranking'
+              : 'What Indian traders should verify'
   const decisionSub = isUs
     ? 'Four access, contract and payout checks to complete before paying.'
     : isSwing
@@ -52,7 +55,9 @@ export default function LandingPage({ landing }: { landing: Landing }) {
           ? 'Four account-stage, loss-line, cost and payout checks before paying.'
           : isCheapest
             ? 'Four currency, billing and loss-room checks before comparing the lowest number.'
-            : 'Four checks to complete before paying for any evaluation.'
+            : isOverall
+              ? 'Four checks that turn an editorial shortlist into a product-level decision.'
+              : 'Four checks to complete before paying for any evaluation.'
   const indiaMatcherFirms = isIndia
     ? buildIndiaMatcherFirms(firms)
     : []
@@ -176,6 +181,66 @@ export default function LandingPage({ landing }: { landing: Landing }) {
           <AffiliateDisclosure />
         </div>
       </section>
+
+      {isOverall && (
+        <section className="home-section" style={{ paddingTop: 0, paddingBottom: '1rem' }}>
+          <div className="home-shell">
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '0.85rem',
+            }}>
+              {[
+                {
+                  href: '/prop-firm-challenges',
+                  eyebrow: 'Exact products',
+                  title: 'Filter every current product',
+                  body: 'Move from firm score to phases, fees, targets, loss limits, account stages and trading rules.',
+                },
+                {
+                  href: '/compare/ftmo-vs-fundednext',
+                  eyebrow: 'Top-two decision',
+                  title: 'Compare FTMO and FundedNext',
+                  body: 'Use a product-level matchup after the overall score narrows the first two firms.',
+                },
+                {
+                  href: '/cheapest-prop-firms',
+                  eyebrow: 'Cost floor',
+                  title: 'Separate USD and EUR prices',
+                  body: 'Compare minimum paths by published currency, including known activation and after-pass charges.',
+                },
+                {
+                  href: '/prop-firm-challenge-changes',
+                  eyebrow: 'Freshness',
+                  title: 'Check what changed after capture',
+                  body: 'Review material product updates and unresolved first-party evidence conflicts before checkout.',
+                },
+              ].map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="post-sidebar-card"
+                  style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+                >
+                  <span className="bento-tile-eyebrow">{item.eyebrow}</span>
+                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                    {item.title}
+                  </strong>
+                  <span style={{
+                    display: 'block',
+                    color: 'var(--muted)',
+                    fontSize: '0.8rem',
+                    lineHeight: 1.55,
+                    marginTop: '0.35rem',
+                  }}>
+                    {item.body}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {isCheapest && (
         <section className="home-section" style={{ paddingTop: 0, paddingBottom: '1rem' }}>
@@ -609,13 +674,22 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                 className="section-title"
               >
                 <Flame size={18} style={{ color: 'var(--accent-light)' }} />
-                {isCheapest ? 'Lowest published path by currency' : 'Ranked & source-checked'}
+                {isCheapest
+                  ? 'Lowest published path by currency'
+                  : isOverall
+                    ? 'Editorial ranking with current product evidence'
+                    : 'Ranked & source-checked'}
               </h2>
               <p className="section-sub-text">
                 {isCheapest ? (
                   <>
                     USD and EUR lists restart at 01 and are not ranked against each other. Partners are marked;
                     every amount links to a dated first-party source.
+                  </>
+                ) : isOverall ? (
+                  <>
+                    Score sets the order; each card shows the current product coverage and a dated source.
+                    Partnership status, coupon size and product count add 0 points.
                   </>
                 ) : (
                   <>
@@ -830,6 +904,26 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   </Link>
                   <Link href="/how-prop-firm-challenges-work" className="btn-outline">
                     Check account stages
+                  </Link>
+                </div>
+              </>
+            ) : isOverall ? (
+              <>
+                <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
+                  Move from firm rank to the exact product
+                </h2>
+                <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
+                  Filter the current rules, compare the leading matchup, and check fee recovery before paying.
+                </p>
+                <div className="cta-final-row">
+                  <Link href="/prop-firm-challenges" className="btn-primary btn-glow">
+                    Compare current products <ArrowRight size={16} />
+                  </Link>
+                  <Link href="/compare/ftmo-vs-fundednext" className="btn-outline">
+                    Compare the top two
+                  </Link>
+                  <Link href="/true-cost-of-prop-firm-challenges" className="btn-outline">
+                    Calculate true cost
                   </Link>
                 </div>
               </>

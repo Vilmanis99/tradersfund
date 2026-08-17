@@ -160,4 +160,4 @@ type: "page"
   <li><a href="/blog/funding-pips-review">FundingPips</a> — 5 products with weekly, bi-weekly, and choice-based reward cycles</li>
 </ul>
 
-<p>Or jump to <a href="/prop-firms">the full directory</a>, compare the <a href="/cheapest-prop-firms">lowest current path to funded in separate USD and EUR rankings</a>, build an execution worksheet with the <a href="/how-to-pass-a-prop-firm-challenge">risk-first passing plan</a>, or read <a href="/true-cost-of-prop-firm-challenges">the true-cost economics</a> behind fee recovery.</p>
+<p>Or use the <a href="/best-prop-firms-2026">19-firm editorial ranking</a> to create a source-dated shortlist, jump to <a href="/prop-firms">the full directory</a>, compare the <a href="/cheapest-prop-firms">lowest current path to funded in separate USD and EUR rankings</a>, build an execution worksheet with the <a href="/how-to-pass-a-prop-firm-challenge">risk-first passing plan</a>, or read <a href="/true-cost-of-prop-firm-challenges">the true-cost economics</a> behind fee recovery.</p>

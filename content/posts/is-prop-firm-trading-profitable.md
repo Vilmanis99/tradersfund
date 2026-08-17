@@ -145,7 +145,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Start with the <a href="/prop-firm-challenges">current product comparison</a>, check material changes in the <a href="/prop-firm-challenge-changes">challenge-change ledger</a>, and use the <a href="/how-to-pass-a-prop-firm-challenge">risk-plan worksheet</a> to translate the firm boundaries into a smaller personal session stop. A <a href="/blog/are-prop-firm-passing-services-worth-it">passing service</a> cannot substitute for a permitted, repeatable funded-stage process.</p>
+<p>Use the <a href="/best-prop-firms-2026">current 19-firm editorial ranking</a> only to create a shortlist, then move to the <a href="/prop-firm-challenges">89-product comparison</a>, check material changes in the <a href="/prop-firm-challenge-changes">challenge-change ledger</a>, and use the <a href="/how-to-pass-a-prop-firm-challenge">risk-plan worksheet</a> to translate the firm boundaries into a smaller personal session stop. A <a href="/blog/are-prop-firm-passing-services-worth-it">passing service</a> cannot substitute for a permitted, repeatable funded-stage process.</p>
 
 <p>A free trial can test platform workflow without another paid attempt, but it does not prove live execution or future payouts. The <a href="/blog/ftmo-free-trial-explained">FTMO free-trial guide</a> states exactly what the trial can and cannot validate.</p>
 

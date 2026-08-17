@@ -165,9 +165,7 @@ function joinNatural(values: string[]): string {
  * products that are still inside the 30-day source window.
  */
 function productEvidenceNote(firm: Firm): string {
-  const challenges = getChallengesByFirm(firmSlug(firm.name)).filter(challenge =>
-    isChallengeFresh(challenge),
-  )
+  const challenges = freshProductsForFirm(firm)
   if (!challenges.length) {
     return 'No product capture is currently inside the 30-day freshness window; verify the firm before paying.'
   }
@@ -196,6 +194,22 @@ function productEvidenceNote(firm: Firm): string {
 
   return `${challenges.length} source-checked ${challenges.length === 1 ? 'product' : 'products'}; ${splitText}; ${payoutText}. Product rules include ${drawdownText}.`
 }
+
+function freshProductsForFirm(firm: Firm): Challenge[] {
+  return getChallengesByFirm(firmSlug(firm.name)).filter(challenge =>
+    isChallengeFresh(challenge),
+  )
+}
+
+const CURRENT_OVERALL_SNAPSHOT = getAllFirms().flatMap(firm => {
+  const products = freshProductsForFirm(firm)
+  return products.length ? [{ firm, products }] : []
+})
+const CURRENT_OVERALL_FIRM_COUNT = CURRENT_OVERALL_SNAPSHOT.length
+const CURRENT_OVERALL_PRODUCT_COUNT = CURRENT_OVERALL_SNAPSHOT.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
 
 function swingCompatibleProducts(firm: Firm): Challenge[] {
   return getChallengesByFirm(firmSlug(firm.name)).filter(challenge =>
@@ -272,25 +286,73 @@ function pricingModelLabel(value: Challenge['pricingModel']): string {
 export const LANDINGS: Landing[] = [
   {
     slug: 'best-prop-firms-2026',
-    h1: 'The Best Prop Firms in 2026 (Ranked)',
-    metaTitle: 'Best Prop Firms in 2026 — Ranked & Reviewed',
+    h1: `Best Prop Firms (2026): ${CURRENT_OVERALL_FIRM_COUNT} Ranked & Reviewed`,
+    metaTitle: `Best Prop Firms (2026): ${CURRENT_OVERALL_FIRM_COUNT} Ranked & Reviewed`,
     metaDescription:
-      'Every major prop firm ranked on our editorial score — profit split, payout speed, drawdown rules, and track record. Who each firm is actually for, in 2026.',
+      `Compare ${CURRENT_OVERALL_FIRM_COUNT} prop firms using editorial rankings plus ${CURRENT_OVERALL_PRODUCT_COUNT} current products, fees, splits, drawdowns, reviews, account stages, and dated first-party sources.`,
     intro:
-      "There is no single best prop firm — only the best fit for how you trade. The tracked firms below are ordered by our directional editorial score, then paired with source-dated product facts. Use the score to shortlist; use the product rules and total cost to decide.",
+      `There is no universal best prop firm. These ${CURRENT_OVERALL_FIRM_COUNT} firms each have at least 1 product capture inside the 30-day freshness window, covering ${CURRENT_OVERALL_PRODUCT_COUNT} current products in total. Editorial score sets the shortlist order; every card then shows the product count, tier count, split range, drawdown types, review, and a dated first-party source needed for the actual decision.`,
     sortDir: 'desc',
-    rank: firms =>
-      firms
-        .map(firm => ({
+    rank: firms => firms
+      .flatMap(firm => {
+        const products = freshProductsForFirm(firm)
+        if (!products.length) return []
+
+        const tierCount = products.reduce(
+          (total, product) => total + product.accountSizes.length,
+          0,
+        )
+        const splits = [...new Set(products.flatMap(product =>
+          product.profitSplitPct == null ? [] : [product.profitSplitPct],
+        ))].sort((a, b) => a - b)
+        const drawdowns = [...new Set(products.map(product =>
+          drawdownLabel(product.drawdownType),
+        ))].sort()
+        const shownProducts = products.slice(0, 2).map(product => product.productName)
+        const moreCount = products.length - shownProducts.length
+        const evidenceProduct = [...products].sort((a, b) =>
+          b.sourceCapturedAt.localeCompare(a.sourceCapturedAt),
+        )[0]
+        const splitText = splits.length === 0
+          ? 'starting split unpublished'
+          : splits.length === 1
+            ? `${splits[0]}% published starting split`
+            : `${splits[0]}–${splits.at(-1)}% published starting splits`
+
+        return [{
           firm,
           sortKey: firm.score,
-          highlight: `${firm.profitSplitPct ?? '—'}% split · ${firm.payoutFrequency ?? '—'} payouts`,
-          note: productEvidenceNote(firm),
-        }))
-        .sort((a, b) => b.sortKey - a.sortKey),
+          highlight: `${products.length} current ${products.length === 1 ? 'product' : 'products'} · ${tierCount} account tiers`,
+          note: `${joinNatural(shownProducts)}${moreCount > 0 ? `, plus ${moreCount} more` : ''}. ${splitText}; ${joinNatural(drawdowns)} drawdown.`,
+          evidence: {
+            label: `${evidenceProduct.productName} source`,
+            url: evidenceProduct.sourceUrl,
+            capturedAt: evidenceProduct.sourceCapturedAt,
+          },
+        }]
+      })
+      .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
     methodology:
-      "We rank by our editorial score, not the firm's marketing. The score weighs profit split, payout speed and reliability, drawdown type (static beats trailing for most traders), rule transparency, and operating history. Affiliate partners are marked and never ranked higher for it — the order is the same one we'd give a friend.",
-    lastReviewed: REVIEW_DATE,
+      'A firm qualifies only while at least 1 structured product capture remains inside the 30-day freshness window. The order uses our directional editorial score, which considers verified rules, payout terms, transparency, operating record, and unresolved evidence gaps. It is not a promise of suitability or future payout. Affiliate status, coupon size, product count, tier count, account headline, and maximum advertised split add 0 points.',
+    decisionGuide: [
+      {
+        title: 'Does rank 1 mean best for every strategy?',
+        body: `No. The score is a shortlist signal across ${CURRENT_OVERALL_FIRM_COUNT} firms, while fit is product-specific. A swing, news, automated, futures, CFD, or phase-0 strategy can eliminate a higher-ranked firm once its exact rules are applied.`,
+      },
+      {
+        title: 'Are the editorial score and product facts the same measure?',
+        body: `No. Score sets the order; the ${CURRENT_OVERALL_PRODUCT_COUNT}-product snapshot supplies current fees, tiers, splits, drawdown and source dates. Product count, account size, and a high advertised maximum split do not increase the score.`,
+      },
+      {
+        title: 'How should USD, EUR, and recurring prices be compared?',
+        body: 'Keep USD and EUR prices separate unless using a live payment-provider rate, and treat a monthly plan as a first-cycle floor. Add required activation or after-pass charges before calling one path cheaper.',
+      },
+      {
+        title: 'What should be rechecked immediately before purchase?',
+        body: 'Open the dated product source and verify country access, legal entity, account environment, platform, total fee, loss calculation, payout gates, refund conditions, and any material change logged after capture.',
+      },
+    ],
+    lastReviewed: '2026-08-17',
   },
   {
     slug: 'best-prop-firms-in-uk',
