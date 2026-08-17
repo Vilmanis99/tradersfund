@@ -288,7 +288,7 @@ export default function ChallengeMatchup({
           {matchup.sources.map(source => (
             <li key={source.url}>
               <a href={source.url} target="_blank" rel="nofollow noopener">
-                {source.firmName} — {source.productName}
+                {source.firmName} — {source.productNames.join(', ')}
                 <ExternalLink size={11} aria-hidden="true" />
               </a>
               <span>captured {dateLabel(source.capturedAt)}</span>

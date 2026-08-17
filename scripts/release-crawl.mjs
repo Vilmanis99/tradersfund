@@ -1797,6 +1797,197 @@ if (fundedNextReviewProbe.status !== 200) {
   }
 }
 
+const ftmoFundedNextPath = '/compare/ftmo-vs-fundednext'
+const ftmoFundedNextProbe = await fetchPage(new URL(ftmoFundedNextPath, BASE))
+if (ftmoFundedNextProbe.status !== 200) {
+  errors.push(
+    `${ftmoFundedNextPath}: HTTP ${ftmoFundedNextProbe.status || ftmoFundedNextProbe.error}`,
+  )
+} else {
+  const matchupText = textContent(ftmoFundedNextProbe.html)
+  const title = textContent(firstMatch(
+    ftmoFundedNextProbe.html,
+    /<title[^>]*>([\s\S]*?)<\/title>/i,
+  ))
+  const description = decodeHtml(firstMatch(
+    ftmoFundedNextProbe.html,
+    /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+  ) || firstMatch(
+    ftmoFundedNextProbe.html,
+    /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+  ))
+  const canonical = firstMatch(
+    ftmoFundedNextProbe.html,
+    /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["'][^>]*>/i,
+  ) || firstMatch(
+    ftmoFundedNextProbe.html,
+    /<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["'][^>]*>/i,
+  )
+  const h1 = textContent(firstMatch(
+    ftmoFundedNextProbe.html,
+    /<h1\b[^>]*>([\s\S]*?)<\/h1>/i,
+  ))
+
+  if (title !== 'FTMO vs FundedNext (2026)') {
+    errors.push(`${ftmoFundedNextPath}: incorrect title ${title}`)
+  }
+  if (
+    description
+      !== 'FTMO vs FundedNext using current 2026 fees, base splits, drawdowns, refund timing, payout gates, platforms and 6 captured challenge products.'
+  ) {
+    errors.push(`${ftmoFundedNextPath}: current product meta description is missing`)
+  }
+  if (h1 !== 'FTMO vs FundedNext (2026): 2 Products vs 4 Paths') {
+    errors.push(`${ftmoFundedNextPath}: incorrect product-specific H1 ${h1}`)
+  }
+  if (canonicalKey(canonical) !== canonicalKey(`${PRODUCTION_ORIGIN}${ftmoFundedNextPath}`)) {
+    errors.push(`${ftmoFundedNextPath}: incorrect canonical`)
+  }
+
+  const challengeSets = [
+    ['FTMO', 'ftmo'],
+    ['FundedNext', 'fundednext'],
+  ].map(([firmName, slug]) => ({
+    firmName,
+    slug,
+    products: getChallengesByFirm(slug).filter(challenge => isChallengeFresh(challenge)),
+  }))
+  const productCount = challengeSets.reduce((sum, set) => sum + set.products.length, 0)
+  const sourceGroups = new Map()
+  for (const set of challengeSets) {
+    for (const product of set.products) {
+      const group = sourceGroups.get(product.sourceUrl) || {
+        firmName: set.firmName,
+        productNames: [],
+      }
+      group.productNames.push(product.productName)
+      sourceGroups.set(product.sourceUrl, group)
+    }
+  }
+  if (!matchupText.includes(`you actually buy — ${productCount} of them`)) {
+    errors.push(`${ftmoFundedNextPath}: missing all ${productCount} fresh products`)
+  }
+  if (!matchupText.includes(`${sourceGroups.size} first-party pages`)) {
+    errors.push(`${ftmoFundedNextPath}: missing ${sourceGroups.size} grouped first-party sources`)
+  }
+  for (const set of challengeSets) {
+    for (const product of set.products) {
+      if (!matchupText.includes(product.productName)) {
+        errors.push(`${ftmoFundedNextPath}: missing product ${product.productName}`)
+      }
+    }
+  }
+  for (const [sourceUrl, group] of sourceGroups) {
+    const label = `${group.firmName} — ${group.productNames
+      .sort((x, y) => x.localeCompare(y))
+      .join(', ')}`
+    if (!ftmoFundedNextProbe.html.includes(`href="${sourceUrl}"`)) {
+      errors.push(`${ftmoFundedNextPath}: missing first-party source ${sourceUrl}`)
+    }
+    if (!matchupText.includes(label)) {
+      errors.push(`${ftmoFundedNextPath}: source does not name supported products ${label}`)
+    }
+  }
+
+  const formatDrawdown = value => {
+    if (value === 'eod-trailing') return 'EOD trailing'
+    if (value === 'balance-based') return 'Balance-based'
+    return value.replace(/-/g, ' ').replace(/\b\w/g, letter => letter.toUpperCase())
+  }
+  for (const set of challengeSets) {
+    const splits = [...new Set(set.products.map(product => product.profitSplitPct)
+      .filter(value => value != null))].sort((x, y) => x - y)
+    const splitLabel = splits.length === 1
+      ? `${splits[0]}%`
+      : `${splits[0]}–${splits.at(-1)}%`
+    const drawdowns = [...new Set(set.products.map(product =>
+      formatDrawdown(product.drawdownType),
+    ))].join(' / ')
+    const card = [...ftmoFundedNextProbe.html.matchAll(
+      /<div class="card compare-firm-card"[^>]*>/gi,
+    )].map(match => match[0]).find(tag =>
+      tag.includes(`data-compare-firm="${set.slug}"`),
+    )
+    if (
+      !card
+      || !card.includes(`data-product-count="${set.products.length}"`)
+      || !card.includes(`data-starting-splits="${splitLabel}"`)
+      || !card.includes(`data-drawdowns="${drawdowns}"`)
+    ) {
+      errors.push(`${ftmoFundedNextPath}: ${set.firmName} hero summary is not product-specific`)
+    }
+  }
+
+  const itemListCount = (ftmoFundedNextProbe.html.match(/"@type":"ItemList"/g) ?? []).length
+  const faqPageCount = (ftmoFundedNextProbe.html.match(/"@type":"FAQPage"/g) ?? []).length
+  if (itemListCount !== 1 || faqPageCount !== 1) {
+    errors.push(
+      `${ftmoFundedNextPath}: expected 1 ItemList and 1 FAQPage, found ${itemListCount} and ${faqPageCount}`,
+    )
+  }
+  for (const href of [
+    '/blog/ftmo-review',
+    '/blog/fundednext-review',
+    '/prop-firm-discount-codes',
+  ]) {
+    if (!ftmoFundedNextProbe.html.includes(`href="${href}"`)) {
+      errors.push(`${ftmoFundedNextPath}: missing internal decision link ${href}`)
+    }
+  }
+  const anchorTags = [...ftmoFundedNextProbe.html.matchAll(/<a\b[^>]*>/gi)]
+    .map(match => match[0])
+  for (const [href, sponsored] of [
+    ['/go/fundednext?from=compare-ftmo-vs-fundednext', true],
+    ['/go/fundednext?from=compare-ftmo-vs-fundednext-final', true],
+    ['/go/ftmo?from=compare-ftmo-vs-fundednext', false],
+    ['/go/ftmo?from=compare-ftmo-vs-fundednext-final', false],
+  ]) {
+    const tag = anchorTags.find(anchor => anchor.includes(`href="${href}"`))
+    const rel = tag ? firstMatch(tag, /\brel=["']([^"']*)["']/i) : ''
+    if (
+      !tag
+      || !tag.includes('target="_blank"')
+      || rel.split(/\s+/).includes('sponsored') !== sponsored
+    ) {
+      errors.push(`${ftmoFundedNextPath}: incorrect outbound disclosure for ${href}`)
+    }
+  }
+  for (const required of [
+    'data-compare-conversion="ftmo-fundednext-final"',
+    'data-affiliate-placement="compare-ftmo-vs-fundednext-final"',
+    'FundedNext is a partner; FTMO is not. Partnership does not change our verdict.',
+    'Compare the live checkout totals and your card\'s FX cost before paying.',
+  ]) {
+    if (!ftmoFundedNextProbe.html.includes(required) && !matchupText.includes(required)) {
+      errors.push(`${ftmoFundedNextPath}: missing final decision safeguard ${required}`)
+    }
+  }
+}
+
+const fundedNextMatchupRedirect = await fetchPage(new URL(
+  '/go/fundednext?from=compare-ftmo-vs-fundednext-final',
+  BASE,
+), 'manual')
+let fundedNextMatchupDestination = null
+try {
+  fundedNextMatchupDestination = new URL(fundedNextMatchupRedirect.location, BASE)
+} catch {
+  // The assertions below report the missing or malformed Location header.
+}
+if (
+  fundedNextMatchupRedirect.status !== 302
+  || !fundedNextMatchupDestination
+  || fundedNextMatchupDestination.origin === BASE.origin
+  || fundedNextMatchupDestination.searchParams.get('fpr') !== 'karlis56'
+  || fundedNextMatchupDestination.searchParams.get('utm_source') !== 'tradersfundhub'
+  || fundedNextMatchupDestination.searchParams.get('utm_medium') !== 'affiliate'
+  || fundedNextMatchupDestination.searchParams.get('utm_campaign') !== 'compare-ftmo-vs-fundednext-final'
+) {
+  errors.push(
+    '/go/fundednext?from=compare-ftmo-vs-fundednext-final: matchup affiliate redirect failed',
+  )
+}
+
 const fundedNextAffiliateProbePath = '/go/fundednext?from=post-body-fundednext-review-product-fit'
 const fundedNextAffiliateProbe = await fetchPage(
   new URL(fundedNextAffiliateProbePath, BASE),

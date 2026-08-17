@@ -446,6 +446,10 @@ export interface MatchupFirmSummary {
   name: string
   /** Products passing the 30-day freshness gate. */
   productCount: number
+  /** Distinct starting profit splits across those products. */
+  profitSplits: number[]
+  /** Distinct drawdown methods across those products. */
+  drawdownTypes: string[]
   /** Account sizes with at least one verified price. */
   pricedSizes: number[]
   assetClasses: string[]
@@ -455,7 +459,8 @@ export interface MatchupFirmSummary {
 
 export interface MatchupSource {
   firmName: string
-  productName: string
+  /** Every fresh product supported by this first-party page. */
+  productNames: string[]
   url: string
   capturedAt: string
 }
@@ -489,6 +494,12 @@ function summarise(slug: string, name: string, challenges: Challenge[]): Matchup
     slug,
     name,
     productCount: challenges.length,
+    profitSplits: [...new Set(challenges.flatMap(challenge =>
+      challenge.profitSplitPct == null ? [] : [challenge.profitSplitPct],
+    ))].sort((x, y) => x - y),
+    drawdownTypes: [...new Set(challenges.map(challenge =>
+      formatDrawdown(challenge.drawdownType),
+    ))],
     pricedSizes: [...pricedSizes].sort((x, y) => x - y),
     assetClasses: [...new Set(challenges.map(c => c.assetClass))],
     currencies: [...new Set(challenges.map(c => challengeCurrency(c)))],
@@ -545,18 +556,31 @@ export function buildChallengeMatchup(
   for (const [name, list] of [[firmA.name, challengesA], [firmB.name, challengesB]] as const) {
     for (const challenge of list) {
       const existing = sourceMap.get(challenge.sourceUrl)
-      if (!existing || existing.capturedAt < challenge.sourceCapturedAt) {
+      if (!existing) {
         sourceMap.set(challenge.sourceUrl, {
           firmName: name,
-          productName: challenge.productName,
+          productNames: [challenge.productName],
           url: challenge.sourceUrl,
           capturedAt: challenge.sourceCapturedAt,
         })
+      } else {
+        if (!existing.productNames.includes(challenge.productName)) {
+          existing.productNames.push(challenge.productName)
+        }
+        if (existing.capturedAt < challenge.sourceCapturedAt) {
+          existing.capturedAt = challenge.sourceCapturedAt
+        }
       }
     }
   }
   const sources = [...sourceMap.values()]
-    .sort((x, y) => x.firmName.localeCompare(y.firmName) || x.productName.localeCompare(y.productName))
+    .map(source => ({
+      ...source,
+      productNames: source.productNames.sort((x, y) => x.localeCompare(y)),
+    }))
+    .sort((x, y) =>
+      x.firmName.localeCompare(y.firmName)
+      || x.productNames.join(', ').localeCompare(y.productNames.join(', ')))
 
   return {
     hasData: challengesA.length > 0 && challengesB.length > 0,

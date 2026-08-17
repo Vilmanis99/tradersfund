@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound, permanentRedirect } from 'next/navigation'
 import type { Metadata } from 'next'
-import { ArrowLeft, ArrowRight, Swords } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ExternalLink, Swords } from 'lucide-react'
 import {
   buildSpecTable,
   canonicalMatchupSlug,
@@ -115,6 +115,7 @@ export default async function ComparePage({ params }: Props) {
     { name: firmA.name, slug: firmSlug(firmA.name) },
     { name: firmB.name, slug: firmSlug(firmB.name) },
   )
+  const isFtmoFundedNext = canonical === 'ftmo-vs-fundednext'
   const matchupProse = describeMatchup(challengeMatchup)
   const dataDrivenTlDr = challengeMatchup.hasData
     ? matchupProse.slice(0, 2).join(' ')
@@ -200,7 +201,13 @@ export default async function ComparePage({ params }: Props) {
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 1.5rem' }}>
           <AffiliateDisclosure />
 
-          <ComparisonHero firmA={firmA} firmB={firmB} campaign={canonical} />
+          <ComparisonHero
+            firmA={firmA}
+            firmB={firmB}
+            campaign={canonical}
+            summaryA={challengeMatchup.hasData ? challengeMatchup.a : undefined}
+            summaryB={challengeMatchup.hasData ? challengeMatchup.b : undefined}
+          />
 
           <ComparisonInfographic firmA={firmA} firmB={firmB} rows={rows} />
 
@@ -278,22 +285,65 @@ export default async function ComparePage({ params }: Props) {
       {/* ═══════════════════════════════ CTA ═══════════════════════════════ */}
       <section className="home-section home-section--alt">
         <div className="home-shell">
-          <div className="cta-final" style={{ maxWidth: 640 }}>
-            <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
-              Want to compare a <span className="gradient-text">different pair?</span>
-            </h2>
-            <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
-              Every firm pair has a page. Browse the hub or open the full directory.
-            </p>
-            <div className="cta-final-row">
-              <Link href="/compare" className="btn-primary btn-glow">
-                All comparisons <ArrowRight size={16} />
-              </Link>
-              <Link href="/prop-firms" className="btn-outline">
-                Full firm directory
-              </Link>
+          {isFtmoFundedNext ? (
+            <div
+              className="cta-final"
+              style={{ maxWidth: 720 }}
+              data-compare-conversion="ftmo-fundednext-final"
+            >
+              <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
+                Choose the product, then <span className="gradient-text">verify the offer</span>
+              </h2>
+              <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
+                FTMO prices these captured products in EUR; FundedNext prices them in USD.
+                Compare the live checkout totals and your card&apos;s FX cost before paying.
+              </p>
+              <div className="cta-final-row">
+                <Link
+                  href="/go/fundednext?from=compare-ftmo-vs-fundednext-final"
+                  prefetch={false}
+                  rel="sponsored nofollow noopener"
+                  target="_blank"
+                  className="btn-primary btn-glow"
+                  data-affiliate-placement="compare-ftmo-vs-fundednext-final"
+                >
+                  Check FundedNext offer <ExternalLink size={15} aria-hidden="true" />
+                </Link>
+                <Link
+                  href="/go/ftmo?from=compare-ftmo-vs-fundednext-final"
+                  prefetch={false}
+                  rel="nofollow noopener"
+                  target="_blank"
+                  className="btn-outline"
+                >
+                  Check FTMO terms <ExternalLink size={15} aria-hidden="true" />
+                </Link>
+                <Link href="/prop-firm-discount-codes" className="btn-outline">
+                  Verified offers
+                </Link>
+              </div>
+              <p className="cta-final-foot">
+                FundedNext is a partner; FTMO is not. Partnership does not change our verdict.
+              </p>
             </div>
-          </div>
+          ) : (
+            <div className="cta-final" style={{ maxWidth: 640 }}>
+              <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
+                Want to compare a <span className="gradient-text">different pair?</span>
+              </h2>
+              <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
+                Every firm pair has a page. Browse the hub or open the full directory.
+              </p>
+              <div className="cta-final-row">
+                <Link href="/compare" className="btn-primary btn-glow">
+                  All comparisons <ArrowRight size={16} />
+                </Link>
+                <Link href="/prop-firms" className="btn-outline">
+                  Full firm directory
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </div>

@@ -253,6 +253,8 @@ const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
 const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
 const COMPARISON_ROUTE_FILE = path.join(ROOT, 'app/compare/[matchup]/page.tsx')
+const CHALLENGE_MATCHUP_COMPONENT_FILE = path.join(ROOT, 'components/ChallengeMatchup.tsx')
+const CHALLENGE_MATCHUP_LIB_FILE = path.join(ROOT, 'lib/challengeMatchup.ts')
 const COMPARISONS_FILE = path.join(ROOT, 'lib/comparisons.ts')
 const INDIA_PAYOUT_TEMPLATE_FILE = path.join(
   ROOT,
@@ -9211,11 +9213,70 @@ function checkFundedNextComparisonOverlay() {
   const route = fs.existsSync(COMPARISON_ROUTE_FILE)
     ? fs.readFileSync(COMPARISON_ROUTE_FILE, 'utf-8')
     : ''
+  const challengeMatchupComponent = fs.existsSync(CHALLENGE_MATCHUP_COMPONENT_FILE)
+    ? fs.readFileSync(CHALLENGE_MATCHUP_COMPONENT_FILE, 'utf-8')
+    : ''
+  const challengeMatchupLib = fs.existsSync(CHALLENGE_MATCHUP_LIB_FILE)
+    ? fs.readFileSync(CHALLENGE_MATCHUP_LIB_FILE, 'utf-8')
+    : ''
+  const releaseCrawl = fs.existsSync(RELEASE_CRAWL_FILE)
+    ? fs.readFileSync(RELEASE_CRAWL_FILE, 'utf-8')
+    : ''
   if (!hero.includes('from=compare-${campaign}')) {
     rows.push('comparison outbound links do not carry matchup-specific attribution')
   }
   if (!route.includes('campaign={canonical}')) {
     rows.push('comparison route does not pass its canonical matchup campaign')
+  }
+  for (const fragment of [
+    'summaryA?: MatchupFirmSummary',
+    'summaryB?: MatchupFirmSummary',
+    'summary.productCount',
+    'formatSplitRange(summary.profitSplits)',
+    "summary.drawdownTypes.join(' / ')",
+    'data-compare-firm={slug}',
+  ]) {
+    if (!hero.includes(fragment)) {
+      rows.push(`comparison hero is missing product-summary contract "${fragment}"`)
+    }
+  }
+  for (const fragment of [
+    'profitSplits: number[]',
+    'drawdownTypes: string[]',
+    'productNames: string[]',
+    'existing.productNames.push(challenge.productName)',
+  ]) {
+    if (!challengeMatchupLib.includes(fragment)) {
+      rows.push(`challenge matchup is missing grouped evidence contract "${fragment}"`)
+    }
+  }
+  if (!challengeMatchupComponent.includes("source.productNames.join(', ')")) {
+    rows.push('challenge matchup sources do not name every product supported by a shared page')
+  }
+  for (const fragment of [
+    'summaryA={challengeMatchup.hasData ? challengeMatchup.a : undefined}',
+    'summaryB={challengeMatchup.hasData ? challengeMatchup.b : undefined}',
+    'data-compare-conversion="ftmo-fundednext-final"',
+    'data-affiliate-placement="compare-ftmo-vs-fundednext-final"',
+    '/go/fundednext?from=compare-ftmo-vs-fundednext-final',
+    '/go/ftmo?from=compare-ftmo-vs-fundednext-final',
+    'href="/prop-firm-discount-codes"',
+    'FundedNext is a partner; FTMO is not. Partnership does not change our verdict.',
+    'Compare the live checkout totals and your card&apos;s FX cost before paying.',
+  ]) {
+    if (!route.includes(fragment)) {
+      rows.push(`ftmo-vs-fundednext final decision path is missing "${fragment}"`)
+    }
+  }
+  for (const fragment of [
+    "const ftmoFundedNextPath = '/compare/ftmo-vs-fundednext'",
+    'data-compare-firm="${set.slug}"',
+    '/go/fundednext?from=compare-ftmo-vs-fundednext-final',
+    "utm_campaign') !== 'compare-ftmo-vs-fundednext-final'",
+  ]) {
+    if (!releaseCrawl.includes(fragment)) {
+      rows.push(`release crawl is missing ftmo-vs-fundednext safeguard "${fragment}"`)
+    }
   }
 
   if (rows.length) {
