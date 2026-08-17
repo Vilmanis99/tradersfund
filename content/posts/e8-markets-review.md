@@ -7,7 +7,7 @@ excerpt: "E8 runs E8 One, E8 Pro and E8 Signature — all single-phase, all 80% 
 categories: ["Prop Firms"]
 tags: ["E8 Markets", "Prop Firm"]
 type: "post"
-modified: "2026-08-11 12:00:00"
+modified: "2026-08-17 12:00:00"
 ---
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
@@ -90,7 +90,7 @@ modified: "2026-08-11 12:00:00"
 
 <p><strong>E8 Pro — 8% static drawdown.</strong> "A fixed loss limit based on your initial balance. It never moves, except when a first payout is processed." On a $100K account that is a hard $92,000 floor for the whole evaluation, plus a 2.5% ($2,500) daily loss limit. The offsetting constraint is a <strong>2% daily profit cap</strong> in both stages: on a $100K account, a $5,000 day still counts only $2,000 toward the 8% target, so the fastest legal path to an $8,000 target is four qualifying days.</p>
 
-<p><strong>E8 Signature — EOD trailing drawdown.</strong> The loss limit is "a moving loss limit based on your highest end-of-day balance," updated once per day at market close, so intraday equity swings do not move it. There is <em>no</em> daily loss limit during the challenge stage at all; on the Performance account a 2% daily pause stops trading for the day but explicitly does not breach the account. The trade-off is that Signature closes all positions at 23:00 server time and reopens at 00:15, and E8's own product comparison table marks both overnight and weekend holding as not allowed.</p>
+<p><strong>E8 Signature — EOD trailing drawdown.</strong> The loss limit is "a moving loss limit based on your highest end-of-day balance," updated once per day at market close, so intraday equity swings do not move it. There is <em>no</em> daily loss limit during the challenge stage at all; on the Performance account a 2% daily pause stops trading for the day but explicitly does not breach the account. The trade-off is that Signature closes all positions at 23:00 server time and reopens at 00:15, and E8's own product comparison table marks both overnight and weekend holding as not allowed. The <a href="/best-swing-trading-prop-firms">product-level swing comparison</a> therefore retains E8 One and E8 Pro while excluding Signature.</p>
 
 <p><strong>Consistency rules differ by product.</strong> E8 Pro has none — "There is none - trade freely." E8 One applies a 40% best-day rule and E8 Signature a 35% best-day rule, in both cases meaning no single day may exceed that share of total generated profit. On E8 One the rule is scoped to the Performance account, not the challenge.</p>
 

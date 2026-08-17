@@ -783,6 +783,12 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   title: 'Compare drawdown calculations',
                   body: 'Understand how a floating peak, closing balance, or fixed floor changes a multi-day trade.',
                 },
+                {
+                  href: '/prop-firm-discount-codes',
+                  eyebrow: 'Conditional offer',
+                  title: 'Verify the FundedNext 5% coupon',
+                  body: 'FundedNext ranks first here with 4 qualifying products; its checked coupon is earned through the Free Trial.',
+                },
               ].map(item => (
                 <Link
                   key={item.href}
@@ -959,8 +965,10 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                       ? '8 policy-checked firms across 34 mapped products'
                       : isUs
                         ? '4 policy-checked firms across 14 mapped products'
-                        : isCrypto
-                          ? '7 evidence-backed firms across 32 mapped products'
+                        : isSwing
+                          ? `${count} verified firms across ${landing.snapshotProductCount ?? 0} swing-qualified products`
+                          : isCrypto
+                            ? '7 evidence-backed firms across 32 mapped products'
                           : 'Ranked & source-checked'}
               </h2>
               <p className="section-sub-text">
@@ -983,6 +991,11 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   <>
                     Editorial score sets the order; every card names current product coverage and links its access source.
                     Partnership, coupon size, product count, asset class and platform add 0 points.
+                  </>
+                ) : isSwing ? (
+                  <>
+                    Editorial score sets the order; every card names every qualifying product and links each distinct rule source.
+                    Partnership, coupon size, product count and drawdown type add 0 points.
                   </>
                 ) : isCrypto ? (
                   <>
@@ -1157,11 +1170,11 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   <Link href="/prop-firm-challenges" className="btn-primary btn-glow">
                     Compare current products <ArrowRight size={16} />
                   </Link>
-                  <Link href="/prop-firms/overnight-holding" className="btn-outline">
-                    Check overnight rules
+                  <Link href="/blog/fundednext-review" className="btn-outline">
+                    Review FundedNext
                   </Link>
-                  <Link href="/prop-firms/weekend-holding" className="btn-outline">
-                    Check weekend rules
+                  <Link href="/prop-firm-discount-codes" className="btn-outline">
+                    Check current offers
                   </Link>
                 </div>
               </>

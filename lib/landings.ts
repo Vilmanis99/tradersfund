@@ -67,6 +67,12 @@ export interface LandingFirm {
     url: string
     capturedAt: string
   }
+  /** Multiple product-rule sources when one card represents several qualifying products. */
+  evidenceLinks?: {
+    label: string
+    url: string
+    capturedAt: string
+  }[]
 }
 
 export interface LandingEvidenceGap {
@@ -98,6 +104,8 @@ export interface Landing {
   decisionGuide?: { title: string; body: string }[]
   /** Dated first-party leads that are visible but deliberately excluded from ranking. */
   evidenceGaps?: LandingEvidenceGap[]
+  /** Current product count for a landing whose eligibility is computed at product level. */
+  snapshotProductCount?: number
   /** ISO date of editorial review. Drives the visible freshness pill. */
   lastReviewed: string
 }
@@ -296,6 +304,16 @@ const CURRENT_OVERALL_SNAPSHOT = getAllFirms().flatMap(firm => {
 })
 const CURRENT_OVERALL_FIRM_COUNT = CURRENT_OVERALL_SNAPSHOT.length
 const CURRENT_OVERALL_PRODUCT_COUNT = CURRENT_OVERALL_SNAPSHOT.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
+
+const CURRENT_SWING_SNAPSHOT = getAllFirms().flatMap(firm => {
+  const products = swingCompatibleProducts(firm)
+  return products.length ? [{ firm, products }] : []
+})
+const CURRENT_SWING_FIRM_COUNT = CURRENT_SWING_SNAPSHOT.length
+const CURRENT_SWING_PRODUCT_COUNT = CURRENT_SWING_SNAPSHOT.reduce(
   (total, entry) => total + entry.products.length,
   0,
 )
@@ -931,13 +949,14 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-swing-trading-prop-firms',
-    h1: 'Best Prop Firms for Swing Trading (2026)',
-    metaTitle: 'Best Swing Trading Prop Firms (2026) — By Product',
+    h1: `Best Prop Firms for Swing Trading (2026): ${CURRENT_SWING_FIRM_COUNT} Verified`,
+    metaTitle: `Best Swing Trading Prop Firms (2026): ${CURRENT_SWING_FIRM_COUNT} Verified`,
     metaDescription:
-      'Compare swing-trading prop-firm products with verified overnight and weekend holding, drawdown type, source dates, reviews, and exact rule links.',
+      `Compare ${CURRENT_SWING_FIRM_COUNT} swing-trading prop firms across ${CURRENT_SWING_PRODUCT_COUNT} exact products with verified overnight and weekend holding, drawdown rules, dated sources, and reviews.`,
     intro:
-      'Every ranked firm has at least 1 current product whose first-party capture explicitly allows both weekday overnight and weekend holding. That does not mean every product qualifies: each card shows the matching-product count, named paths, drawdown types, capture date, and a direct rule source. Static drawdown is not assumed, and permission to hold does not remove gap, swap, or loss-limit risk.',
+      `These ${CURRENT_SWING_FIRM_COUNT} firms have ${CURRENT_SWING_PRODUCT_COUNT} current products whose first-party captures explicitly allow both weekday overnight and weekend holding on the same path. That does not mean every product qualifies: each card names every matching product, its drawdown types, capture dates, and direct rule sources. Static drawdown is not assumed, and permission to hold does not remove gap, swap, or loss-limit risk.`,
     sortDir: 'desc',
+    snapshotProductCount: CURRENT_SWING_PRODUCT_COUNT,
     rank: firms => firms
       .flatMap(firm => {
         const freshProducts = getChallengesByFirm(firmSlug(firm.name))
@@ -948,27 +967,33 @@ export const LANDINGS: Landing[] = [
         const drawdowns = [...new Set(qualifying.map(challenge =>
           drawdownLabel(challenge.drawdownType),
         ))].sort()
-        const shownProducts = qualifying.slice(0, 3).map(challenge => challenge.productName)
-        const moreCount = qualifying.length - shownProducts.length
-        const evidenceProduct = qualifying[0]
+        const productNames = qualifying.map(challenge => challenge.productName)
+        const evidenceBySource = new Map<string, { productNames: string[]; capturedAt: string }>()
+        for (const challenge of qualifying) {
+          const current = evidenceBySource.get(challenge.sourceUrl)
+          evidenceBySource.set(challenge.sourceUrl, {
+            productNames: [...(current?.productNames ?? []), challenge.productName],
+            capturedAt: challenge.sourceCapturedAt,
+          })
+        }
 
         return [{
           firm,
           sortKey: firm.score,
           highlight: `${qualifying.length} swing-qualified ${qualifying.length === 1 ? 'product' : 'products'} · ${joinNatural(drawdowns)}`,
-          metricLabel: 'Product fit',
-          metricValue: `${qualifying.length}/${freshProducts.length}`,
-          note: `${joinNatural(shownProducts)}${moreCount > 0 ? `, plus ${moreCount} more` : ''} meet both holding rules. Other products from the same firm may differ.`,
-          evidence: {
-            label: `${evidenceProduct.productName} rule source`,
-            url: evidenceProduct.sourceUrl,
-            capturedAt: evidenceProduct.sourceCapturedAt,
-          },
+          trailingMetricLabel: 'Product fit',
+          trailingMetricValue: `${qualifying.length}/${freshProducts.length}`,
+          note: `${joinNatural(productNames)} meet both holding rules. Other products from the same firm may differ.`,
+          evidenceLinks: [...evidenceBySource.entries()].map(([url, source]) => ({
+            label: `${joinNatural(source.productNames)} rule source`,
+            url,
+            capturedAt: source.capturedAt,
+          })),
         }]
       })
       .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
     methodology:
-      'A firm qualifies only when at least 1 product captured within 30 days sets both overnight and weekend holding to allowed on that same product. Restricted, blocked, missing, and stale fields do not qualify. The order uses our editorial score; affiliate status, coupon size, qualifying-product count, and drawdown type add 0 points. Each card reports exact product coverage because another product from the same firm can use different holding rules.',
+      `A firm qualifies only when at least 1 product captured within 30 days sets both overnight and weekend holding to allowed on that same product. Restricted, blocked, missing, and stale fields do not qualify. The order across ${CURRENT_SWING_FIRM_COUNT} firms uses our editorial score; affiliate status, coupon size, the ${CURRENT_SWING_PRODUCT_COUNT}-product coverage count, and drawdown type add 0 points. Each card reports exact product coverage because another product from the same firm can use different holding rules.`,
     decisionGuide: [
       {
         title: 'Do both permissions belong to the same product?',

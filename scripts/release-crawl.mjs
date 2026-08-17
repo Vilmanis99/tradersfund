@@ -842,13 +842,20 @@ for (const backlinkPath of [
 
 const swingLandingPath = '/best-swing-trading-prop-firms'
 const expectedSwingFirms = firmRecords.flatMap(firm => {
+  const freshProducts = getChallengesByFirm(outboundSlug(firm.name)).filter(challenge =>
+    isChallengeFresh(challenge),
+  )
   const products = getChallengesByFirm(outboundSlug(firm.name)).filter(challenge =>
     isChallengeFresh(challenge)
     && challenge.rules.overnight === true
     && challenge.rules.weekend === true,
   )
-  return products.length ? [{ firm, products }] : []
-})
+  return products.length ? [{ firm, freshProducts, products }] : []
+}).sort((a, b) => b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
+const expectedSwingProductCount = expectedSwingFirms.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
 const swingLandingProbe = await fetchPage(new URL(swingLandingPath, BASE))
 if (swingLandingProbe.status !== 200) {
   errors.push(
@@ -856,29 +863,77 @@ if (swingLandingProbe.status !== 200) {
   )
 } else {
   const swingText = textContent(swingLandingProbe.html)
-  const cardCount = (swingLandingProbe.html.match(/<li class="leader-row/g) ?? []).length
-  const evidenceDateCount = (swingText.match(/checked 2026-/g) ?? []).length
-  if (cardCount !== expectedSwingFirms.length) {
+  const cards = [...swingLandingProbe.html.matchAll(
+    /<li class="leader-row[^"]*"[^>]*>([\s\S]*?)<\/li>/gi,
+  )].map(match => ({ html: match[0], text: textContent(match[1]) }))
+  const itemListCount = (swingLandingProbe.html.match(/"@type":"ItemList"/g) ?? []).length
+
+  if (cards.length !== expectedSwingFirms.length) {
     errors.push(
-      `${swingLandingPath}: rendered ${cardCount} firms, expected ${expectedSwingFirms.length}`,
+      `${swingLandingPath}: rendered ${cards.length} firms, expected ${expectedSwingFirms.length}`,
     )
   }
-  if (evidenceDateCount !== expectedSwingFirms.length) {
+  if (expectedSwingFirms.length !== 7 || expectedSwingProductCount !== 27) {
     errors.push(
-      `${swingLandingPath}: rendered ${evidenceDateCount} dated card sources, expected ${expectedSwingFirms.length}`,
+      `${swingLandingPath}: current fixture must resolve to 7 firms and 27 products; received ${expectedSwingFirms.length} and ${expectedSwingProductCount}`,
     )
   }
-  for (const { firm } of expectedSwingFirms) {
-    if (!swingText.includes(firm.name)) {
-      errors.push(`${swingLandingPath}: missing qualifying firm ${firm.name}`)
+  if (itemListCount !== 1) {
+    errors.push(`${swingLandingPath}: rendered ${itemListCount} ItemLists, expected 1`)
+  }
+
+  expectedSwingFirms.forEach(({ firm, freshProducts, products }, index) => {
+    const card = cards[index]
+    if (!card || !card.text.includes(firm.name)) {
+      errors.push(`${swingLandingPath}: rank ${index + 1} should be ${firm.name}`)
+      return
     }
+    for (const required of [
+      `${products.length} swing-qualified ${products.length === 1 ? 'product' : 'products'}`,
+      `Score ${firm.score.toFixed(1)}`,
+      `Product fit ${products.length}/${freshProducts.length}`,
+    ]) {
+      if (!card.text.includes(required)) {
+        errors.push(`${swingLandingPath}: ${firm.name} card is missing ${required}`)
+      }
+    }
+    for (const product of products) {
+      if (!card.text.includes(product.productName)) {
+        errors.push(`${swingLandingPath}: ${firm.name} card is missing ${product.productName}`)
+      }
+      if (!card.html.includes(`href="${product.sourceUrl}"`)) {
+        errors.push(`${swingLandingPath}: ${firm.name} card is missing the ${product.productName} rule source`)
+      }
+      if (!card.text.includes(`checked ${product.sourceCapturedAt}`)) {
+        errors.push(`${swingLandingPath}: ${firm.name} card is missing the ${product.productName} capture date`)
+      }
+    }
+  })
+
+  const expectedDescription =
+    'Compare 7 swing-trading prop firms across 27 exact products with verified overnight and weekend holding, drawdown rules, dated sources, and reviews.'
+  const renderedDescription = decodeHtml(firstMatch(
+    swingLandingProbe.html,
+    /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+  ) || firstMatch(
+    swingLandingProbe.html,
+    /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+  ))
+  if (renderedDescription !== expectedDescription) {
+    errors.push(`${swingLandingPath}: meta description does not match the 7-firm/27-product snapshot`)
   }
+
   for (const required of [
+    'Best Swing Trading Prop Firms (2026): 7 Verified | TFH',
+    'Best Prop Firms for Swing Trading (2026): 7 Verified',
+    '7 verified firms across 27 swing-qualified products',
     'What swing traders should verify',
     'Do both permissions belong to the same product?',
     'Is weekday overnight the same as weekend holding?',
     'What happens to the loss floor after open profit?',
     'Which carrying costs remain?',
+    'Verify the FundedNext 5% coupon',
+    'Verify the exact product before carrying',
   ]) {
     if (!swingText.includes(required)) {
       errors.push(`${swingLandingPath}: missing ${required}`)
@@ -889,6 +944,8 @@ if (swingLandingProbe.status !== 200) {
     'href="/prop-firms/weekend-holding"',
     'href="/blog/balance-based-drawdown-vs-equity-based-drawdown"',
     'href="/prop-firm-challenges"',
+    'href="/blog/fundednext-review"',
+    'href="/prop-firm-discount-codes"',
   ]) {
     if (!swingLandingProbe.html.includes(required)) {
       errors.push(`${swingLandingPath}: missing ${required}`)
@@ -899,6 +956,35 @@ if (swingLandingProbe.status !== 200) {
     || swingText.includes('static-drawdown account')
   ) {
     errors.push(`${swingLandingPath}: restored the unsupported aggregate/static claim`)
+  }
+
+  const fundedNextCta = [...swingLandingProbe.html.matchAll(/<a\b[^>]*>/gi)]
+    .map(match => match[0])
+    .find(tag => tag.includes('href="/go/fundednext?from=best-swing-trading-prop-firms"'))
+  if (
+    !fundedNextCta
+    || !fundedNextCta.includes('rel="sponsored nofollow noopener"')
+    || !fundedNextCta.includes('target="_blank"')
+  ) {
+    errors.push(`${swingLandingPath}: FundedNext ranking CTA is missing affiliate attribution`)
+  }
+}
+
+for (const backlinkPath of [
+  '/blog/fundednext-review',
+  '/blog/e8-markets-review',
+  '/blog/fxify-review',
+  '/blog/alpha-capital-review',
+  '/blog/city-traders-imperium-review',
+  '/blog/bright-funded-prop-firm',
+  '/blog/crypto-fund-trader-review',
+  '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+]) {
+  const backlinkProbe = await fetchPage(new URL(backlinkPath, BASE))
+  if (backlinkProbe.status !== 200) {
+    errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
+  } else if (!backlinkProbe.html.includes('href="/best-swing-trading-prop-firms"')) {
+    errors.push(`${backlinkPath}: missing contextual swing-ranking backlink`)
   }
 }
 

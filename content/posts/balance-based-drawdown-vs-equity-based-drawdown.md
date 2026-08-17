@@ -63,7 +63,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>These 4 rows show why a firm-level label is insufficient. FundedNext sells both static and real-time trailing products. FTMO sells a static 2-Step and a balance-based end-of-day trailing 1-Step. Compare the named product in the <a href="/prop-firm-challenges">challenge table</a> rather than classifying an entire firm as “balance based” or “equity based.”</p>
+<p>These 4 rows show why a firm-level label is insufficient. FundedNext sells both static and real-time trailing products. FTMO sells a static 2-Step and a balance-based end-of-day trailing 1-Step. Compare the named product in the <a href="/prop-firm-challenges">challenge table</a>, then use the <a href="/best-swing-trading-prop-firms">swing-trading shortlist</a> when both overnight and weekend permission must be true on that same product.</p>
 
 <div data-drawdown-choice="fundednext" style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
   <strong style="color: #fff;">Comparing FundedNext’s 2 paths?</strong> Stellar 2-Step’s $100K tier has a static $90,000 maximum-loss floor, while Stellar Instant’s $10K tier starts with a trailing $9,400 floor. Read the <a href="/blog/fundednext-review">FundedNext review</a> for all 4 products, payout rules, and current list fees. If the terms fit your strategy, <a href="/go/fundednext">view FundedNext’s current plans</a>. We may earn a commission; the partnership does not change the displayed terms or editorial score.

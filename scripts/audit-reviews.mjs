@@ -5922,9 +5922,10 @@ function checkUsLandingConsolidation() {
 
   const firmList = read(LANDING_FIRM_LIST_FILE)
   for (const fragment of [
-    'item.evidence.url',
-    'item.evidence.label',
-    'item.evidence.capturedAt',
+    'const evidenceLinks = item.evidenceLinks ?? (item.evidence ? [item.evidence] : [])',
+    'evidence.url',
+    'evidence.label',
+    'evidence.capturedAt',
     'rel="nofollow noopener"',
     'href={`/go/${slug}?from=${fromParam}`}',
     'rel="sponsored nofollow noopener"',
@@ -5934,7 +5935,7 @@ function checkUsLandingConsolidation() {
     }
   }
   const evidenceLinkBlock = firmList.match(
-    /\{item\.evidence && \(([\s\S]*?)\)\}/,
+    /\{evidenceLinks\.length > 0 && \(([\s\S]*?)<div className="leader-stats">/,
   )?.[1] ?? ''
   if (evidenceLinkBlock.includes('sponsored')) {
     rows.push('first-party evidence links must not be marked sponsored')
@@ -6063,26 +6064,31 @@ function checkSwingFeatureCluster() {
   if (!block) {
     rows.push('best-swing-trading-prop-firms landing config is missing')
   } else {
-    const metaTitle = block.match(/metaTitle:\s*'([^']+)'/)?.[1] ?? ''
-    const description = block.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1] ?? ''
-    if (metaTitle.length > 54) {
+    const metaTitle = block.match(/metaTitle:\s*'([^']+)'/)?.[1]
+    const description = block.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1]
+    if (metaTitle && metaTitle.length > 54) {
       rows.push('swing landing meta title must leave room for the root title suffix')
     }
-    if (description.length < 120 || description.length > 160) {
+    if (description && (description.length < 120 || description.length > 160)) {
       rows.push('swing landing meta description must be between 120 and 160 characters')
     }
     for (const fragment of [
       'function swingCompatibleProducts(firm: Firm): Challenge[]',
+      'const CURRENT_SWING_FIRM_COUNT = CURRENT_SWING_SNAPSHOT.length',
+      'const CURRENT_SWING_PRODUCT_COUNT = CURRENT_SWING_SNAPSHOT.reduce',
       'isChallengeFresh(challenge)',
       'challenge.rules.overnight === true',
       'challenge.rules.weekend === true',
+      'h1: `Best Prop Firms for Swing Trading (2026): ${CURRENT_SWING_FIRM_COUNT} Verified`',
+      'metaTitle: `Best Swing Trading Prop Firms (2026): ${CURRENT_SWING_FIRM_COUNT} Verified`',
+      'snapshotProductCount: CURRENT_SWING_PRODUCT_COUNT',
       'const qualifying = swingCompatibleProducts(firm)',
-      "metricLabel: 'Product fit'",
-      'metricValue: `${qualifying.length}/${freshProducts.length}`',
-      'url: evidenceProduct.sourceUrl',
-      'capturedAt: evidenceProduct.sourceCapturedAt',
+      "trailingMetricLabel: 'Product fit'",
+      'trailingMetricValue: `${qualifying.length}/${freshProducts.length}`',
+      'evidenceLinks: [...evidenceBySource.entries()]',
+      'label: `${joinNatural(source.productNames)} rule source`',
       'at least 1 product captured within 30 days sets both overnight and weekend holding to allowed on that same product',
-      'affiliate status, coupon size, qualifying-product count, and drawdown type add 0 points',
+      'affiliate status, coupon size, the ${CURRENT_SWING_PRODUCT_COUNT}-product coverage count, and drawdown type add 0 points',
       "lastReviewed: '2026-08-17'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
@@ -6112,8 +6118,14 @@ function checkSwingFeatureCluster() {
     "href: '/prop-firms/overnight-holding'",
     "href: '/prop-firms/weekend-holding'",
     "href: '/blog/balance-based-drawdown-vs-equity-based-drawdown'",
+    "href: '/prop-firm-discount-codes'",
+    'Verify the FundedNext 5% coupon',
+    'landing.snapshotProductCount',
+    'every card names every qualifying product and links each distinct rule source',
     'Verify the exact product before carrying',
     'href="/prop-firm-challenges"',
+    'href="/blog/fundednext-review"',
+    'href="/prop-firm-discount-codes"',
   ]) {
     if (!landingPage.includes(fragment)) {
       rows.push(`swing landing component is missing "${fragment}"`)
@@ -6138,15 +6150,36 @@ function checkSwingFeatureCluster() {
     }
   }
 
+  for (const file of [
+    'fundednext-review.md',
+    'e8-markets-review.md',
+    'fxify-review.md',
+    'alpha-capital-review.md',
+    'city-traders-imperium-review.md',
+    'bright-funded-prop-firm.md',
+    'crypto-fund-trader-review.md',
+  ]) {
+    if (!read(path.join(POSTS, file)).includes('href="/best-swing-trading-prop-firms"')) {
+      rows.push(`${file}: missing contextual backlink to the swing comparison`)
+    }
+  }
+  if (!read(DRAWDOWN_GUIDE_FILE).includes('href="/best-swing-trading-prop-firms"')) {
+    rows.push('drawdown guide is missing its contextual swing-comparison backlink')
+  }
+
   const crawler = read(RELEASE_CRAWL_FILE)
   for (const fragment of [
     "path.startsWith('/prop-firms/')",
     'inlinkCount < 5',
     "const swingLandingPath = '/best-swing-trading-prop-firms'",
     'expectedSwingFirms',
+    'expectedSwingProductCount',
     'challenge.rules.overnight === true',
     'challenge.rules.weekend === true',
-    'rendered ${cardCount} firms, expected ${expectedSwingFirms.length}',
+    '7 firms and 27 products',
+    'Product fit ${products.length}/${freshProducts.length}',
+    'href="/go/fundednext?from=best-swing-trading-prop-firms"',
+    'missing contextual swing-ranking backlink',
   ]) {
     if (!crawler.includes(fragment)) {
       rows.push(`release crawl is missing "${fragment}"`)

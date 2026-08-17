@@ -30,6 +30,7 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
         const { firm, highlight, note } = item
         const slug = firmSlug(firm.name)
         const isPartner = Boolean(firm.affiliateUrl)
+        const evidenceLinks = item.evidenceLinks ?? (item.evidence ? [item.evidence] : [])
         return (
           <li
             key={`${item.groupLabel ?? 'all'}:${firm.name}`}
@@ -81,25 +82,29 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
                   {note}
                 </p>
               )}
-              {item.evidence && (
-                <a
-                  href={item.evidence.url}
-                  target="_blank"
-                  rel="nofollow noopener"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 5,
-                    marginTop: '0.45rem',
-                    color: 'var(--accent-light)',
-                    fontSize: '0.76rem',
-                    fontWeight: 700,
-                    textDecoration: 'none',
-                  }}
-                >
-                  {item.evidence.label} · checked {item.evidence.capturedAt}
-                  <ExternalLink size={10} aria-hidden="true" />
-                </a>
+              {evidenceLinks.length > 0 && (
+                <div style={{ display: 'grid', justifyItems: 'start', gap: '0.3rem', marginTop: '0.45rem' }}>
+                  {evidenceLinks.map(evidence => (
+                    <a
+                      key={`${evidence.url}:${evidence.label}`}
+                      href={evidence.url}
+                      target="_blank"
+                      rel="nofollow noopener"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 5,
+                        color: 'var(--accent-light)',
+                        fontSize: '0.76rem',
+                        fontWeight: 700,
+                        textDecoration: 'none',
+                      }}
+                    >
+                      {evidence.label} · checked {evidence.capturedAt}
+                      <ExternalLink size={10} aria-hidden="true" />
+                    </a>
+                  ))}
+                </div>
               )}
             </div>
             <div className="leader-stats">

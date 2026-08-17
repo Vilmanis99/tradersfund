@@ -71,7 +71,7 @@ type: "post"
 
 <p><strong>Both phase-0 paths remove the evaluation target, not the loss rule.</strong> Instant Funding and Direct Funding each use a 6% static maximum loss and a 5-day first-payout field. Instant starts at 50%; Direct starts at 70% and records a monthly payout frequency.</p>
 
-<p><strong>Trading permissions are product-specific.</strong> All 4 records allow news, overnight, and weekend trading. Third-party EAs are allowed on 1-Step, while 2-Step, Instant, and Direct restrict EA use to the trader’s personal system; copy-trading fields remain unverified.</p>
+<p><strong>Trading permissions are product-specific.</strong> All 4 records allow news, overnight, and weekend trading and therefore appear in the <a href="/best-swing-trading-prop-firms">product-level swing-trading comparison</a>. Third-party EAs are allowed on 1-Step, while 2-Step, Instant, and Direct restrict EA use to the trader’s personal system; copy-trading fields remain unverified.</p>
 
 <p><strong>No captured consistency percentage means no percentage claim.</strong> Direct Funding’s page says “No Consistency Rules,” but the structured field stays null because no numeric formula is published. The same null treatment applies to the other 3 products rather than silently converting missing evidence to 0%.</p>
 
