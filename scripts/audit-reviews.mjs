@@ -223,6 +223,10 @@ const US_ACCESS_EVIDENCE_FILE = path.join(
   ROOT,
   'content/data/us-access-evidence.json',
 )
+const UK_ACCESS_EVIDENCE_FILE = path.join(
+  ROOT,
+  'content/data/uk-access-evidence.json',
+)
 const CRYPTO_MARKET_EVIDENCE_FILE = path.join(
   ROOT,
   'content/data/crypto-market-evidence.json',
@@ -5475,6 +5479,225 @@ function checkLegacyOverviewConsolidation() {
   return rows.length
 }
 
+/** Keep the UK shortlist policy-backed, product-current, and separate from FCA status. */
+function checkUkLandingCluster() {
+  const rows = []
+  const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+  const expectedSlugs = [
+    'ftmo',
+    'fundednext',
+    'fundingpips',
+    'fxify',
+    'alpha-capital',
+    'city-traders-imperium',
+    'bright-funded',
+    'e8-markets',
+  ]
+  let capture
+  try {
+    capture = JSON.parse(read(UK_ACCESS_EVIDENCE_FILE))
+  } catch (error) {
+    rows.push(`UK access evidence is invalid JSON (${error.message})`)
+    capture = { firms: [] }
+  }
+
+  const entries = Array.isArray(capture.firms) ? capture.firms : []
+  const capturedSlugs = entries.map(entry => entry.firmSlug)
+  if (
+    entries.length !== expectedSlugs.length
+    || new Set(capturedSlugs).size !== expectedSlugs.length
+    || JSON.stringify([...capturedSlugs].sort()) !== JSON.stringify([...expectedSlugs].sort())
+  ) {
+    rows.push(`UK evidence must contain exactly ${expectedSlugs.join(', ')}`)
+  }
+  if (!String(capture.methodology ?? '').includes('not a completed UK checkout')) {
+    rows.push('UK evidence methodology must state the checkout and regulatory boundary')
+  }
+
+  const firms = JSON.parse(read(path.join(ROOT, 'content/data/firms.json')) || '[]')
+  const firmsBySlug = new Map(firms.map(firm => [outboundSlug(firm.name), firm]))
+  const mappedProducts = new Set()
+  const isFreshDate = value => {
+    const captured = new Date(`${value}T00:00:00Z`)
+    const ageDays = Math.floor((TODAY - captured) / 86_400_000)
+    return !Number.isNaN(captured.getTime()) && ageDays >= 0 && ageDays <= STALE_DAYS
+  }
+
+  for (const entry of entries) {
+    const label = `UK evidence ${entry.firmSlug || '(missing slug)'}`
+    const firm = firmsBySlug.get(entry.firmSlug)
+    if (!firm) {
+      rows.push(`${label}: no matching firms.json record`)
+      continue
+    }
+    if (entry.firmName !== firm.name) rows.push(`${label}: firmName does not match firms.json`)
+    if (entry.accessStatus !== 'policy-supported') {
+      rows.push(`${label}: accessStatus must be policy-supported`)
+    }
+    for (const field of ['evidenceLabel', 'evidenceSummary', 'decisionNote']) {
+      if (typeof entry[field] !== 'string' || !entry[field].trim()) {
+        rows.push(`${label}: ${field} is required`)
+      }
+    }
+    if (!isFreshDate(entry.sourceCapturedAt)) {
+      rows.push(`${label}: access source is outside the ${STALE_DAYS}-day freshness window`)
+    }
+    try {
+      const source = new URL(entry.sourceUrl)
+      const official = new URL(firm.officialUrl)
+      const sourceHost = source.hostname.toLowerCase().replace(/^www\./, '')
+      const officialHost = official.hostname.toLowerCase().replace(/^www\./, '')
+      if (
+        source.protocol !== 'https:'
+        || (sourceHost !== officialHost && !sourceHost.endsWith(`.${officialHost}`))
+      ) {
+        rows.push(`${label}: sourceUrl is not on the firm's first-party HTTPS host`)
+      }
+    } catch {
+      rows.push(`${label}: sourceUrl is invalid`)
+    }
+    if ((firm.countriesRestricted ?? []).some(country =>
+      /^(uk|united kingdom|great britain)$/i.test(country.trim()))) {
+      rows.push(`${label}: firms.json contradicts the UK access policy`)
+    }
+
+    const challenges = JSON.parse(
+      read(path.join(CHALLENGES, `${entry.firmSlug}.json`)) || '[]',
+    )
+    const challengeSlugs = challenges.map(product => product.productSlug).sort()
+    const productSlugs = Array.isArray(entry.productSlugs)
+      ? [...entry.productSlugs].sort()
+      : []
+    if (new Set(productSlugs).size !== productSlugs.length) {
+      rows.push(`${label}: productSlugs contain a duplicate`)
+    }
+    if (JSON.stringify(productSlugs) !== JSON.stringify(challengeSlugs)) {
+      rows.push(`${label}: productSlugs must match every current structured product exactly`)
+    }
+    for (const product of challenges) {
+      const composite = `${entry.firmSlug}:${product.productSlug}`
+      mappedProducts.add(composite)
+      if (!isFreshDate(product.sourceCapturedAt)) {
+        rows.push(`${label}: ${product.productSlug} is outside the freshness window`)
+      }
+    }
+  }
+
+  if (entries.length !== 8 || mappedProducts.size !== 34) {
+    rows.push(
+      `UK fixture expects 8 firms and 34 mapped products; received ${entries.length} and ${mappedProducts.size}`,
+    )
+  }
+
+  const landings = read(LANDINGS_CONFIG_FILE)
+  const block = landings.match(
+    /slug:\s*'best-prop-firms-in-uk'([\s\S]*?)slug:\s*'best-prop-firms-in-us'/,
+  )?.[1] ?? ''
+  if (!block) {
+    rows.push('best-prop-firms-in-uk landing config is missing')
+  } else {
+    for (const fragment of [
+      "import rawUkAccessEvidence from '@/content/data/uk-access-evidence.json'",
+      'const UK_ACCESS_EVIDENCE_BY_SLUG = new Map',
+      'function freshMappedProducts(firmSlugValue: string, productSlugs: string[])',
+      'return products.length === productSlugs.length ? products : []',
+      'function ukProductsForEvidence(evidence: UkAccessEvidence): Challenge[]',
+      'isAccessEvidenceFresh(evidence.sourceCapturedAt)',
+      'const CURRENT_UK_FIRM_COUNT = CURRENT_UK_SNAPSHOT.length',
+      'const CURRENT_UK_PRODUCT_COUNT = CURRENT_UK_SNAPSHOT.reduce',
+      'UK_ACCESS_EVIDENCE_BY_SLUG.get(slug)',
+      'entry from ${minimumPublishedEntry(products)}',
+      "trailingMetricLabel: 'UK access'",
+      "trailingMetricValue: 'Policy'",
+      'url: evidence.sourceUrl',
+      'capturedAt: evidence.sourceCapturedAt',
+      'affiliate status, coupon size, headquarters, company registration, maximum split, and payout method add 0 points',
+      'Does UK access mean the firm is FCA-authorised?',
+      'What should match before checkout and KYC?',
+      'How should USD and EUR fees be compared in GBP?',
+      'Does the policy cover every product and platform forever?',
+      "lastReviewed: '2026-08-17'",
+    ]) {
+      if (!landings.includes(fragment) && !block.includes(fragment)) {
+        rows.push(`UK landing is missing "${fragment}"`)
+      }
+    }
+    for (const staleClaim of [
+      'countriesRestricted',
+      'payoutMethods',
+      'firm.profitSplitPct',
+      'settles reliably from the UK',
+      'Every firm below accepts UK-based traders',
+    ]) {
+      if (block.includes(staleClaim)) {
+        rows.push(`UK landing restored aggregate or unsupported logic: "${staleClaim}"`)
+      }
+    }
+    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
+      rows.push('UK landing must keep exactly 4 decision-guide questions')
+    }
+  }
+
+  const expectedTitle = 'Best Prop Firms for UK Traders (2026): 8 Checked'
+  const expectedDescription =
+    'Compare 8 prop firms with current first-party UK-access policies across 34 product paths, plus FCA checks, fees, rules, reviews, and dated sources.'
+  if (expectedTitle.length > 54) rows.push('UK meta title leaves no room for the root suffix')
+  if (expectedDescription.length < 120 || expectedDescription.length > 160) {
+    rows.push('UK meta description must be between 120 and 160 characters')
+  }
+
+  const landingPage = read(LANDING_PAGE_COMPONENT_FILE)
+  for (const fragment of [
+    "const isUk = landing.slug === 'best-prop-firms-in-uk'",
+    'What UK traders should verify',
+    'Four policy, FCA, currency and product checks before paying.',
+    'Policy-supported UK access is not an FCA status.',
+    'https://www.fca.org.uk/consumers/fca-firm-checker',
+    'https://www.fca.org.uk/consumers/warning-list-unauthorised-firms',
+    '8 policy-checked firms across 34 mapped products',
+    "href: '/prop-firm-challenges'",
+    "href: '/compare/ftmo-vs-fundednext'",
+    "href: '/blog/fundednext-review'",
+    "href: '/cheapest-prop-firms'",
+    'Choose the product, then verify the UK route',
+  ]) {
+    if (!landingPage.includes(fragment)) {
+      rows.push(`UK landing component is missing "${fragment}"`)
+    }
+  }
+
+  for (const file of [
+    'ftmo-review.md',
+    'fundednext-review.md',
+    'funding-pips-review.md',
+    'fxify-review.md',
+    'alpha-capital-review.md',
+  ]) {
+    if (!read(path.join(POSTS, file)).includes('href="/best-prop-firms-in-uk"')) {
+      rows.push(`${file}: missing contextual UK-ranking backlink`)
+    }
+  }
+
+  const crawler = read(RELEASE_CRAWL_FILE)
+  for (const fragment of [
+    "const ukLandingPath = '/best-prop-firms-in-uk'",
+    'ukAccessEvidence.firms.flatMap',
+    'expectedUkProductCount',
+    'Policy-supported UK access is not an FCA status.',
+    'href="/go/fundednext?from=best-prop-firms-in-uk"',
+  ]) {
+    if (!crawler.includes(fragment)) {
+      rows.push(`release crawl is missing UK-ranking safeguard: "${fragment}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ UK ranking, access evidence and FCA boundary')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
 /**
  * The U.S. landing replaces an overlapping legacy article and makes a
  * narrower claim: current first-party access evidence, not legal approval.
@@ -6095,9 +6318,11 @@ function checkCryptoLandingCluster() {
   } else {
     for (const fragment of [
       "import rawCryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'",
+      'function freshMappedProducts(firmSlugValue: string, productSlugs: string[])',
+      'return products.length === productSlugs.length ? products : []',
       'function cryptoProductsForEvidence(evidence: CryptoMarketEvidence): Challenge[]',
       'isCryptoMarketEvidenceFresh(evidence.sourceCapturedAt)',
-      'return products.length === evidence.productSlugs.length ? products : []',
+      'freshMappedProducts(evidence.firmSlug, evidence.productSlugs)',
       'const CURRENT_CRYPTO_FIRM_COUNT = CURRENT_CRYPTO_SNAPSHOT.length',
       'const CURRENT_CRYPTO_PRODUCT_COUNT = CURRENT_CRYPTO_SNAPSHOT.reduce',
       'CRYPTO_MARKET_EVIDENCE_BY_SLUG.get(slug)',
@@ -8742,6 +8967,8 @@ const globalDirectoryErrors = checkGlobalDirectorySurface()
 totalErrors += globalDirectoryErrors
 const legacyOverviewConsolidationErrors = checkLegacyOverviewConsolidation()
 totalErrors += legacyOverviewConsolidationErrors
+const ukLandingClusterErrors = checkUkLandingCluster()
+totalErrors += ukLandingClusterErrors
 const usLandingConsolidationErrors = checkUsLandingConsolidation()
 totalErrors += usLandingConsolidationErrors
 const swingFeatureClusterErrors = checkSwingFeatureCluster()

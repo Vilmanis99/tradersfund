@@ -12,7 +12,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 
-<p>FundingPips suits rule-first traders comparing 27 verified fees across 5 product models.</p>
+<p>FundingPips suits rule-first traders comparing 27 verified fees across 5 product models. The <a href="/best-prop-firms-in-uk">policy-checked UK comparison</a> maps all 5 models to FundingPips’ current onboarding policy while keeping platform, KYC, payout, and FCA checks separate.</p>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>

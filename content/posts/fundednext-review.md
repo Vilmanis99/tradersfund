@@ -16,7 +16,7 @@ type: "post"
 
 <p>Choose Stellar 2-Step for a static 10% loss floor; choose Instant only if 6% trailing risk is acceptable.</p>
 
-<p>If FundedNext’s 40% funded news-window credit or 6% Instant trailing floor conflicts with the strategy, use the <a href="/compare/ftmo-vs-fundednext">product-level FTMO vs FundedNext comparison</a>; it keeps EUR and USD fees separate while comparing 2 FTMO paths with FundedNext’s 4 products, and the <a href="/blog/ftmo-review">FTMO review</a> documents the 2 underlying rule sets. For tradable crypto, the <a href="/best-crypto-prop-firms">crypto prop-firm comparison</a> separately links FundedNext’s current contract-size evidence instead of treating its crypto checkout or payout rails as market proof.</p>
+<p>If FundedNext’s 40% funded news-window credit or 6% Instant trailing floor conflicts with the strategy, use the <a href="/compare/ftmo-vs-fundednext">product-level FTMO vs FundedNext comparison</a>; it keeps EUR and USD fees separate while comparing 2 FTMO paths with FundedNext’s 4 products, and the <a href="/blog/ftmo-review">FTMO review</a> documents the 2 underlying rule sets. For tradable crypto, the <a href="/best-crypto-prop-firms">crypto prop-firm comparison</a> separately links FundedNext’s current contract-size evidence instead of treating its crypto checkout or payout rails as market proof. UK residents should also use the <a href="/best-prop-firms-in-uk">policy-checked UK comparison</a> to keep FundedNext’s country access, FCA status, and USD-to-GBP checkout cost as 3 separate questions.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
   <caption class="hidden-caption">Which FundedNext product fits which rule priority?</caption>

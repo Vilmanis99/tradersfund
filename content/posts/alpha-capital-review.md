@@ -12,7 +12,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 
-<p>Alpha Capital is the pick for a trader who wants to choose their own drawdown geometry — five plans, four different max-loss caps, one 80% split.</p>
+<p>Alpha Capital is the pick for a trader who wants to choose their own drawdown geometry — five plans, four different max-loss caps, one 80% split. The <a href="/best-prop-firms-in-uk">policy-checked UK comparison</a> separates its current country policy and 5 mapped products from assumptions based on a .uk domain, London address, or company registration.</p>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>

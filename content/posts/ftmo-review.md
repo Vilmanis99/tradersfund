@@ -12,7 +12,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 
-<p>FTMO suits the trader who wants a refundable 80% product with a static 10% loss floor, not the highest headline split.</p>
+<p>FTMO suits the trader who wants a refundable 80% product with a static 10% loss floor, not the highest headline split. UK residents can use the <a href="/best-prop-firms-in-uk">policy-checked UK comparison</a> to separate FTMO’s current country evidence and EUR pricing from FCA authorisation and live GBP conversion.</p>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>

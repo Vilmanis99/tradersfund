@@ -12,7 +12,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 
-<p>FXIFY suits rule-sensitive traders who will compare all 8 CFD products before paying.</p>
+<p>FXIFY suits rule-sensitive traders who will compare all 8 CFD products before paying. The <a href="/best-prop-firms-in-uk">policy-checked UK comparison</a> links the current country restriction source and explains why a UK company address or payment agent is not an FCA-authorisation finding.</p>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>

@@ -33,6 +33,9 @@ const PROJECT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const firmRecords = JSON.parse(
   readFileSync(join(PROJECT_ROOT, 'content/data/firms.json'), 'utf8'),
 )
+const ukAccessEvidence = JSON.parse(
+  readFileSync(join(PROJECT_ROOT, 'content/data/uk-access-evidence.json'), 'utf8'),
+)
 const cryptoMarketEvidence = JSON.parse(
   readFileSync(join(PROJECT_ROOT, 'content/data/crypto-market-evidence.json'), 'utf8'),
 )
@@ -533,6 +536,158 @@ for (const backlinkPath of [
     errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
   } else if (!backlinkProbe.html.includes('href="/best-prop-firms-2026"')) {
     errors.push(`${backlinkPath}: missing contextual overall-ranking backlink`)
+  }
+}
+
+const ukLandingPath = '/best-prop-firms-in-uk'
+const ukEvidenceIsFresh = sourceCapturedAt => {
+  const captured = new Date(`${sourceCapturedAt}T00:00:00Z`)
+  if (Number.isNaN(captured.getTime())) return false
+  const now = new Date()
+  const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
+  const ageDays = Math.floor((todayUtc - captured.getTime()) / 86_400_000)
+  return ageDays >= 0 && ageDays <= 30
+}
+const expectedUkFirms = ukAccessEvidence.firms.flatMap(evidence => {
+  const firm = firmRecords.find(candidate => outboundSlug(candidate.name) === evidence.firmSlug)
+  const productsBySlug = new Map(
+    getChallengesByFirm(evidence.firmSlug).map(product => [product.productSlug, product]),
+  )
+  const products = evidence.productSlugs.flatMap(productSlug => {
+    const product = productsBySlug.get(productSlug)
+    return product && isChallengeFresh(product) ? [product] : []
+  })
+  return firm
+    && ukEvidenceIsFresh(evidence.sourceCapturedAt)
+    && products.length === evidence.productSlugs.length
+    ? [{ firm, evidence, products }]
+    : []
+}).sort((a, b) => b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
+const expectedUkProductCount = expectedUkFirms.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
+const ukLandingProbe = await fetchPage(new URL(ukLandingPath, BASE))
+if (ukLandingProbe.status !== 200) {
+  errors.push(`${ukLandingPath}: HTTP ${ukLandingProbe.status || ukLandingProbe.error}`)
+} else {
+  const ukText = textContent(ukLandingProbe.html)
+  const cards = [...ukLandingProbe.html.matchAll(
+    /<li class="leader-row[^"]*"[^>]*>([\s\S]*?)<\/li>/gi,
+  )].map(match => ({ html: match[0], text: textContent(match[1]) }))
+  const itemListCount = (ukLandingProbe.html.match(/"@type":"ItemList"/g) ?? []).length
+
+  if (cards.length !== expectedUkFirms.length) {
+    errors.push(`${ukLandingPath}: rendered ${cards.length} firms, expected ${expectedUkFirms.length}`)
+  }
+  if (expectedUkFirms.length !== 8 || expectedUkProductCount !== 34) {
+    errors.push(
+      `${ukLandingPath}: evidence fixture must resolve to 8 firms and 34 products; received ${expectedUkFirms.length} and ${expectedUkProductCount}`,
+    )
+  }
+  if (itemListCount !== 1) {
+    errors.push(`${ukLandingPath}: rendered ${itemListCount} ItemLists, expected 1`)
+  }
+
+  expectedUkFirms.forEach(({ firm, evidence, products }, index) => {
+    const card = cards[index]
+    const productLabel = `${products.length} current ${products.length === 1 ? 'product' : 'products'}`
+    if (!card || !card.text.includes(firm.name)) {
+      errors.push(`${ukLandingPath}: rank ${index + 1} should be ${firm.name}`)
+      return
+    }
+    for (const required of [
+      productLabel,
+      'entry from',
+      'UK access Policy',
+      `checked ${evidence.sourceCapturedAt}`,
+    ]) {
+      if (!card.text.includes(required)) {
+        errors.push(`${ukLandingPath}: ${firm.name} card is missing ${required}`)
+      }
+    }
+    for (const product of products.slice(0, 2)) {
+      if (!card.text.includes(product.productName)) {
+        errors.push(`${ukLandingPath}: ${firm.name} card is missing ${product.productName}`)
+      }
+    }
+    if (!card.html.includes(`href="${evidence.sourceUrl}"`)) {
+      errors.push(`${ukLandingPath}: ${firm.name} card is missing its country-policy source`)
+    }
+  })
+
+  const expectedDescription =
+    'Compare 8 prop firms with current first-party UK-access policies across 34 product paths, plus FCA checks, fees, rules, reviews, and dated sources.'
+  const renderedDescription = decodeHtml(firstMatch(
+    ukLandingProbe.html,
+    /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+  ) || firstMatch(
+    ukLandingProbe.html,
+    /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+  ))
+  if (renderedDescription !== expectedDescription) {
+    errors.push(`${ukLandingPath}: meta description does not match the 8-firm/34-product snapshot`)
+  }
+
+  for (const required of [
+    'Best Prop Firms for UK Traders (2026): 8 Checked | TFH',
+    'Best Prop Firms for UK Traders (2026): 8 Policy-Checked',
+    '8 policy-checked firms across 34 mapped products',
+    'Policy-supported UK access is not an FCA status.',
+    'What UK traders should verify',
+    'Does UK access mean the firm is FCA-authorised?',
+    'What should match before checkout and KYC?',
+    'How should USD and EUR fees be compared in GBP?',
+    'Does the policy cover every product and platform forever?',
+    'Choose the product, then verify the UK route',
+  ]) {
+    if (!ukText.includes(required)) {
+      errors.push(`${ukLandingPath}: missing ${required}`)
+    }
+  }
+  for (const required of [
+    'href="https://www.fca.org.uk/consumers/fca-firm-checker"',
+    'href="https://www.fca.org.uk/consumers/warning-list-unauthorised-firms"',
+    'href="/prop-firm-challenges"',
+    'href="/compare/ftmo-vs-fundednext"',
+    'href="/blog/fundednext-review"',
+    'href="/cheapest-prop-firms"',
+  ]) {
+    if (!ukLandingProbe.html.includes(required)) {
+      errors.push(`${ukLandingPath}: missing ${required}`)
+    }
+  }
+
+  const fundedNextCta = [...ukLandingProbe.html.matchAll(/<a\b[^>]*>/gi)]
+    .map(match => match[0])
+    .find(tag => tag.includes('href="/go/fundednext?from=best-prop-firms-in-uk"'))
+  if (
+    !fundedNextCta
+    || !fundedNextCta.includes('rel="sponsored nofollow noopener"')
+    || !fundedNextCta.includes('target="_blank"')
+  ) {
+    errors.push(`${ukLandingPath}: FundedNext ranking CTA is missing affiliate attribution`)
+  }
+  if (
+    ukText.includes('Every firm below accepts UK-based traders')
+    || ukText.includes('settles reliably from the UK')
+  ) {
+    errors.push(`${ukLandingPath}: restored unsupported UK access or payout wording`)
+  }
+}
+
+for (const backlinkPath of [
+  '/blog/ftmo-review',
+  '/blog/fundednext-review',
+  '/blog/funding-pips-review',
+  '/blog/fxify-review',
+  '/blog/alpha-capital-review',
+]) {
+  const backlinkProbe = await fetchPage(new URL(backlinkPath, BASE))
+  if (backlinkProbe.status !== 200) {
+    errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
+  } else if (!backlinkProbe.html.includes('href="/best-prop-firms-in-uk"')) {
+    errors.push(`${backlinkPath}: missing contextual UK-ranking backlink`)
   }
 }
 

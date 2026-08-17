@@ -26,6 +26,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
   const { ranked, count, allFirms } = buildLandingPayload(landing)
   const firms = ranked.map(r => r.firm)
   const isIndia = landing.slug === 'best-prop-firms-in-india'
+  const isUk = landing.slug === 'best-prop-firms-in-uk'
   const isUs = landing.slug === 'best-prop-firms-in-us'
   const isSwing = landing.slug === 'best-swing-trading-prop-firms'
   const isFutures = landing.slug === 'best-futures-prop-firms'
@@ -35,7 +36,9 @@ export default function LandingPage({ landing }: { landing: Landing }) {
   const isCrypto = landing.slug === 'best-crypto-prop-firms'
   const decisionHeading = isUs
     ? 'What U.S. traders should verify'
-    : isSwing
+    : isUk
+      ? 'What UK traders should verify'
+      : isSwing
       ? 'What swing traders should verify'
       : isFutures
         ? 'What futures traders should verify'
@@ -50,7 +53,9 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                 : 'What Indian traders should verify'
   const decisionSub = isUs
     ? 'Four access, contract and payout checks to complete before paying.'
-    : isSwing
+    : isUk
+      ? 'Four policy, FCA, currency and product checks before paying.'
+      : isSwing
       ? 'Four product-level checks before carrying a position across sessions.'
       : isFutures
         ? 'Four product, billing, account-stage and registration checks before paying.'
@@ -219,6 +224,98 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   eyebrow: 'Freshness',
                   title: 'Check what changed after capture',
                   body: 'Review material product updates and unresolved first-party evidence conflicts before checkout.',
+                },
+              ].map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="post-sidebar-card"
+                  style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+                >
+                  <span className="bento-tile-eyebrow">{item.eyebrow}</span>
+                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                    {item.title}
+                  </strong>
+                  <span style={{
+                    display: 'block',
+                    color: 'var(--muted)',
+                    fontSize: '0.8rem',
+                    lineHeight: 1.55,
+                    marginTop: '0.35rem',
+                  }}>
+                    {item.body}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isUk && (
+        <section className="home-section" style={{ paddingTop: 0, paddingBottom: '1rem' }}>
+          <div className="home-shell">
+            <div
+              className="post-sidebar-card"
+              style={{ borderLeft: '3px solid var(--gold)', padding: '1.15rem 1.3rem' }}
+            >
+              <strong style={{ color: '#fff' }}>
+                Policy-supported UK access is not an FCA status.
+              </strong>{' '}
+              <span style={{ color: 'var(--text)', lineHeight: 1.65 }}>
+                The FCA says its Firm Checker shows authorisation and permissions, while its
+                Warning List records published concerns and is not proof that every absent firm
+                is authorised or safe.{' '}
+                <a
+                  href="https://www.fca.org.uk/consumers/fca-firm-checker"
+                  target="_blank"
+                  rel="nofollow noopener"
+                  style={{ color: 'var(--accent-light)', fontWeight: 700 }}
+                >
+                  Open the FCA Firm Checker
+                </a>{' '}
+                and{' '}
+                <a
+                  href="https://www.fca.org.uk/consumers/warning-list-unauthorised-firms"
+                  target="_blank"
+                  rel="nofollow noopener"
+                  style={{ color: 'var(--accent-light)', fontWeight: 700 }}
+                >
+                  search the Warning List.
+                </a>
+              </span>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '0.85rem',
+              marginTop: '0.85rem',
+            }}>
+              {[
+                {
+                  href: '/prop-firm-challenges',
+                  eyebrow: 'Exact products',
+                  title: 'Compare all 34 mapped paths',
+                  body: 'Move from country policy to phases, fees, targets, loss limits, account stages and trading rules.',
+                },
+                {
+                  href: '/compare/ftmo-vs-fundednext',
+                  eyebrow: 'Top-two decision',
+                  title: 'Compare FTMO and FundedNext',
+                  body: 'Keep FTMO’s EUR products separate from FundedNext’s USD paths while comparing rules and fee recovery.',
+                },
+                {
+                  href: '/blog/fundednext-review',
+                  eyebrow: 'Partner deep dive',
+                  title: 'Inspect FundedNext’s 4 paths',
+                  body: 'Check global CFD prices, platform charges, reward timing, news treatment, KYC and payout gates.',
+                },
+                {
+                  href: '/cheapest-prop-firms',
+                  eyebrow: 'Currency-safe cost',
+                  title: 'Separate USD and EUR entry fees',
+                  body: 'Compare published currencies first, then apply the live GBP card rate and provider charges at checkout.',
                 },
               ].map(item => (
                 <Link
@@ -794,9 +891,11 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   ? 'Lowest published path by currency'
                   : isOverall
                     ? 'Editorial ranking with current product evidence'
-                    : isCrypto
-                      ? '7 evidence-backed firms across 32 mapped products'
-                      : 'Ranked & source-checked'}
+                    : isUk
+                      ? '8 policy-checked firms across 34 mapped products'
+                      : isCrypto
+                        ? '7 evidence-backed firms across 32 mapped products'
+                        : 'Ranked & source-checked'}
               </h2>
               <p className="section-sub-text">
                 {isCheapest ? (
@@ -808,6 +907,11 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   <>
                     Score sets the order; each card shows the current product coverage and a dated source.
                     Partnership status, coupon size and product count add 0 points.
+                  </>
+                ) : isUk ? (
+                  <>
+                    Editorial score sets the order; every card links the current country policy.
+                    Partnership, headquarters, company registration and payout rails add 0 points.
                   </>
                 ) : isCrypto ? (
                   <>
@@ -1068,6 +1172,31 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   <Link href="/prop-firm-discount-codes" className="btn-outline">
                     Check current codes
                   </Link>
+                </div>
+              </>
+            ) : isUk ? (
+              <>
+                <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
+                  Choose the product, then verify the UK route
+                </h2>
+                <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
+                  Compare exact rules and currencies, then recheck country policy, KYC, checkout and FCA permissions.
+                </p>
+                <div className="cta-final-row">
+                  <Link href="/prop-firm-challenges" className="btn-primary btn-glow">
+                    Compare current products <ArrowRight size={16} />
+                  </Link>
+                  <Link href="/compare/ftmo-vs-fundednext" className="btn-outline">
+                    Compare the top two
+                  </Link>
+                  <a
+                    href="https://www.fca.org.uk/consumers/fca-firm-checker"
+                    target="_blank"
+                    rel="nofollow noopener"
+                    className="btn-outline"
+                  >
+                    Open FCA Firm Checker
+                  </a>
                 </div>
               </>
             ) : isCrypto ? (

@@ -19,6 +19,7 @@ import {
 } from './india'
 import rawUsAccessEvidence from '@/content/data/us-access-evidence.json'
 import rawCryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'
+import rawUkAccessEvidence from '@/content/data/uk-access-evidence.json'
 
 /**
  * Long-tail landing pages — "best prop firms in UK", "cheapest", "best
@@ -101,7 +102,6 @@ export interface Landing {
   lastReviewed: string
 }
 
-const REVIEW_DATE = '2026-07-27'
 const ACCESS_EVIDENCE_MAX_AGE_DAYS = 30
 
 interface UsAccessEvidence {
@@ -115,6 +115,19 @@ interface UsAccessEvidence {
   sourcePublishedAt?: string
   sourceCapturedAt: string
   evidenceLabel: string
+  decisionNote: string
+}
+
+interface UkAccessEvidence {
+  firmSlug: string
+  firmName: string
+  accessStatus: 'policy-supported'
+  productSlugs: string[]
+  sourceUrl: string
+  sourcePublishedAt?: string
+  sourceCapturedAt: string
+  evidenceLabel: string
+  evidenceSummary: string
   decisionNote: string
 }
 
@@ -144,6 +157,11 @@ const US_ACCESS_EVIDENCE_BY_SLUG = new Map(
     evidence.firmSlug,
     evidence,
   ]),
+)
+
+const UK_ACCESS_EVIDENCE = rawUkAccessEvidence.firms as UkAccessEvidence[]
+const UK_ACCESS_EVIDENCE_BY_SLUG = new Map(
+  UK_ACCESS_EVIDENCE.map(evidence => [evidence.firmSlug, evidence]),
 )
 
 const CRYPTO_MARKET_EVIDENCE = rawCryptoMarketEvidence.ranked as CryptoMarketEvidence[]
@@ -211,20 +229,28 @@ function freshProductsForFirm(firm: Firm): Challenge[] {
   )
 }
 
-function cryptoProductsForEvidence(evidence: CryptoMarketEvidence): Challenge[] {
-  if (!isCryptoMarketEvidenceFresh(evidence.sourceCapturedAt)) return []
-
+function freshMappedProducts(firmSlugValue: string, productSlugs: string[]): Challenge[] {
   const productsBySlug = new Map(
-    getChallengesByFirm(evidence.firmSlug).map(product => [product.productSlug, product]),
+    getChallengesByFirm(firmSlugValue).map(product => [product.productSlug, product]),
   )
-  const products = evidence.productSlugs.flatMap(productSlug => {
+  const products = productSlugs.flatMap(productSlug => {
     const product = productsBySlug.get(productSlug)
     return product && isChallengeFresh(product) ? [product] : []
   })
 
   // A partial mapping could silently borrow a firm-wide rule for an uncaptured
   // product. Exclude the firm until every explicitly mapped row is current.
-  return products.length === evidence.productSlugs.length ? products : []
+  return products.length === productSlugs.length ? products : []
+}
+
+function cryptoProductsForEvidence(evidence: CryptoMarketEvidence): Challenge[] {
+  if (!isCryptoMarketEvidenceFresh(evidence.sourceCapturedAt)) return []
+  return freshMappedProducts(evidence.firmSlug, evidence.productSlugs)
+}
+
+function ukProductsForEvidence(evidence: UkAccessEvidence): Challenge[] {
+  if (!isAccessEvidenceFresh(evidence.sourceCapturedAt)) return []
+  return freshMappedProducts(evidence.firmSlug, evidence.productSlugs)
 }
 
 const CURRENT_CRYPTO_SNAPSHOT = CRYPTO_MARKET_EVIDENCE.flatMap(evidence => {
@@ -233,6 +259,16 @@ const CURRENT_CRYPTO_SNAPSHOT = CRYPTO_MARKET_EVIDENCE.flatMap(evidence => {
 })
 const CURRENT_CRYPTO_FIRM_COUNT = CURRENT_CRYPTO_SNAPSHOT.length
 const CURRENT_CRYPTO_PRODUCT_COUNT = CURRENT_CRYPTO_SNAPSHOT.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
+
+const CURRENT_UK_SNAPSHOT = UK_ACCESS_EVIDENCE.flatMap(evidence => {
+  const products = ukProductsForEvidence(evidence)
+  return products.length ? [{ evidence, products }] : []
+})
+const CURRENT_UK_FIRM_COUNT = CURRENT_UK_SNAPSHOT.length
+const CURRENT_UK_PRODUCT_COUNT = CURRENT_UK_SNAPSHOT.reduce(
   (total, entry) => total + entry.products.length,
   0,
 )
@@ -392,32 +428,59 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-prop-firms-in-uk',
-    h1: 'Best Prop Firms for UK Traders (2026)',
-    metaTitle: 'Best Prop Firms for UK Traders in 2026 — Ranked',
+    h1: `Best Prop Firms for UK Traders (2026): ${CURRENT_UK_FIRM_COUNT} Policy-Checked`,
+    metaTitle: `Best Prop Firms for UK Traders (2026): ${CURRENT_UK_FIRM_COUNT} Checked`,
     metaDescription:
-      'Prop firms ranked for UK-based traders: profit split, payout speed, GBP/SEPA bank wire support, and challenge price. Verified 2026.',
+      `Compare ${CURRENT_UK_FIRM_COUNT} prop firms with current first-party UK-access policies across ${CURRENT_UK_PRODUCT_COUNT} product paths, plus FCA checks, fees, rules, reviews, and dated sources.`,
     intro:
-      'Every firm below accepts UK-based traders, supports either bank wire or crypto payouts (the two settlement methods that work reliably from the UK), and has a published profit split. Ranked by our editorial score.',
+      `These ${CURRENT_UK_FIRM_COUNT} firms publish a current global or country-based service policy that does not restrict United Kingdom residents or nationals, and all ${CURRENT_UK_PRODUCT_COUNT} mapped product rows remain inside the 30-day freshness window. That is policy-supported access, not a completed UK checkout, KYC approval, payout test, legal opinion, or FCA-authorisation finding. Editorial score sets the order; partnership status contributes 0 points.`,
     sortDir: 'desc',
-    rank: firms => {
-      // UK-friendly = not in countriesRestricted, has a usable payout method.
-      const eligible = firms.filter(f => {
-        const restricted = f.countriesRestricted || []
-        if (restricted.includes('UK') || restricted.includes('United Kingdom')) return false
-        const methods = f.payoutMethods || []
-        return methods.some(m => /wire|crypto|skrill|rise/i.test(m))
-      })
-      return eligible
-        .map(firm => ({
+    rank: firms => firms
+      .flatMap(firm => {
+        const slug = firmSlug(firm.name)
+        const evidence = UK_ACCESS_EVIDENCE_BY_SLUG.get(slug)
+        if (!evidence) return []
+        const products = ukProductsForEvidence(evidence)
+        if (!products.length) return []
+        const shownProducts = products.slice(0, 2).map(product => product.productName)
+        const moreCount = products.length - shownProducts.length
+
+        return [{
           firm,
           sortKey: firm.score,
-          highlight: `${firm.profitSplitPct ?? '—'}% split · ${(firm.payoutMethods || []).slice(0, 2).join(' / ')}`,
-        }))
-        .sort((a, b) => b.sortKey - a.sortKey)
-    },
+          highlight: `${products.length} current ${products.length === 1 ? 'product' : 'products'} · entry from ${minimumPublishedEntry(products)}`,
+          trailingMetricLabel: 'UK access',
+          trailingMetricValue: 'Policy',
+          note: `${joinNatural(shownProducts)}${moreCount > 0 ? `, plus ${moreCount} more` : ''}. ${evidence.decisionNote}`,
+          evidence: {
+            label: evidence.evidenceLabel,
+            url: evidence.sourceUrl,
+            capturedAt: evidence.sourceCapturedAt,
+          },
+        }]
+      })
+      .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
     methodology:
-      'A firm is "UK-friendly" if it does not list the United Kingdom in its countries-restricted list and offers at least one payout method that settles reliably from the UK (bank wire, crypto, Skrill, or Rise). Rankings use our editorial score — not the firm\'s marketing.',
-    lastReviewed: REVIEW_DATE,
+      'A firm appears only when a first-party global or country policy captured within 30 days supports UK access and every explicitly mapped product record is also current. A blank aggregate restriction list, UK address, .uk domain, payout method, or payment rail does not qualify by itself. Editorial score sets the order; affiliate status, coupon size, headquarters, company registration, maximum split, and payout method add 0 points. FCA authorisation and permissions remain a separate check.',
+    decisionGuide: [
+      {
+        title: 'Does UK access mean the firm is FCA-authorised?',
+        body: 'No. A country policy shows what the firm currently says it offers. The FCA says to use its Firm Checker for authorisation and permissions and its Warning List for published concerns; a UK address, company number, or .uk domain is not a substitute.',
+      },
+      {
+        title: 'What should match before checkout and KYC?',
+        body: 'Recheck nationality, residence, legal name, address document, platform, account currency, payment card, and payout-country rules. A policy-supported firm can still reject an account whose identity, sanctions, provider, or product checks fail.',
+      },
+      {
+        title: 'How should USD and EUR fees be compared in GBP?',
+        body: 'Keep each list price in its published currency, then use the live card or payment-provider GBP rate and disclosed fees at checkout. A stored conversion would age independently of the challenge price and can reverse a close comparison.',
+      },
+      {
+        title: 'Does the policy cover every product and platform forever?',
+        body: `No. This snapshot maps ${CURRENT_UK_PRODUCT_COUNT} exact products while their records and the country sources remain current. Platforms, payment providers, KYC vendors, sanctions screening, and product availability can change before the 30-day source gate expires.`,
+      },
+    ],
+    lastReviewed: '2026-08-17',
   },
   {
     slug: 'best-prop-firms-in-us',
