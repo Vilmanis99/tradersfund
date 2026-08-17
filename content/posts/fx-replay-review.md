@@ -1,10 +1,12 @@
 ---
-title: "FX Replay Review: Is the Backtester Worth it in 2025?"
+title: "FX Replay Review: Backtesting Features and Limits"
+seoTitle: "FX Replay Review: Backtesting Features and Limits"
 slug: "fx-replay-review"
 date: "2025-05-11 15:55:29"
 modified: "2025-06-19 20:53:30"
 author: "Edris Derakhshi"
-excerpt: "Backtesting is essential in developing a strategy. This FX Replay review will analyze whether this popular backtesting tool is worth it in 2025."
+excerpt: "A dated review of FX Replay's backtesting workflow, analytics, supported markets, plan differences, and limitations."
+seoDescription: "Review FX Replay's backtesting workflow, analytics, supported markets, plan differences, limitations, and the article's editorial update date."
 categories: ["Trading Tools"]
 tags: []
 type: "post"

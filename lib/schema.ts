@@ -53,7 +53,7 @@ export function postSchema(post: PostMeta & { content?: string }, allFirms: Firm
   const baseArticle = {
     '@type': 'Article',
     headline: post.title,
-    description: post.excerpt || post.title,
+    description: post.seoDescription || post.excerpt || post.title,
     image: ogImage,
     datePublished: post.date,
     dateModified: post.modified || post.date,

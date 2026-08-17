@@ -10,6 +10,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { dirname, extname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import matter from 'gray-matter'
 import {
   buildOutboundRelationships,
   outboundSlug,
@@ -29,6 +30,10 @@ import {
   getFreshComparisonEvidence,
   getFreshFirmEvidence,
 } from '../lib/relatedComparisons.ts'
+import {
+  getTradingToolReviewLinks,
+  TRADING_TOOL_REVIEWS,
+} from '../lib/tradingToolReviews.ts'
 
 const args = process.argv.slice(2)
 const baseArg = args.find(value => !value.startsWith('--'))
@@ -42,6 +47,12 @@ const PROJECT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const firmRecords = JSON.parse(
   readFileSync(join(PROJECT_ROOT, 'content/data/firms.json'), 'utf8'),
 )
+const tradingToolPostRecords = TRADING_TOOL_REVIEWS.map(review => ({
+  ...matter(readFileSync(
+    join(PROJECT_ROOT, 'content/posts', `${review.slug}.md`),
+    'utf8',
+  )).data,
+}))
 const ukAccessEvidence = JSON.parse(
   readFileSync(join(PROJECT_ROOT, 'content/data/uk-access-evidence.json'), 'utf8'),
 )
@@ -101,6 +112,17 @@ function formatCaptureDate(value) {
   if (Number.isNaN(date.getTime())) return value
   return date.toLocaleDateString('en-US', {
     month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
+function formatEditorialDate(value) {
+  const date = new Date(value)
+  if (Number.isNaN(date.getTime())) return value
+  return date.toLocaleDateString('en-US', {
+    month: 'long',
     day: 'numeric',
     year: 'numeric',
     timeZone: 'UTC',
@@ -386,6 +408,16 @@ for (const productionUrl of uniqueSitemapUrls) {
   }
 }
 
+const tradingToolReviewPaths = new Set(
+  TRADING_TOOL_REVIEWS.map(review => `/blog/${review.slug}`),
+)
+for (const path of tradingToolReviewPaths) {
+  const inlinkCount = internalInlinks.get(path)?.size ?? 0
+  if (inlinkCount < 6) {
+    errors.push(`${path}: trading-tool review has only ${inlinkCount} unique internal inlinks`)
+  }
+}
+
 for (const [title, paths] of titles) {
   if (paths.length > 1) errors.push(`duplicate title on ${paths.join(', ')}: ${title}`)
 }
@@ -402,6 +434,100 @@ const internalResults = await mapConcurrent(
 for (const result of internalResults) {
   if (result.status < 200 || result.status >= 400) {
     errors.push(`${new URL(result.url).pathname}: internal link returned ${result.status || result.error}`)
+  }
+}
+
+for (const review of TRADING_TOOL_REVIEWS) {
+  const path = `/blog/${review.slug}`
+  const post = tradingToolPostRecords.find(candidate => candidate.slug === review.slug)
+  const probe = await fetchPage(new URL(path, BASE))
+  if (probe.status !== 200 || !post) {
+    errors.push(`${path}: trading-tool review or metadata is missing`)
+    continue
+  }
+
+  const pageText = textContent(probe.html)
+  const title = textContent(firstMatch(probe.html, /<title[^>]*>([\s\S]*?)<\/title>/i))
+  const description = decodeHtml(firstMatch(
+    probe.html,
+    /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+  ) || firstMatch(
+    probe.html,
+    /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+  ))
+  const h1 = textContent(firstMatch(probe.html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i))
+  if (title !== post.seoTitle || description !== post.seoDescription || h1 !== post.title) {
+    errors.push(`${path}: trading-tool title, description or H1 disagrees with frontmatter`)
+  }
+
+  const editorialDate = formatEditorialDate(post.modified || post.date)
+  for (const required of [
+    `data-tool-review-status="${review.slug}"`,
+    'Editorial snapshot',
+    editorialDate,
+    'Pricing, integrations and feature availability may have changed since this review date.',
+    'verify the official service before paying or connecting a trading account.',
+    `data-tool-review-cluster="${review.slug}"`,
+    'Compare tools by the job they perform',
+    post.excerpt,
+  ]) {
+    if (!probe.html.includes(required) && !pageText.includes(required)) {
+      errors.push(`${path}: trading-tool review is missing ${required}`)
+    }
+  }
+
+  const expectedLinks = getTradingToolReviewLinks(review.slug, tradingToolPostRecords)
+  const toolLinkTags = [...probe.html.matchAll(
+    /<a\b[^>]*\bdata-tool-review-link=["'][^"']+["'][^>]*>/gi,
+  )].map(match => match[0])
+  const renderedLinks = toolLinkTags.map(tag =>
+    firstMatch(tag, /\bdata-tool-review-link=["']([^"']+)["']/i),
+  )
+  if (
+    expectedLinks.length !== 4
+    || renderedLinks.includes(review.slug)
+    || JSON.stringify(renderedLinks) !== JSON.stringify(expectedLinks.map(item => item.slug))
+  ) {
+    errors.push(`${path}: trading-tool cluster is incomplete or out of order`)
+  }
+  for (const linked of expectedLinks) {
+    const tag = toolLinkTags.find(candidate =>
+      candidate.includes(`data-tool-review-link="${linked.slug}"`),
+    ) || ''
+    const card = firstMatch(
+      probe.html,
+      new RegExp(
+        `<a[^>]*data-tool-review-link=["']${linked.slug}["'][^>]*>([\\s\\S]*?)<\\/a>`,
+        'i',
+      ),
+    )
+    const cardText = textContent(card)
+    for (const required of [
+      linked.useCase,
+      `${linked.name} review`,
+      `Editorial update: ${formatEditorialDate(linked.post.modified || linked.post.date)}`,
+    ]) {
+      if (!cardText.includes(required)) {
+        errors.push(`${path}: ${linked.slug} workflow card is missing ${required}`)
+      }
+    }
+    if (!tag.includes(`href="/blog/${linked.slug}"`)) {
+      errors.push(`${path}: ${linked.slug} workflow card is missing its internal link`)
+    }
+  }
+
+  const jsonLdObjects = [...probe.html.matchAll(
+    /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+  )].flatMap(match => {
+    try {
+      return [JSON.parse(match[1])]
+    } catch {
+      return []
+    }
+  })
+  const article = jsonLdObjects.find(value => value['@type'] === 'Article')
+  if (article?.description !== post.seoDescription) {
+    errors.push(`${path}: trading-tool Article schema description disagrees with metadata`)
   }
 }
 

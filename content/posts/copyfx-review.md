@@ -1,10 +1,12 @@
 ---
-title: "2025 CopyFX Review: The Full Guide for Investors and Traders"
+title: "CopyFX Review: Copy Modes, Fees and Account Rules"
+seoTitle: "CopyFX Review: Copy Modes, Fees and Account Rules"
 slug: "copyfx-review"
 date: "2025-07-15 19:03:38"
 modified: "2025-07-22 18:16:45"
 author: "Tara Mohseni"
-excerpt: "Discover everything about one of the best and most popular forex copy trading platforms in this CopyFX review!"
+excerpt: "A dated review of CopyFX investor and trader modes, account requirements, fee models, analytics, and platform limitations."
+seoDescription: "Review CopyFX copy modes, account requirements, fee models, strategy analytics, limitations, and the article's editorial update date."
 categories: ["Copy Trading"]
 tags: []
 type: "post"

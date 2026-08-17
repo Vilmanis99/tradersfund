@@ -65,6 +65,10 @@ import {
   postBodyCampaign,
 } from '../lib/postOutboundLinks.ts'
 import { rankRelatedPosts, relatedPostScore } from '../lib/relatedPosts.ts'
+import {
+  getTradingToolReviewLinks,
+  TRADING_TOOL_REVIEWS,
+} from '../lib/tradingToolReviews.ts'
 import { diffChallengeProducts } from './challenge-diff.mjs'
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -154,6 +158,11 @@ const ANALYTICS_PROVIDER_FILE = path.join(ROOT, 'components/AnalyticsProvider.ts
 const INDIA_MATCHER_COMPONENT_FILE = path.join(ROOT, 'components/IndiaFirmMatcher.tsx')
 const ROOT_LAYOUT_FILE = path.join(ROOT, 'app/layout.tsx')
 const BLOG_POST_PAGE_FILE = path.join(ROOT, 'app/blog/[slug]/page.tsx')
+const TRADING_TOOL_REVIEW_COMPONENT_FILE = path.join(
+  ROOT,
+  'components/TradingToolReviewCluster.tsx',
+)
+const TRADING_TOOL_REVIEW_LIB_FILE = path.join(ROOT, 'lib/tradingToolReviews.ts')
 const PRIVACY_POLICY_FILE = path.join(ROOT, 'content/pages/privacy-policy.md')
 const INDIA_CHALLENGE_SOCIAL_FILE = path.join(
   ROOT,
@@ -9666,6 +9675,145 @@ function checkComparisonHub() {
   return rows.length
 }
 
+/** Keep dated trading-tool reviews honest, reciprocal and search-ready. */
+function checkTradingToolReviewCluster() {
+  const rows = []
+  const posts = fs.readdirSync(POSTS)
+    .filter(file => file.endsWith('.md') && !file.startsWith('_'))
+    .map(file => {
+      const { data, content } = matter(fs.readFileSync(path.join(POSTS, file), 'utf-8'))
+      return { ...data, content }
+    })
+  const bySlug = new Map(posts.map(post => [post.slug, post]))
+  const configuredSlugs = TRADING_TOOL_REVIEWS.map(review => review.slug)
+
+  if (TRADING_TOOL_REVIEWS.length !== 5 || new Set(configuredSlugs).size !== 5) {
+    rows.push('trading-tool cluster must contain 5 unique existing reviews')
+  }
+
+  for (const review of TRADING_TOOL_REVIEWS) {
+    const post = bySlug.get(review.slug)
+    if (!post) {
+      rows.push(`${review.slug}: configured trading-tool review is missing`)
+      continue
+    }
+    for (const field of ['title', 'seoTitle', 'excerpt', 'seoDescription', 'modified']) {
+      if (!String(post[field] || '').trim()) {
+        rows.push(`${review.slug}: missing ${field}`)
+      }
+    }
+    if (post.title !== post.seoTitle || !post.title.includes(review.name)) {
+      rows.push(`${review.slug}: visible and search titles must share the evergreen tool name`)
+    }
+    if (/\b20\d{2}\b/.test(`${post.title} ${post.seoTitle} ${post.excerpt}`)) {
+      rows.push(`${review.slug}: title or deck contains a frozen marketing year`)
+    }
+    if (post.seoTitle.length > 60) {
+      rows.push(`${review.slug}: search title is ${post.seoTitle.length} characters`)
+    }
+    if (post.seoDescription.length < 70 || post.seoDescription.length > 160) {
+      rows.push(`${review.slug}: search description is ${post.seoDescription.length} characters`)
+    }
+    if (/\b(?:best and most popular|all you need|honest insights|worth it)\b/i.test(
+      `${post.title} ${post.excerpt} ${post.seoDescription}`,
+    )) {
+      rows.push(`${review.slug}: search surface restored promotional filler`)
+    }
+
+    const selected = getTradingToolReviewLinks(review.slug, posts)
+    const reversed = getTradingToolReviewLinks(review.slug, [...posts].reverse())
+    const expected = configuredSlugs.filter(slug => slug !== review.slug)
+    if (JSON.stringify(selected.map(item => item.slug)) !== JSON.stringify(expected)) {
+      rows.push(`${review.slug}: reciprocal cluster does not contain the other 4 reviews`)
+    }
+    if (
+      JSON.stringify(reversed.map(item => item.slug))
+        !== JSON.stringify(selected.map(item => item.slug))
+    ) {
+      rows.push(`${review.slug}: reciprocal cluster depends on post input order`)
+    }
+  }
+
+  const component = fs.existsSync(TRADING_TOOL_REVIEW_COMPONENT_FILE)
+    ? fs.readFileSync(TRADING_TOOL_REVIEW_COMPONENT_FILE, 'utf-8')
+    : ''
+  for (const fragment of [
+    'data-tool-review-status={post.slug}',
+    'Editorial snapshot',
+    'Pricing, integrations and feature availability may have changed since this review date.',
+    'verify the official service before paying or',
+    'data-tool-review-cluster={current.slug}',
+    'Compare tools by the job they perform',
+    'these products',
+    'are not interchangeable',
+    'data-tool-review-link={review.slug}',
+    'Editorial update: {formatEditorialDate(editorialDate)}',
+  ]) {
+    if (!component.includes(fragment)) {
+      rows.push(`trading-tool review component is missing "${fragment}"`)
+    }
+  }
+
+  const library = fs.existsSync(TRADING_TOOL_REVIEW_LIB_FILE)
+    ? fs.readFileSync(TRADING_TOOL_REVIEW_LIB_FILE, 'utf-8')
+    : ''
+  for (const fragment of [
+    'export const TRADING_TOOL_REVIEWS',
+    'export function getTradingToolReview',
+    'export function getTradingToolReviewLinks',
+    'every configured tool review links to the other four',
+  ]) {
+    if (!library.includes(fragment)) {
+      rows.push(`trading-tool review selector is missing "${fragment}"`)
+    }
+  }
+
+  const blogRoute = fs.existsSync(BLOG_POST_PAGE_FILE)
+    ? fs.readFileSync(BLOG_POST_PAGE_FILE, 'utf-8')
+    : ''
+  for (const fragment of [
+    'const toolReviewLinks = getTradingToolReviewLinks(slug, allPosts)',
+    'allPosts.filter(candidate => !toolReviewSlugs.has(candidate.slug))',
+    '<TradingToolReviewStatus post={post} />',
+    '<TradingToolReviewCluster current={post} reviews={toolReviewLinks} />',
+  ]) {
+    if (!blogRoute.includes(fragment)) {
+      rows.push(`blog template is missing trading-tool contract "${fragment}"`)
+    }
+  }
+  const statusIndex = blogRoute.indexOf('<TradingToolReviewStatus')
+  const contentsIndex = blogRoute.indexOf('<TableOfContents')
+  const bodyIndex = blogRoute.indexOf('dangerouslySetInnerHTML={{ __html: contentWithIds }}')
+  const clusterIndex = blogRoute.indexOf('<TradingToolReviewCluster')
+  if (!(statusIndex >= 0 && statusIndex < contentsIndex && bodyIndex < clusterIndex)) {
+    rows.push('trading-tool freshness must precede the article and peer links must follow it')
+  }
+
+  const schema = fs.existsSync(SCHEMA_FILE) ? fs.readFileSync(SCHEMA_FILE, 'utf-8') : ''
+  if (!schema.includes('description: post.seoDescription || post.excerpt || post.title')) {
+    rows.push('Article schema does not use the reviewed search description')
+  }
+
+  const releaseCrawl = fs.existsSync(RELEASE_CRAWL_FILE)
+    ? fs.readFileSync(RELEASE_CRAWL_FILE, 'utf-8')
+    : ''
+  for (const fragment of [
+    'trading-tool review has only ${inlinkCount} unique internal inlinks',
+    'trading-tool cluster is incomplete or out of order',
+    'trading-tool Article schema description disagrees with metadata',
+  ]) {
+    if (!releaseCrawl.includes(fragment)) {
+      rows.push(`release crawl is missing trading-tool safeguard "${fragment}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\nâœ— Trading-tool review cluster')
+    for (const row of rows) console.log(`  Â· ${row}`)
+  }
+  return rows.length
+}
+
 /** Related links must be relevant, deterministic, unique, and never self-link. */
 function checkRelatedPostSelection() {
   const rows = []
@@ -9821,6 +9969,8 @@ const comparisonDetailTemplateErrors = checkComparisonDetailTemplate()
 totalErrors += comparisonDetailTemplateErrors
 const fundedNextComparisonOverlayErrors = checkFundedNextComparisonOverlay()
 totalErrors += fundedNextComparisonOverlayErrors
+const tradingToolReviewClusterErrors = checkTradingToolReviewCluster()
+totalErrors += tradingToolReviewClusterErrors
 const relatedPostSelectionErrors = checkRelatedPostSelection()
 totalErrors += relatedPostSelectionErrors
 

@@ -17,6 +17,10 @@ import MobileStickyCTA from '@/components/MobileStickyCTA'
 import { decoratePostOutboundLinks } from '@/lib/postOutboundLinks'
 import { buildOutboundRelationships } from '@/lib/outboundDestinations'
 import { rankRelatedPosts } from '@/lib/relatedPosts'
+import TradingToolReviewCluster, {
+  TradingToolReviewStatus,
+} from '@/components/TradingToolReviewCluster'
+import { getTradingToolReviewLinks } from '@/lib/tradingToolReviews'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -81,7 +85,12 @@ export default async function BlogPostPage({ params }: Props) {
   )
 
   const allPosts = getAllPostData()
-  const related = rankRelatedPosts(post, allPosts)
+  const toolReviewLinks = getTradingToolReviewLinks(slug, allPosts)
+  const toolReviewSlugs = new Set(toolReviewLinks.map(review => review.slug))
+  const relatedCandidates = toolReviewLinks.length
+    ? allPosts.filter(candidate => !toolReviewSlugs.has(candidate.slug))
+    : allPosts
+  const related = rankRelatedPosts(post, relatedCandidates)
 
   const matchedFirm = firms.find(f => f.reviewUrl === `/blog/${slug}`)
   const postLd = postSchema(post, firms)
@@ -152,6 +161,7 @@ export default async function BlogPostPage({ params }: Props) {
             {matchedFirm && <AffiliateDisclosure />}
             {matchedFirm && <FirmCtaCard firm={matchedFirm} />}
             {matchedFirm && <FirmStatPanel firm={matchedFirm} />}
+            <TradingToolReviewStatus post={post} />
 
             <TableOfContents html={contentWithIds} />
 
@@ -159,6 +169,9 @@ export default async function BlogPostPage({ params }: Props) {
               dangerouslySetInnerHTML={{ __html: contentWithIds }} />
 
             {matchedFirm && <FirmAlternatives current={matchedFirm} allFirms={firms} />}
+            {toolReviewLinks.length > 0 && (
+              <TradingToolReviewCluster current={post} reviews={toolReviewLinks} />
+            )}
 
             {post.tags?.length > 0 && (
               <div className="post-tags">
