@@ -6206,23 +6206,28 @@ function checkFuturesLandingCluster() {
   if (!block) {
     rows.push('best-futures-prop-firms landing config is missing')
   } else {
-    const metaTitle = block.match(/metaTitle:\s*'([^']+)'/)?.[1] ?? ''
-    const description = block.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1] ?? ''
-    if (metaTitle.length > 54) {
+    const metaTitle = block.match(/metaTitle:\s*'([^']+)'/)?.[1]
+    const description = block.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1]
+    if (metaTitle && metaTitle.length > 54) {
       rows.push('futures landing meta title must leave room for the root title suffix')
     }
-    if (description.length < 120 || description.length > 160) {
+    if (description && (description.length < 120 || description.length > 160)) {
       rows.push('futures landing meta description must be between 120 and 160 characters')
     }
     for (const fragment of [
       'function freshFuturesProducts(firm: Firm): Challenge[]',
+      'const CURRENT_FUTURES_FIRM_COUNT = CURRENT_FUTURES_SNAPSHOT.length',
+      'const CURRENT_FUTURES_PRODUCT_COUNT = CURRENT_FUTURES_SNAPSHOT.reduce',
       "isChallengeFresh(challenge) && challenge.assetClass === 'futures'",
+      'h1: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Verified`',
+      'metaTitle: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Verified`',
+      'snapshotProductCount: CURRENT_FUTURES_PRODUCT_COUNT',
       'const products = freshFuturesProducts(firm)',
       'pricingModelLabel(product.pricingModel)',
-      "metricLabel: 'Products'",
-      'url: evidenceProduct.sourceUrl',
-      'capturedAt: evidenceProduct.sourceCapturedAt',
-      'affiliate status, coupon size, product count, billing model, platform, and drawdown type add 0 points',
+      "trailingMetricLabel: 'Products'",
+      'trailingMetricValue: products.length.toString()',
+      'evidenceLinks: evidenceLinksForProducts(products)',
+      'affiliate status, coupon size, the ${CURRENT_FUTURES_PRODUCT_COUNT}-product count, billing model, platform, and drawdown type add 0 points',
       'Is the evaluation fee one-time or recurring?',
       'Does drawdown trail intraday or at session end?',
       'Is the funded stage simulated or live?',
@@ -6257,9 +6262,12 @@ function checkFuturesLandingCluster() {
     'https://www.cftc.gov/IndustryOversight/TradingOrganizations/DCMs/index.htm',
     'https://www.cftc.gov/check',
     "href: '/prop-firm-challenges?market=futures'",
+    'title: `Compare ${landing.snapshotProductCount ?? 0} current futures products`',
     "href: '/best-prop-firms-in-us'",
     "href: '/blog/balance-based-drawdown-vs-equity-based-drawdown'",
     "href: '/prop-firm-challenge-changes'",
+    'landing.snapshotProductCount',
+    'every card names every current futures product and links each distinct source',
     'Compare the exact futures product',
     'href="/prop-firm-challenges?market=futures"',
   ]) {
@@ -6295,13 +6303,19 @@ function checkFuturesLandingCluster() {
       rows.push(`${file}: missing contextual backlink to the futures comparison`)
     }
   }
+  if (!read(DRAWDOWN_GUIDE_FILE).includes('href="/best-futures-prop-firms"')) {
+    rows.push('drawdown guide is missing its contextual futures-comparison backlink')
+  }
 
   const crawler = read(RELEASE_CRAWL_FILE)
   for (const fragment of [
     "const futuresLandingPath = '/best-futures-prop-firms'",
     'expectedFuturesFirms',
+    'expectedFuturesProductCount',
     "challenge.assetClass === 'futures'",
-    'rendered ${cardCount} firms, expected ${expectedFuturesFirms.length}',
+    '7 firms and 25 products',
+    'Products ${products.length}',
+    'missing contextual futures-ranking backlink',
     "'/prop-firm-challenges?market=futures'",
     'canonical includes futures market state',
   ]) {

@@ -994,7 +994,11 @@ const expectedFuturesFirms = firmRecords.flatMap(firm => {
     isChallengeFresh(challenge) && challenge.assetClass === 'futures',
   )
   return products.length ? [{ firm, products }] : []
-})
+}).sort((a, b) => b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
+const expectedFuturesProductCount = expectedFuturesFirms.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
 const futuresLandingProbe = await fetchPage(new URL(futuresLandingPath, BASE))
 if (futuresLandingProbe.status !== 200) {
   errors.push(
@@ -1002,25 +1006,68 @@ if (futuresLandingProbe.status !== 200) {
   )
 } else {
   const futuresText = textContent(futuresLandingProbe.html)
-  const cardCount = (futuresLandingProbe.html.match(/<li class="leader-row/g) ?? []).length
-  const evidenceDateCount = (futuresText.match(/checked 2026-/g) ?? []).length
-  if (cardCount !== expectedFuturesFirms.length) {
+  const cards = [...futuresLandingProbe.html.matchAll(
+    /<li class="leader-row[^"]*"[^>]*>([\s\S]*?)<\/li>/gi,
+  )].map(match => ({ html: match[0], text: textContent(match[1]) }))
+  const itemListCount = (futuresLandingProbe.html.match(/"@type":"ItemList"/g) ?? []).length
+  if (cards.length !== expectedFuturesFirms.length) {
     errors.push(
-      `${futuresLandingPath}: rendered ${cardCount} firms, expected ${expectedFuturesFirms.length}`,
+      `${futuresLandingPath}: rendered ${cards.length} firms, expected ${expectedFuturesFirms.length}`,
     )
   }
-  if (evidenceDateCount !== expectedFuturesFirms.length) {
+  if (expectedFuturesFirms.length !== 7 || expectedFuturesProductCount !== 25) {
     errors.push(
-      `${futuresLandingPath}: rendered ${evidenceDateCount} dated card sources, expected ${expectedFuturesFirms.length}`,
+      `${futuresLandingPath}: current fixture must resolve to 7 firms and 25 products; received ${expectedFuturesFirms.length} and ${expectedFuturesProductCount}`,
     )
   }
-  for (const { firm } of expectedFuturesFirms) {
-    if (!futuresText.includes(firm.name)) {
-      errors.push(`${futuresLandingPath}: missing qualifying firm ${firm.name}`)
+  if (itemListCount !== 1) {
+    errors.push(`${futuresLandingPath}: rendered ${itemListCount} ItemLists, expected 1`)
+  }
+  expectedFuturesFirms.forEach(({ firm, products }, index) => {
+    const card = cards[index]
+    if (!card || !card.text.includes(firm.name)) {
+      errors.push(`${futuresLandingPath}: rank ${index + 1} should be ${firm.name}`)
+      return
     }
+    for (const required of [
+      `${products.length} current ${products.length === 1 ? 'product' : 'products'}`,
+      `Score ${firm.score.toFixed(1)}`,
+      `Products ${products.length}`,
+    ]) {
+      if (!card.text.includes(required)) {
+        errors.push(`${futuresLandingPath}: ${firm.name} card is missing ${required}`)
+      }
+    }
+    for (const product of products) {
+      if (!card.text.includes(product.productName)) {
+        errors.push(`${futuresLandingPath}: ${firm.name} card is missing ${product.productName}`)
+      }
+      if (!decodeHtml(card.html).includes(`href="${product.sourceUrl}"`)) {
+        errors.push(`${futuresLandingPath}: ${firm.name} card is missing the ${product.productName} source`)
+      }
+      if (!card.text.includes(`checked ${product.sourceCapturedAt}`)) {
+        errors.push(`${futuresLandingPath}: ${firm.name} card is missing the ${product.productName} capture date`)
+      }
+    }
+  })
+
+  const expectedDescription =
+    'Compare 7 futures prop firms across 25 current products with fees, billing, drawdown, payout rules, platforms, reviews, and dated first-party sources.'
+  const renderedDescription = decodeHtml(firstMatch(
+    futuresLandingProbe.html,
+    /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+  ) || firstMatch(
+    futuresLandingProbe.html,
+    /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+  ))
+  if (renderedDescription !== expectedDescription) {
+    errors.push(`${futuresLandingPath}: meta description does not match the 7-firm/25-product snapshot`)
   }
   for (const required of [
-    'Best Futures Prop Firms (2026) — By Product | TFH',
+    'Best Futures Prop Firms (2026): 7 Verified | TFH',
+    'Best Futures Prop Firms (2026): 7 Verified',
+    '7 verified firms across 25 current futures products',
+    'Compare 25 current futures products',
     'What futures traders should verify',
     'Is the evaluation fee one-time or recurring?',
     'Does drawdown trail intraday or at session end?',
@@ -1050,6 +1097,25 @@ if (futuresLandingProbe.status !== 200) {
     || futuresText.includes('firm acts as an evaluation gate, not as the counterparty')
   ) {
     errors.push(`${futuresLandingPath}: restored unsupported regulatory or aggregate wording`)
+  }
+}
+
+for (const backlinkPath of [
+  '/blog/topstep-review',
+  '/blog/my-funded-futures',
+  '/blog/take-profit-trader-review',
+  '/blog/tradeday-review',
+  '/blog/apex-trader-funding-review',
+  '/blog/lucid-trading-review',
+  '/blog/tradeify-review',
+  '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+  '/best-prop-firms-in-us',
+]) {
+  const backlinkProbe = await fetchPage(new URL(backlinkPath, BASE))
+  if (backlinkProbe.status !== 200) {
+    errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
+  } else if (!backlinkProbe.html.includes('href="/best-futures-prop-firms"')) {
+    errors.push(`${backlinkPath}: missing contextual futures-ranking backlink`)
   }
 }
 

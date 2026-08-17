@@ -648,7 +648,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                 {
                   href: '/prop-firm-challenges?market=futures',
                   eyebrow: 'Exact products',
-                  title: 'Compare current futures products',
+                  title: `Compare ${landing.snapshotProductCount ?? 0} current futures products`,
                   body: 'Open the full product table with the futures market filter already selected.',
                 },
                 {
@@ -971,13 +971,15 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                       ? '8 policy-checked firms across 34 mapped products'
                       : isUs
                         ? '4 policy-checked firms across 14 mapped products'
-                        : isInstant
-                          ? `${count} verified firms across ${landing.snapshotProductCount ?? 0} phase-0 products`
-                          : isSwing
-                            ? `${count} verified firms across ${landing.snapshotProductCount ?? 0} swing-qualified products`
-                            : isCrypto
-                              ? '7 evidence-backed firms across 32 mapped products'
-                              : 'Ranked & source-checked'}
+                        : isFutures
+                          ? `${count} verified firms across ${landing.snapshotProductCount ?? 0} current futures products`
+                          : isInstant
+                            ? `${count} verified firms across ${landing.snapshotProductCount ?? 0} phase-0 products`
+                            : isSwing
+                              ? `${count} verified firms across ${landing.snapshotProductCount ?? 0} swing-qualified products`
+                              : isCrypto
+                                ? '7 evidence-backed firms across 32 mapped products'
+                                : 'Ranked & source-checked'}
               </h2>
               <p className="section-sub-text">
                 {isCheapest ? (
@@ -999,6 +1001,11 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   <>
                     Editorial score sets the order; every card names current product coverage and links its access source.
                     Partnership, coupon size, product count, asset class and platform add 0 points.
+                  </>
+                ) : isFutures ? (
+                  <>
+                    Editorial score sets the order; every card names every current futures product and links each distinct source.
+                    Partnership, coupon size, product count, billing model, platform and drawdown type add 0 points.
                   </>
                 ) : isInstant ? (
                   <>

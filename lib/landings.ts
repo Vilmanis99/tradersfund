@@ -337,6 +337,16 @@ const CURRENT_INSTANT_PRODUCT_COUNT = CURRENT_INSTANT_SNAPSHOT.reduce(
   0,
 )
 
+const CURRENT_FUTURES_SNAPSHOT = getAllFirms().flatMap(firm => {
+  const products = freshFuturesProducts(firm)
+  return products.length ? [{ firm, products }] : []
+})
+const CURRENT_FUTURES_FIRM_COUNT = CURRENT_FUTURES_SNAPSHOT.length
+const CURRENT_FUTURES_PRODUCT_COUNT = CURRENT_FUTURES_SNAPSHOT.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
+
 const CURRENT_SWING_SNAPSHOT = getAllFirms().flatMap(firm => {
   const products = swingCompatibleProducts(firm)
   return products.length ? [{ firm, products }] : []
@@ -828,13 +838,14 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-futures-prop-firms',
-    h1: 'Best Futures Prop Firms (2026)',
-    metaTitle: 'Best Futures Prop Firms (2026) — By Product',
+    h1: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Verified`,
+    metaTitle: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Verified`,
     metaDescription:
-      'Compare futures prop firms using current product-level fees, billing, drawdown, payout rules, platforms, reviews, and dated first-party sources.',
+      `Compare ${CURRENT_FUTURES_FIRM_COUNT} futures prop firms across ${CURRENT_FUTURES_PRODUCT_COUNT} current products with fees, billing, drawdown, payout rules, platforms, reviews, and dated first-party sources.`,
     intro:
-      'Every ranked firm has at least 1 fresh challenge record whose asset class is futures. Some evaluations rebill monthly; others use a one-time fee, and drawdown can trail intraday or update at the end of the session. CFTC oversight of a designated futures exchange does not automatically make the evaluation provider, software platform, or data connection CFTC-registered.',
+      `These ${CURRENT_FUTURES_FIRM_COUNT} firms have ${CURRENT_FUTURES_PRODUCT_COUNT} current products whose structured asset class is futures. Every card names each path and links its distinct first-party sources. Some evaluations rebill monthly; others use a one-time fee, and drawdown can trail intraday or update at the end of the session. CFTC oversight of a designated futures exchange does not automatically make the evaluation provider, software platform, or data connection CFTC-registered.`,
     sortDir: 'desc',
+    snapshotProductCount: CURRENT_FUTURES_PRODUCT_COUNT,
     rank: firms => firms
       .flatMap(firm => {
         const products = freshFuturesProducts(firm)
@@ -849,27 +860,21 @@ export const LANDINGS: Landing[] = [
         const splits = [...new Set(products.flatMap(product =>
           product.profitSplitPct == null ? [] : [product.profitSplitPct],
         ))].sort((a, b) => a - b)
-        const shownProducts = products.slice(0, 3).map(product => product.productName)
-        const moreCount = products.length - shownProducts.length
-        const evidenceProduct = products[0]
+        const productNames = products.map(product => product.productName)
 
         return [{
           firm,
           sortKey: firm.score,
           highlight: `${products.length} current ${products.length === 1 ? 'product' : 'products'} · ${joinNatural(billing)}`,
-          metricLabel: 'Products',
-          metricValue: products.length.toString(),
-          note: `${joinNatural(shownProducts)}${moreCount > 0 ? `, plus ${moreCount} more` : ''}. Captured drawdown: ${joinNatural(drawdowns)}; published starting ${splits.length === 1 ? 'split' : 'splits'}: ${splits.length ? `${splits.join('–')}%` : 'unverified'}.`,
-          evidence: {
-            label: `${evidenceProduct.productName} source`,
-            url: evidenceProduct.sourceUrl,
-            capturedAt: evidenceProduct.sourceCapturedAt,
-          },
+          trailingMetricLabel: 'Products',
+          trailingMetricValue: products.length.toString(),
+          note: `${joinNatural(productNames)}. Captured drawdown: ${joinNatural(drawdowns)}; published starting ${splits.length === 1 ? 'split' : 'splits'}: ${splits.length ? `${splits.join('–')}%` : 'unverified'}.`,
+          evidenceLinks: evidenceLinksForProducts(products),
         }]
       })
       .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
     methodology:
-      'A firm qualifies only when at least 1 structured product captured within 30 days explicitly sets assetClass to futures. A firm-level Futures label without a fresh product does not qualify. The order uses our editorial score; affiliate status, coupon size, product count, billing model, platform, and drawdown type add 0 points. Each card names current products and links a dated first-party source.',
+      `A firm qualifies only when at least 1 structured product captured within 30 days explicitly sets assetClass to futures. A firm-level Futures label without a fresh product does not qualify. The order across ${CURRENT_FUTURES_FIRM_COUNT} firms uses our editorial score; affiliate status, coupon size, the ${CURRENT_FUTURES_PRODUCT_COUNT}-product count, billing model, platform, and drawdown type add 0 points. Each card names every current product and links each distinct first-party source.`,
     decisionGuide: [
       {
         title: 'Is the evaluation fee one-time or recurring?',
