@@ -71,7 +71,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>The examples answer “how do prop firms work?” more accurately than one generic $500 challenge. FundedNext alone has a 2-step product with an 80% base share and a phase-0 Instant product starting at 70%. Topstep’s $99 is a monthly subscription rather than a one-off comparison price. Use the <a href="/prop-firm-challenges">product-level comparison table</a> to keep those models separate.</p>
+<p>The examples answer “how do prop firms work?” more accurately than one generic $500 challenge. FundedNext alone has a 2-step product with an 80% base share and a phase-0 Instant product starting at 70%. Topstep’s $99 is a monthly subscription rather than a one-off comparison price. Use the <a href="/prop-firm-challenges">product-level comparison table</a> to keep those models separate. When a strategy depends on market access, the <a href="/best-crypto-prop-firms">crypto prop-firm comparison</a> also separates tradable-crypto evidence from crypto payment and payout rails.</p>
 
 <h2>What a funded account actually represents</h2>
 

@@ -1,0 +1,105 @@
+{
+  "methodology": "A ranked firm needs a first-party source that explicitly names crypto as a tradable market and fresh structured product records for every product slug mapped below. Payment or payout by crypto does not qualify. Separate crypto products without structured prices and rules remain on watch rather than inheriting a forex product row.",
+  "ranked": [
+    {
+      "firmSlug": "crypto-fund-trader",
+      "firmName": "Crypto Fund Trader",
+      "marketModel": "crypto-native",
+      "productSlugs": ["evaluation", "ascend", "accelerated", "instant", "break"],
+      "sourceUrl": "https://cryptofundtrader.com/choose-your-challenge/",
+      "sourceCapturedAt": "2026-07-27",
+      "evidence": "MetaTrader 5 and Match-Trader list more than 540 crypto pairs; Bybit lists more than 715 crypto pairs.",
+      "scopeNote": "All 5 current structured products are crypto-native. Exact pair count and platform availability can still differ by product and region."
+    },
+    {
+      "firmSlug": "ftmo",
+      "firmName": "FTMO",
+      "marketModel": "multi-asset-cfd",
+      "productSlugs": ["ftmo-challenge-2-step", "ftmo-challenge-1-step"],
+      "sourceUrl": "https://ftmo.com/en/faq/which-instruments-can-i-trade-and-what-strategies-am-i-allowed-to-use/",
+      "sourceCapturedAt": "2026-07-27",
+      "evidence": "FTMO names Forex, Indices, Commodities, Stocks, and Crypto among available platform instruments.",
+      "scopeNote": "Both current FTMO challenge records are covered; the available symbols and trading hours depend on the selected platform and account specification."
+    },
+    {
+      "firmSlug": "fundednext",
+      "firmName": "FundedNext",
+      "marketModel": "multi-asset-cfd",
+      "productSlugs": ["stellar-2-step", "stellar-1-step", "stellar-lite", "stellar-instant"],
+      "sourceUrl": "https://help.fundednext.com/en/articles/8020350-what-is-the-contract-size-of-the-instruments",
+      "sourceCapturedAt": "2026-08-17",
+      "evidence": "FundedNext publishes cryptocurrency contract sizes and states that the specifications apply to all accounts.",
+      "scopeNote": "All 4 current CFD products are covered. Contract size varies by pair, so the platform specification remains the symbol-level authority."
+    },
+    {
+      "firmSlug": "fundingpips",
+      "firmName": "FundingPips",
+      "marketModel": "multi-asset-cfd",
+      "productSlugs": ["1-step-flex"],
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+      "sourceCapturedAt": "2026-07-27",
+      "evidence": "The 1 Step Flex specification publishes 0.04% crypto commission and 1:2 crypto leverage.",
+      "scopeNote": "Only 1 Step Flex is mapped. The other 4 current FundingPips products are not assumed to share its crypto availability or trading conditions."
+    },
+    {
+      "firmSlug": "city-traders-imperium",
+      "firmName": "City Traders Imperium",
+      "marketModel": "multi-asset-cfd",
+      "productSlugs": ["1-step-challenge", "2-step-challenge", "instant-funding", "direct-funding"],
+      "sourceUrl": "https://citytradersimperium.com/",
+      "sourceCapturedAt": "2026-08-17",
+      "evidence": "CTI lists Forex, Commodities, Indices, and Crypto under its trading-platform market coverage.",
+      "scopeNote": "All 4 current funding-program records are mapped; trading remains simulated and exact symbols depend on MT5 or Match-Trader availability."
+    },
+    {
+      "firmSlug": "ofp-funding",
+      "firmName": "OFP Funding",
+      "marketModel": "multi-asset-cfd",
+      "productSlugs": [
+        "instant-classic-3-daily-6-max-drawdown",
+        "instant-classic-5-daily-10-max-drawdown",
+        "instant-lite",
+        "instant-plus-3-daily-5-max-drawdown",
+        "instant-plus-5-daily-10-max-drawdown",
+        "instant-prime",
+        "instant-pro",
+        "one-phase-challenge",
+        "two-phase-challenge"
+      ],
+      "sourceUrl": "https://ofpfunding.com/",
+      "sourceCapturedAt": "2026-07-27",
+      "evidence": "OFP names Forex, Crypto, Indices, Metals, and Energies among its simulated instruments.",
+      "scopeNote": "All 9 current structured products are mapped, but the firm does not publish a product-by-product crypto symbol list."
+    },
+    {
+      "firmSlug": "the-funded-trader",
+      "firmName": "The Funded Trader",
+      "marketModel": "multi-asset-cfd",
+      "productSlugs": ["knight", "knight-pro", "classic-1-step", "royal", "royal-pro", "classic-2-step", "dragon"],
+      "sourceUrl": "https://www.thefundedtraderprogram.com/",
+      "sourceCapturedAt": "2026-07-27",
+      "evidence": "The firm FAQ names forex, commodities, indices, and crypto for its supported CFD platforms.",
+      "scopeNote": "All 7 live dataset products are mapped; the linked help-centre product articles were unavailable at capture, so unresolved product-specific fields remain null."
+    }
+  ],
+  "watch": [
+    {
+      "firmSlug": "e8-markets",
+      "firmName": "E8 Markets",
+      "status": "product-capture-needed",
+      "sourceUrl": "https://help.e8markets.com/en/articles/9799834-available-trading-platforms",
+      "sourceCapturedAt": "2026-08-11",
+      "evidence": "E8 explicitly references separate Forex and Crypto accounts, but the current structured capture contains only Forex product rows.",
+      "nextStep": "Capture the current crypto-specific products, prices, leverage, payout rules, and available platforms before ranking."
+    },
+    {
+      "firmSlug": "fxify",
+      "firmName": "FXIFY",
+      "status": "product-capture-needed",
+      "sourceUrl": "https://fxify.com/faqs/all-faqs/crypto-accounts/which-accounts-can-i-trade-crypto-on/",
+      "sourceCapturedAt": "2026-08-17",
+      "evidence": "FXIFY publishes a One Phase Crypto Challenge and an Instant Funding Crypto Account; its current structured rows are explicitly FOREX products.",
+      "nextStep": "Capture both named crypto-only products as separate challenge records instead of applying FOREX prices or rules."
+    }
+  ]
+}

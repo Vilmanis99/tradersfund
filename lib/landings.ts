@@ -18,6 +18,7 @@ import {
   type IndiaFirmEvidence,
 } from './india'
 import rawUsAccessEvidence from '@/content/data/us-access-evidence.json'
+import rawCryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'
 
 /**
  * Long-tail landing pages — "best prop firms in UK", "cheapest", "best
@@ -50,6 +51,9 @@ export interface LandingFirm {
   /** Optional landing-specific metric shown in place of the generic score. */
   metricLabel?: string
   metricValue?: string
+  /** Optional product-specific replacement for the generic payout stat. */
+  trailingMetricLabel?: string
+  trailingMetricValue?: string
   /**
    * Optional one-line editorial verdict ("who it's for / the catch"), shown
    * under the stat line. Lets a ranking read as opinionated, not a bare
@@ -62,6 +66,15 @@ export interface LandingFirm {
     url: string
     capturedAt: string
   }
+}
+
+export interface LandingEvidenceGap {
+  firmName: string
+  statusLabel: string
+  summary: string
+  nextStep: string
+  sourceUrl: string
+  sourceCapturedAt: string
 }
 
 export interface Landing {
@@ -82,6 +95,8 @@ export interface Landing {
   methodology: string
   /** Optional market-specific questions shown above methodology. */
   decisionGuide?: { title: string; body: string }[]
+  /** Dated first-party leads that are visible but deliberately excluded from ranking. */
+  evidenceGaps?: LandingEvidenceGap[]
   /** ISO date of editorial review. Drives the visible freshness pill. */
   lastReviewed: string
 }
@@ -103,12 +118,39 @@ interface UsAccessEvidence {
   decisionNote: string
 }
 
+interface CryptoMarketEvidence {
+  firmSlug: string
+  firmName: string
+  marketModel: 'crypto-native' | 'multi-asset-cfd'
+  productSlugs: string[]
+  sourceUrl: string
+  sourceCapturedAt: string
+  evidence: string
+  scopeNote: string
+}
+
+interface CryptoMarketWatch {
+  firmSlug: string
+  firmName: string
+  status: 'product-capture-needed'
+  sourceUrl: string
+  sourceCapturedAt: string
+  evidence: string
+  nextStep: string
+}
+
 const US_ACCESS_EVIDENCE_BY_SLUG = new Map(
   (rawUsAccessEvidence.firms as UsAccessEvidence[]).map(evidence => [
     evidence.firmSlug,
     evidence,
   ]),
 )
+
+const CRYPTO_MARKET_EVIDENCE = rawCryptoMarketEvidence.ranked as CryptoMarketEvidence[]
+const CRYPTO_MARKET_EVIDENCE_BY_SLUG = new Map(
+  CRYPTO_MARKET_EVIDENCE.map(evidence => [evidence.firmSlug, evidence]),
+)
+const CRYPTO_MARKET_WATCH = rawCryptoMarketEvidence.watch as CryptoMarketWatch[]
 
 function isAccessEvidenceFresh(sourceCapturedAt: string) {
   const captured = new Date(`${sourceCapturedAt}T00:00:00Z`)
@@ -117,6 +159,10 @@ function isAccessEvidenceFresh(sourceCapturedAt: string) {
   const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
   const ageDays = Math.floor((todayUtc - captured.getTime()) / 86400000)
   return ageDays >= 0 && ageDays <= ACCESS_EVIDENCE_MAX_AGE_DAYS
+}
+
+function isCryptoMarketEvidenceFresh(sourceCapturedAt: string) {
+  return isAccessEvidenceFresh(sourceCapturedAt)
 }
 
 function minimumPublishedEntry(challenges: Challenge[]) {
@@ -159,47 +205,37 @@ function joinNatural(values: string[]): string {
   return `${values.slice(0, -1).join(', ')}, and ${values.at(-1)}`
 }
 
-/**
- * Landing-card evidence must age with the challenge captures. This deliberately
- * avoids hand-written superlatives: each number and rule is calculated from
- * products that are still inside the 30-day source window.
- */
-function productEvidenceNote(firm: Firm): string {
-  const challenges = freshProductsForFirm(firm)
-  if (!challenges.length) {
-    return 'No product capture is currently inside the 30-day freshness window; verify the firm before paying.'
-  }
-
-  const splits = [...new Set(challenges.flatMap(challenge =>
-    challenge.profitSplitPct == null ? [] : [challenge.profitSplitPct],
-  ))].sort((a, b) => a - b)
-  const payouts = [...new Set(challenges.flatMap(challenge =>
-    challenge.payoutFrequency == null ? [] : [challenge.payoutFrequency],
-  ))].sort()
-  const drawdowns = [...new Set(challenges.flatMap(challenge =>
-    challenge.drawdownType == null ? [] : [challenge.drawdownType],
-  ))].sort()
-
-  const splitText = splits.length === 0
-    ? 'split not published'
-    : splits.length === 1
-      ? `${splits[0]}% published split`
-      : `${splits[0]}–${splits.at(-1)}% published splits`
-  const payoutText = payouts.length
-    ? `${joinNatural(payouts)} payout timing`
-    : 'payout timing not published'
-  const drawdownText = drawdowns.length
-    ? `${joinNatural(drawdowns)} drawdown`
-    : 'drawdown method not published'
-
-  return `${challenges.length} source-checked ${challenges.length === 1 ? 'product' : 'products'}; ${splitText}; ${payoutText}. Product rules include ${drawdownText}.`
-}
-
 function freshProductsForFirm(firm: Firm): Challenge[] {
   return getChallengesByFirm(firmSlug(firm.name)).filter(challenge =>
     isChallengeFresh(challenge),
   )
 }
+
+function cryptoProductsForEvidence(evidence: CryptoMarketEvidence): Challenge[] {
+  if (!isCryptoMarketEvidenceFresh(evidence.sourceCapturedAt)) return []
+
+  const productsBySlug = new Map(
+    getChallengesByFirm(evidence.firmSlug).map(product => [product.productSlug, product]),
+  )
+  const products = evidence.productSlugs.flatMap(productSlug => {
+    const product = productsBySlug.get(productSlug)
+    return product && isChallengeFresh(product) ? [product] : []
+  })
+
+  // A partial mapping could silently borrow a firm-wide rule for an uncaptured
+  // product. Exclude the firm until every explicitly mapped row is current.
+  return products.length === evidence.productSlugs.length ? products : []
+}
+
+const CURRENT_CRYPTO_SNAPSHOT = CRYPTO_MARKET_EVIDENCE.flatMap(evidence => {
+  const products = cryptoProductsForEvidence(evidence)
+  return products.length ? [{ evidence, products }] : []
+})
+const CURRENT_CRYPTO_FIRM_COUNT = CURRENT_CRYPTO_SNAPSHOT.length
+const CURRENT_CRYPTO_PRODUCT_COUNT = CURRENT_CRYPTO_SNAPSHOT.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
 
 const CURRENT_OVERALL_SNAPSHOT = getAllFirms().flatMap(firm => {
   const products = freshProductsForFirm(firm)
@@ -740,26 +776,84 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-crypto-prop-firms',
-    h1: 'Best Crypto Prop Firms (2026)',
-    metaTitle: 'Best Crypto Prop Firms in 2026 — Ranked',
+    h1: `Best Crypto Prop Firms (2026): ${CURRENT_CRYPTO_FIRM_COUNT} Verified`,
+    metaTitle: `Best Crypto Prop Firms (2026): ${CURRENT_CRYPTO_FIRM_COUNT} Verified`,
     metaDescription:
-      'Prop firms that let you trade crypto — ranked by profit split, payout speed, and rules. Plus which firm is built crypto-first versus crypto as an afterthought.',
+      `Compare ${CURRENT_CRYPTO_FIRM_COUNT} crypto prop firms across ${CURRENT_CRYPTO_PRODUCT_COUNT} mapped products using current rules, market-specific evidence, source dates, and reviews.`,
     intro:
-      "Two questions hide inside “best crypto prop firm”: can you trade crypto, and can you get paid in it? This page answers the first — every firm below lists crypto among its tradeable markets. Only one, Crypto Fund Trader, is built crypto-first; the rest treat it as one CFD market among several. If what you want is to be paid in crypto, that's a different cut — check the rule filters.",
+      `Trading crypto is not the same as paying or withdrawing in crypto. These ${CURRENT_CRYPTO_FIRM_COUNT} firms have a current first-party source that explicitly names crypto as a tradable market plus ${CURRENT_CRYPTO_PRODUCT_COUNT} exact product records inside the 30-day freshness window. Crypto-native products rank before multi-asset CFD products, then editorial score breaks ties. E8 Markets and FXIFY remain visible below as product-capture gaps rather than borrowing forex prices or rules.`,
     sortDir: 'desc',
-    rank: firms =>
-      firms
-        .filter(f => f.assets?.includes('Crypto'))
-        .map(firm => ({
+    rank: firms => firms
+      .flatMap(firm => {
+        const slug = firmSlug(firm.name)
+        const evidence = CRYPTO_MARKET_EVIDENCE_BY_SLUG.get(slug)
+        if (!evidence) return []
+        const products = cryptoProductsForEvidence(evidence)
+        if (!products.length) return []
+
+        const marketLabel = evidence.marketModel === 'crypto-native'
+          ? 'Crypto-native'
+          : 'Multi-asset CFD'
+        const splits = [...new Set(products.flatMap(product =>
+          product.profitSplitPct == null ? [] : [product.profitSplitPct],
+        ))].sort((a, b) => a - b)
+        const drawdowns = [...new Set(products.map(product =>
+          drawdownLabel(product.drawdownType),
+        ))].sort()
+        const shownProducts = products.slice(0, 3).map(product => product.productName)
+        const moreCount = products.length - shownProducts.length
+        const splitText = splits.length === 0
+          ? 'starting split unpublished'
+          : splits.length === 1
+            ? `${splits[0]}% starting split`
+            : `${splits[0]}–${splits.at(-1)}% starting splits`
+
+        return [{
           firm,
-          sortKey: firm.score,
-          highlight: `${firm.profitSplitPct ?? '—'}% split · ${firm.payoutFrequency ?? '—'} payouts`,
-          note: productEvidenceNote(firm),
-        }))
-        .sort((a, b) => b.sortKey - a.sortKey),
+          sortKey: (evidence.marketModel === 'crypto-native' ? 100 : 0) + firm.score,
+          highlight: `${products.length} crypto-mapped ${products.length === 1 ? 'product' : 'products'} · ${marketLabel}`,
+          metricLabel: 'Products',
+          metricValue: products.length.toString(),
+          trailingMetricLabel: 'Market model',
+          trailingMetricValue: marketLabel,
+          note: `${joinNatural(shownProducts)}${moreCount > 0 ? `, plus ${moreCount} more` : ''}. ${splitText}; ${joinNatural(drawdowns)} drawdown. ${evidence.scopeNote}`,
+          evidence: {
+            label: `${marketLabel} evidence`,
+            url: evidence.sourceUrl,
+            capturedAt: evidence.sourceCapturedAt,
+          },
+        }]
+      })
+      .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
     methodology:
-      'A firm is included if it lists Crypto in its assets array — i.e. you can trade crypto pairs on a funded account. We rank by editorial score; the per-firm notes flag whether crypto is a first-class market or one of several. This is distinct from paying out in crypto, which is a payout-method question covered by our rule filters.',
-    lastReviewed: REVIEW_DATE,
+      `A ranked firm needs a first-party source that explicitly names crypto as a tradable market and fresh structured records for every mapped product. Paying or receiving a payout in crypto adds 0 eligibility. Dedicated crypto products rank before multi-asset CFD products, then editorial score sets the order within each model. Affiliate status, coupon size, advertised pair count, maximum split, and payment method add 0 points. The ${CURRENT_CRYPTO_PRODUCT_COUNT} mapped products are an evidence boundary, not a claim that every product a firm sells supports crypto.`,
+    decisionGuide: [
+      {
+        title: 'Can I trade crypto, or only pay and withdraw with it?',
+        body: 'A crypto checkout or payout rail does not prove that BTC, ETH, or another digital-asset market is tradable. Require an instrument, contract-size, commission, leverage, or crypto-account source before treating the product as eligible.',
+      },
+      {
+        title: 'Is it a dedicated crypto account or a multi-asset CFD product?',
+        body: 'A crypto-native account can publish a broader symbol set and crypto-specific platform rules. A multi-asset CFD product may expose fewer symbols, different hours, or contract sizes that vary by platform and region.',
+      },
+      {
+        title: 'Does weekend or 24/7 access actually apply?',
+        body: 'The underlying crypto market may trade continuously while a prop platform still applies maintenance windows, product-level weekend restrictions, spread changes, or a server-time loss reset. Verify all 4 before carrying a position.',
+      },
+      {
+        title: 'What do leverage, commission, consistency, and payout rules do?',
+        body: 'A large symbol list does not offset low leverage, percentage commission, a moving loss floor, or a consistency gate. Compare those rules on the exact product rather than importing a firm-wide headline.',
+      },
+    ],
+    evidenceGaps: CRYPTO_MARKET_WATCH.map(item => ({
+      firmName: item.firmName,
+      statusLabel: 'Product capture needed',
+      summary: item.evidence,
+      nextStep: item.nextStep,
+      sourceUrl: item.sourceUrl,
+      sourceCapturedAt: item.sourceCapturedAt,
+    })),
+    lastReviewed: '2026-08-17',
   },
   {
     slug: 'best-swing-trading-prop-firms',

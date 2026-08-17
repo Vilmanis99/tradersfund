@@ -32,6 +32,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
   const isInstant = landing.slug === 'best-instant-funding-prop-firms'
   const isCheapest = landing.slug === 'cheapest-prop-firms'
   const isOverall = landing.slug === 'best-prop-firms-2026'
+  const isCrypto = landing.slug === 'best-crypto-prop-firms'
   const decisionHeading = isUs
     ? 'What U.S. traders should verify'
     : isSwing
@@ -44,7 +45,9 @@ export default function LandingPage({ landing }: { landing: Landing }) {
             ? 'What price-first buyers should verify'
             : isOverall
               ? 'How to use an overall ranking'
-              : 'What Indian traders should verify'
+              : isCrypto
+                ? 'What crypto traders should verify'
+                : 'What Indian traders should verify'
   const decisionSub = isUs
     ? 'Four access, contract and payout checks to complete before paying.'
     : isSwing
@@ -57,7 +60,9 @@ export default function LandingPage({ landing }: { landing: Landing }) {
             ? 'Four currency, billing and loss-room checks before comparing the lowest number.'
             : isOverall
               ? 'Four checks that turn an editorial shortlist into a product-level decision.'
-              : 'Four checks to complete before paying for any evaluation.'
+              : isCrypto
+                ? 'Four market, product and risk checks before paying for a crypto trading path.'
+                : 'Four checks to complete before paying for any evaluation.'
   const indiaMatcherFirms = isIndia
     ? buildIndiaMatcherFirms(firms)
     : []
@@ -296,6 +301,117 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                     {item.body}
                   </span>
                 </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isCrypto && (
+        <section className="home-section" style={{ paddingTop: 0, paddingBottom: '1rem' }}>
+          <div className="home-shell">
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '0.85rem',
+            }}>
+              {[
+                {
+                  href: '/prop-firm-challenges',
+                  eyebrow: 'Exact products',
+                  title: 'Compare the mapped rule sets',
+                  body: 'Move from market eligibility to phases, fees, targets, loss limits, account stages and trading permissions.',
+                },
+                {
+                  href: '/blog/crypto-fund-trader-review',
+                  eyebrow: 'Crypto-native review',
+                  title: 'Inspect all 5 CFT products',
+                  body: 'Compare its 24 priced tiers, static and trailing drawdown, pair coverage and product-level true cost.',
+                },
+                {
+                  href: '/blog/fundednext-review',
+                  eyebrow: 'Multi-asset review',
+                  title: 'Check FundedNext’s 4 paths',
+                  body: 'Read the separate 1-Step, 2-Step, Lite and Instant rules before using its published crypto contract sizes.',
+                },
+                {
+                  href: '/prop-firm-challenge-changes',
+                  eyebrow: 'Freshness',
+                  title: 'Recheck product changes',
+                  body: 'Review dated rule changes and open first-party evidence conflicts before checkout.',
+                },
+              ].map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="post-sidebar-card"
+                  style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+                >
+                  <span className="bento-tile-eyebrow">{item.eyebrow}</span>
+                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                    {item.title}
+                  </strong>
+                  <span style={{
+                    display: 'block',
+                    color: 'var(--muted)',
+                    fontSize: '0.8rem',
+                    lineHeight: 1.55,
+                    marginTop: '0.35rem',
+                  }}>
+                    {item.body}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {landing.evidenceGaps && landing.evidenceGaps.length > 0 && (
+        <section className="home-section" style={{ paddingTop: 0, paddingBottom: '1rem' }}>
+          <div className="home-shell">
+            <div className="section-head">
+              <div>
+                <h2 className="section-title">
+                  <Database size={18} style={{ color: 'var(--accent-light)' }} />
+                  Not ranked yet: {landing.evidenceGaps.length} product-capture gaps
+                </h2>
+                <p className="section-sub-text">
+                  First-party market evidence exists, but the exact products still need structured prices and rules.
+                </p>
+              </div>
+            </div>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '0.85rem',
+            }}>
+              {landing.evidenceGaps.map(gap => (
+                <article key={gap.firmName} className="post-sidebar-card" style={{ padding: '1.25rem' }}>
+                  <span className="bento-tile-eyebrow">{gap.statusLabel}</span>
+                  <h3 style={{ color: '#fff', fontSize: '1rem', margin: '0.5rem 0' }}>
+                    {gap.firmName}
+                  </h3>
+                  <p style={{ color: 'var(--text)', fontSize: '0.86rem', lineHeight: 1.6, margin: 0 }}>
+                    {gap.summary} {gap.nextStep}
+                  </p>
+                  <a
+                    href={gap.sourceUrl}
+                    target="_blank"
+                    rel="nofollow noopener"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 5,
+                      marginTop: '0.7rem',
+                      color: 'var(--accent-light)',
+                      fontSize: '0.76rem',
+                      fontWeight: 700,
+                    }}
+                  >
+                    First-party source · checked {gap.sourceCapturedAt}
+                  </a>
+                </article>
               ))}
             </div>
           </div>
@@ -678,7 +794,9 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   ? 'Lowest published path by currency'
                   : isOverall
                     ? 'Editorial ranking with current product evidence'
-                    : 'Ranked & source-checked'}
+                    : isCrypto
+                      ? '7 evidence-backed firms across 32 mapped products'
+                      : 'Ranked & source-checked'}
               </h2>
               <p className="section-sub-text">
                 {isCheapest ? (
@@ -690,6 +808,11 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   <>
                     Score sets the order; each card shows the current product coverage and a dated source.
                     Partnership status, coupon size and product count add 0 points.
+                  </>
+                ) : isCrypto ? (
+                  <>
+                    Crypto-native ranks before multi-asset CFD, then editorial score breaks ties.
+                    Partnership status, coupon size and payment rails add 0 points.
                   </>
                 ) : (
                   <>
@@ -944,6 +1067,26 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   </Link>
                   <Link href="/prop-firm-discount-codes" className="btn-outline">
                     Check current codes
+                  </Link>
+                </div>
+              </>
+            ) : isCrypto ? (
+              <>
+                <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
+                  Choose the crypto product, not the payment badge
+                </h2>
+                <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
+                  Verify the market source, then compare exact fees, loss rules, trading access and payout gates.
+                </p>
+                <div className="cta-final-row">
+                  <Link href="/prop-firm-challenges" className="btn-primary btn-glow">
+                    Compare current products <ArrowRight size={16} />
+                  </Link>
+                  <Link href="/blog/crypto-fund-trader-review" className="btn-outline">
+                    Review the crypto-native option
+                  </Link>
+                  <Link href="/prop-firm-challenge-changes" className="btn-outline">
+                    Review current changes
                   </Link>
                 </div>
               </>

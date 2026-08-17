@@ -122,9 +122,9 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
                 </div>
               </div>
               <div className="leader-stat leader-stat--hide-sm">
-                <div className="leader-stat-label">Payouts</div>
+                <div className="leader-stat-label">{item.trailingMetricLabel ?? 'Payouts'}</div>
                 <div className="leader-stat-value leader-stat-value--small">
-                  {firm.payoutFrequency ?? '—'}
+                  {item.trailingMetricValue ?? firm.payoutFrequency ?? '—'}
                 </div>
               </div>
             </div>

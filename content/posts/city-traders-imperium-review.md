@@ -16,7 +16,7 @@ type: "post"
 
 <p>CTI’s 2-Step Challenge has the strongest captured loss-room trade-off: a 10% static maximum loss and 80% starting split, versus 6% static loss caps and 50%–70% starting splits on its 2 phase-0 products.</p>
 
-<p>Traders paying to skip an evaluation should compare CTI’s Instant Funding and Direct Funding with all 19 current products on the <a href="/best-instant-funding-prop-firms">instant-funding comparison</a>; the 2 CTI paths have materially different entry fees and starting splits.</p>
+<p>Traders paying to skip an evaluation should compare CTI’s Instant Funding and Direct Funding with all 19 current products on the <a href="/best-instant-funding-prop-firms">instant-funding comparison</a>; the 2 CTI paths have materially different entry fees and starting splits. For crypto exposure, the <a href="/best-crypto-prop-firms">crypto prop-firm comparison</a> maps CTI’s 4 captured products to a dated market source instead of treating a payment method as trading eligibility.</p>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>

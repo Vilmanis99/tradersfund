@@ -33,6 +33,9 @@ const PROJECT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const firmRecords = JSON.parse(
   readFileSync(join(PROJECT_ROOT, 'content/data/firms.json'), 'utf8'),
 )
+const cryptoMarketEvidence = JSON.parse(
+  readFileSync(join(PROJECT_ROOT, 'content/data/crypto-market-evidence.json'), 'utf8'),
+)
 const outboundRelationships = buildOutboundRelationships(firmRecords)
 const firmByReviewPath = new Map(firmRecords.map(firm => [
   new URL(firm.reviewUrl, PRODUCTION_ORIGIN).pathname,
@@ -681,6 +684,158 @@ if (futuresMarketProbe.status !== 200) {
   }
   if (!futuresMarketProbe.html.includes('<option value="futures">Futures</option>')) {
     errors.push(`${futuresMarketProbePath}: futures market option is missing`)
+  }
+}
+
+const cryptoLandingPath = '/best-crypto-prop-firms'
+const cryptoEvidenceIsFresh = sourceCapturedAt => {
+  const captured = new Date(`${sourceCapturedAt}T00:00:00Z`)
+  if (Number.isNaN(captured.getTime())) return false
+  const now = new Date()
+  const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
+  const ageDays = Math.floor((todayUtc - captured.getTime()) / 86_400_000)
+  return ageDays >= 0 && ageDays <= 30
+}
+const expectedCryptoFirms = cryptoMarketEvidence.ranked.flatMap(evidence => {
+  const firm = firmRecords.find(candidate => outboundSlug(candidate.name) === evidence.firmSlug)
+  const productsBySlug = new Map(
+    getChallengesByFirm(evidence.firmSlug).map(product => [product.productSlug, product]),
+  )
+  const products = evidence.productSlugs.flatMap(productSlug => {
+    const product = productsBySlug.get(productSlug)
+    return product && isChallengeFresh(product) ? [product] : []
+  })
+  return firm
+    && cryptoEvidenceIsFresh(evidence.sourceCapturedAt)
+    && products.length === evidence.productSlugs.length
+    ? [{ firm, evidence, products }]
+    : []
+}).sort((a, b) => {
+  const aKey = (a.evidence.marketModel === 'crypto-native' ? 100 : 0) + a.firm.score
+  const bKey = (b.evidence.marketModel === 'crypto-native' ? 100 : 0) + b.firm.score
+  return bKey - aKey || a.firm.name.localeCompare(b.firm.name)
+})
+const expectedCryptoProductCount = expectedCryptoFirms.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
+const cryptoLandingProbe = await fetchPage(new URL(cryptoLandingPath, BASE))
+if (cryptoLandingProbe.status !== 200) {
+  errors.push(
+    `${cryptoLandingPath}: HTTP ${cryptoLandingProbe.status || cryptoLandingProbe.error}`,
+  )
+} else {
+  const cryptoText = textContent(cryptoLandingProbe.html)
+  const cards = [...cryptoLandingProbe.html.matchAll(
+    /<li class="leader-row[^"]*"[^>]*>([\s\S]*?)<\/li>/gi,
+  )].map(match => ({ html: match[0], text: textContent(match[1]) }))
+
+  if (cards.length !== expectedCryptoFirms.length) {
+    errors.push(
+      `${cryptoLandingPath}: rendered ${cards.length} firms, expected ${expectedCryptoFirms.length}`,
+    )
+  }
+  if (expectedCryptoFirms.length !== 7 || expectedCryptoProductCount !== 32) {
+    errors.push(
+      `${cryptoLandingPath}: evidence fixture must resolve to 7 firms and 32 products; received ${expectedCryptoFirms.length} and ${expectedCryptoProductCount}`,
+    )
+  }
+
+  expectedCryptoFirms.forEach(({ firm, evidence, products }, index) => {
+    const card = cards.find(candidate => candidate.text.includes(firm.name))
+    const marketLabel = evidence.marketModel === 'crypto-native'
+      ? 'Crypto-native'
+      : 'Multi-asset CFD'
+    const productLabel = `${products.length} crypto-mapped ${products.length === 1 ? 'product' : 'products'}`
+    if (!card) {
+      errors.push(`${cryptoLandingPath}: missing qualifying firm ${firm.name}`)
+      return
+    }
+    if (!cards[index]?.text.includes(firm.name)) {
+      errors.push(`${cryptoLandingPath}: ${firm.name} is outside its evidence-model/score order`)
+    }
+    for (const required of [productLabel, marketLabel, `checked ${evidence.sourceCapturedAt}`]) {
+      if (!card.text.includes(required)) {
+        errors.push(`${cryptoLandingPath}: ${firm.name} card is missing ${required}`)
+      }
+    }
+    for (const product of products.slice(0, 3)) {
+      if (!card.text.includes(product.productName)) {
+        errors.push(`${cryptoLandingPath}: ${firm.name} card is missing ${product.productName}`)
+      }
+    }
+    if (!card.html.includes(`href="${evidence.sourceUrl}"`)) {
+      errors.push(`${cryptoLandingPath}: ${firm.name} card is missing its market source`)
+    }
+  })
+
+  for (const watch of cryptoMarketEvidence.watch) {
+    if (!cryptoText.includes(watch.firmName)) {
+      errors.push(`${cryptoLandingPath}: missing watch firm ${watch.firmName}`)
+    }
+    if (!cryptoLandingProbe.html.includes(`href="${watch.sourceUrl}"`)) {
+      errors.push(`${cryptoLandingPath}: ${watch.firmName} watch source is missing`)
+    }
+    if (cards.some(card => card.text.includes(watch.firmName))) {
+      errors.push(`${cryptoLandingPath}: watch firm ${watch.firmName} was rendered as ranked`)
+    }
+  }
+
+  for (const required of [
+    'Best Crypto Prop Firms (2026): 7 Verified | TFH',
+    '7 evidence-backed firms across 32 mapped products',
+    'Not ranked yet: 2 product-capture gaps',
+    'What crypto traders should verify',
+    'Can I trade crypto, or only pay and withdraw with it?',
+    'Is it a dedicated crypto account or a multi-asset CFD product?',
+    'Does weekend or 24/7 access actually apply?',
+    'What do leverage, commission, consistency, and payout rules do?',
+    'Choose the crypto product, not the payment badge',
+  ]) {
+    if (!cryptoText.includes(required)) {
+      errors.push(`${cryptoLandingPath}: missing ${required}`)
+    }
+  }
+  for (const required of [
+    'href="/prop-firm-challenges"',
+    'href="/blog/crypto-fund-trader-review"',
+    'href="/blog/fundednext-review"',
+    'href="/prop-firm-challenge-changes"',
+  ]) {
+    if (!cryptoLandingProbe.html.includes(required)) {
+      errors.push(`${cryptoLandingPath}: missing ${required}`)
+    }
+  }
+
+  const fundedNextCard = cards.find(card => card.text.includes('FundedNext'))
+  if (!fundedNextCard?.html.includes('href="/go/fundednext?from=best-crypto-prop-firms"')) {
+    errors.push(`${cryptoLandingPath}: FundedNext card is missing attributed affiliate CTA`)
+  }
+  if (
+    !fundedNextCard?.html.includes('rel="sponsored nofollow noopener"')
+    || !fundedNextCard?.html.includes('target="_blank"')
+  ) {
+    errors.push(`${cryptoLandingPath}: FundedNext affiliate CTA is missing disclosure attributes`)
+  }
+  if (
+    cryptoText.includes('can you get paid in it?')
+    || cryptoLandingProbe.html.includes("f.assets?.includes('Crypto')")
+  ) {
+    errors.push(`${cryptoLandingPath}: restored payment-based or aggregate crypto eligibility`)
+  }
+}
+
+for (const backlinkPath of [
+  '/blog/crypto-fund-trader-review',
+  '/blog/fundednext-review',
+  '/blog/city-traders-imperium-review',
+  '/blog/what-is-a-prop-firm',
+]) {
+  const backlinkProbe = await fetchPage(new URL(backlinkPath, BASE))
+  if (backlinkProbe.status !== 200) {
+    errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
+  } else if (!backlinkProbe.html.includes('href="/best-crypto-prop-firms"')) {
+    errors.push(`${backlinkPath}: missing contextual crypto-ranking backlink`)
   }
 }
 

@@ -223,6 +223,10 @@ const US_ACCESS_EVIDENCE_FILE = path.join(
   ROOT,
   'content/data/us-access-evidence.json',
 )
+const CRYPTO_MARKET_EVIDENCE_FILE = path.join(
+  ROOT,
+  'content/data/crypto-market-evidence.json',
+)
 const LANDINGS_CONFIG_FILE = path.join(ROOT, 'lib/landings.ts')
 const LANDING_PAGE_COMPONENT_FILE = path.join(ROOT, 'components/LandingPage.tsx')
 const LANDING_FIRM_LIST_FILE = path.join(ROOT, 'components/LandingFirmList.tsx')
@@ -5971,6 +5975,230 @@ function checkFuturesLandingCluster() {
   return rows.length
 }
 
+/** Keep crypto eligibility tied to a tradable-market source and exact product rows. */
+function checkCryptoLandingCluster() {
+  const rows = []
+  const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+  let evidenceData
+  try {
+    evidenceData = JSON.parse(read(CRYPTO_MARKET_EVIDENCE_FILE))
+  } catch (error) {
+    rows.push(`crypto market evidence JSON is invalid: ${error.message}`)
+    evidenceData = { ranked: [], watch: [] }
+  }
+
+  const ranked = Array.isArray(evidenceData.ranked) ? evidenceData.ranked : []
+  const watch = Array.isArray(evidenceData.watch) ? evidenceData.watch : []
+  const firms = JSON.parse(read(path.join(ROOT, 'content/data/firms.json')) || '[]')
+  const firmsBySlug = new Map(firms.map(firm => [outboundSlug(firm.name), firm]))
+  const rankedSlugs = new Set()
+  const mappedProducts = new Set()
+
+  const isFreshDate = value => {
+    const captured = new Date(`${value}T00:00:00Z`)
+    const ageDays = Math.floor((TODAY - captured) / 86_400_000)
+    return !Number.isNaN(captured.getTime()) && ageDays >= 0 && ageDays <= STALE_DAYS
+  }
+  const validateFirstPartySource = (entry, label) => {
+    const firm = firmsBySlug.get(entry.firmSlug)
+    if (!firm) {
+      rows.push(`${label}: no matching firms.json record`)
+      return null
+    }
+    if (entry.firmName !== firm.name) {
+      rows.push(`${label}: firmName does not match firms.json`)
+    }
+    try {
+      const source = new URL(entry.sourceUrl)
+      const official = new URL(firm.officialUrl)
+      const sourceHost = source.hostname.toLowerCase().replace(/^www\./, '')
+      const officialHost = official.hostname.toLowerCase().replace(/^www\./, '')
+      if (
+        source.protocol !== 'https:'
+        || (sourceHost !== officialHost && !sourceHost.endsWith(`.${officialHost}`))
+      ) {
+        rows.push(`${label}: sourceUrl is not on the firm's first-party HTTPS host`)
+      }
+    } catch {
+      rows.push(`${label}: sourceUrl is invalid`)
+    }
+    if (!isFreshDate(entry.sourceCapturedAt)) {
+      rows.push(`${label}: market evidence is outside the ${STALE_DAYS}-day freshness window`)
+    }
+    return firm
+  }
+
+  for (const entry of ranked) {
+    const label = `crypto ranked ${entry.firmSlug || '(missing slug)'}`
+    validateFirstPartySource(entry, label)
+    if (rankedSlugs.has(entry.firmSlug)) rows.push(`${label}: duplicate ranked firm`)
+    rankedSlugs.add(entry.firmSlug)
+    if (!['crypto-native', 'multi-asset-cfd'].includes(entry.marketModel)) {
+      rows.push(`${label}: invalid marketModel`)
+    }
+    if (!Array.isArray(entry.productSlugs) || entry.productSlugs.length === 0) {
+      rows.push(`${label}: productSlugs must contain at least 1 exact product`)
+      continue
+    }
+    if (new Set(entry.productSlugs).size !== entry.productSlugs.length) {
+      rows.push(`${label}: duplicate productSlug`)
+    }
+
+    const challenges = JSON.parse(
+      read(path.join(CHALLENGES, `${entry.firmSlug}.json`)) || '[]',
+    )
+    const challengesBySlug = new Map(challenges.map(product => [product.productSlug, product]))
+    for (const productSlug of entry.productSlugs) {
+      const composite = `${entry.firmSlug}:${productSlug}`
+      if (mappedProducts.has(composite)) rows.push(`${label}: duplicate mapping ${composite}`)
+      mappedProducts.add(composite)
+      const product = challengesBySlug.get(productSlug)
+      if (!product) {
+        rows.push(`${label}: missing challenge row ${productSlug}`)
+      } else if (!isFreshDate(product.sourceCapturedAt)) {
+        rows.push(`${label}: ${productSlug} is outside the ${STALE_DAYS}-day freshness window`)
+      }
+    }
+  }
+
+  for (const entry of watch) {
+    const label = `crypto watch ${entry.firmSlug || '(missing slug)'}`
+    validateFirstPartySource(entry, label)
+    if (rankedSlugs.has(entry.firmSlug)) {
+      rows.push(`${label}: firm cannot be both ranked and on watch`)
+    }
+    if (entry.status !== 'product-capture-needed') {
+      rows.push(`${label}: status must be product-capture-needed`)
+    }
+    for (const field of ['evidence', 'nextStep']) {
+      if (typeof entry[field] !== 'string' || !entry[field].trim()) {
+        rows.push(`${label}: ${field} is required`)
+      }
+    }
+  }
+
+  if (ranked.length !== 7 || watch.length !== 2 || mappedProducts.size !== 32) {
+    rows.push(
+      `crypto fixture expects 7 ranked firms, 2 watch firms and 32 mapped products; received ${ranked.length}, ${watch.length} and ${mappedProducts.size}`,
+    )
+  }
+  if (!String(evidenceData.methodology ?? '').includes('Payment or payout by crypto does not qualify')) {
+    rows.push('crypto evidence methodology must separate tradable markets from payment and payout rails')
+  }
+
+  const landings = read(LANDINGS_CONFIG_FILE)
+  const block = landings.match(
+    /slug:\s*'best-crypto-prop-firms'([\s\S]*?)slug:\s*'best-swing-trading-prop-firms'/,
+  )?.[1] ?? ''
+  if (!block) {
+    rows.push('best-crypto-prop-firms landing config is missing')
+  } else {
+    for (const fragment of [
+      "import rawCryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'",
+      'function cryptoProductsForEvidence(evidence: CryptoMarketEvidence): Challenge[]',
+      'isCryptoMarketEvidenceFresh(evidence.sourceCapturedAt)',
+      'return products.length === evidence.productSlugs.length ? products : []',
+      'const CURRENT_CRYPTO_FIRM_COUNT = CURRENT_CRYPTO_SNAPSHOT.length',
+      'const CURRENT_CRYPTO_PRODUCT_COUNT = CURRENT_CRYPTO_SNAPSHOT.reduce',
+      'CRYPTO_MARKET_EVIDENCE_BY_SLUG.get(slug)',
+      "evidence.marketModel === 'crypto-native' ? 100 : 0",
+      "metricLabel: 'Products'",
+      "trailingMetricLabel: 'Market model'",
+      'url: evidence.sourceUrl',
+      'capturedAt: evidence.sourceCapturedAt',
+      'Affiliate status, coupon size, advertised pair count, maximum split, and payment method add 0 points',
+      'Can I trade crypto, or only pay and withdraw with it?',
+      'Is it a dedicated crypto account or a multi-asset CFD product?',
+      'Does weekend or 24/7 access actually apply?',
+      'What do leverage, commission, consistency, and payout rules do?',
+      'evidenceGaps: CRYPTO_MARKET_WATCH.map',
+      "lastReviewed: '2026-08-17'",
+    ]) {
+      if (!landings.includes(fragment) && !block.includes(fragment)) {
+        rows.push(`crypto landing is missing "${fragment}"`)
+      }
+    }
+    for (const staleClaim of [
+      ".filter(f => f.assets?.includes('Crypto'))",
+      'firm.profitSplitPct',
+      'firm.payoutFrequency',
+      'can you get paid in it?',
+    ]) {
+      if (block.includes(staleClaim)) {
+        rows.push(`crypto landing restored aggregate or payment-based logic: "${staleClaim}"`)
+      }
+    }
+    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
+      rows.push('crypto landing must keep exactly 4 product-level decision questions')
+    }
+  }
+
+  const expectedDescription =
+    'Compare 7 crypto prop firms across 32 mapped products using current rules, market-specific evidence, source dates, and reviews.'
+  if (expectedDescription.length < 120 || expectedDescription.length > 160) {
+    rows.push('crypto landing meta description must be between 120 and 160 characters')
+  }
+
+  const landingPage = read(LANDING_PAGE_COMPONENT_FILE)
+  for (const fragment of [
+    "const isCrypto = landing.slug === 'best-crypto-prop-firms'",
+    'What crypto traders should verify',
+    'Four market, product and risk checks before paying for a crypto trading path.',
+    '7 evidence-backed firms across 32 mapped products',
+    'Not ranked yet: {landing.evidenceGaps.length} product-capture gaps',
+    "href: '/prop-firm-challenges'",
+    "href: '/blog/crypto-fund-trader-review'",
+    "href: '/blog/fundednext-review'",
+    "href: '/prop-firm-challenge-changes'",
+    'Choose the crypto product, not the payment badge',
+  ]) {
+    if (!landingPage.includes(fragment)) {
+      rows.push(`crypto landing component is missing "${fragment}"`)
+    }
+  }
+
+  const firmList = read(LANDING_FIRM_LIST_FILE)
+  for (const fragment of [
+    "item.trailingMetricLabel ?? 'Payouts'",
+    "item.trailingMetricValue ?? firm.payoutFrequency ?? '—'",
+  ]) {
+    if (!firmList.includes(fragment)) {
+      rows.push(`landing firm list is missing crypto metric safeguard: "${fragment}"`)
+    }
+  }
+
+  const backlinkFiles = [
+    path.join(POSTS, 'crypto-fund-trader-review.md'),
+    path.join(POSTS, 'fundednext-review.md'),
+    path.join(POSTS, 'city-traders-imperium-review.md'),
+    path.join(POSTS, 'what-is-a-prop-firm.md'),
+  ]
+  for (const file of backlinkFiles) {
+    if (!read(file).includes('href="/best-crypto-prop-firms"')) {
+      rows.push(`${path.relative(ROOT, file)}: missing contextual crypto-ranking backlink`)
+    }
+  }
+
+  const crawler = read(RELEASE_CRAWL_FILE)
+  for (const fragment of [
+    "const cryptoLandingPath = '/best-crypto-prop-firms'",
+    'cryptoMarketEvidence.ranked.flatMap',
+    'expectedCryptoProductCount',
+    'Not ranked yet: 2 product-capture gaps',
+    'href="/go/fundednext?from=best-crypto-prop-firms"',
+  ]) {
+    if (!crawler.includes(fragment)) {
+      rows.push(`release crawl is missing crypto-ranking safeguard: "${fragment}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Crypto ranking, market evidence and internal links')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
 /** Keep the core ranking fresh, product-backed, and connected to its supporting guides. */
 function checkOverallLandingCluster() {
   const rows = []
@@ -8520,6 +8748,8 @@ const swingFeatureClusterErrors = checkSwingFeatureCluster()
 totalErrors += swingFeatureClusterErrors
 const futuresLandingClusterErrors = checkFuturesLandingCluster()
 totalErrors += futuresLandingClusterErrors
+const cryptoLandingClusterErrors = checkCryptoLandingCluster()
+totalErrors += cryptoLandingClusterErrors
 const overallLandingClusterErrors = checkOverallLandingCluster()
 totalErrors += overallLandingClusterErrors
 const cheapestLandingClusterErrors = checkCheapestLandingCluster()
