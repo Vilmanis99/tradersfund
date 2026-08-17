@@ -24,15 +24,15 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
     )
   }
 
-  return (
+  const renderList = (items: LandingFirm[]) => (
     <ol className="leaderboard" style={{ counterReset: 'rank' }}>
-      {ranked.map((item, i) => {
+      {items.map((item, i) => {
         const { firm, highlight, note } = item
         const slug = firmSlug(firm.name)
         const isPartner = Boolean(firm.affiliateUrl)
         return (
           <li
-            key={firm.name}
+            key={`${item.groupLabel ?? 'all'}:${firm.name}`}
             className={`leader-row${isPartner ? ' leader-row--partner' : ''}`}
           >
             <span className="leader-rank">{String(i + 1).padStart(2, '0')}</span>
@@ -164,5 +164,40 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
         )
       })}
     </ol>
+  )
+
+  const hasGroups = ranked.some(item => item.groupLabel)
+  if (!hasGroups) return renderList(ranked)
+
+  const groups = new Map<string, LandingFirm[]>()
+  for (const item of ranked) {
+    const label = item.groupLabel ?? 'Other published currencies'
+    groups.set(label, [...(groups.get(label) ?? []), item])
+  }
+
+  return (
+    <div style={{ display: 'grid', gap: '2rem' }}>
+      {[...groups.entries()].map(([label, items]) => {
+        const headingId = `ranking-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
+        return (
+          <section key={label} aria-labelledby={headingId}>
+            <div style={{ marginBottom: '0.85rem' }}>
+              <h3
+                id={headingId}
+                style={{ margin: 0, color: '#fff', fontSize: '1.05rem', fontWeight: 800 }}
+              >
+                {label}
+              </h3>
+              {items[0].groupDescription && (
+                <p style={{ margin: '0.35rem 0 0', color: 'var(--muted)', fontSize: '0.83rem', lineHeight: 1.55 }}>
+                  {items[0].groupDescription}
+                </p>
+              )}
+            </div>
+            {renderList(items)}
+          </section>
+        )
+      })}
+    </div>
   )
 }

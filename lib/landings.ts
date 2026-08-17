@@ -1,10 +1,13 @@
 import {
+  challengeCurrency,
   getAllFirms,
   getChallengesByFirm,
   isChallengeFresh,
   minimumCostToFundedUsd,
   type Firm,
   type Challenge,
+  type ChallengeAccountSize,
+  type ChallengeCurrency,
 } from './firms'
 import {
   INDIA_EVIDENCE_BY_SLUG,
@@ -40,6 +43,10 @@ export interface LandingFirm {
   sortKey: number
   /** A short stat displayed under the firm name on the landing card. */
   highlight: string
+  /** Optional independent ranking group, used when values cannot be compared directly. */
+  groupLabel?: string
+  /** One explanation shown above every row in the same independent ranking group. */
+  groupDescription?: string
   /** Optional landing-specific metric shown in place of the generic score. */
   metricLabel?: string
   metricValue?: string
@@ -215,6 +222,39 @@ function formatUsd(amount: number): string {
     minimumFractionDigits: Number.isInteger(amount) ? 0 : 2,
     maximumFractionDigits: 2,
   })}`
+}
+
+function formatPublishedMoney(amount: number, currency: ChallengeCurrency): string {
+  const symbol = currency === 'USD' ? '$' : '€'
+  return `${symbol}${amount.toLocaleString('en-US', {
+    minimumFractionDigits: Number.isInteger(amount) ? 0 : 2,
+    maximumFractionDigits: 2,
+  })}`
+}
+
+function formatAccountSize(sizeUsd: number): string {
+  if (sizeUsd >= 1_000_000) {
+    return `$${(sizeUsd / 1_000_000).toLocaleString('en-US', { maximumFractionDigits: 2 })}M`
+  }
+  return `$${(sizeUsd / 1_000).toLocaleString('en-US', { maximumFractionDigits: 2 })}K`
+}
+
+function publishedMinimumCost(
+  challenge: Challenge,
+  tier: ChallengeAccountSize,
+): { amount: number; currency: ChallengeCurrency } | null {
+  const currency = challengeCurrency(challenge)
+  if (currency === 'USD') {
+    const amount = minimumCostToFundedUsd(challenge, tier)
+    return amount == null ? null : { amount, currency }
+  }
+
+  // A EUR checkout cannot be added to a USD after-pass charge without an FX
+  // assumption. Fail closed if a future product mixes the two currencies.
+  const usdSurcharge = (tier.payLaterUsd ?? 0)
+    + (tier.activationFeeUsd ?? challenge.activationFeeUsd ?? 0)
+  if (usdSurcharge > 0 || tier.priceEur == null || tier.priceEur <= 0) return null
+  return { amount: tier.priceEur, currency }
 }
 
 function drawdownLabel(value: Challenge['drawdownType']): string {
@@ -410,42 +450,94 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'cheapest-prop-firms',
-    h1: 'Cheapest Prop Firm Challenges (2026)',
-    metaTitle: 'Cheapest Prop Firm Challenges in 2026 — Ranked',
+    h1: 'Cheapest Prop Firm Challenges (2026): USD & EUR',
+    metaTitle: 'Cheapest Prop Firm Challenges (2026) — By Currency',
     metaDescription:
-      'Ranked by the lowest verified minimum cost to reach funded across current challenge products.',
+      'Compare the lowest verified path to funded for 19 prop firms, ranked separately in USD and EUR with billing model, loss limits, reviews, and dated sources.',
     intro:
-      'Cheap doesn\'t mean better — but if you\'re sizing risk against the fee, the table below shows the lowest priced entry challenge from every firm we track, sorted by price. We compute the true-cost (break-even profit vs max drawdown) inside every review.',
+      'The lowest checkout price is not always the lowest path to funded. We add any known after-pass or activation charge, keep recurring plans labelled, and rank USD and EUR products separately so a hidden exchange-rate assumption cannot reorder the list. Every included price comes from a product capture inside the 30-day freshness window.',
     sortDir: 'asc',
     rank: firms => {
-      // For each firm, find its lowest current minimum cost to funded.
-      const out: LandingFirm[] = []
+      const byCurrency: Record<ChallengeCurrency, LandingFirm[]> = {
+        USD: [],
+        EUR: [],
+      }
       for (const firm of firms) {
         const challenges = getChallengesByFirm(firmSlug(firm.name))
           .filter(challenge => isChallengeFresh(challenge))
-        const allTiers = challenges.flatMap((c: Challenge) =>
-          c.accountSizes
-            .map(t => ({
-              ...t,
-              productName: c.productName,
-              minimumCostUsd: minimumCostToFundedUsd(c, t),
-            }))
-            .filter((tier): tier is typeof tier & { minimumCostUsd: number } =>
-              tier.minimumCostUsd != null)
+        const allTiers = challenges.flatMap(challenge =>
+          challenge.accountSizes.flatMap(tier => {
+            const cost = publishedMinimumCost(challenge, tier)
+            return cost ? [{ challenge, tier, ...cost }] : []
+          }),
         )
-        if (allTiers.length === 0) continue
-        const cheapest = allTiers.sort((a, b) => a.minimumCostUsd - b.minimumCostUsd)[0]
-        out.push({
-          firm,
-          sortKey: cheapest.minimumCostUsd,
-          highlight: `Minimum $${cheapest.minimumCostUsd.toFixed(0)} to funded · ${cheapest.productName} ($${(cheapest.sizeUsd / 1000).toFixed(0)}K)`,
-        })
+
+        for (const currency of ['USD', 'EUR'] as const) {
+          const cheapest = allTiers
+            .filter(tier => tier.currency === currency)
+            .sort((a, b) => a.amount - b.amount)[0]
+          if (!cheapest) continue
+
+          const { challenge, tier, amount } = cheapest
+          const split = challenge.profitSplitPct == null
+            ? 'starting split unpublished'
+            : `${challenge.profitSplitPct}% published starting split`
+          const lossRoom = tier.maxLossUsd != null
+            ? `${formatUsd(tier.maxLossUsd)} published maximum-loss amount`
+            : challenge.maxLossPct == null
+              ? 'maximum loss unpublished'
+              : `${challenge.maxLossPct}% published maximum loss`
+          const groupLabel = currency === 'USD'
+            ? 'USD-denominated products'
+            : 'EUR-denominated products'
+
+          byCurrency[currency].push({
+            firm,
+            sortKey: amount,
+            groupLabel,
+            groupDescription: currency === 'USD'
+              ? 'Ranked by the minimum known U.S.-dollar cash outlay to reach the funded stage.'
+              : 'Ranked independently in euros; no USD conversion or cross-currency rank is implied.',
+            highlight: `${challenge.productName} · ${formatAccountSize(tier.sizeUsd)} account`,
+            metricLabel: 'Minimum cost',
+            metricValue: formatPublishedMoney(amount, currency),
+            note: `${pricingModelLabel(challenge.pricingModel)}; ${split}; ${lossRoom}; ${drawdownLabel(challenge.drawdownType)} drawdown.`,
+            evidence: {
+              label: `${challenge.productName} price source`,
+              url: challenge.sourceUrl,
+              capturedAt: challenge.sourceCapturedAt,
+            },
+          })
+        }
       }
-      return out.sort((a, b) => a.sortKey - b.sortKey)
+      const byMinimumCost = (a: LandingFirm, b: LandingFirm) =>
+        a.sortKey - b.sortKey || a.firm.name.localeCompare(b.firm.name)
+      return [
+        ...byCurrency.USD.sort(byMinimumCost),
+        ...byCurrency.EUR.sort(byMinimumCost),
+      ]
     },
     methodology:
-      'We rank current products by the minimum known cash outlay to reach funded: checkout price plus any required after-pass or activation fee. A monthly subscription assumes a first-cycle pass, so it is a floor rather than an average.',
-    lastReviewed: REVIEW_DATE,
+      'A firm qualifies when at least 1 product price was captured from its own site within 30 days. Each currency group ranks the minimum known cash outlay to reach funded: checkout plus any same-currency after-pass or activation fee. A monthly subscription assumes a first-cycle pass, so it is a floor rather than an average. USD and EUR are never converted or ranked against each other; affiliate status, coupons, account headline, and editorial score add 0 points.',
+    decisionGuide: [
+      {
+        title: 'Are USD and EUR prices directly ranked together?',
+        body: 'No. The 2 currency groups are independent because a live exchange rate, card spread, and tax can change the converted checkout amount. Compare prices in the currency your payment provider will actually settle.',
+      },
+      {
+        title: 'Does the number include activation or pay-later charges?',
+        body: 'Yes when the structured product record publishes a same-currency after-pass or activation amount. A missing fee remains missing rather than being assumed to be zero, and mixed-currency charges fail closed.',
+      },
+      {
+        title: 'What does a monthly minimum mean?',
+        body: 'It assumes a first-cycle pass. Every additional billing cycle, reset, data fee, tax, or optional add-on raises the trader’s actual cash outlay, so the displayed number is a floor rather than an average.',
+      },
+      {
+        title: 'Why can the smallest fee still be expensive?',
+        body: 'A low-notional tier can pair a small fee with less dollar loss room, a lower starting split, or stricter payout gates. Compare fee recovery against the exact maximum-loss amount instead of the account headline.',
+      },
+    ],
+    lastReviewed: '2026-08-17',
   },
   {
     slug: 'best-instant-funding-prop-firms',
@@ -676,5 +768,6 @@ export function getLandingBySlug(slug: string): Landing | undefined {
 export function buildLandingPayload(landing: Landing) {
   const firms = getAllFirms()
   const ranked = landing.rank(firms)
-  return { ranked, count: ranked.length, allFirms: firms }
+  const count = new Set(ranked.map(item => item.firm.name)).size
+  return { ranked, count, allFirms: firms }
 }

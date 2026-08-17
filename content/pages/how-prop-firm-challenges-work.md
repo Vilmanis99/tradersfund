@@ -3,7 +3,7 @@ title: "How Prop Firm Challenges Work: The 5-Stage Lifecycle (2026)"
 seoTitle: "How Prop Firm Challenges Work: 5 Stages (2026)"
 slug: "how-prop-firm-challenges-work"
 date: "2026-05-20 12:00:00"
-modified: "2026-08-14 12:00:00"
+modified: "2026-08-17 12:00:00"
 description: "Map any prop-firm product from checkout through evaluation, funded rules, payout eligibility, and optional scaling with source-dated examples."
 seoDescription: "Learn the 5 stages of a prop-firm challenge—from fee and evaluation to funded rules, payout eligibility and scaling—with current product examples."
 type: "page"
@@ -160,4 +160,4 @@ type: "page"
   <li><a href="/blog/funding-pips-review">FundingPips</a> — 5 products with weekly, bi-weekly, and choice-based reward cycles</li>
 </ul>
 
-<p>Or jump to <a href="/prop-firms">the full directory</a>, build an execution worksheet with the <a href="/how-to-pass-a-prop-firm-challenge">risk-first passing plan</a>, or read <a href="/true-cost-of-prop-firm-challenges">the true-cost economics</a> if you want the math behind which challenge is structurally cheapest to break even on.</p>
+<p>Or jump to <a href="/prop-firms">the full directory</a>, compare the <a href="/cheapest-prop-firms">lowest current path to funded in separate USD and EUR rankings</a>, build an execution worksheet with the <a href="/how-to-pass-a-prop-firm-challenge">risk-first passing plan</a>, or read <a href="/true-cost-of-prop-firm-challenges">the true-cost economics</a> behind fee recovery.</p>

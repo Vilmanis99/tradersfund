@@ -99,7 +99,7 @@ assumed_daily_growth = min(1%, captured_daily_loss_pct)</code></pre>
 <h2>Use the number in the right decision</h2>
 
 <ol>
-  <li><strong>Compare the same cost basis.</strong> List fee, coupon fee, 1-month subscription floor, and multi-attempt spend are 4 different quantities.</li>
+  <li><strong>Compare the same cost basis and currency.</strong> Start with the <a href="/cheapest-prop-firms">currency-separated minimum-cost ranking</a>; a USD list fee, EUR list fee, coupon fee, 1-month subscription floor, and multi-attempt spend are different quantities.</li>
   <li><strong>Separate purchase cost from execution risk.</strong> Use the <a href="/how-to-pass-a-prop-firm-challenge">risk-plan worksheet</a> for position sizing and the <a href="/how-prop-firm-challenges-work">lifecycle guide</a> for payout and refund gates.</li>
   <li><strong>Recheck current inputs.</strong> The <a href="/prop-firm-challenges">challenge comparison</a> exposes product-level prices and rules, while the <a href="/prop-firm-challenge-changes">change ledger</a> shows material updates.</li>
   <li><strong>Read the product context.</strong> The <a href="/blog/ftmo-review">FTMO review</a>, <a href="/blog/fundednext-review">FundedNext review</a>, and <a href="/blog/topstep-review">Topstep review</a> state the currency, refund, and billing assumptions beside their generated tables.</li>

@@ -2,7 +2,7 @@
 title: "Bright Funded Review 2026: Three Plans, One Important Currency Catch"
 slug: "bright-funded-prop-firm"
 date: "2025-05-19 11:10:28"
-modified: "2026-08-10"
+modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Bright Funded now has 3 evaluation paths and EUR list pricing. The 1-Step trailing drawdown and 30-day first payout are the deciding rules."
 categories: ["Prop Firms"]
@@ -31,6 +31,8 @@ type: "post"
 </table>
 
 <p>Bright Funded’s public rules name 3 plans and 18 account-size combinations. Our source capture is dated 2026-08-10; temporary SUMMER15, SUMMER25, and SUMMER30 prices were excluded so a short campaign does not masquerade as the normal fee.</p>
+
+<p><strong>Minimum-cost context.</strong> The <a href="/cheapest-prop-firms">EUR-denominated price ranking</a> lists the €47 Bright Funded 2-Step Bright path independently from USD products; it does not insert a temporary FX rate to manufacture a cross-currency position.</p>
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 

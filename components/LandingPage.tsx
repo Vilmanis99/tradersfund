@@ -30,6 +30,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
   const isSwing = landing.slug === 'best-swing-trading-prop-firms'
   const isFutures = landing.slug === 'best-futures-prop-firms'
   const isInstant = landing.slug === 'best-instant-funding-prop-firms'
+  const isCheapest = landing.slug === 'cheapest-prop-firms'
   const decisionHeading = isUs
     ? 'What U.S. traders should verify'
     : isSwing
@@ -38,7 +39,9 @@ export default function LandingPage({ landing }: { landing: Landing }) {
         ? 'What futures traders should verify'
         : isInstant
           ? 'What instant-funding buyers should verify'
-          : 'What Indian traders should verify'
+          : isCheapest
+            ? 'What price-first buyers should verify'
+            : 'What Indian traders should verify'
   const decisionSub = isUs
     ? 'Four access, contract and payout checks to complete before paying.'
     : isSwing
@@ -47,7 +50,9 @@ export default function LandingPage({ landing }: { landing: Landing }) {
         ? 'Four product, billing, account-stage and registration checks before paying.'
         : isInstant
           ? 'Four account-stage, loss-line, cost and payout checks before paying.'
-          : 'Four checks to complete before paying for any evaluation.'
+          : isCheapest
+            ? 'Four currency, billing and loss-room checks before comparing the lowest number.'
+            : 'Four checks to complete before paying for any evaluation.'
   const indiaMatcherFirms = isIndia
     ? buildIndiaMatcherFirms(firms)
     : []
@@ -69,9 +74,17 @@ export default function LandingPage({ landing }: { landing: Landing }) {
     { name: 'Home', url: '/' },
     { name: landing.h1 },
   ])
-  const itemList = firms.length
-    ? itemListSchema(firms, landing.h1)
-    : null
+  const rankedGroups = new Map<string, typeof firms>()
+  for (const item of ranked) {
+    const label = item.groupLabel ?? landing.h1
+    rankedGroups.set(label, [...(rankedGroups.get(label) ?? []), item.firm])
+  }
+  const itemLists = [...rankedGroups.entries()].map(([label, groupedFirms]) =>
+    itemListSchema(
+      groupedFirms,
+      label === landing.h1 ? landing.h1 : `${landing.h1}: ${label}`,
+    ),
+  )
   const faq = landing.decisionGuide?.length
     ? faqPageSchema(landing.decisionGuide.map(item => ({ q: item.title, a: item.body })))
     : null
@@ -79,9 +92,13 @@ export default function LandingPage({ landing }: { landing: Landing }) {
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      {itemList && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }} />
-      )}
+      {itemLists.map(itemList => (
+        <script
+          key={itemList.name}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }}
+        />
+      ))}
       {faq && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
       )}
@@ -159,6 +176,66 @@ export default function LandingPage({ landing }: { landing: Landing }) {
           <AffiliateDisclosure />
         </div>
       </section>
+
+      {isCheapest && (
+        <section className="home-section" style={{ paddingTop: 0, paddingBottom: '1rem' }}>
+          <div className="home-shell">
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '0.85rem',
+            }}>
+              {[
+                {
+                  href: '/prop-firm-challenges',
+                  eyebrow: 'Exact tiers',
+                  title: 'Compare every current product',
+                  body: 'Move beyond each firm’s cheapest tier to compare account size, phases, targets and loss limits.',
+                },
+                {
+                  href: '/true-cost-of-prop-firm-challenges',
+                  eyebrow: 'Fee recovery',
+                  title: 'Calculate the true cost',
+                  body: 'Convert the fee and starting split into gross profit needed to earn the purchase price back.',
+                },
+                {
+                  href: '/prop-firm-discount-codes',
+                  eyebrow: 'Promotions',
+                  title: 'Verify discounts separately',
+                  body: 'Check current codes after choosing the product; coupon size contributes 0 points to this ranking.',
+                },
+                {
+                  href: '/prop-firm-challenge-changes',
+                  eyebrow: 'Freshness',
+                  title: 'Recheck price and rule changes',
+                  body: 'Review material product changes and open first-party evidence conflicts before checkout.',
+                },
+              ].map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="post-sidebar-card"
+                  style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+                >
+                  <span className="bento-tile-eyebrow">{item.eyebrow}</span>
+                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                    {item.title}
+                  </strong>
+                  <span style={{
+                    display: 'block',
+                    color: 'var(--muted)',
+                    fontSize: '0.8rem',
+                    lineHeight: 1.55,
+                    marginTop: '0.35rem',
+                  }}>
+                    {item.body}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {isUs && (
         <section className="home-section" style={{ paddingTop: 0, paddingBottom: '1rem' }}>
@@ -532,14 +609,23 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                 className="section-title"
               >
                 <Flame size={18} style={{ color: 'var(--accent-light)' }} />
-                Ranked &amp; source-checked
+                {isCheapest ? 'Lowest published path by currency' : 'Ranked & source-checked'}
               </h2>
               <p className="section-sub-text">
-                Partners marked. Numbers come from dated first-party captures under{' '}
-                <Link href="/methodology" style={{ color: 'var(--accent-light)' }}>
-                  our methodology
-                </Link>
-                {' '}— no marketing reprints.
+                {isCheapest ? (
+                  <>
+                    USD and EUR lists restart at 01 and are not ranked against each other. Partners are marked;
+                    every amount links to a dated first-party source.
+                  </>
+                ) : (
+                  <>
+                    Partners marked. Numbers come from dated first-party captures under{' '}
+                    <Link href="/methodology" style={{ color: 'var(--accent-light)' }}>
+                      our methodology
+                    </Link>
+                    {' '}— no marketing reprints.
+                  </>
+                )}
               </p>
             </div>
             <span className="section-sub">
@@ -744,6 +830,26 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   </Link>
                   <Link href="/how-prop-firm-challenges-work" className="btn-outline">
                     Check account stages
+                  </Link>
+                </div>
+              </>
+            ) : isCheapest ? (
+              <>
+                <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
+                  Price the exact path, then test the rules
+                </h2>
+                <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
+                  Start with the currency-safe minimum, then compare loss room, billing and fee recovery before checkout.
+                </p>
+                <div className="cta-final-row">
+                  <Link href="/prop-firm-challenges" className="btn-primary btn-glow">
+                    Compare current products <ArrowRight size={16} />
+                  </Link>
+                  <Link href="/true-cost-of-prop-firm-challenges" className="btn-outline">
+                    Calculate true cost
+                  </Link>
+                  <Link href="/prop-firm-discount-codes" className="btn-outline">
+                    Check current codes
                   </Link>
                 </div>
               </>

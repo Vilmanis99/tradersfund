@@ -5971,6 +5971,155 @@ function checkFuturesLandingCluster() {
   return rows.length
 }
 
+/** Keep the minimum-cost landing complete without inventing a cross-currency rank. */
+function checkCheapestLandingCluster() {
+  const rows = []
+  const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+  const landings = read(LANDINGS_CONFIG_FILE)
+  const block = landings.match(
+    /slug:\s*'cheapest-prop-firms'([\s\S]*?)slug:\s*'best-instant-funding-prop-firms'/,
+  )?.[1] ?? ''
+
+  const challengeFiles = fs.readdirSync(CHALLENGES)
+    .filter(file => file.endsWith('.json'))
+  const pricedFirms = challengeFiles.flatMap(file => {
+    const challenges = JSON.parse(read(path.join(CHALLENGES, file))).filter(challenge => {
+      const captured = new Date(`${challenge.sourceCapturedAt}T00:00:00Z`)
+      const ageDays = Math.floor((TODAY - captured) / 86_400_000)
+      return !Number.isNaN(captured.getTime()) && ageDays >= 0 && ageDays <= STALE_DAYS
+    })
+    const hasUsd = challenges.some(challenge => challenge.accountSizes.some(tier =>
+      tier.priceUsd != null && tier.priceUsd > 0,
+    ))
+    const hasEur = challenges.some(challenge => challenge.accountSizes.some(tier =>
+      tier.priceEur != null && tier.priceEur > 0,
+    ))
+    return hasUsd || hasEur ? [{ file, hasUsd, hasEur }] : []
+  })
+  const usdFirmCount = pricedFirms.filter(firm => firm.hasUsd).length
+  const eurFirmCount = pricedFirms.filter(firm => firm.hasEur).length
+
+  if (!block) {
+    rows.push('cheapest-prop-firms landing config is missing')
+  } else {
+    const metaTitle = block.match(/metaTitle:\s*'([^']+)'/)?.[1] ?? ''
+    const description = block.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1] ?? ''
+    if (metaTitle.length > 54) {
+      rows.push('cheapest landing meta title must leave room for the root title suffix')
+    }
+    if (description.length < 120 || description.length > 160) {
+      rows.push('cheapest landing meta description must be between 120 and 160 characters')
+    }
+    if (!description.includes(`${pricedFirms.length} prop firms`)) {
+      rows.push(`cheapest landing meta description must match ${pricedFirms.length} fresh priced firms`)
+    }
+    for (const fragment of [
+      'function publishedMinimumCost(',
+      "const currency = challengeCurrency(challenge)",
+      "if (currency === 'USD')",
+      'const usdSurcharge = (tier.payLaterUsd ?? 0)',
+      'tier.priceEur == null',
+      "const byCurrency: Record<ChallengeCurrency, LandingFirm[]>",
+      "...byCurrency.USD.sort(byMinimumCost)",
+      "...byCurrency.EUR.sort(byMinimumCost)",
+      "const groupLabel = currency === 'USD'",
+      'groupLabel,',
+      "metricLabel: 'Minimum cost'",
+      'metricValue: formatPublishedMoney(amount, currency)',
+      'url: challenge.sourceUrl',
+      'capturedAt: challenge.sourceCapturedAt',
+      'USD and EUR are never converted or ranked against each other',
+      'Are USD and EUR prices directly ranked together?',
+      'Does the number include activation or pay-later charges?',
+      'What does a monthly minimum mean?',
+      'Why can the smallest fee still be expensive?',
+      "lastReviewed: '2026-08-17'",
+    ]) {
+      if (!landings.includes(fragment) && !block.includes(fragment)) {
+        rows.push(`cheapest landing is missing "${fragment}"`)
+      }
+    }
+    for (const staleClaim of [
+      'the lowest priced entry challenge from every firm we track, sorted by price',
+      'cheapest.minimumCostUsd.toFixed(0)',
+      '($${(cheapest.sizeUsd / 1000).toFixed(0)}K)',
+    ]) {
+      if (block.includes(staleClaim)) {
+        rows.push(`cheapest landing restored incomplete or rounded pricing: "${staleClaim}"`)
+      }
+    }
+    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
+      rows.push('cheapest landing must keep exactly 4 cost-basis decision questions')
+    }
+  }
+
+  if (pricedFirms.length !== 19 || usdFirmCount !== 17 || eurFirmCount !== 2) {
+    rows.push(
+      `cheapest data fixture expects 19 firms (17 USD, 2 EUR), received ${pricedFirms.length} (${usdFirmCount} USD, ${eurFirmCount} EUR)`,
+    )
+  }
+
+  const firmList = read(LANDING_FIRM_LIST_FILE)
+  for (const fragment of [
+    'const hasGroups = ranked.some(item => item.groupLabel)',
+    'const groups = new Map<string, LandingFirm[]>()',
+    'aria-labelledby={headingId}',
+    '{renderList(items)}',
+  ]) {
+    if (!firmList.includes(fragment)) {
+      rows.push(`landing firm list is missing independent currency-group rendering: "${fragment}"`)
+    }
+  }
+
+  const landingPage = read(LANDING_PAGE_COMPONENT_FILE)
+  for (const fragment of [
+    "const isCheapest = landing.slug === 'cheapest-prop-firms'",
+    'const rankedGroups = new Map<string, typeof firms>()',
+    'Lowest published path by currency',
+    'USD and EUR lists restart at 01 and are not ranked against each other.',
+    'What price-first buyers should verify',
+    "href: '/true-cost-of-prop-firm-challenges'",
+    "href: '/prop-firm-discount-codes'",
+    'Price the exact path, then test the rules',
+  ]) {
+    if (!landingPage.includes(fragment)) {
+      rows.push(`cheapest landing component is missing "${fragment}"`)
+    }
+  }
+
+  const backlinkFiles = [
+    path.join(ROOT, 'content/pages/true-cost-of-prop-firm-challenges.md'),
+    path.join(ROOT, 'content/pages/how-prop-firm-challenges-work.md'),
+    path.join(POSTS, 'maven-prop-firm-review.md'),
+    path.join(POSTS, 'bright-funded-prop-firm.md'),
+  ]
+  for (const file of backlinkFiles) {
+    if (!read(file).includes('href="/cheapest-prop-firms"')) {
+      rows.push(`${path.relative(ROOT, file)}: missing contextual cheapest-ranking backlink`)
+    }
+  }
+
+  const crawler = read(RELEASE_CRAWL_FILE)
+  for (const fragment of [
+    "const cheapestLandingPath = '/cheapest-prop-firms'",
+    'expectedCheapestEntries',
+    'USD-denominated products',
+    'EUR-denominated products',
+    'Maven Standard 3-Step',
+    'Bright Funded 2-Step Bright',
+  ]) {
+    if (!crawler.includes(fragment)) {
+      rows.push(`release crawl is missing cheapest-ranking safeguard: "${fragment}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Cheapest landing, currencies and internal links')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
 /** Keep instant-funding eligibility product-level and every qualifying review connected. */
 function checkInstantFundingCluster() {
   const rows = []
@@ -8249,6 +8398,8 @@ const swingFeatureClusterErrors = checkSwingFeatureCluster()
 totalErrors += swingFeatureClusterErrors
 const futuresLandingClusterErrors = checkFuturesLandingCluster()
 totalErrors += futuresLandingClusterErrors
+const cheapestLandingClusterErrors = checkCheapestLandingCluster()
+totalErrors += cheapestLandingClusterErrors
 const instantFundingClusterErrors = checkInstantFundingCluster()
 totalErrors += instantFundingClusterErrors
 const fundedNextAffiliatePathErrors = checkFundedNextAffiliatePath()

@@ -14,7 +14,12 @@ import {
   buildOutboundRelationships,
   outboundSlug,
 } from '../lib/outboundDestinations.ts'
-import { getChallengesByFirm, isChallengeFresh } from '../lib/firms.ts'
+import {
+  challengeCurrency,
+  getChallengesByFirm,
+  isChallengeFresh,
+  minimumCostToFundedUsd,
+} from '../lib/firms.ts'
 
 const args = process.argv.slice(2)
 const baseArg = args.find(value => !value.startsWith('--'))
@@ -540,6 +545,142 @@ if (futuresMarketProbe.status !== 200) {
   }
   if (!futuresMarketProbe.html.includes('<option value="futures">Futures</option>')) {
     errors.push(`${futuresMarketProbePath}: futures market option is missing`)
+  }
+}
+
+const cheapestLandingPath = '/cheapest-prop-firms'
+const expectedCheapestEntries = firmRecords.flatMap(firm => {
+  const tiers = getChallengesByFirm(outboundSlug(firm.name))
+    .filter(challenge => isChallengeFresh(challenge))
+    .flatMap(challenge => challenge.accountSizes.flatMap(tier => {
+      const currency = challengeCurrency(challenge)
+      const usdSurcharge = (tier.payLaterUsd ?? 0)
+        + (tier.activationFeeUsd ?? challenge.activationFeeUsd ?? 0)
+      const amount = currency === 'USD'
+        ? minimumCostToFundedUsd(challenge, tier)
+        : usdSurcharge === 0
+          ? tier.priceEur ?? null
+          : null
+      return amount != null && amount > 0
+        ? [{ firm, challenge, tier, currency, amount }]
+        : []
+    }))
+
+  return (['USD', 'EUR']).flatMap(currency => {
+    const cheapest = tiers
+      .filter(tier => tier.currency === currency)
+      .sort((a, b) => a.amount - b.amount)[0]
+    return cheapest ? [cheapest] : []
+  })
+})
+const expectedUsdEntries = expectedCheapestEntries.filter(entry => entry.currency === 'USD')
+const expectedEurEntries = expectedCheapestEntries.filter(entry => entry.currency === 'EUR')
+const cheapestLandingProbe = await fetchPage(new URL(cheapestLandingPath, BASE))
+if (cheapestLandingProbe.status !== 200) {
+  errors.push(
+    `${cheapestLandingPath}: HTTP ${cheapestLandingProbe.status || cheapestLandingProbe.error}`,
+  )
+} else {
+  const cheapestText = textContent(cheapestLandingProbe.html)
+  const cards = [...cheapestLandingProbe.html.matchAll(
+    /<li class="leader-row[^"]*"[^>]*>([\s\S]*?)<\/li>/gi,
+  )].map(match => ({ html: match[0], text: textContent(match[1]) }))
+  const evidenceDateCount = (cheapestText.match(/checked 2026-/g) ?? []).length
+  const itemListCount = (cheapestLandingProbe.html.match(/"@type":"ItemList"/g) ?? []).length
+  const usdGroup = firstMatch(
+    cheapestLandingProbe.html,
+    /<section[^>]+aria-labelledby="ranking-usd-denominated-products"[^>]*>([\s\S]*?)<\/section>/i,
+  )
+  const eurGroup = firstMatch(
+    cheapestLandingProbe.html,
+    /<section[^>]+aria-labelledby="ranking-eur-denominated-products"[^>]*>([\s\S]*?)<\/section>/i,
+  )
+  const usdCardCount = (usdGroup.match(/<li class="leader-row/g) ?? []).length
+  const eurCardCount = (eurGroup.match(/<li class="leader-row/g) ?? []).length
+
+  if (cards.length !== expectedCheapestEntries.length) {
+    errors.push(
+      `${cheapestLandingPath}: rendered ${cards.length} entries, expected ${expectedCheapestEntries.length}`,
+    )
+  }
+  if (evidenceDateCount !== expectedCheapestEntries.length) {
+    errors.push(
+      `${cheapestLandingPath}: rendered ${evidenceDateCount} dated price sources, expected ${expectedCheapestEntries.length}`,
+    )
+  }
+  if (usdCardCount !== expectedUsdEntries.length || eurCardCount !== expectedEurEntries.length) {
+    errors.push(
+      `${cheapestLandingPath}: rendered ${usdCardCount} USD and ${eurCardCount} EUR entries; expected ${expectedUsdEntries.length} and ${expectedEurEntries.length}`,
+    )
+  }
+  if (itemListCount !== 2) {
+    errors.push(`${cheapestLandingPath}: rendered ${itemListCount} ItemLists, expected 2 currency lists`)
+  }
+
+  for (const expected of expectedCheapestEntries) {
+    const symbol = expected.currency === 'USD' ? '$' : '€'
+    const amount = `${symbol}${expected.amount.toLocaleString('en-US', {
+      minimumFractionDigits: Number.isInteger(expected.amount) ? 0 : 2,
+      maximumFractionDigits: 2,
+    })}`
+    const card = cards.find(candidate =>
+      candidate.text.includes(expected.firm.name)
+      && candidate.text.includes(expected.challenge.productName)
+      && candidate.text.includes(amount),
+    )
+    if (!card) {
+      errors.push(
+        `${cheapestLandingPath}: missing ${expected.firm.name} ${expected.challenge.productName} at ${amount}`,
+      )
+    }
+  }
+
+  for (const required of [
+    'Cheapest Prop Firm Challenges (2026) — By Currency | TFH',
+    'Cheapest Prop Firm Challenges (2026): USD & EUR',
+    'USD-denominated products',
+    'EUR-denominated products',
+    'What price-first buyers should verify',
+    'Are USD and EUR prices directly ranked together?',
+    'Does the number include activation or pay-later charges?',
+    'What does a monthly minimum mean?',
+    'Why can the smallest fee still be expensive?',
+    'Maven Standard 3-Step',
+    'Bright Funded 2-Step Bright',
+  ]) {
+    if (!cheapestText.includes(required)) {
+      errors.push(`${cheapestLandingPath}: missing ${required}`)
+    }
+  }
+  for (const required of [
+    'href="/prop-firm-challenges"',
+    'href="/true-cost-of-prop-firm-challenges"',
+    'href="/prop-firm-discount-codes"',
+    'href="/prop-firm-challenge-changes"',
+  ]) {
+    if (!cheapestLandingProbe.html.includes(required)) {
+      errors.push(`${cheapestLandingPath}: missing ${required}`)
+    }
+  }
+  if (
+    cheapestText.includes('the lowest priced entry challenge from every firm we track')
+    || cheapestText.includes('Minimum $5 to funded · Buy Now, Pay Later')
+  ) {
+    errors.push(`${cheapestLandingPath}: restored incomplete or cross-currency price copy`)
+  }
+}
+
+for (const backlinkPath of [
+  '/true-cost-of-prop-firm-challenges',
+  '/how-prop-firm-challenges-work',
+  '/blog/maven-prop-firm-review',
+  '/blog/bright-funded-prop-firm',
+]) {
+  const backlinkProbe = await fetchPage(new URL(backlinkPath, BASE))
+  if (backlinkProbe.status !== 200) {
+    errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
+  } else if (!backlinkProbe.html.includes('href="/cheapest-prop-firms"')) {
+    errors.push(`${backlinkPath}: missing contextual cheapest-ranking backlink`)
   }
 }
 
