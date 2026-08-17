@@ -34,6 +34,10 @@ import {
   getTradingToolReviewLinks,
   TRADING_TOOL_REVIEWS,
 } from '../lib/tradingToolReviews.ts'
+import {
+  INDIA_MATCHUPS,
+  indiaMatchupPath,
+} from '../lib/indiaMatchups.ts'
 
 const args = process.argv.slice(2)
 const baseArg = args.find(value => !value.startsWith('--'))
@@ -405,6 +409,31 @@ for (const productionUrl of uniqueSitemapUrls) {
   const inlinkCount = internalInlinks.get(path)?.size ?? 0
   if (inlinkCount < 3) {
     errors.push(`${path}: comparison page has only ${inlinkCount} unique internal inlinks`)
+  }
+}
+
+// Curated India matchups must be supported by the India landing, the product
+// comparison, the matchup hub, sibling matchups and both participating firm
+// reviews. This keeps pair-specific intent connected to both discovery paths.
+for (const matchup of Object.values(INDIA_MATCHUPS)) {
+  const path = indiaMatchupPath(matchup)
+  const inlinks = internalInlinks.get(path) ?? new Set()
+  const inlinkCount = inlinks.size
+  if (inlinkCount < 7) {
+    errors.push(`${path}: India matchup has only ${inlinkCount} unique internal inlinks`)
+  }
+  const participantReviewPaths = matchup.firmSlugs.map(slug =>
+    firmRecords.find(firm => outboundSlug(firm.name) === slug)?.reviewUrl,
+  )
+  for (const source of [
+    '/best-prop-firms-in-india',
+    '/best-prop-firms-in-india/challenge-comparison',
+    '/best-prop-firms-in-india/compare',
+    ...participantReviewPaths,
+  ]) {
+    if (!source || !inlinks.has(source)) {
+      errors.push(`${path}: missing required contextual inlink from ${source || 'participant review'}`)
+    }
   }
 }
 
@@ -2720,6 +2749,15 @@ if (indiaShortlistProbe.status !== 200) {
       '/best-prop-firms-in-india/challenge-comparison: '
       + 'missing product-level challenge change signals',
     )
+  }
+  for (const matchup of Object.values(INDIA_MATCHUPS)) {
+    const href = indiaMatchupPath(matchup)
+    if (!indiaShortlistProbe.html.includes(`data-india-matchup-link="${href}"`)) {
+      errors.push(
+        '/best-prop-firms-in-india/challenge-comparison: '
+        + `missing curated matchup link ${href}`,
+      )
+    }
   }
 }
 

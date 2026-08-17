@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import IndiaChallengeComparison from '@/components/IndiaChallengeComparison'
+import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
 import { INDIA_EVIDENCE, passesIndiaRegulatoryCountryGate } from '@/lib/india'
 import { buildIndiaMatcherFirms } from '@/lib/indiaMatcher'
 import { buildLandingPayload, getLandingBySlug } from '@/lib/landings'
@@ -225,6 +226,11 @@ export default function Page() {
       </section>
 
       <IndiaChallengeComparison firms={firms} />
+
+      <IndiaMatchupLinks
+        heading="Turn the product table into a 2-firm decision"
+        description="These curated routes compare the 3 recurring India shortlists without dropping country, KYC, payout, currency or product-rule unknowns."
+      />
 
       <section className="home-section" aria-labelledby="india-comparison-method-heading">
         <div className="home-shell">

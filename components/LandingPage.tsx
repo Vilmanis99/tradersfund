@@ -15,6 +15,7 @@ import IndiaCheckoutPlanner from '@/components/IndiaCheckoutPlanner'
 import IndiaEvidenceMatrix from '@/components/IndiaEvidenceMatrix'
 import IndiaEvidenceSubmissionForm from '@/components/IndiaEvidenceSubmissionForm'
 import IndiaFirmMatcher from '@/components/IndiaFirmMatcher'
+import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
 import IndiaRbiNotice from '@/components/IndiaRbiNotice'
 import LandingFirmList from '@/components/LandingFirmList'
 import { INDIA_EVIDENCE } from '@/lib/india'
@@ -951,6 +952,13 @@ export default function LandingPage({ landing }: { landing: Landing }) {
             </div>
           </div>
         </section>
+      )}
+
+      {isIndia && (
+        <IndiaMatchupLinks
+          heading="Compare the closest India shortlists"
+          description="Use a curated pair when the full ranking leaves 2 firms on your shortlist; each route keeps product rules, payout rails and unresolved India evidence visible."
+        />
       )}
 
       {/* ═══════════════════════════════ RANKED LIST ═══════════════════════════════ */}

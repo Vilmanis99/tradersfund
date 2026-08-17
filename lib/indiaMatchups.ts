@@ -110,3 +110,8 @@ export function getIndiaMatchupConfig(slug: string) {
   if (!config) throw new Error(`Unknown India matchup: ${slug}`)
   return config
 }
+
+export function getIndiaMatchupsForFirm(firmSlug: string) {
+  return Object.values(INDIA_MATCHUPS)
+    .filter(matchup => matchup.firmSlugs.includes(firmSlug))
+}

@@ -136,6 +136,10 @@ const INDIA_MATCHUP_COMPONENT_FILE = path.join(
   ROOT,
   'components/IndiaCuratedMatchupPage.tsx',
 )
+const INDIA_MATCHUP_LINKS_FILE = path.join(
+  ROOT,
+  'components/IndiaMatchupLinks.tsx',
+)
 const INDIA_MATCHUP_CONFIG_FILE = path.join(
   ROOT,
   'lib/indiaMatchups.ts',
@@ -3052,6 +3056,47 @@ function checkIndiaChallengeSurface() {
     : ''
   if (!matchupConfig) {
     rows.push('lib/indiaMatchups.ts is missing')
+  } else if (!matchupConfig.includes('getIndiaMatchupsForFirm')) {
+    rows.push('lib/indiaMatchups.ts is missing the firm-to-matchup projection')
+  }
+
+  const matchupLinks = fs.existsSync(INDIA_MATCHUP_LINKS_FILE)
+    ? fs.readFileSync(INDIA_MATCHUP_LINKS_FILE, 'utf-8')
+    : ''
+  if (!matchupLinks) {
+    rows.push('components/IndiaMatchupLinks.tsx is missing')
+  } else {
+    for (const token of [
+      'getIndiaMatchupsForFirm',
+      'matchup.expectedProductCount',
+      'matchup.hubQuestion',
+      'matchup.decisionTags',
+      'data-india-matchup-link={href}',
+      'Affiliate status contributes 0 points',
+      '/best-prop-firms-in-india/compare',
+    ]) {
+      if (!matchupLinks.includes(token)) {
+        rows.push(`India matchup link cluster is missing safeguard: ${token}`)
+      }
+    }
+    if (matchupLinks.includes('/go/')) {
+      rows.push('India matchup link cluster must not contain affiliate actions')
+    }
+  }
+
+  for (const [file, label, token] of [
+    [BLOG_POST_PAGE_FILE, 'firm review template', '<IndiaMatchupLinks firmName={matchedFirm.name} />'],
+    [
+      path.join(ROOT, 'components/LandingPage.tsx'),
+      'India landing',
+      '<IndiaMatchupLinks',
+    ],
+    [INDIA_CHALLENGE_PAGE_FILE, 'India challenge comparison', '<IndiaMatchupLinks'],
+  ]) {
+    const body = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+    if (!body.includes(token)) {
+      rows.push(`${label} is missing the curated India matchup cluster`)
+    }
   }
 
   const matchupHub = fs.existsSync(INDIA_MATCHUP_HUB_PAGE_FILE)
@@ -3191,6 +3236,22 @@ function checkIndiaChallengeSurface() {
     const body = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
     if (!body.includes(routePath)) {
       rows.push(`${label} does not link to ${routePath}`)
+    }
+  }
+
+  const releaseCrawl = fs.existsSync(RELEASE_CRAWL_FILE)
+    ? fs.readFileSync(RELEASE_CRAWL_FILE, 'utf-8')
+    : ''
+  for (const token of [
+    'Object.values(INDIA_MATCHUPS)',
+    'inlinkCount < 7',
+    'India matchup has only ${inlinkCount} unique internal inlinks',
+    'participantReviewPaths',
+    'missing required contextual inlink from',
+    'data-india-matchup-link="${href}"',
+  ]) {
+    if (!releaseCrawl.includes(token)) {
+      rows.push(`release crawl is missing India matchup link safeguard: ${token}`)
     }
   }
 

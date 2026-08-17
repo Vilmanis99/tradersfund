@@ -21,6 +21,7 @@ import TradingToolReviewCluster, {
   TradingToolReviewStatus,
 } from '@/components/TradingToolReviewCluster'
 import { getTradingToolReviewLinks } from '@/lib/tradingToolReviews'
+import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -169,6 +170,7 @@ export default async function BlogPostPage({ params }: Props) {
               dangerouslySetInnerHTML={{ __html: contentWithIds }} />
 
             {matchedFirm && <FirmAlternatives current={matchedFirm} allFirms={firms} />}
+            {matchedFirm && <IndiaMatchupLinks firmName={matchedFirm.name} />}
             {toolReviewLinks.length > 0 && (
               <TradingToolReviewCluster current={post} reviews={toolReviewLinks} />
             )}
