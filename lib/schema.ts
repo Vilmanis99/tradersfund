@@ -215,8 +215,9 @@ export function faqPageSchema(faqs: Array<{ q: string; a: string }>) {
 }
 
 /**
- * Two-firm comparison ItemList. Order matters: pass winner first so Google
- * can use the implied ranking in a "X vs Y" rich result.
+ * Two-firm comparison ItemList. Callers pass canonical URL order, not an
+ * inferred winner: many matchups are product- and strategy-dependent, and a
+ * ListItem position must not turn flattened firm fields into a ranking claim.
  */
 export function comparisonItemListSchema(
   firmA: Firm,

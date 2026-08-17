@@ -1,4 +1,4 @@
-import { Trophy } from 'lucide-react'
+import { FileCheck2, Trophy } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
 import type { CategoryCall } from '@/lib/comparisons'
 
@@ -12,23 +12,26 @@ export default function ComparisonVerdict({
   firmB,
   tlDr,
   categoryCalls,
+  title = 'Our verdict',
   caption,
 }: {
   firmA: Firm
   firmB: Firm
   tlDr: string
   categoryCalls?: CategoryCall[]
+  title?: string
   /** Small line under the "Our verdict" heading — e.g. "Updated April 2026" */
   caption?: string
 }) {
+  const Icon = categoryCalls?.length ? Trophy : FileCheck2
   return (
-    <section className="compare-verdict" aria-label="Our verdict">
+    <section className="compare-verdict" aria-label={title}>
       <div className="compare-verdict-head">
         <div className="compare-verdict-icon" aria-hidden="true">
-          <Trophy size={20} color="var(--accent-light)" />
+          <Icon size={20} color="var(--accent-light)" />
         </div>
         <div>
-          <h2 className="compare-verdict-title">Our verdict</h2>
+          <h2 className="compare-verdict-title">{title}</h2>
           {caption && <p className="compare-verdict-caption">{caption}</p>}
         </div>
       </div>

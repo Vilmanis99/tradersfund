@@ -252,6 +252,8 @@ const SITEMAP_FILE = path.join(ROOT, 'app/sitemap.ts')
 const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
 const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
+const COMPARISON_VERDICT_FILE = path.join(ROOT, 'components/ComparisonVerdict.tsx')
+const COMPARISON_INFOGRAPHIC_FILE = path.join(ROOT, 'components/ComparisonInfographic.tsx')
 const COMPARISON_HUB_FILE = path.join(ROOT, 'app/compare/page.tsx')
 const COMPARISON_DIRECTORY_FILE = path.join(ROOT, 'components/ComparisonDirectory.tsx')
 const COMPARISON_DIRECTORY_LIB_FILE = path.join(ROOT, 'lib/comparisonDirectory.ts')
@@ -259,6 +261,7 @@ const COMPARISON_ROUTE_FILE = path.join(ROOT, 'app/compare/[matchup]/page.tsx')
 const CHALLENGE_MATCHUP_COMPONENT_FILE = path.join(ROOT, 'components/ChallengeMatchup.tsx')
 const CHALLENGE_MATCHUP_LIB_FILE = path.join(ROOT, 'lib/challengeMatchup.ts')
 const COMPARISONS_FILE = path.join(ROOT, 'lib/comparisons.ts')
+const SCHEMA_FILE = path.join(ROOT, 'lib/schema.ts')
 const INDIA_PAYOUT_TEMPLATE_FILE = path.join(
   ROOT,
   'public/templates/india-prop-firm-payout-records.csv',
@@ -9289,6 +9292,118 @@ function checkFundedNextComparisonOverlay() {
   return rows.length
 }
 
+/** Product captures must outrank firm aggregates on every comparison detail page. */
+function checkComparisonDetailTemplate() {
+  const rows = []
+  const route = fs.existsSync(COMPARISON_ROUTE_FILE)
+    ? fs.readFileSync(COMPARISON_ROUTE_FILE, 'utf-8')
+    : ''
+  const hero = fs.existsSync(COMPARISON_HERO_FILE)
+    ? fs.readFileSync(COMPARISON_HERO_FILE, 'utf-8')
+    : ''
+  const verdict = fs.existsSync(COMPARISON_VERDICT_FILE)
+    ? fs.readFileSync(COMPARISON_VERDICT_FILE, 'utf-8')
+    : ''
+  const comparisons = fs.existsSync(COMPARISONS_FILE)
+    ? fs.readFileSync(COMPARISONS_FILE, 'utf-8')
+    : ''
+  const schema = fs.existsSync(SCHEMA_FILE)
+    ? fs.readFileSync(SCHEMA_FILE, 'utf-8')
+    : ''
+  const crawl = fs.existsSync(RELEASE_CRAWL_FILE)
+    ? fs.readFileSync(RELEASE_CRAWL_FILE, 'utf-8')
+    : ''
+
+  for (const fragment of [
+    'const currentProductCount = challengeMatchup.a.productCount + challengeMatchup.b.productCount',
+    'const currentSourceCount = challengeMatchup.sources.length',
+    'this page withholds a product winner until both sides pass the 30-day freshness gate',
+    "['Founded', 'Platforms', 'Assets', 'Payout Methods'].includes(row.label)",
+    '.map(row => ({ ...row, winner: null }))',
+    'comparisonItemListSchema(firmA, firmB, matchupLabel)',
+    '<span>(2026): {challengeMatchup.a.productCount} vs {challengeMatchup.b.productCount} Products</span>',
+    'without flattening one product into a firm-wide answer',
+    "title={overlay ? 'Our verdict' : 'Evidence summary'}",
+    '<ChallengeMatchup matchup={challengeMatchup} prose={matchupProse} />',
+    'data-compare-firm-context',
+    'data-compare-aggregate-fallback',
+    'The sourced product tables above decide the exact fee, split, drawdown and trading conditions.',
+  ]) {
+    if (!route.includes(fragment)) {
+      rows.push(`comparison detail template is missing "${fragment}"`)
+    }
+  }
+  const verdictIndex = route.indexOf('<ComparisonVerdict')
+  const productIndex = route.indexOf('<ChallengeMatchup')
+  const contextIndex = route.indexOf('data-compare-firm-context')
+  if (!(verdictIndex >= 0 && verdictIndex < productIndex && productIndex < contextIndex)) {
+    rows.push('comparison detail hierarchy must be verdict, product evidence, then firm context')
+  }
+  for (const stale of [
+    'ComparisonInfographic',
+    'computeFallbackTlDr',
+    'const aWins = rows.filter',
+    'const [firstFirm, secondFirm]',
+    'aria-label="Side-by-side specifications"',
+  ]) {
+    if (route.includes(stale)) rows.push(`comparison detail restored aggregate ranking "${stale}"`)
+  }
+  if (fs.existsSync(COMPARISON_INFOGRAPHIC_FILE)) {
+    rows.push('aggregate comparison infographic still exists after product-first migration')
+  }
+  for (const stale of [
+    'firm.profitSplitPct',
+    'firm.payoutFrequency',
+    'firm.drawdownType',
+  ]) {
+    if (hero.includes(stale)) rows.push(`comparison hero restored aggregate product term ${stale}`)
+  }
+  for (const fragment of [
+    '`TFH ${firm.score}/10`',
+    'Traders Fund Hub editorial score ${firm.score} out of 10',
+    '<span className="feature-firm-stat-label">Product evidence</span>',
+    '<span className="feature-firm-stat-value">Refreshing</span>',
+  ]) {
+    if (!hero.includes(fragment)) rows.push(`comparison hero is missing "${fragment}"`)
+  }
+  for (const fragment of [
+    "import { FileCheck2, Trophy } from 'lucide-react'",
+    "title = 'Our verdict'",
+    'const Icon = categoryCalls?.length ? Trophy : FileCheck2',
+    '<section className="compare-verdict" aria-label={title}>',
+    '<h2 className="compare-verdict-title">{title}</h2>',
+  ]) {
+    if (!verdict.includes(fragment)) rows.push(`comparison summary is missing "${fragment}"`)
+  }
+  if (comparisons.includes('export function computeFallbackTlDr')) {
+    rows.push('aggregate spec-win fallback verdict still exists')
+  }
+  if (
+    !schema.includes('Callers pass canonical URL order, not an')
+    || !schema.includes('ListItem position must not turn flattened firm fields into a ranking claim')
+  ) {
+    rows.push('comparison ItemList schema does not document neutral canonical ordering')
+  }
+  for (const fragment of [
+    "const genericComparisonPath = '/compare/alpha-capital-vs-city-traders-imperium'",
+    'generic comparison restored aggregate scoreboard or winner markup',
+    'generic comparison ItemList is not in neutral canonical order',
+    'editorial comparison restored aggregate scoreboard or winner markup',
+    'comparison ItemList is not in neutral canonical order',
+    'data-compare-firm-context="true"',
+  ]) {
+    if (!crawl.includes(fragment)) {
+      rows.push(`release crawl is missing generic comparison safeguard "${fragment}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Comparison detail hierarchy')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
 /** Keep the complete comparison library discoverable, searchable and evidence-led. */
 function checkComparisonHub() {
   const rows = []
@@ -9541,6 +9656,8 @@ const scalingPlanGuideErrors = checkScalingPlanGuide()
 totalErrors += scalingPlanGuideErrors
 const comparisonHubErrors = checkComparisonHub()
 totalErrors += comparisonHubErrors
+const comparisonDetailTemplateErrors = checkComparisonDetailTemplate()
+totalErrors += comparisonDetailTemplateErrors
 const fundedNextComparisonOverlayErrors = checkFundedNextComparisonOverlay()
 totalErrors += fundedNextComparisonOverlayErrors
 const relatedPostSelectionErrors = checkRelatedPostSelection()

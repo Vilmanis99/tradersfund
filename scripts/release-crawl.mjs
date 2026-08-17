@@ -1893,6 +1893,128 @@ if (ctiReviewProbe.status !== 200) {
   }
 }
 
+const genericComparisonPath = '/compare/alpha-capital-vs-city-traders-imperium'
+const genericComparisonProbe = await fetchPage(new URL(genericComparisonPath, BASE))
+if (genericComparisonProbe.status !== 200) {
+  errors.push(
+    `${genericComparisonPath}: HTTP ${genericComparisonProbe.status || genericComparisonProbe.error}`,
+  )
+} else {
+  const genericText = textContent(genericComparisonProbe.html)
+  const alphaProducts = getChallengesByFirm('alpha-capital')
+    .filter(challenge => isChallengeFresh(challenge))
+  const ctiProducts = getChallengesByFirm('city-traders-imperium')
+    .filter(challenge => isChallengeFresh(challenge))
+  const genericProducts = [...alphaProducts, ...ctiProducts]
+  const genericSources = new Set(genericProducts.map(product => product.sourceUrl))
+  const alphaFirm = firmRecords.find(firm => firm.name === 'Alpha Capital')
+  const ctiFirm = firmRecords.find(firm => firm.name === 'City Traders Imperium')
+  const title = textContent(firstMatch(
+    genericComparisonProbe.html,
+    /<title[^>]*>([\s\S]*?)<\/title>/i,
+  ))
+  const description = decodeHtml(firstMatch(
+    genericComparisonProbe.html,
+    /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+  ) || firstMatch(
+    genericComparisonProbe.html,
+    /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+  ))
+  const canonical = firstMatch(
+    genericComparisonProbe.html,
+    /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["'][^>]*>/i,
+  ) || firstMatch(
+    genericComparisonProbe.html,
+    /<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["'][^>]*>/i,
+  )
+  const h1 = textContent(firstMatch(
+    genericComparisonProbe.html,
+    /<h1\b[^>]*>([\s\S]*?)<\/h1>/i,
+  ))
+  const expectedDescription =
+    `Alpha Capital vs City Traders Imperium: compare ${genericProducts.length} challenge products by funded cost, profit split, drawdown and payout rules using first-party data.`
+
+  if (title !== 'Alpha Capital vs City Traders Imperium (2026)') {
+    errors.push(`${genericComparisonPath}: incorrect title ${title}`)
+  }
+  if (description !== expectedDescription) {
+    errors.push(`${genericComparisonPath}: incorrect product meta description`)
+  }
+  if (canonicalKey(canonical) !== canonicalKey(`${PRODUCTION_ORIGIN}${genericComparisonPath}`)) {
+    errors.push(`${genericComparisonPath}: incorrect canonical`)
+  }
+  if (
+    h1
+      !== `Alpha Capital vs City Traders Imperium (2026): ${alphaProducts.length} vs ${ctiProducts.length} Products`
+  ) {
+    errors.push(`${genericComparisonPath}: incorrect product-specific H1 ${h1}`)
+  }
+  for (const required of [
+    `Product evidence · ${genericProducts.length} products · ${genericSources.size} source pages`,
+    `Compare ${genericProducts.length} current products across ${genericSources.size} first-party source pages`,
+    'without flattening one product into a firm-wide answer.',
+    'Evidence summary',
+    'Product-level: Alpha Capital vs City Traders Imperium',
+    'Firm-level context',
+    'data-compare-firm-context="true"',
+    'These directory fields describe the firms, not a universal product rule.',
+    `TFH ${alphaFirm?.score}/10`,
+    `TFH ${ctiFirm?.score}/10`,
+    'href="/blog/alpha-capital-review"',
+    'href="/blog/city-traders-imperium-review"',
+  ]) {
+    if (!genericText.includes(required) && !genericComparisonProbe.html.includes(required)) {
+      errors.push(`${genericComparisonPath}: missing ${required}`)
+    }
+  }
+  for (const product of genericProducts) {
+    if (!genericText.includes(product.productName)) {
+      errors.push(`${genericComparisonPath}: missing product ${product.productName}`)
+    }
+    if (!genericComparisonProbe.html.includes(`href="${product.sourceUrl}"`)) {
+      errors.push(`${genericComparisonPath}: missing source ${product.sourceUrl}`)
+    }
+  }
+  const productIndex = genericText.indexOf('Product-level: Alpha Capital vs City Traders Imperium')
+  const contextIndex = genericText.indexOf('Firm-level context')
+  const trustpilotIndex = genericText.indexOf('Trustpilot: Alpha Capital vs City Traders Imperium')
+  if (!(productIndex >= 0 && productIndex < contextIndex && contextIndex < trustpilotIndex)) {
+    errors.push(`${genericComparisonPath}: product evidence is not primary in the rendered hierarchy`)
+  }
+  if (
+    genericText.includes('Category scoreboard')
+    || genericText.includes('Side-by-side: Alpha Capital vs City Traders Imperium')
+    || genericComparisonProbe.html.includes('class="compare-infographic"')
+    || genericComparisonProbe.html.includes('aria-label="Winner"')
+    || genericComparisonProbe.html.includes('compare-tie-chip')
+    || genericComparisonProbe.html.includes('data-compare-aggregate-fallback')
+  ) {
+    errors.push(`${genericComparisonPath}: generic comparison restored aggregate scoreboard or winner markup`)
+  }
+  const contextSection = firstMatch(
+    genericComparisonProbe.html,
+    /<section[^>]*data-compare-firm-context[^>]*>([\s\S]*?)<\/section>/i,
+  )
+  const contextRows = (contextSection.match(/<div[^>]*\brole=["']row["']/gi) ?? []).length
+  if (contextRows !== 5) {
+    errors.push(`${genericComparisonPath}: rendered ${contextRows - 1} context fields, expected 4`)
+  }
+  const jsonLdObjects = [...genericComparisonProbe.html.matchAll(
+    /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+  )].flatMap(match => {
+    try {
+      return [JSON.parse(match[1])]
+    } catch {
+      return []
+    }
+  })
+  const itemList = jsonLdObjects.find(value => value['@type'] === 'ItemList')
+  const itemNames = itemList?.itemListElement?.map(entry => entry.item?.name) ?? []
+  if (JSON.stringify(itemNames) !== JSON.stringify(['Alpha Capital', 'City Traders Imperium'])) {
+    errors.push(`${genericComparisonPath}: generic comparison ItemList is not in neutral canonical order`)
+  }
+}
+
 const fundedNextReviewPath = '/blog/fundednext-review'
 const fundedNextReviewProbe = await fetchPage(new URL(fundedNextReviewPath, BASE))
 if (fundedNextReviewProbe.status !== 200) {
@@ -2070,6 +2192,45 @@ if (ftmoFundedNextProbe.status !== 200) {
     errors.push(
       `${ftmoFundedNextPath}: expected 1 ItemList and 1 FAQPage, found ${itemListCount} and ${faqPageCount}`,
     )
+  }
+  const productIndex = matchupText.indexOf('Product-level: FTMO vs FundedNext')
+  const contextIndex = matchupText.indexOf('Firm-level context')
+  const trustpilotIndex = matchupText.indexOf('Trustpilot: FTMO vs FundedNext')
+  if (!(productIndex >= 0 && productIndex < contextIndex && contextIndex < trustpilotIndex)) {
+    errors.push(`${ftmoFundedNextPath}: product evidence is not primary in the rendered hierarchy`)
+  }
+  if (
+    matchupText.includes('Category scoreboard')
+    || matchupText.includes('Side-by-side: FTMO vs FundedNext')
+    || ftmoFundedNextProbe.html.includes('class="compare-infographic"')
+    || ftmoFundedNextProbe.html.includes('aria-label="Winner"')
+    || ftmoFundedNextProbe.html.includes('compare-tie-chip')
+    || ftmoFundedNextProbe.html.includes('data-compare-aggregate-fallback')
+    || !ftmoFundedNextProbe.html.includes('data-compare-firm-context="true"')
+  ) {
+    errors.push(`${ftmoFundedNextPath}: editorial comparison restored aggregate scoreboard or winner markup`)
+  }
+  const contextSection = firstMatch(
+    ftmoFundedNextProbe.html,
+    /<section[^>]*data-compare-firm-context[^>]*>([\s\S]*?)<\/section>/i,
+  )
+  const contextRows = (contextSection.match(/<div[^>]*\brole=["']row["']/gi) ?? []).length
+  if (contextRows !== 5) {
+    errors.push(`${ftmoFundedNextPath}: rendered ${contextRows - 1} context fields, expected 4`)
+  }
+  const jsonLdObjects = [...ftmoFundedNextProbe.html.matchAll(
+    /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+  )].flatMap(match => {
+    try {
+      return [JSON.parse(match[1])]
+    } catch {
+      return []
+    }
+  })
+  const itemList = jsonLdObjects.find(value => value['@type'] === 'ItemList')
+  const itemNames = itemList?.itemListElement?.map(entry => entry.item?.name) ?? []
+  if (JSON.stringify(itemNames) !== JSON.stringify(['FTMO', 'FundedNext'])) {
+    errors.push(`${ftmoFundedNextPath}: comparison ItemList is not in neutral canonical order`)
   }
   for (const href of [
     '/blog/ftmo-review',

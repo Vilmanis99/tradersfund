@@ -79,8 +79,12 @@ function FirmHeroCard({
           <h2 style={{ margin: 0, color: '#fff', fontSize: '1.15rem', fontWeight: 700, lineHeight: 1.2 }}>
             {firm.name}
           </h2>
-          <span className="score-badge" style={{ marginTop: 6, display: 'inline-flex' }}>
-            <Star size={11} aria-hidden="true" /> {firm.score}
+          <span
+            className="score-badge"
+            style={{ marginTop: 6, display: 'inline-flex' }}
+            aria-label={`Traders Fund Hub editorial score ${firm.score} out of 10`}
+          >
+            <Star size={11} aria-hidden="true" /> {`TFH ${firm.score}/10`}
           </span>
         </div>
       </div>
@@ -102,30 +106,10 @@ function FirmHeroCard({
             </li>
           </>
         ) : (
-          <>
-            {firm.profitSplitPct != null && (
-              <li>
-                <span className="feature-firm-stat-label">Split</span>
-                <span className="feature-firm-stat-value">{firm.profitSplitPct}%</span>
-              </li>
-            )}
-            {firm.payoutFrequency && (
-              <li>
-                <span className="feature-firm-stat-label">Payouts</span>
-                <span className="feature-firm-stat-value" style={{ textTransform: 'capitalize' }}>
-                  {firm.payoutFrequency.replace('-', ' ')}
-                </span>
-              </li>
-            )}
-            {firm.drawdownType && (
-              <li>
-                <span className="feature-firm-stat-label">Drawdown</span>
-                <span className="feature-firm-stat-value" style={{ textTransform: 'capitalize' }}>
-                  {firm.drawdownType.replace('-', ' ')}
-                </span>
-              </li>
-            )}
-          </>
+          <li>
+            <span className="feature-firm-stat-label">Product evidence</span>
+            <span className="feature-firm-stat-value">Refreshing</span>
+          </li>
         )}
       </ul>
 
