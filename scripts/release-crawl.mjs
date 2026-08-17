@@ -22,6 +22,12 @@ import {
 } from '../lib/firms.ts'
 import { getAllDeals } from '../lib/deals.ts'
 import { filterComparisonRows } from '../lib/comparisonDirectory.ts'
+import { rankFirmAlternatives } from '../lib/firmAlternatives.ts'
+import {
+  buildRelatedComparisons,
+  comparisonHref,
+  getFreshFirmEvidence,
+} from '../lib/relatedComparisons.ts'
 
 const args = process.argv.slice(2)
 const baseArg = args.find(value => !value.startsWith('--'))
@@ -86,6 +92,18 @@ function textContent(value = '') {
     .replace(/<[^>]+>/g, ' ')
     .replace(/\s+/g, ' ')
     .trim())
+}
+
+function formatCaptureDate(value) {
+  if (!value) return 'refresh pending'
+  const date = new Date(`${value}T00:00:00Z`)
+  if (Number.isNaN(date.getTime())) return value
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
 }
 
 function firstMatch(html, expression) {
@@ -2013,6 +2031,44 @@ if (genericComparisonProbe.status !== 200) {
   if (JSON.stringify(itemNames) !== JSON.stringify(['Alpha Capital', 'City Traders Imperium'])) {
     errors.push(`${genericComparisonPath}: generic comparison ItemList is not in neutral canonical order`)
   }
+  if (!alphaFirm || !ctiFirm) {
+    errors.push(`${genericComparisonPath}: comparison firms are missing from firms.json`)
+  } else {
+    const expectedRelated = buildRelatedComparisons(alphaFirm, ctiFirm, firmRecords)
+    const renderedRelated = [...genericComparisonProbe.html.matchAll(
+      /\bdata-related-matchup=["']([^"']+)["']/gi,
+    )].map(match => match[1])
+    if (
+      !genericComparisonProbe.html.includes('data-related-comparisons="true"')
+      || JSON.stringify(renderedRelated)
+        !== JSON.stringify(expectedRelated.map(item => item.matchup))
+    ) {
+      errors.push(`${genericComparisonPath}: generic comparison related links do not match the shared selector`)
+    }
+    for (const related of expectedRelated) {
+      const card = firstMatch(
+        genericComparisonProbe.html,
+        new RegExp(
+          `<li[^>]*data-related-matchup=["']${related.matchup}["'][^>]*>([\\s\\S]*?)<\\/li>`,
+          'i',
+        ),
+      )
+      const cardText = textContent(card)
+      for (const required of [
+        related.label,
+        `${related.productCount} current products`,
+        `${related.sourceCount} first-party source`,
+        `checked ${formatCaptureDate(related.latestCapture)}`,
+      ]) {
+        if (!cardText.includes(required)) {
+          errors.push(`${genericComparisonPath}: ${related.matchup} is missing ${required}`)
+        }
+      }
+      if (!card.includes(`href="${related.href}"`)) {
+        errors.push(`${genericComparisonPath}: ${related.matchup} is missing its comparison link`)
+      }
+    }
+  }
 }
 
 const fundedNextReviewPath = '/blog/fundednext-review'
@@ -2062,6 +2118,56 @@ if (fundedNextReviewProbe.status !== 200) {
     || !productFitCta.includes('target="_blank"')
   ) {
     errors.push(`${fundedNextReviewPath}: product-fit CTA is not disclosed as sponsored`)
+  }
+
+  const fundedNextFirm = firmRecords.find(firm => firm.name === 'FundedNext')
+  const alternativeSection = firstMatch(
+    fundedNextReviewProbe.html,
+    /<section[^>]*aria-label=["']Alternatives to FundedNext["'][^>]*>([\s\S]*?)<\/section>/i,
+  )
+  const renderedAlternatives = [...alternativeSection.matchAll(
+    /\bdata-firm-alternative=["']([^"']+)["']/gi,
+  )].map(match => match[1])
+  const expectedAlternatives = fundedNextFirm
+    ? rankFirmAlternatives(fundedNextFirm, firmRecords)
+    : []
+  if (
+    !fundedNextFirm
+    || JSON.stringify(renderedAlternatives)
+      !== JSON.stringify(expectedAlternatives.map(firm => outboundSlug(firm.name)))
+  ) {
+    errors.push(`${fundedNextReviewPath}: review alternatives do not match the shared ranker`)
+  }
+  for (const alternative of expectedAlternatives) {
+    const slug = outboundSlug(alternative.name)
+    const evidence = getFreshFirmEvidence(alternative)
+    const href = comparisonHref(fundedNextFirm, alternative)
+    const card = firstMatch(
+      alternativeSection,
+      new RegExp(
+        `(<div[^>]*data-firm-alternative=["']${slug}["'][^>]*>[\\s\\S]*?)(?=<div[^>]*data-firm-alternative=|$)`,
+        'i',
+      ),
+    )
+    const cardText = textContent(card)
+    if (
+      !card.includes(`data-alternative-products="${evidence.productCount}"`)
+      || !card.includes(`data-alternative-sources="${evidence.sourceCount}"`)
+      || !card.includes(`data-alternative-comparison="${href}"`)
+      || !card.includes(`href="${href}"`)
+    ) {
+      errors.push(`${fundedNextReviewPath}: review alternatives do not link to their exact comparisons`)
+    }
+    for (const required of [
+      `TFH ${alternative.score}/10`,
+      `${evidence.productCount} current ${evidence.productCount === 1 ? 'product' : 'products'}`,
+      `${evidence.sourceCount} first-party ${evidence.sourceCount === 1 ? 'source' : 'sources'}`,
+      `checked ${formatCaptureDate(evidence.latestCapture)}`,
+    ]) {
+      if (!cardText.includes(required)) {
+        errors.push(`${fundedNextReviewPath}: ${alternative.name} alternative is missing ${required}`)
+      }
+    }
   }
 }
 
@@ -2231,6 +2337,46 @@ if (ftmoFundedNextProbe.status !== 200) {
   const itemNames = itemList?.itemListElement?.map(entry => entry.item?.name) ?? []
   if (JSON.stringify(itemNames) !== JSON.stringify(['FTMO', 'FundedNext'])) {
     errors.push(`${ftmoFundedNextPath}: comparison ItemList is not in neutral canonical order`)
+  }
+  const ftmoFirm = firmRecords.find(firm => firm.name === 'FTMO')
+  const fundedNextFirm = firmRecords.find(firm => firm.name === 'FundedNext')
+  if (!ftmoFirm || !fundedNextFirm) {
+    errors.push(`${ftmoFundedNextPath}: comparison firms are missing from firms.json`)
+  } else {
+    const expectedRelated = buildRelatedComparisons(ftmoFirm, fundedNextFirm, firmRecords)
+    const renderedRelated = [...ftmoFundedNextProbe.html.matchAll(
+      /\bdata-related-matchup=["']([^"']+)["']/gi,
+    )].map(match => match[1])
+    if (
+      !ftmoFundedNextProbe.html.includes('data-related-comparisons="true"')
+      || JSON.stringify(renderedRelated)
+        !== JSON.stringify(expectedRelated.map(item => item.matchup))
+    ) {
+      errors.push(`${ftmoFundedNextPath}: editorial comparison related links do not match the shared selector`)
+    }
+    for (const related of expectedRelated) {
+      const card = firstMatch(
+        ftmoFundedNextProbe.html,
+        new RegExp(
+          `<li[^>]*data-related-matchup=["']${related.matchup}["'][^>]*>([\\s\\S]*?)<\\/li>`,
+          'i',
+        ),
+      )
+      const cardText = textContent(card)
+      for (const required of [
+        related.label,
+        `${related.productCount} current products`,
+        `${related.sourceCount} first-party source`,
+        `checked ${formatCaptureDate(related.latestCapture)}`,
+      ]) {
+        if (!cardText.includes(required)) {
+          errors.push(`${ftmoFundedNextPath}: ${related.matchup} is missing ${required}`)
+        }
+      }
+      if (!card.includes(`href="${related.href}"`)) {
+        errors.push(`${ftmoFundedNextPath}: ${related.matchup} is missing its comparison link`)
+      }
+    }
   }
   for (const href of [
     '/blog/ftmo-review',

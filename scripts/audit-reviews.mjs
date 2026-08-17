@@ -38,6 +38,11 @@ import { isIndiaCampaign } from '../lib/affiliateCampaign.ts'
 import { challengeTierEconomics, computeTrueCost } from '../lib/firms.ts'
 import { rankFirmAlternatives } from '../lib/firmAlternatives.ts'
 import {
+  buildRelatedComparisons,
+  comparisonHref,
+  getFreshFirmEvidence,
+} from '../lib/relatedComparisons.ts'
+import {
   goClickEventName,
   isHighIntentJourneyStage,
   journeyStage,
@@ -253,6 +258,9 @@ const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
 const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
 const COMPARISON_VERDICT_FILE = path.join(ROOT, 'components/ComparisonVerdict.tsx')
+const RELATED_COMPARISONS_FILE = path.join(ROOT, 'components/RelatedComparisons.tsx')
+const RELATED_COMPARISONS_LIB_FILE = path.join(ROOT, 'lib/relatedComparisons.ts')
+const FIRM_ALTERNATIVES_FILE = path.join(ROOT, 'components/FirmAlternatives.tsx')
 const COMPARISON_INFOGRAPHIC_FILE = path.join(ROOT, 'components/ComparisonInfographic.tsx')
 const COMPARISON_HUB_FILE = path.join(ROOT, 'app/compare/page.tsx')
 const COMPARISON_DIRECTORY_FILE = path.join(ROOT, 'components/ComparisonDirectory.tsx')
@@ -1166,6 +1174,135 @@ function checkFirmAlternativeNeutrality() {
       !firm.assets.some(asset => asset.toLowerCase() === 'futures'))
   ) {
     rows.push('Topstep alternatives must be 3 futures-relevant firms')
+  }
+
+  for (const firm of firms) {
+    const evidence = getFreshFirmEvidence(firm)
+    if (!evidence.productCount || !evidence.sourceCount || !evidence.latestCapture) {
+      rows.push(`${firm.name}: review alternative evidence is not current and attributable`)
+    }
+  }
+
+  for (let leftIndex = 0; leftIndex < firms.length; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < firms.length; rightIndex += 1) {
+      const firmA = firms[leftIndex]
+      const firmB = firms[rightIndex]
+      const label = `${firmA.name} vs ${firmB.name}`
+      const selected = buildRelatedComparisons(firmA, firmB, firms)
+      const reversed = buildRelatedComparisons(firmA, firmB, [...firms].reverse())
+      const toggledA = toggled.find(firm => firm.name === firmA.name)
+      const toggledB = toggled.find(firm => firm.name === firmB.name)
+      const selectedWithToggledPartnerships = toggledA && toggledB
+        ? buildRelatedComparisons(toggledA, toggledB, toggled)
+        : []
+      const matchupIds = selected.map(item => item.matchup)
+      const anchorCounts = new Map(
+        [firmA.name, firmB.name].map(name => [
+          name,
+          selected.filter(item => item.anchorName === name).length,
+        ]),
+      )
+
+      if (selected.length !== 4 || new Set(matchupIds).size !== 4) {
+        rows.push(`${label}: related comparisons must contain 4 unique fresh matchups`)
+      }
+      if ([...anchorCounts.values()].some(count => count !== 2)) {
+        rows.push(`${label}: related comparisons must contribute 2 links per firm`)
+      }
+      if (selected.some(item =>
+        item.href !== `/compare/${item.matchup}`
+        || item.href === comparisonHref(firmA, firmB)
+        || !item.productCount
+        || !item.sourceCount
+        || !item.latestCapture
+      )) {
+        rows.push(`${label}: related comparison link or evidence metadata is invalid`)
+      }
+      if (JSON.stringify(reversed) !== JSON.stringify(selected)) {
+        rows.push(`${label}: related comparisons depend on firm input order`)
+      }
+      if (
+        JSON.stringify(selectedWithToggledPartnerships.map(item => item.matchup))
+          !== JSON.stringify(matchupIds)
+      ) {
+        rows.push(`${label}: related comparisons depend on affiliate configuration`)
+      }
+    }
+  }
+
+  const alternativeComponent = fs.existsSync(FIRM_ALTERNATIVES_FILE)
+    ? fs.readFileSync(FIRM_ALTERNATIVES_FILE, 'utf-8')
+    : ''
+  for (const fragment of [
+    'Selected by asset and platform overlap, not partnership.',
+    'getFreshFirmEvidence(firm)',
+    'data-firm-alternative={firmSlug(firm.name)}',
+    'data-alternative-products={evidence.productCount}',
+    'data-alternative-sources={evidence.sourceCount}',
+    'data-alternative-comparison={compareHref}',
+    'first-party',
+    'checked {formatCaptureDate(evidence.latestCapture)}',
+  ]) {
+    if (!alternativeComponent.includes(fragment)) {
+      rows.push(`firm alternatives are missing "${fragment}"`)
+    }
+  }
+  for (const stale of ['firm.profitSplitPct', 'firm.payoutFrequency']) {
+    if (alternativeComponent.includes(stale)) {
+      rows.push(`firm alternatives restored flattened field ${stale}`)
+    }
+  }
+
+  const relatedComponent = fs.existsSync(RELATED_COMPARISONS_FILE)
+    ? fs.readFileSync(RELATED_COMPARISONS_FILE, 'utf-8')
+    : ''
+  const relatedLibrary = fs.existsSync(RELATED_COMPARISONS_LIB_FILE)
+    ? fs.readFileSync(RELATED_COMPARISONS_LIB_FILE, 'utf-8')
+    : ''
+  const comparisonPage = fs.existsSync(COMPARISON_ROUTE_FILE)
+    ? fs.readFileSync(COMPARISON_ROUTE_FILE, 'utf-8')
+    : ''
+  for (const fragment of [
+    'data-related-comparisons="true"',
+    'data-related-matchup={comparison.matchup}',
+    'selected by asset and platform overlap',
+    'current first-party product evidence',
+    'first-party source',
+    'checked',
+  ]) {
+    if (!relatedComponent.includes(fragment)) {
+      rows.push(`related comparison cards are missing "${fragment}"`)
+    }
+  }
+  for (const fragment of [
+    'export function getFreshFirmEvidence',
+    'export function comparisonHref',
+    'export function buildRelatedComparisons',
+    'rankFirmAlternatives(',
+    'firm.name !== currentOpponent.name',
+  ]) {
+    if (!relatedLibrary.includes(fragment)) {
+      rows.push(`related comparison selector is missing "${fragment}"`)
+    }
+  }
+  if (
+    !comparisonPage.includes("import RelatedComparisons from '@/components/RelatedComparisons'")
+    || !comparisonPage.includes('<RelatedComparisons firmA={firmA} firmB={firmB} allFirms={allFirms} />')
+  ) {
+    rows.push('comparison detail template is missing evidence-led related comparisons')
+  }
+
+  const releaseCrawl = fs.existsSync(RELEASE_CRAWL_FILE)
+    ? fs.readFileSync(RELEASE_CRAWL_FILE, 'utf-8')
+    : ''
+  for (const fragment of [
+    'generic comparison related links do not match the shared selector',
+    'editorial comparison related links do not match the shared selector',
+    'review alternatives do not link to their exact comparisons',
+  ]) {
+    if (!releaseCrawl.includes(fragment)) {
+      rows.push(`release crawl is missing related-link safeguard "${fragment}"`)
+    }
   }
 
   if (rows.length) {

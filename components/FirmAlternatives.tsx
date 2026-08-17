@@ -2,9 +2,20 @@ import Link from 'next/link'
 import { ArrowRight, ArrowUpRight, Handshake, Tag, Star } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
 import { rankFirmAlternatives } from '@/lib/firmAlternatives'
+import { firmSlug } from '@/lib/comparisons'
+import { comparisonHref, getFreshFirmEvidence } from '@/lib/relatedComparisons'
 
-const firmSlug = (name: string) =>
-  name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+function formatCaptureDate(value: string | null) {
+  if (!value) return 'refresh pending'
+  const date = new Date(`${value}T00:00:00Z`)
+  if (Number.isNaN(date.getTime())) return value
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
 
 /**
  * Renders alternatives at the end of a firm review:
@@ -38,8 +49,12 @@ export default function FirmAlternatives({
       }}
     >
       <h2 style={{ fontSize: '1.05rem', color: '#fff', margin: 0, marginBottom: '1rem', fontWeight: 700 }}>
-        Not sold on {current.name}? See alternatives
+        Compare {current.name} with relevant alternatives
       </h2>
+      <p style={{ color: 'var(--muted)', fontSize: '0.82rem', margin: '-0.35rem 0 1rem' }}>
+        Selected by asset and platform overlap, not partnership. Product counts use current
+        first-party captures; open the exact matchup before choosing a product.
+      </p>
       <div
         style={{
           display: 'grid',
@@ -49,9 +64,14 @@ export default function FirmAlternatives({
       >
         {ranked.map(firm => {
           const isPartner = Boolean(firm.affiliateUrl)
+          const evidence = getFreshFirmEvidence(firm)
+          const compareHref = comparisonHref(current, firm)
           return (
             <div
               key={firm.name}
+              data-firm-alternative={firmSlug(firm.name)}
+              data-alternative-products={evidence.productCount}
+              data-alternative-sources={evidence.sourceCount}
               style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -74,16 +94,11 @@ export default function FirmAlternatives({
                 </div>
                 <div style={{ color: 'var(--muted)', fontSize: '0.78rem', marginTop: 4, display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, color: 'var(--gold)' }}>
-                    <Star size={10} fill="currentColor" /> {firm.score}
+                    <Star size={10} fill="currentColor" aria-hidden="true" /> {`TFH ${firm.score}/10`}
                   </span>
-                  {firm.profitSplitPct != null && (
-                    <span>· {firm.profitSplitPct}% split</span>
-                  )}
-                  {firm.payoutFrequency && (
-                    <span style={{ textTransform: 'capitalize' }}>
-                      · {firm.payoutFrequency.replace('-', ' ')}
-                    </span>
-                  )}
+                  <span>· {evidence.productCount} current {evidence.productCount === 1 ? 'product' : 'products'}</span>
+                  <span>· {evidence.sourceCount} first-party {evidence.sourceCount === 1 ? 'source' : 'sources'}</span>
+                  <span>· checked {formatCaptureDate(evidence.latestCapture)}</span>
                 </div>
                 {firm.discountCode && firm.discountPct && (
                   <div style={{ marginTop: 6 }}>
@@ -115,6 +130,14 @@ export default function FirmAlternatives({
                     Read review <ArrowRight size={12} />
                   </Link>
                 )}
+                <Link
+                  href={compareHref}
+                  className="btn-outline"
+                  data-alternative-comparison={compareHref}
+                  style={{ fontSize: '0.78rem', padding: '6px 14px', flex: 1, justifyContent: 'center' }}
+                >
+                  Compare <ArrowRight size={12} aria-hidden="true" />
+                </Link>
               </div>
             </div>
           )

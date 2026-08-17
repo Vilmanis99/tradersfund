@@ -1,5 +1,5 @@
-import type { Firm } from './firms'
-import { getAllFirms, getChallengesByFirm } from './firms'
+import type { Firm } from './firms.ts'
+import { getAllFirms, getChallengesByFirm } from './firms.ts'
 
 /* ── Slug helpers ─────────────────────────────────────────────── */
 

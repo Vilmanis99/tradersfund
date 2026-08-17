@@ -28,6 +28,8 @@ import ComparisonVerdict from '@/components/ComparisonVerdict'
 import FeatureFaq from '@/components/FeatureFaq'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import { TrustpilotPanel } from '@/components/TrustpilotRating'
+import RelatedComparisons from '@/components/RelatedComparisons'
+import { getAllFirms } from '@/lib/firms'
 
 interface Props { params: Promise<{ matchup: string }> }
 
@@ -94,6 +96,7 @@ export default async function ComparePage({ params }: Props) {
   const firmA = findFirmBySlug(parsed.a)
   const firmB = findFirmBySlug(parsed.b)
   if (!firmA || !firmB) notFound()
+  const allFirms = getAllFirms()
 
   // Canonical-redirect: if the requested slug isn't alphabetical, 301 to the
   // canonical version so we never split SEO across two URLs.
@@ -300,6 +303,8 @@ export default async function ComparePage({ params }: Props) {
               <FeatureFaq faqs={overlay.faqs} />
             </section>
           ) : null}
+
+          <RelatedComparisons firmA={firmA} firmB={firmB} allFirms={allFirms} />
         </div>
       </section>
 
