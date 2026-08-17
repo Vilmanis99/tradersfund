@@ -729,6 +729,12 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   title: 'Check consistency formulas',
                   body: 'A phase-0 product can still delay payout through profitable-day, cushion, growth or consistency conditions.',
                 },
+                {
+                  href: '/prop-firm-discount-codes',
+                  eyebrow: 'Conditional offer',
+                  title: 'Verify the FundedNext 5% coupon',
+                  body: 'Stellar Instant ranks inside this phase-0 set; the checked coupon is earned through the Free Trial, not copied from a public code list.',
+                },
               ].map(item => (
                 <Link
                   key={item.href}
@@ -965,11 +971,13 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                       ? '8 policy-checked firms across 34 mapped products'
                       : isUs
                         ? '4 policy-checked firms across 14 mapped products'
-                        : isSwing
-                          ? `${count} verified firms across ${landing.snapshotProductCount ?? 0} swing-qualified products`
-                          : isCrypto
-                            ? '7 evidence-backed firms across 32 mapped products'
-                          : 'Ranked & source-checked'}
+                        : isInstant
+                          ? `${count} verified firms across ${landing.snapshotProductCount ?? 0} phase-0 products`
+                          : isSwing
+                            ? `${count} verified firms across ${landing.snapshotProductCount ?? 0} swing-qualified products`
+                            : isCrypto
+                              ? '7 evidence-backed firms across 32 mapped products'
+                              : 'Ranked & source-checked'}
               </h2>
               <p className="section-sub-text">
                 {isCheapest ? (
@@ -991,6 +999,11 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   <>
                     Editorial score sets the order; every card names current product coverage and links its access source.
                     Partnership, coupon size, product count, asset class and platform add 0 points.
+                  </>
+                ) : isInstant ? (
+                  <>
+                    Editorial score sets the order; every card names every phase-0 product and links each distinct rule source.
+                    Partnership, coupon size, product count, price, split, drawdown and payout speed add 0 points.
                   </>
                 ) : isSwing ? (
                   <>
@@ -1210,11 +1223,11 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   <Link href="/prop-firm-challenges?program=instant" className="btn-primary btn-glow">
                     Compare instant products <ArrowRight size={16} />
                   </Link>
-                  <Link href="/true-cost-of-prop-firm-challenges" className="btn-outline">
-                    Check true cost
+                  <Link href="/blog/fundednext-review" className="btn-outline">
+                    Review FundedNext
                   </Link>
-                  <Link href="/how-prop-firm-challenges-work" className="btn-outline">
-                    Check account stages
+                  <Link href="/prop-firm-discount-codes" className="btn-outline">
+                    Check current offers
                   </Link>
                 </div>
               </>

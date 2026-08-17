@@ -233,6 +233,25 @@ function joinNatural(values: string[]): string {
   return `${values.slice(0, -1).join(', ')}, and ${values.at(-1)}`
 }
 
+function evidenceLinksForProducts(
+  products: Challenge[],
+): NonNullable<LandingFirm['evidenceLinks']> {
+  const evidenceBySource = new Map<string, { productNames: string[]; capturedAt: string }>()
+  for (const product of products) {
+    const current = evidenceBySource.get(product.sourceUrl)
+    evidenceBySource.set(product.sourceUrl, {
+      productNames: [...(current?.productNames ?? []), product.productName],
+      capturedAt: product.sourceCapturedAt,
+    })
+  }
+
+  return [...evidenceBySource.entries()].map(([url, source]) => ({
+    label: `${joinNatural(source.productNames)} rule source`,
+    url,
+    capturedAt: source.capturedAt,
+  }))
+}
+
 function freshProductsForFirm(firm: Firm): Challenge[] {
   return getChallengesByFirm(firmSlug(firm.name)).filter(challenge =>
     isChallengeFresh(challenge),
@@ -304,6 +323,16 @@ const CURRENT_OVERALL_SNAPSHOT = getAllFirms().flatMap(firm => {
 })
 const CURRENT_OVERALL_FIRM_COUNT = CURRENT_OVERALL_SNAPSHOT.length
 const CURRENT_OVERALL_PRODUCT_COUNT = CURRENT_OVERALL_SNAPSHOT.reduce(
+  (total, entry) => total + entry.products.length,
+  0,
+)
+
+const CURRENT_INSTANT_SNAPSHOT = getAllFirms().flatMap(firm => {
+  const products = freshInstantProducts(firm)
+  return products.length ? [{ firm, products }] : []
+})
+const CURRENT_INSTANT_FIRM_COUNT = CURRENT_INSTANT_SNAPSHOT.length
+const CURRENT_INSTANT_PRODUCT_COUNT = CURRENT_INSTANT_SNAPSHOT.reduce(
   (total, entry) => total + entry.products.length,
   0,
 )
@@ -731,13 +760,14 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-instant-funding-prop-firms',
-    h1: 'Best Instant Funding Prop Firms (2026)',
-    metaTitle: 'Best Instant Funding Prop Firms (2026) — Compared',
+    h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Verified`,
+    metaTitle: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Verified`,
     metaDescription:
-      'Compare fresh phase-0 prop-firm products by entry cost, drawdown, profit split, payout gates, account stage, reviews, and dated first-party sources.',
+      `Compare ${CURRENT_INSTANT_FIRM_COUNT} instant-funding prop firms across ${CURRENT_INSTANT_PRODUCT_COUNT} phase-0 products with entry costs, drawdown, starting splits, payout gates, reviews, and dated sources.`,
     intro:
-      'Every ranked firm has at least 1 product captured within 30 days whose structured phase count is 0. That means the product skips an evaluation target; it does not prove that the account uses live firm capital. Compare the loss line, total known cost, starting split, and payout gate on the exact product before paying.',
+      `These ${CURRENT_INSTANT_FIRM_COUNT} firms have ${CURRENT_INSTANT_PRODUCT_COUNT} products captured within 30 days whose structured phase count is 0. That means the product skips an evaluation target; it does not prove that the account uses live firm capital. Every card names each qualifying path and links its distinct first-party sources before comparing the loss line, total known cost, starting split, and payout gate.`,
     sortDir: 'desc',
+    snapshotProductCount: CURRENT_INSTANT_PRODUCT_COUNT,
     rank: firms => firms
       .flatMap(firm => {
         const products = freshInstantProducts(firm)
@@ -761,27 +791,21 @@ export const LANDINGS: Landing[] = [
               ? 'on-demand eligibility'
               : `${product.payoutFirstDays}-day first-payout gate`,
         ))].sort()
-        const shownProducts = products.slice(0, 3).map(product => product.productName)
-        const moreCount = products.length - shownProducts.length
-        const evidenceProduct = cheapest?.product ?? products[0]
+        const productNames = products.map(product => product.productName)
 
         return [{
           firm,
           sortKey: firm.score,
           highlight: `${products.length} current phase-0 ${products.length === 1 ? 'product' : 'products'} · ${cheapest ? `minimum known cost ${formatUsd(cheapest.minimumCostUsd)}` : 'price unverified'}`,
-          metricLabel: 'Products',
-          metricValue: products.length.toString(),
-          note: `${joinNatural(shownProducts)}${moreCount > 0 ? `, plus ${moreCount} more` : ''}. Captured drawdown: ${joinNatural(drawdowns)}; published ${splits.length === 1 ? 'split' : 'splits'}: ${splits.length ? `${splits.join('–')}%` : 'unverified'}; ${joinNatural(payoutGates)}.`,
-          evidence: {
-            label: `${evidenceProduct.productName} source`,
-            url: evidenceProduct.sourceUrl,
-            capturedAt: evidenceProduct.sourceCapturedAt,
-          },
+          trailingMetricLabel: 'Products',
+          trailingMetricValue: products.length.toString(),
+          note: `${joinNatural(productNames)}. Captured drawdown: ${joinNatural(drawdowns)}; published ${splits.length === 1 ? 'split' : 'splits'}: ${splits.length ? `${splits.join('–')}%` : 'unverified'}; ${joinNatural(payoutGates)}.`,
+          evidenceLinks: evidenceLinksForProducts(products),
         }]
       })
       .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
     methodology:
-      'A firm qualifies only when at least 1 structured product captured within 30 days sets phases to 0. Every qualifying product contributes to the card; missing prices or starting splits stay visibly unverified. The order uses our editorial score, while affiliate status, product count, price, profit split, drawdown type, and payout speed add 0 points. “Instant” describes the missing evaluation phase, not verified live-capital execution.',
+      `A firm qualifies only when at least 1 structured product captured within 30 days sets phases to 0. Every qualifying product contributes to the ${CURRENT_INSTANT_FIRM_COUNT}-firm, ${CURRENT_INSTANT_PRODUCT_COUNT}-product snapshot; missing prices or starting splits stay visibly unverified. The order uses our editorial score, while affiliate status, product count, price, profit split, drawdown type, and payout speed add 0 points. “Instant” describes the missing evaluation phase, not verified live-capital execution.`,
     decisionGuide: [
       {
         title: 'Does phase 0 mean the account trades live capital?',
@@ -968,15 +992,6 @@ export const LANDINGS: Landing[] = [
           drawdownLabel(challenge.drawdownType),
         ))].sort()
         const productNames = qualifying.map(challenge => challenge.productName)
-        const evidenceBySource = new Map<string, { productNames: string[]; capturedAt: string }>()
-        for (const challenge of qualifying) {
-          const current = evidenceBySource.get(challenge.sourceUrl)
-          evidenceBySource.set(challenge.sourceUrl, {
-            productNames: [...(current?.productNames ?? []), challenge.productName],
-            capturedAt: challenge.sourceCapturedAt,
-          })
-        }
-
         return [{
           firm,
           sortKey: firm.score,
@@ -984,11 +999,7 @@ export const LANDINGS: Landing[] = [
           trailingMetricLabel: 'Product fit',
           trailingMetricValue: `${qualifying.length}/${freshProducts.length}`,
           note: `${joinNatural(productNames)} meet both holding rules. Other products from the same firm may differ.`,
-          evidenceLinks: [...evidenceBySource.entries()].map(([url, source]) => ({
-            label: `${joinNatural(source.productNames)} rule source`,
-            url,
-            capturedAt: source.capturedAt,
-          })),
+          evidenceLinks: evidenceLinksForProducts(qualifying),
         }]
       })
       .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),

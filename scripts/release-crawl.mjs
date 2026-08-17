@@ -1471,7 +1471,7 @@ const expectedInstantFirms = firmRecords.flatMap(firm => {
     isChallengeFresh(challenge) && challenge.phases === 0,
   )
   return products.length ? [{ firm, products }] : []
-})
+}).sort((a, b) => b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
 const expectedInstantProductCount = expectedInstantFirms.reduce(
   (total, entry) => total + entry.products.length,
   0,
@@ -1486,43 +1486,80 @@ if (instantLandingProbe.status !== 200) {
   const cards = [...instantLandingProbe.html.matchAll(
     /<li class="leader-row[^"]*"[^>]*>([\s\S]*?)<\/li>/gi,
   )].map(match => ({ html: match[0], text: textContent(match[1]) }))
-  const evidenceDateCount = (instantText.match(/checked 2026-/g) ?? []).length
+  const itemListCount = (instantLandingProbe.html.match(/"@type":"ItemList"/g) ?? []).length
   if (cards.length !== expectedInstantFirms.length) {
     errors.push(
       `${instantLandingPath}: rendered ${cards.length} firms, expected ${expectedInstantFirms.length}`,
     )
   }
-  if (evidenceDateCount !== expectedInstantFirms.length) {
+  if (expectedInstantFirms.length !== 10 || expectedInstantProductCount !== 19) {
     errors.push(
-      `${instantLandingPath}: rendered ${evidenceDateCount} dated card sources, expected ${expectedInstantFirms.length}`,
+      `${instantLandingPath}: current fixture must resolve to 10 firms and 19 products; received ${expectedInstantFirms.length} and ${expectedInstantProductCount}`,
     )
   }
-  let renderedProductCount = 0
-  for (const { firm, products } of expectedInstantFirms) {
-    const card = cards.find(candidate => candidate.text.includes(firm.name))
-    const countLabel = `${products.length} current phase-0 ${products.length === 1 ? 'product' : 'products'}`
-    if (!card) {
-      errors.push(`${instantLandingPath}: missing qualifying firm ${firm.name}`)
-      continue
-    }
-    if (!card.text.includes(countLabel)) {
-      errors.push(`${instantLandingPath}: ${firm.name} card is missing ${countLabel}`)
-    } else {
-      renderedProductCount += products.length
-    }
+  if (itemListCount !== 1) {
+    errors.push(`${instantLandingPath}: rendered ${itemListCount} ItemLists, expected 1`)
   }
+  let renderedProductCount = 0
+  expectedInstantFirms.forEach(({ firm, products }, index) => {
+    const card = cards[index]
+    const countLabel = `${products.length} current phase-0 ${products.length === 1 ? 'product' : 'products'}`
+    if (!card || !card.text.includes(firm.name)) {
+      errors.push(`${instantLandingPath}: rank ${index + 1} should be ${firm.name}`)
+      return
+    }
+    for (const required of [
+      countLabel,
+      `Score ${firm.score.toFixed(1)}`,
+      `Products ${products.length}`,
+    ]) {
+      if (!card.text.includes(required)) {
+        errors.push(`${instantLandingPath}: ${firm.name} card is missing ${required}`)
+      }
+    }
+    if (card.text.includes(countLabel)) renderedProductCount += products.length
+    for (const product of products) {
+      if (!card.text.includes(product.productName)) {
+        errors.push(`${instantLandingPath}: ${firm.name} card is missing ${product.productName}`)
+      }
+      if (!decodeHtml(card.html).includes(`href="${product.sourceUrl}"`)) {
+        errors.push(`${instantLandingPath}: ${firm.name} card is missing the ${product.productName} rule source`)
+      }
+      if (!card.text.includes(`checked ${product.sourceCapturedAt}`)) {
+        errors.push(`${instantLandingPath}: ${firm.name} card is missing the ${product.productName} capture date`)
+      }
+    }
+  })
   if (renderedProductCount !== expectedInstantProductCount) {
     errors.push(
       `${instantLandingPath}: represented ${renderedProductCount} products, expected ${expectedInstantProductCount}`,
     )
   }
+
+  const expectedDescription =
+    'Compare 10 instant-funding prop firms across 19 phase-0 products with entry costs, drawdown, starting splits, payout gates, reviews, and dated sources.'
+  const renderedDescription = decodeHtml(firstMatch(
+    instantLandingProbe.html,
+    /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+  ) || firstMatch(
+    instantLandingProbe.html,
+    /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+  ))
+  if (renderedDescription !== expectedDescription) {
+    errors.push(`${instantLandingPath}: meta description does not match the 10-firm/19-product snapshot`)
+  }
+
   for (const required of [
-    'Best Instant Funding Prop Firms (2026) — Compared | TFH',
+    'Best Instant Funding Prop Firms (2026): 10 Verified | TFH',
+    'Best Instant Funding Prop Firms (2026): 10 Verified',
+    '10 verified firms across 19 phase-0 products',
     'What instant-funding buyers should verify',
     'Does phase 0 mean the account trades live capital?',
     'How does the maximum-loss line move?',
     'How much loss room repays the one-time fee?',
     'What unlocks the first payout?',
+    'Verify the FundedNext 5% coupon',
+    'Compare the exact phase-0 product',
   ]) {
     if (!instantText.includes(required)) {
       errors.push(`${instantLandingPath}: missing ${required}`)
@@ -1533,6 +1570,8 @@ if (instantLandingProbe.status !== 200) {
     'href="/how-prop-firm-challenges-work"',
     'href="/true-cost-of-prop-firm-challenges"',
     'href="/blog/what-is-prop-firm-consistency-rule"',
+    'href="/blog/fundednext-review"',
+    'href="/prop-firm-discount-codes"',
   ]) {
     if (!instantLandingProbe.html.includes(required)) {
       errors.push(`${instantLandingPath}: missing ${required}`)
@@ -1543,6 +1582,39 @@ if (instantLandingProbe.status !== 200) {
     || instantText.includes('live capital from day one')
   ) {
     errors.push(`${instantLandingPath}: restored unsupported instant-funding copy`)
+  }
+
+  const fundedNextCta = [...instantLandingProbe.html.matchAll(/<a\b[^>]*>/gi)]
+    .map(match => match[0])
+    .find(tag => tag.includes('href="/go/fundednext?from=best-instant-funding-prop-firms"'))
+  if (
+    !fundedNextCta
+    || !fundedNextCta.includes('rel="sponsored nofollow noopener"')
+    || !fundedNextCta.includes('target="_blank"')
+  ) {
+    errors.push(`${instantLandingPath}: FundedNext ranking CTA is missing affiliate attribution`)
+  }
+}
+
+for (const backlinkPath of [
+  '/blog/alpha-capital-review',
+  '/blog/city-traders-imperium-review',
+  '/blog/crypto-fund-trader-review',
+  '/blog/fundednext-review',
+  '/blog/funding-pips-review',
+  '/blog/fxify-review',
+  '/blog/lucid-trading-review',
+  '/blog/maven-prop-firm-review',
+  '/blog/ofp-funding-review',
+  '/blog/tradeify-review',
+  '/blog/what-is-a-prop-firm',
+  '/blog/are-prop-firm-passing-services-worth-it',
+]) {
+  const backlinkProbe = await fetchPage(new URL(backlinkPath, BASE))
+  if (backlinkProbe.status !== 200) {
+    errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
+  } else if (!backlinkProbe.html.includes('href="/best-instant-funding-prop-firms"')) {
+    errors.push(`${backlinkPath}: missing contextual instant-funding backlink`)
   }
 }
 

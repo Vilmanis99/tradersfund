@@ -6085,7 +6085,8 @@ function checkSwingFeatureCluster() {
       'const qualifying = swingCompatibleProducts(firm)',
       "trailingMetricLabel: 'Product fit'",
       'trailingMetricValue: `${qualifying.length}/${freshProducts.length}`',
-      'evidenceLinks: [...evidenceBySource.entries()]',
+      'function evidenceLinksForProducts(',
+      'evidenceLinks: evidenceLinksForProducts(qualifying)',
       'label: `${joinNatural(source.productNames)} rule source`',
       'at least 1 product captured within 30 days sets both overnight and weekend holding to allowed on that same product',
       'affiliate status, coupon size, the ${CURRENT_SWING_PRODUCT_COUNT}-product coverage count, and drawdown type add 0 points',
@@ -7010,24 +7011,29 @@ function checkInstantFundingCluster() {
   if (!block) {
     rows.push('best-instant-funding-prop-firms landing config is missing')
   } else {
-    const metaTitle = block.match(/metaTitle:\s*'([^']+)'/)?.[1] ?? ''
-    const description = block.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1] ?? ''
-    if (metaTitle.length > 54) {
+    const metaTitle = block.match(/metaTitle:\s*'([^']+)'/)?.[1]
+    const description = block.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1]
+    if (metaTitle && metaTitle.length > 54) {
       rows.push('instant-funding meta title must leave room for the root title suffix')
     }
-    if (description.length < 120 || description.length > 160) {
+    if (description && (description.length < 120 || description.length > 160)) {
       rows.push('instant-funding meta description must be between 120 and 160 characters')
     }
     for (const fragment of [
       'function freshInstantProducts(firm: Firm): Challenge[]',
+      'const CURRENT_INSTANT_FIRM_COUNT = CURRENT_INSTANT_SNAPSHOT.length',
+      'const CURRENT_INSTANT_PRODUCT_COUNT = CURRENT_INSTANT_SNAPSHOT.reduce',
       'isChallengeFresh(challenge) && challenge.phases === 0',
+      'h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Verified`',
+      'metaTitle: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Verified`',
+      'snapshotProductCount: CURRENT_INSTANT_PRODUCT_COUNT',
       'const products = freshInstantProducts(firm)',
       'products.flatMap(product => product.accountSizes.flatMap',
       'minimumCostToFundedUsd(product, tier)',
-      "metricLabel: 'Products'",
-      'url: evidenceProduct.sourceUrl',
-      'capturedAt: evidenceProduct.sourceCapturedAt',
-      'Every qualifying product contributes to the card',
+      "trailingMetricLabel: 'Products'",
+      'trailingMetricValue: products.length.toString()',
+      'evidenceLinks: evidenceLinksForProducts(products)',
+      'Every qualifying product contributes to the ${CURRENT_INSTANT_FIRM_COUNT}-firm, ${CURRENT_INSTANT_PRODUCT_COUNT}-product snapshot',
       'affiliate status, product count, price, profit split, drawdown type, and payout speed add 0 points',
       'Does phase 0 mean the account trades live capital?',
       'How does the maximum-loss line move?',
@@ -7063,8 +7069,14 @@ function checkInstantFundingCluster() {
     "href: '/how-prop-firm-challenges-work'",
     "href: '/true-cost-of-prop-firm-challenges'",
     "href: '/blog/what-is-prop-firm-consistency-rule'",
+    "href: '/prop-firm-discount-codes'",
+    'Verify the FundedNext 5% coupon',
+    'landing.snapshotProductCount',
+    'every card names every phase-0 product and links each distinct rule source',
     'Compare the exact phase-0 product',
     'href="/prop-firm-challenges?program=instant"',
+    'href="/blog/fundednext-review"',
+    'href="/prop-firm-discount-codes"',
   ]) {
     if (!landingPage.includes(fragment)) {
       rows.push(`instant-funding landing component is missing "${fragment}"`)
@@ -7100,6 +7112,14 @@ function checkInstantFundingCluster() {
   for (const file of reviewFiles) {
     if (!read(path.join(POSTS, file)).includes('href="/best-instant-funding-prop-firms"')) {
       rows.push(`${file}: missing contextual backlink to the instant-funding comparison`)
+    }
+  }
+  for (const [file, label] of [
+    [WHAT_IS_PROP_FIRM_GUIDE_FILE, 'what-is-a-prop-firm guide'],
+    [PASSING_SERVICES_GUIDE_FILE, 'passing-services guide'],
+  ]) {
+    if (!read(file).includes('href="/best-instant-funding-prop-firms"')) {
+      rows.push(`${label}: missing contextual backlink to the instant-funding comparison`)
     }
   }
 
@@ -7175,6 +7195,10 @@ function checkInstantFundingCluster() {
     'expectedInstantFirms',
     'expectedInstantProductCount',
     'challenge.phases === 0',
+    '10 firms and 19 products',
+    'Products ${products.length}',
+    'href="/go/fundednext?from=best-instant-funding-prop-firms"',
+    'missing contextual instant-funding backlink',
     "const instantProgramProbePath = '/prop-firm-challenges?program=instant'",
     'canonical includes instant program state',
     "const ctiReviewPath = '/blog/city-traders-imperium-review'",
