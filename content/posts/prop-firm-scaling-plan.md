@@ -3,7 +3,7 @@ title: "Prop Firm Scaling Plans Explained: What to Verify (2026)"
 seoTitle: "Prop Firm Scaling Plans Explained (2026)"
 slug: "prop-firm-scaling-plan"
 date: "2025-09-15 10:46:50"
-modified: "2026-08-14 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Learn how prop-firm scaling changes allocation and profit share, which milestones matter, and why an advertised ceiling is not a day-one account."
 seoDescription: "Learn how prop-firm scaling plans work, which milestones and loss rules to verify, and how current allocation fields differ from starting product terms."
@@ -17,7 +17,7 @@ type: "post"
 <div class="key-takeaways">
   <div class="title">Scaling in five checks</div>
   <ol>
-    <li><strong>Start with the base product</strong> — its starting split, loss rules, payout gate, and fee apply before any scaling milestone.</li>
+    <li><strong>Start with the base product</strong> — its <a href="/prop-firms/high-profit-split">product-level starting split</a>, loss rules, payout gate, and fee apply before any scaling milestone.</li>
     <li><strong>Name what scales</strong> — account size, aggregate allocation, profit share, or funded-account type.</li>
     <li><strong>Record every gate</strong> — time, profit, payouts, consistency, KYC, and breach-free periods can be separate requirements.</li>
     <li><strong>Keep currencies and environments separate</strong> — a larger simulated account label is not proof of live capital.</li>

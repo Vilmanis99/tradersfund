@@ -3,13 +3,13 @@ title: "True Cost of Prop Firm Challenges: Fee-Recovery Math (2026)"
 seoTitle: "Prop Firm Challenge True Cost: Fee-Recovery Math"
 slug: "true-cost-of-prop-firm-challenges"
 date: "2026-05-20 12:00:00"
-modified: "2026-08-14 12:00:00"
+modified: "2026-08-17 12:00:00"
 description: "Calculate fee-recovery profit, refund-adjusted cash cost, retry cost, and the ratio between checkout cost and a challenge's starting loss room."
 seoDescription: "Calculate prop-firm fee-recovery profit, refund-adjusted cash cost, retry cost, loss-room ratio, and standardized growth days."
 type: "page"
 ---
 
-<p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;">A challenge fee is only one part of cost. The base profit split determines how much gross account profit produces the same trader share as that fee; refunds, failed attempts, recurring billing, activation charges, and <a href="/blog/what-is-prop-firm-consistency-rule">consistency-based payout gates</a> determine the actual cash result. This guide defines each number before comparing products captured on 2026-07-27.</p>
+<p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;">A challenge fee is only one part of cost. The <a href="/prop-firms/high-profit-split">verified base profit split</a> determines how much gross account profit produces the same trader share as that fee; refunds, failed attempts, recurring billing, activation charges, and <a href="/blog/what-is-prop-firm-consistency-rule">consistency-based payout gates</a> determine the actual cash result. This guide defines each number before comparing products captured on 2026-07-27.</p>
 
 <div class="key-takeaways">
   <div class="title">Read the model correctly</div>

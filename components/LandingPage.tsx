@@ -27,6 +27,17 @@ export default function LandingPage({ landing }: { landing: Landing }) {
   const firms = ranked.map(r => r.firm)
   const isIndia = landing.slug === 'best-prop-firms-in-india'
   const isUs = landing.slug === 'best-prop-firms-in-us'
+  const isSwing = landing.slug === 'best-swing-trading-prop-firms'
+  const decisionHeading = isUs
+    ? 'What U.S. traders should verify'
+    : isSwing
+      ? 'What swing traders should verify'
+      : 'What Indian traders should verify'
+  const decisionSub = isUs
+    ? 'Four access, contract and payout checks to complete before paying.'
+    : isSwing
+      ? 'Four product-level checks before carrying a position across sessions.'
+      : 'Four checks to complete before paying for any evaluation.'
   const indiaMatcherFirms = isIndia
     ? buildIndiaMatcherFirms(firms)
     : []
@@ -159,6 +170,60 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   Open the CFTC registration checklist.
                 </a>
               </span>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isSwing && (
+        <section className="home-section" style={{ paddingTop: 0, paddingBottom: '1rem' }}>
+          <div className="home-shell">
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '0.85rem',
+            }}>
+              {[
+                {
+                  href: '/prop-firms/overnight-holding',
+                  eyebrow: 'Weekday carry',
+                  title: 'Check overnight rules by product',
+                  body: 'Separate ordinary session-to-session holding from the stricter Friday-close question.',
+                },
+                {
+                  href: '/prop-firms/weekend-holding',
+                  eyebrow: 'Weekend carry',
+                  title: 'Check Friday-to-Sunday rules',
+                  body: 'See which exact products publish weekend permission and which remain conditional.',
+                },
+                {
+                  href: '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+                  eyebrow: 'Risk mechanics',
+                  title: 'Compare drawdown calculations',
+                  body: 'Understand how a floating peak, closing balance, or fixed floor changes a multi-day trade.',
+                },
+              ].map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="post-sidebar-card"
+                  style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+                >
+                  <span className="bento-tile-eyebrow">{item.eyebrow}</span>
+                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                    {item.title}
+                  </strong>
+                  <span style={{
+                    display: 'block',
+                    color: 'var(--muted)',
+                    fontSize: '0.8rem',
+                    lineHeight: 1.55,
+                    marginTop: '0.35rem',
+                  }}>
+                    {item.body}
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
@@ -352,12 +417,10 @@ export default function LandingPage({ landing }: { landing: Landing }) {
             <div className="section-head">
               <div>
                 <h2 className="section-title">
-                  {isUs ? 'What U.S. traders should verify' : 'What Indian traders should verify'}
+                  {decisionHeading}
                 </h2>
                 <p className="section-sub-text">
-                  {isUs
-                    ? 'Four access, contract and payout checks to complete before paying.'
-                    : 'Four checks to complete before paying for any evaluation.'}
+                  {decisionSub}
                 </p>
               </div>
             </div>
@@ -459,6 +522,26 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   </Link>
                   <Link href="/blog/fundednext-review" className="btn-outline">
                     Check FundedNext CFD
+                  </Link>
+                </div>
+              </>
+            ) : isSwing ? (
+              <>
+                <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
+                  Verify the exact product before carrying
+                </h2>
+                <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
+                  Match both holding permissions, then test the drawdown and carrying-cost rules against the strategy.
+                </p>
+                <div className="cta-final-row">
+                  <Link href="/prop-firm-challenges" className="btn-primary btn-glow">
+                    Compare current products <ArrowRight size={16} />
+                  </Link>
+                  <Link href="/prop-firms/overnight-holding" className="btn-outline">
+                    Check overnight rules
+                  </Link>
+                  <Link href="/prop-firms/weekend-holding" className="btn-outline">
+                    Check weekend rules
                   </Link>
                 </div>
               </>

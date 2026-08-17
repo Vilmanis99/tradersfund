@@ -3,7 +3,7 @@ title: "Is Prop Firm Trading Profitable? The Net Cash Test (2026)"
 seoTitle: "Is Prop Firm Trading Profitable? Net Cash Test (2026)"
 slug: "is-prop-firm-trading-profitable"
 date: "2025-09-24 17:22:03"
-modified: "2026-08-14 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Prop-firm trading is profitable only when approved cash payouts and refunds exceed every attempt, activation, platform, and withdrawal cost."
 seoDescription: "Test prop-firm profitability using net cash, repeat-attempt costs, verified base splits, refund timing, payout gates, and current product examples."
@@ -19,7 +19,7 @@ type: "post"
   <ol>
     <li><strong>Use cash, not dashboard P&amp;L.</strong> Count only approved payouts and refunds actually received.</li>
     <li><strong>Include every attempt.</strong> Two failed fees still belong in the cost basis when the third account pays.</li>
-    <li><strong>Use the verified base split.</strong> “Up to 90%” cannot support exact take-home math when the starting split is unpublished.</li>
+    <li><strong>Use the <a href="/prop-firms/high-profit-split">verified product-level base split</a>.</strong> “Up to 90%” cannot support exact take-home math when the starting split is unpublished.</li>
     <li><strong>Keep payout gates separate.</strong> Passing, reaching profit, requesting a payout, and receiving cash are 4 different events.</li>
     <li><strong>Pre-commit the loss budget.</strong> If the maximum paid-attempt budget is unaffordable, the purchase is not economically viable.</li>
   </ol>

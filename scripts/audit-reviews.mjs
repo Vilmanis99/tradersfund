@@ -223,6 +223,8 @@ const US_ACCESS_EVIDENCE_FILE = path.join(
 const LANDINGS_CONFIG_FILE = path.join(ROOT, 'lib/landings.ts')
 const LANDING_PAGE_COMPONENT_FILE = path.join(ROOT, 'components/LandingPage.tsx')
 const LANDING_FIRM_LIST_FILE = path.join(ROOT, 'components/LandingFirmList.tsx')
+const FEATURE_PAGE_ROUTE_FILE = path.join(ROOT, 'app/prop-firms/[feature]/page.tsx')
+const RELEASE_CRAWL_FILE = path.join(ROOT, 'scripts/release-crawl.mjs')
 const MDX_FILE = path.join(ROOT, 'lib/mdx.ts')
 const RETIRED_CONTENT_FILE = path.join(ROOT, 'lib/retiredContent.ts')
 const NEXT_CONFIG_FILE = path.join(ROOT, 'next.config.ts')
@@ -5716,6 +5718,115 @@ function checkUsLandingConsolidation() {
   return rows.length
 }
 
+/** Keep the swing shortlist product-level and the focused-rule link graph balanced. */
+function checkSwingFeatureCluster() {
+  const rows = []
+  const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+  const landings = read(LANDINGS_CONFIG_FILE)
+  const block = landings.match(
+    /slug:\s*'best-swing-trading-prop-firms'([\s\S]*?)\n\s*},\n]/,
+  )?.[1] ?? ''
+
+  if (!block) {
+    rows.push('best-swing-trading-prop-firms landing config is missing')
+  } else {
+    const metaTitle = block.match(/metaTitle:\s*'([^']+)'/)?.[1] ?? ''
+    const description = block.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1] ?? ''
+    if (metaTitle.length > 54) {
+      rows.push('swing landing meta title must leave room for the root title suffix')
+    }
+    if (description.length < 120 || description.length > 160) {
+      rows.push('swing landing meta description must be between 120 and 160 characters')
+    }
+    for (const fragment of [
+      'function swingCompatibleProducts(firm: Firm): Challenge[]',
+      'isChallengeFresh(challenge)',
+      'challenge.rules.overnight === true',
+      'challenge.rules.weekend === true',
+      'const qualifying = swingCompatibleProducts(firm)',
+      "metricLabel: 'Product fit'",
+      'metricValue: `${qualifying.length}/${freshProducts.length}`',
+      'url: evidenceProduct.sourceUrl',
+      'capturedAt: evidenceProduct.sourceCapturedAt',
+      'at least 1 product captured within 30 days sets both overnight and weekend holding to allowed on that same product',
+      'affiliate status, coupon size, qualifying-product count, and drawdown type add 0 points',
+      "lastReviewed: '2026-08-17'",
+    ]) {
+      if (!landings.includes(fragment) && !block.includes(fragment)) {
+        rows.push(`swing landing is missing "${fragment}"`)
+      }
+    }
+    for (const staleClaim of [
+      'Every firm below allows BOTH',
+      'static-drawdown account',
+      '.filter(f => f.overnightAllowed === true && f.weekendAllowed === true)',
+      'aggregate rules allow both overnight and weekend holding',
+    ]) {
+      if (block.includes(staleClaim)) {
+        rows.push(`swing landing restored unsupported logic: "${staleClaim}"`)
+      }
+    }
+    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
+      rows.push('swing landing must keep exactly 4 product-level decision questions')
+    }
+  }
+
+  const landingPage = read(LANDING_PAGE_COMPONENT_FILE)
+  for (const fragment of [
+    "const isSwing = landing.slug === 'best-swing-trading-prop-firms'",
+    'What swing traders should verify',
+    'Four product-level checks before carrying a position across sessions.',
+    "href: '/prop-firms/overnight-holding'",
+    "href: '/prop-firms/weekend-holding'",
+    "href: '/blog/balance-based-drawdown-vs-equity-based-drawdown'",
+    'Verify the exact product before carrying',
+    'href="/prop-firm-challenges"',
+  ]) {
+    if (!landingPage.includes(fragment)) {
+      rows.push(`swing landing component is missing "${fragment}"`)
+    }
+  }
+
+  const featureRoute = read(FEATURE_PAGE_ROUTE_FILE)
+  if (!featureRoute.includes('const siblings = FEATURES.filter(f => f.slug !== slug)')) {
+    rows.push('focused rule pages no longer render the complete sibling cluster')
+  }
+  if (/FEATURES\.filter\(f => f\.slug !== slug\)\.slice\(/.test(featureRoute)) {
+    rows.push('focused rule sibling links are sliced by config order')
+  }
+
+  for (const [file, label] of [
+    [TRUE_COST_PILLAR_FILE, 'true-cost pillar'],
+    [SCALING_PLAN_GUIDE_FILE, 'scaling guide'],
+    [PROFITABILITY_GUIDE_FILE, 'profitability guide'],
+  ]) {
+    if (!read(file).includes('href="/prop-firms/high-profit-split"')) {
+      rows.push(`${label} is missing its contextual high-profit-split link`)
+    }
+  }
+
+  const crawler = read(RELEASE_CRAWL_FILE)
+  for (const fragment of [
+    "path.startsWith('/prop-firms/')",
+    'inlinkCount < 5',
+    "const swingLandingPath = '/best-swing-trading-prop-firms'",
+    'expectedSwingFirms',
+    'challenge.rules.overnight === true',
+    'challenge.rules.weekend === true',
+    'rendered ${cardCount} firms, expected ${expectedSwingFirms.length}',
+  ]) {
+    if (!crawler.includes(fragment)) {
+      rows.push(`release crawl is missing "${fragment}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\nâœ— Swing landing and focused-rule links')
+    for (const row of rows) console.log(`  Â· ${row}`)
+  }
+  return rows.length
+}
+
 /** Keep the FTMO practice guide tied to current FTMO and FundedNext sources. */
 function checkFtmoFreeTrialGuide() {
   const rows = []
@@ -7676,6 +7787,8 @@ const legacyOverviewConsolidationErrors = checkLegacyOverviewConsolidation()
 totalErrors += legacyOverviewConsolidationErrors
 const usLandingConsolidationErrors = checkUsLandingConsolidation()
 totalErrors += usLandingConsolidationErrors
+const swingFeatureClusterErrors = checkSwingFeatureCluster()
+totalErrors += swingFeatureClusterErrors
 const globalChallengeErrors = checkGlobalChallengeSurface()
 totalErrors += globalChallengeErrors
 const challengeChangeFocusErrors = checkChallengeChangeFocusContract()

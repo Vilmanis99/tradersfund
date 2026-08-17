@@ -190,6 +190,20 @@ function productEvidenceNote(firm: Firm): string {
   return `${challenges.length} source-checked ${challenges.length === 1 ? 'product' : 'products'}; ${splitText}; ${payoutText}. Product rules include ${drawdownText}.`
 }
 
+function swingCompatibleProducts(firm: Firm): Challenge[] {
+  return getChallengesByFirm(firmSlug(firm.name)).filter(challenge =>
+    isChallengeFresh(challenge)
+    && challenge.rules.overnight === true
+    && challenge.rules.weekend === true,
+  )
+}
+
+function drawdownLabel(value: Challenge['drawdownType']): string {
+  if (value === 'eod-trailing') return 'EOD trailing'
+  if (value === 'balance-based') return 'balance-based'
+  return value ?? 'drawdown unpublished'
+}
+
 export const LANDINGS: Landing[] = [
   {
     slug: 'best-prop-firms-2026',
@@ -495,25 +509,62 @@ export const LANDINGS: Landing[] = [
   {
     slug: 'best-swing-trading-prop-firms',
     h1: 'Best Prop Firms for Swing Trading (2026)',
-    metaTitle: 'Best Swing Trading Prop Firms in 2026 — Ranked',
+    metaTitle: 'Best Swing Trading Prop Firms (2026) — By Product',
     metaDescription:
-      'Swing and position traders need overnight and weekend holding on forgiving drawdown. The firms below allow both — ranked, with the drawdown type that matters.',
+      'Compare swing-trading prop-firm products with verified overnight and weekend holding, drawdown type, source dates, reviews, and exact rule links.',
     intro:
-      "If your strategy holds through Friday's close, the rule page matters more than the marketing. Every firm below allows BOTH overnight and weekend holding on a static-drawdown account — so a position survives the weekend instead of being force-flattened, and a profitable run doesn't trip a trailing limit. Futures firms like Topstep and My Funded Futures are absent on purpose: they close you out at session end.",
+      'Every ranked firm has at least 1 current product whose first-party capture explicitly allows both weekday overnight and weekend holding. That does not mean every product qualifies: each card shows the matching-product count, named paths, drawdown types, capture date, and a direct rule source. Static drawdown is not assumed, and permission to hold does not remove gap, swap, or loss-limit risk.',
     sortDir: 'desc',
-    rank: firms =>
-      firms
-        .filter(f => f.overnightAllowed === true && f.weekendAllowed === true)
-        .map(firm => ({
+    rank: firms => firms
+      .flatMap(firm => {
+        const freshProducts = getChallengesByFirm(firmSlug(firm.name))
+          .filter(challenge => isChallengeFresh(challenge))
+        const qualifying = swingCompatibleProducts(firm)
+        if (!qualifying.length) return []
+
+        const drawdowns = [...new Set(qualifying.map(challenge =>
+          drawdownLabel(challenge.drawdownType),
+        ))].sort()
+        const shownProducts = qualifying.slice(0, 3).map(challenge => challenge.productName)
+        const moreCount = qualifying.length - shownProducts.length
+        const evidenceProduct = qualifying[0]
+
+        return [{
           firm,
           sortKey: firm.score,
-          highlight: `${firm.drawdownType} drawdown · ${firm.profitSplitPct ?? '—'}% split`,
-          note: productEvidenceNote(firm),
-        }))
-        .sort((a, b) => b.sortKey - a.sortKey),
+          highlight: `${qualifying.length} swing-qualified ${qualifying.length === 1 ? 'product' : 'products'} · ${joinNatural(drawdowns)}`,
+          metricLabel: 'Product fit',
+          metricValue: `${qualifying.length}/${freshProducts.length}`,
+          note: `${joinNatural(shownProducts)}${moreCount > 0 ? `, plus ${moreCount} more` : ''} meet both holding rules. Other products from the same firm may differ.`,
+          evidence: {
+            label: `${evidenceProduct.productName} rule source`,
+            url: evidenceProduct.sourceUrl,
+            capturedAt: evidenceProduct.sourceCapturedAt,
+          },
+        }]
+      })
+      .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
     methodology:
-      'A firm qualifies only when its aggregate rules allow both overnight and weekend holding. Individual products can still differ, so the source-dated product note is the final check; static, trailing, and balance-based drawdown behave differently after open profit.',
-    lastReviewed: REVIEW_DATE,
+      'A firm qualifies only when at least 1 product captured within 30 days sets both overnight and weekend holding to allowed on that same product. Restricted, blocked, missing, and stale fields do not qualify. The order uses our editorial score; affiliate status, coupon size, qualifying-product count, and drawdown type add 0 points. Each card reports exact product coverage because another product from the same firm can use different holding rules.',
+    decisionGuide: [
+      {
+        title: 'Do both permissions belong to the same product?',
+        body: 'They must. A firm-wide overnight flag and a different product’s weekend permission do not prove that either account supports a multi-day trade through Friday’s close.',
+      },
+      {
+        title: 'Is weekday overnight the same as weekend holding?',
+        body: 'No. Some products allow positions across a weekday session reset but require every position to close before the weekend. Verify both named rules for the exact product and stage.',
+      },
+      {
+        title: 'What happens to the loss floor after open profit?',
+        body: 'Static, trailing, EOD-trailing, and balance-based drawdown react differently to an unrealised high and later pullback. Holding permission does not stop the loss rule from closing the account.',
+      },
+      {
+        title: 'Which carrying costs remain?',
+        body: 'Check swap or rollover charges, triple-swap day, weekend gaps, instrument hours, news restrictions, and whether the funded stage changes any rule shown during evaluation.',
+      },
+    ],
+    lastReviewed: '2026-08-17',
   },
 ]
 

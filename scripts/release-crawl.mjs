@@ -14,6 +14,7 @@ import {
   buildOutboundRelationships,
   outboundSlug,
 } from '../lib/outboundDestinations.ts'
+import { getChallengesByFirm, isChallengeFresh } from '../lib/firms.ts'
 
 const args = process.argv.slice(2)
 const baseArg = args.find(value => !value.startsWith('--'))
@@ -326,6 +327,18 @@ for (const productionUrl of uniqueSitemapUrls) {
   }
 }
 
+// Focused rule pages form one semantic cluster. A page linked only from the
+// hub is technically discoverable but weakly supported; require several
+// unique contextual/sibling sources so later config order cannot orphan it.
+for (const productionUrl of uniqueSitemapUrls) {
+  const path = new URL(productionUrl).pathname
+  if (!path.startsWith('/prop-firms/')) continue
+  const inlinkCount = internalInlinks.get(path)?.size ?? 0
+  if (inlinkCount < 5) {
+    errors.push(`${path}: focused rule page has only ${inlinkCount} unique internal inlinks`)
+  }
+}
+
 for (const [title, paths] of titles) {
   if (paths.length > 1) errors.push(`duplicate title on ${paths.join(', ')}: ${title}`)
 }
@@ -376,6 +389,68 @@ if (indiaLandingProbe.status !== 200) {
     if (!indiaLandingProbe.html.includes(required)) {
       errors.push(`${indiaLandingPath}: missing ${required}`)
     }
+  }
+}
+
+const swingLandingPath = '/best-swing-trading-prop-firms'
+const expectedSwingFirms = firmRecords.flatMap(firm => {
+  const products = getChallengesByFirm(outboundSlug(firm.name)).filter(challenge =>
+    isChallengeFresh(challenge)
+    && challenge.rules.overnight === true
+    && challenge.rules.weekend === true,
+  )
+  return products.length ? [{ firm, products }] : []
+})
+const swingLandingProbe = await fetchPage(new URL(swingLandingPath, BASE))
+if (swingLandingProbe.status !== 200) {
+  errors.push(
+    `${swingLandingPath}: HTTP ${swingLandingProbe.status || swingLandingProbe.error}`,
+  )
+} else {
+  const swingText = textContent(swingLandingProbe.html)
+  const cardCount = (swingLandingProbe.html.match(/<li class="leader-row/g) ?? []).length
+  const evidenceDateCount = (swingText.match(/checked 2026-/g) ?? []).length
+  if (cardCount !== expectedSwingFirms.length) {
+    errors.push(
+      `${swingLandingPath}: rendered ${cardCount} firms, expected ${expectedSwingFirms.length}`,
+    )
+  }
+  if (evidenceDateCount !== expectedSwingFirms.length) {
+    errors.push(
+      `${swingLandingPath}: rendered ${evidenceDateCount} dated card sources, expected ${expectedSwingFirms.length}`,
+    )
+  }
+  for (const { firm } of expectedSwingFirms) {
+    if (!swingText.includes(firm.name)) {
+      errors.push(`${swingLandingPath}: missing qualifying firm ${firm.name}`)
+    }
+  }
+  for (const required of [
+    'What swing traders should verify',
+    'Do both permissions belong to the same product?',
+    'Is weekday overnight the same as weekend holding?',
+    'What happens to the loss floor after open profit?',
+    'Which carrying costs remain?',
+  ]) {
+    if (!swingText.includes(required)) {
+      errors.push(`${swingLandingPath}: missing ${required}`)
+    }
+  }
+  for (const required of [
+    'href="/prop-firms/overnight-holding"',
+    'href="/prop-firms/weekend-holding"',
+    'href="/blog/balance-based-drawdown-vs-equity-based-drawdown"',
+    'href="/prop-firm-challenges"',
+  ]) {
+    if (!swingLandingProbe.html.includes(required)) {
+      errors.push(`${swingLandingPath}: missing ${required}`)
+    }
+  }
+  if (
+    swingText.includes('Every firm below allows BOTH')
+    || swingText.includes('static-drawdown account')
+  ) {
+    errors.push(`${swingLandingPath}: restored the unsupported aggregate/static claim`)
   }
 }
 

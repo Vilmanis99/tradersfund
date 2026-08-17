@@ -53,7 +53,10 @@ export default async function FeaturePage({ params }: Props) {
   if (!feature) notFound()
 
   const firms = getFirmsForFeature(slug)
-  const siblings = FEATURES.filter(f => f.slug !== slug).slice(0, 4)
+  // Eight tightly related rule pages form one comparison cluster. Rendering
+  // every sibling keeps the graph balanced; slicing the first four left later
+  // entries such as high-profit-split with only the hub as an inlink.
+  const siblings = FEATURES.filter(f => f.slug !== slug)
 
   // Product-level evidence appears before any outbound firm CTA, so a reader
   // sees the qualifying product (and any conflicting products) before buying.
