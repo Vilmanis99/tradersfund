@@ -20,13 +20,17 @@ export interface DealCardData {
   isPartner: boolean
   /** Subset of ['Forex','Futures','Crypto'] for the market filter. */
   markets: string[]
+  mechanism: 'checkout-code' | 'link-applied' | 'earned-coupon'
   code?: string
   pct?: number
-  /** Always set — falls back to a partner/listed default when no deal exists. */
+  /** Human-readable value of the verified offer. */
   amountLabel: string
   scope?: string
-  verifiedOn?: string
+  verifiedOn: string
+  sourceUrl: string
+  sourceLabel: string
   expiresOn?: string
+  ctaLabel: string
   note?: string
 }
 
@@ -40,8 +44,12 @@ function fmtDate(iso: string): string {
 }
 
 export default function DealCard({ deal }: { deal: DealCardData }) {
-  const hasDiscount = deal.pct != null
-  const goHref = `/go/${deal.firmSlug}?from=deals`
+  const goHref = `/go/${deal.firmSlug}?from=discount-hub-${deal.mechanism}`
+  const mechanismLabel = {
+    'checkout-code': 'Checkout code',
+    'link-applied': 'Automatic discount',
+    'earned-coupon': 'Earned coupon',
+  }[deal.mechanism]
 
   return (
     <article className="deal-card">
@@ -73,6 +81,7 @@ export default function DealCard({ deal }: { deal: DealCardData }) {
       </div>
 
       <div className="deal-card-offer">
+        <span className="deal-card-kind">{mechanismLabel}</span>
         <span className="deal-card-amount">{deal.amountLabel}</span>
         {deal.scope && <span className="deal-card-scope">{deal.scope}</span>}
       </div>
@@ -83,34 +92,45 @@ export default function DealCard({ deal }: { deal: DealCardData }) {
         </div>
       )}
 
-      {(deal.verifiedOn || deal.expiresOn) && (
-        <div className="deal-card-meta">
-          {deal.verifiedOn && (
-            <span className="deal-card-verified">
-              <BadgeCheck size={12} aria-hidden="true" /> Checked {fmtDate(deal.verifiedOn)}
-            </span>
-          )}
-          {deal.expiresOn && (
-            <span className="deal-card-expires">
-              <CalendarClock size={12} aria-hidden="true" /> Ends {fmtDate(deal.expiresOn)}
-            </span>
-          )}
-        </div>
-      )}
+      <div className="deal-card-meta">
+        <span className="deal-card-verified">
+          <BadgeCheck size={12} aria-hidden="true" /> Checked {fmtDate(deal.verifiedOn)}
+        </span>
+        <a
+          href={deal.sourceUrl}
+          target="_blank"
+          rel="nofollow noopener"
+          className="deal-card-source"
+          data-deal-source={deal.firmSlug}
+        >
+          {deal.sourceLabel} <ArrowUpRight size={11} aria-hidden="true" />
+        </a>
+        {deal.expiresOn && (
+          <span className="deal-card-expires">
+            <CalendarClock size={12} aria-hidden="true" /> Ends {fmtDate(deal.expiresOn)}
+          </span>
+        )}
+      </div>
 
       {deal.note && <p className="deal-card-note">{deal.note}</p>}
 
       <div className="deal-card-cta-row">
         {deal.isPartner ? (
-          <a
-            href={goHref}
-            rel="sponsored nofollow noopener"
-            target="_blank"
-            className="btn-primary deal-card-cta"
-          >
-            {hasDiscount ? `Claim ${deal.pct}% off` : `Visit ${deal.firmName}`}
-            <ArrowUpRight size={15} aria-hidden="true" />
-          </a>
+          <>
+            <a
+              href={goHref}
+              rel="sponsored nofollow noopener"
+              target="_blank"
+              className="btn-primary deal-card-cta"
+              data-affiliate-placement={`discount-hub-${deal.mechanism}`}
+            >
+              {deal.ctaLabel}
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </a>
+            <Link href={deal.reviewUrl} className="deal-card-cta deal-card-cta--ghost">
+              Compare rules
+            </Link>
+          </>
         ) : (
           <Link href={deal.reviewUrl} className="deal-card-cta deal-card-cta--ghost">
             Read our review

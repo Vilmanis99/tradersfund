@@ -20,6 +20,7 @@ import {
   isChallengeFresh,
   minimumCostToFundedUsd,
 } from '../lib/firms.ts'
+import { getAllDeals } from '../lib/deals.ts'
 
 const args = process.argv.slice(2)
 const baseArg = args.find(value => !value.startsWith('--'))
@@ -1127,6 +1128,106 @@ for (const backlinkPath of [
     errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
   } else if (!backlinkProbe.html.includes('href="/cheapest-prop-firms"')) {
     errors.push(`${backlinkPath}: missing contextual cheapest-ranking backlink`)
+  }
+}
+
+const discountHubPath = '/prop-firm-discount-codes'
+const expectedDeals = getAllDeals()
+const discountHubProbe = await fetchPage(new URL(discountHubPath, BASE))
+if (discountHubProbe.status !== 200) {
+  errors.push(`${discountHubPath}: HTTP ${discountHubProbe.status || discountHubProbe.error}`)
+} else {
+  const discountText = textContent(discountHubProbe.html)
+  const discountTitle = textContent(firstMatch(discountHubProbe.html, /<title>([\s\S]*?)<\/title>/i))
+  const discountCards = [...discountHubProbe.html.matchAll(
+    /<article class="deal-card"[^>]*>([\s\S]*?)<\/article>/gi,
+  )].map(match => ({ html: match[0], text: textContent(match[1]) }))
+  const sourceCount = (discountHubProbe.html.match(/data-deal-source=/g) ?? []).length
+
+  if (discountCards.length !== expectedDeals.length) {
+    errors.push(
+      `${discountHubPath}: rendered ${discountCards.length} offers, expected ${expectedDeals.length}`,
+    )
+  }
+  if (sourceCount !== expectedDeals.length) {
+    errors.push(
+      `${discountHubPath}: rendered ${sourceCount} first-party sources, expected ${expectedDeals.length}`,
+    )
+  }
+
+  for (const deal of expectedDeals) {
+    const firm = firmRecords.find(record => outboundSlug(record.name) === deal.firmSlug)
+    const card = discountCards.find(candidate =>
+      candidate.text.includes(firm?.name ?? deal.firmSlug)
+      && candidate.text.includes(deal.amountLabel),
+    )
+    if (!card) {
+      errors.push(`${discountHubPath}: missing ${deal.firmSlug} ${deal.amountLabel}`)
+      continue
+    }
+    if (!card.html.includes(`href="${deal.sourceUrl}"`)) {
+      errors.push(`${discountHubPath}: ${deal.firmSlug} card is missing its first-party source`)
+    }
+    const [year, month, day] = deal.verifiedOn.split('-').map(Number)
+    const monthName = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    ][month - 1]
+    if (!card.text.includes(`Checked ${monthName} ${day}, ${year}`)) {
+      errors.push(`${discountHubPath}: ${deal.firmSlug} card has the wrong checked date`)
+    }
+  }
+
+  if (discountTitle !== 'Prop Firm Discount Codes & Offers (2026) | TFH') {
+    errors.push(`${discountHubPath}: title suffix is missing or duplicated: ${discountTitle}`)
+  }
+
+  for (const required of [
+    'Prop Firm Discount Codes & Offers (2026)',
+    'Current verified offers',
+    'How the FundedNext 5% offer works',
+    'There is no public FundedNext code to copy',
+    'Earned coupon',
+    '5% after Free Trial',
+    'New users · CFD plans · no resets',
+    'Compare 4 products and 22 prices',
+  ]) {
+    if (!discountText.includes(required)) errors.push(`${discountHubPath}: missing ${required}`)
+  }
+  for (const required of [
+    'href="/go/fundednext?from=discount-hub-earned-coupon"',
+    'data-affiliate-placement="discount-hub-earned-coupon"',
+    'rel="sponsored nofollow noopener"',
+    'href="/blog/fundednext-review"',
+    'href="/compare/ftmo-vs-fundednext"',
+    'href="/blog/ftmo-free-trial-explained"',
+    'href="/true-cost-of-prop-firm-challenges"',
+  ]) {
+    if (!discountHubProbe.html.includes(required)) {
+      errors.push(`${discountHubPath}: missing ${required}`)
+    }
+  }
+  for (const staleClaim of [
+    'No verified offer today',
+    'See review for pricing',
+    '10% comes off automatically',
+  ]) {
+    if (discountText.includes(staleClaim)) {
+      errors.push(`${discountHubPath}: restored stale offer copy: ${staleClaim}`)
+    }
+  }
+}
+
+for (const backlinkPath of [
+  '/blog/fundednext-review',
+  '/blog/ftmo-free-trial-explained',
+  '/true-cost-of-prop-firm-challenges',
+]) {
+  const backlinkProbe = await fetchPage(new URL(backlinkPath, BASE))
+  if (backlinkProbe.status !== 200) {
+    errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
+  } else if (!backlinkProbe.html.includes('href="/prop-firm-discount-codes"')) {
+    errors.push(`${backlinkPath}: missing contextual discount-hub backlink`)
   }
 }
 

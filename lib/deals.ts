@@ -29,6 +29,8 @@ export interface Deal {
    * a verified code too.
    */
   status: 'partner' | 'listed'
+  /** How the saving is received; keeps an earned coupon distinct from a public code. */
+  mechanism: 'checkout-code' | 'link-applied' | 'earned-coupon'
   /** A real, typeable checkout coupon. Omit when the saving is link-applied. */
   code?: string
   /** Discount as an integer % (e.g. 10). */
@@ -39,8 +41,14 @@ export interface Deal {
   scope?: string
   /** ISO date (YYYY-MM-DD) we last confirmed it. Drives the "checked {date}" pill. */
   verifiedOn: string
+  /** Firm-owned page that states the offer and its conditions. */
+  sourceUrl: string
+  /** Short source name rendered beside the checked date. */
+  sourceLabel: string
   /** ISO date the offer ends. Strictly-past = dropped by getAllDeals(). */
   expiresOn?: string
+  /** Honest action label for the outbound button, such as "Start the Free Trial". */
+  ctaLabel: string
   /** Short house-voice caveat (e.g. "First order only — doesn't stack with add-ons"). */
   note?: string
 }
@@ -92,8 +100,13 @@ export function rankDeals(
   return deals
     .filter(d => scoreBySlug.has(d.firmSlug))
     .sort((a, b) => {
-      const code = (a.code ? 1 : 0) - (b.code ? 1 : 0)
-      if (code) return -code
+      const mechanismOrder: Record<Deal['mechanism'], number> = {
+        'checkout-code': 0,
+        'link-applied': 1,
+        'earned-coupon': 2,
+      }
+      const mechanism = mechanismOrder[a.mechanism] - mechanismOrder[b.mechanism]
+      if (mechanism) return mechanism
       const partner =
         (a.status === 'partner' ? 1 : 0) - (b.status === 'partner' ? 1 : 0)
       if (partner) return -partner

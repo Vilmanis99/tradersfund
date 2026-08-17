@@ -125,7 +125,7 @@ type: "post"
 
 <div data-free-trial-cta="fundednext" style="background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin: 20px 0;">
   <p style="margin-top: 0;"><strong>Prefer FundedNext’s 3-day trial structure?</strong> Its 5% completion coupon applies only to eligible new users, lasts 14 days, covers CFD plans, and excludes resets.</p>
-  <p style="margin-bottom: 0;"><a href="/blog/fundednext-review">Check the paid-product rules first</a>, then <a href="/go/fundednext">open FundedNext’s current Free Trial and plans</a>. We may earn a commission if a later purchase qualifies; that relationship does not change the rule comparison.</p>
+  <p style="margin-bottom: 0;"><a href="/blog/fundednext-review">Check the 4 paid-product rule sets first</a>, verify the earned-coupon conditions on the <a href="/prop-firm-discount-codes">checked-offer hub</a>, then <a href="/go/fundednext">open FundedNext’s current Free Trial and plans</a>. We may earn a commission if a later purchase qualifies; that relationship does not change the 5% target or 14-day coupon terms.</p>
 </div>
 
 <h2>What a Free Trial can and cannot prove</h2>

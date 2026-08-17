@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getAllFirms } from '@/lib/firms'
-import { getAllDeals } from '@/lib/deals'
+import { getAllFirms, getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
+import { getAllDeals, rankDeals } from '@/lib/deals'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import DealsFilter from '@/components/DealsFilter'
@@ -13,9 +13,9 @@ const SLUG = 'prop-firm-discount-codes'
 // Rebuild daily so an expired code drops within a day without a redeploy.
 export const revalidate = 86400
 
-const TITLE = 'Prop Firm Discount Codes & Deals (2026) — Verified'
+const TITLE = 'Prop Firm Discount Codes & Offers (2026)'
 const DESCRIPTION =
-  'Verified prop firm discount codes and deals, each with the date we last checked it. Expired codes are removed, not greyed out. Updated for 2026.'
+  'Current prop firm discount codes and conditional offers with first-party sources and checked dates. Stale offers automatically disappear after 30 days.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -40,15 +40,15 @@ function marketsOf(assets: string[]): string[] {
 const FAQS = [
   {
     q: 'Are these discount codes verified?',
-    a: "Every card shows the date we last checked the offer — that's the “Checked” line. We only print a code you can type at checkout when we've confirmed it applies; when a saving comes off automatically through our link, we say so instead of inventing a code. If a code expires, we remove it — you won't find a dead coupon greyed out here.",
+    a: 'Every active card has a first-party source and the date we checked it. A typeable code, automatic discount, and earned coupon are labeled separately; offers disappear after 30 days without a recheck.',
   },
   {
-    q: "Why does a firm show 'No verified offer today'?",
-    a: "A firm without a checked offer shows “No verified offer today.” Partner buttons still use our disclosed affiliate link; listed firms link to our review. We do not imply that clicking creates a discount.",
+    q: 'Is there a public FundedNext discount code today?',
+    a: 'The current verified FundedNext offer is not a public code. An eligible new user must reach the 5% Free Trial target; FundedNext then generates a personal 5% CFD-plan coupon that lasts 14 days and excludes resets.',
   },
   {
-    q: 'Do I pay more by using your link or code?',
-    a: 'No. The price is the same or lower — the firm pays us a referral fee, not you. That fee is what keeps the reviews free, which is exactly why the disclosure sits at the top of this page (FTC §255).',
+    q: 'Does an affiliate link guarantee a lower price?',
+    a: 'No. An affiliate relationship and a discount are separate facts. We call a saving verified only when a firm-owned source states the amount and conditions; always confirm the final checkout total before paying.',
   },
   {
     q: 'How often is this page updated?',
@@ -59,41 +59,43 @@ const FAQS = [
 export default function Page() {
   const firms = getAllFirms()
   const deals = getAllDeals()
-  const dealBySlug = new Map(deals.map(d => [d.firmSlug, d]))
-
-  const rows: DealCardData[] = firms.map(firm => {
-    const slug = slugify(firm.name)
-    const deal = dealBySlug.get(slug)
-    const isPartner = Boolean(firm.affiliateUrl)
-    const defaultLabel = isPartner ? 'No verified offer today' : 'See review for pricing'
-    return {
+  const firmBySlug = new Map(firms.map(firm => [slugify(firm.name), firm]))
+  const rows: DealCardData[] = rankDeals(deals, firms).flatMap(deal => {
+    const firm = firmBySlug.get(deal.firmSlug)
+    if (!firm) return []
+    return [{
       firmName: firm.name,
-      firmSlug: slug,
+      firmSlug: deal.firmSlug,
       logo: firm.logo,
       score: firm.score,
       reviewUrl: firm.reviewUrl,
-      isPartner,
+      isPartner: Boolean(firm.affiliateUrl),
       markets: marketsOf(firm.assets),
-      code: deal?.code,
-      pct: deal?.pct,
-      amountLabel: deal?.amountLabel ?? defaultLabel,
-      scope: deal?.scope,
-      verifiedOn: deal?.verifiedOn,
-      expiresOn: deal?.expiresOn,
-      note: deal?.note,
-    }
+      mechanism: deal.mechanism,
+      code: deal.code,
+      pct: deal.pct,
+      amountLabel: deal.amountLabel,
+      scope: deal.scope,
+      verifiedOn: deal.verifiedOn,
+      sourceUrl: deal.sourceUrl,
+      sourceLabel: deal.sourceLabel,
+      expiresOn: deal.expiresOn,
+      ctaLabel: deal.ctaLabel,
+      note: deal.note,
+    }]
   })
-
-  // Order: a real discount first, then affiliate partners, then by score.
-  rows.sort((a, b) => {
-    const disc = (b.pct != null ? 1 : 0) - (a.pct != null ? 1 : 0)
-    if (disc) return disc
-    const partner = (b.isPartner ? 1 : 0) - (a.isPartner ? 1 : 0)
-    if (partner) return partner
-    return b.score - a.score
-  })
-
-  const liveCount = rows.filter(r => r.pct != null).length
+  const liveCount = rows.length
+  const codeCount = rows.filter(row => row.mechanism === 'checkout-code').length
+  const hasFundedNextOffer = rows.some(row => row.firmSlug === 'fundednext')
+  const fundedNextProducts = getChallengesByFirm('fundednext').filter(challenge =>
+    isChallengeFresh(challenge),
+  )
+  const fundedNextTierCount = fundedNextProducts.reduce(
+    (total, product) => total + product.accountSizes.filter(
+      tier => tier.priceUsd != null || tier.priceEur != null,
+    ).length,
+    0,
+  )
 
   const crumbs = breadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -102,7 +104,7 @@ export default function Page() {
   const itemList = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Prop Firm Discount Codes & Deals',
+    name: 'Prop Firm Discount Codes & Offers',
     numberOfItems: rows.length,
     itemListElement: rows.map((r, i) => ({
       '@type': 'ListItem',
@@ -134,22 +136,70 @@ export default function Page() {
             lineHeight: 1.1,
           }}
         >
-          Prop Firm Discount Codes & Deals
+          Prop Firm Discount Codes & Offers
         </h1>
         <p style={{ color: 'var(--text)', fontSize: '1.05rem', lineHeight: 1.6, maxWidth: '64ch', margin: '0 0 0.5rem' }}>
-          Every code below carries the date we last checked it works. When a discount applies
-          automatically through our link, we say so rather than printing a code that doesn&apos;t exist.
-          And when an offer expires, we pull it — you won&apos;t scroll past dead coupons here.
+          This page separates typeable checkout codes, automatic discounts, and coupons earned
+          after a condition. Every active offer links to the firm&apos;s own terms and carries a checked
+          date; after 30 days without a recheck, it disappears.
         </p>
         <p style={{ color: 'var(--muted)', fontSize: '0.88rem', margin: 0 }}>
-          Tracking <strong style={{ color: 'var(--accent-light)' }}>{rows.length} firms</strong> ·{' '}
-          {liveCount} with a currently verified offer · partner status is shown separately.
+          <strong style={{ color: 'var(--accent-light)' }}>{liveCount} verified {liveCount === 1 ? 'offer' : 'offers'}</strong> ·{' '}
+          {codeCount} typeable {codeCount === 1 ? 'code' : 'codes'} · 30-day freshness gate · partner links marked
         </p>
       </header>
 
       <AffiliateDisclosure />
 
-      <DealsFilter rows={rows} />
+      <section aria-labelledby="current-prop-firm-offers" style={{ marginTop: '2rem' }}>
+        <h2 id="current-prop-firm-offers" style={{ fontSize: '1.45rem', fontWeight: 850, color: '#fff', margin: '0 0 0.5rem' }}>
+          Current verified offers
+        </h2>
+        <p style={{ color: 'var(--muted)', fontSize: '0.92rem', lineHeight: 1.6, maxWidth: '72ch', margin: '0 0 1.25rem' }}>
+          A row appears only while its source check is no more than 30 days old. Firms without a
+          sourced saving are not padded into the list as empty “deal” cards.
+        </p>
+        <DealsFilter rows={rows} />
+      </section>
+
+      {hasFundedNextOffer && (
+        <section
+          aria-labelledby="fundednext-offer-steps"
+          data-fundednext-offer-steps="earned-coupon"
+          style={{ marginTop: '3rem', background: 'var(--bg2)', border: '1px solid var(--border)', borderRadius: 16, padding: 'clamp(1.1rem, 3vw, 1.6rem)' }}
+        >
+          <h2 id="fundednext-offer-steps" style={{ fontSize: '1.45rem', fontWeight: 850, color: '#fff', margin: '0 0 0.55rem' }}>
+            How the FundedNext 5% offer works
+          </h2>
+          <p style={{ color: 'var(--text)', lineHeight: 1.65, margin: '0 0 1.15rem', maxWidth: '76ch' }}>
+            There is no public FundedNext code to copy from this page. The current offer creates a
+            personal coupon only after an eligible new user completes the Free Trial condition.
+          </p>
+          <ol className="deal-steps">
+            <li><strong>Start 1 Free Trial.</strong> Its 14-day clock begins with the first trade, and at least 3 trading days are required.</li>
+            <li><strong>Reach the 5% target.</strong> Stay inside the 5% daily and 10% maximum loss limits; EAs are not permitted on the trial.</li>
+            <li><strong>Use the generated code within 14 days.</strong> FundedNext sends it by email and adds it to My Offers; it covers CFD plans for new users and excludes resets.</li>
+          </ol>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: '1.25rem' }}>
+            <Link href="/blog/fundednext-review" className="deal-crosslink">
+              Compare {fundedNextProducts.length} products and {fundedNextTierCount} prices →
+            </Link>
+            <Link href="/compare/ftmo-vs-fundednext" className="deal-crosslink">FundedNext vs FTMO →</Link>
+            <Link href="/blog/ftmo-free-trial-explained" className="deal-crosslink">Compare both Free Trials →</Link>
+          </div>
+        </section>
+      )}
+
+      <section aria-labelledby="offer-labels" style={{ marginTop: '3rem' }}>
+        <h2 id="offer-labels" style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', margin: '0 0 0.65rem' }}>
+          What each offer label means
+        </h2>
+        <div className="deal-label-grid">
+          <div><strong>Checkout code</strong><span>An exact string we checked and you can type before payment.</span></div>
+          <div><strong>Automatic discount</strong><span>The firm&apos;s source says the saving is applied through the link; no code is invented.</span></div>
+          <div><strong>Earned coupon</strong><span>A stated action must be completed before the firm generates a personal code.</span></div>
+        </div>
+      </section>
 
       <section style={{ marginTop: '3rem' }}>
         <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', margin: '0 0 1.25rem' }}>
@@ -179,6 +229,7 @@ export default function Page() {
 
       <section style={{ marginTop: '2.5rem', display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
         <Link href="/cheapest-prop-firms" className="deal-crosslink">Cheapest prop firms →</Link>
+        <Link href="/true-cost-of-prop-firm-challenges" className="deal-crosslink">Calculate true cost →</Link>
         <Link href="/best-prop-firms-2026" className="deal-crosslink">Best prop firms 2026 →</Link>
         <Link href="/how-to-pass-a-prop-firm-challenge" className="deal-crosslink">How to pass a challenge →</Link>
       </section>

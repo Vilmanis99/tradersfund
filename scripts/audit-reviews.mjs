@@ -219,6 +219,14 @@ const FTMO_FREE_TRIAL_GUIDE_FILE = path.join(
   'content/posts/ftmo-free-trial-explained.md',
 )
 const FREE_TRIAL_DATA_FILE = path.join(ROOT, 'content/data/free-trials.json')
+const DISCOUNT_HUB_PAGE_FILE = path.join(
+  ROOT,
+  'app/prop-firm-discount-codes/page.tsx',
+)
+const DEALS_DATA_FILE = path.join(ROOT, 'content/data/deals.json')
+const DEALS_LIBRARY_FILE = path.join(ROOT, 'lib/deals.ts')
+const DEAL_CARD_FILE = path.join(ROOT, 'components/DealCard.tsx')
+const DEALS_FILTER_FILE = path.join(ROOT, 'components/DealsFilter.tsx')
 const US_ACCESS_EVIDENCE_FILE = path.join(
   ROOT,
   'content/data/us-access-evidence.json',
@@ -6695,6 +6703,191 @@ function checkCheapestLandingCluster() {
   return rows.length
 }
 
+/** Keep the discount hub offer-only, first-party sourced, and conversion-honest. */
+function checkDiscountHub() {
+  const rows = []
+  const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+  const page = read(DISCOUNT_HUB_PAGE_FILE)
+  const library = read(DEALS_LIBRARY_FILE)
+  const card = read(DEAL_CARD_FILE)
+  const filter = read(DEALS_FILTER_FILE)
+  const deals = JSON.parse(read(DEALS_DATA_FILE) || '[]')
+  const firms = JSON.parse(
+    read(path.join(ROOT, 'content/data/firms.json')) || '[]',
+  )
+  const freeTrials = JSON.parse(read(FREE_TRIAL_DATA_FILE) || '[]')
+  const firmBySlug = new Map(firms.map(firm => [outboundSlug(firm.name), firm]))
+  const mechanisms = new Set(['checkout-code', 'link-applied', 'earned-coupon'])
+
+  if (deals.length === 0) rows.push('deals.json must keep at least 1 freshly sourced offer')
+  for (const [index, deal] of deals.entries()) {
+    const label = deal.firmSlug || `row ${index + 1}`
+    const firm = firmBySlug.get(deal.firmSlug)
+    if (!firm) {
+      rows.push(`${label}: no matching firm record`)
+      continue
+    }
+    if (!mechanisms.has(deal.mechanism)) {
+      rows.push(`${label}: mechanism must distinguish code, link, or earned coupon`)
+    }
+    if (deal.status === 'partner' && !firm.affiliateUrl) {
+      rows.push(`${label}: partner status has no affiliateUrl`)
+    }
+    if (!Number.isInteger(deal.pct) || deal.pct <= 0 || deal.pct > 100) {
+      rows.push(`${label}: pct must be an integer from 1 to 100`)
+    }
+    if (deal.mechanism === 'checkout-code' && !deal.code) {
+      rows.push(`${label}: checkout-code offer is missing its typeable code`)
+    }
+    if (deal.mechanism !== 'checkout-code' && deal.code) {
+      rows.push(`${label}: ${deal.mechanism} must not publish a typeable code`)
+    }
+    for (const field of ['amountLabel', 'sourceLabel', 'ctaLabel']) {
+      if (typeof deal[field] !== 'string' || !deal[field].trim()) {
+        rows.push(`${label}: ${field} is required`)
+      }
+    }
+
+    const checkedAt = new Date(`${deal.verifiedOn}T00:00:00Z`)
+    const ageDays = Math.floor((TODAY - checkedAt) / 86_400_000)
+    if (Number.isNaN(checkedAt.getTime()) || ageDays < 0 || ageDays > STALE_DAYS) {
+      rows.push(`${label}: verifiedOn is outside the ${STALE_DAYS}-day freshness gate`)
+    }
+    if (deal.expiresOn && deal.expiresOn < TODAY.toISOString().slice(0, 10)) {
+      rows.push(`${label}: expired offers must be removed from deals.json`)
+    }
+
+    try {
+      const sourceHost = new URL(deal.sourceUrl).hostname.replace(/^www\./, '')
+      const officialHost = new URL(firm.officialUrl).hostname.replace(/^www\./, '')
+      if (sourceHost !== officialHost && !sourceHost.endsWith(`.${officialHost}`)) {
+        rows.push(`${label}: sourceUrl must stay on ${officialHost} or its subdomain`)
+      }
+    } catch {
+      rows.push(`${label}: sourceUrl or firm officialUrl is invalid`)
+    }
+  }
+
+  const fundedNextDeal = deals.find(deal => deal.firmSlug === 'fundednext')
+  const fundedNextTrial = freeTrials.find(trial => trial.firmSlug === 'fundednext')
+  if (!fundedNextDeal || !fundedNextTrial) {
+    rows.push('FundedNext deal and Free Trial evidence must both exist')
+  } else {
+    const coupon = fundedNextTrial.completionCoupon
+    if (
+      fundedNextDeal.mechanism !== 'earned-coupon' ||
+      fundedNextDeal.code != null ||
+      fundedNextDeal.pct !== coupon?.discountPct ||
+      fundedNextDeal.sourceUrl !== fundedNextTrial.sourceUrl ||
+      !(fundedNextDeal.scope ?? '').includes('New users') ||
+      !(fundedNextDeal.scope ?? '').includes('CFD plans') ||
+      !(fundedNextDeal.scope ?? '').includes('no resets') ||
+      !(fundedNextDeal.note ?? '').includes(`${coupon?.validDays} days`)
+    ) {
+      rows.push('FundedNext earned coupon does not match structured Free Trial evidence')
+    }
+  }
+  if (deals.some(deal => deal.firmSlug === 'bright-funded')) {
+    rows.push('stale Bright Funded automatic 10% claim must not be restored')
+  }
+
+  const title = page.match(/const TITLE = '([^']+)'/)?.[1] ?? ''
+  const description = page.match(/const DESCRIPTION =\s*\n\s*'([^']+)'/)?.[1] ?? ''
+  if (title !== 'Prop Firm Discount Codes & Offers (2026)') {
+    rows.push('discount hub title must preserve intent without duplicating the root TFH suffix')
+  }
+  if (description.length < 120 || description.length > 160) {
+    rows.push('discount hub description must be between 120 and 160 characters')
+  }
+  for (const fragment of [
+    'rankDeals(deals, firms).flatMap',
+    'const liveCount = rows.length',
+    "row.mechanism === 'checkout-code'",
+    'numberOfItems: rows.length',
+    'Current verified offers',
+    'How the FundedNext 5% offer works',
+    'There is no public FundedNext code to copy',
+    'data-fundednext-offer-steps="earned-coupon"',
+    'fundedNextProducts.length',
+    'fundedNextTierCount',
+    'href="/blog/fundednext-review"',
+    'href="/compare/ftmo-vs-fundednext"',
+    'href="/blog/ftmo-free-trial-explained"',
+    'href="/true-cost-of-prop-firm-challenges"',
+  ]) {
+    if (!page.includes(fragment)) rows.push(`discount hub is missing "${fragment}"`)
+  }
+  for (const staleClaim of [
+    'No verified offer today',
+    'See review for pricing',
+    'const defaultLabel',
+    'from=deals',
+  ]) {
+    if (page.includes(staleClaim) || card.includes(staleClaim)) {
+      rows.push(`discount hub restored padded or ambiguous copy: "${staleClaim}"`)
+    }
+  }
+
+  for (const fragment of [
+    "mechanism: 'checkout-code' | 'link-applied' | 'earned-coupon'",
+    'sourceUrl: string',
+    'sourceLabel: string',
+    'ctaLabel: string',
+    'isDealFresh(deal, now)',
+    "'earned-coupon': 2",
+  ]) {
+    if (!library.includes(fragment)) rows.push(`deal loader is missing "${fragment}"`)
+  }
+  for (const fragment of [
+    '?from=discount-hub-${deal.mechanism}',
+    'data-affiliate-placement={`discount-hub-${deal.mechanism}`}',
+    'data-deal-source={deal.firmSlug}',
+    'rel="sponsored nofollow noopener"',
+    'rel="nofollow noopener"',
+    '{deal.ctaLabel}',
+    'Compare rules',
+  ]) {
+    if (!card.includes(fragment)) rows.push(`deal card is missing "${fragment}"`)
+  }
+  for (const fragment of [
+    'No offer is inside the 30-day verification window today',
+    'availableMarkets',
+    "verified {visible.length === 1 ? 'offer' : 'offers'}",
+  ]) {
+    if (!filter.includes(fragment)) rows.push(`deal filter is missing "${fragment}"`)
+  }
+
+  const backlinks = [
+    path.join(POSTS, 'fundednext-review.md'),
+    FTMO_FREE_TRIAL_GUIDE_FILE,
+    TRUE_COST_PILLAR_FILE,
+  ]
+  for (const file of backlinks) {
+    if (!read(file).includes('href="/prop-firm-discount-codes"')) {
+      rows.push(`${path.relative(ROOT, file)}: missing contextual discount-hub backlink`)
+    }
+  }
+
+  const crawler = read(RELEASE_CRAWL_FILE)
+  for (const fragment of [
+    "const discountHubPath = '/prop-firm-discount-codes'",
+    'expectedDeals = getAllDeals()',
+    'discount-hub-earned-coupon',
+    'data-deal-source=',
+    'missing contextual discount-hub backlink',
+  ]) {
+    if (!crawler.includes(fragment)) {
+      rows.push(`release crawl is missing discount-hub safeguard: "${fragment}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Discount offers, sourcing and affiliate journey')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
 /** Keep instant-funding eligibility product-level and every qualifying review connected. */
 function checkInstantFundingCluster() {
   const rows = []
@@ -8981,6 +9174,8 @@ const overallLandingClusterErrors = checkOverallLandingCluster()
 totalErrors += overallLandingClusterErrors
 const cheapestLandingClusterErrors = checkCheapestLandingCluster()
 totalErrors += cheapestLandingClusterErrors
+const discountHubErrors = checkDiscountHub()
+totalErrors += discountHubErrors
 const instantFundingClusterErrors = checkInstantFundingCluster()
 totalErrors += instantFundingClusterErrors
 const fundedNextAffiliatePathErrors = checkFundedNextAffiliatePath()

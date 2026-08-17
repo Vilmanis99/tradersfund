@@ -3831,6 +3831,10 @@ a.bento-tile:hover,
   background: var(--bg3); color: inherit; border-radius: 999px; padding: 1px 7px;
 }
 .deals-count { color: var(--muted); font-size: 0.82rem; margin: 0 0 1.25rem; }
+.deal-empty {
+  padding: 1rem 1.1rem; border: 1px dashed var(--border); border-radius: 14px;
+  background: var(--bg2); color: var(--muted); font-size: 0.9rem; line-height: 1.55;
+}
 .deals-grid {
   display: grid; gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -3857,6 +3861,10 @@ a.bento-tile:hover,
   background: var(--bg3); border: 1px solid var(--border); color: var(--muted); flex-shrink: 0;
 }
 .deal-card-offer { display: flex; flex-direction: column; gap: 1px; }
+.deal-card-kind {
+  color: var(--accent-light); font-size: 0.68rem; font-weight: 800;
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2px;
+}
 .deal-card-amount { font-size: 1.35rem; font-weight: 900; color: var(--gold); line-height: 1.1; }
 .deal-card-scope { font-size: 0.78rem; color: var(--muted); }
 .deal-card-pill-row { display: flex; }
@@ -3865,9 +3873,17 @@ a.bento-tile:hover,
   font-size: 0.74rem; color: var(--muted); font-variant-numeric: tabular-nums;
 }
 .deal-card-verified { display: inline-flex; align-items: center; gap: 4px; color: var(--accent-light); }
+.deal-card-source {
+  display: inline-flex; align-items: center; gap: 3px; color: var(--muted);
+  text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 2px;
+}
+.deal-card-source:hover { color: var(--text); text-decoration-color: currentColor; }
 .deal-card-expires { display: inline-flex; align-items: center; gap: 4px; }
 .deal-card-note { font-size: 0.78rem; color: var(--muted); line-height: 1.5; margin: 0; }
-.deal-card-cta-row { margin-top: auto; padding-top: 0.3rem; }
+.deal-card-cta-row {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 0.55rem; margin-top: auto; padding-top: 0.3rem;
+}
 .deal-card-cta {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   width: 100%; padding: 9px 14px; border-radius: 10px;
@@ -3886,6 +3902,23 @@ a.bento-tile:hover,
   transition: border-color 0.15s, color 0.15s;
 }
 .deal-crosslink:hover { border-color: var(--accent); color: var(--accent2); }
+.deal-steps {
+  display: grid; gap: 0.7rem; margin: 0; padding-left: 1.35rem;
+  color: var(--muted); font-size: 0.92rem; line-height: 1.6;
+}
+.deal-steps strong { color: var(--text); }
+.deal-label-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem;
+}
+.deal-label-grid > div {
+  display: flex; flex-direction: column; gap: 0.35rem; padding: 1rem;
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+}
+.deal-label-grid strong { color: var(--text); font-size: 0.9rem; }
+.deal-label-grid span { color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
+@media (max-width: 640px) {
+  .deal-card-cta-row, .deal-label-grid { grid-template-columns: 1fr; }
+}
 
 /* Challenge-change ledger */
 .sr-only {

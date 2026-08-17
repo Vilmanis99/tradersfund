@@ -1,11 +1,15 @@
 [
   {
-    "firmSlug": "bright-funded",
+    "firmSlug": "fundednext",
     "status": "partner",
-    "pct": 10,
-    "amountLabel": "10% off",
-    "scope": "All Bright Funded challenges",
-    "verifiedOn": "2026-06-15",
-    "note": "The 10% comes off automatically when you start through our link — there's no coupon to type."
+    "mechanism": "earned-coupon",
+    "pct": 5,
+    "amountLabel": "5% after Free Trial",
+    "scope": "New users · CFD plans · no resets",
+    "verifiedOn": "2026-08-17",
+    "sourceUrl": "https://help.fundednext.com/en/articles/8902893-fundednext-free-trial-rules",
+    "sourceLabel": "FundedNext Free Trial Rules",
+    "ctaLabel": "Start the Free Trial",
+    "note": "Reach the 5% Free Trial target and FundedNext generates a personal code by email and in My Offers. The code lasts 14 days."
   }
 ]
