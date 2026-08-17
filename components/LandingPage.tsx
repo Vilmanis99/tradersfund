@@ -28,16 +28,21 @@ export default function LandingPage({ landing }: { landing: Landing }) {
   const isIndia = landing.slug === 'best-prop-firms-in-india'
   const isUs = landing.slug === 'best-prop-firms-in-us'
   const isSwing = landing.slug === 'best-swing-trading-prop-firms'
+  const isFutures = landing.slug === 'best-futures-prop-firms'
   const decisionHeading = isUs
     ? 'What U.S. traders should verify'
     : isSwing
       ? 'What swing traders should verify'
-      : 'What Indian traders should verify'
+      : isFutures
+        ? 'What futures traders should verify'
+        : 'What Indian traders should verify'
   const decisionSub = isUs
     ? 'Four access, contract and payout checks to complete before paying.'
     : isSwing
       ? 'Four product-level checks before carrying a position across sessions.'
-      : 'Four checks to complete before paying for any evaluation.'
+      : isFutures
+        ? 'Four product, billing, account-stage and registration checks before paying.'
+        : 'Four checks to complete before paying for any evaluation.'
   const indiaMatcherFirms = isIndia
     ? buildIndiaMatcherFirms(firms)
     : []
@@ -170,6 +175,98 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   Open the CFTC registration checklist.
                 </a>
               </span>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isFutures && (
+        <section className="home-section" style={{ paddingTop: 0, paddingBottom: '1rem' }}>
+          <div className="home-shell">
+            <div
+              className="post-sidebar-card"
+              style={{ borderLeft: '3px solid var(--gold)', padding: '1.15rem 1.3rem' }}
+            >
+              <strong style={{ color: '#fff' }}>
+                Exchange oversight is not a prop-firm registration badge.
+              </strong>{' '}
+              <span style={{ color: 'var(--text)', lineHeight: 1.65 }}>
+                The CFTC describes designated contract markets as exchanges under its oversight,
+                while registration and disciplinary history are separate checks for firms and
+                individuals.{' '}
+                <a
+                  href="https://www.cftc.gov/IndustryOversight/TradingOrganizations/DCMs/index.htm"
+                  target="_blank"
+                  rel="nofollow noopener"
+                  style={{ color: 'var(--accent-light)', fontWeight: 700 }}
+                >
+                  Read the DCM overview
+                </a>{' '}
+                and{' '}
+                <a
+                  href="https://www.cftc.gov/check"
+                  target="_blank"
+                  rel="nofollow noopener"
+                  style={{ color: 'var(--accent-light)', fontWeight: 700 }}
+                >
+                  check registration in NFA BASIC.
+                </a>
+              </span>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '0.85rem',
+              marginTop: '0.85rem',
+            }}>
+              {[
+                {
+                  href: '/prop-firm-challenges?market=futures',
+                  eyebrow: 'Exact products',
+                  title: 'Compare current futures products',
+                  body: 'Open the full product table with the futures market filter already selected.',
+                },
+                {
+                  href: '/best-prop-firms-in-us',
+                  eyebrow: 'Access evidence',
+                  title: 'Check U.S. access separately',
+                  body: 'Treat documented customer access and regulatory registration as different questions.',
+                },
+                {
+                  href: '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+                  eyebrow: 'Risk mechanics',
+                  title: 'Understand drawdown mechanics',
+                  body: 'Compare how balance, equity and trailing reference points move a breach line.',
+                },
+                {
+                  href: '/prop-firm-challenge-changes',
+                  eyebrow: 'Change watch',
+                  title: 'Recheck current rule changes',
+                  body: 'Review dated product changes and unresolved first-party source conflicts before checkout.',
+                },
+              ].map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="post-sidebar-card"
+                  style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
+                >
+                  <span className="bento-tile-eyebrow">{item.eyebrow}</span>
+                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                    {item.title}
+                  </strong>
+                  <span style={{
+                    display: 'block',
+                    color: 'var(--muted)',
+                    fontSize: '0.8rem',
+                    lineHeight: 1.55,
+                    marginTop: '0.35rem',
+                  }}>
+                    {item.body}
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
@@ -542,6 +639,26 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   </Link>
                   <Link href="/prop-firms/weekend-holding" className="btn-outline">
                     Check weekend rules
+                  </Link>
+                </div>
+              </>
+            ) : isFutures ? (
+              <>
+                <h2 className="cta-final-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
+                  Compare the exact futures product
+                </h2>
+                <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
+                  Filter current products first, then verify access and revisit any dated rule change before paying.
+                </p>
+                <div className="cta-final-row">
+                  <Link href="/prop-firm-challenges?market=futures" className="btn-primary btn-glow">
+                    Compare futures products <ArrowRight size={16} />
+                  </Link>
+                  <Link href="/best-prop-firms-in-us" className="btn-outline">
+                    Check U.S. access
+                  </Link>
+                  <Link href="/prop-firm-challenge-changes" className="btn-outline">
+                    Review current changes
                   </Link>
                 </div>
               </>

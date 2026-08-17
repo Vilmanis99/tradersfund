@@ -2,7 +2,7 @@
 title: "Topstep Review 2026: A Monthly Subscription With Two Locked Pricing Paths"
 slug: "topstep-review"
 date: "2025-08-01 14:52:15"
-modified: "2026-08-15 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Topstep's evaluation rebills every month and you choose a pricing path you cannot change. We work out which path wins, at how many months, and why."
 categories: ["Prop Firms"]
@@ -78,6 +78,8 @@ type: "post"
 <p>Pricing and rules above are current as of <strong>2026-07-27</strong>, captured from Topstep's own pages. Two sourcing notes matter. First, <code>/pricing</code> and <code>/trading-combine</code> both now return 404 — live pricing has moved to <code>/topstep-prop</code>, so any review still citing those URLs is quoting a dead page. Second, the three Standard Path prices are present in the server HTML of <code>/topstep-prop</code>, but the "No activation fee" tab is client-rendered and its prices are not. The $95 / $149 / $229 figures come from Topstep's own help-centre pricing table on the <code>help.topstep.com</code> subdomain — one step removed from the marketing page. They corroborate against the struck-through prices shown on the same product cards ($85 / $129 / $199), which equal these prices minus the stated $10 / $20 / $30 Responsible Trading Discount. Confirm before you buy on <a href="/go/topstep">topstep.com</a>.</p>
 
 <p><strong>U.S. eligibility.</strong> Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links Topstep’s current eligibility and payout policies and separates that policy support from CFTC or NFA registration. Verify citizenship, residency, KYC, tax-form and bank details before purchase.</p>
+
+<p><strong>Futures comparison.</strong> The <a href="/best-futures-prop-firms">product-level futures comparison</a> places Topstep’s 2 Trading Combine paths beside current subscription and one-time-fee rivals while keeping drawdown type, payout split and first-party capture dates visible.</p>
 
 <p>After passing, you activate an Express Funded Account. The XFA is still simulated — "In the Trading Combine and Express Funded Account, trading takes place in a simulated environment using real market data" — and it starts at a $0 balance, because "the 50K, 100K, or 150K label refers to your buying power, not your starting balance." Real capital only appears at the Live Funded Account tier, which 0.71% of XFA traders reached in 2025.</p>
 

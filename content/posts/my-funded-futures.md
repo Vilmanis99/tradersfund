@@ -2,7 +2,7 @@
 title: "My Funded Futures Review 2026: 4 Plans, 11 Prices, $0 Activation"
 slug: "my-funded-futures"
 date: "2025-07-15 10:00:00"
-modified: "2026-07-27 12:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "MFF now sells Rapid, Flex, Pro, and Builder with monthly fees from $95 to $477. Compare drawdown, payout buffers, caps, and true cost."
 categories: ["Prop Firms"]
@@ -63,6 +63,8 @@ type: "post"
 </table>
 
 <p>Pricing and rules are current as of 2026-07-27. Rapid’s $109 25K tier renews at $97; the other captured tiers renew at list price. A temporary 50% first-month coupon was active at capture but is excluded from every table because it expires and does not lower later renewals.</p>
+
+<p><strong>Futures comparison.</strong> The <a href="/best-futures-prop-firms">product-level futures comparison</a> places My Funded Futures’ 4 current plans beside other monthly and one-time-fee products while keeping drawdown type, payout split and first-party capture dates visible.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 

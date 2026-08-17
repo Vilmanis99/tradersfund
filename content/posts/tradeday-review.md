@@ -2,7 +2,7 @@
 title: "TradeDay Review 2026: Day-One Payouts, but a Tiered Split"
 slug: "tradeday-review"
 date: "2026-07-28"
-modified: "2026-08-11 12:30:00"
+modified: "2026-08-17 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "TradeDay pairs day-one Quick Pay withdrawals with three drawdown paths, but its 50% low-profit payout tier and promo-linked monthly prices need scrutiny."
 categories: ["Prop Firms"]
@@ -55,6 +55,8 @@ type: "post"
   </tbody>
 </table>
 <p style="font-size: 0.82rem; color: var(--muted);">Pricing and rules were captured from TradeDay's current product cards and linked support pages on 2026-08-11. The $59–$225 fees still include the displayed 55% promotion; crossed-out list prices and reset fees conflict across TradeDay's own pages, so confirm the final amount on <a href="/go/tradeday">TradeDay's live checkout path</a> before paying.</p>
+
+<p><strong>Futures comparison.</strong> The <a href="/best-futures-prop-firms">product-level futures comparison</a> places TradeDay’s 3 current paths beside other monthly and one-time-fee products while keeping intraday versus EOD drawdown, payout split and first-party capture dates visible.</p>
 
 <!-- SECTION 4 — Rule mechanics -->
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>

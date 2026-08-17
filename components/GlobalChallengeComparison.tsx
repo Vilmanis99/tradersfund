@@ -518,6 +518,15 @@ function parseShortlist(value: string | null, validKeys: Set<string>) {
     .slice(0, MAX_SHORTLIST)
 }
 
+function parseMarketFilter(value: string | null): MarketFilter {
+  return value === 'cfd'
+    || value === 'futures'
+    || value === 'crypto'
+    || value === 'prediction-markets'
+    ? value
+    : 'all'
+}
+
 function sameKeys(a: string[], b: string[]) {
   return a.length === b.length && a.every((key, index) => key === b[index])
 }
@@ -601,6 +610,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
       const size = params.get('size')
       setShortlist(current => sameKeys(current, next) ? current : next)
       setDecisionPriority(parseDecisionPriority(params.get('priority')))
+      setMarket(parseMarketFilter(params.get('market')))
       setAccountSize(
         size && accountSizes.includes(Number(size)) ? size : 'all',
       )
@@ -673,6 +683,14 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
     const url = new URL(window.location.href)
     if (size === 'all') url.searchParams.delete('size')
     else url.searchParams.set('size', size)
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
+  }
+
+  const commitMarket = (value: MarketFilter) => {
+    setMarket(value)
+    const url = new URL(window.location.href)
+    if (value === 'all') url.searchParams.delete('market')
+    else url.searchParams.set('market', value)
     window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
   }
 
@@ -792,6 +810,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
     setShowAll(false)
     const url = new URL(window.location.href)
     url.searchParams.delete('size')
+    url.searchParams.delete('market')
     window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
     track('challenge_filters_reset', { surface: 'global', matching_products: rows.length })
   }
@@ -936,7 +955,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
               id="global-challenge-market"
               label="Market"
               value={market}
-              onChange={value => setMarket(value as MarketFilter)}
+              onChange={value => commitMarket(value as MarketFilter)}
             >
               <option value="all">All markets</option>
               <option value="cfd">CFD</option>

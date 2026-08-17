@@ -454,6 +454,95 @@ if (swingLandingProbe.status !== 200) {
   }
 }
 
+const futuresLandingPath = '/best-futures-prop-firms'
+const expectedFuturesFirms = firmRecords.flatMap(firm => {
+  const products = getChallengesByFirm(outboundSlug(firm.name)).filter(challenge =>
+    isChallengeFresh(challenge) && challenge.assetClass === 'futures',
+  )
+  return products.length ? [{ firm, products }] : []
+})
+const futuresLandingProbe = await fetchPage(new URL(futuresLandingPath, BASE))
+if (futuresLandingProbe.status !== 200) {
+  errors.push(
+    `${futuresLandingPath}: HTTP ${futuresLandingProbe.status || futuresLandingProbe.error}`,
+  )
+} else {
+  const futuresText = textContent(futuresLandingProbe.html)
+  const cardCount = (futuresLandingProbe.html.match(/<li class="leader-row/g) ?? []).length
+  const evidenceDateCount = (futuresText.match(/checked 2026-/g) ?? []).length
+  if (cardCount !== expectedFuturesFirms.length) {
+    errors.push(
+      `${futuresLandingPath}: rendered ${cardCount} firms, expected ${expectedFuturesFirms.length}`,
+    )
+  }
+  if (evidenceDateCount !== expectedFuturesFirms.length) {
+    errors.push(
+      `${futuresLandingPath}: rendered ${evidenceDateCount} dated card sources, expected ${expectedFuturesFirms.length}`,
+    )
+  }
+  for (const { firm } of expectedFuturesFirms) {
+    if (!futuresText.includes(firm.name)) {
+      errors.push(`${futuresLandingPath}: missing qualifying firm ${firm.name}`)
+    }
+  }
+  for (const required of [
+    'Best Futures Prop Firms (2026) — By Product | TFH',
+    'What futures traders should verify',
+    'Is the evaluation fee one-time or recurring?',
+    'Does drawdown trail intraday or at session end?',
+    'Is the funded stage simulated or live?',
+    'Which entity is actually regulated?',
+    'Exchange oversight is not a prop-firm registration badge.',
+  ]) {
+    if (!futuresText.includes(required)) {
+      errors.push(`${futuresLandingPath}: missing ${required}`)
+    }
+  }
+  for (const required of [
+    'href="/prop-firm-challenges?market=futures"',
+    'href="/best-prop-firms-in-us"',
+    'href="/blog/balance-based-drawdown-vs-equity-based-drawdown"',
+    'href="/prop-firm-challenge-changes"',
+    'href="https://www.cftc.gov/IndustryOversight/TradingOrganizations/DCMs/index.htm"',
+    'href="https://www.cftc.gov/check"',
+  ]) {
+    if (!futuresLandingProbe.html.includes(required)) {
+      errors.push(`${futuresLandingPath}: missing ${required}`)
+    }
+  }
+  if (
+    futuresText.includes('CFTC-regulated brokers')
+    || futuresText.includes('US-friendly status')
+    || futuresText.includes('firm acts as an evaluation gate, not as the counterparty')
+  ) {
+    errors.push(`${futuresLandingPath}: restored unsupported regulatory or aggregate wording`)
+  }
+}
+
+const futuresMarketProbePath = '/prop-firm-challenges?market=futures'
+const futuresMarketProbe = await fetchPage(new URL(futuresMarketProbePath, BASE))
+if (futuresMarketProbe.status !== 200) {
+  errors.push(
+    `${futuresMarketProbePath}: HTTP ${futuresMarketProbe.status || futuresMarketProbe.error}`,
+  )
+} else {
+  const futuresMarketCanonical = firstMatch(
+    futuresMarketProbe.html,
+    /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["'][^>]*>/i,
+  ) || firstMatch(
+    futuresMarketProbe.html,
+    /<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["'][^>]*>/i,
+  )
+  if (canonicalKey(futuresMarketCanonical) !== canonicalKey(
+    `${PRODUCTION_ORIGIN}/prop-firm-challenges`,
+  )) {
+    errors.push(`${futuresMarketProbePath}: canonical includes futures market state`)
+  }
+  if (!futuresMarketProbe.html.includes('<option value="futures">Futures</option>')) {
+    errors.push(`${futuresMarketProbePath}: futures market option is missing`)
+  }
+}
+
 const shortlistProbe = await fetchPage(new URL(
   '/prop-firm-challenges?shortlist=topstep%3Atrading-combine-standard-path%2Capex-trader-funding%3Aeod-trail-standard',
   BASE,

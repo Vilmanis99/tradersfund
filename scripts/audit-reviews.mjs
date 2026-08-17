@@ -5827,6 +5827,129 @@ function checkSwingFeatureCluster() {
   return rows.length
 }
 
+/** Keep the futures shortlist product-level and separate exchange oversight from firm registration. */
+function checkFuturesLandingCluster() {
+  const rows = []
+  const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
+  const landings = read(LANDINGS_CONFIG_FILE)
+  const block = landings.match(
+    /slug:\s*'best-futures-prop-firms'([\s\S]*?)slug:\s*'best-crypto-prop-firms'/,
+  )?.[1] ?? ''
+
+  if (!block) {
+    rows.push('best-futures-prop-firms landing config is missing')
+  } else {
+    const metaTitle = block.match(/metaTitle:\s*'([^']+)'/)?.[1] ?? ''
+    const description = block.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1] ?? ''
+    if (metaTitle.length > 54) {
+      rows.push('futures landing meta title must leave room for the root title suffix')
+    }
+    if (description.length < 120 || description.length > 160) {
+      rows.push('futures landing meta description must be between 120 and 160 characters')
+    }
+    for (const fragment of [
+      'function freshFuturesProducts(firm: Firm): Challenge[]',
+      "isChallengeFresh(challenge) && challenge.assetClass === 'futures'",
+      'const products = freshFuturesProducts(firm)',
+      'pricingModelLabel(product.pricingModel)',
+      "metricLabel: 'Products'",
+      'url: evidenceProduct.sourceUrl',
+      'capturedAt: evidenceProduct.sourceCapturedAt',
+      'affiliate status, coupon size, product count, billing model, platform, and drawdown type add 0 points',
+      'Is the evaluation fee one-time or recurring?',
+      'Does drawdown trail intraday or at session end?',
+      'Is the funded stage simulated or live?',
+      'Which entity is actually regulated?',
+      "lastReviewed: '2026-08-17'",
+    ]) {
+      if (!landings.includes(fragment) && !block.includes(fragment)) {
+        rows.push(`futures landing is missing "${fragment}"`)
+      }
+    }
+    for (const staleClaim of [
+      'CFTC-regulated brokers',
+      'US-friendly status',
+      "firms.filter(f => f.assets?.includes('Futures'))",
+      'firm acts as an evaluation gate, not as the counterparty',
+    ]) {
+      if (block.includes(staleClaim)) {
+        rows.push(`futures landing restored unsupported logic: "${staleClaim}"`)
+      }
+    }
+    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
+      rows.push('futures landing must keep exactly 4 product-level decision questions')
+    }
+  }
+
+  const landingPage = read(LANDING_PAGE_COMPONENT_FILE)
+  for (const fragment of [
+    "const isFutures = landing.slug === 'best-futures-prop-firms'",
+    'What futures traders should verify',
+    'Four product, billing, account-stage and registration checks before paying.',
+    'Exchange oversight is not a prop-firm registration badge.',
+    'https://www.cftc.gov/IndustryOversight/TradingOrganizations/DCMs/index.htm',
+    'https://www.cftc.gov/check',
+    "href: '/prop-firm-challenges?market=futures'",
+    "href: '/best-prop-firms-in-us'",
+    "href: '/blog/balance-based-drawdown-vs-equity-based-drawdown'",
+    "href: '/prop-firm-challenge-changes'",
+    'Compare the exact futures product',
+    'href="/prop-firm-challenges?market=futures"',
+  ]) {
+    if (!landingPage.includes(fragment)) {
+      rows.push(`futures landing component is missing "${fragment}"`)
+    }
+  }
+
+  const challengeComparison = read(GLOBAL_CHALLENGE_COMPONENT_FILE)
+  for (const fragment of [
+    'function parseMarketFilter(value: string | null): MarketFilter',
+    "setMarket(parseMarketFilter(params.get('market')))",
+    'const commitMarket = (value: MarketFilter)',
+    "url.searchParams.set('market', value)",
+    "url.searchParams.delete('market')",
+    'onChange={value => commitMarket(value as MarketFilter)}',
+  ]) {
+    if (!challengeComparison.includes(fragment)) {
+      rows.push(`global challenge comparison is missing futures-filter safeguard: "${fragment}"`)
+    }
+  }
+
+  for (const file of [
+    'topstep-review.md',
+    'my-funded-futures.md',
+    'take-profit-trader-review.md',
+    'tradeday-review.md',
+    'apex-trader-funding-review.md',
+    'lucid-trading-review.md',
+    'tradeify-review.md',
+  ]) {
+    if (!read(path.join(POSTS, file)).includes('href="/best-futures-prop-firms"')) {
+      rows.push(`${file}: missing contextual backlink to the futures comparison`)
+    }
+  }
+
+  const crawler = read(RELEASE_CRAWL_FILE)
+  for (const fragment of [
+    "const futuresLandingPath = '/best-futures-prop-firms'",
+    'expectedFuturesFirms',
+    "challenge.assetClass === 'futures'",
+    'rendered ${cardCount} firms, expected ${expectedFuturesFirms.length}',
+    "'/prop-firm-challenges?market=futures'",
+    'canonical includes futures market state',
+  ]) {
+    if (!crawler.includes(fragment)) {
+      rows.push(`release crawl is missing futures safeguard: "${fragment}"`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\nâœ— Futures landing and review links')
+    for (const row of rows) console.log(`  Â· ${row}`)
+  }
+  return rows.length
+}
+
 /** Keep the FTMO practice guide tied to current FTMO and FundedNext sources. */
 function checkFtmoFreeTrialGuide() {
   const rows = []
@@ -7789,6 +7912,8 @@ const usLandingConsolidationErrors = checkUsLandingConsolidation()
 totalErrors += usLandingConsolidationErrors
 const swingFeatureClusterErrors = checkSwingFeatureCluster()
 totalErrors += swingFeatureClusterErrors
+const futuresLandingClusterErrors = checkFuturesLandingCluster()
+totalErrors += futuresLandingClusterErrors
 const globalChallengeErrors = checkGlobalChallengeSurface()
 totalErrors += globalChallengeErrors
 const challengeChangeFocusErrors = checkChallengeChangeFocusContract()

@@ -198,10 +198,22 @@ function swingCompatibleProducts(firm: Firm): Challenge[] {
   )
 }
 
+function freshFuturesProducts(firm: Firm): Challenge[] {
+  return getChallengesByFirm(firmSlug(firm.name)).filter(challenge =>
+    isChallengeFresh(challenge) && challenge.assetClass === 'futures',
+  )
+}
+
 function drawdownLabel(value: Challenge['drawdownType']): string {
   if (value === 'eod-trailing') return 'EOD trailing'
   if (value === 'balance-based') return 'balance-based'
   return value ?? 'drawdown unpublished'
+}
+
+function pricingModelLabel(value: Challenge['pricingModel']): string {
+  if (value === 'monthly-subscription') return 'monthly subscription'
+  if (value === 'split-payment') return 'split payment'
+  return 'one-time fee'
 }
 
 export const LANDINGS: Landing[] = [
@@ -463,25 +475,66 @@ export const LANDINGS: Landing[] = [
   {
     slug: 'best-futures-prop-firms',
     h1: 'Best Futures Prop Firms (2026)',
-    metaTitle: 'Best Futures Prop Firms in 2026 — Ranked & Compared',
+    metaTitle: 'Best Futures Prop Firms (2026) — By Product',
     metaDescription:
-      'Prop firms that fund futures traders: NinjaTrader, Tradovate, Rithmic platforms, daily-drawdown rules, and US-friendly status.',
+      'Compare futures prop firms using current product-level fees, billing, drawdown, payout rules, platforms, reviews, and dated first-party sources.',
     intro:
-      'Futures funding is structurally different from CFD funding: traders use CFTC-regulated brokers (NinjaTrader, Tradovate, Rithmic) and the firm acts as an evaluation gate, not as the counterparty. The list below filters to firms that explicitly offer Futures as an asset class.',
+      'Every ranked firm has at least 1 fresh challenge record whose asset class is futures. Some evaluations rebill monthly; others use a one-time fee, and drawdown can trail intraday or update at the end of the session. CFTC oversight of a designated futures exchange does not automatically make the evaluation provider, software platform, or data connection CFTC-registered.',
     sortDir: 'desc',
-    rank: firms => {
-      const eligible = firms.filter(f => f.assets?.includes('Futures'))
-      return eligible
-        .map(firm => ({
+    rank: firms => firms
+      .flatMap(firm => {
+        const products = freshFuturesProducts(firm)
+        if (!products.length) return []
+
+        const billing = [...new Set(products.map(product =>
+          pricingModelLabel(product.pricingModel),
+        ))].sort()
+        const drawdowns = [...new Set(products.map(product =>
+          drawdownLabel(product.drawdownType),
+        ))].sort()
+        const splits = [...new Set(products.flatMap(product =>
+          product.profitSplitPct == null ? [] : [product.profitSplitPct],
+        ))].sort((a, b) => a - b)
+        const shownProducts = products.slice(0, 3).map(product => product.productName)
+        const moreCount = products.length - shownProducts.length
+        const evidenceProduct = products[0]
+
+        return [{
           firm,
           sortKey: firm.score,
-          highlight: `${firm.profitSplitPct ?? '—'}% split · ${firm.platforms?.slice(0, 2).join(' / ') || 'Platforms TBD'}`,
-        }))
-        .sort((a, b) => b.sortKey - a.sortKey)
-    },
+          highlight: `${products.length} current ${products.length === 1 ? 'product' : 'products'} · ${joinNatural(billing)}`,
+          metricLabel: 'Products',
+          metricValue: products.length.toString(),
+          note: `${joinNatural(shownProducts)}${moreCount > 0 ? `, plus ${moreCount} more` : ''}. Captured drawdown: ${joinNatural(drawdowns)}; published starting ${splits.length === 1 ? 'split' : 'splits'}: ${splits.length ? `${splits.join('–')}%` : 'unverified'}.`,
+          evidence: {
+            label: `${evidenceProduct.productName} source`,
+            url: evidenceProduct.sourceUrl,
+            capturedAt: evidenceProduct.sourceCapturedAt,
+          },
+        }]
+      })
+      .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
     methodology:
-      'A firm is included if it lists Futures in its assets array. Product terms come from first-party challenge captures, and the audit blocks captures older than 30 days.',
-    lastReviewed: REVIEW_DATE,
+      'A firm qualifies only when at least 1 structured product captured within 30 days explicitly sets assetClass to futures. A firm-level Futures label without a fresh product does not qualify. The order uses our editorial score; affiliate status, coupon size, product count, billing model, platform, and drawdown type add 0 points. Each card names current products and links a dated first-party source.',
+    decisionGuide: [
+      {
+        title: 'Is the evaluation fee one-time or recurring?',
+        body: 'Read pricingModel before comparing headline prices. A monthly subscription can rebill until the trader passes or cancels, while a one-time evaluation can still add a funded-account activation payment.',
+      },
+      {
+        title: 'Does drawdown trail intraday or at session end?',
+        body: 'Intraday trailing can tighten from an unrealised equity peak. EOD-trailing normally recalculates from a closing balance, but the exact lock, reset, and funded-stage rule still varies by product.',
+      },
+      {
+        title: 'Is the funded stage simulated or live?',
+        body: 'Do not infer live capital from a funded label. Read the named agreement for the evaluation, simulated-funded, and any later live-account stage, including the conditions for moving between them.',
+      },
+      {
+        title: 'Which entity is actually regulated?',
+        body: 'The CFTC oversees designated contract markets and requires certain derivatives intermediaries to register. Exchange oversight does not by itself establish the registration status of an evaluation provider or software platform; check NFA BASIC separately.',
+      },
+    ],
+    lastReviewed: '2026-08-17',
   },
   {
     slug: 'best-crypto-prop-firms',

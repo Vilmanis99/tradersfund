@@ -2,7 +2,7 @@
 title: "Lucid Trading Review 2026: 7 Paths, but 24 Unpriced Tiers"
 slug: "lucid-trading-review"
 date: "2026-07-28"
-modified: "2026-08-11 20:00:00"
+modified: "2026-08-17 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "LucidPro has 4 verified base fees and one-time billing; Lucid's help center documents 16 LucidDaily tiers, but their prices and current homepage availability remain unresolved."
 categories: ["Prop Firms"]
@@ -72,6 +72,8 @@ type: "post"
 </table>
 </div>
 <p style="font-size: 0.82rem; color: var(--muted);">Pricing and rules were captured from Lucid Trading's first-party pages on 2026-08-11. The 4 LucidPro fees are undiscounted base prices; 24 Flex, Direct and Daily prices stay blank because the JavaScript configurator did not expose stable public figures. Lucid's help center still documents 4 Daily configurations, but its current homepage selector exposes only Pro, Flex and Direct, so Daily purchase availability and final prices remain under watch. Confirm the selected plan on <a href="/go/lucid-trading">Lucid Trading's current checkout path</a> before paying.</p>
+
+<p><strong>Futures comparison.</strong> The <a href="/best-futures-prop-firms">product-level futures comparison</a> places Lucid Trading’s 7 current paths beside other one-time-fee and monthly products while keeping product-specific drawdown, payout split and first-party capture dates visible.</p>
 
 <!-- SECTION 4 - Rule mechanics -->
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
