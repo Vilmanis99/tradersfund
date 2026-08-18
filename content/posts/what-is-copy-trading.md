@@ -109,7 +109,7 @@ type: "post"
 
 <p>A “free” copy button does not prove that copying has no cost. Build a cash-and-execution checklist with 7 fields: spread, commission, overnight financing, performance fee, platform subscription, copier licence, and deposit or withdrawal charges. Record whether a performance fee uses gross profit, net profit, a high-water mark, or another calculation.</p>
 
-<p>Provider compensation also varies. A provider may receive a percentage of eligible follower profit, a fixed subscription, a share of trading volume revenue, or no payment. The follower should compare the all-in cost; the provider should verify what activity is rewarded, because volume-based compensation can create a different incentive from performance-based compensation.</p>
+<p>Provider compensation also varies. A provider may receive a percentage of eligible follower profit, a fixed subscription, a share of trading volume revenue, or no payment. The follower should compare the all-in cost; the provider should verify what activity is rewarded, because volume-based compensation can create a different incentive from performance-based compensation. The <a href="/blog/zulutrade-review">ZuluTrade fee review</a> shows why the exact account model matters: its current default is Zero Subscription, while Classic and Profit Sharing remain documented as legacy models.</p>
 
 <h2>Risks for followers and providers</h2>
 

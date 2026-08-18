@@ -507,6 +507,24 @@ for (const source of [
   }
 }
 
+const zuluTradePath = '/blog/zulutrade-review'
+const zuluTradeInlinks = internalInlinks.get(zuluTradePath) ?? new Set()
+if (zuluTradeInlinks.size < 9) {
+  errors.push(
+    `${zuluTradePath}: source-checked review has only `
+    + `${zuluTradeInlinks.size} unique internal inlinks`,
+  )
+}
+for (const source of [
+  '/blog/what-is-copy-trading',
+  '/blog/traders-connect-trade-copier',
+  '/blog/copyfx-review',
+]) {
+  if (!zuluTradeInlinks.has(source)) {
+    errors.push(`${zuluTradePath}: missing social-copying inlink from ${source}`)
+  }
+}
+
 const wyckoffGuidePath = '/blog/wyckoff-pattern'
 const wyckoffInlinks = internalInlinks.get(wyckoffGuidePath) ?? new Set()
 if (wyckoffInlinks.size < 8) {
@@ -755,6 +773,70 @@ for (const review of TRADING_TOOL_REVIEWS) {
     }
   }
 
+  if (review.slug === 'zulutrade-review') {
+    for (const required of [
+      'data-tool-evidence-captured="2026-08-18"',
+      'Traders Fund Hub does not currently record an affiliate relationship with ZuluTrade.',
+      'data-zulutrade-evidence="2026-08-18"',
+      'data-zulutrade-model="default-zero-subscription"',
+      'Default ZuluTrade Investor account type in the current Leader Guide',
+      'creation of new Profit Sharing Investor accounts discontinued since April 2022',
+      'data-zulutrade-fee-boundary="current-vs-legacy"',
+      '0.5 pip for each closed copied trade',
+      '$5 per $100,000 traded',
+      'data-zulutrade-connection="master-credential"',
+      'data-zulutrade-leader-selection="record-quality"',
+      'data-zulutrade-execution-risk="orphan-trade"',
+      'data-zulutrade-guard="threshold-control"',
+      'data-zulutrade-test-plan="demo-to-live"',
+      'data-zulutrade-regulation="entity-specific"',
+      'Triple A Experts Investment Services S.A.',
+      '/blog/what-is-copy-trading',
+      '/blog/traders-connect-trade-copier',
+      '/blog/what-is-overtrading',
+      'data-affiliate-placement="verdict"',
+    ]) {
+      if (!probe.html.includes(required) && !pageText.includes(required)) {
+        errors.push(`${path}: missing current evidence or copying boundary ${required}`)
+      }
+    }
+    const lowerPageText = pageText.toLowerCase()
+    for (const stale of [
+      '3.3 on trustpilot',
+      'used in 150+ countries',
+      '30 million accounts',
+      '2 million active traders',
+      'one of the oldest and most well-known',
+      'one of the top platforms',
+      'uf awards 2024',
+      'is zulutrade profitable?',
+      'it can be profitable for those',
+      'completely legitimate copy trading platform',
+      'classic & profit sharing accounts',
+      'minimum deposit requirements',
+      'trustpilot reviews',
+      '$30 subscription',
+      '20% performance',
+      '25% performance',
+    ]) {
+      if (lowerPageText.includes(stale)) {
+        errors.push(`${path}: rendered promotional, unsafe or stale claim ${stale}`)
+      }
+    }
+    const ctaTag = [...probe.html.matchAll(/<a\b[^>]*>/gi)]
+      .map(match => match[0])
+      .find(tag => tag.includes(
+        'href="/go/zulutrade?from=post-body-zulutrade-review-verdict"',
+      )) || ''
+    if (
+      !ctaTag
+      || !ctaTag.includes('rel="nofollow noopener"')
+      || ctaTag.includes('sponsored')
+    ) {
+      errors.push(`${path}: ZuluTrade official CTA relationship is incorrect`)
+    }
+  }
+
   const expectedLinks = getTradingToolReviewLinks(review.slug, tradingToolPostRecords)
   const toolLinkTags = [...probe.html.matchAll(
     /<a\b[^>]*\bdata-tool-review-link=["'][^"']+["'][^>]*>/gi,
@@ -825,6 +907,12 @@ for (const review of TRADING_TOOL_REVIEWS) {
     && article?.dateModified !== post.modified
   ) {
     errors.push(`${path}: 3Commas Article schema date disagrees with evidence date`)
+  }
+  if (
+    review.slug === 'zulutrade-review'
+    && article?.dateModified !== post.modified
+  ) {
+    errors.push(`${path}: ZuluTrade Article schema date disagrees with evidence date`)
   }
 }
 

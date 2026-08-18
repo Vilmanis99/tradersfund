@@ -47,7 +47,7 @@ type: "post"
 
 <p>In case you’re not familiar, RoboForex is a global online broker that gives you access to a wide range of markets like Forex, stocks, indices, cryptocurrencies, ETFs, and commodities. You can trade through popular platforms such as MetaTrader 4 (MT4), MetaTrader 5 (MT5), and R StocksTrader.</p>
 
-<p>CopyFX, sometimes called CopyFX RoboForex, is the copy trading side of the RoboForex broker. It’s built for both traders (called Leaders) and investors (also known as copiers).</p>
+<p>CopyFX, sometimes called CopyFX RoboForex, is the copy trading side of the RoboForex broker. It’s built for both traders (called Leaders) and investors (also known as copiers). That broker-native structure differs from the multi-broker social model examined in the <a href="/blog/zulutrade-review">ZuluTrade review</a>.</p>
 
 <p>Now, if you’re wondering how RoboForex and CopyFX actually work together or where the heck to start, don’t stress! This CopyFX review will walk you through everything you need to know.</p>
 
