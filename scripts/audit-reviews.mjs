@@ -9992,6 +9992,115 @@ function checkTradingToolReviewCluster() {
     }
   }
 
+  const threeCommas = bySlug.get('3commas-review')
+  if (!threeCommas) {
+    rows.push('3Commas review is missing from the tool-review cluster')
+  } else {
+    const expectedTitle = '3Commas Review: Pricing, Bots & API Risks'
+    if (
+      threeCommas.title !== expectedTitle
+      || threeCommas.seoTitle !== expectedTitle
+      || threeCommas.modified !== '2026-08-18 12:00:00'
+      || threeCommas.sourceCapturedAt !== '2026-08-18'
+    ) {
+      rows.push('3Commas title or evidence dates disagree with the current review')
+    }
+    if (
+      threeCommas.seoTitle.length > 60
+      || threeCommas.seoDescription.length < 120
+      || threeCommas.seoDescription.length > 160
+    ) {
+      rows.push('3Commas search title or description is outside the editorial range')
+    }
+    const threeCommasWordCount = threeCommas.content
+      .replace(/<[^>]+>/g, ' ')
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean).length
+    if (threeCommasWordCount < 2200) {
+      rows.push(`3Commas source-checked review is only ${threeCommasWordCount} words`)
+    }
+    for (const sourceUrl of [
+      'https://3commas.io/pricing',
+      'https://help.3commas.io/en/articles/8420093-available-subscription-plans',
+      'https://help.3commas.io/en/articles/8420117-subscriptions-faq',
+      'https://help.3commas.io/en/articles/3108964-available-exchanges-and-supported-features',
+      'https://help.3commas.io/en/articles/4456595-3commas-security',
+      'https://3commas.io/blog/notice-on-api-data-disclosure-incident',
+      'https://help.3commas.io/en/articles/8146367-how-to-claim-a-refund',
+      'https://help.3commas.io/en/articles/3311526-what-happens-when-my-subscription-ends',
+    ]) {
+      if (!threeCommas.sourceUrls?.includes(sourceUrl)) {
+        rows.push(`3Commas frontmatter is missing first-party source ${sourceUrl}`)
+      }
+    }
+    for (const token of [
+      'data-tool-evidence-captured="2026-08-18"',
+      'Traders Fund Hub does not currently record an affiliate relationship with 3Commas.',
+      'data-3commas-evidence="2026-08-18"',
+      'data-tool-pricing="3commas-free"',
+      'data-tool-pricing="3commas-starter"',
+      '$20 monthly or $180 annually ($15 monthly equivalent)',
+      'data-tool-pricing="3commas-pro"',
+      '$50 monthly or $456 annually ($38 monthly equivalent)',
+      'data-tool-pricing="3commas-expert"',
+      '$140 monthly or $1,260 annually ($105 monthly equivalent)',
+      'data-3commas-pricing-conflict="active-accounts"',
+      '1 Starter, 5 Pro, and 25 Expert active API keys',
+      '1, 3, and 15 active trading accounts',
+      'data-3commas-security-incident="2022-api-disclosure"',
+      'data-3commas-security-checklist="least-privilege"',
+      'data-3commas-test-plan="connected-exchange"',
+      'data-3commas-offboarding="subscription-expiry"',
+      'data-3commas-billing="trial-refund"',
+      'href="/blog/what-is-copy-trading"',
+      'href="/blog/fx-replay-review"',
+      'href="/blog/what-is-overtrading"',
+      'href="/go/3commas"',
+      'data-affiliate-placement="verdict"',
+    ]) {
+      if (!threeCommas.content.includes(token)) {
+        rows.push(`3Commas review is missing evidence or decision token ${token}`)
+      }
+    }
+    for (const stale of [
+      '$37 Monthly',
+      '$59 Monthly',
+      'PROTIME50',
+      'ZRB2AUPH4N0',
+      'lvEp2glM',
+      'earn money when others copy',
+      'consistent profits',
+      'emotion-free trading',
+      '4.4 out of 5',
+      'nearly 2,000',
+      'over 2 million traders have signed up',
+      'wp-image-21',
+    ]) {
+      if (threeCommas.content.toLowerCase().includes(stale.toLowerCase())) {
+        rows.push(`3Commas review restored promotional, unsafe or stale claim ${stale}`)
+      }
+    }
+    const goLinks = [...threeCommas.content.matchAll(/href=["'](\/go\/3commas[^"']*)/g)]
+    if (goLinks.length !== 1 || goLinks[0][1] !== '/go/3commas') {
+      rows.push('3Commas review must have 1 attributed official CTA')
+    }
+    const renderedThreeCommas = decoratePostOutboundLinks(
+      threeCommas.content,
+      { '3commas': 'official' },
+      threeCommas.slug,
+    )
+    if (
+      !renderedThreeCommas.includes(
+        'href="/go/3commas?from=post-body-3commas-review-verdict"',
+      )
+      || !renderedThreeCommas.includes('rel="nofollow noopener"')
+      || renderedThreeCommas.includes('rel="sponsored nofollow noopener"')
+    ) {
+      rows.push('3Commas rendered CTA lacks controlled verdict attribution or disclosure')
+    }
+  }
+
   for (const [relativePath, label] of [
     ['content/posts/what-is-copy-trading.md', 'copy-trading guide'],
     ['content/posts/are-prop-firm-passing-services-worth-it.md', 'passing-services guide'],
@@ -10014,6 +10123,17 @@ function checkTradingToolReviewCluster() {
     }
   }
 
+  for (const [relativePath, label] of [
+    ['content/posts/what-is-copy-trading.md', 'copy-trading guide'],
+    ['content/posts/what-is-overtrading.md', 'overtrading guide'],
+    ['content/posts/fx-replay-review.md', 'FX Replay review'],
+  ]) {
+    const body = fs.readFileSync(path.join(ROOT, relativePath), 'utf-8')
+    if (!body.includes('href="/blog/3commas-review"')) {
+      rows.push(`${label} is missing its contextual 3Commas backlink`)
+    }
+  }
+
   const outboundDestinations = fs.readFileSync(
     path.join(ROOT, 'lib/outboundDestinations.ts'),
     'utf-8',
@@ -10027,6 +10147,11 @@ function checkTradingToolReviewCluster() {
     "'fx-replay': { affiliateUrl: null, officialUrl: 'https://www.fxreplay.com/' }",
   )) {
     rows.push('FX Replay must remain an official, non-affiliate outbound route')
+  }
+  if (!outboundDestinations.includes(
+    "'3commas': { affiliateUrl: null, officialUrl: 'https://3commas.io/' }",
+  )) {
+    rows.push('3Commas must remain an official, non-affiliate outbound route')
   }
 
   const component = fs.existsSync(TRADING_TOOL_REVIEW_COMPONENT_FILE)

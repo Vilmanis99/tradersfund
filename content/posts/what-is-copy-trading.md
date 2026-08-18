@@ -78,7 +78,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>A trade copier is the technical mechanism that transmits orders. A social platform adds discovery, profiles, statistics, and communication around that mechanism. The <a href="/blog/traders-connect-trade-copier">trade-copier review</a> illustrates a standalone account-linking tool, while the <a href="/category/copy-trading">copy-trading category</a> contains platform-specific reviews.</p>
+<p>A trade copier is the technical mechanism that transmits orders. A social platform adds discovery, profiles, statistics, and communication around that mechanism. The <a href="/blog/traders-connect-trade-copier">trade-copier review</a> illustrates a standalone account-linking tool, while the <a href="/category/copy-trading">copy-trading category</a> contains platform-specific reviews. A signal bot is a separate case: the <a href="/blog/3commas-review">3Commas review</a> shows how a webhook or rule can trigger an exchange order without copying another trader's account.</p>
 
 <h2>Four common position-sizing modes</h2>
 

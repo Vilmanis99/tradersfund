@@ -45,7 +45,7 @@ sourceUrls:
 
 <p>FX Replay's core workflow has 4 stages: select historical market data, hide the unseen future, place simulated orders, and review the recorded decisions. The <a href="https://fxreplay.com/backtest" target="_blank" rel="nofollow noopener">current backtesting page</a> lists chart-based execution, automatic risk sizing, auto break-even, replay controls, journaling, performance insights, Mentor AI, custom scripts, and the Prop Firm Simulator.</p>
 
-<p>This is research and practice software, not a broker. FX Replay's own disclosure says it does not execute real trades or handle client funds. Spread, commission, data granularity, fills, latency, swaps, gaps, and broker-specific contract rules still have to be modelled or treated as limitations when a replay result is compared with live trading.</p>
+<p>This is research and practice software, not a broker. FX Replay's own disclosure says it does not execute real trades or handle client funds. Spread, commission, data granularity, fills, latency, swaps, gaps, and broker-specific contract rules still have to be modelled or treated as limitations when a replay result is compared with live trading. Moving from replay to an exchange-connected tool also introduces API and shutdown risk; the <a href="/blog/3commas-review">3Commas review</a> provides a staged connection and revocation test.</p>
 
 <h2>FX Replay pricing and plan limits</h2>
 

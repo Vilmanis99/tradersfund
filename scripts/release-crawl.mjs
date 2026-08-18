@@ -489,6 +489,24 @@ for (const source of [
   }
 }
 
+const threeCommasPath = '/blog/3commas-review'
+const threeCommasInlinks = internalInlinks.get(threeCommasPath) ?? new Set()
+if (threeCommasInlinks.size < 9) {
+  errors.push(
+    `${threeCommasPath}: source-checked review has only `
+    + `${threeCommasInlinks.size} unique internal inlinks`,
+  )
+}
+for (const source of [
+  '/blog/what-is-copy-trading',
+  '/blog/what-is-overtrading',
+  '/blog/fx-replay-review',
+]) {
+  if (!threeCommasInlinks.has(source)) {
+    errors.push(`${threeCommasPath}: missing automation-context inlink from ${source}`)
+  }
+}
+
 const wyckoffGuidePath = '/blog/wyckoff-pattern'
 const wyckoffInlinks = internalInlinks.get(wyckoffGuidePath) ?? new Set()
 if (wyckoffInlinks.size < 8) {
@@ -676,6 +694,67 @@ for (const review of TRADING_TOOL_REVIEWS) {
     }
   }
 
+  if (review.slug === '3commas-review') {
+    for (const required of [
+      'data-tool-evidence-captured="2026-08-18"',
+      'Traders Fund Hub does not currently record an affiliate relationship with 3Commas.',
+      'data-3commas-evidence="2026-08-18"',
+      'data-tool-pricing="3commas-free"',
+      'data-tool-pricing="3commas-starter"',
+      '$20 monthly or $180 annually ($15 monthly equivalent)',
+      'data-tool-pricing="3commas-pro"',
+      '$50 monthly or $456 annually ($38 monthly equivalent)',
+      'data-tool-pricing="3commas-expert"',
+      '$140 monthly or $1,260 annually ($105 monthly equivalent)',
+      'data-3commas-pricing-conflict="active-accounts"',
+      '1 Starter, 5 Pro, and 25 Expert active API keys',
+      '1, 3, and 15 active trading accounts',
+      'data-3commas-security-incident="2022-api-disclosure"',
+      'data-3commas-security-checklist="least-privilege"',
+      'data-3commas-test-plan="connected-exchange"',
+      'data-3commas-offboarding="subscription-expiry"',
+      'data-3commas-billing="trial-refund"',
+      '/blog/what-is-copy-trading',
+      '/blog/fx-replay-review',
+      '/blog/what-is-overtrading',
+      'data-affiliate-placement="verdict"',
+    ]) {
+      if (!probe.html.includes(required) && !pageText.includes(required)) {
+        errors.push(`${path}: missing current evidence or automation boundary ${required}`)
+      }
+    }
+    const lowerPageText = pageText.toLowerCase()
+    for (const stale of [
+      '$37 monthly',
+      '$59 monthly',
+      'protime50',
+      'zrb2auph4n0',
+      'lvep2glm',
+      'earn money when others copy',
+      'consistent profits',
+      'emotion-free trading',
+      '4.4 out of 5',
+      'nearly 2,000',
+      'over 2 million traders have signed up',
+    ]) {
+      if (lowerPageText.includes(stale)) {
+        errors.push(`${path}: rendered promotional, unsafe or stale claim ${stale}`)
+      }
+    }
+    const ctaTag = [...probe.html.matchAll(/<a\b[^>]*>/gi)]
+      .map(match => match[0])
+      .find(tag => tag.includes(
+        'href="/go/3commas?from=post-body-3commas-review-verdict"',
+      )) || ''
+    if (
+      !ctaTag
+      || !ctaTag.includes('rel="nofollow noopener"')
+      || ctaTag.includes('sponsored')
+    ) {
+      errors.push(`${path}: 3Commas official CTA relationship is incorrect`)
+    }
+  }
+
   const expectedLinks = getTradingToolReviewLinks(review.slug, tradingToolPostRecords)
   const toolLinkTags = [...probe.html.matchAll(
     /<a\b[^>]*\bdata-tool-review-link=["'][^"']+["'][^>]*>/gi,
@@ -740,6 +819,12 @@ for (const review of TRADING_TOOL_REVIEWS) {
     && article?.dateModified !== post.modified
   ) {
     errors.push(`${path}: FX Replay Article schema date disagrees with evidence date`)
+  }
+  if (
+    review.slug === '3commas-review'
+    && article?.dateModified !== post.modified
+  ) {
+    errors.push(`${path}: 3Commas Article schema date disagrees with evidence date`)
   }
 }
 

@@ -1,387 +1,200 @@
 ---
-title: "3Commas Review: Bots, Backtesting and Exchange Tools"
-seoTitle: "3Commas Review: Bots, Backtesting and Exchange Tools"
+title: "3Commas Review: Pricing, Bots & API Risks"
+seoTitle: "3Commas Review: Pricing, Bots & API Risks"
 slug: "3commas-review"
 date: "2025-07-04 11:56:39"
-modified: "2025-07-16 21:33:39"
+modified: "2026-08-18 12:00:00"
 author: "Tara Mohseni"
-excerpt: "A dated review of 3Commas trading bots, backtesting, manual order tools, supported exchanges, and platform limitations."
-seoDescription: "Review 3Commas bots, backtesting, manual trading tools, exchange connections, limitations, and the article's editorial update date."
-categories: ["Copy Trading"]
-tags: []
+excerpt: "A source-checked review of 3Commas pricing, DCA, Grid and Signal bots, exchange compatibility, API security, billing, and shutdown risks."
+seoDescription: "3Commas review with current prices, bot limits, exchange support, API-security history, billing terms, and a practical live-account test plan."
+categories: ["Trading Tools"]
+tags: ["crypto trading bots", "DCA bot", "grid bot", "API security"]
 type: "post"
+sourceCapturedAt: "2026-08-18"
+sourceUrls:
+  - "https://3commas.io/pricing"
+  - "https://help.3commas.io/en/articles/8420093-available-subscription-plans"
+  - "https://help.3commas.io/en/articles/8420117-subscriptions-faq"
+  - "https://help.3commas.io/en/articles/3108964-available-exchanges-and-supported-features"
+  - "https://help.3commas.io/en/articles/4456595-3commas-security"
+  - "https://3commas.io/blog/notice-on-api-data-disclosure-incident"
+  - "https://help.3commas.io/en/articles/8146367-how-to-claim-a-refund"
+  - "https://help.3commas.io/en/articles/3311526-what-happens-when-my-subscription-ends"
 ---
 
-<p>Not only can you use different trading bots and automate your trades, but you can also build your own bot and let others follow it! That’s like hitting two birds with one stone on the 3Commas Crypto trading platform.</p>
+<p><strong>3Commas is software that sends trading instructions to a connected crypto exchange; it is not an exchange and does not hold the trading balance.</strong> The current paid plans are Starter at $20 monthly, Pro at $50, and Expert at $140. Those prices buy automation capacity, not a strategy or a promised return. A useful 3Commas review therefore has to test the bot logic, exchange connection, API permissions, failure states, and billing terms together.</p>
 
-<p>Whether you're just starting out and want to feel the excitement of making successful trades or you're a seasoned pro looking to build your reputation, boost your income, and grow your AUM, this 3Commas review has got you covered.</p>
+<p>The strongest use case is operational: run a defined DCA, Grid, or Signal-bot rule across a supported exchange while retaining the assets at that exchange. The largest risk is also operational: an API with trading permission can place damaging orders even when withdrawals are disabled. 3Commas officially confirmed a disclosure of some users' API credentials in December 2022 and says it has since added stronger controls. That history belongs in the purchase decision.</p>
 
-<p>Here at this 3Commas review, you'll find everything you need to know about the platform, from automated and manual trading tools to advanced features, automated asset management, and a bunch of other useful stuff, all in one place.</p>
-
-<div class="key-takeaways">
-  <div class="title">Key Takeaways</div>
-  <ul>
-    <li>3Commas offers powerful automated trading bots like DCA, GRID, and Signal bots, suitable for both beginners and experienced traders.</li>
-<li>Users can create their own bots, list them on the marketplace, and earn money when others copy their strategies.
-</li>
-<li>The platform includes Smart Trade and Terminal tools for manual trading with advanced features like trailing stop-loss, take-profit, and TradingView integration</li>
-<li>Asset managers can automate and control multiple portfolios using 3Commas’ Asset Manager feature.</li>
-<li>3Commas supports paper trading and backtesting so users can practice or test strategies without risking real money</li>
-<li> 3Commas connects with top exchanges like Binance, KuCoin, Coinbase, and Kraken, making multi-platform trading seamless</li>
-  </ul>
+<div data-tool-evidence-captured="2026-08-18" style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
+  <strong style="color: #fff;">Editorial position</strong>
+  <p style="margin: 0.45rem 0 0;">Traders Fund Hub does not currently record an affiliate relationship with 3Commas. The verdict CTA uses our audited official redirect, and every time-sensitive product claim below links to a first-party 3Commas page captured on 18 August 2026. Commercial status contributes 0 points to this assessment.</p>
 </div>
 
-<h2 class="wp-block-heading"><strong>What Is 3Commas?</strong></h2>
+<div class="key-takeaways">
+  <div class="title">3Commas in 7 checks</div>
+  <ol>
+    <li><strong>Free does not place real trades:</strong> it supports portfolio tracking on up to 2 exchange accounts and limited research, while live automation requires a paid plan or trial.</li>
+    <li><strong>Starter is spot-focused:</strong> it lists 5 DCA bots, 2 Signal bots, and 2 Grid bots; futures require Pro or Expert.</li>
+    <li><strong>Two current first-party pages conflict:</strong> the public pricing page displays active API-key limits of 1, 5, and 25, while the help centre lists 1, 3, and 15 active trading accounts.</li>
+    <li><strong>Exchange support is feature-specific:</strong> an exchange connection does not prove that its spot, futures, margin mode, bot type, or regional account is supported.</li>
+    <li><strong>Non-custodial is not loss-proof:</strong> 3Commas says its API access cannot withdraw or transfer funds, but trading permission can still create unauthorized positions and losses.</li>
+    <li><strong>The 2022 incident is decision-relevant:</strong> 3Commas confirmed that API keys, secrets, and passphrases for some users were disclosed and could be used for unauthorized trades.</li>
+    <li><strong>Stopping a subscription does not close everything:</strong> some bot trades and futures positions can remain open after a downgrade, so offboarding must be planned before connection.</li>
+  </ol>
+</div>
 
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/07/3commas-final.jpg" alt="3Commas Overview" class="wp-image-2171"/></figure>
+<h2>What 3Commas does</h2>
 
-<p>Founded in 2017, 3Commas is a crypto trading platform that offers powerful tools for managing your trades, but just to be clear, it’s not a cryptocurrency exchange itself. It gives you a full set of tools for trading, including various bots, smart features for manual trading, automated ways to manage your crypto assets, plus backtesting and paper trading options across all the big exchanges.</p>
+<p>3Commas connects to a centralized exchange through an API key or, on supported venues, Fast Connect. Its software can create and manage orders through DCA bots, Grid bots, Signal bots, SmartTrade, and terminal tools. The exchange remains the venue that holds the assets, calculates margin, and executes each instruction.</p>
 
-<p>Alright, let’s kick off this 3Commas review by looking at its trading bots.</p>
+<p>This separation matters. 3Commas can standardise when an instruction is sent, but it cannot make liquidity, spread, slippage, exchange uptime, symbol rules, leverage, or liquidation risk disappear. The exchange's fill and account state are authoritative. A 3Commas dashboard result should be reconciled with the exchange order history before it is used to assess a strategy.</p>
 
-<h2 class="wp-block-heading"><strong>3Commas Automated Trading Bots Review</strong></h2>
+<p>A Signal bot is also not automatically <a href="/blog/what-is-copy-trading">copy trading</a>. It can receive a webhook or another external instruction without following a named trader's account. Copy trading transmits another account's orders; signal automation executes a condition or message. The risk question is the same in one respect: who can initiate an order, with what size, and under which shutdown rule?</p>
 
-<p>As I mentioned at the beginning of this 3Commas review, the trading bots on this platform are designed for all kinds of users. Whether you're someone who doesn’t want to deal with charts and just wants to follow signals, a trader who wants to automate your own strategy, or even a pro signal provider or asset manager, there’s something here for you.</p>
+<h2>3Commas pricing and current plan limits</h2>
 
-<p>3Commas offers three main types of trading bots: DCA, Signal, and GRID. Let’s break down how each one works and how they can help different types of traders hit their goals!</p>
+<table data-3commas-evidence="2026-08-18" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
+  <caption class="hidden-caption">3Commas prices and selected plan limits captured on 18 August 2026</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Plan</th><th style="padding: 8px 12px; text-align: left;">Current displayed price</th><th style="padding: 8px 12px; text-align: left;">Markets and bot capacity</th><th style="padding: 8px 12px; text-align: left;">Best reason to consider it</th></tr></thead>
+  <tbody>
+    <tr data-tool-pricing="3commas-free"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Free</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$0</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No real trading; up to 2 exchange accounts for portfolio tracking; limited AI and backtesting access</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Inspect the interface and research tools without granting trading permission</td></tr>
+    <tr data-tool-pricing="3commas-starter"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Starter</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$20 monthly or $180 annually ($15 monthly equivalent)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Spot only; 5 DCA, 2 Signal, and 2 Grid bots</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">One small spot-only automation workflow</td></tr>
+    <tr data-tool-pricing="3commas-pro"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Pro</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50 monthly or $456 annually ($38 monthly equivalent)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Spot and futures; 20 DCA, 20 Signal, and 10 Grid bots</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Several active strategies or futures support without Expert-scale limits</td></tr>
+    <tr data-tool-pricing="3commas-expert"><td style="padding: 8px 12px;"><strong>Expert</strong></td><td style="padding: 8px 12px;">$140 monthly or $1,260 annually ($105 monthly equivalent)</td><td style="padding: 8px 12px;">Spot and futures; 1,000 each of DCA, Signal, and Grid bots; read-and-write developer API</td><td style="padding: 8px 12px;">High bot volume or software integration that genuinely exceeds Pro</td></tr>
+  </tbody>
+</table>
 
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/07/toolkit.jpg" alt="3Commas Review on its toolkit" class="wp-image-2157"/></figure>
+<p>The figures come from the <a href="https://3commas.io/pricing" target="_blank" rel="nofollow noopener">public pricing page</a> and the <a href="https://help.3commas.io/en/articles/8420093-available-subscription-plans" target="_blank" rel="nofollow noopener">subscription-plan guide</a>. The annual totals above translate the displayed monthly equivalents into the amount committed for 12 months: $180, $456, or $1,260. Local currency, VAT, a personal discount, or checkout changes can alter the payment, so save the actual order summary rather than relying on a monthly-equivalent headline.</p>
 
-<h3 class="wp-block-heading"><strong>DCA Bot</strong></h3>
+<h3>A current limit conflict to resolve before payment</h3>
 
-<p>The first bot I want to talk about in this 3Commas review is the DCA bot, which stands for Dollar Cost Averaging. This bot follows a <a href="https://www.investopedia.com/terms/d/dollarcostaveraging.asp" target="_blank" rel="noreferrer noopener nofollow">DCA strategy</a> where it buys or sells in steps as the price moves against your first trade. The goal? To lower the average entry price for long positions, or raise it for shorts, making your overall trade more profitable. This helps build a better position over time, instead of going all in at once.</p>
+<div data-3commas-pricing-conflict="active-accounts" style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 12px; padding: 1rem 1.2rem; margin: 1.2rem 0;">
+  <p style="margin: 0;"><strong>Unresolved first-party conflict:</strong> on 18 August 2026, the public pricing page displayed 1 Starter, 5 Pro, and 25 Expert active API keys. The help centre displayed 1, 3, and 15 active trading accounts for those same plans. Both descriptions refer to API keys used to place trades at the same time. If more than 1 active connection matters, get the applicable limit in writing before paying.</p>
+</div>
 
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/07/DCA-Final.jpg" alt="DCA bot on 3Commas" class="wp-image-2158"/></figure>
+<p>The public pricing page also says paid plans include 9 exchanges, while the live compatibility guide lists more exchange and account-type rows. These are not safely interchangeable counts: one venue can have separate spot, perpetual, regional, or sub-account behavior. Plan by the exact exchange, jurisdiction, market, and bot feature rather than by a logo or aggregate number.</p>
 
-<p>It’s important to note that the DCA Bot on 3Commas doesn’t generate its own signals by default. Instead, it’s more like a smart trade executor that follows the Dollar-Cost Averaging strategy; you’re the one calling the shots. That means you set the trading pair, choose the trigger (like an indicator or signal), choose the timeframe, and customize all the other settings. You’re basically the strategist, and the bot just follows your rules.&nbsp;</p>
+<h2>DCA, Grid, Signal bots, and SmartTrade</h2>
 
-<p>To do so, on the 3Commas platform, go to the Trading Bot and DAC section, then click the “Create Bot” button to develop your own. Then you can list your bot on the 3Commas marketplace, which allows others to copy your trades in real time. In this way, you can get more followers and higher AUM.</p>
+<h3>DCA bots</h3>
 
-<h3 class="wp-block-heading"><strong>Signal Bot</strong></h3>
+<p>A DCA bot can open a base order and add safety orders according to user-defined triggers. Averaging changes the entry price, but it also increases position size while price moves against the original trade. Before enabling a bot, define the maximum number of safety orders, total capital at the final order, liquidation distance for leverage, stop condition, and combined exposure across correlated pairs.</p>
 
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/07/bots-review.png" alt=" 3Commas Review for Signal Bots" class="wp-image-2180"/></figure>
+<p>The current plan guide allocates 100 DCA backtests over 1 year to Starter, 500 over 2 years to Pro, and 5,000 over the available full history to Expert. A higher run allowance creates more ways to overfit. Keep one untouched validation period and record every tested parameter; the <a href="/blog/fx-replay-review">backtesting-integrity checklist</a> explains why future leakage, missing friction, and repeated parameter selection can turn historical simulation into a misleading result.</p>
 
-<p>As the name suggests, the 3Commas Signal bot is all about generating external signals, which you can either copy or create your own, and earn from both options.</p>
+<h3>Grid bots</h3>
 
-<p>As an investor, once you connect your account to one of the supported exchanges, you can choose a signal-based bot from the 3Commas marketplace and simply start it. The bot will wait for external signals and then place trades for you based on those signals; no need to constantly monitor the market.</p>
+<p>A Grid bot places repeated orders across a defined range. It can harvest oscillation only while the orders, fees, and inventory behavior fit the market. A sustained trend can leave a spot grid holding a falling asset or a futures grid carrying a leveraged position. Test range exits, gaps, insufficient balance, partial fills, fee drag, and the action taken when price leaves the grid.</p>
 
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/07/choose-signal-bot-final.jpg" alt="Choosing Signal Bot on 3Commas" class="wp-image-2189"/></figure>
+<h3>Signal bots</h3>
 
-<p>On the other hand, if you're a pro trader, a signal provider, or simply interested in developing your own trading signals to grow your AUM and income, 3Commas gives you the tools to create your own bot and list it on their marketplace.</p>
+<p>A Signal bot converts external messages or Pine Script execution into orders. That reduces manual delay but adds a dependency chain: signal source, webhook authentication, network delivery, symbol mapping, exchange API, and order response. Test a duplicate signal, late signal, malformed size, unsupported symbol, close signal after a manual intervention, and a signal that arrives while the exchange is unavailable.</p>
 
-<p>As I mentioned in the last section of this 3Commas review, creating a DCA bot and listing it on the marketplace is one example, but it’s not limited to DCA strategies! You can build trading bots based on any strategy you prefer, or even browse and copy your favorite bots from others.</p>
+<h3>SmartTrade and the terminal</h3>
 
-<p>That’s all!</p>
+<p>SmartTrade groups entry and management instructions such as multiple take profit, trailing behavior, break-even, and stop loss. The terminal offers a common interface across supported connections. These tools can make an execution plan repeatable, but the exchange still decides whether an order is accepted and where it fills. Confirm every protection order on the exchange itself after creation.</p>
 
-<h3 class="wp-block-heading"><strong>GRID Bot</strong></h3>
+<h2>Exchange compatibility is a four-part check</h2>
 
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/07/grid-final.jpg" alt="3Commas review on Grid bot" class="wp-image-2160"/></figure>
+<p>The <a href="https://help.3commas.io/en/articles/3108964-available-exchanges-and-supported-features" target="_blank" rel="nofollow noopener">current exchange matrix</a> separates spot from derivatives and names feature differences for each venue. It also warns that some exchanges or account types are restricted by country and that not every supported exchange offers every 3Commas feature. Test all 4 parts before funding a workflow:</p>
 
-<p>Instead of just sitting around and waiting for the market to “go to the moon” or crash hard, you can actually make a profit from smaller price movements by using the GRID bot, the third bot I want to talk about in this 3Commas review.</p>
-
-<p>GRID bots are great for sideways markets. They let you automate your trades by setting up a strategy to repeatedly buy low and sell high within a certain price range. This way, you can take advantage of market ups and downs even when there’s no big trend happening.</p>
-
-<p>Just like the DCA bot, the GRID bot works for all kinds of traders. You can either copy someone else’s bot or create your own. If you want to create one, you set the rules based on your own strategy, and the bot will take care of the trading for you when your conditions are met.</p>
-
-<p>To create your own GRID bot or other bots, just head over to the 3Commas dashboard, select bot, and follow the steps to get it set up.</p>
-
-<p>If you’d rather follow an existing bot, go to the dashboard, head to the Marketplace section, and copy a bot that’s based on a DCA strategy.</p>
-
-<figure class="wp-block-image size-full"><img src="/images/wp/2025/07/dashboard-final.jpg" alt="3Commas Review on Dashboard " class="wp-image-2161"/></figure>
-
-<h2 class="wp-block-heading">3Commas Review on Manual Trading</h2>
-
-<p>Even though I started this 3Commas review by talking about automated trading bots, that doesn’t mean you can’t trade on your own! 3Commas also gives you some great tools for manual trading, like the Smart Trade feature and the Terminal. These let you manage your trades directly on different crypto exchanges but with way more control and flexibility.</p>
-
-<p>Let’s kick things off with Smart Trade, a powerful tool built for manual trading, but with some handy automation features that make your life easier. Here’s what it offers:</p>
-
-<ul class="wp-block-list">
-<li><strong>Take-Profit & Stop-Loss at the Same Time:</strong> That means your trade will automatically close either when you hit your profit goal or if the price drops to your stop-loss. No need to babysit the chart!</li>
-
-<li><strong>Trailing Orders:</strong> Trailing Take-Profit moves up with the price, helping you lock in even more gains if the market keeps going your way. On the other hand,&nbsp; Trailing Stop-Loss follows the price upward and helps you protect profits while reducing risk if the market turns around.</li>
-
-<li><strong>Trailing Buy:</strong> It waits for a dip and follows it down, helping you enter at a better price. A nice trick for getting the most out of market drops.</li>
-
-<li><strong>Smart Cover:</strong> It lets you sell now and buy back later when prices dip, which is great for making more profit.</li>
-
-<li><strong>Presets & TradingView Integration:</strong> You can use templates to save time and connect to TradingView for access to over 100 signals and detailed charts, making it easier to time your trades smartly.</li>
-</ul>
-
-<h3 class="wp-block-heading">3Commas Terminal Trading</h3>
-
-<p>Aside from Smart Trade, another great option on 3Commas for manual trading is the Terminal. It works a lot like the typical trading platforms you might be used to but with some extra perks. Here’s what the Terminal brings to the table:</p>
-
-<ul class="wp-block-list">
-<li>Multi‑Exchange & Asset Access: Trade on multiple crypto exchanges from one place, no need to keep switching tabs.</li>
-
-<li>Customizable Interface: Set up the layout the way you like it for a smoother trading experience.</li>
-
-<li>TradingView Chart Integration: Use advanced charts and tools from TradingView right inside the Terminal.</li>
-
-<li>Order Control Panel: Manage all your open orders quickly and easily.</li>
-
-<li>Order Book & Trade Status: Keep an eye on market depth and track your trade progress in real time.</li>
-
-<li>Advanced Order Types: Use features like limit, market, stop, and more to bring more flexibility and control over your trades.</li>
-</ul>
-
-<h2 class="wp-block-heading">3Commas Asset Management</h2>
-
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/07/asset-final.jpg" alt="3Commas Asset Management Tool" class="wp-image-2162"/></figure>
-
-<p>If you remember earlier in this 3Commas review, I talked about different trading bots. While it’s true that as an investor, you can use signal bots and let them handle trades for you, you can also flip the script, become the creator, and list your own bot on the marketplace. That way, other people copy your trades, you can grow your reputation, increase your earnings with <a href="/blog/what-is-copy-trading">copy trading</a>, and boost your AUM, too.</p>
-
-<p>But that’s not the end of the story. There’s another powerful way to grow your AUM on the 3Commas platform, through an Automated Asset Management Tool.</p>
-
-<p>If you're managing multiple crypto portfolios, whether for individual clients or as part of a larger fund, the 3Commas Asset Manager feature is built just for you. It allows you to automate strategies, manage portfolios, and handle thousands of client accounts all in one place using tools like the DCA bot.</p>
-
-<p>Here’s what you get with Asset Manager:</p>
-
-<ul class="wp-block-list">
-<li><strong>Centralized multi-account control:</strong> Manage many portfolios from one dashboard.</li>
-
-<li><strong>Bulk/Basket trading:</strong> Execute trades across multiple accounts at once.</li>
-
-<li><strong>Performance reporting & invoicing:</strong> Track results and bill clients easily.</li>
-
-<li><strong>Secure client onboarding:</strong> Onboard new clients through encrypted portals, with no need to access or share private keys.</li>
-</ul>
-
-<h2 class="wp-block-heading">3Commas Review of Other Features</h2>
-
-<p>By now, after reading this 3Commas review, you should have a clear idea of what 3Commas offers, its trading bots, manual features, and more. Whether you want to earn money while you're away from your phone or prefer to make trades yourself, 3Commas could be a great option.</p>
-
-<p>When I was exploring their website for this 3Commas review, I was honestly kind of shocked. It felt like the features just didn’t stop! Besides the bots and trading tools, there’s a bunch of other stuff you can check out too:</p>
-
-<h3 class="wp-block-heading">3Commas Backtesting Toolkit</h3>
-
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/07/backtest-final.jpg" alt="3Commas Backtesting Tool" class="wp-image-2163"/></figure>
-
-<p>Backtesting lets you see how a trading strategy, like DCA, Grid, or AI-based bots, might have performed using real market data from the past. It’s a handy way to test things before going live.&nbsp;</p>
-
-<p>Here’s how it works: You set up your DCA or Grid bot settings, choose a historical timeframe (like the last 3, 6, or 12 months), select your trading pairs, and start the backtest. The system then simulates trades based on your setup and shows how things would have played out.</p>
-
-<p>Once it’s done, you can check the results and figure out what worked and what didn’t.</p>
-
-<h3 class="wp-block-heading">3Commas Paper Trading</h3>
-
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/07/switch-final.jpg" alt="3Commas Dashboard Overview" class="wp-image-2164"/></figure>
-
-<p>Paper trading is basically simulated trading; it lets you practice buying and selling assets without using real money. 3Commas offers this feature through a demo account, where you can try out strategies using virtual cash instead of risking your actual funds.</p>
-
-<p>If you sign up without connecting an exchange, the demo account connects automatically. Already linked an exchange but want to switch? No worries, you can just head to your 3Commas dashboard and click “Enable Demo Account” or “Switch to Demo Account” at the top, as I've already shown above! Easy peasy.</p>
-
-<h2 class="wp-block-heading">3Commas Review of Pricing Plans</h2>
-
-<p>3Commas has a few different pricing plans to choose from, depending on what you need. Below is a quick look at what they offer.</p>
-
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/07/plans-final.jpg" alt="3Commas Review on Pricing" class="wp-image-2165"/></figure>
-
-<h3 class="wp-block-heading">Free plan</h3>
-
-<p>Based on the free plan, you can access:</p>
-
-<ul class="wp-block-list">
-<li>Paper trading mode (all features)</li>
-
-<li>Unlimited Terminal trading&nbsp;</li>
-
-<li>3 Active SmartTrades Without Futures Trading</li>
-
-<li>10 Running Grid Bots</li>
-
-<li>10 Running DCA Bots</li>
-
-<li>2 Linked exchange accounts</li>
-</ul>
-
-<h3 class="wp-block-heading">Pro Plan ($37 Monthly)</h3>
-
-<p>Based on the pro plan, you can use:&nbsp;</p>
-
-<ul class="wp-block-list">
-<li>50 Active SmartTrades</li>
-
-<li>50 Running Signal Bots</li>
-
-<li>10 Running Grid Bots</li>
-
-<li>50 Running DCA Bots (Multi-pair Available)</li>
-
-<li>500 Active DCA Trades&nbsp;</li>
-
-<li>10 DCA Bot Backtests per month</li>
-</ul>
-
-<h3 class="wp-block-heading">Expert Plan ($59 Monthly)</h3>
-
-<p>With the 3Commas Expert plan, you unlock even more tools and features, like:</p>
-
-<ul class="wp-block-list">
-<li>Unlimited Active SmartTrades</li>
-
-<li>250 Running Signal Bots</li>
-
-<li>50 Running Grid Bots</li>
-
-<li>250 Running DCA Bots (Multi-pair Available)</li>
-
-<li>2500 Active DCA Trades&nbsp;</li>
-
-<li>500 DCA Bot Backtests per Month</li>
-</ul>
-
-<h2 class="wp-block-heading">3Commas Promo Code</h2>
-
-<p>Alright, we’ve gone over all the pricing plans in this 3Commas review, but here’s some good news: you can actually cut down the cost with promo codes and save on your subscription.</p>
-
-<p>I found a few discount codes that have worked recently:</p>
-
-<ul class="wp-block-list">
-<li>PROTIME50: 50% off monthly and annual Pro plans</li>
-
-<li>ZRB2AUPH4N0: 50% off monthly and annual Pro plans</li>
-
-<li>lvEp2glM: 70% off monthly and annual Pro plans</li>
-</ul>
-
-<p>To use a promo code, just go to the Subscription page on 3Commas and open the “Promo Code” tab. Easy as that.</p>
-
-<p>Just a heads-up: These codes in this 3Commas review might expire or stop working over time. But no stress! You can often find new 3Commas promo codes by doing a quick search. Try things like:</p>
-
-<ul class="wp-block-list">
-<li>Searching Reddit for terms like “3Commas offer codes” or “3Commas promo codes”</li>
-
-<li>Checking out promo codes or deal-sharing communities, users often post working discounts there</li>
-</ul>
-
-<h2 class="wp-block-heading">Is 3Commas Legit?</h2>
-
-<p>To cut to the chase, 3Commas is a legit cryptocurrency trading platform that offers both automated and manual tools, designed for investors and pro traders alike. So far, over 2 million traders have signed up, with around 2.5 million exchange accounts linked and over 15 million trading strategies executed.</p>
-
-<p>While writing this 3Commas review, I came across a few user comments online questioning whether the platform is trustworthy. Most of these concerns go back to a hack that happened in 2022. During that time, hackers got access to around 100,000 users’ API keys, which led to unauthorized trades on exchanges like Binance, Coinbase, FTX, and others. Pretty brutal.</p>
-
-<p>After that incident, 3Commas put in more effort on security and safety. They introduced automatic API key revocation when passwords are reset, enforced stronger two-factor authentication (2FA), added Cloudflare’s Web Application Firewall (WAF), and implemented SSL/TLS encryption.</p>
-
-<p>It's also worth noting: 3Commas doesn’t have direct access to your exchange or account passwords. Everything runs securely through API keys and solid infrastructure.</p>
-
-<h2 class="wp-block-heading">3Commas Reviews and Feedback</h2>
-
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/07/reviws-final.jpg" alt="3Commas Reviews and Feedback" class="wp-image-2167"/></figure>
-
-<p>Along with everything I’ve shared in this 3Commas review, I strongly recommend checking out what other users are saying about the platform. Hearing real feedback can give you a much better picture of how it works in practice, including the pros and cons, before you decide to invest your time or money. Platforms like Trustpilot and Reddit are great places to see honest opinions from actual users. Here's what I found:</p>
-
-<h3 class="wp-block-heading">3Commas Reviews on Trustpilot</h3>
-
-<p>3Commas has a rating of 4.4 stars on Trustpilot, with nearly 2,000 user reviews. Based on what I saw, here’s a quick summary:</p>
-
-<p>What people like:</p>
-
-<ul class="wp-block-list">
-<li>Easy-to-use, intuitive interface</li>
-
-<li>Powerful and flexible bots</li>
-
-<li>A reliable, all-in-one trading platform</li>
-
-<li>Good customer support and responsiveness</li>
-</ul>
-
-<p>But not everything is sunshine and rainbows! Some users pointed out concerns, such as:</p>
-
-<ul class="wp-block-list">
-<li>Past API key leaks and security issues</li>
-
-<li>The team being slow or dismissive when handling complaints</li>
-
-<li>The platform feels overwhelming for beginners</li>
-
-<li>Higher pricing for advanced features</li>
-</ul>
-
-<h3 class="wp-block-heading">3Commas Reviews on Reddit</h3>
-
-<p>To give you a full and honest 3Commas review, I also checked out what people are saying on Reddit. Here’s a mix of the common praise and complaints:</p>
-
-<p>What users appreciate:</p>
-
-<ul class="wp-block-list">
-<li>Easy management of multiple exchanges</li>
-
-<li>Consistent profits in bull markets</li>
-
-<li>Emotion-free trading with DCA bots</li>
-
-<li>A solid starting point for beginners, especially with backtesting</li>
-</ul>
-
-<p>Some users also mentioned:</p>
-
-<ul class="wp-block-list">
-<li>Occasional delays in trade execution and slippage</li>
-
-<li>Complicated profit/loss tracking and tax reporting</li>
-</ul>
-
-<h2 class="wp-block-heading">3Commas Supported Exchanges</h2>
-
-<figure class="wp-block-image size-full rounded"><img src="/images/wp/2025/07/exchanges-final.jpg" alt="3Commas Supported Exchanges Overview" class="wp-image-2168"/></figure>
-
-<p>3Commas supports a wide range of popular crypto exchanges, so you can trade spot, margin, or futures without a hassle. Some of the supported exchanges include:</p>
-
-<ul class="wp-block-list">
-<li>Binance</li>
-
-<li>Binance TR</li>
-
-<li>Binance US</li>
-
-<li>Bitfinex</li>
-
-<li>Bitstamp</li>
-
-<li>Bybit</li>
-
-<li>Coinbase</li>
-
-<li>Coinbase Advanced</li>
-
-<li>Gate.io</li>
-
-<li>Gemini</li>
-
-<li>HTX (used to be Huobi)</li>
-
-<li>Kraken</li>
-
-<li>KuCoin</li>
-
-<li>OKX</li>
-</ul>
-
-<h2 class="wp-block-heading">How to Get Started on the 3Commos Platform</h2>
-
-<figure class="wp-block-image size-full rounded-img"><img src="/images/wp/2025/07/get-started.jpg" alt="Get Started on 3Commas" class="wp-image-2173"/></figure>
-
-<p>Just like our other reviews on <a href="/">Traders Fund Hub</a>, I’ve tried to cover everything you need to know in this 3Commas review. If you think this crypto trading platform might be the right fit for you, getting started is super easy:</p>
-
-<ol class="wp-block-list">
-<li>Sign up at 3Commas.io and connect your exchange.<br>(Or try a demo account first if you want to practice with paper trading—no risk involved!)</li>
-
-<li>Explore the different trading bots I mentioned above and set up your own strategy.<br>You can even create your own bot and list it on the 3Commas marketplace to earn some extra perks!</li>
-
-<li>Kick back and let the bots handle the trading for you. </li>
+<ol>
+  <li><strong>Entity and region:</strong> verify the exact regional exchange account, not only the global brand name.</li>
+  <li><strong>Market:</strong> verify spot, margin, USDT perpetual, inverse perpetual, or dated futures separately.</li>
+  <li><strong>Feature:</strong> verify the intended DCA, Grid, Signal, SmartTrade, backtest, sub-account, and leverage-mode support.</li>
+  <li><strong>Permissions:</strong> confirm that the minimum API permissions can perform the intended orders without enabling withdrawals or unrelated services.</li>
 </ol>
 
-<p>Still unsure about 3Commas? Well, you can also explore other trading platforms and compare them to find what suits you best. For example, ZuluTrade or CopyFX by RoboForex could be other great options. Read our "<a href="/blog/zulutrade-review">ZuluTrade Review</a>" and "<a href="/blog/copyfx-review">CopyFX Review</a>" to decide what works best for you.</p>
+<p>Use a separate exchange sub-account when the venue supports it. That isolates bot capital and makes the maximum exposure visible. A compatibility row is not evidence that a production-size order, stop, or shutdown path works correctly on the user's exact account.</p>
 
-<h2 class="wp-block-heading">Conclusion</h2>
+<h2>API security and the 2022 disclosure incident</h2>
 
-<p>So, that’s everything I’ve found out about 3Commas and its trading tools. There are a bunch of different bots and features you can try, depending on your trading goals and style. Personally, I use a single signal bot that runs on the DCA strategy.</p>
+<p data-3commas-security-incident="2022-api-disclosure">On 29 December 2022, 3Commas <a href="https://3commas.io/blog/notice-on-api-data-disclosure-incident" target="_blank" rel="nofollow noopener">confirmed that some users' API keys, secrets, and passphrases had been disclosed</a>. Its notice said the credentials could have been used to connect exchange accounts or initiate unauthorized trades. That is stronger and more useful evidence than calling the event a generic “hack” or relying on an unsourced user count.</p>
 
-<p>I hope this 3Commas review helps you figure out if it’s the right fit for you. And if you’ve already used the platform, drop a comment and share your experience with us, it’d be great to hear your thoughts!</p>
+<p>The same notice includes a later vendor update claiming stricter encryption, isolated API-key environments, rate limiting, behavioral analytics, exchange-restriction checks, activity logs, alerts, and quicker revocation controls. Those measures are relevant improvements claimed by 3Commas; this review has not independently audited their implementation and does not treat them as proof that another disclosure or unauthorized trade cannot occur.</p>
 
-<h2 class="wp-block-heading">FAQ</h2>
+<p>3Commas describes the service as non-custodial and says its transactional API access cannot withdraw or transfer fiat or crypto. That reduces one risk path, but it does not make the connection harmless. A trading-enabled key can buy illiquid assets, sell holdings, add leverage, or open positions that lose value. The official 2022 notice itself identified unauthorized trades as a possible consequence.</p>
 
-<!-- wp:rank-math/faq-block {"questions":[{"id":"faq-question-1751590040919","title":"Does 3Commas offer options bots?","content":"As of now, 3Commas doesn’t offer a separate bot just for options trading. But you can still use their DCA and GRID bots on various crypto platforms.","visible":true},{"id":"faq-question-1751590143386","title":"Does 3Commas offer arbitrage bots?","content":"Right now, 3Commas doesn’t have a built-in arbitrage bot that automatically finds and trades on price differences between exchanges for you. But you can still create your own arbitrage strategy using 3Commas bots like DCA or Grid. ","visible":true},{"id":"faq-question-1751590294330","title":"Are 3Commas bots profitable?","content":"There are different trading bots available on the 3Commas marketplace. Most of these bots are built on backtested strategies, and you can check their performance before trying them.","visible":true},{"id":"faq-question-1751590435937","title":"How much can you earn with 3Commas?","content":"Earnings from 3Commas can vary; there’s no fixed amount. According to their site, affiliates can earn up to 40% commission on paid subscriptions made through their referral link.","visible":true},{"id":"faq-question-1751590594045","title":"Is 3Commas still free?","content":"3Commas offers various tools and trading bots with different pricing. There is a free trial and also a free plan that you can start from now!","visible":true}],"listCssClasses":"faq, faq-item"} -->
-<div class="wp-block-rank-math-faq-block"><div class="rank-math-faq-item"><h3 class="rank-math-question">Does 3Commas offer options bots?</h3><div class="rank-math-answer">As of now, 3Commas doesn’t offer a separate bot just for options trading. But you can still use their DCA and GRID bots on various crypto platforms.</div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">Does 3Commas offer arbitrage bots?</h3><div class="rank-math-answer">Right now, 3Commas doesn’t have a built-in arbitrage bot that automatically finds and trades on price differences between exchanges for you. But you can still create your own arbitrage strategy using 3Commas bots like DCA or Grid. </div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">Are 3Commas bots profitable?</h3><div class="rank-math-answer">There are different trading bots available on the 3Commas marketplace. Most of these bots are built on backtested strategies, and you can check their performance before trying them.</div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">How much can you earn with 3Commas?</h3><div class="rank-math-answer">Earnings from 3Commas can vary; there’s no fixed amount. According to their site, affiliates can earn up to 40% commission on paid subscriptions made through their referral link.</div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">Is 3Commas still free?</h3><div class="rank-math-answer">3Commas offers various tools and trading bots with different pricing. There is a free trial and also a free plan that you can start from now!</div></div></div>
+<h3>Minimum security configuration</h3>
+
+<ul data-3commas-security-checklist="least-privilege">
+  <li><strong>Use a dedicated API key:</strong> never reuse the same key across 3Commas and another service.</li>
+  <li><strong>Isolate capital:</strong> use a separate exchange sub-account and transfer only the amount assigned to the tested bot.</li>
+  <li><strong>Grant least privilege:</strong> enable only the required trading market; leave withdrawals and transfers disabled.</li>
+  <li><strong>Prefer constrained connection methods:</strong> use Fast Connect where available or the exchange's trusted-IP whitelist when using manual keys.</li>
+  <li><strong>Protect both accounts:</strong> enable 2FA on the exchange and 3Commas, use unique passwords, save backup codes offline, and set the 3Commas anti-phishing code.</li>
+  <li><strong>Monitor the exchange:</strong> enable order/login alerts and reconcile activity rather than relying only on the 3Commas interface.</li>
+  <li><strong>Know the kill switch:</strong> practise stopping bots, cancelling orders, closing positions, and revoking the API key before increasing capital.</li>
+</ul>
+
+<p>These controls follow the platform's <a href="https://help.3commas.io/en/articles/4456595-3commas-security" target="_blank" rel="nofollow noopener">published security checklist</a>, with an added emphasis on limiting blast radius. They reduce exposure; they do not convert automated crypto trading into a low-risk activity.</p>
+
+<h2>A connected-exchange test plan</h2>
+
+<table data-3commas-test-plan="connected-exchange" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
+  <caption class="hidden-caption">A staged 3Commas test before increasing live capital</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Stage</th><th style="padding: 8px 12px; text-align: left;">Test</th><th style="padding: 8px 12px; text-align: left;">Pass condition</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>1. No trading key</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Use Free and offline backtests to define entry, size, maximum additions, exit, and shutdown rules</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">The rule can be followed without changing parameters after seeing results</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>2. Demo</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Run normal, duplicate, delayed, rejected, and close-signal cases on the selected paid-plan trial</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Every failure produces a known, visible state and notification</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>3. Isolated live key</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Connect a dedicated sub-account with minimum permissions and the smallest practical balance</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Open, modify, stop, close, and exchange records reconcile after costs</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>4. Failure drill</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Pause the bot, revoke the key, inspect orphan orders, and close any remaining position directly at the exchange</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">The account can be made flat without depending on the automation service</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>5. Bounded scale</strong></td><td style="padding: 8px 12px;">Increase capital only after a pre-set number of reconciled trades and no unresolved exceptions</td><td style="padding: 8px 12px;">Maximum exposure remains inside the original cap at the last safety or grid order</td></tr>
+  </tbody>
+</table>
+
+<p>Automation can enforce a written rule, or it can accelerate repeated off-plan orders. The <a href="/blog/what-is-overtrading">overtrading audit</a> shows how to compare planned entries, later attempts, turnover cost, and post-stop violations. Apply the same log to bot orders; “the bot did it” is not a separate risk category.</p>
+
+<h2>What happens when the subscription ends?</h2>
+
+<p data-3commas-offboarding="subscription-expiry">3Commas says a paid plan may remain active for a short, unspecified grace period before the account moves to Free. After that downgrade, active trades and SmartTrades are not automatically cancelled. Real DCA and Grid bots are disabled, but existing DCA trades and their averaging, take-profit, or stop orders may continue; spot Grid assets remain in the balance, and futures Grid positions may remain open.</p>
+
+<p>Signal bots stop processing new open or close signals after the downgrade, although take-profit and stop orders already placed through the SmartTrade can continue. This creates a material offboarding risk: a trader who assumes “subscription ended” means “account is flat” can leave positions or orders live. Before cancellation or payment failure, stop each bot, reconcile every open order at the exchange, close or retain inventory deliberately, and revoke the trading key when the service is no longer needed.</p>
+
+<h2>Trial, renewal, and refund terms</h2>
+
+<p data-3commas-billing="trial-refund">The current <a href="https://help.3commas.io/en/articles/8420117-subscriptions-faq" target="_blank" rel="nofollow noopener">subscription FAQ</a> offers new users a 7-day Starter, Pro, or Expert trial after adding a valid card, Apple Pay, Google Pay, or PayPal method. It says no payment is taken at the start, reminders arrive 3 days before and on the final day, and the selected paid plan is charged if the trial is not cancelled before it ends.</p>
+
+<p>Card, PayPal, Apple Pay, and Google Pay subscriptions recur by default; crypto subscription payments do not. Cancelling recurrence leaves access active until the displayed expiry date. A queued subscription can also start after an existing plan ends, so inspect Subscription History rather than checking only the currently active label.</p>
+
+<p>The <a href="https://help.3commas.io/en/articles/8146367-how-to-claim-a-refund" target="_blank" rel="nofollow noopener">refund guide effective 18 December 2025</a> gives global, non-EEA users a full refund on the first monthly payment when requested within 15 days, but an immediately preceding 7-day trial counts inside that window. Second and later monthly payments have a 24-hour request window. EEA users are directed to a separate policy. Cancel recurring payment separately and confirm the policy applicable to the billing entity and country before relying on a refund.</p>
+
+<h2>Benefits and limitations</h2>
+
+<div class="pros-cons-table">
+  <table>
+    <thead><tr><th>Potential fit</th><th>Material limitation</th></tr></thead>
+    <tbody>
+      <tr><td>DCA, Grid, Signal bots, SmartTrade, and exchange connections in one interface</td><td>Every extra integration adds configuration, delivery, mapping, exchange, and monitoring failure modes</td></tr>
+      <tr><td>Free research access and a 7-day paid-plan trial create a staged test path</td><td>The trial needs a payment method and converts to paid access unless cancelled</td></tr>
+      <tr><td>Funds remain at the connected exchange and withdrawal permission is not required</td><td>Trading permission can still create unauthorized orders, leveraged positions, and losses</td></tr>
+      <tr><td>Published spot/futures matrix helps narrow compatibility</td><td>Support varies by venue, region, account type, market, and feature</td></tr>
+      <tr><td>Bot and backtest capacity scales clearly from Starter to Expert</td><td>Current first-party pages conflict on Pro and Expert active-account limits</td></tr>
+      <tr><td>Existing trades are not abruptly deleted when a paid plan ends</td><td>Positions and orders can remain live after bots stop, requiring deliberate exchange-side offboarding</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Verdict: automation infrastructure, not an edge</h2>
+
+<p>3Commas is a plausible fit for a crypto trader who already has a testable rule, needs supported exchange automation, can isolate a small balance, and will monitor both the bot and the exchange. Starter covers a limited spot workflow. Pro is the practical step for futures or several strategies. Expert is difficult to justify unless the required bot volume, active connections, backtest allowance, or developer API genuinely exceeds Pro.</p>
+
+<p>It is a poor fit for anyone seeking a profitable bot to copy, treating backtest output as a forecast, or assuming non-custodial access removes account risk. Resolve the active-account limit conflict, verify exact compatibility, run the failure drill, and understand what remains open after a downgrade before paying annually or increasing connected capital.</p>
+
+<div style="display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 1.5rem 0;">
+  <a href="/go/3commas" data-affiliate-placement="verdict" target="_blank" rel="nofollow noopener" class="btn-primary">Check 3Commas' current plans</a>
+  <a href="/blog/fx-replay-review" class="btn-outline">Use the backtest checklist</a>
+</div>
+
+<h2>Frequently asked questions</h2>
+
+<div class="wp-block-rank-math-faq-block">
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">How much does 3Commas cost?</h3><div class="rank-math-answer">On 18 August 2026, the public page displayed Starter at $20 monthly or $180 annually, Pro at $50 monthly or $456 annually, and Expert at $140 monthly or $1,260 annually. Local currency, VAT, discounts, and checkout terms can differ.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Can the 3Commas Free plan trade real money?</h3><div class="rank-math-answer">No. The current plan guide says Free has no real trading and can connect up to 2 exchange accounts for portfolio tracking. Live trading is available during the 7-day paid-plan trial or on a paid plan.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Which 3Commas plan supports futures?</h3><div class="rank-math-answer">The current plan comparison assigns spot only to Starter and spot plus futures to Pro and Expert. The exact futures product, region, leverage mode, and bot still need to appear in the current exchange matrix.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Can 3Commas withdraw crypto from an exchange?</h3><div class="rank-math-answer">3Commas says its transactional access has no withdrawal or transfer permission. A trading-enabled API key can still place orders that create losses, so use least privilege, a dedicated sub-account, 2FA, alerts, and a tested revocation process.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Was 3Commas affected by an API-key incident?</h3><div class="rank-math-answer">Yes. Its official December 2022 notice confirmed that some users' API keys, secrets, and passphrases were disclosed and could be used for unauthorized trades. The company later described added security controls, which this review treats as vendor claims rather than an independent audit.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Do 3Commas bots close when a subscription expires?</h3><div class="rank-math-answer">Not necessarily. After the grace period and downgrade, bots can be disabled while existing trades, spot inventory, futures positions, or already placed take-profit and stop orders remain. Reconcile and close the exchange account deliberately before revoking access.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Is 3Commas the same as copy trading?</h3><div class="rank-math-answer">No. A Signal bot can execute a webhook or condition without copying another account. Some third-party strategies may resemble copy trading, but the source, sizing, permissions, and execution chain still need separate verification.</div></div>
+</div>
