@@ -145,10 +145,10 @@ export default async function BlogPostPage({ params }: Props) {
             <span className="post-meta-item">
               <Clock size={13} /> <AnimatedNumber value={readTime} duration={900} /> min read
             </span>
-            {matchedFirm && (post.modified || post.date) && (
+            {post.modified && post.modified !== post.date && (
               <span className="post-meta-item post-meta-item--live">
                 <span className="hero-eyebrow-dot" />
-                Updated {new Date(post.modified || post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                Updated {new Date(post.modified).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
               </span>
             )}
           </div>

@@ -121,7 +121,7 @@ type: "post"
 <h2>What actually determines trader profitability</h2>
 
 <ol>
-  <li><strong>Net strategy expectancy:</strong> the tested average must remain positive after spread, commission, slippage, swaps, and the product’s instrument conditions.</li>
+  <li><strong>Net strategy expectancy:</strong> the tested average must remain positive after spread, commission, slippage, swaps, and the product’s instrument conditions. A discretionary setup such as the <a href="/blog/wyckoff-pattern">Wyckoff pattern</a> needs a pre-entry trigger and invalidation before it can belong in that sample.</li>
   <li><strong>Rule fit:</strong> daily loss, static or trailing maximum loss, consistency, news, holding, stop-loss, and copy rules must match the execution method.</li>
   <li><strong>Attempt discipline:</strong> the cash budget needs a maximum number of purchases; an unlimited retry plan has no bounded downside.</li>
   <li><strong>Payout eligibility:</strong> minimum days, growth gates, best-day rules, payout cycles, KYC, and provider limits can delay or reduce cash receipt.</li>

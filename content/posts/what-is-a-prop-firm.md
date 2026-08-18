@@ -107,7 +107,7 @@ type: "post"
 
 <h2>Who should consider a prop-firm product?</h2>
 
-<p>A rule-based funding product can be considered by a trader who already has a tested process, can size positions below the firm’s loss boundaries, and can afford to receive $0 back from the fee. It is a poor substitute for learning basic execution, building an emergency fund, or proving that a strategy survives spreads, slippage, and losing streaks.</p>
+<p>A rule-based funding product can be considered by a trader who already has a tested process, can size positions below the firm’s loss boundaries, and can afford to receive $0 back from the fee. It is a poor substitute for learning basic execution, building an emergency fund, or proving that a strategy survives spreads, slippage, and losing streaks. A discretionary framework such as the <a href="/blog/wyckoff-pattern">Wyckoff pattern</a> still needs a pre-entry trigger, invalidation, consistent data feed, and rejected setups before it qualifies as tested.</p>
 
 <p>Suitability depends more on the strategy than on labels such as beginner, day trader, or swing trader. A swing strategy needs compatible overnight and weekend rules; a news strategy needs a clear event window; an automated strategy needs explicit EA and copy-trading permission. Start with those constraints before comparing account size or advertised profit share.</p>
 

@@ -167,6 +167,7 @@ const TRADING_TOOL_REVIEW_COMPONENT_FILE = path.join(
   'components/TradingToolReviewCluster.tsx',
 )
 const TRADING_TOOL_REVIEW_LIB_FILE = path.join(ROOT, 'lib/tradingToolReviews.ts')
+const WYCKOFF_GUIDE_FILE = path.join(POSTS, 'wyckoff-pattern.md')
 const PRIVACY_POLICY_FILE = path.join(ROOT, 'content/pages/privacy-policy.md')
 const INDIA_CHALLENGE_SOCIAL_FILE = path.join(
   ROOT,
@@ -9875,6 +9876,113 @@ function checkTradingToolReviewCluster() {
   return rows.length
 }
 
+/** Keep the existing Wyckoff guide search-ready, testable and well connected. */
+function checkWyckoffGuide() {
+  const rows = []
+  if (!fs.existsSync(WYCKOFF_GUIDE_FILE)) {
+    rows.push('content/posts/wyckoff-pattern.md is missing')
+  } else {
+    const { data, content } = matter(fs.readFileSync(WYCKOFF_GUIDE_FILE, 'utf-8'))
+    const expectedTitle = 'Wyckoff Pattern: Accumulation & Distribution Guide'
+    if (data.title !== expectedTitle || data.seoTitle !== expectedTitle) {
+      rows.push('Wyckoff visible and search titles must use the focused evergreen title')
+    }
+    if (data.modified !== '2026-08-18 12:00:00') {
+      rows.push('Wyckoff guide is missing the current editorial revision date')
+    }
+    if (String(data.seoTitle || '').length > 60) {
+      rows.push(`Wyckoff search title is ${data.seoTitle.length} characters`)
+    }
+    if (
+      String(data.seoDescription || '').length < 120
+      || String(data.seoDescription || '').length > 160
+    ) {
+      rows.push(
+        `Wyckoff search description is ${String(data.seoDescription || '').length} characters`,
+      )
+    }
+    for (const tag of ['Wyckoff method', 'technical analysis', 'market structure', 'backtesting']) {
+      if (!data.tags?.includes(tag)) rows.push(`Wyckoff guide is missing topic tag ${tag}`)
+    }
+    for (const token of [
+      'The Wyckoff pattern is an interpretive framework',
+      'Cycle and schematic are different.',
+      'Composite Man is a model, not an observable trader',
+      'The 3 Wyckoff laws',
+      'How to make a Wyckoff pattern testable',
+      'Fix the market and data source.',
+      'Separate research from paid execution.',
+      'What the Wyckoff pattern can and cannot tell you',
+      'Does a Wyckoff spring guarantee a rally?',
+      'https://www.wyckoffanalytics.com/wyckoff-method/',
+      'href="/blog/fx-replay-review"',
+      'href="/how-to-pass-a-prop-firm-challenge"',
+      'href="/blog/what-is-overtrading"',
+      'href="/blog/is-prop-firm-trading-profitable"',
+      'href="/prop-firm-challenges"',
+      'href="/blog/balance-based-drawdown-vs-equity-based-drawdown"',
+      'href="/prop-firms/overnight-holding"',
+      'href="/prop-firms/weekend-holding"',
+    ]) {
+      if (!content.includes(token)) rows.push(`Wyckoff guide is missing ${token}`)
+    }
+    for (const stale of [
+      'Uderstanding',
+      'the The Wyckoff',
+      'anticipate market movements',
+      'follow smart money',
+      'great chances to buy',
+      'prime chances to short',
+      '<blockquote',
+    ]) {
+      if (content.includes(stale)) rows.push(`Wyckoff guide restored stale claim or copy: ${stale}`)
+    }
+  }
+
+  for (const [relativePath, label] of [
+    ['content/pages/how-to-pass-a-prop-firm-challenge.md', 'challenge risk plan'],
+    ['content/posts/fx-replay-review.md', 'FX Replay review'],
+    ['content/posts/is-prop-firm-trading-profitable.md', 'profitability guide'],
+    ['content/posts/what-is-a-prop-firm.md', 'prop-firm explainer'],
+    ['content/posts/what-is-overtrading.md', 'overtrading guide'],
+  ]) {
+    const body = fs.readFileSync(path.join(ROOT, relativePath), 'utf-8')
+    if (!body.includes('href="/blog/wyckoff-pattern"')) {
+      rows.push(`${label} is missing its contextual Wyckoff link`)
+    }
+  }
+
+  const blogRoute = fs.readFileSync(BLOG_POST_PAGE_FILE, 'utf-8')
+  for (const token of [
+    'post.modified && post.modified !== post.date',
+    'Updated {new Date(post.modified).toLocaleDateString',
+  ]) {
+    if (!blogRoute.includes(token)) {
+      rows.push(`blog template is missing visible revision-date safeguard ${token}`)
+    }
+  }
+
+  const releaseCrawl = fs.readFileSync(RELEASE_CRAWL_FILE, 'utf-8')
+  for (const token of [
+    'educational guide has only ${wyckoffInlinks.size} unique internal inlinks',
+    "const wyckoffGuidePath = '/blog/wyckoff-pattern'",
+    'missing contextual inlink from ${source}',
+    'title, description or H1 disagrees with frontmatter',
+    'Article schema disagrees with revised frontmatter',
+    'Updated Aug 18, 2026',
+  ]) {
+    if (!releaseCrawl.includes(token)) {
+      rows.push(`release crawl is missing Wyckoff safeguard ${token}`)
+    }
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Wyckoff guide, search surface and contextual links')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
 /** Related links must be relevant, deterministic, unique, and never self-link. */
 function checkRelatedPostSelection() {
   const rows = []
@@ -10032,6 +10140,8 @@ const fundedNextComparisonOverlayErrors = checkFundedNextComparisonOverlay()
 totalErrors += fundedNextComparisonOverlayErrors
 const tradingToolReviewClusterErrors = checkTradingToolReviewCluster()
 totalErrors += tradingToolReviewClusterErrors
+const wyckoffGuideErrors = checkWyckoffGuide()
+totalErrors += wyckoffGuideErrors
 const relatedPostSelectionErrors = checkRelatedPostSelection()
 totalErrors += relatedPostSelectionErrors
 

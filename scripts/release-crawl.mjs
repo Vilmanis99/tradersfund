@@ -57,6 +57,12 @@ const tradingToolPostRecords = TRADING_TOOL_REVIEWS.map(review => ({
     'utf8',
   )).data,
 }))
+const wyckoffPostRecord = {
+  ...matter(readFileSync(
+    join(PROJECT_ROOT, 'content/posts/wyckoff-pattern.md'),
+    'utf8',
+  )).data,
+}
 const ukAccessEvidence = JSON.parse(
   readFileSync(join(PROJECT_ROOT, 'content/data/uk-access-evidence.json'), 'utf8'),
 )
@@ -447,6 +453,25 @@ for (const path of tradingToolReviewPaths) {
   }
 }
 
+const wyckoffGuidePath = '/blog/wyckoff-pattern'
+const wyckoffInlinks = internalInlinks.get(wyckoffGuidePath) ?? new Set()
+if (wyckoffInlinks.size < 8) {
+  errors.push(
+    `${wyckoffGuidePath}: educational guide has only ${wyckoffInlinks.size} unique internal inlinks`,
+  )
+}
+for (const source of [
+  '/how-to-pass-a-prop-firm-challenge',
+  '/blog/fx-replay-review',
+  '/blog/is-prop-firm-trading-profitable',
+  '/blog/what-is-a-prop-firm',
+  '/blog/what-is-overtrading',
+]) {
+  if (!wyckoffInlinks.has(source)) {
+    errors.push(`${wyckoffGuidePath}: missing contextual inlink from ${source}`)
+  }
+}
+
 for (const [title, paths] of titles) {
   if (paths.length > 1) errors.push(`duplicate title on ${paths.join(', ')}: ${title}`)
 }
@@ -557,6 +582,79 @@ for (const review of TRADING_TOOL_REVIEWS) {
   const article = jsonLdObjects.find(value => value['@type'] === 'Article')
   if (article?.description !== post.seoDescription) {
     errors.push(`${path}: trading-tool Article schema description disagrees with metadata`)
+  }
+}
+
+const wyckoffProbe = await fetchPage(new URL(wyckoffGuidePath, BASE))
+if (wyckoffProbe.status !== 200) {
+  errors.push(`${wyckoffGuidePath}: HTTP ${wyckoffProbe.status || wyckoffProbe.error}`)
+} else {
+  const pageText = textContent(wyckoffProbe.html)
+  const title = textContent(firstMatch(
+    wyckoffProbe.html,
+    /<title[^>]*>([\s\S]*?)<\/title>/i,
+  ))
+  const description = decodeHtml(firstMatch(
+    wyckoffProbe.html,
+    /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+  ) || firstMatch(
+    wyckoffProbe.html,
+    /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+  ))
+  const h1 = textContent(firstMatch(
+    wyckoffProbe.html,
+    /<h1\b[^>]*>([\s\S]*?)<\/h1>/i,
+  ))
+  const canonical = firstMatch(
+    wyckoffProbe.html,
+    /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["'][^>]*>/i,
+  ) || firstMatch(
+    wyckoffProbe.html,
+    /<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["'][^>]*>/i,
+  )
+  if (
+    title !== wyckoffPostRecord.seoTitle
+    || description !== wyckoffPostRecord.seoDescription
+    || h1 !== wyckoffPostRecord.title
+  ) {
+    errors.push(`${wyckoffGuidePath}: title, description or H1 disagrees with frontmatter`)
+  }
+  if (canonicalKey(canonical) !== canonicalKey(`${PRODUCTION_ORIGIN}${wyckoffGuidePath}`)) {
+    errors.push(`${wyckoffGuidePath}: incorrect canonical`)
+  }
+  for (const required of [
+    'Updated Aug 18, 2026',
+    'The Wyckoff pattern is an interpretive framework',
+    'How to make a Wyckoff pattern testable',
+    'What the Wyckoff pattern can and cannot tell you',
+    'Does a Wyckoff spring guarantee a rally?',
+    '/blog/fx-replay-review',
+    '/how-to-pass-a-prop-firm-challenge',
+    '/blog/what-is-overtrading',
+    '/blog/is-prop-firm-trading-profitable',
+    '/prop-firm-challenges',
+    '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+  ]) {
+    if (!wyckoffProbe.html.includes(required) && !pageText.includes(required)) {
+      errors.push(`${wyckoffGuidePath}: missing evidence or workflow link ${required}`)
+    }
+  }
+  const jsonLdObjects = [...wyckoffProbe.html.matchAll(
+    /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+  )].flatMap(match => {
+    try {
+      return [JSON.parse(match[1])]
+    } catch {
+      return []
+    }
+  })
+  const article = jsonLdObjects.find(value => value['@type'] === 'Article')
+  if (
+    article?.headline !== wyckoffPostRecord.title
+    || article?.description !== wyckoffPostRecord.seoDescription
+    || article?.dateModified !== wyckoffPostRecord.modified
+  ) {
+    errors.push(`${wyckoffGuidePath}: Article schema disagrees with revised frontmatter`)
   }
 }
 

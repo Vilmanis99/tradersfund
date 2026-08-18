@@ -27,7 +27,7 @@ type: "post"
 
 <h2>What is overtrading?</h2>
 
-<p>A practical definition has 2 parts: a trading plan exists before the order, and the order violates at least 1 condition in that plan. Common violations include entering without the named setup, trading outside the selected session, increasing size after a loss, duplicating correlated exposure, or opening another position after a personal stop.</p>
+<p>A practical definition has 2 parts: a trading plan exists before the order, and the order violates at least 1 condition in that plan. Common violations include entering without the named setup, trading outside the selected session, increasing size after a loss, duplicating correlated exposure, or opening another position after a personal stop. If the setup is discretionary, use definitions such as the trigger-and-invalidation record in the <a href="/blog/wyckoff-pattern">Wyckoff pattern guide</a> instead of naming the pattern after entry.</p>
 
 <p>Trade count alone cannot identify overtrading. A market-making or scalping system may generate many tested signals, while a swing plan may allow only a few entries each month. The useful comparison is <strong>actual decisions versus pre-session rules</strong>, not one trader’s count versus another trader’s count.</p>
 

@@ -57,7 +57,7 @@ type: "post"
 
 <h3 class="wp-block-heading">Multiple Strategy Creation</h3>
 
-<p>The FX Replay backtesting tool allows you to explore multiple trading strategies at once. You can create and analyze different strategies side by side to compare their performance. Experimenting with various approaches is also possible. Thus, you can find the methods that best suit your preferences and ditch the ones that don't. The seamless process of testing multiple strategies allows you to find your edge much faster.</p>
+<p>The FX Replay backtesting tool allows multiple strategy records, but the comparison is useful only when each setup has a fixed definition and the same cost assumptions. For example, the <a href="/blog/wyckoff-pattern">Wyckoff pattern guide</a> separates a schematic label from its trigger, invalidation, data feed, and rejected setups before the results are compared.</p>
 
 <h3 class="wp-block-heading">Save Chart Layouts and Drawing Templates</h3>
 

@@ -72,6 +72,8 @@ type: "page"
 
 <p>Do not invent a 1% daily target to force the calendar. Use a representative sample from the same instrument, session, stop method, and risk size. If the sample has negative or unknown expectancy, a paid challenge is an expensive place to discover that result.</p>
 
+<p>If the entry model depends on accumulation, distribution, springs, or upthrusts, the <a href="/blog/wyckoff-pattern">Wyckoff pattern guide</a> turns those labels into observable triggers and invalidations. A chart label added after the outcome is not part of the tested sample.</p>
+
 <h2>5. Track the maximum-loss floor after every session</h2>
 
 <ul class="wp-block-list">
