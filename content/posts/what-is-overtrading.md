@@ -59,7 +59,7 @@ type: "post"
   <li><strong>Late-trade decay:</strong> the journal shows that trade 4 and later have worse net results than earlier planned entries across a meaningful sample.</li>
 </ol>
 
-<p>One sign is a prompt to review the order; a repeated pattern across 20 sessions is stronger evidence. The journal should preserve rejected setups too, because “I would have won” is not proof that an off-plan entry belonged in the tested strategy.</p>
+<p>One sign is a prompt to review the order; a repeated pattern across 20 sessions is stronger evidence. The journal should preserve rejected setups too, because “I would have won” is not proof that an off-plan entry belonged in the tested strategy. When those sessions come from historical replay, use the <a href="/blog/fx-replay-review">FX Replay research-integrity checklist</a> to keep future candles, selected dates, feed differences, and missing trading costs from flattering the sample.</p>
 
 <h2>Why prop-firm rules make plan drift expensive</h2>
 

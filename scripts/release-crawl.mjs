@@ -470,6 +470,25 @@ for (const source of [
   }
 }
 
+const fxReplayPath = '/blog/fx-replay-review'
+const fxReplayInlinks = internalInlinks.get(fxReplayPath) ?? new Set()
+if (fxReplayInlinks.size < 10) {
+  errors.push(
+    `${fxReplayPath}: source-checked review has only `
+    + `${fxReplayInlinks.size} unique internal inlinks`,
+  )
+}
+for (const source of [
+  '/blog/wyckoff-pattern',
+  '/blog/what-is-overtrading',
+  '/blog/is-prop-firm-trading-profitable',
+  '/how-to-pass-a-prop-firm-challenge',
+]) {
+  if (!fxReplayInlinks.has(source)) {
+    errors.push(`${fxReplayPath}: missing research-context inlink from ${source}`)
+  }
+}
+
 const wyckoffGuidePath = '/blog/wyckoff-pattern'
 const wyckoffInlinks = internalInlinks.get(wyckoffGuidePath) ?? new Set()
 if (wyckoffInlinks.size < 8) {
@@ -599,6 +618,64 @@ for (const review of TRADING_TOOL_REVIEWS) {
     }
   }
 
+  if (review.slug === 'fx-replay-review') {
+    for (const required of [
+      'data-tool-evidence-captured="2026-08-18"',
+      'Traders Fund Hub does not currently record an affiliate relationship with FX Replay.',
+      'data-fx-replay-evidence="2026-08-18"',
+      'data-tool-pricing="fx-replay-free"',
+      '2 sessions, 50 records, 1-month session duration, 1-week retention, 1 indicator',
+      'data-tool-pricing="fx-replay-intermediate"',
+      '$17.99 monthly or $180 annually ($15 monthly equivalent)',
+      'data-tool-pricing="fx-replay-pro"',
+      '$35 monthly or $350 annually ($29.16 monthly equivalent)',
+      'the page does not state a fixed trial duration',
+      'data-fx-replay-prop-simulator="user-configured"',
+      'data-fx-replay-test-plan="research-integrity"',
+      'data-fx-replay-billing="nonrefundable-auto-renew"',
+      '/how-to-pass-a-prop-firm-challenge',
+      '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+      '/blog/what-is-prop-firm-consistency-rule',
+      '/blog/wyckoff-pattern',
+      '/blog/what-is-overtrading',
+      'data-affiliate-placement="verdict"',
+    ]) {
+      if (!probe.html.includes(required) && !pageText.includes(required)) {
+        errors.push(`${path}: missing current evidence or research boundary ${required}`)
+      }
+    }
+    const lowerPageText = pageText.toLowerCase()
+    for (const stale of [
+      'one of the best forex backtesting software tools',
+      'one of the most popular forex backtesting software tools',
+      '4.6 out of 5 stars',
+      'over 200 reviews',
+      '5-day fx replay free trial',
+      'search for fx replay discount code',
+      'risk-free way to explore',
+      'up to 20 backtesting sessions',
+      'up to five indicators',
+      'accurately replicates market conditions',
+      'the best backtesting software',
+    ]) {
+      if (lowerPageText.includes(stale)) {
+        errors.push(`${path}: rendered promotional, unsafe or stale claim ${stale}`)
+      }
+    }
+    const ctaTag = [...probe.html.matchAll(/<a\b[^>]*>/gi)]
+      .map(match => match[0])
+      .find(tag => tag.includes(
+        'href="/go/fx-replay?from=post-body-fx-replay-review-verdict"',
+      )) || ''
+    if (
+      !ctaTag
+      || !ctaTag.includes('rel="nofollow noopener"')
+      || ctaTag.includes('sponsored')
+    ) {
+      errors.push(`${path}: FX Replay official CTA relationship is incorrect`)
+    }
+  }
+
   const expectedLinks = getTradingToolReviewLinks(review.slug, tradingToolPostRecords)
   const toolLinkTags = [...probe.html.matchAll(
     /<a\b[^>]*\bdata-tool-review-link=["'][^"']+["'][^>]*>/gi,
@@ -657,6 +734,12 @@ for (const review of TRADING_TOOL_REVIEWS) {
     && article?.dateModified !== post.modified
   ) {
     errors.push(`${path}: Traders Connect Article schema date disagrees with evidence date`)
+  }
+  if (
+    review.slug === 'fx-replay-review'
+    && article?.dateModified !== post.modified
+  ) {
+    errors.push(`${path}: FX Replay Article schema date disagrees with evidence date`)
   }
 }
 

@@ -9888,6 +9888,110 @@ function checkTradingToolReviewCluster() {
     }
   }
 
+  const fxReplay = bySlug.get('fx-replay-review')
+  if (!fxReplay) {
+    rows.push('FX Replay review is missing from the tool-review cluster')
+  } else {
+    const expectedTitle = 'FX Replay Review: Pricing, Features & Limits'
+    if (
+      fxReplay.title !== expectedTitle
+      || fxReplay.seoTitle !== expectedTitle
+      || fxReplay.modified !== '2026-08-18 12:00:00'
+      || fxReplay.sourceCapturedAt !== '2026-08-18'
+    ) {
+      rows.push('FX Replay title or evidence dates disagree with the current review')
+    }
+    if (
+      fxReplay.seoTitle.length > 60
+      || fxReplay.seoDescription.length < 120
+      || fxReplay.seoDescription.length > 160
+    ) {
+      rows.push('FX Replay search title or description is outside the editorial range')
+    }
+    const fxReplayWordCount = fxReplay.content
+      .replace(/<[^>]+>/g, ' ')
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean).length
+    if (fxReplayWordCount < 1800) {
+      rows.push(`FX Replay source-checked review is only ${fxReplayWordCount} words`)
+    }
+    for (const sourceUrl of [
+      'https://fxreplay.com/pricing',
+      'https://fxreplay.com/backtest',
+      'https://fxreplay.com/prop-firm-simulator',
+      'https://support.fxreplay.com/articles/what-are-the-differences-between-fx-replay-plans-and-their-pricing',
+      'https://support.fxreplay.com/articles/how-to-use-the-rr-simulator',
+      'https://support.fxreplay.com/articles/refund-policy',
+    ]) {
+      if (!fxReplay.sourceUrls?.includes(sourceUrl)) {
+        rows.push(`FX Replay frontmatter is missing first-party source ${sourceUrl}`)
+      }
+    }
+    for (const token of [
+      'data-tool-evidence-captured="2026-08-18"',
+      'Traders Fund Hub does not currently record an affiliate relationship with FX Replay.',
+      'data-fx-replay-evidence="2026-08-18"',
+      'data-tool-pricing="fx-replay-free"',
+      '2 sessions, 50 records, 1-month session duration, 1-week retention, 1 indicator',
+      'data-tool-pricing="fx-replay-intermediate"',
+      '$17.99 monthly or $180 annually ($15 monthly equivalent)',
+      'data-tool-pricing="fx-replay-pro"',
+      '$35 monthly or $350 annually ($29.16 monthly equivalent)',
+      'the page does not state a fixed trial duration',
+      'data-fx-replay-prop-simulator="user-configured"',
+      'data-fx-replay-test-plan="research-integrity"',
+      'data-fx-replay-billing="nonrefundable-auto-renew"',
+      'href="/how-to-pass-a-prop-firm-challenge"',
+      'href="/blog/balance-based-drawdown-vs-equity-based-drawdown"',
+      'href="/blog/what-is-prop-firm-consistency-rule"',
+      'href="/blog/wyckoff-pattern"',
+      'href="/blog/what-is-overtrading"',
+      'href="/go/fx-replay"',
+      'data-affiliate-placement="verdict"',
+    ]) {
+      if (!fxReplay.content.includes(token)) {
+        rows.push(`FX Replay review is missing evidence or decision token ${token}`)
+      }
+    }
+    for (const stale of [
+      'one of the best forex backtesting software tools',
+      'one of the most popular forex backtesting software tools',
+      '4.6 out of 5 stars',
+      'over 200 reviews',
+      '5-day FX Replay free trial',
+      'search for FX Replay discount code',
+      'risk-free way to explore',
+      'up to 20 backtesting sessions',
+      'up to five indicators',
+      'accurately replicates market conditions',
+      'the best backtesting software',
+      'wp-image-175',
+    ]) {
+      if (fxReplay.content.toLowerCase().includes(stale.toLowerCase())) {
+        rows.push(`FX Replay review restored promotional, unsafe or stale claim ${stale}`)
+      }
+    }
+    const goLinks = [...fxReplay.content.matchAll(/href=["'](\/go\/fx-replay[^"']*)/g)]
+    if (goLinks.length !== 1 || goLinks[0][1] !== '/go/fx-replay') {
+      rows.push('FX Replay review must have 1 attributed official CTA')
+    }
+    const renderedFxReplay = decoratePostOutboundLinks(
+      fxReplay.content,
+      { 'fx-replay': 'official' },
+      fxReplay.slug,
+    )
+    if (
+      !renderedFxReplay.includes(
+        'href="/go/fx-replay?from=post-body-fx-replay-review-verdict"',
+      )
+      || !renderedFxReplay.includes('rel="nofollow noopener"')
+      || renderedFxReplay.includes('rel="sponsored nofollow noopener"')
+    ) {
+      rows.push('FX Replay rendered CTA lacks controlled verdict attribution or disclosure')
+    }
+  }
+
   for (const [relativePath, label] of [
     ['content/posts/what-is-copy-trading.md', 'copy-trading guide'],
     ['content/posts/are-prop-firm-passing-services-worth-it.md', 'passing-services guide'],
@@ -9895,6 +9999,18 @@ function checkTradingToolReviewCluster() {
     const body = fs.readFileSync(path.join(ROOT, relativePath), 'utf-8')
     if (!body.includes('href="/blog/traders-connect-trade-copier"')) {
       rows.push(`${label} is missing its contextual Traders Connect backlink`)
+    }
+  }
+
+  for (const [relativePath, label] of [
+    ['content/posts/wyckoff-pattern.md', 'Wyckoff guide'],
+    ['content/posts/what-is-overtrading.md', 'overtrading guide'],
+    ['content/posts/is-prop-firm-trading-profitable.md', 'profitability guide'],
+    ['content/pages/how-to-pass-a-prop-firm-challenge.md', 'challenge risk-plan guide'],
+  ]) {
+    const body = fs.readFileSync(path.join(ROOT, relativePath), 'utf-8')
+    if (!body.includes('href="/blog/fx-replay-review"')) {
+      rows.push(`${label} is missing its contextual FX Replay backlink`)
     }
   }
 
@@ -9906,6 +10022,11 @@ function checkTradingToolReviewCluster() {
     "'traders-connect': { affiliateUrl: null, officialUrl: 'https://tradersconnect.com/' }",
   )) {
     rows.push('Traders Connect must remain an official, non-affiliate outbound route')
+  }
+  if (!outboundDestinations.includes(
+    "'fx-replay': { affiliateUrl: null, officialUrl: 'https://www.fxreplay.com/' }",
+  )) {
+    rows.push('FX Replay must remain an official, non-affiliate outbound route')
   }
 
   const component = fs.existsSync(TRADING_TOOL_REVIEW_COMPONENT_FILE)

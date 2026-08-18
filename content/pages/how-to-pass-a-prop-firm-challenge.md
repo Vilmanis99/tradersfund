@@ -70,7 +70,7 @@ type: "page"
 
 <p>A profit target is a destination, not a daily quota. FundedNext Stellar 2-Step requires $8,000 in Phase 1 and $5,000 in Phase 2 on the $100K tier. If a tested strategy averaged $400 per session after wins, losses, and trading costs, the Phase-1 estimate would be $8,000 ÷ $400 = 20 sessions. Variance can make the realised path shorter or longer, and Phase-1 profit does not satisfy the separate Phase-2 target.</p>
 
-<p>Do not invent a 1% daily target to force the calendar. Use a representative sample from the same instrument, session, stop method, and risk size. If the sample has negative or unknown expectancy, a paid challenge is an expensive place to discover that result.</p>
+<p>Do not invent a 1% daily target to force the calendar. Use a representative sample from the same instrument, session, stop method, and risk size. If the sample has negative or unknown expectancy, a paid challenge is an expensive place to discover that result. The source-checked <a href="/blog/fx-replay-review">FX Replay review</a> shows how to separate strategy development from an untouched validation sample and account for data, spread, commission, and slippage.</p>
 
 <p>If the entry model depends on accumulation, distribution, springs, or upthrusts, the <a href="/blog/wyckoff-pattern">Wyckoff pattern guide</a> turns those labels into observable triggers and invalidations. A chart label added after the outcome is not part of the tested sample.</p>
 
