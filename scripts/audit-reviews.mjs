@@ -9796,6 +9796,118 @@ function checkTradingToolReviewCluster() {
     }
   }
 
+  const tradersConnect = bySlug.get('traders-connect-trade-copier')
+  if (!tradersConnect) {
+    rows.push('Traders Connect review is missing from the tool-review cluster')
+  } else {
+    const expectedTitle = 'Traders Connect Review: Pricing, Platforms & Risks'
+    if (
+      tradersConnect.title !== expectedTitle
+      || tradersConnect.seoTitle !== expectedTitle
+      || tradersConnect.modified !== '2026-08-18 12:00:00'
+      || tradersConnect.sourceCapturedAt !== '2026-08-18'
+    ) {
+      rows.push('Traders Connect title or evidence dates disagree with the current review')
+    }
+    if (
+      tradersConnect.seoTitle.length > 60
+      || tradersConnect.seoDescription.length < 120
+      || tradersConnect.seoDescription.length > 160
+    ) {
+      rows.push('Traders Connect search title or description is outside the editorial range')
+    }
+    for (const sourceUrl of [
+      'https://tradersconnect.com/copier',
+      'https://help.tradersconnect.com/en/article/pricing-1ty8n8e/',
+      'https://help.tradersconnect.com/en/article/equity-protection-1j4jm9y/',
+      'https://help.tradersconnect.com/en/article/advanced-settings-a296h8/',
+      'https://tradersconnect.com/legal',
+    ]) {
+      if (!tradersConnect.sourceUrls?.includes(sourceUrl)) {
+        rows.push(`Traders Connect frontmatter is missing first-party source ${sourceUrl}`)
+      }
+    }
+    for (const token of [
+      'data-tool-evidence-captured="2026-08-18"',
+      'data-traders-connect-evidence="2026-08-18"',
+      '10 listed: MT4, MT5, cTrader, MatchTrader, TradeLocker, DXtrade, NinjaTrader, Tradovate, ProjectX, Rithmic',
+      'data-tool-pricing="cfd-premium"',
+      '$10 per account monthly or $100 per account annually',
+      'data-tool-pricing="futures"',
+      'data-tool-pricing="analyzer"',
+      'data-tool-pricing="dedicated-environment"',
+      'Equity Protection is a beta control, not the firm\'s loss engine',
+      'data-tool-compliance-warning="trade-identity"',
+      'Do not use settings to disguise the origin of a trade.',
+      '<strong>No vendor can grant that permission.</strong>',
+      'data-traders-connect-test-plan="demo-first"',
+      'href="/blog/what-is-copy-trading"',
+      'href="/blog/are-prop-firm-passing-services-worth-it"',
+      'href="/blog/balance-based-drawdown-vs-equity-based-drawdown"',
+      'href="/go/traders-connect"',
+      'data-affiliate-placement="verdict"',
+    ]) {
+      if (!tradersConnect.content.includes(token)) {
+        rows.push(`Traders Connect review is missing evidence or decision token ${token}`)
+      }
+    }
+    for (const stale of [
+      'avoiding detection',
+      'Keeps you invisible to prop firm detection systems',
+      'without breaking prop firm rules',
+      '20–30 milliseconds',
+      '280 reviews',
+      '4.6 out of 5',
+      'one of the best copy-trading platforms',
+      'Yes. You can use Trades Connect Trade Copier',
+    ]) {
+      if (tradersConnect.content.includes(stale)) {
+        rows.push(`Traders Connect review restored unsafe or stale claim ${stale}`)
+      }
+    }
+    const goLinks = [...tradersConnect.content.matchAll(/href=["'](\/go\/traders-connect[^"']*)/g)]
+    if (
+      goLinks.length !== 1
+      || goLinks[0][1] !== '/go/traders-connect'
+    ) {
+      rows.push('Traders Connect review must have 1 attributed official CTA')
+    }
+    const renderedTradersConnect = decoratePostOutboundLinks(
+      tradersConnect.content,
+      { 'traders-connect': 'official' },
+      tradersConnect.slug,
+    )
+    if (
+      !renderedTradersConnect.includes(
+        'href="/go/traders-connect?from=post-body-traders-connect-trade-copier-verdict"',
+      )
+      || !renderedTradersConnect.includes('rel="nofollow noopener"')
+      || renderedTradersConnect.includes('rel="sponsored nofollow noopener"')
+    ) {
+      rows.push('Traders Connect rendered CTA lacks controlled verdict attribution or disclosure')
+    }
+  }
+
+  for (const [relativePath, label] of [
+    ['content/posts/what-is-copy-trading.md', 'copy-trading guide'],
+    ['content/posts/are-prop-firm-passing-services-worth-it.md', 'passing-services guide'],
+  ]) {
+    const body = fs.readFileSync(path.join(ROOT, relativePath), 'utf-8')
+    if (!body.includes('href="/blog/traders-connect-trade-copier"')) {
+      rows.push(`${label} is missing its contextual Traders Connect backlink`)
+    }
+  }
+
+  const outboundDestinations = fs.readFileSync(
+    path.join(ROOT, 'lib/outboundDestinations.ts'),
+    'utf-8',
+  )
+  if (!outboundDestinations.includes(
+    "'traders-connect': { affiliateUrl: null, officialUrl: 'https://tradersconnect.com/' }",
+  )) {
+    rows.push('Traders Connect must remain an official, non-affiliate outbound route')
+  }
+
   const component = fs.existsSync(TRADING_TOOL_REVIEW_COMPONENT_FILE)
     ? fs.readFileSync(TRADING_TOOL_REVIEW_COMPONENT_FILE, 'utf-8')
     : ''

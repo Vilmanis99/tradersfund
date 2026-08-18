@@ -453,6 +453,23 @@ for (const path of tradingToolReviewPaths) {
   }
 }
 
+const tradersConnectPath = '/blog/traders-connect-trade-copier'
+const tradersConnectInlinks = internalInlinks.get(tradersConnectPath) ?? new Set()
+if (tradersConnectInlinks.size < 9) {
+  errors.push(
+    `${tradersConnectPath}: source-checked review has only `
+    + `${tradersConnectInlinks.size} unique internal inlinks`,
+  )
+}
+for (const source of [
+  '/blog/what-is-copy-trading',
+  '/blog/are-prop-firm-passing-services-worth-it',
+]) {
+  if (!tradersConnectInlinks.has(source)) {
+    errors.push(`${tradersConnectPath}: missing compliance-context inlink from ${source}`)
+  }
+}
+
 const wyckoffGuidePath = '/blog/wyckoff-pattern'
 const wyckoffInlinks = internalInlinks.get(wyckoffGuidePath) ?? new Set()
 if (wyckoffInlinks.size < 8) {
@@ -530,6 +547,58 @@ for (const review of TRADING_TOOL_REVIEWS) {
     }
   }
 
+  if (review.slug === 'traders-connect-trade-copier') {
+    for (const required of [
+      'data-tool-evidence-captured="2026-08-18"',
+      'data-traders-connect-evidence="2026-08-18"',
+      'Traders Fund Hub does not currently record an affiliate relationship with Traders Connect.',
+      '10 listed: MT4, MT5, cTrader, MatchTrader, TradeLocker, DXtrade, NinjaTrader, Tradovate, ProjectX, Rithmic',
+      '$10 per account monthly or $100 per account annually',
+      'data-tool-pricing="futures"',
+      'data-tool-pricing="analyzer"',
+      'data-tool-pricing="dedicated-environment"',
+      'Equity Protection is a beta control, not the firm\'s loss engine',
+      'No vendor can grant that permission.',
+      'data-tool-compliance-warning="trade-identity"',
+      'Do not use settings to disguise the origin of a trade.',
+      'data-traders-connect-test-plan="demo-first"',
+      '/blog/what-is-copy-trading',
+      '/blog/are-prop-firm-passing-services-worth-it',
+      '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+      'data-affiliate-placement="verdict"',
+    ]) {
+      if (!probe.html.includes(required) && !pageText.includes(required)) {
+        errors.push(`${path}: missing current evidence or decision boundary ${required}`)
+      }
+    }
+    for (const stale of [
+      'avoiding detection',
+      'Keeps you invisible to prop firm detection systems',
+      'without breaking prop firm rules',
+      '20–30 milliseconds',
+      '280 reviews',
+      '4.6 out of 5',
+      'one of the best copy-trading platforms',
+      'Yes. You can use Trades Connect Trade Copier',
+    ]) {
+      if (pageText.includes(stale)) {
+        errors.push(`${path}: rendered unsafe or stale claim ${stale}`)
+      }
+    }
+    const ctaTag = [...probe.html.matchAll(/<a\b[^>]*>/gi)]
+      .map(match => match[0])
+      .find(tag => tag.includes(
+        'href="/go/traders-connect?from=post-body-traders-connect-trade-copier-verdict"',
+      )) || ''
+    if (
+      !ctaTag
+      || !ctaTag.includes('rel="nofollow noopener"')
+      || ctaTag.includes('sponsored')
+    ) {
+      errors.push(`${path}: Traders Connect official CTA relationship is incorrect`)
+    }
+  }
+
   const expectedLinks = getTradingToolReviewLinks(review.slug, tradingToolPostRecords)
   const toolLinkTags = [...probe.html.matchAll(
     /<a\b[^>]*\bdata-tool-review-link=["'][^"']+["'][^>]*>/gi,
@@ -582,6 +651,12 @@ for (const review of TRADING_TOOL_REVIEWS) {
   const article = jsonLdObjects.find(value => value['@type'] === 'Article')
   if (article?.description !== post.seoDescription) {
     errors.push(`${path}: trading-tool Article schema description disagrees with metadata`)
+  }
+  if (
+    review.slug === 'traders-connect-trade-copier'
+    && article?.dateModified !== post.modified
+  ) {
+    errors.push(`${path}: Traders Connect Article schema date disagrees with evidence date`)
   }
 }
 
