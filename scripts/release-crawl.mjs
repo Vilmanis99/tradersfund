@@ -277,8 +277,43 @@ for (const page of pages) {
   const reviewedFirm = firmByReviewPath.get(path)
   if (reviewedFirm) {
     const slug = outboundSlug(reviewedFirm.name)
-    if (!page.html.includes(`/go/${slug}?from=review-cta`)) {
+    const reviewCtaTag = [...page.html.matchAll(/<a\b[^>]*>/gi)]
+      .map(match => match[0])
+      .find(tag => tag.includes(`/go/${slug}?from=review-cta`)) || ''
+    if (!reviewCtaTag) {
       errors.push(`${path}: review CTA does not open the configured firm destination`)
+    }
+    const expectedRel = reviewedFirm.affiliateUrl
+      ? 'sponsored nofollow noopener'
+      : 'nofollow noopener'
+    if (!reviewCtaTag.includes(`rel="${expectedRel}"`)) {
+      errors.push(`${path}: review CTA relationship does not match firm configuration`)
+    }
+    const expectedRelationship = reviewedFirm.affiliateUrl ? 'affiliate' : 'official'
+    const disclosureHtml = firstMatch(
+      page.html,
+      new RegExp(
+        `<p[^>]*data-affiliate-disclosure=["']${expectedRelationship}["'][^>]*>`
+        + `([\\s\\S]*?)<\\/p>`,
+        'i',
+      ),
+    )
+    const disclosureText = textContent(disclosureHtml)
+    if (!disclosureHtml) {
+      errors.push(`${path}: missing ${expectedRelationship} relationship disclosure`)
+    } else if (reviewedFirm.affiliateUrl) {
+      if (!disclosureText.includes(
+        'We may earn a commission if you sign up via eligible links on this page',
+      )) {
+        errors.push(`${path}: affiliate review disclosure is inaccurate`)
+      }
+    } else if (
+      !disclosureText.includes(
+        `does not currently record an affiliate relationship with ${reviewedFirm.name}`,
+      )
+      || !disclosureText.includes('official website without affiliate tracking')
+    ) {
+      errors.push(`${path}: official review disclosure is inaccurate`)
     }
     if (page.html.includes('Read full review')) {
       errors.push(`${path}: review CTA links back to the current review`)
@@ -540,6 +575,24 @@ for (const source of [
 ]) {
   if (!copyFxInlinks.has(source)) {
     errors.push(`${copyFxPath}: missing broker-native copying inlink from ${source}`)
+  }
+}
+
+const mffReviewPath = '/blog/my-funded-futures'
+const mffReviewInlinks = internalInlinks.get(mffReviewPath) ?? new Set()
+if (mffReviewInlinks.size < 9) {
+  errors.push(
+    `${mffReviewPath}: decision-ready review has only `
+    + `${mffReviewInlinks.size} unique internal inlinks`,
+  )
+}
+for (const source of [
+  '/blog/apex-trader-funding-review',
+  '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+  '/blog/what-is-prop-firm-consistency-rule',
+]) {
+  if (!mffReviewInlinks.has(source)) {
+    errors.push(`${mffReviewPath}: missing futures decision inlink from ${source}`)
   }
 }
 
@@ -1966,6 +2019,79 @@ for (const backlinkPath of [
     errors.push(`${backlinkPath}: HTTP ${backlinkProbe.status || backlinkProbe.error}`)
   } else if (!backlinkProbe.html.includes('href="/best-futures-prop-firms"')) {
     errors.push(`${backlinkPath}: missing contextual futures-ranking backlink`)
+  }
+}
+
+const mffReviewProbe = await fetchPage(new URL(mffReviewPath, BASE))
+if (mffReviewProbe.status !== 200) {
+  errors.push(`${mffReviewPath}: HTTP ${mffReviewProbe.status || mffReviewProbe.error}`)
+} else {
+  const mffText = textContent(mffReviewProbe.html)
+  const mffTitle = textContent(firstMatch(
+    mffReviewProbe.html,
+    /<title[^>]*>([\s\S]*?)<\/title>/i,
+  ))
+  const mffDescription = decodeHtml(firstMatch(
+    mffReviewProbe.html,
+    /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+  ) || firstMatch(
+    mffReviewProbe.html,
+    /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+  ))
+  const mffH1 = textContent(firstMatch(
+    mffReviewProbe.html,
+    /<h1\b[^>]*>([\s\S]*?)<\/h1>/i,
+  ))
+  if (mffTitle !== 'My Funded Futures Review 2026: Plans, Fees & Payouts') {
+    errors.push(`${mffReviewPath}: search title does not use the decision-specific metadata`)
+  }
+  if (mffDescription !== (
+    'My Funded Futures review of Rapid, Flex, Pro and Builder pricing, drawdown rules, '
+    + 'payout gates, recurring costs, and which plan fits each trader.'
+  )) {
+    errors.push(`${mffReviewPath}: search description does not use the decision-specific metadata`)
+  }
+  if (mffH1 !== 'My Funded Futures Review 2026: 4 Plans, 11 Prices, $0 Activation') {
+    errors.push(`${mffReviewPath}: visible H1 no longer preserves the current product snapshot`)
+  }
+  for (const required of [
+    'data-mff-review-evidence="2026-07-27"',
+    'The best plan depends on the rule that constrains the trader, not the lowest monthly fee.',
+    'data-mff-plan-decision="binding-rule"',
+    'Real-time trailing drawdown after funding plus the size-specific payout buffer',
+    '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+    '/blog/what-is-prop-firm-consistency-rule',
+    'data-mff-comparison-journey="futures-alternatives"',
+    '/compare/my-funded-futures-vs-topstep',
+    '/blog/topstep-review',
+    '/blog/take-profit-trader-review',
+    '/blog/apex-trader-funding-review',
+    'data-mff-faq="current-plans"',
+    'rank-math-question',
+  ]) {
+    if (!mffReviewProbe.html.includes(required) && !mffText.includes(required)) {
+      errors.push(`${mffReviewPath}: missing SEO or decision boundary ${required}`)
+    }
+  }
+  const mffJsonLd = [...mffReviewProbe.html.matchAll(
+    /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+  )].flatMap(match => {
+    try {
+      return [JSON.parse(match[1])]
+    } catch {
+      return []
+    }
+  })
+  const mffReview = mffJsonLd.find(value => value['@type'] === 'Review')
+  if (
+    mffReview?.dateModified !== '2026-08-18 12:00:00'
+    || mffReview?.name !== mffH1
+    || mffReview?.reviewBody !== (
+      'MFF now sells Rapid, Flex, Pro, and Builder with monthly fees from $95 to $477. '
+      + 'Compare drawdown, payout buffers, caps, and true cost.'
+    )
+  ) {
+    errors.push(`${mffReviewPath}: Review schema disagrees with current editorial data`)
   }
 }
 

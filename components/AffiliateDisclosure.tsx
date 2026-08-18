@@ -1,13 +1,26 @@
 import Link from 'next/link'
 
+interface AffiliateDisclosureProps {
+  /** Set on a single-firm review so the banner can state the exact relationship. */
+  firmName?: string
+  /** Defaults to true for mixed commercial pages that can contain eligible links. */
+  hasAffiliate?: boolean
+}
+
 /**
- * FTC §255 requires affiliate compensation disclosure to be "clear and
- * conspicuous." This banner sits directly under the H1 on monetized posts
- * (firm reviews and firm-comparison pages).
+ * FTC Section 255 requires affiliate compensation disclosure to be clear and
+ * conspicuous. Single-firm reviews pass their exact relationship; comparison
+ * and directory pages keep the mixed-page disclosure.
  */
-export default function AffiliateDisclosure() {
+export default function AffiliateDisclosure({
+  firmName,
+  hasAffiliate = true,
+}: AffiliateDisclosureProps = {}) {
+  const relationship = hasAffiliate ? 'affiliate' : 'official'
+
   return (
     <p
+      data-affiliate-disclosure={relationship}
       style={{
         margin: '0 0 1.5rem',
         padding: '8px 12px',
@@ -19,9 +32,19 @@ export default function AffiliateDisclosure() {
         lineHeight: 1.5,
       }}
     >
-      <strong style={{ color: 'var(--gold)' }}>Disclosure:</strong> We earn a
-      commission if you sign up via links on this page — at no cost to you. Our
-      reviews are independent and not influenced by partners.{' '}
+      <strong style={{ color: 'var(--gold)' }}>Disclosure:</strong>{' '}
+      {hasAffiliate ? (
+        <>
+          We may earn a commission if you sign up via eligible links on this page,
+          at no cost to you. Our reviews are independent and not influenced by partners.{' '}
+        </>
+      ) : (
+        <>
+          Traders Fund Hub does not currently record an affiliate relationship with{' '}
+          {firmName || 'this firm'}. Links to the firm open its official website without
+          affiliate tracking. Our reviews remain independent.{' '}
+        </>
+      )}
       <Link href="/disclaimers" style={{ color: 'var(--accent-light)', textDecoration: 'underline' }}>
         Learn more
       </Link>.

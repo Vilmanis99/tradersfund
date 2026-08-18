@@ -135,7 +135,7 @@ type: "post"
 <p>A manual ES, NQ or micro-futures day trader should compare the $50K EOD route when a $2,000 end-of-day loss allowance, $1,000 daily pause and 100% approved-payout split fit the strategy. Use the Standard route only after confirming the live evaluation and activation totals; use No Activation Fee only when its higher upfront fee is cheaper for the trader's expected pass rate.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid Apex Trader Funding</strong></h2>
-<p>An automated trader, a futures swing trader holding past 4:59 PM ET, or anyone wanting a PA with more than 6 payouts should avoid this product generation. Compare <a href="/blog/topstep-review">Topstep</a> for a different funded-account progression or <a href="/blog/tradeday-review">TradeDay</a> for Quick Pay and Fast Pass choices, then use the <a href="/compare/apex-trader-funding-vs-topstep">Apex vs Topstep comparison</a> to check the rule trade-offs.</p>
+<p>An automated trader, a futures swing trader holding past 4:59 PM ET, or anyone wanting a PA with more than 6 payouts should avoid this product generation. Compare <a href="/blog/topstep-review">Topstep</a> for a different funded-account progression, <a href="/blog/my-funded-futures">My Funded Futures</a> for 4 payout structures with $0 activation, or <a href="/blog/tradeday-review">TradeDay</a> for Quick Pay and Fast Pass choices, then use the <a href="/compare/apex-trader-funding-vs-topstep">Apex vs Topstep comparison</a> to check the rule trade-offs.</p>
 
 <!-- SECTION 9 - FAQ -->
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>

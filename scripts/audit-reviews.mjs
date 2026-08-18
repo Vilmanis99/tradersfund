@@ -1050,6 +1050,14 @@ function checkTrustAndCommercialSurface() {
       rows.push(`blog outbound-link rel guard is missing ${token}`)
     }
   }
+  for (const token of [
+    'firmName={matchedFirm.name}',
+    'hasAffiliate={Boolean(matchedFirm.affiliateUrl)}',
+  ]) {
+    if (!blogPage.includes(token)) {
+      rows.push(`firm-review disclosure is missing relationship input ${token}`)
+    }
+  }
   const postLinkDecorator = fs.readFileSync(
     path.join(ROOT, 'lib/postOutboundLinks.ts'),
     'utf-8',
@@ -1079,6 +1087,26 @@ function checkTrustAndCommercialSurface() {
   }
   if (firmCta.includes('href={firm.reviewUrl}') || firmCta.includes('Read full review')) {
     rows.push('review CTA must not link back to the current review')
+  }
+
+  const affiliateDisclosure = fs.readFileSync(
+    path.join(ROOT, 'components/AffiliateDisclosure.tsx'),
+    'utf-8',
+  )
+  for (const token of [
+    "const relationship = hasAffiliate ? 'affiliate' : 'official'",
+    'data-affiliate-disclosure={relationship}',
+    'We may earn a commission if you sign up via eligible links on this page',
+    'Traders Fund Hub does not currently record an affiliate relationship with',
+    'Links to the firm open its official website without',
+    "firmName || 'this firm'",
+  ]) {
+    if (!affiliateDisclosure.includes(token)) {
+      rows.push(`affiliate disclosure is missing relationship safeguard: ${token}`)
+    }
+  }
+  if (affiliateDisclosure.includes('We earn a\n      commission if you sign up via links on this page')) {
+    rows.push('affiliate disclosure restored an unconditional commission claim')
   }
 
   const mobileCta = fs.readFileSync(
@@ -6541,6 +6569,69 @@ function checkFuturesLandingCluster() {
   ]) {
     if (!read(path.join(POSTS, file)).includes('href="/best-futures-prop-firms"')) {
       rows.push(`${file}: missing contextual backlink to the futures comparison`)
+    }
+  }
+
+  const mffFile = read(path.join(POSTS, 'my-funded-futures.md'))
+  const { data: mff, content: mffContent } = matter(mffFile)
+  const expectedMffSeoTitle = 'My Funded Futures Review 2026: Plans, Fees & Payouts'
+  const expectedMffDescription =
+    'My Funded Futures review of Rapid, Flex, Pro and Builder pricing, drawdown rules, payout gates, recurring costs, and which plan fits each trader.'
+  if (
+    mff.seoTitle !== expectedMffSeoTitle
+    || mff.seoDescription !== expectedMffDescription
+    || mff.modified !== '2026-08-18 12:00:00'
+    || mff.sourceCapturedAt !== '2026-07-27'
+  ) {
+    rows.push('My Funded Futures SEO or evidence metadata is stale')
+  }
+  if (
+    String(mff.seoTitle || '').length > 60
+    || String(mff.seoDescription || '').length < 120
+    || String(mff.seoDescription || '').length > 160
+  ) {
+    rows.push('My Funded Futures search metadata is outside the editorial range')
+  }
+  for (const sourceUrl of [
+    'https://myfundedfutures.com/challenge',
+    'https://help.myfundedfutures.com/en/articles/13134709-rapid-plan-50k-a-comprehensive-look',
+    'https://help.myfundedfutures.com/en/articles/15072271-flex-plan-50-000-a-comprehensive-guide',
+    'https://help.myfundedfutures.com/en/articles/11802674-pro-plan-sim-funded-and-live-account-highlights',
+    'https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide',
+  ]) {
+    if (!mff.sourceUrls?.includes(sourceUrl)) {
+      rows.push(`My Funded Futures frontmatter is missing first-party source ${sourceUrl}`)
+    }
+  }
+  for (const token of [
+    'data-mff-review-evidence="2026-07-27"',
+    'The best plan depends on the rule that constrains the trader, not the lowest monthly fee.',
+    'data-mff-plan-decision="binding-rule"',
+    'Real-time trailing drawdown after funding plus the size-specific payout buffer',
+    'href="/blog/balance-based-drawdown-vs-equity-based-drawdown"',
+    'href="/blog/what-is-prop-firm-consistency-rule"',
+    'data-mff-comparison-journey="futures-alternatives"',
+    'href="/compare/my-funded-futures-vs-topstep"',
+    'href="/blog/topstep-review"',
+    'href="/blog/take-profit-trader-review"',
+    'href="/blog/apex-trader-funding-review"',
+    'data-mff-faq="current-plans"',
+    'rank-math-question',
+  ]) {
+    if (!mffContent.includes(token)) {
+      rows.push(`My Funded Futures review is missing SEO or decision token ${token}`)
+    }
+  }
+  if (/href=["']https?:\/\/(?:www\.)?(?:myfundedfutures\.com|help\.myfundedfutures\.com)/i.test(mffContent)) {
+    rows.push('My Funded Futures review contains a bare firm-domain link')
+  }
+  for (const [relativePath, label] of [
+    ['content/posts/apex-trader-funding-review.md', 'Apex review'],
+    ['content/posts/balance-based-drawdown-vs-equity-based-drawdown.md', 'drawdown guide'],
+    ['content/posts/what-is-prop-firm-consistency-rule.md', 'consistency guide'],
+  ]) {
+    if (!read(path.join(ROOT, relativePath)).includes('href="/blog/my-funded-futures"')) {
+      rows.push(`${label} is missing its contextual My Funded Futures backlink`)
     }
   }
   if (!read(DRAWDOWN_GUIDE_FILE).includes('href="/best-futures-prop-firms"')) {

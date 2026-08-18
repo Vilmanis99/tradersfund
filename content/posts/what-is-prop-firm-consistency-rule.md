@@ -79,6 +79,8 @@ type: "post"
   </tbody>
 </table>
 
+<p>The <a href="/blog/my-funded-futures">My Funded Futures review</a> is a useful same-firm stage comparison. Rapid, Flex, and Pro apply their captured 50% rule during evaluation rather than funded payouts, while Builder records no evaluation percentage and a 50% rule after funding. The brand and percentage stay familiar; the applicable stage reverses.</p>
+
 <p>The table is a dated product snapshot, not a permanent firm list. Use the <a href="/prop-firm-challenges">product comparison</a> for the current structured fields and the <a href="/prop-firm-challenge-changes">challenge-change ledger</a> for material rule updates. A null percentage means no verified numeric field unless the source explicitly says the rule does not apply.</p>
 
 <h2>Consistency-rule calculator: the best-day share formula</h2>

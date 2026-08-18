@@ -1,18 +1,32 @@
 ---
 title: "My Funded Futures Review 2026: 4 Plans, 11 Prices, $0 Activation"
+seoTitle: "My Funded Futures Review 2026: Plans, Fees & Payouts"
 slug: "my-funded-futures"
 date: "2025-07-15 10:00:00"
-modified: "2026-08-17 12:00:00"
+modified: "2026-08-18 12:00:00"
 author: "Tara Mohseni"
 excerpt: "MFF now sells Rapid, Flex, Pro, and Builder with monthly fees from $95 to $477. Compare drawdown, payout buffers, caps, and true cost."
+seoDescription: "My Funded Futures review of Rapid, Flex, Pro and Builder pricing, drawdown rules, payout gates, recurring costs, and which plan fits each trader."
 categories: ["Prop Firms"]
 tags: ["My Funded Futures", "Futures Prop Firm"]
 type: "post"
+sourceCapturedAt: "2026-07-27"
+sourceUrls:
+  - "https://myfundedfutures.com/challenge"
+  - "https://help.myfundedfutures.com/en/articles/13134709-rapid-plan-50k-a-comprehensive-look"
+  - "https://help.myfundedfutures.com/en/articles/15072271-flex-plan-50-000-a-comprehensive-guide"
+  - "https://help.myfundedfutures.com/en/articles/11802674-pro-plan-sim-funded-and-live-account-highlights"
+  - "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide"
 ---
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 
-<p>My Funded Futures suits futures traders who choose among 4 payout structures before subscribing.</p>
+<p><strong>My Funded Futures is best understood as 4 different payout contracts, not one challenge.</strong> Rapid prioritises early, uncapped requests; Flex lowers the entry price but caps each withdrawal; Pro delays the first request behind a buffer; Builder shortens the evaluation but adds a funded consistency rule. The best plan depends on the rule that constrains the trader, not the lowest monthly fee.</p>
+
+<div data-mff-review-evidence="2026-07-27" style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
+  <strong style="color: #fff;">Evidence boundary</strong>
+  <p style="margin: 0.45rem 0 0;">The 11 prices and rule fields below come from the accepted 27 July 2026 first-party capture and generated True-Cost audit. The 4 plan help pages were re-opened on 18 August 2026 to verify the current Rapid, Flex, Pro, and Builder structure; that check does not replace a new checkout-price capture.</p>
+</div>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>
@@ -40,6 +54,21 @@ type: "post"
   </tbody>
 </table>
 
+<h3 class="wp-block-heading"><strong>Choose the binding rule before the plan name</strong></h3>
+
+<table class="general-table" data-mff-plan-decision="binding-rule" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">My Funded Futures plan-selection matrix</caption>
+  <thead><tr style="background: var(--bg3);"><th>Plan</th><th>Useful when</th><th>Binding rule to price first</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Rapid</strong></td><td>Daily payout eligibility and a 90% split matter most</td><td>Real-time trailing drawdown after funding plus the size-specific payout buffer</td></tr>
+    <tr><td><strong>Flex</strong></td><td>The lowest captured 25K price matters more than payout size</td><td>5 qualifying winning days, 50% of profit requestable, and a $1,000 or $2,000 cap</td></tr>
+    <tr><td><strong>Pro</strong></td><td>The trader accepts a slower first request for no per-request cap after the buffer</td><td>14-day first window, $1,000 minimum request, and the size-specific buffer</td></tr>
+    <tr><td><strong>Builder</strong></td><td>A 1-day evaluation minimum and 2-day first payout window suit the process</td><td>50% funded consistency, capped withdrawals, and the selected 50K drawdown option</td></tr>
+  </tbody>
+</table>
+
+<p>Use the <a href="/blog/balance-based-drawdown-vs-equity-based-drawdown">drawdown guide</a> to compare Rapid's funded real-time trail with the end-of-day products, and run each payout rule through the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule formulas</a>. A faster eligibility date is not useful when the buffer, cap, or best-day rule blocks the intended request.</p>
+
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
 <p>All 11 rows below use undiscounted first-month list prices from the 2026-07-27 capture. The pricing model is a 30-day subscription, so passing in month 2 or later adds another renewal; “cost to funded” in the true-cost section assumes a month-1 pass.</p>
@@ -65,6 +94,8 @@ type: "post"
 <p>Pricing and rules are current as of 2026-07-27. Rapid’s $109 25K tier renews at $97; the other captured tiers renew at list price. A temporary 50% first-month coupon was active at capture but is excluded from every table because it expires and does not lower later renewals.</p>
 
 <p><strong>Futures comparison.</strong> The <a href="/best-futures-prop-firms">product-level futures comparison</a> places My Funded Futures’ 4 current plans beside other monthly and one-time-fee products while keeping drawdown type, payout split and first-party capture dates visible.</p>
+
+<p data-mff-comparison-journey="futures-alternatives">For a two-brand decision, open the <a href="/compare/my-funded-futures-vs-topstep">My Funded Futures vs Topstep comparison</a>. The <a href="/blog/topstep-review">Topstep</a>, <a href="/blog/take-profit-trader-review">Take Profit Trader</a>, and <a href="/blog/apex-trader-funding-review">Apex</a> reviews explain the stage, billing, and drawdown differences behind the wider futures table.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 
@@ -177,20 +208,11 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
-<h3 class="wp-block-heading"><strong>What My Funded Futures plans are current in 2026?</strong></h3>
-<p>The 2026-07-27 capture contains Rapid, Flex, Pro, and Builder. The old Scale label is not among the 4 current product records and should not be used in price comparisons.</p>
-
-<h3 class="wp-block-heading"><strong>Does My Funded Futures charge an activation fee?</strong></h3>
-<p>No: activation is $0 on all 11 captured tiers. The recurring cost is the 30-day evaluation subscription, so every extra month before passing adds another renewal.</p>
-
-<h3 class="wp-block-heading"><strong>Which MFF plan pays fastest?</strong></h3>
-<p>Rapid has the earliest first request at 1 day and then a 24-hour cadence. Builder is 2 days, Flex is 5 qualifying winning days, and Pro is 14 days.</p>
-
-<h3 class="wp-block-heading"><strong>Which MFF plan has the highest split?</strong></h3>
-<p>Rapid pays 90%; Flex, Pro, and Builder each pay 80%. A $109 Rapid 25K subscription therefore has a generated $121 break-even, while the $105 Builder 25K needs $131.</p>
-
-<h3 class="wp-block-heading"><strong>Can traders in India use My Funded Futures?</strong></h3>
-<p>There is not enough dated first-party evidence in the current capture to answer yes. Traders Fund Hub needs an India restriction-list check, working checkout method, KYC document list, and payout-route confirmation before adding MFF to the India shortlist.</p>
-
-<h3 class="wp-block-heading"><strong>Does MFF allow overnight or automated trading?</strong></h3>
-<p>All 4 product records set overnight holding to false and mark EA use as restricted. News and copy trading are also restricted, so automation or event-driven systems need written plan-specific confirmation before purchase.</p>
+<div class="wp-block-rank-math-faq-block" data-mff-faq="current-plans">
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">What My Funded Futures plans are current in 2026?</h3><div class="rank-math-answer">The 2026-07-27 capture contains Rapid, Flex, Pro, and Builder. The old Scale label is not among the 4 current product records and should not be used in price comparisons.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Does My Funded Futures charge an activation fee?</h3><div class="rank-math-answer">No: activation is $0 on all 11 captured tiers. The recurring cost is the 30-day evaluation subscription, so every extra month before passing adds another renewal.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Which MFF plan pays fastest?</h3><div class="rank-math-answer">Rapid has the earliest first request at 1 day and then a 24-hour cadence. Builder is 2 days, Flex is 5 qualifying winning days, and Pro is 14 days.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Which MFF plan has the highest split?</h3><div class="rank-math-answer">Rapid pays 90%; Flex, Pro, and Builder each pay 80%. A $109 Rapid 25K subscription therefore has a generated $121 break-even, while the $105 Builder 25K needs $131.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Can traders in India use My Funded Futures?</h3><div class="rank-math-answer">There is not enough dated first-party evidence in the current capture to answer yes. Traders Fund Hub needs an India restriction-list check, working checkout method, KYC document list, and payout-route confirmation before adding MFF to the India shortlist.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Does MFF allow overnight or automated trading?</h3><div class="rank-math-answer">All 4 product records set overnight holding to false and mark EA use as restricted. News and copy trading are also restricted, so automation or event-driven systems need written plan-specific confirmation before purchase.</div></div>
+</div>

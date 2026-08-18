@@ -159,7 +159,12 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="post-shell post-body">
         <div className="post-layout">
           <article>
-            {matchedFirm && <AffiliateDisclosure />}
+            {matchedFirm && (
+              <AffiliateDisclosure
+                firmName={matchedFirm.name}
+                hasAffiliate={Boolean(matchedFirm.affiliateUrl)}
+              />
+            )}
             {matchedFirm && <FirmCtaCard firm={matchedFirm} />}
             {matchedFirm && <FirmStatPanel firm={matchedFirm} />}
             <TradingToolReviewStatus post={post} />
