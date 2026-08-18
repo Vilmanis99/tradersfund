@@ -525,6 +525,24 @@ for (const source of [
   }
 }
 
+const copyFxPath = '/blog/copyfx-review'
+const copyFxInlinks = internalInlinks.get(copyFxPath) ?? new Set()
+if (copyFxInlinks.size < 9) {
+  errors.push(
+    `${copyFxPath}: source-checked review has only `
+    + `${copyFxInlinks.size} unique internal inlinks`,
+  )
+}
+for (const source of [
+  '/blog/what-is-copy-trading',
+  '/blog/zulutrade-review',
+  '/blog/traders-connect-trade-copier',
+]) {
+  if (!copyFxInlinks.has(source)) {
+    errors.push(`${copyFxPath}: missing broker-native copying inlink from ${source}`)
+  }
+}
+
 const wyckoffGuidePath = '/blog/wyckoff-pattern'
 const wyckoffInlinks = internalInlinks.get(wyckoffGuidePath) ?? new Set()
 if (wyckoffInlinks.size < 8) {
@@ -837,6 +855,71 @@ for (const review of TRADING_TOOL_REVIEWS) {
     }
   }
 
+  if (review.slug === 'copyfx-review') {
+    for (const required of [
+      'data-tool-evidence-captured="2026-08-18"',
+      'Traders Fund Hub does not currently record an affiliate relationship with CopyFX or RoboForex.',
+      'data-copyfx-rebrand="copy-trading-service"',
+      '6 November 2025',
+      'data-copyfx-platforms="mt4-mt5-rstockstrader"',
+      'data-copyfx-cross-platform="not-supported"',
+      'Copy Trading Service does not currently support cross-platform copying.',
+      'data-copyfx-investor-minimum="trader-defined"',
+      'Trader sets the minimum USD deposit',
+      'data-copyfx-copy-modes="proportional-classic-fixed"',
+      'data-copyfx-fee-boundary="strategy-specific"',
+      'data-copyfx-performance-conflict="zero-vs-five"',
+      'Trader page hero shows 0%-50%; its detailed FAQ and current help say 5%-50%',
+      'data-copyfx-evidence="2026-08-18"',
+      'data-copyfx-rating="record-quality"',
+      'data-copyfx-incentive="partner-promotion"',
+      'data-copyfx-subscription-lifecycle="pause-vs-cancel"',
+      'data-copyfx-test-plan="subscriber-lifecycle"',
+      'data-copyfx-regulation="roboforex-ltd"',
+      'registration/licence number 9759600',
+      '/blog/what-is-copy-trading',
+      '/blog/zulutrade-review',
+      '/blog/traders-connect-trade-copier',
+      '/blog/balance-based-drawdown-vs-equity-based-drawdown',
+      '/blog/what-is-overtrading',
+      'data-affiliate-placement="verdict"',
+    ]) {
+      if (!probe.html.includes(required) && !pageText.includes(required)) {
+        errors.push(`${path}: missing current evidence or broker-native boundary ${required}`)
+      }
+    }
+    const lowerPageText = pageText.toLowerCase()
+    for (const stale of [
+      'eureka!',
+      'best copy trading platform 2025',
+      'trustfinance business bangkok 2025',
+      'copy trades with just $10',
+      'cross copying',
+      'between 1 and 10 usd per lot',
+      'up to 100 times',
+      'trustpilot',
+      'one of the best copy trading platforms',
+      'reliable copy trading platform',
+      'more than 12,000',
+    ]) {
+      if (lowerPageText.includes(stale)) {
+        errors.push(`${path}: rendered promotional, unsafe or stale claim ${stale}`)
+      }
+    }
+    const ctaTag = [...probe.html.matchAll(/<a\b[^>]*>/gi)]
+      .map(match => match[0])
+      .find(tag => tag.includes(
+        'href="/go/copyfx?from=post-body-copyfx-review-verdict"',
+      )) || ''
+    if (
+      !ctaTag
+      || !ctaTag.includes('rel="nofollow noopener"')
+      || ctaTag.includes('sponsored')
+    ) {
+      errors.push(`${path}: CopyFX official CTA relationship is incorrect`)
+    }
+  }
+
   const expectedLinks = getTradingToolReviewLinks(review.slug, tradingToolPostRecords)
   const toolLinkTags = [...probe.html.matchAll(
     /<a\b[^>]*\bdata-tool-review-link=["'][^"']+["'][^>]*>/gi,
@@ -913,6 +996,12 @@ for (const review of TRADING_TOOL_REVIEWS) {
     && article?.dateModified !== post.modified
   ) {
     errors.push(`${path}: ZuluTrade Article schema date disagrees with evidence date`)
+  }
+  if (
+    review.slug === 'copyfx-review'
+    && article?.dateModified !== post.modified
+  ) {
+    errors.push(`${path}: CopyFX Article schema date disagrees with evidence date`)
   }
 }
 

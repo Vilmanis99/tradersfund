@@ -1,655 +1,210 @@
 ---
-title: "CopyFX Review: Copy Modes, Fees and Account Rules"
-seoTitle: "CopyFX Review: Copy Modes, Fees and Account Rules"
+title: "CopyFX Review: New Name, Fees & Copy Risks"
+seoTitle: "CopyFX Review: New Name, Fees & Copy Risks"
 slug: "copyfx-review"
 date: "2025-07-15 19:03:38"
-modified: "2025-07-22 18:16:45"
+modified: "2026-08-18 12:00:00"
 author: "Tara Mohseni"
-excerpt: "A dated review of CopyFX investor and trader modes, account requirements, fee models, analytics, and platform limitations."
-seoDescription: "Review CopyFX copy modes, account requirements, fee models, strategy analytics, limitations, and the article's editorial update date."
-categories: ["Copy Trading"]
-tags: []
+excerpt: "A source-checked review of CopyFX's rebrand to Copy Trading Service, current fees, copy modes, platform limits, regulation, and test risks."
+seoDescription: "CopyFX review covering its Copy Trading Service rebrand, current fees, copy modes, platform limits, investor risks, regulation, and a staged test plan."
+categories: ["Copy Trading", "Trading Tools"]
+tags: ["CopyFX", "RoboForex", "copy trading", "social trading", "risk management"]
 type: "post"
+sourceCapturedAt: "2026-08-18"
+sourceUrls:
+  - "https://roboforex.com/about/company/news/show/upgraded-copy-trading-service/"
+  - "https://roboforex.com/copy-trading/copy-top-strategies/"
+  - "https://roboforex.com/copy-trading/share-your-strategy/"
+  - "https://roboforex.com/help/faq/copy-trading-traders/subscription-conditions-from-a-to-z/"
+  - "https://roboforex.com/help/faq/copy-trading-investors/what-is-a-copying-mode/"
+  - "https://roboforex.com/help/faq/copy-trading-investors/how-and-where-do-i-manage-my-subscriptions/"
+  - "https://roboforex.com/help/faq/copy-trading-investors/why-wasnt-the-trade-copied-to-my-account/"
+  - "https://roboforex.com/help/faq/copy-trading-investors/what-do-i-pay-for-copying/"
+  - "https://roboforex.com/help/faq/copy-trading-rating/what-information-is-displayed-in-the-rating/"
+  - "https://roboforex.com/about/company/regulation/"
 ---
 
-<p>Eureka! That’s what Archimedes shouted when he suddenly discovered the principle of buoyancy, right in the middle of a bath. It was his lightbulb moment, that magical second when everything just clicks.</p>
+<p><strong>CopyFX is now called RoboForex Copy Trading Service.</strong> RoboForex announced the new name on 6 November 2025 and moved MT4, MT5, and R StocksTrader strategies into one public rating. The old CopyFX name remains useful for finding the service, but a current account should show Copy Trading Service rather than the product presentation described in older reviews.</p>
 
-<p>Now, what if I told you that discovering this CopyFX review could be your Eureka moment?</p>
+<p>The service is a broker-native way to subscribe to another RoboForex client's strategy. It combines strategy discovery, automatic order copying, position-size rules, and trader compensation inside one broker relationship. That convenience does not make the Leader's return transferable: account equity, platform, instruments, margin, rounding, spread, execution, and manual actions can produce a different result for the Investor.</p>
 
-<p>Maybe you already have a RoboForex account but aren’t sure how copy trading works. Or maybe you’ve been searching high and low for a copy trading platform that’s reliable, award-winning, and works across global markets. Well, just like Archimedes found his answer in the bath, you might be about to find yours, right here.</p>
-
-<p>This review of the CopyFX trading platform has everything you need to understand how it works, why it stands out, and how you can start using it with confidence. So stick with me, you might just shout Eureka! by the end.</p>
+<div data-tool-evidence-captured="2026-08-18" style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
+  <strong style="color: #fff;">Editorial position</strong>
+  <p style="margin: 0.45rem 0 0;">Traders Fund Hub does not currently record an affiliate relationship with CopyFX or RoboForex. The verdict CTA uses our audited official redirect. Product, fee, account, rating, legal, and lifecycle claims link to first-party RoboForex pages captured on 18 August 2026; commercial status contributes 0 points to this assessment.</p>
+</div>
 
 <div class="key-takeaways">
-  <div class="title">Key Takeaways</div>
-  <ul>
-    <li>CopyFX is the official copy trading platform by RoboForex, supporting MT4, MT5, and R StocksTrader accounts.</li>
-    <li>Investors can copy professional traders using various copy modes: Proportional, Classic, and Fixed.</li>
-    <li>Traders can earn via four commission models: Performance Fee, Volume Fee, Subscription Fee, or No Commission.</li>
-    <li>Cross Copying allows copying strategies even across different account types.</li>
-    <li>CopyFX provides powerful strategy analytics like Sharpe ratio, drawdown, and investor stats to evaluate traders.</li>
-    <li>The platform was awarded "Best Copy Trading Platform 2025 (International)" by TrustFinance in Bangkok.</li>
-    <li>Minimum deposit to invest is $10; traders can start with $100 depending on the platform.</li>
-    <li>CopyFX supports a wide range of markets: Forex, Stocks, Commodities, ETFs, Metals, Indices, and Futures.</li>
-    <li>Deposit and withdrawal options include bank transfers, e-wallets like AstroPay, and cards, with flexible limits and fees.</li>
-    <li>The CopyFX affiliate program allows traders to boost visibility and earnings by referring new investors.</li>
-    <li>User reviews on Trustpilot are mostly positive, but some mention payment delays or platform usability concerns.</li>
-  </ul>
+  <div class="title">CopyFX in 8 checks</div>
+  <ol>
+    <li><strong>New name:</strong> CopyFX became Copy Trading Service on 6 November 2025.</li>
+    <li><strong>One rating, separate platforms:</strong> MT4, MT5, and R StocksTrader strategies appear together, but cross-platform copying is not supported.</li>
+    <li><strong>3 size modes:</strong> current help documents Proportional, Classic, and Fixed copying.</li>
+    <li><strong>Strategy-specific minimum:</strong> each Trader sets the Investor's minimum subscription deposit; the public $100 threshold is for a Trader to publish subscription conditions.</li>
+    <li><strong>Current compensation:</strong> detailed help lists Performance Fee from 5% to 50% or No Commission, with 1-, 2-, or 4-week periods.</li>
+    <li><strong>Public fee conflict:</strong> the trader landing page displays 0%-50%, while its detailed FAQ says 5%-50%; check the live strategy terms.</li>
+    <li><strong>Stopping has a lifecycle:</strong> Pause leaves existing copied trades synchronised; Cancel leaves them open under the Investor's control.</li>
+    <li><strong>Availability is restricted:</strong> the named broker entity is RoboForex Ltd under Belize FSC registration/licence 9759600, and the site says it does not target EU, EEA, or UK clients.</li>
+  </ol>
 </div>
 
-<h2 class="wp-block-heading">What Is CopyFX by RoboForex?</h2>
+<h2>What happened to CopyFX?</h2>
 
-<figure class="wp-block-gallery has-nested-images columns-default is-cropped">
-<figure class="wp-block-image size-large rounded-img"><img src="/images/wp/2025/07/copyfx-trading-1.jpg" alt="CopyFX Review 2025" class="wp-image-2263"/></figure>
-</figure>
+<p data-copyfx-rebrand="copy-trading-service">RoboForex's <a href="https://roboforex.com/about/company/news/show/upgraded-copy-trading-service/" target="_blank" rel="nofollow noopener">6 November 2025 announcement</a> says CopyFX was upgraded and renamed <strong>Copy Trading Service</strong>. It introduced a consolidated strategy rating across MT4, MT5, and R StocksTrader, public rating access without login, shareable strategy pages, and one route for discovery, subscription, and fund management.</p>
 
-<p>There are various copy trading platforms out there, I’ve talked about quite a few on the <a href="/blog">Traders Fund Hub blog</a>. This time, let’s take a closer look at CopyFX, a specific copy trading platform designed for the RoboForex broker.</p>
+<p>The rebrand changes the product vocabulary, not the basic relationship. A Trader publishes a strategy and subscription conditions; an Investor selects that strategy and permits the service to copy individual orders into a separate account. Funds remain in the Investor's broker account, but the copied positions expose those funds to leveraged-market risk and to the settings chosen for the subscription.</p>
 
-<p>In case you’re not familiar, RoboForex is a global online broker that gives you access to a wide range of markets like Forex, stocks, indices, cryptocurrencies, ETFs, and commodities. You can trade through popular platforms such as MetaTrader 4 (MT4), MetaTrader 5 (MT5), and R StocksTrader.</p>
+<p>The retained CopyFX URL answers the old-name search intent without creating a duplicate article. Readers comparing models should use the <a href="/blog/what-is-copy-trading">copy-trading guide</a> first: Copy Trading Service is broker-native, whereas the <a href="/blog/zulutrade-review">ZuluTrade review</a> covers a social platform that connects multiple broker paths and the <a href="/blog/traders-connect-trade-copier">Traders Connect review</a> covers a private copier for accounts a trader already controls.</p>
 
-<p>CopyFX, sometimes called CopyFX RoboForex, is the copy trading side of the RoboForex broker. It’s built for both traders (called Leaders) and investors (also known as copiers). That broker-native structure differs from the multi-broker social model examined in the <a href="/blog/zulutrade-review">ZuluTrade review</a>.</p>
+<h2>Unified rating does not mean cross-platform copying</h2>
 
-<p>Now, if you’re wondering how RoboForex and CopyFX actually work together or where the heck to start, don’t stress! This CopyFX review will walk you through everything you need to know.</p>
+<p data-copyfx-cross-platform="not-supported">The distinction is explicit in the <a href="https://roboforex.com/copy-trading/share-your-strategy/" target="_blank" rel="nofollow noopener">current strategy-sharing page</a>: <strong>Copy Trading Service does not currently support cross-platform copying.</strong> A Trader can publish separate accounts on more than one platform, but a consolidated discovery page does not turn an MT4 strategy into an MT5 or R StocksTrader execution stream.</p>
 
-<h2 class="wp-block-heading">CopyFX Review on Features and Opportunities</h2>
+<table data-copyfx-platforms="mt4-mt5-rstockstrader" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">CopyFX platform boundaries captured on 18 August 2026</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Platform</th><th style="padding: 8px 12px; text-align: left;">Trader-account condition stated by RoboForex</th><th style="padding: 8px 12px; text-align: left;">Investor check</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>MT4</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Any real MT4 account</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Confirm the strategy, symbols, lot steps, and receiving account are compatible</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>MT5</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">A real MT5 account with Hedge enabled</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Do not assume a netting account can reproduce the same order lifecycle</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>R StocksTrader</strong></td><td style="padding: 8px 12px;">A real R StocksTrader account with Hedge enabled</td><td style="padding: 8px 12px;">Verify each instrument is available and copyable on the receiving account</td></tr>
+  </tbody>
+</table>
 
-<p>On May 21, 2025, RoboForex was honored with the prestigious “Best Copy Trading Platform 2025 (International)” award at the TrustFinance Business Bangkok 2025 event.</p>
+<p>Compatibility is more specific than the platform logo. RoboForex's current help says unsupported instruments are not copied, insufficient funds can skip a transaction, and a copied size can round to zero. A ProCent account, for example, supports a narrower asset set than some other accounts. Check the exact source and destination account before treating a visible strategy as executable.</p>
 
-<p>This isn’t the first time RoboForex has won awards for its <a href="/blog/what-is-copy-trading">copy trading</a> services through its unique platform, CopyFX. But what exactly makes CopyFX RoboForex stand out as one of the best copy trading platforms in the world? What features truly set it apart from the competition?</p>
+<h2>Current minimums and account boundary</h2>
 
-<p>In the rest of this CopyFX review, I’ll walk you through the standout features that make this platform worth a look:</p>
+<p data-copyfx-investor-minimum="trader-defined">The old claim that every Investor can start copying with $10 is not supported by the current product rules. The <a href="https://roboforex.com/help/faq/copy-trading-traders/subscription-conditions-from-a-to-z/" target="_blank" rel="nofollow noopener">current subscription-conditions page</a> says the <strong>Trader sets the minimum USD deposit</strong> an Investor needs for that specific strategy. Read the amount on the live offer before funding.</p>
 
-<h3 class="wp-block-heading">Manual management</h3>
+<p>The separate $100 figure applies to strategy providers. RoboForex says a Trader must deposit at least <strong>$100</strong> into the appropriate real account before setting subscription terms and sharing a strategy. That threshold does not prove the Trader has enough capital for the risk taken, and it is not a universal Investor minimum.</p>
 
-<p>With CopyFX RoboForex, you're not just copying trades passively; you can take control. You are free to pause copying, set pending orders on copied trades, or even close trades manually if needed.</p>
+<p>Do not copy a static table of Prime, ECN, Pro, ProCent, or R StocksTrader leverage and spreads from an old review. Broker account specifications can change by entity, platform, instrument, country, and offer. The decision-relevant test is the live account that will receive the orders: base currency, leverage, contract size, minimum lot, lot step, margin rule, symbol list, spread, commission, swap, and stop-out level.</p>
 
-<h3 class="wp-block-heading">Flexible copying</h3>
+<h2>Copying modes: 3 different risk calculations</h2>
 
-<p>CopyFX lets you copy trades with a customizable ratio. This means you can scale up or down based on your own risk preferences and profit goals. It’s really handy!</p>
+<p>The <a href="https://roboforex.com/help/faq/copy-trading-investors/what-is-a-copying-mode/" target="_blank" rel="nofollow noopener">current copying-mode help</a> documents 3 modes. The label is not a risk limit; it is the formula used to translate a source order into an Investor order.</p>
 
-<h3 class="wp-block-heading">Funds secured</h3>
+<table data-copyfx-copy-modes="proportional-classic-fixed" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">Current Copy Trading Service position-size modes</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Mode</th><th style="padding: 8px 12px; text-align: left;">Current calculation</th><th style="padding: 8px 12px; text-align: left;">Main failure test</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Proportional</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Uses Investor equity divided by Trader equity, then applies copied volume and a coefficient</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">A deposit, withdrawal, loss, or coefficient change can alter later position sizes</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Classic</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Multiplies the Trader's exact volume by the Investor's volume multiplier; equity is ignored</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">A source size suitable for a larger account can be excessive for a smaller Investor</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Fixed</strong></td><td style="padding: 8px 12px;">Copies every new order at the Investor's selected lot size, regardless of Trader volume or either equity</td><td style="padding: 8px 12px;">The fixed amount can understate small source trades and overstate large-risk or multi-entry sequences</td></tr>
+  </tbody>
+</table>
 
-<p>When you use RoboForex for copy trading, your funds stay safely in your own account, and only you can access or manage them. That’s peace of mind, right there.</p>
+<p>RoboForex also says invalid sizes are adjusted to an allowed value, unless a selected round-down rule makes the amount zero. Test the smallest and largest source orders, multiple simultaneous positions, partial closes, changed stops, and insufficient-margin behavior. A mathematically correct multiplier can still create a poor risk result.</p>
 
-<h3 class="wp-block-heading">Fast and Reliable Payment System</h3>
+<h2>CopyFX fees and the current public conflict</h2>
 
-<p>CopyFX supports a wide range of payment systems for deposits and withdrawals, so you can move your funds in and out easily, without a struggle.</p>
+<p data-copyfx-fee-boundary="strategy-specific">There are 3 separate cost layers: the Trader's stated compensation, normal broker trading costs, and account-funding or conversion costs. RoboForex advertises no additional service usage fee, but its <a href="https://roboforex.com/help/faq/copy-trading-investors/what-do-i-pay-for-copying/" target="_blank" rel="nofollow noopener">current Investor fee help</a> says Performance Fee is the most common commission type. “No usage fee” therefore should not be read as “no cost to copy.”</p>
 
-<h3 class="wp-block-heading">Flexible Commission Schemes</h3>
+<table data-copyfx-evidence="2026-08-18" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">Copy Trading Service fee evidence captured on 18 August 2026</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Item</th><th style="padding: 8px 12px; text-align: left;">Current first-party statement</th><th style="padding: 8px 12px; text-align: left;">Decision boundary</th></tr></thead>
+  <tbody>
+    <tr data-copyfx-performance-conflict="zero-vs-five"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Performance Fee</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Trader page hero shows 0%-50%; its detailed FAQ and current help say 5%-50%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Use the percentage displayed on the live strategy before subscribing</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>No Commission</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Current help lists a Trader Without Commission option</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Spread, commission, swap, slippage, and funding costs can remain</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Investment period</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1, 2, or 4 weeks; commission is normally credited at period end</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Cancellation can trigger outstanding commission calculation earlier</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Legacy fee labels</strong></td><td style="padding: 8px 12px;">Current English help does not list the old Volume Fee or Subscription Fee as general choices</td><td style="padding: 8px 12px;">Do not rely on an old CopyFX four-scheme table; inspect the actual offer</td></tr>
+  </tbody>
+</table>
 
-<p>If you're a trader using CopyFX, you can choose how you get paid:</p>
+<p>The fee is reserved rather than immediately sent to the Trader, then transferred at the end of the investment period or when the Investor unsubscribes. This describes the service calculation, not net profitability. Compare the Investor's broker statement after spread, commission, swap, currency conversion, deposit or withdrawal charges, and any copied-position divergence.</p>
 
-<ul class="wp-block-list">
-<li>A fixed amount per profitable trade</li>
+<h2>How to read the rating without chasing returns</h2>
 
-<li>A percentage of the profit</li>
+<p data-copyfx-rating="record-quality">The <a href="https://roboforex.com/help/faq/copy-trading-rating/what-information-is-displayed-in-the-rating/" target="_blank" rel="nofollow noopener">current rating help</a> lists Profit in USD, Yield, Maximum Drawdown, current Balance, and Investor count. It can filter by period and commission scheme, and it exposes a Partner Program filter. These fields help narrow a list; they do not establish strategy quality on their own.</p>
 
-<li>Or even no commission at all (if you just want to attract investors)</li>
-</ul>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">Copy Trading Service strategy due-diligence checks</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Displayed field</th><th style="padding: 8px 12px; text-align: left;">What to test</th><th style="padding: 8px 12px; text-align: left;">Warning sign</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Yield</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Compare full history with shorter periods and identify balance-operation boundaries</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">A short surge dominates the rank or the underlying risk is unclear</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Maximum drawdown</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Read the platform's equity-versus-balance definition and inspect open exposure</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">The strategy keeps losses open, adds to losers, or lacks a complete adverse period</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Balance</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Compare capital with order size, concentration, and leverage</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Small capital supports a large headline return through excessive exposure</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Investors</strong></td><td style="padding: 8px 12px;">Treat follower count as adoption, not audited performance</td><td style="padding: 8px 12px;">Popularity substitutes for a documented risk and execution review</td></tr>
+  </tbody>
+</table>
 
-<p>I’ll dive deeper into these commission models a bit later in this CopyFX review.</p>
+<p data-copyfx-incentive="partner-promotion">Promotion can affect discovery. Current subscription conditions allow a Trader to set a Partner commission rate from 10% to 90%, and the rating can filter for Partner Program participants. That does not make a listed strategy poor, but it means referrals and Investor count are not independent proof of trading skill. Check performance, risk, fee, and account compatibility separately.</p>
 
-<h3 class="wp-block-heading">Robust Strategy Analytics</h3>
+<p>Use the <a href="/blog/balance-based-drawdown-vs-equity-based-drawdown">balance-versus-equity drawdown guide</a> when reading the rating. A realised balance can look stable while equity falls through open losses, and one published drawdown number cannot reveal every intraday path, concentration, recovery time, or tail event.</p>
 
-<p>CopyFX gives you access to detailed performance metrics like Sharpe ratio, drawdowns, number of active days, and total investors. This helps you compare traders and make smarter decisions when choosing who to copy.</p>
+<h2>Execution and skipped-trade risks</h2>
 
-<h3 class="wp-block-heading">Variety of Copy Modes</h3>
+<p>Automatic copying creates a new order in the Investor account; it does not transfer the Trader's fill. The Investor can receive another price, size, cost, or no order. RoboForex's <a href="https://roboforex.com/help/faq/copy-trading-investors/why-wasnt-the-trade-copied-to-my-account/" target="_blank" rel="nofollow noopener">current troubleshooting page</a> lists pending subscription approval, no new source trade, insufficient funds, unavailable instruments, Pause mode, and volume rounded to zero as reasons a trade may not copy.</p>
 
-<p>A copy mode is a setting you choose when you subscribe to a trading strategy. It helps decide how much of each trade from that strategy will be copied to your own account, based on a specific ratio.</p>
+<p>Other practical differences include spread widening, slippage, latency, market hours, contract specification, leverage, margin, stop distance, rejected changes, partial execution, swap, and manual intervention. A skipped entry can also break later actions: if the Investor never opened the position, a copied stop change or close has nothing to manage. Reconcile order IDs and broker statements instead of comparing only percentage return.</p>
 
-<p>CopyFX offers a few different copy modes so traders can start copy trading in a way that suits them best.</p>
+<p>The service does not remove behavioral risk. Copying a high-ranked Trader after a winning streak, increasing a coefficient after losses, or subscribing to several correlated strategies can magnify exposure. The <a href="/blog/what-is-overtrading">overtrading guide</a> provides a useful limit framework for total positions, daily loss, and intervention rules.</p>
 
-<ul class="wp-block-list">
-<li>Proportional: Adjusts trade size based on your balance versus the trader’s balance.</li>
+<h2>Pause, cancel, and the open-position trap</h2>
 
-<li>Classic: Copies at fixed volumes relative to the trader’s lot size.</li>
+<p data-copyfx-subscription-lifecycle="pause-vs-cancel">The <a href="https://roboforex.com/help/faq/copy-trading-investors/how-and-where-do-i-manage-my-subscriptions/" target="_blank" rel="nofollow noopener">current subscription-management help</a> gives Pause and Cancel different consequences. <strong>Pause</strong> stops new trades, but positions copied before the pause remain open and continue following the Trader. <strong>Cancel</strong> also leaves existing copied positions open, but the Investor takes full responsibility for managing and closing them.</p>
 
-<li>Fixed: Uses exactly the lot size you set, regardless of the trader’s trade size.</li>
-</ul>
+<p>Cancellation can deduct outstanding commission for already closed copied trades within minutes. A user who intends to exit therefore needs 3 checks: whether copied positions remain open, whether pending orders remain, and what commission is reserved. Do not treat an inactive subscription badge as evidence that market exposure is zero.</p>
 
-<h3 class="wp-block-heading">Cross‑Platform & Account Support</h3>
+<h2>A staged Copy Trading Service test plan</h2>
 
-<p>You can use CopyFX on MT4, MT5, and R StocksTrader. It even supports cent (micro) accounts, which is perfect for testing alongside pro accounts for more serious strategies. In the following section of this CopyFX review, I’ll break down each account type's model and explain how they work in more detail.</p>
+<table data-copyfx-test-plan="subscriber-lifecycle" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">CopyFX test plan before increasing copied capital</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Stage</th><th style="padding: 8px 12px; text-align: left;">Test</th><th style="padding: 8px 12px; text-align: left;">Pass condition</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>1. Eligibility</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Confirm country, contracting entity, platform, account type, instruments, and live strategy minimum</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Every permission and cost is visible before funding</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>2. Record audit</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Inspect full history, yield boundaries, maximum drawdown, open exposure, capital, fee, and Partner status</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">The strategy has enough evidence for a written maximum-loss plan</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>3. Small account</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Use the smallest suitable isolated account and conservative copy mode</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Largest expected source order fits margin and loss limits after rounding</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>4. Lifecycle</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Observe entry, stop, take profit, edit, partial close, full close, skipped trade, and simultaneous positions</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Broker-side orders reconcile with understood differences and no orphan exposure</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>5. Offboarding</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Rehearse Pause, resume, Cancel, manual flattening, and commission deduction</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">The Investor can identify and close every remaining position and order</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>6. Scale decision</strong></td><td style="padding: 8px 12px;">Compare Trader and Investor statements across a representative live sample</td><td style="padding: 8px 12px;">Observed slippage, costs, omissions, and drawdown remain inside the written budget</td></tr>
+  </tbody>
+</table>
 
-<h3 class="wp-block-heading">Minimum Requirements</h3>
+<p>RoboForex suggests ProCent for lower-capital real-market strategy testing, but the account supports a narrower instrument set and lower nominal capital does not make leveraged trading safe. Use it only when the intended strategy and symbols are compatible. A demo or cent test proves workflow behavior, not future return or live execution at scale.</p>
 
-<p>Getting started is easy:</p>
+<h2>Regulation and country availability</h2>
 
-<ul class="wp-block-list">
-<li>Copy trades with just $10</li>
+<p data-copyfx-regulation="roboforex-ltd">The <a href="https://roboforex.com/about/company/regulation/" target="_blank" rel="nofollow noopener">current regulation page</a> identifies <strong>RoboForex Ltd</strong> as registered with the Financial Services Commission of Belize under the Securities Industry Act 2021, registration/licence number <strong>9759600</strong>. That is the named broker entity on the captured public site; it is not a guarantee of strategy quality, copied execution, profitability, or recovery.</p>
 
-<li>Or start your own strategy with as little as $100 on MT5 or R StocksTrader</li>
-</ul>
+<p>The same current site says RoboForex Ltd and its partners do not target EU, EEA, or UK clients and lists the US, Canada, Japan, Australia, and numerous other restricted territories. Availability, legal entity, client classification, account type, protections, and recourse must be checked in the live onboarding flow for the user's residence before any deposit.</p>
 
-<h3 class="wp-block-heading">24/7 Online Live Support</h3>
+<p>Copy trading adds a provider-selection risk to ordinary leveraged CFD risk. The Investor chooses the Trader and remains responsible for losses according to RoboForex's current help. A licence for the broker does not approve each Trader, audit each strategy description, or promise that the rating captures every relevant risk.</p>
 
-<p>Got questions? Problems? No worries! CopyFX offers round-the-clock live support to help you out whenever you need it.</p>
-
-<h2 class="wp-block-heading">CopyFX Review on Trading Accounts</h2>
-
-<p>Like I mentioned at the start of this CopyFX review, this copy trading platform is actually part of the Roboforex broker. That means you can start your copy trading journey on CopyFX using the different account types offered by Roboforex. I’ve listed them all with full details below:</p>
-
-<h3 class="wp-block-heading">Prime Account</h3>
-
-<p>This account type is great for high-volume or frequent traders who need top-notch trading conditions. Here are the other details of the CopyFX Prime account.</p>
-
-<figure class="wp-block-gallery has-nested-images columns-default is-cropped">
-<figure class="wp-block-image size-large rounded-img"><img src="/images/wp/2025/07/prime.jpg" alt="CopyFX Review on Prime Account" class="wp-image-2250"/></figure>
-</figure>
-
-<ul class="wp-block-list">
-<li><strong>Trading instruments</strong>: 28 currency pairs, Metals, CFD on US stocks*, CFD on Indices, CFD on Oil, CFDs on Futures</li>
-
-<li><strong>Minimum deposit</strong>: 10 USD / 10 EUR</li>
-
-<li><strong>Spread</strong>: Floating from 0 pips</li>
-
-<li><strong>Maximum leverage</strong>: 1:300</li>
-
-<li>Deposit bonuses: Not available</li>
-
-<li>Loyalty bonuses: All offers</li>
-</ul>
-
-<h3 class="wp-block-heading">ECN Account</h3>
-
-<p>An ECN account is perfect for traders who want super-fast trade execution and tighter spreads by connecting directly to major interbank liquidity.</p>
-
-<figure class="wp-block-gallery has-nested-images columns-default is-cropped">
-<figure class="wp-block-image size-large"><img src="/images/wp/2025/07/ecn.jpg" alt="CopyFX Review on ECN Account" class="wp-image-2251"/></figure>
-</figure>
-
-<p>Below are the main features that come with an ECN account:</p>
-
-<ul class="wp-block-list">
-<li><strong>Trading instruments</strong>: 28 currency pairs, Metals, CFD on US stocks*, CFD on Indices, CFD on Oil, CFDs on Futures</li>
-
-<li><strong>Minimum deposit</strong>: 10 USD / 10 EUR</li>
-
-<li><strong>Spread</strong>: Floating from 0 pips</li>
-
-<li><strong>Maximum leverage</strong>: 1:500</li>
-
-<li><strong>Deposit bonuses</strong>: Not available</li>
-
-<li><strong>Loyalty bonuses</strong>: All offers</li>
-</ul>
-
-<h3 class="wp-block-heading">R Stocks Trader Account</h3>
-
-<p>R Stocks Trader accounts are made for investors who want to focus on shares, ETFs, bonds, and indexes. </p>
-
-<figure class="wp-block-gallery has-nested-images columns-default is-cropped">
-<figure class="wp-block-image size-large"><img src="/images/wp/2025/07/rstock.jpg" alt="CopyFX R Stocks Trader Account" class="wp-image-2252"/></figure>
-</figure>
-
-<p>Here’s what you can expect:</p>
-
-<ul class="wp-block-list">
-<li><strong>Trading instruments</strong>: More than 12,000: Indices, Real stocks, CFD on stocks*, Currencies and ETF, CFDs on Oil, CFDs on Metals, CFDs on Futures</li>
-
-<li><strong>Minimum deposit</strong>: 100 USD</li>
-
-<li><strong>Spread</strong>: from 0.02 USD</li>
-
-<li><strong>Maximum leverage</strong>: 1:500</li>
-
-<li><strong>Deposit bonuses</strong>: Not available</li>
-
-<li><strong>Loyalty bonuses</strong>: Not available</li>
-</ul>
-
-<h3 class="wp-block-heading">Pro Cent Account</h3>
-
-<p>&nbsp;If you’re new and ready to move on from demo trading or testing small algorithms/EAs, the Pro Cent account is just what you need.</p>
-
-<figure class="wp-block-gallery has-nested-images columns-default is-cropped">
-<figure class="wp-block-image size-large rounded-img"><img src="/images/wp/2025/07/pro-cent.jpg" alt="CopyFX by RoboForex Pro Cent Account" class="wp-image-2253"/></figure>
-</figure>
-
-<p> Below are some more details:</p>
-
-<ul class="wp-block-list">
-<li><strong>Trading instruments</strong>: 28 currency pairs, Metals</li>
-
-<li><strong>Minimum deposit</strong>: 10 USD / 10 EUR</li>
-
-<li><strong>Spread</strong>: Floating from 1.3 pips</li>
-
-<li><strong>Maximum leverage</strong>: 1:2000</li>
-
-<li><strong>Deposit bonuses</strong>: All offers</li>
-
-<li><strong>Loyalty bonuses</strong>: All offers</li>
-</ul>
-
-<h3 class="wp-block-heading">Pro Account</h3>
-
-<p>The last account I want to tell you about in this CopyFX review is the Pro account. It’s actually the most popular one on the CopyFX copy trading platform. This account is great for beginners and intermediate forex/CFD traders who want a good balance, low deposit, reasonable spreads, and full bonuses.</p>
-
-<figure class="wp-block-gallery has-nested-images columns-default is-cropped">
-<figure class="wp-block-image size-large rounded-img"><img src="/images/wp/2025/07/pro.jpg" alt="CopyFX RoboForex Pro Account" class="wp-image-2254"/></figure>
-</figure>
-
-<p>Here is what you can find at this account:</p>
-
-<ul class="wp-block-list">
-<li><strong>Trading instruments</strong>: 28 currency pairs, Metals, CFD on US stocks*, CFD on Indices, CFD on Oil, CFDs on Futures</li>
-
-<li><strong>Minimum deposit</strong>: 10 USD / 10 EUR</li>
-
-<li><strong>Spread</strong>: Floating from 1.3 pips</li>
-
-<li><strong>Maximum leverage</strong>: 1:2000</li>
-
-<li><strong>Deposit bonuses</strong>: All offers</li>
-
-<li><strong>Loyalty bonuses</strong>: All offers</li>
-</ul>
-
-<h2 class="wp-block-heading">CopyFX RoboForex Rating Metric</h2>
-
-<p>As I mentioned earlier in this CopyFX review, the platform makes it easy to start copy trading. But you might be wondering: how do I choose a trader who won’t lead me to losses? How much profit or loss do these traders usually make? And what kind of results could I expect if I start copying someone? That’s where the CopyFX RoboForex rating feature comes in.</p>
-
-<figure class="wp-block-image size-large rounded-img"><img src="/images/wp/2025/07/rating-final.jpg" alt="CopyFX Rating Section Overview" class="wp-image-2255"/></figure>
-
-<p>It’s basically a sortable list of signal providers you can copy. The list shows useful stats like profit, loss, yield, drawdown, and number of followers. This helps you make smarter choices, but keep in mind, using it wisely means you need to pay attention to risk, do a bit of homework, and keep your expectations realistic.</p>
-
-<p>From there, you can filter traders based on things like weekly or monthly performance, fees, or other criteria that matter to you.</p>
-
-<p>For example, in the screenshot I shared above, I filtered for weekly MT4 traders who don’t charge any commission. The ones you see listed are all profitable, based on the filters I set.</p>
-
-<h2 class="wp-block-heading">CopyFX RoboForex Commission Scheme</h2>
-
-<p>Remember when I mentioned the commission scheme earlier? Let’s take a closer look at how it actually works.</p>
-
-<p>CopyFX trading platform, a commission scheme, is basically how a trader makes money from people who copy their trades. These people are often called subscribers or investors. There are four main types of commission models you’ll come across:</p>
-
-<h3 class="wp-block-heading">Performance Fee</h3>
-
-<p>This one’s pretty straightforward. The trader earns a percentage of the subscriber’s profit, usually anywhere from 5% to 50%.<br>They only get paid if the total result is positive. So even if some trades don’t go well, as long as the overall outcome is a profit, the trader gets their cut.</p>
-
-<h3 class="wp-block-heading">Volume Fee</h3>
-
-<p>Here, the trader earns a fixed amount (between 1 and 10 USD per lot) for each profitable trade.<br>But there’s a catch: if the trade’s profit is less than the commission amount, the trader doesn’t get anything.</p>
-
-<h3 class="wp-block-heading">Subscription Fee&nbsp;</h3>
-
-<p>With this setup, the trader charges a flat fee (usually between 5 to 100 USD) for each investment period, but only if the subscriber ends up with a profit. An investment period can be one, two, or four weeks. This option is only available for users on the MT5 platform.</p>
-
-<h3 class="wp-block-heading">No Commission</h3>
-
-<p>Yep, some traders choose not to charge any commission at all. This is often used to attract new subscribers, especially if the trader is just starting out or trying out a new strategy.</p>
-
-<p>So, in simple terms, a commission scheme defines how and when a trader gets paid by the investors copying their trades. As you can see in this CopyFX review, each model has its own rules and benefits, depending on what kind of setup works best for both sides.</p>
+<h2>Benefits and limitations</h2>
 
 <div style="overflow-x:auto;">
   <table class="general-table">
-    <caption class="hidden-caption">CopyFX Commission Scheme</caption>
-    <thead>
-      <tr>
-        <th>Commission Type</th>
-        <th>How It Works</th>
-      </tr>
-    </thead>
+    <caption class="hidden-caption">Copy Trading Service benefits and limitations</caption>
+    <thead><tr><th>Useful when</th><th>Weak when</th></tr></thead>
     <tbody>
-      <tr>
-        <td>Performance Fee</td>
-        <td>Traders earn a percentage of the subscriber’s profit.</td>
-      </tr>
-      <tr>
-        <td>Volume Fee</td>
-        <td>Traders earn a fixed amount (between 1 and 10 USD per lot) for each profitable trade.</td>
-      </tr>
-      <tr>
-        <td>Subscription Fee</td>
-        <td>Trader charges a flat fee (usually between 5 to 100 USD) for each investment period.</td>
-      </tr>
-      <tr>
-        <td>No Commission</td>
-        <td>Traders choose not to charge any commission.</td>
-      </tr>
+      <tr><td>A RoboForex client wants broker-native strategy discovery and copying without separate copier software</td><td>The Investor needs cross-platform copying or a strategy outside the RoboForex account ecosystem</td></tr>
+      <tr><td>The unified rating and 3 size modes support a documented selection and allocation process</td><td>Rank, Yield, Investor count, or a short history is treated as proof of future return</td></tr>
+      <tr><td>Strategy-specific minimums and compensation are visible before subscription</td><td>“No additional usage fee” is mistaken for no performance fee or no broker cost</td></tr>
+      <tr><td>Pause and Cancel provide distinct controls for subscription management</td><td>The Investor assumes either button automatically closes all existing market exposure</td></tr>
+      <tr><td>A small compatible account can test copying and offboarding before scaling</td><td>Demo, ProCent, or one successful trade is treated as validation of live performance</td></tr>
     </tbody>
   </table>
 </div>
 
-<h2 class="wp-block-heading">CopyFX Roboforex Cross Copying</h2>
+<h2>Verdict: useful inside a narrow, tested boundary</h2>
 
-<figure class="wp-block-gallery has-nested-images columns-default is-cropped">
-<figure class="wp-block-image size-large rounded-img"><img src="/images/wp/2025/07/cross-copying.jpg" alt="CopyFX RoboForex Cross-Copying" class="wp-image-2256"/></figure>
-</figure>
+<p>Copy Trading Service can fit an eligible RoboForex client who wants strategy discovery and execution in one broker-native workflow, understands the 3 size formulas, checks the live fee and minimum, and can monitor the receiving account independently. The consolidated rating, transparent strategy settings, and separate Pause and Cancel controls are useful process tools.</p>
 
-<p>As I mentioned earlier in this CopyFX review, there are five types of live trading accounts available. But let’s say you’re using a Pro account and you come across a trader who’s getting great results and matches your preferences, but they’re using a different account type.</p>
+<p>It is a poor fit for anyone expecting the old CopyFX page, cross-platform copying, identical Trader returns, automatic loss control, or an effortless source of income. Select from a complete risk record rather than headline Yield, use an isolated compatible account, test every order and offboarding state, and scale only from reconciled Investor results.</p>
 
-<p>Does that mean you can’t copy their trades just because your accounts don’t match? Nope, not at all!</p>
-
-<p>CopyFX by RoboForex offers a handy feature called Cross Copying. This lets investors copy trades from other users, even if the account types are different. That said, it’s important to understand that using a different account from the trader you’re copying may come with a few risks, like differences in spread, margin requirements, and other trading conditions. So just keep that in mind before jumping in.</p>
-
-<h2 class="wp-block-heading">CopyFX Markets Overview</h2>
-
-<p>Roboforex broker supports a drive range of markets such as stocks, ETFs, Forex, Indices, Futures, Commodities, Metals, Currencies, and energy commodities. Therefore, with the CopyFX copy trading platform, which is built for Roboforex, you can copy trade on each of your preferred markets.&nbsp;</p>
-
-<h2 class="wp-block-heading">CopyFX Review on Trading Platforms</h2>
-
-<p>If you’ve been following this CopyFX review from the start, you probably remember I mentioned that CopyFX by RoboForex is available on platforms like MT4, MT5, and R Stocks Trader. Now, let’s take it a step further and see what each of these platforms has to offer us!</p>
-
-<h3 class="wp-block-heading">R Stocks Trader Platform</h3>
-
-<p>With R Stocks Trader, you can access all global financial markets right from a web terminal in your regular web browser. Here’s what you get:</p>
-
-<div style="overflow-x:auto;">
-  <table class="general-table">
-    <caption class="hidden-caption">R Stocks Trader Platform Overview</caption>
-    <thead>
-      <tr>
-        <th>Feature</th>
-        <th>Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Platform</td>
-        <td>R Stocks Trader</td>
-      </tr>
-      <tr>
-        <td>Automation</td>
-        <td>Strategy builder (no coding)</td>
-      </tr>
-      <tr>
-        <td>Assets Offered</td>
-        <td>12,000+ instruments (Stocks, ETFs, Forex, Metals, Oil, Indices)</td>
-      </tr>
-      <tr>
-        <td>Minimum Deposit</td>
-        <td>$100</td>
-      </tr>
-      <tr>
-        <td>Minimum Commission</td>
-        <td>$0 on stocks and CFDs</td>
-      </tr>
-      <tr>
-        <td>Spread</td>
-        <td>From $0.02</td>
-      </tr>
-      <tr>
-        <td>Account Size</td>
-        <td>Real stocks: max 4,999, CFDs: 1–20,000</td>
-      </tr>
-    </tbody>
-  </table>
+<div style="display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 1.5rem 0;">
+  <a href="/go/copyfx" data-affiliate-placement="verdict" target="_blank" rel="nofollow noopener" class="btn-primary">Check current Copy Trading Service terms</a>
+  <a href="/blog/what-is-copy-trading" class="btn-outline">Use the copy-trading checklist</a>
 </div>
 
-<h3 class="wp-block-heading">MT4 Platform</h3>
+<h2>CopyFX FAQ</h2>
 
-<p>The classic MetaTrader 4 terminal from RoboForex is the top choice for many traders. It’s popular with both beginners and pros because it offers all the essential tools and features you need for trading. Here are the key features of MT4 at RoboForex:</p>
-
-<div style="overflow-x:auto;">
-  <table class="general-table">
-    <caption class="hidden-caption">MT4 Platform Overview</caption>
-    <thead>
-      <tr>
-        <th>Feature</th>
-        <th>Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Platform</td>
-        <td>MT4</td>
-      </tr>
-      <tr>
-        <td>Platform Versions</td>
-        <td>Desktop (Windows), Web, Mobile (iOS & Android)</td>
-      </tr>
-      <tr>
-        <td>Order Execution Types</td>
-        <td>3 Types</td>
-      </tr>
-      <tr>
-        <td>Built‑in Tools</td>
-        <td>50+ technical indicators, charting tools, fundamental news & signals</td>
-      </tr>
-      <tr>
-        <td>Automated Trading</td>
-        <td>Expert Advisor</td>
-      </tr>
-      <tr>
-        <td>Minimum Deposit</td>
-        <td>$10</td>
-      </tr>
-      <tr>
-        <td>Spread</td>
-        <td>From $0</td>
-      </tr>
-      <tr>
-        <td>Programing Language</td>
-        <td>MQL4</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="wp-block-rank-math-faq-block">
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Does CopyFX still exist?</h3><div class="rank-math-answer">The service continues under a new name. RoboForex announced on 6 November 2025 that CopyFX had been upgraded and renamed Copy Trading Service, with MT4, MT5, and R StocksTrader strategies combined in one public rating.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Can CopyFX copy between MT4, MT5, and R StocksTrader?</h3><div class="rank-math-answer">No. The current RoboForex strategy page says cross-platform copying is not supported. A Trader may create separate accounts and publish strategies on multiple platforms, but the unified rating is a discovery layer rather than cross-platform execution.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">What is the minimum deposit for CopyFX?</h3><div class="rank-math-answer">The current rules do not establish one universal Investor minimum. Each Trader sets the minimum USD deposit for that strategy. The separate $100 threshold applies to a Trader who wants to set subscription conditions and share a strategy.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">What CopyFX fees does an Investor pay?</h3><div class="rank-math-answer">The current English help lists a Performance Fee from 5% to 50% or No Commission, depending on the strategy, while the trader landing-page hero displays 0%-50%. Broker spread, commission, swap, slippage, conversion, funding, and withdrawal costs can still apply.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Which CopyFX copying mode is safest?</h3><div class="rank-math-answer">None is automatically safest. Proportional uses both accounts' equity, Classic multiplies the Trader's lot size, and Fixed uses one selected lot size for every trade. The safest usable choice is the one tested against the Investor's capital, instruments, margin, rounding, and maximum-loss plan.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Does pausing CopyFX close open trades?</h3><div class="rank-math-answer">No. Current help says Pause stops new trades but keeps existing copied positions open and synchronised with the Trader. Cancel also leaves existing positions open, but transfers control of their management and closing to the Investor.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Is RoboForex Copy Trading Service available in the EU or UK?</h3><div class="rank-math-answer">The current RoboForex site says RoboForex Ltd and its partners do not target EU, EEA, or UK clients. It also lists numerous other restricted territories. Check the live eligibility and contracting entity for the user's residence before opening or funding an account.</div></div>
 </div>
-
-<h3 class="wp-block-heading">MT5 Platform</h3>
-
-<p>The MT5 platform is a newer, upgraded version of MT4. It comes with more features and options, like a bigger selection of indicators and tools compared to MT4.</p>
-
-<div style="overflow-x:auto;">
-  <table class="general-table">
-    <caption class="hidden-caption">MT5 Platform Overview</caption>
-    <thead>
-      <tr>
-        <th>Feature</th>
-        <th>Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Platform</td>
-        <td>MT5</td>
-      </tr>
-      <tr>
-        <td>Platform Versions</td>
-        <td>Desktop (Windows), Web, Mobile (iOS & Android)</td>
-      </tr>
-      <tr>
-        <td>Order Execution Types</td>
-        <td>4 types + 6 types of pending orders</td>
-      </tr>
-      <tr>
-        <td>Built‑in Tools</td>
-        <td>MT5 has 8 more built-in indicators than MT4.</td>
-      </tr>
-      <tr>
-        <td>Automated Trading</td>
-        <td>Expert Advisor</td>
-      </tr>
-      <tr>
-        <td>Minimum Deposit</td>
-        <td>$10</td>
-      </tr>
-      <tr>
-        <td>Spread</td>
-        <td>From $0</td>
-      </tr>
-      <tr>
-        <td>Programing Language</td>
-        <td>MQL5</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<h2 class="wp-block-heading">How to Become an Investor on CopyFX&nbsp;RoboForex</h2>
-
-<p>Simply put, to use the RoboForex CopyFX platform as an investor, follow the 5 simple steps below.</p>
-
-<figure class="wp-block-gallery has-nested-images columns-default is-cropped">
-<figure class="wp-block-image size-large rounded-img"><img src="/images/wp/2025/07/investor-final.jpg" alt="Investors Guide on CopyFX" class="wp-image-2257"/></figure>
-</figure>
-
-<h3 class="wp-block-heading">1-Account Setup</h3>
-
-<p>First, you need to open and fund your trading account. If you're already a RoboForex client, simply log in and open a MetaTrader 4, MetaTrader 5, or R StocksTrader account. If you're new to RoboForex, you’ll need to register an account, open a supported trading account, and deposit funds.</p>
-
-<h3 class="wp-block-heading">2- Finding a Trader</h3>
-
-<p>Next, browse the Trader Rating section to find a trader whose performance, strategy, and risk level align with your goals.</p>
-
-<h3 class="wp-block-heading">3- Subscribing to Trades</h3>
-
-<p>Then, click the subscribe button next to the trader's name and choose how you’d like to copy their trades. You’ll select from different copying modes like proportional (based on your balance), classic (same or multiplied lot size), or fixed (a custom lot size for all trades). I talked about this concept earlier. You can scroll up this CopyFX review and check it again.</p>
-
-<h3 class="wp-block-heading">4- Monitoring & Managing</h3>
-
-<p>After subscribing, you can monitor your investment performance and manage your subscriptions through the “CopyFX” settings, “subscriptions” section, where you can pause copying, adjust settings, or unsubscribe as needed.</p>
-
-<h3 class="wp-block-heading">5- Fees & Withdrawals</h3>
-
-<p>Finally, fees such as performance or volume-based commissions are automatically calculated and charged at the end of each investment period (usually every Saturday), or immediately if you unsubscribe or withdraw funds, while your remaining profits are available for withdrawal at any time.</p>
-
-<h2 class="wp-block-heading">How to Become a Trader on CopyFX RoboForex</h2>
-
-<p>Now, to become a trader, all you need is just go through the following steps, as easy as the last part of this CopyFX review.</p>
-
-<figure class="wp-block-gallery has-nested-images columns-default is-cropped">
-<figure class="wp-block-image size-large rounded-img"><img src="/images/wp/2025/07/trader-final.jpg" alt="Traders Guide on CopyFX" class="wp-image-2258"/></figure>
-</figure>
-
-<h3 class="wp-block-heading">1- Account Registration</h3>
-
-<p>First, you need to open a CopyFX trader account by registering with RoboForex if you haven't already. If you're already a client, simply log in to your Members Area and open a CopyFX trader account through MT4 or MT5/R StocksTrader.</p>
-
-<h3 class="wp-block-heading">2- Funding & Setting Terms</h3>
-
-<p>Once your account is open, fund it with the required amount and set up your subscription terms by choosing one of the available commission models: Volume Fee, Performance Fee, or a commission-free model to attract more subscribers initially.</p>
-
-<h3 class="wp-block-heading">3-Trading Consistently</h3>
-
-<p>After setting your terms, begin trading actively and consistently, as your performance, trading history, and subscribers will influence your visibility in the CopyFX rating system.</p>
-
-<h3 class="wp-block-heading">4- Earning Commissions</h3>
-
-<p>As subscribers start copying your trades, you will earn commissions according to the subscription model you selected. Again, if you have skipped this option, you can read more about this by scrolling up this CopyFX review.</p>
-
-<h3 class="wp-block-heading">5- Growing Your Subscribers</h3>
-
-<p>To grow your subscriber base, take advantage of the CopyFX affiliate program by sharing referral links and potentially offering limited-time commission-free copying to attract new investors.</p>
-
-<h2 class="wp-block-heading">CopyFX Review for Payment Models (Deposit - Withdraw)</h2>
-
-<p>I’ve already talked about different parts of the RoboForex copy trading platform in this CopyFX review. Now, let’s check out how you can deposit money if you choose this platform, and how to withdraw your profits, whether you’re a trader or an investor.</p>
-
-<p>To deposit or withdraw, you’ve got several options like bank payments, electronic payment systems (like AstroPay and Skrill), bank cards (MasterCard and VISA), and even QR codes and vouchers (which are only for deposits).</p>
-
-<p>I’ve also added some extra details in the table below.</p>
-
-<div style="overflow-x:auto;">
-  <table class="general-table">
-    <caption class="hidden-caption">CopyFX Deposit and Withdrawal Methods Overview</caption>
-    <thead>
-      <tr>
-        <th>Approaches</th>
-        <th>Local Bank Transfer</th>
-        <th>Electronic Payments (Astropay)</th>
-        <th>Bank Cards (Visa, Master Card, JCB)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Fee for Withdrawal</td>
-        <td>Up to 4%</td>
-        <td>0.5%</td>
-        <td>2.6% + 1.3 USD</td>
-      </tr>
-      <tr>
-        <td>Processing Time for Deposits</td>
-        <td>Up to 1 day</td>
-        <td>Up to 1 day</td>
-        <td>Up to 10 days</td>
-      </tr>
-      <tr>
-        <td>Fee for Deposit</td>
-        <td>0%</td>
-        <td>0%</td>
-        <td>0%</td>
-      </tr>
-      <tr>
-        <td>Limitations for Deposit</td>
-        <td>Up to 15,000 USD</td>
-        <td>10 - 10,000 USD</td>
-        <td>From 10 USD</td>
-      </tr>
-      <tr>
-        <td>Limitations for Withdrawal</td>
-        <td>Up to 20,000 USD</td>
-        <td>10 - 10,000 USD</td>
-        <td>10 - 10,000 USD</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<p>These numbers and conditions can change over time, so make sure to check the <a href="https://roboforex.com/clients/funds/deposit-withdrawal/">RoboForex website</a> for the latest info. You can find it under the Deposit and Withdraw section in the top menu.</p>
-
-<h2 class="wp-block-heading">CopyFX RoboForex Affiliate Program</h2>
-
-<p>If you’re reading this CopyFX review, maybe you’re a pro trader and find the platform perfect for earning commission and profit by sharing your trades. But what if I told you there’s a way to grow your earnings up to 100 times?! Well, that’s where the CopyFX affiliate program comes in. It helps you:</p>
-
-<ul class="wp-block-list">
-<li>Get more popularity and recognition for your strategy</li>
-
-<li>Attract more investors</li>
-
-<li>Earn extra profit thanks to the new investors you bring in</li>
-</ul>
-
-<p>So, how do you join this program? It’s pretty simple:</p>
-
-<ol class="wp-block-list">
-<li>Open an MT4 account on the CopyFX platform if you don’t have one yet.</li>
-
-<li>Go to the "CopyFX settings" page to set or change your subscription conditions.</li>
-
-<li>In the subscription settings, you’ll see a new option called "Affiliate program." Just tick the box and choose the commission percentage to pay your partners.</li>
-</ol>
-
-<h2 class="wp-block-heading">CopyFX RoboForex Customer Reviews</h2>
-
-<p>Besides this CopyFX platform, which I shared findings about, as always, I want to make things easier for you! So let’s take a quick look at what some users are saying on Trustpilot about the RoboForex CopyFX trading platform.</p>
-
-<p>Here’s what many people like:</p>
-
-<ul class="wp-block-list">
-<li>CopyFX by RoboForex is seen as a reliable platform.</li>
-
-<li>It's user-friendly and doesn’t let them down.</li>
-
-<li>The overall experience is smooth and easy.</li>
-
-<li>The conditions and commission plans are clear and flexible.</li>
-
-<li>You get full control of your account and handy tools to help you pick the right traders.</li>
-</ul>
-
-<p>Of course, no system is perfect! Some users have pointed out a few issues:</p>
-
-<ul class="wp-block-list">
-<li>Payment delays</li>
-
-<li>Frustrating user experience in some cases</li>
-
-<li>And a few even claim they never got their money back</li>
-</ul>
-
-<p>So yeah, take both the good and the bad into account before making your move.</p>
-
-<h2 class="wp-block-heading">Conclusion</h2>
-
-<p>That’s all about CopyFX by RoboForex! If this CopyFX review helped you or gave you some useful info, let us know in the comments. We’d really like to hear your thoughts.</p>
-
-<p>Also, if there’s a trading platform we haven’t talked about yet on <a href="/">Traders Fund Hub</a>, just tell us the name. My team and I will try to review it as soon as we can. Wishing you good luck and happy trading!</p>
-
-<h2 class="wp-block-heading">FAQs</h2>
-
-<!-- wp:rank-math/faq-block {"questions":[{"id":"faq-question-1752600713989","title":"How does CopyFX work?","content":"CopyFX is a copy trading platform unique to the RoboForex broker. It allows investors to copy trade from pro traders. Traders can also earn commission from their trades.","visible":true},{"id":"faq-question-1752600816966","title":"What is the best site for copy trading?","content":"If you are looking for a reliable copy trading platform, you can use CopyFX. It is RoboForex's built-in platform and works with MT4, MT5, and R Stocks Trader.","visible":true},{"id":"faq-question-1752600952964","title":"What is the best copy platform for forex?","content":"CopyFX is one of the best copy trading platforms, which is created for the RoboForex broker. I covered all the details about this platform in this CopyFX review above.","visible":true}],"listCssClasses":"faq, faq-item"} -->
-<div class="wp-block-rank-math-faq-block"><div class="rank-math-faq-item"><h3 class="rank-math-question">How does CopyFX work?</h3><div class="rank-math-answer">CopyFX is a copy trading platform unique to the RoboForex broker. It allows investors to copy trade from pro traders. Traders can also earn commission from their trades.</div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">What is the best site for copy trading?</h3><div class="rank-math-answer">If you are looking for a reliable copy trading platform, you can use CopyFX. It is RoboForex's built-in platform and works with MT4, MT5, and R Stocks Trader.</div></div><div class="rank-math-faq-item"><h3 class="rank-math-question">What is the best copy platform for forex?</h3><div class="rank-math-answer">CopyFX is one of the best copy trading platforms, which is created for the RoboForex broker. I covered all the details about this platform in this CopyFX review above.</div></div></div>

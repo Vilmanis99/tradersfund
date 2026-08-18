@@ -42,7 +42,7 @@ sourceUrls:
 
 <h2>What Traders Connect currently offers</h2>
 
-<p>The product has 3 layers: account connections, copier rules, and optional controls. A trader connects a master account and at least 1 follower account, selects a risk calculation, then decides how entries, exits, pending orders, stop losses, take profits, comments, and symbol differences should be handled. It is not a social marketplace for selecting an outside strategy provider; the <a href="/blog/zulutrade-review">ZuluTrade review</a> covers that separate Leader-to-Investor model and its orphan-trade risk.</p>
+<p>The product has 3 layers: account connections, copier rules, and optional controls. A trader connects a master account and at least 1 follower account, selects a risk calculation, then decides how entries, exits, pending orders, stop losses, take profits, comments, and symbol differences should be handled. It is not a social marketplace for selecting an outside strategy provider; the <a href="/blog/zulutrade-review">ZuluTrade review</a> covers a multi-broker Leader-to-Investor model, while the <a href="/blog/copyfx-review">CopyFX review</a> covers RoboForex's broker-native Copy Trading Service.</p>
 
 <table data-traders-connect-evidence="2026-08-18" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
   <caption class="hidden-caption">Current Traders Connect product and pricing evidence</caption>

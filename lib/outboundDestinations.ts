@@ -18,7 +18,7 @@ export const REVIEWED_OUTBOUND_DESTINATIONS: Record<
   'traders-connect': { affiliateUrl: null, officialUrl: 'https://tradersconnect.com/' },
   zulutrade: { affiliateUrl: null, officialUrl: 'https://www.zulutrade.com/' },
   'fx-replay': { affiliateUrl: null, officialUrl: 'https://www.fxreplay.com/' },
-  copyfx: { affiliateUrl: null, officialUrl: 'https://www.copyfx.com/' },
+  copyfx: { affiliateUrl: null, officialUrl: 'https://roboforex.com/copy-trading/copy-top-strategies/' },
   '3commas': { affiliateUrl: null, officialUrl: 'https://3commas.io/' },
 }
 

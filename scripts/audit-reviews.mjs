@@ -10213,6 +10213,121 @@ function checkTradingToolReviewCluster() {
     }
   }
 
+  const copyFx = bySlug.get('copyfx-review')
+  if (!copyFx) {
+    rows.push('CopyFX review is missing from the tool-review cluster')
+  } else {
+    const expectedTitle = 'CopyFX Review: New Name, Fees & Copy Risks'
+    if (
+      copyFx.title !== expectedTitle
+      || copyFx.seoTitle !== expectedTitle
+      || copyFx.modified !== '2026-08-18 12:00:00'
+      || copyFx.sourceCapturedAt !== '2026-08-18'
+    ) {
+      rows.push('CopyFX title or evidence dates disagree with the current review')
+    }
+    if (
+      copyFx.seoTitle.length > 60
+      || copyFx.seoDescription.length < 120
+      || copyFx.seoDescription.length > 160
+    ) {
+      rows.push('CopyFX search title or description is outside the editorial range')
+    }
+    const copyFxWordCount = copyFx.content
+      .replace(/<[^>]+>/g, ' ')
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean).length
+    if (copyFxWordCount < 2700) {
+      rows.push(`CopyFX source-checked review is only ${copyFxWordCount} words`)
+    }
+    for (const sourceUrl of [
+      'https://roboforex.com/about/company/news/show/upgraded-copy-trading-service/',
+      'https://roboforex.com/copy-trading/copy-top-strategies/',
+      'https://roboforex.com/copy-trading/share-your-strategy/',
+      'https://roboforex.com/help/faq/copy-trading-traders/subscription-conditions-from-a-to-z/',
+      'https://roboforex.com/help/faq/copy-trading-investors/what-is-a-copying-mode/',
+      'https://roboforex.com/help/faq/copy-trading-investors/how-and-where-do-i-manage-my-subscriptions/',
+      'https://roboforex.com/help/faq/copy-trading-investors/why-wasnt-the-trade-copied-to-my-account/',
+      'https://roboforex.com/help/faq/copy-trading-investors/what-do-i-pay-for-copying/',
+      'https://roboforex.com/help/faq/copy-trading-rating/what-information-is-displayed-in-the-rating/',
+      'https://roboforex.com/about/company/regulation/',
+    ]) {
+      if (!copyFx.sourceUrls?.includes(sourceUrl)) {
+        rows.push(`CopyFX frontmatter is missing first-party source ${sourceUrl}`)
+      }
+    }
+    for (const token of [
+      'data-tool-evidence-captured="2026-08-18"',
+      'Traders Fund Hub does not currently record an affiliate relationship with CopyFX or RoboForex.',
+      'data-copyfx-rebrand="copy-trading-service"',
+      '6 November 2025',
+      'data-copyfx-platforms="mt4-mt5-rstockstrader"',
+      'data-copyfx-cross-platform="not-supported"',
+      'Copy Trading Service does not currently support cross-platform copying.',
+      'data-copyfx-investor-minimum="trader-defined"',
+      'Trader sets the minimum USD deposit',
+      'data-copyfx-copy-modes="proportional-classic-fixed"',
+      'data-copyfx-fee-boundary="strategy-specific"',
+      'data-copyfx-performance-conflict="zero-vs-five"',
+      'Trader page hero shows 0%-50%; its detailed FAQ and current help say 5%-50%',
+      'data-copyfx-evidence="2026-08-18"',
+      'data-copyfx-rating="record-quality"',
+      'data-copyfx-incentive="partner-promotion"',
+      'data-copyfx-subscription-lifecycle="pause-vs-cancel"',
+      'data-copyfx-test-plan="subscriber-lifecycle"',
+      'data-copyfx-regulation="roboforex-ltd"',
+      'registration/licence number <strong>9759600</strong>',
+      'href="/blog/what-is-copy-trading"',
+      'href="/blog/zulutrade-review"',
+      'href="/blog/traders-connect-trade-copier"',
+      'href="/blog/balance-based-drawdown-vs-equity-based-drawdown"',
+      'href="/blog/what-is-overtrading"',
+      'href="/go/copyfx"',
+      'data-affiliate-placement="verdict"',
+    ]) {
+      if (!copyFx.content.includes(token)) {
+        rows.push(`CopyFX review is missing evidence or decision token ${token}`)
+      }
+    }
+    for (const stale of [
+      'Eureka!',
+      'Best Copy Trading Platform 2025',
+      'TrustFinance Business Bangkok 2025',
+      'copy trades with just $10',
+      'Cross Copying',
+      'between 1 and 10 USD per lot',
+      'up to 100 times',
+      'Trustpilot',
+      'one of the best copy trading platforms',
+      'reliable copy trading platform',
+      'More than 12,000',
+      'wp-image-225',
+    ]) {
+      if (copyFx.content.toLowerCase().includes(stale.toLowerCase())) {
+        rows.push(`CopyFX review restored promotional, unsafe or stale claim ${stale}`)
+      }
+    }
+    const goLinks = [...copyFx.content.matchAll(/href=["'](\/go\/copyfx[^"']*)/g)]
+    if (goLinks.length !== 1 || goLinks[0][1] !== '/go/copyfx') {
+      rows.push('CopyFX review must have 1 attributed official CTA')
+    }
+    const renderedCopyFx = decoratePostOutboundLinks(
+      copyFx.content,
+      { copyfx: 'official' },
+      copyFx.slug,
+    )
+    if (
+      !renderedCopyFx.includes(
+        'href="/go/copyfx?from=post-body-copyfx-review-verdict"',
+      )
+      || !renderedCopyFx.includes('rel="nofollow noopener"')
+      || renderedCopyFx.includes('rel="sponsored nofollow noopener"')
+    ) {
+      rows.push('CopyFX rendered CTA lacks controlled verdict attribution or disclosure')
+    }
+  }
+
   for (const [relativePath, label] of [
     ['content/posts/what-is-copy-trading.md', 'copy-trading guide'],
     ['content/posts/are-prop-firm-passing-services-worth-it.md', 'passing-services guide'],
@@ -10257,6 +10372,17 @@ function checkTradingToolReviewCluster() {
     }
   }
 
+  for (const [relativePath, label] of [
+    ['content/posts/what-is-copy-trading.md', 'copy-trading guide'],
+    ['content/posts/zulutrade-review.md', 'ZuluTrade review'],
+    ['content/posts/traders-connect-trade-copier.md', 'Traders Connect review'],
+  ]) {
+    const body = fs.readFileSync(path.join(ROOT, relativePath), 'utf-8')
+    if (!body.includes('href="/blog/copyfx-review"')) {
+      rows.push(`${label} is missing its contextual CopyFX backlink`)
+    }
+  }
+
   const outboundDestinations = fs.readFileSync(
     path.join(ROOT, 'lib/outboundDestinations.ts'),
     'utf-8',
@@ -10280,6 +10406,11 @@ function checkTradingToolReviewCluster() {
     "zulutrade: { affiliateUrl: null, officialUrl: 'https://www.zulutrade.com/' }",
   )) {
     rows.push('ZuluTrade must remain an official, non-affiliate outbound route')
+  }
+  if (!outboundDestinations.includes(
+    "copyfx: { affiliateUrl: null, officialUrl: 'https://roboforex.com/copy-trading/copy-top-strategies/' }",
+  )) {
+    rows.push('CopyFX must remain an official, non-affiliate outbound route')
   }
 
   const component = fs.existsSync(TRADING_TOOL_REVIEW_COMPONENT_FILE)
