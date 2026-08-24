@@ -902,6 +902,18 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-kascapital-global-bright-funded',
     ],
   }],
+  ['/ru/otzyvy-prop-firm', {
+    title: 'Отзывы о проп-фирмах: проверка условий (2026)',
+    h1: 'Отзывы о проп-фирмах: как проверить опыт трейдера',
+    markers: [
+      'data-russian-reviews-guide="source-gated"',
+      'data-russian-country-boundary="reviews-not-access"',
+      'data-russian-reviews-global-funnel="global-partners"',
+      '/go/fundednext?from=ru-reviews-guide-fundednext',
+      '/go/fundingpips?from=ru-reviews-guide-fundingpips',
+      '/go/bright-funded?from=ru-reviews-guide-bright-funded',
+    ],
+  }],
 ])
 
 for (const [path, expectation] of russianExpectations) {
@@ -1001,6 +1013,9 @@ for (const [path, href] of [
   ['/ru/obzor-kascapital', '/go/fundednext?from=ru-kascapital-global-fundednext'],
   ['/ru/obzor-kascapital', '/go/fundingpips?from=ru-kascapital-global-fundingpips'],
   ['/ru/obzor-kascapital', '/go/bright-funded?from=ru-kascapital-global-bright-funded'],
+  ['/ru/otzyvy-prop-firm', '/go/fundednext?from=ru-reviews-guide-fundednext'],
+  ['/ru/otzyvy-prop-firm', '/go/fundingpips?from=ru-reviews-guide-fundingpips'],
+  ['/ru/otzyvy-prop-firm', '/go/bright-funded?from=ru-reviews-guide-bright-funded'],
   ['/ru', '/go/fundednext?from=ru-home-fundednext'],
   ['/ru', '/go/fundingpips?from=ru-home-fundingpips'],
   ['/ru', '/go/bright-funded?from=ru-home-bright-funded'],

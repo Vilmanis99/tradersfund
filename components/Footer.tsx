@@ -44,6 +44,7 @@ export default function Footer({
     { label: 'Обзор Era Trade', href: '/ru/obzor-eratrade' },
     { label: 'Обзор KasCapital', href: '/ru/obzor-kascapital' },
     { label: 'Российские компании', href: '/ru/rossiyskie-prop-kompanii' },
+    { label: 'Отзывы проп-фирм', href: '/ru/otzyvy-prop-firm' },
     { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },
     { label: 'Глобальные продукты', href: '/prop-firm-challenges' },
   ] : [

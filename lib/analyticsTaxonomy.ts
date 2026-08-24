@@ -77,6 +77,7 @@ export function journeyStage(pathname: string): JourneyStage {
   if (path === '/ru/obzor-eratrade') return 'russian_local_research'
   if (path === '/ru/obzor-kascapital') return 'russian_local_research'
   if (path === '/ru/rossiyskie-prop-kompanii') return 'russian_local_research'
+  if (path === '/ru/otzyvy-prop-firm') return 'russian_education'
   if (path.startsWith('/ru/')) return 'russian_education'
   if (/^\/blog\/(?:[^/]+-review|bright-funded-prop-firm|my-funded-futures)$/.test(path)) {
     return 'firm_review'

@@ -138,7 +138,7 @@ export default function RussianHomePage() {
 
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия начинает с семнадцати страниц под самостоятельные поисковые задачи,
+            Русская версия начинает с восемнадцати страниц под самостоятельные поисковые задачи,
             включая отдельную проверку компаний российского рынка. Мы не переводим сотни URL автоматически: сначала проверяем,
             отвечает ли локальная страница на самостоятельный поисковый запрос.
           </p>
@@ -214,7 +214,7 @@ export default function RussianHomePage() {
             Глобальные партнёрские разборы на русском:{' '}
             <Link href="/ru/obzor-fundingpips">FundingPips</Link> и{' '}
             <Link href="/ru/obzor-bright-funded">Bright Funded</Link>. Сначала подтвердите страну и правила продукта.
-            {' '}Локальные разборы: <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-kascapital">KasCapital</Link>.
+            {' '}Локальные разборы: <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-kascapital">KasCapital</Link>. <Link href="/ru/otzyvy-prop-firm">Отзывы о проп-фирмах</Link>.
           </p>
         </div>
       </section>
