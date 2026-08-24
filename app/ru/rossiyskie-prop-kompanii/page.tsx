@@ -6,8 +6,8 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru/rossiyskie-prop-kompanii'
-const TITLE = 'Российские проп-компании: 3 реальных примера (2026)'
-const DESCRIPTION = 'Era Trade, PropLive и KasCapital: реальные цифры, модели работы и статус партнёрских программ. Проверка источников от 24 августа 2026 года.'
+const TITLE = 'Российские проп-компании: 6 реальных примеров (2026)'
+const DESCRIPTION = '6 российских проп-компаний: Era Trade, PropLive, KasCapital, А-Лаб, TeamTraders и Trade System. Модели, выплаты и партнёрские условия по официальным источникам.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -45,15 +45,21 @@ const propLive = signalFor('PropLive')
 const propLiveAffiliate = affiliateFor('PropLive')
 const kasCapital = signalFor('KasCapital')
 const kasAffiliate = affiliateFor('KasCapital')
+const aLab = signalFor('А-Лаб Групп')
+const aLabAffiliate = affiliateFor('А-Лаб Групп')
+const teamTraders = signalFor('TeamTraders')
+const teamTradersAffiliate = affiliateFor('TeamTraders')
+const tradeSystem = signalFor('Trade System')
+const tradeSystemAffiliate = affiliateFor('Trade System')
 
 const faqs: RussianFaqItem[] = [
   {
     q: 'Это рейтинг российских проп-компаний?',
-    a: 'Нет. Это проверка трёх реальных примеров и публичных коммерческих условий на конкретную дату. Ни одна из компаний пока не прошла наш полный захват продуктовых цен, правил, юридических документов и истории выплат, поэтому порядок не является рекомендацией.',
+    a: 'Нет. Это проверка шести реальных примеров и публичных коммерческих условий на конкретную дату. Ни одна из компаний пока не прошла наш полный захват продуктовых цен, правил, юридических документов и истории выплат, поэтому порядок не является рекомендацией.',
   },
   {
     q: 'Есть ли у российских проп-компаний партнёрские программы?',
-    a: 'У Era Trade опубликована стандартная партнёрская программа с 5% за прямые покупки и уровнями до 60%. PropLive предлагает договорную модель наставникам и школам с долей до 50% от прибыли учеников. На сайте KasCapital публичных партнёрских или реферальных условий при проверке не найдено.',
+    a: 'У Era Trade опубликована стандартная партнёрская программа с 5% за прямые покупки и уровнями до 60%. PropLive предлагает договорную модель наставникам и школам с долей до 50% от прибыли учеников. На проверенных страницах KasCapital, А-Лаб, TeamTraders и Trade System обычные публичные affiliate-условия не найдены.',
   },
   {
     q: 'Почему русскоязычному трейдеру всё равно сравнивать глобальные фирмы?',
@@ -96,14 +102,14 @@ export default function RussianPropCompaniesPage() {
         <div className="ru-shell">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Российские компании</div>
           <div className="ru-eyebrow"><Building2 size={14} aria-hidden="true" /> Проверка, а не рекомендация</div>
-          <h1>Российские проп-компании в 2026 году: 3 проверяемых примера</h1>
+          <h1>Российские проп-компании в 2026 году: 6 проверяемых примеров</h1>
           <p className="ru-lead">
             Запрос «проп компании для трейдеров в России» существует, но под одним названием скрываются
             разные модели: международный онлайн-челлендж, реальная торговля на Московской бирже и локальная
             проп-инфраструктура. Ниже — только то, что удалось подтвердить на официальных страницах.
           </p>
           <div className="ru-actions">
-            <Link href="#tri-kompanii" className="btn-primary btn-glow">Сравнить 3 примера <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="#tri-kompanii" className="btn-primary btn-glow">Сравнить 6 примеров <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Глобальные проп-фирмы</Link>
           </div>
         </div>
@@ -155,6 +161,39 @@ export default function RussianPropCompaniesPage() {
               <SourceLink href={kasCapital?.sourceUrl ?? 'https://kascapital.io/'}>Официальные условия</SourceLink>
               <Link href="/ru/obzor-kascapital" className="ru-card-link">Открыть отдельный обзор KasCapital →</Link>
             </article>
+
+            <article className="ru-card">
+              <Building2 size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>А-Лаб Групп</h3>
+              <p className="ru-muted">
+                Оператор заявляет более {Number(aLab?.claims.traders).toLocaleString('ru-RU')} трейдеров, оборот свыше{' '}
+                {Number(aLab?.claims.quarterlyTurnoverRubClaimed).toLocaleString('ru-RU')} ₽ за квартал и работу на фондовом,
+                срочном и валютном рынках Московской биржи. Это договорная локальная модель, а не CFD-челлендж.
+              </p>
+              <SourceLink href={aLab?.sourceUrl ?? 'https://www.a-lab.name/'}>Официальное описание А-Лаб</SourceLink>
+            </article>
+
+            <article className="ru-card">
+              <BadgeCheck size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>TeamTraders</h3>
+              <p className="ru-muted">
+                В официальной документации указаны две цели по {teamTraders?.claims.stageProfitPct}%, минимум{' '}
+                {teamTraders?.claims.minimumTradingSessions} торговых сессий, дневной лимит потерь {teamTraders?.claims.dailyLossLimitPct}%
+                и доля трейдера {teamTraders?.claims.profitSharePct}%. Инструменты — фьючерсы Московской биржи через Финам.
+              </p>
+              <SourceLink href={teamTraders?.sourceUrl ?? 'https://teamtraders.ru/docs/'}>Официальная документация TeamTraders</SourceLink>
+            </article>
+
+            <article className="ru-card">
+              <CircleAlert size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Trade System</h3>
+              <p className="ru-muted">
+                Оператор описывает обучение, отбор, риск-менеджмент и до {tradeSystem?.claims.maximumProfitSharePct}% прибыли трейдеру
+                при соблюдении правил. Публичная страница также содержит отказ от гарантий заработка, поэтому цифра не является
+                независимой историей выплат.
+              </p>
+              <SourceLink href={tradeSystem?.sourceUrl ?? 'https://tsystem.pro/'}>Официальная страница Trade System</SourceLink>
+            </article>
           </div>
           <p className="ru-source-line">Снимок источников: {marketEvidence.capturedAt}. Плавающие счётчики и правила требуют повторной проверки перед публикацией полного обзора.</p>
         </div>
@@ -183,6 +222,21 @@ export default function RussianPropCompaniesPage() {
                   <td>KasCapital</td>
                   <td>Публичные партнёрские или реферальные условия на официальном сайте не найдены.</td>
                   <td>{kasAffiliate?.status === 'not-found' ? 'Нет подтверждённой программы.' : 'Требуется повторная проверка.'}</td>
+                </tr>
+                <tr>
+                  <td>А-Лаб Групп</td>
+                  <td>На проверенной официальной странице публичные affiliate-условия не опубликованы.</td>
+                  <td>{aLabAffiliate?.status === 'not-found' ? 'Нет подтверждённой программы.' : 'Требуется повторная проверка.'}</td>
+                </tr>
+                <tr>
+                  <td>TeamTraders</td>
+                  <td>Документация описывает отбор и правила трейдера; обычная публичная affiliate-программа не указана.</td>
+                  <td>{teamTradersAffiliate?.status === 'not-found' ? 'Нет подтверждённой программы.' : 'Требуется повторная проверка.'}</td>
+                </tr>
+                <tr>
+                  <td>Trade System</td>
+                  <td>На проверенной главной странице публичные affiliate-условия не опубликованы.</td>
+                  <td>{tradeSystemAffiliate?.status === 'not-found' ? 'Нет подтверждённой программы.' : 'Требуется повторная проверка.'}</td>
                 </tr>
               </tbody>
             </table>

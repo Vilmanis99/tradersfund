@@ -164,8 +164,8 @@ export default function RussianHomePage() {
             <article className="ru-card">
               <Building2 size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Российские проп-компании</h3>
-              <p className="ru-muted">Era Trade, PropLive и KasCapital: проверяемые цифры, различия моделей и публичный статус партнёрских программ без выдачи списка за рекомендацию.</p>
-              <Link className="ru-card-link" href="/ru/rossiyskie-prop-kompanii">Посмотреть 3 примера →</Link>
+                <p className="ru-muted">Era Trade, PropLive, KasCapital, А-Лаб, TeamTraders и Trade System: проверяемые цифры, различия моделей и публичный статус партнёрских программ без выдачи списка за рекомендацию.</p>
+                <Link className="ru-card-link" href="/ru/rossiyskie-prop-kompanii">Посмотреть 6 примеров →</Link>
             </article>
             <article className="ru-card">
               <ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" />

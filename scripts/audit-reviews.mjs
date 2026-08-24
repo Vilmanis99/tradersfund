@@ -10892,6 +10892,24 @@ function checkRussianAcquisitionPilot() {
       ) {
         rows.push('KasCapital operator-term fixtures are missing from Russian evidence')
       }
+      if (
+        localSignals.get('А-Лаб Групп')?.claims?.traders !== 500
+        || localSignals.get('А-Лаб Групп')?.claims?.monthlyTradesClaimed !== 800_000
+        || localSignals.get('А-Лаб Групп')?.claims?.singleSessionRecordRub !== 12_563_379
+      ) {
+        rows.push('А-Лаб operator-claim fixtures are missing from Russian evidence')
+      }
+      if (
+        localSignals.get('TeamTraders')?.claims?.stageProfitPct !== 6
+        || localSignals.get('TeamTraders')?.claims?.minimumTradingSessions !== 15
+        || localSignals.get('TeamTraders')?.claims?.dailyLossLimitPct !== 2
+        || localSignals.get('TeamTraders')?.claims?.profitSharePct !== 90
+      ) {
+        rows.push('TeamTraders rule fixtures are missing from Russian evidence')
+      }
+      if (localSignals.get('Trade System')?.claims?.maximumProfitSharePct !== 95) {
+        rows.push('Trade System operator-term fixtures are missing from Russian evidence')
+      }
 
       const affiliatePrograms = new Map((evidence.affiliatePrograms ?? [])
         .map(item => [item.operator, item]))
@@ -10916,6 +10934,11 @@ function checkRussianAcquisitionPilot() {
       }
       if (kasAffiliate?.status !== 'not-found') {
         rows.push('KasCapital must remain affiliate-status not-found until sourced terms exist')
+      }
+      for (const operator of ['А-Лаб Групп', 'TeamTraders', 'Trade System']) {
+        if (affiliatePrograms.get(operator)?.status !== 'not-found') {
+          rows.push(`${operator} must remain affiliate-status not-found until sourced terms exist`)
+        }
       }
 
       const firmAccess = new Map((evidence.firmAccess ?? []).map(item => [item.firmSlug, item]))
@@ -11032,6 +11055,9 @@ function checkRussianAcquisitionPilot() {
     'многоуровневая Ambassador-схема нам не нужна',
     'href="/ru/dlya-russkoyazychnykh-treyderov"',
     'href="/ru/obzor-proplive"',
+    'А-Лаб Групп',
+    'TeamTraders',
+    'Trade System',
   ]) {
     if (!localFirmPage.includes(token)) rows.push(`local-company verification page is missing ${token}`)
   }

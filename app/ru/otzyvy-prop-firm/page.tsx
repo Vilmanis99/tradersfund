@@ -107,7 +107,7 @@ export default function RussianPropFirmReviewsPage() {
       <section className="ru-section">
         <div className="ru-shell ru-content">
           <h2>Русские локальные кейсы и глобальные обзоры</h2>
-          <p>Локальные модели полезны для понимания рублёвых выплат и рынка, но сравнивать их с глобальными CFD-продуктами напрямую нельзя. Откройте <Link href="/ru/rossiyskie-prop-kompanii">исследование Era Trade, PropLive и KasCapital</Link>, а затем сопоставьте его с русскими обзорами глобальных фирм.</p>
+          <p>Локальные модели полезны для понимания рублёвых выплат и рынка, но сравнивать их с глобальными CFD-продуктами напрямую нельзя. Откройте <Link href="/ru/rossiyskie-prop-kompanii">исследование шести российских моделей: Era Trade, PropLive, KasCapital, А-Лаб, TeamTraders и Trade System</Link>, а затем сопоставьте его с русскими обзорами глобальных фирм.</p>
           <div className="ru-actions"><Link href="/ru/obzor-proplive" className="btn-outline">PropLive</Link><Link href="/ru/obzor-eratrade" className="btn-outline">Era Trade</Link><Link href="/ru/obzor-kascapital" className="btn-outline">KasCapital</Link></div>
         </div>
       </section>

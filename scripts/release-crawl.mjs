@@ -852,12 +852,15 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/rossiyskie-prop-kompanii', {
-    title: 'Российские проп-компании: 3 реальных примера (2026)',
-    h1: 'Российские проп-компании в 2026 году: 3 проверяемых примера',
+    title: 'Российские проп-компании: 6 реальных примеров (2026)',
+    h1: 'Российские проп-компании в 2026 году: 6 проверяемых примеров',
     markers: [
       'data-russian-local-firms="verification-only"',
       'data-russian-affiliate-opportunity="unactivated"',
       'data-russian-country-boundary="local-to-global"',
+      'А-Лаб Групп',
+      'TeamTraders',
+      'Trade System',
     ],
   }],
   ['/ru/obzor-proplive', {

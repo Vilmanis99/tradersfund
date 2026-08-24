@@ -143,7 +143,7 @@ export default function RussianKasCapitalReviewPage() {
               </article>
             ))}
           </div>
-          <p className="ru-source-line">Другие локальные исследования: <Link href="/ru/rossiyskie-prop-kompanii">Era Trade, PropLive и KasCapital</Link>; отдельный обзор <Link href="/ru/obzor-eratrade">Era Trade</Link>.</p>
+          <p className="ru-source-line">Другие локальные исследования: <Link href="/ru/rossiyskie-prop-kompanii">шесть российских моделей</Link>; отдельный обзор <Link href="/ru/obzor-eratrade">Era Trade</Link>.</p>
         </div>
       </section>
 

@@ -81,6 +81,48 @@
         "The operator publishes weekly Monday payout processing and a 10,000 to 2,000,000 RUB request range.",
         "These are operator-published terms and have not yet passed the site's full product capture and review workflow."
       ]
+    },
+    {
+      "operator": "А-Лаб Групп",
+      "sourceUrl": "https://www.a-lab.name/",
+      "claims": {
+        "traders": 500,
+        "quarterlyTurnoverRubClaimed": 1000000000000,
+        "monthlyTradesClaimed": 800000,
+        "singleSessionRecordRub": 12563379,
+        "market": "Московская биржа: фондовый, срочный и валютный рынки"
+      },
+      "notes": [
+        "Все цифры опубликованы оператором; они не являются независимым аудитом оборота, сделок или выплат.",
+        "Оператор описывает договорную работу с собственным капиталом, русскоязычную коммуникацию и расчёты в российских рублях."
+      ]
+    },
+    {
+      "operator": "TeamTraders",
+      "sourceUrl": "https://teamtraders.ru/docs/",
+      "claims": {
+        "stageProfitPct": 6,
+        "minimumTradingSessions": 15,
+        "dailyLossLimitPct": 2,
+        "profitSharePct": 90,
+        "market": "фьючерсы Московской биржи через Финам"
+      },
+      "notes": [
+        "Правила опубликованы в официальной документации; стоимость стажировки и действующий договор требуют проверки перед оплатой.",
+        "Нельзя переносить позиции через ночь по умолчанию; нарушение риск-лимита аннулирует отбор или счёт по опубликованным правилам."
+      ]
+    },
+    {
+      "operator": "Trade System",
+      "sourceUrl": "https://tsystem.pro/",
+      "claims": {
+        "maximumProfitSharePct": 95,
+        "market": "Московская биржа"
+      },
+      "notes": [
+        "Оператор описывает обучение, отбор, риск-менеджмент и выплаты до 95%; условия нужно читать в действующем пользовательском соглашении.",
+        "Публичные страницы содержат отказ от гарантий заработка и не являются независимой историей выплат."
+      ]
     }
   ],
   "affiliatePrograms": [
@@ -114,6 +156,30 @@
       "sourceUrl": "https://kascapital.io/",
       "notes": [
         "No public affiliate or referral terms were found on the official site in the 2026-08-24 check."
+      ]
+    },
+    {
+      "operator": "А-Лаб Групп",
+      "status": "not-found",
+      "sourceUrl": "https://www.a-lab.name/",
+      "notes": [
+        "No public affiliate or referral terms were found on the reviewed official page in the 2026-08-24 check."
+      ]
+    },
+    {
+      "operator": "TeamTraders",
+      "status": "not-found",
+      "sourceUrl": "https://teamtraders.ru/docs/",
+      "notes": [
+        "The reviewed official documentation describes trader rules and does not publish an ordinary content-affiliate programme."
+      ]
+    },
+    {
+      "operator": "Trade System",
+      "status": "not-found",
+      "sourceUrl": "https://tsystem.pro/",
+      "notes": [
+        "No public affiliate or referral terms were found on the reviewed official page in the 2026-08-24 check."
       ]
     }
   ],
