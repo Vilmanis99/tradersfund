@@ -213,6 +213,7 @@ export default function RussianPropCompaniesPage() {
           </div>
           <div className="ru-actions">
             <Link href="/ru/luchshie-prop-firmy" className="btn-primary btn-glow">Сравнить глобальные фирмы <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-outline">Глобальные пути для русскоязычных</Link>
             <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm" className="btn-outline">Понять этапы челленджа</Link>
           </div>
         </div>

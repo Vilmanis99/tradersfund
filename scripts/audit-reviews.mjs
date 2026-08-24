@@ -10976,6 +10976,7 @@ function checkRussianAcquisitionPilot() {
     'data-russian-affiliate-opportunity="unactivated"',
     'Это не топ и не совет зарегистрироваться.',
     'многоуровневая Ambassador-схема нам не нужна',
+    'href="/ru/dlya-russkoyazychnykh-treyderov"',
   ]) {
     if (!localFirmPage.includes(token)) rows.push(`local-company verification page is missing ${token}`)
   }
