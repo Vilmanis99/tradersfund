@@ -11,6 +11,7 @@ const russianNavLinks = [
   { label: 'Крипто-проп', href: '/ru/luchshie-kripto-prop-firmy' },
   { label: 'Для русскоязычных', href: '/ru/dlya-russkoyazychnykh-treyderov' },
   { label: 'Сравнение партнёров', href: '/ru/fundednext-vs-fundingpips' },
+  { label: 'Промокоды', href: '/ru/promokody-prop-firm' },
   { label: 'Местные компании', href: '/ru/rossiyskie-prop-kompanii' },
   { label: 'Обзор FundedNext', href: '/ru/obzor-fundednext' },
   { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },

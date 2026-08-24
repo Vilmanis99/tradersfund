@@ -14,6 +14,7 @@ export const LOCALIZED_ROUTE_PAIRS = [
 export const RUSSIAN_ONLY_ROUTES = [
   '/ru/dlya-russkoyazychnykh-treyderov',
   '/ru/fundednext-vs-fundingpips',
+  '/ru/promokody-prop-firm',
   '/ru/rossiyskie-prop-kompanii',
 ] as const
 

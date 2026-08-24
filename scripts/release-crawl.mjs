@@ -722,6 +722,17 @@ const russianExpectations = new Map([
       '/go/fundingpips?from=ru-comparison-fundednext-fundingpips',
     ],
   }],
+  ['/ru/promokody-prop-firm', {
+    title: 'Промокоды проп-фирм 2026: проверенные предложения',
+    h1: 'Промокоды проп-фирм 2026: проверенные предложения',
+    markers: [
+      'data-russian-deals="verified-offers"',
+      'data-russian-offer-freshness="30-days"',
+      'data-russian-country-boundary="deals-not-access"',
+      'data-russian-affiliate-disclosure="deals"',
+      '/go/fundednext?from=ru-deals-earned-coupon',
+    ],
+  }],
   ['/ru/luchshie-prop-firmy', {
     title: 'Лучшие проп-фирмы 2026: рейтинг и сравнение',
     h1: 'Лучшие проп-фирмы 2026: рейтинг для русскоязычных трейдеров',
@@ -867,6 +878,7 @@ for (const [path, href] of [
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-diaspora-fundednext'],
   ['/ru/fundednext-vs-fundingpips', '/go/fundednext?from=ru-comparison-fundednext-fundingpips'],
+  ['/ru/promokody-prop-firm', '/go/fundednext?from=ru-deals-earned-coupon'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
   const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]

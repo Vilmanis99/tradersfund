@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, BookOpenCheck, Building2, Database, Globe2, Scale, SearchCheck, ShieldAlert } from 'lucide-react'
+import { ArrowRight, BadgePercent, BookOpenCheck, Building2, Database, Globe2, Scale, SearchCheck, ShieldAlert } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -126,7 +126,7 @@ export default function RussianHomePage() {
 
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия начинает с десяти страниц под самостоятельные поисковые задачи,
+            Русская версия начинает с одиннадцати страниц под самостоятельные поисковые задачи,
             включая отдельную проверку компаний российского рынка. Мы не переводим сотни URL автоматически: сначала проверяем,
             отвечает ли локальная страница на самостоятельный поисковый запрос.
           </p>
@@ -172,6 +172,12 @@ export default function RussianHomePage() {
               <h3>FundedNext или FundingPips</h3>
               <p className="ru-muted">Продуктовое сравнение двух глобальных партнёров: цена, просадка, сплит, первая выплата и отдельные CTA без единого навязанного победителя.</p>
               <Link className="ru-card-link" href="/ru/fundednext-vs-fundingpips">Сравнить партнёров →</Link>
+            </article>
+            <article className="ru-card">
+              <BadgePercent size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Промокоды и предложения</h3>
+              <p className="ru-muted">Показываем только свежие условия: публичный код, скидка по ссылке или персональный купон после выполнения условия.</p>
+              <Link className="ru-card-link" href="/ru/promokody-prop-firm">Проверить предложения →</Link>
             </article>
           </div>
           <p className="ru-source-line">
