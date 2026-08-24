@@ -214,6 +214,23 @@ export default function RussianDiasporaGuidePage() {
             После проверки откройте <Link href="/ru/luchshie-prop-firmy">русский глобальный рейтинг</Link> и
             сравните свежие продукты, а не рекламное обещание «для всех русскоязычных».
           </p>
+          <div className="ru-notice ru-disclosure" data-russian-diaspora-region-funnel="global-partners">
+            <strong>Глобальные переходы после проверки региона.</strong>{' '}
+            Кнопки ниже могут приносить Traders Fund Hub комиссию. Это не подтверждает доступность вашей страны:
+            сначала сверяйте KYC, оплату и выплату у выбранной фирмы.
+          </div>
+          <div className="ru-actions">
+            {partnerCards.map(item => (
+              <Link
+                key={item.slug}
+                href={`/go/${item.slug}?from=ru-diaspora-regions-${item.slug}`}
+                rel="sponsored nofollow noopener"
+                className="btn-primary"
+              >
+                Проверить {item.name} <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
