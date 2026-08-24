@@ -2759,6 +2759,11 @@ function checkAnalyticsMeasurementContract() {
     ['/best-prop-firms-in-india/challenge-changes', 'india_updates'],
     ['/compare/ftmo-vs-fundingpips', 'head_to_head'],
     ['/blog/ftmo-review/', 'firm_review'],
+    ['/ru/', 'russian_home'],
+    ['/ru/luchshie-prop-firmy', 'russian_ranking'],
+    ['/ru/obzor-fundednext/', 'russian_review'],
+    ['/ru/rossiyskie-prop-kompanii', 'russian_local_research'],
+    ['/ru/kak-rabotayut-chellendzhi-prop-firm', 'russian_education'],
   ])
   for (const [pathname, expected] of stageFixtures) {
     const actual = journeyStage(pathname)
@@ -2768,6 +2773,11 @@ function checkAnalyticsMeasurementContract() {
   }
   if (!isHighIntentJourneyStage('india_hub')) {
     rows.push('India hub must be high intent so payout-to-matcher navigation is measured')
+  }
+  for (const stage of ['russian_ranking', 'russian_review']) {
+    if (!isHighIntentJourneyStage(stage)) {
+      rows.push(`Russian ${stage} must be high intent so affiliate journeys are measured`)
+    }
   }
 
   const relationshipFixture = {
@@ -10946,6 +10956,20 @@ function checkRussianAcquisitionPilot() {
   }
   if (localFirmPage.includes('/go/')) {
     rows.push('local-company verification page contains an unapproved affiliate CTA')
+  }
+
+  const russianRankingPage = fs.existsSync(russianRouteFiles.get('/ru/luchshie-prop-firmy'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/luchshie-prop-firmy'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-partner-shortlist="global"',
+    'data-russian-affiliate-disclosure="partner-shortlist"',
+    "const globalPartners = ['fundednext', 'fundingpips', 'bright-funded']",
+    'from=ru-ranking-partner-shortlist',
+    '`/go/${item.slug}?from=ru-ranking-partner-shortlist`',
+    'rel="sponsored nofollow noopener"',
+  ]) {
+    if (!russianRankingPage.includes(token)) rows.push(`Russian global-partner shortlist is missing ${token}`)
   }
 
   const fundedNextRussianPage = fs.existsSync(russianRouteFiles.get('/ru/obzor-fundednext'))

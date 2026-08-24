@@ -705,6 +705,11 @@ const russianExpectations = new Map([
       'data-russian-country-boundary="ranking-not-access"',
       'data-russian-ranking="top-five"',
       'data-russian-affiliate-disclosure="ranking"',
+      'data-russian-partner-shortlist="global"',
+      'data-russian-affiliate-disclosure="partner-shortlist"',
+      '/go/fundednext?from=ru-ranking-partner-shortlist',
+      '/go/fundingpips?from=ru-ranking-partner-shortlist',
+      '/go/bright-funded?from=ru-ranking-partner-shortlist',
     ],
   }],
   ['/ru/obzor-fundednext', {

@@ -14,6 +14,11 @@ export type JourneyStage =
   | 'comparison_directory'
   | 'head_to_head'
   | 'firm_review'
+  | 'russian_home'
+  | 'russian_ranking'
+  | 'russian_review'
+  | 'russian_local_research'
+  | 'russian_education'
   | 'editorial'
   | 'information'
 
@@ -28,6 +33,8 @@ const HIGH_INTENT_STAGES = new Set<JourneyStage>([
   'challenge_updates',
   'comparison_directory',
   'firm_review',
+  'russian_ranking',
+  'russian_review',
   'head_to_head',
 ])
 
@@ -52,6 +59,11 @@ export function journeyStage(pathname: string): JourneyStage {
   if (path === '/prop-firms') return 'firm_directory'
   if (path === '/compare') return 'comparison_directory'
   if (path.includes('-vs-') || path.includes('/compare/')) return 'head_to_head'
+  if (path === '/ru') return 'russian_home'
+  if (path === '/ru/luchshie-prop-firmy') return 'russian_ranking'
+  if (path === '/ru/obzor-fundednext') return 'russian_review'
+  if (path === '/ru/rossiyskie-prop-kompanii') return 'russian_local_research'
+  if (path.startsWith('/ru/')) return 'russian_education'
   if (/^\/blog\/(?:[^/]+-review|bright-funded-prop-firm|my-funded-futures)$/.test(path)) {
     return 'firm_review'
   }

@@ -64,6 +64,9 @@ export default function RussianBestPropFirmsPage() {
     .sort((a, b) => b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
 
   const topFive = ranked.slice(0, 5)
+  const globalPartners = ['fundednext', 'fundingpips', 'bright-funded']
+    .map(slug => ranked.find(item => item.slug === slug))
+    .filter((item): item is (typeof ranked)[number] => Boolean(item?.firm.affiliateUrl))
   const latestCapture = ranked
     .flatMap(item => item.products.map(product => product.sourceCapturedAt))
     .sort()
@@ -165,6 +168,43 @@ export default function RussianBestPropFirmsPage() {
                   >
                     {item.slug === 'fundednext' ? 'Читать обзор на русском →' : 'Открыть полный обзор на английском →'}
                   </Link>
+                </article>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell" data-russian-partner-shortlist="global">
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="partner-shortlist">
+            <strong>Глобальные партнёрские пути.</strong>{' '}
+            Эти карточки показывают фирмы, с которыми у Traders Fund Hub настроены партнёрские ссылки.
+            Партнёрство не меняет редакционный балл или порядок рейтинга. Перед оплатой отдельно подтвердите
+            страну, гражданство, KYC, способ оплаты и правила выплат.
+          </div>
+          <h2>Куда перейти после проверки условий</h2>
+          <p className="ru-muted">Русский язык страницы не означает доступность для резидента России. Сначала откройте разбор и сверяйте страну на официальном checkout.</p>
+          <div className="ru-grid">
+            {globalPartners.map(item => {
+              const reviewHref = item.slug === 'fundednext' ? '/ru/obzor-fundednext' : item.firm.reviewUrl
+              return (
+                <article className="ru-card" key={item.slug} data-russian-partner={item.slug}>
+                  <div className="ru-card-head">
+                    <h3>{item.firm.name}</h3>
+                    <span className="ru-score">{item.firm.score.toFixed(1)}/10</span>
+                  </div>
+                  <p className="ru-muted">{item.products.length} свежих продуктов; источник до {item.products.map(product => product.sourceCapturedAt).sort().at(-1)}. Смотрите правила конкретного продукта, а не только название фирмы.</p>
+                  <div className="ru-actions">
+                    <Link href={reviewHref} className="btn-outline">Открыть разбор</Link>
+                    <Link
+                      href={`/go/${item.slug}?from=ru-ranking-partner-shortlist`}
+                      rel="sponsored nofollow noopener"
+                      className="btn-primary"
+                    >
+                      Проверить условия <ArrowRight size={14} aria-hidden="true" />
+                    </Link>
+                  </div>
                 </article>
               )
             })}
