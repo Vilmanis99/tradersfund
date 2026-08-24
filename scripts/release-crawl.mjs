@@ -698,6 +698,18 @@ const russianExpectations = new Map([
       '41',
     ],
   }],
+  ['/ru/dlya-russkoyazychnykh-treyderov', {
+    title: 'Проп-фирмы для русскоязычных трейдеров за рубежом',
+    h1: 'Проп-фирмы для русскоязычных трейдеров: проверка доступа в разных странах',
+    markers: [
+      'data-russian-diaspora-guide="global-access"',
+      'data-russian-country-boundary="diaspora-not-access"',
+      'data-russian-affiliate-disclosure="diaspora-guide"',
+      '/go/fundednext?from=ru-diaspora-fundednext',
+      '/go/fundingpips?from=ru-diaspora-fundingpips',
+      '/go/bright-funded?from=ru-diaspora-bright-funded',
+    ],
+  }],
   ['/ru/luchshie-prop-firmy', {
     title: 'Лучшие проп-фирмы 2026: рейтинг и сравнение',
     h1: 'Лучшие проп-фирмы 2026: рейтинг для русскоязычных трейдеров',
@@ -841,6 +853,7 @@ for (const [path, href] of [
   ['/ru/obzor-fundingpips', '/go/fundingpips?from=ru-fundingpips-review-verdict'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-verdict'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],
+  ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-diaspora-fundednext'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
   const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]

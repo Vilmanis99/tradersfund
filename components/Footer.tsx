@@ -34,6 +34,7 @@ export default function Footer({
   const propFirmLinks = isRussian ? [
     { label: 'Рейтинг проп-фирм 2026', href: '/ru/luchshie-prop-firmy' },
     { label: 'Крипто-проп-фирмы', href: '/ru/luchshie-kripto-prop-firmy' },
+    { label: 'Для русскоязычных трейдеров', href: '/ru/dlya-russkoyazychnykh-treyderov' },
     { label: 'Российские компании', href: '/ru/rossiyskie-prop-kompanii' },
     { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },
     { label: 'Глобальные продукты', href: '/prop-firm-challenges' },

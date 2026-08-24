@@ -2765,6 +2765,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/obzor-fundingpips', 'russian_review'],
     ['/ru/obzor-bright-funded/', 'russian_review'],
     ['/ru/luchshie-kripto-prop-firmy', 'russian_ranking'],
+    ['/ru/dlya-russkoyazychnykh-treyderov', 'russian_ranking'],
     ['/ru/rossiyskie-prop-kompanii', 'russian_local_research'],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', 'russian_education'],
   ])
@@ -10785,6 +10786,7 @@ function checkRussianAcquisitionPilot() {
     : ''
   const russianRouteFiles = new Map([
     ['/ru', path.join(ROOT, 'app/ru/page.tsx')],
+    ['/ru/dlya-russkoyazychnykh-treyderov', path.join(ROOT, 'app/ru/dlya-russkoyazychnykh-treyderov/page.tsx')],
     ['/ru/luchshie-prop-firmy', path.join(ROOT, 'app/ru/luchshie-prop-firmy/page.tsx')],
     ['/ru/luchshie-kripto-prop-firmy', path.join(ROOT, 'app/ru/luchshie-kripto-prop-firmy/page.tsx')],
     ['/ru/obzor-fundednext', path.join(ROOT, 'app/ru/obzor-fundednext/page.tsx')],
@@ -10911,6 +10913,7 @@ function checkRussianAcquisitionPilot() {
     "{ en: '/blog/funding-pips-review', ru: '/ru/obzor-fundingpips' }",
     "{ en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' }",
     "ru: '/ru/kak-rabotayut-chellendzhi-prop-firm'",
+    "'/ru/dlya-russkoyazychnykh-treyderov'",
     "'/ru/rossiyskie-prop-kompanii'",
     "'x-default': pair.en",
   ]
@@ -11003,6 +11006,22 @@ function checkRussianAcquisitionPilot() {
     if (!russianCryptoPage.includes(token)) rows.push(`Russian crypto ranking is missing ${token}`)
   }
 
+  const russianDiasporaPage = fs.existsSync(russianRouteFiles.get('/ru/dlya-russkoyazychnykh-treyderov'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/dlya-russkoyazychnykh-treyderov'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-diaspora-guide="global-access"',
+    'data-russian-country-boundary="diaspora-not-access"',
+    'data-russian-affiliate-disclosure="diaspora-guide"',
+    'ru-diaspora-fundednext',
+    'ru-diaspora-fundingpips',
+    'ru-diaspora-bright-funded',
+    'rel="sponsored nofollow noopener"',
+    'Российские проп-компании',
+  ]) {
+    if (!russianDiasporaPage.includes(token)) rows.push(`Russian diaspora guide is missing ${token}`)
+  }
+
   const fundedNextRussianPage = fs.existsSync(russianRouteFiles.get('/ru/obzor-fundednext'))
     ? fs.readFileSync(russianRouteFiles.get('/ru/obzor-fundednext'), 'utf8')
     : ''
@@ -11050,6 +11069,7 @@ function checkRussianAcquisitionPilot() {
     "label: 'Местные компании'",
     "href: '/ru/rossiyskie-prop-kompanii'",
     "href: '/ru/luchshie-kripto-prop-firmy'",
+    "href: '/ru/dlya-russkoyazychnykh-treyderov'",
     'getAlternateLanguageHref(pathname)',
     'hrefLang={isRussian ? \'en\' : \'ru\'}',
   ]) {

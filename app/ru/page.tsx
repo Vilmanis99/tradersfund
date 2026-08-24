@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, BookOpenCheck, Building2, Database, SearchCheck, ShieldAlert } from 'lucide-react'
+import { ArrowRight, BookOpenCheck, Building2, Database, Globe2, SearchCheck, ShieldAlert } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -126,7 +126,7 @@ export default function RussianHomePage() {
 
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия начинает с восьми страниц под самостоятельные поисковые задачи,
+            Русская версия начинает с девяти страниц под самостоятельные поисковые задачи,
             включая отдельную проверку компаний российского рынка. Мы не переводим сотни URL автоматически: сначала проверяем,
             отвечает ли локальная страница на самостоятельный поисковый запрос.
           </p>
@@ -160,6 +160,12 @@ export default function RussianHomePage() {
               <h3>Крипто-проп-фирмы</h3>
               <p className="ru-muted">Отделяем источник с разрешёнными криптоинструментами от оплаты или выплаты в криптовалюте и проверяем продуктовые правила.</p>
               <Link className="ru-card-link" href="/ru/luchshie-kripto-prop-firmy">Сравнить криптомаршруты →</Link>
+            </article>
+            <article className="ru-card">
+              <Globe2 size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Русскоязычные трейдеры за рубежом</h3>
+              <p className="ru-muted">Разделяем язык, гражданство, резидентство и KYC, чтобы вести подходящих читателей к глобальным продуктам без обещаний доступа.</p>
+              <Link className="ru-card-link" href="/ru/dlya-russkoyazychnykh-treyderov">Пройти проверку доступа →</Link>
             </article>
           </div>
           <p className="ru-source-line">
