@@ -11052,6 +11052,7 @@ function checkRussianAcquisitionPilot() {
     : ''
   for (const token of [
     'data-russian-diaspora-guide="global-access"',
+    'data-russian-diaspora-regions="kazakhstan-uae"',
     'data-russian-country-boundary="diaspora-not-access"',
     'data-russian-affiliate-disclosure="diaspora-guide"',
     'ru-diaspora-fundednext',

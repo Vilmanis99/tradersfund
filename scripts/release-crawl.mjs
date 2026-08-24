@@ -703,6 +703,7 @@ const russianExpectations = new Map([
     h1: 'Проп-фирмы для русскоязычных трейдеров: проверка доступа в разных странах',
     markers: [
       'data-russian-diaspora-guide="global-access"',
+      'data-russian-diaspora-regions="kazakhstan-uae"',
       'data-russian-country-boundary="diaspora-not-access"',
       'data-russian-affiliate-disclosure="diaspora-guide"',
       '/go/fundednext?from=ru-diaspora-fundednext',
