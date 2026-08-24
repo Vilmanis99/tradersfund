@@ -11,5 +11,61 @@
     "sourceLabel": "FundedNext Free Trial Rules",
     "ctaLabel": "Start the Free Trial",
     "note": "Reach the 5% Free Trial target and FundedNext generates a personal code by email and in My Offers. The code lasts 14 days."
+  },
+  {
+    "firmSlug": "fundingpips",
+    "status": "partner",
+    "mechanism": "checkout-code",
+    "code": "HELLO",
+    "pct": 20,
+    "amountLabel": "20% off first purchase",
+    "scope": "First purchase · excludes $100K accounts",
+    "verifiedOn": "2026-08-24",
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+    "sourceLabel": "FundingPips Get Started",
+    "ctaLabel": "Use HELLO at checkout",
+    "note": "FundingPips says HELLO applies before payment to the first purchase and excludes $100K accounts. Confirm the final total before paying."
+  },
+  {
+    "firmSlug": "bright-funded",
+    "status": "partner",
+    "mechanism": "checkout-code",
+    "code": "SUMMER30",
+    "pct": 30,
+    "amountLabel": "30% off 1-Step",
+    "scope": "1-Step Challenge",
+    "verifiedOn": "2026-08-24",
+    "sourceUrl": "https://brightfunded.com/trading-updates",
+    "sourceLabel": "BrightFunded Trading Updates",
+    "ctaLabel": "Use SUMMER30 at checkout",
+    "note": "BrightFunded lists SUMMER30 for its 1-Step Challenge on the official Trading Updates page. Confirm the code and final total before paying."
+  },
+  {
+    "firmSlug": "bright-funded",
+    "status": "partner",
+    "mechanism": "checkout-code",
+    "code": "SUMMER25",
+    "pct": 25,
+    "amountLabel": "25% off 2-Step Bright",
+    "scope": "2-Step Bright",
+    "verifiedOn": "2026-08-24",
+    "sourceUrl": "https://brightfunded.com/trading-updates",
+    "sourceLabel": "BrightFunded Trading Updates",
+    "ctaLabel": "Use SUMMER25 at checkout",
+    "note": "BrightFunded lists SUMMER25 for 2-Step Bright on the official Trading Updates page. Confirm the code and final total before paying."
+  },
+  {
+    "firmSlug": "bright-funded",
+    "status": "partner",
+    "mechanism": "checkout-code",
+    "code": "SUMMER15",
+    "pct": 15,
+    "amountLabel": "15% off 2-Step Classic",
+    "scope": "2-Step Classic",
+    "verifiedOn": "2026-08-24",
+    "sourceUrl": "https://brightfunded.com/trading-updates",
+    "sourceLabel": "BrightFunded Trading Updates",
+    "ctaLabel": "Use SUMMER15 at checkout",
+    "note": "BrightFunded lists SUMMER15 for 2-Step Classic on the official Trading Updates page. Confirm the code and final total before paying."
   }
 ]

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, BadgePercent, CalendarCheck, ExternalLink, ShieldCheck } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import CopyableCodePill from '@/components/CopyableCodePill'
 import { getAllFirms } from '@/lib/firms'
 import { getAllDeals, rankDeals, type Deal } from '@/lib/deals'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -11,7 +12,7 @@ export const revalidate = 86400
 
 const PATH = '/ru/promokody-prop-firm'
 const TITLE = 'Промокоды проп-фирм 2026: проверенные предложения'
-const DESCRIPTION = 'Проверенные промокоды и предложения проп-фирм на русском: условия, дата проверки, персональный купон FundedNext и переход к глобальным продуктам.'
+const DESCRIPTION = 'Проверенные промокоды и предложения проп-фирм на русском: код для оплаты, условия, дата проверки и переход к глобальным продуктам.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -29,6 +30,10 @@ const faqs: RussianFaqItem[] = [
   {
     q: 'Как работает предложение FundedNext?',
     a: 'Текущий источник описывает персональный купон для подходящего нового пользователя после выполнения условия Free Trial. Проверьте полный текст условия на официальной странице, дождитесь выдачи кода фирмой и подтвердите итоговую сумму на checkout.',
+  },
+  {
+    q: 'Где искать код и как проверить скидку?',
+    a: 'Если код подтверждён первичной страницей фирмы, он показан в карточке и его можно скопировать. Введите его до оплаты, проверьте подходящий продукт и убедитесь, что итоговая сумма изменилась. Ограничения по размеру счёта, этапу или стране имеют приоритет над нашей карточкой.',
   },
   {
     q: 'Гарантирует ли affiliate-ссылка скидку или регистрацию?',
@@ -52,6 +57,10 @@ function offerAction(deal: Deal) {
   if (deal.mechanism === 'earned-coupon') return 'Начать Free Trial'
   if (deal.mechanism === 'link-applied') return 'Открыть предложение'
   return 'Проверить промокод'
+}
+
+function campaignFor(deal: Deal) {
+  return `ru-deals-${deal.firmSlug}-${deal.code?.toLowerCase() ?? deal.mechanism}`
 }
 
 export default function RussianPropFirmOffersPage() {
@@ -79,7 +88,7 @@ export default function RussianPropFirmOffersPage() {
       item: {
         '@type': 'Organization',
         name: firmBySlug.get(deal.firmSlug)?.name ?? deal.firmSlug,
-        url: `https://tradersfundhub.com/ru/promokody-prop-firm#${deal.firmSlug}`,
+        url: `https://tradersfundhub.com/ru/promokody-prop-firm#${deal.firmSlug}-${deal.code ?? deal.mechanism}`,
       },
     })),
   }
@@ -144,15 +153,20 @@ export default function RussianPropFirmOffersPage() {
               if (!firm) return null
               const isAffiliate = Boolean(firm.affiliateUrl)
               return (
-                <article className="ru-card" id={deal.firmSlug} key={`${deal.firmSlug}-${deal.mechanism}`} data-russian-deal-firm={deal.firmSlug}>
+                <article className="ru-card" id={`${deal.firmSlug}-${deal.code ?? deal.mechanism}`} key={`${deal.firmSlug}-${deal.mechanism}-${deal.code ?? 'offer'}`} data-russian-deal-firm={deal.firmSlug}>
                   <div className="ru-card-head"><h3>{firm.name}</h3><span className="ru-score">{deal.amountLabel}</span></div>
                   <p className="ru-muted"><strong>{mechanismLabel(deal.mechanism)}</strong>{deal.scope ? ` · ${deal.scope}` : ''}</p>
+                  {deal.code && deal.pct != null && (
+                    <div style={{ display: 'flex', marginBottom: '0.7rem' }}>
+                      <CopyableCodePill code={deal.code} pct={deal.pct} locale="ru" />
+                    </div>
+                  )}
                   <p>{deal.note ?? 'Условия указаны на первичной странице фирмы; проверьте итоговую сумму до оплаты.'}</p>
                   <div className="ru-source-line"><CalendarCheck size={14} aria-hidden="true" /> Проверено {deal.verifiedOn} · <a href={deal.sourceUrl} target="_blank" rel="noopener noreferrer">{deal.sourceLabel}</a></div>
                   <div className="ru-actions">
                     <Link href={firm.reviewUrl.startsWith('/blog/') ? (firm.name === 'FundedNext' ? '/ru/obzor-fundednext' : firm.reviewUrl) : firm.reviewUrl} className="btn-outline">Открыть обзор</Link>
                     <Link
-                      href={`/go/${deal.firmSlug}?from=ru-deals-${deal.mechanism}`}
+                      href={`/go/${deal.firmSlug}?from=${campaignFor(deal)}`}
                       rel={isAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}
                       className="btn-primary"
                     >

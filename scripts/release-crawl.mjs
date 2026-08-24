@@ -730,7 +730,15 @@ const russianExpectations = new Map([
       'data-russian-offer-freshness="30-days"',
       'data-russian-country-boundary="deals-not-access"',
       'data-russian-affiliate-disclosure="deals"',
-      '/go/fundednext?from=ru-deals-earned-coupon',
+      '/go/fundednext?from=ru-deals-fundednext-earned-coupon',
+      '/go/fundingpips?from=ru-deals-fundingpips-hello',
+      '/go/bright-funded?from=ru-deals-bright-funded-summer30',
+      '/go/bright-funded?from=ru-deals-bright-funded-summer25',
+      '/go/bright-funded?from=ru-deals-bright-funded-summer15',
+      'HELLO',
+      'SUMMER30',
+      'SUMMER25',
+      'SUMMER15',
     ],
   }],
   ['/ru/prop-firmy-bez-chelendzha', {
@@ -890,7 +898,11 @@ for (const [path, href] of [
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-diaspora-fundednext'],
   ['/ru/fundednext-vs-fundingpips', '/go/fundednext?from=ru-comparison-fundednext-fundingpips'],
-  ['/ru/promokody-prop-firm', '/go/fundednext?from=ru-deals-earned-coupon'],
+  ['/ru/promokody-prop-firm', '/go/fundednext?from=ru-deals-fundednext-earned-coupon'],
+  ['/ru/promokody-prop-firm', '/go/fundingpips?from=ru-deals-fundingpips-hello'],
+  ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer30'],
+  ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer25'],
+  ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer15'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
   const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]

@@ -8,9 +8,20 @@ import { Tag, Check } from 'lucide-react'
  * a brief "Copied!" confirmation. Extracted as a client subcomponent so the
  * server-rendered FirmCtaCard can stay a server component.
  */
-export default function CopyableCodePill({ code, pct }: { code: string; pct: number }) {
+export default function CopyableCodePill({
+  code,
+  pct,
+  locale = 'en',
+}: {
+  code: string
+  pct: number
+  locale?: 'en' | 'ru'
+}) {
   const [copied, setCopied] = useState(false)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const labels = locale === 'ru'
+    ? { copy: `Скопировать код скидки ${code}`, copied: 'Скопировано', offer: `${pct}% скидка — код ${code}` }
+    : { copy: `Copy discount code ${code}`, copied: 'Copied!', offer: `${pct}% off — code ${code}` }
 
   useEffect(() => {
     return () => {
@@ -46,7 +57,7 @@ export default function CopyableCodePill({ code, pct }: { code: string; pct: num
     <button
       type="button"
       onClick={handleCopy}
-      aria-label={`Copy discount code ${code} to clipboard`}
+      aria-label={labels.copy}
       aria-live="polite"
       style={{
         display: 'inline-flex',
@@ -75,12 +86,12 @@ export default function CopyableCodePill({ code, pct }: { code: string; pct: num
       {copied ? (
         <>
           <Check size={11} aria-hidden="true" />
-          Copied!
+          {labels.copied}
         </>
       ) : (
         <>
           <Tag size={11} aria-hidden="true" />
-          {pct}% off — code {code}
+          {labels.offer}
         </>
       )}
     </button>

@@ -7327,8 +7327,36 @@ function checkDiscountHub() {
       rows.push('FundedNext earned coupon does not match structured Free Trial evidence')
     }
   }
-  if (deals.some(deal => deal.firmSlug === 'bright-funded')) {
-    rows.push('stale Bright Funded automatic 10% claim must not be restored')
+  const fundingPipsDeal = deals.find(deal => deal.firmSlug === 'fundingpips')
+  if (
+    !fundingPipsDeal ||
+    fundingPipsDeal.mechanism !== 'checkout-code' ||
+    fundingPipsDeal.code !== 'HELLO' ||
+    fundingPipsDeal.pct !== 20 ||
+    fundingPipsDeal.sourceUrl !== 'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started' ||
+    !(fundingPipsDeal.scope ?? '').includes('excludes $100K accounts')
+  ) {
+    rows.push('FundingPips HELLO offer must match the official Get Started evidence')
+  }
+
+  const brightDeals = deals.filter(deal => deal.firmSlug === 'bright-funded')
+  const brightCodes = new Map(brightDeals.map(deal => [deal.code, deal]))
+  const expectedBrightOffers = [
+    ['SUMMER30', 30, '1-Step Challenge'],
+    ['SUMMER25', 25, '2-Step Bright'],
+    ['SUMMER15', 15, '2-Step Classic'],
+  ]
+  for (const [code, pct, scope] of expectedBrightOffers) {
+    const deal = brightCodes.get(code)
+    if (
+      !deal ||
+      deal.mechanism !== 'checkout-code' ||
+      deal.pct !== pct ||
+      deal.scope !== scope ||
+      deal.sourceUrl !== 'https://brightfunded.com/trading-updates'
+    ) {
+      rows.push(`BrightFunded ${code} offer must match the official Trading Updates evidence`)
+    }
   }
 
   const title = page.match(/const TITLE = '([^']+)'/)?.[1] ?? ''
@@ -11055,7 +11083,9 @@ function checkRussianAcquisitionPilot() {
     'data-russian-country-boundary="deals-not-access"',
     'data-russian-affiliate-disclosure="deals"',
     'getAllDeals',
-    'from=ru-deals-',
+    'CopyableCodePill',
+    'locale="ru"',
+    'campaignFor(deal)',
     'rel={isAffiliate ? \'sponsored nofollow noopener\' : \'nofollow noopener\'}',
   ]) {
     if (!russianDealsPage.includes(token)) rows.push(`Russian offers page is missing ${token}`)
