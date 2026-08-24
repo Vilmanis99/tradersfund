@@ -67,6 +67,7 @@ export function journeyStage(pathname: string): JourneyStage {
     || path === '/ru/obzor-bright-funded'
   ) return 'russian_review'
   if (path === '/ru/luchshie-kripto-prop-firmy') return 'russian_ranking'
+  if (path === '/ru/prop-firmy-bez-chelendzha') return 'russian_ranking'
   if (path === '/ru/dlya-russkoyazychnykh-treyderov') return 'russian_ranking'
   if (path === '/ru/fundednext-vs-fundingpips') return 'russian_ranking'
   if (path === '/ru/promokody-prop-firm') return 'russian_ranking'

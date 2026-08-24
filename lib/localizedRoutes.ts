@@ -2,6 +2,7 @@ export const LOCALIZED_ROUTE_PAIRS = [
   { en: '/', ru: '/ru' },
   { en: '/best-prop-firms-2026', ru: '/ru/luchshie-prop-firmy' },
   { en: '/best-crypto-prop-firms', ru: '/ru/luchshie-kripto-prop-firmy' },
+  { en: '/best-instant-funding-prop-firms', ru: '/ru/prop-firmy-bez-chelendzha' },
   { en: '/compare/fundednext-vs-fundingpips', ru: '/ru/fundednext-vs-fundingpips' },
   { en: '/prop-firm-discount-codes', ru: '/ru/promokody-prop-firm' },
   { en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' },

@@ -733,6 +733,18 @@ const russianExpectations = new Map([
       '/go/fundednext?from=ru-deals-earned-coupon',
     ],
   }],
+  ['/ru/prop-firmy-bez-chelendzha', {
+    title: 'Проп-фирмы без челленджа: instant funding 2026',
+    h1: 'Проп-фирмы без челленджа: instant funding для русскоязычных трейдеров',
+    markers: [
+      'data-russian-instant-ranking="source-gated"',
+      'data-russian-country-boundary="instant-not-access"',
+      'data-russian-affiliate-disclosure="instant-ranking"',
+      'data-russian-instant-product-count="19"',
+      '/go/fundednext?from=ru-instant-ranking',
+      '/go/fundingpips?from=ru-instant-ranking',
+    ],
+  }],
   ['/ru/luchshie-prop-firmy', {
     title: 'Лучшие проп-фирмы 2026: рейтинг и сравнение',
     h1: 'Лучшие проп-фирмы 2026: рейтинг для русскоязычных трейдеров',

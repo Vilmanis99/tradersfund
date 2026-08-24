@@ -2765,6 +2765,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/obzor-fundingpips', 'russian_review'],
     ['/ru/obzor-bright-funded/', 'russian_review'],
     ['/ru/luchshie-kripto-prop-firmy', 'russian_ranking'],
+    ['/ru/prop-firmy-bez-chelendzha', 'russian_ranking'],
     ['/ru/dlya-russkoyazychnykh-treyderov', 'russian_ranking'],
     ['/ru/rossiyskie-prop-kompanii', 'russian_local_research'],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', 'russian_education'],
@@ -10789,6 +10790,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/dlya-russkoyazychnykh-treyderov', path.join(ROOT, 'app/ru/dlya-russkoyazychnykh-treyderov/page.tsx')],
     ['/ru/fundednext-vs-fundingpips', path.join(ROOT, 'app/ru/fundednext-vs-fundingpips/page.tsx')],
     ['/ru/promokody-prop-firm', path.join(ROOT, 'app/ru/promokody-prop-firm/page.tsx')],
+    ['/ru/prop-firmy-bez-chelendzha', path.join(ROOT, 'app/ru/prop-firmy-bez-chelendzha/page.tsx')],
     ['/ru/luchshie-prop-firmy', path.join(ROOT, 'app/ru/luchshie-prop-firmy/page.tsx')],
     ['/ru/luchshie-kripto-prop-firmy', path.join(ROOT, 'app/ru/luchshie-kripto-prop-firmy/page.tsx')],
     ['/ru/obzor-fundednext', path.join(ROOT, 'app/ru/obzor-fundednext/page.tsx')],
@@ -10911,6 +10913,7 @@ function checkRussianAcquisitionPilot() {
     "{ en: '/', ru: '/ru' }",
     "{ en: '/best-prop-firms-2026', ru: '/ru/luchshie-prop-firmy' }",
     "{ en: '/best-crypto-prop-firms', ru: '/ru/luchshie-kripto-prop-firmy' }",
+    "{ en: '/best-instant-funding-prop-firms', ru: '/ru/prop-firmy-bez-chelendzha' }",
     "{ en: '/compare/fundednext-vs-fundingpips', ru: '/ru/fundednext-vs-fundingpips' }",
     "{ en: '/prop-firm-discount-codes', ru: '/ru/promokody-prop-firm' }",
     "{ en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' }",
@@ -11058,6 +11061,20 @@ function checkRussianAcquisitionPilot() {
     if (!russianDealsPage.includes(token)) rows.push(`Russian offers page is missing ${token}`)
   }
 
+  const russianInstantPage = fs.existsSync(russianRouteFiles.get('/ru/prop-firmy-bez-chelendzha'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/prop-firmy-bez-chelendzha'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-instant-ranking="source-gated"',
+    'data-russian-country-boundary="instant-not-access"',
+    'data-russian-affiliate-disclosure="instant-ranking"',
+    'data-russian-instant-product-count={products.length}',
+    'from=ru-instant-ranking',
+    'rel="sponsored nofollow noopener"',
+  ]) {
+    if (!russianInstantPage.includes(token)) rows.push(`Russian instant page is missing ${token}`)
+  }
+
   const fundedNextRussianPage = fs.existsSync(russianRouteFiles.get('/ru/obzor-fundednext'))
     ? fs.readFileSync(russianRouteFiles.get('/ru/obzor-fundednext'), 'utf8')
     : ''
@@ -11108,6 +11125,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/dlya-russkoyazychnykh-treyderov'",
     "href: '/ru/fundednext-vs-fundingpips'",
     "href: '/ru/promokody-prop-firm'",
+    "href: '/ru/prop-firmy-bez-chelendzha'",
     'getAlternateLanguageHref(pathname)',
     'hrefLang={isRussian ? \'en\' : \'ru\'}',
   ]) {

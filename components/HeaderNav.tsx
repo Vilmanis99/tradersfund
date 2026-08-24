@@ -9,6 +9,7 @@ import { navLinks } from './navLinks'
 const russianNavLinks = [
   { label: 'Рейтинг', href: '/ru/luchshie-prop-firmy' },
   { label: 'Крипто-проп', href: '/ru/luchshie-kripto-prop-firmy' },
+  { label: 'Без челленджа', href: '/ru/prop-firmy-bez-chelendzha' },
   { label: 'Для русскоязычных', href: '/ru/dlya-russkoyazychnykh-treyderov' },
   { label: 'Сравнение партнёров', href: '/ru/fundednext-vs-fundingpips' },
   { label: 'Промокоды', href: '/ru/promokody-prop-firm' },
