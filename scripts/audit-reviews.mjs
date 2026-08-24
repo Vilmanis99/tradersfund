@@ -11125,6 +11125,20 @@ function checkRussianAcquisitionPilot() {
     if (!russianPayoutsPage.includes(token)) rows.push(`Russian payouts page is missing ${token}`)
   }
 
+  const russianEducationPage = fs.existsSync(russianRouteFiles.get('/ru/kak-rabotayut-chellendzhi-prop-firm'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/kak-rabotayut-chellendzhi-prop-firm'), 'utf8')
+    : ''
+  for (const token of [
+    'getAllFirms',
+    'outboundSlug',
+    'data-russian-education-partner-cta="challenge-guide"',
+    'data-russian-education-partner={item.slug}',
+    'ru-challenge-guide-',
+    'rel="sponsored nofollow noopener"',
+  ]) {
+    if (!russianEducationPage.includes(token)) rows.push(`Russian education page is missing ${token}`)
+  }
+
   const fundedNextRussianPage = fs.existsSync(russianRouteFiles.get('/ru/obzor-fundednext'))
     ? fs.readFileSync(russianRouteFiles.get('/ru/obzor-fundednext'), 'utf8')
     : ''

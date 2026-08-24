@@ -825,6 +825,10 @@ const russianExpectations = new Map([
     markers: [
       'data-russian-country-boundary="challenge-checkout"',
       'data-russian-affiliate-disclosure="challenge-guide"',
+      'data-russian-education-partner-cta="challenge-guide"',
+      '/go/fundednext?from=ru-challenge-guide-fundednext',
+      '/go/fundingpips?from=ru-challenge-guide-fundingpips',
+      '/go/bright-funded?from=ru-challenge-guide-bright-funded',
     ],
   }],
   ['/ru/rossiyskie-prop-kompanii', {
@@ -919,6 +923,9 @@ for (const [path, href] of [
   ['/ru/vyplaty-prop-firm', '/go/fundednext?from=ru-payouts-fundednext'],
   ['/ru/vyplaty-prop-firm', '/go/fundingpips?from=ru-payouts-fundingpips'],
   ['/ru/vyplaty-prop-firm', '/go/bright-funded?from=ru-payouts-bright-funded'],
+  ['/ru/kak-rabotayut-chellendzhi-prop-firm', '/go/fundednext?from=ru-challenge-guide-fundednext'],
+  ['/ru/kak-rabotayut-chellendzhi-prop-firm', '/go/fundingpips?from=ru-challenge-guide-fundingpips'],
+  ['/ru/kak-rabotayut-chellendzhi-prop-firm', '/go/bright-funded?from=ru-challenge-guide-bright-funded'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
   const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]

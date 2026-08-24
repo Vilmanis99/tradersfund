@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Calculator, CheckCircle2, Flag, ShieldAlert, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
-import { getAllChallenges, isChallengeFresh } from '@/lib/firms'
+import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
+import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
@@ -38,7 +39,19 @@ const faqs: RussianFaqItem[] = [
 ]
 
 export default function RussianChallengeLifecyclePage() {
-  const products = getAllChallenges().filter(product => isChallengeFresh(product))
+  const allChallenges = getAllChallenges()
+  const products = allChallenges.filter(product => isChallengeFresh(product))
+  const partnerCards = getAllFirms()
+    .map(firm => {
+      const slug = outboundSlug(firm.name)
+      return {
+        firm,
+        slug,
+        products: products.filter(product => product.firmSlug === slug),
+      }
+    })
+    .filter(item => item.firm.affiliateUrl && item.products.length > 0)
+    .sort((a, b) => b.firm.score - a.firm.score)
   const sourceCount = new Set(products.map(product => product.sourceUrl)).size
   const latestCapture = products.map(product => product.sourceCapturedAt).sort().at(-1)
   const phaseCounts = [0, 1, 2, 3].map(phases => ({
@@ -200,6 +213,29 @@ export default function RussianChallengeLifecyclePage() {
           <div className="ru-actions">
             <Link href="/ru/luchshie-prop-firmy" className="btn-primary btn-glow">Собрать короткий список <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/how-prop-firm-challenges-work" hrefLang="en" className="btn-outline">Полная английская версия</Link>
+          </div>
+          <div className="ru-grid" data-russian-education-partner-cta="challenge-guide">
+            {partnerCards.map(item => {
+              const reviewHref = item.slug === 'fundednext'
+                ? '/ru/obzor-fundednext'
+                : item.slug === 'fundingpips'
+                  ? '/ru/obzor-fundingpips'
+                  : item.slug === 'bright-funded'
+                    ? '/ru/obzor-bright-funded'
+                    : item.firm.reviewUrl
+              return (
+                <article className="ru-card" key={item.slug} data-russian-education-partner={item.slug}>
+                  <div className="ru-card-head"><h3>{item.firm.name}</h3><span className="ru-score">Партнёр</span></div>
+                  <p className="ru-muted">{item.products.length} свежих продуктов; перед оплатой проверьте этапы, страну, KYC и правило выплаты конкретной модели.</p>
+                  <div className="ru-actions">
+                    <Link href={reviewHref} className="btn-outline">Открыть обзор</Link>
+                    <Link href={`/go/${item.slug}?from=ru-challenge-guide-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
+                      Проверить условия <ArrowRight size={14} aria-hidden="true" />
+                    </Link>
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </div>
       </section>
