@@ -146,7 +146,11 @@ export default function RussianBestPropFirmsPage() {
               const drawdowns = [...new Set(item.products.map(product => drawdownLabel(product.drawdownType)))]
               const reviewHref = item.slug === 'fundednext'
                 ? '/ru/obzor-fundednext'
-                : item.firm.reviewUrl
+                : item.slug === 'fundingpips'
+                  ? '/ru/obzor-fundingpips'
+                  : item.slug === 'bright-funded'
+                    ? '/ru/obzor-bright-funded'
+                    : item.firm.reviewUrl
 
               return (
                 <article className="ru-card ru-ranking-card" key={item.slug} data-ranked-firm={item.slug}>
@@ -164,9 +168,9 @@ export default function RussianBestPropFirmsPage() {
                   <Link
                     className="ru-card-link"
                     href={reviewHref}
-                    hrefLang={item.slug === 'fundednext' ? 'ru' : 'en'}
+                    hrefLang={item.slug === 'fundednext' || item.slug === 'fundingpips' || item.slug === 'bright-funded' ? 'ru' : 'en'}
                   >
-                    {item.slug === 'fundednext' ? 'Читать обзор на русском →' : 'Открыть полный обзор на английском →'}
+                    {item.slug === 'fundednext' || item.slug === 'fundingpips' || item.slug === 'bright-funded' ? 'Читать обзор на русском →' : 'Открыть полный обзор на английском →'}
                   </Link>
                 </article>
               )
@@ -187,7 +191,13 @@ export default function RussianBestPropFirmsPage() {
           <p className="ru-muted">Русский язык страницы не означает доступность для резидента России. Сначала откройте разбор и сверяйте страну на официальном checkout.</p>
           <div className="ru-grid">
             {globalPartners.map(item => {
-              const reviewHref = item.slug === 'fundednext' ? '/ru/obzor-fundednext' : item.firm.reviewUrl
+              const reviewHref = item.slug === 'fundednext'
+                ? '/ru/obzor-fundednext'
+                : item.slug === 'fundingpips'
+                  ? '/ru/obzor-fundingpips'
+                  : item.slug === 'bright-funded'
+                    ? '/ru/obzor-bright-funded'
+                    : item.firm.reviewUrl
               return (
                 <article className="ru-card" key={item.slug} data-russian-partner={item.slug}>
                   <div className="ru-card-head">
@@ -229,7 +239,7 @@ export default function RussianBestPropFirmsPage() {
                   return (
                     <tr key={item.slug}>
                       <td>{index + 1}</td>
-                      <td><Link href={item.slug === 'fundednext' ? '/ru/obzor-fundednext' : item.firm.reviewUrl}>{item.firm.name}</Link></td>
+                      <td><Link href={item.slug === 'fundednext' ? '/ru/obzor-fundednext' : item.slug === 'fundingpips' ? '/ru/obzor-fundingpips' : item.slug === 'bright-funded' ? '/ru/obzor-bright-funded' : item.firm.reviewUrl}>{item.firm.name}</Link></td>
                       <td>{item.firm.score.toFixed(1)}/10</td>
                       <td>{item.products.length}</td>
                       <td>{splits.length > 0 ? `${splits.join('–')}%` : '—'}</td>

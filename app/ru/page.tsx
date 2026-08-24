@@ -126,7 +126,7 @@ export default function RussianHomePage() {
 
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия начинает с пяти страниц под самостоятельные поисковые задачи,
+            Русская версия начинает с семи страниц под самостоятельные поисковые задачи,
             включая отдельную проверку компаний российского рынка. Мы не переводим сотни URL автоматически: сначала проверяем,
             отвечает ли локальная страница на самостоятельный поисковый запрос.
           </p>
@@ -156,6 +156,11 @@ export default function RussianHomePage() {
               <Link className="ru-card-link" href="/ru/rossiyskie-prop-kompanii">Посмотреть 3 примера →</Link>
             </article>
           </div>
+          <p className="ru-source-line">
+            Глобальные партнёрские разборы на русском:{' '}
+            <Link href="/ru/obzor-fundingpips">FundingPips</Link> и{' '}
+            <Link href="/ru/obzor-bright-funded">Bright Funded</Link>. Сначала подтвердите страну и правила продукта.
+          </p>
         </div>
       </section>
 

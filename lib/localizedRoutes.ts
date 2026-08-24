@@ -2,6 +2,8 @@ export const LOCALIZED_ROUTE_PAIRS = [
   { en: '/', ru: '/ru' },
   { en: '/best-prop-firms-2026', ru: '/ru/luchshie-prop-firmy' },
   { en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' },
+  { en: '/blog/funding-pips-review', ru: '/ru/obzor-fundingpips' },
+  { en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' },
   {
     en: '/how-prop-firm-challenges-work',
     ru: '/ru/kak-rabotayut-chellendzhi-prop-firm',

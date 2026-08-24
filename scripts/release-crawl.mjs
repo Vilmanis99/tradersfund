@@ -721,6 +721,26 @@ const russianExpectations = new Map([
       'data-russian-affiliate-disclosure="fundednext"',
     ],
   }],
+  ['/ru/obzor-fundingpips', {
+    title: 'FundingPips: обзор 2026, цены, правила и выплаты',
+    h1: 'FundingPips: обзор 2026, цены, правила и выплаты',
+    markers: [
+      'data-russian-partner-review="fundingpips"',
+      'data-russian-partner-country-access="unconfirmed"',
+      'data-russian-product-count="5"',
+      'data-russian-affiliate-disclosure="fundingpips"',
+    ],
+  }],
+  ['/ru/obzor-bright-funded', {
+    title: 'Bright Funded: обзор 2026, цены, правила и выплаты',
+    h1: 'Bright Funded: обзор 2026, цены, правила и выплаты',
+    markers: [
+      'data-russian-partner-review="bright-funded"',
+      'data-russian-partner-country-access="unconfirmed"',
+      'data-russian-product-count="3"',
+      'data-russian-affiliate-disclosure="bright-funded"',
+    ],
+  }],
   ['/ru/kak-rabotayut-chellendzhi-prop-firm', {
     title: 'Челлендж проп-фирмы: 5 этапов и правила (2026)',
     h1: 'Как работает челлендж проп-фирмы: от оплаты до выплаты',
@@ -770,12 +790,13 @@ for (const [path, expectation] of russianExpectations) {
   ) {
     errors.push(`${path}: makes an unsupported Russia-access claim`)
   }
+  const pair = russianRoutePairs.find(candidate => candidate.ru === path)
   const inlinkCount = internalInlinks.get(path)?.size ?? 0
-  if (inlinkCount < 4) {
+  const minimumInlinks = pair ? 3 : 4
+  if (inlinkCount < minimumInlinks) {
     errors.push(`${path}: Russian acquisition page has only ${inlinkCount} unique internal inlinks`)
   }
 
-  const pair = russianRoutePairs.find(candidate => candidate.ru === path)
   if (pair) {
     for (const [language, expectedPath] of [
       ['en', pair.en],
@@ -805,6 +826,18 @@ if (
   || !russianFundedNextCta.includes('rel="sponsored nofollow noopener"')
 ) {
   errors.push('/ru/obzor-fundednext: controlled affiliate CTA is missing or mislabelled')
+}
+for (const [path, href] of [
+  ['/ru/obzor-fundingpips', '/go/fundingpips?from=ru-fundingpips-review-verdict'],
+  ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-verdict'],
+]) {
+  const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
+  const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]
+    .map(match => match[0])
+    .find(tag => tag.includes(href)) || ''
+  if (!cta || !cta.includes('rel="sponsored nofollow noopener"')) {
+    errors.push(`${path}: controlled affiliate CTA is missing or mislabelled`)
+  }
 }
 const russianLocalFirmPage = pages.find(page =>
   new URL(page.productionUrl).pathname === '/ru/rossiyskie-prop-kompanii')

@@ -10776,10 +10776,16 @@ function checkRussianAcquisitionPilot() {
   const evidenceFile = path.join(ROOT, 'content/data/russian-market-evidence.json')
   const localizedRoutesFile = path.join(ROOT, 'lib/localizedRoutes.ts')
   const russianLayoutFile = path.join(ROOT, 'app/ru/layout.tsx')
+  const russianPartnerReviewFile = path.join(ROOT, 'components/RussianPartnerReview.tsx')
+  const russianPartnerReviewSource = fs.existsSync(russianPartnerReviewFile)
+    ? fs.readFileSync(russianPartnerReviewFile, 'utf8')
+    : ''
   const russianRouteFiles = new Map([
     ['/ru', path.join(ROOT, 'app/ru/page.tsx')],
     ['/ru/luchshie-prop-firmy', path.join(ROOT, 'app/ru/luchshie-prop-firmy/page.tsx')],
     ['/ru/obzor-fundednext', path.join(ROOT, 'app/ru/obzor-fundednext/page.tsx')],
+    ['/ru/obzor-fundingpips', path.join(ROOT, 'app/ru/obzor-fundingpips/page.tsx')],
+    ['/ru/obzor-bright-funded', path.join(ROOT, 'app/ru/obzor-bright-funded/page.tsx')],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', path.join(ROOT, 'app/ru/kak-rabotayut-chellendzhi-prop-firm/page.tsx')],
     ['/ru/rossiyskie-prop-kompanii', path.join(ROOT, 'app/ru/rossiyskie-prop-kompanii/page.tsx')],
   ])
@@ -10897,6 +10903,8 @@ function checkRussianAcquisitionPilot() {
     "{ en: '/', ru: '/ru' }",
     "{ en: '/best-prop-firms-2026', ru: '/ru/luchshie-prop-firmy' }",
     "{ en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' }",
+    "{ en: '/blog/funding-pips-review', ru: '/ru/obzor-fundingpips' }",
+    "{ en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' }",
     "ru: '/ru/kak-rabotayut-chellendzhi-prop-firm'",
     "'/ru/rossiyskie-prop-kompanii'",
     "'x-default': pair.en",
@@ -10910,7 +10918,10 @@ function checkRussianAcquisitionPilot() {
 
   for (const [route, file] of russianRouteFiles) {
     if (!fs.existsSync(file)) continue
-    const source = fs.readFileSync(file, 'utf8')
+    const pageSource = fs.readFileSync(file, 'utf8')
+    const source = pageSource.includes('RussianPartnerReview')
+      ? `${pageSource}\n${russianPartnerReviewSource}`
+      : pageSource
     const title = source.match(/const TITLE = '([^']+)'/)?.[1] ?? ''
     const description = source.match(/const DESCRIPTION = '([^']+)'/)?.[1] ?? ''
     if (!title || title.length > 60) rows.push(`${route}: Russian SEO title is missing or over 60 characters`)
@@ -10982,6 +10993,36 @@ function checkRussianAcquisitionPilot() {
     'VPN',
   ]) {
     if (!fundedNextRussianPage.includes(token)) rows.push(`Russian FundedNext path is missing ${token}`)
+  }
+
+  for (const [route, expectedTokens] of [
+    ['/ru/obzor-fundingpips', [
+      'data-russian-partner-review={firmSlug}',
+      'data-russian-partner-country-access="unconfirmed"',
+      'data-russian-affiliate-disclosure={firmSlug}',
+      'affiliateSlug="fundingpips"',
+      'affiliateFrom="ru-fundingpips-review-verdict"',
+      '`/go/${affiliateSlug}?from=${affiliateFrom}`',
+      'rel="sponsored nofollow noopener"',
+    ]],
+    ['/ru/obzor-bright-funded', [
+      'data-russian-partner-review={firmSlug}',
+      'data-russian-partner-country-access="unconfirmed"',
+      'data-russian-affiliate-disclosure={firmSlug}',
+      'affiliateSlug="bright-funded"',
+      'affiliateFrom="ru-bright-funded-review-verdict"',
+      'rel="sponsored nofollow noopener"',
+    ]],
+  ]) {
+    const pageSource = fs.existsSync(russianRouteFiles.get(route))
+      ? fs.readFileSync(russianRouteFiles.get(route), 'utf8')
+      : ''
+    const page = pageSource.includes('RussianPartnerReview')
+      ? `${pageSource}\n${russianPartnerReviewSource}`
+      : pageSource
+    for (const token of expectedTokens) {
+      if (!page.includes(token)) rows.push(`${route}: Russian partner review is missing ${token}`)
+    }
   }
 
   const headerNav = fs.readFileSync(path.join(ROOT, 'components/HeaderNav.tsx'), 'utf8')
