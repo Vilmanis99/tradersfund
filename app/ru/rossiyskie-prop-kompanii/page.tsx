@@ -139,6 +139,7 @@ export default function RussianPropCompaniesPage() {
                 на Московской бирже через брокера Финам, а не как обычный международный challenge-продукт.
               </p>
               <SourceLink href={propLive?.sourceUrl ?? 'https://www.proplive.ru/'}>Официальная страница и модель</SourceLink>
+              <Link href="/ru/obzor-proplive" className="ru-card-link">Открыть отдельный обзор PropLive →</Link>
             </article>
 
             <article className="ru-card">

@@ -35,6 +35,10 @@ const faqs: RussianFaqItem[] = [
     q: 'Почему в таблице несколько продуктов одной фирмы?',
     a: 'Одна фирма может менять цену, просадку, цель и выплату между моделями. Мы не сворачиваем эти различия в одну строку, чтобы рекламный максимум одной модели не выглядел как правило для всей фирмы.',
   },
+  {
+    q: 'Почему Bright Funded показан рядом, но не в таблице?',
+    a: 'Bright Funded — третий глобальный партнёрский маршрут на русском сайте. Его продукты и правила вынесены в отдельный обзор, чтобы не смешивать три разных набора условий в одной таблице FundedNext и FundingPips.',
+  },
 ]
 
 type ProductRow = {
@@ -97,6 +101,8 @@ export default function RussianFundedNextVsFundingPipsPage() {
   const firms = getAllFirms()
   const fundedNext = firms.find(firm => firm.name === 'FundedNext')
   const fundingPips = firms.find(firm => firm.name === 'FundingPips')
+  const brightFunded = firms.find(firm => firm.name === 'Bright Funded')
+  const brightFundedProducts = getChallengesByFirm('bright-funded').filter(product => isChallengeFresh(product))
   const productRows: ProductRow[] = [
     ...getChallengesByFirm('fundednext')
       .filter(product => isChallengeFresh(product))
@@ -174,6 +180,12 @@ export default function RussianFundedNextVsFundingPipsPage() {
               <p className="ru-muted">{fundingPips?.score.toFixed(1) ?? '—'}/10. В текущем захвате — {productRows.filter(row => row.firm === 'FundingPips').length} продуктов; структура сплита зависит от модели.</p>
               <Link href="/ru/obzor-fundingpips" className="ru-card-link">Открыть русский обзор →</Link>
             </article>
+            <article className="ru-card" data-russian-comparison-partner="bright-funded">
+              <CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Bright Funded</h3>
+              <p className="ru-muted">{brightFunded?.score.toFixed(1) ?? '—'}/10. Отдельный глобальный маршрут; в свежем захвате — {brightFundedProducts.length} продукта. Не смешиваем его правила с таблицей двух сравненных фирм.</p>
+              <Link href="/ru/obzor-bright-funded" className="ru-card-link">Открыть русский обзор →</Link>
+            </article>
           </div>
         </div>
       </section>
@@ -224,12 +236,13 @@ export default function RussianFundedNextVsFundingPipsPage() {
         <div className="ru-shell" data-russian-affiliate-disclosure="comparison">
           <div className="ru-notice ru-disclosure">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            У обеих фирм есть партнёрские ссылки. Мы можем получить комиссию после регистрации,
+            У трёх глобальных фирм на этой странице есть партнёрские маршруты. Мы можем получить комиссию после регистрации,
             но она не меняет таблицу, редакционный порядок или проверку доступности.
           </div>
           <div className="ru-actions">
             <Link href="/go/fundednext?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-primary btn-glow">Проверить FundedNext <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/go/fundingpips?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundingPips <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="/go/bright-funded?from=ru-comparison-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить Bright Funded <ArrowRight size={15} aria-hidden="true" /></Link>
           </div>
           <p className="ru-source-line"><ShieldCheck size={14} aria-hidden="true" /> Перед оплатой откройте правила выбранного продукта. Нужна англоязычная версия? <Link href="/compare/fundednext-vs-fundingpips" hrefLang="en">Открыть полное сравнение на английском</Link>.</p>
         </div>

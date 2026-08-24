@@ -15,6 +15,7 @@ const russianNavLinks = [
   { label: 'Промокоды', href: '/ru/promokody-prop-firm' },
   { label: 'Выплаты', href: '/ru/vyplaty-prop-firm' },
   { label: 'KYC', href: '/ru/prop-firmy-bez-kyc' },
+  { label: 'Обзор PropLive', href: '/ru/obzor-proplive' },
   { label: 'Местные компании', href: '/ru/rossiyskie-prop-kompanii' },
   { label: 'Обзор FundedNext', href: '/ru/obzor-fundednext' },
   { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },

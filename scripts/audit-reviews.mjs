@@ -2770,6 +2770,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/prop-firmy-bez-chelendzha', 'russian_ranking'],
     ['/ru/dlya-russkoyazychnykh-treyderov', 'russian_ranking'],
     ['/ru/rossiyskie-prop-kompanii', 'russian_local_research'],
+    ['/ru/obzor-proplive', 'russian_local_research'],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', 'russian_education'],
   ])
   for (const [pathname, expected] of stageFixtures) {
@@ -10822,6 +10823,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/promokody-prop-firm', path.join(ROOT, 'app/ru/promokody-prop-firm/page.tsx')],
     ['/ru/vyplaty-prop-firm', path.join(ROOT, 'app/ru/vyplaty-prop-firm/page.tsx')],
     ['/ru/prop-firmy-bez-kyc', path.join(ROOT, 'app/ru/prop-firmy-bez-kyc/page.tsx')],
+    ['/ru/obzor-proplive', path.join(ROOT, 'app/ru/obzor-proplive/page.tsx')],
     ['/ru/prop-firmy-bez-chelendzha', path.join(ROOT, 'app/ru/prop-firmy-bez-chelendzha/page.tsx')],
     ['/ru/luchshie-prop-firmy', path.join(ROOT, 'app/ru/luchshie-prop-firmy/page.tsx')],
     ['/ru/luchshie-kripto-prop-firmy', path.join(ROOT, 'app/ru/luchshie-kripto-prop-firmy/page.tsx')],
@@ -10957,6 +10959,7 @@ function checkRussianAcquisitionPilot() {
     "'/ru/promokody-prop-firm'",
     "'/ru/vyplaty-prop-firm'",
     "'/ru/prop-firmy-bez-kyc'",
+    "'/ru/obzor-proplive'",
     "'/ru/rossiyskie-prop-kompanii'",
     "'x-default': pair.en",
   ]
@@ -11014,6 +11017,7 @@ function checkRussianAcquisitionPilot() {
     'Это не топ и не совет зарегистрироваться.',
     'многоуровневая Ambassador-схема нам не нужна',
     'href="/ru/dlya-russkoyazychnykh-treyderov"',
+    'href="/ru/obzor-proplive"',
   ]) {
     if (!localFirmPage.includes(token)) rows.push(`local-company verification page is missing ${token}`)
   }
@@ -11076,6 +11080,9 @@ function checkRussianAcquisitionPilot() {
     'data-russian-affiliate-disclosure="comparison"',
     'data-russian-comparison-product-count={productRows.length}',
     'ru-comparison-fundednext-fundingpips',
+    'brightFundedProducts',
+    'data-russian-comparison-partner="bright-funded"',
+    'ru-comparison-bright-funded',
     'rel="sponsored nofollow noopener"',
   ]) {
     if (!russianComparisonPage.includes(token)) rows.push(`Russian partner comparison is missing ${token}`)
@@ -11141,6 +11148,24 @@ function checkRussianAcquisitionPilot() {
     'rel="sponsored nofollow noopener"',
   ]) {
     if (!russianKycPage.includes(token)) rows.push(`Russian KYC page is missing ${token}`)
+  }
+
+  const russianPropLivePage = fs.existsSync(russianRouteFiles.get('/ru/obzor-proplive'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/obzor-proplive'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-local-review="proplive"',
+    'data-russian-local-review-status="verification-only"',
+    'data-russian-country-boundary="local-review-not-access"',
+    'data-russian-local-affiliate="application-only"',
+    'data-russian-local-global-funnel="proplive"',
+    'PROP_LIVE_HOME',
+    'PROP_LIVE_PARTNERS',
+    'PROP_LIVE_CONTRACT',
+    'ru-proplive-global-',
+    'rel="sponsored nofollow noopener"',
+  ]) {
+    if (!russianPropLivePage.includes(token)) rows.push(`Russian PropLive review is missing ${token}`)
   }
 
   const russianEducationPage = fs.existsSync(russianRouteFiles.get('/ru/kak-rabotayut-chellendzhi-prop-firm'))
@@ -11209,6 +11234,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/promokody-prop-firm'",
     "href: '/ru/vyplaty-prop-firm'",
     "href: '/ru/prop-firmy-bez-kyc'",
+    "href: '/ru/obzor-proplive'",
     "href: '/ru/prop-firmy-bez-chelendzha'",
     'getAlternateLanguageHref(pathname)',
     'hrefLang={isRussian ? \'en\' : \'ru\'}',
@@ -11223,6 +11249,7 @@ function checkRussianAcquisitionPilot() {
   if (!footer.includes("href: '/ru'")) rows.push('global footer is missing the Russian-language entry point')
   if (!footer.includes("href: '/ru/vyplaty-prop-firm'")) rows.push('Russian footer is missing the payouts route')
   if (!footer.includes("href: '/ru/prop-firmy-bez-kyc'")) rows.push('Russian footer is missing the KYC route')
+  if (!footer.includes("href: '/ru/obzor-proplive'")) rows.push('Russian footer is missing the PropLive review route')
 
   const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
   for (const token of [

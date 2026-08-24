@@ -721,6 +721,8 @@ const russianExpectations = new Map([
       'data-russian-comparison-product-count="9"',
       '/go/fundednext?from=ru-comparison-fundednext-fundingpips',
       '/go/fundingpips?from=ru-comparison-fundednext-fundingpips',
+      'data-russian-comparison-partner="bright-funded"',
+      '/go/bright-funded?from=ru-comparison-bright-funded',
     ],
   }],
   ['/ru/promokody-prop-firm', {
@@ -854,6 +856,20 @@ const russianExpectations = new Map([
       'data-russian-country-boundary="local-to-global"',
     ],
   }],
+  ['/ru/obzor-proplive', {
+    title: 'PropLive: обзор русской проп-компании (2026)',
+    h1: 'PropLive: обзор 2026 — Мосбиржа, выплаты и условия',
+    markers: [
+      'data-russian-local-review="proplive"',
+      'data-russian-local-review-status="verification-only"',
+      'data-russian-country-boundary="local-review-not-access"',
+      'data-russian-local-affiliate="application-only"',
+      'data-russian-local-global-funnel="proplive"',
+      '/go/fundednext?from=ru-proplive-global-fundednext',
+      '/go/fundingpips?from=ru-proplive-global-fundingpips',
+      '/go/bright-funded?from=ru-proplive-global-bright-funded',
+    ],
+  }],
 ])
 
 for (const [path, expectation] of russianExpectations) {
@@ -943,6 +959,10 @@ for (const [path, href] of [
   ['/ru/prop-firmy-bez-kyc', '/go/fundednext?from=ru-kyc-fundednext'],
   ['/ru/prop-firmy-bez-kyc', '/go/fundingpips?from=ru-kyc-fundingpips'],
   ['/ru/prop-firmy-bez-kyc', '/go/bright-funded?from=ru-kyc-bright-funded'],
+  ['/ru/fundednext-vs-fundingpips', '/go/bright-funded?from=ru-comparison-bright-funded'],
+  ['/ru/obzor-proplive', '/go/fundednext?from=ru-proplive-global-fundednext'],
+  ['/ru/obzor-proplive', '/go/fundingpips?from=ru-proplive-global-fundingpips'],
+  ['/ru/obzor-proplive', '/go/bright-funded?from=ru-proplive-global-bright-funded'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
   const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]
