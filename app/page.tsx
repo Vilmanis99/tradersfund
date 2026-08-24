@@ -18,6 +18,7 @@ import TiltCard from '@/components/TiltCard'
 import FeaturedFirmSpotlight from '@/components/FeaturedFirmSpotlight'
 import { isNewsletterConfigured } from '@/lib/brevo'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
+import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import {
   ArrowRight, ArrowUpRight, TrendingUp, Star, DollarSign, Zap, Percent,
   ShieldCheck, Sparkles, Crown, Flame, Clock, Calculator, Newspaper, Bot, CalendarDays,
@@ -33,7 +34,7 @@ const fmtMoney = (n: number) =>
 export const metadata: Metadata = {
   title: 'Best Prop Firm Reviews & Comparisons',
   description: 'Independent prop-firm reviews, side-by-side comparisons, and rule-change alerts. Every firm reviewed against the same rubric.',
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/', languages: getLanguageAlternates('/') },
   openGraph: {
     title: 'Traders Fund Hub | Best Prop Firm Reviews & Comparisons',
     description: 'Independent prop-firm reviews, side-by-side comparisons, and rule-change alerts. Same rubric, every firm.',

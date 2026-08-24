@@ -1,10 +1,12 @@
 ---
 title: "FXIFY Review 2026: 8 Products, 54 Prices, and No Single Drawdown Rule"
+seoTitle: "FXIFY Review 2026: Fees, Plans & Drawdown Rules"
 slug: "fxify-review"
 date: "2025-08-26 09:25:39"
 modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "FXIFY gives rule-sensitive traders 8 CFD products, but trailing, static, unknown, and product-specific restrictions make the exact plan matter."
+seoDescription: "FXIFY review comparing 8 CFD products, 54 current prices, true cost, profit splits, and each plan's trailing, static, or product-specific drawdown."
 categories: ["Prop Firms"]
 tags: ["FXIFY", "Prop Firm"]
 type: "post"

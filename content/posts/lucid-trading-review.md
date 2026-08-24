@@ -1,10 +1,12 @@
 ---
 title: "Lucid Trading Review 2026: 7 Paths, but 24 Unpriced Tiers"
+seoTitle: "Lucid Trading Review 2026: Fees & Missing Prices"
 slug: "lucid-trading-review"
 date: "2026-07-28"
 modified: "2026-08-17 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "LucidPro has 4 verified base fees and one-time billing; Lucid's help center documents 16 LucidDaily tiers, but their prices and current homepage availability remain unresolved."
+seoDescription: "Lucid Trading review comparing 7 funding paths, 4 verified LucidPro fees, one-time billing, 24 unpriced tiers, drawdown rules, and availability gaps."
 categories: ["Prop Firms"]
 tags: ["Lucid Trading", "Prop Firm", "Futures Prop Firms"]
 type: "post"

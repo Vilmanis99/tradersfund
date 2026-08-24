@@ -1,0 +1,148 @@
+{
+  "capturedAt": "2026-08-24",
+  "searchDemand": {
+    "sourceUrl": "https://a.pr-cy.ru/proptreiding.ru/",
+    "sourceType": "third-party Yandex Moscow estimate",
+    "period": "2026-01",
+    "estimatedClicks": 180,
+    "top50Queries": 41,
+    "queries": [
+      { "query": "проп компании", "monthlyFrequency": 255 },
+      { "query": "проп компании для трейдеров в россии", "monthlyFrequency": 162 },
+      { "query": "проп фирма", "monthlyFrequency": 60 },
+      { "query": "проп трейдинг криптовалют", "monthlyFrequency": 28 },
+      { "query": "проп компании это", "monthlyFrequency": 19 }
+    ],
+    "notes": [
+      "These figures are a third-party estimate for Yandex Moscow, not first-party Search Console or Yandex Webmaster data.",
+      "Query frequencies overlap and must not be added together as a total addressable audience."
+    ]
+  },
+  "communitySignals": [
+    {
+      "name": "Проп трейдинг Prop Trading",
+      "sourceUrl": "https://t.me/s/propinfa?q=%23Consistency",
+      "subscribers": 10800,
+      "examplePostViews": 6770,
+      "notes": "Public Telegram snapshot; subscriber and view counts change over time."
+    },
+    {
+      "name": "PropLive",
+      "sourceUrl": "https://www.proplive.ru/",
+      "tradersClaimed": 13722,
+      "notes": "The current hero claims 13,722 traders worldwide, while a lower section still says more than 10,700; both are operator-published and not independently audited."
+    },
+    {
+      "name": "Era Trade",
+      "sourceUrl": "https://eratrade.net/",
+      "tradersClaimed": 6000,
+      "countriesClaimed": 70,
+      "payoutsUsdClaimed": 2000000,
+      "notes": "Operator-published global figures, not Russia-only and not independently audited."
+    }
+  ],
+  "localFirmSignals": [
+    {
+      "operator": "Era Trade",
+      "sourceUrl": "https://eratrade.net/",
+      "claims": {
+        "traders": 6000,
+        "countries": 70,
+        "payoutsUsd": 2000000,
+        "baseProfitSplitPct": 80
+      },
+      "notes": [
+        "The operator identifies NEVERA CORE GLOBAL - FZCO in Dubai, so a Russian-language market presence is not the same as a Russian legal entity.",
+        "All scale and payout figures are operator claims and have not been independently audited."
+      ]
+    },
+    {
+      "operator": "PropLive",
+      "sourceUrl": "https://www.proplive.ru/",
+      "claims": {
+        "traders": 13722,
+        "market": "Moscow Exchange via Finam"
+      },
+      "notes": [
+        "The current hero claims 13,722 traders worldwide, while a lower section still says more than 10,700.",
+        "The operator describes real-market trading on the Moscow Exchange rather than the standard online challenge model used by global evaluation firms."
+      ]
+    },
+    {
+      "operator": "KasCapital",
+      "sourceUrl": "https://kascapital.io/",
+      "claims": {
+        "maximumProfitSharePct": 95,
+        "minimumPayoutRub": 10000,
+        "maximumPayoutRub": 2000000,
+        "payoutDay": "Monday"
+      },
+      "notes": [
+        "The operator publishes weekly Monday payout processing and a 10,000 to 2,000,000 RUB request range.",
+        "These are operator-published terms and have not yet passed the site's full product capture and review workflow."
+      ]
+    }
+  ],
+  "affiliatePrograms": [
+    {
+      "operator": "Era Trade",
+      "status": "public",
+      "sourceUrl": "https://help.eratrade.club/ru/affiliate-program-overview/",
+      "baseCommissionPct": 5,
+      "maximumPublishedCommissionPct": 60,
+      "minimumPayoutUsd": 50,
+      "notes": [
+        "The standard program is available inside a user account and pays on direct challenge purchases.",
+        "Higher tiers require 5 to 300 referred challenge purchases per calendar month.",
+        "The Ambassador model uses a multi-level differential structure and requires individual activation.",
+        "Program existence does not substitute for product, legal-entity, payout and country-access due diligence."
+      ]
+    },
+    {
+      "operator": "PropLive",
+      "status": "application-only",
+      "sourceUrl": "https://www.proplive.ru/partnyoram",
+      "maximumPublishedCommissionPct": 50,
+      "notes": [
+        "The published offer is aimed at trading mentors and schools rather than ordinary content affiliates.",
+        "Compensation is described as a share of students' trading profit and terms are negotiated after application."
+      ]
+    },
+    {
+      "operator": "KasCapital",
+      "status": "not-found",
+      "sourceUrl": "https://kascapital.io/",
+      "notes": [
+        "No public affiliate or referral terms were found on the official site in the 2026-08-24 check."
+      ]
+    }
+  ],
+  "firmAccess": [
+    {
+      "firmSlug": "ftmo",
+      "status": "restricted",
+      "sourceUrls": [
+        "https://ftmo.com/en/faq/who-can-join-ftmo/"
+      ],
+      "notes": [
+        "FTMO explicitly lists the Russian Federation among countries it does not serve."
+      ]
+    },
+    {
+      "firmSlug": "fundednext",
+      "status": "conflicting",
+      "sourceUrls": [
+        "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
+        "https://fundednext.com/company",
+        "https://helpfutures.fundednext.com/en/articles/14274473-are-any-countries-restricted-on-fundednext-futures",
+        "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits"
+      ],
+      "notes": [
+        "The CFD restriction article does not list Russia, while the company disclosure says FundedNext Ltd does not serve Russian residents.",
+        "FundedNext Futures explicitly restricts Russian Federation account purchases.",
+        "FundedNext lists Russia among countries where bank-transfer performance rewards are unavailable.",
+        "Until the first-party conflict is resolved at checkout and by support, the site must not describe FundedNext as available to Russian residents."
+      ]
+    }
+  ]
+}

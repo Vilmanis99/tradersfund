@@ -56,6 +56,7 @@ export default function Footer() {
     { label: 'Alpha Capital Review', href: '/blog/alpha-capital-review' },
   ]
   const companyLinks = [
+    { label: 'Русская версия', href: '/ru' },
     { label: 'About Us', href: '/about' },
     { label: 'How We Score Firms', href: '/methodology' },
     { label: 'Authors', href: '/authors' },

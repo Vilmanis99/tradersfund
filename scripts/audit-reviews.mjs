@@ -920,6 +920,8 @@ function checkFirmCoverage() {
   if (!fs.existsSync(firmsPath)) return 0
 
   const rows = []
+  const searchTitles = new Map()
+  const searchDescriptions = new Map()
   const firms = JSON.parse(fs.readFileSync(firmsPath, 'utf-8'))
   const slugify = name =>
     name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -971,6 +973,73 @@ function checkFirmCoverage() {
           `so Reviews v2 would not audit it`
       )
     }
+
+    const seoTitle = String(review.data.seoTitle || '')
+    const seoDescription = String(review.data.seoDescription || '')
+    if (!seoTitle) {
+      rows.push(`${firm.name}: review frontmatter is missing seoTitle`)
+    } else {
+      if (seoTitle.length > 60) {
+        rows.push(`${firm.name}: review seoTitle is ${seoTitle.length} characters`)
+      }
+      if (!seoTitle.startsWith(firm.name) || !seoTitle.includes('Review 2026:')) {
+        rows.push(`${firm.name}: review seoTitle must preserve firm-review intent and year`)
+      }
+      if (seoTitle.endsWith(': Fees & Rules')) {
+        rows.push(`${firm.name}: review seoTitle uses the undifferentiated Fees & Rules fallback`)
+      }
+      const owners = searchTitles.get(seoTitle) || []
+      owners.push(firm.name)
+      searchTitles.set(seoTitle, owners)
+    }
+    if (!seoDescription) {
+      rows.push(`${firm.name}: review frontmatter is missing seoDescription`)
+    } else {
+      if (seoDescription.length < 120 || seoDescription.length > 160) {
+        rows.push(
+          `${firm.name}: review seoDescription is ${seoDescription.length} characters`,
+        )
+      }
+      const descriptionLead = seoDescription.slice(0, firm.name.length + 24).toLowerCase()
+      if (
+        !descriptionLead.startsWith(firm.name.toLowerCase())
+        || !descriptionLead.includes('review')
+      ) {
+        rows.push(`${firm.name}: review seoDescription must identify the reviewed firm`)
+      }
+      const owners = searchDescriptions.get(seoDescription) || []
+      owners.push(firm.name)
+      searchDescriptions.set(seoDescription, owners)
+    }
+  }
+
+  for (const [title, owners] of searchTitles) {
+    if (owners.length > 1) rows.push(`duplicate review seoTitle for ${owners.join(', ')}: ${title}`)
+  }
+  for (const [description, owners] of searchDescriptions) {
+    if (owners.length > 1) {
+      rows.push(`duplicate review seoDescription for ${owners.join(', ')}: ${description}`)
+    }
+  }
+
+  const blogRoute = fs.readFileSync(BLOG_POST_PAGE_FILE, 'utf-8')
+  if (
+    !blogRoute.includes('const title = post.seoTitle || post.title')
+    || !blogRoute.includes(
+      'const description = post.seoDescription || post.excerpt || post.title',
+    )
+    || blogRoute.includes('Review (2026): Fees & Rules')
+  ) {
+    rows.push('blog metadata fallback must preserve each post\'s editorial title and excerpt')
+  }
+  const releaseCrawl = fs.readFileSync(RELEASE_CRAWL_FILE, 'utf-8')
+  if (
+    !releaseCrawl.includes('const firmReviewPostRecords = new Map')
+    || !releaseCrawl.includes(
+      'firm-review title, description or H1 disagrees with frontmatter',
+    )
+  ) {
+    rows.push('release crawl is missing the rendered firm-review metadata contract')
   }
 
   if (rows.length) {
@@ -10691,6 +10760,251 @@ function checkWyckoffGuide() {
   return rows.length
 }
 
+/** Russian search acquisition must stay global, source-safe and affiliate-transparent. */
+function checkRussianAcquisitionPilot() {
+  const rows = []
+  const evidenceFile = path.join(ROOT, 'content/data/russian-market-evidence.json')
+  const localizedRoutesFile = path.join(ROOT, 'lib/localizedRoutes.ts')
+  const russianLayoutFile = path.join(ROOT, 'app/ru/layout.tsx')
+  const russianRouteFiles = new Map([
+    ['/ru', path.join(ROOT, 'app/ru/page.tsx')],
+    ['/ru/luchshie-prop-firmy', path.join(ROOT, 'app/ru/luchshie-prop-firmy/page.tsx')],
+    ['/ru/obzor-fundednext', path.join(ROOT, 'app/ru/obzor-fundednext/page.tsx')],
+    ['/ru/kak-rabotayut-chellendzhi-prop-firm', path.join(ROOT, 'app/ru/kak-rabotayut-chellendzhi-prop-firm/page.tsx')],
+    ['/ru/rossiyskie-prop-kompanii', path.join(ROOT, 'app/ru/rossiyskie-prop-kompanii/page.tsx')],
+  ])
+
+  for (const [route, file] of russianRouteFiles) {
+    if (!fs.existsSync(file)) rows.push(`${route}: route source is missing`)
+  }
+  if (!fs.existsSync(evidenceFile)) {
+    rows.push('content/data/russian-market-evidence.json is missing')
+  } else {
+    try {
+      const evidence = JSON.parse(fs.readFileSync(evidenceFile, 'utf8'))
+      const capturedAt = new Date(`${evidence.capturedAt}T23:59:59Z`)
+      const ageDays = (Date.now() - capturedAt.getTime()) / 86_400_000
+      if (Number.isNaN(capturedAt.getTime()) || ageDays < -1 || ageDays > 30) {
+        rows.push(`Russian market evidence capture ${evidence.capturedAt || 'missing'} is outside the 30-day window`)
+      }
+      const queryFrequency = new Map((evidence.searchDemand?.queries ?? [])
+        .map(item => [item.query, item.monthlyFrequency]))
+      for (const [query, expected] of [
+        ['проп компании', 255],
+        ['проп компании для трейдеров в россии', 162],
+        ['проп фирма', 60],
+      ]) {
+        if (queryFrequency.get(query) !== expected) {
+          rows.push(`Russian search-demand fixture ${query} does not equal ${expected}`)
+        }
+      }
+      if (
+        evidence.searchDemand?.estimatedClicks !== 180
+        || evidence.searchDemand?.top50Queries !== 41
+        || !evidence.searchDemand?.notes?.some(note => note.includes('must not be added'))
+        || !evidence.searchDemand?.sourceType?.includes('third-party')
+      ) {
+        rows.push('Russian search-demand caveat or 180-click/41-query fixture is missing')
+      }
+
+      const localSignals = new Map((evidence.localFirmSignals ?? [])
+        .map(item => [item.operator, item]))
+      if (
+        localSignals.get('Era Trade')?.claims?.traders !== 6000
+        || localSignals.get('Era Trade')?.claims?.countries !== 70
+        || localSignals.get('Era Trade')?.claims?.payoutsUsd !== 2_000_000
+      ) {
+        rows.push('Era Trade operator-claim fixtures are missing from Russian evidence')
+      }
+      if (
+        localSignals.get('PropLive')?.claims?.traders !== 13_722
+        || !localSignals.get('PropLive')?.notes?.some(note => note.includes('10,700'))
+      ) {
+        rows.push('PropLive 13,722/10,700 first-party conflict is not preserved')
+      }
+      if (
+        localSignals.get('KasCapital')?.claims?.maximumProfitSharePct !== 95
+        || localSignals.get('KasCapital')?.claims?.minimumPayoutRub !== 10_000
+        || localSignals.get('KasCapital')?.claims?.maximumPayoutRub !== 2_000_000
+      ) {
+        rows.push('KasCapital operator-term fixtures are missing from Russian evidence')
+      }
+
+      const affiliatePrograms = new Map((evidence.affiliatePrograms ?? [])
+        .map(item => [item.operator, item]))
+      const eraAffiliate = affiliatePrograms.get('Era Trade')
+      const propLiveAffiliate = affiliatePrograms.get('PropLive')
+      const kasAffiliate = affiliatePrograms.get('KasCapital')
+      if (
+        eraAffiliate?.status !== 'public'
+        || eraAffiliate?.baseCommissionPct !== 5
+        || eraAffiliate?.maximumPublishedCommissionPct !== 60
+        || eraAffiliate?.minimumPayoutUsd !== 50
+        || eraAffiliate?.sourceUrl !== 'https://help.eratrade.club/ru/affiliate-program-overview/'
+      ) {
+        rows.push('Era Trade public 5%–60% affiliate evidence is incomplete')
+      }
+      if (
+        propLiveAffiliate?.status !== 'application-only'
+        || propLiveAffiliate?.maximumPublishedCommissionPct !== 50
+        || !propLiveAffiliate?.notes?.some(note => note.includes('mentors and schools'))
+      ) {
+        rows.push('PropLive application-only partner boundary is incomplete')
+      }
+      if (kasAffiliate?.status !== 'not-found') {
+        rows.push('KasCapital must remain affiliate-status not-found until sourced terms exist')
+      }
+
+      const firmAccess = new Map((evidence.firmAccess ?? []).map(item => [item.firmSlug, item]))
+      if (
+        firmAccess.get('ftmo')?.status !== 'restricted'
+        || firmAccess.get('ftmo')?.sourceUrls?.[0]
+          !== 'https://ftmo.com/en/faq/who-can-join-ftmo/'
+      ) {
+        rows.push('FTMO Russian Federation restriction evidence is incomplete')
+      }
+      if (
+        firmAccess.get('fundednext')?.status !== 'conflicting'
+        || firmAccess.get('fundednext')?.sourceUrls?.length !== 4
+        || !firmAccess.get('fundednext')?.notes?.some(note =>
+          note.includes('must not describe FundedNext as available to Russian residents'))
+      ) {
+        rows.push('FundedNext Russia-access conflict and four-source boundary are incomplete')
+      }
+    } catch (error) {
+      rows.push(`Russian market evidence is invalid JSON: ${error.message}`)
+    }
+  }
+
+  if (fs.existsSync(russianLayoutFile)) {
+    const layout = fs.readFileSync(russianLayoutFile, 'utf8')
+    for (const token of ['lang="ru"', 'data-russian-locale="pilot"', "import './ru.css'"]) {
+      if (!layout.includes(token)) rows.push(`Russian layout is missing ${token}`)
+    }
+  }
+
+  const expectedMappedRoutes = [
+    "{ en: '/', ru: '/ru' }",
+    "{ en: '/best-prop-firms-2026', ru: '/ru/luchshie-prop-firmy' }",
+    "{ en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' }",
+    "ru: '/ru/kak-rabotayut-chellendzhi-prop-firm'",
+    "'/ru/rossiyskie-prop-kompanii'",
+    "'x-default': pair.en",
+  ]
+  if (fs.existsSync(localizedRoutesFile)) {
+    const localizedRoutes = fs.readFileSync(localizedRoutesFile, 'utf8')
+    for (const token of expectedMappedRoutes) {
+      if (!localizedRoutes.includes(token)) rows.push(`localized route contract is missing ${token}`)
+    }
+  }
+
+  for (const [route, file] of russianRouteFiles) {
+    if (!fs.existsSync(file)) continue
+    const source = fs.readFileSync(file, 'utf8')
+    const title = source.match(/const TITLE = '([^']+)'/)?.[1] ?? ''
+    const description = source.match(/const DESCRIPTION = '([^']+)'/)?.[1] ?? ''
+    if (!title || title.length > 60) rows.push(`${route}: Russian SEO title is missing or over 60 characters`)
+    if (description.length < 120 || description.length > 160) {
+      rows.push(`${route}: Russian SEO description is ${description.length} characters, expected 120–160`)
+    }
+    for (const token of [
+      'alternates: { canonical: PATH',
+      "inLanguage: 'ru'",
+      '<h1>',
+      'RussianFaq',
+    ]) {
+      if (!source.includes(token)) rows.push(`${route}: Russian page is missing ${token}`)
+    }
+    for (const unsafe of [
+      'FundedNext доступен в России',
+      'FTMO доступен в России',
+      'доступна всем россиянам',
+    ]) {
+      if (source.includes(unsafe)) rows.push(`${route}: contains unsupported access claim ${unsafe}`)
+    }
+  }
+
+  const russianHub = fs.existsSync(russianRouteFiles.get('/ru'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru'), 'utf8')
+    : ''
+  for (const path of [...russianRouteFiles.keys()].filter(pathname => pathname !== '/ru')) {
+    if (!russianHub.includes(`href="${path}"`)) {
+      rows.push(`/ru: missing acquisition-cluster link to ${path}`)
+    }
+  }
+
+  const localFirmPage = fs.existsSync(russianRouteFiles.get('/ru/rossiyskie-prop-kompanii'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/rossiyskie-prop-kompanii'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-local-firms="verification-only"',
+    'data-russian-affiliate-opportunity="unactivated"',
+    'Это не топ и не совет зарегистрироваться.',
+    'многоуровневая Ambassador-схема нам не нужна',
+  ]) {
+    if (!localFirmPage.includes(token)) rows.push(`local-company verification page is missing ${token}`)
+  }
+  if (localFirmPage.includes('/go/')) {
+    rows.push('local-company verification page contains an unapproved affiliate CTA')
+  }
+
+  const fundedNextRussianPage = fs.existsSync(russianRouteFiles.get('/ru/obzor-fundednext'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/obzor-fundednext'), 'utf8')
+    : ''
+  for (const token of [
+    'data-fundednext-russia-access="conflicting"',
+    '/go/fundednext?from=ru-fundednext-review-verdict',
+    'rel="sponsored nofollow noopener"',
+    'VPN',
+  ]) {
+    if (!fundedNextRussianPage.includes(token)) rows.push(`Russian FundedNext path is missing ${token}`)
+  }
+
+  const headerNav = fs.readFileSync(path.join(ROOT, 'components/HeaderNav.tsx'), 'utf8')
+  for (const token of [
+    "label: 'Местные компании'",
+    "href: '/ru/rossiyskie-prop-kompanii'",
+    'getAlternateLanguageHref(pathname)',
+    'hrefLang={isRussian ? \'en\' : \'ru\'}',
+  ]) {
+    if (!headerNav.includes(token)) rows.push(`Russian header navigation is missing ${token}`)
+  }
+  const headerBrand = fs.readFileSync(path.join(ROOT, 'components/HeaderBrand.tsx'), 'utf8')
+  if (!headerBrand.includes("isRussian ? '/ru' : '/'")) {
+    rows.push('header brand does not preserve the Russian locale home')
+  }
+  const footer = fs.readFileSync(path.join(ROOT, 'components/Footer.tsx'), 'utf8')
+  if (!footer.includes("href: '/ru'")) rows.push('global footer is missing the Russian-language entry point')
+
+  const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
+  for (const token of [
+    'LOCALIZED_ROUTE_PAIRS',
+    'RUSSIAN_ONLY_ROUTES',
+    "'x-default': `${BASE_URL}${pair.en}`",
+    'russianMarketEvidence.capturedAt',
+  ]) {
+    if (!sitemap.includes(token)) rows.push(`sitemap is missing Russian safeguard ${token}`)
+  }
+
+  const releaseCrawl = fs.readFileSync(RELEASE_CRAWL_FILE, 'utf8')
+  for (const token of [
+    'const russianRoutePairs = [...LOCALIZED_ROUTE_PAIRS]',
+    'Russian sitemap routes disagree with the ${russianPaths.length}-page acquisition pilot',
+    'rendered Russian language boundary or schema is missing',
+    'controlled affiliate CTA is missing or mislabelled',
+    'unapproved local-firm affiliate action rendered',
+    'Russian affiliate attribution failed',
+  ]) {
+    if (!releaseCrawl.includes(token)) rows.push(`release crawl is missing Russian safeguard ${token}`)
+  }
+
+  if (rows.length) {
+    console.log('\n✗ Russian-language acquisition and local-firm boundary')
+    for (const row of rows) console.log(`  · ${row}`)
+  }
+  return rows.length
+}
+
 /** Related links must be relevant, deterministic, unique, and never self-link. */
 function checkRelatedPostSelection() {
   const rows = []
@@ -10850,6 +11164,8 @@ const tradingToolReviewClusterErrors = checkTradingToolReviewCluster()
 totalErrors += tradingToolReviewClusterErrors
 const wyckoffGuideErrors = checkWyckoffGuide()
 totalErrors += wyckoffGuideErrors
+const russianAcquisitionPilotErrors = checkRussianAcquisitionPilot()
+totalErrors += russianAcquisitionPilotErrors
 const relatedPostSelectionErrors = checkRelatedPostSelection()
 totalErrors += relatedPostSelectionErrors
 

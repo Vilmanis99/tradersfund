@@ -1,10 +1,12 @@
 ---
 title: "Alpha Capital Review 2026: Five Products, One $400K Ceiling"
+seoTitle: "Alpha Capital Review 2026: Plans, Fees & $400K Cap"
 slug: "alpha-capital-review"
 date: "2025-07-23 09:44:31"
 modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Alpha Capital sells five plans from a 1-phase Alpha One to a 90%-split Alpha Direct, all sharing a $400,000 ceiling. Every fee is non-refundable."
+seoDescription: "Alpha Capital review comparing five plans, non-refundable fees, 1-phase to direct funding routes, 90% top split, drawdown rules, and $400K cap."
 categories: ["Prop Firms"]
 tags: ["Alpha Capital", "Prop Firm"]
 type: "post"

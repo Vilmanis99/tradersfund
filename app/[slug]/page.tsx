@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { ArrowRight, Clock } from 'lucide-react'
 import ContactForm from '@/components/ContactForm'
 import { isContactDeliveryConfigured } from '@/lib/brevo'
+import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -57,10 +58,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = page.seoTitle || page.title
   const description = page.seoDescription || page.description || page.title
   const modifiedTime = page.modified || page.date
+  const path = `/${slug}`
+  const languages = getLanguageAlternates(path)
   return {
     title: { absolute: title },
     description,
-    alternates: { canonical: `/${slug}` },
+    alternates: { canonical: path, ...(languages ? { languages } : {}) },
     openGraph: {
       title,
       description,

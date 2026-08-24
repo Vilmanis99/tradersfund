@@ -38,6 +38,10 @@ import {
   INDIA_MATCHUPS,
   indiaMatchupPath,
 } from '../lib/indiaMatchups.ts'
+import {
+  LOCALIZED_ROUTE_PAIRS,
+  RUSSIAN_ONLY_ROUTES,
+} from '../lib/localizedRoutes.ts'
 
 const args = process.argv.slice(2)
 const baseArg = args.find(value => !value.startsWith('--'))
@@ -51,6 +55,15 @@ const PROJECT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const firmRecords = JSON.parse(
   readFileSync(join(PROJECT_ROOT, 'content/data/firms.json'), 'utf8'),
 )
+const firmReviewPostRecords = new Map(firmRecords.map(firm => {
+  const reviewPath = new URL(firm.reviewUrl, PRODUCTION_ORIGIN).pathname
+  const reviewSlug = reviewPath.split('/').filter(Boolean).at(-1)
+  const post = matter(readFileSync(
+    join(PROJECT_ROOT, 'content/posts', `${reviewSlug}.md`),
+    'utf8',
+  )).data
+  return [reviewPath, post]
+}))
 const tradingToolPostRecords = TRADING_TOOL_REVIEWS.map(review => ({
   ...matter(readFileSync(
     join(PROJECT_ROOT, 'content/posts', `${review.slug}.md`),
@@ -141,6 +154,15 @@ function formatEditorialDate(value) {
 
 function firstMatch(html, expression) {
   return html.match(expression)?.[1]?.trim() || ''
+}
+
+function alternateHref(value, language) {
+  for (const match of value.matchAll(/<(?:xhtml:)?link\b[^>]*>/gi)) {
+    const tag = match[0]
+    if (firstMatch(tag, /\bhreflang=["']([^"']+)["']/i) !== language) continue
+    return decodeXml(firstMatch(tag, /\bhref=["']([^"']+)["']/i))
+  }
+  return ''
 }
 
 async function mapConcurrent(values, worker) {
@@ -259,6 +281,7 @@ for (const page of pages) {
     /<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["'][^>]*>/i,
   )
   const h1Count = (page.html.match(/<h1\b/gi) || []).length
+  const h1 = textContent(firstMatch(page.html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i))
 
   if (!title) errors.push(`${path}: missing title`)
   if (!description) errors.push(`${path}: missing meta description`)
@@ -276,6 +299,16 @@ for (const page of pages) {
   }
   const reviewedFirm = firmByReviewPath.get(path)
   if (reviewedFirm) {
+    const reviewPost = firmReviewPostRecords.get(path)
+    if (!reviewPost) {
+      errors.push(`${path}: firm review frontmatter is missing`)
+    } else if (
+      title !== reviewPost.seoTitle
+      || description !== reviewPost.seoDescription
+      || h1 !== reviewPost.title
+    ) {
+      errors.push(`${path}: firm-review title, description or H1 disagrees with frontmatter`)
+    }
     const slug = outboundSlug(reviewedFirm.name)
     const reviewCtaTag = [...page.html.matchAll(/<a\b[^>]*>/gi)]
       .map(match => match[0])
@@ -613,6 +646,165 @@ for (const source of [
   if (!wyckoffInlinks.has(source)) {
     errors.push(`${wyckoffGuidePath}: missing contextual inlink from ${source}`)
   }
+}
+
+const russianRoutePairs = [...LOCALIZED_ROUTE_PAIRS]
+const russianOnlyPaths = [...RUSSIAN_ONLY_ROUTES]
+const russianPaths = [
+  ...russianRoutePairs.map(pair => pair.ru),
+  ...russianOnlyPaths,
+]
+const russianSitemapPaths = uniqueSitemapUrls
+  .map(url => new URL(url).pathname)
+  .filter(path => path === '/ru' || path.startsWith('/ru/'))
+if (JSON.stringify(russianSitemapPaths.sort()) !== JSON.stringify([...russianPaths].sort())) {
+  errors.push(`Russian sitemap routes disagree with the ${russianPaths.length}-page acquisition pilot`)
+}
+
+const sitemapEntries = [...sitemapResponse.html.matchAll(/<url>([\s\S]*?)<\/url>/gi)]
+  .map(match => match[1])
+for (const pair of russianRoutePairs) {
+  for (const path of [pair.en, pair.ru]) {
+    const entry = sitemapEntries.find(block => {
+      const location = decodeXml(firstMatch(block, /<loc>([\s\S]*?)<\/loc>/i))
+      return location && new URL(location).pathname === path
+    })
+    if (!entry) {
+      errors.push(`${path}: localized sitemap entry is missing`)
+      continue
+    }
+    for (const [language, expectedPath] of [
+      ['en', pair.en],
+      ['ru', pair.ru],
+      ['x-default', pair.en],
+    ]) {
+      const href = alternateHref(entry, language)
+      if (canonicalKey(href) !== canonicalKey(`${PRODUCTION_ORIGIN}${expectedPath}`)) {
+        errors.push(`${path}: sitemap hreflang ${language} does not point to ${expectedPath}`)
+      }
+    }
+  }
+}
+
+const russianExpectations = new Map([
+  ['/ru', {
+    title: 'Проп-фирмы: обзоры, цены и правила на русском',
+    h1: 'Проп-фирмы: цены, правила и выплаты без рекламного тумана',
+    markers: [
+      'data-russian-country-boundary="language-not-access"',
+      '255',
+      '162',
+      '180',
+      '41',
+    ],
+  }],
+  ['/ru/luchshie-prop-firmy', {
+    title: 'Лучшие проп-фирмы 2026: рейтинг и сравнение',
+    h1: 'Лучшие проп-фирмы 2026: рейтинг для русскоязычных трейдеров',
+    markers: [
+      'data-russian-country-boundary="ranking-not-access"',
+      'data-russian-ranking="top-five"',
+      'data-russian-affiliate-disclosure="ranking"',
+    ],
+  }],
+  ['/ru/obzor-fundednext', {
+    title: 'FundedNext: обзор 2026, цены, правила и выплаты',
+    h1: 'FundedNext: обзор 2026 — 22 цены и 4 разных набора правил',
+    markers: [
+      'data-fundednext-russia-access="conflicting"',
+      'data-fundednext-russian-products="4"',
+      'data-russian-affiliate-disclosure="fundednext"',
+    ],
+  }],
+  ['/ru/kak-rabotayut-chellendzhi-prop-firm', {
+    title: 'Челлендж проп-фирмы: 5 этапов и правила (2026)',
+    h1: 'Как работает челлендж проп-фирмы: от оплаты до выплаты',
+    markers: [
+      'data-russian-country-boundary="challenge-checkout"',
+      'data-russian-affiliate-disclosure="challenge-guide"',
+    ],
+  }],
+  ['/ru/rossiyskie-prop-kompanii', {
+    title: 'Российские проп-компании: 3 реальных примера (2026)',
+    h1: 'Российские проп-компании в 2026 году: 3 проверяемых примера',
+    markers: [
+      'data-russian-local-firms="verification-only"',
+      'data-russian-affiliate-opportunity="unactivated"',
+      'data-russian-country-boundary="local-to-global"',
+    ],
+  }],
+])
+
+for (const [path, expectation] of russianExpectations) {
+  const probe = pages.find(page => new URL(page.productionUrl).pathname === path)
+  if (!probe || probe.status !== 200) {
+    errors.push(`${path}: Russian acquisition page is unavailable`)
+    continue
+  }
+  const title = textContent(firstMatch(probe.html, /<title[^>]*>([\s\S]*?)<\/title>/i))
+  const h1 = textContent(firstMatch(probe.html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i))
+  const pageText = textContent(probe.html)
+  if (title !== expectation.title || h1 !== expectation.h1) {
+    errors.push(`${path}: Russian title or H1 disagrees with the acquisition brief`)
+  }
+  if (
+    !probe.html.includes('lang="ru"')
+    || !probe.html.includes('data-russian-locale="pilot"')
+    || !probe.html.includes('"inLanguage":"ru"')
+  ) {
+    errors.push(`${path}: rendered Russian language boundary or schema is missing`)
+  }
+  for (const marker of expectation.markers) {
+    if (!probe.html.includes(marker) && !pageText.includes(marker)) {
+      errors.push(`${path}: missing Russian acquisition safeguard ${marker}`)
+    }
+  }
+  if (
+    pageText.includes('FundedNext доступен в России')
+    || pageText.includes('FTMO доступен в России')
+  ) {
+    errors.push(`${path}: makes an unsupported Russia-access claim`)
+  }
+  const inlinkCount = internalInlinks.get(path)?.size ?? 0
+  if (inlinkCount < 4) {
+    errors.push(`${path}: Russian acquisition page has only ${inlinkCount} unique internal inlinks`)
+  }
+
+  const pair = russianRoutePairs.find(candidate => candidate.ru === path)
+  if (pair) {
+    for (const [language, expectedPath] of [
+      ['en', pair.en],
+      ['ru', pair.ru],
+      ['x-default', pair.en],
+    ]) {
+      const href = alternateHref(probe.html, language)
+      if (canonicalKey(href) !== canonicalKey(`${PRODUCTION_ORIGIN}${expectedPath}`)) {
+        errors.push(`${path}: page hreflang ${language} does not point to ${expectedPath}`)
+      }
+    }
+    const englishProbe = pages.find(page => new URL(page.productionUrl).pathname === pair.en)
+    if (!englishProbe || canonicalKey(alternateHref(englishProbe.html, 'ru'))
+      !== canonicalKey(`${PRODUCTION_ORIGIN}${pair.ru}`)) {
+      errors.push(`${pair.en}: missing reciprocal Russian hreflang for ${pair.ru}`)
+    }
+  }
+}
+
+const russianFundedNextPage = pages.find(page =>
+  new URL(page.productionUrl).pathname === '/ru/obzor-fundednext')
+const russianFundedNextCta = [...(russianFundedNextPage?.html ?? '').matchAll(/<a\b[^>]*>/gi)]
+  .map(match => match[0])
+  .find(tag => tag.includes('/go/fundednext?from=ru-fundednext-review-verdict')) || ''
+if (
+  !russianFundedNextCta
+  || !russianFundedNextCta.includes('rel="sponsored nofollow noopener"')
+) {
+  errors.push('/ru/obzor-fundednext: controlled affiliate CTA is missing or mislabelled')
+}
+const russianLocalFirmPage = pages.find(page =>
+  new URL(page.productionUrl).pathname === '/ru/rossiyskie-prop-kompanii')
+if (russianLocalFirmPage?.html.includes('/go/')) {
+  errors.push('/ru/rossiyskie-prop-kompanii: unapproved local-firm affiliate action rendered')
 }
 
 for (const [title, paths] of titles) {
@@ -2697,7 +2889,7 @@ if (ctiReviewProbe.status !== 200) {
     errors.push(`${ctiReviewPath}: rendered ${summaryRows} product summaries, expected 4`)
   }
   for (const required of [
-    'City Traders Imperium Review 2026: Fees & Rules',
+    'City Traders Imperium Review 2026: 4 Plans & 23 Fees',
     'City Traders Imperium Review 2026: 4 Products, 23 Prices',
     '4 products and 23 priced tiers',
     'All 23 refundable fields remain unverified',
@@ -3620,6 +3812,28 @@ for (const matchup of [
   ) {
     errors.push(`${path}: rendered a bare affiliate destination`)
   }
+}
+
+const russianAffiliateRedirect = await fetchPage(new URL(
+  '/go/fundednext?from=ru-fundednext-review-verdict',
+  BASE,
+), 'manual')
+let russianAffiliateDestination = null
+try {
+  russianAffiliateDestination = new URL(russianAffiliateRedirect.location, BASE)
+} catch {
+  // The assertions below report the missing or malformed Location header.
+}
+if (
+  russianAffiliateRedirect.status !== 302
+  || !russianAffiliateDestination
+  || russianAffiliateDestination.origin === BASE.origin
+  || russianAffiliateDestination.searchParams.get('utm_source') !== 'tradersfundhub'
+  || russianAffiliateDestination.searchParams.get('utm_medium') !== 'affiliate'
+  || russianAffiliateDestination.searchParams.get('utm_campaign')
+    !== 'ru-fundednext-review-verdict'
+) {
+  errors.push('/go/fundednext?from=ru-fundednext-review-verdict: Russian affiliate attribution failed')
 }
 
 const namedAffiliateIndiaRedirect = await fetchPage(new URL(

@@ -1,10 +1,12 @@
 ---
 title: "OFP Funding Review 2026: Nine Products, 45 Priced Tiers, One $300K Ceiling"
+seoTitle: "OFP Funding Review 2026: Fees, Plans & $300K Cap"
 slug: "ofp-funding-review"
 date: "2025-04-22 12:00:00"
 modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "OFP sells nine products between $35 and $1,500 at an 80% base split. The cheap evaluations price at R = 0.02; Instant Plus costs six times more."
+seoDescription: "OFP Funding review comparing 9 products, 45 priced tiers, $35–$1,500 fees, 80% base splits, true cost, drawdown rules, and the $300K cap."
 categories: ["Prop Firms"]
 tags: ["OFP Funding", "Prop Firm"]
 type: "post"

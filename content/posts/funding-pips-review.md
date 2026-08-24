@@ -1,10 +1,12 @@
 ---
 title: "FundingPips Review 2026: 5 Models and 27 Verified Fees"
+seoTitle: "FundingPips Review 2026: Fees, Models & Rules"
 slug: "funding-pips-review"
 date: "2025-05-08 18:09:27"
 modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "FundingPips has 27 first-party fees across 5 models. Compare true cost, drawdowns, payout cycles, the 2 unresolved $2.5K tiers, and India caveats."
+seoDescription: "FundingPips review comparing 27 verified fees across 5 models, true cost, drawdown, payout cycles, two unresolved $2.5K tiers, and India access."
 categories: ["Prop Firms"]
 tags: ["FundingPips", "Prop Firm"]
 type: "post"

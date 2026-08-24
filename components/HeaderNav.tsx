@@ -2,8 +2,16 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { Menu, X, ChevronDown, GitCompare, Mail } from 'lucide-react'
+import { Menu, X, ChevronDown, GitCompare, Languages, Mail } from 'lucide-react'
+import { getAlternateLanguageHref } from '@/lib/localizedRoutes'
 import { navLinks } from './navLinks'
+
+const russianNavLinks = [
+  { label: 'Рейтинг', href: '/ru/luchshie-prop-firmy' },
+  { label: 'Местные компании', href: '/ru/rossiyskie-prop-kompanii' },
+  { label: 'Обзор FundedNext', href: '/ru/obzor-fundednext' },
+  { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },
+] as const
 
 interface HeaderNavProps {
   /** Current source-check coverage, e.g. "13/15 source-checked". */
@@ -12,6 +20,9 @@ interface HeaderNavProps {
 
 export default function HeaderNav({ dataStatus }: HeaderNavProps) {
   const pathname = usePathname()
+  const isRussian = pathname === '/ru' || pathname.startsWith('/ru/')
+  const activeNavLinks = isRussian ? russianNavLinks : navLinks
+  const languageHref = getAlternateLanguageHref(pathname)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const [lastPath, setLastPath] = useState(pathname)
@@ -66,8 +77,12 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
 
   return (
     <>
-      <nav ref={navRef} className="desktop-nav" aria-label="Primary">
-        {navLinks.map(link => (
+      <nav
+        ref={navRef}
+        className="desktop-nav"
+        aria-label={isRussian ? 'Основная навигация' : 'Primary'}
+      >
+        {activeNavLinks.map(link => (
           'children' in link && link.children ? (
             <div key={link.label} className="nav-dropdown-wrap">
               <button
@@ -118,12 +133,27 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
           )
         ))}
 
-        <Link href="/prop-firm-challenges" className="nav-compare-chip" aria-label="Compare prop-firm challenge products">
+        <Link
+          href={isRussian ? '/ru/luchshie-prop-firmy' : '/prop-firm-challenges'}
+          className="nav-compare-chip"
+          aria-label={isRussian ? 'Сравнить проп-фирмы' : 'Compare prop-firm challenge products'}
+        >
           <GitCompare size={14} aria-hidden="true" />
-          Challenges
+          {isRussian ? 'Сравнить' : 'Challenges'}
         </Link>
 
-        {dataStatus && (
+        <Link
+          href={languageHref}
+          hrefLang={isRussian ? 'en' : 'ru'}
+          lang={isRussian ? 'en' : 'ru'}
+          className="nav-link"
+          aria-label={isRussian ? 'Open the English version' : 'Открыть русскую версию'}
+        >
+          <Languages size={14} aria-hidden="true" />
+          {isRussian ? 'EN' : 'RU'}
+        </Link>
+
+        {dataStatus && !isRussian && (
           <Link
             href="/prop-firm-challenge-changes"
             className="nav-update-pill"
@@ -153,7 +183,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
           className="mobile-overlay"
           role="dialog"
           aria-modal="true"
-          aria-label="Site navigation"
+          aria-label={isRussian ? 'Навигация по сайту' : 'Site navigation'}
         >
           <div className="mobile-overlay__aurora" aria-hidden="true">
             <div className="aurora-orb aurora-orb--1" />
@@ -163,8 +193,11 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
           </div>
 
           <div className="mobile-overlay__inner">
-            <nav className="mobile-overlay__nav" aria-label="Mobile primary">
-              {navLinks.map(link => (
+            <nav
+              className="mobile-overlay__nav"
+              aria-label={isRussian ? 'Основная мобильная навигация' : 'Mobile primary'}
+            >
+              {activeNavLinks.map(link => (
                 <div key={link.label} className="mobile-overlay__section">
                   <Link
                     href={link.href}
@@ -188,11 +221,23 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
             </nav>
 
             <div className="mobile-overlay__footer">
-              <Link href="/prop-firm-challenges" className="btn-primary mobile-overlay__cta">
+              <Link
+                href={isRussian ? '/ru/luchshie-prop-firmy' : '/prop-firm-challenges'}
+                className="btn-primary mobile-overlay__cta"
+              >
                 <GitCompare size={16} aria-hidden="true" />
-                Compare challenges
+                {isRussian ? 'Сравнить фирмы' : 'Compare challenges'}
               </Link>
               <div className="mobile-overlay__socials" aria-label="Contact">
+                <Link
+                  href={languageHref}
+                  hrefLang={isRussian ? 'en' : 'ru'}
+                  lang={isRussian ? 'en' : 'ru'}
+                  aria-label={isRussian ? 'Open the English version' : 'Открыть русскую версию'}
+                  className="mobile-overlay__social"
+                >
+                  <Languages size={18} aria-hidden="true" />
+                </Link>
                 <Link href="/contact" aria-label="Contact" className="mobile-overlay__social"><Mail size={18} aria-hidden="true" /></Link>
               </div>
             </div>

@@ -9,6 +9,12 @@ import { getAllDeals } from '@/lib/deals'
 import { INDIA_EVIDENCE } from '@/lib/india'
 import { INDIA_MATCHUPS, indiaMatchupPath } from '@/lib/indiaMatchups'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
+import {
+  LOCALIZED_ROUTE_PAIRS,
+  RUSSIAN_ONLY_ROUTES,
+  getLocalizedRoutePair,
+} from '@/lib/localizedRoutes'
+import russianMarketEvidence from '@/content/data/russian-market-evidence.json'
 
 const BASE_URL = 'https://tradersfundhub.com'
 
@@ -195,7 +201,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     }))
 
-  return [
+  const baseRoutes: MetadataRoute.Sitemap = [
     ...staticRoutes,
     ...featureRoutes,
     ...indiaMatchupRoutes,
@@ -206,4 +212,40 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...postRoutes,
     ...pageRoutes,
   ]
+
+  const fundedNextLastModified = firms.find(firm => firm.name === 'FundedNext')?.lastUpdated
+  const russianLastModified = new Map<string, Date>([
+    ['/ru', challengeComparisonLastDate],
+    ['/ru/luchshie-prop-firmy', challengeComparisonLastDate],
+    ['/ru/obzor-fundednext', new Date(fundedNextLastModified || challengeLastModified)],
+    ['/ru/kak-rabotayut-chellendzhi-prop-firm', challengeComparisonLastDate],
+  ])
+  const russianRoutes: MetadataRoute.Sitemap = LOCALIZED_ROUTE_PAIRS.map(pair => ({
+    url: `${BASE_URL}${pair.ru}`,
+    lastModified: russianLastModified.get(pair.ru) ?? challengeComparisonLastDate,
+    changeFrequency: 'weekly',
+    priority: pair.ru === '/ru' ? 0.85 : 0.8,
+  }))
+  const russianOnlyRoutes: MetadataRoute.Sitemap = RUSSIAN_ONLY_ROUTES.map(path => ({
+    url: `${BASE_URL}${path}`,
+    lastModified: new Date(russianMarketEvidence.capturedAt),
+    changeFrequency: 'monthly',
+    priority: 0.78,
+  }))
+
+  return [...baseRoutes, ...russianRoutes, ...russianOnlyRoutes].map(route => {
+    const pair = getLocalizedRoutePair(new URL(route.url).pathname)
+    if (!pair) return route
+
+    return {
+      ...route,
+      alternates: {
+        languages: {
+          en: `${BASE_URL}${pair.en}`,
+          ru: `${BASE_URL}${pair.ru}`,
+          'x-default': `${BASE_URL}${pair.en}`,
+        },
+      },
+    }
+  })
 }

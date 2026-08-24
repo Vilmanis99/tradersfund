@@ -22,6 +22,7 @@ import TradingToolReviewCluster, {
 } from '@/components/TradingToolReviewCluster'
 import { getTradingToolReviewLinks } from '@/lib/tradingToolReviews'
 import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
+import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -34,17 +35,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug)
   if (!post) return {}
   const path = `/blog/${slug}`
-  const firm = getAllFirms().find(candidate => candidate.reviewUrl === path)
-  const title = post.seoTitle || (firm
-    ? `${firm.name} Review (2026): Fees & Rules`
-    : post.title)
-  const description = post.seoDescription || (firm
-    ? `${firm.name} review with source-dated fees, drawdown, payout rules, platforms, and True-Cost analysis for 2026.`
-    : post.excerpt || post.title)
+  const title = post.seoTitle || post.title
+  const description = post.seoDescription || post.excerpt || post.title
+  const languages = getLanguageAlternates(path)
   return {
     title: { absolute: title },
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: path, ...(languages ? { languages } : {}) },
     openGraph: {
       title,
       description,

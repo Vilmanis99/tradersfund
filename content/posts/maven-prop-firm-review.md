@@ -1,10 +1,12 @@
 ---
 title: "Maven Prop Firm Review 2026: Nine Products, 80% Split, EAs Banned"
+seoTitle: "Maven Prop Firm Review 2026: Fees, Rules & EA Ban"
 slug: "maven-prop-firm-review"
 date: "2025-06-15 09:00:00"
 modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Maven sells nine challenge products from $5 to $999 and pays 80% on the standard lineup — but bans EAs outright. Here is which product actually prices well."
+seoDescription: "Maven prop firm review comparing 9 products, $5–$999 fees, 80% standard splits, drawdown rules, true cost, and the ban on expert advisors."
 categories: ["Prop Firms"]
 tags: ["Maven", "Prop Firm"]
 type: "post"

@@ -1,9 +1,11 @@
 ---
 title: "E8 Markets Review 2026: Three 1-Step Products, Three Different Drawdowns"
+seoTitle: "E8 Markets Review 2026: Fees & Drawdown Rules"
 slug: "e8-markets-review"
 date: "2025-05-13 11:23:13"
 author: "Tara Mohseni"
 excerpt: "E8 runs E8 One, E8 Pro and E8 Signature — all single-phase, all 80% base split, but with 6% trailing, 8% static and EOD-trailing drawdown respectively."
+seoDescription: "E8 Markets review comparing E8 One, Pro and Signature fees, 80% base splits, and trailing, static, or end-of-day drawdown rules."
 categories: ["Prop Firms"]
 tags: ["E8 Markets", "Prop Firm"]
 type: "post"

@@ -1,10 +1,12 @@
 ---
 title: "Bright Funded Review 2026: Three Plans, One Important Currency Catch"
+seoTitle: "Bright Funded Review 2026: EUR Fees & Drawdown"
 slug: "bright-funded-prop-firm"
 date: "2025-05-19 11:10:28"
 modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Bright Funded now has 3 evaluation paths and EUR list pricing. The 1-Step trailing drawdown and 30-day first payout are the deciding rules."
+seoDescription: "Bright Funded review comparing 3 EUR-priced evaluations, fees, 80% splits, static versus trailing drawdown, payout timing, and true cost."
 categories: ["Prop Firms"]
 tags: ["Bright Funded", "Prop Firm"]
 type: "post"

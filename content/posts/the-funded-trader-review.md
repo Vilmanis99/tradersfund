@@ -1,10 +1,12 @@
 ---
 title: "The Funded Trader Review 2026: Seven Products, Two You Can Price"
+seoTitle: "The Funded Trader Review 2026: Fees & Data Gaps"
 slug: "the-funded-trader-review"
 date: "2025-11-15 10:00:00"
 modified: "2026-07-27 12:00:00"
 author: "Tara Mohseni"
 excerpt: "TFT sells seven challenges from $42 but publishes a base profit split on only two of them. Its entire help centre returns 404. Here is what the pricing data shows."
+seoDescription: "The Funded Trader review comparing 7 challenges, published fees from $42, the two products with verified splits, drawdown rules, and current data gaps."
 categories: ["Prop Firms"]
 tags: ["The Funded Trader", "Prop Firm"]
 type: "post"

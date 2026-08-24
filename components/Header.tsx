@@ -1,6 +1,5 @@
-import Link from 'next/link'
-import { TrendingUp } from 'lucide-react'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
+import HeaderBrand from './HeaderBrand'
 import HeaderNav from './HeaderNav'
 
 // Re-export so existing call-sites that did `import { navLinks } from
@@ -29,14 +28,7 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <Link href="/" className="site-header__brand" aria-label="Traders Fund Hub home">
-          <div className="site-header__logo" aria-hidden="true">
-            <TrendingUp size={18} color="#fff" />
-          </div>
-          <span className="site-header__wordmark">
-            Traders <span className="gradient-text--animated">Fund</span> Hub
-          </span>
-        </Link>
+        <HeaderBrand />
 
         <HeaderNav dataStatus={dataStatus} />
       </div>

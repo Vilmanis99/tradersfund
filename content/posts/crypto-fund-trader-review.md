@@ -1,10 +1,12 @@
 ---
 title: "Crypto Fund Trader Review 2026: Five Products, One 80% Split"
+seoTitle: "Crypto Fund Trader Review 2026: Fees & 80% Split"
 slug: "crypto-fund-trader-review"
 date: "2025-08-12 11:00:00"
 modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Five CFT products, 24 priced tiers, 80% on every one — and an Instant account whose break-even lands at R = 1.00. Prices captured 2026-07-27."
+seoDescription: "Crypto Fund Trader review comparing 5 products, 24 priced tiers, 80% splits, drawdown rules, true cost, and the Instant account's break-even."
 categories: ["Prop Firms"]
 tags: ["Crypto Fund Trader", "Prop Firm"]
 type: "post"

@@ -1,10 +1,12 @@
 ---
 title: "FTMO Review 2026: Euro-Priced, 80% on the 2-Step, 90% on the 1-Step"
+seoTitle: "FTMO Review 2026: 1-Step vs 2-Step Fees & Splits"
 slug: "ftmo-review"
 date: "2024-08-30 10:30:24"
 modified: "2026-08-17 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "FTMO publishes per-tier pricing — in euros, not dollars. €89–€1,080 for the refundable 2-Step at 80%, €79–€999 for the non-refundable 1-Step at 90%."
+seoDescription: "FTMO review comparing euro pricing, refundable 2-Step fees, non-refundable 1-Step fees, 80%–90% splits, drawdown rules, and true cost."
 categories: ["Prop Firms"]
 tags: ["FTMO", "Prop Firm"]
 type: "post"

@@ -1,10 +1,12 @@
 ---
 title: "Tradeify Review 2026: 16 Priced Tiers and 3 Funding Routes"
+seoTitle: "Tradeify Review 2026: Fees, Routes & Consistency Rules"
 slug: "tradeify-review"
 date: "2026-07-28"
 modified: "2026-08-17 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Tradeify publishes 16 priced futures product-size combinations with EOD drawdown and 90% simulated payouts, but each route has a different consistency gate."
+seoDescription: "Tradeify review comparing 16 priced futures tiers, 3 funding routes, 90% simulated payouts, end-of-day drawdown, and route-specific consistency rules."
 categories: ["Prop Firms"]
 tags: ["Tradeify", "Prop Firm", "Futures Prop Firms"]
 type: "post"

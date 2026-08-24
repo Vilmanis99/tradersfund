@@ -1,10 +1,12 @@
 ---
 title: "Apex Trader Funding Review 2026: New Rules, Real Trade-Offs"
+seoTitle: "Apex Trader Funding Review 2026: Fees & Payout Rules"
 slug: "apex-trader-funding-review"
 date: "2026-07-28"
 modified: "2026-08-17"
 author: "Edris Derakhshi"
 excerpt: "Apex offers one-day futures evaluations and a 100% payout split, but dynamic pricing, trailing risk and a six-payout PA limit require care."
+seoDescription: "Apex Trader Funding review covering one-day futures evaluations, dynamic pricing, trailing drawdown, 100% payout split, PA limits, and current trade-offs."
 categories: ["Prop Firms"]
 tags: ["Apex Trader Funding", "Prop Firm", "Futures Prop Firms"]
 type: "post"

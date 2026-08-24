@@ -1,6 +1,6 @@
 ---
 title: "City Traders Imperium Review 2026: 4 Products, 23 Prices"
-seoTitle: "City Traders Imperium Review 2026: Fees & Rules"
+seoTitle: "City Traders Imperium Review 2026: 4 Plans & 23 Fees"
 slug: "city-traders-imperium-review"
 date: "2025-08-05 10:00:00"
 modified: "2026-08-17 12:00:00"

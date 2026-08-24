@@ -1,10 +1,12 @@
 ---
 title: "TradeDay Review 2026: Day-One Payouts, but a Tiered Split"
+seoTitle: "TradeDay Review 2026: Fees, Payouts & Drawdown"
 slug: "tradeday-review"
 date: "2026-07-28"
 modified: "2026-08-17 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "TradeDay pairs day-one Quick Pay withdrawals with three drawdown paths, but its 50% low-profit payout tier and promo-linked monthly prices need scrutiny."
+seoDescription: "TradeDay review comparing monthly prices, three drawdown paths, day-one Quick Pay withdrawals, the 50% low-profit payout tier, and true cost."
 categories: ["Prop Firms"]
 tags: ["TradeDay", "Prop Firm", "Futures Prop Firms"]
 type: "post"
