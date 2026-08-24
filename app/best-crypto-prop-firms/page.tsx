@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import LandingPage from '@/components/LandingPage'
 import { getLandingBySlug } from '@/lib/landings'
+import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 const SLUG = 'best-crypto-prop-firms'
 const landing = getLandingBySlug(SLUG)!
@@ -8,7 +9,7 @@ const landing = getLandingBySlug(SLUG)!
 export const metadata: Metadata = {
   title: landing.metaTitle,
   description: landing.metaDescription,
-  alternates: { canonical: `/${SLUG}` },
+  alternates: { canonical: `/${SLUG}`, languages: getLanguageAlternates(`/${SLUG}`) },
   openGraph: {
     title: landing.metaTitle,
     description: landing.metaDescription,

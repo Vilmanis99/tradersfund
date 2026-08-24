@@ -4,7 +4,11 @@ import { trackSiteEvent as track } from '@/lib/clientAnalytics'
 
 type Status = 'idle' | 'sending' | 'pending' | 'error'
 
-export default function NewsletterForm({ placement = 'unknown' }: { placement?: string }) {
+export default function NewsletterForm({
+  placement = 'unknown',
+  locale = 'en',
+}: { placement?: string; locale?: 'en' | 'ru' }) {
+  const isRussian = locale === 'ru'
   const [email, setEmail] = useState('')
   const [company, setCompany] = useState('') // honeypot
   const [status, setStatus] = useState<Status>('idle')
@@ -16,7 +20,7 @@ export default function NewsletterForm({ placement = 'unknown' }: { placement?: 
 
     if (!email || !email.includes('@')) {
       setStatus('error')
-      setMessage('Please enter a valid email address.')
+      setMessage(isRussian ? 'Введите корректный адрес электронной почты.' : 'Please enter a valid email address.')
       return
     }
 
@@ -31,18 +35,18 @@ export default function NewsletterForm({ placement = 'unknown' }: { placement?: 
       const data = await res.json().catch(() => ({}))
       if (!res.ok) {
         setStatus('error')
-        setMessage(data.error || 'Something went wrong. Try again.')
+        setMessage(data.error || (isRussian ? 'Произошла ошибка. Повторите попытку.' : 'Something went wrong. Try again.'))
         return
       }
       setStatus('pending')
-      setMessage(data.message || "Thanks — we'll be in touch.")
+      setMessage(data.message || (isRussian ? 'Спасибо — подтвердите подписку в письме.' : "Thanks — we'll be in touch."))
       if (!company) {
         track('newsletter_double_opt_in_started', { placement })
       }
       setEmail('')
     } catch {
       setStatus('error')
-      setMessage('Network error. Try again.')
+      setMessage(isRussian ? 'Ошибка сети. Повторите попытку.' : 'Network error. Try again.')
     }
   }
 
@@ -66,15 +70,19 @@ export default function NewsletterForm({ placement = 'unknown' }: { placement?: 
       />
       <input
         type="email"
-        placeholder="Your email address"
+        placeholder={isRussian ? 'Ваш email' : 'Your email address'}
         value={email}
         onChange={e => setEmail(e.target.value)}
         disabled={status === 'sending'}
-        aria-label="Email address"
+        aria-label={isRussian ? 'Адрес электронной почты' : 'Email address'}
         required
       />
       <button type="submit" disabled={status === 'sending' || status === 'pending'}>
-        {status === 'sending' ? 'Sending…' : status === 'pending' ? 'Confirm email' : 'Subscribe'}
+        {status === 'sending'
+          ? (isRussian ? 'Отправка…' : 'Sending…')
+          : status === 'pending'
+            ? (isRussian ? 'Подтвердить email' : 'Confirm email')
+            : (isRussian ? 'Подписаться' : 'Subscribe')}
       </button>
       {status === 'pending' && (
         <span role="status" style={{ color: '#22c55e', fontSize: '0.8rem', position: 'absolute', bottom: -20 }}>

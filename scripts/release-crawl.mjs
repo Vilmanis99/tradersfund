@@ -712,6 +712,16 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-ranking-partner-shortlist',
     ],
   }],
+  ['/ru/luchshie-kripto-prop-firmy', {
+    title: 'Крипто-проп-фирмы 2026: проверенные варианты',
+    h1: 'Крипто-проп-фирмы 2026: проверенные варианты',
+    markers: [
+      'data-russian-country-boundary="crypto-not-access"',
+      'data-russian-crypto-ranking="source-gated"',
+      'data-russian-affiliate-disclosure="crypto-ranking"',
+      'data-russian-crypto-product-count="32"',
+    ],
+  }],
   ['/ru/obzor-fundednext', {
     title: 'FundedNext: обзор 2026, цены, правила и выплаты',
     h1: 'FundedNext: обзор 2026 — 22 цены и 4 разных набора правил',
@@ -830,6 +840,7 @@ if (
 for (const [path, href] of [
   ['/ru/obzor-fundingpips', '/go/fundingpips?from=ru-fundingpips-review-verdict'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-verdict'],
+  ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
   const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]

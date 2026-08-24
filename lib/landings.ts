@@ -148,7 +148,9 @@ interface CryptoMarketEvidence {
   sourceUrl: string
   sourceCapturedAt: string
   evidence: string
+  evidenceRu?: string
   scopeNote: string
+  scopeNoteRu?: string
 }
 
 interface CryptoMarketWatch {

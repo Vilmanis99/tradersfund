@@ -9,6 +9,8 @@
       "sourceUrl": "https://cryptofundtrader.com/choose-your-challenge/",
       "sourceCapturedAt": "2026-07-27",
       "evidence": "MetaTrader 5 and Match-Trader list more than 540 crypto pairs; Bybit lists more than 715 crypto pairs.",
+      "evidenceRu": "MetaTrader 5 и Match-Trader указывают более 540 криптопар; Bybit — более 715.",
+      "scopeNoteRu": "Все 5 текущих структурированных продуктов относятся к крипто-нативным. Точное число пар и доступность платформы могут отличаться по продукту и региону.",
       "scopeNote": "All 5 current structured products are crypto-native. Exact pair count and platform availability can still differ by product and region."
     },
     {
@@ -19,6 +21,8 @@
       "sourceUrl": "https://ftmo.com/en/faq/which-instruments-can-i-trade-and-what-strategies-am-i-allowed-to-use/",
       "sourceCapturedAt": "2026-07-27",
       "evidence": "FTMO names Forex, Indices, Commodities, Stocks, and Crypto among available platform instruments.",
+      "evidenceRu": "FTMO относит Forex, Indices, Commodities, Stocks и Crypto к доступным инструментам платформы.",
+      "scopeNoteRu": "Оба текущих продукта FTMO покрыты; доступные символы и часы торговли зависят от платформы и спецификации выбранного счёта.",
       "scopeNote": "Both current FTMO challenge records are covered; the available symbols and trading hours depend on the selected platform and account specification."
     },
     {
@@ -29,6 +33,8 @@
       "sourceUrl": "https://help.fundednext.com/en/articles/8020350-what-is-the-contract-size-of-the-instruments",
       "sourceCapturedAt": "2026-08-17",
       "evidence": "FundedNext publishes cryptocurrency contract sizes and states that the specifications apply to all accounts.",
+      "evidenceRu": "FundedNext публикует размеры контрактов криптовалют и указывает, что спецификации применяются ко всем счетам.",
+      "scopeNoteRu": "Покрыты все 4 текущих CFD-продукта. Размер контракта зависит от пары, поэтому спецификация платформы остаётся главным источником на уровне символа.",
       "scopeNote": "All 4 current CFD products are covered. Contract size varies by pair, so the platform specification remains the symbol-level authority."
     },
     {
@@ -39,6 +45,8 @@
       "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
       "sourceCapturedAt": "2026-07-27",
       "evidence": "The 1 Step Flex specification publishes 0.04% crypto commission and 1:2 crypto leverage.",
+      "evidenceRu": "В спецификации 1 Step Flex указаны комиссия 0,04% за крипто и плечо 1:2.",
+      "scopeNoteRu": "Привязан только 1 Step Flex. Остальные 4 продукта FundingPips не считаются автоматически доступными для крипторынка и могут иметь другие условия.",
       "scopeNote": "Only 1 Step Flex is mapped. The other 4 current FundingPips products are not assumed to share its crypto availability or trading conditions."
     },
     {
@@ -49,6 +57,8 @@
       "sourceUrl": "https://citytradersimperium.com/",
       "sourceCapturedAt": "2026-08-17",
       "evidence": "CTI lists Forex, Commodities, Indices, and Crypto under its trading-platform market coverage.",
+      "evidenceRu": "CTI перечисляет Forex, Commodities, Indices и Crypto в перечне рынков торговой платформы.",
+      "scopeNoteRu": "Привязаны все 4 текущие программы; торговля остаётся симулированной, а точные символы зависят от MT5 или Match-Trader.",
       "scopeNote": "All 4 current funding-program records are mapped; trading remains simulated and exact symbols depend on MT5 or Match-Trader availability."
     },
     {
@@ -69,6 +79,8 @@
       "sourceUrl": "https://ofpfunding.com/",
       "sourceCapturedAt": "2026-07-27",
       "evidence": "OFP names Forex, Crypto, Indices, Metals, and Energies among its simulated instruments.",
+      "evidenceRu": "OFP называет Forex, Crypto, Indices, Metals и Energies среди симулируемых инструментов.",
+      "scopeNoteRu": "Привязаны все 9 текущих структурированных продуктов, но фирма не публикует отдельный список криптосимволов для каждого продукта.",
       "scopeNote": "All 9 current structured products are mapped, but the firm does not publish a product-by-product crypto symbol list."
     },
     {
@@ -79,6 +91,8 @@
       "sourceUrl": "https://www.thefundedtraderprogram.com/",
       "sourceCapturedAt": "2026-07-27",
       "evidence": "The firm FAQ names forex, commodities, indices, and crypto for its supported CFD platforms.",
+      "evidenceRu": "FAQ фирмы называет forex, commodities, indices и crypto для поддерживаемых CFD-платформ.",
+      "scopeNoteRu": "Привязаны все 7 продуктов из датасета; связанные справочные статьи были недоступны при захвате, поэтому нерешённые поля остаются пустыми.",
       "scopeNote": "All 7 live dataset products are mapped; the linked help-centre product articles were unavailable at capture, so unresolved product-specific fields remain null."
     }
   ],

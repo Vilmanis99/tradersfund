@@ -5,7 +5,9 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import AnalyticsProvider from '@/components/AnalyticsProvider'
 import VercelObservability from '@/components/VercelObservability'
-import { getAllFirms } from '@/lib/firms'
+import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
+import { getAllPosts } from '@/lib/mdx'
+import { isNewsletterConfigured } from '@/lib/brevo'
 import { buildOutboundRelationships } from '@/lib/outboundDestinations'
 
 export const metadata: Metadata = {
@@ -40,6 +42,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const outboundRelationships = buildOutboundRelationships(getAllFirms())
+  const firms = getAllFirms()
+  const challenges = getAllChallenges()
+  const freshChallenges = challenges.filter(challenge => isChallengeFresh(challenge))
+  const pricedChallengeCount = freshChallenges.filter(challenge =>
+    challenge.accountSizes.some(tier =>
+      (tier.priceUsd != null && tier.priceUsd > 0) ||
+      (tier.priceEur != null && tier.priceEur > 0)),
+  ).length
+  const latestCapture = challenges.map(challenge => challenge.sourceCapturedAt).sort().at(-1)
+  const posts = getAllPosts()
 
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
@@ -51,7 +63,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main style={{ flex: 1 }}>
           {children}
         </main>
-        <Footer />
+        <Footer
+          firmCount={firms.length}
+          pricedChallengeCount={pricedChallengeCount}
+          articleCount={posts.length}
+          latestCapture={latestCapture}
+          newsletterEnabled={isNewsletterConfigured()}
+        />
         <VercelObservability />
         <Suspense fallback={null}>
           <AnalyticsProvider

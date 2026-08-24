@@ -2762,6 +2762,9 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/', 'russian_home'],
     ['/ru/luchshie-prop-firmy', 'russian_ranking'],
     ['/ru/obzor-fundednext/', 'russian_review'],
+    ['/ru/obzor-fundingpips', 'russian_review'],
+    ['/ru/obzor-bright-funded/', 'russian_review'],
+    ['/ru/luchshie-kripto-prop-firmy', 'russian_ranking'],
     ['/ru/rossiyskie-prop-kompanii', 'russian_local_research'],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', 'russian_education'],
   ])
@@ -10783,6 +10786,7 @@ function checkRussianAcquisitionPilot() {
   const russianRouteFiles = new Map([
     ['/ru', path.join(ROOT, 'app/ru/page.tsx')],
     ['/ru/luchshie-prop-firmy', path.join(ROOT, 'app/ru/luchshie-prop-firmy/page.tsx')],
+    ['/ru/luchshie-kripto-prop-firmy', path.join(ROOT, 'app/ru/luchshie-kripto-prop-firmy/page.tsx')],
     ['/ru/obzor-fundednext', path.join(ROOT, 'app/ru/obzor-fundednext/page.tsx')],
     ['/ru/obzor-fundingpips', path.join(ROOT, 'app/ru/obzor-fundingpips/page.tsx')],
     ['/ru/obzor-bright-funded', path.join(ROOT, 'app/ru/obzor-bright-funded/page.tsx')],
@@ -10902,6 +10906,7 @@ function checkRussianAcquisitionPilot() {
   const expectedMappedRoutes = [
     "{ en: '/', ru: '/ru' }",
     "{ en: '/best-prop-firms-2026', ru: '/ru/luchshie-prop-firmy' }",
+    "{ en: '/best-crypto-prop-firms', ru: '/ru/luchshie-kripto-prop-firmy' }",
     "{ en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' }",
     "{ en: '/blog/funding-pips-review', ru: '/ru/obzor-fundingpips' }",
     "{ en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' }",
@@ -10983,6 +10988,21 @@ function checkRussianAcquisitionPilot() {
     if (!russianRankingPage.includes(token)) rows.push(`Russian global-partner shortlist is missing ${token}`)
   }
 
+  const russianCryptoPage = fs.existsSync(russianRouteFiles.get('/ru/luchshie-kripto-prop-firmy'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/luchshie-kripto-prop-firmy'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-crypto-ranking="source-gated"',
+    'data-russian-crypto-product-count={productCount}',
+    'data-russian-affiliate-disclosure="crypto-ranking"',
+    'data-russian-country-boundary="crypto-not-access"',
+    'from=ru-crypto-ranking',
+    'rel="sponsored nofollow noopener"',
+    'cryptoMarketEvidence',
+  ]) {
+    if (!russianCryptoPage.includes(token)) rows.push(`Russian crypto ranking is missing ${token}`)
+  }
+
   const fundedNextRussianPage = fs.existsSync(russianRouteFiles.get('/ru/obzor-fundednext'))
     ? fs.readFileSync(russianRouteFiles.get('/ru/obzor-fundednext'), 'utf8')
     : ''
@@ -11029,6 +11049,7 @@ function checkRussianAcquisitionPilot() {
   for (const token of [
     "label: 'Местные компании'",
     "href: '/ru/rossiyskie-prop-kompanii'",
+    "href: '/ru/luchshie-kripto-prop-firmy'",
     'getAlternateLanguageHref(pathname)',
     'hrefLang={isRussian ? \'en\' : \'ru\'}',
   ]) {

@@ -118,6 +118,7 @@ export default function RussianBestPropFirmsPage() {
           <div className="ru-actions">
             <Link href="#polnyy-reyting" className="btn-primary btn-glow">Смотреть весь рейтинг <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm" className="btn-outline">Сначала понять правила</Link>
+            <Link href="/ru/luchshie-kripto-prop-firmy" className="btn-outline">Отдельно сравнить crypto</Link>
           </div>
         </div>
       </section>
@@ -188,7 +189,7 @@ export default function RussianBestPropFirmsPage() {
             страну, гражданство, KYC, способ оплаты и правила выплат.
           </div>
           <h2>Куда перейти после проверки условий</h2>
-          <p className="ru-muted">Русский язык страницы не означает доступность для резидента России. Сначала откройте разбор и сверяйте страну на официальном checkout.</p>
+          <p className="ru-muted">Русский язык страницы не означает доступность для резидента России. Сначала откройте разбор и сверяйте страну на официальной странице оплаты.</p>
           <div className="ru-grid">
             {globalPartners.map(item => {
               const reviewHref = item.slug === 'fundednext'
@@ -266,7 +267,7 @@ export default function RussianBestPropFirmsPage() {
             <li>Выберите рынок: CFD, фьючерсы или крипто-продукты нельзя считать взаимозаменяемыми.</li>
             <li>Сравните конкретный размер счёта и полную сумму до финансируемого этапа.</li>
             <li>Найдите тип просадки и момент её расчёта: real-time, EOD, баланс или эквити.</li>
-            <li>Проверьте базовый сплит, первую дату выплаты, consistency rule и возврат взноса.</li>
+            <li>Проверьте базовый сплит, первую дату выплаты, правило консистентности и возврат взноса.</li>
             <li>Только после этого подтвердите страну, KYC, оплату и способ выплаты.</li>
           </ol>
           <p>

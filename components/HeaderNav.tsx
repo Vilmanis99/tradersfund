@@ -8,6 +8,7 @@ import { navLinks } from './navLinks'
 
 const russianNavLinks = [
   { label: 'Рейтинг', href: '/ru/luchshie-prop-firmy' },
+  { label: 'Крипто-проп', href: '/ru/luchshie-kripto-prop-firmy' },
   { label: 'Местные компании', href: '/ru/rossiyskie-prop-kompanii' },
   { label: 'Обзор FundedNext', href: '/ru/obzor-fundednext' },
   { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },
@@ -147,7 +148,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
           hrefLang={isRussian ? 'en' : 'ru'}
           lang={isRussian ? 'en' : 'ru'}
           className="nav-link"
-          aria-label={isRussian ? 'Open the English version' : 'Открыть русскую версию'}
+          aria-label={isRussian ? 'Открыть английскую версию' : 'Открыть русскую версию'}
         >
           <Languages size={14} aria-hidden="true" />
           {isRussian ? 'EN' : 'RU'}
@@ -172,7 +173,9 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
         onClick={() => setMobileOpen(v => !v)}
         aria-expanded={mobileOpen}
         aria-controls="mobile-menu"
-        aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+        aria-label={mobileOpen
+          ? (isRussian ? 'Закрыть меню' : 'Close menu')
+          : (isRussian ? 'Открыть меню' : 'Open menu')}
       >
         {mobileOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
       </button>
@@ -233,7 +236,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
                   href={languageHref}
                   hrefLang={isRussian ? 'en' : 'ru'}
                   lang={isRussian ? 'en' : 'ru'}
-                  aria-label={isRussian ? 'Open the English version' : 'Открыть русскую версию'}
+                  aria-label={isRussian ? 'Открыть английскую версию' : 'Открыть русскую версию'}
                   className="mobile-overlay__social"
                 >
                   <Languages size={18} aria-hidden="true" />

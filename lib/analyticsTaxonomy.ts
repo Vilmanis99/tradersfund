@@ -61,7 +61,12 @@ export function journeyStage(pathname: string): JourneyStage {
   if (path.includes('-vs-') || path.includes('/compare/')) return 'head_to_head'
   if (path === '/ru') return 'russian_home'
   if (path === '/ru/luchshie-prop-firmy') return 'russian_ranking'
-  if (path === '/ru/obzor-fundednext') return 'russian_review'
+  if (
+    path === '/ru/obzor-fundednext'
+    || path === '/ru/obzor-fundingpips'
+    || path === '/ru/obzor-bright-funded'
+  ) return 'russian_review'
+  if (path === '/ru/luchshie-kripto-prop-firmy') return 'russian_ranking'
   if (path === '/ru/rossiyskie-prop-kompanii') return 'russian_local_research'
   if (path.startsWith('/ru/')) return 'russian_education'
   if (/^\/blog\/(?:[^/]+-review|bright-funded-prop-firm|my-funded-futures)$/.test(path)) {

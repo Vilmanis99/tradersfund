@@ -126,7 +126,7 @@ export default function RussianHomePage() {
 
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия начинает с семи страниц под самостоятельные поисковые задачи,
+            Русская версия начинает с восьми страниц под самостоятельные поисковые задачи,
             включая отдельную проверку компаний российского рынка. Мы не переводим сотни URL автоматически: сначала проверяем,
             отвечает ли локальная страница на самостоятельный поисковый запрос.
           </p>
@@ -154,6 +154,12 @@ export default function RussianHomePage() {
               <h3>Российские проп-компании</h3>
               <p className="ru-muted">Era Trade, PropLive и KasCapital: проверяемые цифры, различия моделей и публичный статус партнёрских программ без выдачи списка за рекомендацию.</p>
               <Link className="ru-card-link" href="/ru/rossiyskie-prop-kompanii">Посмотреть 3 примера →</Link>
+            </article>
+            <article className="ru-card">
+              <ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Крипто-проп-фирмы</h3>
+              <p className="ru-muted">Отделяем источник с разрешёнными криптоинструментами от оплаты или выплаты в криптовалюте и проверяем продуктовые правила.</p>
+              <Link className="ru-card-link" href="/ru/luchshie-kripto-prop-firmy">Сравнить криптомаршруты →</Link>
             </article>
           </div>
           <p className="ru-source-line">
@@ -194,7 +200,7 @@ export default function RussianHomePage() {
             <article className="ru-card"><h3>Статическая просадка</h3><p className="ru-muted">Линия максимального убытка остаётся на фиксированном уровне, если правила продукта не говорят иначе.</p></article>
             <article className="ru-card"><h3>Трейлинг-просадка</h3><p className="ru-muted">Линия риска движется за максимумом баланса или эквити; момент фиксации зависит от продукта.</p></article>
             <article className="ru-card"><h3>Правило консистенции</h3><p className="ru-muted">Ограничивает долю самого прибыльного дня или сделки в общей прибыли. Формула и этап применения должны быть указаны фирмой.</p></article>
-            <article className="ru-card"><h3>Profit split</h3><p className="ru-muted">Доля вознаграждения трейдера. Базовый процент нельзя подменять максимумом после платного дополнения или масштабирования.</p></article>
+            <article className="ru-card"><h3>Доля прибыли</h3><p className="ru-muted">Доля вознаграждения трейдера (profit split). Базовый процент нельзя подменять максимумом после платного дополнения или масштабирования.</p></article>
           </div>
         </div>
       </section>
