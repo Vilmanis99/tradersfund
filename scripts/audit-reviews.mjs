@@ -11011,6 +11011,14 @@ function checkRussianAcquisitionPilot() {
       rows.push(`/ru: missing acquisition-cluster link to ${path}`)
     }
   }
+  for (const token of [
+    'data-russian-home-global-funnel="global-partners"',
+    'data-russian-home-global-partner={item.slug}',
+    'from=ru-home-${item.slug}',
+    'rel="sponsored nofollow noopener"',
+  ]) {
+    if (!russianHub.includes(token)) rows.push(`Russian home global funnel is missing ${token}`)
+  }
 
   const localFirmPage = fs.existsSync(russianRouteFiles.get('/ru/rossiyskie-prop-kompanii'))
     ? fs.readFileSync(russianRouteFiles.get('/ru/rossiyskie-prop-kompanii'), 'utf8')

@@ -696,6 +696,10 @@ const russianExpectations = new Map([
       '162',
       '180',
       '41',
+      'data-russian-home-global-funnel="global-partners"',
+      '/go/fundednext?from=ru-home-fundednext',
+      '/go/fundingpips?from=ru-home-fundingpips',
+      '/go/bright-funded?from=ru-home-bright-funded',
     ],
   }],
   ['/ru/dlya-russkoyazychnykh-treyderov', {
@@ -997,6 +1001,9 @@ for (const [path, href] of [
   ['/ru/obzor-kascapital', '/go/fundednext?from=ru-kascapital-global-fundednext'],
   ['/ru/obzor-kascapital', '/go/fundingpips?from=ru-kascapital-global-fundingpips'],
   ['/ru/obzor-kascapital', '/go/bright-funded?from=ru-kascapital-global-bright-funded'],
+  ['/ru', '/go/fundednext?from=ru-home-fundednext'],
+  ['/ru', '/go/fundingpips?from=ru-home-fundingpips'],
+  ['/ru', '/go/bright-funded?from=ru-home-bright-funded'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
   const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]

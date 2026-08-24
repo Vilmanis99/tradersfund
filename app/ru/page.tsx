@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowRight, BadgePercent, BookOpenCheck, Building2, Database, Globe2, Scale, SearchCheck, ShieldAlert, WalletCards, Zap } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
+import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
@@ -39,6 +40,12 @@ const faqs: RussianFaqItem[] = [
   },
 ]
 
+const globalRoutes = [
+  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
+  { slug: 'fundingpips', name: 'FundingPips', reviewHref: '/ru/obzor-fundingpips' },
+  { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded' },
+] as const
+
 export default function RussianHomePage() {
   const firms = getAllFirms()
   const challenges = getAllChallenges()
@@ -55,6 +62,11 @@ export default function RussianHomePage() {
   ).length
   const firstPartySourceCount = new Set(freshChallenges.map(challenge => challenge.sourceUrl)).size
   const latestCapture = freshChallenges.map(challenge => challenge.sourceCapturedAt).sort().at(-1)
+  const globalCards = globalRoutes.map(route => {
+    const firm = firms.find(candidate => outboundSlug(candidate.name) === route.slug)
+    const products = freshChallenges.filter(product => product.firmSlug === route.slug)
+    return { ...route, firm, products }
+  }).filter(item => item.firm?.affiliateUrl && item.products.length > 0)
 
   const crumbs = breadcrumbSchema([
     { name: 'Traders Fund Hub', url: '/' },
@@ -204,6 +216,28 @@ export default function RussianHomePage() {
             <Link href="/ru/obzor-bright-funded">Bright Funded</Link>. Сначала подтвердите страну и правила продукта.
             {' '}Локальные разборы: <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-kascapital">KasCapital</Link>.
           </p>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell" data-russian-home-global-funnel="global-partners">
+          <div className="ru-notice ru-disclosure">
+            <strong>Глобальные партнёрские продукты.</strong>{' '}
+            Эти переходы могут приносить Traders Fund Hub комиссию. Комиссия не означает доступность в вашей стране, одобрение продукта или гарантию выплаты: сначала проверьте гражданство, резидентство, KYC и правила.
+          </div>
+          <h2>Глобальные фирмы для русскоязычных трейдеров</h2>
+          <div className="ru-grid">
+            {globalCards.map(item => (
+              <article className="ru-card" key={item.slug} data-russian-home-global-partner={item.slug}>
+                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Партнёр</span></div>
+                <p className="ru-muted">{item.products.length} свежих продуктов с указанной ценой; откройте русский обзор и проверьте доступ до оплаты.</p>
+                <div className="ru-actions">
+                  <Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link>
+                  <Link href={`/go/${item.slug}?from=ru-home-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></Link>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
