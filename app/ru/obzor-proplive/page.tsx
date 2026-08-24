@@ -166,7 +166,7 @@ export default function RussianPropLiveReviewPage() {
               </article>
             ))}
           </div>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">все три исследовательские карточки</Link>; глобальные условия: <Link href="/ru/luchshie-prop-firmy">русский рейтинг</Link>.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">все шесть исследовательских карточек</Link>; глобальные условия: <Link href="/ru/luchshie-prop-firmy">русский рейтинг</Link>.</p>
         </div>
       </section>
 
