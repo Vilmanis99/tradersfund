@@ -225,7 +225,7 @@ export default function RussianDiasporaGuidePage() {
           </div>
           <p className="ru-source-line">
             Нужны локальные примеры? Смотрите отдельное <Link href="/ru/rossiyskie-prop-kompanii">исследование «Российские проп-компании»</Link>:
-            оно не является рейтингом и не содержит неактивированных партнёрских переходов. Отдельные локальные разборы: <Link href="/ru/obzor-proplive">PropLive</Link> и <Link href="/ru/obzor-eratrade">Era Trade</Link>.
+            оно не является рейтингом и не содержит неактивированных партнёрских переходов. Локальные разборы: <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-kascapital">KasCapital</Link>.
           </p>
         </div>
       </section>

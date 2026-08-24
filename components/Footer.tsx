@@ -42,6 +42,7 @@ export default function Footer({
     { label: 'Без KYC: проверка условий', href: '/ru/prop-firmy-bez-kyc' },
     { label: 'Обзор PropLive', href: '/ru/obzor-proplive' },
     { label: 'Обзор Era Trade', href: '/ru/obzor-eratrade' },
+    { label: 'Обзор KasCapital', href: '/ru/obzor-kascapital' },
     { label: 'Российские компании', href: '/ru/rossiyskie-prop-kompanii' },
     { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },
     { label: 'Глобальные продукты', href: '/prop-firm-challenges' },

@@ -884,6 +884,20 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-eratrade-global-bright-funded',
     ],
   }],
+  ['/ru/obzor-kascapital', {
+    title: 'KasCapital: обзор условий и выплат (2026)',
+    h1: 'KasCapital: обзор 2026 — капитал, выплаты и правила',
+    markers: [
+      'data-russian-local-review="kascapital"',
+      'data-russian-local-review-status="verification-only"',
+      'data-russian-country-boundary="local-review-not-access"',
+      'data-russian-local-affiliate="not-found"',
+      'data-russian-local-global-funnel="kascapital"',
+      '/go/fundednext?from=ru-kascapital-global-fundednext',
+      '/go/fundingpips?from=ru-kascapital-global-fundingpips',
+      '/go/bright-funded?from=ru-kascapital-global-bright-funded',
+    ],
+  }],
 ])
 
 for (const [path, expectation] of russianExpectations) {
@@ -980,6 +994,9 @@ for (const [path, href] of [
   ['/ru/obzor-eratrade', '/go/fundednext?from=ru-eratrade-global-fundednext'],
   ['/ru/obzor-eratrade', '/go/fundingpips?from=ru-eratrade-global-fundingpips'],
   ['/ru/obzor-eratrade', '/go/bright-funded?from=ru-eratrade-global-bright-funded'],
+  ['/ru/obzor-kascapital', '/go/fundednext?from=ru-kascapital-global-fundednext'],
+  ['/ru/obzor-kascapital', '/go/fundingpips?from=ru-kascapital-global-fundingpips'],
+  ['/ru/obzor-kascapital', '/go/bright-funded?from=ru-kascapital-global-bright-funded'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
   const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]

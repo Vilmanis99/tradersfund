@@ -10825,6 +10825,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/prop-firmy-bez-kyc', path.join(ROOT, 'app/ru/prop-firmy-bez-kyc/page.tsx')],
     ['/ru/obzor-proplive', path.join(ROOT, 'app/ru/obzor-proplive/page.tsx')],
     ['/ru/obzor-eratrade', path.join(ROOT, 'app/ru/obzor-eratrade/page.tsx')],
+    ['/ru/obzor-kascapital', path.join(ROOT, 'app/ru/obzor-kascapital/page.tsx')],
     ['/ru/prop-firmy-bez-chelendzha', path.join(ROOT, 'app/ru/prop-firmy-bez-chelendzha/page.tsx')],
     ['/ru/luchshie-prop-firmy', path.join(ROOT, 'app/ru/luchshie-prop-firmy/page.tsx')],
     ['/ru/luchshie-kripto-prop-firmy', path.join(ROOT, 'app/ru/luchshie-kripto-prop-firmy/page.tsx')],
@@ -10962,6 +10963,7 @@ function checkRussianAcquisitionPilot() {
     "'/ru/prop-firmy-bez-kyc'",
     "'/ru/obzor-proplive'",
     "'/ru/obzor-eratrade'",
+    "'/ru/obzor-kascapital'",
     "'/ru/rossiyskie-prop-kompanii'",
     "'x-default': pair.en",
   ]
@@ -11192,6 +11194,22 @@ function checkRussianAcquisitionPilot() {
     if (!russianEraTradePage.includes(token)) rows.push(`Russian Era Trade review is missing ${token}`)
   }
 
+  const russianKasCapitalPage = fs.existsSync(russianRouteFiles.get('/ru/obzor-kascapital'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/obzor-kascapital'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-local-review="kascapital"',
+    'data-russian-local-review-status="verification-only"',
+    'data-russian-country-boundary="local-review-not-access"',
+    'data-russian-local-affiliate="not-found"',
+    'data-russian-local-global-funnel="kascapital"',
+    'KAS_HOME',
+    'ru-kascapital-global-',
+    'rel="sponsored nofollow noopener"',
+  ]) {
+    if (!russianKasCapitalPage.includes(token)) rows.push(`Russian KasCapital review is missing ${token}`)
+  }
+
   const russianEducationPage = fs.existsSync(russianRouteFiles.get('/ru/kak-rabotayut-chellendzhi-prop-firm'))
     ? fs.readFileSync(russianRouteFiles.get('/ru/kak-rabotayut-chellendzhi-prop-firm'), 'utf8')
     : ''
@@ -11260,6 +11278,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/prop-firmy-bez-kyc'",
     "href: '/ru/obzor-proplive'",
     "href: '/ru/obzor-eratrade'",
+    "href: '/ru/obzor-kascapital'",
     "href: '/ru/prop-firmy-bez-chelendzha'",
     'getAlternateLanguageHref(pathname)',
     'hrefLang={isRussian ? \'en\' : \'ru\'}',
@@ -11276,6 +11295,7 @@ function checkRussianAcquisitionPilot() {
   if (!footer.includes("href: '/ru/prop-firmy-bez-kyc'")) rows.push('Russian footer is missing the KYC route')
   if (!footer.includes("href: '/ru/obzor-proplive'")) rows.push('Russian footer is missing the PropLive review route')
   if (!footer.includes("href: '/ru/obzor-eratrade'")) rows.push('Russian footer is missing the Era Trade review route')
+  if (!footer.includes("href: '/ru/obzor-kascapital'")) rows.push('Russian footer is missing the KasCapital review route')
 
   const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
   for (const token of [

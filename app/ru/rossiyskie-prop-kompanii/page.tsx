@@ -153,6 +153,7 @@ export default function RussianPropCompaniesPage() {
                 наш полный построчный аудит продукта.
               </p>
               <SourceLink href={kasCapital?.sourceUrl ?? 'https://kascapital.io/'}>Официальные условия</SourceLink>
+              <Link href="/ru/obzor-kascapital" className="ru-card-link">Открыть отдельный обзор KasCapital →</Link>
             </article>
           </div>
           <p className="ru-source-line">Снимок источников: {marketEvidence.capturedAt}. Плавающие счётчики и правила требуют повторной проверки перед публикацией полного обзора.</p>
