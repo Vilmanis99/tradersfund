@@ -870,6 +870,20 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-proplive-global-bright-funded',
     ],
   }],
+  ['/ru/obzor-eratrade', {
+    title: 'Era Trade: обзор условий и выплат (2026)',
+    h1: 'Era Trade: обзор 2026 — правила, сплит и выплаты',
+    markers: [
+      'data-russian-local-review="era-trade"',
+      'data-russian-local-review-status="verification-only"',
+      'data-russian-country-boundary="local-review-not-access"',
+      'data-russian-local-affiliate="public-not-activated"',
+      'data-russian-local-global-funnel="era-trade"',
+      '/go/fundednext?from=ru-eratrade-global-fundednext',
+      '/go/fundingpips?from=ru-eratrade-global-fundingpips',
+      '/go/bright-funded?from=ru-eratrade-global-bright-funded',
+    ],
+  }],
 ])
 
 for (const [path, expectation] of russianExpectations) {
@@ -963,6 +977,9 @@ for (const [path, href] of [
   ['/ru/obzor-proplive', '/go/fundednext?from=ru-proplive-global-fundednext'],
   ['/ru/obzor-proplive', '/go/fundingpips?from=ru-proplive-global-fundingpips'],
   ['/ru/obzor-proplive', '/go/bright-funded?from=ru-proplive-global-bright-funded'],
+  ['/ru/obzor-eratrade', '/go/fundednext?from=ru-eratrade-global-fundednext'],
+  ['/ru/obzor-eratrade', '/go/fundingpips?from=ru-eratrade-global-fundingpips'],
+  ['/ru/obzor-eratrade', '/go/bright-funded?from=ru-eratrade-global-bright-funded'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
   const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]

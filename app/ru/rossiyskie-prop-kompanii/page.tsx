@@ -128,6 +128,7 @@ export default function RussianPropCompaniesPage() {
                 NEVERA CORE GLOBAL - FZCO в Дубае, поэтому русскоязычный рынок не равен российской юрисдикции.
               </p>
               <SourceLink href={era?.sourceUrl ?? 'https://eratrade.net/'}>Официальная страница и цифры</SourceLink>
+              <Link href="/ru/obzor-eratrade" className="ru-card-link">Открыть отдельный обзор Era Trade →</Link>
             </article>
 
             <article className="ru-card">

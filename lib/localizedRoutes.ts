@@ -20,6 +20,7 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/vyplaty-prop-firm',
   '/ru/prop-firmy-bez-kyc',
   '/ru/obzor-proplive',
+  '/ru/obzor-eratrade',
 ] as const
 
 export type LocalizedRoutePair = (typeof LOCALIZED_ROUTE_PAIRS)[number]
