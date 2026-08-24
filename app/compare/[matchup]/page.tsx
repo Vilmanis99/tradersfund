@@ -30,6 +30,7 @@ import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import { TrustpilotPanel } from '@/components/TrustpilotRating'
 import RelatedComparisons from '@/components/RelatedComparisons'
 import { getAllFirms } from '@/lib/firms'
+import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 interface Props { params: Promise<{ matchup: string }> }
 
@@ -83,7 +84,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: { absolute: title },
     description,
-    alternates: { canonical: `/compare/${canonical}` },
+    alternates: {
+      canonical: `/compare/${canonical}`,
+      languages: getLanguageAlternates(`/compare/${canonical}`),
+    },
     openGraph: { title, description, url: `/compare/${canonical}`, type: 'article' },
   }
 }

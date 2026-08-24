@@ -6,6 +6,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import DealsFilter from '@/components/DealsFilter'
 import type { DealCardData } from '@/components/DealCard'
+import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 const SITE = 'https://tradersfundhub.com'
 const SLUG = 'prop-firm-discount-codes'
@@ -20,7 +21,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: `/${SLUG}` },
+  alternates: { canonical: `/${SLUG}`, languages: getLanguageAlternates(`/${SLUG}`) },
   openGraph: { title: TITLE, description: DESCRIPTION, url: `/${SLUG}`, type: 'article' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
