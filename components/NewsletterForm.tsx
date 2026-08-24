@@ -41,7 +41,7 @@ export default function NewsletterForm({
       setStatus('pending')
       setMessage(data.message || (isRussian ? 'Спасибо — подтвердите подписку в письме.' : "Thanks — we'll be in touch."))
       if (!company) {
-        track('newsletter_double_opt_in_started', { placement })
+        track('newsletter_double_opt_in_started', { placement, locale })
       }
       setEmail('')
     } catch {
@@ -56,6 +56,7 @@ export default function NewsletterForm({
       onSubmit={handleSubmit}
       noValidate
       data-clarity-mask="true"
+      data-russian-newsletter={isRussian ? 'global-rule-digest' : undefined}
     >
       {/* Honeypot — hidden from real users, bots fill it. */}
       <input

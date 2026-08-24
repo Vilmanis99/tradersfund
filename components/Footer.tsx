@@ -148,7 +148,7 @@ export default function Footer({
             </p>
             {newsletterEnabled && (
               <>
-                <p className="footer-brand-tagline">{isRussian ? 'Еженедельные изменения правил' : 'Get the weekly rule-change digest'}</p>
+                <p className="footer-brand-tagline">{isRussian ? 'Еженедельные изменения правил глобальных фирм' : 'Get the weekly rule-change digest'}</p>
                 <NewsletterForm placement="footer" locale={isRussian ? 'ru' : 'en'} />
               </>
             )}

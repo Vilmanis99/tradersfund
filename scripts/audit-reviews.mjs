@@ -2972,6 +2972,8 @@ function checkAnalyticsMeasurementContract() {
     [path.join(ROOT, 'components/NewsletterForm.tsx'), [
       "track('newsletter_double_opt_in_started'",
       'data-clarity-mask="true"',
+      "data-russian-newsletter={isRussian ? 'global-rule-digest' : undefined}",
+      '{ placement, locale }',
     ]],
     [path.join(ROOT, 'components/ContactForm.tsx'), [
       "track('contact_submission_delivered'",
