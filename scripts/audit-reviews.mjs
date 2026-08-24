@@ -10787,6 +10787,7 @@ function checkRussianAcquisitionPilot() {
   const russianRouteFiles = new Map([
     ['/ru', path.join(ROOT, 'app/ru/page.tsx')],
     ['/ru/dlya-russkoyazychnykh-treyderov', path.join(ROOT, 'app/ru/dlya-russkoyazychnykh-treyderov/page.tsx')],
+    ['/ru/fundednext-vs-fundingpips', path.join(ROOT, 'app/ru/fundednext-vs-fundingpips/page.tsx')],
     ['/ru/luchshie-prop-firmy', path.join(ROOT, 'app/ru/luchshie-prop-firmy/page.tsx')],
     ['/ru/luchshie-kripto-prop-firmy', path.join(ROOT, 'app/ru/luchshie-kripto-prop-firmy/page.tsx')],
     ['/ru/obzor-fundednext', path.join(ROOT, 'app/ru/obzor-fundednext/page.tsx')],
@@ -10914,6 +10915,7 @@ function checkRussianAcquisitionPilot() {
     "{ en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' }",
     "ru: '/ru/kak-rabotayut-chellendzhi-prop-firm'",
     "'/ru/dlya-russkoyazychnykh-treyderov'",
+    "'/ru/fundednext-vs-fundingpips'",
     "'/ru/rossiyskie-prop-kompanii'",
     "'x-default': pair.en",
   ]
@@ -11022,6 +11024,20 @@ function checkRussianAcquisitionPilot() {
     if (!russianDiasporaPage.includes(token)) rows.push(`Russian diaspora guide is missing ${token}`)
   }
 
+  const russianComparisonPage = fs.existsSync(russianRouteFiles.get('/ru/fundednext-vs-fundingpips'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/fundednext-vs-fundingpips'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-partner-comparison="fundednext-fundingpips"',
+    'data-russian-country-boundary="comparison-not-access"',
+    'data-russian-affiliate-disclosure="comparison"',
+    'data-russian-comparison-product-count={productRows.length}',
+    'ru-comparison-fundednext-fundingpips',
+    'rel="sponsored nofollow noopener"',
+  ]) {
+    if (!russianComparisonPage.includes(token)) rows.push(`Russian partner comparison is missing ${token}`)
+  }
+
   const fundedNextRussianPage = fs.existsSync(russianRouteFiles.get('/ru/obzor-fundednext'))
     ? fs.readFileSync(russianRouteFiles.get('/ru/obzor-fundednext'), 'utf8')
     : ''
@@ -11070,6 +11086,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/rossiyskie-prop-kompanii'",
     "href: '/ru/luchshie-kripto-prop-firmy'",
     "href: '/ru/dlya-russkoyazychnykh-treyderov'",
+    "href: '/ru/fundednext-vs-fundingpips'",
     'getAlternateLanguageHref(pathname)',
     'hrefLang={isRussian ? \'en\' : \'ru\'}',
   ]) {

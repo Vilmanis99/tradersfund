@@ -710,6 +710,18 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-diaspora-bright-funded',
     ],
   }],
+  ['/ru/fundednext-vs-fundingpips', {
+    title: 'FundedNext или FundingPips: сравнение 2026',
+    h1: 'FundedNext или FundingPips: сравнение для русскоязычных трейдеров',
+    markers: [
+      'data-russian-partner-comparison="fundednext-fundingpips"',
+      'data-russian-country-boundary="comparison-not-access"',
+      'data-russian-affiliate-disclosure="comparison"',
+      'data-russian-comparison-product-count="9"',
+      '/go/fundednext?from=ru-comparison-fundednext-fundingpips',
+      '/go/fundingpips?from=ru-comparison-fundednext-fundingpips',
+    ],
+  }],
   ['/ru/luchshie-prop-firmy', {
     title: 'Лучшие проп-фирмы 2026: рейтинг и сравнение',
     h1: 'Лучшие проп-фирмы 2026: рейтинг для русскоязычных трейдеров',
@@ -854,6 +866,7 @@ for (const [path, href] of [
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-verdict'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-diaspora-fundednext'],
+  ['/ru/fundednext-vs-fundingpips', '/go/fundednext?from=ru-comparison-fundednext-fundingpips'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
   const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]
