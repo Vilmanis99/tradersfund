@@ -14,6 +14,7 @@ const russianNavLinks = [
   { label: 'Сравнение партнёров', href: '/ru/fundednext-vs-fundingpips' },
   { label: 'Промокоды', href: '/ru/promokody-prop-firm' },
   { label: 'Выплаты', href: '/ru/vyplaty-prop-firm' },
+  { label: 'KYC', href: '/ru/prop-firmy-bez-kyc' },
   { label: 'Местные компании', href: '/ru/rossiyskie-prop-kompanii' },
   { label: 'Обзор FundedNext', href: '/ru/obzor-fundednext' },
   { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },

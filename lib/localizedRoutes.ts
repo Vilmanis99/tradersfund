@@ -18,6 +18,7 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/dlya-russkoyazychnykh-treyderov',
   '/ru/rossiyskie-prop-kompanii',
   '/ru/vyplaty-prop-firm',
+  '/ru/prop-firmy-bez-kyc',
 ] as const
 
 export type LocalizedRoutePair = (typeof LOCALIZED_ROUTE_PAIRS)[number]

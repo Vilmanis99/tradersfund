@@ -126,7 +126,7 @@ export default function RussianHomePage() {
 
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия начинает с тринадцати страниц под самостоятельные поисковые задачи,
+            Русская версия начинает с четырнадцати страниц под самостоятельные поисковые задачи,
             включая отдельную проверку компаний российского рынка. Мы не переводим сотни URL автоматически: сначала проверяем,
             отвечает ли локальная страница на самостоятельный поисковый запрос.
           </p>
@@ -184,6 +184,12 @@ export default function RussianHomePage() {
               <h3>Выплаты проп-фирм</h3>
               <p className="ru-muted">Первая выплата, Crypto, банковский перевод и KYC — только по свежим условиям на странице самой фирмы.</p>
               <Link className="ru-card-link" href="/ru/vyplaty-prop-firm">Сравнить выплаты →</Link>
+            </article>
+            <article className="ru-card">
+              <ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Проп-фирмы без KYC</h3>
+              <p className="ru-muted">Разбираем запрос «без верификации» и проверяем, что произойдёт перед первой выплатой.</p>
+              <Link className="ru-card-link" href="/ru/prop-firmy-bez-kyc">Проверить KYC →</Link>
             </article>
             <article className="ru-card">
               <Zap size={22} color="var(--accent-light)" aria-hidden="true" />

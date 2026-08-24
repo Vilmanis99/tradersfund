@@ -767,6 +767,19 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-payouts-bright-funded',
     ],
   }],
+  ['/ru/prop-firmy-bez-kyc', {
+    title: 'Проп-фирмы без KYC: что проверить до выплаты (2026)',
+    h1: 'Проп-фирмы без KYC: что проверить до выплаты',
+    markers: [
+      'data-russian-kyc-guide="source-gated"',
+      'data-russian-kyc-partner-count=',
+      'data-russian-country-boundary="kyc-not-access"',
+      'data-russian-affiliate-disclosure="kyc-guide"',
+      '/go/fundednext?from=ru-kyc-fundednext',
+      '/go/fundingpips?from=ru-kyc-fundingpips',
+      '/go/bright-funded?from=ru-kyc-bright-funded',
+    ],
+  }],
   ['/ru/luchshie-prop-firmy', {
     title: 'Лучшие проп-фирмы 2026: рейтинг и сравнение',
     h1: 'Лучшие проп-фирмы 2026: рейтинг для русскоязычных трейдеров',
@@ -927,6 +940,9 @@ for (const [path, href] of [
   ['/ru/kak-rabotayut-chellendzhi-prop-firm', '/go/fundednext?from=ru-challenge-guide-fundednext'],
   ['/ru/kak-rabotayut-chellendzhi-prop-firm', '/go/fundingpips?from=ru-challenge-guide-fundingpips'],
   ['/ru/kak-rabotayut-chellendzhi-prop-firm', '/go/bright-funded?from=ru-challenge-guide-bright-funded'],
+  ['/ru/prop-firmy-bez-kyc', '/go/fundednext?from=ru-kyc-fundednext'],
+  ['/ru/prop-firmy-bez-kyc', '/go/fundingpips?from=ru-kyc-fundingpips'],
+  ['/ru/prop-firmy-bez-kyc', '/go/bright-funded?from=ru-kyc-bright-funded'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
   const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]

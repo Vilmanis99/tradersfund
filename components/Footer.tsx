@@ -39,6 +39,7 @@ export default function Footer({
     { label: 'Сравнение FundedNext и FundingPips', href: '/ru/fundednext-vs-fundingpips' },
     { label: 'Промокоды и предложения', href: '/ru/promokody-prop-firm' },
     { label: 'Выплаты проп-фирм', href: '/ru/vyplaty-prop-firm' },
+    { label: 'Без KYC: проверка условий', href: '/ru/prop-firmy-bez-kyc' },
     { label: 'Российские компании', href: '/ru/rossiyskie-prop-kompanii' },
     { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },
     { label: 'Глобальные продукты', href: '/prop-firm-challenges' },
