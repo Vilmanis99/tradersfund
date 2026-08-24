@@ -2765,6 +2765,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/obzor-fundingpips', 'russian_review'],
     ['/ru/obzor-bright-funded/', 'russian_review'],
     ['/ru/luchshie-kripto-prop-firmy', 'russian_ranking'],
+    ['/ru/vyplaty-prop-firm', 'russian_ranking'],
     ['/ru/prop-firmy-bez-chelendzha', 'russian_ranking'],
     ['/ru/dlya-russkoyazychnykh-treyderov', 'russian_ranking'],
     ['/ru/rossiyskie-prop-kompanii', 'russian_local_research'],
@@ -10818,6 +10819,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/dlya-russkoyazychnykh-treyderov', path.join(ROOT, 'app/ru/dlya-russkoyazychnykh-treyderov/page.tsx')],
     ['/ru/fundednext-vs-fundingpips', path.join(ROOT, 'app/ru/fundednext-vs-fundingpips/page.tsx')],
     ['/ru/promokody-prop-firm', path.join(ROOT, 'app/ru/promokody-prop-firm/page.tsx')],
+    ['/ru/vyplaty-prop-firm', path.join(ROOT, 'app/ru/vyplaty-prop-firm/page.tsx')],
     ['/ru/prop-firmy-bez-chelendzha', path.join(ROOT, 'app/ru/prop-firmy-bez-chelendzha/page.tsx')],
     ['/ru/luchshie-prop-firmy', path.join(ROOT, 'app/ru/luchshie-prop-firmy/page.tsx')],
     ['/ru/luchshie-kripto-prop-firmy', path.join(ROOT, 'app/ru/luchshie-kripto-prop-firmy/page.tsx')],
@@ -10951,6 +10953,7 @@ function checkRussianAcquisitionPilot() {
     "'/ru/dlya-russkoyazychnykh-treyderov'",
     "'/ru/fundednext-vs-fundingpips'",
     "'/ru/promokody-prop-firm'",
+    "'/ru/vyplaty-prop-firm'",
     "'/ru/rossiyskie-prop-kompanii'",
     "'x-default': pair.en",
   ]
@@ -11105,6 +11108,23 @@ function checkRussianAcquisitionPilot() {
     if (!russianInstantPage.includes(token)) rows.push(`Russian instant page is missing ${token}`)
   }
 
+  const russianPayoutsPage = fs.existsSync(russianRouteFiles.get('/ru/vyplaty-prop-firm'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/vyplaty-prop-firm'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-payout-ranking="source-gated"',
+    'data-russian-payout-firm-count={shownRows.length}',
+    'data-russian-country-boundary="payout-not-access"',
+    'data-russian-affiliate-disclosure="payout-ranking"',
+    'payoutFirstDays',
+    'payoutFrequency',
+    'Crypto',
+    'ru-payouts-',
+    'rel="sponsored nofollow noopener"',
+  ]) {
+    if (!russianPayoutsPage.includes(token)) rows.push(`Russian payouts page is missing ${token}`)
+  }
+
   const fundedNextRussianPage = fs.existsSync(russianRouteFiles.get('/ru/obzor-fundednext'))
     ? fs.readFileSync(russianRouteFiles.get('/ru/obzor-fundednext'), 'utf8')
     : ''
@@ -11155,6 +11175,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/dlya-russkoyazychnykh-treyderov'",
     "href: '/ru/fundednext-vs-fundingpips'",
     "href: '/ru/promokody-prop-firm'",
+    "href: '/ru/vyplaty-prop-firm'",
     "href: '/ru/prop-firmy-bez-chelendzha'",
     'getAlternateLanguageHref(pathname)',
     'hrefLang={isRussian ? \'en\' : \'ru\'}',
@@ -11167,6 +11188,7 @@ function checkRussianAcquisitionPilot() {
   }
   const footer = fs.readFileSync(path.join(ROOT, 'components/Footer.tsx'), 'utf8')
   if (!footer.includes("href: '/ru'")) rows.push('global footer is missing the Russian-language entry point')
+  if (!footer.includes("href: '/ru/vyplaty-prop-firm'")) rows.push('Russian footer is missing the payouts route')
 
   const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
   for (const token of [

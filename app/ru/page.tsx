@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, BadgePercent, BookOpenCheck, Building2, Database, Globe2, Scale, SearchCheck, ShieldAlert, Zap } from 'lucide-react'
+import { ArrowRight, BadgePercent, BookOpenCheck, Building2, Database, Globe2, Scale, SearchCheck, ShieldAlert, WalletCards, Zap } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -126,7 +126,7 @@ export default function RussianHomePage() {
 
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия начинает с двенадцати страниц под самостоятельные поисковые задачи,
+            Русская версия начинает с тринадцати страниц под самостоятельные поисковые задачи,
             включая отдельную проверку компаний российского рынка. Мы не переводим сотни URL автоматически: сначала проверяем,
             отвечает ли локальная страница на самостоятельный поисковый запрос.
           </p>
@@ -178,6 +178,12 @@ export default function RussianHomePage() {
               <h3>Промокоды и предложения</h3>
               <p className="ru-muted">Показываем только свежие условия: публичный код, скидка по ссылке или персональный купон после выполнения условия.</p>
               <Link className="ru-card-link" href="/ru/promokody-prop-firm">Проверить предложения →</Link>
+            </article>
+            <article className="ru-card">
+              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Выплаты проп-фирм</h3>
+              <p className="ru-muted">Первая выплата, Crypto, банковский перевод и KYC — только по свежим условиям на странице самой фирмы.</p>
+              <Link className="ru-card-link" href="/ru/vyplaty-prop-firm">Сравнить выплаты →</Link>
             </article>
             <article className="ru-card">
               <Zap size={22} color="var(--accent-light)" aria-hidden="true" />

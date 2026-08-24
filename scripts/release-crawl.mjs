@@ -753,6 +753,19 @@ const russianExpectations = new Map([
       '/go/fundingpips?from=ru-instant-ranking',
     ],
   }],
+  ['/ru/vyplaty-prop-firm', {
+    title: 'Проп-фирмы с выплатами: USDT, крипто и банк (2026)',
+    h1: 'Проп-фирмы с выплатами: крипто, банк и первая заявка',
+    markers: [
+      'data-russian-payout-ranking="source-gated"',
+      'data-russian-country-boundary="payout-not-access"',
+      'data-russian-affiliate-disclosure="payout-ranking"',
+      'data-russian-payout-firm-count=',
+      '/go/fundednext?from=ru-payouts-fundednext',
+      '/go/fundingpips?from=ru-payouts-fundingpips',
+      '/go/bright-funded?from=ru-payouts-bright-funded',
+    ],
+  }],
   ['/ru/luchshie-prop-firmy', {
     title: 'Лучшие проп-фирмы 2026: рейтинг и сравнение',
     h1: 'Лучшие проп-фирмы 2026: рейтинг для русскоязычных трейдеров',
@@ -903,6 +916,9 @@ for (const [path, href] of [
   ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer30'],
   ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer25'],
   ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer15'],
+  ['/ru/vyplaty-prop-firm', '/go/fundednext?from=ru-payouts-fundednext'],
+  ['/ru/vyplaty-prop-firm', '/go/fundingpips?from=ru-payouts-fundingpips'],
+  ['/ru/vyplaty-prop-firm', '/go/bright-funded?from=ru-payouts-bright-funded'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
   const cta = [...(page?.html ?? '').matchAll(/<a\b[^>]*>/gi)]

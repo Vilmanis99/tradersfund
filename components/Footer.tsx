@@ -38,6 +38,7 @@ export default function Footer({
     { label: 'Для русскоязычных трейдеров', href: '/ru/dlya-russkoyazychnykh-treyderov' },
     { label: 'Сравнение FundedNext и FundingPips', href: '/ru/fundednext-vs-fundingpips' },
     { label: 'Промокоды и предложения', href: '/ru/promokody-prop-firm' },
+    { label: 'Выплаты проп-фирм', href: '/ru/vyplaty-prop-firm' },
     { label: 'Российские компании', href: '/ru/rossiyskie-prop-kompanii' },
     { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },
     { label: 'Глобальные продукты', href: '/prop-firm-challenges' },
