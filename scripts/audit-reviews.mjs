@@ -11102,6 +11102,7 @@ function checkRussianAcquisitionPilot() {
   for (const token of [
     'data-russian-diaspora-guide="global-access"',
     'data-russian-diaspora-regions="kazakhstan-uae"',
+    'data-russian-diaspora-regions="global-routes"',
     'data-russian-country-boundary="diaspora-not-access"',
     'data-russian-affiliate-disclosure="diaspora-guide"',
     'ru-diaspora-fundednext',
@@ -11109,6 +11110,8 @@ function checkRussianAcquisitionPilot() {
     'ru-diaspora-bright-funded',
     'rel="sponsored nofollow noopener"',
     'Российские проп-компании',
+    'проп-фирмы для русскоязычных в Европе',
+    'проп-фирмы для трейдеров в Грузии',
   ]) {
     if (!russianDiasporaPage.includes(token)) rows.push(`Russian diaspora guide is missing ${token}`)
   }

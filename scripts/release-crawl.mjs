@@ -708,6 +708,7 @@ const russianExpectations = new Map([
     markers: [
       'data-russian-diaspora-guide="global-access"',
       'data-russian-diaspora-regions="kazakhstan-uae"',
+      'data-russian-diaspora-regions="global-routes"',
       'data-russian-country-boundary="diaspora-not-access"',
       'data-russian-affiliate-disclosure="diaspora-guide"',
       '/go/fundednext?from=ru-diaspora-fundednext',
