@@ -46,6 +46,29 @@ const globalRoutes = [
   { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded' },
 ] as const
 
+const relatedSearchRoutes: Record<string, { href: string; label: string }> = {
+  'рейтинг проп трейдинговых компаний': {
+    href: '/ru/luchshie-prop-firmy',
+    label: 'Открыть русский рейтинг',
+  },
+  'ftmo проп компания сайт официальный': {
+    href: '/ru/luchshie-prop-firmy',
+    label: 'Проверить глобальный список и ограничения',
+  },
+  'forex prop': {
+    href: '/ru/luchshie-prop-firmy',
+    label: 'Сравнить глобальные продукты',
+  },
+  'проп форекс': {
+    href: '/ru/luchshie-prop-firmy',
+    label: 'Сравнить глобальные продукты',
+  },
+  'пипсы проп компания': {
+    href: '/ru/obzor-fundingpips',
+    label: 'Читать обзор FundingPips',
+  },
+}
+
 export default function RussianHomePage() {
   const firms = getAllFirms()
   const challenges = getAllChallenges()
@@ -261,6 +284,34 @@ export default function RussianHomePage() {
             <a href={marketEvidence.searchDemand.sourceUrl} target="_blank" rel="noopener noreferrer">
               Проверить источник оценки
             </a>.
+          </p>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell ru-content" data-russian-search-intent="related-queries">
+          <h2>Смежные русские запросы и полезные маршруты</h2>
+          <p>
+            Тот же снимок поискового спроса содержит более узкие формулировки. Мы показываем их как
+            редакционные входы в соответствующий материал, а не как обещание объёма или доступности фирмы.
+            Частотности относятся к Яндексу в Москве за январь 2026 года и могут пересекаться.
+          </p>
+          <ul className="ru-facts">
+            {marketEvidence.searchDemand.queries.slice(5).map(item => {
+              const route = relatedSearchRoutes[item.query]
+              return (
+                <li key={item.query}>
+                  <SearchCheck size={14} aria-hidden="true" />
+                  <span>
+                    <strong>{item.query}</strong> — {item.monthlyFrequency} показов в месяц.{' '}
+                    {route ? <Link href={route.href}>{route.label}</Link> : 'Материал готовится после проверки источников.'}
+                  </span>
+                </li>
+              )
+            })}
+          </ul>
+          <p className="ru-source-line">
+            Источник и методика оценки указаны выше; значения нельзя складывать в общий размер аудитории.
           </p>
         </div>
       </section>

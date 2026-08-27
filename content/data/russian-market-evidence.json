@@ -11,7 +11,12 @@
       { "query": "проп компании для трейдеров в россии", "monthlyFrequency": 162 },
       { "query": "проп фирма", "monthlyFrequency": 60 },
       { "query": "проп трейдинг криптовалют", "monthlyFrequency": 28 },
-      { "query": "проп компании это", "monthlyFrequency": 19 }
+      { "query": "проп компании это", "monthlyFrequency": 19 },
+      { "query": "рейтинг проп трейдинговых компаний", "monthlyFrequency": 5 },
+      { "query": "ftmo проп компания сайт официальный", "monthlyFrequency": 16 },
+      { "query": "forex prop", "monthlyFrequency": 4 },
+      { "query": "проп форекс", "monthlyFrequency": 17 },
+      { "query": "пипсы проп компания", "monthlyFrequency": 13 }
     ],
     "notes": [
       "These figures are a third-party estimate for Yandex Moscow, not first-party Search Console or Yandex Webmaster data.",
