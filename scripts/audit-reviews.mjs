@@ -3403,10 +3403,10 @@ function checkIndiaChallengeChangesSurface() {
       'entry.productSlugs.includes(product.slug)',
       'affectedComparisonUrl(',
       'validateChallengeProductKeys',
-      'SOCIAL_CARD_ENTRY_COUNT = 12',
+      'SOCIAL_CARD_ENTRY_COUNT = 13',
       'SOCIAL_CARD_FIRM_COUNT = 6',
-      'SOCIAL_CARD_PRODUCT_COUNT = 16',
-      'SOCIAL_CARD_VERIFIED_COUNT = 2',
+      'SOCIAL_CARD_PRODUCT_COUNT = 18',
+      'SOCIAL_CARD_VERIFIED_COUNT = 3',
       'SOCIAL_CARD_WATCH_COUNT = 10',
       'Refresh the India challenge-changes social card',
       'Affiliate status contributes 0 points',
@@ -8239,7 +8239,7 @@ function checkFundingPipsZeroGuide() {
   }
 
   const zeroCapture = captureProduct(
-    path.join(CHALLENGES, '_captures/fundingpips-2026-08-10.json'),
+    path.join(CHALLENGES, '_captures/fundingpips-2026-08-27.json'),
     'zero',
   )
   const instantCapture = captureProduct(
@@ -8259,9 +8259,9 @@ function checkFundingPipsZeroGuide() {
     'Risk Per Trade Idea is 3% below $50K and 2% at $50K and above',
     'At least 7 profitable days of 0.25% or more',
     'a 3% safety cushion, and largest loss no greater than largest win',
-    'Reset is available at a 20% discount within 7 calendar days',
-    'Prohibited as a hard breach: no position may be opened, closed, or held from 10 minutes before to 10 minutes after',
-    'Prohibited as a hard breach on all instruments',
+    'A reset option at a 20% discount is now available for all account sizes',
+    'No position may be opened, closed, or held within the restricted window',
+    'All positions must be fully closed before market close on Friday',
   ]) {
     if (!zeroEvidence.includes(fragment)) {
       rows.push(`FundingPips Zero raw capture is missing: "${fragment}"`)
@@ -11313,6 +11313,11 @@ function checkRussianAcquisitionPilot() {
       'data-russian-affiliate-disclosure={firmSlug}',
       'affiliateSlug="fundingpips"',
       'affiliateFrom="ru-fundingpips-review-verdict"',
+      'data-russian-fundingpips-deep-dive="reward-routes"',
+      'data-russian-fundingpips-reward-routes="five-products"',
+      'data-russian-fundingpips-deep-dive="true-cost"',
+      'data-russian-fundingpips-truecost={fixedRouteRows.length}',
+      'data-russian-fundingpips-deep-dive="fit"',
       '`/go/${affiliateSlug}?from=${affiliateFrom}`',
       'rel="sponsored nofollow noopener"',
     ]],

@@ -1,5 +1,30 @@
 [
   {
+    "id": "fundingpips-reward-cycles-minimum-days-2026-08-26",
+    "firmSlug": "fundingpips",
+    "firmName": "FundingPips",
+    "productSlugs": [
+      "1-step-flex",
+      "2-step-flex",
+      "2-step-pro",
+      "2-step-standard"
+    ],
+    "kind": "rule-change",
+    "status": "verified",
+    "observedAt": "2026-08-27",
+    "lastCheckedAt": "2026-08-27",
+    "title": "FundingPips added monthly 100% cycles and changed minimum days",
+    "summary": "Eligible Master Accounts purchased from 15 August can select new 100% monthly reward routes with a 35% consistency score and 7 profitable days. From 26 August, new or reset 2 Step Flex accounts on the 85% route require 1 minimum trading day per phase, while new or reset 2 Step Pro accounts require 2 days per phase.",
+    "traderImpact": "The largest split is not the fastest or least restrictive route. At checkout, compare the weekly or bi-weekly cycle with the monthly consistency, profitable-day and Striking System conditions, and verify which minimum-day rule applies to the account creation date.",
+    "sourceUrls": [
+      "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+      "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+      "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+      "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models"
+    ]
+  },
+  {
     "id": "fundednext-stellar-instant-price-precision-2026-08-27",
     "firmSlug": "fundednext",
     "firmName": "FundedNext",
@@ -124,7 +149,7 @@
     "kind": "rule-change",
     "status": "verified",
     "observedAt": "2026-07-27",
-    "lastCheckedAt": "2026-08-10",
+    "lastCheckedAt": "2026-08-27",
     "title": "FundingPips separates the current Standard path from legacy 10% resets",
     "summary": "The current 2 Step Standard Phase 1 target is 8%. FundingPips says legacy Standard accounts carrying a 10% target reset as 2 Step Flex.",
     "traderImpact": "A reset can place an older account into a different product rule set. Confirm the product name and target after any reset.",

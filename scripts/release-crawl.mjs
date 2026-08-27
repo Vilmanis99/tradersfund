@@ -829,6 +829,11 @@ const russianExpectations = new Map([
       'data-russian-partner-country-access="unconfirmed"',
       'data-russian-partner-review-method="product-first"',
       'data-russian-product-count="5"',
+      'data-russian-fundingpips-deep-dive="reward-routes"',
+      'data-russian-fundingpips-reward-routes="five-products"',
+      'data-russian-fundingpips-deep-dive="true-cost"',
+      'data-russian-fundingpips-truecost="17"',
+      'data-russian-fundingpips-deep-dive="fit"',
       'data-russian-affiliate-disclosure="fundingpips"',
     ],
   }],
@@ -3864,11 +3869,12 @@ if (globalChangeProbe.status !== 200) {
   }
   const globalChangeText = textContent(globalChangeProbe.html)
   for (const required of [
-    '14 dated updates',
-    '8 firms affected',
-    '3 verified changes',
+    '16 dated updates',
+    '9 firms affected',
+    '5 verified changes',
     '11 open watches',
-    'Showing 14 of 14 dated updates.',
+    'Showing 16 of 16 dated updates.',
+    'FundingPips added monthly 100% cycles and changed minimum days',
     'Alpha One prices do not identify the rule variant',
     'Alpha Capital disagrees on Alpha One payout schedules',
     'E8 Pro pages disagree on prices and configurable terms',
@@ -3902,11 +3908,12 @@ if (indiaChangeProbe.status !== 200) {
   }
   const indiaChangeText = textContent(indiaChangeProbe.html)
   for (const required of [
-    '12 India-screened updates',
+    '13 India-screened updates',
     '6 eligible firms affected',
-    '16 products',
+    '18 products',
     '10 open watches',
-    'Showing 12 of 12 dated updates.',
+    'Showing 13 of 13 dated updates.',
+    'FundingPips added monthly 100% cycles and changed minimum days',
     'Tradeify list prices and homepage promotions can diverge',
     'FundingPips separates the current Standard path from legacy 10% resets',
     "Alpha Capital's own pages disagree on a 25K Pro price",

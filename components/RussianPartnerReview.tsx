@@ -28,6 +28,7 @@ type RussianPartnerReviewProps = {
     intro: ReactNode
     items: Array<{ title: string; body: ReactNode }>
   }
+  firmAnalysis?: ReactNode
   faqs: RussianFaqItem[]
 }
 
@@ -99,6 +100,7 @@ export default function RussianPartnerReview({
   verdict,
   editorialNotes,
   decisionGuide,
+  firmAnalysis,
   faqs,
 }: RussianPartnerReviewProps) {
   const firm = getAllFirms().find(candidate => candidate.name === firmName)
@@ -211,6 +213,12 @@ export default function RussianPartnerReview({
             </table>
           </div>
           <p className="ru-source-line">{sourceUrls.length} уникальных первичных страниц. Подробные заметки и доказательства доступны в <Link href={englishReviewHref} hrefLang="en">английском обзоре {firmName}</Link>.</p>
+          <p className="ru-source-line">
+            Официальные страницы продуктов:{' '}
+            {sourceUrls.map((url, index) => (
+              <span key={url}>{index > 0 ? '; ' : ''}<a href={url} target="_blank" rel="noopener noreferrer">источник {index + 1}</a></span>
+            ))}
+          </p>
         </div>
       </section>
 
@@ -259,6 +267,8 @@ export default function RussianPartnerReview({
           </div>
         </div>
       </section>
+
+      {firmAnalysis}
 
       <section className="ru-section">
         <div className="ru-shell ru-content">

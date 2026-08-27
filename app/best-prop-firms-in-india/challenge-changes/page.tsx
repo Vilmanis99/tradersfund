@@ -23,10 +23,10 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
 const SITE = 'https://tradersfundhub.com'
 const PATH = '/best-prop-firms-in-india/challenge-changes'
-const SOCIAL_CARD_ENTRY_COUNT = 12
+const SOCIAL_CARD_ENTRY_COUNT = 13
 const SOCIAL_CARD_FIRM_COUNT = 6
-const SOCIAL_CARD_PRODUCT_COUNT = 16
-const SOCIAL_CARD_VERIFIED_COUNT = 2
+const SOCIAL_CARD_PRODUCT_COUNT = 18
+const SOCIAL_CARD_VERIFIED_COUNT = 3
 const SOCIAL_CARD_WATCH_COUNT = 10
 
 export const metadata: Metadata = {

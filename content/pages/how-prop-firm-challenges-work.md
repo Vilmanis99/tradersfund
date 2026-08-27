@@ -3,13 +3,13 @@ title: "How Prop Firm Challenges Work: The 5-Stage Lifecycle (2026)"
 seoTitle: "How Prop Firm Challenges Work: 5 Stages (2026)"
 slug: "how-prop-firm-challenges-work"
 date: "2026-05-20 12:00:00"
-modified: "2026-08-17 12:00:00"
+modified: "2026-08-27 12:00:00"
 description: "Map any prop-firm product from checkout through evaluation, funded rules, payout eligibility, and optional scaling with source-dated examples."
 seoDescription: "Learn the 5 stages of a prop-firm challenge—from fee and evaluation to funded rules, payout eligibility and scaling—with current product examples."
 type: "page"
 ---
 
-<p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;">Any prop-firm product can be mapped to five decision stages: checkout, evaluation, verification, funded rules, and payout. A phase-0 product skips evaluation and verification, while a 1-step, 2-step, or 3-step product repeats the rule checks before the funded stage. If the retail model itself is unfamiliar, start with <a href="/blog/what-is-a-prop-firm">what a prop firm is</a>. The examples below use product data captured on 2026-07-27 and 2026-08-10.</p>
+<p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;">Any prop-firm product can be mapped to five decision stages: checkout, evaluation, verification, funded rules, and payout. A phase-0 product skips evaluation and verification, while a 1-step, 2-step, or 3-step product repeats the rule checks before the funded stage. If the retail model itself is unfamiliar, start with <a href="/blog/what-is-a-prop-firm">what a prop firm is</a>. The examples below use product data captured on 2026-07-27, 2026-08-10, and 2026-08-27.</p>
 
 <div class="key-takeaways">
   <div class="title">The five stages</div>
@@ -105,7 +105,7 @@ type: "page"
     <tr data-lifecycle-payout="fundednext:stellar-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext Stellar 2-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">21 days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Every 14 days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-27</td></tr>
     <tr data-lifecycle-payout="fxify:lightning-challenge"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FXIFY Lightning</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">7 days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Every 14 days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-10</td></tr>
     <tr data-lifecycle-payout="topstep:trading-combine-standard-path"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Topstep XFA Consistency path</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3 trading days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On demand; $125 minimum</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
-    <tr data-lifecycle-payout="fundingpips:2-step-pro"><td style="padding: 8px 12px;">FundingPips 2 Step Pro</td><td style="padding: 8px 12px;">7 days</td><td style="padding: 8px 12px;">Weekly; 1% minimum reward</td><td style="padding: 8px 12px;">2026-08-10</td></tr>
+    <tr data-lifecycle-payout="fundingpips:2-step-pro"><td style="padding: 8px 12px;">FundingPips 2 Step Pro</td><td style="padding: 8px 12px;">7 days</td><td style="padding: 8px 12px;">Weekly 80% or monthly 100%; 1% minimum reward</td><td style="padding: 8px 12px;">2026-08-27</td></tr>
   </tbody>
 </table>
 

@@ -1,0 +1,435 @@
+{
+  "firmSlug": "fundingpips",
+  "officialDomain": "https://fundingpips.com",
+  "capturedAt": "2026-08-27",
+  "pagesRead": [
+    "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+    "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+    "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+    "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models"
+  ],
+  "accessNotes": "All six FundingPips-owned Help Center pages were read on 2026-08-27. The five product pages and comparison article were updated on 2026-08-26. The embedded comparison price table still publishes the same 27 verified fees as the 2026-08-10 capture. Material changes are new 100% monthly reward options effective for eligible Master Accounts purchased from 2026-08-15, a 1-day minimum for new/reset 2 Step Flex accounts on the 85% route from 2026-08-26, and a 2-day-per-phase minimum for new/reset 2 Step Pro accounts from 2026-08-26.",
+  "priceCaptureStatus": "PARTIAL_FIRST_PARTY",
+  "products": [
+    {
+      "productName": "1 Step Flex",
+      "productSlug": "1-step-flex",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 59,
+          "refundable": null,
+          "evidence": "Official comparison table: '1step': {5:59,10:99,25:210,50:322,100:566,200:null}."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 99,
+          "refundable": null,
+          "evidence": "Official comparison table maps 10 to $99 for 1step."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 210,
+          "refundable": null,
+          "evidence": "Official comparison table maps 25 to $210 for 1step."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 322,
+          "refundable": null,
+          "evidence": "Official comparison table maps 50 to $322 for 1step."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 566,
+          "refundable": null,
+          "evidence": "Official comparison table maps 100 to $566 for 1step."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 12
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 12,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 85,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+      "articleUpdatedAt": "2026-08-26T14:28:25Z",
+      "fieldEvidence": {
+        "phases": "'One phase, to Master: a single Evaluation phase, then the Master Account.'",
+        "phase1Target": "'Achieve a 12% profit target during Phase 1.'",
+        "dailyLossPct": "'Daily Loss Limit 3%.'",
+        "maxLossPct": "'Max Loss Limit 12%.'",
+        "drawdownType": "'12% of the starting account size'; the floor does not reset.",
+        "minTradingDays": "'No minimum trading days.'",
+        "profitSplitPct": "Bi-Weekly route: '85% Split.' Monthly route: '100% Split' for eligible Master Accounts purchased from 15 August 2026.",
+        "payoutFirstDays": "Bi-Weekly every two weeks; Monthly every 30 calendar days.",
+        "prices": "Official comparison table: '1step': {5:59,10:99,25:210,50:322,100:566,200:null}."
+      },
+      "notes": [
+        "The stored 85% split and 14-day cycle represent the shorter Bi-Weekly route. Eligible Master Accounts purchased on or after 15 August 2026 may instead choose a 100% Monthly cycle requiring a 35% consistency score and 7 profitable days of at least 0.5% per cycle.",
+        "Profit Concentration Policy: if one trade idea exceeds 60% of the evaluation profit target, the Master Account requires 4 profitable days of at least 0.5% before every reward request.",
+        "Striking System on every Master size: warning at 1% floating loss on one trade idea; the second warning halves the split, the third reduces it to 20%, and the fourth closes the account.",
+        "Minimum reward request is 1% of account size; inactivity breach follows 30 consecutive days with no completed trade.",
+        "Refundability remains unresolved because the official refund wording says '1 Step' without explicitly naming the current 1 Step Flex."
+      ]
+    },
+    {
+      "productName": "2 Step Flex",
+      "productSlug": "2-step-flex",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 32,
+          "refundable": false,
+          "evidence": "Official comparison table maps 5 to $32 for 2flex."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 59,
+          "refundable": false,
+          "evidence": "Official comparison table maps 10 to $59 for 2flex."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 159,
+          "refundable": false,
+          "evidence": "Official comparison table maps 25 to $159 for 2flex."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 269,
+          "refundable": false,
+          "evidence": "Official comparison table maps 50 to $269 for 2flex."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 555,
+          "refundable": false,
+          "evidence": "Official comparison table maps 100 to $555 for 2flex."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 6
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 12,
+      "drawdownType": "static",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": null,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+      "articleUpdatedAt": "2026-08-26T14:30:08Z",
+      "fieldEvidence": {
+        "phases": "'2-phase evaluation: Phase 1 (10%) + Phase 2 (6%).'",
+        "dailyLossPct": "'4% daily.'",
+        "maxLossPct": "'12% maximum loss limit.'",
+        "drawdownType": "'This is a static floor; it never moves.'",
+        "minTradingDays": "New/reset 85% accounts from 26 August 2026 require 1 minimum trading day per phase; 95% accounts require 3 profitable days of at least 0.5% per phase.",
+        "profitSplitPct": "Bi-Weekly 85% or 95%, or Monthly 100%; no single universal split.",
+        "payoutFirstDays": "Bi-Weekly every 14 days; Monthly every 30 days with additional eligibility.",
+        "prices": "Official comparison table: '2flex': {5:32,10:59,25:159,50:269,100:555,200:null}."
+      },
+      "notes": [
+        "No single profitSplitPct: Bi-Weekly buyers choose 85% with 1 minimum trading day or 95% with 3 profitable days of at least 0.5%; eligible Master Accounts purchased from 15 August 2026 can use Monthly 100% with a 35% consistency score, 7 profitable days at 0.5%, and a 1% Striking System trigger.",
+        "Existing 85% evaluation accounts purchased before 26 August 2026 retain the former 0-day minimum; new and reset accounts require 1 minimum trading day per phase.",
+        "Risk Per Trade Idea on the Master Account only: no limit below $25K, 3% at $25K, and 2% above $25K on applicable Bi-Weekly routes.",
+        "Profit Concentration Policy applies to new evaluation accounts at $25K and above created on or after 27 June 2026; a trade idea above 60% adds 4 profitable days of at least 0.5% before each reward request.",
+        "The 4th-reward registration-fee refund does not apply to 2 Step Flex."
+      ]
+    },
+    {
+      "productName": "2 Step Pro",
+      "productSlug": "2-step-pro",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Current product and comparison pages publish no $2.5K price; retained as unresolved."
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 29,
+          "refundable": false,
+          "evidence": "Official comparison table maps 5 to $29 for 2pro."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 55,
+          "refundable": false,
+          "evidence": "Official comparison table maps 10 to $55 for 2pro."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 134,
+          "refundable": false,
+          "evidence": "Official comparison table maps 25 to $134 for 2pro."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 224,
+          "refundable": false,
+          "evidence": "Official comparison table maps 50 to $224 for 2pro."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 422,
+          "refundable": false,
+          "evidence": "Official comparison table maps 100 to $422 for 2pro."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 844,
+          "refundable": false,
+          "evidence": "Official comparison table maps 200 to $844 for 2pro."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": 6
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 7,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+      "articleUpdatedAt": "2026-08-26T14:26:21Z",
+      "fieldEvidence": {
+        "phases": "'6% profit target in both phases.'",
+        "dailyLossPct": "'3% daily loss.'",
+        "maxLossPct": "'6% max loss.'",
+        "drawdownType": "The official page describes a static floor that never moves.",
+        "minTradingDays": "'Minimum 2 trading day per phase'; new/reset accounts from 26 August 2026 require 2 while older accounts retain 1.",
+        "profitSplitPct": "Weekly 80% is the shorter base route; eligible Master Accounts also have Monthly 100%.",
+        "payoutFirstDays": "Weekly every 7 calendar days; Monthly every 30 days with additional eligibility.",
+        "minimumReward": "'The minimum reward request is 1% of the Master Account Size (including FundingPips\u0027 split).'",
+        "prices": "Official comparison table: '2pro': {5:29,10:55,25:134,50:224,100:422,200:844}."
+      },
+      "notes": [
+        "The stored 80% split and 7-day cycle represent Weekly. Eligible Master Accounts purchased on or after 15 August 2026 may choose Monthly 100%, which requires a 35% consistency score, 7 profitable days of at least 0.5%, and a 1% Striking System trigger.",
+        "Minimum reward request is 1% of account size, including FundingPips' split.",
+        "New and reset accounts purchased on or after 26 August 2026 require 2 minimum trading days per phase; older evaluation accounts retain the former 1-day requirement.",
+        "Risk Per Trade Idea is removed on all 2 Step Pro sizes.",
+        "Profit Concentration Policy applies to new evaluation accounts at $25K and above created on or after 27 June 2026; a trade idea above 60% adds 4 profitable days of at least 0.5% before each reward request.",
+        "$2.5K availability remains unresolved because the current product and comparison pages start at $5K."
+      ]
+    },
+    {
+      "productName": "2 Step Standard",
+      "productSlug": "2-step-standard",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Current product and comparison pages publish no $2.5K price; retained as unresolved."
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 36,
+          "refundable": true,
+          "evidence": "Official comparison table maps current 8% Standard at 5 to $36."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 66,
+          "refundable": true,
+          "evidence": "Official comparison table maps current 8% Standard at 10 to $66."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 177,
+          "refundable": true,
+          "evidence": "Official comparison table maps current 8% Standard at 25 to $177."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 299,
+          "refundable": true,
+          "evidence": "Official comparison table maps current 8% Standard at 50 to $299."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 544,
+          "refundable": true,
+          "evidence": "Official comparison table maps current 8% Standard at 100 to $544."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 35,
+      "profitSplitPct": null,
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "articleUpdatedAt": "2026-08-26T14:24:24Z",
+      "fieldEvidence": {
+        "phases": "'2-phase evaluation: Phase 1 (8%) + Phase 2 (5%).'",
+        "dailyLossPct": "'Daily Loss Limit 5%.'",
+        "maxLossPct": "'Max Loss Limit 10%.'",
+        "drawdownType": "The official page describes a static floor that never moves.",
+        "minTradingDays": "'Complete a minimum of 3 trading days to pass' in each phase.",
+        "profitSplitPct": "On Demand 90%, Weekly 60%, Bi-Weekly 80%, or Monthly 100%; no single value.",
+        "payoutFirstDays": "Conditional cycles: on demand, 7, 14, or 30 days.",
+        "prices": "Official comparison table current target: '2std8': {5:36,10:66,25:177,50:299,100:544,200:null}."
+      },
+      "notes": [
+        "No single split or frequency: On Demand 90% requires a 35% consistency score and 2% minimum reward; Weekly 60% starts after 7 days; Bi-Weekly 80% after 14 days; Monthly 100% after 30 days requires a 35% consistency score, 7 profitable days at 0.5%, and a 1% Striking System trigger.",
+        "The 35% consistency score applies to On Demand and the Monthly 100% cycle, not evaluation, Weekly, or Bi-Weekly.",
+        "The current 8%-target Standard uses the Striking System above $25K on non-Monthly cycles; the former 10%-target product is no longer offered.",
+        "Profit Concentration Policy applies to new evaluation accounts at $25K and above created on or after 27 June 2026; a trade idea above 60% adds 4 profitable days of at least 0.5% before every reward.",
+        "$2.5K availability remains unresolved and priceUsd stays null.",
+        "Registration fee is refunded only at the fourth reward, not immediately after passing."
+      ]
+    },
+    {
+      "productName": "FundingPips Zero",
+      "productSlug": "zero",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 60,
+          "refundable": false,
+          "evidence": "Official comparison table maps 5 to $60 for zero."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 88,
+          "refundable": false,
+          "evidence": "Official comparison table maps 10 to $88 for zero."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 188,
+          "refundable": false,
+          "evidence": "Official comparison table maps 25 to $188 for zero."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 244,
+          "refundable": false,
+          "evidence": "Official comparison table maps 50 to $244 for zero."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 444,
+          "refundable": false,
+          "evidence": "Official comparison table maps 100 to $444 for zero."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 888,
+          "refundable": false,
+          "evidence": "Official comparison table maps 200 to $888 for zero."
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": 3,
+      "maxLossPct": 5,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 15,
+      "profitSplitPct": 95,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": false,
+        "weekend": false,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+      "articleUpdatedAt": "2026-08-26T14:20:44Z",
+      "fieldEvidence": {
+        "phases": "'No evaluation: live from day one.'",
+        "dailyLossPct": "'Daily Loss Limit 3%.'",
+        "maxLossPct": "'Max Trailing Loss Limit 5%.'",
+        "drawdownType": "'5% of your highest ever recorded equity'; the floor trails upward and locks at starting balance after 5% profit.",
+        "consistencyRulePct": "'Consistency Score 15% max.'",
+        "profitSplitPct": "'95% profit split: bi-weekly reward cycle.'",
+        "payoutFirstDays": "'Every 14 calendar days after your first executed trade.'",
+        "minimumReward": "'The minimum reward request is 1% of the Master Account Size (including FundingPips\u0027 split).'",
+        "reset": "'A reset option at a 20% discount is now available for all account sizes' and is 'Available only within 7 calendar days of the breach.'",
+        "news": "'No position may be opened, closed, or held within the restricted window'; scheduled releases run from 10 minutes before to 10 minutes after and the restriction is a hard breach.",
+        "weekend": "'All positions must be fully closed before market close on Friday'; a weekend position causes immediate account termination regardless of instrument.",
+        "prices": "Official comparison table: 'zero': {5:60,10:88,25:188,50:244,100:444,200:888}."
+      },
+      "notes": [
+        "The 5% max loss trails peak equity and locks at starting balance after equity first reaches 5% profit; it does not reset after a reward.",
+        "Max Open Risk is 1% combined floating loss. Risk Per Trade Idea is 3% below $50K and 2% at $50K and above.",
+        "At least 7 profitable days of 0.25% or more are required in every rolling 30-day period.",
+        "Reward eligibility also requires consistency at or below 15%, a 3% safety cushion, and largest loss no greater than largest win.",
+        "News-window and weekend holding violations are hard breaches; the account is simulated and begins directly at Master."
+      ]
+    }
+  ],
+  "unresolvedConflicts": [
+    "The current Pro and Standard product pages and comparison table start at $5K, while an older Free Trial article still says $2,500 is available on paid evaluations. Both $2,500 rows remain with null prices.",
+    "Refundability for current 1 Step Flex remains unclear because the official refund wording says '1 Step' without explicitly naming 1 Step Flex.",
+    "The Challenge schema stores one split and one payout cycle. For 1 Step Flex and 2 Step Pro it stores the shorter Bi-Weekly/Weekly route; notes preserve the optional Monthly 100% conditions. Flex and Standard retain null split fields because neither has one universal percentage."
+  ]
+}

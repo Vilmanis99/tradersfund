@@ -52,13 +52,14 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
-    "sourceCapturedAt": "2026-08-10",
+    "sourceCapturedAt": "2026-08-27",
     "notes": [
-      "Profit Concentration Policy: if one trade idea exceeds 60% of the evaluation profit target, the resulting Master Account requires 4 profitable days (at least 0.5% net realized profit each) before every reward request. FundingPips says this applies to all 1 Step Flex account sizes.",
-      "Striking System on every Master size: warning at 1% floating loss on one trade idea; the 2nd warning halves the split, the 3rd reduces it to 20%, and the 4th closes the account.",
+      "The stored 85% split and 14-day cycle represent the shorter Bi-Weekly route. Eligible Master Accounts purchased on or after 15 August 2026 may instead choose a 100% Monthly cycle requiring a 35% consistency score and 7 profitable days of at least 0.5% per cycle.",
+      "Profit Concentration Policy: if one trade idea exceeds 60% of the evaluation profit target, the Master Account requires 4 profitable days of at least 0.5% before every reward request.",
+      "Striking System on every Master size: warning at 1% floating loss on one trade idea; the second warning halves the split, the third reduces it to 20%, and the fourth closes the account.",
       "Minimum reward request is 1% of account size; inactivity breach follows 30 consecutive days with no completed trade.",
-      "Refundability is unresolved. The rewards page promises a 4th-reward registration-fee refund for '1 Step', but FundingPips separately labels the legacy 1 Step Model as no longer offered and does not explicitly name 1 Step Flex in the refund promise. refundable stays null.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-08-10.json"
+      "Refundability remains unresolved because the official refund wording says '1 Step' without explicitly naming the current 1 Step Flex.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-08-27.json"
     ]
   },
   {
@@ -100,7 +101,7 @@
     "dailyLossPct": 4,
     "maxLossPct": 12,
     "drawdownType": "static",
-    "minTradingDays": 0,
+    "minTradingDays": 1,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": null,
@@ -115,13 +116,14 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
-    "sourceCapturedAt": "2026-08-10",
+    "sourceCapturedAt": "2026-08-27",
     "notes": [
-      "No single profitSplitPct: buyer chooses 85% with no minimum trading days or 95% with 3 profitable days of at least 0.5% per phase/cycle; choice is locked and both cost the same.",
-      "Risk Per Trade Idea on the Master Account only: no limit below $25K, 3% at $25K, and 2% above $25K.",
-      "Profit Concentration Policy on new evaluation accounts at $25K and above created on or after 27 June 2026: above 60% from one trade idea adds 4 profitable days of at least 0.5% before each reward request for the lifetime of the Master Account.",
-      "The page contains conflicting reset FAQs: the current reset table says Phase 1 15%, Phase 2 10%, and Master 7% (excluding $100K), including inactivity; a later FAQ still says a 10% evaluation reset and excludes Master/inactivity. No reset amount is projected into the Challenge schema.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-08-10.json"
+      "No single profitSplitPct: Bi-Weekly buyers choose 85% with 1 minimum trading day or 95% with 3 profitable days of at least 0.5%; eligible Master Accounts purchased from 15 August 2026 can use Monthly 100% with a 35% consistency score, 7 profitable days at 0.5%, and a 1% Striking System trigger.",
+      "Existing 85% evaluation accounts purchased before 26 August 2026 retain the former 0-day minimum; new and reset accounts require 1 minimum trading day per phase.",
+      "Risk Per Trade Idea on the Master Account only: no limit below $25K, 3% at $25K, and 2% above $25K on applicable Bi-Weekly routes.",
+      "Profit Concentration Policy applies to new evaluation accounts at $25K and above created on or after 27 June 2026; a trade idea above 60% adds 4 profitable days of at least 0.5% before each reward request.",
+      "The 4th-reward registration-fee refund does not apply to 2 Step Flex.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-08-27.json"
     ]
   },
   {
@@ -173,7 +175,7 @@
     "dailyLossPct": 3,
     "maxLossPct": 6,
     "drawdownType": "static",
-    "minTradingDays": 1,
+    "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
@@ -188,13 +190,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
-    "sourceCapturedAt": "2026-08-10",
+    "sourceCapturedAt": "2026-08-27",
     "notes": [
+      "The stored 80% split and 7-day cycle represent Weekly. Eligible Master Accounts purchased on or after 15 August 2026 may choose Monthly 100%, which requires a 35% consistency score, 7 profitable days of at least 0.5%, and a 1% Striking System trigger.",
+      "Minimum reward request is 1% of account size, including FundingPips' split.",
+      "New and reset accounts purchased on or after 26 August 2026 require 2 minimum trading days per phase; older evaluation accounts retain the former 1-day requirement.",
       "Risk Per Trade Idea is removed on all 2 Step Pro sizes.",
-      "Profit Concentration Policy on new evaluation accounts at $25K and above created on or after 27 June 2026: above 60% from one trade idea adds 4 profitable days of at least 0.5% before every reward request.",
-      "$2.5K availability is unresolved: the Free Trial intro says it is paid-evaluation-only, while today's Pro page lists $5K-$200K and the official price table has no $2.5K key. It remains with priceUsd null until FundingPips resolves the conflict.",
-      "Minimum reward request is 1% of Master Account size.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-08-10.json"
+      "Profit Concentration Policy applies to new evaluation accounts at $25K and above created on or after 27 June 2026; a trade idea above 60% adds 4 profitable days of at least 0.5% before each reward request.",
+      "$2.5K availability remains unresolved because the current product and comparison pages start at $5K.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-08-27.json"
     ]
   },
   {
@@ -256,15 +260,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-    "sourceCapturedAt": "2026-08-10",
+    "sourceCapturedAt": "2026-08-27",
     "notes": [
-      "No single split or frequency: On Demand 90% requires a 35% consistency score and 2% minimum reward; Weekly 60% starts after 7 days, Bi-Weekly 80% after 14 days, and Monthly 100% after 30 days.",
-      "The 35% consistency score applies only to On Demand, not evaluation or the other three reward cycles.",
-      "Current 8%-target Standard uses the Striking System above $25K: warning at 1.2% floating loss; the 4th warning closes the account. Risk Per Trade Idea is not applicable. Legacy 10%-target accounts have different rules and are no longer offered.",
-      "Profit Concentration Policy on new evaluation accounts at $25K and above created on or after 27 June 2026 adds 4 profitable days of at least 0.5% before every reward when triggered.",
-      "$2.5K availability is unresolved and priceUsd remains null. The current page states the former 10% target stopped being offered on 24 July 2026; the comparison script still contains legacy 10%-target prices, which were not captured.",
-      "Registration fee is refunded only when the trader reaches the 4th reward, not immediately on passing.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-08-10.json"
+      "No single split or frequency: On Demand 90% requires a 35% consistency score and 2% minimum reward; Weekly 60% starts after 7 days; Bi-Weekly 80% after 14 days; Monthly 100% after 30 days requires a 35% consistency score, 7 profitable days at 0.5%, and a 1% Striking System trigger.",
+      "The 35% consistency score applies to On Demand and the Monthly 100% cycle, not evaluation, Weekly, or Bi-Weekly.",
+      "The current 8%-target Standard uses the Striking System above $25K on non-Monthly cycles; the former 10%-target product is no longer offered.",
+      "Profit Concentration Policy applies to new evaluation accounts at $25K and above created on or after 27 June 2026; a trade idea above 60% adds 4 profitable days of at least 0.5% before every reward.",
+      "$2.5K availability remains unresolved and priceUsd stays null.",
+      "Registration fee is refunded only at the fourth reward, not immediately after passing.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-08-27.json"
     ]
   },
   {
@@ -323,14 +327,14 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
-    "sourceCapturedAt": "2026-08-10",
+    "sourceCapturedAt": "2026-08-27",
     "notes": [
-      "The 5% max loss trails peak equity and locks at starting balance after equity first reaches 5% profit; it is not comparable to a 5% static limit.",
+      "The 5% max loss trails peak equity and locks at starting balance after equity first reaches 5% profit; it does not reset after a reward.",
       "Max Open Risk is 1% combined floating loss. Risk Per Trade Idea is 3% below $50K and 2% at $50K and above.",
       "At least 7 profitable days of 0.25% or more are required in every rolling 30-day period.",
       "Reward eligibility also requires consistency at or below 15%, a 3% safety cushion, and largest loss no greater than largest win.",
-      "Reset is available at a 20% discount within 7 calendar days; inactivity is 30 days; minimum reward is 1% of account size.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-08-10.json"
+      "News-window and weekend holding violations are hard breaches; the account is simulated and begins directly at Master.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-08-27.json"
     ]
   }
 ]
