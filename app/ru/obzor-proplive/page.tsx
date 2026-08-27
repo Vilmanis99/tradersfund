@@ -73,7 +73,7 @@ export default function RussianPropLiveReviewPage() {
     const firm = getAllFirms().find(candidate => outboundSlug(candidate.name) === route.slug)
     const products = freshChallenges.filter(product => product.firmSlug === route.slug)
     return { ...route, firm, products }
-  }).filter(item => item.firm?.affiliateUrl && item.products.length > 0)
+  }).filter(item => item.firm?.affiliateUrl)
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -193,7 +193,8 @@ export default function RussianPropLiveReviewPage() {
         <div className="ru-shell" data-russian-local-global-funnel="proplive">
           <div className="ru-notice ru-disclosure">
             <strong>Переход к глобальным фирмам.</strong>{' '}
-            Если вам нужен сопоставимый онлайн-продукт, ниже находятся глобальные партнёры с отдельными свежими обзорами.
+            Если вам нужен сопоставимый онлайн-продукт, ниже находятся глобальные партнёры с отдельными русскими обзорами.
+            При отсутствии свежего захвата мы не показываем старые цены или правила.
             Комиссия возможна после регистрации, но не меняет локальные выводы или порядок сравнения.
           </div>
           <h2>Глобальные альтернативы для русскоязычных трейдеров</h2>
@@ -201,7 +202,7 @@ export default function RussianPropLiveReviewPage() {
             {globalCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-local-global-partner={item.slug}>
                 <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Партнёр</span></div>
-                <p className="ru-muted">{item.products.length} свежих продуктов; проверьте страну, KYC, рынок, первую выплату и метод вывода до оплаты.</p>
+                <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; проверьте страну, KYC, рынок, первую выплату и метод вывода до оплаты.</p>
                 <div className="ru-actions">
                   <Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link>
                   <Link href={`/go/${item.slug}?from=ru-proplive-global-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></Link>

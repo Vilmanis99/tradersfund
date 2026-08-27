@@ -94,7 +94,7 @@ export default function RussianPayoutsPage() {
       const methods = firm.payoutMethods ?? []
       return { firm, slug, products, methods, isPartner: Boolean(firm.affiliateUrl) }
     })
-    .filter(row => row.products.length > 0 && row.methods.length > 0)
+    .filter(row => row.methods.length > 0 && (row.products.length > 0 || row.isPartner))
     .sort((a, b) => {
       const partner = Number(b.isPartner) - Number(a.isPartner)
       return partner || b.firm.score - a.firm.score
@@ -183,7 +183,7 @@ export default function RussianPayoutsPage() {
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="payout-ranking">
             <strong>Партнёрское раскрытие.</strong>{' '}
             Партнёрские карточки отмечены переходом через /go/. Комиссия может быть начислена после регистрации,
-            но не влияет на порядок, цифры выплаты или проверку источников.
+            но не влияет на порядок, цифры выплаты или проверку источников. Если свежего продуктового захвата нет, старые сроки и правила не подставляются.
           </div>
           <h2>Проверенные карточки выплат</h2>
           <p className="ru-muted">Срок первой заявки относится к продукту, а список методов — к опубликованному профилю фирмы. Перед оплатой откройте источник именно выбранного продукта.</p>
@@ -199,10 +199,14 @@ export default function RussianPayoutsPage() {
                     <li><WalletCards size={14} aria-hidden="true" /> Методы: {formatMethods(row.methods)}</li>
                     <li><CalendarClock size={14} aria-hidden="true" /> Первая заявка: {formatDays(row.products)}</li>
                     <li><Banknote size={14} aria-hidden="true" /> Цикл: {formatFrequencies(row.products)}</li>
-                    <li><ShieldCheck size={14} aria-hidden="true" /> {row.products.length} свежих продуктов; проверено до {row.products.map(product => product.sourceCapturedAt).sort().at(-1)}</li>
+                    <li><ShieldCheck size={14} aria-hidden="true" /> {row.products.length > 0 ? `${row.products.length} свежих продуктов; проверено до ${row.products.map(product => product.sourceCapturedAt).sort().at(-1)}` : 'Свежий продуктовый захват временно отсутствует; проверьте актуальные правила'}</li>
                   </ul>
                   <p className="ru-muted">Криптометод не равен автоматически USDT/USDC; уточните токен, сеть, лимиты и комиссию у фирмы.</p>
-                  <div className="ru-source-line"><Bitcoin size={14} aria-hidden="true" /> <a href={source} target="_blank" rel="nofollow noopener">Источник правил выбранного продукта</a></div>
+                  {source ? (
+                    <div className="ru-source-line"><Bitcoin size={14} aria-hidden="true" /> <a href={source} target="_blank" rel="nofollow noopener">Источник правил выбранного продукта</a></div>
+                  ) : (
+                    <div className="ru-source-line"><Bitcoin size={14} aria-hidden="true" /> Свежий источник продукта временно отсутствует; откройте официальный сайт перед оплатой.</div>
+                  )}
                   <div className="ru-actions">
                     <Link href={reviewHref} hrefLang={isRussianReview ? 'ru' : 'en'} className="btn-outline">Открыть обзор</Link>
                     {row.isPartner && (

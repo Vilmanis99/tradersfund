@@ -86,7 +86,8 @@ export default function RussianInstantPropFirmsPage() {
     .sort((a, b) => (firmBySlug.get(a.firmSlug)?.score ?? 0) - (firmBySlug.get(b.firmSlug)?.score ?? 0))
     .reverse()
   const partnerProducts = products.filter(product => Boolean(firmBySlug.get(product.firmSlug)?.affiliateUrl))
-  const partnerFirms = [...new Set(partnerProducts.map(product => product.firmSlug))]
+  const partnerFirms = ['fundednext', 'fundingpips', 'bright-funded']
+    .filter(slug => Boolean(firmBySlug.get(slug)?.affiliateUrl))
   const latestCapture = products.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'нет данных'
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -154,7 +155,7 @@ export default function RussianInstantPropFirmsPage() {
         <div className="ru-shell" data-russian-affiliate-disclosure="instant-ranking">
           <div className="ru-notice ru-disclosure">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            Партнёрская ссылка есть только у части фирм. Она не меняет редакционный порядок и не подтверждает
+            Партнёрская ссылка есть только у части фирм. При отсутствии свежего захвата мы не показываем старые цены или правила. Она не меняет редакционный порядок и не подтверждает
             доступность страны; комиссия возможна после регистрации по ссылке.
           </div>
           <h2>Глобальные instant-продукты с партнёрским переходом</h2>
@@ -172,7 +173,7 @@ export default function RussianInstantPropFirmsPage() {
               return (
                 <article className="ru-card" key={firmSlug} data-russian-instant-firm={firmSlug}>
                   <div className="ru-card-head"><h3>{firm.name}</h3><span className="ru-score">{firm.score.toFixed(1)}/10</span></div>
-                  <p className="ru-muted">{firmProducts.length} phase-0 продукта; цены, просадка и выплатный цикл различаются по модели.</p>
+                  <p className="ru-muted">{firmProducts.length > 0 ? `${firmProducts.length} свежих phase-0 продуктов` : 'Свежий phase-0 захват временно отсутствует'}; цены, просадка и выплатный цикл различаются по модели.</p>
                   <div className="ru-actions">
                     <Link href={reviewHref} className="btn-outline">Открыть русский обзор</Link>
                     <Link href={`/go/${firmSlug}?from=ru-instant-ranking`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></Link>

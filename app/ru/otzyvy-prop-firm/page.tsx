@@ -50,7 +50,7 @@ export default function RussianPropFirmReviewsPage() {
     const firm = getAllFirms().find(candidate => outboundSlug(candidate.name) === route.slug)
     const products = freshChallenges.filter(product => product.firmSlug === route.slug)
     return { ...route, firm, products }
-  }).filter(item => item.firm?.affiliateUrl && item.products.length > 0)
+  }).filter(item => item.firm?.affiliateUrl)
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -114,13 +114,13 @@ export default function RussianPropFirmReviewsPage() {
 
       <section className="ru-section">
         <div className="ru-shell" data-russian-reviews-global-funnel="global-partners">
-          <div className="ru-notice ru-disclosure"><strong>Глобальные партнёрские CTA.</strong> Переходы ниже могут приносить комиссию Traders Fund Hub. Это не меняет порядок проверки страны, KYC, цены, правил и выплат.</div>
+          <div className="ru-notice ru-disclosure"><strong>Глобальные партнёрские CTA.</strong> Переходы ниже могут приносить комиссию Traders Fund Hub. При отсутствии свежего захвата мы не показываем старые цены или правила. Это не меняет порядок проверки страны, KYC, цены, правил и выплат.</div>
           <h2>Сравнить глобальные проп-фирмы после проверки отзывов</h2>
           <div className="ru-grid">
             {globalCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-reviews-global-partner={item.slug}>
                 <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Партнёр</span></div>
-                <p className="ru-muted">{item.products.length} свежих продуктов; откройте источник, русский разбор и проверьте доступ до регистрации.</p>
+                <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; откройте источник, русский разбор и проверьте доступ до регистрации.</p>
                 <div className="ru-actions"><Link href={item.reviewHref} className="btn-outline">Русский обзор</Link><Link href={`/go/${item.slug}?from=ru-reviews-guide-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></Link></div>
               </article>
             ))}

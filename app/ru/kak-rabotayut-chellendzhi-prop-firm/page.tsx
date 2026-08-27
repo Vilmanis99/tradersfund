@@ -50,7 +50,7 @@ export default function RussianChallengeLifecyclePage() {
         products: products.filter(product => product.firmSlug === slug),
       }
     })
-    .filter(item => item.firm.affiliateUrl && item.products.length > 0)
+    .filter(item => item.firm.affiliateUrl)
     .sort((a, b) => b.firm.score - a.firm.score)
   const sourceCount = new Set(products.map(product => product.sourceUrl)).size
   const latestCapture = products.map(product => product.sourceCapturedAt).sort().at(-1)
@@ -226,7 +226,7 @@ export default function RussianChallengeLifecyclePage() {
               return (
                 <article className="ru-card" key={item.slug} data-russian-education-partner={item.slug}>
                   <div className="ru-card-head"><h3>{item.firm.name}</h3><span className="ru-score">Партнёр</span></div>
-                  <p className="ru-muted">{item.products.length} свежих продуктов; перед оплатой проверьте этапы, страну, KYC и правило выплаты конкретной модели.</p>
+                  <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; перед оплатой проверьте этапы, страну, KYC и правило выплаты конкретной модели.</p>
                   <div className="ru-actions">
                     <Link href={reviewHref} className="btn-outline">Открыть обзор</Link>
                     <Link href={`/go/${item.slug}?from=ru-challenge-guide-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
