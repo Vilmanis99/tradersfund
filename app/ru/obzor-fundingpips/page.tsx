@@ -6,6 +6,11 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 const PATH = '/ru/obzor-fundingpips'
 const TITLE = 'FundingPips: обзор 2026, цены, правила и выплаты'
 const DESCRIPTION = 'Обзор FundingPips на русском: продукты и цены в USD, варианты сплита, просадка, выплаты и проверка страны перед регистрацией.'
+const REWARD_METHODS_URL = 'https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods'
+const GET_STARTED_URL = 'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started'
+const RESPONSIBLE_TRADING_URL = 'https://help.fundingpips.com/hc/en-us/articles/47328410434065-Responsible-Trading-Policy'
+const WORKSPACE_URL = 'https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace'
+const MASTER_SETUP_URL = 'https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -34,13 +39,16 @@ function FundingPipsDeepDive() {
       return economics ? [{ product, tier, economics }] : []
     })
   })
+  const pricedTierCount = products.reduce((count, product) => count + product.accountSizes.filter(tier =>
+    tier.priceUsd != null && tier.priceUsd > 0,
+  ).length, 0)
   const money = (value: number | null | undefined) => value == null
     ? '—'
     : `$${value.toLocaleString('en-US', { maximumFractionDigits: 2 })}`
 
   return (
     <>
-      <section className="ru-section">
+      <section className="ru-section" id="reward-routes">
         <div className="ru-shell" data-russian-fundingpips-deep-dive="reward-routes">
           <div className="ru-content">
             <h2>100% monthly или более быстрая выплата: это разные условия</h2>
@@ -62,7 +70,43 @@ function FundingPipsDeepDive() {
         </div>
       </section>
 
-      <section className="ru-section">
+      <section className="ru-section" id="payout-methods">
+        <div className="ru-shell" data-russian-fundingpips-deep-dive="payout-methods">
+          <div className="ru-content">
+            <h2>Как FundingPips выплачивает reward русскоязычному трейдеру</h2>
+            <p>Официальная страница Reward Methods перечисляет 4 способа выплаты: Card, Crypto, Rise и Bank Transfer. FundingPips обрабатывает запрос 1–3 рабочих дня, затем кошельку или банку может понадобиться ещё 1–2 рабочих дня. До запроса нужно закрыть все сделки и ожидающие ордера, подождать минимум 15 минут и использовать карту, кошелёк или счёт на своё имя.</p>
+          </div>
+          <div className="ru-table-wrap">
+            <table className="ru-table" data-russian-fundingpips-payout-routes="four">
+              <thead><tr><th>Маршрут</th><th>Минимум и валюта</th><th>Что проверяется</th><th>Кому может подойти</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Card</strong></td><td>Общий минимум выплаты остаётся 1% размера Master Account</td><td>Visa/Mastercard на имя трейдера; Pay to Card зависит от конкретного банка и региона</td><td>Поддерживаемый банк может получить Pay to Card быстрее; Standard обычно отражается за 1–5 рабочих дней после одобрения</td></tr>
+                <tr><td><strong>Crypto</strong></td><td>1% Master Account; USDT или USDC</td><td>Только ERC-20; service, exchange-rate и network fees уменьшают итоговую сумму</td><td>Пользователю с законным кошельком и совместимым off-ramp, если точный профиль допускает crypto</td></tr>
+                <tr><td><strong>Rise</strong></td><td>Минимум $500</td><td>Email должен совпадать с FundingPips; обязательны Rise ID, KYC, selfie и соглашение</td><td>Пользователю из страны поддержки Rise; если Rise недоступен, официальный flow переключает reward на Crypto</td></tr>
+                <tr><td><strong>Bank Transfer</strong></td><td>Минимум $500</td><td>Банковский счёт нужно верифицировать; маршрут доступен только в выбранных регионах</td><td>Пользователю с поддерживаемым локальным счётом; отсутствие кнопки в профиле означает выбор другого метода</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="ru-content">
+            <h3>Что это значит для русскоязычной диаспоры</h3>
+            <p>Pay to Card и bank transfer прямо называют Бельгию, Францию, Германию, Италию, Нидерланды, Испанию и Великобританию среди поддерживаемых регионов, но конкретный банк всё равно может отклонить быстрый маршрут. Казахстан и Израиль в опубликованном списке этих двух методов не названы; это не доказывает отсутствие всех payout-вариантов, но требует проверки Crypto или Rise внутри верифицированного профиля. Резидент ОАЭ не должен доходить до этого шага: страна прямо ограничена.</p>
+            <p>Все аккаунты FundingPips номинированы в USD, даже если checkout показывает другую валюту оплаты. Русскоязычному пользователю в EUR, GBP, KZT или ILS нужно отдельно учитывать банковскую конвертацию и чистую сумму после network/provider fees.</p>
+            <p className="ru-source-line"><a href={REWARD_METHODS_URL} target="_blank" rel="noopener noreferrer">Официальные Reward Methods</a> · <a href={GET_STARTED_URL} target="_blank" rel="noopener noreferrer">checkout, валюта аккаунта и KYC</a> · проверено 2026-08-27.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="ru-section" id="strategy">
+        <div className="ru-shell ru-content" data-russian-fundingpips-deep-dive="strategy-platforms">
+          <h2>Платформы, новости, выходные и Master Account</h2>
+          <p><strong>FundingPips предоставляет simulated accounts, а не брокерский счёт с переданным капиталом.</strong> Текущий фирменный профиль перечисляет MT5, cTrader и Match-Trader. Официальный Account Workspace отдельно говорит, что MT5 недоступен в США и Канаде; это platform restriction, а не разрешение для любого другого продукта или профиля.</p>
+          <p>Все 5 текущих продуктов допускают weekday overnight, но weekend-поле ограничено у 4 evaluation-моделей, а FundingPips Zero запрещает удержание через выходные как hard breach. News-rule тоже продуктовый: Zero запрещает news-window, а остальные модели нельзя считать полностью свободными только потому, что оценочная фаза допускает событие.</p>
+          <p>После прохождения evaluation Master Account требует 4 шага: KYC, In Review, Customer Agreement и Onboarding. Два внутренних этапа FundingPips могут занимать до 2 рабочих дней каждый; торговать на Master нельзя, пока KYC, соглашение и onboarding не завершены. Instant Zero убирает evaluation, но не KYC или Customer Agreement.</p>
+          <p className="ru-source-line"><a href={RESPONSIBLE_TRADING_URL} target="_blank" rel="noopener noreferrer">Simulated-account policy и ограничения стран</a> · <a href={WORKSPACE_URL} target="_blank" rel="noopener noreferrer">платформы и geo-restrictions</a> · <a href={MASTER_SETUP_URL} target="_blank" rel="noopener noreferrer">4 шага Master setup</a>.</p>
+        </div>
+      </section>
+
+      <section className="ru-section" id="true-cost">
         <div className="ru-shell" data-russian-fundingpips-deep-dive="true-cost">
           <div className="ru-content">
             <h2>True cost для маршрутов с фиксированным сплитом</h2>
@@ -88,7 +132,28 @@ function FundingPipsDeepDive() {
         </div>
       </section>
 
-      <section className="ru-section">
+      <section className="ru-section" id="pros-cons">
+        <div className="ru-shell ru-content" data-russian-fundingpips-deep-dive="pros-cons">
+          <h2>Сильные стороны FundingPips</h2>
+          <ul>
+            <li>{products.length} текущих продуктов дают 1-Step, 2-Step и 0-phase маршруты вместо одного универсального challenge.</li>
+            <li>{pricedTierCount} из 29 уровней имеют подтверждённую цену; минимальный опубликованный вход — {money(proFiveKPrice)} за 2 Step Pro $5K.</li>
+            <li>2 Step Flex расширяет статический maximum loss до {twoStepFlex?.maxLossPct ?? '—'}%, а Standard оставляет {standard?.maxLossPct ?? '—'}% — трейдер может выбирать failure-point, а не только число фаз.</li>
+            <li>Официальный payout flow публикует 4 маршрута: Card, Crypto, Rise и Bank Transfer, плюс отдельные сроки, минимумы и KYC.</li>
+          </ul>
+
+          <h2 className="ru-review-secondary-heading">Ограничения и причины отказаться</h2>
+          <ul>
+            <li>Два $2.5K уровня остаются без подтверждённой цены; null нельзя показывать как бесплатный или доступный продукт.</li>
+            <li>100% monthly добавляет 30-дневный календарь, 35% consistency, 7 прибыльных дней и Striking System — это не стандартный сплит без условий.</li>
+            <li>Weekend holding ограничен у всех 5 продуктов, а для Zero становится hard breach вместе с запрещённым news-window.</li>
+            <li>ОАЭ и Вьетнам прямо ограничены, дополнительно действуют FATF и EU/UN sanctions lists; VPN или чужой адрес не создают допустимый профиль.</li>
+            <li>Refund подтверждён только для 2 Step Standard на четвёртом reward; 1 Step Flex остаётся unresolved, а Pro, Flex и Zero refund не получают.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="ru-section" id="fit">
         <div className="ru-shell ru-content" data-russian-fundingpips-deep-dive="fit">
           <h2>Кому FundingPips подходит, а кому лучше сравнить другую фирму</h2>
           <div className="ru-grid">
@@ -117,6 +182,7 @@ export default function RussianFundingPipsReviewPage() {
     <RussianPartnerReview
       path={PATH}
       title={TITLE}
+      headline="FundingPips: обзор 2026 — 5 продуктов и 27 цен"
       description={DESCRIPTION}
       firmName="FundingPips"
       firmSlug="fundingpips"
@@ -144,6 +210,21 @@ export default function RussianFundingPipsReviewPage() {
           { title: 'Zero — не режим без правил', body: <>FundingPips Zero не имеет оценочного этапа, но сочетает трейлинг-лимит 5%, максимальный открытый риск 1%, минимум 7 прибыльных дней и consistency до 15%. Такой маршрут нужно сравнивать с вашей статистикой, а не с ценой обычного челленджа.</> },
         ],
       }}
+      analysisTocItems={[
+        { href: '#reward-routes', label: 'Reward cycles и 100%' },
+        { href: '#payout-methods', label: 'Card, Crypto, Rise и Bank' },
+        { href: '#strategy', label: 'Платформы и торговые правила' },
+        { href: '#true-cost', label: 'True cost по 17 уровням' },
+        { href: '#pros-cons', label: 'Плюсы и ограничения' },
+        { href: '#fit', label: 'Кому подходит FundingPips' },
+      ]}
+      relatedLinks={[
+        { href: '/ru/fundednext-vs-fundingpips', label: 'FundedNext или FundingPips', body: 'сравнение 4 продуктов FundedNext с 5 моделями FundingPips по цене, drawdown и reward cycle' },
+        { href: '/ru/prop-firmy-bez-chelendzha', label: 'Проп-фирмы без челленджа', body: 'FundingPips Zero рядом с FundedNext Stellar Instant и другими 0-phase продуктами' },
+        { href: '/ru/vyplaty-prop-firm', label: 'Выплаты проп-фирм', body: 'отдельная проверка первой даты, crypto, bank и условий запроса' },
+        { href: '/ru/obzor-bright-funded', label: 'Обзор Bright Funded', body: 'EUR-priced альтернатива, если USD checkout или country-path FundingPips не подходит' },
+      ]}
+      readTime={15}
       firmAnalysis={<FundingPipsDeepDive />}
       faqs={[
         {
@@ -164,7 +245,19 @@ export default function RussianFundingPipsReviewPage() {
         },
         {
           q: 'Можно ли зарегистрироваться из России?',
-          a: 'Мы не делаем такой вывод из русского языка страницы или общего рейтинга. Проверьте страну, KYC, оплату и выплаты на официальной странице оплаты; не используйте VPN или неверные данные для обхода ограничений.',
+          a: 'Мы не считаем доступ подтверждённым без проверки конкретного профиля. FundingPips прямо ограничивает Иран, Вьетнам, ОАЭ и юрисдикции из применимых FATF и EU/UN sanctions lists, но общий текст не доказывает успешный checkout, KYC и payout российского резидента. Получите письменный ответ поддержки до оплаты и не используйте VPN или неверные данные.',
+        },
+        {
+          q: 'Какие способы выплаты есть у FundingPips?',
+          a: 'Официальная страница перечисляет Card, Crypto, Rise и Bank Transfer. Crypto использует USDT/USDC ERC-20 с минимумом 1% Master Account; Rise и Bank Transfer требуют минимум $500. Конкретный банк, карта или провайдер зависят от страны и профиля.',
+        },
+        {
+          q: 'Почему указано 27 цен, если в данных 29 размеров?',
+          a: 'У пяти продуктов 29 строк размеров, но две строки $2.5K — у 2 Step Pro и 2 Step Standard — не имеют подтверждённой цены из-за конфликта официальных страниц. Поэтому обзор показывает 27 цен и сохраняет две неопределённые строки как null.',
+        },
+        {
+          q: 'FundingPips выдаёт реальный брокерский счёт?',
+          a: 'Нет по текущей Responsible Trading Policy: все аккаунты работают в simulated demo environment. Master Account — договорный этап для расчёта reward, а не доказательство передачи трейдеру реального брокерского капитала.',
         },
       ]}
     />

@@ -549,6 +549,20 @@
     padding-top: 3.2rem;
   }
 
+  .ru-hero h1,
+  .ru-lead,
+  .ru-stat strong {
+    overflow-wrap: anywhere;
+  }
+
+  .ru-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ru-stat {
+    min-width: 0;
+  }
+
   .ru-review-meta span + span::before {
     content: none;
   }

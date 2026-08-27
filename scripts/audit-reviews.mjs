@@ -11320,6 +11320,8 @@ function checkRussianAcquisitionPilot() {
   for (const [route, expectedTokens] of [
     ['/ru/obzor-fundingpips', [
       'data-russian-partner-review={firmSlug}',
+      'data-russian-partner-article={firmSlug}',
+      'data-russian-partner-editorial-shell={firmSlug}',
       'data-russian-partner-country-access="unconfirmed"',
       'data-russian-partner-review-method="product-first"',
       'data-russian-affiliate-disclosure={firmSlug}',
@@ -11327,9 +11329,14 @@ function checkRussianAcquisitionPilot() {
       'affiliateFrom="ru-fundingpips-review-verdict"',
       'data-russian-fundingpips-deep-dive="reward-routes"',
       'data-russian-fundingpips-reward-routes="five-products"',
+      'data-russian-fundingpips-deep-dive="payout-methods"',
+      'data-russian-fundingpips-payout-routes="four"',
+      'data-russian-fundingpips-deep-dive="strategy-platforms"',
       'data-russian-fundingpips-deep-dive="true-cost"',
       'data-russian-fundingpips-truecost={fixedRouteRows.length}',
+      'data-russian-fundingpips-deep-dive="pros-cons"',
       'data-russian-fundingpips-deep-dive="fit"',
+      "affiliateFrom.replace(/-verdict$/, '-summary')",
       '`/go/${affiliateSlug}?from=${affiliateFrom}`',
       'rel="sponsored nofollow noopener"',
     ]],

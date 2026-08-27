@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { AlertTriangle, ArrowRight, BadgeDollarSign, Database, ExternalLink } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -13,6 +14,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 type RussianPartnerReviewProps = {
   path: string
   title: string
+  headline?: string
   description: string
   firmName: string
   firmSlug: string
@@ -28,6 +30,9 @@ type RussianPartnerReviewProps = {
     intro: ReactNode
     items: Array<{ title: string; body: ReactNode }>
   }
+  analysisTocItems?: Array<{ href: `#${string}`; label: string }>
+  relatedLinks?: Array<{ href: string; label: string; body: string }>
+  readTime?: number
   firmAnalysis?: ReactNode
   faqs: RussianFaqItem[]
 }
@@ -89,6 +94,7 @@ function payoutLabel(product: Challenge) {
 export default function RussianPartnerReview({
   path,
   title,
+  headline,
   description,
   firmName,
   firmSlug,
@@ -100,6 +106,9 @@ export default function RussianPartnerReview({
   verdict,
   editorialNotes,
   decisionGuide,
+  analysisTocItems = [],
+  relatedLinks = [],
+  readTime = 12,
   firmAnalysis,
   faqs,
 }: RussianPartnerReviewProps) {
@@ -112,6 +121,8 @@ export default function RussianPartnerReview({
   const latestCapture = freshProducts.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'дата не указана'
   const latestAnyCapture = products.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'дата не указана'
   const sourceUrls = [...new Set(freshProducts.map(product => product.sourceUrl))]
+  const displayHeadline = headline ?? title
+  const summaryCampaign = affiliateFrom.replace(/-verdict$/, '-summary')
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
     { name: 'Лучшие проп-фирмы', url: '/ru/luchshie-prop-firmy' },
@@ -121,12 +132,12 @@ export default function RussianPartnerReview({
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: title,
+    headline: displayHeadline,
     description,
     url: `https://tradersfundhub.com${path}`,
     inLanguage: 'ru',
     dateModified: latestCapture,
-    author: { '@type': 'Organization', name: 'Traders Fund Hub' },
+    author: { '@type': 'Person', name: 'Edris Derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
 
@@ -140,8 +151,13 @@ export default function RussianPartnerReview({
         <div className="ru-shell" data-russian-partner-review={firmSlug}>
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / {firmName}</div>
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Источник до {latestCapture}</div>
-          <h1>{title}</h1>
+          <h1>{displayHeadline}</h1>
           <p className="ru-lead">{lead}</p>
+          <div className="ru-review-meta" aria-label={`Редакционные данные обзора ${firmName}`}>
+            <span>Автор: Edris Derakhshi</span>
+            <span>Обновлено: {latestCapture}</span>
+            <span>{readTime} минут чтения</span>
+          </div>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>свежих продуктов</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>ценовых уровней</span></div>
@@ -151,7 +167,87 @@ export default function RussianPartnerReview({
         </div>
       </section>
 
-      <section className="ru-section">
+      <article className="ru-review-article" data-russian-partner-article={firmSlug}>
+      <section className="ru-section ru-review-opening" data-russian-partner-editorial-shell={firmSlug}>
+        <div className="ru-shell">
+          <div className="ru-notice ru-disclosure ru-review-top-disclosure">
+            <strong>Партнёрское раскрытие.</strong> Мы можем получить комиссию после
+            подходящей регистрации через эту страницу; цена для читателя не увеличивается.
+            Партнёрство даёт <strong>0 баллов</strong> к оценке {firm?.score.toFixed(1) ?? '—'}/10
+            и не меняет {freshProducts.length} продуктовых строк, {pricedTiers.length} цен или проверку страны.
+          </div>
+
+          {firm ? (
+            <aside className="ru-review-firm-card" aria-label={`Краткая карточка ${firmName}`}>
+              <div className="ru-review-firm-brand">
+                {firm.logo ? (
+                  <Image
+                    src={firm.logo}
+                    alt={`Логотип ${firmName}`}
+                    width={64}
+                    height={64}
+                    className="ru-review-firm-logo"
+                  />
+                ) : null}
+                <div>
+                  <div className="ru-review-firm-title-row">
+                    <strong>{firmName}</strong>
+                    <span className="ru-pill">TFH {firm.score.toFixed(1)}/10</span>
+                  </div>
+                  <p>{freshProducts.length} продуктов · {pricedTiers.length} подтверждённых цен · захват {latestCapture}</p>
+                  {firm.trustpilotScore != null && firm.trustpilotCount != null ? (
+                    <p className="ru-review-trustpilot">
+                      Trustpilot: {firm.trustpilotScore.toFixed(1)}/5 по {firm.trustpilotCount.toLocaleString('ru-RU')} отзывам,
+                      захват {firm.trustpilotCapturedAt ?? 'без даты'}; агрегат не доказывает reward по конкретному счёту.
+                      {firm.trustpilotUrl ? <> <a href={firm.trustpilotUrl} target="_blank" rel="noopener noreferrer">Проверить профиль</a>.</> : null}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+
+              <dl className="ru-review-firm-facts">
+                <div><dt>Продукты</dt><dd>{freshProducts.length}</dd></div>
+                <div><dt>Цены</dt><dd>{pricedTiers.length} в валюте фирмы</dd></div>
+                <div><dt>Способы выплаты</dt><dd>{firm.payoutMethods?.join(', ') ?? 'не опубликованы'}</dd></div>
+                <div><dt>Макс. распределение</dt><dd>{firm.maxAllocation}</dd></div>
+              </dl>
+
+              <div className="ru-review-firm-action">
+                <p>Сначала проверьте страну, точный продукт, платформу и цикл выплаты; затем сверяйте условия при оплате.</p>
+                <Link
+                  href={`/go/${affiliateSlug}?from=${summaryCampaign}`}
+                  rel="sponsored nofollow noopener"
+                  className="btn-primary btn-glow"
+                >
+                  Открыть текущие планы <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+              </div>
+            </aside>
+          ) : null}
+        </div>
+      </section>
+
+      <section className="ru-section ru-review-toc-section">
+        <div className="ru-shell">
+          <nav className="toc ru-review-toc" aria-label={`Содержание обзора ${firmName}`}>
+            <div className="toc-title">Содержание обзора</div>
+            <ol>
+              <li><a href="#country-check">Страна и KYC</a></li>
+              <li><a href="#products">Продукты и правила</a></li>
+              <li><a href="#prices">Все цены</a></li>
+              <li><a href="#verdict">Что проверить до оплаты</a></li>
+              <li><a href="#method">Методика сравнения</a></li>
+              <li><a href="#decision-guide">Выбор по продукту</a></li>
+              {analysisTocItems.map(item => <li key={item.href}><a href={item.href}>{item.label}</a></li>)}
+              <li><a href="#final-check">Проверка перед регистрацией</a></li>
+              {relatedLinks.length > 0 ? <li><a href="#alternatives">С чем сравнить</a></li> : null}
+              <li><a href="#faq">Частые вопросы</a></li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+      <section className="ru-section" id="country-check">
         <div className="ru-shell">
           <div className="ru-notice" data-russian-partner-country-access="unconfirmed">
             <strong><AlertTriangle size={16} aria-hidden="true" /> Язык страницы не подтверждает доступ.</strong>{' '}
@@ -160,7 +256,7 @@ export default function RussianPartnerReview({
         </div>
       </section>
 
-      <section className="ru-section">
+      <section className="ru-section" id="products">
         <div className="ru-shell">
           <h2>Продукты и правила в текущем захвате</h2>
           <p className="ru-muted">Цены остаются в валюте фирмы. Пустое поле означает, что число не подтверждено на странице оператора, а не бесплатный продукт.</p>
@@ -193,7 +289,7 @@ export default function RussianPartnerReview({
         </div>
       </section>
 
-      <section className="ru-section">
+      <section className="ru-section" id="prices">
         <div className="ru-shell">
           <h2>Каждая опубликованная цена</h2>
           <div className="ru-table-wrap">
@@ -222,7 +318,7 @@ export default function RussianPartnerReview({
         </div>
       </section>
 
-      <section className="ru-section">
+      <section className="ru-section" id="verdict">
         <div className="ru-shell">
           <h2>Что важно проверить до оплаты</h2>
           <div className="ru-grid">
@@ -240,7 +336,7 @@ export default function RussianPartnerReview({
         </div>
       </section>
 
-      <section className="ru-section">
+      <section className="ru-section" id="method">
         <div className="ru-shell ru-content" data-russian-partner-review-method="product-first">
           <h2>Как читать сравнение без рекламных ловушек</h2>
           <div className="ru-grid">
@@ -252,7 +348,7 @@ export default function RussianPartnerReview({
         </div>
       </section>
 
-      <section className="ru-section" data-russian-unique-angle={firmSlug}>
+      <section className="ru-section" id="decision-guide" data-russian-unique-angle={firmSlug}>
         <div className="ru-shell ru-content">
           <h2>{decisionGuide.title}</h2>
           <p className="ru-muted">{decisionGuide.intro}</p>
@@ -270,7 +366,7 @@ export default function RussianPartnerReview({
 
       {firmAnalysis}
 
-      <section className="ru-section">
+      <section className="ru-section" id="final-check">
         <div className="ru-shell ru-content">
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure={firmSlug}>
             <strong>Партнёрское раскрытие.</strong> Мы можем получить комиссию, если подходящий читатель зарегистрируется по ссылке ниже. Это не меняет цены, цифры или редакционный порядок. Резидентам России нельзя обходить ограничения VPN, прокси или неверными данными.
@@ -285,12 +381,35 @@ export default function RussianPartnerReview({
         </div>
       </section>
 
-      <section className="ru-section">
+      {relatedLinks.length > 0 ? (
+        <section className="ru-section" id="alternatives">
+          <div className="ru-shell ru-content">
+            <h2>С чем сравнить {firmName}</h2>
+            <p>Сравнение должно отвечать на конкретный failure-point: страну, payout-rail, drawdown, календарь reward или стоимость попытки. Редакционный балл сам по себе не выбирает продукт.</p>
+            <ul className="ru-review-related-links">
+              {relatedLinks.map(item => (
+                <li key={item.href}><Link href={item.href}>{item.label}</Link> — {item.body}</li>
+              ))}
+            </ul>
+            <div className="ru-review-author" aria-label={`Автор обзора ${firmName}`}>
+              <div className="ru-review-author-avatar" aria-hidden="true">ED</div>
+              <div>
+                <strong>Автор: Edris Derakhshi</strong>
+                <p>Основатель Traders Fund Hub, funded-трейдер с 2020 года и рыночный аналитик, публиковавшийся в CryptoQuant и CryptoPotato. Партнёрский статус отделён от редакционного балла, продуктовых чисел и country-check.</p>
+                <Link href="/authors/edris-derakhshi">Профиль автора</Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="ru-section" id="faq">
         <div className="ru-shell ru-content">
           <h2>Частые вопросы</h2>
           <RussianFaq items={faqs} />
         </div>
       </section>
+      </article>
     </>
   )
 }
