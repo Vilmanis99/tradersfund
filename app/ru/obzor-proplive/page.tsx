@@ -11,6 +11,8 @@ const PATH = '/ru/obzor-proplive'
 const TITLE = 'PropLive: обзор русской проп-компании (2026)'
 const DESCRIPTION = 'PropLive на русском: модель через Московскую биржу и Финам, заявления о выплатах, договор, KYC и партнёрская программа без смешения с глобальным рейтингом.'
 const PROP_LIVE_HOME = 'https://www.proplive.ru/'
+const PROP_LIVE_ABOUT = 'https://proplive.ru/o-nas'
+const PROP_LIVE_REQUISITES = 'https://proplive.ru/rekvizity-kompanii'
 const PROP_LIVE_PARTNERS = 'https://www.proplive.ru/partnyoram'
 const PROP_LIVE_CONTRACT = 'https://static.proplive.ru/documents/document-17.pdf'
 
@@ -38,6 +40,18 @@ const faqs: RussianFaqItem[] = [
   {
     q: 'Есть ли у PropLive affiliate-программа для сайта?',
     a: 'Публичная страница партнёров описывает модель для наставников и школ, где вознаграждение связано с прибылью учеников и условия обсуждаются индивидуально. Это не подтверждённая стандартная ссылка для обычного редакционного сайта, поэтому здесь нет локального affiliate CTA.',
+  },
+  {
+    q: 'Сколько нужно заплатить для старта в PropLive?',
+    a: 'На главной странице PropLive написано «Нисколько» и заявлен небольшой стартовый капитал от компании. Это маркетинговое описание, а не полный прайс: запросите договор, приложение со стоимостью услуг, комиссии, требования к терминалу и условия изменения капитала до регистрации.',
+  },
+  {
+    q: 'Какой договор подписывает трейдер PropLive?',
+    a: 'В опубликованном PDF это договор возмездного оказания услуг по разработке торговых стратегий. Вознаграждение определяется приложением «Стоимость услуг», расчёт опирается на данные ИТС, а оплата по умолчанию производится в рублях. Перед присоединением прочитайте сам договор и все приложения.',
+  },
+  {
+    q: 'Можно ли торговать из другой страны и на каком компьютере?',
+    a: 'Оператор заявляет торговлю из любой страны и отсутствие обязательного гражданства РФ, но для терминала CScalp указывает компьютер на Windows. Для нерезидента отдельно подтвердите KYC, брокера Финам, платёжный маршрут и доступ к MOEX до передачи документов.',
   },
 ]
 
@@ -120,11 +134,13 @@ export default function RussianPropLiveReviewPage() {
             <table className="ru-table" data-russian-local-review-facts="proplive">
               <thead><tr><th>Пункт</th><th>Заявление оператора</th><th>Редакционный статус</th><th>Источник</th></tr></thead>
               <tbody>
-                <tr><td>Модель</td><td>Торговые аккаунты для Московской биржи через брокера Финам</td><td>Опубликовано оператором; не сравниваем с CFD challenge</td><td><SourceLink href={PROP_LIVE_HOME}>PropLive</SourceLink></td></tr>
+                <tr><td>Модель</td><td>Торговые аккаунты для Московской биржи через брокера Финам; оператор описывает себя как основного инвестора</td><td>Опубликовано оператором; не сравниваем с CFD challenge</td><td><SourceLink href={PROP_LIVE_ABOUT}>О компании</SourceLink></td></tr>
                 <tr><td>Трейдеры</td><td>{Number(localSignal?.claims.traders).toLocaleString('ru-RU')} в верхнем счётчике; ниже указано более 10 700</td><td>Внутреннее расхождение чисел, не независимый аудит</td><td><SourceLink href={PROP_LIVE_HOME}>Главная</SourceLink></td></tr>
+                <tr><td>Старт</td><td>«Нисколько»: оператор заявляет небольшой капитал для раскачки и увеличение капитала при успешной торговле</td><td>Заявление оператора; цена, комиссия и размер капитала зависят от оформления</td><td><SourceLink href={PROP_LIVE_HOME}>FAQ на главной</SourceLink></td></tr>
                 <tr><td>Вывод</td><td>В течение 1 рабочего дня и в любой день недели</td><td>Заявленный срок; запросите действующий регламент</td><td><SourceLink href={PROP_LIVE_HOME}>FAQ оператора</SourceLink></td></tr>
                 <tr><td>Партнёры</td><td>До {affiliateSignal?.maximumPublishedCommissionPct}% PayOut для наставников и школ</td><td>Application-only; не обычная affiliate-ссылка издателя</td><td><SourceLink href={PROP_LIVE_PARTNERS}>Условия партнёров</SourceLink></td></tr>
-                <tr><td>Договор</td><td>Оплата услуг трейдера описана в рублях по регламенту</td><td>Нужно читать актуальную версию до регистрации</td><td><SourceLink href={PROP_LIVE_CONTRACT}>PDF договора</SourceLink></td></tr>
+                <tr><td>Юрлицо</td><td>ООО «ЛАЙВ ИНВЕСТ»; реквизиты опубликованы отдельно</td><td>Проверьте, с кем заключается договор и кто принимает оплату</td><td><SourceLink href={PROP_LIVE_REQUISITES}>Реквизиты</SourceLink></td></tr>
+                <tr><td>Договор</td><td>Услуги по разработке торговых стратегий; вознаграждение — в приложении «Стоимость услуг», оплата по умолчанию в рублях</td><td>Нужно читать актуальную версию и все приложения до регистрации</td><td><SourceLink href={PROP_LIVE_CONTRACT}>PDF договора</SourceLink></td></tr>
               </tbody>
             </table>
           </div>
@@ -143,6 +159,33 @@ export default function RussianPropLiveReviewPage() {
             <strong>Локальный affiliate пока не активирован.</strong>{' '}
             Публичные условия партнёров требуют заявки и описывают долю от активности учеников. Мы не смешиваем такую модель с глобальными CPA-переходами и не выдаём её за подтверждённую комиссию сайта.
           </div>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell ru-content">
+          <h2>Как устроен старт: четыре пункта, которые нужно запросить письменно</h2>
+          <ol>
+            <li><strong>Право доступа:</strong> оператор пишет, что трейдеру старше 18 лет не обязательно иметь гражданство РФ; это не отменяет отдельную проверку нерезидента.</li>
+            <li><strong>Капитал:</strong> на главной заявлен небольшой стартовый капитал без оплаты со стороны трейдера, но сумма и критерии увеличения не раскрыты в этом обещании.</li>
+            <li><strong>Инфраструктура:</strong> сделки описаны на MOEX через Финам; CScalp требует компьютер на Windows, поэтому проверьте терминал, комиссии и доступность брокера.</li>
+            <li><strong>Выплата:</strong> запросите регламент, долю трейдера, порядок расчёта и валюту до начала торговли; маркетинговая формула «от 1 дня» не является гарантированным сроком.</li>
+          </ol>
+          <div className="ru-notice" data-russian-proplive-start-check="four-points">
+            <strong>Что сохранить до заявки:</strong> актуальный договор, приложение со стоимостью услуг, регламент, реквизиты ООО «ЛАЙВ ИНВЕСТ», условия для нерезидента РФ и подтверждение метода выплаты.
+          </div>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell ru-content">
+          <h2>Договор: важнее рекламного счётчика</h2>
+          <div className="ru-grid">
+            <article className="ru-card"><FileCheck2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Приложение №4</h3><p className="ru-muted">Пункт 20 опубликованного договора отсылает расчёт вознаграждения к приложению «Стоимость услуг». Без этого приложения нельзя считать условия полностью раскрытыми.</p><SourceLink href={PROP_LIVE_CONTRACT}>Открыть договор</SourceLink></article>
+            <article className="ru-card"><Scale size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Данные ИТС</h3><p className="ru-muted">Пункты 21–28 связывают объём и стоимость услуг с данными ИТС и допускают корректировку оплаты при изменении экономической эффективности стратегии.</p><SourceLink href={PROP_LIVE_CONTRACT}>Пункты 21–28</SourceLink></article>
+            <article className="ru-card"><WalletCards size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Изменение условий</h3><p className="ru-muted">Пункт 18 описывает уведомление о несогласии в течение 3 календарных дней и прекращение договора через 5 календарных дней после получения уведомления компанией.</p><SourceLink href={PROP_LIVE_CONTRACT}>Пункт 18</SourceLink></article>
+          </div>
+          <p className="ru-source-line">Это разбор текста опубликованного договора, а не юридическое заключение. Сравните PDF с версией в личном кабинете: приложение, регламент и заявление о присоединении входят в договорный пакет.</p>
         </div>
       </section>
 

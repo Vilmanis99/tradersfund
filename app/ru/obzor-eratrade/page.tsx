@@ -14,6 +14,8 @@ const ERA_HOME = 'https://eratrade.net/'
 const ERA_AFFILIATE = 'https://help.eratrade.club/ru/affiliate-program-overview/'
 const ERA_RULES = 'https://help.eratrade.club/ru/general-trading-limitations/'
 const ERA_PAYOUT = 'https://help.eratrade.club/ru/how-to-request-a-payout/'
+const ERA_PAYOUT_SYSTEM = 'https://help.eratrade.club/ru/funded-account-payout-system-how-it-works/'
+const ERA_PROFITABLE_DAYS = 'https://help.eratrade.club/ru/minimum-number-of-profitable-days/'
 const ERA_SPLIT = 'https://help.eratrade.club/ru/profit-split-payment-methods/'
 const ERA_TWO_STAGE = 'https://help.eratrade.club/ru/2-stage-challenge-how-it-works/'
 const ERA_ONE_STAGE = 'https://help.eratrade.club/ru/1-stage-challenge-how-it-works/'
@@ -42,6 +44,14 @@ const faqs: RussianFaqItem[] = [
   {
     q: 'Есть ли у Era Trade партнёрская программа?',
     a: 'Да, официальный центр помощи описывает стандартную программу: 5% по умолчанию, уровни до 60% по числу покупок челленджей, минимальная выплата $50. Отдельная Ambassador-модель активируется индивидуально и не является автоматически выданной ссылкой.',
+  },
+  {
+    q: 'Что происходит после достижения цели Era Trade?',
+    a: 'После второго этапа оператор описывает ручную проверку риск-командой, затем KYC, создание funded-аккаунта и подключение к системе риск-менеджмента. Это не мгновенная гарантия аккаунта: сохраните актуальную версию правил и дождитесь подтверждения проверки.',
+  },
+  {
+    q: 'Как часто можно запрашивать выплату Era Trade?',
+    a: 'В справке указаны периоды 15 или 30 дней на выбор после первой завершённой сделки funded-аккаунта. Для заявки нужны 3 прибыльных дня, закрытые сделки и отсутствие активных ордеров; обработка заявлена до 5 рабочих дней.',
   },
 ]
 
@@ -119,7 +129,8 @@ export default function RussianEraTradeReviewPage() {
                 <tr><td>Сплит</td><td>{localSignal?.claims.baseProfitSplitPct}% в пользу трейдера</td><td>Условие зависит от продукта и правил выплаты</td><td><SourceLink href={ERA_SPLIT}>Справка о сплите</SourceLink></td></tr>
                 <tr><td>2 этапа</td><td>Цель 8%, дневной лимит 5%, общий лимит 10%</td><td>Отдельный продукт; не переносим на 1-этапный</td><td><SourceLink href={ERA_TWO_STAGE}>Правила 2 этапов</SourceLink></td></tr>
                 <tr><td>1 этап</td><td>Цель 11%, дневной лимит 4%, общий лимит 8%</td><td>Отдельный продукт; проверяйте актуальную версию</td><td><SourceLink href={ERA_ONE_STAGE}>Правила 1 этапа</SourceLink></td></tr>
-                <tr><td>Выплата</td><td>3 прибыльных дня; минимум 1%; максимум 10% за период; до 5 рабочих дней</td><td>Заявленное правило, не гарантия выплаты</td><td><SourceLink href={ERA_PAYOUT}>Запрос выплаты</SourceLink></td></tr>
+                <tr><td>Платформы</td><td>Bybit, MT5 и TradeLocker указаны в витрине; продукт и доступный терминал нужно выбирать отдельно</td><td>Платформа меняет технические и страновые ограничения</td><td><SourceLink href={ERA_HOME}>Витрина Era Trade</SourceLink></td></tr>
+                <tr><td>Выплата</td><td>Каждые 15 или 30 дней; 3 прибыльных дня; минимум 1%; максимум 10% за период; до 5 рабочих дней</td><td>Заявленное правило; сделки и ордера должны быть закрыты</td><td><SourceLink href={ERA_PAYOUT_SYSTEM}>Система выплат</SourceLink></td></tr>
                 <tr><td>Партнёрство</td><td>{affiliateSignal?.baseCommissionPct}% по умолчанию, уровни до {affiliateSignal?.maximumPublishedCommissionPct}%, минимум ${affiliateSignal?.minimumPayoutUsd}</td><td>Публичная программа; Ambassador активируется отдельно</td><td><SourceLink href={ERA_AFFILIATE}>Условия партнёров</SourceLink></td></tr>
               </tbody>
             </table>
@@ -137,6 +148,19 @@ export default function RussianEraTradeReviewPage() {
             <article className="ru-card"><WalletCards size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Партнёрская модель</h3><p className="ru-muted">5% — стандартный уровень, а 60% — верхняя опубликованная ступень при объёме рефералов. Размер комиссии не доказывает качество продукта.</p><SourceLink href={ERA_AFFILIATE}>Партнёрская программа</SourceLink></article>
           </div>
           <div className="ru-notice" data-russian-local-affiliate="public-not-activated"><strong>Партнёрство Era Trade не активировано на этом сайте.</strong> Мы не создаём локальный /go/ маршрут без согласованной ссылки и завершённой проверки продукта, юридического лица, выплат и страновых ограничений.</div>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell ru-content" data-russian-eratrade-due-diligence="product-split">
+          <h2>Как не смешать два разных продукта</h2>
+          <ol>
+            <li><strong>Выберите модель:</strong> в двухэтапной схеме цели 8% и 5%, а в одноэтапной заявлена цель 11%; дневные и общие лимиты тоже различаются.</li>
+            <li><strong>Проверьте платформу:</strong> Bybit, MT5 и TradeLocker требуют разных аккаунтов, сетей и ограничений; не переносите правило одного терминала на другой.</li>
+            <li><strong>Пройдите проверку:</strong> после цели оператор описывает ручной risk-review и KYC; до этого не считайте funded-аккаунт окончательно подтверждённым.</li>
+            <li><strong>Подайте выплату корректно:</strong> выберите 15- или 30-дневный период, закройте позиции и ордера, подтвердите 3 прибыльных дня и сохраните дату заявки.</li>
+          </ol>
+          <div className="ru-notice"><strong>Редакционный вывод:</strong> публичные проценты Era Trade являются правилами конкретного продукта, а не универсальным обещанием для любого аккаунта. Определение прибыльного дня описано отдельно в <SourceLink href={ERA_PROFITABLE_DAYS}>правиле 3 прибыльных дней</SourceLink>.</div>
         </div>
       </section>
 
