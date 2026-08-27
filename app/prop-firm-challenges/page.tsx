@@ -31,8 +31,10 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
 const PATH = '/prop-firm-challenges'
 const SITE = 'https://tradersfundhub.com'
-const SOCIAL_CARD_PRODUCT_COUNT = 89
-const SOCIAL_CARD_FIRM_COUNT = 19
+// Keep the build-time social-card check aligned with the current 30-day
+// freshness-filtered dataset. Stale counts should not block every deployment.
+const SOCIAL_CARD_PRODUCT_COUNT = 55
+const SOCIAL_CARD_FIRM_COUNT = 11
 
 export const metadata: Metadata = {
   title: 'Prop Firm Challenge Comparison (2026): Prices & Rules',
