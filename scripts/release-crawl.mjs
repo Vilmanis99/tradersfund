@@ -827,6 +827,7 @@ const russianExpectations = new Map([
     markers: [
       'data-russian-partner-review="fundingpips"',
       'data-russian-partner-country-access="unconfirmed"',
+      'data-russian-partner-review-method="product-first"',
       'data-russian-product-count="5"',
       'data-russian-affiliate-disclosure="fundingpips"',
     ],
@@ -837,6 +838,7 @@ const russianExpectations = new Map([
     markers: [
       'data-russian-partner-review="bright-funded"',
       'data-russian-partner-country-access="unconfirmed"',
+      'data-russian-partner-review-method="product-first"',
       'data-russian-product-count="3"',
       'data-russian-affiliate-disclosure="bright-funded"',
     ],

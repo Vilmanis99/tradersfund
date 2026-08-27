@@ -102,6 +102,7 @@ export default function RussianPartnerReview({
     (tier.priceUsd != null && tier.priceUsd > 0) || (tier.priceEur != null && tier.priceEur > 0),
   ).map(tier => ({ product, tier })))
   const latestCapture = freshProducts.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'дата не указана'
+  const latestAnyCapture = products.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'дата не указана'
   const sourceUrls = [...new Set(freshProducts.map(product => product.sourceUrl))]
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -155,6 +156,12 @@ export default function RussianPartnerReview({
         <div className="ru-shell">
           <h2>Продукты и правила в текущем захвате</h2>
           <p className="ru-muted">Цены остаются в валюте фирмы. Пустое поле означает, что число не подтверждено на странице оператора, а не бесплатный продукт.</p>
+          {products.length > 0 && freshProducts.length === 0 && (
+            <div className="ru-notice" data-russian-partner-review-freshness="stale">
+              <strong>Свежих данных сейчас нет.</strong>{' '}
+              Последний доступный захват датирован {latestAnyCapture} и старше 30-дневного окна. Таблица и рекламные выводы требуют нового захвата перед оплатой.
+            </div>
+          )}
           <div className="ru-table-wrap">
             <table className="ru-table" data-russian-product-count={freshProducts.length}>
               <thead><tr><th>Продукт</th><th>Этапы</th><th>Цель</th><th>Цена</th><th>Дневной лимит</th><th>Макс. убыток</th><th>Просадка</th><th>Сплит</th><th>Первая выплата</th></tr></thead>
@@ -216,6 +223,18 @@ export default function RussianPartnerReview({
           <ul className="ru-source-list">
             {editorialNotes.map(note => <li key={note}>{note}</li>)}
           </ul>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell ru-content" data-russian-partner-review-method="product-first">
+          <h2>Как читать сравнение без рекламных ловушек</h2>
+          <div className="ru-grid">
+            <article className="ru-card"><BadgeDollarSign size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Цена и валюта</h3><p className="ru-muted">Цена относится к конкретному размеру счёта и сохраняется в USD или EUR. Курс банка, комиссия провайдера и временный купон не превращаются в постоянную стоимость.</p></article>
+            <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Просадка и лимит</h3><p className="ru-muted">Статическая, трейлинг- или EOD-просадка меняет момент, в который срабатывает риск-правило. Сверяйте тип просадки с дневным лимитом выбранного продукта.</p></article>
+            <article className="ru-card"><Database size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Выплата</h3><p className="ru-muted">Первая выплата и частота цикла не означают автоматическую выплату: могут потребоваться прибыльные дни, закрытые сделки, KYC и отдельная проверка правил.</p></article>
+            <article className="ru-card"><ExternalLink size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Страна и KYC</h3><p className="ru-muted">Русский интерфейс не подтверждает доступ. Перед оплатой проверьте гражданство, резидентство, платёжный профиль и метод вывода у самой фирмы.</p></article>
+          </div>
         </div>
       </section>
 

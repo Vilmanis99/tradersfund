@@ -11304,6 +11304,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-fundingpips', [
       'data-russian-partner-review={firmSlug}',
       'data-russian-partner-country-access="unconfirmed"',
+      'data-russian-partner-review-method="product-first"',
       'data-russian-affiliate-disclosure={firmSlug}',
       'affiliateSlug="fundingpips"',
       'affiliateFrom="ru-fundingpips-review-verdict"',
@@ -11313,6 +11314,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-bright-funded', [
       'data-russian-partner-review={firmSlug}',
       'data-russian-partner-country-access="unconfirmed"',
+      'data-russian-partner-review-method="product-first"',
       'data-russian-affiliate-disclosure={firmSlug}',
       'affiliateSlug="bright-funded"',
       'affiliateFrom="ru-bright-funded-review-verdict"',

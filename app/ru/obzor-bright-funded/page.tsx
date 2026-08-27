@@ -4,7 +4,7 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/obzor-bright-funded'
 const TITLE = 'Bright Funded: обзор 2026, цены, правила и выплаты'
-const DESCRIPTION = 'Обзор Bright Funded на русском: 3 продукта, цены в EUR, просадка, сплиты, выплаты, KYC и проверка страны перед регистрацией.'
+const DESCRIPTION = 'Обзор Bright Funded на русском: продукты и цены в EUR, просадка, сплиты, выплаты, KYC и проверка страны перед регистрацией.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

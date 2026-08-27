@@ -4,7 +4,7 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/obzor-fundingpips'
 const TITLE = 'FundingPips: обзор 2026, цены, правила и выплаты'
-const DESCRIPTION = 'Обзор FundingPips на русском: 5 продуктов, цены в USD, варианты сплита, просадка, выплаты и проверка страны перед регистрацией.'
+const DESCRIPTION = 'Обзор FundingPips на русском: продукты и цены в USD, варианты сплита, просадка, выплаты и проверка страны перед регистрацией.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
