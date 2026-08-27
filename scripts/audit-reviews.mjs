@@ -10975,6 +10975,121 @@ function checkRussianAcquisitionPilot() {
         }
       }
 
+      const genericPayoutSignal = autocompleteSignals.get('выплаты проп фирм')
+      if (
+        genericPayoutSignal?.engine !== 'Google'
+        || genericPayoutSignal?.capturedAt !== evidence.capturedAt
+        || genericPayoutSignal?.status !== 'no-suggestions-returned'
+        || !Array.isArray(genericPayoutSignal?.suggestions)
+        || genericPayoutSignal.suggestions.length !== 0
+      ) {
+        rows.push('Russian generic payout autocomplete gap or empty-signal caveat is incomplete')
+      }
+      const payoutAutocompleteChecks = new Map([
+        ['fundednext payout', [
+          'fundednext payout rules',
+          'fundednext payout methods',
+          'fundednext payout time',
+          'fundednext payout policy',
+        ]],
+        ['brightfunded payout', [
+          'brightfunded payout',
+          'brightfunded payout rules',
+          'brightfunded payout split',
+          'brightfunded payout policy',
+        ]],
+        ['fundingpips payout', [
+          'fundingpips payout methods',
+          'fundingpips payout rules',
+          'fundingpips payout time',
+          'fundingpips payout cycle',
+        ]],
+      ])
+      for (const [seed, suggestions] of payoutAutocompleteChecks) {
+        const signal = autocompleteSignals.get(seed)
+        for (const suggestion of suggestions) {
+          if (
+            signal?.engine !== 'Google'
+            || signal?.capturedAt !== evidence.capturedAt
+            || !signal?.suggestions?.includes(suggestion)
+          ) {
+            rows.push(`Russian payout autocomplete signal is incomplete for ${seed}: ${suggestion}`)
+          }
+        }
+      }
+
+      const payoutEvidence = new Map((evidence.payoutEvidence ?? [])
+        .map(item => [item.firmSlug, item]))
+      if (payoutEvidence.size !== 3) {
+        rows.push(`Russian payout evidence must contain exactly 3 firms; received ${payoutEvidence.size}`)
+      }
+      const expectedPayoutHosts = new Map([
+        ['fundednext', { host: 'fundednext.com', sources: 2, methods: 6 }],
+        ['bright-funded', { host: 'brightfunded.com', sources: 3, methods: 2 }],
+        ['fundingpips', { host: 'fundingpips.com', sources: 2, methods: 4 }],
+      ])
+      for (const [firmSlug, expected] of expectedPayoutHosts) {
+        const item = payoutEvidence.get(firmSlug)
+        if (
+          !item
+          || item.sourceCapturedAt !== evidence.capturedAt
+          || item.sourceUrls?.length !== expected.sources
+          || item.methods?.length !== expected.methods
+        ) {
+          rows.push(`${firmSlug}: payout source, method or capture fixtures are incomplete`)
+          continue
+        }
+        for (const sourceUrl of item.sourceUrls) {
+          try {
+            const host = new URL(sourceUrl).hostname.toLowerCase().replace(/^www\./, '')
+            if (host !== expected.host && !host.endsWith(`.${expected.host}`)) {
+              rows.push(`${firmSlug}: payout source is not first-party: ${sourceUrl}`)
+            }
+          } catch {
+            rows.push(`${firmSlug}: payout source URL is invalid: ${sourceUrl}`)
+          }
+        }
+      }
+      const fundedNextPayout = payoutEvidence.get('fundednext')
+      if (
+        !fundedNextPayout?.methods?.some(item => item.includes('USDT ERC20 or TRC20'))
+        || !fundedNextPayout?.requestSteps?.some(item => item.includes('OTP'))
+        || !fundedNextPayout?.processing?.some(item => item.includes('24 hours'))
+        || !fundedNextPayout?.processing?.some(item => item.includes('5 business days'))
+        || !fundedNextPayout?.processing?.some(item => item.includes('21 days') && item.includes('14-day'))
+        || !fundedNextPayout?.fees?.some(item => item.includes('gateway charges'))
+        || !fundedNextPayout?.countryBoundary?.some(item => item.includes('including Russia'))
+      ) {
+        rows.push('FundedNext payout methods, OTP, timing, fee or Russia boundary is incomplete')
+      }
+      const brightFundedPayout = payoutEvidence.get('bright-funded')
+      if (
+        !brightFundedPayout?.methods?.some(item => item.includes('USDC') && item.includes('ERC-20'))
+        || !brightFundedPayout?.methods?.some(item => item.includes('EUR'))
+        || !brightFundedPayout?.requestSteps?.some(item => item.includes('Close all open trades'))
+        || !brightFundedPayout?.processing?.some(item => item.includes('30 days'))
+        || !brightFundedPayout?.processing?.some(item => item.includes('14 days'))
+        || !brightFundedPayout?.processing?.some(item => item.includes('maximum of 1 day'))
+        || !brightFundedPayout?.fees?.some(item => item.includes('does not charge'))
+        || !brightFundedPayout?.fees?.some(item => item.includes('USD 5 to USD 50'))
+      ) {
+        rows.push('Bright Funded payout methods, 30/14-day cycle, processing or fee evidence is incomplete')
+      }
+      const fundingPipsPayout = payoutEvidence.get('fundingpips')
+      if (
+        !fundingPipsPayout?.methods?.includes('Card')
+        || !fundingPipsPayout?.methods?.includes('Crypto')
+        || !fundingPipsPayout?.methods?.includes('Rise')
+        || !fundingPipsPayout?.methods?.includes('Bank Transfer')
+        || !fundingPipsPayout?.requestSteps?.some(item => item.includes('15 minutes'))
+        || !fundingPipsPayout?.requestSteps?.some(item => item.includes("trader's own name"))
+        || !fundingPipsPayout?.processing?.some(item => item.includes('1 to 3 working days'))
+        || !fundingPipsPayout?.processing?.some(item => item.includes('1 to 2 working days'))
+        || !fundingPipsPayout?.countryBoundary?.some(item => item.includes('same email'))
+      ) {
+        rows.push('FundingPips payout methods, 15-minute gate, processing or Rise evidence is incomplete')
+      }
+
       const localSignals = new Map((evidence.localFirmSignals ?? [])
         .map(item => [item.operator, item]))
       if (
@@ -11422,17 +11537,48 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(russianRouteFiles.get('/ru/vyplaty-prop-firm'), 'utf8')
     : ''
   for (const token of [
-    'data-russian-payout-ranking="source-gated"',
-    'data-russian-payout-firm-count={shownRows.length}',
+    'data-russian-payout-guide="long-form-source-gated"',
+    'data-russian-payout-partner-count={cards.length}',
+    'data-russian-payout-article="diaspora-withdrawal-decision"',
     'data-russian-country-boundary="payout-not-access"',
     'data-russian-affiliate-disclosure="payout-ranking"',
+    'data-russian-payout-matrix={cards.length}',
+    'data-russian-payout-evidence={card.slug}',
+    'data-russian-payout-featured-partners="fundednext-bright-funded"',
+    'data-russian-payout-featured-partner={card.slug}',
+    'data-russian-payout-gates="eligibility-request-processing-receipt"',
+    'data-russian-payout-product-table={productCount}',
+    'data-russian-payout-methods="rail-token-currency"',
+    'data-russian-payout-fees="firm-provider-network-fx"',
+    'data-russian-payout-diaspora="language-not-bank-country"',
+    'data-russian-payout-secondary="fundingpips"',
+    'data-russian-payout-local-models="separate-rub-contracts"',
+    'data-russian-payout-search="brand-signal-generic-gap"',
+    'data-russian-payout-decision="net-receipt-before-registration"',
     'payoutFirstDays',
     'payoutFrequency',
-    'Crypto',
-    'ru-payouts-',
+    '/go/fundednext?from=ru-payouts-fundednext',
+    '/go/bright-funded?from=ru-payouts-bright-funded',
+    '/go/fundingpips?from=ru-payouts-fundingpips',
     'rel="sponsored nofollow noopener"',
   ]) {
     if (!russianPayoutsPage.includes(token)) rows.push(`Russian payouts page is missing ${token}`)
+  }
+  const currentPayoutProducts = fs.readdirSync(CHALLENGES)
+    .filter(file => file.endsWith('.json') && !file.startsWith('_'))
+    .flatMap(file => JSON.parse(fs.readFileSync(path.join(CHALLENGES, file), 'utf8')))
+    .filter(product => {
+      if (!['fundednext', 'bright-funded', 'fundingpips'].includes(product.firmSlug)) return false
+      const captured = new Date(`${product.sourceCapturedAt}T23:59:59Z`)
+      const ageDays = (Date.now() - captured.getTime()) / 86_400_000
+      return !Number.isNaN(captured.getTime()) && ageDays >= -1 && ageDays <= 30
+    })
+  const currentPayoutPriceCount = currentPayoutProducts.reduce((sum, product) => sum
+    + product.accountSizes.filter(tier =>
+      (tier.priceUsd != null && tier.priceUsd > 0)
+      || (tier.priceEur != null && tier.priceEur > 0)).length, 0)
+  if (currentPayoutProducts.length !== 12 || currentPayoutPriceCount !== 67) {
+    rows.push(`Russian payout fixture expects 12 products and 67 prices; received ${currentPayoutProducts.length} and ${currentPayoutPriceCount}`)
   }
 
   const russianKycPage = fs.existsSync(russianRouteFiles.get('/ru/prop-firmy-bez-kyc'))

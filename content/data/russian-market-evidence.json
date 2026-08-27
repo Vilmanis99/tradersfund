@@ -138,6 +138,58 @@
           "fundingpips zero review",
           "funding pips zero faq"
         ]
+      },
+      {
+        "engine": "Google",
+        "seed": "выплаты проп фирм",
+        "capturedAt": "2026-08-27",
+        "status": "no-suggestions-returned",
+        "suggestions": []
+      },
+      {
+        "engine": "Google",
+        "seed": "fundednext payout",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "fundednext payout rules",
+          "fundednext payout",
+          "fundednext payout methods",
+          "fundednext payout certificate",
+          "fundednext payout cap",
+          "fundednext payout time",
+          "fundednext payout cycle",
+          "fundednext payout policy",
+          "fundednext payout review",
+          "fundednext payout denial"
+        ]
+      },
+      {
+        "engine": "Google",
+        "seed": "brightfunded payout",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "brightfunded payout",
+          "brightfunded payout rules",
+          "brightfunded payout split",
+          "brightfunded payout policy"
+        ]
+      },
+      {
+        "engine": "Google",
+        "seed": "fundingpips payout",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "fundingpips payout methods",
+          "fundingpips payout",
+          "fundingpips payout rules",
+          "fundingpips payout certificate",
+          "fundingpips payout time",
+          "fundingpips payout cycle",
+          "fundingpips payout reddit",
+          "fundingpips payout review",
+          "fundingpips payout cap",
+          "funding pips payout options"
+        ]
       }
     ],
     "notes": [
@@ -423,6 +475,107 @@
       "postKyc": [
         "The published 4-step sequence is KYC, In Review, Customer Agreement and Onboarding.",
         "Trading on the Master Account starts only after all required setup steps are complete."
+      ]
+    }
+  ],
+  "payoutEvidence": [
+    {
+      "firmSlug": "fundednext",
+      "firmName": "FundedNext",
+      "sourceUrls": [
+        "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+        "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward"
+      ],
+      "sourceCapturedAt": "2026-08-27",
+      "methods": [
+        "USDT ERC20 or TRC20",
+        "USDC ERC20",
+        "Confirmo",
+        "RiseWorks",
+        "Bank Transfer",
+        "Direct deposit to FNmarkets"
+      ],
+      "requestSteps": [
+        "Complete the applicable trading cycle and profitability criteria.",
+        "Submit the Payout Request in the account dashboard.",
+        "Confirm the request with an OTP sent to the registered email."
+      ],
+      "processing": [
+        "FundedNext publishes payout issuance within 24 hours after a valid request.",
+        "Stellar 1-Step rewards are scheduled every 5 business days.",
+        "Stellar 2-Step and Stellar Lite start after 21 days and then use 14-day cycles.",
+        "Stellar Instant on-demand eligibility requires its separate growth and EOD gate."
+      ],
+      "fees": [
+        "The trader is responsible for transfer gateway charges."
+      ],
+      "countryBoundary": [
+        "Bank Transfer is not available as a Performance Reward method for the countries listed by FundedNext, including Russia.",
+        "A listed crypto method does not resolve the separate conflict in FundedNext's official Russian-resident access statements."
+      ]
+    },
+    {
+      "firmSlug": "bright-funded",
+      "firmName": "Bright Funded",
+      "sourceUrls": [
+        "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+        "https://help.brightfunded.com/en/articles/11468668-how-can-i-request-my-payout",
+        "https://help.brightfunded.com/en/articles/9241684-do-i-need-to-pay-charges-with-the-payouts"
+      ],
+      "sourceCapturedAt": "2026-08-27",
+      "methods": [
+        "USDC on the ERC-20 network",
+        "Bank Transfer in EUR"
+      ],
+      "requestSteps": [
+        "Close all open trades and pending orders.",
+        "Wait until the published pay day or later.",
+        "Submit the request from the Payout Section of the Bright Funded dashboard."
+      ],
+      "processing": [
+        "The first standard Reward Split is available 30 days after the first funded-account trade.",
+        "After the first Reward Split, the standard cycle is 14 days.",
+        "Bright Funded publishes a maximum of 1 day for finance-team processing after the request."
+      ],
+      "fees": [
+        "Bright Funded says it does not charge an additional payout fee.",
+        "Third-party network, bank, provider and currency-conversion fees can still apply; the help article says some cases range from USD 5 to USD 50 and may rarely exceed that range."
+      ],
+      "countryBoundary": [
+        "USDC ERC-20 availability does not waive SumSub KYC, the Risk Team Security Check or country eligibility.",
+        "The receiving bank, wallet and payment provider must support the selected route for the trader's actual profile."
+      ]
+    },
+    {
+      "firmSlug": "fundingpips",
+      "firmName": "FundingPips",
+      "sourceUrls": [
+        "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods",
+        "https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup"
+      ],
+      "sourceCapturedAt": "2026-08-27",
+      "methods": [
+        "Card",
+        "Crypto",
+        "Rise",
+        "Bank Transfer"
+      ],
+      "requestSteps": [
+        "Close all trades and pending orders before submitting a reward request.",
+        "Wait at least 15 minutes after closing positions.",
+        "Use a card, wallet or bank account in the verified trader's own name."
+      ],
+      "processing": [
+        "FundingPips publishes internal processing of 1 to 3 working days.",
+        "The receiving wallet or bank may need an additional 1 to 2 working days.",
+        "Product-level first-reward gates range from 7 to 14 days where a current number is published."
+      ],
+      "fees": [
+        "Network, bank or provider costs depend on the selected reward method and must be checked before the request."
+      ],
+      "countryBoundary": [
+        "Rise requires separate onboarding with the same email used at FundingPips, a government-issued ID and a selfie.",
+        "Crypto and Card methods do not cancel the Master Account KYC and Customer Agreement sequence."
       ]
     }
   ]
