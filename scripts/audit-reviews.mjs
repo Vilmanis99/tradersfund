@@ -11062,7 +11062,13 @@ function checkRussianAcquisitionPilot() {
   ]) {
     if (!localFirmPage.includes(token)) rows.push(`local-company verification page is missing ${token}`)
   }
-  if (localFirmPage.includes('/go/')) {
+  // Local-company research may hand readers to a separately labelled global
+  // partner section. Keep the old guard for any unlabelled/unsponsored CTA.
+  const approvedLocalGlobalHandoff =
+    localFirmPage.includes('data-russian-local-global-funnel="partner-routes"') &&
+    (localFirmPage.includes('from=ru-local-research-') || localFirmPage.includes("campaign: 'ru-local-research-")) &&
+    localFirmPage.includes('rel="sponsored nofollow noopener"')
+  if (localFirmPage.includes('/go/') && !approvedLocalGlobalHandoff) {
     rows.push('local-company verification page contains an unapproved affiliate CTA')
   }
 

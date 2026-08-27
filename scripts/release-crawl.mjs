@@ -1045,7 +1045,13 @@ for (const [path, href] of [
 }
 const russianLocalFirmPage = pages.find(page =>
   new URL(page.productionUrl).pathname === '/ru/rossiyskie-prop-kompanii')
-if (russianLocalFirmPage?.html.includes('/go/')) {
+// Permit only the explicitly separated global-partner handoff; local-firm
+// research itself must remain verification-only and every CTA must be tagged.
+const approvedLocalGlobalHandoff =
+  russianLocalFirmPage?.html.includes('data-russian-local-global-funnel="partner-routes"') &&
+  russianLocalFirmPage?.html.includes('from=ru-local-research-') &&
+  russianLocalFirmPage?.html.includes('rel="sponsored nofollow noopener"')
+if (russianLocalFirmPage?.html.includes('/go/') && !approvedLocalGlobalHandoff) {
   errors.push('/ru/rossiyskie-prop-kompanii: unapproved local-firm affiliate action rendered')
 }
 

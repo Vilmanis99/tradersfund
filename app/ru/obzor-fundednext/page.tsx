@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { AlertTriangle, ArrowRight, BadgeDollarSign, CheckCircle2, Database } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
-import { challengeTierEconomics, getAllFirms, getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
+import { challengeTierEconomics, getAllFirms, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
@@ -40,6 +40,25 @@ function priceRange(values: number[]) {
   return sorted[0] === sorted.at(-1) ? format(sorted[0]) : `${format(sorted[0])}–${format(sorted.at(-1)!)}`
 }
 
+function targetLabel(product: Challenge) {
+  if (!product.profitTargets) return 'нет цели'
+  const targets = [product.profitTargets.phase1, product.profitTargets.phase2]
+    .filter((target): target is number => target != null)
+  return targets.length > 0 ? `${targets.join('% / ')}%` : 'не опубликованы'
+}
+
+function lossLabel(product: Challenge) {
+  const daily = product.dailyLossPct == null ? 'нет дневного лимита' : `${product.dailyLossPct}% в день`
+  const maximum = product.maxLossPct == null ? 'максимум не опубликован' : `${product.maxLossPct}% максимум`
+  return `${daily}; ${maximum}`
+}
+
+function payoutLabel(product: Challenge) {
+  if (product.payoutFirstDays === 0) return 'по запросу после условий'
+  if (product.payoutFirstDays == null) return 'срок не опубликован'
+  return `${product.payoutFirstDays} дн.; ${payoutLabels[product.payoutFrequency ?? ''] ?? product.payoutFrequency ?? 'цикл не опубликован'}`
+}
+
 const faqs: RussianFaqItem[] = [
   {
     q: 'Доступен ли FundedNext резидентам России?',
@@ -56,6 +75,22 @@ const faqs: RussianFaqItem[] = [
   {
     q: 'Можно ли обойти ограничение страны через VPN?',
     a: 'Нет. FundedNext прямо запрещает скрывать резидентство или использовать VPN, прокси, чужую личность либо неверные данные для обхода ограничений; это может привести к закрытию аккаунта.',
+  },
+  {
+    q: 'Какая программа дешевле всего по захваченным ценам?',
+    a: 'Минимальный опубликованный вход — Stellar Lite на $5K за $32.99. Следующие ориентиры — $59.99 для 2-Step на $6K и $59.99 для Instant на $2K, но у них разные просадка, сплит и возврат комиссии; сравнивать только цену нельзя.',
+  },
+  {
+    q: 'Когда возвращают регистрационный взнос?',
+    a: 'Для Stellar 2-Step возврат привязан к первому одобренному reward. Для новых 1-Step и Lite — к третьему одобренному reward. Stellar Instant не возвращает взнос, потому что оценочного этапа нет.',
+  },
+  {
+    q: 'Что происходит с прибылью во время важных новостей?',
+    a: 'На funded-счёте сделки за 5 минут до и 5 минут после указанного события получают только 40% зачёта прибыли, а убыток учитывается полностью. На этапе challenge действует другой режим, поэтому проверяйте продуктовую страницу.',
+  },
+  {
+    q: 'Можно ли торговать с советником или копировать сделки?',
+    a: 'EA зависит от платформы и отдельного разрешения; автоматизацию нельзя считать разрешённой на cTrader и Match-Trader только потому, что она доступна на MT4/MT5. Copy-trading ограничен счетами одного владельца, а копирование между funded-счетами запрещено.',
   },
 ]
 
@@ -165,6 +200,29 @@ export default function RussianFundedNextReviewPage() {
       </section>
 
       <section className="ru-section">
+        <div className="ru-shell">
+          <div className="ru-content">
+            <h2>FundedNext в цифрах</h2>
+            <p>Этот блок отделяет факты из захвата условий от редакционной оценки. Если checkout показывает другую цену или правило, приоритет имеет checkout: промокоды, платформа и дополнительные опции меняют итоговую сумму.</p>
+            <div className="ru-table-wrap">
+              <table className="ru-table" data-fundednext-russian-facts="true">
+                <tbody>
+                  <tr><th>Год основания</th><td>{firm?.founded ?? 'не указан'}</td></tr>
+                  <tr><th>Продукты в захвате</th><td>{freshProducts.length} модели Stellar / {pricedTiers.length} ценовых уровня</td></tr>
+                  <tr><th>Диапазон листинговой цены</th><td>{priceRange(pricedTiers.map(item => item.price))} до дополнений и скидок</td></tr>
+                  <tr><th>Стартовая доля reward</th><td>{freshProducts.length ? `${Math.min(...freshProducts.map(product => product.profitSplitPct ?? 0))}%–${Math.max(...freshProducts.map(product => product.profitSplitPct ?? 0))}%` : 'не опубликована'}</td></tr>
+                  <tr><th>Совокупный лимит</th><td>{firm?.maxAllocation ?? 'не указан'}</td></tr>
+                  <tr><th>Платформы</th><td>{firm?.platforms.join(', ') ?? 'не опубликованы'}</td></tr>
+                  <tr><th>Последняя проверка</th><td>{latestProductCapture ?? 'не указана'}</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Заявление о доле 95% не является стартовым условием: текущие карточки продуктов показывают базовые {freshProducts.filter(product => product.profitSplitPct === 80).length ? '80%' : 'значения'} для challenge-моделей и {instant?.profitSplitPct ?? '—'}% для Instant. Более высокая доля требует отдельных условий, поэтому мы не подставляем её в расчёт окупаемости.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="ru-section">
         <div className="ru-shell ru-content">
           <h2>Разбор четырёх моделей Stellar</h2>
           <p className="ru-muted">У FundedNext нет одной универсальной программы: одинаковый логотип скрывает четыре разных набора ограничений.</p>
@@ -220,14 +278,84 @@ export default function RussianFundedNextReviewPage() {
       </section>
 
       <section className="ru-section">
+        <div className="ru-shell">
+          <div className="ru-content">
+            <h2>Полный расчёт true cost по каждому уровню</h2>
+            <p>Это единая математика для всех опубликованных цен: минимальная стоимость делится на стартовый сплит, затем сравнивается с заявленным максимальным убытком. Значение «дни» — условная модель роста на 1% в торговый день, а не обещание пройти проверку или получить выплату.</p>
+          </div>
+          <div className="ru-table-wrap">
+            <table className="ru-table" data-fundednext-russian-truecost="true">
+              <thead><tr><th>Модель / счёт</th><th>Стоимость</th><th>Валовая прибыль для возврата</th><th>R-множитель к макс. убытку</th><th>Дни при 1%/день</th></tr></thead>
+              <tbody>
+                {pricedTiers.length > 0 ? pricedTiers.map(({ product, tier }) => {
+                  const economics = challengeTierEconomics(product, tier)
+                  return (
+                    <tr key={`true-cost-${product.productSlug}-${tier.sizeUsd}`}>
+                      <td>{product.productName} ${tier.sizeUsd.toLocaleString('en-US')}</td>
+                      <td>{economics ? money(economics.minimumCost) : '—'}</td>
+                      <td>{economics ? money(economics.breakEvenProfit) : '—'} ({product.profitSplitPct ?? '—'}%)</td>
+                      <td>{economics?.rMultiple == null ? '—' : economics.rMultiple.toFixed(2)}</td>
+                      <td>{economics?.dayCount == null ? '—' : economics.dayCount}</td>
+                    </tr>
+                  )
+                }) : <tr><td colSpan={5}>Нет свежих цен для расчёта.</td></tr>}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section className="ru-section">
         <div className="ru-shell ru-content">
           <h2>Выплаты, новости и ограничения стратегии</h2>
-          <ul>
-            <li><strong>Выплата:</strong> у 2-Step и Lite первая стандартная заявка начинается через 21 день, у 1-Step — через 5 дней. Instant не имеет фиксированной даты, но требует отдельного условия роста и EOD-проверки.</li>
-            <li><strong>Новости:</strong> на funded-счёте сделки в окне 5 минут до и после указанного события получают только 40% зачёта прибыли; убыток засчитывается полностью. Разрешение торговать новость на этапе оценки не равно полной выплате на funded-этапе.</li>
-            <li><strong>Автоматизация:</strong> EA зависит от платформы и платного разрешения; на cTrader и Match-Trader автоматизация ограничена. Copy-trading разрешён только в узких сценариях для счетов одного владельца, а копирование между funded-счетами запрещено.</li>
-            <li><strong>Резидентство:</strong> для России официальные страницы противоречат друг другу. Для русскоязычных трейдеров за пределами России проверяйте фактическую страну, адрес и платёжный профиль — гражданство и язык общения не заменяют KYC.</li>
-          </ul>
+          <p>Периодичность reward — это отдельное ограничение от цели и просадки. Для 2-Step и Lite первый стандартный запрос начинается через 21 день, затем применяется двухнедельный цикл; для 1-Step захват указывает 5 дней. Instant не имеет оценочной фазы, но требует роста 5% и проверки в конце дня для запроса по требованию; при росте от 1% до 5% действует 14-дневный цикл.</p>
+          <div className="ru-grid">
+            <article className="ru-card">
+              <h3>Новости на funded-счёте</h3>
+              <p>В окне 5 минут до и после указанного события прибыль получает только 40% зачёта, а убыток учитывается полностью. То, что новость разрешена на этапе оценки, не означает полного зачёта на funded-этапе.</p>
+            </article>
+            <article className="ru-card">
+              <h3>Ночные и выходные позиции</h3>
+              <p>Условия захвата разрешают удержание позиций overnight и на выходных по всем четырём CFD-моделям. Своп и закрытие рынка всё равно нужно заложить в собственный риск-план: разрешение держать позицию не отменяет лимиты убытка.</p>
+            </article>
+            <article className="ru-card">
+              <h3>EA и copy-trading</h3>
+              <p>Автоматизация зависит от платформы и отдельного разрешения; cTrader и Match-Trader нельзя считать эквивалентом MT4/MT5. Copy-trading ограничен сценариями одного владельца, а копирование между funded-счетами запрещено в зафиксированных правилах.</p>
+            </article>
+            <article className="ru-card">
+              <h3>Куда может прийти reward</h3>
+              <p>В профиле FundedNext заявлены методы: {firm?.payoutMethods?.join(', ') ?? 'методы не опубликованы'}. Доступный метод и комиссия зависят от страны, валюты и проверки KYC; не считайте наличие метода на сайте гарантией для российского или зарубежного профиля.</p>
+            </article>
+          </div>
+          <div className="ru-notice">
+            <strong>Проверка перед выплатой.</strong> Для резидента России остаётся конфликт официальных страниц. Для русскоязычного трейдера в Казахстане, ОАЭ, Европе, Израиле или Северной Америке важны фактическая страна проживания, адрес и платёжный профиль — гражданство и язык общения их не заменяют.
+          </div>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell ru-content">
+          <h2>Сильные стороны и ограничения</h2>
+          <div className="ru-grid">
+            <article className="ru-card">
+              <h3>Что может быть полезно</h3>
+              <ul>
+                <li>Четыре модели позволяют выбрать статическую или трейлинг-просадку и наличие оценочных этапов.</li>
+                <li>2-Step сохраняет {twoStep?.maxLossPct ?? '—'}% статического максимального убытка и {twoStep?.dailyLossPct ?? '—'}% дневного лимита.</li>
+                <li>Ночные и выходные позиции заявлены разрешёнными для всех текущих CFD-моделей.</li>
+                <li>Размер, цена, сплит и период первой выплаты разделены в таблицах, поэтому их можно сверить перед оплатой.</li>
+              </ul>
+            </article>
+            <article className="ru-card">
+              <h3>Что увеличивает риск</h3>
+              <ul>
+                <li>Базовая доля начинается с {freshProducts.length ? `${Math.min(...freshProducts.map(product => product.profitSplitPct ?? 0))}%` : 'неуказанного значения'}, а «95%» требует отдельных условий.</li>
+                <li>На funded-счёте новостное окно даёт только 40% зачёта прибыли, хотя убыток учитывается полностью.</li>
+                <li>Instant использует {instant?.maxLossPct ?? '—'}% трейлинг-просадки и не возвращает первоначальный взнос.</li>
+                <li>Доступ для России не подтверждён из-за противоречия официальных страниц; ссылка не является обходом KYC.</li>
+              </ul>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -278,26 +406,37 @@ export default function RussianFundedNextReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell">
-          <h2>{hasFreshProducts ? 'Цены по свежему захвату без пересчёта валюты' : 'Цены временно не показываются'}</h2>
+          <h2>{hasFreshProducts ? `Все ${pricedTiers.length} ценовых уровня и их ограничения` : 'Цены временно не показываются'}</h2>
+          <p className="ru-muted">Одна и та же цена имеет разный смысл при статической и трейлинг-просадке. Поэтому ниже рядом с каждым уровнем показаны этапы, цели, лимиты и стартовая доля, а не только размер счёта.</p>
           <div className="ru-table-wrap">
             <table className="ru-table">
-              <thead><tr><th>Модель</th><th>Размер счёта</th><th>Цена</th><th>Возврат взноса</th><th>Источник</th></tr></thead>
+              <thead><tr><th>Модель</th><th>Счёт</th><th>Этапы / цели</th><th>Цена</th><th>Лимиты</th><th>Просадка</th><th>Сплит</th><th>Возврат</th><th>Захват</th></tr></thead>
               <tbody>
                 {pricedTiers.length > 0 ? pricedTiers.map(({ product, tier, price }) => (
                   <tr key={`${product.productSlug}-${tier.sizeUsd}`}>
                     <td>{product.productName}</td>
                     <td>${tier.sizeUsd.toLocaleString('en-US')}</td>
+                    <td>{product.phases === 0 ? 'без оценки' : `${product.phases}; ${targetLabel(product)}`}</td>
                     <td>${price.toLocaleString('en-US', { minimumFractionDigits: Number.isInteger(price) ? 0 : 2, maximumFractionDigits: 2 })}</td>
+                    <td>{lossLabel(product)}</td>
+                    <td>{product.drawdownType ? (drawdownLabels[product.drawdownType] ?? product.drawdownType) : 'не опубликована'}</td>
+                    <td>{product.profitSplitPct == null ? 'не опубликован' : `${product.profitSplitPct}%`}</td>
                     <td>{tier.refundable ? 'условно возвратный' : 'невозвратный'}</td>
-                    <td>{product.sourceCapturedAt}</td>
+                    <td>{product.sourceCapturedAt}; {payoutLabel(product)}</td>
                   </tr>
-                )) : <tr><td colSpan={5}>Нет свежих цен для безопасного отображения; откройте официальную страницу оплаты.</td></tr>}
+                )) : <tr><td colSpan={9}>Нет свежих цен для безопасного отображения; откройте официальную страницу оплаты.</td></tr>}
               </tbody>
             </table>
           </div>
           <p className="ru-source-line">
             Уникальных свежих страниц продукта: {sourceUrls.length}. Полные доказательства и
             примечания доступны в <Link href="/blog/fundednext-review" hrefLang="en">английском обзоре FundedNext</Link>.
+          </p>
+          <p className="ru-source-line">
+            Официальные страницы, использованные для цен и правил:{' '}
+            {sourceUrls.map((url, index) => (
+              <span key={url}>{index > 0 ? '; ' : ''}<a href={url} target="_blank" rel="noopener noreferrer">источник {index + 1}</a></span>
+            ))}
           </p>
         </div>
       </section>
