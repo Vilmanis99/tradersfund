@@ -7,21 +7,42 @@ import { getAlternateLanguageHref } from '@/lib/localizedRoutes'
 import { navLinks } from './navLinks'
 
 const russianNavLinks = [
-  { label: 'Рейтинг', href: '/ru/luchshie-prop-firmy' },
-  { label: 'Крипто-проп', href: '/ru/luchshie-kripto-prop-firmy' },
-  { label: 'Без челленджа', href: '/ru/prop-firmy-bez-chelendzha' },
-  { label: 'Для русскоязычных', href: '/ru/dlya-russkoyazychnykh-treyderov' },
-  { label: 'Сравнение партнёров', href: '/ru/fundednext-vs-fundingpips' },
+  { label: 'Главная', href: '/ru' },
+  {
+    label: 'Проп-фирмы',
+    href: '/ru/luchshie-prop-firmy',
+    children: [
+      { label: 'Рейтинг глобальных фирм', href: '/ru/luchshie-prop-firmy' },
+      { label: 'Крипто-проп', href: '/ru/luchshie-kripto-prop-firmy' },
+      { label: 'Без челленджа', href: '/ru/prop-firmy-bez-chelendzha' },
+      { label: 'FundedNext против FundingPips', href: '/ru/fundednext-vs-fundingpips' },
+      { label: 'Местные компании', href: '/ru/rossiyskie-prop-kompanii' },
+    ],
+  },
+  {
+    label: 'Обзоры',
+    href: '/ru/obzor-fundednext',
+    children: [
+      { label: 'FundedNext', href: '/ru/obzor-fundednext' },
+      { label: 'FundingPips', href: '/ru/obzor-fundingpips' },
+      { label: 'Bright Funded', href: '/ru/obzor-bright-funded' },
+      { label: 'PropLive', href: '/ru/obzor-proplive' },
+      { label: 'Era Trade', href: '/ru/obzor-eratrade' },
+      { label: 'KasCapital', href: '/ru/obzor-kascapital' },
+    ],
+  },
+  {
+    label: 'Гайды',
+    href: '/ru/dlya-russkoyazychnykh-treyderov',
+    children: [
+      { label: 'Для русскоязычных за рубежом', href: '/ru/dlya-russkoyazychnykh-treyderov' },
+      { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },
+      { label: 'Выплаты', href: '/ru/vyplaty-prop-firm' },
+      { label: 'Проверка KYC', href: '/ru/prop-firmy-bez-kyc' },
+      { label: 'Как проверять отзывы', href: '/ru/otzyvy-prop-firm' },
+    ],
+  },
   { label: 'Промокоды', href: '/ru/promokody-prop-firm' },
-  { label: 'Выплаты', href: '/ru/vyplaty-prop-firm' },
-  { label: 'KYC', href: '/ru/prop-firmy-bez-kyc' },
-  { label: 'Обзор PropLive', href: '/ru/obzor-proplive' },
-  { label: 'Обзор Era Trade', href: '/ru/obzor-eratrade' },
-  { label: 'Обзор KasCapital', href: '/ru/obzor-kascapital' },
-  { label: 'Местные компании', href: '/ru/rossiyskie-prop-kompanii' },
-  { label: 'Отзывы проп-фирм', href: '/ru/otzyvy-prop-firm' },
-  { label: 'Обзор FundedNext', href: '/ru/obzor-fundednext' },
-  { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },
 ] as const
 
 interface HeaderNavProps {

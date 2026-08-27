@@ -11339,6 +11339,9 @@ function checkRussianAcquisitionPilot() {
 
   const headerNav = fs.readFileSync(path.join(ROOT, 'components/HeaderNav.tsx'), 'utf8')
   for (const token of [
+    "label: 'Проп-фирмы'",
+    "label: 'Обзоры'",
+    "label: 'Гайды'",
     "label: 'Местные компании'",
     "href: '/ru/rossiyskie-prop-kompanii'",
     "href: '/ru/luchshie-kripto-prop-firmy'",
@@ -11350,6 +11353,8 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/obzor-proplive'",
     "href: '/ru/obzor-eratrade'",
     "href: '/ru/obzor-kascapital'",
+    "href: '/ru/obzor-fundingpips'",
+    "href: '/ru/obzor-bright-funded'",
     "href: '/ru/otzyvy-prop-firm'",
     "href: '/ru/prop-firmy-bez-chelendzha'",
     'getAlternateLanguageHref(pathname)',
