@@ -23,6 +23,11 @@ type RussianPartnerReviewProps = {
   countryNote: ReactNode
   verdict: Array<{ title: string; body: ReactNode }>
   editorialNotes: string[]
+  decisionGuide: {
+    title: string
+    intro: ReactNode
+    items: Array<{ title: string; body: ReactNode }>
+  }
   faqs: RussianFaqItem[]
 }
 
@@ -93,6 +98,7 @@ export default function RussianPartnerReview({
   countryNote,
   verdict,
   editorialNotes,
+  decisionGuide,
   faqs,
 }: RussianPartnerReviewProps) {
   const firm = getAllFirms().find(candidate => candidate.name === firmName)
@@ -234,6 +240,22 @@ export default function RussianPartnerReview({
             <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Просадка и лимит</h3><p className="ru-muted">Статическая, трейлинг- или EOD-просадка меняет момент, в который срабатывает риск-правило. Сверяйте тип просадки с дневным лимитом выбранного продукта.</p></article>
             <article className="ru-card"><Database size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Выплата</h3><p className="ru-muted">Первая выплата и частота цикла не означают автоматическую выплату: могут потребоваться прибыльные дни, закрытые сделки, KYC и отдельная проверка правил.</p></article>
             <article className="ru-card"><ExternalLink size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Страна и KYC</h3><p className="ru-muted">Русский интерфейс не подтверждает доступ. Перед оплатой проверьте гражданство, резидентство, платёжный профиль и метод вывода у самой фирмы.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="ru-section" data-russian-unique-angle={firmSlug}>
+        <div className="ru-shell ru-content">
+          <h2>{decisionGuide.title}</h2>
+          <p className="ru-muted">{decisionGuide.intro}</p>
+          <div className="ru-grid">
+            {decisionGuide.items.map(item => (
+              <article className="ru-card" key={item.title}>
+                <BadgeDollarSign size={22} color="var(--accent-light)" aria-hidden="true" />
+                <h3>{item.title}</h3>
+                <p className="ru-muted">{item.body}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
