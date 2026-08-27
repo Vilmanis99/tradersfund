@@ -3,7 +3,7 @@ title: "Bright Funded Review 2026: Three Plans, One Important Currency Catch"
 seoTitle: "Bright Funded Review 2026: EUR Fees & Drawdown"
 slug: "bright-funded-prop-firm"
 date: "2025-05-19 11:10:28"
-modified: "2026-08-17 12:00:00"
+modified: "2026-08-27"
 author: "Tara Mohseni"
 excerpt: "Bright Funded now has 3 evaluation paths and EUR list pricing. The 1-Step trailing drawdown and 30-day first payout are the deciding rules."
 seoDescription: "Bright Funded review comparing 3 EUR-priced evaluations, fees, 80% splits, static versus trailing drawdown, payout timing, and true cost."
@@ -28,11 +28,12 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Loss models</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% real-time trailing on 1-Step; 8% or 10% static on 2-Step</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Minimum trading days</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5 per evaluation phase</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Standard payout cycle</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">First request after 30 days; then every 14 days</td></tr>
-    <tr><td style="padding: 8px 12px;"><strong>India availability signal</strong></td><td style="padding: 8px 12px;">India was not among the 6 restricted countries published on 2026-08-10</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Evaluation-profit reward</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">15% of evaluation profits after 10% funded growth and an approved payout</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>India availability signal</strong></td><td style="padding: 8px 12px;">India was not among the 6 restricted countries published on 2026-08-27</td></tr>
   </tbody>
 </table>
 
-<p>Bright Funded’s public rules name 3 plans and 18 account-size combinations. Our source capture is dated 2026-08-10; temporary SUMMER15, SUMMER25, and SUMMER30 prices were excluded so a short campaign does not masquerade as the normal fee.</p>
+<p>Bright Funded’s public rules name 3 plans and 18 account-size combinations. Our source capture is dated 2026-08-27; temporary B2B30 prices were excluded so a 30% campaign does not masquerade as the normal fee.</p>
 
 <p><strong>Minimum-cost context.</strong> The <a href="/cheapest-prop-firms">EUR-denominated price ranking</a> lists the €47 Bright Funded 2-Step Bright path independently from USD products; it does not insert a temporary FX rate to manufacture a cross-currency position.</p>
 
@@ -63,7 +64,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Pricing and rules are current as of 2026-08-10. The 18 fees above are EUR list prices from Bright Funded’s own plan pages; confirm the live checkout currency and any temporary offer through <a href="/go/bright-funded">Bright Funded</a> before paying.</p>
+<p>Pricing and rules are current as of 2026-08-27. The 18 fees above are EUR list prices from Bright Funded’s own plan pages; confirm the live checkout currency and any temporary offer through <a href="/go/bright-funded">Bright Funded</a> before paying.</p>
 
 <p>The cheapest list-price route is 2-Step Bright at €47 for $5K, but “cheapest” does not mean easiest: it asks for 8% and 5% across 2 phases with a static 8% maximum loss. The €49 1-Step removes one phase but raises the single target to 10% and replaces the static floor with a real-time 6% trailing limit.</p>
 
@@ -79,7 +80,7 @@ type: "post"
 
 <p><strong>Holding, EAs, and copying.</strong> Overnight and weekend holding are allowed on all 3 captured paths, which therefore appear in the <a href="/best-swing-trading-prop-firms">product-level swing-trading comparison</a>. Swaps still count unless a swap-free add-on is purchased. Expert Advisors are permitted, but DXtrade does not support API or automated execution. Copy trading is limited to Bright Funded, other evaluation, or retail accounts owned by the same person; copying another trader is prohibited.</p>
 
-<p><strong>India practical check.</strong> Bright Funded’s 2026-08-10 help page listed Cuba, Iran, North Korea, Pakistan, Syria, and Vietnam as restricted, not India. That supports purchase availability, not Indian regulatory approval. KYC still requires a valid passport, national ID, or driving licence after the evaluation, and an Indian trader should confirm name matching and payout-route availability before buying.</p>
+<p><strong>India practical check.</strong> Bright Funded’s 2026-08-27 help page listed Cuba, Iran, North Korea, Pakistan, Syria, and Vietnam as restricted, not India. That supports purchase availability, not Indian regulatory approval. KYC still requires a valid passport, national ID, or driving licence after the evaluation, and an Indian trader should confirm name matching and payout-route availability before buying.</p>
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 
@@ -131,9 +132,11 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p><strong>First request: day 30.</strong> The standard funded cycle starts when the first trade is placed, and the first Reward Split can be requested after 30 days. Subsequent standard requests run every 14 days. A 14-day first cycle, a 7-day weekly cycle, and a 90% split are checkout add-ons rather than base terms.</p>
+<p><strong>First request: day 30.</strong> The standard funded cycle starts when the first trade is placed, and the first Reward Split can be requested after 30 days. The same help article says later requests run every 14 days but also labels bi-weekly payouts an add-on; this wording conflict is unresolved. A 7-day weekly cycle and a 90% split are checkout add-ons rather than base terms.</p>
 
-<p><strong>Methods and minimum.</strong> Bright Funded publishes bank transfer in EUR and crypto in USDC on ERC-20, with no firm-imposed minimum beyond €0.01-equivalent profit. The firm says its finance team processes an approved request within 1 day, but banks, crypto processors, network gas, and currency conversion can add third-party costs.</p>
+<p><strong>Methods and minimum.</strong> Bright Funded publishes bank transfer in EUR and crypto in USDC on ERC-20, with no firm-imposed minimum beyond $0.01 of funded profit. The firm says its finance team processes an approved request within 1 day, but banks, crypto processors, network gas, and currency conversion can add third-party costs.</p>
+
+<p><strong>Conditional 15% evaluation-profit reward.</strong> Bright Funded says Phase 1 and Phase 2 profits can produce a 15% bonus only after funded accounts reach at least 10% combined growth and an approved payout is received. The bonus is added to a new funded account and becomes withdrawable on its next payout after one activating trade; it is not cash paid automatically when the evaluation is passed.</p>
 
 <p><strong>India cash-flow implication.</strong> An Indian trader paying a EUR fee and receiving an EUR bank transfer can face conversion at both ends; USDC avoids a bank FX conversion but adds ERC-20 network and off-ramp considerations. Bright Funded says third-party payout costs can range from $5 to $50 in some cases, so confirm the receiving route before a small first withdrawal.</p>
 
@@ -148,6 +151,7 @@ type: "post"
   <li>The no-consistency rule removes a best-day percentage test from both passing and payout.</li>
   <li>Overnight and weekend holding are allowed on all 3 captured plans.</li>
   <li>The base 80% split can scale to 100%, while a 90% split is available as an add-on.</li>
+  <li>The conditional evaluation-profit program credits 15% after 10% funded growth and an approved payout.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Cons</strong></h2>
@@ -172,7 +176,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>Can traders in India buy Bright Funded?</strong></h3>
-<p>India was not among Bright Funded’s 6 published restricted countries on 2026-08-10. That indicates account availability, not approval by an Indian regulator; complete the firm’s KYC, confirm the payment route in your own name, and compare the evidence level on our <a href="/best-prop-firms-in-india">India prop-firm shortlist</a>.</p>
+<p>India was not among Bright Funded’s 6 published restricted countries on 2026-08-27. That indicates account availability, not approval by an Indian regulator; complete the firm’s KYC, confirm the payment route in your own name, and compare the evidence level on our <a href="/best-prop-firms-in-india">India prop-firm shortlist</a>.</p>
 
 <h3 class="wp-block-heading"><strong>What is the cheapest Bright Funded challenge?</strong></h3>
 <p>The lowest captured list price is €47 for the $5K 2-Step Bright. Its rules are an 8% Phase 1 target, 5% Phase 2 target, 4% daily loss, and 8% static maximum loss.</p>
