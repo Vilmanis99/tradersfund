@@ -3774,7 +3774,6 @@ function checkChallengeLifecyclePillar() {
   const staleClaims = [
     'promo applied',
     '~$330',
-    '$299.99',
     '30 days after activation',
     'FXIFY evaluation products',
     'On-demand payouts from day 1',
@@ -7759,7 +7758,7 @@ function checkFundedNextAffiliatePath() {
       rows.push(`FundedNext review is missing conversion safeguard: ${fragment}`)
     }
   }
-  if (parsed.data.modified !== '2026-08-17') {
+  if (parsed.data.modified !== '2026-08-27') {
     rows.push('FundedNext review modified date must match the product-fit review date')
   }
   if (!ftmoRaw.includes('href="/compare/ftmo-vs-fundednext"')) {

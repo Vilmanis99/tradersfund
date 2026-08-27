@@ -57,19 +57,15 @@
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://fundednext.com/pt/plan",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceUrl": "https://fundednext.com/cfds",
+    "sourceCapturedAt": "2026-08-27",
     "notes": [
-      "Prices are global USD list prices before promotions and exclude the non-refundable $25 cTrader or Match-Trader platform fee.",
-      "The current base Reward Share is 80%; 95% is a paid add-on and must not be presented as standard.",
+      "Standard global USD list prices; promotions, platform fees and optional add-ons are excluded.",
+      "The base Reward Share is 80%; up to 95% requires an add-on or later progression.",
+      "The standard first reward window is 21 days, followed by 14-day cycles; compliance review still applies.",
       "The registration fee is refundable with the first approved Performance Reward; platform fees are not.",
-      "First standard payout eligibility is after 21 days, then every 14 days.",
-      "News-window profits are reduced to a 40% count in the funded stage while 100% of losses remain.",
-      "INDIA AVAILABILITY: India is not among the 20 restricted CFD countries listed by FundedNext on April 8, 2026. This does not constitute regulatory approval or legal advice.",
-      "INDIA CHECKOUT: International Cards accepts Visa, Mastercard and Amex, with cardholder name required to match the FundedNext account. The site also advertises 30 cryptocurrencies; any Local Payment option is country-dependent and must appear in the user's dashboard.",
-      "KYC: physical national ID, passport or residence permit plus liveness check; the help center says review typically takes 48 hours and profile KYC renews every 90 days.",
-      "PAYOUT ROUTES: USDT/USDC can be requested from $20 up to $1,999 on standard routes, RiseWorks from $50, and bank transfer from $1,000 to $50,000. Provider processing fees can be up to 3.5%.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-07-27.json"
+      "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-08-27.json"
     ]
   },
   {
@@ -129,15 +125,15 @@
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://help.fundednext.com/en/articles/8021119-can-i-reset-my-account-anytime",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+    "sourceCapturedAt": "2026-08-27",
     "notes": [
-      "Prices are global USD list prices from FundedNext's current reset table; they exclude promotions and the non-refundable $25 cTrader or Match-Trader platform fee.",
-      "The former review accidentally used 15% evaluation-reward amounts as challenge prices; these figures replace that category error.",
-      "The base Reward Share for new purchases is 80%, not 95%.",
-      "The refundable fee is available with the third successful Performance Reward for purchases on or after January 12, 2026.",
-      "Performance Rewards run on 5-business-day cycles.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-07-27.json"
+      "Standard global USD list prices from the current product page; promotions and optional add-ons are excluded.",
+      "The base Reward Share is 80%; the current product page advertises up to 95% with the applicable conditions.",
+      "The first standard reward cycle is 5 business days; the fee refund is tied to the third reward for new accounts.",
+      "The fee refund is tied to the third approved reward for new accounts.",
+      "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-08-27.json"
     ]
   },
   {
@@ -198,14 +194,15 @@
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://help.fundednext.com/en/articles/8021119-can-i-reset-my-account-anytime",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+    "sourceCapturedAt": "2026-08-27",
     "notes": [
-      "Prices are global USD list prices and include the now-published $200K tier; promotions and the non-refundable $25 cTrader or Match-Trader fee are excluded.",
-      "The base funded Reward Share is 80%; the challenge stages themselves pay no reward share.",
-      "The refundable fee becomes available with the third approved Performance Reward.",
-      "First standard payout eligibility is 21 days, then every 14 days.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-07-27.json"
+      "Standard global USD list prices from the current product page; promotions and optional add-ons are excluded.",
+      "The base funded Reward Share is 80%; the product page advertises up to 95% with the applicable conditions.",
+      "The first standard reward window is 21 days, followed by 14-day cycles; the fee refund is tied to the third reward for new accounts.",
+      "The fee refund is tied to the third approved reward for new accounts.",
+      "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-08-27.json"
     ]
   },
   {
@@ -216,22 +213,22 @@
     "accountSizes": [
       {
         "sizeUsd": 2000,
-        "priceUsd": 59,
+        "priceUsd": 59.99,
         "refundable": false
       },
       {
         "sizeUsd": 5000,
-        "priceUsd": 149,
+        "priceUsd": 149.99,
         "refundable": false
       },
       {
         "sizeUsd": 10000,
-        "priceUsd": 299,
+        "priceUsd": 299.99,
         "refundable": false
       },
       {
         "sizeUsd": 20000,
-        "priceUsd": 599,
+        "priceUsd": 599.99,
         "refundable": false
       }
     ],
@@ -254,14 +251,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundednext.com/en/articles/11641161-how-much-does-each-stellar-instant-account-cost",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-08-27",
     "notes": [
-      "Stellar Instant is a simulated instant-funded product with no evaluation phase and no refundable fee.",
-      "The starting Reward Share is 70%, not the 80% ceiling reached from Tier 3.",
+      "The current official pricing article lists cents: $59.99, $149.99, $299.99 and $599.99; swap-free accounts cost 10% more.",
+      "Stellar Instant has no evaluation phase and no refundable fee.",
+      "The starting Reward Share is 70%; official scale-up guidance raises it to 80% from tier 3.",
+      "On-demand eligibility requires 5% growth plus an EOD check; growth from 1% to under 5% uses a 14-day cycle.",
       "On-demand payout eligibility requires 5% account growth and an EOD check; 1%-to-under-5% growth uses a 14-day cycle.",
-      "The 6% maximum loss trails upward with profit, locks at starting balance, and does not reset after a withdrawal.",
-      "News-window profits are counted at only 40%; full losses remain.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-07-27.json"
+      "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-08-27.json"
     ]
   }
 ]
