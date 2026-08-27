@@ -10885,6 +10885,55 @@ function checkRussianAcquisitionPilot() {
           rows.push(`Russian review autocomplete signal is incomplete for ${seed}`)
         }
       }
+      const genericKycSignal = autocompleteSignals.get('проп фирмы без kyc')
+      if (
+        genericKycSignal?.engine !== 'Google'
+        || genericKycSignal?.capturedAt !== evidence.capturedAt
+        || genericKycSignal?.status !== 'no-suggestions-returned'
+        || !Array.isArray(genericKycSignal?.suggestions)
+        || genericKycSignal.suggestions.length !== 0
+        || !evidence.searchDemand?.notes?.some(note => note.includes('search-language gap'))
+      ) {
+        rows.push('Russian generic KYC autocomplete gap or empty-signal caveat is incomplete')
+      }
+      const fundedNextKycSignal = autocompleteSignals.get('fundednext kyc')
+      for (const suggestion of [
+        'fundednext kyc',
+        'fundednext kyc verification',
+        'fundednext kyc requirements',
+        'fundednext kyc process',
+        'fundednext kyc documents',
+      ]) {
+        if (
+          fundedNextKycSignal?.engine !== 'Google'
+          || fundedNextKycSignal?.capturedAt !== evidence.capturedAt
+          || !fundedNextKycSignal?.suggestions?.includes(suggestion)
+        ) {
+          rows.push(`FundedNext KYC autocomplete signal is incomplete for ${suggestion}`)
+        }
+      }
+      const brightKycSignal = autocompleteSignals.get('bright funded kyc')
+      if (
+        brightKycSignal?.engine !== 'Google'
+        || brightKycSignal?.capturedAt !== evidence.capturedAt
+        || !brightKycSignal?.suggestions?.includes('bright funded kyc')
+      ) {
+        rows.push('Bright Funded KYC autocomplete signal is incomplete')
+      }
+      const fundingPipsKycSignal = autocompleteSignals.get('fundingpips kyc')
+      for (const suggestion of [
+        'fundingpips kyc verification',
+        'fundingpips kyc process',
+        'funding pips kyc documents',
+      ]) {
+        if (
+          fundingPipsKycSignal?.engine !== 'Google'
+          || fundingPipsKycSignal?.capturedAt !== evidence.capturedAt
+          || !fundingPipsKycSignal?.suggestions?.includes(suggestion)
+        ) {
+          rows.push(`FundingPips KYC autocomplete signal is incomplete for ${suggestion}`)
+        }
+      }
 
       const localSignals = new Map((evidence.localFirmSignals ?? [])
         .map(item => [item.operator, item]))
@@ -10972,6 +11021,69 @@ function checkRussianAcquisitionPilot() {
           note.includes('must not describe FundedNext as available to Russian residents'))
       ) {
         rows.push('FundedNext Russia-access conflict and four-source boundary are incomplete')
+      }
+
+      const kycEvidence = new Map((evidence.kycEvidence ?? [])
+        .map(item => [item.firmSlug, item]))
+      if (kycEvidence.size !== 3) {
+        rows.push(`Russian KYC evidence must contain exactly 3 firms; received ${kycEvidence.size}`)
+      }
+      const expectedKycHosts = new Map([
+        ['fundednext', 'fundednext.com'],
+        ['bright-funded', 'brightfunded.com'],
+        ['fundingpips', 'fundingpips.com'],
+      ])
+      for (const [firmSlug, expectedHost] of expectedKycHosts) {
+        const item = kycEvidence.get(firmSlug)
+        if (!item || item.required !== true || item.sourceCapturedAt !== evidence.capturedAt) {
+          rows.push(`${firmSlug}: KYC required flag or capture date is incomplete`)
+          continue
+        }
+        if (!Array.isArray(item.sourceUrls) || item.sourceUrls.length === 0) {
+          rows.push(`${firmSlug}: KYC evidence has no official source URLs`)
+        }
+        for (const sourceUrl of item.sourceUrls ?? []) {
+          try {
+            const host = new URL(sourceUrl).hostname.toLowerCase().replace(/^www\./, '')
+            if (host !== expectedHost && !host.endsWith(`.${expectedHost}`)) {
+              rows.push(`${firmSlug}: KYC source is not first-party: ${sourceUrl}`)
+            }
+          } catch {
+            rows.push(`${firmSlug}: KYC source URL is invalid: ${sourceUrl}`)
+          }
+        }
+      }
+      const fundedNextKyc = kycEvidence.get('fundednext')
+      if (
+        fundedNextKyc?.sourceUrls?.length !== 1
+        || fundedNextKyc?.documents?.length !== 3
+        || !fundedNextKyc?.trigger?.includes('After successfully completing the challenge')
+        || !fundedNextKyc?.timing?.some(item => item.includes('48 hours'))
+        || !fundedNextKyc?.additionalChecks?.some(item => item.includes('3 months'))
+      ) {
+        rows.push('FundedNext KYC trigger, document, 48-hour or address evidence is incomplete')
+      }
+      const brightFundedKyc = kycEvidence.get('bright-funded')
+      if (
+        brightFundedKyc?.sourceUrls?.length !== 2
+        || brightFundedKyc?.provider !== 'SumSub'
+        || brightFundedKyc?.documents?.length !== 2
+        || !brightFundedKyc?.timing?.some(item => item.includes('1–2 business days'))
+        || !brightFundedKyc?.timing?.some(item => item.includes('4 business days'))
+        || !brightFundedKyc?.additionalChecks?.some(item => item.includes('Security Check'))
+      ) {
+        rows.push('Bright Funded SumSub, document or Security Check evidence is incomplete')
+      }
+      const fundingPipsKyc = kycEvidence.get('fundingpips')
+      if (
+        fundingPipsKyc?.sourceUrls?.length !== 2
+        || fundingPipsKyc?.documents?.length !== 3
+        || !fundingPipsKyc?.timing?.some(item => item.includes('few minutes'))
+        || !fundingPipsKyc?.timing?.some(item => item.includes('2 working days'))
+        || !fundingPipsKyc?.additionalChecks?.some(item => item.includes('same email'))
+        || !fundingPipsKyc?.postKyc?.some(item => item.includes('4-step sequence'))
+      ) {
+        rows.push('FundingPips KYC, Rise or 4-step Master setup evidence is incomplete')
       }
     } catch (error) {
       rows.push(`Russian market evidence is invalid JSON: ${error.message}`)
@@ -11233,11 +11345,25 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(russianRouteFiles.get('/ru/prop-firmy-bez-kyc'), 'utf8')
     : ''
   for (const token of [
-    'data-russian-kyc-guide="source-gated"',
+    'data-russian-kyc-guide="long-form-source-gated"',
     'data-russian-kyc-partner-count={partnerCards.length}',
+    'data-russian-kyc-article="diaspora-decision-guide"',
     'data-russian-country-boundary="kyc-not-access"',
     'data-russian-affiliate-disclosure="kyc-guide"',
-    'ru-kyc-',
+    'data-russian-kyc-gates="checkout-account-contract-payout"',
+    'data-russian-kyc-matrix={partnerCards.length}',
+    'data-russian-kyc-evidence={card.slug}',
+    'data-russian-kyc-featured-partners="fundednext-bright-funded"',
+    'data-russian-kyc-featured-partner={card.slug}',
+    'data-russian-kyc-documents="identity-address-selfie"',
+    'data-russian-kyc-payout-boundary="firm-vs-provider"',
+    'data-russian-kyc-diaspora="language-not-residency"',
+    'data-russian-kyc-search-language="brand-signal-generic-gap"',
+    'data-russian-kyc-local-models="separate-contracts"',
+    'data-russian-kyc-decision="documents-before-checkout"',
+    'data-russian-kyc-secondary-partner="fundingpips"',
+    'from=ru-kyc-${card.slug}',
+    'from=ru-kyc-fundingpips',
     'rel="sponsored nofollow noopener"',
   ]) {
     if (!russianKycPage.includes(token)) rows.push(`Russian KYC page is missing ${token}`)

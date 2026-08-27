@@ -53,12 +53,56 @@
         "suggestions": [
           "fundednext отзывы"
         ]
+      },
+      {
+        "engine": "Google",
+        "seed": "проп фирмы без kyc",
+        "capturedAt": "2026-08-27",
+        "status": "no-suggestions-returned",
+        "suggestions": []
+      },
+      {
+        "engine": "Google",
+        "seed": "fundednext kyc",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "fundednext kyc",
+          "fundednext kyc verification",
+          "fundednext kyc requirements",
+          "fundednext kyc interview",
+          "fundednext kyc process",
+          "fundednext kyc reddit",
+          "fundednext kyc documents",
+          "fundednext kyc interview questions",
+          "fundednext kyc interview reddit",
+          "fundednext kyc requirements in nigeria"
+        ]
+      },
+      {
+        "engine": "Google",
+        "seed": "bright funded kyc",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "bright funded kyc"
+        ]
+      },
+      {
+        "engine": "Google",
+        "seed": "fundingpips kyc",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "fundingpips kyc verification",
+          "funding pips kyc",
+          "fundingpips kyc process",
+          "funding pips kyc documents"
+        ]
       }
     ],
     "notes": [
       "These figures are a third-party estimate for Yandex Moscow, not first-party Search Console or Yandex Webmaster data.",
       "Query frequencies overlap and must not be added together as a total addressable audience.",
-      "Autocomplete suggestions confirm current phrasing, not monthly volume or conversion intent."
+      "Non-empty autocomplete suggestions confirm current phrasing, not monthly volume or conversion intent.",
+      "An empty autocomplete capture records a search-language gap; it must not be presented as proof that demand is zero."
     ]
   },
   "communitySignals": [
@@ -251,6 +295,92 @@
         "FundedNext Futures explicitly restricts Russian Federation account purchases.",
         "FundedNext lists Russia among countries where bank-transfer performance rewards are unavailable.",
         "Until the first-party conflict is resolved at checkout and by support, the site must not describe FundedNext as available to Russian residents."
+      ]
+    }
+  ],
+  "kycEvidence": [
+    {
+      "firmSlug": "fundednext",
+      "firmName": "FundedNext",
+      "sourceUrls": [
+        "https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process"
+      ],
+      "sourceCapturedAt": "2026-08-27",
+      "required": true,
+      "trigger": "After successfully completing the challenge and before FundedNext Account activation",
+      "provider": "FundedNext Verification Center",
+      "documents": [
+        "Government-issued identity card showing nationality",
+        "Passport",
+        "Residence permit"
+      ],
+      "additionalChecks": [
+        "A driver's licence is accepted only for the countries listed by FundedNext.",
+        "A utility bill or bank statement issued within the previous 3 months may be requested for address verification."
+      ],
+      "timing": [
+        "The published typical verification time is about 48 hours."
+      ],
+      "postKyc": [
+        "Successful verification makes the trader eligible to receive the FundedNext Account.",
+        "Failure to pass KYC results in rejection of the FundedNext Account application."
+      ]
+    },
+    {
+      "firmSlug": "bright-funded",
+      "firmName": "Bright Funded",
+      "sourceUrls": [
+        "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
+        "https://help.brightfunded.com/en/articles/9973224-how-does-the-kyc-process-work"
+      ],
+      "sourceCapturedAt": "2026-08-27",
+      "required": true,
+      "trigger": "After passing the final evaluation stage and before the funded-account contract",
+      "provider": "SumSub",
+      "documents": [
+        "Proof of identity, such as a government-issued ID",
+        "Proof of address"
+      ],
+      "additionalChecks": [
+        "Accepted documents vary by the trader's country of residence.",
+        "After KYC approval, the Bright Funded Risk Team performs a Security Check."
+      ],
+      "timing": [
+        "The Security Check normally takes 1–2 business days from Monday to Friday.",
+        "Bright Funded publishes a peak-period maximum of 4 business days."
+      ],
+      "postKyc": [
+        "The trader contract is sent automatically after the Security Check is approved.",
+        "The funded account is activated after the contract is signed."
+      ]
+    },
+    {
+      "firmSlug": "fundingpips",
+      "firmName": "FundingPips",
+      "sourceUrls": [
+        "https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup",
+        "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods"
+      ],
+      "sourceCapturedAt": "2026-08-27",
+      "required": true,
+      "trigger": "Before full access to the Master Account",
+      "provider": "FundingPips, with separate provider verification for some reward methods",
+      "documents": [
+        "Government-issued ID, driver's licence, permanent residence permit or passport",
+        "Clear selfie",
+        "Proof of address"
+      ],
+      "additionalChecks": [
+        "FundingPips permits only one verified identity and one account per trader.",
+        "Rise onboarding requires the same email used with FundingPips, a government-issued ID and a selfie."
+      ],
+      "timing": [
+        "The KYC step usually takes a few minutes.",
+        "In Review and Onboarding can each take up to 2 working days."
+      ],
+      "postKyc": [
+        "The published 4-step sequence is KYC, In Review, Customer Agreement and Onboarding.",
+        "Trading on the Master Account starts only after all required setup steps are complete."
       ]
     }
   ]
