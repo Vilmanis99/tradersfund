@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { AlertTriangle, ArrowRight, BadgeDollarSign, CheckCircle2, Database } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -154,7 +155,7 @@ export default function RussianFundedNextReviewPage() {
         <div className="ru-shell">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / FundedNext</div>
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> {hasFreshProducts ? `Свежие данные продуктов: ${latestProductCapture}` : `Захват условий от ${latestProductCapture ?? 'неуказанной даты'} требует обновления`}</div>
-          <h1>FundedNext: обзор 2026 — модели, цены и правила</h1>
+          <h1>FundedNext: обзор 2026 — 22 цены и 4 набора правил</h1>
           <p className="ru-lead">
             Модели Stellar различаются числом этапов, просадкой, сплитом и сроком первой выплаты.
             Выбирать нужно по ограничивающему правилу, а не по максимальному рекламному проценту.
@@ -174,6 +175,67 @@ export default function RussianFundedNextReviewPage() {
       </section>
 
       <article className="ru-review-article" data-russian-fundednext-article="long-form">
+      <section className="ru-section ru-review-opening" data-russian-fundednext-editorial-shell="review-parity">
+        <div className="ru-shell">
+          <div className="ru-notice ru-disclosure ru-review-top-disclosure">
+            <strong>Партнёрское раскрытие.</strong> Мы можем получить комиссию, если читатель
+            зарегистрируется через подходящую ссылку на этой странице; цена для читателя
+            не увеличивается. Партнёрство даёт <strong>0 баллов</strong> к оценке 8.8/10 и
+            не меняет сравнение 4 продуктов, 22 цен или ограничений по стране.
+          </div>
+
+          {firm ? (
+            <aside className="ru-review-firm-card" aria-label="Краткая карточка FundedNext">
+              <div className="ru-review-firm-brand">
+                {firm.logo ? (
+                  <Image
+                    src={firm.logo}
+                    alt="Логотип FundedNext"
+                    width={64}
+                    height={64}
+                    className="ru-review-firm-logo"
+                  />
+                ) : null}
+                <div>
+                  <div className="ru-review-firm-title-row">
+                    <strong>FundedNext</strong>
+                    <span className="ru-pill">TFH {firm.score.toFixed(1)}/10</span>
+                  </div>
+                  <p>
+                    {freshProducts.length} модели CFD · {pricedTiers.length} цен · проверено {latestProductCapture ?? 'без даты'}
+                  </p>
+                  {firm.trustpilotScore != null && firm.trustpilotCount != null ? (
+                    <p className="ru-review-trustpilot">
+                      Trustpilot: {firm.trustpilotScore.toFixed(1)}/5 по {firm.trustpilotCount.toLocaleString('ru-RU')} отзывам,
+                      захват {firm.trustpilotCapturedAt ?? 'без даты'}; рейтинг не доказывает выплату по конкретному счёту.
+                      {firm.trustpilotUrl ? <> <a href={firm.trustpilotUrl} target="_blank" rel="noopener noreferrer">Проверить профиль</a>.</> : null}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+
+              <dl className="ru-review-firm-facts">
+                <div><dt>Базовая доля</dt><dd>80% challenge / 70% Instant</dd></div>
+                <div><dt>Просадка</dt><dd>статическая или trailing</dd></div>
+                <div><dt>Первая выплата</dt><dd>5 или 21 день; Instant по условиям</dd></div>
+                <div><dt>Макс. распределение</dt><dd>{firm.maxAllocation}</dd></div>
+              </dl>
+
+              <div className="ru-review-firm-action">
+                <p>Сначала подтвердите страну проживания, KYC, платформу и итоговую сумму checkout.</p>
+                <Link
+                  href="/go/fundednext?from=ru-fundednext-review-summary"
+                  rel="sponsored nofollow noopener"
+                  className="btn-primary btn-glow"
+                >
+                  Открыть текущие планы <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+              </div>
+            </aside>
+          ) : null}
+        </div>
+      </section>
+
       <section className="ru-section ru-review-toc-section">
         <div className="ru-shell">
           <nav className="toc ru-review-toc" aria-label="Содержание обзора FundedNext">
@@ -186,9 +248,11 @@ export default function RussianFundedNextReviewPage() {
               <li><a href="#products">Четыре модели Stellar</a></li>
               <li><a href="#true-cost">Реальная стоимость и возврат комиссии</a></li>
               <li><a href="#rules">Выплаты и торговые правила</a></li>
-              <li><a href="#fit">Кому подходит FundedNext</a></li>
+              <li><a href="#pros">Плюсы и ограничения</a></li>
+              <li><a href="#fit">Кому подходит или не подходит FundedNext</a></li>
               <li><a href="#prices">Все цены и ограничения</a></li>
               <li><a href="#final-check">Проверка перед регистрацией</a></li>
+              <li><a href="#alternatives">С чем сравнить FundedNext</a></li>
               <li><a href="#faq">Частые вопросы</a></li>
             </ol>
           </nav>
@@ -371,27 +435,21 @@ export default function RussianFundedNextReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Сильные стороны и ограничения</h2>
-          <div className="ru-grid">
-            <article className="ru-card">
-              <h3>Что может быть полезно</h3>
-              <ul>
-                <li>Четыре модели позволяют выбрать статическую или трейлинг-просадку и наличие оценочных этапов.</li>
-                <li>2-Step сохраняет {twoStep?.maxLossPct ?? '—'}% статического максимального убытка и {twoStep?.dailyLossPct ?? '—'}% дневного лимита.</li>
-                <li>Ночные и выходные позиции заявлены разрешёнными для всех текущих CFD-моделей.</li>
-                <li>Размер, цена, сплит и период первой выплаты разделены в таблицах, поэтому их можно сверить перед оплатой.</li>
-              </ul>
-            </article>
-            <article className="ru-card">
-              <h3>Что увеличивает риск</h3>
-              <ul>
-                <li>Базовая доля начинается с {freshProducts.length ? `${Math.min(...freshProducts.map(product => product.profitSplitPct ?? 0))}%` : 'неуказанного значения'}, а «95%» требует отдельных условий.</li>
-                <li>На funded-счёте новостное окно даёт только 40% зачёта прибыли, хотя убыток учитывается полностью.</li>
-                <li>Instant использует {instant?.maxLossPct ?? '—'}% трейлинг-просадки и не возвращает первоначальный взнос.</li>
-                <li>Доступ для России не подтверждён из-за противоречия официальных страниц; ссылка не является обходом KYC.</li>
-              </ul>
-            </article>
-          </div>
+          <h2 id="pros">Сильные стороны FundedNext</h2>
+          <ul>
+            <li>Четыре модели позволяют выбрать статическую или трейлинг-просадку и наличие оценочных этапов.</li>
+            <li>2-Step сохраняет {twoStep?.maxLossPct ?? '—'}% статического максимального убытка и {twoStep?.dailyLossPct ?? '—'}% дневного лимита.</li>
+            <li>Ночные и выходные позиции заявлены разрешёнными для всех 4 текущих CFD-моделей.</li>
+            <li>Все {pricedTiers.length} цен показаны рядом со сплитом, просадкой и сроком первой выплаты, а не как отдельный рекламный прайс.</li>
+          </ul>
+
+          <h2 className="ru-review-secondary-heading">Ограничения и причины отказаться</h2>
+          <ul>
+            <li>Базовая доля начинается с {freshProducts.length ? `${Math.min(...freshProducts.map(product => product.profitSplitPct ?? 0))}%` : 'неуказанного значения'}, а «95%» требует отдельных условий.</li>
+            <li>На funded-счёте 10-минутное новостное окно даёт только 40% зачёта прибыли, хотя убыток учитывается полностью.</li>
+            <li>Instant использует {instant?.maxLossPct ?? '—'}% трейлинг-просадки и не возвращает первоначальный взнос.</li>
+            <li>Доступ для России не подтверждён из-за противоречия официальных страниц; партнёрская ссылка не является обходом KYC.</li>
+          </ul>
         </div>
       </section>
 
@@ -403,6 +461,9 @@ export default function RussianFundedNextReviewPage() {
             <section><h3>Нужна одна фаза</h3><p>Stellar 1-Step сокращает этапы, но оставляет {oneStep?.dailyLossPct ?? '—'}% дневного лимита и {oneStep?.maxLossPct ?? '—'}% максимальной просадки. Сравните это с собственной серией убытков до покупки.</p></section>
             <section><h3>Нужен старт без оценки</h3><p>Instant подходит только если вы умеете управлять trailing-границей и принимаете невозвратную комиссию. Отсутствие цели и consistency-правила не означает отсутствия payout-gate или риска закрытия.</p></section>
           </div>
+          <h2 className="ru-review-secondary-heading">Кому FundedNext не подходит</h2>
+          <p>Новостному скальперу модель не подходит, если стратегия регулярно открывает или закрывает позиции в окне 5 минут до и после важного события: на funded-этапе засчитывается только 40% прибыли, а 100% убытка остаётся в расчёте.</p>
+          <p>Алгоритмическому трейдеру на cTrader или Match-Trader нельзя переносить правила MT4/MT5 на выбранную платформу. Резиденту России также нельзя оплачивать challenge до письменного подтверждения конкретного профиля: официальный CFD-список и корпоративная страница FundedNext дают противоречивые сигналы.</p>
           <p>Перед регистрацией сохраните страницу выбранного продукта, проверьте юридическое лицо, итоговую валюту, KYC и доступный платёжный метод. Затем можно открыть <Link href="/go/fundednext?from=ru-fundednext-review-guide" rel="sponsored nofollow noopener">актуальные планы FundedNext</Link> через контролируемый переход; партнёрская ссылка не меняет цифры или вывод обзора.</p>
         </div>
       </section>
@@ -525,6 +586,28 @@ export default function RussianFundedNextReviewPage() {
             <p>Партнёрская ссылка сейчас не настроена; используйте рейтинг для сравнения.</p>
           )}
           <p className="ru-source-line"><BadgeDollarSign size={14} aria-hidden="true" /> Переход ведёт через контролируемый редирект Traders Fund Hub; отношения ссылки помечены как sponsored и nofollow.</p>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell ru-content">
+          <h2 id="alternatives">С чем сравнить FundedNext</h2>
+          <p>Сравнение должно отвечать на конкретное ограничение. Если не подходит 6% trailing у Instant, сравнивайте продукт с продуктом; если проблема в доступе по стране, сначала проверяйте KYC и checkout, а не редакционный балл.</p>
+          <ul className="ru-review-related-links">
+            <li><Link href="/ru/fundednext-vs-fundingpips">FundedNext или FundingPips</Link> — сравнение 4 моделей FundedNext с 5 продуктами FundingPips по ценам, просадке и payout-gates.</li>
+            <li><Link href="/ru/obzor-fundingpips">Обзор FundingPips</Link> — отдельный разбор 17 цен и 5 наборов правил для другого глобального партнёра.</li>
+            <li><Link href="/ru/obzor-bright-funded">Обзор Bright Funded</Link> — 3 программы и 18 цен в EUR, если важна европейская валюта checkout.</li>
+            <li><Link href="/ru/luchshie-prop-firmy">Рейтинг проп-фирм</Link> — переход к полному списку, если ни одна из 4 моделей FundedNext не совпадает с риск-планом.</li>
+          </ul>
+
+          <div className="ru-review-author" aria-label="Автор обзора FundedNext">
+            <div className="ru-review-author-avatar" aria-hidden="true">ED</div>
+            <div>
+              <strong>Автор: Edris Derakhshi</strong>
+              <p>Основатель Traders Fund Hub, funded-трейдер с 2020 года и рыночный аналитик, публиковавшийся в CryptoQuant и CryptoPotato. Числа в этом обзоре отделены от партнёрской оценки и привязаны к датированным продуктовым источникам.</p>
+              <Link href="/authors/edris-derakhshi">Профиль автора</Link>
+            </div>
+          </div>
         </div>
       </section>
 

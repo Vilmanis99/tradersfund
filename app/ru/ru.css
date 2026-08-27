@@ -320,6 +320,145 @@
   font-size: clamp(1.65rem, 3.5vw, 2.25rem);
 }
 
+.ru-review-opening {
+  padding-top: 0 !important;
+}
+
+.ru-review-top-disclosure {
+  margin-top: 0;
+}
+
+.ru-review-firm-card {
+  display: grid;
+  gap: 1.2rem;
+  padding: clamp(1rem, 3vw, 1.4rem);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.14);
+}
+
+.ru-review-firm-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ru-review-firm-logo {
+  flex: 0 0 auto;
+  object-fit: contain;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg3);
+}
+
+.ru-review-firm-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.ru-review-firm-title-row > strong {
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.ru-review-firm-brand p,
+.ru-review-firm-action p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.ru-review-firm-brand a,
+.ru-review-firm-action a,
+.ru-review-related-links a,
+.ru-review-author a {
+  color: var(--accent-light);
+}
+
+.ru-review-trustpilot {
+  max-width: 650px;
+}
+
+.ru-review-firm-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 0;
+}
+
+.ru-review-firm-facts > div {
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg3);
+}
+
+.ru-review-firm-facts dt {
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.ru-review-firm-facts dd {
+  margin: 0.3rem 0 0;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.ru-review-firm-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ru-review-firm-action p {
+  max-width: 520px;
+}
+
+.ru-review-secondary-heading {
+  margin-top: 2.4rem !important;
+}
+
+.ru-review-related-links {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.ru-review-author {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+}
+
+.ru-review-author-avatar {
+  display: grid;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 22%, var(--bg3));
+  color: var(--accent-light);
+  font-weight: 850;
+}
+
+.ru-review-author p {
+  margin: 0.35rem 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
 .ru-review-toc-section {
   padding-top: 0 !important;
 }
@@ -385,5 +524,20 @@
 
   .ru-review-article .ru-shell {
     width: min(100% - 1.25rem, 880px);
+  }
+
+  .ru-review-firm-brand,
+  .ru-review-firm-action {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ru-review-firm-facts {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ru-review-firm-action > a {
+    width: 100%;
+    justify-content: center;
   }
 }
