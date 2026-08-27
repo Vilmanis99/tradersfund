@@ -159,6 +159,11 @@ export default function RussianFundedNextReviewPage() {
             Модели Stellar различаются числом этапов, просадкой, сплитом и сроком первой выплаты.
             Выбирать нужно по ограничивающему правилу, а не по максимальному рекламному проценту.
           </p>
+          <div className="ru-review-meta" aria-label="Редакционные данные обзора">
+            <span>Автор: Edris Derakhshi</span>
+            <span>Обновлено: {latestProductCapture ?? marketEvidence.capturedAt}</span>
+            <span>12 минут чтения</span>
+          </div>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>текущих моделей</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>опубликованных цен</span></div>
@@ -168,9 +173,40 @@ export default function RussianFundedNextReviewPage() {
         </div>
       </section>
 
+      <article className="ru-review-article" data-russian-fundednext-article="long-form">
+      <section className="ru-section ru-review-toc-section">
+        <div className="ru-shell">
+          <nav className="toc ru-review-toc" aria-label="Содержание обзора FundedNext">
+            <div className="toc-title">Содержание обзора</div>
+            <ol>
+              <li><a href="#verdict">Краткий вывод</a></li>
+              <li><a href="#access">Доступ для России и русскоязычных за рубежом</a></li>
+              <li><a href="#method">Методика проверки</a></li>
+              <li><a href="#facts">FundedNext в цифрах</a></li>
+              <li><a href="#products">Четыре модели Stellar</a></li>
+              <li><a href="#true-cost">Реальная стоимость и возврат комиссии</a></li>
+              <li><a href="#rules">Выплаты и торговые правила</a></li>
+              <li><a href="#fit">Кому подходит FundedNext</a></li>
+              <li><a href="#prices">Все цены и ограничения</a></li>
+              <li><a href="#final-check">Проверка перед регистрацией</a></li>
+              <li><a href="#faq">Частые вопросы</a></li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell ru-content">
+          <h2 id="verdict">Краткий вывод</h2>
+          <p><strong>FundedNext нельзя оценивать по одной цифре «до 95%».</strong> В захвате от {latestProductCapture ?? 'неуказанной даты'} находятся {freshProducts.length} разные модели и {pricedTiers.length} листинговых цен: challenge-счета стартуют с {twoStep?.profitSplitPct ?? 'неуказанной'}% reward share, а Stellar Instant — с {instant?.profitSplitPct ?? 'неуказанной'}%. Поэтому сначала выбирают правило просадки и срок выплаты, а только потом размер счёта.</p>
+          <p>Для трейдера, которому нужен фиксированный запас риска, отправной точкой служит Stellar 2-Step с {twoStep?.maxLossPct ?? '—'}% статического максимального убытка. Stellar Lite снижает минимальный вход до {money(lite?.accountSizes.find(tier => tier.sizeUsd === 5000)?.priceUsd)}, но уменьшает максимальный запас до {lite?.maxLossPct ?? '—'}%. Instant убирает оценочные фазы, однако заменяет их {instant?.maxLossPct ?? '—'}% трейлинг-границей и невозвратным взносом.</p>
+          <p>Для русскоязычного трейдера за пределами России главный фильтр — не язык, а фактическая страна проживания, KYC и доступный checkout. Для резидента России официальные страницы противоречат друг другу, поэтому этот обзор не выдаёт партнёрскую ссылку за подтверждение доступа.</p>
+        </div>
+      </section>
+
       <section className="ru-section">
         <div className="ru-shell">
-          <div className="ru-notice" data-fundednext-russia-access="conflicting">
+          <div id="access" className="ru-notice ru-anchor-target" data-fundednext-russia-access="conflicting">
             <strong><AlertTriangle size={16} aria-hidden="true" /> Для резидентов России данные противоречат друг другу.</strong>{' '}
             Статья FundedNext по ограничениям CFD от 8 апреля 2026 года не называет
             Россию, но корпоративная страница говорит, что FundedNext Ltd не обслуживает
@@ -191,7 +227,7 @@ export default function RussianFundedNextReviewPage() {
       <section className="ru-section">
         <div className="ru-shell">
           <div className="ru-content">
-            <h2>Что именно проверяет этот обзор</h2>
+            <h2 id="method">Что именно проверяет этот обзор</h2>
             <p>Это не рекламная витрина и не обещание выплаты. Мы сопоставляем правила на официальных страницах FundedNext с карточками продуктов, показываем дату захвата и отдельно отмечаем поля, которых нет в источнике. Поэтому цена в таблице — опубликованный листинг до промокода, платформенной платы и платных дополнений.</p>
             <p>Для русскоязычного трейдера важны не только проценты. Нужно проверить страну проживания, документ KYC, способ оплаты, платформу, валюту списания и условия Performance Reward. Русский язык интерфейса или наличие знакомого платёжного метода сами по себе не означают, что профиль будет принят.</p>
             <p>Дата продуктового захвата: <strong>{latestProductCapture ?? 'не указана'}</strong>. Если строка помечена как устаревшая, мы не подставляем старую цену в новый вывод — откройте официальный checkout и сохраните его условия перед оплатой.</p>
@@ -202,7 +238,7 @@ export default function RussianFundedNextReviewPage() {
       <section className="ru-section">
         <div className="ru-shell">
           <div className="ru-content">
-            <h2>FundedNext в цифрах</h2>
+            <h2 id="facts">FundedNext в цифрах</h2>
             <p>Этот блок отделяет факты из захвата условий от редакционной оценки. Если checkout показывает другую цену или правило, приоритет имеет checkout: промокоды, платформа и дополнительные опции меняют итоговую сумму.</p>
             <div className="ru-table-wrap">
               <table className="ru-table" data-fundednext-russian-facts="true">
@@ -224,36 +260,36 @@ export default function RussianFundedNextReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Разбор четырёх моделей Stellar</h2>
+          <h2 id="products">Разбор четырёх моделей Stellar</h2>
           <p className="ru-muted">У FundedNext нет одной универсальной программы: одинаковый логотип скрывает четыре разных набора ограничений.</p>
-          <div className="ru-grid">
+          <div className="ru-prose-stack">
             {twoStep && twoStep100k ? (
-              <article className="ru-card">
+              <section>
                 <h3>Stellar 2-Step — классическая проверка</h3>
                 <p>На уровне $100K листинговая цена составляет {money(twoStep100k.priceUsd)}. Цели — {twoStep.profitTargets?.phase1}% в первой фазе и {twoStep.profitTargets?.phase2}% во второй; дневной лимит — {twoStep.dailyLossPct}%, максимальный убыток — {twoStep.maxLossPct}% {twoStep.drawdownType ? (drawdownLabels[twoStep.drawdownType] ?? twoStep.drawdownType) : 'не указан'}.</p>
                 <p>Минимум — {twoStep.minTradingDays} торговых дней в каждой фазе. Первая стандартная выплата указана через {twoStep.payoutFirstDays} дней, затем — {payoutLabels[twoStep.payoutFrequency ?? ''] ?? twoStep.payoutFrequency}. Регистрационный взнос возвращается с первым одобренным reward, если выполнены условия.</p>
-              </article>
+              </section>
             ) : null}
             {oneStep && oneStep100k ? (
-              <article className="ru-card">
+              <section>
                 <h3>Stellar 1-Step — быстрее, но жёстче</h3>
                 <p>На $100K цена — {money(oneStep100k.priceUsd)}. Одна фаза требует {oneStep.profitTargets?.phase1}% прибыли, но дневной лимит снижается до {oneStep.dailyLossPct}%, а максимальный убыток — до {oneStep.maxLossPct}% статической просадки.</p>
                 <p>Минимум — {oneStep.minTradingDays} дня; первая выплата — через {oneStep.payoutFirstDays} дней. Для новых покупок возврат взноса привязан к третьему одобренному reward, поэтому низкое число фаз не означает низкую стоимость попытки.</p>
-              </article>
+              </section>
             ) : null}
             {lite && lite100k ? (
-              <article className="ru-card">
+              <section>
                 <h3>Stellar Lite — самый низкий вход</h3>
                 <p>На $100K листинговая цена — {money(lite100k.priceUsd)}. Модель требует {lite.profitTargets?.phase1}% и {lite.profitTargets?.phase2}% по фазам, допускает {lite.dailyLossPct}% дневного убытка и {lite.maxLossPct}% максимальной статической просадки.</p>
                 <p>Входная цена ниже, чем у 2-Step, но максимальный запас убытка меньше, а возврат взноса для новых счетов наступает только с третьим одобренным reward.</p>
-              </article>
+              </section>
             ) : null}
             {instant && instant10k ? (
-              <article className="ru-card">
+              <section>
                 <h3>Stellar Instant — без оценки</h3>
                 <p>На $10K цена — {money(instant10k.priceUsd)}, возврата нет. Этапов оценки и числовой дневной нормы нет; вместо этого действует {instant.maxLossPct}% {instant.drawdownType ? (drawdownLabels[instant.drawdownType] ?? instant.drawdownType) : 'неуказанной'} просадки, которая движется вслед за максимумом и фиксируется на стартовом балансе.</p>
                 <p>Стартовая доля reward — {instant.profitSplitPct}%. Запрос по требованию доступен после роста 5% и проверки EOD; при росте от 1% до 5% применяется 14-дневный цикл. Такая модель экономит время оценки, но не отменяет риск быстрого нарушения trailing-границы.</p>
-              </article>
+              </section>
             ) : null}
           </div>
         </div>
@@ -261,7 +297,7 @@ export default function RussianFundedNextReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Сколько нужно заработать до возврата комиссии</h2>
+          <h2 id="true-cost">Сколько нужно заработать до возврата комиссии</h2>
           <p>Fee-recovery — это математический порог, а не прогноз дохода. Он показывает, какой валовой Performance Reward нужен, чтобы доля трейдера покрыла первоначальный взнос; не учитывает повторные попытки, комиссии платёжного провайдера, налоги или проскальзывание.</p>
           <div className="ru-grid">
             <article className="ru-card">
@@ -307,25 +343,25 @@ export default function RussianFundedNextReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Выплаты, новости и ограничения стратегии</h2>
+          <h2 id="rules">Выплаты, новости и ограничения стратегии</h2>
           <p>Периодичность reward — это отдельное ограничение от цели и просадки. Для 2-Step и Lite первый стандартный запрос начинается через 21 день, затем применяется двухнедельный цикл; для 1-Step захват указывает 5 дней. Instant не имеет оценочной фазы, но требует роста 5% и проверки в конце дня для запроса по требованию; при росте от 1% до 5% действует 14-дневный цикл.</p>
-          <div className="ru-grid">
-            <article className="ru-card">
+          <div className="ru-prose-stack">
+            <section>
               <h3>Новости на funded-счёте</h3>
               <p>В окне 5 минут до и после указанного события прибыль получает только 40% зачёта, а убыток учитывается полностью. То, что новость разрешена на этапе оценки, не означает полного зачёта на funded-этапе.</p>
-            </article>
-            <article className="ru-card">
+            </section>
+            <section>
               <h3>Ночные и выходные позиции</h3>
               <p>Условия захвата разрешают удержание позиций overnight и на выходных по всем четырём CFD-моделям. Своп и закрытие рынка всё равно нужно заложить в собственный риск-план: разрешение держать позицию не отменяет лимиты убытка.</p>
-            </article>
-            <article className="ru-card">
+            </section>
+            <section>
               <h3>EA и copy-trading</h3>
               <p>Автоматизация зависит от платформы и отдельного разрешения; cTrader и Match-Trader нельзя считать эквивалентом MT4/MT5. Copy-trading ограничен сценариями одного владельца, а копирование между funded-счетами запрещено в зафиксированных правилах.</p>
-            </article>
-            <article className="ru-card">
+            </section>
+            <section>
               <h3>Куда может прийти reward</h3>
               <p>В профиле FundedNext заявлены методы: {firm?.payoutMethods?.join(', ') ?? 'методы не опубликованы'}. Доступный метод и комиссия зависят от страны, валюты и проверки KYC; не считайте наличие метода на сайте гарантией для российского или зарубежного профиля.</p>
-            </article>
+            </section>
           </div>
           <div className="ru-notice">
             <strong>Проверка перед выплатой.</strong> Для резидента России остаётся конфликт официальных страниц. Для русскоязычного трейдера в Казахстане, ОАЭ, Европе, Израиле или Северной Америке важны фактическая страна проживания, адрес и платёжный профиль — гражданство и язык общения их не заменяют.
@@ -361,11 +397,11 @@ export default function RussianFundedNextReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Кому какая модель подходит</h2>
-          <div className="ru-grid">
-            <article className="ru-card"><h3>Нужен фиксированный пол просадки</h3><p>Смотрите Stellar 2-Step: статические {twoStep?.maxLossPct ?? '—'}% проще заложить в риск-план, чем trailing-линию. Цена — не единственный критерий: две фазы и 21-дневное ожидание первой стандартной выплаты требуют запаса времени.</p></article>
-            <article className="ru-card"><h3>Нужна одна фаза</h3><p>Stellar 1-Step сокращает этапы, но оставляет {oneStep?.dailyLossPct ?? '—'}% дневного лимита и {oneStep?.maxLossPct ?? '—'}% максимальной просадки. Сравните это с собственной серией убытков до покупки.</p></article>
-            <article className="ru-card"><h3>Нужен старт без оценки</h3><p>Instant подходит только если вы умеете управлять trailing-границей и принимаете невозвратную комиссию. Отсутствие цели и consistency-правила не означает отсутствия payout-gate или риска закрытия.</p></article>
+          <h2 id="fit">Кому какая модель подходит</h2>
+          <div className="ru-prose-stack">
+            <section><h3>Нужен фиксированный пол просадки</h3><p>Смотрите Stellar 2-Step: статические {twoStep?.maxLossPct ?? '—'}% проще заложить в риск-план, чем trailing-линию. Цена — не единственный критерий: две фазы и 21-дневное ожидание первой стандартной выплаты требуют запаса времени.</p></section>
+            <section><h3>Нужна одна фаза</h3><p>Stellar 1-Step сокращает этапы, но оставляет {oneStep?.dailyLossPct ?? '—'}% дневного лимита и {oneStep?.maxLossPct ?? '—'}% максимальной просадки. Сравните это с собственной серией убытков до покупки.</p></section>
+            <section><h3>Нужен старт без оценки</h3><p>Instant подходит только если вы умеете управлять trailing-границей и принимаете невозвратную комиссию. Отсутствие цели и consistency-правила не означает отсутствия payout-gate или риска закрытия.</p></section>
           </div>
           <p>Перед регистрацией сохраните страницу выбранного продукта, проверьте юридическое лицо, итоговую валюту, KYC и доступный платёжный метод. Затем можно открыть <Link href="/go/fundednext?from=ru-fundednext-review-guide" rel="sponsored nofollow noopener">актуальные планы FundedNext</Link> через контролируемый переход; партнёрская ссылка не меняет цифры или вывод обзора.</p>
         </div>
@@ -373,7 +409,7 @@ export default function RussianFundedNextReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell">
-          <h2>Сводная таблица моделей</h2>
+          <h2 id="prices">Сводная таблица моделей</h2>
           <p className="ru-muted">{hasFreshProducts ? 'Все числа ниже выводятся из свежего продуктового файла; цена — до промоакций и без отдельной платформенной платы, если она применяется.' : `Числовые условия временно не показываем: последний захват продуктов (${latestProductCapture ?? 'дата не указана'}) старше 30 дней. Проверьте текущие правила FundedNext перед оплатой.`}</p>
           <div className="ru-table-wrap">
             <table className="ru-table" data-fundednext-russian-products={freshProducts.length}>
@@ -443,7 +479,7 @@ export default function RussianFundedNextReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Вердикт: сначала правило, потом цена</h2>
+          <h2 id="final-check">Проверка перед регистрацией: сначала правило, потом цена</h2>
           <div className="ru-grid">
             {hasFreshProducts ? freshProducts.map(product => {
               const stage = product.phases === 0 ? 'без оценочного этапа' : `${product.phases} этапа оценки`
@@ -494,10 +530,11 @@ export default function RussianFundedNextReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Частые вопросы</h2>
+          <h2 id="faq">Частые вопросы</h2>
           <RussianFaq items={faqs} />
         </div>
       </section>
+      </article>
     </>
   )
 }

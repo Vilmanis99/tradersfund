@@ -11297,7 +11297,11 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(russianRouteFiles.get('/ru/obzor-fundednext'), 'utf8')
     : ''
   for (const token of [
+    'data-russian-fundednext-article="long-form"',
     'data-fundednext-russia-access="conflicting"',
+    'data-fundednext-russian-truecost="true"',
+    'Содержание обзора',
+    'id="verdict"',
     '/go/fundednext?from=ru-fundednext-review-verdict',
     'rel="sponsored nofollow noopener"',
     'VPN',
