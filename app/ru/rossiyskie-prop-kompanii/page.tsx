@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, BadgeCheck, Building2, CircleAlert, ExternalLink, Globe2 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import { getAllFirms } from '@/lib/firms'
+import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 
@@ -52,6 +54,30 @@ const teamTradersAffiliate = affiliateFor('TeamTraders')
 const tradeSystem = signalFor('Trade System')
 const tradeSystemAffiliate = affiliateFor('Trade System')
 
+const globalPartnerRoutes = [
+  {
+    slug: 'fundednext',
+    name: 'FundedNext',
+    reviewHref: '/ru/obzor-fundednext',
+    campaign: 'ru-local-research-fundednext',
+    summary: 'Глобальный обзор с отдельной проверкой страны, KYC, валюты и четырёх моделей Stellar.',
+  },
+  {
+    slug: 'fundingpips',
+    name: 'FundingPips',
+    reviewHref: '/ru/obzor-fundingpips',
+    campaign: 'ru-local-research-fundingpips',
+    summary: 'Русский разбор пяти продуктовых моделей, просадки, сплита и условий выплаты.',
+  },
+  {
+    slug: 'bright-funded',
+    name: 'Bright Funded',
+    reviewHref: '/ru/obzor-bright-funded',
+    campaign: 'ru-local-research-bright-funded',
+    summary: 'Сравнение 1-Step и 2-Step с ценой в EUR, типом просадки и проверкой KYC.',
+  },
+] as const
+
 const faqs: RussianFaqItem[] = [
   {
     q: 'Это рейтинг российских проп-компаний?',
@@ -76,6 +102,11 @@ function SourceLink({ href, children }: { href: string; children: React.ReactNod
 }
 
 export default function RussianPropCompaniesPage() {
+  const globalPartners = globalPartnerRoutes.map(route => ({
+    ...route,
+    firm: getAllFirms().find(firm => outboundSlug(firm.name) === route.slug),
+  })).filter(item => item.firm?.affiliateUrl)
+
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
     { name: 'Российские проп-компании' },
@@ -196,6 +227,36 @@ export default function RussianPropCompaniesPage() {
             </article>
           </div>
           <p className="ru-source-line">Снимок источников: {marketEvidence.capturedAt}. Плавающие счётчики и правила требуют повторной проверки перед публикацией полного обзора.</p>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell ru-content" data-russian-local-global-funnel="partner-routes">
+          <div className="ru-notice ru-disclosure">
+            <strong>Глобальные партнёрские маршруты отделены от локального исследования.</strong>{' '}
+            Переход по кнопке может принести Traders Fund Hub комиссию. Это не меняет порядок проверки
+            российских компаний и не подтверждает доступность выбранной страны или продукта.
+          </div>
+          <h2>Если нужен международный challenge</h2>
+          <p>
+            Локальная проп-компания и международный evaluation-продукт решают разные задачи. Если вам нужен
+            сопоставимый challenge с опубликованной ценой, сначала откройте русский обзор, затем проверьте
+            гражданство, резидентство, KYC, оплату и выплату на официальном checkout.
+          </p>
+          <div className="ru-grid">
+            {globalPartners.map(item => (
+              <article className="ru-card" key={item.slug} data-russian-local-global-partner={item.slug}>
+                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Партнёр</span></div>
+                <p className="ru-muted">{item.summary}</p>
+                <div className="ru-actions">
+                  <Link href={item.reviewHref} className="btn-outline">Читать русский обзор</Link>
+                  <Link href={`/go/${item.slug}?from=${item.campaign}`} rel="sponsored nofollow noopener" className="btn-primary">
+                    Проверить условия <ArrowRight size={14} aria-hidden="true" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
