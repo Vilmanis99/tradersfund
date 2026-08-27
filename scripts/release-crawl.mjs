@@ -814,10 +814,10 @@ const russianExpectations = new Map([
   }],
   ['/ru/obzor-fundednext', {
     title: 'FundedNext: обзор 2026, цены, правила и выплаты',
-    h1: 'FundedNext: обзор 2026 — 22 цены и 4 разных набора правил',
+    h1: 'FundedNext: обзор 2026 — модели, цены и правила',
     markers: [
       'data-fundednext-russia-access="conflicting"',
-      'data-fundednext-russian-products="4"',
+      'data-fundednext-russian-products="',
       'data-russian-affiliate-disclosure="fundednext"',
     ],
   }],

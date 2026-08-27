@@ -114,13 +114,13 @@ export default function RussianPropFirmReviewsPage() {
 
       <section className="ru-section">
         <div className="ru-shell" data-russian-reviews-global-funnel="global-partners">
-          <div className="ru-notice ru-disclosure"><strong>Глобальные партнёрские CTA.</strong> Переходы ниже могут приносить комиссию Traders Fund Hub. При отсутствии свежего захвата мы не показываем старые цены или правила. Это не меняет порядок проверки страны, KYC, цены, правил и выплат.</div>
+          <div className="ru-notice ru-disclosure"><strong>Глобальные партнёрские CTA.</strong> Переходы ниже могут приносить комиссию Traders Fund Hub. Отзыв — это опыт отдельного трейдера; продуктовую дату и действующие правила нужно открыть заново перед регистрацией.</div>
           <h2>Сравнить глобальные проп-фирмы после проверки отзывов</h2>
           <div className="ru-grid">
             {globalCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-reviews-global-partner={item.slug}>
                 <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Партнёр</span></div>
-                <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; откройте источник, русский разбор и проверьте доступ до регистрации.</p>
+                <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; сопоставьте отзыв с первичным источником, русским обзором и проверкой доступа.</p>
                 <div className="ru-actions"><Link href={item.reviewHref} className="btn-outline">Русский обзор</Link><Link href={`/go/${item.slug}?from=ru-reviews-guide-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></Link></div>
               </article>
             ))}

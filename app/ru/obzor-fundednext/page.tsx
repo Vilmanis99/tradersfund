@@ -9,7 +9,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru/obzor-fundednext'
 const TITLE = 'FundedNext: обзор 2026, цены, правила и выплаты'
-const DESCRIPTION = 'Обзор FundedNext на русском: 22 цены, четыре модели Stellar, базовые сплиты, просадка, выплаты и проверка ограничений по стране.'
+const DESCRIPTION = 'Обзор FundedNext на русском: модели Stellar, цены, просадка, выплаты и проверка ограничений по стране с датой захвата условий.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -47,11 +47,11 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какая программа FundedNext самая дешёвая?',
-    a: 'В захвате от 27 июля 2026 года минимальная опубликованная цена — $32,99 за Stellar Lite на $5 000. Промоакции и отдельная невозвратная плата за некоторые платформы в эту цену не включены.',
+    a: 'Минимальная цена зависит от модели, размера счёта, промоакции и возможной отдельной платы платформы. Проверяйте именно текущую страницу оплаты: наша таблица показывает цены только после свежего захвата условий.',
   },
   {
     q: 'Получает ли новый трейдер сплит 95%?',
-    a: 'Нет. Базовый сплит новых оценочных продуктов в текущих данных — 80%. Stellar Instant стартует с 70%. Процент 95% нельзя подавать как стандартный без платного дополнения или выполнения условий роста.',
+    a: 'Нет универсального процента для всех моделей. Сплит, платные дополнения и условия роста могут различаться по продукту, поэтому сравнивайте их по свежему захвату и действующим правилам.',
   },
   {
     q: 'Можно ли обойти ограничение страны через VPN?',
@@ -67,6 +67,8 @@ export default function RussianFundedNextReviewPage() {
     tier.priceUsd != null && tier.priceUsd > 0 ? [{ product, tier, price: tier.priceUsd }] : []))
   const accessEvidence = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
   const sourceUrls = [...new Set(freshProducts.map(product => product.sourceUrl))]
+  const latestProductCapture = products.map(product => product.sourceCapturedAt).sort().at(-1)
+  const hasFreshProducts = freshProducts.length > 0
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -101,12 +103,11 @@ export default function RussianFundedNextReviewPage() {
       <section className="ru-hero">
         <div className="ru-shell">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / FundedNext</div>
-          <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Данные продуктов: 27 июля 2026</div>
-          <h1>FundedNext: обзор 2026 — 22 цены и 4 разных набора правил</h1>
+          <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> {hasFreshProducts ? `Свежие данные продуктов: ${latestProductCapture}` : `Захват условий от ${latestProductCapture ?? 'неуказанной даты'} требует обновления`}</div>
+          <h1>FundedNext: обзор 2026 — модели, цены и правила</h1>
           <p className="ru-lead">
-            Stellar Lite, 1-Step и 2-Step начинают с 80% базового сплита;
-            Stellar Instant — с 70% и трейлинг-просадкой 6%. Выбирать нужно
-            по ограничивающему правилу, а не по максимальному рекламному проценту.
+            Модели Stellar различаются числом этапов, просадкой, сплитом и сроком первой выплаты.
+            Выбирать нужно по ограничивающему правилу, а не по максимальному рекламному проценту.
           </p>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>текущих моделей</span></div>
@@ -139,15 +140,15 @@ export default function RussianFundedNextReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell">
-          <h2>Как различаются четыре модели</h2>
-          <p className="ru-muted">Все числа ниже выводятся из текущего продуктового файла; цена — до промоакций и без отдельной платформенной платы, если она применяется.</p>
+          <h2>Как различаются модели</h2>
+          <p className="ru-muted">{hasFreshProducts ? 'Все числа ниже выводятся из свежего продуктового файла; цена — до промоакций и без отдельной платформенной платы, если она применяется.' : `Числовые условия временно не показываем: последний захват продуктов (${latestProductCapture ?? 'дата не указана'}) старше 30 дней. Проверьте текущие правила FundedNext перед оплатой.`}</p>
           <div className="ru-table-wrap">
             <table className="ru-table" data-fundednext-russian-products={freshProducts.length}>
               <thead>
                 <tr><th>Модель</th><th>Этапы</th><th>Цена</th><th>Дневной лимит</th><th>Макс. убыток</th><th>Просадка</th><th>Стартовый сплит</th><th>Первая выплата</th></tr>
               </thead>
               <tbody>
-                {freshProducts.map(product => {
+                {hasFreshProducts ? freshProducts.map(product => {
                   const prices = product.accountSizes.flatMap(tier => tier.priceUsd == null ? [] : [tier.priceUsd])
                   return (
                     <tr key={product.productSlug}>
@@ -163,7 +164,7 @@ export default function RussianFundedNextReviewPage() {
                       <td>{product.payoutFirstDays === 0 ? 'по запросу после условий' : `${product.payoutFirstDays} дн.; ${payoutLabels[product.payoutFrequency ?? ''] ?? product.payoutFrequency}`}</td>
                     </tr>
                   )
-                })}
+                }) : <tr><td colSpan={8}>Свежий продуктовый захват временно отсутствует; цены и правила не подставляются.</td></tr>}
               </tbody>
             </table>
           </div>
@@ -172,12 +173,12 @@ export default function RussianFundedNextReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell">
-          <h2>Все 22 цены без пересчёта валюты</h2>
+          <h2>{hasFreshProducts ? 'Цены по свежему захвату без пересчёта валюты' : 'Цены временно не показываются'}</h2>
           <div className="ru-table-wrap">
             <table className="ru-table">
               <thead><tr><th>Модель</th><th>Размер счёта</th><th>Цена</th><th>Возврат взноса</th><th>Источник</th></tr></thead>
               <tbody>
-                {pricedTiers.map(({ product, tier, price }) => (
+                {pricedTiers.length > 0 ? pricedTiers.map(({ product, tier, price }) => (
                   <tr key={`${product.productSlug}-${tier.sizeUsd}`}>
                     <td>{product.productName}</td>
                     <td>${tier.sizeUsd.toLocaleString('en-US')}</td>
@@ -185,12 +186,12 @@ export default function RussianFundedNextReviewPage() {
                     <td>{tier.refundable ? 'условно возвратный' : 'невозвратный'}</td>
                     <td>{product.sourceCapturedAt}</td>
                   </tr>
-                ))}
+                )) : <tr><td colSpan={5}>Нет свежих цен для безопасного отображения; откройте официальную страницу оплаты.</td></tr>}
               </tbody>
             </table>
           </div>
           <p className="ru-source-line">
-            Уникальных страниц продукта: {sourceUrls.length}. Полные доказательства и
+            Уникальных свежих страниц продукта: {sourceUrls.length}. Полные доказательства и
             примечания доступны в <Link href="/blog/fundednext-review" hrefLang="en">английском обзоре FundedNext</Link>.
           </p>
         </div>
@@ -200,26 +201,24 @@ export default function RussianFundedNextReviewPage() {
         <div className="ru-shell ru-content">
           <h2>Вердикт: сначала правило, потом цена</h2>
           <div className="ru-grid">
-            <article className="ru-card">
-              <CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>Stellar 2-Step</h3>
-              <p className="ru-muted">Подходит, если важнее статическая линия общего убытка 10%, а два этапа 8% и 5% приемлемы.</p>
-            </article>
-            <article className="ru-card">
-              <CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>Stellar 1-Step</h3>
-              <p className="ru-muted">Один этап, но более тесные лимиты: 3% дневного и 6% общего убытка.</p>
-            </article>
-            <article className="ru-card">
-              <CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>Stellar Lite</h3>
-              <p className="ru-muted">Самый низкий опубликованный вход, но два этапа и первая стандартная выплата через 21 день.</p>
-            </article>
-            <article className="ru-card">
-              <CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>Stellar Instant</h3>
-              <p className="ru-muted">Нет этапа оценки, зато стартовый сплит 70%, невозвратный взнос и трейлинг-просадка 6%.</p>
-            </article>
+            {hasFreshProducts ? freshProducts.map(product => {
+              const stage = product.phases === 0 ? 'без оценочного этапа' : `${product.phases} этапа оценки`
+              const drawdown = product.drawdownType ? (drawdownLabels[product.drawdownType] ?? product.drawdownType) : 'тип просадки не опубликован'
+              const payout = product.payoutFirstDays === 0
+                ? 'выплата по запросу после выполнения условий'
+                : product.payoutFirstDays != null
+                  ? `первая выплата от ${product.payoutFirstDays} дней`
+                  : 'срок первой выплаты не опубликован'
+              return (
+                <article className="ru-card" key={product.productSlug}>
+                  <CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" />
+                  <h3>{product.productName}</h3>
+                  <p className="ru-muted">{stage}; {drawdown}; {payout}. Перед оплатой подтвердите страну, KYC и актуальный регламент.</p>
+                </article>
+              )
+            }) : (
+              <div className="ru-notice"><strong>Вердикт по модели отложен.</strong> Последний захват условий старше 30 дней, поэтому редакция не повторяет устаревшие проценты, цены или сроки. Откройте официальный checkout и сравните свежие правила.</div>
+            )}
           </div>
 
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="fundednext">
