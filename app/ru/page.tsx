@@ -66,7 +66,7 @@ export default function RussianHomePage() {
     const firm = firms.find(candidate => outboundSlug(candidate.name) === route.slug)
     const products = freshChallenges.filter(product => product.firmSlug === route.slug)
     return { ...route, firm, products }
-  }).filter(item => item.firm?.affiliateUrl && item.products.length > 0)
+  }).filter(item => item.firm?.affiliateUrl)
 
   const crumbs = breadcrumbSchema([
     { name: 'Traders Fund Hub', url: '/' },
@@ -226,11 +226,12 @@ export default function RussianHomePage() {
             Эти переходы могут приносить Traders Fund Hub комиссию. Комиссия не означает доступность в вашей стране, одобрение продукта или гарантию выплаты: сначала проверьте гражданство, резидентство, KYC и правила.
           </div>
           <h2>Глобальные фирмы для русскоязычных трейдеров</h2>
+          <p className="ru-muted">Если свежий захват временно отсутствует, переход всё равно ведёт на официальную страницу для проверки актуальных условий; мы не подставляем устаревшие цены или правила.</p>
           <div className="ru-grid">
             {globalCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-home-global-partner={item.slug}>
                 <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Партнёр</span></div>
-                <p className="ru-muted">{item.products.length} свежих продуктов с указанной ценой; откройте русский обзор и проверьте доступ до оплаты.</p>
+                <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов с указанной ценой` : 'Свежий захват временно отсутствует'}; откройте русский обзор и проверьте доступ до оплаты.</p>
                 <div className="ru-actions">
                   <Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link>
                   <Link href={`/go/${item.slug}?from=ru-home-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></Link>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowRight, BadgeCheck, Database, Scale, ShieldCheck } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
+import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
@@ -65,8 +66,12 @@ export default function RussianBestPropFirmsPage() {
 
   const topFive = ranked.slice(0, 5)
   const globalPartners = ['fundednext', 'fundingpips', 'bright-funded']
-    .map(slug => ranked.find(item => item.slug === slug))
-    .filter((item): item is (typeof ranked)[number] => Boolean(item?.firm.affiliateUrl))
+    .map(slug => {
+      const rankedItem = ranked.find(item => item.slug === slug)
+      const firm = rankedItem?.firm ?? firms.find(item => outboundSlug(item.name) === slug)
+      return firm ? { slug, firm, products: rankedItem?.products ?? [] } : null
+    })
+    .filter((item): item is { slug: string; firm: (typeof firms)[number]; products: (typeof challenges) } => Boolean(item?.firm.affiliateUrl))
   const latestCapture = ranked
     .flatMap(item => item.products.map(product => product.sourceCapturedAt))
     .sort()
@@ -189,7 +194,7 @@ export default function RussianBestPropFirmsPage() {
             страну, гражданство, KYC, способ оплаты и правила выплат.
           </div>
           <h2>Куда перейти после проверки условий</h2>
-          <p className="ru-muted">Русский язык страницы не означает доступность для резидента России. Сначала откройте разбор и сверяйте страну на официальной странице оплаты.</p>
+          <p className="ru-muted">Русский язык страницы не означает доступность для резидента России. Сначала откройте разбор и сверяйте страну на официальной странице оплаты. При отсутствии свежего захвата мы не показываем старые цены или правила.</p>
           <div className="ru-grid">
             {globalPartners.map(item => {
               const reviewHref = item.slug === 'fundednext'
@@ -205,7 +210,7 @@ export default function RussianBestPropFirmsPage() {
                     <h3>{item.firm.name}</h3>
                     <span className="ru-score">{item.firm.score.toFixed(1)}/10</span>
                   </div>
-                  <p className="ru-muted">{item.products.length} свежих продуктов; источник до {item.products.map(product => product.sourceCapturedAt).sort().at(-1)}. Смотрите правила конкретного продукта, а не только название фирмы.</p>
+                  <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов; источник до ${item.products.map(product => product.sourceCapturedAt).sort().at(-1)}` : 'Свежий продуктовый захват временно отсутствует'}. Смотрите актуальные правила конкретного продукта, а не только название фирмы.</p>
                   <div className="ru-actions">
                     <Link href={reviewHref} className="btn-outline">Открыть разбор</Link>
                     <Link
