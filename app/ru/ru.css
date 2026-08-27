@@ -212,6 +212,41 @@
   border-bottom: 0;
 }
 
+.ru-section[id] {
+  scroll-margin-top: 6rem;
+}
+
+.ru-partner-decision-table {
+  min-width: 1120px;
+}
+
+.ru-partner-decision-table th:nth-child(1) {
+  width: 15%;
+}
+
+.ru-partner-decision-table th:nth-child(2) {
+  width: 17%;
+}
+
+.ru-partner-decision-table th:nth-child(3) {
+  width: 19%;
+}
+
+.ru-partner-decision-table th:nth-child(4) {
+  width: 32%;
+}
+
+.ru-ranking-table-actions {
+  display: grid;
+  gap: 0.65rem;
+  min-width: 170px;
+}
+
+.ru-ranking-table-actions a {
+  justify-content: center;
+  text-align: center;
+}
+
 .ru-ranking-card {
   position: relative;
 }

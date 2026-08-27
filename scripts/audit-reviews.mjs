@@ -11076,12 +11076,20 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(russianRouteFiles.get('/ru/luchshie-prop-firmy'), 'utf8')
     : ''
   for (const token of [
+    'data-russian-ranking-article="decision-first"',
+    'data-russian-ranking-country-paths="diaspora-not-russia"',
     'data-russian-partner-shortlist="global"',
+    'data-russian-ranking-partner-matrix="three-global-partners"',
+    'data-russian-ranking-intent-paths="payout-drawdown-budget"',
     'data-russian-affiliate-disclosure="partner-shortlist"',
     "const globalPartners = ['fundednext', 'fundingpips', 'bright-funded']",
     'from=ru-ranking-partner-shortlist',
     '`/go/${item.slug}?from=ru-ranking-partner-shortlist`',
     'rel="sponsored nofollow noopener"',
+    'href="/ru/rossiyskie-prop-kompanii"',
+    'href="/ru/prop-firmy-bez-chelendzha"',
+    'href="/ru/vyplaty-prop-firm"',
+    'href="/ru/otzyvy-prop-firm"',
   ]) {
     if (!russianRankingPage.includes(token)) rows.push(`Russian global-partner shortlist is missing ${token}`)
   }
