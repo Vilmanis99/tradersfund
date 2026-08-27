@@ -10934,6 +10934,46 @@ function checkRussianAcquisitionPilot() {
           rows.push(`FundingPips KYC autocomplete signal is incomplete for ${suggestion}`)
         }
       }
+      const genericInstantSignal = autocompleteSignals.get('проп фирмы без челленджа')
+      if (
+        genericInstantSignal?.engine !== 'Google'
+        || genericInstantSignal?.capturedAt !== evidence.capturedAt
+        || !genericInstantSignal?.suggestions?.includes('проп фирмы без челленджа')
+      ) {
+        rows.push('Russian instant-funding autocomplete signal is incomplete')
+      }
+      const fundedNextInstantSignal = autocompleteSignals.get('fundednext instant')
+      for (const suggestion of [
+        'fundednext instant funding',
+        'fundednext instant account rules',
+        'fundednext instant funding rules',
+        'fundednext instant rules',
+        'fundednext instant funding withdrawal',
+      ]) {
+        if (
+          fundedNextInstantSignal?.engine !== 'Google'
+          || fundedNextInstantSignal?.capturedAt !== evidence.capturedAt
+          || !fundedNextInstantSignal?.suggestions?.includes(suggestion)
+        ) {
+          rows.push(`FundedNext Instant autocomplete signal is incomplete for ${suggestion}`)
+        }
+      }
+      const fundingPipsZeroSignal = autocompleteSignals.get('fundingpips zero')
+      for (const suggestion of [
+        'fundingpips zero',
+        'fundingpips zero account rules',
+        'fundingpips zero rules',
+        'fundingpips zero consistency rule',
+        'fundingpips zero review',
+      ]) {
+        if (
+          fundingPipsZeroSignal?.engine !== 'Google'
+          || fundingPipsZeroSignal?.capturedAt !== evidence.capturedAt
+          || !fundingPipsZeroSignal?.suggestions?.includes(suggestion)
+        ) {
+          rows.push(`FundingPips Zero autocomplete signal is incomplete for ${suggestion}`)
+        }
+      }
 
       const localSignals = new Map((evidence.localFirmSignals ?? [])
         .map(item => [item.operator, item]))
@@ -11314,14 +11354,68 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(russianRouteFiles.get('/ru/prop-firmy-bez-chelendzha'), 'utf8')
     : ''
   for (const token of [
-    'data-russian-instant-ranking="source-gated"',
+    'data-russian-instant-ranking="long-form-phase-zero"',
+    'data-russian-instant-firm-count={instantFirmCount}',
     'data-russian-country-boundary="instant-not-access"',
     'data-russian-affiliate-disclosure="instant-ranking"',
     'data-russian-instant-product-count={products.length}',
-    'from=ru-instant-ranking',
+    'data-russian-instant-article="global-partner-decision-guide"',
+    'data-russian-instant-definition="zero-evaluation-not-zero-rules"',
+    'data-russian-instant-featured-partners="fundednext-fundingpips"',
+    'data-russian-instant-evidence={card.slug}',
+    'data-russian-instant-partner="fundednext"',
+    'data-russian-instant-partner="fundingpips"',
+    'data-russian-instant-all-products={products.length}',
+    'data-russian-instant-product={`${product.firmSlug}:${product.productSlug}`}',
+    'data-russian-instant-risk="drawdown-before-price"',
+    'data-russian-instant-diaspora="country-before-checkout"',
+    'data-russian-instant-search="generic-and-branded"',
+    'data-russian-instant-bright="challenge-alternative-only"',
+    'data-russian-instant-local-boundary="different-market-models"',
+    'data-russian-instant-decision="risk-before-fee"',
+    "{ slug: 'fundednext', name: 'FundedNext', productSlug: 'stellar-instant'",
+    "{ slug: 'fundingpips', name: 'FundingPips', productSlug: 'zero'",
+    '/go/fundednext?from=ru-instant-fundednext',
+    '/go/fundingpips?from=ru-instant-fundingpips',
+    '/go/bright-funded?from=ru-instant-bright-alternative',
+    'FUNDEDNEXT_REWARD_URL',
+    'FUNDINGPIPS_ZERO_URL',
     'rel="sponsored nofollow noopener"',
   ]) {
     if (!russianInstantPage.includes(token)) rows.push(`Russian instant page is missing ${token}`)
+  }
+  const currentInstantProducts = fs.readdirSync(CHALLENGES)
+    .filter(file => file.endsWith('.json') && !file.startsWith('_'))
+    .flatMap(file => JSON.parse(fs.readFileSync(path.join(CHALLENGES, file), 'utf8')))
+    .filter(product => {
+      if (product.phases !== 0) return false
+      const captured = new Date(`${product.sourceCapturedAt}T23:59:59Z`)
+      const ageDays = (Date.now() - captured.getTime()) / 86_400_000
+      return !Number.isNaN(captured.getTime()) && ageDays >= -1 && ageDays <= 30
+    })
+  const currentInstantFirmSlugs = new Set(currentInstantProducts.map(product => product.firmSlug))
+  const currentInstantPriceCount = currentInstantProducts.reduce((sum, product) => sum
+    + product.accountSizes.filter(tier =>
+      (tier.priceUsd != null && tier.priceUsd > 0)
+      || (tier.priceEur != null && tier.priceEur > 0)).length, 0)
+  if (
+    currentInstantProducts.length !== 9
+    || currentInstantFirmSlugs.size !== 7
+    || currentInstantPriceCount !== 39
+  ) {
+    rows.push(`Russian instant fixture expects 9 products, 7 firms and 39 prices; received ${currentInstantProducts.length}, ${currentInstantFirmSlugs.size} and ${currentInstantPriceCount}`)
+  }
+  const fundedNextInstant = currentInstantProducts.filter(product =>
+    product.firmSlug === 'fundednext' && product.productSlug === 'stellar-instant')
+  const fundingPipsZero = currentInstantProducts.filter(product =>
+    product.firmSlug === 'fundingpips' && product.productSlug === 'zero')
+  const brightInstant = currentInstantProducts.filter(product => product.firmSlug === 'bright-funded')
+  if (
+    fundedNextInstant.length !== 1
+    || fundingPipsZero.length !== 1
+    || brightInstant.length !== 0
+  ) {
+    rows.push('Russian instant partner boundary must contain FundedNext Stellar Instant and FundingPips Zero, with 0 Bright Funded phase-0 products')
   }
 
   const russianPayoutsPage = fs.existsSync(russianRouteFiles.get('/ru/vyplaty-prop-firm'))

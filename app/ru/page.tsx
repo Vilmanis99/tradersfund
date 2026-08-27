@@ -290,7 +290,7 @@ export default function RussianHomePage() {
             <article className="ru-card">
               <Zap size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Проп-фирмы без челленджа</h3>
-              <p className="ru-muted">Phase-0 продукты с отдельной проверкой просадки, выплат и доступности страны; два глобальных партнёрских пути вынесены отдельно.</p>
+              <p className="ru-muted">FundedNext Stellar Instant и FundingPips Zero — 2 подтверждённых партнёрских phase-0 маршрута; Bright Funded отделён как challenge-based альтернатива.</p>
               <Link className="ru-card-link" href="/ru/prop-firmy-bez-chelendzha">Сравнить instant funding →</Link>
             </article>
           </div>

@@ -96,6 +96,48 @@
           "fundingpips kyc process",
           "funding pips kyc documents"
         ]
+      },
+      {
+        "engine": "Google",
+        "seed": "проп фирмы без челленджа",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "проп фирмы без челленджа"
+        ]
+      },
+      {
+        "engine": "Google",
+        "seed": "fundednext instant",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "fundednext instant funding",
+          "fundednext instant",
+          "fundednext instant account rules",
+          "fundednext instant account",
+          "fundednext instant funding rules",
+          "fundednext instant rules",
+          "fundednext instant stellar",
+          "fundednext instant funded",
+          "fundednext instant funded account",
+          "fundednext instant funding withdrawal"
+        ]
+      },
+      {
+        "engine": "Google",
+        "seed": "fundingpips zero",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "fundingpips zero",
+          "fundingpips zero account",
+          "fundingpips zero rules",
+          "fundingpips zero account rules",
+          "fundingpips zero consistency rule",
+          "fundingpips zero challenge",
+          "fundingpips zero step",
+          "fundingpips zero model",
+          "fundingpips zero review",
+          "funding pips zero faq"
+        ]
       }
     ],
     "notes": [
