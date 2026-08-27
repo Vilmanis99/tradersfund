@@ -215,6 +215,12 @@ export default function RussianHomePage() {
               )
             })}
           </div>
+          <div className="ru-actions">
+            <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">
+              Сравнить FundedNext и Bright Funded <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+            <Link href="/ru/vyplaty-prop-firm" className="btn-outline">Сравнить способы выплаты</Link>
+          </div>
         </div>
       </section>
 
@@ -222,7 +228,7 @@ export default function RussianHomePage() {
         <div className="ru-shell">
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия начинает с восемнадцати страниц под самостоятельные поисковые задачи,
+            Русская версия начинает с девятнадцати страниц под самостоятельные поисковые задачи,
             включая отдельную проверку компаний российского рынка. Мы не переводим сотни URL автоматически: сначала проверяем,
             отвечает ли локальная страница на самостоятельный поисковый запрос.
           </p>
@@ -262,6 +268,12 @@ export default function RussianHomePage() {
               <h3>Русскоязычные трейдеры за рубежом</h3>
               <p className="ru-muted">Разделяем язык, гражданство, резидентство и KYC, чтобы вести подходящих читателей к глобальным продуктам без обещаний доступа.</p>
               <Link className="ru-card-link" href="/ru/dlya-russkoyazychnykh-treyderov">Пройти проверку доступа →</Link>
+            </article>
+            <article className="ru-card">
+              <Scale size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>FundedNext или Bright Funded</h3>
+              <p className="ru-muted">Главное сравнение русской версии: 7 продуктов, 40 цен, USD против EUR, static против trailing, выплаты, KYC и отдельные CTA обеих фирм.</p>
+              <Link className="ru-card-link" href="/ru/fundednext-vs-bright-funded">Сравнить главных партнёров →</Link>
             </article>
             <article className="ru-card">
               <Scale size={22} color="var(--accent-light)" aria-hidden="true" />

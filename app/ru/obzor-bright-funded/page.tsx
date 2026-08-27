@@ -353,7 +353,8 @@ export default function RussianBrightFundedReviewPage() {
                 <Link href="/go/bright-funded?from=ru-bright-funded-review-verdict" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
                   Проверить страну и планы Bright Funded <ArrowRight size={15} aria-hidden="true" />
                 </Link>
-                <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Сравнить глобальные фирмы</Link>
+                <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить с FundedNext</Link>
+                <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Все глобальные фирмы</Link>
               </div>
             ) : <p>Партнёрская ссылка не настроена; используйте рейтинг для сравнения.</p>}
             <p className="ru-source-line"><BadgeDollarSign size={14} aria-hidden="true" /> Переход проходит через контролируемый редирект Traders Fund Hub и помечен sponsored и nofollow.</p>

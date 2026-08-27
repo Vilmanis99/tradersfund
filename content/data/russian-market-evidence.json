@@ -190,6 +190,20 @@
           "fundingpips payout cap",
           "funding pips payout options"
         ]
+      },
+      {
+        "engine": "Google",
+        "seed": "fundednext vs bright funded",
+        "capturedAt": "2026-08-27",
+        "status": "no-suggestions-returned",
+        "suggestions": []
+      },
+      {
+        "engine": "Google",
+        "seed": "fundednext или bright funded",
+        "capturedAt": "2026-08-27",
+        "status": "no-suggestions-returned",
+        "suggestions": []
       }
     ],
     "notes": [

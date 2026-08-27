@@ -594,6 +594,7 @@ export default function RussianFundedNextReviewPage() {
           <h2 id="alternatives">С чем сравнить FundedNext</h2>
           <p>Сравнение должно отвечать на конкретное ограничение. Если не подходит 6% trailing у Instant, сравнивайте продукт с продуктом; если проблема в доступе по стране, сначала проверяйте KYC и checkout, а не редакционный балл.</p>
           <ul className="ru-review-related-links">
+            <li><Link href="/ru/fundednext-vs-bright-funded">FundedNext или Bright Funded</Link> — основное сравнение 7 продуктов и 40 USD/EUR цен по просадке, true cost, выплатам и KYC.</li>
             <li><Link href="/ru/fundednext-vs-fundingpips">FundedNext или FundingPips</Link> — сравнение 4 моделей FundedNext с 5 продуктами FundingPips по ценам, просадке и payout-gates.</li>
             <li><Link href="/ru/obzor-fundingpips">Обзор FundingPips</Link> — отдельный разбор 17 цен и 5 наборов правил для другого глобального партнёра.</li>
             <li><Link href="/ru/obzor-bright-funded">Обзор Bright Funded</Link> — 3 программы и 18 цен в EUR, если важна европейская валюта checkout.</li>

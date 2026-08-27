@@ -15,6 +15,7 @@ const russianNavLinks = [
       { label: 'Рейтинг глобальных фирм', href: '/ru/luchshie-prop-firmy' },
       { label: 'Крипто-проп', href: '/ru/luchshie-kripto-prop-firmy' },
       { label: 'Без челленджа', href: '/ru/prop-firmy-bez-chelendzha' },
+      { label: 'FundedNext против Bright Funded', href: '/ru/fundednext-vs-bright-funded' },
       { label: 'FundedNext против FundingPips', href: '/ru/fundednext-vs-fundingpips' },
       { label: 'Местные компании', href: '/ru/rossiyskie-prop-kompanii' },
     ],

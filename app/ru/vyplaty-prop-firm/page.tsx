@@ -533,6 +533,7 @@ export default function RussianPayoutsPage() {
               продукт, затем переходите на официальный checkout через отмеченную партнёрскую ссылку.
             </div>
             <div className="ru-actions">
+              <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Сравнить FundedNext и Bright Funded</Link>
               <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор FundedNext</Link>
               <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор Bright Funded</Link>
               <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Полный русский рейтинг</Link>

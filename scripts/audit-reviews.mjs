@@ -10823,6 +10823,7 @@ function checkRussianAcquisitionPilot() {
   const russianRouteFiles = new Map([
     ['/ru', path.join(ROOT, 'app/ru/page.tsx')],
     ['/ru/dlya-russkoyazychnykh-treyderov', path.join(ROOT, 'app/ru/dlya-russkoyazychnykh-treyderov/page.tsx')],
+    ['/ru/fundednext-vs-bright-funded', path.join(ROOT, 'app/ru/fundednext-vs-bright-funded/page.tsx')],
     ['/ru/fundednext-vs-fundingpips', path.join(ROOT, 'app/ru/fundednext-vs-fundingpips/page.tsx')],
     ['/ru/promokody-prop-firm', path.join(ROOT, 'app/ru/promokody-prop-firm/page.tsx')],
     ['/ru/vyplaty-prop-firm', path.join(ROOT, 'app/ru/vyplaty-prop-firm/page.tsx')],
@@ -11015,6 +11016,19 @@ function checkRussianAcquisitionPilot() {
           ) {
             rows.push(`Russian payout autocomplete signal is incomplete for ${seed}: ${suggestion}`)
           }
+        }
+      }
+
+      for (const seed of ['fundednext vs bright funded', 'fundednext или bright funded']) {
+        const signal = autocompleteSignals.get(seed)
+        if (
+          signal?.engine !== 'Google'
+          || signal?.capturedAt !== evidence.capturedAt
+          || signal?.status !== 'no-suggestions-returned'
+          || !Array.isArray(signal?.suggestions)
+          || signal.suggestions.length !== 0
+        ) {
+          rows.push(`FundedNext/Bright comparison autocomplete gap is incomplete for ${seed}`)
         }
       }
 
@@ -11257,6 +11271,7 @@ function checkRussianAcquisitionPilot() {
     "{ en: '/best-prop-firms-2026', ru: '/ru/luchshie-prop-firmy' }",
     "{ en: '/best-crypto-prop-firms', ru: '/ru/luchshie-kripto-prop-firmy' }",
     "{ en: '/best-instant-funding-prop-firms', ru: '/ru/prop-firmy-bez-chelendzha' }",
+    "{ en: '/compare/bright-funded-vs-fundednext', ru: '/ru/fundednext-vs-bright-funded' }",
     "{ en: '/compare/fundednext-vs-fundingpips', ru: '/ru/fundednext-vs-fundingpips' }",
     "{ en: '/prop-firm-discount-codes', ru: '/ru/promokody-prop-firm' }",
     "{ en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' }",
@@ -11324,6 +11339,9 @@ function checkRussianAcquisitionPilot() {
     '/go/fundednext?from=ru-home-hero-fundednext',
     '/go/bright-funded?from=ru-home-hero-bright-funded',
     'data-russian-home-featured-partners="fundednext-bright-funded"',
+    'href="/ru/fundednext-vs-bright-funded"',
+    'Сравнить FundedNext и Bright Funded',
+    'Главное сравнение русской версии: 7 продуктов, 40 цен',
     'data-russian-home-featured-partner={item.slug}',
     "const featuredPartnerRoutes = [",
     "{ slug: 'fundednext', name: 'FundedNext'",
@@ -11446,6 +11464,58 @@ function checkRussianAcquisitionPilot() {
     'rel="sponsored nofollow noopener"',
   ]) {
     if (!russianComparisonPage.includes(token)) rows.push(`Russian partner comparison is missing ${token}`)
+  }
+
+  const russianPrimaryComparisonPage = fs.existsSync(russianRouteFiles.get('/ru/fundednext-vs-bright-funded'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/fundednext-vs-bright-funded'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-primary-comparison="fundednext-bright-funded"',
+    'data-russian-primary-comparison-products={products.length}',
+    'data-russian-primary-comparison-prices={priceCount}',
+    'data-russian-primary-comparison-article="product-before-brand"',
+    'data-russian-country-boundary="comparison-not-access"',
+    'data-russian-affiliate-disclosure="fundednext-bright-comparison"',
+    'data-russian-primary-comparison-matrix="five-constraints"',
+    'data-russian-primary-comparison-products="seven-current-products"',
+    'data-russian-primary-comparison-product={`${product.firmSlug}:${product.productSlug}`}',
+    'data-russian-primary-comparison-one-step="same-caps-different-engine"',
+    'data-russian-primary-comparison-two-step="matched-risk-buckets"',
+    'data-russian-primary-comparison-instant="fundednext-only"',
+    'data-russian-primary-comparison-cost="compute-true-cost"',
+    'data-russian-primary-comparison-payout="methods-cycle-fees"',
+    'data-russian-primary-comparison-kyc="two-required-processes"',
+    'data-russian-primary-comparison-diaspora="language-not-residency"',
+    'data-russian-primary-comparison-trust="suppressed-is-not-null"',
+    'data-russian-primary-comparison-search="zero-suggestions-no-doorways"',
+    'data-russian-primary-comparison-decision="constraint-before-commission"',
+    'data-russian-primary-comparison-cta="fundednext"',
+    'data-russian-primary-comparison-cta="bright-funded"',
+    'challengeTierEconomics',
+    '/go/fundednext?from=ru-fn-vs-bright-fundednext',
+    '/go/bright-funded?from=ru-fn-vs-bright-bright-funded',
+    '/go/fundednext?from=ru-fn-vs-bright-verdict-fundednext',
+    '/go/bright-funded?from=ru-fn-vs-bright-verdict-bright-funded',
+    'rel="sponsored nofollow noopener"',
+  ]) {
+    if (!russianPrimaryComparisonPage.includes(token)) {
+      rows.push(`Russian FundedNext/Bright comparison is missing ${token}`)
+    }
+  }
+  const currentPrimaryComparisonProducts = fs.readdirSync(CHALLENGES)
+    .filter(file => ['fundednext.json', 'bright-funded.json'].includes(file))
+    .flatMap(file => JSON.parse(fs.readFileSync(path.join(CHALLENGES, file), 'utf8')))
+    .filter(product => {
+      const captured = new Date(`${product.sourceCapturedAt}T23:59:59Z`)
+      const ageDays = (Date.now() - captured.getTime()) / 86_400_000
+      return !Number.isNaN(captured.getTime()) && ageDays >= -1 && ageDays <= 30
+    })
+  const currentPrimaryComparisonPriceCount = currentPrimaryComparisonProducts.reduce((sum, product) => sum
+    + product.accountSizes.filter(tier =>
+      (tier.priceUsd != null && tier.priceUsd > 0)
+      || (tier.priceEur != null && tier.priceEur > 0)).length, 0)
+  if (currentPrimaryComparisonProducts.length !== 7 || currentPrimaryComparisonPriceCount !== 40) {
+    rows.push(`Russian FundedNext/Bright fixture expects 7 products and 40 prices; received ${currentPrimaryComparisonProducts.length} and ${currentPrimaryComparisonPriceCount}`)
   }
 
   const russianDealsPage = fs.existsSync(russianRouteFiles.get('/ru/promokody-prop-firm'))
@@ -11721,6 +11791,7 @@ function checkRussianAcquisitionPilot() {
     'Содержание обзора',
     'id="verdict"',
     '/go/fundednext?from=ru-fundednext-review-verdict',
+    'href="/ru/fundednext-vs-bright-funded"',
     'rel="sponsored nofollow noopener"',
     'VPN',
   ]) {
@@ -11761,6 +11832,7 @@ function checkRussianAcquisitionPilot() {
       'data-russian-bright-diaspora="currency-first"',
       'data-russian-affiliate-disclosure="bright-funded"',
       '/go/bright-funded?from=ru-bright-funded-review-verdict',
+      'href="/ru/fundednext-vs-bright-funded"',
       'rel="sponsored nofollow noopener"',
     ]],
   ]) {
@@ -11784,6 +11856,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/rossiyskie-prop-kompanii'",
     "href: '/ru/luchshie-kripto-prop-firmy'",
     "href: '/ru/dlya-russkoyazychnykh-treyderov'",
+    "href: '/ru/fundednext-vs-bright-funded'",
     "href: '/ru/fundednext-vs-fundingpips'",
     "href: '/ru/promokody-prop-firm'",
     "href: '/ru/vyplaty-prop-firm'",
@@ -11806,6 +11879,7 @@ function checkRussianAcquisitionPilot() {
   }
   const footer = fs.readFileSync(path.join(ROOT, 'components/Footer.tsx'), 'utf8')
   if (!footer.includes("href: '/ru'")) rows.push('global footer is missing the Russian-language entry point')
+  if (!footer.includes("href: '/ru/fundednext-vs-bright-funded'")) rows.push('Russian footer is missing the primary partner comparison')
   if (!footer.includes("href: '/ru/vyplaty-prop-firm'")) rows.push('Russian footer is missing the payouts route')
   if (!footer.includes("href: '/ru/prop-firmy-bez-kyc'")) rows.push('Russian footer is missing the KYC route')
   if (!footer.includes("href: '/ru/obzor-proplive'")) rows.push('Russian footer is missing the PropLive review route')

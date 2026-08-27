@@ -36,6 +36,7 @@ export default function Footer({
     { label: 'Крипто-проп-фирмы', href: '/ru/luchshie-kripto-prop-firmy' },
     { label: 'Без челленджа', href: '/ru/prop-firmy-bez-chelendzha' },
     { label: 'Для русскоязычных трейдеров', href: '/ru/dlya-russkoyazychnykh-treyderov' },
+    { label: 'FundedNext или Bright Funded', href: '/ru/fundednext-vs-bright-funded' },
     { label: 'Сравнение FundedNext и FundingPips', href: '/ru/fundednext-vs-fundingpips' },
     { label: 'Промокоды и предложения', href: '/ru/promokody-prop-firm' },
     { label: 'Выплаты проп-фирм', href: '/ru/vyplaty-prop-firm' },
