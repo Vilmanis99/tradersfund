@@ -37,6 +37,22 @@
           "крипто проп фирма",
           "крипто проп компания"
         ]
+      },
+      {
+        "engine": "Google",
+        "seed": "проп фирмы отзывы",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "проп фирмы отзывы"
+        ]
+      },
+      {
+        "engine": "Google",
+        "seed": "fundednext отзывы",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "fundednext отзывы"
+        ]
       }
     ],
     "notes": [

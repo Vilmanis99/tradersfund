@@ -10873,6 +10873,18 @@ function checkRussianAcquisitionPilot() {
       ) {
         rows.push('Russian search-demand caveat or 180-click/41-query fixture is missing')
       }
+      const autocompleteSignals = new Map((evidence.searchDemand?.autocompleteSignals ?? [])
+        .map(item => [item.seed, item]))
+      for (const seed of ['проп фирмы отзывы', 'fundednext отзывы']) {
+        const signal = autocompleteSignals.get(seed)
+        if (
+          signal?.engine !== 'Google'
+          || signal?.capturedAt !== evidence.capturedAt
+          || !signal?.suggestions?.includes(seed)
+        ) {
+          rows.push(`Russian review autocomplete signal is incomplete for ${seed}`)
+        }
+      }
 
       const localSignals = new Map((evidence.localFirmSignals ?? [])
         .map(item => [item.operator, item]))
@@ -11295,11 +11307,22 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(russianRouteFiles.get('/ru/otzyvy-prop-firm'), 'utf8')
     : ''
   for (const token of [
-    'data-russian-reviews-guide="source-gated"',
+    'data-russian-reviews-guide="long-form-source-gated"',
+    'data-russian-reviews-article="decision-first"',
     'data-russian-country-boundary="reviews-not-access"',
-    'data-russian-reviews-global-funnel="global-partners"',
-    'data-russian-reviews-global-partner={item.slug}',
-    'ru-reviews-guide-',
+    'data-russian-affiliate-disclosure="reviews-guide"',
+    'data-russian-reviews-checklist="seven-fields"',
+    'data-russian-reviews-featured-partners="fundednext-bright-funded"',
+    'data-russian-reviews-featured-partner={card.slug}',
+    'data-russian-reviews-product-evidence={featuredProducts.length}',
+    'data-russian-reviews-payout-case="seven-facts"',
+    'data-russian-reviews-negative-case="rule-first"',
+    'data-russian-reviews-search-language="current-autocomplete"',
+    'data-russian-reviews-local-models="bridge-not-ranking"',
+    'data-russian-reviews-decision="reviews-to-product"',
+    'data-russian-reviews-secondary-partner="fundingpips"',
+    '`/go/${card.slug}?from=ru-reviews-guide-${card.slug}`',
+    '/go/fundingpips?from=ru-reviews-guide-fundingpips',
     'rel="sponsored nofollow noopener"',
   ]) {
     if (!russianReviewsPage.includes(token)) rows.push(`Russian reviews guide is missing ${token}`)
