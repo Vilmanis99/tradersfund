@@ -98,7 +98,7 @@ export default function Footer({
   ]
 
   return (
-    <footer className="footer-aurora">
+    <footer className="footer-aurora" lang={isRussian ? 'ru' : 'en'}>
       <div className="aurora-orb aurora-orb--3 footer-orb" aria-hidden="true" />
       <div className="footer-accent-line" aria-hidden="true" />
 

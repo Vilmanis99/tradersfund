@@ -91,6 +91,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
       <nav
         ref={navRef}
         className="desktop-nav"
+        lang={isRussian ? 'ru' : 'en'}
         aria-label={isRussian ? 'Основная навигация' : 'Primary'}
       >
         {activeNavLinks.map(link => (
@@ -208,6 +209,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
           <div className="mobile-overlay__inner">
             <nav
               className="mobile-overlay__nav"
+              lang={isRussian ? 'ru' : 'en'}
               aria-label={isRussian ? 'Основная мобильная навигация' : 'Mobile primary'}
             >
               {activeNavLinks.map(link => (
