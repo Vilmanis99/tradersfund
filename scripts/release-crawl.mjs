@@ -696,6 +696,9 @@ const russianExpectations = new Map([
       '162',
       '180',
       '41',
+      'data-russian-home-hero-partners="fundednext-bright-funded"',
+      '/go/fundednext?from=ru-home-hero-fundednext',
+      '/go/bright-funded?from=ru-home-hero-bright-funded',
       'data-russian-home-featured-partners="fundednext-bright-funded"',
       'data-russian-home-featured-partner="fundednext"',
       'data-russian-home-featured-partner="bright-funded"',
@@ -1081,6 +1084,8 @@ for (const [path, href] of [
   ['/ru/otzyvy-prop-firm', '/go/fundednext?from=ru-reviews-guide-fundednext'],
   ['/ru/otzyvy-prop-firm', '/go/fundingpips?from=ru-reviews-guide-fundingpips'],
   ['/ru/otzyvy-prop-firm', '/go/bright-funded?from=ru-reviews-guide-bright-funded'],
+  ['/ru', '/go/fundednext?from=ru-home-hero-fundednext'],
+  ['/ru', '/go/bright-funded?from=ru-home-hero-bright-funded'],
   ['/ru', '/go/fundednext?from=ru-home-fundednext'],
   ['/ru', '/go/bright-funded?from=ru-home-bright-funded'],
 ]) {

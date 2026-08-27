@@ -11053,6 +11053,9 @@ function checkRussianAcquisitionPilot() {
     }
   }
   for (const token of [
+    'data-russian-home-hero-partners="fundednext-bright-funded"',
+    '/go/fundednext?from=ru-home-hero-fundednext',
+    '/go/bright-funded?from=ru-home-hero-bright-funded',
     'data-russian-home-featured-partners="fundednext-bright-funded"',
     'data-russian-home-featured-partner={item.slug}',
     "const featuredPartnerRoutes = [",

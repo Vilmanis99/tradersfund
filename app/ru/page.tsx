@@ -130,20 +130,21 @@ export default function RussianHomePage() {
             тип просадки, этапы оценки, базовую долю прибыли и условия выплаты.
             Каждая цифра привязана к первичному источнику и дате проверки.
           </p>
-          <div className="ru-actions">
+          <div className="ru-actions" data-russian-home-hero-partners="fundednext-bright-funded">
             <Link href="/ru/luchshie-prop-firmy" className="btn-primary btn-glow">
               Открыть рейтинг <ArrowRight size={15} aria-hidden="true" />
             </Link>
-            <Link href="#glavnye-partnery" className="btn-outline">
-              FundedNext и Bright Funded
+            <Link href="/go/fundednext?from=ru-home-hero-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
+              FundedNext <ArrowRight size={15} aria-hidden="true" />
             </Link>
-            <Link href="/ru/rossiyskie-prop-kompanii" className="btn-outline">
-              Компании из российского рынка
-            </Link>
-            <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm" className="btn-outline">
-              Как работает челлендж
+            <Link href="/go/bright-funded?from=ru-home-hero-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
+              Bright Funded <ArrowRight size={15} aria-hidden="true" />
             </Link>
           </div>
+          <p className="ru-source-line">
+            FundedNext и Bright Funded — наши главные партнёры. Это партнёрские ссылки: мы можем получить комиссию.
+            {' '}Перед оплатой проверьте страну, KYC и правила продукта. <Link href="#glavnye-partnery">Сравнить две карточки</Link>.
+          </p>
           <div className="ru-stats" aria-label="Текущий охват данных">
             <div className="ru-stat"><strong>{fullyFreshFirmCount}/{firms.length}</strong><span>фирм с полностью свежими продуктами</span></div>
             <div className="ru-stat"><strong>{freshChallenges.length}</strong><span>продуктов, проверенных не более 30 дней назад</span></div>
