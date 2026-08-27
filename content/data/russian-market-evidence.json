@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-08-24",
+  "capturedAt": "2026-08-27",
   "searchDemand": {
     "sourceUrl": "https://a.pr-cy.ru/proptreiding.ru/",
     "sourceType": "third-party Yandex Moscow estimate",
@@ -18,9 +18,31 @@
       { "query": "проп форекс", "monthlyFrequency": 17 },
       { "query": "пипсы проп компания", "monthlyFrequency": 13 }
     ],
+    "autocompleteSignals": [
+      {
+        "engine": "Google",
+        "seed": "проп трейдинг криптовалют",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "проп трейдинг криптовалют",
+          "проп трейдинг криптовалют украина",
+          "проп трейдинг компании криптовалют"
+        ]
+      },
+      {
+        "engine": "Yandex",
+        "seed": "крипто проп фирма",
+        "capturedAt": "2026-08-27",
+        "suggestions": [
+          "крипто проп фирма",
+          "крипто проп компания"
+        ]
+      }
+    ],
     "notes": [
       "These figures are a third-party estimate for Yandex Moscow, not first-party Search Console or Yandex Webmaster data.",
-      "Query frequencies overlap and must not be added together as a total addressable audience."
+      "Query frequencies overlap and must not be added together as a total addressable audience.",
+      "Autocomplete suggestions confirm current phrasing, not monthly volume or conversion intent."
     ]
   },
   "communitySignals": [

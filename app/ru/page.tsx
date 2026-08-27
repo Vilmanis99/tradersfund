@@ -11,6 +11,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 const PATH = '/ru'
 const TITLE = 'Проп-фирмы: обзоры, цены и правила на русском'
 const DESCRIPTION = 'Русская версия Traders Fund Hub: сравнение проп-фирм, цены челленджей, просадки, выплаты и правила по данным из первичных источников.'
+const BRIGHT_REWARD_URL = 'https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -40,9 +41,8 @@ const faqs: RussianFaqItem[] = [
   },
 ]
 
-const globalRoutes = [
+const featuredPartnerRoutes = [
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
-  { slug: 'fundingpips', name: 'FundingPips', reviewHref: '/ru/obzor-fundingpips' },
   { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded' },
 ] as const
 
@@ -85,10 +85,15 @@ export default function RussianHomePage() {
   ).length
   const firstPartySourceCount = new Set(freshChallenges.map(challenge => challenge.sourceUrl)).size
   const latestCapture = freshChallenges.map(challenge => challenge.sourceCapturedAt).sort().at(-1)
-  const globalCards = globalRoutes.map(route => {
+  const featuredPartnerCards = featuredPartnerRoutes.map(route => {
     const firm = firms.find(candidate => outboundSlug(candidate.name) === route.slug)
     const products = freshChallenges.filter(product => product.firmSlug === route.slug)
-    return { ...route, firm, products }
+    const priceCount = products.reduce((total, product) => total + product.accountSizes.filter(tier =>
+      (tier.priceUsd != null && tier.priceUsd > 0)
+      || (tier.priceEur != null && tier.priceEur > 0),
+    ).length, 0)
+    const captureDate = products.map(product => product.sourceCapturedAt).sort().at(-1)
+    return { ...route, firm, products, priceCount, captureDate }
   }).filter(item => item.firm?.affiliateUrl)
 
   const crumbs = breadcrumbSchema([
@@ -129,8 +134,8 @@ export default function RussianHomePage() {
             <Link href="/ru/luchshie-prop-firmy" className="btn-primary btn-glow">
               Открыть рейтинг <ArrowRight size={15} aria-hidden="true" />
             </Link>
-            <Link href="/ru/obzor-fundednext" className="btn-outline">
-              Обзор FundedNext
+            <Link href="#glavnye-partnery" className="btn-outline">
+              FundedNext и Bright Funded
             </Link>
             <Link href="/ru/rossiyskie-prop-kompanii" className="btn-outline">
               Компании из российского рынка
@@ -158,7 +163,62 @@ export default function RussianHomePage() {
             платёжного маршрута и правил конкретного продукта. VPN не превращает
             запрещённую страну в разрешённую.
           </div>
+        </div>
+      </section>
 
+      <section className="ru-section" id="glavnye-partnery">
+        <div className="ru-shell" data-russian-home-featured-partners="fundednext-bright-funded">
+          <div className="ru-notice ru-disclosure">
+            <strong>Два главных партнёра Traders Fund Hub.</strong>{' '}
+            Переходы на FundedNext и Bright Funded могут принести нам комиссию. Это коммерческое выделение,
+            а не два первых места рейтинга: доступ, KYC, правила продукта и выплата проверяются до оплаты.
+          </div>
+          <h2>FundedNext и Bright Funded: два основных глобальных маршрута</h2>
+          <p className="ru-muted">
+            FundedNext даёт выбор между четырьмя текущими моделями в USD, а Bright Funded — между тремя программами
+            с ценами в EUR. Карточки используют свежие продуктовые записи; русский обзор объясняет различия до перехода на официальный checkout.
+          </p>
+          <div className="ru-grid">
+            {featuredPartnerCards.map(item => {
+              const isFundedNext = item.slug === 'fundednext'
+              return (
+                <article className="ru-card" key={item.slug} data-russian-home-featured-partner={item.slug}>
+                  <div className="ru-card-head">
+                    <h3>{item.name}</h3>
+                    <span className="ru-score">Главный партнёр</span>
+                  </div>
+                  <p className="ru-muted">
+                    {isFundedNext
+                      ? 'Stellar 2-Step, Stellar 1-Step, Stellar Lite и Stellar Instant нельзя оценивать как один продукт: этапы, возврат fee, просадка и первая выплата различаются.'
+                      : '1-Step, 2-Step и 2-Step Bright публикуются в EUR; официальный источник отдельно называет USDC ERC-20 и банковский перевод в EUR как способы reward.'}
+                  </p>
+                  <ul className="ru-facts">
+                    <li><Database size={14} aria-hidden="true" /> Актуальные продукты: {item.products.length}</li>
+                    <li><BadgePercent size={14} aria-hidden="true" /> Опубликованные цены: {item.priceCount}</li>
+                    <li><SearchCheck size={14} aria-hidden="true" /> Последний продуктовый захват: {item.captureDate ?? 'нужно обновить'}</li>
+                  </ul>
+                  {!isFundedNext ? (
+                    <p className="ru-source-line">
+                      <a href={BRIGHT_REWARD_URL} target="_blank" rel="nofollow noopener">Источник Bright Funded о выплатах</a>: USDC-выплата не доказывает доступ к торговле криптовалютой.
+                    </p>
+                  ) : (
+                    <p className="ru-source-line">Для резидентов России официальные формулировки FundedNext противоречат друг другу; обзор сохраняет этот конфликт вместо обещания доступа.</p>
+                  )}
+                  <div className="ru-actions">
+                    <Link href={item.reviewHref} className="btn-outline">Русский обзор</Link>
+                    <Link href={`/go/${item.slug}?from=ru-home-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
+                      Проверить {item.name} <ArrowRight size={14} aria-hidden="true" />
+                    </Link>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell">
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
             Русская версия начинает с восемнадцати страниц под самостоятельные поисковые задачи,
@@ -239,29 +299,6 @@ export default function RussianHomePage() {
             <Link href="/ru/obzor-bright-funded">Bright Funded</Link>. Сначала подтвердите страну и правила продукта.
             {' '}Локальные разборы: <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-kascapital">KasCapital</Link>. <Link href="/ru/otzyvy-prop-firm">Отзывы о проп-фирмах</Link>.
           </p>
-        </div>
-      </section>
-
-      <section className="ru-section">
-        <div className="ru-shell" data-russian-home-global-funnel="global-partners">
-          <div className="ru-notice ru-disclosure">
-            <strong>Глобальные партнёрские продукты.</strong>{' '}
-            Эти переходы могут приносить Traders Fund Hub комиссию. Комиссия не означает доступность в вашей стране, одобрение продукта или гарантию выплаты: сначала проверьте гражданство, резидентство, KYC и правила.
-          </div>
-          <h2>Глобальные фирмы для русскоязычных трейдеров</h2>
-          <p className="ru-muted">Если свежий захват временно отсутствует, переход всё равно ведёт на официальную страницу для проверки актуальных условий; мы не подставляем устаревшие цены или правила.</p>
-          <div className="ru-grid">
-            {globalCards.map(item => (
-              <article className="ru-card" key={item.slug} data-russian-home-global-partner={item.slug}>
-                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Партнёр</span></div>
-                <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов с указанной ценой` : 'Свежий захват временно отсутствует'}; откройте русский обзор и проверьте доступ до оплаты.</p>
-                <div className="ru-actions">
-                  <Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link>
-                  <Link href={`/go/${item.slug}?from=ru-home-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></Link>
-                </div>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 

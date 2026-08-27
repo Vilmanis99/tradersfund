@@ -696,9 +696,11 @@ const russianExpectations = new Map([
       '162',
       '180',
       '41',
-      'data-russian-home-global-funnel="global-partners"',
+      'data-russian-home-featured-partners="fundednext-bright-funded"',
+      'data-russian-home-featured-partner="fundednext"',
+      'data-russian-home-featured-partner="bright-funded"',
+      'FundedNext и Bright Funded: два основных глобальных маршрута',
       '/go/fundednext?from=ru-home-fundednext',
-      '/go/fundingpips?from=ru-home-fundingpips',
       '/go/bright-funded?from=ru-home-bright-funded',
     ],
   }],
@@ -807,13 +809,24 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/luchshie-kripto-prop-firmy', {
-    title: 'Крипто-проп-фирмы 2026: проверенные варианты',
-    h1: 'Крипто-проп-фирмы 2026: проверенные варианты',
+    title: 'Крипто-проп-фирмы 2026: 3 проверенных варианта',
+    h1: 'Крипто-проп-фирмы 2026: 3 проверенных варианта',
     markers: [
+      'data-russian-crypto-article="long-form"',
+      'data-russian-crypto-hero="search-and-product-evidence"',
       'data-russian-country-boundary="crypto-not-access"',
       'data-russian-crypto-ranking="source-gated"',
       'data-russian-affiliate-disclosure="crypto-ranking"',
-      'data-russian-crypto-product-count="32"',
+      'data-russian-crypto-product-count="12"',
+      'data-russian-crypto-partner-count="2"',
+      'data-russian-crypto-comparison="three-firms-twelve-products"',
+      'data-russian-crypto-decision-guide="product-not-logo"',
+      'data-russian-crypto-payout-boundary="bright-funded-not-ranked"',
+      'data-russian-crypto-search-language="current-autocomplete"',
+      'data-russian-crypto-watch-count="7"',
+      '/go/fundednext?from=ru-crypto-ranking',
+      '/go/fundingpips?from=ru-crypto-ranking',
+      '/go/bright-funded?from=ru-crypto-ranking-payout-alternative',
     ],
   }],
   ['/ru/obzor-fundednext', {
@@ -1020,6 +1033,8 @@ for (const [path, href] of [
   ['/ru/obzor-fundingpips', '/go/fundingpips?from=ru-fundingpips-review-verdict'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-verdict'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],
+  ['/ru/luchshie-kripto-prop-firmy', '/go/fundingpips?from=ru-crypto-ranking'],
+  ['/ru/luchshie-kripto-prop-firmy', '/go/bright-funded?from=ru-crypto-ranking-payout-alternative'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-diaspora-fundednext'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundingpips?from=ru-diaspora-fundingpips'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/bright-funded?from=ru-diaspora-bright-funded'],
@@ -1055,7 +1070,6 @@ for (const [path, href] of [
   ['/ru/otzyvy-prop-firm', '/go/fundingpips?from=ru-reviews-guide-fundingpips'],
   ['/ru/otzyvy-prop-firm', '/go/bright-funded?from=ru-reviews-guide-bright-funded'],
   ['/ru', '/go/fundednext?from=ru-home-fundednext'],
-  ['/ru', '/go/fundingpips?from=ru-home-fundingpips'],
   ['/ru', '/go/bright-funded?from=ru-home-bright-funded'],
 ]) {
   const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
@@ -2614,6 +2628,10 @@ const expectedCryptoProductCount = expectedCryptoFirms.reduce(
   (total, entry) => total + entry.products.length,
   0,
 )
+const expectedCryptoMappedProductCount = cryptoMarketEvidence.ranked.reduce(
+  (total, entry) => total + entry.productSlugs.length,
+  0,
+)
 const cryptoLandingProbe = await fetchPage(new URL(cryptoLandingPath, BASE))
 if (cryptoLandingProbe.status !== 200) {
   errors.push(
@@ -2630,9 +2648,12 @@ if (cryptoLandingProbe.status !== 200) {
       `${cryptoLandingPath}: rendered ${cards.length} firms, expected ${expectedCryptoFirms.length}`,
     )
   }
-  if (expectedCryptoFirms.length !== 7 || expectedCryptoProductCount !== 32) {
+  if (
+    expectedCryptoFirms.length !== cryptoMarketEvidence.ranked.length
+    || expectedCryptoProductCount !== expectedCryptoMappedProductCount
+  ) {
     errors.push(
-      `${cryptoLandingPath}: evidence fixture must resolve to 7 firms and 32 products; received ${expectedCryptoFirms.length} and ${expectedCryptoProductCount}`,
+      `${cryptoLandingPath}: every ranked evidence row must resolve; received ${expectedCryptoFirms.length}/${cryptoMarketEvidence.ranked.length} firms and ${expectedCryptoProductCount}/${expectedCryptoMappedProductCount} products`,
     )
   }
 
@@ -2677,9 +2698,9 @@ if (cryptoLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    'Best Crypto Prop Firms (2026): 7 Verified | TFH',
-    '7 evidence-backed firms across 32 mapped products',
-    'Not ranked yet: 2 product-capture gaps',
+    `Best Crypto Prop Firms (2026): ${expectedCryptoFirms.length} Verified | TFH`,
+    `${expectedCryptoFirms.length} evidence-backed firms across ${expectedCryptoProductCount} mapped products`,
+    `Not ranked yet: ${cryptoMarketEvidence.watch.length} evidence gaps`,
     'What crypto traders should verify',
     'Can I trade crypto, or only pay and withdraw with it?',
     'Is it a dedicated crypto account or a multi-asset CFD product?',
@@ -2693,7 +2714,6 @@ if (cryptoLandingProbe.status !== 200) {
   }
   for (const required of [
     'href="/prop-firm-challenges"',
-    'href="/blog/crypto-fund-trader-review"',
     'href="/blog/fundednext-review"',
     'href="/prop-firm-challenge-changes"',
   ]) {
@@ -2711,6 +2731,10 @@ if (cryptoLandingProbe.status !== 200) {
     || !fundedNextCard?.html.includes('target="_blank"')
   ) {
     errors.push(`${cryptoLandingPath}: FundedNext affiliate CTA is missing disclosure attributes`)
+  }
+  const fundingPipsCard = cards.find(card => card.text.includes('FundingPips'))
+  if (!fundingPipsCard?.html.includes('href="/go/fundingpips?from=best-crypto-prop-firms"')) {
+    errors.push(`${cryptoLandingPath}: FundingPips card is missing attributed affiliate CTA`)
   }
   if (
     cryptoText.includes('can you get paid in it?')

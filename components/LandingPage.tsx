@@ -472,10 +472,10 @@ export default function LandingPage({ landing }: { landing: Landing }) {
               <div>
                 <h2 className="section-title">
                   <Database size={18} style={{ color: 'var(--accent-light)' }} />
-                  Not ranked yet: {landing.evidenceGaps.length} product-capture gaps
+                  Not ranked yet: {landing.evidenceGaps.length} evidence gaps
                 </h2>
                 <p className="section-sub-text">
-                  First-party market evidence exists, but the exact products still need structured prices and rules.
+                  Some firms need a fresh market and product recapture; others still need crypto-specific structured prices and rules.
                 </p>
               </div>
             </div>
@@ -986,7 +986,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                             : isSwing
                               ? `${count} verified firms across ${landing.snapshotProductCount ?? 0} swing-qualified products`
                               : isCrypto
-                                ? '7 evidence-backed firms across 32 mapped products'
+                                ? `${count} evidence-backed firms across ${landing.snapshotProductCount ?? 0} mapped products`
                                 : 'Ranked & source-checked'}
               </h2>
               <p className="section-sub-text">
@@ -1323,8 +1323,8 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   <Link href="/prop-firm-challenges" className="btn-primary btn-glow">
                     Compare current products <ArrowRight size={16} />
                   </Link>
-                  <Link href="/blog/crypto-fund-trader-review" className="btn-outline">
-                    Review the crypto-native option
+                  <Link href="/blog/fundednext-review" className="btn-outline">
+                    Review the top current option
                   </Link>
                   <Link href="/prop-firm-challenge-changes" className="btn-outline">
                     Review current changes

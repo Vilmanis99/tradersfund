@@ -6774,7 +6774,7 @@ function checkCryptoLandingCluster() {
     const ageDays = Math.floor((TODAY - captured) / 86_400_000)
     return !Number.isNaN(captured.getTime()) && ageDays >= 0 && ageDays <= STALE_DAYS
   }
-  const validateFirstPartySource = (entry, label) => {
+  const validateFirstPartySource = (entry, label, { requireFresh = true } = {}) => {
     const firm = firmsBySlug.get(entry.firmSlug)
     if (!firm) {
       rows.push(`${label}: no matching firms.json record`)
@@ -6797,7 +6797,7 @@ function checkCryptoLandingCluster() {
     } catch {
       rows.push(`${label}: sourceUrl is invalid`)
     }
-    if (!isFreshDate(entry.sourceCapturedAt)) {
+    if (requireFresh && !isFreshDate(entry.sourceCapturedAt)) {
       rows.push(`${label}: market evidence is outside the ${STALE_DAYS}-day freshness window`)
     }
     return firm
@@ -6838,12 +6838,14 @@ function checkCryptoLandingCluster() {
 
   for (const entry of watch) {
     const label = `crypto watch ${entry.firmSlug || '(missing slug)'}`
-    validateFirstPartySource(entry, label)
+    validateFirstPartySource(entry, label, {
+      requireFresh: entry.status === 'product-capture-needed',
+    })
     if (rankedSlugs.has(entry.firmSlug)) {
       rows.push(`${label}: firm cannot be both ranked and on watch`)
     }
-    if (entry.status !== 'product-capture-needed') {
-      rows.push(`${label}: status must be product-capture-needed`)
+    if (!['product-capture-needed', 'market-and-product-refresh-needed'].includes(entry.status)) {
+      rows.push(`${label}: status must describe a product capture or market/product refresh`)
     }
     for (const field of ['evidence', 'nextStep']) {
       if (typeof entry[field] !== 'string' || !entry[field].trim()) {
@@ -6852,9 +6854,9 @@ function checkCryptoLandingCluster() {
     }
   }
 
-  if (ranked.length !== 7 || watch.length !== 2 || mappedProducts.size !== 32) {
+  if (ranked.length !== 3 || watch.length !== 7 || mappedProducts.size !== 12) {
     rows.push(
-      `crypto fixture expects 7 ranked firms, 2 watch firms and 32 mapped products; received ${ranked.length}, ${watch.length} and ${mappedProducts.size}`,
+      `crypto fixture expects 3 current ranked firms, 7 watch firms and 12 mapped products; received ${ranked.length}, ${watch.length} and ${mappedProducts.size}`,
     )
   }
   if (!String(evidenceData.methodology ?? '').includes('Payment or payout by crypto does not qualify')) {
@@ -6877,6 +6879,7 @@ function checkCryptoLandingCluster() {
       'freshMappedProducts(evidence.firmSlug, evidence.productSlugs)',
       'const CURRENT_CRYPTO_FIRM_COUNT = CURRENT_CRYPTO_SNAPSHOT.length',
       'const CURRENT_CRYPTO_PRODUCT_COUNT = CURRENT_CRYPTO_SNAPSHOT.reduce',
+      'snapshotProductCount: CURRENT_CRYPTO_PRODUCT_COUNT',
       'CRYPTO_MARKET_EVIDENCE_BY_SLUG.get(slug)',
       "evidence.marketModel === 'crypto-native' ? 100 : 0",
       "metricLabel: 'Products'",
@@ -6889,7 +6892,7 @@ function checkCryptoLandingCluster() {
       'Does weekend or 24/7 access actually apply?',
       'What do leverage, commission, consistency, and payout rules do?',
       'evidenceGaps: CRYPTO_MARKET_WATCH.map',
-      "lastReviewed: '2026-08-17'",
+      "lastReviewed: '2026-08-27'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`crypto landing is missing "${fragment}"`)
@@ -6911,7 +6914,7 @@ function checkCryptoLandingCluster() {
   }
 
   const expectedDescription =
-    'Compare 7 crypto prop firms across 32 mapped products using current rules, market-specific evidence, source dates, and reviews.'
+    `Compare ${ranked.length} crypto prop firms across ${mappedProducts.size} mapped products using current rules, market-specific evidence, source dates, and reviews.`
   if (expectedDescription.length < 120 || expectedDescription.length > 160) {
     rows.push('crypto landing meta description must be between 120 and 160 characters')
   }
@@ -6921,10 +6924,9 @@ function checkCryptoLandingCluster() {
     "const isCrypto = landing.slug === 'best-crypto-prop-firms'",
     'What crypto traders should verify',
     'Four market, product and risk checks before paying for a crypto trading path.',
-    '7 evidence-backed firms across 32 mapped products',
-    'Not ranked yet: {landing.evidenceGaps.length} product-capture gaps',
+    '`${count} evidence-backed firms across ${landing.snapshotProductCount ?? 0} mapped products`',
+    'Not ranked yet: {landing.evidenceGaps.length} evidence gaps',
     "href: '/prop-firm-challenges'",
-    "href: '/blog/crypto-fund-trader-review'",
     "href: '/blog/fundednext-review'",
     "href: '/prop-firm-challenge-changes'",
     'Choose the crypto product, not the payment badge',
@@ -6961,8 +6963,9 @@ function checkCryptoLandingCluster() {
     "const cryptoLandingPath = '/best-crypto-prop-firms'",
     'cryptoMarketEvidence.ranked.flatMap',
     'expectedCryptoProductCount',
-    'Not ranked yet: 2 product-capture gaps',
+    'expectedCryptoMappedProductCount',
     'href="/go/fundednext?from=best-crypto-prop-firms"',
+    'href="/go/fundingpips?from=best-crypto-prop-firms"',
   ]) {
     if (!crawler.includes(fragment)) {
       rows.push(`release crawl is missing crypto-ranking safeguard: "${fragment}"`)
@@ -11038,12 +11041,17 @@ function checkRussianAcquisitionPilot() {
     }
   }
   for (const token of [
-    'data-russian-home-global-funnel="global-partners"',
-    'data-russian-home-global-partner={item.slug}',
+    'data-russian-home-featured-partners="fundednext-bright-funded"',
+    'data-russian-home-featured-partner={item.slug}',
+    "const featuredPartnerRoutes = [",
+    "{ slug: 'fundednext', name: 'FundedNext'",
+    "{ slug: 'bright-funded', name: 'Bright Funded'",
     'from=ru-home-${item.slug}',
     'rel="sponsored nofollow noopener"',
+    'USDC-выплата не доказывает доступ к торговле криптовалютой',
+    'официальные формулировки FundedNext противоречат друг другу',
   ]) {
-    if (!russianHub.includes(token)) rows.push(`Russian home global funnel is missing ${token}`)
+    if (!russianHub.includes(token)) rows.push(`Russian home featured-partner funnel is missing ${token}`)
   }
 
   const localFirmPage = fs.existsSync(russianRouteFiles.get('/ru/rossiyskie-prop-kompanii'))
@@ -11098,13 +11106,23 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(russianRouteFiles.get('/ru/luchshie-kripto-prop-firmy'), 'utf8')
     : ''
   for (const token of [
+    'data-russian-crypto-article="long-form"',
+    'data-russian-crypto-hero="search-and-product-evidence"',
     'data-russian-crypto-ranking="source-gated"',
     'data-russian-crypto-product-count={productCount}',
+    'data-russian-crypto-partner-count={partnerCount}',
+    'data-russian-crypto-comparison="three-firms-twelve-products"',
+    'data-russian-crypto-decision-guide="product-not-logo"',
+    'data-russian-crypto-payout-boundary="bright-funded-not-ranked"',
+    'data-russian-crypto-search-language="current-autocomplete"',
+    'data-russian-crypto-watch-count={cryptoMarketEvidence.watch.length}',
     'data-russian-affiliate-disclosure="crypto-ranking"',
     'data-russian-country-boundary="crypto-not-access"',
     'from=ru-crypto-ranking',
+    '/go/bright-funded?from=ru-crypto-ranking-payout-alternative',
     'rel="sponsored nofollow noopener"',
     'cryptoMarketEvidence',
+    'russianMarketEvidence',
   ]) {
     if (!russianCryptoPage.includes(token)) rows.push(`Russian crypto ranking is missing ${token}`)
   }

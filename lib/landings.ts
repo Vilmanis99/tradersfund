@@ -156,7 +156,7 @@ interface CryptoMarketEvidence {
 interface CryptoMarketWatch {
   firmSlug: string
   firmName: string
-  status: 'product-capture-needed'
+  status: 'product-capture-needed' | 'market-and-product-refresh-needed'
   sourceUrl: string
   sourceCapturedAt: string
   evidence: string
@@ -904,8 +904,9 @@ export const LANDINGS: Landing[] = [
     metaDescription:
       `Compare ${CURRENT_CRYPTO_FIRM_COUNT} crypto prop firms across ${CURRENT_CRYPTO_PRODUCT_COUNT} mapped products using current rules, market-specific evidence, source dates, and reviews.`,
     intro:
-      `Trading crypto is not the same as paying or withdrawing in crypto. These ${CURRENT_CRYPTO_FIRM_COUNT} firms have a current first-party source that explicitly names crypto as a tradable market plus ${CURRENT_CRYPTO_PRODUCT_COUNT} exact product records inside the 30-day freshness window. Crypto-native products rank before multi-asset CFD products, then editorial score breaks ties. E8 Markets and FXIFY remain visible below as product-capture gaps rather than borrowing forex prices or rules.`,
+      `Trading crypto is not the same as paying or withdrawing in crypto. These ${CURRENT_CRYPTO_FIRM_COUNT} firms have a current first-party source that explicitly names crypto as a tradable market plus ${CURRENT_CRYPTO_PRODUCT_COUNT} exact product records inside the 30-day freshness window. Crypto-native products rank before multi-asset CFD products, then editorial score breaks ties. The ${CRYPTO_MARKET_WATCH.length} excluded firms remain visible below as evidence gaps rather than borrowing stale or forex-only prices and rules.`,
     sortDir: 'desc',
+    snapshotProductCount: CURRENT_CRYPTO_PRODUCT_COUNT,
     rank: firms => firms
       .flatMap(firm => {
         const slug = firmSlug(firm.name)
@@ -970,13 +971,15 @@ export const LANDINGS: Landing[] = [
     ],
     evidenceGaps: CRYPTO_MARKET_WATCH.map(item => ({
       firmName: item.firmName,
-      statusLabel: 'Product capture needed',
+      statusLabel: item.status === 'product-capture-needed'
+        ? 'Product capture needed'
+        : 'Market and product refresh needed',
       summary: item.evidence,
       nextStep: item.nextStep,
       sourceUrl: item.sourceUrl,
       sourceCapturedAt: item.sourceCapturedAt,
     })),
-    lastReviewed: '2026-08-17',
+    lastReviewed: '2026-08-27',
   },
   {
     slug: 'best-swing-trading-prop-firms',
