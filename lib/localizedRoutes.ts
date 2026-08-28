@@ -10,6 +10,7 @@ export const LOCALIZED_ROUTE_PAIRS = [
   { en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' },
   { en: '/blog/funding-pips-review', ru: '/ru/obzor-fundingpips' },
   { en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' },
+  { en: '/blog/what-is-a-prop-firm', ru: '/ru/chto-takoe-prop-firma' },
   {
     en: '/how-prop-firm-challenges-work',
     ru: '/ru/kak-rabotayut-chellendzhi-prop-firm',

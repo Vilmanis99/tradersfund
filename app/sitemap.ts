@@ -218,6 +218,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/ru', challengeComparisonLastDate],
     ['/ru/luchshie-prop-firmy', challengeComparisonLastDate],
     ['/ru/obzor-fundednext', new Date(fundedNextLastModified || challengeLastModified)],
+    ['/ru/chto-takoe-prop-firma', challengeComparisonLastDate],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', challengeComparisonLastDate],
   ])
   const russianRoutes: MetadataRoute.Sitemap = LOCALIZED_ROUTE_PAIRS.map(pair => ({

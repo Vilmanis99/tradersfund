@@ -37,6 +37,7 @@ const russianNavLinks = [
     label: 'Гайды',
     href: '/ru/dlya-russkoyazychnykh-treyderov',
     children: [
+      { label: 'Что такое проп-фирма', href: '/ru/chto-takoe-prop-firma' },
       { label: 'Для русскоязычных за рубежом', href: '/ru/dlya-russkoyazychnykh-treyderov' },
       { label: 'Как работают челленджи', href: '/ru/kak-rabotayut-chellendzhi-prop-firm' },
       { label: 'Выплаты', href: '/ru/vyplaty-prop-firm' },

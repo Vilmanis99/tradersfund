@@ -228,11 +228,17 @@ export default function RussianHomePage() {
         <div className="ru-shell">
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия начинает с двадцати страниц под самостоятельные поисковые задачи,
+            Русская версия объединяет 21 самостоятельную страницу под разные поисковые задачи,
             включая отдельную проверку компаний российского рынка. Мы не переводим сотни URL автоматически: сначала проверяем,
             отвечает ли локальная страница на самостоятельный поисковый запрос.
           </p>
           <div className="ru-grid">
+            <article className="ru-card" data-russian-home-definition-entry="prop-kompanii-eto">
+              <BookOpenCheck size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Что такое проп-фирма</h3>
+              <p className="ru-muted">Три разные модели слова «проп», 5 этапов глобального retail-продукта и 8 полей проверки до checkout.</p>
+              <Link className="ru-card-link" href="/ru/chto-takoe-prop-firma">Понять модель и риски →</Link>
+            </article>
             <article className="ru-card">
               <Database size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Лучшие проп-фирмы 2026</h3>

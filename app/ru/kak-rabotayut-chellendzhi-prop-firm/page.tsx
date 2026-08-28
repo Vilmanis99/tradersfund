@@ -97,6 +97,9 @@ export default function RussianChallengeLifecyclePage() {
             проверка, funded-этап и выплата. Продукт без оценки пропускает средние
             этапы, но не отменяет KYC, договор и правила риска.
           </p>
+          <p className="ru-source-line">
+            Если термин ещё не знаком, сначала прочитайте <Link href="/ru/chto-takoe-prop-firma">что такое проп-фирма и чем отличаются 3 модели</Link>.
+          </p>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{products.length}</strong><span>свежих продуктов в примерах</span></div>
             <div className="ru-stat"><strong>{sourceCount}</strong><span>первичных страниц</span></div>

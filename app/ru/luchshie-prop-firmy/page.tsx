@@ -204,6 +204,7 @@ export default function RussianBestPropFirmsPage() {
           <div className="ru-actions">
             <Link href="#polnyy-reyting" className="btn-primary btn-glow">Смотреть весь рейтинг <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm" className="btn-outline">Сначала понять правила</Link>
+            <Link href="/ru/chto-takoe-prop-firma" className="btn-outline">Что означает проп-фирма</Link>
             <Link href="/ru/luchshie-kripto-prop-firmy" className="btn-outline">Отдельно сравнить крипто</Link>
           </div>
         </div>

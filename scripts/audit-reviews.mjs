@@ -10842,6 +10842,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-fundednext', path.join(ROOT, 'app/ru/obzor-fundednext/page.tsx')],
     ['/ru/obzor-fundingpips', path.join(ROOT, 'app/ru/obzor-fundingpips/page.tsx')],
     ['/ru/obzor-bright-funded', path.join(ROOT, 'app/ru/obzor-bright-funded/page.tsx')],
+    ['/ru/chto-takoe-prop-firma', path.join(ROOT, 'app/ru/chto-takoe-prop-firma/page.tsx')],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', path.join(ROOT, 'app/ru/kak-rabotayut-chellendzhi-prop-firm/page.tsx')],
     ['/ru/rossiyskie-prop-kompanii', path.join(ROOT, 'app/ru/rossiyskie-prop-kompanii/page.tsx')],
   ])
@@ -11312,6 +11313,7 @@ function checkRussianAcquisitionPilot() {
     "{ en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' }",
     "{ en: '/blog/funding-pips-review', ru: '/ru/obzor-fundingpips' }",
     "{ en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' }",
+    "{ en: '/blog/what-is-a-prop-firm', ru: '/ru/chto-takoe-prop-firma' }",
     "ru: '/ru/kak-rabotayut-chellendzhi-prop-firm'",
     "'/ru/dlya-russkoyazychnykh-treyderov'",
     "'/ru/fundednext-vs-fundingpips'",
@@ -11390,8 +11392,29 @@ function checkRussianAcquisitionPilot() {
     'rel="sponsored nofollow noopener"',
     'USDC-выплата не доказывает доступ к торговле криптовалютой',
     'официальные формулировки FundedNext противоречат друг другу',
+    'data-russian-home-definition-entry="prop-kompanii-eto"',
+    'href="/ru/chto-takoe-prop-firma"',
   ]) {
     if (!russianHub.includes(token)) rows.push(`Russian home featured-partner funnel is missing ${token}`)
+  }
+
+  const propDefinitionPage = fs.existsSync(russianRouteFiles.get('/ru/chto-takoe-prop-firma'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/chto-takoe-prop-firma'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-prop-definition="three-models-not-one-label"',
+    'data-russian-search-intent="prop-kompanii-eto"',
+    'data-russian-country-boundary="definition-not-russia-access"',
+    'data-russian-global-funnel="fundednext-bright-funded"',
+    'data-russian-affiliate-disclosure="prop-definition"',
+    'data-russian-prop-definition-products={products.length}',
+    'data-russian-local-model-boundary="six-operators-not-global-ranking"',
+    'data-russian-decision-checklist="eight-fields"',
+    '/go/fundednext?from=ru-prop-definition-fundednext',
+    '/go/bright-funded?from=ru-prop-definition-bright-funded',
+    'rel="sponsored nofollow noopener"',
+  ]) {
+    if (!propDefinitionPage.includes(token)) rows.push(`Russian prop-definition funnel is missing ${token}`)
   }
 
   const localFirmPage = fs.existsSync(russianRouteFiles.get('/ru/rossiyskie-prop-kompanii'))
@@ -11974,6 +11997,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/obzor-kascapital'",
     "href: '/ru/obzor-fundingpips'",
     "href: '/ru/obzor-bright-funded'",
+    "href: '/ru/chto-takoe-prop-firma'",
     "href: '/ru/otzyvy-prop-firm'",
     "href: '/ru/prop-firmy-bez-chelendzha'",
     'getAlternateLanguageHref(pathname)',
@@ -11995,6 +12019,7 @@ function checkRussianAcquisitionPilot() {
   if (!footer.includes("href: '/ru/obzor-kascapital'")) rows.push('Russian footer is missing the KasCapital review route')
   if (!footer.includes("href: '/ru/otzyvy-prop-firm'")) rows.push('Russian footer is missing the reviews guide route')
   if (!footer.includes("href: '/ru/obzor-ftmo'")) rows.push('Russian footer is missing the FTMO review route')
+  if (!footer.includes("href: '/ru/chto-takoe-prop-firma'")) rows.push('Russian footer is missing the prop-definition route')
 
   const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
   for (const token of [

@@ -32,6 +32,7 @@ export default function Footer({
     : isRussian ? 'нет данных' : 'Not available'
 
   const propFirmLinks = isRussian ? [
+    { label: 'Что такое проп-фирма', href: '/ru/chto-takoe-prop-firma' },
     { label: 'Рейтинг проп-фирм 2026', href: '/ru/luchshie-prop-firmy' },
     { label: 'Крипто-проп-фирмы', href: '/ru/luchshie-kripto-prop-firmy' },
     { label: 'Без челленджа', href: '/ru/prop-firmy-bez-chelendzha' },
