@@ -2766,6 +2766,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/luchshie-prop-firmy', 'russian_ranking'],
     ['/ru/fundednext-vs-bright-funded', 'russian_comparison'],
     ['/ru/fundednext-vs-fundingpips/', 'russian_comparison'],
+    ['/ru/prop-firmy-s-ctrader', 'russian_comparison'],
     ['/ru/promokody-prop-firm', 'russian_deals'],
     ['/ru/obzor-ftmo', 'russian_review'],
     ['/ru/obzor-fundednext/', 'russian_review'],
@@ -10868,6 +10869,7 @@ function checkWyckoffGuide() {
 function checkRussianAcquisitionPilot() {
   const rows = []
   const evidenceFile = path.join(ROOT, 'content/data/russian-market-evidence.json')
+  const cTraderEvidenceFile = path.join(ROOT, 'content/data/russian-ctrader-evidence.json')
   const forexEvidenceFile = path.join(ROOT, 'content/data/russian-forex-evidence.json')
   const teamTradersEvidenceFile = path.join(ROOT, 'content/data/russian-teamtraders-evidence.json')
   const localizedRoutesFile = path.join(ROOT, 'lib/localizedRoutes.ts')
@@ -10907,6 +10909,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-bright-funded', path.join(ROOT, 'app/ru/obzor-bright-funded/page.tsx')],
     ['/ru/chto-takoe-prop-firma', path.join(ROOT, 'app/ru/chto-takoe-prop-firma/page.tsx')],
     ['/ru/forex-prop-firmy', path.join(ROOT, 'app/ru/forex-prop-firmy/page.tsx')],
+    ['/ru/prop-firmy-s-ctrader', path.join(ROOT, 'app/ru/prop-firmy-s-ctrader/page.tsx')],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', path.join(ROOT, 'app/ru/kak-rabotayut-chellendzhi-prop-firm/page.tsx')],
     ['/ru/rossiyskie-prop-kompanii', path.join(ROOT, 'app/ru/rossiyskie-prop-kompanii/page.tsx')],
   ])
@@ -11526,6 +11529,73 @@ function checkRussianAcquisitionPilot() {
     }
   }
 
+  if (!fs.existsSync(cTraderEvidenceFile)) {
+    rows.push('content/data/russian-ctrader-evidence.json is missing')
+  } else {
+    try {
+      const cTraderEvidence = JSON.parse(fs.readFileSync(cTraderEvidenceFile, 'utf8'))
+      const capturedAt = new Date(`${cTraderEvidence.capturedAt}T23:59:59Z`)
+      const ageDays = (Date.now() - capturedAt.getTime()) / 86_400_000
+      if (Number.isNaN(capturedAt.getTime()) || ageDays < -1 || ageDays > 30) {
+        rows.push(`Russian cTrader evidence capture ${cTraderEvidence.capturedAt || 'missing'} is outside the 30-day window`)
+      }
+      if (
+        cTraderEvidence.platformSource?.sourceUrl !== 'https://help.ctrader.com/ctrader-algo/'
+        || !cTraderEvidence.platformSource?.capability?.includes('cBots')
+        || !cTraderEvidence.platformSource?.boundary?.includes("does not override a prop firm's trading rules")
+      ) {
+        rows.push('cTrader platform capability and firm-rule boundary are incomplete')
+      }
+      const cTraderFirms = new Map((cTraderEvidence.firms ?? []).map(firm => [firm.firmSlug, firm]))
+      const fundedNextCTrader = cTraderFirms.get('fundednext')
+      if (
+        fundedNextCTrader?.sourceUrls?.length !== 5
+        || fundedNextCTrader?.maxAccountSizeUsd !== 50000
+        || fundedNextCTrader?.platformFee?.amount !== 25
+        || fundedNextCTrader?.platformFee?.currency !== 'USD'
+        || fundedNextCTrader?.platformFee?.refundable !== false
+        || fundedNextCTrader?.automation?.status !== 'manual-only'
+        || fundedNextCTrader?.automation?.unresolved !== false
+        || !fundedNextCTrader?.countryRestrictions?.some(item =>
+          item.profile.includes('United States')
+          && item.status === 'new-cTrader-purchases-unavailable'
+          && item.effectiveFrom === '2026-03-31')
+      ) {
+        rows.push('FundedNext Russian cTrader limit, fee, automation or US restriction evidence is incomplete')
+      }
+      const brightCTrader = cTraderFirms.get('bright-funded')
+      if (
+        brightCTrader?.sourceUrls?.length !== 2
+        || brightCTrader?.maxAccountSizeUsd !== null
+        || brightCTrader?.platformFee?.amount !== null
+        || brightCTrader?.platformFee?.status !== 'not-published-in-captured-source'
+        || brightCTrader?.automation?.status !== 'requires-firm-confirmation'
+        || brightCTrader?.automation?.unresolved !== true
+        || brightCTrader?.devices?.length !== 5
+        || !brightCTrader?.countryRestrictions?.some(item =>
+          item.profile.includes('United States')
+          && item.status === 'cTrader-unavailable')
+      ) {
+        rows.push('Bright Funded Russian cTrader unknown-fee, automation or profile evidence is incomplete')
+      }
+      for (const firm of cTraderEvidence.firms ?? []) {
+        for (const sourceUrl of firm.sourceUrls ?? []) {
+          try {
+            const hostname = new URL(sourceUrl).hostname
+            const expected = firm.firmSlug === 'fundednext' ? 'help.fundednext.com' : 'help.brightfunded.com'
+            if (hostname !== expected || firm.sourceCapturedAt !== cTraderEvidence.capturedAt) {
+              rows.push(`${firm.firmSlug}: cTrader source is not current first-party evidence (${sourceUrl})`)
+            }
+          } catch {
+            rows.push(`${firm.firmSlug}: cTrader source URL is invalid (${sourceUrl})`)
+          }
+        }
+      }
+    } catch (error) {
+      rows.push(`Russian cTrader evidence is invalid JSON: ${error.message}`)
+    }
+  }
+
   if (fs.existsSync(russianLayoutFile)) {
     const layout = fs.readFileSync(russianLayoutFile, 'utf8')
     for (const token of ['lang="ru"', 'data-russian-locale="pilot"', "import './ru.css'"]) {
@@ -11558,6 +11628,7 @@ function checkRussianAcquisitionPilot() {
     "ru: '/ru/kak-rabotayut-chellendzhi-prop-firm'",
     "'/ru/dlya-russkoyazychnykh-treyderov'",
     "'/ru/forex-prop-firmy'",
+    "'/ru/prop-firmy-s-ctrader'",
     "'/ru/fundednext-vs-fundingpips'",
     "'/ru/promokody-prop-firm'",
     "'/ru/vyplaty-prop-firm'",
@@ -11646,6 +11717,8 @@ function checkRussianAcquisitionPilot() {
     'href="/ru/chto-takoe-prop-firma"',
     'data-russian-home-forex-entry="prop-forex"',
     'href="/ru/forex-prop-firmy"',
+    'data-russian-home-ctrader-entry="platform-rules"',
+    'href="/ru/prop-firmy-s-ctrader"',
   ]) {
     if (!russianHub.includes(token)) rows.push(`Russian home featured-partner funnel is missing ${token}`)
   }
@@ -11673,6 +11746,40 @@ function checkRussianAcquisitionPilot() {
     "import forexEvidence from '@/content/data/russian-forex-evidence.json'",
   ]) {
     if (!forexPage.includes(token)) rows.push(`Russian forex funnel is missing ${token}`)
+  }
+
+  const cTraderPage = fs.existsSync(russianRouteFiles.get('/ru/prop-firmy-s-ctrader'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/prop-firmy-s-ctrader'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-ctrader-article="platform-to-firm-rule"',
+    'data-russian-platform-intent="ctrader-prop-firms"',
+    'data-russian-country-boundary="ctrader-profile-not-language"',
+    'data-russian-ctrader-matrix="two-primary-partners"',
+    'data-russian-ctrader-checkout="base-plus-platform-fee"',
+    'data-russian-ctrader-checkout-product={`fundednext:${product.productSlug}`}',
+    'data-russian-ctrader-reference-product={`bright-funded:${product.productSlug}`}',
+    'data-russian-ctrader-featured-partners="fundednext-bright-funded"',
+    'data-russian-ctrader-featured-partner="fundednext"',
+    'data-russian-ctrader-featured-partner="bright-funded"',
+    'data-russian-ctrader-automation="platform-capability-vs-firm-permission"',
+    'data-russian-ctrader-diaspora="country-before-platform"',
+    'data-russian-ctrader-login="credentials-before-install"',
+    'data-russian-ctrader-local-boundary="global-cfd-not-local-moex"',
+    'data-russian-ctrader-checklist="ten-fields"',
+    'data-russian-affiliate-disclosure="ctrader-hero"',
+    'data-russian-affiliate-disclosure="ctrader-shortlist"',
+    'data-russian-affiliate-disclosure="ctrader-verdict"',
+    '/go/fundednext?from=ru-ctrader-hero-fundednext',
+    '/go/bright-funded?from=ru-ctrader-hero-bright-funded',
+    '/go/fundednext?from=ru-ctrader-shortlist-fundednext',
+    '/go/bright-funded?from=ru-ctrader-shortlist-bright-funded',
+    '/go/fundednext?from=ru-ctrader-verdict-fundednext',
+    '/go/bright-funded?from=ru-ctrader-verdict-bright-funded',
+    'rel="sponsored nofollow noopener"',
+    "import cTraderEvidence from '@/content/data/russian-ctrader-evidence.json'",
+  ]) {
+    if (!cTraderPage.includes(token)) rows.push(`Russian cTrader funnel is missing ${token}`)
   }
 
   const propDefinitionPage = fs.existsSync(russianRouteFiles.get('/ru/chto-takoe-prop-firma'))
@@ -12419,6 +12526,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/obzor-bright-funded'",
     "href: '/ru/chto-takoe-prop-firma'",
     "href: '/ru/forex-prop-firmy'",
+    "href: '/ru/prop-firmy-s-ctrader'",
     "href: '/ru/otzyvy-prop-firm'",
     "href: '/ru/prop-firmy-bez-chelendzha'",
     'getAlternateLanguageHref(pathname)',
@@ -12443,6 +12551,7 @@ function checkRussianAcquisitionPilot() {
   if (!footer.includes("href: '/ru/obzor-ftmo'")) rows.push('Russian footer is missing the FTMO review route')
   if (!footer.includes("href: '/ru/chto-takoe-prop-firma'")) rows.push('Russian footer is missing the prop-definition route')
   if (!footer.includes("href: '/ru/forex-prop-firmy'")) rows.push('Russian footer is missing the forex route')
+  if (!footer.includes("href: '/ru/prop-firmy-s-ctrader'")) rows.push('Russian footer is missing the cTrader route')
 
   const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
   for (const token of [
@@ -12452,6 +12561,7 @@ function checkRussianAcquisitionPilot() {
     'russianMarketEvidence.capturedAt',
     'russianTeamTradersEvidence.capturedAt',
     'russianForexEvidence.capturedAt',
+    'russianCTraderEvidence.capturedAt',
   ]) {
     if (!sitemap.includes(token)) rows.push(`sitemap is missing Russian safeguard ${token}`)
   }

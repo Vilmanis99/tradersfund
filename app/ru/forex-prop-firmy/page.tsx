@@ -360,6 +360,11 @@ export default function RussianForexPropFirmsPage() {
             Откройте live symbol list, сравните contract size, сохраните spread/commission snapshot и подтвердите платформу для страны.
             Логотип MT5 на общей странице не является гарантией MT5 для вашего профиля.
           </div>
+          <div className="ru-actions">
+            <Link href="/ru/prop-firmy-s-ctrader" className="btn-primary">
+              Сравнить FundedNext и Bright Funded на cTrader <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 

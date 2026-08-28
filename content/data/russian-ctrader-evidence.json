@@ -1,0 +1,106 @@
+{
+  "capturedAt": "2026-08-28",
+  "scope": "First-party platform, fee, automation, login and profile restrictions used by the Russian-language cTrader decision page.",
+  "platformSource": {
+    "name": "cTrader Algo",
+    "sourceUrl": "https://help.ctrader.com/ctrader-algo/",
+    "capability": "cTrader supports cBots, indicators and plugins, with algorithm development in C# or Python.",
+    "boundary": "Platform capability does not override a prop firm's trading rules."
+  },
+  "firms": [
+    {
+      "firmSlug": "fundednext",
+      "firmName": "FundedNext",
+      "sourceCapturedAt": "2026-08-28",
+      "sourceUrls": [
+        "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
+        "https://help.fundednext.com/en/articles/9129580-trading-with-ctrader-at-fundednext",
+        "https://help.fundednext.com/en/articles/8020087-will-i-get-back-my-registration-fee",
+        "https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext",
+        "https://help.fundednext.com/en/articles/10726716-how-do-i-log-in-to-the-ctrader-platform"
+      ],
+      "platformStatus": "available-with-product-and-profile-limits",
+      "maxAccountSizeUsd": 50000,
+      "excludedAccountSizesUsd": [100000, 200000],
+      "platformFee": {
+        "currency": "USD",
+        "amount": 25,
+        "refundable": false,
+        "status": "published"
+      },
+      "automation": {
+        "status": "manual-only",
+        "firmRule": "EA, bot and algorithmic trading are not allowed on cTrader; all trades must be executed manually.",
+        "unresolved": false
+      },
+      "countryRestrictions": [
+        {
+          "profile": "United States-based trader",
+          "status": "new-cTrader-purchases-unavailable",
+          "effectiveFrom": "2026-03-31",
+          "notes": "Existing cTrader accounts can continue until breach, after which they cannot be reset."
+        }
+      ],
+      "devices": ["desktop application", "web browser", "mobile device"],
+      "loginFlow": [
+        "Receive the cTrader login email after purchase.",
+        "Open the cTrader Web Portal from the email.",
+        "Acknowledge the cTrader agreement and privacy policy.",
+        "Use the supplied cTrader login ID and password."
+      ],
+      "notes": [
+        "The cTrader-specific article describes Challenge purchases up to $50,000; it does not establish cTrader availability for Stellar Instant.",
+        "The $25 platform fee is additional to the product list price and is non-refundable under the standard rule.",
+        "Country, citizenship, residency, KYC, payment and payout eligibility remain separate checks."
+      ]
+    },
+    {
+      "firmSlug": "bright-funded",
+      "firmName": "Bright Funded",
+      "sourceCapturedAt": "2026-08-28",
+      "sourceUrls": [
+        "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
+        "https://help.brightfunded.com/en/articles/9241699-can-i-use-ea"
+      ],
+      "platformStatus": "available-with-profile-limits",
+      "maxAccountSizeUsd": null,
+      "excludedAccountSizesUsd": [],
+      "platformFee": {
+        "currency": null,
+        "amount": null,
+        "refundable": null,
+        "status": "not-published-in-captured-source"
+      },
+      "automation": {
+        "status": "requires-firm-confirmation",
+        "firmRule": "Bright Funded permits EAs generally and explicitly says API and automated trading are unsupported on DXTrade, but the captured article does not state whether cBots are supported on cTrader.",
+        "unresolved": true
+      },
+      "countryRestrictions": [
+        {
+          "profile": "citizen, resident, or living in the United States",
+          "status": "cTrader-unavailable",
+          "effectiveFrom": null,
+          "notes": "The article also refers to restricted countries without publishing the complete list on the captured page."
+        }
+      ],
+      "devices": ["web", "Windows", "Mac", "Android", "iOS"],
+      "loginFlow": [
+        "Select cTrader only after the checkout confirms it for the profile.",
+        "Use the Bright Funded cTrader web or branded mobile application.",
+        "Confirm the cTrader ID and account credentials supplied for the purchased account."
+      ],
+      "notes": [
+        "The captured platform article does not publish a cTrader account-size cap or a cTrader surcharge.",
+        "Missing fee or size data is not evidence that the fee is zero or that every tier is available.",
+        "Country, citizenship, residency, KYC, payment and payout eligibility remain separate checks."
+      ]
+    }
+  ],
+  "editorialBoundaries": [
+    "The page compares two primary commercial partners and is not a complete directory of every cTrader prop firm.",
+    "No Russian Federation access promise is made from the Russian language of the page.",
+    "Unpublished Bright Funded cTrader fees, tier limits and cBot compatibility remain unknown until confirmed by the firm.",
+    "Temporary promotions are excluded from platform-cost examples."
+  ]
+}

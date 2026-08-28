@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, BadgePercent, BookOpenCheck, Building2, ChartCandlestick, Database, Globe2, Scale, SearchCheck, ShieldAlert, WalletCards, Zap } from 'lucide-react'
+import { ArrowRight, BadgePercent, BookOpenCheck, Building2, ChartCandlestick, Database, Globe2, MonitorCog, Scale, SearchCheck, ShieldAlert, WalletCards, Zap } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { getAllDeals } from '@/lib/deals'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
@@ -253,7 +253,7 @@ export default function RussianHomePage() {
         <div className="ru-shell">
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия объединяет 23 страницы для разных решений: понять модель, сравнить продукты,
+            Русская версия объединяет 24 страницы для разных решений: понять модель, сравнить продукты,
             проверить KYC и выплаты либо изучить компании российского рынка. Открывайте только тот маршрут,
             который соответствует вашей стране, рынку и этапу выбора.
           </p>
@@ -305,6 +305,12 @@ export default function RussianHomePage() {
               <h3>Forex-проп-фирмы</h3>
               <p className="ru-muted">7 продуктов, 43 опубликованные пары FundedNext, плечо 1:30 или 1:100 и отдельная проверка платформы по стране.</p>
               <Link className="ru-card-link" href="/ru/forex-prop-firmy">Сравнить forex-продукты →</Link>
+            </article>
+            <article className="ru-card" data-russian-home-ctrader-entry="platform-rules">
+              <MonitorCog size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Проп-фирмы с cTrader</h3>
+              <p className="ru-muted">FundedNext и Bright Funded: лимит $50K, платформенная fee, cBot, устройства и ограничения профиля до checkout.</p>
+              <Link className="ru-card-link" href="/ru/prop-firmy-s-ctrader">Сравнить cTrader-маршруты →</Link>
             </article>
             <article className="ru-card">
               <Globe2 size={22} color="var(--accent-light)" aria-hidden="true" />
