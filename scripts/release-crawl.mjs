@@ -940,8 +940,15 @@ const russianExpectations = new Map([
       'data-russian-ranking-primary-partner="fundednext"',
       'data-russian-ranking-primary-partner="bright-funded"',
       'data-russian-affiliate-disclosure="ranking-primary-partners"',
+      'в профиле фирмы указаны MT5 и TradeLocker.',
       '/go/fundednext?from=ru-ranking-primary-fundednext',
       '/go/bright-funded?from=ru-ranking-primary-bright-funded',
+      'data-russian-partner-matcher="eligibility-first"',
+      'data-russian-matcher-result="blocked"',
+      'data-russian-matcher-data-state="current"',
+      'data-russian-matcher-affiliate-actions="hidden-until-confirmed"',
+      'data-russian-matcher-block="country-kyc-payment-payout"',
+      'Коммерческий результат пока заблокирован.',
       'data-russian-ranking-country-paths="diaspora-not-russia"',
       'data-russian-ranking="top-five"',
       'data-russian-affiliate-disclosure="ranking"',
@@ -1311,15 +1318,21 @@ const russianRankingPage = pages.find(page =>
 const russianRankingPrimaryIndex = russianRankingPage?.html.indexOf(
   'data-russian-ranking-primary-partners="fundednext-bright-funded"',
 ) ?? -1
+const russianRankingMatcherIndex = russianRankingPage?.html.indexOf(
+  'data-russian-partner-matcher="eligibility-first"',
+) ?? -1
 const russianRankingTopFiveIndex = russianRankingPage?.html.indexOf(
   'data-russian-ranking="top-five"',
 ) ?? -1
 if (
   russianRankingPrimaryIndex < 0
-  || russianRankingTopFiveIndex < 0
-  || russianRankingPrimaryIndex > russianRankingTopFiveIndex
+  || russianRankingMatcherIndex < russianRankingPrimaryIndex
+  || russianRankingTopFiveIndex < russianRankingMatcherIndex
 ) {
-  errors.push('/ru/luchshie-prop-firmy: primary partners do not precede the editorial top five')
+  errors.push('/ru/luchshie-prop-firmy: primary partners and matcher do not precede the editorial top five')
+}
+if (russianRankingPage?.html.includes('from=ru-ranking-matcher-')) {
+  errors.push('/ru/luchshie-prop-firmy: matcher affiliate actions rendered before eligibility confirmation')
 }
 const russianFundedNextCta = [...(russianFundedNextPage?.html ?? '').matchAll(/<a\b[^>]*>/gi)]
   .map(match => match[0])

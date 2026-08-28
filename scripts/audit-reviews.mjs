@@ -65,6 +65,7 @@ import {
   postBodyCampaign,
 } from '../lib/postOutboundLinks.ts'
 import { rankRelatedPosts, relatedPostScore } from '../lib/relatedPosts.ts'
+import { russianPartnerMatcherDecision } from '../lib/russianPartnerMatcher.ts'
 import {
   getTradingToolReviewLinks,
   TRADING_TOOL_REVIEWS,
@@ -10825,6 +10826,14 @@ function checkRussianAcquisitionPilot() {
   const russianPartnerReviewSource = fs.existsSync(russianPartnerReviewFile)
     ? fs.readFileSync(russianPartnerReviewFile, 'utf8')
     : ''
+  const russianPartnerMatcherFile = path.join(ROOT, 'components/RussianPartnerMatcher.tsx')
+  const russianPartnerMatcherSource = fs.existsSync(russianPartnerMatcherFile)
+    ? fs.readFileSync(russianPartnerMatcherFile, 'utf8')
+    : ''
+  const russianPartnerMatcherDecisionFile = path.join(ROOT, 'lib/russianPartnerMatcher.ts')
+  const russianPartnerMatcherDecisionSource = fs.existsSync(russianPartnerMatcherDecisionFile)
+    ? fs.readFileSync(russianPartnerMatcherDecisionFile, 'utf8')
+    : ''
   const russianRouteFiles = new Map([
     ['/ru', path.join(ROOT, 'app/ru/page.tsx')],
     ['/ru/dlya-russkoyazychnykh-treyderov', path.join(ROOT, 'app/ru/dlya-russkoyazychnykh-treyderov/page.tsx')],
@@ -11658,6 +11667,9 @@ function checkRussianAcquisitionPilot() {
     'data-russian-ranking-primary-partners="fundednext-bright-funded"',
     'data-russian-ranking-primary-partner={item.slug}',
     'data-russian-affiliate-disclosure="ranking-primary-partners"',
+    "import RussianPartnerMatcher from '@/components/RussianPartnerMatcher'",
+    '<RussianPartnerMatcher profiles={matcherProfiles} />',
+    '.filter(item => item.products.length > 0 && item.pricedTiers > 0)',
     'data-russian-partner-shortlist="global"',
     'data-russian-ranking-partner-matrix="three-global-partners"',
     'data-russian-ranking-intent-paths="payout-drawdown-budget"',
@@ -11668,6 +11680,7 @@ function checkRussianAcquisitionPilot() {
     'from=ru-ranking-partner-shortlist',
     '`/go/${item.slug}?from=ru-ranking-partner-shortlist`',
     'rel="sponsored nofollow noopener"',
+    'в профиле фирмы указаны MT5 и TradeLocker.',
     'href="/ru/rossiyskie-prop-kompanii"',
     'href="/ru/prop-firmy-bez-chelendzha"',
     'href="/ru/vyplaty-prop-firm"',
@@ -11675,10 +11688,86 @@ function checkRussianAcquisitionPilot() {
   ]) {
     if (!russianRankingPage.includes(token)) rows.push(`Russian global-partner shortlist is missing ${token}`)
   }
+  if (russianRankingPage.includes('evaluation-маршрута используют TradeLocker')) {
+    rows.push('Russian ranking makes a product-wide TradeLocker claim without product-level evidence')
+  }
   const primaryPartnerIndex = russianRankingPage.indexOf('data-russian-ranking-primary-partners="fundednext-bright-funded"')
+  const partnerMatcherIndex = russianRankingPage.indexOf('<RussianPartnerMatcher profiles={matcherProfiles} />')
   const topFiveIndex = russianRankingPage.indexOf('data-russian-ranking="top-five"')
-  if (primaryPartnerIndex < 0 || topFiveIndex < 0 || primaryPartnerIndex > topFiveIndex) {
-    rows.push('Russian ranking must show FundedNext and Bright Funded before the editorial top five')
+  if (
+    primaryPartnerIndex < 0
+    || partnerMatcherIndex < primaryPartnerIndex
+    || topFiveIndex < partnerMatcherIndex
+  ) {
+    rows.push('Russian ranking must show primary partners and the matcher before the editorial top five')
+  }
+  for (const token of [
+    'data-russian-partner-matcher="eligibility-first"',
+    "data-russian-matcher-result={commercialBlocked ? 'blocked' : decision.kind}",
+    "data-russian-matcher-data-state={profileDataMissing ? 'missing' : 'current'}",
+    'data-russian-matcher-affiliate-actions="hidden-until-confirmed"',
+    'data-russian-matcher-block="country-kyc-payment-payout"',
+    'data-russian-affiliate-disclosure="partner-matcher"',
+    "russianPartnerMatcherDecision(access, priority, profiles)",
+    "profiles.some(profile => profile.slug === slug && profile.productCount > 0 && profile.priceCount > 0)",
+    'russian_partner_matcher_started',
+    'russian_partner_matcher_result',
+    'russian_partner_matcher_reset',
+    '`/go/${profile.slug}?from=ru-ranking-matcher-${profile.slug}`',
+    'prefetch={false}',
+    'rel="sponsored nofollow noopener"',
+    'Персональные данные не вводятся',
+    'Коммерческий результат пока заблокирован.',
+    'Для выбранного результата нет полного текущего набора продуктов и цен.',
+  ]) {
+    if (!russianPartnerMatcherSource.includes(token)) {
+      rows.push(`Russian eligibility-first partner matcher is missing ${token}`)
+    }
+  }
+  for (const token of [
+    'current.length !== PRIMARY_PARTNER_ORDER.length',
+    "profile.currencies.includes('EUR') && profile.platforms.includes('TradeLocker')",
+    'profile.productCount === largestProductCount',
+    "return { kind: 'blocked', partnerSlugs: [], outcome: 'no-current-match' }",
+  ]) {
+    if (!russianPartnerMatcherDecisionSource.includes(token)) {
+      rows.push(`Russian partner matcher decision guard is missing ${token}`)
+    }
+  }
+  const matcherCapabilities = [
+    {
+      slug: 'fundednext',
+      hasInstant: true,
+      currencies: ['USD'],
+      platforms: ['MT4', 'MT5', 'cTrader', 'Match-Trader'],
+      productCount: 4,
+    },
+    {
+      slug: 'bright-funded',
+      hasInstant: false,
+      currencies: ['EUR'],
+      platforms: ['MT5', 'TradeLocker'],
+      productCount: 3,
+    },
+  ]
+  for (const [access, priority, capabilities, expectedKind, expectedSlugs] of [
+    ['unchecked', 'instant', matcherCapabilities, 'blocked', []],
+    ['unclear', 'eur-tradelocker', matcherCapabilities, 'blocked', []],
+    ['confirmed', 'instant', matcherCapabilities, 'single', ['fundednext']],
+    ['confirmed', 'broader-choice', matcherCapabilities, 'single', ['fundednext']],
+    ['confirmed', 'eur-tradelocker', matcherCapabilities, 'single', ['bright-funded']],
+    ['confirmed', 'compare', matcherCapabilities, 'compare', ['fundednext', 'bright-funded']],
+    ['confirmed', 'compare', matcherCapabilities.slice(0, 1), 'blocked', []],
+    ['confirmed', 'instant', matcherCapabilities.map(profile => ({ ...profile, hasInstant: false })), 'blocked', []],
+    ['confirmed', 'broader-choice', matcherCapabilities.map(profile => ({ ...profile, productCount: 4 })), 'compare', ['fundednext', 'bright-funded']],
+  ]) {
+    const decision = russianPartnerMatcherDecision(access, priority, capabilities)
+    if (
+      decision.kind !== expectedKind
+      || JSON.stringify(decision.partnerSlugs) !== JSON.stringify(expectedSlugs)
+    ) {
+      rows.push(`Russian partner matcher returned an unsafe result for ${access}/${priority}`)
+    }
   }
 
   const russianCryptoPage = fs.existsSync(russianRouteFiles.get('/ru/luchshie-kripto-prop-firmy'))

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, BadgeCheck, Database, Scale, ShieldCheck } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianPartnerMatcher from '@/components/RussianPartnerMatcher'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
@@ -155,6 +156,23 @@ export default function RussianBestPropFirmsPage() {
   const brightFundedProfile = partnerProfiles.find(item => item.slug === 'bright-funded')
   const primaryPartnerProfiles = partnerProfiles.filter(item =>
     item.slug === 'fundednext' || item.slug === 'bright-funded')
+  const matcherProfiles = primaryPartnerProfiles
+    .filter(item => item.products.length > 0 && item.pricedTiers > 0)
+    .map(item => ({
+      slug: item.slug as 'fundednext' | 'bright-funded',
+      name: item.firm.name,
+      productCount: item.products.length,
+      hasInstant: item.products.some(product => product.phases === 0),
+      currencies: [
+        ...(item.products.some(product => product.accountSizes.some(tier => tier.priceUsd != null && tier.priceUsd > 0)) ? ['USD' as const] : []),
+        ...(item.products.some(product => product.accountSizes.some(tier => tier.priceEur != null && tier.priceEur > 0)) ? ['EUR' as const] : []),
+      ],
+      platforms: item.firm.platforms,
+      priceCount: item.pricedTiers,
+      priceRange: item.range,
+      captureDate: item.products.map(product => product.sourceCapturedAt).sort().at(0) ?? 'обновление ожидается',
+      reviewHref: item.slug === 'fundednext' ? '/ru/obzor-fundednext' : '/ru/obzor-bright-funded',
+    }))
   const latestCapture = ranked
     .flatMap(item => item.products.map(product => product.sourceCapturedAt))
     .sort()
@@ -221,6 +239,7 @@ export default function RussianBestPropFirmsPage() {
             <ol>
               <li><a href="#bystryy-otvet">Краткий ответ</a></li>
               <li><a href="#glavnye-partnery">FundedNext и Bright Funded</a></li>
+              <li><a href="#podbor">Подбор по задаче</a></li>
               <li><a href="#strana">Выбор по стране</a></li>
               <li><a href="#top-5">Первые пять</a></li>
               <li><a href="#partner-matrix">Три глобальных партнёра</a></li>
@@ -273,7 +292,7 @@ export default function RussianBestPropFirmsPage() {
                   <p>
                     {isFundedNext
                       ? `${item.pricedTiers} опубликованных цен в USD; среди ${item.products.length} маршрутов есть Stellar Instant с 0 оценочных фаз.`
-                      : `${item.pricedTiers} опубликованных цен в EUR; все ${item.products.length} evaluation-маршрута используют TradeLocker.`}
+                      : `${item.pricedTiers} опубликованных цен в EUR для ${item.products.length} программ оценки; в профиле фирмы указаны MT5 и TradeLocker.`}
                   </p>
                   <ul className="ru-facts">
                     <li><BadgeCheck size={14} aria-hidden="true" /> Диапазон входа: {item.range}</li>
@@ -301,6 +320,8 @@ export default function RussianBestPropFirmsPage() {
           </p>
         </div>
       </section>
+
+      <RussianPartnerMatcher profiles={matcherProfiles} />
 
       <section className="ru-section" id="strana">
         <div className="ru-shell" data-russian-ranking-country-paths="diaspora-not-russia">
