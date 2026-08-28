@@ -936,6 +936,12 @@ const russianExpectations = new Map([
     markers: [
       'data-russian-ranking-article="decision-first"',
       'data-russian-country-boundary="ranking-not-access"',
+      'data-russian-ranking-primary-partners="fundednext-bright-funded"',
+      'data-russian-ranking-primary-partner="fundednext"',
+      'data-russian-ranking-primary-partner="bright-funded"',
+      'data-russian-affiliate-disclosure="ranking-primary-partners"',
+      '/go/fundednext?from=ru-ranking-primary-fundednext',
+      '/go/bright-funded?from=ru-ranking-primary-bright-funded',
       'data-russian-ranking-country-paths="diaspora-not-russia"',
       'data-russian-ranking="top-five"',
       'data-russian-affiliate-disclosure="ranking"',
@@ -1259,6 +1265,13 @@ for (const [path, expectation] of russianExpectations) {
     'thin content',
     'поисковые сигналы',
     'поисковый сигнал',
+    'поисковый маршрут',
+    'поисковые формулировки',
+    'поисковый запрос',
+    'входному запросу',
+    'для запроса «',
+    'запросы «',
+    'запрос «',
     'редакционная стратегия',
   ]) {
     if (lowerPageText.includes(phrase)) {
@@ -1293,6 +1306,21 @@ for (const [path, expectation] of russianExpectations) {
 
 const russianFundedNextPage = pages.find(page =>
   new URL(page.productionUrl).pathname === '/ru/obzor-fundednext')
+const russianRankingPage = pages.find(page =>
+  new URL(page.productionUrl).pathname === '/ru/luchshie-prop-firmy')
+const russianRankingPrimaryIndex = russianRankingPage?.html.indexOf(
+  'data-russian-ranking-primary-partners="fundednext-bright-funded"',
+) ?? -1
+const russianRankingTopFiveIndex = russianRankingPage?.html.indexOf(
+  'data-russian-ranking="top-five"',
+) ?? -1
+if (
+  russianRankingPrimaryIndex < 0
+  || russianRankingTopFiveIndex < 0
+  || russianRankingPrimaryIndex > russianRankingTopFiveIndex
+) {
+  errors.push('/ru/luchshie-prop-firmy: primary partners do not precede the editorial top five')
+}
 const russianFundedNextCta = [...(russianFundedNextPage?.html ?? '').matchAll(/<a\b[^>]*>/gi)]
   .map(match => match[0])
   .find(tag => tag.includes('/go/fundednext?from=ru-fundednext-review-verdict')) || ''
@@ -1372,6 +1400,8 @@ for (const [path, href] of [
   ['/ru/forex-prop-firmy', '/go/bright-funded?from=ru-forex-shortlist-bright-funded'],
   ['/ru/forex-prop-firmy', '/go/fundednext?from=ru-forex-verdict-fundednext'],
   ['/ru/forex-prop-firmy', '/go/bright-funded?from=ru-forex-verdict-bright-funded'],
+  ['/ru/luchshie-prop-firmy', '/go/fundednext?from=ru-ranking-primary-fundednext'],
+  ['/ru/luchshie-prop-firmy', '/go/bright-funded?from=ru-ranking-primary-bright-funded'],
   ['/ru', '/go/fundednext?from=ru-home-hero-fundednext'],
   ['/ru', '/go/bright-funded?from=ru-home-hero-bright-funded'],
   ['/ru', '/go/fundednext?from=ru-home-fundednext'],

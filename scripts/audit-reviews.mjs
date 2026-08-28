@@ -10865,6 +10865,13 @@ function checkRussianAcquisitionPilot() {
     'thin content',
     'поисковые сигналы',
     'поисковый сигнал',
+    'поисковый маршрут',
+    'поисковые формулировки',
+    'поисковый запрос',
+    'входному запросу',
+    'для запроса «',
+    'запросы «',
+    'запрос «',
     'редакционная стратегия',
     '.searchdemand',
   ]
@@ -11648,11 +11655,16 @@ function checkRussianAcquisitionPilot() {
   for (const token of [
     'data-russian-ranking-article="decision-first"',
     'data-russian-ranking-country-paths="diaspora-not-russia"',
+    'data-russian-ranking-primary-partners="fundednext-bright-funded"',
+    'data-russian-ranking-primary-partner={item.slug}',
+    'data-russian-affiliate-disclosure="ranking-primary-partners"',
     'data-russian-partner-shortlist="global"',
     'data-russian-ranking-partner-matrix="three-global-partners"',
     'data-russian-ranking-intent-paths="payout-drawdown-budget"',
     'data-russian-affiliate-disclosure="partner-shortlist"',
-    "const globalPartners = ['fundednext', 'fundingpips', 'bright-funded']",
+    "const globalPartners = ['fundednext', 'bright-funded', 'fundingpips']",
+    'from=ru-ranking-primary-${item.slug}',
+    '`/go/${item.slug}?from=ru-ranking-primary-${item.slug}`',
     'from=ru-ranking-partner-shortlist',
     '`/go/${item.slug}?from=ru-ranking-partner-shortlist`',
     'rel="sponsored nofollow noopener"',
@@ -11662,6 +11674,11 @@ function checkRussianAcquisitionPilot() {
     'href="/ru/otzyvy-prop-firm"',
   ]) {
     if (!russianRankingPage.includes(token)) rows.push(`Russian global-partner shortlist is missing ${token}`)
+  }
+  const primaryPartnerIndex = russianRankingPage.indexOf('data-russian-ranking-primary-partners="fundednext-bright-funded"')
+  const topFiveIndex = russianRankingPage.indexOf('data-russian-ranking="top-five"')
+  if (primaryPartnerIndex < 0 || topFiveIndex < 0 || primaryPartnerIndex > topFiveIndex) {
+    rows.push('Russian ranking must show FundedNext and Bright Funded before the editorial top five')
   }
 
   const russianCryptoPage = fs.existsSync(russianRouteFiles.get('/ru/luchshie-kripto-prop-firmy'))
@@ -11707,8 +11724,8 @@ function checkRussianAcquisitionPilot() {
     'ru-diaspora-regions-',
     'rel="sponsored nofollow noopener"',
     'Российские проп-компании',
-    'проп-фирмы для русскоязычных в Европе',
-    'проп-фирмы для трейдеров в Грузии',
+    'Русский язык определяет язык объяснения',
+    'Русскоязычные трейдеры в Европе, Грузии и Израиле',
   ]) {
     if (!russianDiasporaPage.includes(token)) rows.push(`Russian diaspora guide is missing ${token}`)
   }

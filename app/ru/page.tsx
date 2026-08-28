@@ -335,7 +335,7 @@ export default function RussianHomePage() {
             <article className="ru-card">
               <ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Проп-фирмы без KYC</h3>
-              <p className="ru-muted">Разбираем запрос «без верификации» и проверяем, что произойдёт перед первой выплатой.</p>
+              <p className="ru-muted">Проверяем, на каком этапе начинается верификация и что произойдёт перед первой выплатой.</p>
               <Link className="ru-card-link" href="/ru/prop-firmy-bez-kyc">Проверить KYC →</Link>
             </article>
             <article className="ru-card">

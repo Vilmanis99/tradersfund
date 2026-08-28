@@ -418,7 +418,7 @@ export default function RussianForexPropFirmsPage() {
 
       <section className="ru-section" data-russian-forex-local-boundary="moex-not-cfd-forex">
         <div className="ru-shell ru-content">
-          <h2>Локальные российские компании — другой поисковый маршрут</h2>
+          <h2>Локальные российские компании используют другую продуктовую модель</h2>
           <p>
             Трейдер, который ищет forex CFD, не должен автоматически переходить в любой русскоязычный «проп».
             PropLive описывает торговлю на Московской бирже через Финам, а TeamTraders — фьючерсы Московской биржи.

@@ -211,7 +211,7 @@ export default function RussianPropFirmReviewsPage() {
           <div className="ru-eyebrow"><FileSearch size={14} aria-hidden="true" /> Проверка кейса до регистрации</div>
           <h1>Отзывы о проп-фирмах: проверка выплат, правил и KYC</h1>
           <p className="ru-lead">
-            Запросы «проп фирмы отзывы» и «FundedNext отзывы» приводят к историям без единого стандарта доказательств.
+            Положительный или отрицательный отзыв без даты, продукта и названного правила нельзя переносить на будущую выплату.
             Здесь каждый кейс проходит 7 полей проверки, а FundedNext и Bright Funded сравниваются по {featuredProducts.length} актуальным продуктам и {featuredPriceCount} опубликованным ценам.
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные руководства по отзывам">

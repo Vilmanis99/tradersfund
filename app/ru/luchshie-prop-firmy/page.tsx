@@ -131,7 +131,7 @@ export default function RussianBestPropFirmsPage() {
     .sort((a, b) => b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
 
   const topFive = ranked.slice(0, 5)
-  const globalPartners = ['fundednext', 'fundingpips', 'bright-funded']
+  const globalPartners = ['fundednext', 'bright-funded', 'fundingpips']
     .map(slug => {
       const rankedItem = ranked.find(item => item.slug === slug)
       const firm = rankedItem?.firm ?? firms.find(item => outboundSlug(item.name) === slug)
@@ -153,6 +153,8 @@ export default function RussianBestPropFirmsPage() {
   const fundedNextProfile = partnerProfiles.find(item => item.slug === 'fundednext')
   const fundingPipsProfile = partnerProfiles.find(item => item.slug === 'fundingpips')
   const brightFundedProfile = partnerProfiles.find(item => item.slug === 'bright-funded')
+  const primaryPartnerProfiles = partnerProfiles.filter(item =>
+    item.slug === 'fundednext' || item.slug === 'bright-funded')
   const latestCapture = ranked
     .flatMap(item => item.products.map(product => product.sourceCapturedAt))
     .sort()
@@ -218,6 +220,7 @@ export default function RussianBestPropFirmsPage() {
             <div className="toc-title">Содержание рейтинга</div>
             <ol>
               <li><a href="#bystryy-otvet">Краткий ответ</a></li>
+              <li><a href="#glavnye-partnery">FundedNext и Bright Funded</a></li>
               <li><a href="#strana">Выбор по стране</a></li>
               <li><a href="#top-5">Первые пять</a></li>
               <li><a href="#partner-matrix">Три глобальных партнёра</a></li>
@@ -244,10 +247,65 @@ export default function RussianBestPropFirmsPage() {
         </div>
       </section>
 
+      <section className="ru-section" id="glavnye-partnery">
+        <div className="ru-shell" data-russian-ranking-primary-partners="fundednext-bright-funded">
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ranking-primary-partners">
+            <strong>Два основных коммерческих маршрута.</strong>{' '}
+            FundedNext и Bright Funded выделены здесь как главные партнёры Traders Fund Hub; переход может принести нам комиссию.
+            Это не меняет редакционный рейтинг. Сначала подтвердите страну, KYC, оплату и выплату для своего профиля.
+          </div>
+          <h2>FundedNext или Bright Funded: быстрая развилка</h2>
+          <p className="ru-muted">
+            Сравнивайте не логотипы, а продуктовую задачу: USD или EUR, 0 или 1–2 этапа, доступную платформу,
+            механизм просадки и маршрут будущей выплаты.
+          </p>
+          <div className="ru-grid">
+            {primaryPartnerProfiles.map(item => {
+              const isFundedNext = item.slug === 'fundednext'
+              const reviewHref = isFundedNext ? '/ru/obzor-fundednext' : '/ru/obzor-bright-funded'
+              const phaseCounts = [...new Set(item.products.map(product => product.phases))].sort((a, b) => a - b)
+              return (
+                <article className="ru-card" key={item.slug} data-russian-ranking-primary-partner={item.slug}>
+                  <div className="ru-card-head">
+                    <h3>{item.firm.name}</h3>
+                    <span className="ru-score">Продуктов: {item.products.length}</span>
+                  </div>
+                  <p>
+                    {isFundedNext
+                      ? `${item.pricedTiers} опубликованных цен в USD; среди ${item.products.length} маршрутов есть Stellar Instant с 0 оценочных фаз.`
+                      : `${item.pricedTiers} опубликованных цен в EUR; все ${item.products.length} evaluation-маршрута используют TradeLocker.`}
+                  </p>
+                  <ul className="ru-facts">
+                    <li><BadgeCheck size={14} aria-hidden="true" /> Диапазон входа: {item.range}</li>
+                    <li><ShieldCheck size={14} aria-hidden="true" /> Фазы: {phaseCounts.join(', ')}; просадка: {item.drawdowns.join(' / ')}</li>
+                    <li>{isFundedNext
+                      ? 'Фирменный профиль перечисляет bank wire, Rise и crypto; точный маршрут проверяется по стране.'
+                      : 'Официальный справочник описывает EUR bank transfer и USDC ERC-20.'}</li>
+                  </ul>
+                  <div className="ru-actions">
+                    <Link href={reviewHref} className="btn-outline">Русский обзор</Link>
+                    <Link
+                      href={`/go/${item.slug}?from=ru-ranking-primary-${item.slug}`}
+                      rel="sponsored nofollow noopener"
+                      className="btn-primary"
+                    >
+                      Проверить {item.firm.name} <ArrowRight size={14} aria-hidden="true" />
+                    </Link>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+          <p className="ru-source-line">
+            FundingPips остаётся вторичным партнёрским вариантом и сравнивается ниже в полной матрице; он не подменяет два основных маршрута этой страницы.
+          </p>
+        </div>
+      </section>
+
       <section className="ru-section" id="strana">
         <div className="ru-shell" data-russian-ranking-country-paths="diaspora-not-russia">
           <h2>Проп-фирмы для русскоязычных трейдеров: сначала страна</h2>
-          <p className="ru-muted">Один русский запрос может исходить из Москвы, Алматы, Риги, Берлина, Тель-Авива, Дубая или Нью-Йорка. Для KYC это 7 разных профилей, а не одна аудитория.</p>
+          <p className="ru-muted">Русскоязычный трейдер может жить в Москве, Алматы, Риге, Берлине, Тель-Авиве, Дубае или Нью-Йорке. Для KYC это 7 разных профилей, а не одна аудитория.</p>
           <div className="ru-grid">
             <article className="ru-card">
               <h3>Резидент России</h3>
@@ -339,8 +397,8 @@ export default function RussianBestPropFirmsPage() {
             Партнёрство не меняет редакционный балл или порядок рейтинга. Перед оплатой отдельно подтвердите
             страну, гражданство, KYC, способ оплаты и правила выплат.
           </div>
-          <h2>FundedNext, FundingPips или Bright Funded: с чего начать</h2>
-          <p className="ru-muted">Это не отдельный рейтинг из 3 мест. Строка отвечает на 5 разных вопросов: сколько свежих продуктов проверено, в какой валюте указана цена, какая просадка встречается, какой country-check нужен и куда может прийти reward.</p>
+          <h2>Полная партнёрская матрица: два основных пути и FundingPips</h2>
+          <p className="ru-muted">FundedNext и Bright Funded показаны первыми как основные коммерческие маршруты; FundingPips остаётся вторичным сравнением. Это не отдельный рейтинг из 3 мест: каждая строка отвечает на 5 вопросов о продукте, валюте, просадке, стране и reward.</p>
           <div className="ru-table-wrap">
             <table className="ru-table ru-partner-decision-table">
               <thead>
@@ -386,7 +444,7 @@ export default function RussianBestPropFirmsPage() {
       <section className="ru-section" id="po-zadache">
         <div className="ru-shell" data-russian-ranking-intent-paths="payout-drawdown-budget">
           <h2>Какую проп-фирму выбрать по задаче</h2>
-          <p className="ru-muted">Поисковые формулировки «самая дешёвая», «без челленджа» или «выплаты в криптовалюте» описывают только 1 фильтр. В каждой карточке ниже есть второй фильтр, который способен отменить решение.</p>
+          <p className="ru-muted">Цена, отсутствие челленджа или выплата в криптовалюте описывают только 1 фильтр. В каждой карточке ниже есть второй фильтр, который способен отменить решение.</p>
           <div className="ru-grid">
             <article className="ru-card">
               <h3>Минимальный бюджет в USD</h3>
@@ -481,7 +539,7 @@ export default function RussianBestPropFirmsPage() {
       <section className="ru-section" id="rossiyskie-firmy">
         <div className="ru-shell ru-content">
           <h2>А что насчёт российских проп-компаний</h2>
-          <p>Локальные фирмы полезны как отдельный поисковый и продуктовый маршрут, особенно если трейдер ищет Московскую биржу, обучение, отбор в команду или расчёты внутри местной инфраструктуры. Но российская проп-компания и глобальный CFD challenge решают разные задачи; одинаковое слово «проп» не делает их взаимозаменяемыми.</p>
+          <p>Локальные фирмы полезны как отдельная продуктовая модель, особенно если трейдеру нужны Московская биржа, обучение, отбор в команду или расчёты внутри местной инфраструктуры. Но российская проп-компания и глобальный CFD challenge решают разные задачи; одинаковое слово «проп» не делает их взаимозаменяемыми.</p>
           <p>Мы уже отделяем <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">EraTrade</Link> и <Link href="/ru/obzor-kascapital">KASCapital</Link> от глобального рейтинга. В местных обзорах проверяются юридическое лицо, рынок, модель отбора, платежи и публичные правила; если партнёрской программы нет, обзор всё равно может помочь читателю понять разницу и вернуться к глобальному shortlist осознанно.</p>
           <div className="ru-notice">
             <strong>Маршрут без смешивания моделей.</strong> Сначала откройте <Link href="/ru/rossiyskie-prop-kompanii">проверку российских проп-компаний</Link>. Если нужен именно глобальный funded account на CFD, вернитесь к матрице FundedNext, FundingPips и Bright Funded и заново проверьте страну.
