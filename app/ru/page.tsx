@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, BadgePercent, BookOpenCheck, Building2, ChartCandlestick, Database, Globe2, Scale, SearchCheck, ShieldAlert, WalletCards, Zap } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import { getAllDeals } from '@/lib/deals'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -49,6 +50,9 @@ const featuredPartnerRoutes = [
 export default function RussianHomePage() {
   const firms = getAllFirms()
   const challenges = getAllChallenges()
+  const activeDeals = getAllDeals()
+  const activePublicCodeCount = activeDeals.filter(deal => deal.mechanism === 'checkout-code').length
+  const activeEarnedCouponCount = activeDeals.filter(deal => deal.mechanism === 'earned-coupon').length
   const freshChallenges = challenges.filter(challenge => isChallengeFresh(challenge))
   const freshFirmSlugs = new Set(freshChallenges.map(challenge => challenge.firmSlug))
   const fullyFreshFirmCount = [...freshFirmSlugs].filter(slug => {
@@ -320,10 +324,18 @@ export default function RussianHomePage() {
               <p className="ru-muted">Продуктовое сравнение двух глобальных партнёров: цена, просадка, сплит, первая выплата и отдельные CTA без единого навязанного победителя.</p>
               <Link className="ru-card-link" href="/ru/fundednext-vs-fundingpips">Сравнить партнёров →</Link>
             </article>
-            <article className="ru-card" data-russian-home-deals-partners="fundednext-bright-funded">
+            <article
+              className="ru-card"
+              data-russian-home-deals-partners="fundednext-bright-funded"
+              data-russian-home-deal-count={activeDeals.length}
+              data-russian-home-deals-fail-closed="30-days"
+            >
               <BadgePercent size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>Промокоды FundedNext и Bright Funded</h3>
-              <p className="ru-muted">5 свежих предложений: персональные 5% FundedNext после Free Trial, 3 публичных кода Bright Funded и HELLO от FundingPips.</p>
+              <h3>Проверенные промокоды проп-фирм</h3>
+              <p className="ru-muted">
+                Предложений с первичным источником за последние 30 дней: {activeDeals.length}.
+                Публичных checkout-кодов: {activePublicCodeCount}; персональных купонов после условия: {activeEarnedCouponCount}.
+              </p>
               <Link className="ru-card-link" href="/ru/promokody-prop-firm">Сравнить коды и итоговые цены →</Link>
             </article>
             <article className="ru-card">

@@ -11614,9 +11614,12 @@ function checkRussianAcquisitionPilot() {
     '/go/bright-funded?from=ru-home-hero-bright-funded',
     'data-russian-home-featured-partners="fundednext-bright-funded"',
     'data-russian-home-deals-partners="fundednext-bright-funded"',
+    'data-russian-home-deal-count={activeDeals.length}',
+    'data-russian-home-deals-fail-closed="30-days"',
+    'const activeDeals = getAllDeals()',
     'data-russian-home-ftmo-entry="non-affiliate-to-partners"',
     'href="/ru/obzor-ftmo"',
-    'Промокоды FundedNext и Bright Funded',
+    'Проверенные промокоды проп-фирм',
     'Сравнить коды и итоговые цены',
     'href="/ru/fundednext-vs-bright-funded"',
     'Сравнить FundedNext и Bright Funded',
@@ -11957,12 +11960,13 @@ function checkRussianAcquisitionPilot() {
     'data-russian-deals-article="checkout-intent-source-gated"',
     'data-russian-country-boundary="deals-not-access"',
     'data-russian-affiliate-disclosure="deals"',
-    'data-russian-deals-mechanisms="checkout-link-earned"',
+    'data-russian-deals-mechanisms={mechanismMarker}',
+    'data-russian-deals-fail-closed="conditional-firm-claims"',
     'data-russian-deals-featured-partner="fundednext"',
     'data-russian-deals-fundednext="earned-not-public"',
     'data-russian-deals-discount-table="currency-preserved"',
     'data-russian-deals-featured-partner="bright-funded"',
-    'data-russian-deals-bright="three-product-codes"',
+    'data-russian-deals-bright="current-product-codes"',
     'data-russian-deals-bright-price-rows={brightRows.length}',
     'data-russian-deals-secondary="fundingpips"',
     'data-russian-deals-decision="product-before-discount"',
@@ -11975,8 +11979,15 @@ function checkRussianAcquisitionPilot() {
     'CopyableCodePill',
     'locale="ru"',
     'campaignFor(deal)',
+    'const generalFaqs: RussianFaqItem[]',
+    '...(fundedNextDeal ? [{',
+    '...(brightDeals.length > 0 ? [{',
+    '...(fundingPipsDeal ? [{',
+    '{fundedNextDeal && <section className="ru-section" id="fundednext-promokod">',
+    '{brightDeals.length > 0 && <section className="ru-section" id="bright-funded-promokody">',
+    '{fundingPipsDeal && <section className="ru-section" id="fundingpips-promokod">',
     '/go/fundednext?from=ru-deals-fundednext-earned-coupon',
-    '/go/fundingpips?from=ru-deals-fundingpips-hello',
+    'href={`/go/fundingpips?from=${campaignFor(fundingPipsDeal)}`}',
     "fundednext: '/ru/obzor-fundednext'",
     "'bright-funded': '/ru/obzor-bright-funded'",
     "fundingpips: '/ru/obzor-fundingpips'",
@@ -11984,6 +11995,14 @@ function checkRussianAcquisitionPilot() {
     'rel={isAffiliate ? \'sponsored nofollow noopener\' : \'nofollow noopener\'}',
   ]) {
     if (!russianDealsPage.includes(token)) rows.push(`Russian offers page is missing ${token}`)
+  }
+  for (const stalePublicClaim of [
+    '5 свежих предложений:',
+    'getAllDeals() скрывает предложение',
+  ]) {
+    if (russianDealsPage.includes(stalePublicClaim)) {
+      rows.push(`Russian offers page exposes a static or internal deal claim: ${stalePublicClaim}`)
+    }
   }
 
   const russianInstantPage = fs.existsSync(russianRouteFiles.get('/ru/prop-firmy-bez-chelendzha'))
