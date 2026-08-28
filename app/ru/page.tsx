@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, BadgePercent, BookOpenCheck, Building2, ChartCandlestick, Database, Globe2, Scale, SearchCheck, ShieldAlert, WalletCards, Zap } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -42,8 +43,8 @@ const faqs: RussianFaqItem[] = [
 ]
 
 const featuredPartnerRoutes = [
-  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
-  { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext', heroHref: '/go/fundednext?from=ru-home-hero-fundednext' },
+  { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded', heroHref: '/go/bright-funded?from=ru-home-hero-bright-funded' },
 ] as const
 
 const relatedSearchRoutes: Record<string, { href: string; label: string }> = {
@@ -130,20 +131,64 @@ export default function RussianHomePage() {
             тип просадки, этапы оценки, базовую долю прибыли и условия выплаты.
             Каждая цифра привязана к первичному источнику и дате проверки.
           </p>
-          <div className="ru-actions" data-russian-home-hero-partners="fundednext-bright-funded">
-            <Link href="/ru/luchshie-prop-firmy" className="btn-primary btn-glow">
-              Открыть рейтинг <ArrowRight size={15} aria-hidden="true" />
+          <div className="ru-home-partner-hero" data-russian-home-hero-partners="fundednext-bright-funded">
+            {featuredPartnerCards.map(item => {
+              const isFundedNext = item.slug === 'fundednext'
+              return (
+                <article
+                  className={`ru-home-partner-hero-card${isFundedNext ? ' ru-home-partner-hero-card--fundednext' : ' ru-home-partner-hero-card--bright'}`}
+                  key={item.slug}
+                  data-russian-home-hero-partner={item.slug}
+                >
+                  <div className="ru-home-partner-hero-brand">
+                    {item.firm?.logo ? (
+                      <span className="ru-home-partner-hero-logo" aria-hidden="true">
+                        <Image src={item.firm.logo} alt="" width={72} height={72} />
+                      </span>
+                    ) : null}
+                    <div>
+                      <span className="ru-home-partner-hero-label">Основной глобальный партнёр</span>
+                      <h2>{item.name}</h2>
+                    </div>
+                  </div>
+                  <p>
+                    {isFundedNext
+                      ? '4 актуальные модели в USD, включая Stellar Instant без evaluation; для Stellar 1-Step первое payout-окно открывается через 5 рабочих дней.'
+                      : '3 evaluation-модели в EUR; официальный payout-маршрут включает USDC ERC-20 или банковский reward в EUR, а стандартное первое окно открывается через 30 дней.'}
+                  </p>
+                  <div className="ru-home-partner-hero-facts" aria-label={`Охват данных ${item.name}`}>
+                    <span><strong>{item.products.length}</strong> продукта</span>
+                    <span><strong>{item.priceCount}</strong> опубликованных цен</span>
+                    <span><strong>{item.captureDate ?? '—'}</strong> дата проверки</span>
+                  </div>
+                  <div className="ru-home-partner-hero-actions">
+                    <Link
+                      href={item.heroHref}
+                      rel="sponsored nofollow noopener"
+                      className="btn-primary btn-glow"
+                    >
+                      Проверить условия {item.name} <ArrowRight size={15} aria-hidden="true" />
+                    </Link>
+                    <Link href={item.reviewHref} className="ru-home-partner-hero-review">
+                      Сначала прочитать обзор
+                    </Link>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+          <div className="ru-actions ru-home-secondary-actions">
+            <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">
+              Сравнить двух партнёров
             </Link>
-            <Link href="/go/fundednext?from=ru-home-hero-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
-              FundedNext <ArrowRight size={15} aria-hidden="true" />
-            </Link>
-            <Link href="/go/bright-funded?from=ru-home-hero-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
-              Bright Funded <ArrowRight size={15} aria-hidden="true" />
+            <Link href="/ru/luchshie-prop-firmy" className="btn-outline">
+              Открыть полный рейтинг
             </Link>
           </div>
-          <p className="ru-source-line">
-            FundedNext и Bright Funded — наши главные партнёры. Это партнёрские ссылки: мы можем получить комиссию.
-            {' '}Перед оплатой проверьте страну, KYC и правила продукта. <Link href="#glavnye-partnery">Сравнить две карточки</Link>.
+          <p className="ru-source-line ru-home-partner-hero-disclosure">
+            FundedNext и Bright Funded коммерчески выделены как наши главные партнёры. Ссылки «Проверить условия» партнёрские:
+            {' '}мы можем получить комиссию после регистрации. Язык страницы не подтверждает доступ — перед оплатой проверьте
+            {' '}страну, KYC, платёжный маршрут и правила конкретного продукта.
           </p>
           <div className="ru-stats" aria-label="Текущий охват данных">
             <div className="ru-stat"><strong>{fullyFreshFirmCount}/{firms.length}</strong><span>фирм с полностью свежими продуктами</span></div>

@@ -75,6 +75,169 @@
   margin-top: 1.5rem;
 }
 
+.ru-home-partner-hero {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 1040px;
+  margin-top: 2rem;
+}
+
+.ru-home-partner-hero-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  padding: clamp(1.1rem, 2.5vw, 1.5rem);
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--border));
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--accent) 12%, var(--surface)), color-mix(in srgb, var(--surface) 96%, transparent));
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.2);
+}
+
+.ru-home-partner-hero-card::after {
+  position: absolute;
+  right: -64px;
+  bottom: -82px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  content: '';
+  pointer-events: none;
+}
+
+.ru-home-partner-hero-card--bright {
+  border-color: color-mix(in srgb, #f5b942 46%, var(--border));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, #f5b942 9%, var(--surface)), color-mix(in srgb, var(--surface) 96%, transparent));
+}
+
+.ru-home-partner-hero-card--bright::after {
+  background: color-mix(in srgb, #f5b942 12%, transparent);
+}
+
+.ru-home-partner-hero-brand {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.ru-home-partner-hero-logo {
+  display: flex;
+  flex: 0 0 72px;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  padding: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--bg3);
+}
+
+.ru-home-partner-hero-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ru-home-partner-hero-label {
+  color: var(--accent-light);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.ru-home-partner-hero-card h2 {
+  margin: 0.25rem 0 0;
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  line-height: 1.1;
+}
+
+.ru-home-partner-hero-card > p {
+  position: relative;
+  z-index: 1;
+  margin: 1rem 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.ru-home-partner-hero-facts {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.ru-home-partner-hero-facts span {
+  min-width: 0;
+  padding: 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--bg3) 88%, transparent);
+  color: var(--muted);
+  font-size: 0.73rem;
+  line-height: 1.35;
+}
+
+.ru-home-partner-hero-facts strong {
+  display: block;
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.ru-home-partner-hero-actions {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.7rem;
+  margin-top: auto;
+}
+
+.ru-home-partner-hero-actions .btn-primary {
+  justify-content: center;
+  text-align: center;
+}
+
+.ru-home-partner-hero-review {
+  color: var(--accent-light);
+  font-size: 0.84rem;
+  font-weight: 750;
+  text-align: center;
+}
+
+.ru-home-secondary-actions {
+  margin-top: 1rem;
+}
+
+.ru-home-partner-hero-disclosure {
+  max-width: 980px;
+  margin-top: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .ru-home-partner-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .ru-home-partner-hero-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ru-home-partner-hero-facts span:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
 .ru-section {
   padding: clamp(2.75rem, 6vw, 5rem) 0;
 }
