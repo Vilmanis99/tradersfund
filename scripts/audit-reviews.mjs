@@ -10910,6 +10910,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/chto-takoe-prop-firma', path.join(ROOT, 'app/ru/chto-takoe-prop-firma/page.tsx')],
     ['/ru/forex-prop-firmy', path.join(ROOT, 'app/ru/forex-prop-firmy/page.tsx')],
     ['/ru/prop-firmy-s-ctrader', path.join(ROOT, 'app/ru/prop-firmy-s-ctrader/page.tsx')],
+    ['/ru/fundednext-mt5', path.join(ROOT, 'app/ru/fundednext-mt5/page.tsx')],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', path.join(ROOT, 'app/ru/kak-rabotayut-chellendzhi-prop-firm/page.tsx')],
     ['/ru/rossiyskie-prop-kompanii', path.join(ROOT, 'app/ru/rossiyskie-prop-kompanii/page.tsx')],
   ])
@@ -11722,6 +11723,9 @@ function checkRussianAcquisitionPilot() {
     'href="/ru/forex-prop-firmy"',
     'data-russian-home-ctrader-entry="platform-rules"',
     'href="/ru/prop-firmy-s-ctrader"',
+    '25 страниц',
+    'data-russian-home-mt5-entry="fundednext-ea-rules"',
+    'href="/ru/fundednext-mt5"',
   ]) {
     if (!russianHub.includes(token)) rows.push(`Russian home featured-partner funnel is missing ${token}`)
   }
@@ -11747,6 +11751,7 @@ function checkRussianAcquisitionPilot() {
     '/go/bright-funded?from=ru-forex-verdict-bright-funded',
     'rel="sponsored nofollow noopener"',
     "import forexEvidence from '@/content/data/russian-forex-evidence.json'",
+    'href="/ru/fundednext-mt5"',
   ]) {
     if (!forexPage.includes(token)) rows.push(`Russian forex funnel is missing ${token}`)
   }
@@ -11781,8 +11786,63 @@ function checkRussianAcquisitionPilot() {
     '/go/bright-funded?from=ru-ctrader-verdict-bright-funded',
     'rel="sponsored nofollow noopener"',
     "import cTraderEvidence from '@/content/data/russian-ctrader-evidence.json'",
+    'href="/ru/fundednext-mt5"',
   ]) {
     if (!cTraderPage.includes(token)) rows.push(`Russian cTrader funnel is missing ${token}`)
+  }
+
+  const fundedNextMt5Page = fs.existsSync(russianRouteFiles.get('/ru/fundednext-mt5'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/fundednext-mt5'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-fundednext-mt5="search-to-rule"',
+    'data-russian-platform-intent="fundednext-mt5-ea"',
+    'data-russian-country-boundary="fundednext-mt5-profile-not-language"',
+    'data-russian-fundednext-mt5-answer="platform-before-download"',
+    'data-russian-fundednext-mt5-facts="six-gates"',
+    'data-russian-fundednext-mt5-login="credentials-and-server"',
+    'data-russian-fundednext-mt5-products={products.length}',
+    'data-russian-fundednext-mt5-product-matrix="four-models"',
+    'data-russian-fundednext-mt5-product={product.productSlug}',
+    'data-russian-fundednext-mt5-free-trial="mt5-no-ea"',
+    'data-russian-fundednext-mt5-ea="paid-platform-specific"',
+    'data-russian-fundednext-mt5-continuity="same-strategy-after-evaluation"',
+    'data-russian-fundednext-mt5-platform-boundary="automation-and-country"',
+    'data-russian-fundednext-mt5-checkout="product-plus-add-on"',
+    'data-russian-fundednext-mt5-diaspora="country-before-platform"',
+    'data-russian-fundednext-mt5-verdict="ea-before-platform"',
+    'data-russian-fundednext-mt5-primary-partner="fundednext"',
+    'data-russian-fundednext-mt5-alternative="bright-funded"',
+    'data-russian-fundednext-mt5-sources={sourceUrls.length}',
+    'data-russian-affiliate-disclosure="fundednext-mt5-hero"',
+    'data-russian-affiliate-disclosure="fundednext-mt5-verdict"',
+    '/go/fundednext?from=ru-fundednext-mt5-hero',
+    '/go/fundednext?from=ru-fundednext-mt5-products',
+    '/go/fundednext?from=ru-fundednext-mt5-free-trial',
+    '/go/fundednext?from=ru-fundednext-mt5-verdict',
+    '/go/bright-funded?from=ru-fundednext-mt5-alternative-bright-funded',
+    'rel="sponsored nofollow noopener"',
+    "import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'",
+    "import { getDealsByFirm } from '@/lib/deals'",
+  ]) {
+    if (!fundedNextMt5Page.includes(token)) rows.push(`Russian FundedNext MT5 funnel is missing ${token}`)
+  }
+  const fundedNextMt5EvidenceFile = path.join(ROOT, 'content/data/russian-fundednext-mt5-evidence.json')
+  const fundedNextMt5EvidenceSource = fs.existsSync(fundedNextMt5EvidenceFile)
+    ? fs.readFileSync(fundedNextMt5EvidenceFile, 'utf8')
+    : ''
+  for (const token of [
+    '"capturedAt": "2026-08-28"',
+    'https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext',
+    'https://help.fundednext.com/en/articles/10725745-how-do-i-log-in-to-the-mt5-platform-pc',
+    'https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext',
+    'https://help.fundednext.com/en/articles/8388896-are-there-any-restrictions-on-my-trading-strategy',
+    'https://help.fundednext.com/en/articles/8902893-fundednext-free-trial-rules',
+    '"maxAllocationUsdPerStrategy": 300000',
+    '"additionalFeeAmount": null',
+    '"eaAllowed": false',
+  ]) {
+    if (!fundedNextMt5EvidenceSource.includes(token)) rows.push(`Russian FundedNext MT5 evidence is missing ${token}`)
   }
 
   const propDefinitionPage = fs.existsSync(russianRouteFiles.get('/ru/chto-takoe-prop-firma'))
@@ -12414,6 +12474,7 @@ function checkRussianAcquisitionPilot() {
     'id="verdict"',
     '/go/fundednext?from=ru-fundednext-review-verdict',
     '/go/fundednext?from=ru-fundednext-review-free-trial',
+    'href="/ru/fundednext-mt5"',
     'href="/ru/promokody-prop-firm#fundednext-promokod"',
     'Текущее предложение: персональный купон {fundedNextDeal.pct}%, а не публичный промокод.',
     'href="/ru/fundednext-vs-bright-funded"',
@@ -12543,6 +12604,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/chto-takoe-prop-firma'",
     "href: '/ru/forex-prop-firmy'",
     "href: '/ru/prop-firmy-s-ctrader'",
+    "href: '/ru/fundednext-mt5'",
     "href: '/ru/otzyvy-prop-firm'",
     "href: '/ru/prop-firmy-bez-chelendzha'",
     'getAlternateLanguageHref(pathname)',
@@ -12568,6 +12630,7 @@ function checkRussianAcquisitionPilot() {
   if (!footer.includes("href: '/ru/chto-takoe-prop-firma'")) rows.push('Russian footer is missing the prop-definition route')
   if (!footer.includes("href: '/ru/forex-prop-firmy'")) rows.push('Russian footer is missing the forex route')
   if (!footer.includes("href: '/ru/prop-firmy-s-ctrader'")) rows.push('Russian footer is missing the cTrader route')
+  if (!footer.includes("href: '/ru/fundednext-mt5'")) rows.push('Russian footer is missing the FundedNext MT5 route')
 
   const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
   for (const token of [
@@ -12578,6 +12641,7 @@ function checkRussianAcquisitionPilot() {
     'russianTeamTradersEvidence.capturedAt',
     'russianForexEvidence.capturedAt',
     'russianCTraderEvidence.capturedAt',
+    'russianFundedNextMt5Evidence.capturedAt',
   ]) {
     if (!sitemap.includes(token)) rows.push(`sitemap is missing Russian safeguard ${token}`)
   }

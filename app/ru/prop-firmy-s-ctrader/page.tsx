@@ -450,7 +450,8 @@ export default function RussianCTraderPropFirmsPage() {
             Если хотя бы 1 из 10 полей неизвестно, не заменяйте его рекламным максимумом. Для product-level правил откройте
             <Link href="/ru/obzor-fundednext"> обзор FundedNext</Link>,
             <Link href="/ru/obzor-bright-funded"> обзор Bright Funded</Link> и
-            <Link href="/ru/fundednext-vs-bright-funded"> прямое сравнение 7 продуктов</Link>.
+            <Link href="/ru/fundednext-vs-bright-funded"> прямое сравнение 7 продуктов</Link>. Если стратегия требует автоматизации,
+            <Link href="/ru/fundednext-mt5"> сравните MT5 и 7 правил EA</Link>, а не переносите cBot на другой терминал.
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ctrader-verdict">
             <strong>Финальный маршрут.</strong>{' '}

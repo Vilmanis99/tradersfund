@@ -364,6 +364,7 @@ export default function RussianForexPropFirmsPage() {
             <Link href="/ru/prop-firmy-s-ctrader" className="btn-primary">
               Сравнить FundedNext и Bright Funded на cTrader <ArrowRight size={15} aria-hidden="true" />
             </Link>
+            <Link href="/ru/fundednext-mt5" className="btn-outline">FundedNext MT5 и правила EA</Link>
           </div>
         </div>
       </section>
@@ -459,7 +460,8 @@ export default function RussianForexPropFirmsPage() {
             Если 1 из 9 полей остаётся неизвестным, сохраните его как пробел, а не выбирайте рекламный максимум.
             Для product-level решения откройте <Link href="/ru/obzor-fundednext">обзор FundedNext</Link>,
             <Link href="/ru/obzor-bright-funded"> обзор Bright Funded</Link> и их
-            <Link href="/ru/fundednext-vs-bright-funded"> прямое сравнение 7 продуктов</Link>.
+            <Link href="/ru/fundednext-vs-bright-funded"> прямое сравнение 7 продуктов</Link>. Для MT5 download, login и EA-rule используйте
+            <Link href="/ru/fundednext-mt5"> отдельный гайд FundedNext MT5</Link>.
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="forex-verdict">
             <strong>Финальный коммерческий маршрут.</strong>{' '}

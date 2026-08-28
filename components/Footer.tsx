@@ -36,6 +36,7 @@ export default function Footer({
     { label: 'Рейтинг проп-фирм 2026', href: '/ru/luchshie-prop-firmy' },
     { label: 'Forex-проп-фирмы', href: '/ru/forex-prop-firmy' },
     { label: 'Проп-фирмы с cTrader', href: '/ru/prop-firmy-s-ctrader' },
+    { label: 'FundedNext MT5 и EA', href: '/ru/fundednext-mt5' },
     { label: 'Крипто-проп-фирмы', href: '/ru/luchshie-kripto-prop-firmy' },
     { label: 'Без челленджа', href: '/ru/prop-firmy-bez-chelendzha' },
     { label: 'Для русскоязычных трейдеров', href: '/ru/dlya-russkoyazychnykh-treyderov' },

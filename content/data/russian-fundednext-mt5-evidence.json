@@ -1,0 +1,137 @@
+{
+  "capturedAt": "2026-08-28",
+  "searchIntent": {
+    "sourceType": "Google autocomplete",
+    "capturedAt": "2026-08-28",
+    "seeds": [
+      {
+        "seed": "fundednext mt5",
+        "suggestions": [
+          "fundednext mt5 download",
+          "fundednext mt5 terminal download",
+          "fundednext mt5 login",
+          "fundednext mt5 terminal setup"
+        ]
+      },
+      {
+        "seed": "fundednext ea",
+        "suggestions": [
+          "fundednext ea allowed",
+          "fundednext ea rules",
+          "fundednext ea bot"
+        ]
+      },
+      {
+        "seed": "fundednext free trial",
+        "suggestions": [
+          "fundednext free trial account",
+          "fundednext free trial rules",
+          "fundednext free trial login"
+        ]
+      }
+    ]
+  },
+  "platformAvailability": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
+    "sourceCapturedAt": "2026-08-28",
+    "platforms": ["MT4", "MT5", "Match-Trader", "cTrader"],
+    "analysisOnlyPlatform": "TradingView",
+    "usaExecutionPlatform": "Match-Trader",
+    "limitedAccountSizesUsd": [100000, 200000],
+    "limitedPlatforms": ["cTrader", "Match-Trader"],
+    "notes": [
+      "The official platform article lists MT5 as an execution platform.",
+      "U.S. traders are restricted to Match-Trader.",
+      "$100,000 and $200,000 purchases, modifications, resets and top-ups are unavailable on cTrader and Match-Trader, except U.S. Match-Trader accounts.",
+      "TradingView is described as analysis-only at capture time."
+    ]
+  },
+  "desktopLogin": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/10725745-how-do-i-log-in-to-the-mt5-platform-pc",
+    "sourceCapturedAt": "2026-08-28",
+    "publishedAt": "2026-04-08",
+    "paidServers": ["FundedNext-Server", "FundedNext-Server 2"],
+    "freeTrialServer": "FundedNext-Server 3",
+    "requiredFields": ["login ID", "password", "server name"],
+    "notes": [
+      "The paid-account server is stated in the credential email or account dashboard.",
+      "The PC flow uses Connect with an Existing Trade Account rather than opening a new MetaTrader demo account."
+    ]
+  },
+  "dashboardLogin": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/8019809-how-can-i-log-in-to-mt5-trading-terminal-from-the-fundednext-dashboard-at-fundednext-cfd",
+    "sourceCapturedAt": "2026-08-28",
+    "publishedAt": "2026-04-08",
+    "steps": ["Client Dashboard", "Trading Platform", "account credentials"]
+  },
+  "utilities": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/9413305-what-s-in-the-utilities-section-of-the-fundednext-dashboard",
+    "sourceCapturedAt": "2026-08-28",
+    "publishedAt": "2026-07-17",
+    "mt5Downloads": ["Windows", "iOS", "Android"],
+    "notes": [
+      "The Utilities section replaced the previous Toolkit section.",
+      "The Utilities section lists FundedNext MT5 downloads and account tools."
+    ]
+  },
+  "password": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/8019916-can-i-change-or-share-my-trading-platform-password",
+    "sourceCapturedAt": "2026-08-28",
+    "publishedAt": "2026-05-12",
+    "resetLocation": "Account dashboard",
+    "delivery": "registered email",
+    "sharingAllowed": false
+  },
+  "ea": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext",
+    "sourceCapturedAt": "2026-08-28",
+    "allowedPlatforms": ["MT4", "MT5"],
+    "manualOnlyPlatforms": ["cTrader", "Match-Trader"],
+    "additionalFeeRequired": true,
+    "additionalFeeAmount": null,
+    "additionalFeeRefundable": false,
+    "customizationRequired": true,
+    "distinctStrategyRequired": true,
+    "maxAllocationUsdPerStrategy": 300000,
+    "forbiddenThirdPartyIntegrations": ["Telegram", "WhatsApp"],
+    "challengePassingBotsAllowed": false,
+    "enforcement": ["soft breach", "phase restart", "account suspension", "reward denial"]
+  },
+  "strategyContinuity": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/8388896-are-there-any-restrictions-on-my-trading-strategy",
+    "sourceCapturedAt": "2026-08-28",
+    "manualToEaSwitchAllowed": false,
+    "eaToManualSwitchAllowed": false,
+    "materialAssetOrRiskSwitchAllowed": false,
+    "notes": [
+      "The strategy used during evaluation must remain coherent on the FundedNext Account.",
+      "A material switch in asset class, symbol category, margin use or risk use can trigger review."
+    ]
+  },
+  "prohibitedStrategies": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/8020351-what-are-the-restricted-prohibited-trading-strategies",
+    "sourceCapturedAt": "2026-08-28",
+    "examples": [
+      "challenge-passing services",
+      "copy trading from other people",
+      "high-frequency trading",
+      "latency trading",
+      "account or device sharing"
+    ]
+  },
+  "freeTrial": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/8902893-fundednext-free-trial-rules",
+    "sourceCapturedAt": "2026-08-28",
+    "publishedAt": "2026-04-08",
+    "platform": "MT5",
+    "usaPlatform": "Match-Trader",
+    "profitTargetPct": 5,
+    "minimumTradingDays": 3,
+    "durationDays": 14,
+    "maximumOpenPositions": 30,
+    "eaAllowed": false,
+    "couponPct": 5,
+    "couponValidityDays": 14,
+    "couponScope": "new users and CFD plans, excluding resets"
+  }
+}

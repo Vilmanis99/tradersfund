@@ -16,6 +16,7 @@ import {
 } from '@/lib/localizedRoutes'
 import russianMarketEvidence from '@/content/data/russian-market-evidence.json'
 import russianCTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
+import russianFundedNextMt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import russianForexEvidence from '@/content/data/russian-forex-evidence.json'
 import russianTeamTradersEvidence from '@/content/data/russian-teamtraders-evidence.json'
 
@@ -237,6 +238,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ? russianForexEvidence.capturedAt
         : path === '/ru/prop-firmy-s-ctrader'
           ? russianCTraderEvidence.capturedAt
+        : path === '/ru/fundednext-mt5'
+          ? russianFundedNextMt5Evidence.capturedAt
         : path === '/ru/obzor-teamtraders'
           ? russianTeamTradersEvidence.capturedAt
           : russianMarketEvidence.capturedAt,
