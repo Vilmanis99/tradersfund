@@ -19,6 +19,7 @@ export const LOCALIZED_ROUTE_PAIRS = [
 
 export const RUSSIAN_ONLY_ROUTES = [
   '/ru/dlya-russkoyazychnykh-treyderov',
+  '/ru/forex-prop-firmy',
   '/ru/rossiyskie-prop-kompanii',
   '/ru/vyplaty-prop-firm',
   '/ru/prop-firmy-bez-kyc',

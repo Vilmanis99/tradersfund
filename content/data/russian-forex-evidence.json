@@ -1,0 +1,82 @@
+{
+  "capturedAt": "2026-08-28",
+  "searchDemand": {
+    "sourceUrl": "https://a.pr-cy.ru/proptreiding.ru/",
+    "sourceType": "third-party Yandex Moscow estimate",
+    "period": "2026-01",
+    "queries": [
+      { "query": "проп форекс", "monthlyFrequency": 17 },
+      { "query": "forex prop", "monthlyFrequency": 4 }
+    ],
+    "notes": [
+      "The figures are a third-party Moscow estimate, not first-party Search Console or Yandex Webmaster data.",
+      "The two query frequencies overlap and must not be added into a total audience figure.",
+      "The page must answer forex-specific product questions rather than duplicate the generic Russian ranking."
+    ]
+  },
+  "firms": [
+    {
+      "firmSlug": "fundednext",
+      "firmName": "FundedNext",
+      "sourceCapturedAt": "2026-08-28",
+      "sourceUrls": [
+        "https://help.fundednext.com/en/articles/8224087-fundednext-tradable-assets-what-can-i-trade-on-fundednext-cfd-accounts",
+        "https://help.fundednext.com/en/articles/8019669-what-is-the-leverage-of-the-trading-account",
+        "https://help.fundednext.com/en/articles/11641369-what-is-the-leverage-provided-in-the-stellar-instant-accounts",
+        "https://fundednext.com/cfds"
+      ],
+      "accountEnvironment": "simulated",
+      "instrumentType": "CFD",
+      "forexPairCategories": ["major", "minor", "exotic"],
+      "forexSymbols": [
+        "AUDCAD", "AUDCHF", "AUDJPY", "AUDNZD", "AUDSGD", "AUDUSD",
+        "CADCHF", "CADJPY", "CHFJPY", "EURAUD", "EURCAD", "EURCHF",
+        "EURGBP", "EURHKD", "EURJPY", "EURNOK", "EURNZD", "EURSGD",
+        "EURUSD", "GBPAUD", "GBPCAD", "GBPCHF", "GBPJPY", "GBPNZD",
+        "GBPSGD", "GBPUSD", "NZDCAD", "NZDCHF", "NZDJPY", "NZDSGD",
+        "SGDJPY", "USDCAD", "USDCHF", "USDCNH", "USDDKK", "USDHUF",
+        "USDJPY", "USDMXN", "USDNOK", "USDSGD", "USDZAR", "NZDUSD",
+        "USDSEK"
+      ],
+      "platforms": ["MT4", "MT5", "cTrader", "Match-Trader"],
+      "forexLeverage": [
+        { "products": ["Stellar 2-Step", "Stellar 1-Step", "Stellar Lite"], "ratio": 100 },
+        { "products": ["Stellar Instant"], "ratio": 30 }
+      ],
+      "notes": [
+        "The published symbol list is for FundedNext CFD Stellar accounts and contains 43 unique forex pairs.",
+        "The live terminal remains the final source for enabled symbols on a specific account and platform.",
+        "FundedNext's company disclosure and CFD restriction FAQ conflict on Russian-resident access, so no Russia-access promise is allowed."
+      ]
+    },
+    {
+      "firmSlug": "bright-funded",
+      "firmName": "Bright Funded",
+      "sourceCapturedAt": "2026-08-28",
+      "sourceUrls": [
+        "https://help.brightfunded.com/en/articles/9268749-what-trading-assets-instruments-offers-brightfunded",
+        "https://help.brightfunded.com/en/articles/9268380-what-is-the-leverage-in-brightfunded-s-simulated-trading-environment",
+        "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer"
+      ],
+      "accountEnvironment": "simulated",
+      "instrumentType": "simulated forex instruments",
+      "forexPairCategories": ["major", "minor", "exotic"],
+      "platforms": ["DXTrade", "cTrader", "MT5"],
+      "forexLeverage": [
+        { "products": ["Bright Funded 1-Step", "Bright Funded 2-Step Bright", "Bright Funded 2-Step Classic"], "ratio": 100 }
+      ],
+      "platformRestrictions": [
+        {
+          "platform": "MT5",
+          "profile": "citizen, resident, or living in the United States or United Arab Emirates",
+          "status": "not available"
+        }
+      ],
+      "notes": [
+        "Bright Funded publishes major, minor and exotic forex coverage but does not publish a count on the captured help page.",
+        "The 1:100 forex leverage applies to both Challenge and Funded Account simulated environments.",
+        "Platform eligibility is profile-specific and must be checked before purchasing a product."
+      ]
+    }
+  ]
+}

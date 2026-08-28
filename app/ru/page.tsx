@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, BadgePercent, BookOpenCheck, Building2, Database, Globe2, Scale, SearchCheck, ShieldAlert, WalletCards, Zap } from 'lucide-react'
+import { ArrowRight, BadgePercent, BookOpenCheck, Building2, ChartCandlestick, Database, Globe2, Scale, SearchCheck, ShieldAlert, WalletCards, Zap } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
@@ -56,12 +56,12 @@ const relatedSearchRoutes: Record<string, { href: string; label: string }> = {
     label: 'Открыть русский обзор FTMO и официальный домен',
   },
   'forex prop': {
-    href: '/ru/luchshie-prop-firmy',
-    label: 'Сравнить глобальные продукты',
+    href: '/ru/forex-prop-firmy',
+    label: 'Сравнить forex-продукты, плечо и платформы',
   },
   'проп форекс': {
-    href: '/ru/luchshie-prop-firmy',
-    label: 'Сравнить глобальные продукты',
+    href: '/ru/forex-prop-firmy',
+    label: 'Сравнить forex-продукты, плечо и платформы',
   },
   'пипсы проп компания': {
     href: '/ru/obzor-fundingpips',
@@ -228,7 +228,7 @@ export default function RussianHomePage() {
         <div className="ru-shell">
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия объединяет 21 самостоятельную страницу под разные поисковые задачи,
+            Русская версия объединяет 22 самостоятельные страницы под разные поисковые задачи,
             включая отдельную проверку компаний российского рынка. Мы не переводим сотни URL автоматически: сначала проверяем,
             отвечает ли локальная страница на самостоятельный поисковый запрос.
           </p>
@@ -274,6 +274,12 @@ export default function RussianHomePage() {
               <h3>Крипто-проп-фирмы</h3>
               <p className="ru-muted">Отделяем источник с разрешёнными криптоинструментами от оплаты или выплаты в криптовалюте и проверяем продуктовые правила.</p>
               <Link className="ru-card-link" href="/ru/luchshie-kripto-prop-firmy">Сравнить криптомаршруты →</Link>
+            </article>
+            <article className="ru-card" data-russian-home-forex-entry="prop-forex">
+              <ChartCandlestick size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Forex-проп-фирмы</h3>
+              <p className="ru-muted">7 продуктов, 43 опубликованные пары FundedNext, плечо 1:30 или 1:100 и отдельная проверка платформы по стране.</p>
+              <Link className="ru-card-link" href="/ru/forex-prop-firmy">Сравнить forex-продукты →</Link>
             </article>
             <article className="ru-card">
               <Globe2 size={22} color="var(--accent-light)" aria-hidden="true" />

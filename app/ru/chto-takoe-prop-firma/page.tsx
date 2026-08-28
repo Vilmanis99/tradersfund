@@ -425,6 +425,7 @@ export default function RussianWhatIsPropFirmPage() {
           </div>
           <p>
             После заполнения 8 полей используйте <Link href="/ru/luchshie-prop-firmy">русский рейтинг</Link> для shortlist,
+            <Link href="/ru/forex-prop-firmy"> forex-сравнение</Link> для валютных пар и плеча,
             <Link href="/ru/vyplaty-prop-firm"> сравнение выплат</Link> для payout rail и
             <Link href="/ru/otzyvy-prop-firm"> методику отзывов</Link> для проверки повторяющихся жалоб.
             Финальный источник — live checkout и договор в день оплаты.
