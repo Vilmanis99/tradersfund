@@ -3,7 +3,7 @@ title: "What Is a Prop Firm? How Retail Funding Works (2026)"
 seoTitle: "What Is a Prop Firm? How Retail Funding Works (2026)"
 slug: "what-is-a-prop-firm"
 date: "2024-08-22 14:02:06"
-modified: "2026-08-17 12:00:00"
+modified: "2026-08-28 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "A prop firm gives traders access to a rule-based account and pays an agreed share of approved profits. Learn how evaluations, fees and funded stages differ."
 seoDescription: "Learn what a retail prop firm is, how challenges and funded accounts work, which fees and rules matter, and what ‘funded’ really means in 2026."
@@ -58,7 +58,7 @@ type: "post"
 
 <h2>Four current examples show why the product matters</h2>
 
-<p>The table uses list prices and rules from structured records captured on 2026-07-27. It is not a ranking: the 4 paths use different currencies, billing models, drawdown mechanics, refund terms, and payout gates.</p>
+<p>The table uses list prices and rules from structured records checked through 2026-08-28. It is not a ranking: the 4 paths use different currencies, billing models, drawdown mechanics, refund terms, and payout gates.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
   <caption class="hidden-caption">Current examples of evaluation, instant, and subscription prop-firm products</caption>
@@ -66,7 +66,7 @@ type: "post"
   <tbody>
     <tr data-prop-firm-example="fundednext:stellar-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/fundednext-review">FundedNext Stellar 2-Step, $100K</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$549.99 one-time; refundable with the first approved reward</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2 phases; 8% then 5% targets; 5% daily and 10% static maximum loss</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% base share; first standard request after 21 days, then every 14 days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-27</td></tr>
     <tr data-prop-firm-example="fundednext:stellar-instant"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/fundednext-review">FundedNext Stellar Instant, $10K</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$299.99 one-time; non-refundable</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0 phases; 6% trailing maximum loss; no daily-loss percentage captured</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">70% starting share; on-demand requires 5% growth and an end-of-day check</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-27</td></tr>
-    <tr data-prop-firm-example="ftmo:ftmo-challenge-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/ftmo-review">FTMO 2-Step, $100K</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€540 one-time; refundable with the first reward</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2 phases; 10% then 5% targets; 5% daily and 10% static maximum loss; 4 minimum days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% base share; first request after 14 days, then on demand</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-prop-firm-example="ftmo:ftmo-challenge-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/ftmo-review">FTMO 2-Step, $100K</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€540 one-time; refundable with the first reward</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2 phases; 10% then 5% targets; 5% daily and 10% static maximum loss; 4 minimum days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% base share; first request after 14 days, then on demand</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-28</td></tr>
     <tr data-prop-firm-example="topstep:trading-combine-standard-path"><td style="padding: 8px 12px;"><a href="/blog/topstep-review">Topstep Standard Path, $100K</a></td><td style="padding: 8px 12px;">$99 monthly until pass or cancellation, plus $149 activation after passing</td><td style="padding: 8px 12px;">1 phase; 6% target; $3,000 end-of-day trailing maximum-loss amount</td><td style="padding: 8px 12px;">90% share; payout paths begin after 3 trading days or 5 winning days of at least $150</td><td style="padding: 8px 12px;">2026-07-27</td></tr>
   </tbody>
 </table>

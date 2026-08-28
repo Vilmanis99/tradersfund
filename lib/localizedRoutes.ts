@@ -6,6 +6,7 @@ export const LOCALIZED_ROUTE_PAIRS = [
   { en: '/compare/bright-funded-vs-fundednext', ru: '/ru/fundednext-vs-bright-funded' },
   { en: '/compare/fundednext-vs-fundingpips', ru: '/ru/fundednext-vs-fundingpips' },
   { en: '/prop-firm-discount-codes', ru: '/ru/promokody-prop-firm' },
+  { en: '/blog/ftmo-review', ru: '/ru/obzor-ftmo' },
   { en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' },
   { en: '/blog/funding-pips-review', ru: '/ru/obzor-fundingpips' },
   { en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' },

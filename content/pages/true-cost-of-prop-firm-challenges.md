@@ -3,13 +3,13 @@ title: "True Cost of Prop Firm Challenges: Fee-Recovery Math (2026)"
 seoTitle: "Prop Firm Challenge True Cost: Fee-Recovery Math"
 slug: "true-cost-of-prop-firm-challenges"
 date: "2026-05-20 12:00:00"
-modified: "2026-08-17 12:00:00"
+modified: "2026-08-28 12:00:00"
 description: "Calculate fee-recovery profit, refund-adjusted cash cost, retry cost, and the ratio between checkout cost and a challenge's starting loss room."
 seoDescription: "Calculate prop-firm fee-recovery profit, refund-adjusted cash cost, retry cost, loss-room ratio, and standardized growth days."
 type: "page"
 ---
 
-<p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;">A challenge fee is only one part of cost. The <a href="/prop-firms/high-profit-split">verified base profit split</a> determines how much gross account profit produces the same trader share as that fee; refunds, failed attempts, recurring billing, activation charges, and <a href="/blog/what-is-prop-firm-consistency-rule">consistency-based payout gates</a> determine the actual cash result. This guide defines each number before comparing products captured on 2026-07-27.</p>
+<p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;">A challenge fee is only one part of cost. The <a href="/prop-firms/high-profit-split">verified base profit split</a> determines how much gross account profit produces the same trader share as that fee; refunds, failed attempts, recurring billing, activation charges, and <a href="/blog/what-is-prop-firm-consistency-rule">consistency-based payout gates</a> determine the actual cash result. This guide defines each number before comparing products captured through 2026-08-28.</p>
 
 <div class="key-takeaways">
   <div class="title">Read the model correctly</div>
@@ -44,7 +44,7 @@ type: "page"
   <tbody>
     <tr data-true-cost-example="fundednext:stellar-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext Stellar 2-Step $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$549.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$687.49</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.069</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-27</td></tr>
     <tr data-true-cost-example="fundednext:stellar-instant"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext Stellar Instant $10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$299.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">70%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$428.56</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.714</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-27</td></tr>
-    <tr data-true-cost-example="ftmo:ftmo-challenge-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FTMO 2-Step $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€540</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€675</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">— mixed currency</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-true-cost-example="ftmo:ftmo-challenge-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FTMO 2-Step $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€540</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€675</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">— mixed currency</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-28</td></tr>
     <tr data-true-cost-example="topstep:trading-combine-standard-path"><td style="padding: 8px 12px;">Topstep Standard Path $100K</td><td style="padding: 8px 12px;">$248 floor</td><td style="padding: 8px 12px;">90%</td><td style="padding: 8px 12px;">$275.56</td><td style="padding: 8px 12px;">— unstructured tier loss</td><td style="padding: 8px 12px;">—</td><td style="padding: 8px 12px;">2026-07-27</td></tr>
   </tbody>
 </table>

@@ -1,0 +1,276 @@
+{
+  "firmSlug": "ftmo",
+  "officialDomain": "https://ftmo.com",
+  "capturedAt": "2026-08-28",
+  "pagesRead": [
+    "https://ftmo.com/en/",
+    "https://ftmo.com/en/2-step-challenge/",
+    "https://ftmo.com/en/1-step-challenge/",
+    "https://ftmo.com/en/trading-objectives/",
+    "https://ftmo.com/en/how-it-works/",
+    "https://ftmo.com/en/challenge/",
+    "https://ftmo.com/en/faq/why-is-there-a-fee/",
+    "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+    "https://ftmo.com/en/faq/can-i-trade-news/",
+    "https://ftmo.com/en/faq/which-instruments-can-i-trade-and-what-strategies-am-i-allowed-to-use/",
+    "https://ftmo.com/en/faq/what-are-the-account-specifications/",
+    "https://ftmo.com/en/reward-growth-and-scaling-plan/",
+    "https://ftmo.com/au/",
+    "https://ftmo.com/en/faq/who-can-join-ftmo/",
+    "https://ftmo.com/faq/what-payment-methods-are-available/",
+    "https://ftmo.com/faq/are-the-fees-recurrent/",
+    "https://ftmo.com/en/faq/what-is-the-legal-relationship-between-an-ftmo-trader-and-ftmo-after-signing-the-ftmo-account-agreement/",
+    "https://ftmo.com/en/comparison-table/"
+  ],
+  "accessNotes": "CORRECTION TO PRIOR ASSUMPTION: FTMO DOES publish per-tier pricing on stable public URLs. The pricing table is a client-side React widget (#pricing anchor) so prices do NOT appear in WebFetch's rendered-markdown output, which is almost certainly why earlier passes concluded 'no per-tier pricing on a stable URL'. However, the full price list is served in the initial HTML of every page carrying the widget, as a JSON blob in an inline <script id=\"pricing-table-data-js-extra\"> assigning var ftmoPricingTable. Verified identical price arrays on three independent stable URLs: https://ftmo.com/en/ , https://ftmo.com/en/2-step-challenge/ , https://ftmo.com/en/1-step-challenge/ . No geo-block, no auth wall, no JS execution required to read the numbers (HTTP 200, plain curl with a browser UA). The widget renders prices from prices.step_2[i] / prices.step_1[i], indexed positionally against items[currency].challenges[i]; for currency USD the balances are, in order, 200000, 100000, 50000, 25000, 10000 -- so the price arrays map to account sizes largest-to-smallest. Independent confirmation of that positional mapping comes from the promo tooltip on index 1, which names the account size explicitly. Client-side rendering logic in https://ftmo.com/app/themes/ftmo-com/build/js/pricing-table-v2-TqeInASd.js is formattedPrice: N(o?\"USD\":\"EUR\", price) where o = onlyUsdCurrency; every ftmo.com locale checked ships \"only_usd_currency\":false, so the displayed fee is EUR-formatted. NOT VERIFIED: whether a US visitor is redirected to a separate USD-priced entity. ftmo.com/en/ declares <link rel=\"alternate\" hreflang=\"en-US\" href=\"https://ftmo.oanda.com/\"> and an in-page region switcher offering 'United States' -> https://ftmo.oanda.com/ . That is a DIFFERENT DOMAIN (FTMO/OANDA US joint entity) and was deliberately NOT scraped, per the rule that figures must come from ftmo.com itself. US-market pricing is therefore uncaptured and may differ entirely.",
+  "currencyNote": "ALL CAPTURED PRICES ARE EUR, NOT USD. priceUsd is null for every tier because ftmo.com does not publish a USD fee anywhere -- no conversion was performed. Note the split denomination: ACCOUNT SIZES are selectable per currency (USD/GBP/EUR/CZK/CAD/AUD/CHF) and the USD ladder is 200k/100k/50k/25k/10k, but the FEE is one shared number rendered with a EUR symbol. Proof they are denominated separately, verbatim from the promo tooltip on the $100,000 tier: \"Special Deal! $100,000 FTMO Challenge for €439 – only if you don't already have one active.\" -- dollar-denominated account, euro-denominated fee, on the same tier. So a trader buying the $100,000 USD 2-Step account is charged EUR 540 (list). sizeUsd values below are genuine USD account balances; priceEur values are genuine EUR fees; the two are simply quoted in different currencies by FTMO itself.",
+  "products": [
+    {
+      "productName": "FTMO Challenge: 2-Step",
+      "productSlug": "ftmo-challenge-2-step",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 200000,
+          "priceUsd": null,
+          "priceEur": 1080,
+          "refundable": true,
+          "evidence": "\"prices\":{\"step_2\":[{\"price\":\"1080\", ... ,\"popular_badge_label\":\"-20%\",\"average_reward\":\"12234\"}"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "priceEur": 540,
+          "priceEurPromo": 439,
+          "refundable": true,
+          "evidence": "\"price\":\"540\",...\"discounted\":true,\"discounted_price\":\"439\",\"discounted_price_tooltip_text\":\"Special Deal! $100,000 FTMO Challenge for €439 – only if you don't already have one active.\"",
+          "promoNote": "439 is a conditional promotional price ('only if you don't already have one active'), not the list price. List price is 540."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "priceEur": 345,
+          "refundable": true,
+          "evidence": "\"price\":\"345\",\"price_tooltip_text\":\"\",\"discounted\":false,...\"average_reward\":\"2805\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "priceEur": 250,
+          "refundable": true,
+          "evidence": "\"price\":\"250\",\"price_tooltip_text\":\"\",\"discounted\":false,...\"average_reward\":\"1431\""
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "priceEur": 89,
+          "refundable": true,
+          "evidence": "\"price\":\"89\",\"price_tooltip_text\":\"\",\"discounted\":false,...\"average_reward\":\"680\""
+        }
+      ],
+      "priceRoundingCaveat": "Displayed prices may be rounded. Verbatim: \"Displayed price may has been rounded up. You will be charged the exact non-rounded price. Applies to FTMO Standard accounts only.\"",
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 4,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "No restriction during the Evaluation Process. On a funded FTMO Account, Standard account type only: no opening/closing trades (incl. SL/TP) from 2 minutes before to 2 minutes after selected news releases. Swing account type: no news restriction.",
+        "weekend": "No restriction during Evaluation. On FTMO Account, weekend-holding restriction applies to Standard account type only; Swing has no restriction.",
+        "overnight": "No restriction during Evaluation. On FTMO Account, overnight-holding restriction applies to Standard account type only; Swing has no restriction.",
+        "ea": "Allowed. Expert Advisors permitted subject to legitimate trading and platform limits of 200 orders at a time and 2000 max positions per day. Third-party EAs carry max-capital-allocation risk.",
+        "copyTrading": null
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+      "priceSourceUrl": "https://ftmo.com/en/ (inline script id=\"pricing-table-data-js-extra\", var ftmoPricingTable; identical payload also on https://ftmo.com/en/2-step-challenge/ and https://ftmo.com/en/1-step-challenge/)",
+      "fieldEvidence": {
+        "profitTargets": "\"profit_target\":{...\"steps\":{\"step_1\":\"10\",\"step_2\":\"5\"...},\"short_description\":\"The Profit Target in an FTMO Challenge is set at 10% of the initial balance, while in the second phase, Verification, it is 5%.\" -- and: \"If you trade the FTMO Challenge with a $100,000 account balance, your Profit Target is $10,000 in the FTMO Challenge and $5,000 in the Verification.\"",
+        "dailyLossPct": "\"Max Daily Loss is set as 5% from the initial account balance.\" ... \"The daily loss limit for the specific day is calculated using the formula “Account balance at midnight CE(S)T minus 5% of the initial account balance”.\"",
+        "maxLossPct": "\"The Maximum Loss during the FTMO Challenge is set at 10% of the initial balance.\" ... \"The equity of the trading account must never fall below 90% of the initial account balance at any time during the account's duration. For an FTMO Challenge with a balance of $100,000, this means the minimum equity allowed is $90,000, including both closed and open positions (account equity, not balance). The limit includes commissions and swaps.\"",
+        "drawdownType": "Static / balance-based on initial balance, NOT trailing: \"must never fall below 90% of the initial account balance at any time\". Contrast with the 1-Step product, which ftmo.com explicitly describes as an end-of-day trailing limit.",
+        "minTradingDays": "\"To meet the Minimum Trading Days objective, you must open at least one position on 4 separate days during the FTMO Challenge.\" ... \"At least one position must be opened on a minimum of four different days.\" steps: {\"step_1\":\"4 days\",\"step_2\":\"4 days\"}",
+        "maxTradingDays": "No limit published. \"trading_period\" steps: {\"step_1\":\"Unlimited\"}; \"There is no time limit on your performance.\" Recorded as null.",
+        "consistencyRulePct": "Explicitly NOT applied to this product: on https://ftmo.com/en/2-step-challenge/ the Best Day Rule objective is \"best_day\":{\"show\":false,...} with all fields blank, and https://ftmo.com/en/trading-objectives/ lists the Best Day Rule only under the 1-Step Challenge. Recorded as null.",
+        "profitSplitPct": "\"FTMO Challenge: 2-Step: You receive 80% of the profit (increases to 90% if Scaling Plan or Premium Programme conditions...)\" and \"Start with rewards of 80% from your simulated profits and grow up to 90% with the FTMO Scaling Plan or Premium Programme.\" NOTE: the pricing widget headline markets this as \"up to 90%\" / steps_overview \"up to 90%\"; the base rate is 80%.",
+        "payoutFirstDays": "\"You can request a Reward claim in the Account MetriX on the 14th or any following day after the first placed trade on the specific account. All open positions and pending orders must be closed.\"",
+        "payoutFrequency": "\"on the 14th or any following day after the first placed trade\" -- on-demand after day 14. \"After you submit the withdrawal request, we will review your account and notify you within 1–2 business days... the Reward is typically sent within 1–2 business days after the invoice is approved.\"",
+        "refundable": "\"One-time refundable fee from\" (pricing widget label) and \"If you successfully pass the FTMO Challenge: 2-Step and receive your first Reward on your FTMO Account, the paid fee is refunded with your first Reward withdrawal.\"",
+        "news": "\"Restrictions for trading during selected news releases apply only to the Standard account type. The Swing account type have no restrictions on trading during news releases.\" / \"While trading during the Evaluation Process, the restriction does not apply regardless of the account type (Standard account or Swing).\" / \"it is not permitted to open or close any trades, including pending orders (such as Stop Loss or Take Profit), within a time window starting 2 minutes before and ending 2 minutes after the release of selected news announcements.\"",
+        "weekendOvernight": "\"Overnight and weekend position restrictions apply only to the Standard account type. The Swing account type does not have any restrictions.\"",
+        "ea": "\"Your trading style is up to you. As long as your trading is legitimate (in line with proper risk management), conforms to the real market conditions\" ... \"200 orders at a time and 2000 max positions per day limitation\" ... \"if you use an EA from a third party, there might be other traders already using the same EA and therefore exactly the same strategy. By using a third-party EA, you potentially run a risk\"",
+        "assetClass": "\"You can trade all the instruments and assets that are available in your trading platform (Forex, Indices, Commodities, Stocks, Crypto,…)\"",
+        "leverage": "\"The leverage we offer for Standard type account is up to 1:100 and cannot be increased. The Swing account type has leverage set to up to 1:30.\""
+      }
+    },
+    {
+      "productName": "FTMO Challenge: 1-Step",
+      "productSlug": "ftmo-challenge-1-step",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 200000,
+          "priceUsd": null,
+          "priceEur": 999,
+          "refundable": false,
+          "evidence": "\"step_1\":[{\"price\":\"999\",\"price_tooltip_text\":\"\",\"discounted\":false,...\"popular_badge_label\":\"-20%\"}"
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "priceEur": 499,
+          "priceEurPromo": 449,
+          "refundable": false,
+          "evidence": "\"price\":\"499\",...\"discounted_price\":\"449\",\"discounted_price_tooltip_text\":\"Get your $100,000 Challenge for €449 - valid only if you don't currently have one active. \"",
+          "promoNote": "449 is a conditional promotional price, not the list price. List price is 499. NOTE: this tier carries \"discounted\":false with a non-empty discounted_price, so the promo may not currently be rendering."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "priceEur": 319,
+          "refundable": false,
+          "evidence": "\"price\":\"319\",\"price_tooltip_text\":\"\",\"discounted\":false,...\"popular_badge_label\":\"-20%\""
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "priceEur": 199,
+          "refundable": false,
+          "evidence": "\"price\":\"199\",\"price_tooltip_text\":\"\",\"discounted\":false,...\"popular_badge_label\":\"-20%\""
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "priceEur": 79,
+          "refundable": false,
+          "evidence": "\"price\":\"79\",\"price_tooltip_text\":\"\",\"discounted\":false,...\"popular_badge_label\":\"-20%\""
+        }
+      ],
+      "priceRoundingCaveat": "Displayed prices may be rounded. Verbatim: \"Displayed price may has been rounded up. You will be charged the exact non-rounded price. Applies to FTMO Standard accounts only.\"",
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 10,
+      "drawdownType": "eod-trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 50,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "No restriction during the Evaluation Process. On a funded FTMO Account, Standard account type only: no opening/closing trades (incl. SL/TP) from 2 minutes before to 2 minutes after selected news releases. Swing account type: no news restriction.",
+        "weekend": "No restriction during Evaluation. On FTMO Account, weekend-holding restriction applies to Standard account type only; Swing has no restriction. NOTE: ftmo.com FAQ has an entry titled \"Is the Swing account type available for FTMO Challenge: 1-Step?\" which was not opened, so Swing availability on 1-Step is UNVERIFIED.",
+        "overnight": "No restriction during Evaluation. On FTMO Account, overnight-holding restriction applies to Standard account type only; Swing has no restriction.",
+        "ea": "Allowed. Expert Advisors permitted subject to legitimate trading and platform limits of 200 orders at a time and 2000 max positions per day.",
+        "copyTrading": null
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+      "priceSourceUrl": "https://ftmo.com/en/ (inline script id=\"pricing-table-data-js-extra\", var ftmoPricingTable, key prices.step_1; identical payload also on https://ftmo.com/en/1-step-challenge/ and https://ftmo.com/en/2-step-challenge/)",
+      "fieldEvidence": {
+        "phases": "\"Single Evaluation. No Verification phase\" -- direct access to an FTMO Account upon passing objectives.",
+        "profitTargets": "\"The Profit Target in an FTMO Challenge is set at 10% of the initial balance (Initial Simulated Capital).\" / \"10% of the Initial Simulated Capital\". steps: {\"step_1\":\"10\",\"step_3\":\"Unlimited\"} -- step_3 is the funded account, not a second evaluation phase, so phase2 is null.",
+        "dailyLossPct": "\"Maximum Daily Loss is set as 3% from the initial balance (initial simulated capital).\" ... \"3% of the Initial Simulated Capital\" - recalculated daily at 00:00 CE(S)T.",
+        "maxLossPct": "\"The Maximum Loss Limit is a balance-based end-of-day trailing limit. The Max Loss Amount is 10% of initial balance (Initial Simulated Capital).\"",
+        "drawdownType": "\"Maximum Loss Limit is a balance-based end-of-day trailing limit. It is calculated at the end of a trading day and sets a limit the account equity cannot reach or fall beneath.\" ... it \"can only increase, but never decrease\", and resets \"when a Reward is withdrawn\". This is the key structural difference from the 2-Step, whose max loss is static.",
+        "minTradingDays": "NOT PUBLISHED for this product. On https://ftmo.com/en/1-step-challenge/ the objective is \"min_trading_days\":{\"show\":false,...} with all fields blank, and the 1-Step section of https://ftmo.com/en/trading-objectives/ does not state one. Recorded as null -- NOT inferred from the 2-Step's 4 days.",
+        "maxTradingDays": "No limit published. \"trading_period\" steps: {\"step_1\":\"Unlimited\",\"step_3\":\"Unlimited\"}. Recorded as null.",
+        "consistencyRulePct": "\"Best Day Rule\" = 50%. Verbatim: \"Your most profitable trading day (“Best Day”) must not account for more than 50% of your Positive Days' Profit.\" and \"Best Day does not represent more than 50% of your Positive Days' Profit\". Detail: \"The Best Day is a single day with the highest profit from closed trades, calculated at the end of the trading day (00:00 CE(S)T), or when the other Trading Objectives are fulfilled. If the profit from your Best Day exceeds this 50% threshold, you must continue and earn additional profit until no single day represents more than half of the Positive Days' Profit in order to pass the FTMO Challenge or withdraw a Reward.\" Applies to both the challenge and to reward withdrawal.",
+        "profitSplitPct": "\"FTMO Challenge: 1-Step: You receive 90% of the profit. Rewards cannot be left on the account to grow the balance.\" and \"90% of your simulated profits\".",
+        "payoutFirstDays": "\"You can request a Reward claim in the Account MetriX on the 14th or any following day after the first placed trade on the specific account.\"",
+        "payoutFrequency": "on-demand after day 14, same mechanism as 2-Step.",
+        "refundable": "NOT refundable, unlike the 2-Step. Verbatim: \"The fee is a one-time fee and is not refunded after successfully passing the FTMO Challenge: 1-Step.\" Pricing widget label for this product: \"One-time fee (non-refundable)\".",
+        "assetClass": "\"You can trade all the instruments and assets that are available in your trading platform (Forex, Indices, Commodities, Stocks, Crypto,…)\""
+      }
+    }
+  ],
+  "additionalFindings": {
+    "accountSizeLaddersByCurrency": {
+      "note": "Verbatim from var ftmoPricingTable items[]. Same fee array applies across all of these; only the account balance changes.",
+      "USD": [
+        200000,
+        100000,
+        50000,
+        25000,
+        10000
+      ],
+      "GBP": [
+        140000,
+        70000,
+        35000,
+        20000,
+        10000
+      ],
+      "EUR": [
+        160000,
+        80000,
+        40000,
+        20000,
+        10000
+      ],
+      "CZK": [
+        4000000,
+        2000000,
+        1000000,
+        500000,
+        250000
+      ],
+      "CAD": [
+        240000,
+        120000,
+        60000,
+        30000,
+        15000
+      ],
+      "AUD": [
+        260000,
+        130000,
+        65000,
+        30000,
+        15000
+      ],
+      "CHF": [
+        160000,
+        80000,
+        40000,
+        20000,
+        10000
+      ]
+    },
+    "freeTrial": "FTMO advertises a free trial at https://ftmo.com/en/ftmo-free-trial/ -- \"As many Free Trials as you need\". Page not opened; terms unverified.",
+    "scalingPlan": "Direct page capture from https://ftmo.com/en/reward-growth-and-scaling-plan/: FTMO publishes a 25% balance increase every 4 months up to $2,000,000 across all FTMO Accounts. The listed gates are at least 4 months since start or the last scale-up, at least 10% net simulated profit above starting balance in the prior 4 months, at least 2 processed Rewards in that period, and a positive balance at scale-up. The 90% scaled Reward applies to 2-Step only.",
+    "auLocaleDifference": "https://ftmo.com/au/ ships the same base price array but with an active 20% discount on the 200k 2-Step tier (\"discounted_price\":\"864\"), confirming discounts are locale/campaign-specific and that captured list prices are the stable figures, not the promo ones.",
+    "leverage": "Standard account up to 1:100; Swing account up to 1:30."
+  },
+  "fieldsLeftNull": [
+    "priceUsd (all 10 tiers) -- no USD fee published anywhere on ftmo.com",
+    "2-Step consistencyRulePct -- Best Day Rule explicitly disabled for this product",
+    "1-Step minTradingDays -- objective explicitly hidden, not published",
+    "1-Step profitTargets.phase2 -- single-phase product",
+    "maxTradingDays (both) -- trading period is Unlimited",
+    "rules.copyTrading (both) -- no explicit ftmo.com statement found"
+  ],
+  "indiaEvidence": {
+    "country": "FTMO says it accepts clients globally except named countries, territories, international sanctions-list matches, and conditional residency cases. India is not in the named list. Because sanctions lists are dynamic, the stored named-jurisdiction list is marked non-exhaustive.",
+    "checkout": "Published purchase methods include card, PayPal, Revolut Pay, Skrill, crypto, and bank wire. FTMO names Venezuela, Cuba, Sudan, and Ukraine as bank-wire exceptions; it does not publish an India-specific successful-payment test.",
+    "kyc": "FTMO Identity requests a passport or national ID and proof of address issued within 6 months. The page says personal verification usually takes less than 1 business day and notes that documents written only in Indian scripts require a passport with Latin transcription.",
+    "payout": "Published rails are bank wire, Visa Direct or Mastercard Send, Skrill, and crypto. Reward requests start after 14 days; FTMO says review takes 1-2 business days and payment is sent 1-2 business days after invoice approval. Indian delivery remains untested.",
+    "capturedFrom": [
+      "https://ftmo.com/en/faq/who-can-join-ftmo/",
+      "https://ftmo.com/faq/what-payment-methods-are-available/",
+      "https://ftmo.com/en/faq/what-is-the-legal-relationship-between-an-ftmo-trader-and-ftmo-after-signing-the-ftmo-account-agreement/",
+      "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/"
+    ]
+  }
+}

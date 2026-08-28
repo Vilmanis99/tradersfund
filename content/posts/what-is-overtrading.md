@@ -3,7 +3,7 @@ title: "What Is Overtrading? 7 Signs and a Stop System (2026)"
 seoTitle: "What Is Overtrading? Signs and How to Stop (2026)"
 slug: "what-is-overtrading"
 date: "2025-06-19 17:08:37"
-modified: "2026-08-14 12:00:00"
+modified: "2026-08-28 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Overtrading is plan drift, not a universal number of trades. Learn 7 measurable signs, session-risk math, and a practical system for stopping it."
 seoDescription: "Learn what overtrading is, how it differs from valid trade frequency, and how to stop it with session limits, plan-drift math, and prop-firm rule checks."
@@ -70,7 +70,7 @@ type: "post"
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product and tier</th><th style="padding: 8px 12px; text-align: left;">Loss limits</th><th style="padding: 8px 12px; text-align: left;">Additional pressure</th><th style="padding: 8px 12px; text-align: left;">Captured</th></tr></thead>
   <tbody>
     <tr data-overtrading-rule="fundednext:stellar-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/fundednext-review">FundedNext Stellar 2-Step $100K ($549.99)</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% daily loss; 10% static maximum loss</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5 minimum trading days; no maximum-day number recorded in the current product data</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-27</td></tr>
-    <tr data-overtrading-rule="ftmo:ftmo-challenge-1-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/ftmo-review">FTMO 1-Step $100K (€499)</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3% daily loss; 10% balance-based end-of-day trailing maximum loss</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">50% Best Day rule for evaluation and reward eligibility</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-07-27</td></tr>
+    <tr data-overtrading-rule="ftmo:ftmo-challenge-1-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/ftmo-review">FTMO 1-Step $100K (€499)</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3% daily loss; 10% balance-based end-of-day trailing maximum loss</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">50% Best Day rule for evaluation and reward eligibility</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-28</td></tr>
     <tr data-overtrading-rule="fxify:lightning-challenge"><td style="padding: 8px 12px;"><a href="/blog/fxify-review">FXIFY Lightning $100K ($399)</a></td><td style="padding: 8px 12px;">3% daily loss; 4% trailing maximum loss</td><td style="padding: 8px 12px;">30% consistency, 3 minimum and 5 maximum trading days, mandatory stop loss</td><td style="padding: 8px 12px;">2026-08-10</td></tr>
   </tbody>
 </table>

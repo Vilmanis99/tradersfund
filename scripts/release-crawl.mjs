@@ -704,6 +704,8 @@ const russianExpectations = new Map([
       'data-russian-home-featured-partner="bright-funded"',
       'FundedNext и Bright Funded: два основных глобальных маршрута',
       'data-russian-home-deals-partners="fundednext-bright-funded"',
+      'data-russian-home-ftmo-entry="non-affiliate-to-partners"',
+      '/ru/obzor-ftmo',
       'Промокоды FundedNext и Bright Funded',
       'Сравнить коды и итоговые цены',
       '/ru/fundednext-vs-bright-funded',
@@ -953,6 +955,35 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-crypto-ranking-payout-alternative',
     ],
   }],
+  ['/ru/obzor-ftmo', {
+    title: 'FTMO: обзор 2026, цены, правила и доступ для русскоязычных',
+    h1: 'FTMO: обзор 2026 — 2 программы и 10 цен',
+    markers: [
+      'data-russian-ftmo-review="search-to-decision"',
+      'data-russian-ftmo-article="long-form-source-first"',
+      'data-russian-country-boundary="ftmo-russia-restricted"',
+      'data-russian-ftmo-verdict="two-products-not-one-brand"',
+      'data-russian-ftmo-official-site="non-affiliate"',
+      'data-russian-ftmo-product-matrix="two-current-products"',
+      'data-russian-ftmo-price-count="10"',
+      'data-russian-ftmo-truecost="10"',
+      'data-russian-ftmo-pricing-product="ftmo-challenge-2-step"',
+      'data-russian-ftmo-pricing-product="ftmo-challenge-1-step"',
+      'data-russian-ftmo-risk="static-vs-eod-trailing"',
+      'data-russian-ftmo-payout="day-14-refund-split"',
+      'data-russian-ftmo-fit="rule-before-brand"',
+      'data-russian-ftmo-global-funnel="fundednext-bright-funded"',
+      'data-russian-affiliate-disclosure="ftmo-alternatives"',
+      'data-russian-ftmo-alternative="fundednext"',
+      'data-russian-ftmo-alternative="bright-funded"',
+      'data-russian-ftmo-checklist="seven-fields"',
+      '/go/ftmo?from=ru-ftmo-review-verdict',
+      '/go/fundednext?from=ru-ftmo-alternative-fundednext',
+      '/go/bright-funded?from=ru-ftmo-alternative-bright-funded',
+      '/ru/fundednext-vs-bright-funded',
+      'Российская Федерация',
+    ],
+  }],
   ['/ru/obzor-fundednext', {
     title: 'FundedNext: обзор 2026, цены, правила и выплаты',
     h1: 'FundedNext: обзор 2026 — 22 цены и 4 набора правил',
@@ -1165,7 +1196,21 @@ if (
 ) {
   errors.push('/ru/obzor-fundednext: controlled affiliate CTA is missing or mislabelled')
 }
+const russianFtmoPage = pages.find(page =>
+  new URL(page.productionUrl).pathname === '/ru/obzor-ftmo')
+const russianFtmoOfficialCta = [...(russianFtmoPage?.html ?? '').matchAll(/<a\b[^>]*>/gi)]
+  .map(match => match[0])
+  .find(tag => tag.includes('/go/ftmo?from=ru-ftmo-review-verdict')) || ''
+if (
+  !russianFtmoOfficialCta
+  || !russianFtmoOfficialCta.includes('rel="nofollow noopener"')
+  || russianFtmoOfficialCta.includes('sponsored')
+) {
+  errors.push('/ru/obzor-ftmo: FTMO official CTA is missing or falsely labelled as sponsored')
+}
 for (const [path, href] of [
+  ['/ru/obzor-ftmo', '/go/fundednext?from=ru-ftmo-alternative-fundednext'],
+  ['/ru/obzor-ftmo', '/go/bright-funded?from=ru-ftmo-alternative-bright-funded'],
   ['/ru/obzor-fundingpips', '/go/fundingpips?from=ru-fundingpips-review-verdict'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-verdict'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],

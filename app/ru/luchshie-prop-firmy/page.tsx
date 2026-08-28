@@ -288,9 +288,11 @@ export default function RussianBestPropFirmsPage() {
               const splits = [...new Set(item.products.flatMap(product =>
                 product.profitSplitPct == null ? [] : [product.profitSplitPct]))].sort((a, b) => a - b)
               const drawdowns = [...new Set(item.products.map(product => drawdownLabel(product.drawdownType)))]
-              const reviewHref = item.slug === 'fundednext'
-                ? '/ru/obzor-fundednext'
-                : item.slug === 'fundingpips'
+              const reviewHref = item.slug === 'ftmo'
+                ? '/ru/obzor-ftmo'
+                : item.slug === 'fundednext'
+                  ? '/ru/obzor-fundednext'
+                  : item.slug === 'fundingpips'
                   ? '/ru/obzor-fundingpips'
                   : item.slug === 'bright-funded'
                     ? '/ru/obzor-bright-funded'
@@ -312,9 +314,9 @@ export default function RussianBestPropFirmsPage() {
                   <Link
                     className="ru-card-link"
                     href={reviewHref}
-                    hrefLang={item.slug === 'fundednext' || item.slug === 'fundingpips' || item.slug === 'bright-funded' ? 'ru' : 'en'}
+                    hrefLang={item.slug === 'ftmo' || item.slug === 'fundednext' || item.slug === 'fundingpips' || item.slug === 'bright-funded' ? 'ru' : 'en'}
                   >
-                    {item.slug === 'fundednext' || item.slug === 'fundingpips' || item.slug === 'bright-funded' ? 'Читать обзор на русском →' : 'Открыть полный обзор на английском →'}
+                    {item.slug === 'ftmo' || item.slug === 'fundednext' || item.slug === 'fundingpips' || item.slug === 'bright-funded' ? 'Читать обзор на русском →' : 'Открыть полный обзор на английском →'}
                   </Link>
                 </article>
               )
@@ -435,7 +437,7 @@ export default function RussianBestPropFirmsPage() {
                   return (
                     <tr key={item.slug}>
                       <td>{index + 1}</td>
-                      <td><Link href={item.slug === 'fundednext' ? '/ru/obzor-fundednext' : item.slug === 'fundingpips' ? '/ru/obzor-fundingpips' : item.slug === 'bright-funded' ? '/ru/obzor-bright-funded' : item.firm.reviewUrl}>{item.firm.name}</Link></td>
+                      <td><Link href={item.slug === 'ftmo' ? '/ru/obzor-ftmo' : item.slug === 'fundednext' ? '/ru/obzor-fundednext' : item.slug === 'fundingpips' ? '/ru/obzor-fundingpips' : item.slug === 'bright-funded' ? '/ru/obzor-bright-funded' : item.firm.reviewUrl}>{item.firm.name}</Link></td>
                       <td>{item.firm.score.toFixed(1)}/10</td>
                       <td>{item.products.length}</td>
                       <td>{splits.length > 0 ? `${splits.join('–')}%` : '—'}</td>

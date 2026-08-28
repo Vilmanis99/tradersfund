@@ -33,8 +33,8 @@ const PATH = '/prop-firm-challenges'
 const SITE = 'https://tradersfundhub.com'
 // Keep the build-time social-card check aligned with the current 30-day
 // freshness-filtered dataset. Stale counts should not block every deployment.
-const SOCIAL_CARD_PRODUCT_COUNT = 51
-const SOCIAL_CARD_FIRM_COUNT = 10
+const SOCIAL_CARD_PRODUCT_COUNT = 53
+const SOCIAL_CARD_FIRM_COUNT = 11
 
 export const metadata: Metadata = {
   title: 'Prop Firm Challenge Comparison (2026): Prices & Rules',

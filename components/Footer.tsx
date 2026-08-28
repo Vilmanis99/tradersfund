@@ -67,6 +67,7 @@ export default function Footer({
     { label: 'How Challenges Work', href: '/how-prop-firm-challenges-work' },
   ]
   const reviewLinks = isRussian ? [
+    { label: 'Обзор FTMO', href: '/ru/obzor-ftmo' },
     { label: 'Обзор FundedNext', href: '/ru/obzor-fundednext' },
     { label: 'Обзор FundingPips', href: '/ru/obzor-fundingpips' },
     { label: 'Обзор Bright Funded', href: '/ru/obzor-bright-funded' },

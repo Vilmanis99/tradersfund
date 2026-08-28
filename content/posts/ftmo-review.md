@@ -3,7 +3,7 @@ title: "FTMO Review 2026: Euro-Priced, 80% on the 2-Step, 90% on the 1-Step"
 seoTitle: "FTMO Review 2026: 1-Step vs 2-Step Fees & Splits"
 slug: "ftmo-review"
 date: "2024-08-30 10:30:24"
-modified: "2026-08-17 12:00:00"
+modified: "2026-08-28 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "FTMO publishes per-tier pricing — in euros, not dollars. €89–€1,080 for the refundable 2-Step at 80%, €79–€999 for the non-refundable 1-Step at 90%."
 seoDescription: "FTMO review comparing euro pricing, refundable 2-Step fees, non-refundable 1-Step fees, 80%–90% splits, drawdown rules, and true cost."
@@ -31,7 +31,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>Quick facts</strong></h2>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
-  <caption class="hidden-caption">FTMO at a glance, verified 2026-07-27</caption>
+  <caption class="hidden-caption">FTMO product terms verified 2026-08-28; Trustpilot verified 2026-07-27</caption>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Founded</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2015 (11 years operating)</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Headquarters</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Prague, Czech Republic</td></tr>
@@ -50,7 +50,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>FTMO sells two evaluation products across the same five USD account tiers. They are not two prices for the same thing: the 2-Step pays 80% and refunds the fee, the 1-Step pays 90% and keeps it. Everything below is read from FTMO's own published pricing payload, captured 2026-07-27.</p>
+<p>FTMO sells two evaluation products across the same five USD account tiers. They are not two prices for the same thing: the 2-Step pays 80% and refunds the fee, the 1-Step pays 90% and keeps it. Everything below is read from FTMO's own published pricing payload, captured 2026-08-28.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
   <caption class="hidden-caption">FTMO Challenge: 2-Step — price and objectives by tier</caption>
@@ -98,7 +98,7 @@ type: "post"
   </tbody>
 </table>
 
-<p><strong>Where these prices come from.</strong> FTMO does publish per-tier pricing on stable public URLs — the numbers just don't appear in the rendered page text, because the pricing table is a client-side widget. The full price list ships in the initial HTML of ftmo.com/en/, ftmo.com/en/2-step-challenge/ and ftmo.com/en/1-step-challenge/ as an inline <code>pricing-table-data-js-extra</code> script. All three URLs carried identical price arrays on 2026-07-27. Check the live figures on <a href="/go/ftmo">FTMO's challenge page</a> before you buy.</p>
+<p><strong>Where these prices come from.</strong> FTMO does publish per-tier pricing on stable public URLs — the numbers just don't appear in the rendered page text, because the pricing table is a client-side widget. The full price list ships in the initial HTML of ftmo.com/en/, ftmo.com/en/2-step-challenge/ and ftmo.com/en/1-step-challenge/ as an inline <code>pricing-table-data-js-extra</code> script. All three URLs carried identical price arrays on 2026-08-28. Check the live figures on <a href="/go/ftmo">FTMO's challenge page</a> before you buy.</p>
 
 <p><strong>Why the fees are in euros.</strong> The account balance and the fee are denominated separately. You select a $10,000–$200,000 account, but the fee renders with a euro symbol on every ftmo.com locale we checked. FTMO's own promo tooltip on the $100,000 2-Step tier states it outright: "Special Deal! $100,000 FTMO Challenge for €439 – only if you don't already have one active." A dollar account and a euro fee, in one sentence. There is no USD fee published anywhere on ftmo.com, so we quote euros and perform no conversion — an invented exchange rate would make every figure in this review unverifiable.</p>
 
@@ -106,9 +106,9 @@ type: "post"
 
 <p><strong>Account ladders vary by currency.</strong> The same fee array applies across all seven denominations, but the balances differ: USD tops out at $200,000, GBP at £140,000, EUR and CHF at 160,000, CAD at $240,000, AUD at $260,000 and CZK at 4,000,000. If you price by balance-per-euro rather than by headline tier, the currency you pick changes the answer.</p>
 
-<p><strong>Scaling.</strong> FTMO's 80% 2-Step split "increases to 90% if Scaling Plan or Premium Programme conditions" are met — that much is published on the product page. The frequently repeated specifics (a 25% balance boost every four active months, scaling to $2,000,000) were <em>not</em> confirmed against a page we opened directly during the 2026-07-27 capture, so we flag them as unverified rather than restate them as terms. FTMO also offers a Free Trial; its separate 1-Step and 2-Step practice rules are checked in the <a href="/blog/ftmo-free-trial-explained">current FTMO Free Trial guide</a> rather than mixed into this paid-product table.</p>
+<p><strong>Scaling.</strong> FTMO's current Scaling Plan page publishes a 25% account-balance increase every 4 months, up to $2,000,000 across all FTMO Accounts. The four gates captured on 2026-08-28 are at least 4 months since the start or last scale-up, at least 10% net simulated profit above the starting balance in the prior 4 months, at least 2 processed Rewards in that period, and a positive balance at scale-up. The scaled 90% Reward applies to 2-Step only; 1-Step already starts at 90%. FTMO also offers a Free Trial; its separate 1-Step and 2-Step practice rules are checked in the <a href="/blog/ftmo-free-trial-explained">current FTMO Free Trial guide</a> rather than mixed into this paid-product table.</p>
 
-<p><strong>FundedNext comparison.</strong> The <a href="/compare/ftmo-vs-fundednext">product-level FTMO vs FundedNext comparison</a> keeps FTMO’s EUR fees separate from FundedNext’s USD fees and contrasts these 2 FTMO paths with 4 FundedNext products using the same 2026-07-27 capture date.</p>
+<p><strong>FundedNext comparison.</strong> The <a href="/compare/ftmo-vs-fundednext">product-level FTMO vs FundedNext comparison</a> keeps FTMO’s EUR fees separate from FundedNext’s USD fees and contrasts these 2 FTMO paths with 4 FundedNext products using the 2026-08-28 FTMO capture.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 
@@ -126,7 +126,7 @@ type: "post"
 
 <p><strong>Overnight and weekend holding.</strong> Same split: unrestricted during evaluation, and on the funded account the restrictions "apply only to the Standard account type. The Swing account type does not have any restrictions." Swing runs at up to 1:30 leverage against Standard's up to 1:100, so the freedom costs you position size. Choose the variant at purchase if your strategy spans sessions.</p>
 
-<p><strong>EAs and copy trading.</strong> Expert Advisors are allowed on both evaluation and funded accounts, subject to platform limits of 200 orders at a time and 2,000 maximum positions per day, and to FTMO's general requirement that trading be "legitimate (in line with proper risk management)" and conform to real market conditions. FTMO warns separately that a third-party EA shared by many traders creates max-capital-allocation risk. On copy trading specifically, our 2026-07-27 capture found no explicit statement on ftmo.com — so this review makes no claim either way. Ask support in writing before you mirror a third-party signal.</p>
+<p><strong>EAs and copy trading.</strong> Expert Advisors are allowed on both evaluation and funded accounts, subject to platform limits of 200 orders at a time and 2,000 maximum positions per day, and to FTMO's general requirement that trading be "legitimate (in line with proper risk management)" and conform to real market conditions. FTMO warns separately that a third-party EA shared by many traders creates max-capital-allocation risk. On copy trading specifically, our 2026-08-28 capture found no explicit statement on ftmo.com — so this review makes no claim either way. Ask support in writing before you mirror a third-party signal.</p>
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 
@@ -183,14 +183,14 @@ type: "post"
 
 <p><strong>First reward: day 14.</strong> FTMO's rule is "You can request a Reward claim in the Account MetriX on the 14th or any following day after the first placed trade on the specific account. All open positions and pending orders must be closed." The clock starts at your first trade, not at account activation, and after that first claim the cycle is on demand rather than a fixed calendar. Both products use the same day-14 mechanism.</p>
 
-<p><strong>Processing.</strong> After you submit the request, FTMO reviews the account and notifies you within 1–2 business days, and "the Reward is typically sent within 1–2 business days after the invoice is approved" — so roughly 2–4 business days end to end when nothing is queried. Payout methods are bank wire, Skrill and crypto; we did not capture per-method fee schedules on 2026-07-27, so budget for your own receiving-bank charges rather than a figure we can't source.</p>
+<p><strong>Processing.</strong> After you submit the request, FTMO reviews the account and notifies you within 1–2 business days, and "the Reward is typically sent within 1–2 business days after the invoice is approved" — so roughly 2–4 business days end to end when nothing is queried. Payout methods are bank wire, Skrill and crypto; we did not capture per-method fee schedules on 2026-08-28, so budget for your own receiving-bank charges rather than a figure we can't source.</p>
 
 <p><strong>Two product-specific catches.</strong> On the 1-Step, "Rewards cannot be left on the account to grow the balance", and the 50% Best Day rule is applied at withdrawal as well as at passing — a lopsided winning day can block a reward request, not just a pass. On the 2-Step, the refunded fee arrives with that first reward withdrawal, so a trader who passes and then never withdraws never sees it. As a third-party sentiment check, FTMO holds 4.8 from 47,019 reviews on Trustpilot (<a href="https://www.trustpilot.com/review/ftmo.com">verified 2026-07-27</a>).</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
 <ul class="wp-block-list">
-  <li><strong>Per-tier pricing is published and stable.</strong> The same price array appeared on three independent ftmo.com URLs on 2026-07-27, with no login, no geo-block and no JavaScript needed to read it. You can verify what you'll be charged before you reach checkout.</li>
+  <li><strong>Per-tier pricing is published and stable.</strong> The same price array appeared on three independent ftmo.com URLs on 2026-08-28, with no login, no geo-block and no JavaScript needed to read it. You can verify what you'll be charged before you reach checkout.</li>
   <li><strong>The 2-Step fee comes back.</strong> €540 on the $100,000 tier is refunded with your first reward withdrawal, which makes the effective cost of a successful attempt zero and turns the €675 break-even figure into a ceiling rather than a target.</li>
   <li><strong>Static 10% drawdown on the 2-Step.</strong> The $90,000 floor on a $100,000 account is fixed for the life of the account and does not tighten after a winning run — unlike the trailing models at Topstep and My Funded Futures.</li>
   <li><strong>No Best Day rule on the 2-Step.</strong> The 50% consistency constraint is switched off on that product, so a single outsized winning day cannot block a pass or a withdrawal the way it can on the 1-Step.</li>
@@ -213,7 +213,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should pick FTMO</strong></h2>
 
-<p>The 2-Step at the $25,000 or $50,000 tier — €250 or €345, refundable — fits a part-time CFD trader running a small number of setups a day who wants a fixed loss floor to plan against. The static 10% drawdown means your risk model does not change as equity rises, the absence of a Best Day rule means one good day cannot cost you the pass, and 4 trading days per phase is a low bar. Budget €313 or €431 of gross profit as the notional cost of the attempt at the 80% base split, and treat the step to 90% as a later-stage possibility rather than a plan, since the Scaling Plan's specific terms were not verifiable in our 2026-07-27 capture.</p>
+<p>The 2-Step at the $25,000 or $50,000 tier — €250 or €345, refundable — fits a part-time CFD trader running a small number of setups a day who wants a fixed loss floor to plan against. The static 10% drawdown means your risk model does not change as equity rises, the absence of a Best Day rule means one good day cannot cost you the pass, and 4 trading days per phase is a low bar. Budget €313 or €431 of gross profit as the notional cost of the attempt at the 80% base split. Treat 90% as a later-stage outcome, not the starting assumption: the Scaling Plan requires 4 months, 10% net simulated profit above starting balance, 2 processed Rewards, and a positive balance at scale-up.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid FTMO</strong></h2>
 
@@ -225,7 +225,7 @@ type: "post"
 
 <h3 class="wp-block-heading"><strong>How much does the FTMO Challenge cost?</strong></h3>
 
-<p>In euros, not dollars. The 2-Step is €1,080 / €540 / €345 / €250 / €89 for the $200K / $100K / $50K / $25K / $10K accounts; the 1-Step is €999 / €499 / €319 / €199 / €79 for the same balances. Prices captured from ftmo.com on 2026-07-27 and may be rounded up in display.</p>
+<p>In euros, not dollars. The 2-Step is €1,080 / €540 / €345 / €250 / €89 for the $200K / $100K / $50K / $25K / $10K accounts; the 1-Step is €999 / €499 / €319 / €199 / €79 for the same balances. Prices captured from ftmo.com on 2026-08-28 and may be rounded up in display.</p>
 
 <h3 class="wp-block-heading"><strong>Is the FTMO profit split 80% or 90%?</strong></h3>
 
@@ -253,7 +253,7 @@ type: "post"
 
 <h3 class="wp-block-heading"><strong>Can I use an EA or copy trades on FTMO?</strong></h3>
 
-<p>EAs are allowed on evaluation and funded accounts, within platform limits of 200 orders at a time and 2,000 maximum positions per day, provided the trading is legitimate and conforms to real market conditions. On third-party copy trading we found no explicit ftmo.com statement in the 2026-07-27 capture, so we make no claim — confirm with support before mirroring another trader's signals.</p>
+<p>EAs are allowed on evaluation and funded accounts, within platform limits of 200 orders at a time and 2,000 maximum positions per day, provided the trading is legitimate and conforms to real market conditions. On third-party copy trading we found no explicit ftmo.com statement in the 2026-08-28 capture, so we make no claim — confirm with support before mirroring another trader's signals.</p>
 
 <h3 class="wp-block-heading"><strong>Is FTMO regulated?</strong></h3>
 

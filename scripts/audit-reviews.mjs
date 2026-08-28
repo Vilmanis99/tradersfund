@@ -9511,10 +9511,13 @@ function checkFundedNextComparisonOverlay() {
       .sort()
       .at(-1)
 
+    const reviewedAt = overlayText.match(/\breviewedAt:\s*'([^']+)'/)?.[1]
+    const challengeReviewedAt = overlayText.match(/\bchallengeReviewedAt:\s*'([^']+)'/)?.[1]
     if (
-      !overlayText.includes("reviewedAt: '2026-08-14'") ||
-      !overlayText.includes("challengeReviewedAt: '2026-08-14'") ||
-      '2026-08-14' < latestCapture
+      !reviewedAt
+      || !challengeReviewedAt
+      || reviewedAt < latestCapture
+      || challengeReviewedAt < latestCapture
     ) {
       rows.push('ftmo-vs-fundednext editorial and challenge review dates are not current')
     }
@@ -10835,6 +10838,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/prop-firmy-bez-chelendzha', path.join(ROOT, 'app/ru/prop-firmy-bez-chelendzha/page.tsx')],
     ['/ru/luchshie-prop-firmy', path.join(ROOT, 'app/ru/luchshie-prop-firmy/page.tsx')],
     ['/ru/luchshie-kripto-prop-firmy', path.join(ROOT, 'app/ru/luchshie-kripto-prop-firmy/page.tsx')],
+    ['/ru/obzor-ftmo', path.join(ROOT, 'app/ru/obzor-ftmo/page.tsx')],
     ['/ru/obzor-fundednext', path.join(ROOT, 'app/ru/obzor-fundednext/page.tsx')],
     ['/ru/obzor-fundingpips', path.join(ROOT, 'app/ru/obzor-fundingpips/page.tsx')],
     ['/ru/obzor-bright-funded', path.join(ROOT, 'app/ru/obzor-bright-funded/page.tsx')],
@@ -11304,6 +11308,7 @@ function checkRussianAcquisitionPilot() {
     "{ en: '/compare/bright-funded-vs-fundednext', ru: '/ru/fundednext-vs-bright-funded' }",
     "{ en: '/compare/fundednext-vs-fundingpips', ru: '/ru/fundednext-vs-fundingpips' }",
     "{ en: '/prop-firm-discount-codes', ru: '/ru/promokody-prop-firm' }",
+    "{ en: '/blog/ftmo-review', ru: '/ru/obzor-ftmo' }",
     "{ en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' }",
     "{ en: '/blog/funding-pips-review', ru: '/ru/obzor-fundingpips' }",
     "{ en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' }",
@@ -11370,6 +11375,8 @@ function checkRussianAcquisitionPilot() {
     '/go/bright-funded?from=ru-home-hero-bright-funded',
     'data-russian-home-featured-partners="fundednext-bright-funded"',
     'data-russian-home-deals-partners="fundednext-bright-funded"',
+    'data-russian-home-ftmo-entry="non-affiliate-to-partners"',
+    'href="/ru/obzor-ftmo"',
     'Промокоды FundedNext и Bright Funded',
     'Сравнить коды и итоговые цены',
     'href="/ru/fundednext-vs-bright-funded"',
@@ -11855,6 +11862,49 @@ function checkRussianAcquisitionPilot() {
     if (!fundedNextRussianPage.includes(token)) rows.push(`Russian FundedNext path is missing ${token}`)
   }
 
+  const ftmoRussianPage = fs.existsSync(russianRouteFiles.get('/ru/obzor-ftmo'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/obzor-ftmo'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-ftmo-review="search-to-decision"',
+    'data-russian-ftmo-article="long-form-source-first"',
+    'data-russian-country-boundary="ftmo-russia-restricted"',
+    'data-russian-ftmo-verdict="two-products-not-one-brand"',
+    'data-russian-ftmo-official-site="non-affiliate"',
+    'data-russian-ftmo-product-matrix="two-current-products"',
+    'data-russian-ftmo-price-count={pricedTiers.length}',
+    'data-russian-ftmo-truecost={pricedTiers.length}',
+    'challengeTierEconomics',
+    'data-russian-ftmo-risk="static-vs-eod-trailing"',
+    'data-russian-ftmo-payout="day-14-refund-split"',
+    'data-russian-ftmo-fit="rule-before-brand"',
+    'data-russian-ftmo-global-funnel="fundednext-bright-funded"',
+    'data-russian-affiliate-disclosure="ftmo-alternatives"',
+    'data-russian-ftmo-alternative={item.slug}',
+    '/go/ftmo?from=ru-ftmo-review-verdict',
+    '`/go/${item.slug}?from=ru-ftmo-alternative-${item.slug}`',
+    'data-russian-ftmo-checklist="seven-fields"',
+    'href="/ru/fundednext-vs-bright-funded"',
+    'rel="sponsored nofollow noopener"',
+    'Российская Федерация',
+  ]) {
+    if (!ftmoRussianPage.includes(token)) rows.push(`Russian FTMO path is missing ${token}`)
+  }
+  const currentFtmoProducts = JSON.parse(fs.readFileSync(path.join(CHALLENGES, 'ftmo.json'), 'utf8'))
+    .filter(product => {
+      const captured = new Date(`${product.sourceCapturedAt}T23:59:59Z`)
+      const ageDays = (Date.now() - captured.getTime()) / 86_400_000
+      return !Number.isNaN(captured.getTime()) && ageDays >= -1 && ageDays <= 30
+    })
+  const currentFtmoPriceCount = currentFtmoProducts.reduce((sum, product) => sum
+    + product.accountSizes.filter(tier => tier.priceEur != null && tier.priceEur > 0).length, 0)
+  if (currentFtmoProducts.length !== 2 || currentFtmoPriceCount !== 10) {
+    rows.push(`Russian FTMO fixture expects 2 products and 10 EUR prices; received ${currentFtmoProducts.length} and ${currentFtmoPriceCount}`)
+  }
+  if (!fs.existsSync(path.join(CHALLENGES, '_captures', 'ftmo-2026-08-28.json'))) {
+    rows.push('Russian FTMO review is missing its 2026-08-28 first-party capture provenance')
+  }
+
   for (const [route, expectedTokens] of [
     ['/ru/obzor-fundingpips', [
       'data-russian-partner-review={firmSlug}',
@@ -11919,6 +11969,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/vyplaty-prop-firm'",
     "href: '/ru/prop-firmy-bez-kyc'",
     "href: '/ru/obzor-proplive'",
+    "href: '/ru/obzor-ftmo'",
     "href: '/ru/obzor-eratrade'",
     "href: '/ru/obzor-kascapital'",
     "href: '/ru/obzor-fundingpips'",
@@ -11943,6 +11994,7 @@ function checkRussianAcquisitionPilot() {
   if (!footer.includes("href: '/ru/obzor-eratrade'")) rows.push('Russian footer is missing the Era Trade review route')
   if (!footer.includes("href: '/ru/obzor-kascapital'")) rows.push('Russian footer is missing the KasCapital review route')
   if (!footer.includes("href: '/ru/otzyvy-prop-firm'")) rows.push('Russian footer is missing the reviews guide route')
+  if (!footer.includes("href: '/ru/obzor-ftmo'")) rows.push('Russian footer is missing the FTMO review route')
 
   const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
   for (const token of [

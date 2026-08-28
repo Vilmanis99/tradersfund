@@ -52,8 +52,8 @@ const relatedSearchRoutes: Record<string, { href: string; label: string }> = {
     label: 'Открыть русский рейтинг',
   },
   'ftmo проп компания сайт официальный': {
-    href: '/ru/luchshie-prop-firmy',
-    label: 'Проверить глобальный список и ограничения',
+    href: '/ru/obzor-ftmo',
+    label: 'Открыть русский обзор FTMO и официальный домен',
   },
   'forex prop': {
     href: '/ru/luchshie-prop-firmy',
@@ -228,7 +228,7 @@ export default function RussianHomePage() {
         <div className="ru-shell">
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия начинает с девятнадцати страниц под самостоятельные поисковые задачи,
+            Русская версия начинает с двадцати страниц под самостоятельные поисковые задачи,
             включая отдельную проверку компаний российского рынка. Мы не переводим сотни URL автоматически: сначала проверяем,
             отвечает ли локальная страница на самостоятельный поисковый запрос.
           </p>
@@ -244,6 +244,12 @@ export default function RussianHomePage() {
               <h3>Обзор FundedNext</h3>
               <p className="ru-muted">22 опубликованные цены, четыре модели и отдельная проверка противоречивых ограничений для резидентов России.</p>
               <Link className="ru-card-link" href="/ru/obzor-fundednext">Проверить FundedNext →</Link>
+            </article>
+            <article className="ru-card" data-russian-home-ftmo-entry="non-affiliate-to-partners">
+              <BookOpenCheck size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Обзор FTMO</h3>
+              <p className="ru-muted">2 программы, 10 цен в EUR и прямое ограничение для Российской Федерации; русскоязычные жители других стран получают отдельную проверку профиля и маршруты к FundedNext и Bright Funded.</p>
+              <Link className="ru-card-link" href="/ru/obzor-ftmo">Проверить FTMO и альтернативы →</Link>
             </article>
             <article className="ru-card">
               <ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" />
@@ -308,6 +314,7 @@ export default function RussianHomePage() {
           </div>
           <p className="ru-source-line">
             Глобальные партнёрские разборы на русском:{' '}
+            <Link href="/ru/obzor-ftmo">FTMO</Link>,{' '}
             <Link href="/ru/obzor-fundingpips">FundingPips</Link> и{' '}
             <Link href="/ru/obzor-bright-funded">Bright Funded</Link>. Сначала подтвердите страну и правила продукта.
             {' '}Локальные разборы: <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-kascapital">KasCapital</Link>. <Link href="/ru/otzyvy-prop-firm">Отзывы о проп-фирмах</Link>.
