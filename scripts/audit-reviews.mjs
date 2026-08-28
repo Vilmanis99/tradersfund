@@ -44,6 +44,8 @@ import {
   getFreshFirmEvidence,
 } from '../lib/relatedComparisons.ts'
 import {
+  campaignLocale,
+  contentLocale,
   goClickEventName,
   isHighIntentJourneyStage,
   journeyStage,
@@ -2762,17 +2764,27 @@ function checkAnalyticsMeasurementContract() {
     ['/blog/ftmo-review/', 'firm_review'],
     ['/ru/', 'russian_home'],
     ['/ru/luchshie-prop-firmy', 'russian_ranking'],
+    ['/ru/fundednext-vs-bright-funded', 'russian_comparison'],
+    ['/ru/fundednext-vs-fundingpips/', 'russian_comparison'],
+    ['/ru/promokody-prop-firm', 'russian_deals'],
+    ['/ru/obzor-ftmo', 'russian_review'],
     ['/ru/obzor-fundednext/', 'russian_review'],
     ['/ru/obzor-fundingpips', 'russian_review'],
     ['/ru/obzor-bright-funded/', 'russian_review'],
     ['/ru/luchshie-kripto-prop-firmy', 'russian_ranking'],
+    ['/ru/forex-prop-firmy', 'russian_ranking'],
     ['/ru/vyplaty-prop-firm', 'russian_ranking'],
     ['/ru/prop-firmy-bez-kyc', 'russian_ranking'],
     ['/ru/prop-firmy-bez-chelendzha', 'russian_ranking'],
     ['/ru/dlya-russkoyazychnykh-treyderov', 'russian_ranking'],
     ['/ru/rossiyskie-prop-kompanii', 'russian_local_research'],
     ['/ru/obzor-proplive', 'russian_local_research'],
+    ['/ru/obzor-eratrade', 'russian_local_research'],
+    ['/ru/obzor-kascapital', 'russian_local_research'],
+    ['/ru/obzor-teamtraders', 'russian_local_research'],
+    ['/ru/chto-takoe-prop-firma', 'russian_education'],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', 'russian_education'],
+    ['/ru/otzyvy-prop-firm', 'russian_education'],
   ])
   for (const [pathname, expected] of stageFixtures) {
     const actual = journeyStage(pathname)
@@ -2783,9 +2795,33 @@ function checkAnalyticsMeasurementContract() {
   if (!isHighIntentJourneyStage('india_hub')) {
     rows.push('India hub must be high intent so payout-to-matcher navigation is measured')
   }
-  for (const stage of ['russian_ranking', 'russian_review']) {
+  for (const stage of [
+    'russian_ranking',
+    'russian_comparison',
+    'russian_deals',
+    'russian_review',
+    'russian_local_research',
+  ]) {
     if (!isHighIntentJourneyStage(stage)) {
       rows.push(`Russian ${stage} must be high intent so affiliate journeys are measured`)
+    }
+  }
+  for (const [pathname, expected] of [
+    ['/ru', 'ru'],
+    ['/ru/obzor-fundednext', 'ru'],
+    ['/compare/ftmo-vs-fundednext', 'en'],
+  ]) {
+    if (contentLocale(pathname) !== expected) {
+      rows.push(`contentLocale(${pathname}) expected ${expected}`)
+    }
+  }
+  for (const [placement, expected] of [
+    ['ru-home-hero-fundednext', 'ru'],
+    ['post-body-fundednext-review', 'en'],
+    ['unknown', 'unknown'],
+  ]) {
+    if (campaignLocale(placement) !== expected) {
+      rows.push(`campaignLocale(${placement}) expected ${expected}`)
     }
   }
 
@@ -2956,10 +2992,22 @@ function checkAnalyticsMeasurementContract() {
   const sourceChecks = [
     [ANALYTICS_PROVIDER_FILE, [
       "trackVercel('journey_view'",
+      'locale: contentLocale(pathname)',
       'send_page_view: false',
       'page_location: sanitizedLocation',
       'goClickEventName(firm, outboundRelationships)',
       'if (!eventName) return',
+      'content_group: currentStage',
+      'locale: currentLocale',
+    ]],
+    [path.join(ROOT, 'lib/clientAnalytics.ts'), [
+      'content_group: journeyStage(pathname)',
+      'locale: contentLocale(pathname)',
+      'properties: attributedProperties',
+    ]],
+    [AFFILIATE_REDIRECT_ROUTE_FILE, [
+      "import { campaignLocale } from '@/lib/analyticsTaxonomy'",
+      'locale: campaignLocale(placement)',
     ]],
     [INDIA_MATCHER_COMPONENT_FILE, [
       "track('challenge_matcher_started'",
@@ -2986,7 +3034,9 @@ function checkAnalyticsMeasurementContract() {
     [PRIVACY_POLICY_FILE, [
       'An individual controlled firm/product key may be sent',
       'Complete shortlist combinations and shortlist query strings are not sent',
-      'This policy was last updated on 10 August 2026',
+      'page-language label describes the page being read',
+      'does not inspect the visitor&rsquo;s browser language, nationality, citizenship, or location',
+      'This policy was last updated on 28 August 2026',
     ]],
   ]
   for (const [file, tokens] of sourceChecks) {

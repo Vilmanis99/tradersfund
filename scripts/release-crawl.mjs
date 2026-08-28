@@ -1254,6 +1254,14 @@ for (const [path, expectation] of russianExpectations) {
       errors.push(`${path}: missing Russian acquisition safeguard ${marker}`)
     }
   }
+  for (const anchorTag of probe.html.matchAll(/<a\b[^>]*>/gi)) {
+    const href = anchorTag[0].match(/\bhref="([^"]+)"/i)?.[1]?.replaceAll('&amp;', '&')
+    if (!href?.startsWith('/go/')) continue
+    const campaign = new URL(href, PRODUCTION_ORIGIN).searchParams.get('from')
+    if (!campaign?.startsWith('ru-')) {
+      errors.push(`${path}: Russian /go/ link lacks a ru-* campaign (${href})`)
+    }
+  }
   if (
     pageText.includes('FundedNext доступен в России')
     || pageText.includes('FTMO доступен в России')

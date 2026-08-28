@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { isIndiaCampaign } from '@/lib/affiliateCampaign'
+import { campaignLocale } from '@/lib/analyticsTaxonomy'
 import { getAllFirms } from '@/lib/firms'
 import { INDIA_EVIDENCE_BY_SLUG } from '@/lib/india'
 import {
@@ -43,6 +44,7 @@ function recordAffiliateClick(firm: string, placement: string) {
     event: 'affiliate_click',
     firm,
     placement,
+    locale: campaignLocale(placement),
   }))
 }
 
@@ -51,6 +53,7 @@ function recordOfficialClick(firm: string, placement: string) {
     event: 'official_site_click',
     firm,
     placement,
+    locale: campaignLocale(placement),
   }))
 }
 

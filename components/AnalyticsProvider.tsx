@@ -11,6 +11,7 @@ import {
   type SiteEventProperties,
 } from '@/lib/clientAnalytics'
 import {
+  contentLocale,
   goClickEventName,
   isHighIntentJourneyStage,
   journeyStage,
@@ -176,12 +177,16 @@ export default function AnalyticsProvider({
   useEffect(() => {
     if (journeyViewRef.current === pathname) return
     journeyViewRef.current = pathname
-    trackVercel('journey_view', { content_group: journeyStage(pathname) })
+    trackVercel('journey_view', {
+      content_group: journeyStage(pathname),
+      locale: contentLocale(pathname),
+    })
   }, [pathname])
 
   useEffect(() => {
     if (consent !== 'granted') return
     const stage = journeyStage(pathname)
+    const locale = contentLocale(pathname)
 
     if (gaMeasurementId && gaReady) {
       const sanitizedLocation = `${window.location.origin}${pathname}`
@@ -195,16 +200,19 @@ export default function AnalyticsProvider({
         page_location: sanitizedLocation,
         page_path: pathname,
         content_group: stage,
+        locale,
       })
       window.gtag?.('event', 'journey_view', {
         page_path: pathname,
         content_group: stage,
+        locale,
       })
     }
 
     if (clarityProjectId && clarityReady) {
       window.clarity?.('set', 'journey_stage', stage)
       window.clarity?.('set', 'page_path', pathname)
+      window.clarity?.('set', 'page_locale', locale)
     }
   }, [clarityProjectId, clarityReady, consent, gaMeasurementId, gaReady, pathname])
 
@@ -212,6 +220,7 @@ export default function AnalyticsProvider({
     scrollDepths.current = new Set()
     const optionalAnalyticsGranted = consent === 'granted'
     const currentStage = journeyStage(pathname)
+    const currentLocale = contentLocale(pathname)
 
     const trackEvent = (name: string, parameters: SiteEventProperties = {}) => {
       if (optionalAnalyticsGranted && gaMeasurementId && gaReady) {
@@ -219,6 +228,7 @@ export default function AnalyticsProvider({
           ...parameters,
           page_path: pathname,
           content_group: currentStage,
+          locale: currentLocale,
           transport_type: 'beacon',
         })
       }
@@ -245,7 +255,12 @@ export default function AnalyticsProvider({
         const placement = safeLabel(destination.searchParams.get('from'))
         const eventName = goClickEventName(firm, outboundRelationships)
         if (!eventName) return
-        trackVercel(eventName, { firm, placement })
+        trackVercel(eventName, {
+          firm,
+          placement,
+          content_group: currentStage,
+          locale: currentLocale,
+        })
         trackEvent(eventName, { firm, placement })
         return
       }
@@ -255,6 +270,7 @@ export default function AnalyticsProvider({
         trackVercel('outbound_click', {
           destination_host: destinationHost,
           content_group: currentStage,
+          locale: currentLocale,
         })
         trackEvent('outbound_click', { destination_host: destinationHost })
         return
@@ -265,6 +281,7 @@ export default function AnalyticsProvider({
         trackVercel('resource_download', {
           resource_path: resourcePath,
           content_group: currentStage,
+          locale: currentLocale,
         })
         trackEvent('resource_download', { resource_path: resourcePath })
         return
@@ -276,6 +293,7 @@ export default function AnalyticsProvider({
           trackVercel('journey_step', {
             from_stage: currentStage,
             to_stage: destinationStage,
+            locale: currentLocale,
           })
         }
         trackEvent('internal_navigation', {
@@ -295,6 +313,7 @@ export default function AnalyticsProvider({
             trackVercel('deep_read', {
               content_group: currentStage,
               percent_scrolled: threshold,
+              locale: currentLocale,
             })
           }
           trackEvent('scroll_depth', { percent_scrolled: threshold })

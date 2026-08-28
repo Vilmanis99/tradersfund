@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 slug: "privacy-policy"
-date: "2026-08-10"
+date: "2026-08-28"
 description: "How Traders Fund Hub handles contact messages, analytics choices, technical logs, and outbound links."
 type: "page"
 ---
@@ -24,7 +24,7 @@ type: "page"
 
 <p>Our hosting infrastructure may record standard request data such as IP address, browser or user-agent information, requested page, timestamp, referrer, response status, and security events. These logs are used for site operation, abuse prevention, debugging, and aggregate performance analysis.</p>
 
-<p>The central <code>/go/</code> redirect records the firm or product slug and placement label so we can compare page performance. The application event deliberately excludes the visitor&rsquo;s IP address, user agent, referrer, and submitted query-string data, although the hosting provider may still keep standard request logs.</p>
+<p>The central <code>/go/</code> redirect records the firm or product slug, placement label, and a page-language label derived from that placement so we can compare page performance. The application event deliberately excludes the visitor&rsquo;s IP address, user agent, referrer, browser-language setting, and submitted query-string data, although the hosting provider may still keep standard request logs.</p>
 
 <h2>Anonymous site analytics and performance</h2>
 
@@ -34,7 +34,7 @@ type: "page"
 
 <p>When configured, Google Analytics 4 measures page journeys, internal navigation, affiliate and external-link clicks, downloads, 25%, 50%, 75%, and 90% scroll depth, and 30-second engagement. Microsoft Clarity provides aggregate heatmaps and session replays. Both optional providers remain disabled until you select &ldquo;Accept analytics&rdquo;; advertising storage, advertising-user data, and advertising personalisation remain denied.</p>
 
-<p>Our custom journey events contain page paths and controlled labels such as a firm slug, product slug, change-note ID, filter category, account-size label, decision priority, or link placement. An individual controlled firm/product key may be sent when that exact item is added, removed, or opened. Complete shortlist combinations and shortlist query strings are not sent as custom event properties; neither are calculator exchange rates, markups, charges, or search text. Query strings and URL fragments are also stripped from Vercel Web Analytics and Speed Insights URLs. The events do not contain a submitted name, email address, message, form field value, account identifier, or full query string. Optional analytics forms are explicitly masked from Clarity capture and are not used as a source of editorial evidence or user profiling.</p>
+<p>Our custom journey events contain page paths and controlled labels such as a page-language label, content group, firm slug, product slug, change-note ID, filter category, account-size label, decision priority, or link placement. The page-language label describes the page being read (<code>ru</code> or <code>en</code>); it does not inspect the visitor&rsquo;s browser language, nationality, citizenship, or location. An individual controlled firm/product key may be sent when that exact item is added, removed, or opened. Complete shortlist combinations and shortlist query strings are not sent as custom event properties; neither are calculator exchange rates, markups, charges, or search text. Query strings and URL fragments are also stripped from Vercel Web Analytics and Speed Insights URLs. The events do not contain a submitted name, email address, message, form field value, account identifier, or full query string. Optional analytics forms are explicitly masked from Clarity capture and are not used as a source of editorial evidence or user profiling.</p>
 
 <h2>Your analytics choice</h2>
 
@@ -54,4 +54,4 @@ type: "page"
 
 <h2>Changes to this policy</h2>
 
-<p>This policy was last updated on 10 August 2026. Material changes will be reflected by updating the date on this page.</p>
+<p>This policy was last updated on 28 August 2026. Material changes will be reflected by updating the date on this page.</p>
