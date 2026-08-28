@@ -10871,6 +10871,7 @@ function checkRussianAcquisitionPilot() {
   const forexEvidenceFile = path.join(ROOT, 'content/data/russian-forex-evidence.json')
   const teamTradersEvidenceFile = path.join(ROOT, 'content/data/russian-teamtraders-evidence.json')
   const localizedRoutesFile = path.join(ROOT, 'lib/localizedRoutes.ts')
+  const nextConfigFile = path.join(ROOT, 'next.config.ts')
   const russianLayoutFile = path.join(ROOT, 'app/ru/layout.tsx')
   const russianPartnerReviewFile = path.join(ROOT, 'components/RussianPartnerReview.tsx')
   const russianPartnerReviewSource = fs.existsSync(russianPartnerReviewFile)
@@ -11529,6 +11530,15 @@ function checkRussianAcquisitionPilot() {
     const layout = fs.readFileSync(russianLayoutFile, 'utf8')
     for (const token of ['lang="ru"', 'data-russian-locale="pilot"', "import './ru.css'"]) {
       if (!layout.includes(token)) rows.push(`Russian layout is missing ${token}`)
+    }
+  }
+  if (fs.existsSync(nextConfigFile)) {
+    const nextConfig = fs.readFileSync(nextConfigFile, 'utf8')
+    for (const token of [
+      "source: '/ru/:path*'",
+      "{ key: 'Content-Language', value: 'ru' }",
+    ]) {
+      if (!nextConfig.includes(token)) rows.push(`Next config is missing Russian language header safeguard ${token}`)
     }
   }
 
@@ -12451,6 +12461,7 @@ function checkRussianAcquisitionPilot() {
     'const russianRoutePairs = [...LOCALIZED_ROUTE_PAIRS]',
     'Russian sitemap routes disagree with the ${russianPaths.length}-page acquisition pilot',
     'rendered Russian language boundary or schema is missing',
+    'Content-Language must be ru',
     'controlled affiliate CTA is missing or mislabelled',
     'unapproved local-firm affiliate action rendered',
     'Russian affiliate attribution failed',

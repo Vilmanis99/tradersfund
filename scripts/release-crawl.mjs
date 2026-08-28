@@ -191,6 +191,7 @@ async function fetchPage(url, redirect = 'manual') {
       url,
       status: response.status,
       contentType: response.headers.get('content-type') || '',
+      contentLanguage: response.headers.get('content-language') || '',
       location: response.headers.get('location') || '',
       html: await response.text(),
     }
@@ -199,6 +200,7 @@ async function fetchPage(url, redirect = 'manual') {
       url,
       status: 0,
       contentType: '',
+      contentLanguage: '',
       location: '',
       html: '',
       error: error instanceof Error ? error.message : String(error),
@@ -1251,6 +1253,9 @@ for (const [path, expectation] of russianExpectations) {
     || !probe.html.includes('"inLanguage":"ru"')
   ) {
     errors.push(`${path}: rendered Russian language boundary or schema is missing`)
+  }
+  if (probe.contentLanguage !== 'ru') {
+    errors.push(`${path}: Content-Language must be ru, received ${probe.contentLanguage || 'missing'}`)
   }
   for (const marker of expectation.markers) {
     if (!probe.html.includes(marker) && !pageText.includes(marker)) {

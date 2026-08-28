@@ -125,6 +125,16 @@ function legacyRedirects() {
 }
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/ru/:path*',
+        headers: [
+          { key: 'Content-Language', value: 'ru' },
+        ],
+      },
+    ]
+  },
   async redirects() {
     return [
       ...(await postRedirects()),
