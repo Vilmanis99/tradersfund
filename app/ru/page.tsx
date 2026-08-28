@@ -281,11 +281,11 @@ export default function RussianHomePage() {
               <p className="ru-muted">Продуктовое сравнение двух глобальных партнёров: цена, просадка, сплит, первая выплата и отдельные CTA без единого навязанного победителя.</p>
               <Link className="ru-card-link" href="/ru/fundednext-vs-fundingpips">Сравнить партнёров →</Link>
             </article>
-            <article className="ru-card">
+            <article className="ru-card" data-russian-home-deals-partners="fundednext-bright-funded">
               <BadgePercent size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>Промокоды и предложения</h3>
-              <p className="ru-muted">Показываем только свежие условия: публичный код, скидка по ссылке или персональный купон после выполнения условия.</p>
-              <Link className="ru-card-link" href="/ru/promokody-prop-firm">Проверить предложения →</Link>
+              <h3>Промокоды FundedNext и Bright Funded</h3>
+              <p className="ru-muted">5 свежих предложений: персональные 5% FundedNext после Free Trial, 3 публичных кода Bright Funded и HELLO от FundingPips.</p>
+              <Link className="ru-card-link" href="/ru/promokody-prop-firm">Сравнить коды и итоговые цены →</Link>
             </article>
             <article className="ru-card">
               <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />

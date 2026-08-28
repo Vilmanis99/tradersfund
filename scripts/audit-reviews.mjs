@@ -11032,6 +11032,36 @@ function checkRussianAcquisitionPilot() {
         }
       }
 
+      for (const seed of ['промокоды проп фирм', 'bright funded промокод']) {
+        const signal = autocompleteSignals.get(seed)
+        if (
+          signal?.engine !== 'Google'
+          || signal?.capturedAt !== evidence.capturedAt
+          || signal?.status !== 'no-suggestions-returned'
+          || !Array.isArray(signal?.suggestions)
+          || signal.suggestions.length !== 0
+        ) {
+          rows.push(`Russian promo-code autocomplete gap is incomplete for ${seed}`)
+        }
+      }
+      const promoAutocompleteChecks = new Map([
+        ['fundednext промокод', ['fundednext промокод', 'fundednext promo code']],
+        ['fundednext promo code', ['fundednext promo code', 'fundednext promo code 30', 'fundednext promo code first order', 'fundednext promo code reddit']],
+        ['fundingpips промокод', ['funding pips промокод', 'funding pips promo code']],
+      ])
+      for (const [seed, suggestions] of promoAutocompleteChecks) {
+        const signal = autocompleteSignals.get(seed)
+        for (const suggestion of suggestions) {
+          if (
+            signal?.engine !== 'Google'
+            || signal?.capturedAt !== evidence.capturedAt
+            || !signal?.suggestions?.includes(suggestion)
+          ) {
+            rows.push(`Russian promo-code autocomplete signal is incomplete for ${seed}: ${suggestion}`)
+          }
+        }
+      }
+
       const payoutEvidence = new Map((evidence.payoutEvidence ?? [])
         .map(item => [item.firmSlug, item]))
       if (payoutEvidence.size !== 3) {
@@ -11339,6 +11369,9 @@ function checkRussianAcquisitionPilot() {
     '/go/fundednext?from=ru-home-hero-fundednext',
     '/go/bright-funded?from=ru-home-hero-bright-funded',
     'data-russian-home-featured-partners="fundednext-bright-funded"',
+    'data-russian-home-deals-partners="fundednext-bright-funded"',
+    'Промокоды FundedNext и Bright Funded',
+    'Сравнить коды и итоговые цены',
     'href="/ru/fundednext-vs-bright-funded"',
     'Сравнить FundedNext и Bright Funded',
     'Главное сравнение русской версии: 7 продуктов, 40 цен',
@@ -11523,13 +11556,37 @@ function checkRussianAcquisitionPilot() {
     : ''
   for (const token of [
     'data-russian-deals="verified-offers"',
+    'data-russian-deals-guide="long-form-verified-offers"',
     'data-russian-offer-freshness="30-days"',
+    'data-russian-deals-featured-partners="fundednext-bright-funded"',
+    'data-russian-deals-article="checkout-intent-source-gated"',
     'data-russian-country-boundary="deals-not-access"',
     'data-russian-affiliate-disclosure="deals"',
+    'data-russian-deals-mechanisms="checkout-link-earned"',
+    'data-russian-deals-featured-partner="fundednext"',
+    'data-russian-deals-fundednext="earned-not-public"',
+    'data-russian-deals-discount-table="currency-preserved"',
+    'data-russian-deals-featured-partner="bright-funded"',
+    'data-russian-deals-bright="three-product-codes"',
+    'data-russian-deals-bright-price-rows={brightRows.length}',
+    'data-russian-deals-secondary="fundingpips"',
+    'data-russian-deals-decision="product-before-discount"',
+    'data-russian-deals-checkout="final-total-controls"',
+    'data-russian-deals-search="brand-signal-generic-gap"',
+    'data-russian-deals-diaspora="language-not-residency"',
+    'data-russian-deals-expiry="thirty-day-fail-closed"',
     'getAllDeals',
+    'getAllChallenges',
+    'isChallengeFresh',
     'CopyableCodePill',
     'locale="ru"',
     'campaignFor(deal)',
+    '/go/fundednext?from=ru-deals-fundednext-earned-coupon',
+    '/go/fundingpips?from=ru-deals-fundingpips-hello',
+    "fundednext: '/ru/obzor-fundednext'",
+    "'bright-funded': '/ru/obzor-bright-funded'",
+    "fundingpips: '/ru/obzor-fundingpips'",
+    "author: { '@type': 'Person', name: 'Edris Derakhshi'",
     'rel={isAffiliate ? \'sponsored nofollow noopener\' : \'nofollow noopener\'}',
   ]) {
     if (!russianDealsPage.includes(token)) rows.push(`Russian offers page is missing ${token}`)
