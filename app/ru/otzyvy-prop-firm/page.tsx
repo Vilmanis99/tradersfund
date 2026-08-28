@@ -10,7 +10,6 @@ import {
   ExternalLink,
   FileSearch,
   Globe2,
-  SearchCheck,
   ShieldAlert,
   ShieldCheck,
   WalletCards,
@@ -181,8 +180,6 @@ export default function RussianPropFirmReviewsPage() {
   const featuredPriceCount = publishedTierCount(featuredProducts)
   const latestCapture = featuredProducts.map(product => product.sourceCapturedAt).sort().at(-1)
     ?? marketEvidence.capturedAt
-  const reviewAutocomplete = marketEvidence.searchDemand.autocompleteSignals.filter(signal =>
-    signal.seed === 'проп фирмы отзывы' || signal.seed === 'fundednext отзывы')
   const fundedNextAccess = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
 
   const crumbs = breadcrumbSchema([
@@ -253,7 +250,7 @@ export default function RussianPropFirmReviewsPage() {
                 <li><a href="#product-evidence">7 продуктов и 40 цен</a></li>
                 <li><a href="#payout-review">Как читать отзыв о выплате</a></li>
                 <li><a href="#negative-review">Как читать жалобу на блокировку</a></li>
-                <li><a href="#search-language">Русские поисковые формулировки</a></li>
+                <li><a href="#transferability">Переносимость отзыва</a></li>
                 <li><a href="#local-models">Локальные российские модели</a></li>
                 <li><a href="#decision">Решение после отзывов</a></li>
                 <li><a href="#faq">Частые вопросы</a></li>
@@ -371,17 +368,17 @@ export default function RussianPropFirmReviewsPage() {
           </div>
         </section>
 
-        <section className="ru-section" id="search-language">
-          <div className="ru-shell ru-content" data-russian-reviews-search-language="current-autocomplete">
-            <h2>Почему мы используем запросы «проп фирмы отзывы» и «FundedNext отзывы»</h2>
-            <p>Google autocomplete 27 августа 2026 года повторил обе формулировки как самостоятельные подсказки. Это подтверждает язык поиска, но не месячный объём, число покупателей или качество результатов.</p>
-            <p>Мы не создаём отдельные дубли под «отзывы проп фирм», «проп фирмы отзывы» и каждую перестановку слов. Одна страница отвечает на общий intent, а брендовые запросы ведут в самостоятельные обзоры с текущими продуктами.</p>
-            <ul className="ru-facts">
-              {reviewAutocomplete.map(signal => (
-                <li key={`${signal.engine}:${signal.seed}`}><SearchCheck size={14} aria-hidden="true" /><span><strong>{signal.seed}</strong> — {signal.suggestions.length} сохранённая подсказка, захват {signal.capturedAt}.</span></li>
-              ))}
-            </ul>
-            <p className="ru-source-line">Autocomplete — сигнал формулировки, а не прогноз трафика или конверсии.</p>
+        <section className="ru-section" id="transferability">
+          <div className="ru-shell ru-content" data-russian-reviews-transferability="event-not-verdict">
+            <h2>Правдивый отзыв всё равно может не подходить вашему аккаунту</h2>
+            <p>
+              Отзыв подтверждает событие конкретного автора: продукт, дату, страну, правило и сумму. Он не превращает это событие
+              в гарантию для другого размера счёта, payout cycle, документа KYC или версии договора.
+            </p>
+            <p>
+              Переносите из кейса только проверяемые поля и заново сверяйте их с текущим источником фирмы. Итоговые ярлыки
+              «платит», «не платит» или «скам» без названного правила не заменяют продуктовую проверку.
+            </p>
           </div>
         </section>
 

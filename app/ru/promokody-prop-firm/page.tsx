@@ -8,13 +8,11 @@ import {
   ClipboardCheck,
   ExternalLink,
   Globe2,
-  SearchCheck,
   ShieldCheck,
   ShoppingCart,
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import CopyableCodePill from '@/components/CopyableCodePill'
-import marketEvidence from '@/content/data/russian-market-evidence.json'
 import {
   getAllChallenges,
   getAllFirms,
@@ -178,12 +176,6 @@ export default function RussianPropFirmOffersPage() {
   const fundingPipsExamples = fundingPipsProducts.flatMap(product => pricedTiers(product)
     .filter(tier => [5000, 50000].includes(tier.sizeUsd))
     .map(tier => ({ product, tier })))
-  const autocomplete = new Map(marketEvidence.searchDemand.autocompleteSignals.map(item => [item.seed, item]))
-  const genericPromoSearch = autocomplete.get('промокоды проп фирм')
-  const fundedNextRussianSearch = autocomplete.get('fundednext промокод')
-  const fundedNextEnglishSearch = autocomplete.get('fundednext promo code')
-  const brightRussianSearch = autocomplete.get('bright funded промокод')
-  const fundingPipsRussianSearch = autocomplete.get('fundingpips промокод')
 
   const crumbs = breadcrumbSchema([
     { name: 'Traders Fund Hub', url: '/' },
@@ -477,29 +469,6 @@ export default function RussianPropFirmOffersPage() {
               <li><strong>Сохранён заказ:</strong> зафиксируйте дату, email, продукт, цену и order ID до первой сделки.</li>
             </ol>
             <div className="ru-notice"><strong>Стоп-сигнал:</strong> если checkout не принимает код, показывает другой продукт или возвращает полную цену, не завершайте платёж только потому, что сторонний сайт обещал скидку.</div>
-          </div>
-        </section>
-
-        <section className="ru-section">
-          <div className="ru-shell" data-russian-deals-search="brand-signal-generic-gap">
-            <h2>Какие формулировки реально появляются в поиске</h2>
-            <p>
-              Снимок Google Autocomplete от 27 августа 2026 года вернул {fundedNextRussianSearch?.suggestions.length ?? 0} подсказки для «fundednext промокод»
-              и {fundedNextEnglishSearch?.suggestions.length ?? 0} для «fundednext promo code». Для «fundingpips промокод» появились
-              {` ${fundingPipsRussianSearch?.suggestions.length ?? 0}`} варианта, включая написание «funding pips промокод».
-              Для общего «промокоды проп фирм» и «bright funded промокод» подсказок не было.
-            </p>
-            <p>
-              Ноль подсказок не означает нулевой спрос, а 10 подсказок не являются месячной частотностью. Поэтому мы создаём 1 глубокую страницу с отдельными секциями,
-              а не набор тонких doorway-страниц под каждую перестановку слов. Русский запрос FundedNext ведёт к честному ответу «earned coupon, не публичный код»;
-              отсутствие Bright-подсказки не скрывает 3 официально опубликованных кодов.
-            </p>
-            <ul className="ru-facts">
-              <li><SearchCheck size={14} aria-hidden="true" /> «fundednext промокод»: {fundedNextRussianSearch?.suggestions.join(' · ') || 'подсказок нет'}</li>
-              <li><SearchCheck size={14} aria-hidden="true" /> «fundingpips промокод»: {fundingPipsRussianSearch?.suggestions.join(' · ') || 'подсказок нет'}</li>
-              <li><SearchCheck size={14} aria-hidden="true" /> «промокоды проп фирм»: {genericPromoSearch?.suggestions.length ? genericPromoSearch.suggestions.join(' · ') : 'подсказок не возвращено'}</li>
-              <li><SearchCheck size={14} aria-hidden="true" /> «bright funded промокод»: {brightRussianSearch?.suggestions.length ? brightRussianSearch.suggestions.join(' · ') : 'подсказок не возвращено'}</li>
-            </ul>
           </div>
         </section>
 

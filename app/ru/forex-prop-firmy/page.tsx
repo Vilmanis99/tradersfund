@@ -115,7 +115,6 @@ export default function RussianForexPropFirmsPage() {
   const brightProducts = products.filter(product => product.firmSlug === 'bright-funded')
   const fundedNextEvidence = forexEvidence.firms.find(firm => firm.firmSlug === 'fundednext')
   const brightEvidence = forexEvidence.firms.find(firm => firm.firmSlug === 'bright-funded')
-  const queryFrequency = new Map(forexEvidence.searchDemand.queries.map(item => [item.query, item.monthlyFrequency]))
   const sourceCount = new Set([
     ...products.map(product => product.sourceUrl),
     ...forexEvidence.firms.flatMap(firm => firm.sourceUrls),
@@ -198,9 +197,9 @@ export default function RussianForexPropFirmsPage() {
             Ни один из этих объектов нельзя автоматически считать личным брокерским балансом.
           </p>
           <p>
-            По сторонней оценке Yandex Moscow за январь 2026 фраза «проп форекс» имела частоту {queryFrequency.get('проп форекс')},
-            а «forex prop» — {queryFrequency.get('forex prop')}. Эти 2 частоты пересекаются и не складываются;
-            они подтверждают формулировку задачи, а не размер глобальной русскоязычной аудитории.
+            Английские термины forex, simulated account и performance reward сохранены рядом с русским объяснением,
+            потому что именно эти слова встречаются в правилах и checkout глобальных фирм. Перед оплатой сопоставьте
+            перевод с исходной формулировкой продукта, а не полагайтесь только на русскоязычную рекламу.
           </p>
         </div>
       </section>

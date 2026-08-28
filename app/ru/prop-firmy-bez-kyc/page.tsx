@@ -136,11 +136,6 @@ export default function RussianNoKycPage() {
   const sourceCount = new Set(marketEvidence.kycEvidence.flatMap(item => item.sourceUrls)).size
   const productCount = partnerCards.reduce((sum, item) => sum + item.products.length, 0)
   const priceCount = partnerCards.reduce((sum, item) => sum + item.priceCount, 0)
-  const searchSignals = new Map(marketEvidence.searchDemand.autocompleteSignals.map(item => [item.seed, item]))
-  const genericSignal = searchSignals.get('проп фирмы без kyc')
-  const fundedNextSignal = searchSignals.get('fundednext kyc')
-  const brightSignal = searchSignals.get('bright funded kyc')
-  const fundingPipsSignal = searchSignals.get('fundingpips kyc')
   const fundedNextAccess = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
   const localSignals = new Map(marketEvidence.localFirmSignals.map(item => [item.operator, item]))
   const propLive = localSignals.get('PropLive')
@@ -205,7 +200,7 @@ export default function RussianNoKycPage() {
             <Link href="#kyc-matrix" className="btn-outline">Сравнить KYC</Link>
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-outline">Проверить страну</Link>
           </div>
-          <p className="ru-source-line">Источники и поисковые сигналы проверены {marketEvidence.capturedAt}. Условия нужно перепроверить перед оплатой.</p>
+          <p className="ru-source-line">Первичные источники проверены {marketEvidence.capturedAt}. Условия нужно перепроверить перед оплатой.</p>
         </div>
       </section>
 
@@ -237,7 +232,7 @@ export default function RussianNoKycPage() {
                 <li><a href="#documents">Документы</a></li>
                 <li><a href="#payout-provider">Фирма и payout provider</a></li>
                 <li><a href="#diaspora">Русскоязычные за рубежом</a></li>
-                <li><a href="#search-language">Что ищут</a></li>
+                <li><a href="#support-questions">Вопросы поддержке</a></li>
                 <li><a href="#local-firms">Локальные модели</a></li>
                 <li><a href="#decision">Решение до checkout</a></li>
                 <li><a href="#faq">Частые вопросы</a></li>
@@ -439,22 +434,16 @@ export default function RussianNoKycPage() {
           </div>
         </section>
 
-        <section className="ru-section" id="search-language">
-          <div className="ru-shell ru-content" data-russian-kyc-search-language="brand-signal-generic-gap">
-            <h2>Что реально подтверждает поиск по KYC</h2>
+        <section className="ru-section" id="support-questions">
+          <div className="ru-shell ru-content" data-russian-kyc-support="four-written-answers">
+            <h2>Что спросить поддержку, если порядок KYC неясен</h2>
             <p>
-              Снимок Google Autocomplete от {marketEvidence.capturedAt} дал {genericSignal?.suggestions.length ?? 0} подсказок
-              для точного русского seed «проп фирмы без kyc». Поэтому мы не публикуем выдуманный monthly volume и не создаём отдельные doorway-страницы
-              под варианты «без паспорта», «без верификации» и «вывод без KYC».
+              Запросите 4 письменных ответа до оплаты: на каком этапе начинается проверка, какие identity/address документы принимаются,
+              нужен ли отдельный аккаунт payout provider и какие citizenship/residence поля определяют доступ.
             </p>
             <p>
-              Брендовый спрос выражен яснее: seed «fundednext kyc» вернул {fundedNextSignal?.suggestions.length ?? 0} подсказок,
-              «bright funded kyc» — {brightSignal?.suggestions.length ?? 0}, а «fundingpips kyc» — {fundingPipsSignal?.suggestions.length ?? 0}.
-              Autocomplete подтверждает формулировку, но не объём и не конверсию; поэтому основа страницы — 5 первичных страниц, а не повторение ключей.
-            </p>
-            <p className="ru-source-line">
-              Редакционный вывод: одна глубокая страница отвечает на generic и branded вопросы без 4 почти одинаковых текстов.
-              Это снижает риск thin content и оставляет читателю проверяемую таблицу вместо SEO-обещания.
+              Сохраните номер обращения и точное название продукта. Ответ «верификация потом» не означает «верификации нет»;
+              он лишь переносит риск отказа ближе к funded stage или первой выплате.
             </p>
           </div>
         </section>

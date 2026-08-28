@@ -166,11 +166,6 @@ export default function RussianPayoutsPage() {
     ...cards.flatMap(card => card.products.map(product => product.sourceCapturedAt)),
     ...cards.flatMap(card => card.evidence ? [card.evidence.sourceCapturedAt] : []),
   ].sort().at(-1) ?? marketEvidence.capturedAt
-  const searchSignals = new Map(marketEvidence.searchDemand.autocompleteSignals.map(item => [item.seed, item]))
-  const genericSearch = searchSignals.get('выплаты проп фирм')
-  const fundedNextSearch = searchSignals.get('fundednext payout')
-  const brightSearch = searchSignals.get('brightfunded payout')
-  const fundingPipsSearch = searchSignals.get('fundingpips payout')
 
   const crumbs = breadcrumbSchema([
     { name: 'Traders Fund Hub', url: '/' },
@@ -497,20 +492,16 @@ export default function RussianPayoutsPage() {
           </div>
         </section>
 
-        <section className="ru-section" data-russian-payout-search="brand-signal-generic-gap">
+        <section className="ru-section" data-russian-payout-delay-record="five-fields">
           <div className="ru-shell ru-content">
-            <h2>Что реально ищут по теме выплат</h2>
+            <h2>Что сохранить, если выплата задерживается</h2>
             <p>
-              Снимок Google autocomplete от {marketEvidence.capturedAt} вернул {genericSearch?.suggestions.length ?? 0} подсказок
-              для точной русской фразы «выплаты проп фирм». Это не доказательство нулевого спроса: autocomplete не является
-              частотностью. Но создавать 4 почти одинаковые русские страницы под «USDT», «крипто», «вывод» и «выплаты»
-              без сигнала было бы doorway-стратегией, а не полезным контентом.
+              Для разбора нужны 5 полей: точное время заявки, название продукта, статус в dashboard, дата завершения KYC
+              и идентификатор транзакции либо тикета. Слово «pending» без этих данных не показывает, на каком из 4 этапов возникла задержка.
             </p>
             <p>
-              Брендовые запросы сильнее: «fundednext payout» дал {fundedNextSearch?.suggestions.length ?? 0} подсказок,
-              «brightfunded payout» — {brightSearch?.suggestions.length ?? 0}, «fundingpips payout» — {fundingPipsSearch?.suggestions.length ?? 0}.
-              Поэтому одна глубокая русская статья отвечает и на общий вопрос, и на brand-intent, а отдельные русские обзоры
-              раскрывают продуктовые правила без копирования этого текста.
+              Сначала сравните прошедшее время с опубликованным processing window фирмы, затем отдельно проверьте банк, сеть или payout provider.
+              Не публикуйте документы, seed-фразу кошелька, полный адрес или идентификационный номер в открытом отзыве.
             </p>
           </div>
         </section>

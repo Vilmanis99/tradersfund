@@ -13,7 +13,6 @@ import {
   Zap,
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
-import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge, type Firm } from '@/lib/firms'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
@@ -166,10 +165,6 @@ export default function RussianInstantPropFirmsPage() {
   const brightProducts = challenges.filter(product => product.firmSlug === 'bright-funded' && isChallengeFresh(product))
   const brightPriceCount = pricedTierCount(brightProducts)
   const latestCapture = products.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'нет данных'
-  const searchSignals = new Map(marketEvidence.searchDemand.autocompleteSignals.map(item => [item.seed, item]))
-  const genericSearch = searchSignals.get('проп фирмы без челленджа')
-  const fundedNextSearch = searchSignals.get('fundednext instant')
-  const fundingPipsSearch = searchSignals.get('fundingpips zero')
 
   const crumbs = breadcrumbSchema([
     { name: 'Traders Fund Hub', url: '/' },
@@ -275,7 +270,7 @@ export default function RussianInstantPropFirmsPage() {
                 <li><a href="#all-products">Все 9 продуктов</a></li>
                 <li><a href="#risk">Просадка и payout gates</a></li>
                 <li><a href="#diaspora">Русскоязычные за рубежом</a></li>
-                <li><a href="#search-language">Поисковые формулировки</a></li>
+                <li><a href="#instant-definition">Instant или fast-track</a></li>
                 <li><a href="#bright-alternative">Bright Funded как альтернатива</a></li>
                 <li><a href="#decision">Решение до покупки</a></li>
                 <li><a href="#faq">Частые вопросы</a></li>
@@ -480,22 +475,16 @@ export default function RussianInstantPropFirmsPage() {
           </div>
         </section>
 
-        <section className="ru-section" id="search-language">
-          <div className="ru-shell ru-content" data-russian-instant-search="generic-and-branded">
-            <h2>Какие instant-запросы подтверждены сейчас</h2>
+        <section className="ru-section" id="instant-definition">
+          <div className="ru-shell ru-content" data-russian-instant-definition="phase-zero-not-label">
+            <h2>Как отличить instant funding от ускоренного челленджа</h2>
             <p>
-              Google Autocomplete от {marketEvidence.capturedAt} вернул {genericSearch?.suggestions.length ?? 0} точную русскую подсказку
-              для seed «проп фирмы без челленджа». Seed в единственном числе и буквальный перевод «моментальное финансирование» вернули 0;
-              поэтому мы не создаём 3 дублирующие страницы под один выбор.
+              Название Instant, Zero или Fast само по себе ничего не доказывает. В этой таблице продукт считается
+              phase-0 только тогда, когда структурированное поле phases равно 0 и до funded stage нет отдельной цели evaluation.
             </p>
             <p>
-              Branded intent сильнее: «fundednext instant» дал {fundedNextSearch?.suggestions.length ?? 0} подсказок,
-              включая rules, account и withdrawal; «fundingpips zero» дал {fundingPipsSearch?.suggestions.length ?? 0},
-              включая consistency rule, account rules и review. Подсказки подтверждают язык запроса, а не monthly volume или conversion rate.
-            </p>
-            <p className="ru-source-line">
-              Редакционная стратегия: 1 глубокая phase-0 страница + отдельные русские обзоры FundedNext и FundingPips,
-              вместо doorway-текстов с заменой одного ключа.
+              До покупки всё равно зафиксируйте 5 полей: первоначальную цену, тип и размер просадки, consistency rule,
+              условие первой заявки и возврат fee. Если хотя бы одно поле относится к другому продукту, сравнение недействительно.
             </p>
           </div>
         </section>

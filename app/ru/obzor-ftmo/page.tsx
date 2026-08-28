@@ -120,8 +120,6 @@ export default function RussianFtmoReviewPage() {
   const latestCapture = freshProducts.map(product => product.sourceCapturedAt).sort().at(-1)
     ?? products.map(product => product.sourceCapturedAt).sort().at(-1)
     ?? 'дата не указана'
-  const ftmoSearchQuery = marketEvidence.searchDemand.queries.find(item =>
-    item.query.toLowerCase().includes('ftmo'))
   const accessEvidence = marketEvidence.firmAccess.find(item => item.firmSlug === 'ftmo')
   const sourceUrls = [...new Set([
     ...freshProducts.map(product => product.sourceUrl),
@@ -270,9 +268,8 @@ export default function RussianFtmoReviewPage() {
             <h2>Официальный сайт FTMO: как не попасть на копию</h2>
             <p>
               Глобальный официальный домен — <a href={OFFICIAL_URL} target="_blank" rel="noopener noreferrer">ftmo.com</a>.
-              Зафиксированный поисковый снимок содержит запрос «{ftmoSearchQuery?.query ?? 'ftmo проп компания сайт официальный'}» с оценкой
-              {ftmoSearchQuery?.monthlyFrequency ?? 16} показов за январь 2026 года в Yandex Moscow. Это малый сторонний сигнал формулировки,
-              а не Search Console, не объём всей русскоязычной аудитории и не основание доверять любому похожему домену.
+              Не вводите данные карты на домене из рекламного объявления или сообщения, пока не сверили адрес посимвольно.
+              Похожее название, русский интерфейс или логотип не подтверждают связь сайта с FTMO.
             </p>
             <p>
               Перед вводом карты проверьте 3 элемента: адрес начинается с ftmo.com, продукт называется FTMO Challenge: 1-Step или 2-Step,

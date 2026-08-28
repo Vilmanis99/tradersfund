@@ -165,9 +165,6 @@ export default function FundedNextVsBrightFundedRussianPage() {
   const payoutEvidence = new Map(marketEvidence.payoutEvidence.map(item => [item.firmSlug, item]))
   const kycEvidence = new Map(marketEvidence.kycEvidence.map(item => [item.firmSlug, item]))
   const accessEvidence = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
-  const autocomplete = new Map(marketEvidence.searchDemand.autocompleteSignals.map(item => [item.seed, item]))
-  const englishSearch = autocomplete.get('fundednext vs bright funded')
-  const russianSearch = autocomplete.get('fundednext или bright funded')
 
   const crumbs = breadcrumbSchema([
     { name: 'Traders Fund Hub', url: '/' },
@@ -491,19 +488,16 @@ export default function FundedNextVsBrightFundedRussianPage() {
           </div>
         </section>
 
-        <section className="ru-section" data-russian-primary-comparison-search="zero-suggestions-no-doorways">
+        <section className="ru-section" data-russian-primary-comparison-boundary="when-neither-fits">
           <div className="ru-shell ru-content">
-            <h2>Поисковый сигнал и защита от thin content</h2>
+            <h2>Когда не подходит ни FundedNext, ни Bright Funded</h2>
             <p>
-              Google autocomplete от {marketEvidence.capturedAt} вернул {englishSearch?.suggestions.length ?? 0} подсказок для
-              «fundednext vs bright funded» и {russianSearch?.suggestions.length ?? 0} для «fundednext или bright funded».
-              Это не доказывает нулевой спрос и не является volume tool. Оно означает, что не нужно создавать отдельные
-              страницы «кто дешевле», «кто быстрее», «USD vs EUR» и «лучший payout» с повторяющимся текстом.
+              Эта пара не закрывает любую задачу. Для торговли фьючерсами MOEX откройте отдельное исследование локальных компаний;
+              для других глобальных моделей используйте полный русский рейтинг, не подменяя его выводом из двух партнёрских карточек.
             </p>
             <p>
-              Эта одна страница закрывает решение по продуктам, валюте, drawdown, true cost, payout, KYC и стране.
-              Русские обзоры FundedNext и Bright Funded остаются фирменными due-diligence документами, а сравнение отвечает
-              на другой вопрос: какой из 7 конкретных продуктов подходит под ограничение трейдера.
+              Если ни одна фирма письменно не подтверждает вашу страну, KYC или payout rail, правильный результат сравнения — не оплачивать checkout.
+              <Link href="/ru/rossiyskie-prop-kompanii"> Локальные модели</Link> и <Link href="/ru/luchshie-prop-firmy">полный рейтинг</Link> используют другие наборы продуктов.
             </p>
           </div>
         </section>

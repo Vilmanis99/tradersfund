@@ -768,7 +768,7 @@ const russianExpectations = new Map([
       'data-russian-primary-comparison-kyc="two-required-processes"',
       'data-russian-primary-comparison-diaspora="language-not-residency"',
       'data-russian-primary-comparison-trust="suppressed-is-not-null"',
-      'data-russian-primary-comparison-search="zero-suggestions-no-doorways"',
+      'data-russian-primary-comparison-boundary="when-neither-fits"',
       'data-russian-primary-comparison-decision="constraint-before-commission"',
       'data-russian-primary-comparison-cta="fundednext"',
       'data-russian-primary-comparison-cta="bright-funded"',
@@ -817,7 +817,6 @@ const russianExpectations = new Map([
       'data-russian-deals-secondary="fundingpips"',
       'data-russian-deals-decision="product-before-discount"',
       'data-russian-deals-checkout="final-total-controls"',
-      'data-russian-deals-search="brand-signal-generic-gap"',
       'data-russian-deals-diaspora="language-not-residency"',
       'data-russian-deals-expiry="thirty-day-fail-closed"',
       '/go/fundednext?from=ru-deals-fundednext-earned-coupon',
@@ -860,7 +859,7 @@ const russianExpectations = new Map([
       'data-russian-instant-product="fundingpips:zero"',
       'data-russian-instant-risk="drawdown-before-price"',
       'data-russian-instant-diaspora="country-before-checkout"',
-      'data-russian-instant-search="generic-and-branded"',
+      'data-russian-instant-definition="phase-zero-not-label"',
       'data-russian-instant-bright="challenge-alternative-only"',
       'data-russian-instant-local-boundary="different-market-models"',
       'data-russian-instant-decision="risk-before-fee"',
@@ -893,7 +892,7 @@ const russianExpectations = new Map([
       'data-russian-payout-diaspora="language-not-bank-country"',
       'data-russian-payout-secondary="fundingpips"',
       'data-russian-payout-local-models="separate-rub-contracts"',
-      'data-russian-payout-search="brand-signal-generic-gap"',
+      'data-russian-payout-delay-record="five-fields"',
       'data-russian-payout-decision="net-receipt-before-registration"',
       '/go/fundednext?from=ru-payouts-fundednext',
       '/go/fundingpips?from=ru-payouts-fundingpips',
@@ -922,7 +921,7 @@ const russianExpectations = new Map([
       'data-russian-kyc-documents="identity-address-selfie"',
       'data-russian-kyc-payout-boundary="firm-vs-provider"',
       'data-russian-kyc-diaspora="language-not-residency"',
-      'data-russian-kyc-search-language="brand-signal-generic-gap"',
+      'data-russian-kyc-support="four-written-answers"',
       'data-russian-kyc-local-models="separate-contracts"',
       'data-russian-kyc-decision="documents-before-checkout"',
       'data-russian-kyc-secondary-partner="fundingpips"',
@@ -963,7 +962,6 @@ const russianExpectations = new Map([
       'data-russian-crypto-comparison="three-firms-twelve-products"',
       'data-russian-crypto-decision-guide="product-not-logo"',
       'data-russian-crypto-payout-boundary="bright-funded-not-ranked"',
-      'data-russian-crypto-search-language="current-autocomplete"',
       'data-russian-crypto-watch-count="7"',
       '/go/fundednext?from=ru-crypto-ranking',
       '/go/fundingpips?from=ru-crypto-ranking',
@@ -1208,7 +1206,7 @@ const russianExpectations = new Map([
       'data-russian-reviews-product-evidence="7"',
       'data-russian-reviews-payout-case="seven-facts"',
       'data-russian-reviews-negative-case="rule-first"',
-      'data-russian-reviews-search-language="current-autocomplete"',
+      'data-russian-reviews-transferability="event-not-verdict"',
       'data-russian-reviews-local-models="bridge-not-ranking"',
       'data-russian-reviews-decision="reviews-to-product"',
       'data-russian-reviews-secondary-partner="fundingpips"',
@@ -1248,6 +1246,24 @@ for (const [path, expectation] of russianExpectations) {
     || pageText.includes('FTMO доступен в России')
   ) {
     errors.push(`${path}: makes an unsupported Russia-access claim`)
+  }
+  const lowerPageText = pageText.toLowerCase()
+  for (const phrase of [
+    'yandex moscow',
+    'google autocomplete',
+    'search console',
+    'показов в месяц',
+    'monthly volume',
+    'conversion rate',
+    'doorway',
+    'thin content',
+    'поисковые сигналы',
+    'поисковый сигнал',
+    'редакционная стратегия',
+  ]) {
+    if (lowerPageText.includes(phrase)) {
+      errors.push(`${path}: exposes internal search research in rendered copy (${phrase})`)
+    }
   }
   const pair = russianRoutePairs.find(candidate => candidate.ru === path)
   const inlinkCount = internalInlinks.get(path)?.size ?? 0

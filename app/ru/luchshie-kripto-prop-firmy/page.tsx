@@ -12,7 +12,6 @@ import {
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import cryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'
-import russianMarketEvidence from '@/content/data/russian-market-evidence.json'
 import {
   getAllFirms,
   getChallengesByFirm,
@@ -55,10 +54,6 @@ const snapshots = cryptoMarketEvidence.ranked.flatMap(evidence => {
   const bKey = (b.evidence.marketModel === 'crypto-native' ? 100 : 0) + b.firm.score
   return bKey - aKey || a.firm.name.localeCompare(b.firm.name)
 })
-
-const cryptoQueryEvidence = russianMarketEvidence.searchDemand.queries.find(item =>
-  item.query === 'проп трейдинг криптовалют')
-const autocompleteSignals = russianMarketEvidence.searchDemand.autocompleteSignals
 
 const drawdownLabels: Record<string, string> = {
   static: 'статическая',
@@ -188,7 +183,7 @@ export default function RussianCryptoPropFirmsPage() {
             <div className="ru-stat"><strong>{snapshots.length}</strong><span>фирмы с текущим crypto-market источником</span></div>
             <div className="ru-stat"><strong>{productCount}</strong><span>точных продуктовых привязок</span></div>
             <div className="ru-stat"><strong>{partnerCount} из {snapshots.length}</strong><span>партнёрские фирмы; порядок не меняется</span></div>
-            <div className="ru-stat"><strong>{cryptoQueryEvidence?.monthlyFrequency ?? '—'}</strong><span>сторонняя частота запроса в Москве, не мировой объём</span></div>
+            <div className="ru-stat"><strong>{cryptoMarketEvidence.watch.length}</strong><span>фирм в открытом evidence watch</span></div>
           </div>
           <div className="ru-actions">
             <Link href="#ranking" className="btn-primary btn-glow">Сравнить 3 crypto-фирмы <ArrowRight size={15} aria-hidden="true" /></Link>
@@ -214,7 +209,6 @@ export default function RussianCryptoPropFirmsPage() {
                 <li><a href="#firm-decisions">Как выбрать по фирме</a></li>
                 <li><a href="#crypto-risk">Комиссия, плечо и выходные</a></li>
                 <li><a href="#payout-boundary">Торговля против USDC-выплаты</a></li>
-                <li><a href="#search-language">Русские поисковые формулировки</a></li>
                 <li><a href="#evidence-watch">Почему исключены ещё 7 фирм</a></li>
                 <li><a href="#alternatives">Следующий шаг</a></li>
                 <li><a href="#faq">Частые вопросы</a></li>
@@ -353,15 +347,6 @@ export default function RussianCryptoPropFirmsPage() {
                 Проверить payout-альтернативу <ArrowRight size={14} aria-hidden="true" />
               </Link>
             </div>
-          </div>
-        </section>
-
-        <section className="ru-section" id="search-language">
-          <div className="ru-shell ru-content" data-russian-crypto-search-language="current-autocomplete">
-            <h2>Почему страница использует формулировки «проп трейдинг криптовалют» и «крипто-проп компания»</h2>
-            <p>Сторонний московский снимок за январь 2026 года оценивал частоту точного запроса «проп трейдинг криптовалют» в {cryptoQueryEvidence?.monthlyFrequency ?? 28}. Это не мировой объём и не число покупателей: частоты пересекаются, а русскоязычная аудитория живёт далеко за пределами России.</p>
-            <p>Проверка autocomplete от 27 августа 2026 года сохранила формулировки «проп трейдинг криптовалют», «проп трейдинг компании криптовалют», «крипто проп фирма» и «крипто проп компания». Мы включаем их естественно, но не создаём отдельные дублирующие страницы под каждую перестановку слов.</p>
-            <p className="ru-source-line"><a href={russianMarketEvidence.searchDemand.sourceUrl} target="_blank" rel="nofollow noopener">Источник сторонней оценки</a> · {autocompleteSignals.length} текущих autocomplete-снимка · захват {russianMarketEvidence.capturedAt}.</p>
           </div>
         </section>
 
