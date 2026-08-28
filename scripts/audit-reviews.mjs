@@ -11688,6 +11688,9 @@ function checkRussianAcquisitionPilot() {
   for (const token of [
     'data-russian-home-hero-partners="fundednext-bright-funded"',
     'data-russian-home-hero-partner={item.slug}',
+    'data-russian-home-fundednext-offer="earned-coupon"',
+    'href="/ru/promokody-prop-firm#fundednext-promokod"',
+    'Как получить {item.deal.pct}% после Free Trial',
     'ru-home-partner-hero-logo',
     'Основной глобальный партнёр',
     'Проверить условия {item.name}',
@@ -12399,11 +12402,15 @@ function checkRussianAcquisitionPilot() {
     : ''
   for (const token of [
     'data-russian-fundednext-article="long-form"',
+    'data-russian-fundednext-current-offer="earned-coupon"',
     'data-fundednext-russia-access="conflicting"',
     'data-fundednext-russian-truecost="true"',
     'Содержание обзора',
     'id="verdict"',
     '/go/fundednext?from=ru-fundednext-review-verdict',
+    '/go/fundednext?from=ru-fundednext-review-free-trial',
+    'href="/ru/promokody-prop-firm#fundednext-promokod"',
+    'Текущее предложение: персональный купон {fundedNextDeal.pct}%, а не публичный промокод.',
     'href="/ru/fundednext-vs-bright-funded"',
     'rel="sponsored nofollow noopener"',
     'VPN',

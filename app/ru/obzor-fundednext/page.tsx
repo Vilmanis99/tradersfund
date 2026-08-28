@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { AlertTriangle, ArrowRight, BadgeDollarSign, CheckCircle2, Database } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import { getDealsByFirm } from '@/lib/deals'
 import { challengeTierEconomics, getAllFirms, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
@@ -99,6 +100,8 @@ export default function RussianFundedNextReviewPage() {
   const firm = getAllFirms().find(candidate => candidate.name === 'FundedNext')
   const products = getChallengesByFirm('fundednext')
   const freshProducts = products.filter(product => isChallengeFresh(product))
+  const fundedNextDeal = getDealsByFirm('fundednext')
+    .find(deal => deal.mechanism === 'earned-coupon' && deal.pct != null)
   const pricedTiers = freshProducts.flatMap(product => product.accountSizes.flatMap(tier =>
     tier.priceUsd != null && tier.priceUsd > 0 ? [{ product, tier, price: tier.priceUsd }] : []))
   const accessEvidence = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
@@ -233,6 +236,37 @@ export default function RussianFundedNextReviewPage() {
               </div>
             </aside>
           ) : null}
+
+          {fundedNextDeal && (
+            <aside
+              id="current-offer"
+              className="ru-notice ru-anchor-target"
+              data-russian-fundednext-current-offer="earned-coupon"
+            >
+              <strong>Текущее предложение: персональный купон {fundedNextDeal.pct}%, а не публичный промокод.</strong>{' '}
+              Новый пользователь сначала проходит Free Trial: цель 5% требует минимум 3 торговых дня
+              в 14-дневном окне. После выполнения FundedNext отправляет персональный код на email и в My Offers;
+              он действует 14 дней, распространяется на CFD-планы и не применяется к resets.
+              <p className="ru-source-line">
+                Проверено {fundedNextDeal.verifiedOn} ·{' '}
+                <a href={fundedNextDeal.sourceUrl} target="_blank" rel="noopener noreferrer">
+                  {fundedNextDeal.sourceLabel}
+                </a>
+              </p>
+              <div className="ru-actions">
+                <Link href="/ru/promokody-prop-firm#fundednext-promokod" className="btn-outline">
+                  Проверить все 4 шага
+                </Link>
+                <Link
+                  href="/go/fundednext?from=ru-fundednext-review-free-trial"
+                  rel="sponsored nofollow noopener"
+                  className="btn-primary"
+                >
+                  Начать Free Trial FundedNext <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+              </div>
+            </aside>
+          )}
         </div>
       </section>
 

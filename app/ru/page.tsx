@@ -74,7 +74,8 @@ export default function RussianHomePage() {
       || (tier.priceEur != null && tier.priceEur > 0),
     ).length, 0)
     const captureDate = products.map(product => product.sourceCapturedAt).sort().at(-1)
-    return { ...route, firm, products, priceCount, captureDate }
+    const deal = activeDeals.find(candidate => candidate.firmSlug === route.slug)
+    return { ...route, firm, products, priceCount, captureDate, deal }
   }).filter(item => item.firm?.affiliateUrl)
 
   const crumbs = breadcrumbSchema([
@@ -152,6 +153,15 @@ export default function RussianHomePage() {
                     <Link href={item.reviewHref} className="ru-home-partner-hero-review">
                       Сначала прочитать обзор
                     </Link>
+                    {isFundedNext && item.deal?.mechanism === 'earned-coupon' && item.deal.pct != null ? (
+                      <Link
+                        href="/ru/promokody-prop-firm#fundednext-promokod"
+                        className="ru-home-partner-hero-review"
+                        data-russian-home-fundednext-offer="earned-coupon"
+                      >
+                        Как получить {item.deal.pct}% после Free Trial
+                      </Link>
+                    ) : null}
                   </div>
                 </article>
               )
