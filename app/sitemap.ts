@@ -16,6 +16,7 @@ import {
 } from '@/lib/localizedRoutes'
 import russianMarketEvidence from '@/content/data/russian-market-evidence.json'
 import russianForexEvidence from '@/content/data/russian-forex-evidence.json'
+import russianTeamTradersEvidence from '@/content/data/russian-teamtraders-evidence.json'
 
 const BASE_URL = 'https://tradersfundhub.com'
 
@@ -230,9 +231,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
   const russianOnlyRoutes: MetadataRoute.Sitemap = RUSSIAN_ONLY_ROUTES.map(path => ({
     url: `${BASE_URL}${path}`,
-    lastModified: new Date(path === '/ru/forex-prop-firmy'
-      ? russianForexEvidence.capturedAt
-      : russianMarketEvidence.capturedAt),
+    lastModified: new Date(
+      path === '/ru/forex-prop-firmy'
+        ? russianForexEvidence.capturedAt
+        : path === '/ru/obzor-teamtraders'
+          ? russianTeamTradersEvidence.capturedAt
+          : russianMarketEvidence.capturedAt,
+    ),
     changeFrequency: 'monthly',
     priority: 0.78,
   }))

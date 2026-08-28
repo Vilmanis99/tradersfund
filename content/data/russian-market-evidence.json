@@ -343,17 +343,25 @@
     },
     {
       "operator": "TeamTraders",
-      "sourceUrl": "https://teamtraders.ru/docs/",
+      "sourceUrl": "https://teamtraders.ru/faq",
+      "sourceCapturedAt": "2026-08-28",
       "claims": {
         "stageProfitPct": 6,
-        "minimumTradingSessions": 15,
+        "minimumTradingSessions": 10,
         "dailyLossLimitPct": 2,
-        "profitSharePct": 90,
+        "maximumLossPct": 4,
+        "fundedDemoProfitSharePct": 70,
+        "fundedDemoProfitCapPct": 10,
+        "profitSharePct": 95,
+        "maximumCapitalRub": 2000000,
+        "monthlyPricesRub": [2590, 4890, 8990],
+        "renewalDiscountPct": 20,
         "market": "фьючерсы Московской биржи через Финам"
       },
       "notes": [
-        "Правила опубликованы в официальной документации; стоимость стажировки и действующий договор требуют проверки перед оплатой.",
-        "Нельзя переносить позиции через ночь по умолчанию; нарушение риск-лимита аннулирует отбор или счёт по опубликованным правилам."
+        "Current homepage and FAQ terms were captured on 2026-08-28; the legacy /docs/ archive still says 15 sessions and a 90% split, while current pages say 10 days and 95% on the real account.",
+        "The current FAQ inserts a funded-demo stage with a 70% share and a 10% profit cap before the normal move to a real account.",
+        "Overnight positions are prohibited; selection-stage daily or maximum-risk breaches fail the selection under the current FAQ."
       ]
     },
     {
@@ -413,9 +421,10 @@
     {
       "operator": "TeamTraders",
       "status": "not-found",
-      "sourceUrl": "https://teamtraders.ru/docs/",
+      "sourceUrl": "https://teamtraders.ru/",
       "notes": [
-        "The reviewed official documentation describes trader rules and does not publish an ordinary content-affiliate programme."
+        "The official homepage, FAQ and prop-trading offer reviewed on 2026-08-28 do not publish an ordinary content-affiliate programme.",
+        "Crypto-exchange rebate links in the footer are separate from a TeamTraders publisher-referral programme."
       ]
     },
     {

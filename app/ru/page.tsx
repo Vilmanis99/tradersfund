@@ -7,7 +7,6 @@ import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
-import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru'
 const TITLE = 'Проп-фирмы: обзоры, цены и правила на русском'
@@ -46,29 +45,6 @@ const featuredPartnerRoutes = [
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext', heroHref: '/go/fundednext?from=ru-home-hero-fundednext' },
   { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded', heroHref: '/go/bright-funded?from=ru-home-hero-bright-funded' },
 ] as const
-
-const relatedSearchRoutes: Record<string, { href: string; label: string }> = {
-  'рейтинг проп трейдинговых компаний': {
-    href: '/ru/luchshie-prop-firmy',
-    label: 'Открыть русский рейтинг',
-  },
-  'ftmo проп компания сайт официальный': {
-    href: '/ru/obzor-ftmo',
-    label: 'Открыть русский обзор FTMO и официальный домен',
-  },
-  'forex prop': {
-    href: '/ru/forex-prop-firmy',
-    label: 'Сравнить forex-продукты, плечо и платформы',
-  },
-  'проп форекс': {
-    href: '/ru/forex-prop-firmy',
-    label: 'Сравнить forex-продукты, плечо и платформы',
-  },
-  'пипсы проп компания': {
-    href: '/ru/obzor-fundingpips',
-    label: 'Читать обзор FundingPips',
-  },
-}
 
 export default function RussianHomePage() {
   const firms = getAllFirms()
@@ -273,7 +249,7 @@ export default function RussianHomePage() {
         <div className="ru-shell">
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия объединяет 22 самостоятельные страницы под разные поисковые задачи,
+            Русская версия объединяет 23 самостоятельные страницы под разные поисковые задачи,
             включая отдельную проверку компаний российского рынка. Мы не переводим сотни URL автоматически: сначала проверяем,
             отвечает ли локальная страница на самостоятельный поисковый запрос.
           </p>
@@ -374,59 +350,38 @@ export default function RussianHomePage() {
             <Link href="/ru/obzor-ftmo">FTMO</Link>,{' '}
             <Link href="/ru/obzor-fundingpips">FundingPips</Link> и{' '}
             <Link href="/ru/obzor-bright-funded">Bright Funded</Link>. Сначала подтвердите страну и правила продукта.
-            {' '}Локальные разборы: <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-kascapital">KasCapital</Link>. <Link href="/ru/otzyvy-prop-firm">Отзывы о проп-фирмах</Link>.
+            {' '}Локальные разборы: <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link>, <Link href="/ru/obzor-kascapital">KasCapital</Link> и <Link href="/ru/obzor-teamtraders">TeamTraders</Link>. <Link href="/ru/otzyvy-prop-firm">Отзывы о проп-фирмах</Link>.
           </p>
         </div>
       </section>
 
       <section className="ru-section">
-        <div className="ru-shell ru-content">
-          <h2>Почему русская версия появилась сейчас</h2>
+        <div className="ru-shell ru-content" data-russian-home-next-step="reader-decision">
+          <h2>С чего начать русскоязычному трейдеру</h2>
           <p>
-            Независимый снимок Yandex Moscow за январь 2026 года оценивал частотность
-            запроса «проп компании» в {marketEvidence.searchDemand.queries[0].monthlyFrequency},
-            а «проп компании для трейдеров в россии» — в{' '}
-            {marketEvidence.searchDemand.queries[1].monthlyFrequency} показов в месяц.
-            Анализируемый молодой сайт получил примерно {marketEvidence.searchDemand.estimatedClicks}{' '}
-            переходов из Яндекса за месяц и находился в топ-50 по{' '}
-            {marketEvidence.searchDemand.top50Queries} запросам.
+            Выбирайте маршрут по стране проживания, рынку и правилам конкретного продукта. Русский язык помогает
+            разобраться в условиях, но не заменяет проверку доступа, KYC, способа оплаты и будущей выплаты.
           </p>
-          <p className="ru-muted">
-            Это сторонняя оценка, а не данные Яндекс Вебмастера, и пересекающиеся
-            частотности нельзя складывать. Мы используем её как сигнал для небольшого
-            теста, а не как обещание трафика или дохода.{' '}
-            <a href={marketEvidence.searchDemand.sourceUrl} target="_blank" rel="noopener noreferrer">
-              Проверить источник оценки
-            </a>.
-          </p>
-        </div>
-      </section>
-
-      <section className="ru-section">
-        <div className="ru-shell ru-content" data-russian-search-intent="related-queries">
-          <h2>Смежные русские запросы и полезные маршруты</h2>
-          <p>
-            Тот же снимок поискового спроса содержит более узкие формулировки. Мы показываем их как
-            редакционные входы в соответствующий материал, а не как обещание объёма или доступности фирмы.
-            Частотности относятся к Яндексу в Москве за январь 2026 года и могут пересекаться.
-          </p>
-          <ul className="ru-facts">
-            {marketEvidence.searchDemand.queries.slice(5).map(item => {
-              const route = relatedSearchRoutes[item.query]
-              return (
-                <li key={item.query}>
-                  <SearchCheck size={14} aria-hidden="true" />
-                  <span>
-                    <strong>{item.query}</strong> — {item.monthlyFrequency} показов в месяц.{' '}
-                    {route ? <Link href={route.href}>{route.label}</Link> : 'Материал готовится после проверки источников.'}
-                  </span>
-                </li>
-              )
-            })}
-          </ul>
-          <p className="ru-source-line">
-            Источник и методика оценки указаны выше; значения нельзя складывать в общий размер аудитории.
-          </p>
+          <div className="ru-grid">
+            <article className="ru-card">
+              <Globe2 size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Нужна глобальная проп-фирма</h3>
+              <p className="ru-muted">Сравните 7 актуальных продуктов FundedNext и Bright Funded по цене, просадке, этапам и первому окну выплаты.</p>
+              <Link className="ru-card-link" href="/ru/fundednext-vs-bright-funded">Сравнить главных партнёров →</Link>
+            </article>
+            <article className="ru-card">
+              <ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Нужно проверить страну и KYC</h3>
+              <p className="ru-muted">Гражданство, резидентство, платёжный адрес и документы могут проверяться отдельно до покупки или выплаты.</p>
+              <Link className="ru-card-link" href="/ru/prop-firmy-bez-kyc">Открыть проверку KYC →</Link>
+            </article>
+            <article className="ru-card">
+              <Building2 size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Нужны российские фьючерсы</h3>
+              <p className="ru-muted">Локальные компании рассматриваются отдельно: продукты на MOEX нельзя смешивать с глобальными forex/CFD-челленджами.</p>
+              <Link className="ru-card-link" href="/ru/rossiyskie-prop-kompanii">Смотреть локальные компании →</Link>
+            </article>
+          </div>
         </div>
       </section>
 

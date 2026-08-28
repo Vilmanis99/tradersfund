@@ -32,6 +32,7 @@ const russianNavLinks = [
       { label: 'PropLive', href: '/ru/obzor-proplive' },
       { label: 'Era Trade', href: '/ru/obzor-eratrade' },
       { label: 'KasCapital', href: '/ru/obzor-kascapital' },
+      { label: 'TeamTraders', href: '/ru/obzor-teamtraders' },
     ],
   },
   {

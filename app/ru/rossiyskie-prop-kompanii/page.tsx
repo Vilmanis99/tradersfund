@@ -208,11 +208,13 @@ export default function RussianPropCompaniesPage() {
               <BadgeCheck size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>TeamTraders</h3>
               <p className="ru-muted">
-                В официальной документации указаны две цели по {teamTraders?.claims.stageProfitPct}%, минимум{' '}
-                {teamTraders?.claims.minimumTradingSessions} торговых сессий, дневной лимит потерь {teamTraders?.claims.dailyLossLimitPct}%
-                и доля трейдера {teamTraders?.claims.profitSharePct}%. Инструменты — фьючерсы Московской биржи через Финам.
+                Текущие страницы указывают две цели по {teamTraders?.claims.stageProfitPct}%, минимум{' '}
+                {teamTraders?.claims.minimumTradingSessions} торговых дней, дневной лимит {teamTraders?.claims.dailyLossLimitPct}%,
+                максимальный риск {teamTraders?.claims.maximumLossPct}% и две доли: {teamTraders?.claims.fundedDemoProfitSharePct}%
+                на funded demo и {teamTraders?.claims.profitSharePct}% на real. Архив всё ещё показывает старые 15 дней и 90%.
               </p>
-              <SourceLink href={teamTraders?.sourceUrl ?? 'https://teamtraders.ru/docs/'}>Официальная документация TeamTraders</SourceLink>
+              <SourceLink href={teamTraders?.sourceUrl ?? 'https://teamtraders.ru/faq'}>Текущий FAQ TeamTraders</SourceLink>
+              <Link href="/ru/obzor-teamtraders" className="ru-card-link">Открыть отдельный обзор TeamTraders →</Link>
             </article>
 
             <article className="ru-card">

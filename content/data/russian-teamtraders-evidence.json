@@ -1,0 +1,170 @@
+{
+  "capturedAt": "2026-08-28",
+  "operator": "TeamTraders",
+  "searchIntent": {
+    "queries": [
+      "TeamTraders отзывы",
+      "TeamTraders обзор",
+      "TeamTraders проп компания"
+    ],
+    "sourceType": "current search-result phrasing; no search-volume claim"
+  },
+  "sources": [
+    {
+      "id": "home",
+      "url": "https://teamtraders.ru/",
+      "capturedAt": "2026-08-28",
+      "supports": [
+        "three current RUB account sizes and monthly prices",
+        "6% target per evaluation step",
+        "2% daily and 4% maximum risk",
+        "10 minimum trading sessions",
+        "95% real-account profit share",
+        "daily payout requests and no published withdrawal cap",
+        "CScalp, MOEX futures and Finam relationship"
+      ]
+    },
+    {
+      "id": "faq",
+      "url": "https://teamtraders.ru/faq",
+      "capturedAt": "2026-08-28",
+      "supports": [
+        "two evaluation steps and funded-demo intermediate stage",
+        "20% renewal discount conditions",
+        "funded-demo 70% share and 10% profit cap",
+        "real-account 95% share and daily-risk breach penalty",
+        "manual trading, no overnight holding and instrument limits"
+      ]
+    },
+    {
+      "id": "offer",
+      "url": "https://teamtraders.ru/oferta_prop/",
+      "capturedAt": "2026-08-28",
+      "supports": [
+        "offer revision dated 2024-11-12",
+        "registration as acceptance of the service agreement",
+        "compensation calculation stored in the web cabinet",
+        "operator identity and registration numbers",
+        "unilateral amendment notice through the web cabinet"
+      ]
+    },
+    {
+      "id": "legacy-docs",
+      "url": "https://teamtraders.ru/docs/",
+      "capturedAt": "2026-08-28",
+      "supports": [
+        "legacy 15-session wording",
+        "legacy 90% profit-share wording",
+        "legacy statement that all MOEX futures are available"
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "startingBalanceRub": 500000,
+      "monthlyPriceRub": 2590,
+      "targetRubPerStage": 30000,
+      "dailyLossRub": 10000,
+      "maximumLossRub": 20000
+    },
+    {
+      "startingBalanceRub": 1000000,
+      "monthlyPriceRub": 4890,
+      "targetRubPerStage": 60000,
+      "dailyLossRub": 20000,
+      "maximumLossRub": 40000
+    },
+    {
+      "startingBalanceRub": 2000000,
+      "monthlyPriceRub": 8990,
+      "targetRubPerStage": 120000,
+      "dailyLossRub": 40000,
+      "maximumLossRub": 80000
+    }
+  ],
+  "evaluation": {
+    "steps": 2,
+    "profitTargetPctPerStep": 6,
+    "dailyLossPct": 2,
+    "maximumLossPct": 4,
+    "minimumTradingDaysTotal": 10,
+    "minimumTradesPerCountedDay": 1,
+    "billingPeriodMonths": 1,
+    "renewalDiscountPct": 20,
+    "renewalRequiresPositiveBalance": true,
+    "renewalRequiresNoRiskBreach": true,
+    "overnightHoldingAllowed": false,
+    "riskBreachOutcome": "evaluation failed; a new paid evaluation is required"
+  },
+  "fundedDemo": {
+    "profitSharePct": 70,
+    "profitTargetAndCapPct": 10,
+    "dailyLossPct": 2,
+    "maximumLossPct": 4,
+    "payoutRequestMinimumPublished": null,
+    "payoutMethodPublished": null,
+    "realAccountTransition": "normally after withdrawing 10% of the starting balance; earlier transfer is discretionary"
+  },
+  "realAccount": {
+    "profitSharePct": 95,
+    "companySharePct": 5,
+    "dailyLossPct": 2,
+    "maximumLossPct": 4,
+    "payoutRequestFrequency": "daily",
+    "maximumProfitCapPublished": null,
+    "fixedExpiryPublished": null,
+    "dailyLossBreachBlock": "until the next trading session",
+    "dailyLossExcessPenaltyPct": 20
+  },
+  "trading": {
+    "market": "selected liquid MOEX futures; stock-market connections are also mentioned in the current FAQ",
+    "brokerRelationship": "TeamTraders says exchange operations use Finam, licence 177-02752-010000 dated 2000-11-09",
+    "terminal": "CScalp with Privod Bondar 2.0 for new demo connections",
+    "scalpingAllowed": true,
+    "newsTradingAllowed": true,
+    "robotsAllowed": false,
+    "manualTradingRequired": true,
+    "overnightHoldingAllowed": false,
+    "allMoexFuturesAvailable": false,
+    "commissionAmountPublished": null
+  },
+  "legal": {
+    "offerRevision": "2024-11-12",
+    "operatorName": "ИП Клычев Алишер Алиджанович",
+    "ogrnip": "323400000016841",
+    "inn": "400000476601",
+    "agreementModel": "services for development of trading strategies",
+    "acceptanceEvent": "registration in the web cabinet",
+    "compensationLocation": "web cabinet",
+    "termsMayChangeUnilaterally": true
+  },
+  "affiliateProgram": {
+    "status": "not-found",
+    "checkedUrls": [
+      "https://teamtraders.ru/",
+      "https://teamtraders.ru/faq",
+      "https://teamtraders.ru/oferta_prop/"
+    ],
+    "note": "No ordinary public content-publisher affiliate programme was found. Crypto-exchange rebate links in the footer are a different commercial relationship and are not a TeamTraders referral programme."
+  },
+  "sourceConflicts": [
+    {
+      "field": "minimum trading sessions",
+      "currentValue": 10,
+      "legacyValue": 15,
+      "resolution": "use the current homepage and FAQ; verify again in the web cabinet before payment"
+    },
+    {
+      "field": "real-account profit share",
+      "currentValue": 95,
+      "legacyValue": 90,
+      "resolution": "use the current homepage and FAQ; the offer says the actual calculation is stored in the web cabinet"
+    },
+    {
+      "field": "available MOEX futures",
+      "currentValue": "selected liquid instruments, with additions by request",
+      "legacyValue": "all available MOEX futures",
+      "resolution": "use the terminal list shown after opening the free demo account"
+    }
+  ]
+}

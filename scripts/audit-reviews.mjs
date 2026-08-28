@@ -10818,6 +10818,7 @@ function checkRussianAcquisitionPilot() {
   const rows = []
   const evidenceFile = path.join(ROOT, 'content/data/russian-market-evidence.json')
   const forexEvidenceFile = path.join(ROOT, 'content/data/russian-forex-evidence.json')
+  const teamTradersEvidenceFile = path.join(ROOT, 'content/data/russian-teamtraders-evidence.json')
   const localizedRoutesFile = path.join(ROOT, 'lib/localizedRoutes.ts')
   const russianLayoutFile = path.join(ROOT, 'app/ru/layout.tsx')
   const russianPartnerReviewFile = path.join(ROOT, 'components/RussianPartnerReview.tsx')
@@ -10835,6 +10836,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-proplive', path.join(ROOT, 'app/ru/obzor-proplive/page.tsx')],
     ['/ru/obzor-eratrade', path.join(ROOT, 'app/ru/obzor-eratrade/page.tsx')],
     ['/ru/obzor-kascapital', path.join(ROOT, 'app/ru/obzor-kascapital/page.tsx')],
+    ['/ru/obzor-teamtraders', path.join(ROOT, 'app/ru/obzor-teamtraders/page.tsx')],
     ['/ru/otzyvy-prop-firm', path.join(ROOT, 'app/ru/otzyvy-prop-firm/page.tsx')],
     ['/ru/prop-firmy-bez-chelendzha', path.join(ROOT, 'app/ru/prop-firmy-bez-chelendzha/page.tsx')],
     ['/ru/luchshie-prop-firmy', path.join(ROOT, 'app/ru/luchshie-prop-firmy/page.tsx')],
@@ -10851,6 +10853,31 @@ function checkRussianAcquisitionPilot() {
 
   for (const [route, file] of russianRouteFiles) {
     if (!fs.existsSync(file)) rows.push(`${route}: route source is missing`)
+  }
+  const russianHomeFile = path.join(ROOT, 'app/ru/page.tsx')
+  if (fs.existsSync(russianHomeFile)) {
+    const russianHomeSource = fs.readFileSync(russianHomeFile, 'utf8')
+    for (const internalSeoPhrase of [
+      'Почему русская версия появилась сейчас',
+      'Независимый снимок Yandex Moscow',
+      'Смежные русские запросы и полезные маршруты',
+      'proptreiding.ru',
+    ]) {
+      if (russianHomeSource.includes(internalSeoPhrase)) {
+        rows.push(`/ru: internal SEO research is exposed in public copy (${internalSeoPhrase})`)
+      }
+    }
+    for (const readerMarker of [
+      'data-russian-home-next-step="reader-decision"',
+      'С чего начать русскоязычному трейдеру',
+      '/ru/fundednext-vs-bright-funded',
+      '/ru/prop-firmy-bez-kyc',
+      '/ru/rossiyskie-prop-kompanii',
+    ]) {
+      if (!russianHomeSource.includes(readerMarker)) {
+        rows.push(`/ru: reader decision path is missing ${readerMarker}`)
+      }
+    }
   }
   if (!fs.existsSync(evidenceFile)) {
     rows.push('content/data/russian-market-evidence.json is missing')
@@ -11172,11 +11199,16 @@ function checkRussianAcquisitionPilot() {
       }
       if (
         localSignals.get('TeamTraders')?.claims?.stageProfitPct !== 6
-        || localSignals.get('TeamTraders')?.claims?.minimumTradingSessions !== 15
+        || localSignals.get('TeamTraders')?.claims?.minimumTradingSessions !== 10
         || localSignals.get('TeamTraders')?.claims?.dailyLossLimitPct !== 2
-        || localSignals.get('TeamTraders')?.claims?.profitSharePct !== 90
+        || localSignals.get('TeamTraders')?.claims?.maximumLossPct !== 4
+        || localSignals.get('TeamTraders')?.claims?.fundedDemoProfitSharePct !== 70
+        || localSignals.get('TeamTraders')?.claims?.profitSharePct !== 95
+        || localSignals.get('TeamTraders')?.claims?.maximumCapitalRub !== 2_000_000
+        || localSignals.get('TeamTraders')?.sourceCapturedAt !== '2026-08-28'
+        || !localSignals.get('TeamTraders')?.notes?.some(note => note.includes('15 sessions and a 90% split'))
       ) {
-        rows.push('TeamTraders rule fixtures are missing from Russian evidence')
+        rows.push('TeamTraders current rules or legacy 15-day/90% conflict are missing from Russian evidence')
       }
       if (localSignals.get('Trade System')?.claims?.maximumProfitSharePct !== 95) {
         rows.push('Trade System operator-term fixtures are missing from Russian evidence')
@@ -11296,6 +11328,59 @@ function checkRussianAcquisitionPilot() {
     }
   }
 
+  if (!fs.existsSync(teamTradersEvidenceFile)) {
+    rows.push('content/data/russian-teamtraders-evidence.json is missing')
+  } else {
+    try {
+      const teamTradersEvidence = JSON.parse(fs.readFileSync(teamTradersEvidenceFile, 'utf8'))
+      const capturedAt = new Date(`${teamTradersEvidence.capturedAt}T23:59:59Z`)
+      const ageDays = (Date.now() - capturedAt.getTime()) / 86_400_000
+      if (Number.isNaN(capturedAt.getTime()) || ageDays < -1 || ageDays > 30) {
+        rows.push(`TeamTraders evidence capture ${teamTradersEvidence.capturedAt || 'missing'} is outside the 30-day window`)
+      }
+      if (
+        teamTradersEvidence.operator !== 'TeamTraders'
+        || teamTradersEvidence.sources?.length !== 4
+        || teamTradersEvidence.accounts?.length !== 3
+        || teamTradersEvidence.accounts?.[0]?.startingBalanceRub !== 500_000
+        || teamTradersEvidence.accounts?.[0]?.monthlyPriceRub !== 2_590
+        || teamTradersEvidence.accounts?.[1]?.monthlyPriceRub !== 4_890
+        || teamTradersEvidence.accounts?.[2]?.monthlyPriceRub !== 8_990
+        || teamTradersEvidence.evaluation?.steps !== 2
+        || teamTradersEvidence.evaluation?.profitTargetPctPerStep !== 6
+        || teamTradersEvidence.evaluation?.minimumTradingDaysTotal !== 10
+        || teamTradersEvidence.evaluation?.dailyLossPct !== 2
+        || teamTradersEvidence.evaluation?.maximumLossPct !== 4
+        || teamTradersEvidence.fundedDemo?.profitSharePct !== 70
+        || teamTradersEvidence.fundedDemo?.profitTargetAndCapPct !== 10
+        || teamTradersEvidence.realAccount?.profitSharePct !== 95
+        || teamTradersEvidence.realAccount?.dailyLossExcessPenaltyPct !== 20
+      ) {
+        rows.push('TeamTraders price, evaluation, funded-demo or real-account fixture is incomplete')
+      }
+      if (
+        teamTradersEvidence.affiliateProgram?.status !== 'not-found'
+        || teamTradersEvidence.searchIntent?.queries?.length !== 3
+        || teamTradersEvidence.sourceConflicts?.length !== 3
+        || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 10 && item.legacyValue === 15)
+        || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 95 && item.legacyValue === 90)
+      ) {
+        rows.push('TeamTraders affiliate boundary, search intent or source-conflict fixture is incomplete')
+      }
+      for (const source of teamTradersEvidence.sources ?? []) {
+        try {
+          if (new URL(source.url).hostname !== 'teamtraders.ru' || source.capturedAt !== teamTradersEvidence.capturedAt) {
+            rows.push(`TeamTraders source is not current first-party evidence: ${source.url}`)
+          }
+        } catch {
+          rows.push(`TeamTraders source URL is invalid: ${source?.url ?? 'missing'}`)
+        }
+      }
+    } catch (error) {
+      rows.push(`TeamTraders evidence is invalid JSON: ${error.message}`)
+    }
+  }
+
   if (!fs.existsSync(forexEvidenceFile)) {
     rows.push('content/data/russian-forex-evidence.json is missing')
   } else {
@@ -11381,6 +11466,7 @@ function checkRussianAcquisitionPilot() {
     "'/ru/obzor-proplive'",
     "'/ru/obzor-eratrade'",
     "'/ru/obzor-kascapital'",
+    "'/ru/obzor-teamtraders'",
     "'/ru/otzyvy-prop-firm'",
     "'/ru/rossiyskie-prop-kompanii'",
     "'x-default': pair.en",
@@ -11516,6 +11602,7 @@ function checkRussianAcquisitionPilot() {
     'многоуровневая Ambassador-схема нам не нужна',
     'href="/ru/dlya-russkoyazychnykh-treyderov"',
     'href="/ru/obzor-proplive"',
+    'href="/ru/obzor-teamtraders"',
     'А-Лаб Групп',
     'TeamTraders',
     'Trade System',
@@ -11918,6 +12005,32 @@ function checkRussianAcquisitionPilot() {
     if (!russianKasCapitalPage.includes(token)) rows.push(`Russian KasCapital review is missing ${token}`)
   }
 
+  const russianTeamTradersPage = fs.existsSync(russianRouteFiles.get('/ru/obzor-teamtraders'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/obzor-teamtraders'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-local-review="teamtraders"',
+    'data-russian-local-review-status="verification-only"',
+    'data-russian-country-boundary="local-review-not-access"',
+    'data-russian-local-affiliate="not-found"',
+    'data-russian-local-global-funnel="teamtraders"',
+    'data-russian-teamtraders-pricing="three-rub-tiers"',
+    'data-russian-teamtraders-process="five-stages"',
+    'data-russian-teamtraders-rules="manual-intraday"',
+    'data-russian-teamtraders-payouts="demo-70-real-95"',
+    'data-russian-teamtraders-source-conflict="current-vs-legacy"',
+    'data-russian-teamtraders-legal="offer-before-registration"',
+    'data-russian-affiliate-disclosure="teamtraders-global-options"',
+    'TEAMTRADERS_HOME',
+    'TEAMTRADERS_FAQ',
+    'TEAMTRADERS_OFFER',
+    'TEAMTRADERS_LEGACY_DOCS',
+    'ru-teamtraders-global-',
+    'rel="sponsored nofollow noopener"',
+  ]) {
+    if (!russianTeamTradersPage.includes(token)) rows.push(`Russian TeamTraders review is missing ${token}`)
+  }
+
   const russianReviewsPage = fs.existsSync(russianRouteFiles.get('/ru/otzyvy-prop-firm'))
     ? fs.readFileSync(russianRouteFiles.get('/ru/otzyvy-prop-firm'), 'utf8')
     : ''
@@ -12084,6 +12197,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/obzor-ftmo'",
     "href: '/ru/obzor-eratrade'",
     "href: '/ru/obzor-kascapital'",
+    "href: '/ru/obzor-teamtraders'",
     "href: '/ru/obzor-fundingpips'",
     "href: '/ru/obzor-bright-funded'",
     "href: '/ru/chto-takoe-prop-firma'",
@@ -12107,6 +12221,7 @@ function checkRussianAcquisitionPilot() {
   if (!footer.includes("href: '/ru/obzor-proplive'")) rows.push('Russian footer is missing the PropLive review route')
   if (!footer.includes("href: '/ru/obzor-eratrade'")) rows.push('Russian footer is missing the Era Trade review route')
   if (!footer.includes("href: '/ru/obzor-kascapital'")) rows.push('Russian footer is missing the KasCapital review route')
+  if (!footer.includes("href: '/ru/obzor-teamtraders'")) rows.push('Russian footer is missing the TeamTraders review route')
   if (!footer.includes("href: '/ru/otzyvy-prop-firm'")) rows.push('Russian footer is missing the reviews guide route')
   if (!footer.includes("href: '/ru/obzor-ftmo'")) rows.push('Russian footer is missing the FTMO review route')
   if (!footer.includes("href: '/ru/chto-takoe-prop-firma'")) rows.push('Russian footer is missing the prop-definition route')
@@ -12118,6 +12233,7 @@ function checkRussianAcquisitionPilot() {
     'RUSSIAN_ONLY_ROUTES',
     "'x-default': `${BASE_URL}${pair.en}`",
     'russianMarketEvidence.capturedAt',
+    'russianTeamTradersEvidence.capturedAt',
     'russianForexEvidence.capturedAt',
   ]) {
     if (!sitemap.includes(token)) rows.push(`sitemap is missing Russian safeguard ${token}`)
