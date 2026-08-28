@@ -1020,12 +1020,15 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-fundednext', {
-    title: 'FundedNext: обзор 2026, цены, правила и выплаты',
-    h1: 'FundedNext: обзор 2026 — 22 цены и 4 набора правил',
+    title: 'FundedNext: отзывы и обзор 2026, цены и правила',
+    h1: 'FundedNext: отзывы и обзор 2026 — 22 цены и 4 набора правил',
     markers: [
       'data-russian-fundednext-article="long-form"',
       'data-russian-fundednext-editorial-shell="review-parity"',
       'data-russian-fundednext-current-offer="earned-coupon"',
+      'data-russian-fundednext-reviews="aggregate-not-payout-proof"',
+      'Отзывы о FundedNext: что означают',
+      '/ru/otzyvy-prop-firm#review-checklist',
       'а не публичный промокод.',
       '/ru/promokody-prop-firm#fundednext-promokod',
       '/go/fundednext?from=ru-fundednext-review-free-trial',
@@ -1064,6 +1067,9 @@ const russianExpectations = new Map([
     markers: [
       'data-russian-partner-review="bright-funded"',
       'data-russian-bright-article="long-form"',
+      'data-russian-bright-reviews="suppressed-not-zero"',
+      'Отзывы о Bright Funded: почему мы не показываем среднюю оценку',
+      '/ru/otzyvy-prop-firm#review-checklist',
       'data-russian-bright-country-access="published-list"',
       'data-russian-bright-plan-matrix="three-products"',
       'data-russian-bright-price-count="18"',

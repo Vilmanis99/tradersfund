@@ -14,7 +14,7 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/obzor-bright-funded'
 const TITLE = 'Bright Funded: обзор 2026, цены, правила и выплаты'
-const DESCRIPTION = 'Подробный обзор Bright Funded на русском: 18 цен в EUR, 3 программы, просадка, true cost, выплаты, 15% evaluation reward и проверка страны.'
+const DESCRIPTION = 'Отзывы о Bright Funded и обзор на русском: 3 программы, 18 цен в EUR, просадка, выплаты, Trustpilot и проверка ограничений по стране.'
 
 const RULES_URL = 'https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process'
 const REWARD_URL = 'https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account'
@@ -107,13 +107,20 @@ export default function RussianBrightFundedReviewPage() {
   const classic100k = product100k(classic)
   const minPrice = pricedTiers.length ? Math.min(...pricedTiers.map(item => item.price)) : null
   const maxPrice = pricedTiers.length ? Math.max(...pricedTiers.map(item => item.price)) : null
+  const pageFaqs: RussianFaqItem[] = [
+    ...faqs,
+    ...(firm?.trustpilotRatingSuppressed ? [{
+      q: 'Почему у Bright Funded нет средней оценки Trustpilot?',
+      a: `В захвате от ${firm.trustpilotCapturedAt ?? 'неуказанной даты'} агрегат был скрыт после отметки Trustpilot о нарушении правил платформы. Это отдельный статус suppression, а не оценка 0/5 и не отсутствие проверки; выплату, KYC и торговое правило конкретного счёта он сам по себе не доказывает.`,
+    }] : []),
+  ]
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
     { name: 'Лучшие проп-фирмы', url: '/ru/luchshie-prop-firmy' },
     { name: 'Обзор Bright Funded' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = faqPageSchema(pageFaqs)
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -143,7 +150,7 @@ export default function RussianBrightFundedReviewPage() {
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
             <span>Автор: Tara Mohseni</span>
             <span>Обновлено: {latestCapture}</span>
-            <span>11 минут чтения</span>
+            <span>13 минут чтения</span>
           </div>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>текущие программы</span></div>
@@ -161,6 +168,7 @@ export default function RussianBrightFundedReviewPage() {
               <div className="toc-title">Содержание обзора</div>
               <ol>
                 <li><a href="#verdict">Краткий вывод</a></li>
+                {firm?.trustpilotRatingSuppressed ? <li><a href="#reviews">Отзывы и Trustpilot</a></li> : null}
                 <li><a href="#access">Доступ для русскоязычных трейдеров</a></li>
                 <li><a href="#plans">Сравнение трёх программ</a></li>
                 <li><a href="#prices">Все 18 цен</a></li>
@@ -184,6 +192,45 @@ export default function RussianBrightFundedReviewPage() {
             <p>Для русскоязычного пользователя за пределами России Bright Funded интересен именно как глобальная EUR-priced фирма. Для резидента или гражданина любой страны решение начинается с опубликованного списка ограничений, KYC и доступного способа выплаты, а не с языка сайта.</p>
           </div>
         </section>
+
+        {firm?.trustpilotRatingSuppressed ? (
+          <section className="ru-section">
+            <div
+              className="ru-shell ru-content"
+              data-russian-bright-reviews="suppressed-not-zero"
+            >
+              <h2 id="reviews">Отзывы о Bright Funded: почему мы не показываем среднюю оценку</h2>
+              <p>
+                В захвате профиля Trustpilot от {firm.trustpilotCapturedAt ?? 'неуказанной даты'} агрегат Bright Funded был скрыт после отметки
+                о нарушении правил платформы. Поэтому в нашей модели стоят <strong>не 0/5</strong>, а отдельный статус suppression без среднего балла
+                и количества: ноль, отсутствие данных и снятый агрегат означают три разные вещи.
+              </p>
+              <div className="ru-grid">
+                <article className="ru-card">
+                  <h3>Что подтверждено</h3>
+                  <p>На дату {firm.trustpilotCapturedAt ?? 'без даты'} публичный агрегат нельзя было использовать как числовой сигнал. Мы не восстанавливаем прежний балл из кеша и не заменяем его редакционными {firm.score.toFixed(1)}/10.</p>
+                </article>
+                <article className="ru-card">
+                  <h3>Что suppression не доказывает</h3>
+                  <p>Статус Trustpilot сам по себе не подтверждает и не опровергает выплату, KYC-решение или нарушение торгового правила на 1 конкретном счёте; эти события требуют собственного документа и даты.</p>
+                </article>
+                <article className="ru-card">
+                  <h3>Что должен назвать полезный отзыв</h3>
+                  <p>Нужна 1 из {freshProducts.length} программ, EUR-взнос, этап, тип просадки, дата, страна и payout rail. Без этих 7 полей отзыв нельзя переносить между 1-Step, 2-Step Bright и Classic.</p>
+                </article>
+              </div>
+              <p className="ru-source-line">
+                Статус захвачен {firm.trustpilotCapturedAt ?? 'без даты'} ·{' '}
+                {firm.trustpilotUrl ? <a href={firm.trustpilotUrl} target="_blank" rel="noopener noreferrer">Открыть профиль Trustpilot</a> : 'ссылка на профиль не сохранена'}.
+                {' '}Для продуктовой проверки используйте чек-лист из 7 полей, а не старый агрегат.
+              </p>
+              <div className="ru-actions">
+                <Link href="/ru/otzyvy-prop-firm#review-checklist" className="btn-outline">Чек-лист проверки отзывов</Link>
+                <Link href="#plans" className="btn-primary">Сопоставить 3 программы</Link>
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         <section className="ru-section">
           <div className="ru-shell ru-content">
@@ -366,7 +413,7 @@ export default function RussianBrightFundedReviewPage() {
         <section className="ru-section">
           <div className="ru-shell ru-content">
             <h2 id="faq">Частые вопросы</h2>
-            <RussianFaq items={faqs} />
+            <RussianFaq items={pageFaqs} />
           </div>
         </section>
       </article>

@@ -10,8 +10,8 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru/obzor-fundednext'
-const TITLE = 'FundedNext: обзор 2026, цены, правила и выплаты'
-const DESCRIPTION = 'Обзор FundedNext на русском: модели Stellar, цены, просадка, выплаты и проверка ограничений по стране с датой захвата условий.'
+const TITLE = 'FundedNext: отзывы и обзор 2026, цены и правила'
+const DESCRIPTION = 'Отзывы о FundedNext и обзор на русском: 4 модели Stellar, 22 цены, просадка, выплаты, Free Trial и проверка ограничений по стране.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -123,13 +123,20 @@ export default function RussianFundedNextReviewPage() {
   const money = (value: number | null | undefined) => value == null
     ? '—'
     : `$${value.toLocaleString('en-US', { minimumFractionDigits: Number.isInteger(value) ? 0 : 2, maximumFractionDigits: 2 })}`
+  const pageFaqs: RussianFaqItem[] = [
+    ...faqs,
+    ...(firm?.trustpilotScore != null && firm.trustpilotCount != null ? [{
+      q: 'Что показывают отзывы о FundedNext на Trustpilot?',
+      a: `В датированном захвате от ${firm.trustpilotCapturedAt ?? 'неуказанной даты'} профиль показывал ${firm.trustpilotScore.toFixed(1)}/5 по ${firm.trustpilotCount.toLocaleString('ru-RU')} отзывам. Агрегат описывает публичную обратную связь на ту дату, но не подтверждает выплату, KYC, страну или правило конкретной модели Stellar.`,
+    }] : []),
+  ]
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
     { name: 'Лучшие проп-фирмы', url: '/ru/luchshie-prop-firmy' },
     { name: 'Обзор FundedNext' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = faqPageSchema(pageFaqs)
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -158,7 +165,7 @@ export default function RussianFundedNextReviewPage() {
         <div className="ru-shell">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / FundedNext</div>
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> {hasFreshProducts ? `Свежие данные продуктов: ${latestProductCapture}` : `Захват условий от ${latestProductCapture ?? 'неуказанной даты'} требует обновления`}</div>
-          <h1>FundedNext: обзор 2026 — 22 цены и 4 набора правил</h1>
+          <h1>FundedNext: отзывы и обзор 2026 — 22 цены и 4 набора правил</h1>
           <p className="ru-lead">
             Модели Stellar различаются числом этапов, просадкой, сплитом и сроком первой выплаты.
             Выбирать нужно по ограничивающему правилу, а не по максимальному рекламному проценту.
@@ -166,7 +173,7 @@ export default function RussianFundedNextReviewPage() {
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
             <span>Автор: Edris Derakhshi</span>
             <span>Обновлено: {latestProductCapture ?? marketEvidence.capturedAt}</span>
-            <span>12 минут чтения</span>
+            <span>14 минут чтения</span>
           </div>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>текущих моделей</span></div>
@@ -277,6 +284,7 @@ export default function RussianFundedNextReviewPage() {
             <ol>
               <li><a href="#verdict">Краткий вывод</a></li>
               <li><a href="#access">Доступ для России и русскоязычных за рубежом</a></li>
+              {firm?.trustpilotScore != null && firm.trustpilotCount != null ? <li><a href="#reviews">Отзывы и Trustpilot</a></li> : null}
               <li><a href="#method">Методика проверки</a></li>
               <li><a href="#facts">FundedNext в цифрах</a></li>
               <li><a href="#products">Четыре модели Stellar</a></li>
@@ -321,6 +329,45 @@ export default function RussianFundedNextReviewPage() {
           </div>
         </div>
       </section>
+
+      {firm?.trustpilotScore != null && firm.trustpilotCount != null ? (
+        <section className="ru-section">
+          <div
+            className="ru-shell ru-content"
+            data-russian-fundednext-reviews="aggregate-not-payout-proof"
+          >
+            <h2 id="reviews">Отзывы о FundedNext: что означают {firm.trustpilotScore.toFixed(1)}/5 и {firm.trustpilotCount.toLocaleString('ru-RU')} оценок</h2>
+            <p>
+              В датированном захвате профиля Trustpilot от {firm.trustpilotCapturedAt ?? 'неуказанной даты'} агрегат FundedNext составлял
+              {' '}{firm.trustpilotScore.toFixed(1)}/5 по {firm.trustpilotCount.toLocaleString('ru-RU')} отзывам. Это сторонний снимок показанного
+              агрегата, а не проверка {freshProducts.length} текущих моделей, отдельной выплаты или соблюдения правила конкретным аккаунтом.
+            </p>
+            <div className="ru-grid">
+              <article className="ru-card">
+                <h3>Что показывает число отзывов</h3>
+                <p>{firm.trustpilotCount.toLocaleString('ru-RU')} записей показывают масштаб публичной обратной связи на дату захвата, но не долю трейдеров, которые купили challenge, прошли его или получили reward.</p>
+              </article>
+              <article className="ru-card">
+                <h3>Какой продукт нужно назвать</h3>
+                <p>Отзыв должен относиться к 1 из {freshProducts.length} моделей: Stellar 2-Step, 1-Step, Lite или Instant. Их 0–2 этапа, просадка, возврат fee и payout gate не взаимозаменяемы.</p>
+              </article>
+              <article className="ru-card">
+                <h3>Почему русский текст не решает вопрос страны</h3>
+                <p>Русскоязычный отзыв не подтверждает резидентство автора, его KYC или доступность checkout. Для резидента России сохраняется конфликт официальных страниц, а для диаспоры решает фактическая страна профиля.</p>
+              </article>
+            </div>
+            <p className="ru-source-line">
+              Агрегат захвачен {firm.trustpilotCapturedAt ?? 'без даты'} ·{' '}
+              {firm.trustpilotUrl ? <a href={firm.trustpilotUrl} target="_blank" rel="noopener noreferrer">Открыть профиль Trustpilot</a> : 'ссылка на профиль не сохранена'}.
+              {' '}Проверяйте каждый кейс по 7 полям до переноса на свой продукт.
+            </p>
+            <div className="ru-actions">
+              <Link href="/ru/otzyvy-prop-firm#review-checklist" className="btn-outline">Чек-лист проверки отзывов</Link>
+              <Link href="#products" className="btn-primary">Сопоставить 4 модели</Link>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="ru-section">
         <div className="ru-shell">
@@ -649,7 +696,7 @@ export default function RussianFundedNextReviewPage() {
       <section className="ru-section">
         <div className="ru-shell ru-content">
           <h2 id="faq">Частые вопросы</h2>
-          <RussianFaq items={faqs} />
+          <RussianFaq items={pageFaqs} />
         </div>
       </section>
       </article>

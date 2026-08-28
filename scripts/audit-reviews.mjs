@@ -12403,6 +12403,11 @@ function checkRussianAcquisitionPilot() {
   for (const token of [
     'data-russian-fundednext-article="long-form"',
     'data-russian-fundednext-current-offer="earned-coupon"',
+    'data-russian-fundednext-reviews="aggregate-not-payout-proof"',
+    'firm.trustpilotScore.toFixed(1)',
+    'firm.trustpilotCount.toLocaleString(\'ru-RU\')',
+    'Что показывают отзывы о FundedNext на Trustpilot?',
+    'href="/ru/otzyvy-prop-firm#review-checklist"',
     'data-fundednext-russia-access="conflicting"',
     'data-fundednext-russian-truecost="true"',
     'Содержание обзора',
@@ -12487,6 +12492,10 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-bright-funded', [
       'data-russian-partner-review="bright-funded"',
       'data-russian-bright-article="long-form"',
+      'data-russian-bright-reviews="suppressed-not-zero"',
+      'firm?.trustpilotRatingSuppressed',
+      'Почему у Bright Funded нет средней оценки Trustpilot?',
+      'href="/ru/otzyvy-prop-firm#review-checklist"',
       'data-russian-bright-country-access="published-list"',
       'data-russian-bright-plan-matrix="three-products"',
       'data-russian-bright-price-count={pricedTiers.length}',
