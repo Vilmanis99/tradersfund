@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Globe2, ListChecks, ShieldCheck, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -46,26 +47,23 @@ const faqs: RussianFaqItem[] = [
   },
 ]
 
-const partnerRoutes = [
+const primaryPartnerRoutes = [
   {
     slug: 'fundednext',
     name: 'FundedNext',
     reviewHref: '/ru/obzor-fundednext',
     campaign: 'ru-diaspora-fundednext',
+    heroCampaign: 'ru-diaspora-hero-fundednext',
+    currency: 'USD',
     summary: 'Русский разбор с отдельной проверкой противоречивых ограничений по стране.',
-  },
-  {
-    slug: 'fundingpips',
-    name: 'FundingPips',
-    reviewHref: '/ru/obzor-fundingpips',
-    campaign: 'ru-diaspora-fundingpips',
-    summary: 'Русский разбор продуктовых цен, просадки, сплита и условий выплаты.',
   },
   {
     slug: 'bright-funded',
     name: 'Bright Funded',
     reviewHref: '/ru/obzor-bright-funded',
     campaign: 'ru-diaspora-bright-funded',
+    heroCampaign: 'ru-diaspora-hero-bright-funded',
+    currency: 'EUR',
     summary: 'Русский разбор с валютой фирмы, KYC и предупреждениями о доступности.',
   },
 ] as const
@@ -73,15 +71,20 @@ const partnerRoutes = [
 export default function RussianDiasporaGuidePage() {
   const firms = getAllFirms()
   const challenges = getAllChallenges()
-  const partnerCards = partnerRoutes.map(route => {
+  const primaryPartnerCards = primaryPartnerRoutes.map(route => {
     const firm = firms.find(candidate => outboundSlug(candidate.name) === route.slug)
     const freshProducts = challenges.filter(challenge =>
       challenge.firmSlug === route.slug && isChallengeFresh(challenge),
     )
-    return { ...route, firm, freshProducts }
+    const priceCount = freshProducts.reduce((total, product) => total + product.accountSizes.filter(tier =>
+      (tier.priceUsd != null && tier.priceUsd > 0)
+      || (tier.priceEur != null && tier.priceEur > 0),
+    ).length, 0)
+    const captureDate = freshProducts.map(product => product.sourceCapturedAt).sort().at(-1)
+    return { ...route, firm, freshProducts, priceCount, captureDate }
   }).filter(item => item.firm?.affiliateUrl)
 
-  const freshPartnerProducts = partnerCards.reduce((sum, item) => sum + item.freshProducts.length, 0)
+  const freshPartnerProducts = primaryPartnerCards.reduce((sum, item) => sum + item.freshProducts.length, 0)
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
     { name: 'Для русскоязычных трейдеров' },
@@ -114,12 +117,59 @@ export default function RussianDiasporaGuidePage() {
             где они живут. Сначала определите свой KYC-маршрут, затем сравните конкретный продукт и только
             после этого переходите к глобальной фирме.
           </p>
-          <div className="ru-actions">
-            <Link href="/ru/luchshie-prop-firmy" className="btn-primary btn-glow">Открыть глобальный рейтинг <ArrowRight size={15} aria-hidden="true" /></Link>
+          <div className="ru-home-partner-hero" data-russian-diaspora-hero-partners="fundednext-bright-funded">
+            {primaryPartnerCards.map(item => {
+              const isFundedNext = item.slug === 'fundednext'
+              return (
+                <article
+                  className={`ru-home-partner-hero-card${isFundedNext ? ' ru-home-partner-hero-card--fundednext' : ' ru-home-partner-hero-card--bright'}`}
+                  key={item.slug}
+                  data-russian-diaspora-hero-partner={item.slug}
+                >
+                  <div className="ru-home-partner-hero-brand">
+                    {item.firm?.logo ? (
+                      <span className="ru-home-partner-hero-logo" aria-hidden="true">
+                        <Image src={item.firm.logo} alt="" width={72} height={72} />
+                      </span>
+                    ) : null}
+                    <div>
+                      <span className="ru-home-partner-hero-label">Главный глобальный партнёр</span>
+                      <h2>{item.name}</h2>
+                    </div>
+                  </div>
+                  <p>
+                    Актуальных продуктов: {item.freshProducts.length}; опубликованных цен: {item.priceCount}; валюта: {item.currency}.
+                    {' '}Сначала проверьте точную модель, страну и KYC, затем открывайте checkout.
+                  </p>
+                  <div className="ru-home-partner-hero-facts" aria-label={`Охват данных ${item.name}`}>
+                    <span><strong>{item.freshProducts.length}</strong> продукта</span>
+                    <span><strong>{item.priceCount}</strong> цен</span>
+                    <span><strong>{item.captureDate ?? '—'}</strong> проверено</span>
+                  </div>
+                  <div className="ru-home-partner-hero-actions">
+                    <Link
+                      href={`/go/${item.slug}?from=${item.heroCampaign}`}
+                      rel="sponsored nofollow noopener"
+                      className="btn-primary btn-glow"
+                    >
+                      Проверить условия {item.name} <ArrowRight size={15} aria-hidden="true" />
+                    </Link>
+                    <Link href={item.reviewHref} className="ru-home-partner-hero-review">Сначала прочитать обзор</Link>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+          <div className="ru-actions ru-home-secondary-actions">
+            <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить двух партнёров</Link>
             <Link href="#proverka" className="btn-outline">Пройти проверку перед оплатой</Link>
           </div>
+          <p className="ru-source-line ru-home-partner-hero-disclosure" data-russian-diaspora-hero-disclosure="primary-affiliates">
+            FundedNext и Bright Funded коммерчески выделены как два главных партнёра. Мы можем получить комиссию
+            после регистрации по кнопке «Проверить условия»; это не подтверждает доступность вашей страны.
+          </p>
           <div className="ru-stats">
-            <div className="ru-stat"><strong>{partnerCards.length}</strong><span>глобальных партнёрских маршрута</span></div>
+            <div className="ru-stat"><strong>{primaryPartnerCards.length}</strong><span>главных глобальных партнёра</span></div>
             <div className="ru-stat"><strong>{freshPartnerProducts}</strong><span>свежих продуктов в этих маршрутах</span></div>
             <div className="ru-stat"><strong>5</strong><span>проверок до регистрации</span></div>
           </div>
@@ -220,7 +270,7 @@ export default function RussianDiasporaGuidePage() {
             сначала сверяйте KYC, оплату и выплату у выбранной фирмы.
           </div>
           <div className="ru-actions">
-            {partnerCards.map(item => (
+            {primaryPartnerCards.map(item => (
               <Link
                 key={item.slug}
                 href={`/go/${item.slug}?from=ru-diaspora-regions-${item.slug}`}
@@ -260,10 +310,10 @@ export default function RussianDiasporaGuidePage() {
             если читатель зарегистрируется после перехода; это не меняет порядок рейтинга, цены или
             проверку доступа. Перед оплатой подтвердите условия у самой фирмы.
           </div>
-          <h2>Глобальные обзоры на русском</h2>
+          <h2>Два главных глобальных обзора на русском</h2>
           <p className="ru-muted">Сначала откройте разбор, затем переходите на официальную страницу оплаты только после проверки своей юрисдикции.</p>
           <div className="ru-grid">
-            {partnerCards.map(item => (
+            {primaryPartnerCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-diaspora-partner={item.slug}>
                 <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">{item.firm?.score.toFixed(1) ?? '—'}/10</span></div>
                 <p className="ru-muted">{item.summary}</p>
@@ -278,8 +328,9 @@ export default function RussianDiasporaGuidePage() {
             ))}
           </div>
           <p className="ru-source-line">
+            Вторичный глобальный вариант: <Link href="/ru/obzor-fundingpips">отдельный обзор FundingPips</Link>. Он не входит в два коммерчески выделенных маршрута этой страницы.{' '}
             Нужны локальные примеры? Смотрите отдельное <Link href="/ru/rossiyskie-prop-kompanii">исследование «Российские проп-компании»</Link>:
-            оно не является рейтингом и не содержит неактивированных партнёрских переходов. Локальные разборы: <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-kascapital">KasCapital</Link>.
+            оно не является рейтингом и не содержит неактивированных партнёрских переходов. Локальные разборы: <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link>, <Link href="/ru/obzor-kascapital">KasCapital</Link> и <Link href="/ru/obzor-teamtraders">TeamTraders</Link>.
           </p>
         </div>
       </section>

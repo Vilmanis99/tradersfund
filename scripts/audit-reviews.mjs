@@ -11671,13 +11671,17 @@ function checkRussianAcquisitionPilot() {
     : ''
   for (const token of [
     'data-russian-diaspora-guide="global-access"',
+    'data-russian-diaspora-hero-partners="fundednext-bright-funded"',
+    'data-russian-diaspora-hero-partner={item.slug}',
+    'data-russian-diaspora-hero-disclosure="primary-affiliates"',
     'data-russian-diaspora-regions="kazakhstan-uae"',
     'data-russian-diaspora-regions="global-routes"',
     'data-russian-diaspora-region-funnel="global-partners"',
     'data-russian-country-boundary="diaspora-not-access"',
     'data-russian-affiliate-disclosure="diaspora-guide"',
+    'ru-diaspora-hero-fundednext',
+    'ru-diaspora-hero-bright-funded',
     'ru-diaspora-fundednext',
-    'ru-diaspora-fundingpips',
     'ru-diaspora-bright-funded',
     'ru-diaspora-regions-',
     'rel="sponsored nofollow noopener"',
@@ -11686,6 +11690,14 @@ function checkRussianAcquisitionPilot() {
     'проп-фирмы для трейдеров в Грузии',
   ]) {
     if (!russianDiasporaPage.includes(token)) rows.push(`Russian diaspora guide is missing ${token}`)
+  }
+  for (const secondaryCommercialRoute of [
+    "campaign: 'ru-diaspora-fundingpips'",
+    '/go/fundingpips?from=ru-diaspora-regions-fundingpips',
+  ]) {
+    if (russianDiasporaPage.includes(secondaryCommercialRoute)) {
+      rows.push(`Russian diaspora guide still promotes a secondary partner as a primary route (${secondaryCommercialRoute})`)
+    }
   }
 
   const russianComparisonPage = fs.existsSync(russianRouteFiles.get('/ru/fundednext-vs-fundingpips'))
