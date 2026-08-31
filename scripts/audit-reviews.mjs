@@ -1109,7 +1109,7 @@ function checkTrustAndCommercialSurface() {
   }
 
   const route = fs.readFileSync(path.join(ROOT, 'app/go/[firm]/route.ts'), 'utf-8')
-  if (!route.includes('NextResponse.redirect(match.officialUrl, 302)')) {
+  if (!route.includes('redirectWithoutIndexing(match.officialUrl, 302)')) {
     rows.push('/go non-partner fallback must redirect to firm.officialUrl')
   }
   if (route.includes('NextResponse.redirect(new URL(match.reviewUrl')) {
@@ -11709,7 +11709,6 @@ function checkRussianAcquisitionPilot() {
     'Проверить условия {item.name}',
     '/go/fundednext?from=ru-home-hero-fundednext',
     '/go/bright-funded?from=ru-home-hero-bright-funded',
-    'data-russian-home-featured-partners="fundednext-bright-funded"',
     'data-russian-home-deals-partners="fundednext-bright-funded"',
     'data-russian-home-deal-count={activeDeals.length}',
     'data-russian-home-deals-fail-closed="30-days"',
@@ -11719,23 +11718,18 @@ function checkRussianAcquisitionPilot() {
     'Проверенные промокоды проп-фирм',
     'Сравнить коды и итоговые цены',
     'href="/ru/fundednext-vs-bright-funded"',
-    'Сравнить FundedNext и Bright Funded',
     'Главное сравнение русской версии: 7 продуктов, 40 цен',
-    'data-russian-home-featured-partner={item.slug}',
+    'data-russian-home-navigation="task-first"',
     "const featuredPartnerRoutes = [",
     "{ slug: 'fundednext', name: 'FundedNext'",
     "{ slug: 'bright-funded', name: 'Bright Funded'",
-    'from=ru-home-${item.slug}',
     'rel="sponsored nofollow noopener"',
-    'USDC-выплата не доказывает доступ к торговле криптовалютой',
-    'официальные формулировки FundedNext противоречат друг другу',
     'data-russian-home-definition-entry="prop-kompanii-eto"',
     'href="/ru/chto-takoe-prop-firma"',
     'data-russian-home-forex-entry="prop-forex"',
     'href="/ru/forex-prop-firmy"',
     'data-russian-home-ctrader-entry="platform-rules"',
     'href="/ru/prop-firmy-s-ctrader"',
-    '26 страниц',
     'data-russian-home-mt5-entry="fundednext-ea-rules"',
     'href="/ru/fundednext-mt5"',
     'data-russian-home-instant-product-entry="fundednext-stellar-instant"',
@@ -12666,53 +12660,62 @@ function checkRussianAcquisitionPilot() {
     "label: 'Обзоры'",
     "label: 'Гайды'",
     "label: 'Местные компании'",
+    "href: '/ru/luchshie-prop-firmy'",
     "href: '/ru/rossiyskie-prop-kompanii'",
     "href: '/ru/luchshie-kripto-prop-firmy'",
     "href: '/ru/dlya-russkoyazychnykh-treyderov'",
     "href: '/ru/fundednext-vs-bright-funded'",
-    "href: '/ru/fundednext-vs-fundingpips'",
     "href: '/ru/promokody-prop-firm'",
     "href: '/ru/vyplaty-prop-firm'",
     "href: '/ru/prop-firmy-bez-kyc'",
-    "href: '/ru/obzor-proplive'",
-    "href: '/ru/obzor-ftmo'",
-    "href: '/ru/obzor-eratrade'",
-    "href: '/ru/obzor-kascapital'",
-    "href: '/ru/obzor-teamtraders'",
-    "href: '/ru/obzor-fundingpips'",
+    "href: '/ru/obzor-fundednext'",
     "href: '/ru/obzor-bright-funded'",
-    "href: '/ru/chto-takoe-prop-firma'",
-    "href: '/ru/forex-prop-firmy'",
+    "href: '/ru/obzor-ftmo'",
+    "href: '/ru/obzor-fundingpips'",
     "href: '/ru/prop-firmy-s-ctrader'",
-    "href: '/ru/fundednext-mt5'",
-    "href: '/ru/fundednext-stellar-instant'",
-    "href: '/ru/otzyvy-prop-firm'",
     "href: '/ru/prop-firmy-bez-chelendzha'",
+    "href: '/ru/kak-rabotayut-chellendzhi-prop-firm'",
     'getAlternateLanguageHref(pathname)',
     'hrefLang={isRussian ? \'en\' : \'ru\'}',
   ]) {
     if (!headerNav.includes(token)) rows.push(`Russian header navigation is missing ${token}`)
+  }
+  const headerRussianRoutes = new Set(
+    [...headerNav.matchAll(/href: '(\/ru(?:\/[^']*)?)'/g)].map(match => match[1]),
+  )
+  if (headerRussianRoutes.size > 16) {
+    rows.push(`Russian header navigation exposes ${headerRussianRoutes.size} routes; expected no more than 16 focused routes`)
   }
   const headerBrand = fs.readFileSync(path.join(ROOT, 'components/HeaderBrand.tsx'), 'utf8')
   if (!headerBrand.includes("isRussian ? '/ru' : '/'")) {
     rows.push('header brand does not preserve the Russian locale home')
   }
   const footer = fs.readFileSync(path.join(ROOT, 'components/Footer.tsx'), 'utf8')
-  if (!footer.includes("href: '/ru'")) rows.push('global footer is missing the Russian-language entry point')
-  if (!footer.includes("href: '/ru/fundednext-vs-bright-funded'")) rows.push('Russian footer is missing the primary partner comparison')
-  if (!footer.includes("href: '/ru/vyplaty-prop-firm'")) rows.push('Russian footer is missing the payouts route')
-  if (!footer.includes("href: '/ru/prop-firmy-bez-kyc'")) rows.push('Russian footer is missing the KYC route')
-  if (!footer.includes("href: '/ru/obzor-proplive'")) rows.push('Russian footer is missing the PropLive review route')
-  if (!footer.includes("href: '/ru/obzor-eratrade'")) rows.push('Russian footer is missing the Era Trade review route')
-  if (!footer.includes("href: '/ru/obzor-kascapital'")) rows.push('Russian footer is missing the KasCapital review route')
-  if (!footer.includes("href: '/ru/obzor-teamtraders'")) rows.push('Russian footer is missing the TeamTraders review route')
-  if (!footer.includes("href: '/ru/otzyvy-prop-firm'")) rows.push('Russian footer is missing the reviews guide route')
-  if (!footer.includes("href: '/ru/obzor-ftmo'")) rows.push('Russian footer is missing the FTMO review route')
-  if (!footer.includes("href: '/ru/chto-takoe-prop-firma'")) rows.push('Russian footer is missing the prop-definition route')
-  if (!footer.includes("href: '/ru/forex-prop-firmy'")) rows.push('Russian footer is missing the forex route')
-  if (!footer.includes("href: '/ru/prop-firmy-s-ctrader'")) rows.push('Russian footer is missing the cTrader route')
-  if (!footer.includes("href: '/ru/fundednext-mt5'")) rows.push('Russian footer is missing the FundedNext MT5 route')
-  if (!footer.includes("href: '/ru/fundednext-stellar-instant'")) rows.push('Russian footer is missing the FundedNext Stellar Instant route')
+  for (const route of [
+    '/ru',
+    '/ru/luchshie-prop-firmy',
+    '/ru/dlya-russkoyazychnykh-treyderov',
+    '/ru/fundednext-vs-bright-funded',
+    '/ru/fundednext-stellar-instant',
+    '/ru/fundednext-mt5',
+    '/ru/promokody-prop-firm',
+    '/ru/vyplaty-prop-firm',
+    '/ru/prop-firmy-bez-kyc',
+    '/ru/rossiyskie-prop-kompanii',
+    '/ru/chto-takoe-prop-firma',
+    '/ru/obzor-fundednext',
+    '/ru/obzor-bright-funded',
+    '/ru/obzor-ftmo',
+    '/ru/obzor-fundingpips',
+  ]) {
+    if (!footer.includes(`href: '${route}'`)) rows.push(`Russian footer is missing ${route}`)
+  }
+  const footerRussianRoutes = new Set(
+    [...footer.matchAll(/href: '(\/ru(?:\/[^']*)?)'/g)].map(match => match[1]),
+  )
+  if (footerRussianRoutes.size > 15) {
+    rows.push(`Russian footer exposes ${footerRussianRoutes.size} routes; expected no more than 15 focused routes`)
+  }
 
   const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
   for (const token of [

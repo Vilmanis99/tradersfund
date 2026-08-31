@@ -12,7 +12,6 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 const PATH = '/ru'
 const TITLE = 'Проп-фирмы: обзоры, цены и правила на русском'
 const DESCRIPTION = 'Русская версия Traders Fund Hub: сравнение проп-фирм, цены челленджей, просадки, выплаты и правила по данным из первичных источников.'
-const BRIGHT_REWARD_URL = 'https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -202,70 +201,13 @@ export default function RussianHomePage() {
         </div>
       </section>
 
-      <section className="ru-section" id="glavnye-partnery">
-        <div className="ru-shell" data-russian-home-featured-partners="fundednext-bright-funded">
-          <div className="ru-notice ru-disclosure">
-            <strong>Два главных партнёра Traders Fund Hub.</strong>{' '}
-            Переходы на FundedNext и Bright Funded могут принести нам комиссию. Это коммерческое выделение,
-            а не два первых места рейтинга: доступ, KYC, правила продукта и выплата проверяются до оплаты.
-          </div>
-          <h2>FundedNext и Bright Funded: два основных глобальных маршрута</h2>
-          <p className="ru-muted">
-            FundedNext даёт выбор между четырьмя текущими моделями в USD, а Bright Funded — между тремя программами
-            с ценами в EUR. Карточки используют свежие продуктовые записи; русский обзор объясняет различия до перехода на официальный checkout.
-          </p>
-          <div className="ru-grid">
-            {featuredPartnerCards.map(item => {
-              const isFundedNext = item.slug === 'fundednext'
-              return (
-                <article className="ru-card" key={item.slug} data-russian-home-featured-partner={item.slug}>
-                  <div className="ru-card-head">
-                    <h3>{item.name}</h3>
-                    <span className="ru-score">Главный партнёр</span>
-                  </div>
-                  <p className="ru-muted">
-                    {isFundedNext
-                      ? 'Stellar 2-Step, Stellar 1-Step, Stellar Lite и Stellar Instant нельзя оценивать как один продукт: этапы, возврат fee, просадка и первая выплата различаются.'
-                      : '1-Step, 2-Step и 2-Step Bright публикуются в EUR; официальный источник отдельно называет USDC ERC-20 и банковский перевод в EUR как способы reward.'}
-                  </p>
-                  <ul className="ru-facts">
-                    <li><Database size={14} aria-hidden="true" /> Актуальные продукты: {item.products.length}</li>
-                    <li><BadgePercent size={14} aria-hidden="true" /> Опубликованные цены: {item.priceCount}</li>
-                    <li><SearchCheck size={14} aria-hidden="true" /> Последний продуктовый захват: {item.captureDate ?? 'нужно обновить'}</li>
-                  </ul>
-                  {!isFundedNext ? (
-                    <p className="ru-source-line">
-                      <a href={BRIGHT_REWARD_URL} target="_blank" rel="nofollow noopener">Источник Bright Funded о выплатах</a>: USDC-выплата не доказывает доступ к торговле криптовалютой.
-                    </p>
-                  ) : (
-                    <p className="ru-source-line">Для резидентов России официальные формулировки FundedNext противоречат друг другу; обзор сохраняет этот конфликт вместо обещания доступа.</p>
-                  )}
-                  <div className="ru-actions">
-                    <Link href={item.reviewHref} className="btn-outline">Русский обзор</Link>
-                    <Link href={`/go/${item.slug}?from=ru-home-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
-                      Проверить {item.name} <ArrowRight size={14} aria-hidden="true" />
-                    </Link>
-                  </div>
-                </article>
-              )
-            })}
-          </div>
-          <div className="ru-actions">
-            <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">
-              Сравнить FundedNext и Bright Funded <ArrowRight size={15} aria-hidden="true" />
-            </Link>
-            <Link href="/ru/vyplaty-prop-firm" className="btn-outline">Сравнить способы выплаты</Link>
-          </div>
-        </div>
-      </section>
-
       <section className="ru-section">
-        <div className="ru-shell">
+        <div className="ru-shell" data-russian-home-navigation="task-first">
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия объединяет 26 страниц для разных решений: понять модель, сравнить продукты,
-            проверить KYC и выплаты либо изучить компании российского рынка. Открывайте только тот маршрут,
-            который соответствует вашей стране, рынку и этапу выбора.
+            Выберите один маршрут под текущее решение: понять модель, сравнить продукты, проверить KYC и выплаты
+            либо изучить компании российского рынка. Остальные материалы можно открыть позже — после проверки
+            страны, рынка и этапа выбора.
           </p>
           <div className="ru-grid">
             <article className="ru-card" data-russian-home-definition-entry="prop-kompanii-eto">

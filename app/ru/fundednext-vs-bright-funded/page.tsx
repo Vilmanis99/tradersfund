@@ -465,7 +465,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
               <article className="ru-card"><MonitorSmartphone size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Нужен TradeLocker</h3><p className="ru-muted">Bright Funded — вариант в этой паре. Для cTrader, Match-Trader или MT4 выбор смещается к FundedNext.</p></article>
               <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">У FundedNext статус остаётся «конфликт»: {accessEvidence?.sourceUrls.length ?? 0} официальных страницы не дают безопасного общего ответа. Bright тоже проверяется отдельно.</p></article>
             </div>
-            <div className="ru-actions"><Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-primary">Проверить профиль и страну <ArrowRight size={15} aria-hidden="true" /></Link><Link href="/ru/prop-firmy-bez-kyc" className="btn-outline">Разобрать KYC</Link></div>
+            <div className="ru-actions"><Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-primary">Проверить профиль и страну <ArrowRight size={15} aria-hidden="true" /></Link><Link href="/ru/prop-firmy-bez-kyc" className="btn-outline">Разобрать KYC</Link><Link href="/ru/prop-firmy-s-ctrader" className="btn-outline">Сравнить правила cTrader</Link></div>
           </div>
         </section>
 
