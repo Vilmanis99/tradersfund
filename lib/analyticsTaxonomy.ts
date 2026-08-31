@@ -19,6 +19,7 @@ export type JourneyStage =
   | 'russian_comparison'
   | 'russian_deals'
   | 'russian_review'
+  | 'russian_product'
   | 'russian_local_research'
   | 'russian_education'
   | 'editorial'
@@ -39,6 +40,7 @@ const HIGH_INTENT_STAGES = new Set<JourneyStage>([
   'russian_comparison',
   'russian_deals',
   'russian_review',
+  'russian_product',
   'russian_local_research',
   'head_to_head',
 ])
@@ -57,6 +59,11 @@ const RUSSIAN_REVIEW_PATHS = new Set([
   '/ru/obzor-fundednext',
   '/ru/obzor-fundingpips',
   '/ru/obzor-bright-funded',
+])
+
+const RUSSIAN_PRODUCT_PATHS = new Set([
+  '/ru/fundednext-mt5',
+  '/ru/fundednext-stellar-instant',
 ])
 
 const RUSSIAN_LOCAL_RESEARCH_PATHS = new Set([
@@ -104,6 +111,7 @@ export function journeyStage(pathname: string): JourneyStage {
   if (RUSSIAN_COMPARISON_PATHS.has(path)) return 'russian_comparison'
   if (path === '/ru/promokody-prop-firm') return 'russian_deals'
   if (RUSSIAN_REVIEW_PATHS.has(path)) return 'russian_review'
+  if (RUSSIAN_PRODUCT_PATHS.has(path)) return 'russian_product'
   if (RUSSIAN_LOCAL_RESEARCH_PATHS.has(path)) return 'russian_local_research'
   if (RUSSIAN_RANKING_PATHS.has(path)) return 'russian_ranking'
   if (path.startsWith('/ru/')) return 'russian_education'

@@ -192,6 +192,7 @@ async function fetchPage(url, redirect = 'manual') {
       status: response.status,
       contentType: response.headers.get('content-type') || '',
       contentLanguage: response.headers.get('content-language') || '',
+      xRobotsTag: response.headers.get('x-robots-tag') || '',
       location: response.headers.get('location') || '',
       html: await response.text(),
     }
@@ -201,6 +202,7 @@ async function fetchPage(url, redirect = 'manual') {
       status: 0,
       contentType: '',
       contentLanguage: '',
+      xRobotsTag: '',
       location: '',
       html: '',
       error: error instanceof Error ? error.message : String(error),
@@ -1633,6 +1635,19 @@ for (const result of internalResults) {
   if (result.status < 200 || result.status >= 400) {
     errors.push(`${new URL(result.url).pathname}: internal link returned ${result.status || result.error}`)
   }
+  if (
+    new URL(result.url).pathname.startsWith('/go/')
+    && result.xRobotsTag.toLowerCase() !== 'noindex, nofollow'
+  ) {
+    errors.push(`${new URL(result.url).pathname}: affiliate redirect is missing X-Robots-Tag noindex, nofollow`)
+  }
+}
+
+const robotsResponse = await fetchPage(new URL('/robots.txt', BASE))
+if (robotsResponse.status !== 200) {
+  errors.push(`/robots.txt: HTTP ${robotsResponse.status || robotsResponse.error}`)
+} else if (/^Disallow:\s*\/go\/\s*$/im.test(robotsResponse.html)) {
+  errors.push('/robots.txt: /go/ must remain crawlable so redirect noindex headers can be read')
 }
 
 for (const review of TRADING_TOOL_REVIEWS) {

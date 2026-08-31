@@ -2772,6 +2772,8 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/obzor-fundednext/', 'russian_review'],
     ['/ru/obzor-fundingpips', 'russian_review'],
     ['/ru/obzor-bright-funded/', 'russian_review'],
+    ['/ru/fundednext-mt5', 'russian_product'],
+    ['/ru/fundednext-stellar-instant/', 'russian_product'],
     ['/ru/luchshie-kripto-prop-firmy', 'russian_ranking'],
     ['/ru/forex-prop-firmy', 'russian_ranking'],
     ['/ru/vyplaty-prop-firm', 'russian_ranking'],
@@ -2801,6 +2803,7 @@ function checkAnalyticsMeasurementContract() {
     'russian_comparison',
     'russian_deals',
     'russian_review',
+    'russian_product',
     'russian_local_research',
   ]) {
     if (!isHighIntentJourneyStage(stage)) {
@@ -3009,6 +3012,7 @@ function checkAnalyticsMeasurementContract() {
     [AFFILIATE_REDIRECT_ROUTE_FILE, [
       "import { campaignLocale } from '@/lib/analyticsTaxonomy'",
       'locale: campaignLocale(placement)',
+      "response.headers.set('X-Robots-Tag', 'noindex, nofollow')",
     ]],
     [INDIA_MATCHER_COMPONENT_FILE, [
       "track('challenge_matcher_started'",
@@ -3047,6 +3051,11 @@ function checkAnalyticsMeasurementContract() {
         rows.push(`${path.relative(ROOT, file)} is missing analytics safeguard: ${token}`)
       }
     }
+  }
+
+  const robotsSource = fs.readFileSync(path.join(ROOT, 'app/robots.ts'), 'utf-8')
+  if (/['"]\/go\/['"]/.test(robotsSource)) {
+    rows.push('Affiliate redirect routes must remain crawlable so crawlers can read X-Robots-Tag noindex')
   }
 
   if (rows.length) {

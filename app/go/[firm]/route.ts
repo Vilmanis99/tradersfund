@@ -36,6 +36,12 @@ function campaignFrom(value: string | null) {
   return campaign || 'unknown'
 }
 
+function redirectWithoutIndexing(destination: string | URL, status: 302 | 307) {
+  const response = NextResponse.redirect(destination, status)
+  response.headers.set('X-Robots-Tag', 'noindex, nofollow')
+  return response
+}
+
 function recordAffiliateClick(firm: string, placement: string) {
   // Deliberately exclude IP, user-agent, referrer, and query-string data.
   // Hosting logs can aggregate this event while partner dashboards attribute
@@ -102,12 +108,12 @@ export async function GET(
     if (partner) {
       if (partner.affiliateUrl) {
         recordAffiliateClick(target, from)
-        return NextResponse.redirect(decorateUtm(partner.affiliateUrl, from), 302)
+        return redirectWithoutIndexing(decorateUtm(partner.affiliateUrl, from), 302)
       }
       recordOfficialClick(target, from)
-      return NextResponse.redirect(partner.officialUrl, 302)
+      return redirectWithoutIndexing(partner.officialUrl, 302)
     }
-    return NextResponse.redirect(new URL('/prop-firms', req.url), 307)
+    return redirectWithoutIndexing(new URL('/prop-firms', req.url), 307)
   }
 
   const indiaEvidence = INDIA_EVIDENCE_BY_SLUG[target]
@@ -120,7 +126,7 @@ export async function GET(
     }))
     const guide = new URL('/blog/are-prop-firms-legal-in-india', req.url)
     guide.searchParams.set('firm', target)
-    return NextResponse.redirect(guide, 302)
+    return redirectWithoutIndexing(guide, 302)
   }
 
   // Affiliate links receive campaign attribution. Organic first-party links
@@ -130,9 +136,9 @@ export async function GET(
     recordAffiliateClick(target, from)
     // 302 (temporary) because affiliate URLs can change; we don't want
     // intermediaries caching the redirect.
-    return NextResponse.redirect(dest, 302)
+    return redirectWithoutIndexing(dest, 302)
   }
 
   recordOfficialClick(target, from)
-  return NextResponse.redirect(match.officialUrl, 302)
+  return redirectWithoutIndexing(match.officialUrl, 302)
 }
