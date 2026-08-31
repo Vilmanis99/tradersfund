@@ -319,6 +319,7 @@ export default function RussianFundedNextMt5Page() {
               <strong>Граница данных.</strong> Общая platform-страница подтверждает MT5 у FundedNext, но не заменяет финальный checkout конкретного продукта, размера и страны. До оплаты зафиксируйте выбранные model, tier и platform в заказе.
             </div>
             <div className="ru-actions">
+              <Link href="/ru/fundednext-stellar-instant" className="btn-outline">Правила Stellar Instant</Link>
               <Link href="/ru/obzor-fundednext#products" className="btn-outline">Полный обзор 4 моделей</Link>
               <Link href="/go/fundednext?from=ru-fundednext-mt5-products" rel="sponsored nofollow noopener" className="btn-primary">
                 Проверить MT5 на checkout <ArrowRight size={15} aria-hidden="true" />

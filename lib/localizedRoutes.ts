@@ -22,6 +22,7 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/forex-prop-firmy',
   '/ru/prop-firmy-s-ctrader',
   '/ru/fundednext-mt5',
+  '/ru/fundednext-stellar-instant',
   '/ru/rossiyskie-prop-kompanii',
   '/ru/vyplaty-prop-firm',
   '/ru/prop-firmy-bez-kyc',

@@ -1,0 +1,170 @@
+{
+  "capturedAt": "2026-08-29",
+  "firmSlug": "fundednext",
+  "productSlug": "stellar-instant",
+  "pricing": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641161-how-much-does-each-stellar-instant-account-cost",
+    "swapFreeSurchargePct": 10,
+    "recurringFee": false,
+    "notes": [
+      "The official table lists four standard prices and says swap-free accounts cost 10% more.",
+      "The official article says there is no recurring or monthly fee."
+    ]
+  },
+  "lossLimits": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641163-what-are-the-daily-loss-limit-and-the-maximum-loss-limit-for-the-stellar-instant-accounts",
+    "dailyLossPct": null,
+    "maximumLossPct": 6,
+    "method": "trailing",
+    "floorCap": "initial balance",
+    "workedExample": [
+      { "balanceUsd": 10000, "event": "start", "maximumLossFloorUsd": 9400 },
+      { "balanceUsd": 10200, "event": "profit 200", "maximumLossFloorUsd": 9600 },
+      { "balanceUsd": 10100, "event": "loss 100", "maximumLossFloorUsd": 9600 },
+      { "balanceUsd": 10500, "event": "new profit high", "maximumLossFloorUsd": 9900 },
+      { "balanceUsd": 11100, "event": "floor reaches cap", "maximumLossFloorUsd": 10000 }
+    ],
+    "notes": [
+      "There is no daily loss limit.",
+      "The maximum-loss floor moves up with new profit highs, does not move down after losses, and cannot rise above the initial balance."
+    ]
+  },
+  "consistency": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
+    "rulePct": null,
+    "notes": [
+      "The official article says Stellar Instant has no consistency rule for lot size, trade frequency, or daily performance pattern."
+    ]
+  },
+  "platforms": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641140-which-trading-platforms-are-available-for-the-stellar-instant-account",
+    "general": ["MT4", "MT5"],
+    "unitedStates": ["Match-Trader"],
+    "notes": [
+      "The platform article applies to CFD Stellar Instant accounts, not FundedNext Futures.",
+      "U.S.-based traders are limited to Match-Trader and do not receive MT4 or MT5."
+    ]
+  },
+  "leverage": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641369-what-is-the-leverage-provided-in-the-stellar-instant-accounts",
+    "forex": "1:30",
+    "commodities": "1:7.5",
+    "indices": "1:5",
+    "crypto": "1:1"
+  },
+  "holding": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641232-are-there-restrictions-for-overnight-or-weekend-trading-in-the-stellar-instant-account",
+    "overnight": true,
+    "weekend": true,
+    "tripleSwapDays": {
+      "forexAndCommodities": "Wednesday",
+      "indicesAndCrypto": "Friday"
+    },
+    "notes": [
+      "Swap charges remain part of account profit and loss even though overnight and weekend holding are allowed."
+    ]
+  },
+  "news": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts",
+    "windowMinutesBefore": 5,
+    "windowMinutesAfter": 5,
+    "countedProfitPct": 40,
+    "newsMllEquityBufferPct": 1,
+    "appliesTo": ["market executions", "pending orders", "partial closures"],
+    "notes": [
+      "News trading is allowed, but only 40% of profit from trades executed inside the named 10-minute window counts.",
+      "Losses remain the trader's responsibility, and the adjustment is calculated after the cycle ends."
+    ]
+  },
+  "copyTrading": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11672342-is-copy-trading-allowed-in-stellar-instant",
+    "sameOwnerInstantAccounts": true,
+    "differentOwners": false,
+    "crossProduct": false,
+    "notes": [
+      "Copying is allowed only between Stellar Instant accounts owned by the same individual.",
+      "Copying between Stellar Instant and Stellar 1-Step, 2-Step, or Lite is prohibited even when the owner is the same."
+    ]
+  },
+  "generalRules": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641614-what-rules-do-i-need-to-follow-in-the-stellar-instant-account",
+    "notes": [
+      "FundedNext recommends one device and a consistent IP address.",
+      "VPN and VPS services are permitted; the article recommends paid services with dedicated IPs.",
+      "EAs and indicators must be customized to the trader's strategy and may not exploit platform mechanics.",
+      "Restricted or exploitative strategies can cause a permanent breach."
+    ]
+  },
+  "purchaseAllocation": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641400-what-is-the-maximum-allocation-for-the-stellar-instant-account",
+    "maximumUsd": 20000,
+    "accountMerging": false,
+    "scaleMultiple": 10,
+    "publishedScaledMaximumUsd": 2000000,
+    "notes": [
+      "The $20,000 limit applies to combined active new purchases.",
+      "The same article separately states that performance scaling can reach 10 times the initial balance and a published maximum of $2 million."
+    ]
+  },
+  "rewardShare": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641516-is-there-a-scale-up-plan-for-stellar-instant-accounts",
+    "tier1Pct": 70,
+    "tier2Pct": 70,
+    "tier3AndLaterPct": 80,
+    "capPct": 80,
+    "notes": [
+      "The official scale-up article says the share is 70% in tiers 1 and 2 and 80% from tier 3 onward."
+    ]
+  },
+  "rewardEligibility": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641693-what-is-the-eligibility-criteria-for-my-performance-reward-in-the-stellar-instant-account",
+    "onDemandGrowthPct": 5,
+    "onDemandCheck": "EOD",
+    "biWeeklyMinimumGrowthPct": 1,
+    "biWeeklyDays": 14,
+    "notes": [
+      "At 5% growth, on-demand eligibility is checked at end of day.",
+      "Opening a new trade disables the transfer option until the next EOD check confirms that 5% growth still holds.",
+      "Growth of at least 1% but below 5% uses the 14-day route."
+    ]
+  },
+  "withdrawal": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641804-how-can-i-withdraw-my-performance-reward",
+    "methods": ["USDT ERC20", "USDT TRC20", "USDC ERC20", "RiseWorks", "Bank Transfer", "FNmarkets deposit"],
+    "processingHours": 24,
+    "otpRequired": true,
+    "kycRequired": true,
+    "gatewayFeesPaidByTrader": true,
+    "notes": [
+      "The reward share moves to the FundedNext Wallet before the payout request.",
+      "A submitted withdrawal request cannot be cancelled."
+    ]
+  },
+  "postWithdrawalLossFloor": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/12439744-what-will-happen-to-the-maximum-loss-limit-after-a-trader-withdraws-from-a-stellar-instant-account",
+    "resetsLowerAfterWithdrawal": false,
+    "notes": [
+      "The maximum-loss floor remains at its highest reached level after a withdrawal.",
+      "The official example says withdrawing the full profit after the floor has capped at the initial balance can leave balance equal to the floor and breach the account."
+    ]
+  },
+  "reset": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641226-can-i-reset-my-stellar-instant-account",
+    "publishedDiscountPct": 10,
+    "refundable": false,
+    "publishedTable": [
+      { "sizeUsd": 2000, "listPriceUsd": 59.99, "resetPriceUsd": 56.99 },
+      { "sizeUsd": 5000, "listPriceUsd": 149.99, "resetPriceUsd": 134.99 },
+      { "sizeUsd": 10000, "listPriceUsd": 299.99, "resetPriceUsd": 269.99 },
+      { "sizeUsd": 20000, "listPriceUsd": 599.99, "resetPriceUsd": 539.99 }
+    ],
+    "conflict": "The article says every reset is 10% below list price, but its published $2,000 row shows $56.99 against a $59.99 list price. That row is not a 10% reduction, so the reset amount must be confirmed in checkout."
+  },
+  "refund": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641507-is-there-any-refundable-fee-for-the-stellar-instant-account",
+    "refundable": false,
+    "notes": [
+      "The official article says the refundable-fee policy applies to challenge products, not Stellar Instant."
+    ]
+  }
+}

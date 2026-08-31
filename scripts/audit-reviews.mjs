@@ -10911,6 +10911,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/forex-prop-firmy', path.join(ROOT, 'app/ru/forex-prop-firmy/page.tsx')],
     ['/ru/prop-firmy-s-ctrader', path.join(ROOT, 'app/ru/prop-firmy-s-ctrader/page.tsx')],
     ['/ru/fundednext-mt5', path.join(ROOT, 'app/ru/fundednext-mt5/page.tsx')],
+    ['/ru/fundednext-stellar-instant', path.join(ROOT, 'app/ru/fundednext-stellar-instant/page.tsx')],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', path.join(ROOT, 'app/ru/kak-rabotayut-chellendzhi-prop-firm/page.tsx')],
     ['/ru/rossiyskie-prop-kompanii', path.join(ROOT, 'app/ru/rossiyskie-prop-kompanii/page.tsx')],
   ])
@@ -11630,6 +11631,8 @@ function checkRussianAcquisitionPilot() {
     "'/ru/dlya-russkoyazychnykh-treyderov'",
     "'/ru/forex-prop-firmy'",
     "'/ru/prop-firmy-s-ctrader'",
+    "'/ru/fundednext-mt5'",
+    "'/ru/fundednext-stellar-instant'",
     "'/ru/fundednext-vs-fundingpips'",
     "'/ru/promokody-prop-firm'",
     "'/ru/vyplaty-prop-firm'",
@@ -11723,9 +11726,11 @@ function checkRussianAcquisitionPilot() {
     'href="/ru/forex-prop-firmy"',
     'data-russian-home-ctrader-entry="platform-rules"',
     'href="/ru/prop-firmy-s-ctrader"',
-    '25 страниц',
+    '26 страниц',
     'data-russian-home-mt5-entry="fundednext-ea-rules"',
     'href="/ru/fundednext-mt5"',
+    'data-russian-home-instant-product-entry="fundednext-stellar-instant"',
+    'href="/ru/fundednext-stellar-instant"',
   ]) {
     if (!russianHub.includes(token)) rows.push(`Russian home featured-partner funnel is missing ${token}`)
   }
@@ -11843,6 +11848,69 @@ function checkRussianAcquisitionPilot() {
     '"eaAllowed": false',
   ]) {
     if (!fundedNextMt5EvidenceSource.includes(token)) rows.push(`Russian FundedNext MT5 evidence is missing ${token}`)
+  }
+
+  const fundedNextInstantPage = fs.existsSync(russianRouteFiles.get('/ru/fundednext-stellar-instant'))
+    ? fs.readFileSync(russianRouteFiles.get('/ru/fundednext-stellar-instant'), 'utf8')
+    : ''
+  for (const token of [
+    'data-russian-fundednext-instant="product-lifecycle"',
+    'data-russian-product-intent="fundednext-stellar-instant-rules"',
+    'data-russian-country-boundary="instant-profile-not-language"',
+    'data-russian-fundednext-instant-article="unique-source-backed-guide"',
+    'data-russian-fundednext-instant-answer="phase-zero-with-gates"',
+    'data-russian-fundednext-instant-facts="eight-gates"',
+    'data-russian-fundednext-instant-pricing={hasFreshProduct ? pricedTiers.length : \'stale\'}',
+    'data-russian-fundednext-instant-price-table="source-gated"',
+    'data-russian-fundednext-instant-tier={tier.sizeUsd}',
+    'data-russian-fundednext-instant-risk="six-percent-trailing-floor"',
+    'data-russian-fundednext-instant-mll-example="official-10k-sequence"',
+    'data-russian-fundednext-instant-payout="two-paths-plus-buffer"',
+    'data-russian-fundednext-instant-news="forty-percent-profit-rule"',
+    'data-russian-fundednext-instant-platform="profile-plus-automation"',
+    'data-russian-fundednext-instant-holding="leverage-and-swaps"',
+    'data-russian-fundednext-instant-scale="purchase-versus-growth"',
+    'data-russian-fundednext-instant-reset="official-price-conflict"',
+    'data-russian-fundednext-instant-diaspora="actual-profile-before-purchase"',
+    'data-russian-fundednext-instant-verdict="buffer-before-speed"',
+    'data-russian-fundednext-instant-primary-partner="fundednext"',
+    'data-russian-fundednext-instant-alternative="bright-funded"',
+    'data-russian-fundednext-instant-sources={sourceLinks.length}',
+    'data-russian-affiliate-disclosure="fundednext-instant-hero"',
+    'data-russian-affiliate-disclosure="fundednext-instant-payout"',
+    '/go/fundednext?from=ru-fundednext-instant-hero',
+    '/go/fundednext?from=ru-fundednext-instant-free-trial',
+    '/go/fundednext?from=ru-fundednext-instant-payout',
+    '/go/fundednext?from=ru-fundednext-instant-verdict',
+    '/go/bright-funded?from=ru-fundednext-instant-alternative-bright-funded',
+    'rel="sponsored nofollow noopener"',
+    "import instantEvidence from '@/content/data/russian-fundednext-instant-evidence.json'",
+    "import { getDealsByFirm } from '@/lib/deals'",
+    'Официальный пример предупреждает',
+    'не совпадает с правилом «10% дешевле»',
+  ]) {
+    if (!fundedNextInstantPage.includes(token)) rows.push(`Russian FundedNext Instant funnel is missing ${token}`)
+  }
+  const fundedNextInstantEvidenceFile = path.join(ROOT, 'content/data/russian-fundednext-instant-evidence.json')
+  const fundedNextInstantEvidenceSource = fs.existsSync(fundedNextInstantEvidenceFile)
+    ? fs.readFileSync(fundedNextInstantEvidenceFile, 'utf8')
+    : ''
+  for (const token of [
+    '"capturedAt": "2026-08-29"',
+    'https://help.fundednext.com/en/articles/11641161-how-much-does-each-stellar-instant-account-cost',
+    'https://help.fundednext.com/en/articles/11641163-what-are-the-daily-loss-limit-and-the-maximum-loss-limit-for-the-stellar-instant-accounts',
+    'https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts',
+    'https://help.fundednext.com/en/articles/11641693-what-is-the-eligibility-criteria-for-my-performance-reward-in-the-stellar-instant-account',
+    'https://help.fundednext.com/en/articles/12439744-what-will-happen-to-the-maximum-loss-limit-after-a-trader-withdraws-from-a-stellar-instant-account',
+    '"maximumLossPct": 6',
+    '"onDemandGrowthPct": 5',
+    '"biWeeklyDays": 14',
+    '"maximumUsd": 20000',
+    '"publishedScaledMaximumUsd": 2000000',
+    '"resetPriceUsd": 56.99',
+    'That row is not a 10% reduction',
+  ]) {
+    if (!fundedNextInstantEvidenceSource.includes(token)) rows.push(`Russian FundedNext Instant evidence is missing ${token}`)
   }
 
   const propDefinitionPage = fs.existsSync(russianRouteFiles.get('/ru/chto-takoe-prop-firma'))
@@ -12213,7 +12281,9 @@ function checkRussianAcquisitionPilot() {
     '/go/fundednext?from=ru-instant-fundednext',
     '/go/fundingpips?from=ru-instant-fundingpips',
     '/go/bright-funded?from=ru-instant-bright-alternative',
+    'href="/ru/fundednext-stellar-instant"',
     'FUNDEDNEXT_REWARD_URL',
+    'FUNDEDNEXT_NEWS_URL',
     'FUNDINGPIPS_ZERO_URL',
     'rel="sponsored nofollow noopener"',
   ]) {
@@ -12474,6 +12544,7 @@ function checkRussianAcquisitionPilot() {
     'id="verdict"',
     '/go/fundednext?from=ru-fundednext-review-verdict',
     '/go/fundednext?from=ru-fundednext-review-free-trial',
+    'href="/ru/fundednext-stellar-instant"',
     'href="/ru/fundednext-mt5"',
     'href="/ru/promokody-prop-firm#fundednext-promokod"',
     'Текущее предложение: персональный купон {fundedNextDeal.pct}%, а не публичный промокод.',
@@ -12605,6 +12676,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/forex-prop-firmy'",
     "href: '/ru/prop-firmy-s-ctrader'",
     "href: '/ru/fundednext-mt5'",
+    "href: '/ru/fundednext-stellar-instant'",
     "href: '/ru/otzyvy-prop-firm'",
     "href: '/ru/prop-firmy-bez-chelendzha'",
     'getAlternateLanguageHref(pathname)',
@@ -12631,6 +12703,7 @@ function checkRussianAcquisitionPilot() {
   if (!footer.includes("href: '/ru/forex-prop-firmy'")) rows.push('Russian footer is missing the forex route')
   if (!footer.includes("href: '/ru/prop-firmy-s-ctrader'")) rows.push('Russian footer is missing the cTrader route')
   if (!footer.includes("href: '/ru/fundednext-mt5'")) rows.push('Russian footer is missing the FundedNext MT5 route')
+  if (!footer.includes("href: '/ru/fundednext-stellar-instant'")) rows.push('Russian footer is missing the FundedNext Stellar Instant route')
 
   const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
   for (const token of [
@@ -12642,6 +12715,7 @@ function checkRussianAcquisitionPilot() {
     'russianForexEvidence.capturedAt',
     'russianCTraderEvidence.capturedAt',
     'russianFundedNextMt5Evidence.capturedAt',
+    'russianFundedNextInstantEvidence.capturedAt',
   ]) {
     if (!sitemap.includes(token)) rows.push(`sitemap is missing Russian safeguard ${token}`)
   }

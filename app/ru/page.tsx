@@ -263,7 +263,7 @@ export default function RussianHomePage() {
         <div className="ru-shell">
           <h2>Начните с задачи, а не с бренда</h2>
           <p className="ru-muted">
-            Русская версия объединяет 25 страниц для разных решений: понять модель, сравнить продукты,
+            Русская версия объединяет 26 страниц для разных решений: понять модель, сравнить продукты,
             проверить KYC и выплаты либо изучить компании российского рынка. Открывайте только тот маршрут,
             который соответствует вашей стране, рынку и этапу выбора.
           </p>
@@ -327,6 +327,12 @@ export default function RussianHomePage() {
               <h3>FundedNext MT5 и советники EA</h3>
               <p className="ru-muted">4 модели, 22 цены, официальный download/login, отдельный Free Trial server и 7 ограничений платного EA add-on.</p>
               <Link className="ru-card-link" href="/ru/fundednext-mt5">Проверить MT5 и EA →</Link>
+            </article>
+            <article className="ru-card" data-russian-home-instant-product-entry="fundednext-stellar-instant">
+              <Zap size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>FundedNext Stellar Instant</h3>
+              <p className="ru-muted">4 цены, 6% trailing MLL, 0 daily loss, 2 payout-маршрута и официальный конфликт в reset-price до checkout.</p>
+              <Link className="ru-card-link" href="/ru/fundednext-stellar-instant">Проверить Instant rules →</Link>
             </article>
             <article className="ru-card">
               <Globe2 size={22} color="var(--accent-light)" aria-hidden="true" />

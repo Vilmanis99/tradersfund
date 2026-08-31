@@ -675,6 +675,7 @@ export default function RussianFundedNextReviewPage() {
           <h2 id="alternatives">С чем сравнить FundedNext</h2>
           <p>Сравнение должно отвечать на конкретное ограничение. Если не подходит 6% trailing у Instant, сравнивайте продукт с продуктом; если проблема в доступе по стране, сначала проверяйте KYC и checkout, а не редакционный балл.</p>
           <ul className="ru-review-related-links">
+            <li><Link href="/ru/fundednext-stellar-instant">FundedNext Stellar Instant</Link> — 4 цены, официальный 6% trailing calculation, 2 payout-маршрута, news rule и reset-price conflict.</li>
             <li><Link href="/ru/fundednext-mt5">FundedNext MT5 и EA</Link> — download/login, paid и Free Trial servers, 4 модели и 7 ограничений советников до checkout.</li>
             <li><Link href="/ru/fundednext-vs-bright-funded">FundedNext или Bright Funded</Link> — основное сравнение 7 продуктов и 40 USD/EUR цен по просадке, true cost, выплатам и KYC.</li>
             <li><Link href="/ru/fundednext-vs-fundingpips">FundedNext или FundingPips</Link> — сравнение 4 моделей FundedNext с 5 продуктами FundingPips по ценам, просадке и payout-gates.</li>

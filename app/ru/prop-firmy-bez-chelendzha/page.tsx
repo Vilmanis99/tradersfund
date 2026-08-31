@@ -23,6 +23,7 @@ const TITLE = 'Проп-фирмы без челленджа 2026: FundedNext In
 const DESCRIPTION = 'Сравнение проп-фирм без челленджа: FundedNext Stellar Instant, FundingPips Zero и 7 других phase-0 продуктов — цены, просадка, выплаты и KYC.'
 const FUNDEDNEXT_REWARD_URL = 'https://help.fundednext.com/en/articles/11641693-what-is-the-eligibility-criteria-for-my-performance-reward-in-the-stellar-instant-account'
 const FUNDEDNEXT_SCALE_URL = 'https://help.fundednext.com/en/articles/11641516-is-there-a-scale-up-plan-for-stellar-instant-accounts'
+const FUNDEDNEXT_NEWS_URL = 'https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts'
 const FUNDINGPIPS_ZERO_URL = 'https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero'
 const FUNDINGPIPS_COMPARE_URL = 'https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models'
 
@@ -346,15 +347,18 @@ export default function RussianInstantPropFirmsPage() {
               </article>
             </div>
             <p>
-              News trading отмечен как restricted, overnight и weekend holding разрешены со swap, а copying допускается только между
-              собственными Stellar Instant accounts. До оплаты нужно отдельно подтвердить KYC и страну; для резидентов России официальные FundedNext pages дают конфликтующие сигналы.
+              News trading разрешён, но внутри окна 5 минут до и 5 минут после указанной high-impact новости засчитывается только 40% прибыли;
+              overnight и weekend holding разрешены со swap, а copying допускается только между собственными Stellar Instant accounts.
+              До оплаты нужно отдельно подтвердить KYC и страну; для резидентов России официальные FundedNext pages дают конфликтующие сигналы.
             </p>
             <p className="ru-source-line">
               <a href={partnerCards.find(card => card.slug === 'fundednext')?.product?.sourceUrl} target="_blank" rel="noopener noreferrer">Официальная цена</a>{' · '}
               <a href={FUNDEDNEXT_REWARD_URL} target="_blank" rel="noopener noreferrer">Reward eligibility</a>{' · '}
-              <a href={FUNDEDNEXT_SCALE_URL} target="_blank" rel="noopener noreferrer">Scale-up plan</a>
+              <a href={FUNDEDNEXT_SCALE_URL} target="_blank" rel="noopener noreferrer">Scale-up plan</a>{' · '}
+              <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">News Profit Rule</a>
             </p>
             <div className="ru-actions">
+              <Link href="/ru/fundednext-stellar-instant" className="btn-outline">Все правила Stellar Instant</Link>
               <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
               <Link href="/go/fundednext?from=ru-instant-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
                 Проверить Stellar Instant <ArrowRight size={14} aria-hidden="true" />

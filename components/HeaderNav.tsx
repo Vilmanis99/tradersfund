@@ -16,6 +16,7 @@ const russianNavLinks = [
       { label: 'Forex-проп', href: '/ru/forex-prop-firmy' },
       { label: 'Проп-фирмы с cTrader', href: '/ru/prop-firmy-s-ctrader' },
       { label: 'FundedNext MT5 и EA', href: '/ru/fundednext-mt5' },
+      { label: 'FundedNext Stellar Instant', href: '/ru/fundednext-stellar-instant' },
       { label: 'Крипто-проп', href: '/ru/luchshie-kripto-prop-firmy' },
       { label: 'Без челленджа', href: '/ru/prop-firmy-bez-chelendzha' },
       { label: 'FundedNext против Bright Funded', href: '/ru/fundednext-vs-bright-funded' },
