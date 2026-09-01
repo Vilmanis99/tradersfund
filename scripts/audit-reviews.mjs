@@ -12804,6 +12804,7 @@ function checkRussianAcquisitionPilot() {
     "href: '/ru/prop-firmy-bez-chelendzha'",
     "href: '/ru/kak-rabotayut-chellendzhi-prop-firm'",
     'getAlternateLanguageHref(pathname)',
+    "document.documentElement.lang = isRussian ? 'ru' : 'en'",
     'hrefLang={isRussian ? \'en\' : \'ru\'}',
   ]) {
     if (!headerNav.includes(token)) rows.push(`Russian header navigation is missing ${token}`)

@@ -58,6 +58,14 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
   const [lastPath, setLastPath] = useState(pathname)
   const navRef = useRef<HTMLDivElement | null>(null)
 
+  // The server-rendered /ru layout and response header establish the Russian
+  // language boundary for crawlers. Keep the document root in sync after
+  // hydration and during client-side navigation so assistive technology does
+  // not continue treating Russian pages as English (or vice versa).
+  useEffect(() => {
+    document.documentElement.lang = isRussian ? 'ru' : 'en'
+  }, [isRussian])
+
   // Close menus on route change (adjust state during render — React 19 pattern).
   if (lastPath !== pathname) {
     setLastPath(pathname)
