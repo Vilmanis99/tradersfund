@@ -13108,6 +13108,8 @@ function checkRussianAcquisitionPilot() {
     'Content-Language must be ru',
     'controlled affiliate CTA is missing or mislabelled',
     'unapproved local-firm affiliate action rendered',
+    'function affiliateDestinationKey(input)',
+    'const russianAffiliateRedirectFixtures = [',
     'Russian affiliate attribution failed',
   ]) {
     if (!releaseCrawl.includes(token)) rows.push(`release crawl is missing Russian safeguard ${token}`)

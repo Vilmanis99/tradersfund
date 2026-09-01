@@ -128,6 +128,16 @@ function canonicalKey(input) {
   return `${parsed.origin}${pathname}${parsed.search}`
 }
 
+function affiliateDestinationKey(input) {
+  const parsed = new URL(input)
+  for (const parameter of ['utm_source', 'utm_medium', 'utm_campaign', 'fp_sid']) {
+    parsed.searchParams.delete(parameter)
+  }
+  parsed.searchParams.sort()
+  parsed.hash = ''
+  return parsed.toString()
+}
+
 function textContent(value = '') {
   return decodeHtml(value
     .replace(/<[^>]+>/g, ' ')
@@ -4860,28 +4870,39 @@ for (const matchup of [
   }
 }
 
-const russianAffiliateRedirect = await fetchPage(new URL(
-  '/go/fundednext?from=ru-fundednext-review-verdict',
-  BASE,
-), 'manual')
-let russianAffiliateDestination = null
-try {
-  russianAffiliateDestination = new URL(russianAffiliateRedirect.location, BASE)
-} catch {
-  // The assertions below report the missing or malformed Location header.
-}
-if (
-  russianAffiliateRedirect.status !== 302
-  || !russianAffiliateDestination
-  || russianAffiliateDestination.origin === BASE.origin
-  || russianAffiliateDestination.searchParams.get('utm_source') !== 'tradersfundhub'
-  || russianAffiliateDestination.searchParams.get('utm_medium') !== 'affiliate'
-  || russianAffiliateDestination.searchParams.get('utm_campaign')
-    !== 'ru-fundednext-review-verdict'
-  || russianAffiliateDestination.searchParams.get('fp_sid')
-    !== 'ru-fundednext-review-verdict'
-) {
-  errors.push('/go/fundednext?from=ru-fundednext-review-verdict: Russian affiliate attribution failed')
+const russianAffiliateRedirectFixtures = [
+  { firmSlug: 'fundednext', campaign: 'ru-fundednext-review-verdict' },
+  { firmSlug: 'bright-funded', campaign: 'ru-bright-funded-review-summary' },
+  { firmSlug: 'fundingpips', campaign: 'ru-fundingpips-review-summary' },
+]
+for (const fixture of russianAffiliateRedirectFixtures) {
+  const path = `/go/${fixture.firmSlug}?from=${fixture.campaign}`
+  const redirect = await fetchPage(new URL(path, BASE), 'manual')
+  const firm = firmRecords.find(record => outboundSlug(record.name) === fixture.firmSlug)
+  let destination = null
+  try {
+    destination = new URL(redirect.location, BASE)
+  } catch {
+    // The assertions below report the missing or malformed Location header.
+  }
+  const firstPromoter = firm?.affiliateUrl
+    ? new URL(firm.affiliateUrl).searchParams.has('fpr')
+    : false
+  if (
+    outboundRelationships[fixture.firmSlug] !== 'affiliate'
+    || !firm?.affiliateUrl
+    || redirect.status !== 302
+    || redirect.xRobotsTag.toLowerCase() !== 'noindex, nofollow'
+    || !destination
+    || destination.origin === BASE.origin
+    || affiliateDestinationKey(destination) !== affiliateDestinationKey(firm.affiliateUrl)
+    || destination.searchParams.get('utm_source') !== 'tradersfundhub'
+    || destination.searchParams.get('utm_medium') !== 'affiliate'
+    || destination.searchParams.get('utm_campaign') !== fixture.campaign
+    || (firstPromoter && destination.searchParams.get('fp_sid') !== fixture.campaign)
+  ) {
+    errors.push(`${path}: Russian affiliate attribution failed`)
+  }
 }
 
 const namedAffiliateIndiaRedirect = await fetchPage(new URL(
