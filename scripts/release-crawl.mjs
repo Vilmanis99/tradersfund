@@ -40,6 +40,7 @@ import {
 } from '../lib/indiaMatchups.ts'
 import {
   LOCALIZED_ROUTE_PAIRS,
+  RUSSIAN_ROUTE_EDITORIAL_DATES,
   RUSSIAN_ONLY_ROUTES,
 } from '../lib/localizedRoutes.ts'
 
@@ -667,6 +668,25 @@ if (JSON.stringify(russianSitemapPaths.sort()) !== JSON.stringify([...russianPat
 
 const sitemapEntries = [...sitemapResponse.html.matchAll(/<url>([\s\S]*?)<\/url>/gi)]
   .map(match => match[1])
+for (const path of russianPaths) {
+  const entry = sitemapEntries.find(block => {
+    const location = decodeXml(firstMatch(block, /<loc>([\s\S]*?)<\/loc>/i))
+    return location && new URL(location).pathname === path
+  })
+  if (!entry) continue
+
+  const actualLastModified = firstMatch(entry, /<lastmod>([\s\S]*?)<\/lastmod>/i)
+  const editorialLastModified = RUSSIAN_ROUTE_EDITORIAL_DATES[path]
+  const actualTime = new Date(actualLastModified).getTime()
+  const editorialTime = new Date(`${editorialLastModified}T00:00:00Z`).getTime()
+  if (!actualLastModified || !Number.isFinite(actualTime)) {
+    errors.push(`${path}: Russian sitemap lastmod is missing or invalid`)
+  } else if (actualTime < editorialTime) {
+    errors.push(
+      `${path}: sitemap lastmod ${actualLastModified} predates editorial update ${editorialLastModified}`,
+    )
+  }
+}
 for (const pair of russianRoutePairs) {
   for (const path of [pair.en, pair.ru]) {
     const entry = sitemapEntries.find(block => {

@@ -12757,6 +12757,7 @@ function checkRussianAcquisitionPilot() {
   const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
   for (const token of [
     'LOCALIZED_ROUTE_PAIRS',
+    'RUSSIAN_ROUTE_EDITORIAL_DATES',
     'RUSSIAN_ONLY_ROUTES',
     "'x-default': `${BASE_URL}${pair.en}`",
     'russianMarketEvidence.capturedAt',
@@ -12772,6 +12773,8 @@ function checkRussianAcquisitionPilot() {
   const releaseCrawl = fs.readFileSync(RELEASE_CRAWL_FILE, 'utf8')
   for (const token of [
     'const russianRoutePairs = [...LOCALIZED_ROUTE_PAIRS]',
+    'RUSSIAN_ROUTE_EDITORIAL_DATES[path]',
+    'predates editorial update ${editorialLastModified}',
     'Russian sitemap routes disagree with the ${russianPaths.length}-page acquisition pilot',
     'rendered Russian language boundary or schema is missing',
     'Content-Language must be ru',
