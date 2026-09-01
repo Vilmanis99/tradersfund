@@ -4,7 +4,7 @@ import { ArrowRight, BarChart3, CheckCircle2, Scale, ShieldCheck } from 'lucide-
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { getChallengesByFirm, getAllFirms, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/fundednext-vs-fundingpips'
 const TITLE = 'FundedNext или FundingPips: сравнение 2026'
@@ -45,6 +45,12 @@ type ProductRow = {
   firm: string
   product: Challenge
   price: string
+}
+
+function requireProductRow(rows: ProductRow[], firm: string, productSlug: string) {
+  const row = rows.find(candidate => candidate.firm === firm && candidate.product.productSlug === productSlug)
+  if (!row) throw new Error(`Missing fresh ${firm} product ${productSlug}`)
+  return row
 }
 
 function formatPrice(value: number, currency: 'USD' | 'EUR') {
@@ -113,6 +119,13 @@ export default function RussianFundedNextVsFundingPipsPage() {
   ]
   const sourceDates = productRows.map(row => row.product.sourceCapturedAt).sort()
   const latestCapture = sourceDates.at(-1) ?? 'дата не указана'
+  const articleDateModified = russianRouteDateModified(PATH, latestCapture)
+  const fundedNextInstant = requireProductRow(productRows, 'FundedNext', 'stellar-instant').product
+  const fundingPipsZero = requireProductRow(productRows, 'FundingPips', 'zero').product
+  const fundedNextOneStep = requireProductRow(productRows, 'FundedNext', 'stellar-1-step').product
+  const fundingPipsOneStep = requireProductRow(productRows, 'FundingPips', '1-step-flex').product
+  const fundedNextTwoStep = requireProductRow(productRows, 'FundedNext', 'stellar-2-step').product
+  const fundingPipsTwoStep = requireProductRow(productRows, 'FundingPips', '2-step-pro').product
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
     { name: 'Рейтинг проп-фирм', url: '/ru/luchshie-prop-firmy' },
@@ -126,7 +139,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
-    dateModified: latestCapture,
+    dateModified: articleDateModified,
     author: { '@type': 'Organization', name: 'Traders Fund Hub' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
@@ -138,7 +151,11 @@ export default function RussianFundedNextVsFundingPipsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
 
       <section className="ru-hero">
-        <div className="ru-shell" data-russian-partner-comparison="fundednext-fundingpips">
+        <div
+          className="ru-shell"
+          data-russian-partner-comparison="fundednext-fundingpips"
+          data-russian-comparison-editorial-date={articleDateModified}
+        >
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / Сравнение</div>
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Продукт против продукта</div>
           <h1>FundedNext или FundingPips: сравнение для русскоязычных трейдеров</h1>
@@ -195,7 +212,11 @@ export default function RussianFundedNextVsFundingPipsPage() {
           <h2>Все свежие продукты в сравнении</h2>
           <p className="ru-muted">Пустое значение означает, что число не опубликовано или зависит от выбранной структуры. Цены остаются в валюте фирмы.</p>
           <div className="ru-table-wrap">
-            <table className="ru-table" data-russian-comparison-product-count={productRows.length}>
+            <table
+              className="ru-table"
+              data-russian-comparison-product-count={productRows.length}
+              data-russian-comparison-source-links={productRows.length}
+            >
               <thead><tr><th>Фирма</th><th>Продукт</th><th>Этапы</th><th>Цель</th><th>Цена</th><th>Просадка</th><th>Сплит</th><th>Первая выплата</th><th>Источник</th></tr></thead>
               <tbody>
                 {productRows.map(row => (
@@ -208,13 +229,125 @@ export default function RussianFundedNextVsFundingPipsPage() {
                     <td>{drawdownLabel(row.product)}</td>
                     <td>{splitLabel(row.product)}</td>
                     <td>{payoutLabel(row.product)}</td>
-                    <td>{row.product.sourceCapturedAt}</td>
+                    <td>
+                      <a href={row.product.sourceUrl} target="_blank" rel="noopener noreferrer">
+                        {row.product.sourceCapturedAt}
+                      </a>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
           <p className="ru-source-line">Дата сравнения: {latestCapture}. Полные доказательства и ссылки на первичные страницы — в <Link href="/ru/obzor-fundednext">обзоре FundedNext</Link> и <Link href="/ru/obzor-fundingpips">обзоре FundingPips</Link>.</p>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div
+          className="ru-shell ru-content"
+          data-russian-comparison-scenarios="three-like-for-like-pairs"
+        >
+          <h2>Три пары продуктов, которые можно сравнивать без подмены модели</h2>
+          <p>
+            В таблице выше {productRows.length} продуктов, но прямое сравнение начинается только после совпадения числа этапов.
+            Ниже три пары из одного класса: 0-phase, 1-step и 2-step. Цифры привязаны к первичным страницам,
+            захваченным {latestCapture}, а не к максимумам на главной странице бренда.
+          </p>
+
+          <div className="ru-grid">
+            <article className="ru-card" data-russian-comparison-pair="instant">
+              <h3>Без оценки: Stellar Instant или FundingPips Zero</h3>
+              <p>
+                У Stellar Instant лимит общей просадки {fundedNextInstant.maxLossPct}% trailing, стартовый split{' '}
+                {fundedNextInstant.profitSplitPct}% и запрос reward по модели {payoutLabel(fundedNextInstant)}.
+                У FundingPips Zero лимит {fundingPipsZero.maxLossPct}% trailing, split {fundingPipsZero.profitSplitPct}%
+                и первый цикл {payoutLabel(fundingPipsZero)}.
+              </p>
+              <p className="ru-muted">
+                Число {fundingPipsZero.profitSplitPct}% не делает Zero автоматическим выбором: официальный продукт также публикует{' '}
+                {fundingPipsZero.consistencyRulePct}% consistency, а Stellar Instant требует выполнить отдельные условия
+                on-demand reward. Сначала сравните механику просадки и календарь, потом процент.
+              </p>
+              <p className="ru-source-line">
+                Источники:{' '}
+                <a href={fundedNextInstant.sourceUrl} target="_blank" rel="noopener noreferrer">Stellar Instant</a>;{' '}
+                <a href={fundingPipsZero.sourceUrl} target="_blank" rel="noopener noreferrer">FundingPips Zero</a>.
+              </p>
+            </article>
+
+            <article className="ru-card" data-russian-comparison-pair="one-step">
+              <h3>Один этап: Stellar 1-Step или 1 Step Flex</h3>
+              <p>
+                Stellar 1-Step ставит цель {fundedNextOneStep.profitTargets?.phase1}%, дневной лимит{' '}
+                {fundedNextOneStep.dailyLossPct}% и общий лимит {fundedNextOneStep.maxLossPct}% static; первый стандартный
+                reward указан через {fundedNextOneStep.payoutFirstDays} рабочих дней. У 1 Step Flex цель{' '}
+                {fundingPipsOneStep.profitTargets?.phase1}%, тот же дневной лимит {fundingPipsOneStep.dailyLossPct}%,
+                но общий лимит {fundingPipsOneStep.maxLossPct}% static и {fundingPipsOneStep.payoutFirstDays}-дневный цикл
+                в сохранённом Bi-Weekly маршруте.
+              </p>
+              <p className="ru-muted">
+                Это обмен между более коротким календарём и другим запасом общей просадки, а не фирменный «победитель».
+                Проверьте также minimum trading days, refund и правила reward именно для выбранной даты покупки.
+              </p>
+              <p className="ru-source-line">
+                Источники:{' '}
+                <a href={fundedNextOneStep.sourceUrl} target="_blank" rel="noopener noreferrer">Stellar 1-Step</a>;{' '}
+                <a href={fundingPipsOneStep.sourceUrl} target="_blank" rel="noopener noreferrer">1 Step Flex</a>.
+              </p>
+            </article>
+
+            <article className="ru-card" data-russian-comparison-pair="two-step">
+              <h3>Два этапа: Stellar 2-Step или 2 Step Pro</h3>
+              <p>
+                Stellar 2-Step публикует цели {targetLabel(fundedNextTwoStep)}, дневной лимит{' '}
+                {fundedNextTwoStep.dailyLossPct}% и общий лимит {fundedNextTwoStep.maxLossPct}% static. 2 Step Pro публикует
+                цели {targetLabel(fundingPipsTwoStep)}, дневной лимит {fundingPipsTwoStep.dailyLossPct}% и общий лимит{' '}
+                {fundingPipsTwoStep.maxLossPct}% static.
+              </p>
+              <p className="ru-muted">
+                Более низкая цель 2 Step Pro сочетается с меньшим запасом до общего лимита; у Stellar 2-Step запас больше,
+                но стандартная первая выплата указана через {fundedNextTwoStep.payoutFirstDays} день против{' '}
+                {fundingPipsTwoStep.payoutFirstDays} дней в сохранённом Weekly-маршруте 2 Step Pro. Сравнивайте весь набор,
+                включая альтернативный Monthly reward, а не одну строку.
+              </p>
+              <p className="ru-source-line">
+                Источники:{' '}
+                <a href={fundedNextTwoStep.sourceUrl} target="_blank" rel="noopener noreferrer">Stellar 2-Step</a>;{' '}
+                <a href={fundingPipsTwoStep.sourceUrl} target="_blank" rel="noopener noreferrer">2 Step Pro</a>.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell ru-content" data-russian-comparison-decision="constraint-before-brand">
+          <h2>Как принять решение за четыре проверки</h2>
+          <ol>
+            <li>Выберите один класс: 0-phase, 1-step или 2-step; не сравнивайте Stellar Instant с 2 Step Pro.</li>
+            <li>Отметьте жёсткий лимит стратегии: daily loss, общий drawdown, consistency или запрет weekend/news.</li>
+            <li>Сверьте первый reward cycle и refundable fee; высокий split не сокращает календарь автоматически.</li>
+            <li>Подтвердите страну, гражданство, KYC, оплату и выплату до перехода к checkout.</li>
+          </ol>
+          <div className="ru-notice">
+            <strong>Если нужен один этап и короткое стандартное reward-окно:</strong>{' '}
+            сначала изучите Stellar 1-Step с {fundedNextOneStep.payoutFirstDays}-дневным окном и его полные правила.
+            Если важнее конкретная структура FundingPips, выберите соответствующую модель, а не фирму целиком.
+          </div>
+          <div className="ru-actions" data-russian-comparison-decision-cta="primary-first">
+            <Link href="/go/fundednext?from=ru-comparison-fit-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+              Проверить продукты FundedNext <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+            <Link href="/go/fundingpips?from=ru-comparison-fit-fundingpips" rel="sponsored nofollow noopener" className="btn-outline">
+              Проверить продукты FundingPips <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+          <p className="ru-source-line">
+            Партнёрские ссылки не добавляют баллы и не заменяют проверку профиля. Для третьего маршрута используйте{' '}
+            <Link href="/ru/obzor-bright-funded">отдельный обзор Bright Funded</Link>, где его EUR-продукты не смешаны
+            с девятью строками этого сравнения.
+          </p>
         </div>
       </section>
 
