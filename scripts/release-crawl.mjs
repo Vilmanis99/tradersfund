@@ -1094,6 +1094,13 @@ const russianExpectations = new Map([
       'data-russian-bright-payouts="eur-usdc"',
       'data-russian-bright-diaspora="currency-first"',
       'data-russian-affiliate-disclosure="bright-funded"',
+      'data-russian-bright-alternatives="failure-point-routing"',
+      'data-russian-bright-comparison-products="7"',
+      'data-russian-bright-comparison-prices="40"',
+      'С чем сравнить Bright Funded',
+      '/ru/vyplaty-prop-firm',
+      '/ru/prop-firmy-bez-kyc',
+      '/authors/tara-mohseni',
     ],
   }],
   ['/ru/chto-takoe-prop-firma', {
@@ -1512,6 +1519,18 @@ const russianDiasporaDecisionRouter = firstMatch(
 )
 if (russianDiasporaDecisionRouter.includes('/go/')) {
   errors.push('/ru/dlya-russkoyazychnykh-treyderov: qualification router must remain non-commercial')
+}
+
+const russianBrightPage = pages.find(page =>
+  new URL(page.productionUrl).pathname === '/ru/obzor-bright-funded')
+const russianBrightAlternatives = firstMatch(
+  russianBrightPage?.html ?? '',
+  /<section\b[^>]*data-russian-bright-alternatives="failure-point-routing"[^>]*>([\s\S]*?)<\/section>/i,
+)
+if (!russianBrightAlternatives) {
+  errors.push('/ru/obzor-bright-funded: failure-point alternatives section did not render')
+} else if (russianBrightAlternatives.includes('/go/')) {
+  errors.push('/ru/obzor-bright-funded: failure-point alternatives must remain non-commercial')
 }
 
 const russianFundedNextPage = pages.find(page =>

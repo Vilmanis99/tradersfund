@@ -98,6 +98,11 @@ export default function RussianBrightFundedReviewPage() {
     ?? products.map(product => product.sourceCapturedAt).sort().at(-1)
     ?? 'дата не указана'
   const sourceUrls = [...new Set(freshProducts.map(product => product.sourceUrl))]
+  const fundedNextProducts = getChallengesByFirm('fundednext').filter(product => isChallengeFresh(product))
+  const fundedNextPricedTierCount = fundedNextProducts.reduce((count, product) =>
+    count + product.accountSizes.filter(tier => tier.priceUsd != null && tier.priceUsd > 0).length, 0)
+  const comparisonProductCount = freshProducts.length + fundedNextProducts.length
+  const comparisonPriceCount = pricedTiers.length + fundedNextPricedTierCount
   const oneStep = freshProducts.find(product => product.productSlug === 'bright-funded-1-step')
   const bright = freshProducts.find(product => product.productSlug === 'bright-funded-2-step-bright')
   const classic = freshProducts.find(product => product.productSlug === 'bright-funded-2-step-classic')
@@ -130,7 +135,11 @@ export default function RussianBrightFundedReviewPage() {
     inLanguage: 'ru',
     datePublished: '2025-05-19',
     dateModified: latestCapture,
-    author: { '@type': 'Person', name: 'Tara Mohseni' },
+    author: {
+      '@type': 'Person',
+      name: 'Tara Mohseni',
+      url: 'https://tradersfundhub.com/authors/tara-mohseni',
+    },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
     mainEntityOfPage: `https://tradersfundhub.com${PATH}`,
   }
@@ -178,6 +187,7 @@ export default function RussianBrightFundedReviewPage() {
                 <li><a href="#diaspora">Евро-цена для русскоязычных за рубежом</a></li>
                 <li><a href="#fit">Кому подходит Bright Funded</a></li>
                 <li><a href="#register">Проверка перед регистрацией</a></li>
+                <li><a href="#alternatives">С чем сравнить Bright Funded</a></li>
                 <li><a href="#faq">Частые вопросы</a></li>
               </ol>
             </nav>
@@ -407,6 +417,33 @@ export default function RussianBrightFundedReviewPage() {
             <p className="ru-source-line"><BadgeDollarSign size={14} aria-hidden="true" /> Переход проходит через контролируемый редирект Traders Fund Hub и помечен sponsored и nofollow.</p>
             <p className="ru-source-line"><ExternalLink size={14} aria-hidden="true" /> Продуктовые источники: {sourceUrls.map((url, index) => <span key={url}>{index ? ' · ' : ''}<a href={url} target="_blank" rel="noopener noreferrer">страница {index + 1}</a></span>)}</p>
             <p className="ru-source-line">Подробная англоязычная проверка: <Link href="/blog/bright-funded-prop-firm" hrefLang="en">Bright Funded review</Link>.</p>
+          </div>
+        </section>
+
+        <section className="ru-section" data-russian-bright-alternatives="failure-point-routing">
+          <div
+            className="ru-shell ru-content"
+            data-russian-bright-comparison-products={comparisonProductCount}
+            data-russian-bright-comparison-prices={comparisonPriceCount}
+          >
+            <h2 id="alternatives">С чем сравнить Bright Funded</h2>
+            <p>Используйте 5 маршрутов по конкретному блокеру, а не ещё одну таблицу «лучших» брендов. Сначала отделите риск продукта, способ выплаты, KYC, валюту checkout и отсутствие подходящего варианта; только после этого возвращайтесь к регистрации.</p>
+            <ul className="ru-review-related-links">
+              <li><Link href="/ru/fundednext-vs-bright-funded">Bright Funded или FundedNext</Link> — прямое сравнение {comparisonProductCount} свежих продуктов и {comparisonPriceCount} USD/EUR цен по drawdown, true cost, payout и country-check.</li>
+              <li><Link href="/ru/obzor-fundednext">Обзор FundedNext</Link> — {fundedNextProducts.length} модели и {fundedNextPricedTierCount} текущих USD-цен, если EUR checkout, 30-дневный первый payout или один из 3 risk buckets Bright Funded не подходит.</li>
+              <li><Link href="/ru/vyplaty-prop-firm">Сравнение выплат проп-фирм</Link> — отдельная проверка 2 маршрутов Bright Funded, календаря reward и альтернатив до того, как комиссия банка или сети изменит чистый результат.</li>
+              <li><Link href="/ru/prop-firmy-bez-kyc">Проверка KYC и страны</Link> — гражданство, резидентство, документы и payment ownership проверяются до цены; отсутствие страны в опубликованном запрете не равно персональному одобрению.</li>
+              <li><Link href="/ru/luchshie-prop-firmy">Полный рейтинг глобальных проп-фирм</Link> — следующий маршрут, если ни одна из {freshProducts.length} программ Bright Funded и {fundedNextProducts.length} моделей FundedNext не совпадает с торговым планом.</li>
+            </ul>
+
+            <div className="ru-review-author" aria-label="Автор обзора Bright Funded">
+              <div className="ru-review-author-avatar" aria-hidden="true">TM</div>
+              <div>
+                <strong>Автор: Tara Mohseni</strong>
+                <p>Пишет финансовые материалы с 2020 года и работает с ними полный день с 2022 года после опыта с криптобиржей и розничным forex-брокером. В этом обзоре 3 программы, 18 EUR-цен и партнёрский CTA отделены друг от друга.</p>
+                <Link href="/authors/tara-mohseni">Профиль автора</Link>
+              </div>
+            </div>
           </div>
         </section>
 

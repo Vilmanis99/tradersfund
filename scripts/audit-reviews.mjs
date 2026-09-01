@@ -12666,6 +12666,13 @@ function checkRussianAcquisitionPilot() {
       'data-russian-affiliate-disclosure="bright-funded"',
       '/go/bright-funded?from=ru-bright-funded-review-verdict',
       'href="/ru/fundednext-vs-bright-funded"',
+      'data-russian-bright-alternatives="failure-point-routing"',
+      'data-russian-bright-comparison-products={comparisonProductCount}',
+      'data-russian-bright-comparison-prices={comparisonPriceCount}',
+      'href="/ru/vyplaty-prop-firm"',
+      'href="/ru/prop-firmy-bez-kyc"',
+      'aria-label="Автор обзора Bright Funded"',
+      'href="/authors/tara-mohseni"',
       'rel="sponsored nofollow noopener"',
     ]],
   ]) {
