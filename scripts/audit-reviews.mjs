@@ -10949,6 +10949,10 @@ function checkRussianAcquisitionPilot() {
   const russianPartnerReviewSource = fs.existsSync(russianPartnerReviewFile)
     ? fs.readFileSync(russianPartnerReviewFile, 'utf8')
     : ''
+  const russianAffiliateSupportCodeFile = path.join(ROOT, 'components/RussianAffiliateSupportCode.tsx')
+  const russianAffiliateSupportCodeSource = fs.existsSync(russianAffiliateSupportCodeFile)
+    ? fs.readFileSync(russianAffiliateSupportCodeFile, 'utf8')
+    : ''
   const russianPartnerMatcherFile = path.join(ROOT, 'components/RussianPartnerMatcher.tsx')
   const russianPartnerMatcherSource = fs.existsSync(russianPartnerMatcherFile)
     ? fs.readFileSync(russianPartnerMatcherFile, 'utf8')
@@ -10988,6 +10992,66 @@ function checkRussianAcquisitionPilot() {
 
   for (const [route, file] of russianRouteFiles) {
     if (!fs.existsSync(file)) rows.push(`${route}: route source is missing`)
+  }
+
+  const firms = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf8'))
+  for (const firm of firms) {
+    const supportFields = [
+      firm.affiliateSupportCode,
+      firm.affiliateSupportDiscountPct,
+      firm.affiliateSupportProgramUrl,
+      firm.affiliateSupportVerifiedAt,
+    ]
+    const configuredFieldCount = supportFields.filter(value => value !== undefined).length
+    if (configuredFieldCount === 0) continue
+    if (configuredFieldCount !== supportFields.length) {
+      rows.push(`${firm.name}: affiliate support code must configure code, percentage, program URL and verification date together`)
+      continue
+    }
+    if (!firm.affiliateUrl) {
+      rows.push(`${firm.name}: affiliate support code is configured without an affiliate URL`)
+    }
+    if (!/^[A-Za-z0-9_-]{3,64}$/.test(firm.affiliateSupportCode)) {
+      rows.push(`${firm.name}: affiliate support code format is invalid`)
+    }
+    if (!Number.isInteger(firm.affiliateSupportDiscountPct)
+      || firm.affiliateSupportDiscountPct < 1
+      || firm.affiliateSupportDiscountPct > 100) {
+      rows.push(`${firm.name}: affiliate support discount must be an integer from 1 to 100`)
+    }
+    try {
+      const programUrl = new URL(firm.affiliateSupportProgramUrl)
+      const officialUrl = new URL(firm.officialUrl)
+      if (programUrl.protocol !== 'https:'
+        || (programUrl.hostname !== officialUrl.hostname
+          && !programUrl.hostname.endsWith(`.${officialUrl.hostname}`))) {
+        rows.push(`${firm.name}: affiliate support program URL must be a firm-owned HTTPS page`)
+      }
+    } catch {
+      rows.push(`${firm.name}: affiliate support program URL is invalid`)
+    }
+    const verifiedAt = new Date(`${firm.affiliateSupportVerifiedAt}T23:59:59Z`)
+    const ageDays = (Date.now() - verifiedAt.getTime()) / 86_400_000
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(firm.affiliateSupportVerifiedAt)
+      || Number.isNaN(verifiedAt.getTime())
+      || ageDays < -1
+      || ageDays > 30) {
+      rows.push(`${firm.name}: affiliate support code verification is outside the 30-day window`)
+    }
+  }
+
+  for (const token of [
+    'data-russian-affiliate-support-code={firm.name}',
+    'data-russian-affiliate-support-placement={placement}',
+    '<CopyableCodePill code={code} pct={pct} locale="ru" />',
+    'Код может сохранить привязку покупки к Traders Fund Hub',
+    'выберите большую применимую скидку',
+    '<strong> 0 баллов</strong>',
+    'Условия партнёрской программы',
+  ]) {
+    if (!russianAffiliateSupportCodeSource.includes(token)) {
+      rows.push(`Russian affiliate support-code component is missing ${token}`)
+    }
   }
   const indexNowPaths = getRussianIndexNowUrls('https://tradersfundhub.com')
     .map(url => new URL(url).pathname)
@@ -11831,6 +11895,10 @@ function checkRussianAcquisitionPilot() {
     'data-russian-home-hero-partners="fundednext-bright-funded"',
     'data-russian-home-hero-partner={item.slug}',
     'data-russian-home-fundednext-offer="earned-coupon"',
+    'import RussianAffiliateSupportCode from \'@/components/RussianAffiliateSupportCode\'',
+    '<RussianAffiliateSupportCode',
+    'publicOfferPct={item.deal?.pct}',
+    'placement={`home-${item.slug}`}',
     'href="/ru/promokody-prop-firm#fundednext-promokod"',
     'Как получить {item.deal.pct}% после Free Trial',
     'ru-home-partner-hero-logo',
@@ -12878,6 +12946,12 @@ function checkRussianAcquisitionPilot() {
       'data-russian-bright-payouts="eur-usdc"',
       'data-russian-bright-diaspora="currency-first"',
       'data-russian-affiliate-disclosure="bright-funded"',
+      'import RussianAffiliateSupportCode from \'@/components/RussianAffiliateSupportCode\'',
+      "const publicDealPcts = getDealsByFirm('bright-funded')",
+      'const bestPublicDealPct = publicDealPcts.length ? Math.max(...publicDealPcts) : null',
+      '<RussianAffiliateSupportCode',
+      'publicOfferPct={bestPublicDealPct}',
+      'placement="bright-funded-review-verdict"',
       '/go/bright-funded?from=ru-bright-funded-review-verdict',
       'href="/ru/fundednext-vs-bright-funded"',
       'data-russian-bright-alternatives="failure-point-routing"',

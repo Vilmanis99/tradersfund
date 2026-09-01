@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from '@/components/SafeLink'
 import { ArrowRight, BadgePercent, BookOpenCheck, Building2, ChartCandlestick, Database, Globe2, MonitorCog, Scale, ShieldAlert, WalletCards, Zap } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianAffiliateSupportCode from '@/components/RussianAffiliateSupportCode'
 import { getAllDeals } from '@/lib/deals'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
@@ -162,6 +163,11 @@ export default function RussianHomePage() {
                       </Link>
                     ) : null}
                   </div>
+                  <RussianAffiliateSupportCode
+                    firm={item.firm}
+                    publicOfferPct={item.deal?.pct}
+                    placement={`home-${item.slug}`}
+                  />
                 </article>
               )
             })}

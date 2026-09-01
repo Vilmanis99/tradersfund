@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
 import { AlertTriangle, ArrowRight, BadgeDollarSign, CheckCircle2, Database, ExternalLink } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianAffiliateSupportCode from '@/components/RussianAffiliateSupportCode'
 import {
   challengeTierEconomics,
   getAllFirms,
@@ -9,6 +10,7 @@ import {
   isChallengeFresh,
   type Challenge,
 } from '@/lib/firms'
+import { getDealsByFirm } from '@/lib/deals'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 
@@ -90,6 +92,10 @@ const faqs: RussianFaqItem[] = [
 
 export default function RussianBrightFundedReviewPage() {
   const firm = getAllFirms().find(candidate => candidate.name === 'Bright Funded')
+  const publicDealPcts = getDealsByFirm('bright-funded')
+    .map(deal => deal.pct)
+    .filter((pct): pct is number => pct != null)
+  const bestPublicDealPct = publicDealPcts.length ? Math.max(...publicDealPcts) : null
   const products = getChallengesByFirm('bright-funded')
   const freshProducts = products.filter(product => isChallengeFresh(product))
   const pricedTiers = freshProducts.flatMap(product => product.accountSizes.flatMap(tier =>
@@ -406,6 +412,11 @@ export default function RussianBrightFundedReviewPage() {
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="bright-funded">
               <strong>Партнёрское раскрытие.</strong> Мы можем получить комиссию, если подходящий читатель зарегистрируется через ссылку ниже. Партнёрство не меняет {freshProducts.length} продукта, {pricedTiers.length} цен, расчёт true cost или вывод по стране. Нельзя обходить ограничения VPN, прокси или неверными данными.
             </div>
+            <RussianAffiliateSupportCode
+              firm={firm}
+              publicOfferPct={bestPublicDealPct}
+              placement="bright-funded-review-verdict"
+            />
             {firm?.affiliateUrl ? (
               <div className="ru-actions">
                 <Link href="/go/bright-funded?from=ru-bright-funded-review-verdict" rel="sponsored nofollow noopener" className="btn-primary btn-glow">

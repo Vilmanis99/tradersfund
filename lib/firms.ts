@@ -37,6 +37,19 @@ export interface Firm {
   discountCode?: string
   /** Discount as an integer % off the challenge fee (e.g. 10 for 10%). */
   discountPct?: number
+  /**
+   * Personal partner code that can preserve TFH attribution when a tracked
+   * browser session is lost. This is deliberately separate from
+   * `discountCode` and time-limited public deals: it must never replace a
+   * larger eligible checkout promotion.
+   */
+  affiliateSupportCode?: string
+  /** Discount attached to `affiliateSupportCode`, as an integer percentage. */
+  affiliateSupportDiscountPct?: number
+  /** Firm-owned page explaining the partner-code attribution mechanism. */
+  affiliateSupportProgramUrl?: string
+  /** ISO date on which the personal code and percentage were re-verified. */
+  affiliateSupportVerifiedAt?: string
 
   // ── Financial terms ──
   profitSplitPct?: number | null
