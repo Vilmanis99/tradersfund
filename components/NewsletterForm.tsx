@@ -29,7 +29,10 @@ export default function NewsletterForm({
     try {
       const res = await fetch('/api/newsletter', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-TFH-Locale': locale,
+        },
         body: JSON.stringify({ email, company }),
       })
       const data = await res.json().catch(() => ({}))
@@ -71,7 +74,7 @@ export default function NewsletterForm({
       />
       <input
         type="email"
-        placeholder={isRussian ? 'Ваш email' : 'Your email address'}
+        placeholder={isRussian ? 'Ваш адрес электронной почты' : 'Your email address'}
         value={email}
         onChange={e => setEmail(e.target.value)}
         disabled={status === 'sending'}
@@ -82,7 +85,7 @@ export default function NewsletterForm({
         {status === 'sending'
           ? (isRussian ? 'Отправка…' : 'Sending…')
           : status === 'pending'
-            ? (isRussian ? 'Подтвердить email' : 'Confirm email')
+            ? (isRussian ? 'Подтвердить адрес' : 'Confirm email')
             : (isRussian ? 'Подписаться' : 'Subscribe')}
       </button>
       {status === 'pending' && (
