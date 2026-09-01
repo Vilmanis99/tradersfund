@@ -14,6 +14,7 @@
     "preview:start": "node scripts/preview-server.mjs start",
     "preview:stop": "node scripts/preview-server.mjs stop",
     "preview:status": "node scripts/preview-server.mjs status",
+    "indexnow:russian": "node scripts/submit-indexnow-russian.mjs",
     "capture:preview": "node scripts/merge-capture.mjs",
     "capture:freshness": "node scripts/challenge-freshness.mjs"
   },

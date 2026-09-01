@@ -69,6 +69,12 @@ import {
 import { rankRelatedPosts, relatedPostScore } from '../lib/relatedPosts.ts'
 import { russianPartnerMatcherDecision } from '../lib/russianPartnerMatcher.ts'
 import {
+  INDEXNOW_ENDPOINT,
+  INDEXNOW_KEY,
+  INDEXNOW_KEY_PATH,
+  getRussianIndexNowUrls,
+} from '../lib/indexNow.ts'
+import {
   getTradingToolReviewLinks,
   TRADING_TOOL_REVIEWS,
 } from '../lib/tradingToolReviews.ts'
@@ -10931,6 +10937,41 @@ function checkRussianAcquisitionPilot() {
 
   for (const [route, file] of russianRouteFiles) {
     if (!fs.existsSync(file)) rows.push(`${route}: route source is missing`)
+  }
+  const indexNowPaths = getRussianIndexNowUrls('https://tradersfundhub.com')
+    .map(url => new URL(url).pathname)
+    .sort()
+  const expectedIndexNowPaths = [...russianRouteFiles.keys()].sort()
+  if (JSON.stringify(indexNowPaths) !== JSON.stringify(expectedIndexNowPaths)) {
+    rows.push('Russian IndexNow inventory disagrees with the route source inventory')
+  }
+  if (!/^[a-zA-Z0-9-]{8,128}$/.test(INDEXNOW_KEY)) {
+    rows.push('IndexNow ownership key format is invalid')
+  }
+  const indexNowKeyFile = path.join(ROOT, 'public', `${INDEXNOW_KEY}.txt`)
+  if (
+    !fs.existsSync(indexNowKeyFile)
+    || fs.readFileSync(indexNowKeyFile, 'utf8').trim() !== INDEXNOW_KEY
+    || INDEXNOW_KEY_PATH !== `/${INDEXNOW_KEY}.txt`
+  ) {
+    rows.push('IndexNow ownership file is missing or disagrees with the configured key')
+  }
+  const indexNowScriptFile = path.join(ROOT, 'scripts/submit-indexnow-russian.mjs')
+  const indexNowScript = fs.existsSync(indexNowScriptFile)
+    ? fs.readFileSync(indexNowScriptFile, 'utf8')
+    : ''
+  for (const token of [
+    'INDEXNOW_ENDPOINT',
+    "args.has('--dry-run')",
+    'Production IndexNow key verification failed',
+    'Production sitemap is missing ${missingUrls.length} Russian IndexNow URL(s)',
+    'response.status !== 200 && response.status !== 202',
+  ]) {
+    if (!indexNowScript.includes(token)) rows.push(`Russian IndexNow submitter is missing ${token}`)
+  }
+  const packageJson = fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')
+  if (!packageJson.includes('"indexnow:russian": "node scripts/submit-indexnow-russian.mjs"')) {
+    rows.push('package.json is missing the Russian IndexNow submission command')
   }
   const forbiddenPublicResearch = [
     'yandex moscow',

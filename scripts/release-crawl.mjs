@@ -43,6 +43,11 @@ import {
   RUSSIAN_ROUTE_EDITORIAL_DATES,
   RUSSIAN_ONLY_ROUTES,
 } from '../lib/localizedRoutes.ts'
+import {
+  INDEXNOW_KEY,
+  INDEXNOW_KEY_PATH,
+  getRussianIndexNowUrls,
+} from '../lib/indexNow.ts'
 
 const args = process.argv.slice(2)
 const baseArg = args.find(value => !value.startsWith('--'))
@@ -659,6 +664,18 @@ const russianPaths = [
   ...russianRoutePairs.map(pair => pair.ru),
   ...russianOnlyPaths,
 ]
+const russianIndexNowPaths = getRussianIndexNowUrls(PRODUCTION_ORIGIN)
+  .map(url => new URL(url).pathname)
+if (JSON.stringify([...russianIndexNowPaths].sort()) !== JSON.stringify([...russianPaths].sort())) {
+  errors.push('Russian IndexNow inventory disagrees with the acquisition pilot')
+}
+const indexNowKeyResponse = await fetchPage(new URL(INDEXNOW_KEY_PATH, BASE))
+if (
+  indexNowKeyResponse.status !== 200
+  || indexNowKeyResponse.html.trim() !== INDEXNOW_KEY
+) {
+  errors.push(`IndexNow ownership key ${INDEXNOW_KEY_PATH} is unavailable or incorrect`)
+}
 const russianSitemapPaths = uniqueSitemapUrls
   .map(url => new URL(url).pathname)
   .filter(path => path === '/ru' || path.startsWith('/ru/'))
