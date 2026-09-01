@@ -12114,6 +12114,7 @@ function checkRussianAcquisitionPilot() {
     'data-russian-diaspora-regions="kazakhstan-uae"',
     'data-russian-diaspora-regions="global-routes"',
     'data-russian-diaspora-region-funnel="global-partners"',
+    'data-russian-diaspora-decision-router="four-unresolved-fields"',
     'data-russian-country-boundary="diaspora-not-access"',
     'data-russian-affiliate-disclosure="diaspora-guide"',
     'ru-diaspora-hero-fundednext',
@@ -12125,6 +12126,10 @@ function checkRussianAcquisitionPilot() {
     'Российские проп-компании',
     'Русский язык определяет язык объяснения',
     'Русскоязычные трейдеры в Европе, Грузии и Израиле',
+    'href="/ru/prop-firmy-bez-kyc"',
+    'href="/ru/vyplaty-prop-firm"',
+    'href="/ru/fundednext-vs-bright-funded"',
+    'href="/ru/rossiyskie-prop-kompanii"',
   ]) {
     if (!russianDiasporaPage.includes(token)) rows.push(`Russian diaspora guide is missing ${token}`)
   }

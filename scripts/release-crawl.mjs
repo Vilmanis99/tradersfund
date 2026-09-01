@@ -746,12 +746,17 @@ const russianExpectations = new Map([
       'data-russian-diaspora-regions="kazakhstan-uae"',
       'data-russian-diaspora-regions="global-routes"',
       'data-russian-diaspora-region-funnel="global-partners"',
+      'data-russian-diaspora-decision-router="four-unresolved-fields"',
       'data-russian-country-boundary="diaspora-not-access"',
       'data-russian-affiliate-disclosure="diaspora-guide"',
       '/go/fundednext?from=ru-diaspora-hero-fundednext',
       '/go/bright-funded?from=ru-diaspora-hero-bright-funded',
       '/go/fundednext?from=ru-diaspora-fundednext',
       '/go/bright-funded?from=ru-diaspora-bright-funded',
+      '/ru/prop-firmy-bez-kyc',
+      '/ru/vyplaty-prop-firm',
+      '/ru/fundednext-vs-bright-funded',
+      '/ru/rossiyskie-prop-kompanii',
     ],
   }],
   ['/ru/fundednext-vs-bright-funded', {
@@ -1497,6 +1502,16 @@ for (const [path, expectation] of russianExpectations) {
       errors.push(`${pair.en}: missing reciprocal Russian hreflang for ${pair.ru}`)
     }
   }
+}
+
+const russianDiasporaPage = pages.find(page =>
+  new URL(page.productionUrl).pathname === '/ru/dlya-russkoyazychnykh-treyderov')
+const russianDiasporaDecisionRouter = firstMatch(
+  russianDiasporaPage?.html ?? '',
+  /<section\b[^>]*data-russian-diaspora-decision-router="four-unresolved-fields"[^>]*>([\s\S]*?)<\/section>/i,
+)
+if (russianDiasporaDecisionRouter.includes('/go/')) {
+  errors.push('/ru/dlya-russkoyazychnykh-treyderov: qualification router must remain non-commercial')
 }
 
 const russianFundedNextPage = pages.find(page =>

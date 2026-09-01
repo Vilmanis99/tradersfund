@@ -300,6 +300,42 @@ export default function RussianDiasporaGuidePage() {
         </div>
       </section>
 
+      <section className="ru-section" data-russian-diaspora-decision-router="four-unresolved-fields">
+        <div className="ru-shell ru-content">
+          <h2>Откройте маршрут по вопросу, который ещё не закрыт</h2>
+          <p>
+            Не переходите к регистрации с общим выводом «страна подходит». Выберите один нерешённый блок —
+            документы, получение денег, правила продукта или тип рынка — и сначала проверьте его на отдельной странице.
+          </p>
+          <div className="ru-grid">
+            <article className="ru-card">
+              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Гражданство, адрес или документы</h3>
+              <p className="ru-muted">Если гражданство, резидентство, адрес, ID и selfie проверяются разными сторонами, начните с четырёх KYC-этапов и письменных вопросов поддержке.</p>
+              <Link href="/ru/prop-firmy-bez-kyc" className="ru-card-link">Открыть проверку KYC →</Link>
+            </article>
+            <article className="ru-card">
+              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Кошелёк, банк или валюта выплаты</h3>
+              <p className="ru-muted">Если неизвестны rail, token/network, валюта, provider fee или банковский маршрут, сравните eligibility, обработку фирмы и фактическое зачисление отдельно.</p>
+              <Link href="/ru/vyplaty-prop-firm" className="ru-card-link">Сравнить маршруты выплаты →</Link>
+            </article>
+            <article className="ru-card">
+              <ListChecks size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Не выбран конкретный продукт</h3>
+              <p className="ru-muted">Если выбор всё ещё сделан только по бренду, сопоставьте 7 продуктов FundedNext и Bright Funded по этапам, просадке, первой выплате и валюте checkout.</p>
+              <Link href="/ru/fundednext-vs-bright-funded" className="ru-card-link">Сравнить 7 продуктов →</Link>
+            </article>
+            <article className="ru-card">
+              <Globe2 size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Нужен локальный рынок, а не CFD challenge</h3>
+              <p className="ru-muted">Если задача связана с MOEX, стажировкой, рублёвым договором или локальным терминалом, не подменяйте её международным evaluation-продуктом.</p>
+              <Link href="/ru/rossiyskie-prop-kompanii" className="ru-card-link">Проверить российские модели →</Link>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section className="ru-section">
         <div className="ru-shell" data-russian-affiliate-disclosure="diaspora-guide">
           <div className="ru-notice ru-disclosure">
