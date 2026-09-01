@@ -63,13 +63,6 @@ const globalPartnerRoutes = [
     summary: 'Глобальный обзор с отдельной проверкой страны, KYC, валюты и четырёх моделей Stellar.',
   },
   {
-    slug: 'fundingpips',
-    name: 'FundingPips',
-    reviewHref: '/ru/obzor-fundingpips',
-    campaign: 'ru-local-research-fundingpips',
-    summary: 'Русский разбор пяти продуктовых моделей, просадки, сплита и условий выплаты.',
-  },
-  {
     slug: 'bright-funded',
     name: 'Bright Funded',
     reviewHref: '/ru/obzor-bright-funded',
@@ -234,9 +227,9 @@ export default function RussianPropCompaniesPage() {
 
       <section className="ru-section">
         <div className="ru-shell ru-content" data-russian-local-global-funnel="partner-routes">
-          <div className="ru-notice ru-disclosure">
-            <strong>Глобальные партнёрские маршруты отделены от локального исследования.</strong>{' '}
-            Переход по кнопке может принести Traders Fund Hub комиссию. Это не меняет порядок проверки
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="local-research-primary-partners">
+            <strong>FundedNext и Bright Funded — два основных глобальных маршрута сайта.</strong>{' '}
+            Это коммерческое выделение, а не первые места среди российских компаний. Переход по кнопке может принести Traders Fund Hub комиссию. Это не меняет порядок проверки
             российских компаний и не подтверждает доступность выбранной страны или продукта.
           </div>
           <h2>Если нужен международный challenge</h2>
@@ -248,7 +241,7 @@ export default function RussianPropCompaniesPage() {
           <div className="ru-grid">
             {globalPartners.map(item => (
               <article className="ru-card" key={item.slug} data-russian-local-global-partner={item.slug}>
-                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Партнёр</span></div>
+                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Главный партнёр</span></div>
                 <p className="ru-muted">{item.summary}</p>
                 <div className="ru-actions">
                   <Link href={item.reviewHref} className="btn-outline">Читать русский обзор</Link>
@@ -258,6 +251,10 @@ export default function RussianPropCompaniesPage() {
                 </div>
               </article>
             ))}
+          </div>
+          <div className="ru-actions">
+            <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Сравнить 7 глобальных продуктов <ArrowRight size={14} aria-hidden="true" /></Link>
+            <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-outline">Проверить страну и профиль</Link>
           </div>
         </div>
       </section>

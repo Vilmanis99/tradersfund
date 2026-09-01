@@ -49,7 +49,6 @@ const faqs: RussianFaqItem[] = [
 
 const globalRoutes = [
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
-  { slug: 'fundingpips', name: 'FundingPips', reviewHref: '/ru/obzor-fundingpips' },
   { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded' },
 ] as const
 
@@ -153,18 +152,18 @@ export default function RussianKasCapitalReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell" data-russian-local-global-funnel="kascapital">
-          <div className="ru-notice ru-disclosure"><strong>Переход к глобальным фирмам.</strong> Если важны сопоставимые онлайн-продукты, сравните глобальные предложения отдельно. Условия KasCapital в рублях и глобальная CFD-модель не взаимозаменяемы; перед оплатой откройте действующие правила выбранной фирмы. Комиссия возможна после регистрации, но страну, KYC и выплаты нужно проверять на сайте выбранной фирмы.</div>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="kascapital-global-options"><strong>FundedNext и Bright Funded — два основных глобальных маршрута.</strong> Это коммерчески выделенная пара для отдельного сравнения, а не оценка KasCapital в глобальном рейтинге. Рублёвая локальная модель и CFD challenge не взаимозаменяемы; перед оплатой откройте действующие правила выбранной фирмы. Комиссия возможна после регистрации, но страну, KYC и выплаты нужно проверять на сайте выбранной фирмы.</div>
           <h2>Глобальные альтернативы для русскоязычных трейдеров</h2>
           <div className="ru-grid">
             {globalCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-local-global-partner={item.slug}>
-                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Партнёр</span></div>
+                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Главный партнёр</span></div>
                 <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; сопоставьте конкретный продукт, KYC, первую выплату и метод вывода.</p>
                 <div className="ru-actions"><Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link><Link href={`/go/${item.slug}?from=ru-kascapital-global-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></Link></div>
               </article>
             ))}
           </div>
-          <p className="ru-source-line">Другие локальные исследования: <Link href="/ru/rossiyskie-prop-kompanii">шесть российских моделей</Link>; отдельный обзор <Link href="/ru/obzor-eratrade">Era Trade</Link>.</p>
+          <p className="ru-source-line">Другие локальные исследования: <Link href="/ru/rossiyskie-prop-kompanii">шесть российских моделей</Link>; глобальное сравнение: <Link href="/ru/fundednext-vs-bright-funded">FundedNext против Bright Funded</Link>; отдельный локальный обзор: <Link href="/ru/obzor-eratrade">Era Trade</Link>.</p>
         </div>
       </section>
 

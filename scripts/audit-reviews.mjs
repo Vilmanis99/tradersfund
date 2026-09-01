@@ -11709,6 +11709,7 @@ function checkRussianAcquisitionPilot() {
     'Проверить условия {item.name}',
     '/go/fundednext?from=ru-home-hero-fundednext',
     '/go/bright-funded?from=ru-home-hero-bright-funded',
+    'data-russian-affiliate-disclosure="home-primary-partners"',
     'data-russian-home-deals-partners="fundednext-bright-funded"',
     'data-russian-home-deal-count={activeDeals.length}',
     'data-russian-home-deals-fail-closed="30-days"',
@@ -11941,6 +11942,11 @@ function checkRussianAcquisitionPilot() {
   for (const token of [
     'data-russian-local-firms="verification-only"',
     'data-russian-affiliate-opportunity="unactivated"',
+    'data-russian-local-global-funnel="partner-routes"',
+    'data-russian-affiliate-disclosure="local-research-primary-partners"',
+    "campaign: 'ru-local-research-fundednext'",
+    "campaign: 'ru-local-research-bright-funded'",
+    'href="/ru/fundednext-vs-bright-funded"',
     'Это не топ и не совет зарегистрироваться.',
     'многоуровневая Ambassador-схема нам не нужна',
     'href="/ru/dlya-russkoyazychnykh-treyderov"',
@@ -12411,6 +12417,7 @@ function checkRussianAcquisitionPilot() {
     'data-russian-country-boundary="local-review-not-access"',
     'data-russian-local-affiliate="application-only"',
     'data-russian-local-global-funnel="proplive"',
+    'data-russian-affiliate-disclosure="proplive-global-options"',
     'data-russian-proplive-start-check="four-points"',
     'PROP_LIVE_HOME',
     'PROP_LIVE_ABOUT',
@@ -12432,6 +12439,7 @@ function checkRussianAcquisitionPilot() {
     'data-russian-country-boundary="local-review-not-access"',
     'data-russian-local-affiliate="public-not-activated"',
     'data-russian-local-global-funnel="era-trade"',
+    'data-russian-affiliate-disclosure="eratrade-global-options"',
     'data-russian-eratrade-due-diligence="product-split"',
     'ERA_HOME',
     'ERA_AFFILIATE',
@@ -12457,6 +12465,7 @@ function checkRussianAcquisitionPilot() {
     'data-russian-country-boundary="local-review-not-access"',
     'data-russian-local-affiliate="not-found"',
     'data-russian-local-global-funnel="kascapital"',
+    'data-russian-affiliate-disclosure="kascapital-global-options"',
     'data-russian-kascapital-due-diligence="terms-gap"',
     'KAS_HOME',
     'ru-kascapital-global-',
@@ -12489,6 +12498,16 @@ function checkRussianAcquisitionPilot() {
     'rel="sponsored nofollow noopener"',
   ]) {
     if (!russianTeamTradersPage.includes(token)) rows.push(`Russian TeamTraders review is missing ${token}`)
+  }
+  for (const [route, source, staleCampaign] of [
+    ['/ru/rossiyskie-prop-kompanii', localFirmPage, 'ru-local-research-fundingpips'],
+    ['/ru/obzor-proplive', russianPropLivePage, 'ru-proplive-global-fundingpips'],
+    ['/ru/obzor-eratrade', russianEraTradePage, 'ru-eratrade-global-fundingpips'],
+    ['/ru/obzor-kascapital', russianKasCapitalPage, 'ru-kascapital-global-fundingpips'],
+  ]) {
+    if (source.includes(staleCampaign)) {
+      rows.push(`${route}: local-to-global bridge restored secondary partner ${staleCampaign}`)
+    }
   }
 
   const russianReviewsPage = fs.existsSync(russianRouteFiles.get('/ru/otzyvy-prop-firm'))

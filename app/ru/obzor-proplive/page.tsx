@@ -57,7 +57,6 @@ const faqs: RussianFaqItem[] = [
 
 const globalRoutes = [
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
-  { slug: 'fundingpips', name: 'FundingPips', reviewHref: '/ru/obzor-fundingpips' },
   { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded' },
 ] as const
 
@@ -191,9 +190,9 @@ export default function RussianPropLiveReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell" data-russian-local-global-funnel="proplive">
-          <div className="ru-notice ru-disclosure">
-            <strong>Переход к глобальным фирмам.</strong>{' '}
-            Если вам нужен сопоставимый онлайн-продукт, ниже находятся глобальные партнёры с отдельными русскими обзорами.
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="proplive-global-options">
+            <strong>FundedNext и Bright Funded — два основных глобальных маршрута.</strong>{' '}
+            Если вам нужен сопоставимый онлайн-продукт, ниже находятся два коммерчески выделенных партнёра с отдельными русскими обзорами, а не первые места общего рейтинга.
             Это переход к онлайн-сравнению, а не перенос условий PropLive: рынок, брокер, KYC и выплаты нужно сверить отдельно.
             Комиссия возможна после регистрации, но не меняет локальные выводы или порядок сравнения.
           </div>
@@ -201,7 +200,7 @@ export default function RussianPropLiveReviewPage() {
           <div className="ru-grid">
             {globalCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-local-global-partner={item.slug}>
-                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Партнёр</span></div>
+                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Главный партнёр</span></div>
                 <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; сравните CFD-модель с рынком PropLive и отдельно проверьте страну, KYC и вывод.</p>
                 <div className="ru-actions">
                   <Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link>
@@ -210,7 +209,7 @@ export default function RussianPropLiveReviewPage() {
               </article>
             ))}
           </div>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">все шесть исследовательских карточек</Link>; глобальные условия: <Link href="/ru/luchshie-prop-firmy">русский рейтинг</Link>.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">все шесть исследовательских карточек</Link>; глобальное решение: <Link href="/ru/fundednext-vs-bright-funded">сравнение 7 продуктов FundedNext и Bright Funded</Link>.</p>
         </div>
       </section>
 

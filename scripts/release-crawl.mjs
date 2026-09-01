@@ -711,6 +711,7 @@ const russianExpectations = new Map([
       'Проверить условия Bright Funded',
       '/go/fundednext?from=ru-home-hero-fundednext',
       '/go/bright-funded?from=ru-home-hero-bright-funded',
+      'data-russian-affiliate-disclosure="home-primary-partners"',
       'data-russian-home-navigation="task-first"',
       'data-russian-home-deals-partners="fundednext-bright-funded"',
       'data-russian-home-deal-count="5"',
@@ -1270,6 +1271,11 @@ const russianExpectations = new Map([
       'data-russian-local-firms="verification-only"',
       'data-russian-affiliate-opportunity="unactivated"',
       'data-russian-country-boundary="local-to-global"',
+      'data-russian-local-global-funnel="partner-routes"',
+      'data-russian-affiliate-disclosure="local-research-primary-partners"',
+      '/go/fundednext?from=ru-local-research-fundednext',
+      '/go/bright-funded?from=ru-local-research-bright-funded',
+      '/ru/fundednext-vs-bright-funded',
       'А-Лаб Групп',
       'TeamTraders',
       'Trade System',
@@ -1284,10 +1290,11 @@ const russianExpectations = new Map([
       'data-russian-country-boundary="local-review-not-access"',
       'data-russian-local-affiliate="application-only"',
       'data-russian-local-global-funnel="proplive"',
+      'data-russian-affiliate-disclosure="proplive-global-options"',
       'data-russian-proplive-start-check="four-points"',
       '/go/fundednext?from=ru-proplive-global-fundednext',
-      '/go/fundingpips?from=ru-proplive-global-fundingpips',
       '/go/bright-funded?from=ru-proplive-global-bright-funded',
+      '/ru/fundednext-vs-bright-funded',
     ],
   }],
   ['/ru/obzor-eratrade', {
@@ -1299,10 +1306,11 @@ const russianExpectations = new Map([
       'data-russian-country-boundary="local-review-not-access"',
       'data-russian-local-affiliate="public-not-activated"',
       'data-russian-local-global-funnel="era-trade"',
+      'data-russian-affiliate-disclosure="eratrade-global-options"',
       'data-russian-eratrade-due-diligence="product-split"',
       '/go/fundednext?from=ru-eratrade-global-fundednext',
-      '/go/fundingpips?from=ru-eratrade-global-fundingpips',
       '/go/bright-funded?from=ru-eratrade-global-bright-funded',
+      '/ru/fundednext-vs-bright-funded',
     ],
   }],
   ['/ru/obzor-kascapital', {
@@ -1314,10 +1322,11 @@ const russianExpectations = new Map([
       'data-russian-country-boundary="local-review-not-access"',
       'data-russian-local-affiliate="not-found"',
       'data-russian-local-global-funnel="kascapital"',
+      'data-russian-affiliate-disclosure="kascapital-global-options"',
       'data-russian-kascapital-due-diligence="terms-gap"',
       '/go/fundednext?from=ru-kascapital-global-fundednext',
-      '/go/fundingpips?from=ru-kascapital-global-fundingpips',
       '/go/bright-funded?from=ru-kascapital-global-bright-funded',
+      '/ru/fundednext-vs-bright-funded',
     ],
   }],
   ['/ru/obzor-teamtraders', {
@@ -1548,14 +1557,13 @@ for (const [path, href] of [
   ['/ru/prop-firmy-bez-chelendzha', '/go/fundingpips?from=ru-instant-fundingpips'],
   ['/ru/prop-firmy-bez-chelendzha', '/go/bright-funded?from=ru-instant-bright-alternative'],
   ['/ru/fundednext-vs-fundingpips', '/go/bright-funded?from=ru-comparison-bright-funded'],
+  ['/ru/rossiyskie-prop-kompanii', '/go/fundednext?from=ru-local-research-fundednext'],
+  ['/ru/rossiyskie-prop-kompanii', '/go/bright-funded?from=ru-local-research-bright-funded'],
   ['/ru/obzor-proplive', '/go/fundednext?from=ru-proplive-global-fundednext'],
-  ['/ru/obzor-proplive', '/go/fundingpips?from=ru-proplive-global-fundingpips'],
   ['/ru/obzor-proplive', '/go/bright-funded?from=ru-proplive-global-bright-funded'],
   ['/ru/obzor-eratrade', '/go/fundednext?from=ru-eratrade-global-fundednext'],
-  ['/ru/obzor-eratrade', '/go/fundingpips?from=ru-eratrade-global-fundingpips'],
   ['/ru/obzor-eratrade', '/go/bright-funded?from=ru-eratrade-global-bright-funded'],
   ['/ru/obzor-kascapital', '/go/fundednext?from=ru-kascapital-global-fundednext'],
-  ['/ru/obzor-kascapital', '/go/fundingpips?from=ru-kascapital-global-fundingpips'],
   ['/ru/obzor-kascapital', '/go/bright-funded?from=ru-kascapital-global-bright-funded'],
   ['/ru/obzor-teamtraders', '/go/fundednext?from=ru-teamtraders-global-fundednext'],
   ['/ru/obzor-teamtraders', '/go/bright-funded?from=ru-teamtraders-global-bright-funded'],
@@ -1608,6 +1616,21 @@ const approvedLocalGlobalHandoff =
   russianLocalFirmPage?.html.includes('rel="sponsored nofollow noopener"')
 if (russianLocalFirmPage?.html.includes('/go/') && !approvedLocalGlobalHandoff) {
   errors.push('/ru/rossiyskie-prop-kompanii: unapproved local-firm affiliate action rendered')
+}
+
+// Local-company intent hands off to the two explicitly declared primary
+// partners. FundingPips remains available in broader comparisons, but must not
+// be restored as an equal third card in these focused bridge sections.
+for (const [path, staleCampaign] of [
+  ['/ru/rossiyskie-prop-kompanii', 'ru-local-research-fundingpips'],
+  ['/ru/obzor-proplive', 'ru-proplive-global-fundingpips'],
+  ['/ru/obzor-eratrade', 'ru-eratrade-global-fundingpips'],
+  ['/ru/obzor-kascapital', 'ru-kascapital-global-fundingpips'],
+]) {
+  const page = pages.find(probe => new URL(probe.productionUrl).pathname === path)
+  if (page?.html.includes(staleCampaign)) {
+    errors.push(`${path}: local-to-global bridge restored secondary partner ${staleCampaign}`)
+  }
 }
 
 for (const [title, paths] of titles) {

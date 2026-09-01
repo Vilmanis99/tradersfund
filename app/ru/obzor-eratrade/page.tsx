@@ -57,7 +57,6 @@ const faqs: RussianFaqItem[] = [
 
 const globalRoutes = [
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
-  { slug: 'fundingpips', name: 'FundingPips', reviewHref: '/ru/obzor-fundingpips' },
   { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded' },
 ] as const
 
@@ -166,18 +165,18 @@ export default function RussianEraTradeReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell" data-russian-local-global-funnel="era-trade">
-          <div className="ru-notice ru-disclosure"><strong>Переход к глобальным фирмам.</strong> Если нужен сопоставимый онлайн-продукт, ниже показаны глобальные партнёры с отдельными русскими обзорами. Дата захвата определяет, можно ли цитировать продуктовые цифры; при просрочке откройте текущую страницу оплаты. Партнёрская комиссия возможна после регистрации, но не меняет порядок проверки страны, KYC и правил.</div>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="eratrade-global-options"><strong>FundedNext и Bright Funded — два основных глобальных маршрута.</strong> Они коммерчески выделены для отдельного онлайн-сравнения, а не объявлены победителями над Era Trade. Дата захвата определяет, можно ли цитировать продуктовые цифры; при просрочке откройте текущую страницу оплаты. Партнёрская комиссия возможна после регистрации, но не меняет порядок проверки страны, KYC и правил.</div>
           <h2>Глобальные альтернативы для русскоязычных трейдеров</h2>
           <div className="ru-grid">
             {globalCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-local-global-partner={item.slug}>
-                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Партнёр</span></div>
+                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Главный партнёр</span></div>
                 <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; для сравнения с Era Trade проверьте первую выплату, прибыльные дни, страну и KYC.</p>
                 <div className="ru-actions"><Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link><Link href={`/go/${item.slug}?from=ru-eratrade-global-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></Link></div>
               </article>
             ))}
           </div>
-          <p className="ru-source-line">Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">исследование российских проп-компаний</Link>; отдельная локальная проверка: <Link href="/ru/obzor-proplive">PropLive</Link>.</p>
+          <p className="ru-source-line">Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">исследование российских проп-компаний</Link>; глобальная развилка: <Link href="/ru/fundednext-vs-bright-funded">7 продуктов FundedNext и Bright Funded</Link>; отдельная локальная проверка: <Link href="/ru/obzor-proplive">PropLive</Link>.</p>
         </div>
       </section>
 

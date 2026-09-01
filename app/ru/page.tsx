@@ -174,7 +174,7 @@ export default function RussianHomePage() {
               Открыть полный рейтинг
             </Link>
           </div>
-          <p className="ru-source-line ru-home-partner-hero-disclosure">
+          <p className="ru-source-line ru-home-partner-hero-disclosure" data-russian-affiliate-disclosure="home-primary-partners">
             FundedNext и Bright Funded коммерчески выделены как наши главные партнёры. Ссылки «Проверить условия» партнёрские:
             {' '}мы можем получить комиссию после регистрации. Язык страницы не подтверждает доступ — перед оплатой проверьте
             {' '}страну, KYC, платёжный маршрут и правила конкретного продукта.
