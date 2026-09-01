@@ -146,7 +146,13 @@ export default function RussianTeamTradersReviewPage() {
           </div>
           <div className="ru-actions">
             <SourceLink href={TEAMTRADERS_HOME}>Открыть официальный сайт</SourceLink>
-            <Link href="#global-options" className="btn-primary btn-glow">Сравнить глобальные варианты <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link
+              href="#global-options"
+              className="btn-primary btn-glow"
+              data-russian-funnel-intent="teamtraders-global-options"
+            >
+              Сравнить глобальные варианты <ArrowRight size={15} aria-hidden="true" />
+            </Link>
           </div>
           <p className="ru-source-line">Официальная ссылка TeamTraders не партнёрская. Цены и правила взяты с главной страницы, FAQ и оферты; архивное расхождение показано отдельно.</p>
         </div>

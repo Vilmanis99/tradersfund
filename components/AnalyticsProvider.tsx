@@ -286,6 +286,29 @@ export default function AnalyticsProvider({
         return
       }
 
+      const russianFunnelIntent = anchor.dataset.russianFunnelIntent
+      if (
+        currentLocale === 'ru'
+        && russianFunnelIntent
+        && destination.origin === window.location.origin
+        && destination.pathname === pathname
+        && destination.hash
+      ) {
+        // The explicit marker keeps this bounded to editorially selected
+        // local-to-global actions; no link text or user/profile data is sent.
+        const properties = {
+          intent: safeLabel(russianFunnelIntent),
+          destination_hash: safeLabel(destination.hash.slice(1)),
+        }
+        trackVercel('russian_funnel_intent', {
+          ...properties,
+          content_group: currentStage,
+          locale: currentLocale,
+        })
+        trackEvent('russian_funnel_intent', properties)
+        return
+      }
+
       if (
         destination.origin === window.location.origin
         && !anchor.closest('header, footer')

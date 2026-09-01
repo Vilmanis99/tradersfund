@@ -1435,6 +1435,7 @@ const russianExpectations = new Map([
       'data-russian-country-boundary="local-review-not-access"',
       'data-russian-local-affiliate="not-found"',
       'data-russian-local-global-funnel="teamtraders"',
+      'data-russian-funnel-intent="teamtraders-global-options"',
       'data-russian-teamtraders-pricing="three-rub-tiers"',
       'data-russian-teamtraders-process="five-stages"',
       'data-russian-teamtraders-rules="manual-intraday"',
