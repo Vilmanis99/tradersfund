@@ -15,6 +15,7 @@ import {
   goClickEventName,
   isHighIntentJourneyStage,
   journeyStage,
+  russianFunnelTransition,
 } from '@/lib/analyticsTaxonomy'
 import type { OutboundRelationship } from '@/lib/outboundDestinations'
 import { OPEN_ANALYTICS_SETTINGS_EVENT } from './AnalyticsPreferencesButton'
@@ -263,6 +264,18 @@ export default function AnalyticsProvider({
         })
         trackEvent(eventName, { firm, placement })
         return
+      }
+
+      if (
+        destination.origin === window.location.origin
+        && !anchor.closest('header, footer')
+      ) {
+        const transition = russianFunnelTransition(pathname, destination.pathname)
+        if (transition) {
+          trackVercel('russian_funnel_click', transition)
+          trackEvent('russian_funnel_click', transition)
+          return
+        }
       }
 
       if (destination.origin !== window.location.origin) {

@@ -49,6 +49,7 @@ import {
   goClickEventName,
   isHighIntentJourneyStage,
   journeyStage,
+  russianFunnelTransition,
 } from '../lib/analyticsTaxonomy.ts'
 import {
   INDIA_MATCHER_DRAWDOWNS,
@@ -69,7 +70,6 @@ import {
 import { rankRelatedPosts, relatedPostScore } from '../lib/relatedPosts.ts'
 import { russianPartnerMatcherDecision } from '../lib/russianPartnerMatcher.ts'
 import {
-  INDEXNOW_ENDPOINT,
   INDEXNOW_KEY,
   INDEXNOW_KEY_PATH,
   getRussianIndexNowUrls,
@@ -2793,7 +2793,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/obzor-teamtraders', 'russian_local_research'],
     ['/ru/chto-takoe-prop-firma', 'russian_education'],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', 'russian_education'],
-    ['/ru/otzyvy-prop-firm', 'russian_education'],
+    ['/ru/otzyvy-prop-firm', 'russian_review'],
   ])
   for (const [pathname, expected] of stageFixtures) {
     const actual = journeyStage(pathname)
@@ -2847,6 +2847,29 @@ function checkAnalyticsMeasurementContract() {
   }
   if (goClickEventName('unknown-firm', relationshipFixture) !== null) {
     rows.push('Unknown /go slugs must not be classified as affiliate or official clicks')
+  }
+
+  const russianBridge = russianFunnelTransition(
+    '/ru/obzor-proplive',
+    '/ru/obzor-fundednext/',
+  )
+  if (
+    russianBridge?.source_path !== '/ru/obzor-proplive'
+    || russianBridge.source_group !== 'russian_local_research'
+    || russianBridge.destination_path !== '/ru/obzor-fundednext'
+    || russianBridge.destination_group !== 'russian_review'
+  ) {
+    rows.push('Russian local-to-global funnel transition attribution is incorrect')
+  }
+  for (const [source, destination] of [
+    ['/ru/obzor-proplive', '/ru/obzor-eratrade'],
+    ['/ru/obzor-fundednext', '/ru/obzor-fundednext/'],
+    ['/blog/fundednext-review', '/ru/obzor-fundednext'],
+    ['/ru/obzor-proplive', '/blog/fundednext-review'],
+  ]) {
+    if (russianFunnelTransition(source, destination) !== null) {
+      rows.push(`Russian funnel must reject ${source} -> ${destination}`)
+    }
   }
 
   const expectedPayloadKeys = [
@@ -3007,6 +3030,10 @@ function checkAnalyticsMeasurementContract() {
       'page_location: sanitizedLocation',
       'goClickEventName(firm, outboundRelationships)',
       'if (!eventName) return',
+      "trackVercel('russian_funnel_click'",
+      "trackEvent('russian_funnel_click', transition)",
+      'russianFunnelTransition(pathname, destination.pathname)',
+      "!anchor.closest('header, footer')",
       'content_group: currentStage',
       'locale: currentLocale',
     ]],

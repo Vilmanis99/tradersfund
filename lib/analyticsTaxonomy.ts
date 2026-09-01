@@ -59,6 +59,7 @@ const RUSSIAN_REVIEW_PATHS = new Set([
   '/ru/obzor-fundednext',
   '/ru/obzor-fundingpips',
   '/ru/obzor-bright-funded',
+  '/ru/otzyvy-prop-firm',
 ])
 
 const RUSSIAN_PRODUCT_PATHS = new Set([
@@ -83,6 +84,21 @@ const RUSSIAN_RANKING_PATHS = new Set([
   '/ru/vyplaty-prop-firm',
   '/ru/prop-firmy-bez-kyc',
 ])
+
+const RUSSIAN_FUNNEL_DESTINATION_STAGES = new Set<JourneyStage>([
+  'russian_ranking',
+  'russian_comparison',
+  'russian_deals',
+  'russian_review',
+  'russian_product',
+])
+
+export type RussianFunnelTransition = {
+  source_path: string
+  source_group: JourneyStage
+  destination_path: string
+  destination_group: JourneyStage
+}
 
 function normalizedPath(pathname: string) {
   if (pathname === '/') return pathname
@@ -135,6 +151,37 @@ export function journeyStage(pathname: string): JourneyStage {
 
 export function isHighIntentJourneyStage(stage: JourneyStage) {
   return HIGH_INTENT_STAGES.has(stage)
+}
+
+/**
+ * Measure deliberate movement from Russian content into a commercial Russian
+ * decision page. Local-research destinations are excluded: the event answers
+ * whether that research sends readers towards the global-firm funnel, not how
+ * often readers browse sideways inside the local cluster.
+ */
+export function russianFunnelTransition(
+  sourcePathname: string,
+  destinationPathname: string,
+): RussianFunnelTransition | null {
+  const sourcePath = normalizedPath(sourcePathname)
+  const destinationPath = normalizedPath(destinationPathname)
+  if (
+    sourcePath === destinationPath
+    || contentLocale(sourcePath) !== 'ru'
+    || contentLocale(destinationPath) !== 'ru'
+  ) {
+    return null
+  }
+
+  const destinationGroup = journeyStage(destinationPath)
+  if (!RUSSIAN_FUNNEL_DESTINATION_STAGES.has(destinationGroup)) return null
+
+  return {
+    source_path: sourcePath,
+    source_group: journeyStage(sourcePath),
+    destination_path: destinationPath,
+    destination_group: destinationGroup,
+  }
 }
 
 export function goClickEventName(
