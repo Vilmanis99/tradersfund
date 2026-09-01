@@ -323,7 +323,7 @@ export default function RussianPayoutsPage() {
                     </p>
                     <div className="ru-actions">
                       <Link href={card.reviewHref} className="btn-outline">Русский обзор</Link>
-                      <Link href={`/go/${card.slug}?from=ru-payouts-${card.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
+                      <Link href={`/go/${card.slug}?from=ru-payouts-card-${card.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
                         Проверить {card.name} <ArrowRight size={14} aria-hidden="true" />
                       </Link>
                     </div>

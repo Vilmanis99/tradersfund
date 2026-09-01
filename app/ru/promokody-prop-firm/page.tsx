@@ -556,7 +556,7 @@ export default function RussianPropFirmOffersPage() {
                         <td><a href={deal.sourceUrl} target="_blank" rel="noopener noreferrer">{deal.sourceLabel}</a></td>
                         <td>
                           <Link href={reviewRoutes[deal.firmSlug] ?? firm.reviewUrl}>Обзор</Link>{' · '}
-                          <Link href={`/go/${deal.firmSlug}?from=${campaignFor(deal)}`} rel={isAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}>{offerAction(deal)}</Link>
+                          <Link href={`/go/${deal.firmSlug}?from=${campaignFor(deal)}-table`} rel={isAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}>{offerAction(deal)}</Link>
                         </td>
                       </tr>
                     )

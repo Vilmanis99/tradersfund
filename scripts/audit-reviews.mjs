@@ -12236,6 +12236,7 @@ function checkRussianAcquisitionPilot() {
     'CopyableCodePill',
     'locale="ru"',
     'campaignFor(deal)',
+    'from=${campaignFor(deal)}-table',
     'const generalFaqs: RussianFaqItem[]',
     '...(fundedNextDeal ? [{',
     '...(brightDeals.length > 0 ? [{',
@@ -12358,6 +12359,7 @@ function checkRussianAcquisitionPilot() {
     'payoutFrequency',
     '/go/fundednext?from=ru-payouts-fundednext',
     '/go/bright-funded?from=ru-payouts-bright-funded',
+    'from=ru-payouts-card-${card.slug}',
     '/go/fundingpips?from=ru-payouts-fundingpips',
     'rel="sponsored nofollow noopener"',
   ]) {

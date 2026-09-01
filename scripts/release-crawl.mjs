@@ -835,6 +835,11 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-deals-bright-funded-summer30',
       '/go/bright-funded?from=ru-deals-bright-funded-summer25',
       '/go/bright-funded?from=ru-deals-bright-funded-summer15',
+      '/go/fundednext?from=ru-deals-fundednext-earned-coupon-table',
+      '/go/fundingpips?from=ru-deals-fundingpips-hello-table',
+      '/go/bright-funded?from=ru-deals-bright-funded-summer30-table',
+      '/go/bright-funded?from=ru-deals-bright-funded-summer25-table',
+      '/go/bright-funded?from=ru-deals-bright-funded-summer15-table',
       'HELLO',
       'SUMMER30',
       'SUMMER25',
@@ -910,6 +915,8 @@ const russianExpectations = new Map([
       '/go/fundednext?from=ru-payouts-fundednext',
       '/go/fundingpips?from=ru-payouts-fundingpips',
       '/go/bright-funded?from=ru-payouts-bright-funded',
+      '/go/fundednext?from=ru-payouts-card-fundednext',
+      '/go/bright-funded?from=ru-payouts-card-bright-funded',
       '12',
       '67',
     ],
@@ -1383,6 +1390,8 @@ const russianExpectations = new Map([
   }],
 ])
 
+const russianCampaignSources = new Map()
+const russianAffiliatePlacements = new Set()
 for (const [path, expectation] of russianExpectations) {
   const probe = pages.find(page => new URL(page.productionUrl).pathname === path)
   if (!probe || probe.status !== 200) {
@@ -1413,9 +1422,24 @@ for (const [path, expectation] of russianExpectations) {
   for (const anchorTag of probe.html.matchAll(/<a\b[^>]*>/gi)) {
     const href = anchorTag[0].match(/\bhref="([^"]+)"/i)?.[1]?.replaceAll('&amp;', '&')
     if (!href?.startsWith('/go/')) continue
-    const campaign = new URL(href, PRODUCTION_ORIGIN).searchParams.get('from')
+    const target = new URL(href, PRODUCTION_ORIGIN)
+    const campaign = target.searchParams.get('from')
     if (!campaign?.startsWith('ru-')) {
       errors.push(`${path}: Russian /go/ link lacks a ru-* campaign (${href})`)
+      continue
+    }
+    const firstSource = russianCampaignSources.get(campaign)
+    if (firstSource && firstSource !== path) {
+      errors.push(`${path}: Russian campaign ${campaign} is already attributed to ${firstSource}`)
+    } else {
+      russianCampaignSources.set(campaign, path)
+    }
+    const firmSlug = target.pathname.slice('/go/'.length)
+    const placementKey = `${path}|${firmSlug}|${campaign}`
+    if (russianAffiliatePlacements.has(placementKey)) {
+      errors.push(`${path}: duplicate rendered attribution for ${firmSlug} campaign ${campaign}`)
+    } else {
+      russianAffiliatePlacements.add(placementKey)
     }
   }
   if (
@@ -1544,9 +1568,16 @@ for (const [path, href] of [
   ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer30'],
   ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer25'],
   ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer15'],
+  ['/ru/promokody-prop-firm', '/go/fundednext?from=ru-deals-fundednext-earned-coupon-table'],
+  ['/ru/promokody-prop-firm', '/go/fundingpips?from=ru-deals-fundingpips-hello-table'],
+  ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer30-table'],
+  ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer25-table'],
+  ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer15-table'],
   ['/ru/vyplaty-prop-firm', '/go/fundednext?from=ru-payouts-fundednext'],
   ['/ru/vyplaty-prop-firm', '/go/fundingpips?from=ru-payouts-fundingpips'],
   ['/ru/vyplaty-prop-firm', '/go/bright-funded?from=ru-payouts-bright-funded'],
+  ['/ru/vyplaty-prop-firm', '/go/fundednext?from=ru-payouts-card-fundednext'],
+  ['/ru/vyplaty-prop-firm', '/go/bright-funded?from=ru-payouts-card-bright-funded'],
   ['/ru/kak-rabotayut-chellendzhi-prop-firm', '/go/fundednext?from=ru-challenge-guide-fundednext'],
   ['/ru/kak-rabotayut-chellendzhi-prop-firm', '/go/fundingpips?from=ru-challenge-guide-fundingpips'],
   ['/ru/kak-rabotayut-chellendzhi-prop-firm', '/go/bright-funded?from=ru-challenge-guide-bright-funded'],
