@@ -88,7 +88,13 @@ export default function DealCard({ deal }: { deal: DealCardData }) {
 
       {deal.code && deal.pct != null && (
         <div className="deal-card-pill-row">
-          <CopyableCodePill code={deal.code} pct={deal.pct} />
+          <CopyableCodePill
+            code={deal.code}
+            pct={deal.pct}
+            analyticsFirm={deal.firmSlug}
+            analyticsPlacement={`discount-hub-${deal.mechanism}`}
+            analyticsOfferType="public_checkout"
+          />
         </div>
       )}
 

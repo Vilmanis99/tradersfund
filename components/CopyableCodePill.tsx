@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { Tag, Check } from 'lucide-react'
+import { trackSiteEvent } from '@/lib/clientAnalytics'
 
 /**
  * Tappable discount-code pill. Copies the raw code to the clipboard and shows
@@ -12,10 +13,16 @@ export default function CopyableCodePill({
   code,
   pct,
   locale = 'en',
+  analyticsFirm,
+  analyticsPlacement,
+  analyticsOfferType,
 }: {
   code: string
   pct: number
   locale?: 'en' | 'ru'
+  analyticsFirm?: string
+  analyticsPlacement?: string
+  analyticsOfferType?: 'public_checkout' | 'partner_support'
 }) {
   const [copied, setCopied] = useState(false)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -46,12 +53,22 @@ export default function CopyableCodePill({
         document.body.removeChild(el)
       }
       setCopied(true)
+      if (analyticsFirm && analyticsPlacement && analyticsOfferType) {
+        // The code itself is deliberately excluded: the event measures intent
+        // without sending a personal partner code to analytics providers.
+        trackSiteEvent('discount_code_copied', {
+          firm: analyticsFirm,
+          placement: analyticsPlacement,
+          offer_type: analyticsOfferType,
+          discount_pct: pct,
+        })
+      }
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
       timeoutRef.current = setTimeout(() => setCopied(false), 2000)
     } catch {
       // Silently ignore — pill stays in its prior state.
     }
-  }, [code])
+  }, [analyticsFirm, analyticsOfferType, analyticsPlacement, code, pct])
 
   return (
     <button

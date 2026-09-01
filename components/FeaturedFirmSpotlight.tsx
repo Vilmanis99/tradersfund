@@ -75,7 +75,13 @@ export default function FeaturedFirmSpotlight({
                   <div className="featured-spotlight-offer-amount">{firm.discountPct}% off</div>
                   <div className="featured-spotlight-offer-label">your first challenge</div>
                   <div style={{ marginTop: '0.6rem' }}>
-                    <CopyableCodePill code={firm.discountCode} pct={firm.discountPct} />
+                    <CopyableCodePill
+                      code={firm.discountCode}
+                      pct={firm.discountPct}
+                      analyticsFirm={slug}
+                      analyticsPlacement={`${fromParam}-code`}
+                      analyticsOfferType="partner_support"
+                    />
                   </div>
                 </div>
               ) : null}

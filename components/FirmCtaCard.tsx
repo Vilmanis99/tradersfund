@@ -67,7 +67,13 @@ export default function FirmCtaCard({ firm }: { firm: Firm }) {
               <Star size={11} aria-hidden="true" /> {firm.score}
             </span>
             {firm.discountCode && firm.discountPct && (
-              <CopyableCodePill code={firm.discountCode} pct={firm.discountPct} />
+              <CopyableCodePill
+                code={firm.discountCode}
+                pct={firm.discountPct}
+                analyticsFirm={slug}
+                analyticsPlacement="review-cta-code"
+                analyticsOfferType="partner_support"
+              />
             )}
             {/* Cited Trustpilot figure, sat beside our own score so the two
                 ratings read together above the fold. Unlinked here — the

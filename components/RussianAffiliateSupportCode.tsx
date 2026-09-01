@@ -25,6 +25,7 @@ export default function RussianAffiliateSupportCode({
   if (!code || pct == null || !sourceUrl || !verifiedAt) return null
 
   const betterPublicOffer = publicOfferPct != null && publicOfferPct > pct
+  const firmSlug = firm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
   return (
     <div
@@ -33,7 +34,14 @@ export default function RussianAffiliateSupportCode({
       data-russian-affiliate-support-placement={placement}
     >
       <strong>Персональный код поддержки TFH.</strong>{' '}
-      <CopyableCodePill code={code} pct={pct} locale="ru" />{' '}
+      <CopyableCodePill
+        code={code}
+        pct={pct}
+        locale="ru"
+        analyticsFirm={firmSlug}
+        analyticsPlacement={placement}
+        analyticsOfferType="partner_support"
+      />{' '}
       Код может сохранить привязку покупки к Traders Fund Hub, если браузерная
       партнёрская сессия не сохранилась; мы можем получить комиссию. Он добавляет
       <strong> 0 баллов</strong> к редакционной оценке.

@@ -392,7 +392,7 @@ export default function RussianPropFirmOffersPage() {
               {brightDeals.map(deal => (
                 <article className="ru-card" key={deal.code} id={`${deal.firmSlug}-${deal.code}`} data-russian-deal-firm={deal.firmSlug}>
                   <div className="ru-card-head"><h3>{deal.scope}</h3><span className="ru-score">{deal.amountLabel}</span></div>
-                  {deal.code && deal.pct != null && <div style={{ display: 'flex', marginBottom: '0.7rem' }}><CopyableCodePill code={deal.code} pct={deal.pct} locale="ru" /></div>}
+                  {deal.code && deal.pct != null && <div style={{ display: 'flex', marginBottom: '0.7rem' }}><CopyableCodePill code={deal.code} pct={deal.pct} locale="ru" analyticsFirm={deal.firmSlug} analyticsPlacement={campaignFor(deal)} analyticsOfferType="public_checkout" /></div>}
                   <p>{deal.note}</p>
                   <p className="ru-source-line"><CalendarCheck size={14} aria-hidden="true" /> Проверено {deal.verifiedOn} · <a href={deal.sourceUrl} target="_blank" rel="noopener noreferrer">{deal.sourceLabel}</a></p>
                   <div className="ru-actions">
@@ -447,7 +447,14 @@ export default function RussianPropFirmOffersPage() {
             </p>
             {fundingPipsDeal.code && fundingPipsDeal.pct != null && (
               <div style={{ display: 'flex', marginBottom: '0.9rem' }}>
-                <CopyableCodePill code={fundingPipsDeal.code} pct={fundingPipsDeal.pct} locale="ru" />
+                <CopyableCodePill
+                  code={fundingPipsDeal.code}
+                  pct={fundingPipsDeal.pct}
+                  locale="ru"
+                  analyticsFirm={fundingPipsDeal.firmSlug}
+                  analyticsPlacement={campaignFor(fundingPipsDeal)}
+                  analyticsOfferType="public_checkout"
+                />
               </div>
             )}
             <p className="ru-source-line">

@@ -3018,6 +3018,29 @@ function checkAnalyticsMeasurementContract() {
   const analyticsProviderSource = fs.existsSync(ANALYTICS_PROVIDER_FILE)
     ? fs.readFileSync(ANALYTICS_PROVIDER_FILE, 'utf-8')
     : ''
+  const copyableCodePillFile = path.join(ROOT, 'components/CopyableCodePill.tsx')
+  const copyableCodePillSource = fs.existsSync(copyableCodePillFile)
+    ? fs.readFileSync(copyableCodePillFile, 'utf-8')
+    : ''
+  for (const token of [
+    "trackSiteEvent('discount_code_copied'",
+    'firm: analyticsFirm',
+    'placement: analyticsPlacement',
+    'offer_type: analyticsOfferType',
+    'discount_pct: pct',
+    "analyticsOfferType?: 'public_checkout' | 'partner_support'",
+    'without sending a personal partner code to analytics providers',
+  ]) {
+    if (!copyableCodePillSource.includes(token)) {
+      rows.push(`Discount-code copy measurement is missing ${token}`)
+    }
+  }
+  const discountCodeEventBlock = copyableCodePillSource.match(
+    /trackSiteEvent\('discount_code_copied',[\s\S]*?\n\s*}\)/,
+  )?.[0] ?? ''
+  if (!discountCodeEventBlock || /\bcode\s*:/.test(discountCodeEventBlock)) {
+    rows.push('Discount-code copy analytics must not transmit the code value')
+  }
   const optionalScriptBlocks = [
     analyticsProviderSource.match(/id="tfh-google-analytics"[\s\S]*?\/>/)?.[0] ?? '',
     analyticsProviderSource.match(/id="tfh-microsoft-clarity"[\s\S]*?\/>/)?.[0] ?? '',
@@ -11043,7 +11066,9 @@ function checkRussianAcquisitionPilot() {
   for (const token of [
     'data-russian-affiliate-support-code={firm.name}',
     'data-russian-affiliate-support-placement={placement}',
-    '<CopyableCodePill code={code} pct={pct} locale="ru" />',
+    'analyticsFirm={firmSlug}',
+    'analyticsPlacement={placement}',
+    'analyticsOfferType="partner_support"',
     'Код может сохранить привязку покупки к Traders Fund Hub',
     'выберите большую применимую скидку',
     '<strong> 0 баллов</strong>',
@@ -12522,6 +12547,11 @@ function checkRussianAcquisitionPilot() {
     'isChallengeFresh',
     'CopyableCodePill',
     'locale="ru"',
+    'analyticsFirm={deal.firmSlug}',
+    'analyticsPlacement={campaignFor(deal)}',
+    'analyticsFirm={fundingPipsDeal.firmSlug}',
+    'analyticsPlacement={campaignFor(fundingPipsDeal)}',
+    'analyticsOfferType="public_checkout"',
     'campaignFor(deal)',
     'from=${campaignFor(deal)}-table',
     'const generalFaqs: RussianFaqItem[]',
