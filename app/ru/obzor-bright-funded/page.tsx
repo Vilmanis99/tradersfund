@@ -207,6 +207,20 @@ export default function RussianBrightFundedReviewPage() {
             <p><strong>2-Step Bright — рациональная отправная точка по листинговой цене:</strong> {eur(bright?.accountSizes.find(tier => tier.sizeUsd === 5000)?.priceEur)} за $5K, цели {bright ? targets(bright) : '—'}, дневной лимит {bright?.dailyLossPct ?? '—'}% и {bright?.maxLossPct ?? '—'}% статического максимального убытка. Но экономия {minPrice != null ? eur(49 - minPrice) : '—'} относительно двух других стартовых планов не делает две фазы автоматически легче одной.</p>
             <p><strong>1-Step сокращает оценку, но двигает пол убытка.</strong> На $100K он стоит {eur(oneStep100k?.priceEur)}, требует {oneStep?.profitTargets?.phase1 ?? '—'}% и использует {oneStep?.maxLossPct ?? '—'}% трейлинг от максимальной equity. Classic на том же $100K стоит {eur(classic100k?.priceEur)}, оставляет {classic?.maxLossPct ?? '—'}% статического пространства, но требует две фазы и {classic?.profitTargets?.phase1 ?? '—'}% в первой.</p>
             <p>Для русскоязычного пользователя за пределами России Bright Funded интересен именно как глобальная EUR-priced фирма. Для резидента или гражданина любой страны решение начинается с опубликованного списка ограничений, KYC и доступного способа выплаты, а не с языка сайта.</p>
+            <div className="ru-notice" data-russian-bright-summary-cta="qualified-country-first">
+              <strong>Проверка до checkout.</strong> Сначала сопоставьте 4 поля: гражданство, страну проживания, способ оплаты и будущий payout rail. Отсутствие страны в опубликованном запрете не заменяет KYC-решение по конкретному профилю.
+            </div>
+            <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="bright-funded-summary">
+              <strong>Партнёрское раскрытие.</strong> Если вы перейдёте к Bright Funded после этой проверки и зарегистрируетесь, мы можем получить комиссию. Она не меняет {freshProducts.length} проверенные программы, {pricedTiers.length} текущих цен или наш вывод о необходимости country-check до оплаты.
+            </div>
+            {firm?.affiliateUrl ? (
+              <div className="ru-actions">
+                <Link href="/go/bright-funded?from=ru-bright-funded-review-summary" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+                  Проверить страну и планы Bright Funded <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+                <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сначала сравнить с FundedNext</Link>
+              </div>
+            ) : null}
           </div>
         </section>
 

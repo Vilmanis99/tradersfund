@@ -12965,6 +12965,9 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-bright-funded', [
       'data-russian-partner-review="bright-funded"',
       'data-russian-bright-article="long-form"',
+      'data-russian-bright-summary-cta="qualified-country-first"',
+      'data-russian-affiliate-disclosure="bright-funded-summary"',
+      '/go/bright-funded?from=ru-bright-funded-review-summary',
       'data-russian-bright-reviews="suppressed-not-zero"',
       'firm?.trustpilotRatingSuppressed',
       'Почему у Bright Funded нет средней оценки Trustpilot?',

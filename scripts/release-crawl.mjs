@@ -1159,6 +1159,9 @@ const russianExpectations = new Map([
     markers: [
       'data-russian-partner-review="bright-funded"',
       'data-russian-bright-article="long-form"',
+      'data-russian-bright-summary-cta="qualified-country-first"',
+      'data-russian-affiliate-disclosure="bright-funded-summary"',
+      '/go/bright-funded?from=ru-bright-funded-review-summary',
       'data-russian-bright-reviews="suppressed-not-zero"',
       'Отзывы о Bright Funded: почему мы не показываем среднюю оценку',
       '/ru/otzyvy-prop-firm#review-checklist',
@@ -1700,6 +1703,7 @@ for (const [path, href] of [
   ['/ru/obzor-ftmo', '/go/fundednext?from=ru-ftmo-alternative-fundednext'],
   ['/ru/obzor-ftmo', '/go/bright-funded?from=ru-ftmo-alternative-bright-funded'],
   ['/ru/obzor-fundingpips', '/go/fundingpips?from=ru-fundingpips-review-verdict'],
+  ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-summary'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-verdict'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundingpips?from=ru-crypto-ranking'],
