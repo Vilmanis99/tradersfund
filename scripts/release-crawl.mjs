@@ -729,9 +729,12 @@ for (const pair of russianRoutePairs) {
 
 const russianExpectations = new Map([
   ['/ru', {
-    title: 'Проп-фирмы: обзоры, цены и правила на русском',
-    h1: 'Проп-фирмы: цены, правила и выплаты без рекламного тумана',
+    title: 'Проп-фирмы для русскоязычных трейдеров: цены и правила',
+    h1: 'Проп-фирмы для русскоязычных трейдеров: цены, правила и выплаты',
     markers: [
+      'data-russian-home-diaspora-entry="hero"',
+      '/ru/dlya-russkoyazychnykh-treyderov',
+      'Проверить страну и KYC',
       'data-russian-country-boundary="language-not-access"',
       'data-russian-home-next-step="reader-decision"',
       'С чего начать русскоязычному трейдеру',

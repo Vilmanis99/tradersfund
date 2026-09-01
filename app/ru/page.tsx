@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from '@/components/SafeLink'
-import { ArrowRight, BadgePercent, BookOpenCheck, Building2, ChartCandlestick, Database, Globe2, MonitorCog, Scale, SearchCheck, ShieldAlert, WalletCards, Zap } from 'lucide-react'
+import { ArrowRight, BadgePercent, BookOpenCheck, Building2, ChartCandlestick, Database, Globe2, MonitorCog, Scale, ShieldAlert, WalletCards, Zap } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { getAllDeals } from '@/lib/deals'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
@@ -10,8 +10,8 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 const PATH = '/ru'
-const TITLE = 'Проп-фирмы: обзоры, цены и правила на русском'
-const DESCRIPTION = 'Русская версия Traders Fund Hub: сравнение проп-фирм, цены челленджей, просадки, выплаты и правила по данным из первичных источников.'
+const TITLE = 'Проп-фирмы для русскоязычных трейдеров: цены и правила'
+const DESCRIPTION = 'Сравнение глобальных проп-фирм для русскоязычных трейдеров в разных странах: цены, просадки, выплаты, KYC и правила из первичных источников.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -104,12 +104,12 @@ export default function RussianHomePage() {
 
       <section className="ru-hero">
         <div className="ru-shell">
-          <div className="ru-eyebrow"><SearchCheck size={14} aria-hidden="true" /> Русская версия</div>
-          <h1>Проп-фирмы: цены, правила и выплаты без рекламного тумана</h1>
+          <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Для русскоязычных трейдеров</div>
+          <h1>Проп-фирмы для русскоязычных трейдеров: цены, правила и выплаты</h1>
           <p className="ru-lead">
-            Сравниваем не обещания брендов, а конкретные продукты: стоимость входа,
-            тип просадки, этапы оценки, базовую долю прибыли и условия выплаты.
-            Каждая цифра привязана к первичному источнику и дате проверки.
+            Помогаем русскоязычным трейдерам в разных странах сравнить глобальные продукты:
+            стоимость входа, тип просадки, этапы оценки, базовую долю прибыли и условия выплаты.
+            Локальные российские компании исследуем отдельно и не смешиваем с глобальным партнёрским рейтингом.
           </p>
           <div className="ru-home-partner-hero" data-russian-home-hero-partners="fundednext-bright-funded">
             {featuredPartnerCards.map(item => {
@@ -167,6 +167,13 @@ export default function RussianHomePage() {
             })}
           </div>
           <div className="ru-actions ru-home-secondary-actions">
+            <Link
+              href="/ru/dlya-russkoyazychnykh-treyderov"
+              className="btn-outline"
+              data-russian-home-diaspora-entry="hero"
+            >
+              Проверить страну и KYC
+            </Link>
             <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">
               Сравнить двух партнёров
             </Link>

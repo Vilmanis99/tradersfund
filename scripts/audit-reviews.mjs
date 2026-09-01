@@ -11819,6 +11819,11 @@ function checkRussianAcquisitionPilot() {
     }
   }
   for (const token of [
+    "const TITLE = 'Проп-фирмы для русскоязычных трейдеров: цены и правила'",
+    'Проп-фирмы для русскоязычных трейдеров: цены, правила и выплаты',
+    'data-russian-home-diaspora-entry="hero"',
+    'href="/ru/dlya-russkoyazychnykh-treyderov"',
+    'Проверить страну и KYC',
     'data-russian-home-hero-partners="fundednext-bright-funded"',
     'data-russian-home-hero-partner={item.slug}',
     'data-russian-home-fundednext-offer="earned-coupon"',
