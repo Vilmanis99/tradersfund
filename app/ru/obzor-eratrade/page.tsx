@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import Link from '@/components/SafeLink'
 import { ArrowRight, Building2, FileCheck2, Globe2, Scale, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'

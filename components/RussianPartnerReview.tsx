@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
+import Link from './SafeLink'
 import { AlertTriangle, ArrowRight, BadgeDollarSign, Database, ExternalLink } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import {

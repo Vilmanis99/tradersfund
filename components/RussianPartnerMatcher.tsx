@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import Link from 'next/link'
+import Link from './SafeLink'
 import { ArrowRight, RefreshCw, ShieldCheck, SlidersHorizontal } from 'lucide-react'
 import { trackSiteEvent as track } from '@/lib/clientAnalytics'
 import {

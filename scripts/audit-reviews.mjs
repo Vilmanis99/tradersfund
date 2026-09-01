@@ -10940,6 +10940,7 @@ function checkRussianAcquisitionPilot() {
   const localizedRoutesFile = path.join(ROOT, 'lib/localizedRoutes.ts')
   const nextConfigFile = path.join(ROOT, 'next.config.ts')
   const russianLayoutFile = path.join(ROOT, 'app/ru/layout.tsx')
+  const safeLinkFile = path.join(ROOT, 'components/SafeLink.tsx')
   const russianPartnerReviewFile = path.join(ROOT, 'components/RussianPartnerReview.tsx')
   const russianPartnerReviewSource = fs.existsSync(russianPartnerReviewFile)
     ? fs.readFileSync(russianPartnerReviewFile, 'utf8')
@@ -11702,6 +11703,30 @@ function checkRussianAcquisitionPilot() {
     const layout = fs.readFileSync(russianLayoutFile, 'utf8')
     for (const token of ['lang="ru"', 'data-russian-locale="pilot"', "import './ru.css'"]) {
       if (!layout.includes(token)) rows.push(`Russian layout is missing ${token}`)
+    }
+  }
+  const safeLinkSource = fs.existsSync(safeLinkFile)
+    ? fs.readFileSync(safeLinkFile, 'utf8')
+    : ''
+  for (const token of [
+    "pathname?.startsWith('/go/')",
+    'prefetch={isOutboundRedirect ? false : prefetch}',
+    'Affiliate redirects record a server event',
+  ]) {
+    if (!safeLinkSource.includes(token)) {
+      rows.push(`Russian affiliate-safe link is missing ${token}`)
+    }
+  }
+  const russianLinkFiles = [
+    ...russianRouteFiles.values(),
+    russianPartnerReviewFile,
+    russianPartnerMatcherFile,
+  ]
+  for (const file of russianLinkFiles) {
+    if (!fs.existsSync(file)) continue
+    const source = fs.readFileSync(file, 'utf8')
+    if (source.includes("import Link from 'next/link'")) {
+      rows.push(`${path.relative(ROOT, file)} bypasses SafeLink for Russian /go/ attribution`)
     }
   }
   if (fs.existsSync(nextConfigFile)) {

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
+import Link from '@/components/SafeLink'
 import { ArrowRight, BadgePercent, BookOpenCheck, Building2, ChartCandlestick, Database, Globe2, MonitorCog, Scale, SearchCheck, ShieldAlert, WalletCards, Zap } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { getAllDeals } from '@/lib/deals'
