@@ -1,6 +1,10 @@
 import { getChallengesByFirm, isChallengeFresh } from './firms'
 import type { Firm } from './firms'
 import type { PostMeta } from './mdx'
+import {
+  isRussianRoutePath,
+  russianRouteDateModified,
+} from './localizedRoutes'
 
 const SITE = 'https://tradersfundhub.com'
 
@@ -311,7 +315,31 @@ export function blogIndexSchema(posts: PostMeta[]) {
   }
 }
 
+function alignRussianArticleDateModified(data: unknown): unknown {
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return data
+  const article = data as Record<string, unknown>
+  if (
+    article['@type'] !== 'Article'
+    || article.inLanguage !== 'ru'
+    || typeof article.url !== 'string'
+  ) {
+    return data
+  }
+
+  try {
+    const pageUrl = new URL(article.url, SITE)
+    if (pageUrl.origin !== SITE || !isRussianRoutePath(pageUrl.pathname)) return data
+    const dataDate = typeof article.dateModified === 'string' ? article.dateModified : null
+    return {
+      ...article,
+      dateModified: russianRouteDateModified(pageUrl.pathname, dataDate),
+    }
+  } catch {
+    return data
+  }
+}
+
 /** Tiny helper to render a JSON-LD <script> without HTML-escape hazards. */
 export function jsonLd(data: unknown): string {
-  return JSON.stringify(data).replace(/</g, '\\u003c')
+  return JSON.stringify(alignRussianArticleDateModified(data)).replace(/</g, '\\u003c')
 }

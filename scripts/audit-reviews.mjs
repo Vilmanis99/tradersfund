@@ -11660,7 +11660,11 @@ function checkRussianAcquisitionPilot() {
   ]
   if (fs.existsSync(localizedRoutesFile)) {
     const localizedRoutes = fs.readFileSync(localizedRoutesFile, 'utf8')
-    for (const token of expectedMappedRoutes) {
+    for (const token of [
+      ...expectedMappedRoutes,
+      'RUSSIAN_ROUTE_EDITORIAL_DATES',
+      'russianRouteLastModified',
+    ]) {
       if (!localizedRoutes.includes(token)) rows.push(`localized route contract is missing ${token}`)
     }
   }
@@ -12757,8 +12761,8 @@ function checkRussianAcquisitionPilot() {
   const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
   for (const token of [
     'LOCALIZED_ROUTE_PAIRS',
-    'RUSSIAN_ROUTE_EDITORIAL_DATES',
     'RUSSIAN_ONLY_ROUTES',
+    'russianRouteLastModified(',
     "'x-default': `${BASE_URL}${pair.en}`",
     'russianMarketEvidence.capturedAt',
     'russianTeamTradersEvidence.capturedAt',
@@ -12775,6 +12779,9 @@ function checkRussianAcquisitionPilot() {
     'const russianRoutePairs = [...LOCALIZED_ROUTE_PAIRS]',
     'RUSSIAN_ROUTE_EDITORIAL_DATES[path]',
     'predates editorial update ${editorialLastModified}',
+    'Article dateModified ${articleSchema.dateModified || \'missing\'} disagrees with sitemap',
+    'visible updated date ${visibleUpdatedDate} disagrees with Article dateModified',
+    'Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected 24',
     'Russian sitemap routes disagree with the ${russianPaths.length}-page acquisition pilot',
     'rendered Russian language boundary or schema is missing',
     'Content-Language must be ru',

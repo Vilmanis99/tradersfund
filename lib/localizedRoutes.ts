@@ -69,6 +69,31 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/vyplaty-prop-firm': '2026-09-01',
 } as const satisfies Record<RussianRoutePath, string>
 
+export function isRussianRoutePath(pathname: string): pathname is RussianRoutePath {
+  return Object.prototype.hasOwnProperty.call(RUSSIAN_ROUTE_EDITORIAL_DATES, pathname)
+}
+
+export function russianRouteLastModified(
+  pathname: RussianRoutePath,
+  dataDate?: string | Date | null,
+): Date {
+  const editorialTime = new Date(
+    `${RUSSIAN_ROUTE_EDITORIAL_DATES[pathname]}T00:00:00Z`,
+  ).getTime()
+  const candidateTime = dataDate == null ? Number.NaN : new Date(dataDate).getTime()
+  return new Date(Math.max(
+    editorialTime,
+    Number.isFinite(candidateTime) ? candidateTime : editorialTime,
+  ))
+}
+
+export function russianRouteDateModified(
+  pathname: RussianRoutePath,
+  dataDate?: string | Date | null,
+): string {
+  return russianRouteLastModified(pathname, dataDate).toISOString().slice(0, 10)
+}
+
 export type LocalizedRoutePair = (typeof LOCALIZED_ROUTE_PAIRS)[number]
 
 export function getLocalizedRoutePair(pathname: string): LocalizedRoutePair | undefined {

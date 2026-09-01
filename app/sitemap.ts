@@ -11,9 +11,9 @@ import { INDIA_MATCHUPS, indiaMatchupPath } from '@/lib/indiaMatchups'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import {
   LOCALIZED_ROUTE_PAIRS,
-  RUSSIAN_ROUTE_EDITORIAL_DATES,
   RUSSIAN_ONLY_ROUTES,
   getLocalizedRoutePair,
+  russianRouteLastModified,
 } from '@/lib/localizedRoutes'
 import russianMarketEvidence from '@/content/data/russian-market-evidence.json'
 import russianCTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
@@ -220,21 +220,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   const fundedNextLastModified = firms.find(firm => firm.name === 'FundedNext')?.lastUpdated
+  const russianChallengeLastModified = (...firmSlugs: string[]) => {
+    const capturedAt = challenges
+      .filter(challenge => firmSlugs.includes(challenge.firmSlug))
+      .map(challenge => challenge.sourceCapturedAt)
+      .sort()
+      .at(-1)
+    return new Date(capturedAt || challengeLastModified)
+  }
   const russianDataLastModified = new Map<string, Date>([
     ['/ru', challengeComparisonLastDate],
     ['/ru/luchshie-prop-firmy', challengeComparisonLastDate],
     ['/ru/obzor-fundednext', new Date(fundedNextLastModified || challengeLastModified)],
+    ['/ru/obzor-fundingpips', russianChallengeLastModified('fundingpips')],
+    [
+      '/ru/fundednext-vs-fundingpips',
+      russianChallengeLastModified('fundednext', 'fundingpips'),
+    ],
     ['/ru/chto-takoe-prop-firma', challengeComparisonLastDate],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', challengeComparisonLastDate],
   ])
-  const latestRussianRouteDate = (path: keyof typeof RUSSIAN_ROUTE_EDITORIAL_DATES, dataDate: Date) =>
-    new Date(Math.max(
-      new Date(`${RUSSIAN_ROUTE_EDITORIAL_DATES[path]}T00:00:00Z`).getTime(),
-      dataDate.getTime(),
-    ))
   const russianRoutes: MetadataRoute.Sitemap = LOCALIZED_ROUTE_PAIRS.map(pair => ({
     url: `${BASE_URL}${pair.ru}`,
-    lastModified: latestRussianRouteDate(
+    lastModified: russianRouteLastModified(
       pair.ru,
       russianDataLastModified.get(pair.ru) ?? challengeComparisonLastDate,
     ),
@@ -258,7 +266,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return {
       url: `${BASE_URL}${path}`,
-      lastModified: latestRussianRouteDate(path, evidenceLastModified),
+      lastModified: russianRouteLastModified(path, evidenceLastModified),
       changeFrequency: 'monthly',
       priority: 0.78,
     }

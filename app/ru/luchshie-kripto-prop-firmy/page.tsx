@@ -20,7 +20,11 @@ import {
   type Challenge,
 } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates, getLocalizedRoutePair } from '@/lib/localizedRoutes'
+import {
+  getLanguageAlternates,
+  getLocalizedRoutePair,
+  russianRouteDateModified,
+} from '@/lib/localizedRoutes'
 
 const PATH = '/ru/luchshie-kripto-prop-firmy'
 const TITLE = 'Крипто-проп-фирмы 2026: 3 проверенных варианта'
@@ -138,6 +142,7 @@ export default function RussianCryptoPropFirmsPage() {
   const partnerCount = snapshots.filter(snapshot => Boolean(snapshot.firm.affiliateUrl)).length
   const latestCapture = snapshots.map(snapshot => snapshot.evidence.sourceCapturedAt).sort().at(-1)
     ?? 'дата не указана'
+  const lastModified = russianRouteDateModified(PATH, latestCapture)
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
     { name: 'Рейтинг проп-фирм', url: '/ru/luchshie-prop-firmy' },
@@ -152,7 +157,7 @@ export default function RussianCryptoPropFirmsPage() {
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
-    dateModified: latestCapture,
+    dateModified: lastModified,
     author: { '@type': 'Person', name: 'Edris Derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
@@ -176,7 +181,7 @@ export default function RussianCryptoPropFirmsPage() {
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные рейтинга крипто-проп-фирм">
             <span>Автор: Edris Derakhshi</span>
-            <span>Обновлено: {latestCapture}</span>
+            <span>Обновлено: {lastModified}</span>
             <span>14 минут чтения</span>
           </div>
           <div className="ru-stats">

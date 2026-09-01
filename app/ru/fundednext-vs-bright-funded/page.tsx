@@ -527,7 +527,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
                 <div className="ru-actions"><Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link><Link href="/go/bright-funded?from=ru-fn-vs-bright-verdict-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить Bright Funded <ArrowRight size={14} aria-hidden="true" /></Link></div>
               </article>
             </div>
-            <p className="ru-source-line"><Database size={14} aria-hidden="true" /> {products.length} продуктов · {priceCount} цен · {sourceCount} первичных product pages · обновлено {latestCapture}.</p>
+            <p className="ru-source-line"><Database size={14} aria-hidden="true" /> {products.length} продуктов · {priceCount} цен · {sourceCount} первичных product pages · источники захвачены {latestCapture}.</p>
           </div>
         </section>
 

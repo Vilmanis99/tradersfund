@@ -6,7 +6,7 @@ import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { getDealsByFirm } from '@/lib/deals'
 import { challengeTierEconomics, getAllFirms, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru/obzor-fundednext'
@@ -107,6 +107,10 @@ export default function RussianFundedNextReviewPage() {
   const accessEvidence = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
   const sourceUrls = [...new Set(freshProducts.map(product => product.sourceUrl))]
   const latestProductCapture = products.map(product => product.sourceCapturedAt).sort().at(-1)
+  const lastModified = russianRouteDateModified(
+    PATH,
+    latestProductCapture ?? marketEvidence.capturedAt,
+  )
   const hasFreshProducts = freshProducts.length > 0
   const twoStep = freshProducts.find(product => product.productSlug === 'stellar-2-step')
   const oneStep = freshProducts.find(product => product.productSlug === 'stellar-1-step')
@@ -145,7 +149,7 @@ export default function RussianFundedNextReviewPage() {
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
     datePublished: '2024-09-02',
-    dateModified: latestProductCapture ?? marketEvidence.capturedAt,
+    dateModified: lastModified,
     author: { '@type': 'Person', name: 'Edris Derakhshi' },
     publisher: {
       '@type': 'Organization',
@@ -172,7 +176,7 @@ export default function RussianFundedNextReviewPage() {
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
             <span>Автор: Edris Derakhshi</span>
-            <span>Обновлено: {latestProductCapture ?? marketEvidence.capturedAt}</span>
+            <span>Обновлено: {lastModified}</span>
             <span>14 минут чтения</span>
           </div>
           <div className="ru-stats">

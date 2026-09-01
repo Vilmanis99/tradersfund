@@ -10,7 +10,7 @@ import {
   type Challenge,
 } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/obzor-bright-funded'
 const TITLE = 'Bright Funded: обзор 2026, цены, правила и выплаты'
@@ -97,6 +97,7 @@ export default function RussianBrightFundedReviewPage() {
   const latestCapture = freshProducts.map(product => product.sourceCapturedAt).sort().at(-1)
     ?? products.map(product => product.sourceCapturedAt).sort().at(-1)
     ?? 'дата не указана'
+  const lastModified = russianRouteDateModified(PATH, latestCapture)
   const sourceUrls = [...new Set(freshProducts.map(product => product.sourceUrl))]
   const fundedNextProducts = getChallengesByFirm('fundednext').filter(product => isChallengeFresh(product))
   const fundedNextPricedTierCount = fundedNextProducts.reduce((count, product) =>
@@ -134,7 +135,7 @@ export default function RussianBrightFundedReviewPage() {
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
     datePublished: '2025-05-19',
-    dateModified: latestCapture,
+    dateModified: lastModified,
     author: {
       '@type': 'Person',
       name: 'Tara Mohseni',
@@ -158,7 +159,7 @@ export default function RussianBrightFundedReviewPage() {
           <p className="ru-lead">Bright Funded продаёт challenge в евро, а размер симулируемого счёта показывает в долларах. Главный выбор — не между «дешевле» и «дороже», а между 6% трейлинг-просадкой, 8% статикой и 10% статикой.</p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
             <span>Автор: Tara Mohseni</span>
-            <span>Обновлено: {latestCapture}</span>
+            <span>Обновлено: {lastModified}</span>
             <span>13 минут чтения</span>
           </div>
           <div className="ru-stats">

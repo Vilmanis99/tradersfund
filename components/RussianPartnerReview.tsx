@@ -10,9 +10,13 @@ import {
   type Challenge,
 } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import {
+  russianRouteDateModified,
+  type RussianRoutePath,
+} from '@/lib/localizedRoutes'
 
 type RussianPartnerReviewProps = {
-  path: string
+  path: RussianRoutePath
   title: string
   headline?: string
   description: string
@@ -119,6 +123,7 @@ export default function RussianPartnerReview({
     (tier.priceUsd != null && tier.priceUsd > 0) || (tier.priceEur != null && tier.priceEur > 0),
   ).map(tier => ({ product, tier })))
   const latestCapture = freshProducts.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'дата не указана'
+  const lastModified = russianRouteDateModified(path, latestCapture)
   const latestAnyCapture = products.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'дата не указана'
   const sourceUrls = [...new Set(freshProducts.map(product => product.sourceUrl))]
   const displayHeadline = headline ?? title
@@ -136,7 +141,7 @@ export default function RussianPartnerReview({
     description,
     url: `https://tradersfundhub.com${path}`,
     inLanguage: 'ru',
-    dateModified: latestCapture,
+    dateModified: lastModified,
     author: { '@type': 'Person', name: 'Edris Derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
@@ -155,7 +160,7 @@ export default function RussianPartnerReview({
           <p className="ru-lead">{lead}</p>
           <div className="ru-review-meta" aria-label={`Редакционные данные обзора ${firmName}`}>
             <span>Автор: Edris Derakhshi</span>
-            <span>Обновлено: {latestCapture}</span>
+            <span>Обновлено: {lastModified}</span>
             <span>{readTime} минут чтения</span>
           </div>
           <div className="ru-stats">

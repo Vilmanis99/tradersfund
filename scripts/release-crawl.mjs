@@ -1424,6 +1424,7 @@ const russianExpectations = new Map([
 
 const russianCampaignSources = new Map()
 const russianAffiliatePlacements = new Set()
+let russianArticleSchemaCount = 0
 for (const [path, expectation] of russianExpectations) {
   const probe = pages.find(page => new URL(page.productionUrl).pathname === path)
   if (!probe || probe.status !== 200) {
@@ -1433,6 +1434,37 @@ for (const [path, expectation] of russianExpectations) {
   const title = textContent(firstMatch(probe.html, /<title[^>]*>([\s\S]*?)<\/title>/i))
   const h1 = textContent(firstMatch(probe.html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i))
   const pageText = textContent(probe.html)
+  const articleSchema = [...probe.html.matchAll(
+    /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+  )].flatMap(match => {
+    try {
+      return [JSON.parse(match[1])]
+    } catch {
+      return []
+    }
+  }).find(value => value['@type'] === 'Article')
+  if (articleSchema) {
+    russianArticleSchemaCount += 1
+    const sitemapEntry = sitemapEntries.find(block => {
+      const location = decodeXml(firstMatch(block, /<loc>([\s\S]*?)<\/loc>/i))
+      return location && new URL(location).pathname === path
+    })
+    const sitemapDate = firstMatch(
+      sitemapEntry ?? '',
+      /<lastmod>([\s\S]*?)<\/lastmod>/i,
+    ).slice(0, 10)
+    if (articleSchema.dateModified !== sitemapDate) {
+      errors.push(
+        `${path}: Article dateModified ${articleSchema.dateModified || 'missing'} disagrees with sitemap ${sitemapDate || 'missing'}`,
+      )
+    }
+    const visibleUpdatedDate = pageText.match(/Обновлено:\s*(\d{4}-\d{2}-\d{2})/)?.[1]
+    if (visibleUpdatedDate && visibleUpdatedDate !== articleSchema.dateModified) {
+      errors.push(
+        `${path}: visible updated date ${visibleUpdatedDate} disagrees with Article dateModified ${articleSchema.dateModified}`,
+      )
+    }
+  }
   if (title !== expectation.title || h1 !== expectation.h1) {
     errors.push(`${path}: Russian title or H1 disagrees with the acquisition brief`)
   }
@@ -1529,6 +1561,9 @@ for (const [path, expectation] of russianExpectations) {
       errors.push(`${pair.en}: missing reciprocal Russian hreflang for ${pair.ru}`)
     }
   }
+}
+if (russianArticleSchemaCount !== 24) {
+  errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected 24`)
 }
 
 const russianDiasporaPage = pages.find(page =>

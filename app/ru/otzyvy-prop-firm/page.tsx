@@ -25,6 +25,7 @@ import {
 } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
+import { russianRouteDateModified } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/otzyvy-prop-firm'
 const TITLE = 'Отзывы о проп-фирмах 2026: как проверить выплаты'
@@ -180,6 +181,7 @@ export default function RussianPropFirmReviewsPage() {
   const featuredPriceCount = publishedTierCount(featuredProducts)
   const latestCapture = featuredProducts.map(product => product.sourceCapturedAt).sort().at(-1)
     ?? marketEvidence.capturedAt
+  const lastModified = russianRouteDateModified(PATH, latestCapture)
   const fundedNextAccess = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
 
   const crumbs = breadcrumbSchema([
@@ -192,7 +194,7 @@ export default function RussianPropFirmReviewsPage() {
     headline: TITLE,
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
-    dateModified: latestCapture,
+    dateModified: lastModified,
     inLanguage: 'ru',
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
@@ -216,7 +218,7 @@ export default function RussianPropFirmReviewsPage() {
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные руководства по отзывам">
             <span>Автор: Edris Derakhshi</span>
-            <span>Обновлено: {latestCapture}</span>
+            <span>Обновлено: {lastModified}</span>
             <span>15 минут чтения</span>
           </div>
           <div className="ru-stats">
