@@ -23,6 +23,24 @@ import { OPEN_ANALYTICS_SETTINGS_EVENT } from './AnalyticsPreferencesButton'
 const CONSENT_STORAGE_KEY = 'tfh_analytics_consent_v1'
 const CONSENT_CHANGE_EVENT = 'tfh:analytics-consent-changed'
 const SCROLL_THRESHOLDS = [25, 50, 75, 90] as const
+const CONSENT_COPY = {
+  en: {
+    title: 'Optional analytics',
+    description: 'Allow privacy-conscious journey analytics and heatmaps so we can improve comparisons. We never capture form contents. Basic anonymous traffic measurement remains active.',
+    privacy: 'Privacy policy',
+    reject: 'Reject optional',
+    accept: 'Accept analytics',
+    cancel: 'Cancel',
+  },
+  ru: {
+    title: 'Необязательная аналитика',
+    description: 'Разрешите обезличенную аналитику переходов и тепловые карты, чтобы мы могли улучшать сравнения. Мы никогда не записываем содержимое форм. Базовое анонимное измерение трафика остаётся включённым.',
+    privacy: 'Политика конфиденциальности',
+    reject: 'Отклонить',
+    accept: 'Разрешить аналитику',
+    cancel: 'Отмена',
+  },
+} as const
 type AnalyticsConsent = 'unknown' | 'granted' | 'denied'
 type GtagCommand = 'config' | 'consent' | 'event' | 'js' | 'set'
 type ClarityCommand = 'consent' | 'consentv2' | 'event' | 'set'
@@ -135,6 +153,8 @@ export default function AnalyticsProvider({
   outboundRelationships: Record<string, OutboundRelationship>
 }) {
   const pathname = usePathname() || '/'
+  const pageLocale = contentLocale(pathname)
+  const consentCopy = CONSENT_COPY[pageLocale]
   const gaMeasurementId = useMemo(() => validGaId(rawGaId), [rawGaId])
   const clarityProjectId = useMemo(() => validClarityId(rawClarityId), [rawClarityId])
   const hasOptionalAnalytics = Boolean(gaMeasurementId || clarityProjectId)
@@ -409,26 +429,26 @@ export default function AnalyticsProvider({
           role="dialog"
           aria-modal="false"
           aria-labelledby="analytics-consent-title"
+          lang={pageLocale}
           data-analytics-ignore
         >
           <div className="analytics-consent-copy">
-            <h2 id="analytics-consent-title">Optional analytics</h2>
+            <h2 id="analytics-consent-title">{consentCopy.title}</h2>
             <p>
-              Allow privacy-conscious journey analytics and heatmaps so we can improve comparisons.
-              We never capture form contents. Basic anonymous traffic measurement remains active.
-              {' '}<Link href="/privacy-policy">Privacy policy</Link>
+              {consentCopy.description}{' '}
+              <Link href="/privacy-policy">{consentCopy.privacy}</Link>
             </p>
           </div>
           <div className="analytics-consent-actions">
             <button type="button" className="analytics-consent-reject" onClick={() => updateConsent('denied')}>
-              Reject optional
+              {consentCopy.reject}
             </button>
             <button type="button" className="analytics-consent-accept" onClick={() => updateConsent('granted')}>
-              Accept analytics
+              {consentCopy.accept}
             </button>
             {consent !== 'unknown' && (
               <button type="button" className="analytics-consent-cancel" onClick={() => setSettingsOpen(false)}>
-                Cancel
+                {consentCopy.cancel}
               </button>
             )}
           </div>
