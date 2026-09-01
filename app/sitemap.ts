@@ -16,6 +16,7 @@ import {
   russianRouteLastModified,
 } from '@/lib/localizedRoutes'
 import russianMarketEvidence from '@/content/data/russian-market-evidence.json'
+import russianDiasporaEvidence from '@/content/data/russian-diaspora-evidence.json'
 import russianCTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
 import russianFundedNextInstantEvidence from '@/content/data/russian-fundednext-instant-evidence.json'
 import russianFundedNextMt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
@@ -251,7 +252,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
   const russianOnlyRoutes: MetadataRoute.Sitemap = RUSSIAN_ONLY_ROUTES.map(path => {
     const evidenceLastModified = new Date(
-      path === '/ru/forex-prop-firmy'
+      path === '/ru/dlya-russkoyazychnykh-treyderov'
+        ? russianDiasporaEvidence.capturedAt
+        : path === '/ru/forex-prop-firmy'
         ? russianForexEvidence.capturedAt
         : path === '/ru/prop-firmy-s-ctrader'
           ? russianCTraderEvidence.capturedAt

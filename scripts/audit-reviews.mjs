@@ -70,6 +70,10 @@ import {
 import { rankRelatedPosts, relatedPostScore } from '../lib/relatedPosts.ts'
 import { russianPartnerMatcherDecision } from '../lib/russianPartnerMatcher.ts'
 import {
+  getRussianDiasporaCountryRows,
+  russianDiasporaEvidence,
+} from '../lib/russianDiasporaEvidence.ts'
+import {
   INDEXNOW_KEY,
   INDEXNOW_KEY_PATH,
   getRussianIndexNowUrls,
@@ -12238,6 +12242,13 @@ function checkRussianAcquisitionPilot() {
     'data-russian-diaspora-hero-disclosure="primary-affiliates"',
     'data-russian-diaspora-regions="kazakhstan-uae"',
     'data-russian-diaspora-regions="global-routes"',
+    'data-russian-diaspora-country-matrix="published-lists-not-approval"',
+    'data-russian-diaspora-country-count={diasporaCountryRows.length}',
+    'data-russian-diaspora-country-captured={russianDiasporaEvidence.capturedAt}',
+    'data-russian-diaspora-country-boundary="absence-not-eligibility"',
+    'data-russian-diaspora-country-evidence="first-party"',
+    'data-russian-diaspora-country={country.key}',
+    'data-russian-diaspora-status={check.status}',
     'data-russian-diaspora-region-funnel="global-partners"',
     'data-russian-diaspora-decision-router="four-unresolved-fields"',
     'data-russian-country-boundary="diaspora-not-access"',
@@ -12255,8 +12266,74 @@ function checkRussianAcquisitionPilot() {
     'href="/ru/vyplaty-prop-firm"',
     'href="/ru/fundednext-vs-bright-funded"',
     'href="/ru/rossiyskie-prop-kompanii"',
+    'getRussianDiasporaCountryRows()',
+    'dateModified: russianDiasporaEvidence.capturedAt',
+    'Отсутствие страны в списке не подтверждает доступ',
+    'href={source.url}',
   ]) {
     if (!russianDiasporaPage.includes(token)) rows.push(`Russian diaspora guide is missing ${token}`)
+  }
+  const diasporaCapturedAt = new Date(`${russianDiasporaEvidence.capturedAt}T00:00:00Z`)
+  const diasporaAgeDays = Math.floor((TODAY - diasporaCapturedAt) / 86_400_000)
+  if (!Number.isFinite(diasporaCapturedAt.getTime()) || diasporaAgeDays < 0 || diasporaAgeDays > 30) {
+    rows.push(`Russian diaspora country evidence is ${diasporaAgeDays} day(s) old (gate: 30)`)
+  }
+  if (russianDiasporaEvidence.firms.map(firm => firm.slug).join(',') !== 'fundednext,bright-funded') {
+    rows.push('Russian diaspora country evidence must contain FundedNext and Bright Funded in commercial order')
+  }
+  for (const firm of russianDiasporaEvidence.firms) {
+    if (firm.sources.length < 2) {
+      rows.push(`Russian diaspora ${firm.slug} evidence must cite both a country page and terms`)
+    }
+    for (const source of firm.sources) {
+      const sourceUrl = new URL(source.url)
+      if (
+        sourceUrl.protocol !== 'https:'
+        || !sourceUrl.hostname.endsWith(firm.slug === 'fundednext' ? 'fundednext.com' : 'brightfunded.com')
+      ) {
+        rows.push(`Russian diaspora ${firm.slug} evidence is not first-party: ${source.url}`)
+      }
+    }
+  }
+  const diasporaSourceUrls = new Set(russianDiasporaEvidence.firms.flatMap(firm =>
+    firm.sources.map(source => source.url),
+  ))
+  for (const expectedSourceUrl of [
+    'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds',
+    'https://fundednext.com/terms-of-service',
+    'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
+    'https://brightfunded.com/terms-and-conditions',
+  ]) {
+    if (!diasporaSourceUrls.has(expectedSourceUrl)) {
+      rows.push(`Russian diaspora country evidence is missing ${expectedSourceUrl}`)
+    }
+  }
+  const diasporaCountryEvidenceRows = getRussianDiasporaCountryRows()
+  if (diasporaCountryEvidenceRows.length !== 11) {
+    rows.push(`Russian diaspora country matrix must contain 11 profiles; received ${diasporaCountryEvidenceRows.length}`)
+  }
+  for (const country of diasporaCountryEvidenceRows) {
+    if (country.checks.length !== 2) {
+      rows.push(`Russian diaspora ${country.key} row must contain 2 primary-partner checks`)
+    }
+  }
+  const diasporaStatusByCountryFirm = new Map(diasporaCountryEvidenceRows.flatMap(country =>
+    country.checks.map(check => [`${country.key}:${check.firmSlug}`, check.status]),
+  ))
+  for (const [fixture, expected] of [
+    ['kazakhstan:fundednext', 'not-named'],
+    ['kazakhstan:bright-funded', 'not-named'],
+    ['united-arab-emirates:bright-funded', 'product-specific'],
+    ['united-states:fundednext', 'product-specific'],
+    ['united-states:bright-funded', 'product-specific'],
+    ['ukraine:fundednext', 'product-specific'],
+    ['belarus:fundednext', 'restricted'],
+    ['russia:fundednext', 'conflict'],
+    ['russia:bright-funded', 'not-named'],
+  ]) {
+    if (diasporaStatusByCountryFirm.get(fixture) !== expected) {
+      rows.push(`Russian diaspora ${fixture} expected ${expected}`)
+    }
   }
   for (const secondaryCommercialRoute of [
     "campaign: 'ru-diaspora-fundingpips'",
@@ -12883,6 +12960,7 @@ function checkRussianAcquisitionPilot() {
     'russianRouteLastModified(',
     "'x-default': `${BASE_URL}${pair.en}`",
     'russianMarketEvidence.capturedAt',
+    'russianDiasporaEvidence.capturedAt',
     'russianTeamTradersEvidence.capturedAt',
     'russianForexEvidence.capturedAt',
     'russianCTraderEvidence.capturedAt',

@@ -1,0 +1,107 @@
+{
+  "capturedAt": "2026-09-01",
+  "scopeRu": "Срез сравнивает только опубликованные фирмами списки стран и отдельные ограничения продукта или платформы. Он не подтверждает регистрацию, KYC, оплату или выплату конкретному человеку.",
+  "countries": [
+    { "key": "kazakhstan", "labelRu": "Казахстан", "sourceName": "Kazakhstan" },
+    { "key": "united-arab-emirates", "labelRu": "ОАЭ", "sourceName": "United Arab Emirates" },
+    { "key": "georgia", "labelRu": "Грузия", "sourceName": "Georgia" },
+    { "key": "armenia", "labelRu": "Армения", "sourceName": "Armenia" },
+    { "key": "latvia", "labelRu": "Латвия", "sourceName": "Latvia" },
+    { "key": "germany", "labelRu": "Германия", "sourceName": "Germany" },
+    { "key": "israel", "labelRu": "Израиль", "sourceName": "Israel" },
+    { "key": "united-states", "labelRu": "США", "sourceName": "United States" },
+    { "key": "ukraine", "labelRu": "Украина", "sourceName": "Ukraine" },
+    { "key": "belarus", "labelRu": "Беларусь", "sourceName": "Belarus" },
+    { "key": "russia", "labelRu": "Россия", "sourceName": "Russia" }
+  ],
+  "firms": [
+    {
+      "slug": "fundednext",
+      "name": "FundedNext",
+      "generalProductRu": "CFD-продукты",
+      "restrictedJurisdictions": [
+        "Bangladesh",
+        "Myanmar",
+        "Belarus",
+        "North Korea",
+        "Syria",
+        "Grenada",
+        "Chad",
+        "Malaysia",
+        "Belize",
+        "Antigua and Barbuda",
+        "Cape Verde",
+        "Tuvalu",
+        "Vietnam",
+        "Bouvet Island",
+        "Burundi",
+        "Cook Islands",
+        "Eritrea",
+        "Comoros",
+        "Sri Lanka",
+        "Fiji"
+      ],
+      "defaultNotNamedNoteRu": "Не названа в общем CFD-списке; регистрация, KYC, платёж и выплата не тестировались.",
+      "restrictedNoteRu": "Названа в общем CFD-списке ограничений для резидентов и граждан.",
+      "overrides": {
+        "united-states": {
+          "status": "product-specific",
+          "noteRu": "Общий CFD-список не называет США, но FundedNext ограничивает MetaQuotes с IP США и MT5-зависимые Free Trial, Competition и Stellar Instant."
+        },
+        "ukraine": {
+          "status": "product-specific",
+          "noteRu": "Общий CFD-список не называет Украину, но список FundedNext Futures ограничивает резидентов Украины."
+        },
+        "russia": {
+          "status": "conflict",
+          "noteRu": "CFD-список не называет Россию, но Futures-список ограничивает её, а отдельное раскрытие FundedNext Ltd говорит, что не обслуживает резидентов России."
+        }
+      },
+      "sources": [
+        {
+          "labelRu": "FundedNext: ограничения стран для CFD",
+          "url": "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds"
+        },
+        {
+          "labelRu": "FundedNext: Terms of Service, раздел 5",
+          "url": "https://fundednext.com/terms-of-service"
+        }
+      ]
+    },
+    {
+      "slug": "bright-funded",
+      "name": "Bright Funded",
+      "generalProductRu": "Challenge-регистрация",
+      "restrictedJurisdictions": [
+        "Cuba",
+        "Iran",
+        "North Korea",
+        "Syria",
+        "Vietnam",
+        "Pakistan"
+      ],
+      "defaultNotNamedNoteRu": "Не названа в общем списке регистрации; checkout, KYC, платёж и выплата не тестировались.",
+      "restrictedNoteRu": "Названа в опубликованном списке запрета регистрации или покупки Challenge.",
+      "overrides": {
+        "united-arab-emirates": {
+          "status": "product-specific",
+          "noteRu": "Общий список не называет ОАЭ, но Terms отдельно говорят, что MT5 не предназначен для резидентов или граждан ОАЭ."
+        },
+        "united-states": {
+          "status": "product-specific",
+          "noteRu": "Общий список не называет США, но Terms отдельно говорят, что MT5 не предназначен для резидентов или граждан США."
+        }
+      },
+      "sources": [
+        {
+          "labelRu": "Bright Funded: опубликованный список стран",
+          "url": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded"
+        },
+        {
+          "labelRu": "Bright Funded: Terms and Conditions, раздел 2",
+          "url": "https://brightfunded.com/terms-and-conditions"
+        }
+      ]
+    }
+  ]
+}

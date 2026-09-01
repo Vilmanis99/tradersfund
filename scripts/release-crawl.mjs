@@ -785,6 +785,24 @@ const russianExpectations = new Map([
       'data-russian-diaspora-hero-disclosure="primary-affiliates"',
       'data-russian-diaspora-regions="kazakhstan-uae"',
       'data-russian-diaspora-regions="global-routes"',
+      'data-russian-diaspora-country-matrix="published-lists-not-approval"',
+      'data-russian-diaspora-country-count="11"',
+      'data-russian-diaspora-country-captured="2026-09-01"',
+      'data-russian-diaspora-country-boundary="absence-not-eligibility"',
+      'data-russian-diaspora-country-evidence="first-party"',
+      'data-russian-diaspora-country="kazakhstan"',
+      'data-russian-diaspora-country="belarus"',
+      'data-russian-diaspora-country="russia"',
+      'data-russian-diaspora-status="not-named"',
+      'data-russian-diaspora-status="restricted"',
+      'data-russian-diaspora-status="product-specific"',
+      'data-russian-diaspora-status="conflict"',
+      'Что публикуют FundedNext и Bright Funded по 11 страновым профилям',
+      'Отсутствие страны в списке не подтверждает доступ',
+      'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds',
+      'https://fundednext.com/terms-of-service',
+      'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
+      'https://brightfunded.com/terms-and-conditions',
       'data-russian-diaspora-region-funnel="global-partners"',
       'data-russian-diaspora-decision-router="four-unresolved-fields"',
       'data-russian-country-boundary="diaspora-not-access"',
@@ -1594,6 +1612,15 @@ const russianDiasporaDecisionRouter = firstMatch(
 )
 if (russianDiasporaDecisionRouter.includes('/go/')) {
   errors.push('/ru/dlya-russkoyazychnykh-treyderov: qualification router must remain non-commercial')
+}
+const russianDiasporaCountryMatrix = firstMatch(
+  russianDiasporaPage?.html ?? '',
+  /<section\b[^>]*data-russian-diaspora-country-matrix="published-lists-not-approval"[^>]*>([\s\S]*?)<\/section>/i,
+)
+if (!russianDiasporaCountryMatrix) {
+  errors.push('/ru/dlya-russkoyazychnykh-treyderov: first-party country matrix did not render')
+} else if (russianDiasporaCountryMatrix.includes('/go/')) {
+  errors.push('/ru/dlya-russkoyazychnykh-treyderov: country evidence must remain non-commercial')
 }
 
 const russianBrightPage = pages.find(page =>

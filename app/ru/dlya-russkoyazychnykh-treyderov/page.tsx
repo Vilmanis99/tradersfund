@@ -7,10 +7,24 @@ import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import {
+  getRussianDiasporaCountryRows,
+  russianDiasporaEvidence,
+  type RussianDiasporaCountryStatus,
+} from '@/lib/russianDiasporaEvidence'
 
 const PATH = '/ru/dlya-russkoyazychnykh-treyderov'
 const TITLE = 'Проп-фирмы для русскоязычных трейдеров за рубежом'
 const DESCRIPTION = 'Как русскоязычным трейдерам в разных странах проверить KYC, оплату и правила глобальных проп-фирм перед регистрацией; честный маршрут к партнёрским обзорам.'
+
+const countryStatusLabels: Record<RussianDiasporaCountryStatus, string> = {
+  'not-named': 'Не названа в общем списке',
+  restricted: 'Ограничена',
+  'product-specific': 'Есть ограничение продукта',
+  conflict: 'Источники конфликтуют',
+}
+
+const diasporaCountryRows = getRussianDiasporaCountryRows()
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -99,6 +113,7 @@ export default function RussianDiasporaGuidePage() {
     inLanguage: 'ru',
     author: { '@type': 'Organization', name: 'Traders Fund Hub' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
+    dateModified: russianDiasporaEvidence.capturedAt,
   }
 
   return (
@@ -230,6 +245,61 @@ export default function RussianDiasporaGuidePage() {
               <p className="ru-muted">После пяти проверок откройте глобальный обзор ниже; если страна или продукт не подтверждены, не используйте VPN и не подменяйте данные.</p>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section
+        className="ru-section"
+        id="country-matrix"
+        data-russian-diaspora-country-matrix="published-lists-not-approval"
+      >
+        <div
+          className="ru-shell ru-content"
+          data-russian-diaspora-country-count={diasporaCountryRows.length}
+          data-russian-diaspora-country-captured={russianDiasporaEvidence.capturedAt}
+        >
+          <h2>Что публикуют FundedNext и Bright Funded по {diasporaCountryRows.length} страновым профилям</h2>
+          <p>
+            Это не таблица «доступно/недоступно». Она показывает только, названа ли страна в общем списке,
+            есть ли отдельное ограничение продукта или конфликт официальных страниц. Срез сделан{' '}
+            {russianDiasporaEvidence.capturedAt}; регистрация, KYC, платёж и выплата не проходились.
+          </p>
+          <div className="ru-notice" data-russian-diaspora-country-boundary="absence-not-eligibility">
+            <strong>Отсутствие страны в списке не подтверждает доступ.</strong>{' '}
+            {russianDiasporaEvidence.scopeRu}
+          </div>
+          <div className="ru-table-wrap">
+            <table className="ru-table" data-russian-diaspora-country-evidence="first-party">
+              <thead>
+                <tr>
+                  <th>Профиль страны</th>
+                  {russianDiasporaEvidence.firms.map(firm => <th key={firm.slug}>{firm.name}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {diasporaCountryRows.map(country => (
+                  <tr key={country.key} data-russian-diaspora-country={country.key}>
+                    <td><strong>{country.labelRu}</strong></td>
+                    {country.checks.map(check => (
+                      <td key={check.firmSlug} data-russian-diaspora-status={check.status}>
+                        <strong>{countryStatusLabels[check.status]}</strong><br />
+                        <span className="ru-muted">{check.noteRu}</span>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="ru-source-line">
+            Первичные страницы:{' '}
+            {russianDiasporaEvidence.firms.flatMap(firm => firm.sources).map((source, index, sources) => (
+              <span key={source.url}>
+                <a href={source.url} target="_blank" rel="noopener noreferrer">{source.labelRu}</a>
+                {index < sources.length - 1 ? '; ' : '.'}
+              </span>
+            ))}
+          </p>
         </div>
       </section>
 
