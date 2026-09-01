@@ -22,10 +22,12 @@ import {
  * Matching is on a slug derived from the firm name: lowercased, alphanumerics
  * only. So /go/ftmo, /go/fundednext, /go/funding-pips, /go/topstep, etc.
  *
- * UTM tagging: every outbound affiliate URL is decorated with
+ * Attribution: every outbound affiliate URL is decorated with
  *   utm_source=tradersfundhub
  *   utm_medium=affiliate
  *   utm_campaign=<from-param or 'unknown'>
+ * FirstPromoter links (`fpr`) also receive fp_sid=<campaign>, so the same
+ * controlled placement appears in the promoter portal's Sub-IDs report.
  * The caller passes ?from=<placement> (e.g. ?from=home-leaderboard,
  * ?from=main-table, ?from=review-cta, ?from=compare) so partner dashboards
  * show which placement drives conversions.
@@ -71,7 +73,7 @@ function recordOfficialClick(firm: string, placement: string) {
  * Affiliate URLs stay null until a deal is signed. The official URL remains
  * available so "Visit" always means leaving for the named product.
  */
-function decorateUtm(url: string, campaign: string): string {
+function decorateAffiliateAttribution(url: string, campaign: string): string {
   try {
     const u = new URL(url)
     // Don't clobber existing UTM params the firm pre-baked into its affiliate URL.
@@ -83,6 +85,12 @@ function decorateUtm(url: string, campaign: string): string {
     }
     if (!u.searchParams.has('utm_campaign')) {
       u.searchParams.set('utm_campaign', campaign)
+    }
+    // FirstPromoter documents source reporting and the fp_sid click-ID parameter:
+    // https://help.firstpromoter.com/en/articles/8971361-how-to-use-sub-ids-in-firstpromoter
+    // https://help.firstpromoter.com/en/articles/9625829-how-to-set-up-postbacks-on-firstpromoter
+    if (u.searchParams.has('fpr')) {
+      u.searchParams.set('fp_sid', campaign)
     }
     return u.toString()
   } catch {
@@ -108,7 +116,7 @@ export async function GET(
     if (partner) {
       if (partner.affiliateUrl) {
         recordAffiliateClick(target, from)
-        return redirectWithoutIndexing(decorateUtm(partner.affiliateUrl, from), 302)
+        return redirectWithoutIndexing(decorateAffiliateAttribution(partner.affiliateUrl, from), 302)
       }
       recordOfficialClick(target, from)
       return redirectWithoutIndexing(partner.officialUrl, 302)
@@ -132,7 +140,7 @@ export async function GET(
   // Affiliate links receive campaign attribution. Organic first-party links
   // do not receive affiliate UTMs, because that would mislabel the click.
   if (match.affiliateUrl) {
-    const dest = decorateUtm(match.affiliateUrl, from)
+    const dest = decorateAffiliateAttribution(match.affiliateUrl, from)
     recordAffiliateClick(target, from)
     // 302 (temporary) because affiliate URLs can change; we don't want
     // intermediaries caching the redirect.

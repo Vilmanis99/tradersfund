@@ -3012,6 +3012,10 @@ function checkAnalyticsMeasurementContract() {
     [AFFILIATE_REDIRECT_ROUTE_FILE, [
       "import { campaignLocale } from '@/lib/analyticsTaxonomy'",
       'locale: campaignLocale(placement)',
+      "u.searchParams.has('fpr')",
+      "u.searchParams.set('fp_sid', campaign)",
+      '8971361-how-to-use-sub-ids-in-firstpromoter',
+      '9625829-how-to-set-up-postbacks-on-firstpromoter',
       "response.headers.set('X-Robots-Tag', 'noindex, nofollow')",
     ]],
     [INDIA_MATCHER_COMPONENT_FILE, [

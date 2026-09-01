@@ -4395,6 +4395,7 @@ if (
   || fundedNextMatchupDestination.searchParams.get('utm_source') !== 'tradersfundhub'
   || fundedNextMatchupDestination.searchParams.get('utm_medium') !== 'affiliate'
   || fundedNextMatchupDestination.searchParams.get('utm_campaign') !== 'compare-ftmo-vs-fundednext-final'
+  || fundedNextMatchupDestination.searchParams.get('fp_sid') !== 'compare-ftmo-vs-fundednext-final'
 ) {
   errors.push(
     '/go/fundednext?from=compare-ftmo-vs-fundednext-final: matchup affiliate redirect failed',
@@ -4421,6 +4422,8 @@ if (
   || fundedNextAffiliateDestination.searchParams.get('utm_source') !== 'tradersfundhub'
   || fundedNextAffiliateDestination.searchParams.get('utm_medium') !== 'affiliate'
   || fundedNextAffiliateDestination.searchParams.get('utm_campaign')
+    !== 'post-body-fundednext-review-product-fit'
+  || fundedNextAffiliateDestination.searchParams.get('fp_sid')
     !== 'post-body-fundednext-review-product-fit'
 ) {
   errors.push(`${fundedNextAffiliateProbePath}: affiliate destination or attribution failed`)
@@ -4748,6 +4751,8 @@ if (
   || russianAffiliateDestination.searchParams.get('utm_medium') !== 'affiliate'
   || russianAffiliateDestination.searchParams.get('utm_campaign')
     !== 'ru-fundednext-review-verdict'
+  || russianAffiliateDestination.searchParams.get('fp_sid')
+    !== 'ru-fundednext-review-verdict'
 ) {
   errors.push('/go/fundednext?from=ru-fundednext-review-verdict: Russian affiliate attribution failed')
 }
@@ -4815,6 +4820,7 @@ if (
   || officialDestination.searchParams.has('utm_source')
   || officialDestination.searchParams.has('utm_medium')
   || officialDestination.searchParams.has('utm_campaign')
+  || officialDestination.searchParams.has('fp_sid')
 ) {
   errors.push('/go/ftmo?from=release-official-check: official redirect attribution failed')
 }
