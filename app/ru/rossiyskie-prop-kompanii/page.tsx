@@ -9,7 +9,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru/rossiyskie-prop-kompanii'
 const TITLE = 'Российские проп-компании: 6 реальных примеров (2026)'
-const DESCRIPTION = '6 российских проп-компаний: Era Trade, PropLive, KasCapital, А-Лаб, TeamTraders и Trade System. Модели, выплаты и партнёрские условия по официальным источникам.'
+const DESCRIPTION = '6 российских проп-компаний: модели и выплаты по официальным источникам, затем отдельное сравнение с глобальными FundedNext и Bright Funded по KYC и правилам.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

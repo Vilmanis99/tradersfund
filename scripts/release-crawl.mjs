@@ -1365,6 +1365,7 @@ const russianExpectations = new Map([
     title: 'Российские проп-компании: 6 реальных примеров (2026)',
     h1: 'Российские проп-компании в 2026 году: 6 проверяемых примеров',
     markers: [
+      '6 российских проп-компаний: модели и выплаты по официальным источникам',
       'data-russian-local-firms="verification-only"',
       'data-russian-affiliate-opportunity="unactivated"',
       'data-russian-country-boundary="local-to-global"',

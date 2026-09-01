@@ -12166,6 +12166,7 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(russianRouteFiles.get('/ru/rossiyskie-prop-kompanii'), 'utf8')
     : ''
   for (const token of [
+    '6 российских проп-компаний: модели и выплаты по официальным источникам',
     'data-russian-local-firms="verification-only"',
     'data-russian-affiliate-opportunity="unactivated"',
     'data-russian-local-global-funnel="partner-routes"',
