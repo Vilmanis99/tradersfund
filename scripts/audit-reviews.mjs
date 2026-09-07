@@ -11162,9 +11162,9 @@ function checkRussianAcquisitionPilot() {
     }
     for (const readerMarker of [
       'data-russian-home-next-step="reader-decision"',
-      'С чего начать русскоязычному трейдеру',
+      'С чего начать',
       '/ru/fundednext-vs-bright-funded',
-      '/ru/prop-firmy-bez-kyc',
+      '/ru/dlya-russkoyazychnykh-treyderov',
       '/ru/rossiyskie-prop-kompanii',
     ]) {
       if (!russianHomeSource.includes(readerMarker)) {
@@ -11910,59 +11910,46 @@ function checkRussianAcquisitionPilot() {
   const russianHub = fs.existsSync(russianRouteFiles.get('/ru'))
     ? fs.readFileSync(russianRouteFiles.get('/ru'), 'utf8')
     : ''
-  for (const path of [...russianRouteFiles.keys()].filter(pathname => pathname !== '/ru')) {
-    if (!russianHub.includes(`href="${path}"`)) {
-      rows.push(`/ru: missing acquisition-cluster link to ${path}`)
+  // Preserve discovery through Russian hubs, without requiring every article
+  // to be promoted directly on the homepage.
+  const reachableRussianRoutes = new Set(['/ru'])
+  const russianQueue = ['/ru']
+  for (let index = 0; index < russianQueue.length; index++) {
+    const routeFile = russianRouteFiles.get(russianQueue[index])
+    if (!routeFile || !fs.existsSync(routeFile)) continue
+    const source = fs.readFileSync(routeFile, 'utf8')
+    for (const match of source.matchAll(/['"](\/ru(?:\/[a-z0-9-]+)?)(?:['"#?])/g)) {
+      const target = match[1]
+      if (russianRouteFiles.has(target) && !reachableRussianRoutes.has(target)) {
+        reachableRussianRoutes.add(target)
+        russianQueue.push(target)
+      }
     }
+  }
+  for (const route of russianRouteFiles.keys()) {
+    if (!reachableRussianRoutes.has(route)) rows.push(route + ': not reachable through Russian page links')
   }
   for (const token of [
     "const TITLE = 'Проп-фирмы для русскоязычных трейдеров: цены и правила'",
-    'Проп-фирмы для русскоязычных трейдеров: цены, правила и выплаты',
-    'data-russian-home-diaspora-entry="hero"',
+    'data-russian-home-layout="focused"',
+    'data-russian-home-diaspora-entry="trust"',
     'href="/ru/dlya-russkoyazychnykh-treyderov"',
-    'Проверить страну и KYC',
+    'data-russian-country-boundary="language-not-access"',
     'data-russian-home-hero-partners="fundednext-bright-funded"',
     'data-russian-home-hero-partner={item.slug}',
-    'data-russian-home-fundednext-offer="earned-coupon"',
-    'import RussianAffiliateSupportCode from \'@/components/RussianAffiliateSupportCode\'',
-    '<RussianAffiliateSupportCode',
-    'publicOfferPct={item.deal?.pct}',
-    'placement={`home-${item.slug}`}',
-    'href="/ru/promokody-prop-firm#fundednext-promokod"',
-    'Как получить {item.deal.pct}% после Free Trial',
     'ru-home-partner-hero-logo',
-    'Основной глобальный партнёр',
-    'Проверить условия {item.name}',
     '/go/fundednext?from=ru-home-hero-fundednext',
     '/go/bright-funded?from=ru-home-hero-bright-funded',
     'data-russian-affiliate-disclosure="home-primary-partners"',
-    'data-russian-home-deals-partners="fundednext-bright-funded"',
-    'data-russian-home-deal-count={activeDeals.length}',
-    'data-russian-home-deals-fail-closed="30-days"',
-    'const activeDeals = getAllDeals()',
-    'data-russian-home-ftmo-entry="non-affiliate-to-partners"',
-    'href="/ru/obzor-ftmo"',
-    'Проверенные промокоды проп-фирм',
-    'Сравнить коды и итоговые цены',
     'href="/ru/fundednext-vs-bright-funded"',
-    'Главное сравнение русской версии: 7 продуктов, 40 цен',
     'data-russian-home-navigation="task-first"',
-    "const featuredPartnerRoutes = [",
-    "{ slug: 'fundednext', name: 'FundedNext'",
-    "{ slug: 'bright-funded', name: 'Bright Funded'",
-    'rel="sponsored nofollow noopener"',
-    'data-russian-home-definition-entry="prop-kompanii-eto"',
+    'href="/ru/luchshie-prop-firmy"',
+    'href="/ru/prop-firmy-bez-chelendzha"',
     'href="/ru/chto-takoe-prop-firma"',
-    'data-russian-home-forex-entry="prop-forex"',
-    'href="/ru/forex-prop-firmy"',
-    'data-russian-home-ctrader-entry="platform-rules"',
-    'href="/ru/prop-firmy-s-ctrader"',
-    'data-russian-home-mt5-entry="fundednext-ea-rules"',
-    'href="/ru/fundednext-mt5"',
-    'data-russian-home-instant-product-entry="fundednext-stellar-instant"',
-    'href="/ru/fundednext-stellar-instant"',
+    'rel="sponsored nofollow noopener"',
+    'data-russian-home-guides="selected-three"',
   ]) {
-    if (!russianHub.includes(token)) rows.push(`Russian home featured-partner funnel is missing ${token}`)
+    if (!russianHub.includes(token)) rows.push('Russian home reader path is missing ' + token)
   }
 
   const forexPage = fs.existsSync(russianRouteFiles.get('/ru/forex-prop-firmy'))
