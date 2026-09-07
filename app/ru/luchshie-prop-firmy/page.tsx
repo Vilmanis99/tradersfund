@@ -9,8 +9,8 @@ import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/s
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/luchshie-prop-firmy'
-const TITLE = 'Лучшие проп-фирмы 2026: рейтинг и сравнение'
-const DESCRIPTION = 'Лучшие проп-фирмы для русскоязычных трейдеров по всему миру: сравнение страны, цен USD/EUR, просадки, выплат и продуктов без подмены KYC.'
+const TITLE = 'Лучшие проп-компании 2026: сравнение цен и правил'
+const DESCRIPTION = 'Рейтинг проп-компаний для русскоязычных трейдеров: цены, просадка и выплаты. Сравните глобальные фирмы, счета без челленджа и российские компании.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -35,23 +35,23 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какие проп-фирмы подходят русскоязычным трейдерам за границей?',
-    a: 'Язык не определяет доступ. Русскоязычный трейдер в ЕС, Великобритании, Казахстане, Израиле, Северной Америке или другой стране должен проверять своё фактическое резидентство, гражданство, KYC, checkout и payout-метод. В рейтинге есть отдельные русские обзоры FundedNext, FundingPips и Bright Funded с такими проверками.',
+    a: 'Перед выбором фирмы проверьте, принимает ли она ваше гражданство, страну проживания и документы для подтверждения личности (KYC). Затем уточните способы оплаты и получения прибыли. Русскоязычным трейдерам в разных странах доступны наши обзоры FundedNext, FundingPips и Bright Funded с отдельным разбором этих условий.',
   },
   {
     q: 'Какая проп-фирма работает с резидентами России?',
-    a: 'Этот рейтинг не обещает доступ ни у одной глобальной фирмы. У FundedNext официальные страницы дают противоречивые сигналы по России; FundingPips применяет ограничения по резидентству и санкционным спискам; Bright Funded не называет Россию в опубликованном списке из 6 стран, но это не гарантирует прохождение checkout или KYC. Нужна письменная проверка конкретного профиля до оплаты.',
+    a: 'Этот рейтинг не подтверждает доступ у глобальных фирм для резидентов России. Официальные страницы FundedNext противоречат друг другу; FundingPips применяет ограничения по резидентству и санкционным спискам; отсутствие страны в списке Bright Funded само по себе не означает, что фирма примет документы и оплату. До покупки получите письменное подтверждение для своего профиля. Компании, работающие с местной биржевой инфраструктурой, разобраны в отдельном списке российских проп-компаний.',
   },
   {
     q: 'Есть ли проп-фирмы без челленджа?',
-    a: 'Да, в текущих данных есть продукты с 0 оценочных фаз: FundedNext Stellar Instant и FundingPips Zero. Отсутствие challenge не отменяет trailing-просадку, payout-gates, невозвратный взнос или правила консистентности; сравнивайте их в отдельном рейтинге instant funding.',
+    a: 'Да. Например, FundedNext Stellar Instant и FundingPips Zero не требуют прохождения оценочных этапов. Такие программы называют мгновенным финансированием (instant funding). Перед покупкой сравните взнос, подвижный лимит просадки, условия запроса выплаты и ограничения на распределение прибыли по торговым дням. Эти правила разобраны в отдельном сравнении счетов без челленджа.',
   },
   {
     q: 'Какие проп-фирмы выплачивают в криптовалюте?',
-    a: 'В фирменных данных FundedNext, FundingPips и Bright Funded перечисляют crypto среди payout-методов. Конкретная монета, сеть, минимум, комиссия и доступность зависят от фирмы и страны, поэтому сначала откройте разбор выплат, а затем подтвердите метод в своём профиле.',
+    a: 'В данных FundedNext, FundingPips и Bright Funded указаны выплаты в криптовалюте. Конкретная монета, сеть, минимум, комиссия и доступность зависят от фирмы и страны, поэтому сначала откройте разбор выплат, а затем подтвердите метод в своём профиле.',
   },
   {
     q: 'Как проверять отзывы о проп-фирмах?',
-    a: 'Используйте отзывы как список возможных проблем, а не доказательство будущей выплаты. Сопоставляйте дату, продукт, правило нарушения, размер счёта и ответ фирмы; звёздный рейтинг Trustpilot не подтверждает KYC, compliance-review или reward конкретного трейдера.',
+    a: 'Используйте отзывы, чтобы найти возможные проблемы. Сопоставляйте дату, продукт, названное правило, размер счёта и ответ фирмы. Оценка Trustpilot сама по себе не подтверждает проверку документов или выплату конкретному трейдеру.',
   },
 ]
 
@@ -63,21 +63,21 @@ const partnerGuidance: Record<string, {
 }> = {
   fundednext: {
     start: 'Нужен выбор между 2-Step, 1-Step, Lite и Instant в USD.',
-    country: 'По России есть конфликт официальных страниц; для любой другой страны нужен checkout точного профиля.',
-    payout: 'Bank wire, Rise и crypto указаны в фирменном профиле; пороги и доступность различаются.',
-    watch: 'У funded-счёта действует 10-минутное новостное окно с 40% зачёта прибыли; Instant использует trailing-просадку.',
+    country: 'По России официальные страницы противоречат друг другу. Для других стран также проверьте требования к документам и оплате.',
+    payout: 'В профиле указаны банковский перевод, Rise и криптовалюта; пороги и доступность различаются.',
+    watch: 'На счёте после оценки действует 10-минутное новостное окно с 40% зачёта прибыли; Instant использует подвижный лимит просадки.',
   },
   fundingpips: {
-    start: 'Нужны 5 продуктовых путей, включая 1-Step, 2-Step и продукт с 0 фаз.',
+    start: 'Нужен выбор между программами с одним, двумя оценочными этапами и счётом без челленджа.',
     country: 'ОАЭ и Вьетнам прямо ограничены по резидентству; также применяются санкционные списки.',
-    payout: 'Card, bank wire, Rise и crypto перечислены в фирменном профиле; календарь reward зависит от продукта.',
-    watch: 'Сплит, consistency и weekend-правила отличаются по модели; фирменный максимум нельзя переносить на все продукты.',
+    payout: 'В профиле перечислены карта, банковский перевод, Rise и криптовалюта; сроки выплаты зависят от программы.',
+    watch: 'По программам различаются доля трейдера, ограничения на прибыль за один день и удержание позиций на выходных.',
   },
   'bright-funded': {
-    start: 'Нужна цена challenge в EUR и выбор между 1-Step и двумя 2-Step моделями.',
-    country: 'Опубликованный список ограничивает 6 стран; отсутствие страны в нём не гарантирует checkout, KYC или банк.',
-    payout: 'Bank transfer в EUR и USDC ERC-20 описаны в официальном справочнике.',
-    watch: 'Обычная первая выплата указана через 30 дней; в справочнике есть конфликт о двухнедельном цикле как add-on.',
+    start: 'Нужна программа с ценой в EUR и одним или двумя оценочными этапами.',
+    country: 'Опубликованный список ограничивает 6 стран; отсутствие страны в нём не гарантирует приём оплаты, документов или банковского перевода.',
+    payout: 'Банковский перевод в EUR и USDC ERC-20 описаны в официальном справочнике.',
+    watch: 'Обычная первая выплата указана через 30 дней; справочник противоречиво описывает двухнедельный цикл как платную опцию.',
   },
 }
 
@@ -208,25 +208,29 @@ export default function RussianBestPropFirmsPage() {
       <section className="ru-hero">
         <div className="ru-shell">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Рейтинг</div>
-          <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Порядок не продаётся</div>
-          <h1>Лучшие проп-фирмы 2026: рейтинг для русскоязычных трейдеров</h1>
+          <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Для русскоязычных трейдеров в разных странах</div>
+          <h1>Лучшие проп-компании 2026: рейтинг, цены и правила</h1>
           <p className="ru-lead">
-            В рейтинг попадают только фирмы, у которых все текущие продукты прошли
-            30-дневный контроль свежести. Редакционный балл задаёт порядок; партнёрская
-            ссылка, купон и размер комиссии не добавляют ни одного балла.
+            Сравните проп-фирмы по стоимости участия, допустимому убытку и условиям выплаты прибыли.
+            Начните с нужного формата: глобальная программа с проверкой навыков, счёт без челленджа
+            или местная компания для биржевой торговли. Затем проверьте требования к вашей стране проживания.
           </p>
-          <div className="ru-stats">
-            <div className="ru-stat"><strong>{ranked.length}</strong><span>фирм прошли текущий фильтр</span></div>
-            <div className="ru-stat"><strong>{ranked.reduce((sum, item) => sum + item.products.length, 0)}</strong><span>проверенных продуктов</span></div>
-            <div className="ru-stat"><strong>{pricedProductCount}</strong><span>продуктов с ценой</span></div>
-            <div className="ru-stat"><strong>{latestCapture ?? '—'}</strong><span>последний захват источника</span></div>
-          </div>
-          <div className="ru-actions">
-            <Link href="#polnyy-reyting" className="btn-primary btn-glow">Смотреть весь рейтинг <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm" className="btn-outline">Сначала понять правила</Link>
-            <Link href="/ru/chto-takoe-prop-firma" className="btn-outline">Что означает проп-фирма</Link>
-            <Link href="/ru/forex-prop-firmy" className="btn-outline">Отдельно сравнить forex</Link>
-            <Link href="/ru/luchshie-kripto-prop-firmy" className="btn-outline">Отдельно сравнить крипто</Link>
+          <div className="ru-grid">
+            <div className="ru-card">
+              <h2>Список глобальных проп-компаний</h2>
+              <p>Сравните редакционные оценки и условия программ. Для FundedNext и Bright Funded есть подробные обзоры на русском.</p>
+              <Link href="#polnyy-reyting" className="btn-primary btn-glow">Открыть рейтинг <ArrowRight size={15} aria-hidden="true" /></Link>
+            </div>
+            <div className="ru-card">
+              <h2>Финансирование без челленджа</h2>
+              <p>Если не хотите проходить оценочные этапы, сравните мгновенное финансирование: взнос, лимит убытка и условия первой выплаты.</p>
+              <Link href="/ru/prop-firmy-bez-chelendzha" className="btn-outline">Сравнить счета без челленджа</Link>
+            </div>
+            <div className="ru-card">
+              <h2>Российские проп-компании</h2>
+              <p>Если интересуют PropLive, TeamTraders и местная биржевая торговля, начните с отдельного разбора компаний и их договоров.</p>
+              <Link href="/ru/rossiyskie-prop-kompanii" className="btn-outline">Посмотреть российские компании</Link>
+            </div>
           </div>
         </div>
       </section>
@@ -256,8 +260,8 @@ export default function RussianBestPropFirmsPage() {
       <section className="ru-section" id="bystryy-otvet">
         <div className="ru-shell ru-content">
           <h2>Какая проп-фирма лучшая для русскоязычного трейдера</h2>
-          <p><strong>Лучший выбор определяется не русским языком и не местом в таблице.</strong> Сначала проверьте фактическую страну, гражданство, KYC и checkout; затем сравните рынок, валюту цены, тип drawdown и календарь reward. Только после этих фильтров редакционный балл помогает выбрать между продуктами с одинаковым назначением.</p>
-          <p>В текущем партнёрском шортлисте FundedNext даёт 4 пути и {productPricing(globalPartners.find(item => item.slug === 'fundednext')?.products ?? []).pricedTiers} цен в USD; FundingPips — 5 путей и {productPricing(globalPartners.find(item => item.slug === 'fundingpips')?.products ?? []).pricedTiers} ценовых уровней; Bright Funded — 3 программы и {productPricing(globalPartners.find(item => item.slug === 'bright-funded')?.products ?? []).pricedTiers} цен в EUR. Эти числа не делают одну фирму универсальным победителем: Stellar Instant, FundingPips Zero и Bright 2-Step Classic создают разные failure-points.</p>
+          <p><strong>Выбирайте программу по правилам, которые сможете соблюдать.</strong> Для начала определите рынок и бюджет. Затем сравните допустимый убыток, ограничения вашей стратегии и срок первой выплаты. Подтвердите гражданство, страну проживания и документы для проверки личности (KYC) до оплаты.</p>
+          <p>Для сравнения глобальных программ начните с <Link href="/ru/fundednext-vs-bright-funded">FundedNext и Bright Funded</Link>: у них различаются валюты взноса, этапы оценки и условия просадки. Если нужен счёт без оценочного этапа, изучите <Link href="/ru/fundednext-stellar-instant">Stellar Instant</Link> и его ограничения. Для торговли через местную биржевую инфраструктуру откройте отдельный список российских компаний выше.</p>
           <div className="ru-notice" data-russian-country-boundary="ranking-not-access">
             <strong>Это не рейтинг доступности в России.</strong>{' '}
             Он написан по-русски для мировой русскоязычной аудитории. Страна,
@@ -269,14 +273,14 @@ export default function RussianBestPropFirmsPage() {
       <section className="ru-section" id="glavnye-partnery">
         <div className="ru-shell" data-russian-ranking-primary-partners="fundednext-bright-funded">
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ranking-primary-partners">
-            <strong>Два основных коммерческих маршрута.</strong>{' '}
-            FundedNext и Bright Funded выделены здесь как главные партнёры Traders Fund Hub; переход может принести нам комиссию.
-            Это не меняет редакционный рейтинг. Сначала подтвердите страну, KYC, оплату и выплату для своего профиля.
+            <strong>Партнёрские ссылки.</strong>{' '}
+            Мы сотрудничаем с FundedNext и Bright Funded и можем получить комиссию после регистрации по нашей ссылке.
+            Партнёрство не добавляет баллы в рейтинге. Перед оплатой подтвердите доступность программы для своей страны и документов.
           </div>
-          <h2>FundedNext или Bright Funded: быстрая развилка</h2>
+          <h2>FundedNext или Bright Funded: с чего начать сравнение</h2>
           <p className="ru-muted">
-            Сравнивайте не логотипы, а продуктовую задачу: USD или EUR, 0 или 1–2 этапа, доступную платформу,
-            механизм просадки и маршрут будущей выплаты.
+            Сопоставьте валюту взноса, число этапов, торговую платформу, механизм просадки и способ получения прибыли.
+            Подробный обзор объясняет ограничения каждой программы.
           </p>
           <div className="ru-grid">
             {primaryPartnerProfiles.map(item => {
@@ -298,8 +302,8 @@ export default function RussianBestPropFirmsPage() {
                     <li><BadgeCheck size={14} aria-hidden="true" /> Диапазон входа: {item.range}</li>
                     <li><ShieldCheck size={14} aria-hidden="true" /> Фазы: {phaseCounts.join(', ')}; просадка: {item.drawdowns.join(' / ')}</li>
                     <li>{isFundedNext
-                      ? 'Фирменный профиль перечисляет bank wire, Rise и crypto; точный маршрут проверяется по стране.'
-                      : 'Официальный справочник описывает EUR bank transfer и USDC ERC-20.'}</li>
+                      ? 'В профиле указаны банковский перевод, Rise и криптовалюта; доступность зависит от страны.'
+                      : 'Официальный справочник описывает банковский перевод в EUR и USDC ERC-20.'}</li>
                   </ul>
                   <div className="ru-actions">
                     <Link href={reviewHref} className="btn-outline">Русский обзор</Link>
@@ -316,7 +320,7 @@ export default function RussianBestPropFirmsPage() {
             })}
           </div>
           <p className="ru-source-line">
-            FundingPips остаётся вторичным партнёрским вариантом и сравнивается ниже в полной матрице; он не подменяет два основных маршрута этой страницы.
+            Для дополнительного сравнения ниже приведены условия FundingPips. Все три фирмы также представлены в общем рейтинге по редакционной оценке.
           </p>
         </div>
       </section>
@@ -330,7 +334,7 @@ export default function RussianBestPropFirmsPage() {
           <div className="ru-grid">
             <article className="ru-card">
               <h3>Резидент России</h3>
-              <p>Не считайте отсутствие России в одном списке разрешением. У FundedNext есть конфликт официальных страниц; FundingPips применяет резидентские и санкционные ограничения; у Bright Funded отсутствие России в опубликованном списке из 6 стран не гарантирует checkout.</p>
+              <p>У FundedNext официальные страницы противоречат друг другу; FundingPips применяет ограничения по резидентству и санкционным спискам. Отсутствие России в списке Bright Funded не подтверждает возможность покупки. Уточните условия для своих документов до оплаты.</p>
               <p><Link href="/ru/rossiyskie-prop-kompanii">Сначала открыть проверку России и местных компаний →</Link></p>
             </article>
             <article className="ru-card">
@@ -340,7 +344,7 @@ export default function RussianBestPropFirmsPage() {
             </article>
             <article className="ru-card">
               <h3>Казахстан, Израиль или другая страна</h3>
-              <p>Русский язык не заменяет адрес и документы. Проверьте гражданство, резидентство, KYC, доступный checkout и payout-rail; затем выбирайте между USD, EUR, bank wire, Rise и crypto по точному профилю.</p>
+              <p>Проверьте требования к гражданству, адресу и документам. Уточните, как оплатить участие и получить прибыль в своей стране: через банк, Rise или криптовалюту. Валюта взноса может отличаться от валюты выплаты.</p>
               <p><Link href="/ru/prop-firmy-bez-kyc">Почему «без KYC» не является безопасным фильтром →</Link></p>
             </article>
             <article className="ru-card">
@@ -413,13 +417,12 @@ export default function RussianBestPropFirmsPage() {
           data-russian-ranking-partner-matrix="three-global-partners"
         >
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="partner-shortlist">
-            <strong>Глобальные партнёрские пути.</strong>{' '}
-            Эта матрица показывает фирмы, с которыми у Traders Fund Hub настроены партнёрские ссылки.
-            Партнёрство не меняет редакционный балл или порядок рейтинга. Перед оплатой отдельно подтвердите
-            страну, гражданство, KYC, способ оплаты и правила выплат.
+            <strong>Партнёрские ссылки.</strong>{' '}
+            Переходы на сайты этих фирм могут принести нам комиссию. Она не влияет на редакционные оценки.
+            Перед оплатой проверьте страну, гражданство, документы и способы получения прибыли.
           </div>
-          <h2>Полная партнёрская матрица: два основных пути и FundingPips</h2>
-          <p className="ru-muted">FundedNext и Bright Funded показаны первыми как основные коммерческие маршруты; FundingPips остаётся вторичным сравнением. Это не отдельный рейтинг из 3 мест: каждая строка отвечает на 5 вопросов о продукте, валюте, просадке, стране и reward.</p>
+          <h2>Сравнение FundedNext, Bright Funded и FundingPips</h2>
+          <p className="ru-muted">В этой таблице собраны наши партнёры. Используйте её для сравнения стоимости, просадки, выплат и ограничений. Порядок строк здесь не обозначает место в общем рейтинге.</p>
           <div className="ru-table-wrap">
             <table className="ru-table ru-partner-decision-table">
               <thead>
@@ -436,10 +439,10 @@ export default function RussianBestPropFirmsPage() {
                   : item.firm.reviewUrl
               return (
                 <tr key={item.slug} data-russian-partner={item.slug}>
-                  <td><strong>{item.firm.name}</strong><br />TFH {item.firm.score.toFixed(1)}/10<br />{item.products.length} продуктов / {item.pricedTiers} цен<br />захват {item.products.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'устарел'}</td>
+                  <td><strong>{item.firm.name}</strong><br />TFH {item.firm.score.toFixed(1)}/10<br />{item.products.length} программ / {item.pricedTiers} цен<br />проверено {item.products.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'обновление ожидается'}</td>
                   <td>{item.range}<br />базовые сплиты {item.splits.length > 0 ? `${item.splits.join('–')}%` : 'не подтверждены'}<br />{item.drawdowns.join(' / ') || 'просадка не подтверждена'}</td>
                   <td>{item.guidance.start}</td>
-                  <td><strong>Страна:</strong> {item.guidance.country}<br /><strong>Reward:</strong> {item.guidance.payout}<br /><strong>Проверить:</strong> {item.guidance.watch}</td>
+                  <td><strong>Страна:</strong> {item.guidance.country}<br /><strong>Выплаты:</strong> {item.guidance.payout}<br /><strong>Проверить:</strong> {item.guidance.watch}</td>
                   <td>
                     <div className="ru-ranking-table-actions">
                     <Link href={reviewHref} className="btn-outline">Русский обзор</Link>
@@ -458,7 +461,7 @@ export default function RussianBestPropFirmsPage() {
               </tbody>
             </table>
           </div>
-          <p className="ru-source-line">Цены показываются в исходной валюте без промоакций и без временного пересчёта USD/EUR. Если продуктовый захват выйдет за 30-дневное окно, его числа исчезнут из матрицы до повторной проверки.</p>
+          <p className="ru-source-line">Цены указаны в исходной валюте до скидок и банковской конвертации. Условия, проверенные более 30 дней назад, не показываем до обновления источников.</p>
         </div>
       </section>
 
@@ -469,32 +472,32 @@ export default function RussianBestPropFirmsPage() {
           <div className="ru-grid">
             <article className="ru-card">
               <h3>Минимальный бюджет в USD</h3>
-              <p>В свежем партнёрском наборе минимальный опубликованный вход FundingPips — {fundingPipsProfile?.entry ?? 'не подтверждён'}, а FundedNext — {fundedNextProfile?.entry ?? 'не подтверждён'}. Разница в цене не сравнивает число фаз, drawdown, consistency или возврат взноса.</p>
+              <p>Среди проверенных программ минимальный взнос FundingPips — {fundingPipsProfile?.entry ?? 'не подтверждён'}, а FundedNext — {fundedNextProfile?.entry ?? 'не подтверждён'}. При сравнении учитывайте размер счёта, этапы, просадку, ограничения на прибыль за день и возврат взноса.</p>
               <p><Link href="/ru/fundednext-vs-fundingpips">Сравнить FundedNext и FundingPips по продуктам →</Link></p>
             </article>
             <article className="ru-card">
               <h3>Цена в EUR</h3>
-              <p>Bright Funded хранит собственную EUR-деноминацию: текущий вход начинается от {brightFundedProfile?.entry ?? 'не подтверждён'}. Мы не превращаем EUR в USD по курсу дня, потому что такой пересчёт быстро устаревает и скрывает банковскую конвертацию.</p>
+              <p>Bright Funded публикует цены в евро: минимальный взнос среди проверенных программ — {brightFundedProfile?.entry ?? 'не подтверждён'}. Если ваша карта в другой валюте, добавьте комиссию и курс конвертации своего банка.</p>
               <p><Link href="/ru/obzor-bright-funded">Проверить 3 программы Bright Funded →</Link></p>
             </article>
             <article className="ru-card">
-              <h3>Без челленджа / instant funding</h3>
-              <p>FundedNext Stellar Instant и FundingPips Zero имеют 0 оценочных фаз, но оба используют trailing-границу. Instant начинается с 70% reward share; Zero — с 95% в текущем продукте, но добавляет дневной лимит и consistency-rule.</p>
-              <p><Link href="/ru/prop-firmy-bez-chelendzha">Открыть отдельное сравнение проп-фирм без challenge →</Link></p>
+              <h3>Мгновенное финансирование без челленджа</h3>
+              <p>У FundedNext Stellar Instant и FundingPips Zero нет оценочных этапов. В обоих случаях граница допустимого убытка поднимается вслед за результатом счёта. Сравните её расчёт, взнос и условия запроса выплаты перед выбором.</p>
+              <p><Link href="/ru/prop-firmy-bez-chelendzha">Сравнить проп-фирмы без челленджа →</Link></p>
             </article>
             <article className="ru-card">
               <h3>Статическая просадка</h3>
               <p>Статический максимум встречается у FundedNext 2-Step, 1-Step и Lite, у нескольких FundingPips 1-Step/2-Step и у Bright 2-Step Bright/Classic. Сравнивайте точные 6%, 8%, 10% или 12%, а не фирму целиком.</p>
-              <p><Link href="/ru/kak-rabotayut-chellendzhi-prop-firm">Разобрать static, trailing и EOD drawdown →</Link></p>
+              <p><Link href="/ru/kak-rabotayut-chellendzhi-prop-firm">Разобрать виды просадки и момент расчёта →</Link></p>
             </article>
             <article className="ru-card">
-              <h3>Выплата в crypto</h3>
-              <p>Все 3 партнёрских профиля перечисляют crypto среди payout-методов, но сеть, минимум, комиссия и доступность по стране различаются. Bright описывает USDC ERC-20; FundedNext и FundingPips требуют отдельной проверки точного маршрута.</p>
+              <h3>Выплата в криптовалюте</h3>
+              <p>У всех трёх фирм указаны выплаты в криптовалюте, но сеть, минимум, комиссия и доступность по стране различаются. Bright Funded описывает USDC ERC-20; для FundedNext и FundingPips уточните монету и сеть в своём профиле.</p>
               <p><Link href="/ru/vyplaty-prop-firm">Сравнить сроки и способы выплат →</Link></p>
             </article>
             <article className="ru-card">
               <h3>Отзывы и риск отказа</h3>
-              <p>Trustpilot помогает найти повторяющиеся темы, но не доказывает будущий reward. Сверяйте продукт, дату, названное правило, ответ фирмы и подтверждение payout; не смешивайте отзыв о support с доказательством платёжеспособности.</p>
+              <p>Ищите в отзывах повторяющиеся проблемы. Сверяйте программу, дату, названное правило и ответ фирмы. Отзыв о скорости поддержки не подтверждает выплату: для этого нужны сведения о запросе и получении денег.</p>
               <p><Link href="/ru/otzyvy-prop-firm">Открыть методику проверки отзывов →</Link></p>
             </article>
           </div>
@@ -503,7 +506,7 @@ export default function RussianBestPropFirmsPage() {
 
       <section className="ru-section" id="polnyy-reyting">
         <div className="ru-shell">
-          <h2>Полный текущий рейтинг</h2>
+          <h2>Список проп-компаний по редакционной оценке</h2>
           <p className="ru-muted">Если у фирмы устареет хотя бы один продукт, она исчезнет из этой таблицы до следующей проверки источников.</p>
           <div className="ru-table-wrap">
             <table className="ru-table">
@@ -540,18 +543,26 @@ export default function RussianBestPropFirmsPage() {
 
       <section className="ru-section" id="kak-vybrat">
         <div className="ru-shell ru-content">
-          <h2>Как выбрать проп-фирму, а не рекламный максимум</h2>
+          <h2>Как составлен рейтинг и что проверить перед покупкой</h2>
+          <p>Фирмы расположены по убыванию редакционной оценки TFH. В таблицу включаем только компании, у которых условия всех программ проверены не более 30 дней назад. Партнёрская ссылка и скидка не добавляют баллы. <Link href="/methodology" hrefLang="en">Подробная методика оценки — на английском</Link>.</p>
+          <div className="ru-stats">
+            <div className="ru-stat"><strong>{ranked.length}</strong><span>фирм в рейтинге</span></div>
+            <div className="ru-stat"><strong>{ranked.reduce((sum, item) => sum + item.products.length, 0)}</strong><span>проверенных программ</span></div>
+            <div className="ru-stat"><strong>{pricedProductCount}</strong><span>программ с опубликованной ценой</span></div>
+            <div className="ru-stat"><strong>{latestCapture ?? '—'}</strong><span>последняя проверка источников</span></div>
+          </div>
           <ol>
-            <li><strong>Страна и профиль.</strong> Подтвердите резидентство, гражданство, KYC, IP, карту и payout-метод до сравнения цен.</li>
-            <li><strong>Рынок.</strong> CFD, фьючерсы, биржевая торговля и crypto-only продукты нельзя считать взаимозаменяемыми.</li>
-            <li><strong>Полная стоимость.</strong> Сравните конкретный размер счёта, платформенную плату, add-ons, reset и условие возврата взноса.</li>
-            <li><strong>Failure-point.</strong> Найдите daily loss, maximum loss и момент расчёта drawdown: real-time, EOD, баланс или equity.</li>
-            <li><strong>Reward.</strong> Проверьте базовый сплит, первую дату запроса, consistency, минимальные прибыльные дни и фактический payout-rail.</li>
-            <li><strong>Доказательство.</strong> Сохраните страницу продукта и checkout с датой; рекламный баннер или отзыв не заменяет правило в договоре.</li>
+            <li><strong>Страна и документы.</strong> Подтвердите гражданство, резидентство, требования KYC, способы оплаты и получения прибыли.</li>
+            <li><strong>Рынок.</strong> Определите, нужны ли вам CFD, фьючерсы, биржевая торговля или криптоинструменты.</li>
+            <li><strong>Полная стоимость.</strong> Сравните одинаковый размер счёта, плату за платформу, дополнительные опции, повторную попытку и условия возврата взноса.</li>
+            <li><strong>Лимиты убытка.</strong> Найдите дневной и общий лимиты. Уточните, учитывается ли открытый убыток и когда пересчитывается граница просадки: постоянно или в конце дня.</li>
+            <li><strong>Выплаты.</strong> Проверьте долю трейдера, первую дату запроса, минимальное число прибыльных дней и ограничения на долю прибыли за один день.</li>
+            <li><strong>Условия покупки.</strong> Сохраните правила программы и итоговую страницу оплаты с датой.</li>
           </ol>
           <p>
-            Если ключевой фильтр — 0 фаз, откройте <Link href="/ru/prop-firmy-bez-chelendzha">рейтинг instant funding</Link>.
-            Для crypto-рынка используйте <Link href="/ru/luchshie-kripto-prop-firmy">отдельное сравнение crypto-проп-фирм</Link>,
+            Если хотите начать без оценочных этапов, откройте <Link href="/ru/prop-firmy-bez-chelendzha">рейтинг проп-фирм без челленджа</Link>.
+            Для валютных пар используйте <Link href="/ru/forex-prop-firmy">сравнение форекс-программ</Link>,
+            для криптоинструментов — <Link href="/ru/luchshie-kripto-prop-firmy">обзор крипто-проп-фирм</Link>,
             а для продуктового уровня — <Link href="/prop-firm-challenges" hrefLang="en">полный фильтр челленджей на английском</Link>.
           </p>
         </div>
@@ -559,11 +570,11 @@ export default function RussianBestPropFirmsPage() {
 
       <section className="ru-section" id="rossiyskie-firmy">
         <div className="ru-shell ru-content">
-          <h2>А что насчёт российских проп-компаний</h2>
-          <p>Локальные фирмы полезны как отдельная продуктовая модель, особенно если трейдеру нужны Московская биржа, обучение, отбор в команду или расчёты внутри местной инфраструктуры. Но российская проп-компания и глобальный CFD challenge решают разные задачи; одинаковое слово «проп» не делает их взаимозаменяемыми.</p>
-          <p>Мы уже отделяем <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">EraTrade</Link> и <Link href="/ru/obzor-kascapital">KASCapital</Link> от глобального рейтинга. В местных обзорах проверяются юридическое лицо, рынок, модель отбора, платежи и публичные правила; если партнёрской программы нет, обзор всё равно может помочь читателю понять разницу и вернуться к глобальному shortlist осознанно.</p>
+          <h2>Где искать российские проп-трейдинговые компании</h2>
+          <p>Местная компания может быть полезна, если вам нужны Московская биржа, обучение или отбор в торговую команду. Сравните её договор, инструменты, комиссии и распределение прибыли отдельно от глобальных CFD-программ: условия одной модели нельзя переносить на другую.</p>
+          <p>В отдельных обзорах <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-teamtraders">TeamTraders</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-kascapital">KasCapital</Link> разобраны юридическое лицо, рынок, отбор трейдеров и опубликованные условия расчётов. Начните с компании, которая предлагает нужные вам инструменты и формат работы, затем изучите договор и расходы.</p>
           <div className="ru-notice">
-            <strong>Маршрут без смешивания моделей.</strong> Сначала откройте <Link href="/ru/rossiyskie-prop-kompanii">проверку российских проп-компаний</Link>. Если нужен именно глобальный funded account на CFD, вернитесь к матрице FundedNext, FundingPips и Bright Funded и заново проверьте страну.
+            <strong>Сравните условия работы.</strong> В <Link href="/ru/rossiyskie-prop-kompanii">списке российских проп-компаний</Link> показаны различия местных моделей. Если интересует глобальная CFD-программа, используйте сравнение выше и отдельно подтвердите доступность в своей стране.
           </div>
         </div>
       </section>

@@ -1041,8 +1041,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/luchshie-prop-firmy', {
-    title: 'Лучшие проп-фирмы 2026: рейтинг и сравнение',
-    h1: 'Лучшие проп-фирмы 2026: рейтинг для русскоязычных трейдеров',
+    title: 'Лучшие проп-компании 2026: сравнение цен и правил',
+    h1: 'Лучшие проп-компании 2026: рейтинг, цены и правила',
     markers: [
       'data-russian-ranking-article="decision-first"',
       'data-russian-country-boundary="ranking-not-access"',
