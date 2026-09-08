@@ -1,5 +1,7 @@
 import type { Firm } from './firms.ts'
-import { getAllFirms, getChallengesByFirm } from './firms.ts'
+import { getAllFirms, getAllChallenges, getChallengesByFirm, isChallengeFresh } from './firms.ts'
+
+export const COMPARISON_EDITORIAL_DATE = '2026-09-08'
 
 /* ── Slug helpers ─────────────────────────────────────────────── */
 
@@ -42,6 +44,12 @@ export function getAllCanonicalPairs(): Array<{ matchup: string; firmA: Firm; fi
     }
   }
   return out
+}
+
+/** Discovery requires current evidence on both sides; historic URLs still resolve. */
+export function getCurrentCanonicalPairs(now = new Date()) {
+  const eligible = new Set(getAllChallenges().filter(product => isChallengeFresh(product, now)).map(product => product.firmSlug))
+  return getAllCanonicalPairs().filter(pair => eligible.has(firmSlug(pair.firmA.name)) && eligible.has(firmSlug(pair.firmB.name)))
 }
 
 /** Lookup a single firm by its slug. */
@@ -411,7 +419,7 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
 
 }
 
-export function getOverlay(matchupSlug: string): ComparisonOverlay | undefined {
+export function getOverlay(matchupSlug: string, now = new Date()): ComparisonOverlay | undefined {
   const overlay = COMPARISON_OVERLAYS[matchupSlug]
   if (!overlay?.reviewedAt || !overlay.challengeReviewedAt) return undefined
 
@@ -420,13 +428,19 @@ export function getOverlay(matchupSlug: string): ComparisonOverlay | undefined {
 
   const firmA = findFirmBySlug(parsed.a)
   const firmB = findFirmBySlug(parsed.b)
+  const productsA = getChallengesByFirm(parsed.a)
+  const productsB = getChallengesByFirm(parsed.b)
+  if (!productsA.length || !productsB.length
+    || [...productsA, ...productsB].some(product => !isChallengeFresh(product, now))
+    || !isChallengeFresh({ sourceCapturedAt: overlay.reviewedAt }, now)
+    || !isChallengeFresh({ sourceCapturedAt: overlay.challengeReviewedAt }, now)) return undefined
   const latestFirmUpdate = [firmA?.lastUpdated, firmB?.lastUpdated]
     .filter((value): value is string => Boolean(value))
     .sort()
     .at(-1)
   const latestProductCapture = [
-    ...getChallengesByFirm(parsed.a),
-    ...getChallengesByFirm(parsed.b),
+    ...productsA,
+    ...productsB,
   ]
     .map(challenge => challenge.sourceCapturedAt)
     .filter(Boolean)
@@ -456,9 +470,9 @@ export function getOverlay(matchupSlug: string): ComparisonOverlay | undefined {
  * than reading COMPARISON_OVERLAYS directly, otherwise stale copy can leak
  * even while the individual matchup route correctly fails closed.
  */
-export function getActiveOverlays(): ComparisonOverlay[] {
+export function getActiveOverlays(now = new Date()): ComparisonOverlay[] {
   return Object.keys(COMPARISON_OVERLAYS)
-    .map(matchupSlug => getOverlay(matchupSlug))
+    .map(matchupSlug => getOverlay(matchupSlug, now))
     .filter((overlay): overlay is ComparisonOverlay => Boolean(overlay))
 }
 

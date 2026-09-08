@@ -83,7 +83,7 @@ html .home-finder-panel .ru-finder-entry select { background: var(--bg2); }
 html .home-finder-panel .ru-finder-entry .btn-primary { justify-content: center; }
 html .decision-strip { margin-top: 0; }
 html .decision-strip-grid { background: var(--bg2); border-color: var(--border); box-shadow: none; }
-html .home-section { padding: clamp(2.5rem, 5vw, 4rem) 0; }
+html .home-section { padding: clamp(2.5rem, 5vw, 4rem) 1.5rem; }
 html .home-section--alt { background: var(--bg); border-color: var(--border); }
 html .bento-tile--hero, html .picker-card, html .truecost-card,
 html .partner-card, html .featured-spotlight, html .post-sidebar-card { background: var(--bg2); }

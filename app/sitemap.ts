@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { getAllPosts, getAllPages, getAllCategories, getPostsByCategory } from '@/lib/mdx'
 import { getAllChallenges, getAllFirms } from '@/lib/firms'
 import { FEATURES } from '@/lib/features'
-import { getAllCanonicalPairs } from '@/lib/comparisons'
+import { getAllCanonicalPairs, COMPARISON_EDITORIAL_DATE } from '@/lib/comparisons'
 import { LANDINGS } from '@/lib/landings'
 import { AUTHORS } from '@/lib/authors'
 import { getAllDeals } from '@/lib/deals'
@@ -86,6 +86,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     indiaEvidenceLastDate.getTime(),
     challengeComparisonLastDate.getTime(),
   ))
+  const comparisonTemplateLastDate = new Date(COMPARISON_EDITORIAL_DATE)
+  const comparisonHubLastDate = new Date(Math.max(challengeComparisonLastDate.getTime(), comparisonTemplateLastDate.getTime()))
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: firmsLastDate, changeFrequency: 'daily', priority: 1 },
@@ -98,7 +100,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/prop-firm-challenges`, lastModified: challengeComparisonLastDate, changeFrequency: 'weekly', priority: 0.95 },
     { url: `${BASE_URL}/prop-firm-challenge-changes`, lastModified: challengeLastDate, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/prop-firms`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE_URL}/compare`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/compare`, lastModified: comparisonHubLastDate, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE_URL}/contact`, lastModified: new Date('2026-01-01'), changeFrequency: 'yearly', priority: 0.4 },
   ]
 
@@ -137,8 +139,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  // Per-comparison: lastmod = max(firmA.lastUpdated, firmB.lastUpdated).
-  // Means we only bump the URL when the underlying data changed.
+  // Preserve existing URLs; substantive template edits and the pair's own
+  // source captures can update lastmod. Never use the current request date.
   const compareRoutes: MetadataRoute.Sitemap = getAllCanonicalPairs().map(p => {
     const [aSlug, bSlug] = p.matchup.split('-vs-')
     const aDate = firmDateBySlug.get(aSlug)
@@ -148,7 +150,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       : (aDate || bDate || firmsLastDate)
     return {
       url: `${BASE_URL}/compare/${p.matchup}`,
-      lastModified: latest,
+      lastModified: new Date(Math.max(latest.getTime(), comparisonTemplateLastDate.getTime(),
+        ...challenges.filter(product => [aSlug, bSlug].includes(product.firmSlug))
+          .map(product => new Date(product.sourceCapturedAt).getTime()).filter(Number.isFinite))),
       changeFrequency: 'monthly',
       priority: 0.7,
     }

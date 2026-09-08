@@ -1205,7 +1205,9 @@ function checkTrustAndCommercialSurface() {
     !comparisons.includes('overlay.reviewedAt < latestFirmUpdate') ||
     !comparisons.includes('overlay.challengeReviewedAt < latestProductCapture') ||
     !comparisons.includes('if (!overlay?.reviewedAt || !overlay.challengeReviewedAt) return undefined') ||
-    !comparisons.includes('export function getActiveOverlays()')
+    !comparisons.includes('export function getActiveOverlays(now = new Date())') ||
+    !comparisons.includes('[...productsA, ...productsB].some(product => !isChallengeFresh(product, now))') ||
+    !comparisons.includes('!isChallengeFresh({ sourceCapturedAt: overlay.challengeReviewedAt }, now)')
   ) {
     rows.push('comparison overlays must fail closed unless aggregate and product captures were reviewed')
   }
@@ -9838,8 +9840,8 @@ function checkFundedNextComparisonOverlay() {
     rows.push('challenge matchup sources do not name every product supported by a shared page')
   }
   for (const fragment of [
-    'summaryA={challengeMatchup.hasData ? challengeMatchup.a : undefined}',
-    'summaryB={challengeMatchup.hasData ? challengeMatchup.b : undefined}',
+    'summaryA={challengeMatchup.a.productCount ? challengeMatchup.a : undefined}',
+    'summaryB={challengeMatchup.b.productCount ? challengeMatchup.b : undefined}',
     'data-compare-conversion="ftmo-fundednext-final"',
     'data-affiliate-placement="compare-ftmo-vs-fundednext-final"',
     '/go/fundednext?from=compare-ftmo-vs-fundednext-final',
@@ -9904,7 +9906,6 @@ function checkComparisonDetailTemplate() {
     "title={overlay ? 'Our verdict' : 'Evidence summary'}",
     '<ChallengeMatchup matchup={challengeMatchup} prose={matchupProse} />',
     'data-compare-firm-context',
-    'data-compare-aggregate-fallback',
     'The sourced product tables above decide the exact fee, split, drawdown and trading conditions.',
   ]) {
     if (!route.includes(fragment)) {
@@ -9919,6 +9920,7 @@ function checkComparisonDetailTemplate() {
   }
   for (const stale of [
     'ComparisonInfographic',
+    'data-compare-aggregate-fallback',
     'computeFallbackTlDr',
     'const aWins = rows.filter',
     'const [firstFirm, secondFirm]',
@@ -10000,16 +10002,17 @@ function checkComparisonHub() {
     : ''
 
   for (const fragment of [
-    'const ALL_PAIRS = getAllCanonicalPairs()',
-    'freshChallenges(slug).length',
-    'Prop Firm Comparisons (2026): ${ALL_PAIRS.length} Matchups',
+    'const allPairs = getCurrentCanonicalPairs()',
+    'freshChallenges(firmSlug(firm.name))',
+    'export function generateMetadata()',
+    'Prop Firm Comparisons (2026): ${allPairs.length} Matchups',
     'Prop firm comparisons,',
     'pairEvidence(',
     'data-curated-matchup={slug}',
     'data-product-count={evidence.productCount}',
     'data-source-count={evidence.sourceCount}',
     'data-evidence-date={evidence.evidenceDate ?? undefined}',
-    '<ComparisonDirectory rows={directoryRows} />',
+    '<ComparisonDirectory rows={directoryRows} pendingRows={pendingRows} />',
     'href="/prop-firm-challenges"',
     'href="/cheapest-prop-firms"',
     'href="/prop-firm-challenge-changes"',
@@ -10025,7 +10028,11 @@ function checkComparisonHub() {
   for (const fragment of [
     "'use client'",
     'type="search"',
-    'aria-controls="comparison-directory-results"',
+    'id="comparison-matchup-search"',
+    'htmlFor="comparison-matchup-search"',
+    "aria-controls={pendingRows.length ? 'comparison-directory-results comparison-pending-results' : 'comparison-directory-results'}",
+    'data-pending-matchup={row.matchup}',
+    'Awaiting source checks',
     'data-comparison-result-count',
     'filterComparisonRows(rows, query)',
     "trackSiteEvent('comparison_directory_search'",

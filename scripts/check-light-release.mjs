@@ -24,6 +24,7 @@ for (const surface of ['bg', 'bg2', 'bg3']) {
 }
 assert(contrast(tokens['on-accent'], tokens.accent) >= 4.5, 'Primary button contrast')
 const lightCss = readFileSync(new URL('../app/light-platform.css', import.meta.url), 'utf8')
+assert(lightCss.includes('html .home-section { padding: clamp(2.5rem, 5vw, 4rem) 1.5rem; }'), 'Shared homepage and directory sections retain phone gutters')
 assert(lightCss.includes('color: #fff') && lightCss.includes('!important'), 'Legacy article text compatibility retained')
 assert(lightCss.includes('html .ru-content .btn-primary'), 'Russian prose links cannot override button text')
 for (const file of ['components/GlobalChallengeComparison.tsx', 'components/IndiaChallengeComparison.tsx', 'app/prop-firm-challenges/page.tsx']) {

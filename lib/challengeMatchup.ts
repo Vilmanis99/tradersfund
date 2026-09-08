@@ -39,10 +39,6 @@ export type MatchupSide = 'a' | 'b'
 
 /* ── Loading ───────────────────────────────────────────────────── */
 
-// 120 compare pages × 2 firms would otherwise re-read and re-parse the same
-// JSON 240 times per build. The data is static for the life of the process.
-const freshCache = new Map<string, Challenge[]>()
-
 /**
  * Every product for a firm that passes the 30-day capture gate.
  *
@@ -51,12 +47,10 @@ const freshCache = new Map<string, Challenge[]>()
  * on "prop firms that allow EAs" using a product the compare page has
  * already dropped as stale.
  */
-export function freshChallenges(slug: string): Challenge[] {
-  const cached = freshCache.get(slug)
-  if (cached) return cached
-  const rows = getChallengesByFirm(slug).filter(c => isChallengeFresh(c))
-  freshCache.set(slug, rows)
-  return rows
+export function freshChallenges(slug: string, now = new Date()): Challenge[] {
+  // The JSON may be unchanged while its verification window expires. Never
+  // retain the filtered result for the lifetime of a warm server process.
+  return getChallengesByFirm(slug).filter(c => isChallengeFresh(c, now))
 }
 
 /* ── Formatting ────────────────────────────────────────────────── */
@@ -446,6 +440,8 @@ export interface MatchupFirmSummary {
   name: string
   /** Products passing the 30-day freshness gate. */
   productCount: number
+  trackedProductCount: number
+  excludedProducts: { name: string; sourceUrl: string; capturedAt: string }[]
   /** Distinct starting profit splits across those products. */
   profitSplits: number[]
   /** Distinct drawdown methods across those products. */
@@ -466,7 +462,7 @@ export interface MatchupSource {
 }
 
 export interface ChallengeMatchup {
-  /** False when either firm has no fresh product data — caller skips the section. */
+  /** Both firms have current products; only then is a two-sided comparison possible. */
   hasData: boolean
   a: MatchupFirmSummary
   b: MatchupFirmSummary
@@ -481,9 +477,10 @@ export interface ChallengeMatchup {
   watch: ChallengeWatchEntry[]
   sources: MatchupSource[]
   latestCapture: string | null
+  oldestCapture: string | null
 }
 
-function summarise(slug: string, name: string, challenges: Challenge[]): MatchupFirmSummary {
+function summarise(slug: string, name: string, challenges: Challenge[], tracked: Challenge[]): MatchupFirmSummary {
   const pricedSizes = new Set<number>()
   for (const challenge of challenges) {
     for (const tier of challenge.accountSizes) {
@@ -494,6 +491,10 @@ function summarise(slug: string, name: string, challenges: Challenge[]): Matchup
     slug,
     name,
     productCount: challenges.length,
+    trackedProductCount: tracked.length,
+    excludedProducts: tracked.filter(product => !challenges.includes(product)).map(product => ({
+      name: product.productName, sourceUrl: product.sourceUrl, capturedAt: product.sourceCapturedAt,
+    })),
     profitSplits: [...new Set(challenges.flatMap(challenge =>
       challenge.profitSplitPct == null ? [] : [challenge.profitSplitPct],
     ))].sort((x, y) => x - y),
@@ -510,12 +511,15 @@ function summarise(slug: string, name: string, challenges: Challenge[]): Matchup
 export function buildChallengeMatchup(
   firmA: { name: string; slug: string },
   firmB: { name: string; slug: string },
+  now = new Date(),
 ): ChallengeMatchup {
-  const challengesA = freshChallenges(firmA.slug)
-  const challengesB = freshChallenges(firmB.slug)
+  const trackedA = getChallengesByFirm(firmA.slug)
+  const trackedB = getChallengesByFirm(firmB.slug)
+  const challengesA = trackedA.filter(product => isChallengeFresh(product, now))
+  const challengesB = trackedB.filter(product => isChallengeFresh(product, now))
 
-  const a = summarise(firmA.slug, firmA.name, challengesA)
-  const b = summarise(firmB.slug, firmB.name, challengesB)
+  const a = summarise(firmA.slug, firmA.name, challengesA, trackedA)
+  const b = summarise(firmB.slug, firmB.name, challengesB, trackedB)
 
   const sharedSizes = a.pricedSizes.filter(size => b.pricedSizes.includes(size))
   const costGroups: MatchupCostGroup[] = sharedSizes.map(sizeUsd => {
@@ -567,7 +571,7 @@ export function buildChallengeMatchup(
         if (!existing.productNames.includes(challenge.productName)) {
           existing.productNames.push(challenge.productName)
         }
-        if (existing.capturedAt < challenge.sourceCapturedAt) {
+        if (existing.capturedAt > challenge.sourceCapturedAt) {
           existing.capturedAt = challenge.sourceCapturedAt
         }
       }
@@ -597,6 +601,7 @@ export function buildChallengeMatchup(
       .map(c => c.sourceCapturedAt)
       .sort()
       .at(-1) ?? null,
+    oldestCapture: [...challengesA, ...challengesB].map(c => c.sourceCapturedAt).sort().at(0) ?? null,
   }
 }
 
@@ -617,7 +622,7 @@ export function describeMatchup(matchup: ChallengeMatchup): string[] {
   const productLine =
     `We track ${a.productCount} ${a.name} product${a.productCount === 1 ? '' : 's'} and `
     + `${b.productCount} from ${b.name} that pass the 30-day source-freshness gate`
-    + (matchup.latestCapture ? `, last verified ${matchup.latestCapture}.` : '.')
+    + (matchup.oldestCapture ? `; source checks range from ${matchup.oldestCapture} to ${matchup.latestCapture}.` : '.')
 
   const assetLine =
     a.assetClasses.length === 1 && b.assetClasses.length === 1 && a.assetClasses[0] !== b.assetClasses[0]

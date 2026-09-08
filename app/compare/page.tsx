@@ -6,8 +6,10 @@ import {
   firmSlug,
   getActiveOverlays,
   getAllCanonicalPairs,
+  getCurrentCanonicalPairs,
 } from '@/lib/comparisons'
 import { freshChallenges } from '@/lib/challengeMatchup'
+import { getAllFirms } from '@/lib/firms'
 import { breadcrumbSchema, jsonLd } from '@/lib/schema'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import AnimatedNumber from '@/components/AnimatedNumber'
@@ -15,18 +17,16 @@ import ComparisonDirectory from '@/components/ComparisonDirectory'
 import type { ComparisonDirectoryRow } from '@/lib/comparisonDirectory'
 import TiltCard from '@/components/TiltCard'
 
-const ALL_PAIRS = getAllCanonicalPairs()
-const HUB_FIRMS = [...new Map(ALL_PAIRS.flatMap(({ firmA, firmB }) => [
-  [firmSlug(firmA.name), firmA],
-  [firmSlug(firmB.name), firmB],
-])).entries()]
-const CURRENT_PRODUCT_COUNT = HUB_FIRMS.reduce(
-  (total, [slug]) => total + freshChallenges(slug).length,
-  0,
-)
-const HUB_DESCRIPTION =
-  `Compare ${HUB_FIRMS.length} prop firms across ${ALL_PAIRS.length} head-to-head matchups and `
-  + `${CURRENT_PRODUCT_COUNT} fresh products, with source-dated fees, rules, drawdowns and payouts.`
+function hubEvidence() {
+  const allPairs = getCurrentCanonicalPairs()
+  const hubFirms = getAllFirms().map(firm => ({ firm, products: freshChallenges(firmSlug(firm.name)) }))
+    .filter(entry => entry.products.length)
+  const currentProductCount = hubFirms.reduce((total, entry) => total + entry.products.length, 0)
+  const description =
+    `Compare ${hubFirms.length} prop firms across ${allPairs.length} head-to-head matchups and `
+    + `${currentProductCount} fresh products, with source-dated fees, rules, drawdowns and payouts.`
+  return { allPairs, hubFirms, currentProductCount, description }
+}
 
 /** Truncate at the last whitespace before `max`, so we never cut mid-word. */
 function truncateAtWord(s: string, max: number): string {
@@ -37,16 +37,19 @@ function truncateAtWord(s: string, max: number): string {
   return cut.replace(/[.,;:!?\-—]+$/, '') + '…'
 }
 
-export const metadata: Metadata = {
-  title: { absolute: `Prop Firm Comparisons (2026): ${ALL_PAIRS.length} Matchups` },
-  description: HUB_DESCRIPTION,
-  alternates: { canonical: '/compare' },
-  openGraph: {
-    title: `Prop Firm Comparisons (2026): ${ALL_PAIRS.length} Matchups`,
-    description: HUB_DESCRIPTION,
-    url: '/compare',
-    type: 'website',
-  },
+export function generateMetadata(): Metadata {
+  const { allPairs, description } = hubEvidence()
+  return {
+    title: { absolute: `Prop Firm Comparisons (2026): ${allPairs.length} Matchups` },
+    description,
+    alternates: { canonical: '/compare' },
+    openGraph: {
+      title: `Prop Firm Comparisons (2026): ${allPairs.length} Matchups`,
+      description,
+      url: '/compare',
+      type: 'website',
+    },
+  }
 }
 
 function pairEvidence(firmASlug: string, firmBSlug: string) {
@@ -70,7 +73,7 @@ function evidenceDateLabel(value: string): string {
 }
 
 export default function CompareHubPage() {
-  const allPairs = ALL_PAIRS
+  const { allPairs, hubFirms, currentProductCount } = hubEvidence()
   const pairRows = allPairs.map(pair => ({
     ...pair,
     evidence: pairEvidence(firmSlug(pair.firmA.name), firmSlug(pair.firmB.name)),
@@ -112,6 +115,12 @@ export default function CompareHubPage() {
     ...restPairs.map(pair => directoryRow(pair, false)),
     ...curated.map(({ slug }) => directoryRow(pairBySlug.get(slug)!, true)),
   ]
+  const pendingRows = getAllCanonicalPairs()
+    .filter(pair => !pairBySlug.has(pair.matchup))
+    .map(pair => directoryRow({
+      ...pair,
+      evidence: pairEvidence(firmSlug(pair.firmA.name), firmSlug(pair.firmB.name)),
+    }, false))
 
   const crumbs = breadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -132,8 +141,8 @@ export default function CompareHubPage() {
           <div className="hero-eyebrow" style={{ marginBottom: '1.25rem' }}>
             <span className="hero-eyebrow-dot" />
             <AnimatedNumber value={allPairs.length} duration={1300} /> matchups
-            {' '}· <AnimatedNumber value={HUB_FIRMS.length} duration={900} /> firms
-            {' '}· <AnimatedNumber value={CURRENT_PRODUCT_COUNT} duration={1100} /> current products
+            {' '}· <AnimatedNumber value={hubFirms.length} duration={900} /> firms
+            {' '}· <AnimatedNumber value={currentProductCount} duration={1100} /> current products
           </div>
 
           <h1 className="blog-hero-title">
@@ -142,7 +151,7 @@ export default function CompareHubPage() {
           </h1>
 
           <p className="blog-hero-sub">
-            Search {allPairs.length} head-to-head matchups across {HUB_FIRMS.length} firms.
+            Search {allPairs.length} head-to-head matchups across {hubFirms.length} firms.
             Each page exposes the current products, sourced rules, capture dates,
             costs and trade-offs behind the comparison.
           </p>
@@ -152,6 +161,10 @@ export default function CompareHubPage() {
       <section className="home-section" style={{ paddingTop: '2rem' }}>
         <div className="home-shell">
           <AffiliateDisclosure />
+          <p className="blog-hero-sub" style={{ fontSize: '0.95rem' }}>
+            This directory includes pairs with at least one source-checked product on each side, within our 30-day verification window.
+            Missing firms are awaiting evidence checks, not necessarily closed. Existing comparison URLs remain available with their source status.
+          </p>
           <nav className="comparison-paths" aria-label="Choose a comparison method">
             <Link href="/prop-firm-challenges">
               Compare current products <ArrowRight size={13} aria-hidden="true" />
@@ -226,7 +239,7 @@ export default function CompareHubPage() {
             </span>
           </div>
 
-          <ComparisonDirectory rows={directoryRows} />
+          <ComparisonDirectory rows={directoryRows} pendingRows={pendingRows} />
         </div>
       </section>
     </div>

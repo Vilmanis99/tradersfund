@@ -68,18 +68,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Without an overlay every description was the same sentence with two names
   // swapped in. The product count is read from the challenge files, so each
   // page describes what it actually holds.
-  const productTotal = (() => {
+  const productMatchup = (() => {
     const m = buildChallengeMatchup(
       { name: firmA.name, slug: firmSlug(firmA.name) },
       { name: firmB.name, slug: firmSlug(firmB.name) },
     )
-    return m.hasData ? m.a.productCount + m.b.productCount : 0
+    return m
   })()
+  const productTotal = productMatchup.a.productCount + productMatchup.b.productCount
+  const awaiting = [productMatchup.a, productMatchup.b].filter(firm => !firm.productCount).map(firm => firm.name).join(' and ')
   const description =
     overlay?.metaDescription ||
-    (productTotal
+    (productMatchup.hasData
       ? `${firmA.name} vs ${firmB.name}: compare ${productTotal} challenge products by funded cost, profit split, drawdown and payout rules using first-party data.`
-      : `Compare ${firmA.name} and ${firmB.name} side by side: profit split, payouts, drawdown, platforms, rules. Updated for 2026.`)
+      : `${firmA.name} vs ${firmB.name}: ${productTotal} current product captures. ${awaiting} needs a source recheck; no two-sided cost or winner claim is published.`)
 
   return {
     title: { absolute: title },
@@ -133,14 +135,9 @@ export default async function ComparePage({ params }: Props) {
   const firmContextRows = rows
     .filter(row => ['Founded', 'Platforms', 'Assets', 'Payout Methods'].includes(row.label))
     .map(row => ({ ...row, winner: null }))
-  const aggregateFallbackRows = rows.map(row => ({ ...row, winner: null }))
   const comparisonCheckedAt =
     overlay?.challengeReviewedAt ||
-    challengeMatchup.latestCapture ||
-    [firmA.lastUpdated, firmB.lastUpdated]
-      .filter((value): value is string => Boolean(value))
-      .sort()
-      .at(-1)
+    challengeMatchup.oldestCapture || undefined
 
   const matchupLabel = `${firmA.name} vs ${firmB.name}`
   // Canonical URL order is stable and neutral. ItemList position must not
@@ -185,7 +182,7 @@ export default async function ComparePage({ params }: Props) {
                 <span className="hero-eyebrow-dot" />
                 {challengeMatchup.hasData
                   ? `Product evidence · ${currentProductCount} products · ${currentSourceCount} source pages`
-                  : 'Product evidence refreshing'}
+                  : `Incomplete evidence · ${currentProductCount} current products · ${currentSourceCount} source pages`}
               </>
             )}
           </div>
@@ -197,10 +194,10 @@ export default async function ComparePage({ params }: Props) {
               <>
                 {firmA.name}{' '}
                 <span className="gradient-text gradient-text--animated">vs</span>{' '}
-                {firmB.name}{' '}
+                {firmB.name}{challengeMatchup.hasData ? ' ' : null}
                 {challengeMatchup.hasData ? (
                   <span>(2026): {challengeMatchup.a.productCount} vs {challengeMatchup.b.productCount} Products</span>
-                ) : null}
+                ) : <span>: product evidence needs rechecking</span>}
               </>
             )}
           </h1>
@@ -208,7 +205,7 @@ export default async function ComparePage({ params }: Props) {
           <p className="blog-hero-sub">
             {challengeMatchup.hasData
               ? `Compare ${currentProductCount} current products across ${currentSourceCount} first-party source ${currentSourceCount === 1 ? 'page' : 'pages'} — funded cost, split, drawdown and payout rules without flattening one product into a firm-wide answer.`
-              : `Fresh product evidence for ${firmA.name} and ${firmB.name} is incomplete. Directory context stays visible below, but this page withholds a product winner.`}
+              : `Source checks within 30 days cover ${challengeMatchup.a.productCount} products from ${firmA.name} and ${challengeMatchup.b.productCount} from ${firmB.name}. Available rules and source links remain below; a blank side is not a like-for-like comparison.`}
           </p>
         </div>
       </section>
@@ -222,8 +219,8 @@ export default async function ComparePage({ params }: Props) {
             firmA={firmA}
             firmB={firmB}
             campaign={canonical}
-            summaryA={challengeMatchup.hasData ? challengeMatchup.a : undefined}
-            summaryB={challengeMatchup.hasData ? challengeMatchup.b : undefined}
+            summaryA={challengeMatchup.a.productCount ? challengeMatchup.a : undefined}
+            summaryB={challengeMatchup.b.productCount ? challengeMatchup.b : undefined}
           />
 
           <ComparisonVerdict
@@ -232,32 +229,21 @@ export default async function ComparePage({ params }: Props) {
             tlDr={tlDr}
             categoryCalls={overlay?.verdictByCategory}
             title={overlay ? 'Our verdict' : 'Evidence summary'}
-            caption={`${overlay ? 'Editorial verdict' : 'Data-driven comparison'} · checked ${formatCheckedDate(comparisonCheckedAt)}`}
+            caption={overlay ? `Editorial verdict · checked ${formatCheckedDate(comparisonCheckedAt)}` : comparisonCheckedAt ? `Available product sources · earliest check ${formatCheckedDate(comparisonCheckedAt)}` : 'No current product source checks available'}
           />
 
           <ChallengeMatchup matchup={challengeMatchup} prose={matchupProse} />
 
-          {challengeMatchup.hasData ? (
             <section aria-label="Firm-level context" data-compare-firm-context>
               <h2 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.6rem)', fontWeight: 800, color: 'var(--text)', margin: '2.5rem 0 0.5rem', letterSpacing: '-0.01em' }}>
                 Firm-level context
               </h2>
               <p style={{ color: 'var(--muted)', fontSize: '0.9rem', margin: 0 }}>
                 These directory fields describe the firms, not a universal product rule. The sourced product tables above decide the exact fee, split, drawdown and trading conditions.
+                Directory context is not independently refreshed by this comparison; verify platform and payment availability for the exact programme and country.
               </p>
               <ComparisonTable firmA={firmA} firmB={firmB} rows={firmContextRows} />
             </section>
-          ) : (
-            <section aria-label="Firm-directory fallback" data-compare-aggregate-fallback>
-              <h2 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.6rem)', fontWeight: 800, color: 'var(--text)', margin: '2.5rem 0 0.5rem', letterSpacing: '-0.01em' }}>
-                Firm-directory fallback
-              </h2>
-              <p style={{ color: 'var(--muted)', fontSize: '0.9rem', margin: 0 }}>
-                No winner is marked because one or both product captures are outside the 30-day freshness gate. Recheck the exact product terms before making a purchase decision.
-              </p>
-              <ComparisonTable firmA={firmA} firmB={firmB} rows={aggregateFallbackRows} />
-            </section>
-          )}
 
           {/* Third-party reputation. Deliberately outside <ComparisonTable>:
               these are cited Trustpilot figures on a 0–5 scale, not specs we
@@ -362,7 +348,7 @@ export default async function ComparePage({ params }: Props) {
                 Want to compare a <span className="gradient-text">different pair?</span>
               </h2>
               <p className="cta-final-sub" style={{ fontSize: '0.95rem' }}>
-                Every firm pair has a page. Browse the hub or open the full directory.
+                Browse pairs with current product sources, or open the full firm directory. Missing comparison evidence does not mean a firm has closed.
               </p>
               <div className="cta-final-row">
                 <Link href="/compare" className="btn-primary btn-glow">

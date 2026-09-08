@@ -23,8 +23,10 @@ function dateLabel(value: string): string {
 
 export default function ComparisonDirectory({
   rows,
+  pendingRows = [],
 }: {
   rows: ComparisonDirectoryRow[]
+  pendingRows?: ComparisonDirectoryRow[]
 }) {
   const [query, setQuery] = useState('')
   const committedSearchRef = useRef('')
@@ -32,6 +34,10 @@ export default function ComparisonDirectory({
   const visible = useMemo(
     () => filterComparisonRows(rows, query),
     [query, rows],
+  )
+  const pending = useMemo(
+    () => filterComparisonRows(pendingRows, query),
+    [query, pendingRows],
   )
 
   const commitSearch = () => {
@@ -53,10 +59,11 @@ export default function ComparisonDirectory({
   return (
     <div data-comparison-directory>
       <div className="comparison-directory-tools">
-        <label className="comparison-directory-search">
+        <div className="comparison-directory-search">
           <Search size={16} aria-hidden="true" />
-          <span className="sr-only">Search firm matchups</span>
+          <label className="sr-only" htmlFor="comparison-matchup-search">Search firm matchups</label>
           <input
+            id="comparison-matchup-search"
             type="search"
             value={query}
             onChange={event => setQuery(event.target.value)}
@@ -68,18 +75,19 @@ export default function ComparisonDirectory({
               }
             }}
             placeholder="Search 2 firms, for example FTMO FundedNext"
-            aria-controls="comparison-directory-results"
+            aria-controls={pendingRows.length ? 'comparison-directory-results comparison-pending-results' : 'comparison-directory-results'}
           />
           {query ? (
             <button type="button" onClick={clearSearch} aria-label="Clear matchup search">
               <X size={15} aria-hidden="true" />
             </button>
           ) : null}
-        </label>
+        </div>
         <p className="comparison-directory-count" aria-live="polite" data-comparison-result-count>
           {normalizedQuery
             ? `${visible.length} matching ${visible.length === 1 ? 'matchup' : 'matchups'}`
             : `${visible.length} additional data-driven matchups`}
+          {pending.length ? ` · ${pending.length} awaiting source checks below` : ''}
         </p>
       </div>
 
@@ -123,9 +131,27 @@ export default function ComparisonDirectory({
         </div>
       ) : (
         <div className="comparison-directory-empty" id="comparison-directory-results" role="status">
-          No matchup contains both names. Try one firm at a time or browse the{' '}
+          {rows.length ? 'No current matchup matches this search. Try one firm at a time or browse the ' : 'No two-sided matchups currently pass the source checks. Browse the '}
           <Link href="/prop-firms">full firm directory</Link>.
         </div>
+      )}
+      {pendingRows.length > 0 && (
+        <details className="cm-sources" id="comparison-pending-results" key={normalizedQuery ? 'search' : 'browse'} open={normalizedQuery ? true : undefined}>
+          <summary>Awaiting source checks ({pending.length})</summary>
+          <p>These existing pages need new product evidence for one or both firms. They are not included in the current matchup count. This does not mean the firms have closed.</p>
+          {pending.length ? (
+            <ul>
+              {pending.map(row => (
+                <li key={row.matchup}>
+                  <Link href={`/compare/${row.matchup}`} data-pending-matchup={row.matchup}>
+                    {row.firmAName} vs {row.firmBName}
+                  </Link>
+                  <span>Source recheck required</span>
+                </li>
+              ))}
+            </ul>
+          ) : <p>No awaiting-check pages match this search.</p>}
+        </details>
       )}
     </div>
   )

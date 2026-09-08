@@ -143,26 +143,49 @@ export default function ChallengeMatchup({
   matchup: Matchup
   prose: string[]
 }) {
-  if (!matchup.hasData) return null
   const { a, b } = matchup
+  const hasAnyProducts = a.productCount + b.productCount > 0
+  const needsCheck = !matchup.hasData || a.excludedProducts.length > 0 || b.excludedProducts.length > 0
 
   return (
-    <section className="cm" aria-label="Product-level challenge comparison">
+    <section className="cm" aria-label="Product-level challenge comparison" data-comparison-evidence={matchup.hasData ? 'two-sided' : hasAnyProducts ? 'partial' : 'unavailable'}>
       <h2 className="cm-h2">
         Product-level: {a.name} vs {b.name}
       </h2>
       <p className="cm-lede">
-        The table above compares the two firms. This one compares the products
-        you actually buy — {a.productCount + b.productCount} of them, each with
-        its own price, split, drawdown rule and source date.
+        {matchup.hasData
+          ? `Compare the ${a.productCount + b.productCount} source-checked products available here, each with its own fees, split, drawdown and date.`
+          : 'This comparison is incomplete. Available product evidence is kept below; missing terms are not replaced with firm-wide averages.'}
       </p>
 
-      {prose.map(paragraph => (
+      {needsCheck && (
+        <aside className="cm-note" aria-label="Product source checks required" data-comparison-source-status="recapture-required">
+          <Info size={18} aria-hidden="true" />
+          <div>
+            <strong>Some product sources need rechecking.</strong>
+            <p>A missing product means we lack a source check within the last 30 days, not that the programme has closed. Original source links below are for rechecking; they do not confirm current prices or rules.</p>
+            {[a, b].map(firm => (
+              <div key={firm.slug} data-comparison-coverage-firm={firm.slug}>
+                <p><strong>{firm.name}:</strong> {firm.productCount} current / {firm.trackedProductCount} tracked products.</p>
+                {firm.excludedProducts.length ? <ul>{firm.excludedProducts.map(product => (
+                  <li key={`${product.name}-${product.sourceUrl}`}>
+                    <a href={product.sourceUrl} target="_blank" rel="nofollow noopener">{product.name}</a>
+                    {' '}— last recorded check: {/^\d{4}-\d{2}-\d{2}$/.test(product.capturedAt) ? product.capturedAt : 'unconfirmed date'}.
+                  </li>
+                ))}</ul> : !firm.trackedProductCount ? <p>No product capture is available yet.</p> : null}
+              </div>
+            ))}
+            <Link href="/prop-firm-challenges">Browse currently source-checked programmes →</Link>
+          </div>
+        </aside>
+      )}
+
+      {(matchup.hasData ? prose : prose.slice(0, 1)).map(paragraph => (
         <p key={paragraph.slice(0, 48)} className="cm-para">{paragraph}</p>
       ))}
 
       {/* ── Cost ───────────────────────────────────────────────── */}
-      <h3 className="cm-h3">
+      {matchup.hasData && <><h3 className="cm-h3">
         <Scale size={16} aria-hidden="true" /> Cost to funded, matched by account size
       </h3>
 
@@ -209,10 +232,10 @@ export default function ChallengeMatchup({
           </div>
           )
         })
-      )}
+      )}</>}
 
       {/* ── Rules ──────────────────────────────────────────────── */}
-      <h3 className="cm-h3">
+      {hasAnyProducts && <><h3 className="cm-h3">
         <Layers size={16} aria-hidden="true" /> Rule-by-rule, product by product
       </h3>
       <p className="cm-para">
@@ -224,6 +247,7 @@ export default function ChallengeMatchup({
           <> {matchup.intraFirmSplits.length} of {matchup.ruleRows.length} rows
           split this way in this matchup.</>
         )}
+        {!matchup.hasData && <> A blank side is awaiting a source check, not evidence of more permissive rules.</>}
       </p>
       <div className="cm-scroll">
         <table className="cm-table cm-table--rules">
@@ -250,10 +274,10 @@ export default function ChallengeMatchup({
             ))}
           </tbody>
         </table>
-      </div>
+      </div></>}
 
       {/* ── Change watch ───────────────────────────────────────── */}
-      {matchup.watch.length > 0 && (
+      {matchup.hasData && matchup.watch.length > 0 && (
         <>
           <h3 className="cm-h3">
             <CircleAlert size={16} aria-hidden="true" /> Dated changes affecting these firms
@@ -278,7 +302,7 @@ export default function ChallengeMatchup({
       )}
 
       {/* ── Sources ────────────────────────────────────────────── */}
-      <details className="cm-sources">
+      {hasAnyProducts && <details className="cm-sources">
         <summary>
           Sources ({matchup.sources.length} first-party
           {matchup.sources.length === 1 ? ' page' : ' pages'}
@@ -300,7 +324,7 @@ export default function ChallengeMatchup({
           days are removed from the comparison until they are recaptured, so a
           missing product means stale data, not a discontinued plan.
         </p>
-      </details>
+      </details>}
     </section>
   )
 }

@@ -2455,6 +2455,16 @@ if (comparisonHubProbe.status !== 200) {
     )
   }
   const expectedSearchRows = []
+  const pendingTags = [...comparisonHubProbe.html.matchAll(/<a\b[^>]*\bdata-pending-matchup="([^"]+)"[^>]*>/gi)].map(match => match[1])
+  const allMatchupSlugs = uniqueSitemapUrls.map(url => new URL(url).pathname)
+    .filter(path => path.startsWith('/compare/')).map(path => path.slice('/compare/'.length))
+  const expectedPending = allMatchupSlugs.filter(slug => !matchupTags.has(slug)).sort()
+  if (JSON.stringify(pendingTags.sort()) !== JSON.stringify(expectedPending)) {
+    errors.push(`${comparisonHubPath}: awaiting-check matchups must remain linked separately, without duplicating current results`)
+  }
+  if (expectedPending.length && !comparisonHubText.includes('Awaiting source checks')) {
+    errors.push(`${comparisonHubPath}: excluded matchups lack a visible source-status label`)
+  }
   for (let a = 0; a < eligibleFirms.length; a += 1) {
     for (let b = a + 1; b < eligibleFirms.length; b += 1) {
       const firmA = eligibleFirms[a]
@@ -3974,6 +3984,7 @@ if (genericComparisonProbe.status !== 200) {
   const ctiProducts = getChallengesByFirm('city-traders-imperium')
     .filter(challenge => isChallengeFresh(challenge))
   const genericProducts = [...alphaProducts, ...ctiProducts]
+  const genericTwoSided = Boolean(alphaProducts.length && ctiProducts.length)
   const genericSources = new Set(genericProducts.map(product => product.sourceUrl))
   const alphaFirm = firmRecords.find(firm => firm.name === 'Alpha Capital')
   const ctiFirm = firmRecords.find(firm => firm.name === 'City Traders Imperium')
@@ -4000,7 +4011,9 @@ if (genericComparisonProbe.status !== 200) {
     /<h1\b[^>]*>([\s\S]*?)<\/h1>/i,
   ))
   const expectedDescription =
-    `Alpha Capital vs City Traders Imperium: compare ${genericProducts.length} challenge products by funded cost, profit split, drawdown and payout rules using first-party data.`
+    genericTwoSided
+      ? `Alpha Capital vs City Traders Imperium: compare ${genericProducts.length} challenge products by funded cost, profit split, drawdown and payout rules using first-party data.`
+      : `Alpha Capital vs City Traders Imperium: ${genericProducts.length} current product captures. ${[!alphaProducts.length && 'Alpha Capital', !ctiProducts.length && 'City Traders Imperium'].filter(Boolean).join(' and ')} needs a source recheck; no two-sided cost or winner claim is published.`
 
   if (title !== 'Alpha Capital vs City Traders Imperium (2026)') {
     errors.push(`${genericComparisonPath}: incorrect title ${title}`)
@@ -4012,15 +4025,23 @@ if (genericComparisonProbe.status !== 200) {
     errors.push(`${genericComparisonPath}: incorrect canonical`)
   }
   if (
-    h1
-      !== `Alpha Capital vs City Traders Imperium (2026): ${alphaProducts.length} vs ${ctiProducts.length} Products`
+    h1.replace(/\s+:/g, ':')
+      !== (genericTwoSided ? `Alpha Capital vs City Traders Imperium (2026): ${alphaProducts.length} vs ${ctiProducts.length} Products` : 'Alpha Capital vs City Traders Imperium: product evidence needs rechecking')
   ) {
     errors.push(`${genericComparisonPath}: incorrect product-specific H1 ${h1}`)
   }
   for (const required of [
-    `Product evidence · ${genericProducts.length} products · ${genericSources.size} source pages`,
-    `Compare ${genericProducts.length} current products across ${genericSources.size} first-party source pages`,
-    'without flattening one product into a firm-wide answer.',
+    ...(genericTwoSided ? [
+      `Product evidence · ${genericProducts.length} products · ${genericSources.size} source pages`,
+      `Compare ${genericProducts.length} current products across ${genericSources.size} first-party source pages`,
+      'without flattening one product into a firm-wide answer.',
+    ] : [
+      `Incomplete evidence · ${genericProducts.length} current products · ${genericSources.size} source pages`,
+      `Source checks within 30 days cover ${alphaProducts.length} products from Alpha Capital and ${ctiProducts.length} from City Traders Imperium.`,
+      'data-comparison-source-status="recapture-required"',
+      'missing terms are not replaced with firm-wide averages.',
+      'href="/prop-firm-challenges"',
+    ]),
     'Evidence summary',
     'Product-level: Alpha Capital vs City Traders Imperium',
     'Firm-level context',
@@ -4041,6 +4062,19 @@ if (genericComparisonProbe.status !== 200) {
     }
     if (!genericComparisonProbe.html.includes(`href="${product.sourceUrl}"`)) {
       errors.push(`${genericComparisonPath}: missing source ${product.sourceUrl}`)
+    }
+  }
+  if (!genericTwoSided) {
+    if (genericText.includes('Cost to funded, matched by account size') || genericComparisonProbe.html.includes('Category-by-category winners')) {
+      errors.push(`${genericComparisonPath}: incomplete evidence published a two-sided cost comparison or editorial winner`)
+    }
+    for (const slug of ['alpha-capital', 'city-traders-imperium']) {
+      for (const product of getChallengesByFirm(slug).filter(product => !isChallengeFresh(product))) {
+        if (!genericText.includes(product.productName) || !genericText.includes(product.sourceCapturedAt)
+          || !genericComparisonProbe.html.includes(`href="${product.sourceUrl}"`)) {
+          errors.push(`${genericComparisonPath}: excluded ${product.productName} lacks a dated source-recheck path`)
+        }
+      }
     }
   }
   const productIndex = genericText.indexOf('Product-level: Alpha Capital vs City Traders Imperium')
@@ -4330,7 +4364,7 @@ if (ftmoFundedNextProbe.status !== 200) {
       sourceGroups.set(product.sourceUrl, group)
     }
   }
-  if (!matchupText.includes(`you actually buy — ${productCount} of them`)) {
+  if (!matchupText.includes(`Compare the ${productCount} source-checked products available here`)) {
     errors.push(`${ftmoFundedNextPath}: missing all ${productCount} fresh products`)
   }
   if (!matchupText.includes(`${sourceGroups.size} first-party pages`)) {
