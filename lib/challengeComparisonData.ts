@@ -1,6 +1,6 @@
 import { getAllChallenges, getAllFirms, isChallengeFresh, minimumCostToFundedUsd, type Challenge, type Firm } from './firms.ts'
 import { getChallengeWatchEntries, productChangeSignals, type ChallengeWatchEntry } from './challengeWatch.ts'
-import type { GlobalChallengeRow } from './challengeComparison.ts'
+import { challengeKey, DEFAULT_FINDER_FILTERS, serializeFinderState, type GlobalChallengeRow } from './challengeComparison.ts'
 
 /** One projection for the English comparison and the Russian finder. */
 export function buildChallengeComparisonRows(
@@ -45,4 +45,20 @@ export function getRussianFinderRows(now = new Date()): GlobalChallengeRow[] {
   return buildChallengeComparisonRows(getAllChallenges(), getAllFirms(), getChallengeWatchEntries(), now)
     .filter(row => row.firm.slug in RUSSIAN_FINDER_REVIEWS)
     .map(row => ({ ...row, firm: { ...row.firm, reviewUrl: RUSSIAN_FINDER_REVIEWS[row.firm.slug] } }))
+}
+
+/** Editorial starting pairs, not a ranking. Matching phases/size do not make other rules equal. */
+export function getRussianReviewFinderHref(firmSlug: string, now = new Date()): string {
+  const presets: Record<string, string[]> = {
+    fundednext: ['fundednext:stellar-2-step', 'bright-funded:bright-funded-2-step-classic'],
+    'bright-funded': ['bright-funded:bright-funded-2-step-classic', 'fundednext:stellar-2-step'],
+    fundingpips: ['fundingpips:2-step-pro', 'fundednext:stellar-2-step'],
+    ftmo: ['ftmo:ftmo-challenge-2-step', 'fundednext:stellar-2-step', 'bright-funded:bright-funded-2-step-classic'],
+  }
+  const available = new Set(getRussianFinderRows(now)
+    .filter(row => row.product.phases === 2 && row.product.tiers.some(tier => tier.sizeUsd === 50000))
+    .map(challengeKey))
+  const selected = (presets[firmSlug] ?? []).filter(key => available.has(key))
+  if (selected.length < 2) return '/ru/luchshie-prop-firmy#podbor'
+  return `/ru/luchshie-prop-firmy#${serializeFinderState({ ...DEFAULT_FINDER_FILTERS, size: 50000, phases: '2' }, selected)}`
 }

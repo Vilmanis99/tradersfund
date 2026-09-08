@@ -10,6 +10,7 @@ import {
   type ChallengeFinderFilters, type GlobalChallengeRow, type GlobalChallengeTier,
 } from '@/lib/challengeComparison'
 import { trackSiteEvent } from '@/lib/clientAnalytics'
+import { russianPayoutRequestLabel } from '@/lib/russianProgrammeLabels'
 
 const UNKNOWN = 'Нет подтверждённых данных'
 const percent = (value: number | null) => value == null ? UNKNOWN : `${value}%`
@@ -19,8 +20,7 @@ const phaseLabel = (phases: number) => phases === 0 ? 'Без оценки' : `$
 const drawdownLabel = (value: string | null) => ({ static: 'Статическая', trailing: 'Трейлинг', 'eod-trailing': 'Трейлинг по итогам дня', 'balance-based': 'По балансу' }[value ?? ''] ?? UNKNOWN)
 const ruleLabel = (value: boolean | 'restricted' | null) => value == null ? 'Не подтверждено' : value === 'restricted' ? 'С ограничениями' : value ? 'Разрешено' : 'Запрещено'
 function payoutLabel(row: GlobalChallengeRow) {
-  const days = row.product.payoutFirstDays
-  return days == null ? 'Уточните условия запроса' : days === 0 ? 'По условиям программы' : `Через ${days} дн. на счёте после оценки`
+  return russianPayoutRequestLabel(row.product)
 }
 function priceLabel(tier: GlobalChallengeTier | undefined) {
   if (!tier) return 'Этот размер не представлен'
@@ -76,7 +76,7 @@ function ProgrammeCaveat({ row }: { row: GlobalChallengeRow }) {
         : 'Способ пересчёта лимита важнее одного процента: сравните базу расчёта и момент фиксации убытка в правилах программы.'}</p>
     {product.phases === 0 && <p>Отсутствие оценки не отменяет условий выплаты. Взнос не является депозитом, а размер счёта — суммой, которую можно вывести.</p>}
     {product.consistencyRulePct != null && <p>Правило стабильности: {product.consistencyRulePct}%. Уточните, как считается доля лучшего дня и на каком этапе применяется ограничение.</p>}
-    {(product.fundedDailyLossPct != null || product.fundedMaxLossPct != null || product.fundedDrawdownType != null) && <p>После оценки условия могут отличаться: дневной лимит {percent(product.fundedDailyLossPct)}, общий {percent(product.fundedMaxLossPct)}, расчёт — {drawdownLabel(product.fundedDrawdownType)}. Пустое поле означает отсутствие отдельного подтверждения, а не отсутствие лимита.</p>}
+    {product.phases > 0 && (product.fundedDailyLossPct != null || product.fundedMaxLossPct != null || product.fundedDrawdownType != null) && <p>После оценки условия могут отличаться: дневной лимит {percent(product.fundedDailyLossPct)}, общий {percent(product.fundedMaxLossPct)}, расчёт — {drawdownLabel(product.fundedDrawdownType)}. Пустое поле означает отсутствие отдельного подтверждения, а не отсутствие лимита.</p>}
     {product.changeSignals.length > 0 && <p>Есть замечания к источникам или изменения правил. Проверьте их в подробном обзоре до покупки.</p>}
     {row.firm.slug === 'bright-funded' && <p>Справочник Bright Funded противоречиво описывает двухнедельные выплаты и платную опцию. Не считайте сокращённый цикл частью базовой цены без подтверждения фирмы.</p>}
   </div>
@@ -91,6 +91,15 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
   const sizes = useMemo(() => [...new Set(initialRows.flatMap(row => row.product.tiers.map(tier => tier.sizeUsd)))].sort((a, b) => a - b), [initialRows])
   const compared = selected.flatMap(key => initialRows.filter(row => challengeKey(row) === key))
   const firmCount = new Set(initialRows.map(row => row.firm.slug)).size
+
+  function openComparison() {
+    const target = document.getElementById('sravnenie-programm')
+    target?.focus({ preventScroll: true })
+    // Results can span many mobile screens. Jump directly instead of a long animation;
+    // this also avoids motion for users who request reduced animations.
+    target?.scrollIntoView({ behavior: 'instant', block: 'start' })
+    trackSiteEvent('challenge_comparison_opened', { surface: 'russian_finder', shortlist_count: compared.length })
+  }
 
   function commit(nextFilters: ChallengeFinderFilters, nextSelected: string[]) {
     const fragment = serializeFinderState(nextFilters, nextSelected)
@@ -149,6 +158,10 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
         </div>
         {copyState === 'failed' && <p role="status">Не удалось скопировать автоматически. Скопируйте адрес этой страницы: выбранные параметры уже сохранены в нём.</p>}
         <p className="ru-source-line">Базовые взносы по датированным источникам, без временных скидок и дополнительных опций. Цены в разных валютах не пересчитываем. Размер счёта — номинал, а не доступная для вывода сумма.</p>
+        <div className="ru-finder-selection" aria-label="Выбор для сравнения">
+          <p role="status">{compared.length === 0 ? 'Нажмите «Сравнить» на 2–3 программах: таблица покажет различия в цене, просадке и выплатах.' : `Выбрано: ${compared.length}/3. ${compared.length === 1 ? 'Добавьте ещё одну программу.' : 'Можно открыть таблицу отличий.'}`}</p>
+          {compared.length > 0 && <><ul>{compared.map(row => <li key={challengeKey(row)}><span>{row.firm.name} · {row.product.name}</span><button type="button" aria-label={`Убрать из подборки ${row.firm.name} ${row.product.name}`} onClick={() => toggle(row)}><X size={15} aria-hidden="true" /></button></li>)}</ul><button type="button" onClick={openComparison}>Открыть таблицу сравнения <ArrowRight size={15} aria-hidden="true" /></button></>}
+        </div>
         {rows.length === 0 && <div className="ru-notice">В нашем текущем наборе нет программы с таким сочетанием условий. Измените бюджет, размер или этапы. Это не означает, что таких предложений нет на всём рынке.</div>}
         <div className="ru-finder-results">
           {rows.map(row => {
@@ -161,7 +174,7 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
               <dl className="ru-finder-facts"><div><dt>Цель оценки</dt><dd>{targets(row)}</dd></div><div><dt>Общий лимит убытка</dt><dd>{percent(row.product.maxLossPct)} · {drawdownLabel(row.product.drawdownType)}</dd></div><div><dt>Дневной лимит</dt><dd>{percent(row.product.dailyLossPct)}</dd></div><div><dt>Доля трейдера</dt><dd>{percent(row.product.profitSplitPct)}</dd></div></dl>
               <p className="ru-finder-payout"><strong>Первый запрос выплаты:</strong> {payoutLabel(row)}. Дополнительные условия и проверка правил сохраняются.</p>
               <details className="ru-finder-details"><summary>Важные ограничения и полная стоимость</summary>
-                <p>Минимальные учтённые обязательные платежи до счёта после оценки: <strong>{fundedCostLabel(tier)}</strong>. Повторные попытки, дополнительные месяцы и необязательные опции не включены. Это не средний расход и не гарантия прохождения.</p>
+                <p>Минимальные учтённые обязательные платежи{row.product.phases > 0 ? ' до счёта после оценки' : ' для начала участия'}: <strong>{fundedCostLabel(tier)}</strong>. Повторные попытки, дополнительные месяцы и необязательные опции не включены. Это не средний расход и не гарантия выплаты.</p>
                 <ul><li>Новости: {ruleLabel(row.product.rules.news)}</li><li>Советники: {ruleLabel(row.product.rules.ea)}</li><li>Выходные: {ruleLabel(row.product.rules.weekend)}</li></ul>
                 <ProgrammeCaveat row={row} />
                 <p>Цены и правила: <a href={row.product.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">официальный источник</a> · {row.product.capturedAt}.</p>
@@ -172,8 +185,8 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
             </article>
           })}
         </div>
-        {compared.length > 0 && <aside className="ru-finder-shortlist-bar" aria-label="Панель выбранных программ"><span>В сравнении: {compared.length}/3</span><button type="button" onClick={() => document.getElementById('sravnenie-programm')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>Посмотреть отличия <ArrowRight size={15} aria-hidden="true" /></button><button type="button" aria-label="Очистить сравнение" onClick={() => commit(filters, [])}><X size={16} aria-hidden="true" /></button></aside>}
-        {compared.length > 0 && <section id="sravnenie-programm" className="ru-finder-comparison" aria-label="Выбранные программы" data-finder-shortlist="three-products">
+        {compared.length > 0 && <aside className="ru-finder-shortlist-bar" aria-label="Панель выбранных программ"><span>В сравнении: {compared.length}/3</span><button type="button" onClick={openComparison}>Посмотреть отличия <ArrowRight size={15} aria-hidden="true" /></button><button type="button" aria-label="Очистить сравнение" onClick={() => commit(filters, [])}><X size={16} aria-hidden="true" /></button></aside>}
+        {compared.length > 0 && <section id="sravnenie-programm" tabIndex={-1} className="ru-finder-comparison" aria-label="Выбранные программы" data-finder-shortlist="three-products">
           <div className="ru-finder-toolbar"><h3>Ваше сравнение · {compared.length}/3</h3><button type="button" onClick={copy}><Link2 size={15} aria-hidden="true" />Поделиться сравнением</button></div>
           {compared.length === 1 && <p>Добавьте ещё одну программу, чтобы увидеть отличия рядом.</p>}
           <p className="ru-finder-scroll-hint">На узком экране прокрутите таблицу вправо, чтобы увидеть все выбранные программы.</p>

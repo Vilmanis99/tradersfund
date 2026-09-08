@@ -18,7 +18,7 @@ const FIELD_STYLE = {
   borderRadius: 10,
   border: '1px solid var(--border)',
   background: 'var(--bg3)',
-  color: '#fff',
+  color: 'var(--text)',
   padding: '0 0.8rem',
   fontSize: '0.88rem',
   fontWeight: 700,
@@ -357,7 +357,7 @@ export default function IndiaCheckoutPlanner({ firms }: { firms: IndiaMatcherFir
             style={{
               borderRadius: 16,
               border: '1px solid rgba(167, 139, 250, 0.22)',
-              background: 'linear-gradient(145deg, rgba(124,58,237,0.12), rgba(15,23,42,0.72))',
+              background: 'linear-gradient(145deg, rgba(124,58,237,0.12), var(--bg2))',
               padding: '1.2rem',
               display: 'flex',
               flexDirection: 'column',
@@ -369,7 +369,7 @@ export default function IndiaCheckoutPlanner({ firms }: { firms: IndiaMatcherFir
             <div style={{ marginTop: '0.8rem', color: 'var(--muted)', fontSize: '0.75rem' }}>
               Published fee
             </div>
-            <div style={{ marginTop: '0.15rem', color: '#fff', fontSize: '1.25rem', fontWeight: 900 }}>
+            <div style={{ marginTop: '0.15rem', color: 'var(--text)', fontSize: '1.25rem', fontWeight: 900 }}>
               {sourceMoney(selectedTier.price.amount, selectedTier.price.currency)}
             </div>
 

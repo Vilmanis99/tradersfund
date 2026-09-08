@@ -455,7 +455,7 @@
 }
 
 .ru-notice strong {
-  color: #f7ca66;
+  color: var(--gold);
 }
 
 .ru-disclosure {
@@ -1017,6 +1017,17 @@
 .ru-finder :focus-visible,
 .ru-finder-entry :focus-visible { outline: 2px solid #6ee7b7; outline-offset: 3px; }
 .ru-finder-results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 22px; }
+.ru-finder-selection { padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px; margin-top: 18px; }
+.ru-finder-selection > p { margin: 0; font-size: .85rem; color: var(--text2, #b6bfd0); }
+.ru-finder-selection ul { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 12px 0; }
+.ru-finder-selection li { display: flex; align-items: center; gap: 8px; max-width: 100%; padding-left: 10px; border-radius: 8px; background: var(--bg3, #1a2230); font-size: .8rem; }
+.ru-finder-selection li span { overflow-wrap: anywhere; }
+.ru-finder-selection li button { flex-shrink: 0; }
+.ru-ranking-partner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ru-ranking-partner-grid > .ru-ranking-secondary { grid-column: 1 / -1; }
+.ru-ranking-partner-grid details { margin: 12px 0; font-size: .85rem; }
+.ru-ranking-partner-grid summary { cursor: pointer; font-weight: 650; }
+.ru-ranking-partner-grid details p { font-size: inherit; }
 .ru-finder-card { display: flex; flex-direction: column; min-width: 0; padding: 22px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg2, #111722); }
 .ru-finder-card--selected { border-color: #34d399; box-shadow: 0 0 0 1px #34d399; }
 .ru-finder-card header { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
@@ -1024,7 +1035,7 @@
 .ru-finder-card header > div { flex: 1; min-width: 120px; }
 .ru-finder-card header > div > span { font-size: .74rem; color: var(--text2, #b6bfd0); }
 .ru-finder-card h3 { font-size: 1.02rem; margin: 3px 0 0; }
-.ru-finder-phase { padding: 5px 8px; border-radius: 6px; font-size: .7rem; background: rgba(52, 211, 153, .09); color: #6ee7b7; }
+.ru-finder-phase { padding: 5px 8px; border-radius: 6px; font-size: .7rem; background: rgba(52, 211, 153, .09); color: var(--accent); }
 .ru-finder-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin: 22px 0 16px; }
 .ru-finder-price strong { font-size: 1.65rem; letter-spacing: -.04em; }
 .ru-finder-price span { font-size: .72rem; color: var(--text2, #b6bfd0); }
@@ -1051,9 +1062,9 @@
 .ru-finder-comparison thead th { min-width: 180px; }
 .ru-finder-comparison thead button { padding: 5px; margin: 6px 0 0 6px; }
 .ru-finder-different { background: rgba(52, 211, 153, .06); }
-.ru-finder-comparison small { display: block; font-weight: 400; color: #6ee7b7; }
+.ru-finder-comparison small { display: block; font-weight: 400; color: var(--accent); }
 .ru-finder-country { margin-top: 24px; }
-.ru-finder-shortlist-bar { position: fixed; z-index: 45; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; width: max-content; max-width: calc(100% - 24px); padding: 10px 16px; background: #14271f; border: 1px solid #34d399; border-radius: 14px; box-shadow: 0 8px 40px #0009; font-size: .8rem; }
+.ru-finder-shortlist-bar { position: fixed; z-index: 45; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; width: max-content; max-width: calc(100% - 24px); padding: 10px 16px; background: var(--bg2); border: 1px solid #34d399; border-radius: 14px; box-shadow: 0 8px 40px #0009; font-size: .8rem; }
 .ru-finder-comparison { scroll-margin-top: 100px; }
 
 @media (max-width: 1050px) {
@@ -1063,6 +1074,7 @@
   .ru-finder-entry > a { grid-column: 1 / -1; }
 }
 @media (max-width: 640px) {
+  .ru-ranking-partner-grid { grid-template-columns: 1fr; }
   .ru-finder-results { grid-template-columns: 1fr; }
   .ru-finder-card { padding: 18px; }
   .ru-finder-entry { padding: 14px; gap: 10px; }

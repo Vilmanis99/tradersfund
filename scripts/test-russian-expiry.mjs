@@ -53,7 +53,24 @@ try {
       assert(typeof interval === 'number' && interval > 0 && interval <= 3600, `${route}: built route must inherit hourly regeneration`)
     }
   }
-  const { getAllChallenges, isChallengeFresh } = require(path.join(root, 'lib/firms.ts'))
+  const { getAllChallenges, getAllFirms, isChallengeFresh } = require(path.join(root, 'lib/firms.ts'))
+  const { getAuthorBySlug } = require(path.join(root, 'lib/authors.ts'))
+  const edris = getAuthorBySlug('edris-derakhshi')
+  assert.equal(edris.role, 'Author', 'the confirmed TFH role is author, not founder')
+  assert.doesNotMatch(`${edris.short} ${edris.long}`, /founded Traders Fund Hub|funded trader since|personally funded|verifies every payout|five years of trading funded/i, 'unsupported experience claims must not return')
+  assert(edris.references.some(reference => reference.url === 'https://tradingrage.com/about'), 'TradingRage founder claim has public evidence')
+  const authorModule = require(path.join(root, 'app/authors/[slug]/page.tsx'))
+  const authorProps = { params: Promise.resolve({ slug: edris.slug }) }
+  const authorHtml = renderToStaticMarkup(await authorModule.default(authorProps))
+  const authorMetadata = await authorModule.generateMetadata(authorProps)
+  assert.equal(authorMetadata.description, edris.short)
+  assert(authorHtml.includes('Selected work and biography sources'))
+  for (const reference of edris.references) assert(authorHtml.includes(reference.url), 'biography evidence is visible on the actual author page')
+  const person = [...authorHtml.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .map(match => JSON.parse(match[1])).find(item => item['@type'] === 'Person')
+  assert.equal(person?.jobTitle, 'Author', 'Person schema does not restore founder status')
+  assert.equal(person?.description, edris.short)
+  const { getRussianReviewFinderHref, getRussianFinderRows } = require(path.join(root, 'lib/challengeComparisonData.ts'))
   const reviewed = {
     'obzor-ftmo': ['ftmo'], 'obzor-fundednext': ['fundednext'], 'obzor-bright-funded': ['bright-funded'],
     'obzor-fundingpips': ['fundingpips'], 'fundednext-vs-bright-funded': ['fundednext', 'bright-funded'],
@@ -71,6 +88,40 @@ try {
         const html = renderToStaticMarkup(React.createElement(Page))
         assert.equal((html.match(/<h1\b/g) ?? []).length, 1, 'one H1 survives expiry')
         assert.doesNotMatch(html, /(?:NaN|Infinity|Invalid Date)/, 'no invalid number/date')
+        assert.doesNotMatch(html, /Основатель Traders Fund Hub|funded-трейдер с 2020 года/iu, 'Russian pages do not invent the author’s founder or funded-trading history')
+        if (slug === 'luchshie-prop-firmy') {
+          assert.equal((html.match(/data-russian-ranking="single-directory"/g) ?? []).length, 1, 'one full editorial directory')
+          assert.equal((html.match(/data-russian-ranking-partners="single-section"/g) ?? []).length, 1, 'one consolidated partner section')
+          assert(!html.includes('data-russian-ranking="top-five"') && !html.includes('data-russian-ranking-partner-matrix'), 'no duplicate ranking cards or partner table')
+          for (const anchor of ['top-5', 'partner-matrix', 'polnyy-reyting', 'podbor']) assert.equal((html.match(new RegExp(`id="${anchor}"`, 'g')) ?? []).length, 1, `preserve exactly one ${anchor} anchor`)
+          const allProducts = getAllChallenges()
+          const expectedFirms = getAllFirms().filter(firm => {
+            const firmSlug = firm.name.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+            const scoped = allProducts.filter(product => product.firmSlug === firmSlug)
+            return scoped.length > 0 && scoped.every(product => isChallengeFresh(product))
+          })
+          assert.equal((html.match(/data-ranked-firm=/g) ?? []).length, expectedFirms.length, 'consolidation retains all fresh directory firms, expiry removes stale rows')
+          const Finder = require(path.join(root, 'components/RussianChallengeFinder.tsx')).default
+          for (const row of getRussianFinderRows().filter(row => row.product.phases === 0)) {
+            // Isolate copy rendering at the server's default size. This synthetic size
+            // is test-only; real tier availability is covered by finder projection tests.
+            const fixture = { ...row, product: { ...row.product, tiers: [{ ...row.product.tiers[0], sizeUsd: 50000 }] } }
+            const card = renderToStaticMarkup(React.createElement(Finder, { initialRows: [fixture] }))
+            assert(!card.includes('после оценки'), 'instant-only finder does not describe a nonexistent evaluation')
+            assert(card.includes('для начала участия'), 'instant cost explanation uses participation, not passing')
+          }
+        }
+        if (['obzor-fundednext', 'obzor-bright-funded', 'obzor-fundingpips', 'obzor-ftmo'].includes(slug)) {
+          const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<[^>]*>/g, ' ')
+          assert.doesNotMatch(visible, /\bCTA\b|\bcheckout\b|\bgates?\b|\bsnapshot\b|захват[а-яё]*|challengeTierEconomics|\bnull\b/iu, 'no internal editorial/implementation jargon in the four main reviews')
+          assert(visible.includes('Автор: Edris Derakhshi'), 'established author is visible')
+          assert(!html.includes('Tara Mohseni') && !html.includes('tara-mohseni'), 'do not misattribute the Russian review')
+          const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]))
+          const article = jsonLd.find(item => item['@type'] === 'Article')
+          assert.equal(article?.author?.name, 'Edris Derakhshi', 'structured author agrees with the byline')
+          const handoff = getRussianReviewFinderHref(slug.replace('obzor-', ''))
+          assert(html.includes(handoff.replace(/&/g, '&amp;')), 'reader can carry a comparison into the finder')
+        }
         if (reviewed[slug]) {
           const scoped = products.filter(product => reviewed[slug].includes(product.firmSlug))
           const needsRecapture = !scoped.length || scoped.some(product => !isChallengeFresh(product))

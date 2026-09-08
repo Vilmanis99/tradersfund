@@ -7,7 +7,7 @@ export default function NotFound() {
       <p style={{ color: 'var(--accent-light)', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.1em', marginBottom: '1rem' }}>
         404
       </p>
-      <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.6rem)', fontWeight: 900, color: '#fff', marginBottom: '1rem', lineHeight: 1.15 }}>
+      <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.6rem)', fontWeight: 900, color: 'var(--text)', marginBottom: '1rem', lineHeight: 1.15 }}>
         Page not found
       </h1>
       <p style={{ color: 'var(--muted)', fontSize: '1rem', marginBottom: '2rem' }}>

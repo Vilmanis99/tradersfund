@@ -12,7 +12,7 @@ const SELECT_STYLE = {
   borderRadius: 10,
   border: '1px solid var(--border)',
   background: 'var(--bg3)',
-  color: '#fff',
+  color: 'var(--text)',
   padding: '0 0.8rem',
   fontSize: '0.88rem',
 } as const
@@ -119,7 +119,7 @@ export default function IndiaEvidenceSubmissionForm({
               borderColor: 'rgba(34, 197, 94, 0.3)',
             }}
           >
-            <h3 style={{ margin: 0, color: '#86efac', fontSize: '1rem' }}>Evidence lead received</h3>
+            <h3 style={{ margin: 0, color: 'var(--accent)', fontSize: '1rem' }}>Evidence lead received</h3>
             <p style={{ margin: '0.55rem 0 0', color: 'var(--muted)', fontSize: '0.85rem' }}>
               {feedback}
             </p>
@@ -286,7 +286,7 @@ export default function IndiaEvidenceSubmissionForm({
                 {status === 'sending' ? 'Sending…' : 'Send for verification'} <Send size={13} />
               </button>
               {status === 'error' && (
-                <p role="alert" style={{ margin: 0, color: '#f87171', fontSize: '0.8rem' }}>
+                <p role="alert" style={{ margin: 0, color: 'var(--danger)', fontSize: '0.8rem' }}>
                   {feedback}
                 </p>
               )}

@@ -90,7 +90,7 @@ export default function FeatureFirmList({
 
               <div className="feature-firm-meta">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-                  <h3 style={{ margin: 0, color: '#fff', fontSize: '1.1rem', fontWeight: 700, lineHeight: 1.25 }}>
+                  <h3 style={{ margin: 0, color: 'var(--text)', fontSize: '1.1rem', fontWeight: 700, lineHeight: 1.25 }}>
                     {firm.name}
                   </h3>
                   <span className="score-badge">

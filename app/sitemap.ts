@@ -132,7 +132,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // YMYL content (prop-firm reviews) to a named person.
   const authorRoutes: MetadataRoute.Sitemap = AUTHORS.map(a => ({
     url: `${BASE_URL}/authors/${a.slug}`,
-    lastModified: firmsLastDate,
+    lastModified: a.updatedAt ? new Date(a.updatedAt) : firmsLastDate,
     changeFrequency: 'monthly',
     priority: 0.6,
   }))

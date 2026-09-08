@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import './globals.css'
+import './light-platform.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import AnalyticsProvider from '@/components/AnalyticsProvider'
@@ -54,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const posts = getAllPosts()
 
   return (
-    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang="en" data-theme="light" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }} suppressHydrationWarning>
         {/* RSS autodiscovery — hoisted to <head> by React. Placed here (not in
             metadata.alternates) so per-page canonical overrides can't drop it. */}

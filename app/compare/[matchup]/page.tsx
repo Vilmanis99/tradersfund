@@ -239,7 +239,7 @@ export default async function ComparePage({ params }: Props) {
 
           {challengeMatchup.hasData ? (
             <section aria-label="Firm-level context" data-compare-firm-context>
-              <h2 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.6rem)', fontWeight: 800, color: '#fff', margin: '2.5rem 0 0.5rem', letterSpacing: '-0.01em' }}>
+              <h2 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.6rem)', fontWeight: 800, color: 'var(--text)', margin: '2.5rem 0 0.5rem', letterSpacing: '-0.01em' }}>
                 Firm-level context
               </h2>
               <p style={{ color: 'var(--muted)', fontSize: '0.9rem', margin: 0 }}>
@@ -249,7 +249,7 @@ export default async function ComparePage({ params }: Props) {
             </section>
           ) : (
             <section aria-label="Firm-directory fallback" data-compare-aggregate-fallback>
-              <h2 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.6rem)', fontWeight: 800, color: '#fff', margin: '2.5rem 0 0.5rem', letterSpacing: '-0.01em' }}>
+              <h2 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.6rem)', fontWeight: 800, color: 'var(--text)', margin: '2.5rem 0 0.5rem', letterSpacing: '-0.01em' }}>
                 Firm-directory fallback
               </h2>
               <p style={{ color: 'var(--muted)', fontSize: '0.9rem', margin: 0 }}>
@@ -265,7 +265,7 @@ export default async function ComparePage({ params }: Props) {
               warning treatment rather than a cell of text. No JSON-LD is
               emitted for them — see lib/trustpilot.ts. */}
           <section aria-label="Third-party reputation" style={{ marginTop: '2.5rem' }}>
-            <h2 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.6rem)', fontWeight: 800, color: '#fff', margin: '0 0 0.5rem', letterSpacing: '-0.01em' }}>
+            <h2 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.6rem)', fontWeight: 800, color: 'var(--text)', margin: '0 0 0.5rem', letterSpacing: '-0.01em' }}>
               Trustpilot: {firmA.name} vs {firmB.name}
             </h2>
             <p style={{ color: 'var(--muted)', fontSize: '0.9rem', margin: 0 }}>
@@ -275,7 +275,7 @@ export default async function ComparePage({ params }: Props) {
             <div className="compare-when-grid">
               {[firmA, firmB].map(f => (
                 <div key={f.name}>
-                  <h3 style={{ margin: '0 0 0.5rem', color: '#fff', fontSize: '1rem', fontWeight: 700 }}>{f.name}</h3>
+                  <h3 style={{ margin: '0 0 0.5rem', color: 'var(--text)', fontSize: '1rem', fontWeight: 700 }}>{f.name}</h3>
                   <TrustpilotPanel firm={f} />
                 </div>
               ))}
@@ -301,7 +301,7 @@ export default async function ComparePage({ params }: Props) {
 
           {overlay?.faqs?.length ? (
             <section aria-label="Frequently asked questions" style={{ marginTop: '3rem' }}>
-              <h2 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.6rem)', fontWeight: 800, color: '#fff', marginBottom: '1rem', letterSpacing: '-0.01em' }}>
+              <h2 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.6rem)', fontWeight: 800, color: 'var(--text)', marginBottom: '1rem', letterSpacing: '-0.01em' }}>
                 Frequently asked questions
               </h2>
               <FeatureFaq faqs={overlay.faqs} />

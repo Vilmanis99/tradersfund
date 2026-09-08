@@ -55,7 +55,7 @@ export default function FirmStatPanel({ firm }: { firm: Firm }) {
             cx="42" cy="42" r={r} fill="none" stroke="#27a17b" strokeWidth="8" strokeLinecap="round"
             strokeDasharray={`${dash} ${circ}`} transform="rotate(-90 42 42)"
           />
-          <text x="42" y="40" textAnchor="middle" fontSize="20" fontWeight="800" fill="#fff">{score.toFixed(1)}</text>
+          <text x="42" y="40" textAnchor="middle" fontSize="20" fontWeight="800" fill="var(--text)">{score.toFixed(1)}</text>
           <text x="42" y="56" textAnchor="middle" fontSize="9" fill="var(--muted)">/ 10</text>
         </svg>
 
@@ -69,7 +69,7 @@ export default function FirmStatPanel({ firm }: { firm: Firm }) {
             <span style={{ flex: 1, height: 12, background: 'var(--bg3)', borderRadius: 999, overflow: 'hidden', display: 'block' }}>
               <span style={{ display: 'block', height: '100%', width: `${Math.min(100, split)}%`, background: 'linear-gradient(90deg, #27a17b, #2dd4bf)', borderRadius: 999 }} />
             </span>
-            <span style={{ width: 48, textAlign: 'right', fontSize: '0.9rem', fontWeight: 800, color: '#fff' }}>{split ? `${split}%` : '—'}</span>
+            <span style={{ width: 48, textAlign: 'right', fontSize: '0.9rem', fontWeight: 800, color: 'var(--text)' }}>{split ? `${split}%` : '—'}</span>
           </div>
         </div>
       </div>
@@ -85,7 +85,7 @@ export default function FirmStatPanel({ firm }: { firm: Firm }) {
         {tiles.map(t => (
           <div key={t.label} style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 12, padding: '0.7rem 0.85rem' }}>
             <div style={{ fontSize: '0.72rem', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: 3 }}>{t.label}</div>
-            <div style={{ fontSize: '0.98rem', fontWeight: 800, color: '#fff' }}>{t.value}</div>
+            <div style={{ fontSize: '0.98rem', fontWeight: 800, color: 'var(--text)' }}>{t.value}</div>
           </div>
         ))}
       </div>

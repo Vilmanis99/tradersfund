@@ -1,8 +1,18 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { buildChallengeComparisonRows, getRussianFinderRows } from '../lib/challengeComparisonData.ts'
+import { buildChallengeComparisonRows, getRussianFinderRows, getRussianReviewFinderHref } from '../lib/challengeComparisonData.ts'
 import { getAllChallenges, getAllFirms, minimumCostToFundedUsd } from '../lib/firms.ts'
 import { challengeKey, DEFAULT_FINDER_FILTERS, filterChallengeRows, finderTier, isFinderStateFragment, parseFinderState, serializeFinderState, tierPrice } from '../lib/challengeComparison.ts'
+import { russianPayoutRequestLabel } from '../lib/russianProgrammeLabels.ts'
+
+for (const phases of [0, 1, 2, 3]) {
+  assert.equal(russianPayoutRequestLabel({ phases, payoutFirstDays: null }), 'Уточните условия запроса')
+  assert.equal(russianPayoutRequestLabel({ phases, payoutFirstDays: 0 }), 'По условиям программы')
+  const label = russianPayoutRequestLabel({ phases, payoutFirstDays: 14 })
+  assert(label.includes('14'))
+  assert.equal(label.includes('после оценки'), phases > 0, 'instant accounts must not imply an evaluation')
+  assert.equal(label.includes('без оценки'), phases === 0)
+}
 
 const now = new Date('2026-09-08T12:00:00Z')
 const products = getAllChallenges()
@@ -10,6 +20,25 @@ const firms = getAllFirms()
 const rows = getRussianFinderRows(now)
 assert.deepEqual([...new Set(rows.map(row => row.firm.slug))].sort(), ['bright-funded', 'ftmo', 'fundednext', 'fundingpips'])
 assert(rows.every(row => row.firm.reviewUrl.startsWith('/ru/obzor-')))
+
+for (const firm of ['fundednext', 'bright-funded', 'fundingpips', 'ftmo']) {
+  const href = getRussianReviewFinderHref(firm, now)
+  const hash = new URL(href, 'https://tradersfundhub.com').hash
+  assert(isFinderStateFragment(hash, rows), `${firm}: valid, crawl-safe review handoff`)
+  const state = parseFinderState(hash, rows)
+  assert.equal(state.filters.size, 50000)
+  assert.equal(state.filters.phases, '2')
+  assert.equal(state.filters.currency, 'all', 'do not hide EUR or imply currency conversion')
+  assert(state.selected.length >= 2 && state.selected.length <= 3)
+  assert(state.selected.some(key => key.startsWith(`${firm}:`)), 'the reviewed firm is in its starting comparison')
+  for (const key of state.selected) {
+    const row = rows.find(row => challengeKey(row) === key)
+    assert.equal(row.product.phases, 2)
+    assert(finderTier(row, 50000))
+  }
+  assert.equal(getRussianReviewFinderHref(firm, new Date('2030-01-01')), '/ru/luchshie-prop-firmy#podbor', 'expired presets retain a safe generic handoff')
+}
+assert.equal(getRussianReviewFinderHref('unknown', now), '/ru/luchshie-prop-firmy#podbor')
 
 for (const row of rows) {
   const original = products.find(product => product.firmSlug === row.firm.slug && product.productSlug === row.product.slug)

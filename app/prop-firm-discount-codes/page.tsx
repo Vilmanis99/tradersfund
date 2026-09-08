@@ -132,7 +132,7 @@ export default function Page() {
             fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
             fontWeight: 900,
             letterSpacing: '-0.02em',
-            color: '#fff',
+            color: 'var(--text)',
             margin: '0 0 0.75rem',
             lineHeight: 1.1,
           }}
@@ -153,7 +153,7 @@ export default function Page() {
       <AffiliateDisclosure />
 
       <section aria-labelledby="current-prop-firm-offers" style={{ marginTop: '2rem' }}>
-        <h2 id="current-prop-firm-offers" style={{ fontSize: '1.45rem', fontWeight: 850, color: '#fff', margin: '0 0 0.5rem' }}>
+        <h2 id="current-prop-firm-offers" style={{ fontSize: '1.45rem', fontWeight: 850, color: 'var(--text)', margin: '0 0 0.5rem' }}>
           Current verified offers
         </h2>
         <p style={{ color: 'var(--muted)', fontSize: '0.92rem', lineHeight: 1.6, maxWidth: '72ch', margin: '0 0 1.25rem' }}>
@@ -169,7 +169,7 @@ export default function Page() {
           data-fundednext-offer-steps="earned-coupon"
           style={{ marginTop: '3rem', background: 'var(--bg2)', border: '1px solid var(--border)', borderRadius: 16, padding: 'clamp(1.1rem, 3vw, 1.6rem)' }}
         >
-          <h2 id="fundednext-offer-steps" style={{ fontSize: '1.45rem', fontWeight: 850, color: '#fff', margin: '0 0 0.55rem' }}>
+          <h2 id="fundednext-offer-steps" style={{ fontSize: '1.45rem', fontWeight: 850, color: 'var(--text)', margin: '0 0 0.55rem' }}>
             How the FundedNext 5% offer works
           </h2>
           <p style={{ color: 'var(--text)', lineHeight: 1.65, margin: '0 0 1.15rem', maxWidth: '76ch' }}>
@@ -192,7 +192,7 @@ export default function Page() {
       )}
 
       <section aria-labelledby="offer-labels" style={{ marginTop: '3rem' }}>
-        <h2 id="offer-labels" style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', margin: '0 0 0.65rem' }}>
+        <h2 id="offer-labels" style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text)', margin: '0 0 0.65rem' }}>
           What each offer label means
         </h2>
         <div className="deal-label-grid">
@@ -203,7 +203,7 @@ export default function Page() {
       </section>
 
       <section style={{ marginTop: '3rem' }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', margin: '0 0 1.25rem' }}>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text)', margin: '0 0 1.25rem' }}>
           Common questions
         </h2>
         <div style={{ display: 'grid', gap: '0.85rem' }}>

@@ -26,7 +26,7 @@ export default function IndiaRbiNotice({ evidence }: { evidence: IndiaFirmEviden
           style={{
             padding: 'clamp(1.15rem, 3vw, 1.6rem)',
             borderColor: 'rgba(248, 113, 113, 0.38)',
-            background: 'linear-gradient(145deg, rgba(127,29,29,0.16), rgba(15,23,42,0.78))',
+            background: 'linear-gradient(145deg, rgba(127,29,29,0.16), var(--bg2))',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.9rem' }}>
@@ -40,7 +40,7 @@ export default function IndiaRbiNotice({ evidence }: { evidence: IndiaFirmEviden
                 alignItems: 'center',
                 justifyContent: 'center',
                 flex: '0 0 auto',
-                color: '#fca5a5',
+                color: 'var(--danger)',
                 background: 'rgba(239,68,68,0.14)',
                 border: '1px solid rgba(248,113,113,0.3)',
               }}
@@ -48,14 +48,14 @@ export default function IndiaRbiNotice({ evidence }: { evidence: IndiaFirmEviden
               <ShieldAlert size={20} />
             </span>
             <div>
-              <span className="bento-tile-eyebrow" style={{ color: '#fca5a5' }}>
+              <span className="bento-tile-eyebrow" style={{ color: 'var(--danger)' }}>
                 <AlertTriangle size={12} /> India eligibility gate
               </span>
               <h2
                 id="india-rbi-notice-heading"
                 style={{
                   margin: '0.45rem 0 0',
-                  color: '#fff',
+                  color: 'var(--text)',
                   fontSize: 'clamp(1.15rem, 2.4vw, 1.45rem)',
                   lineHeight: 1.3,
                 }}
@@ -63,7 +63,7 @@ export default function IndiaRbiNotice({ evidence }: { evidence: IndiaFirmEviden
                 RBI Alert List firms are excluded from this ranking
               </h2>
               <p style={{ margin: '0.65rem 0 0', color: 'var(--text)', fontSize: '0.9rem', lineHeight: 1.65 }}>
-                <strong style={{ color: '#fff' }}>{named.map(entry => entry.firmName).join(' and ')}</strong>
+                <strong style={{ color: 'var(--text)' }}>{named.map(entry => entry.firmName).join(' and ')}</strong>
                 {' '}are named on the RBI Alert List dated {formatDate(listDate)}. We therefore remove them
                 from India recommendations, the rules matcher, the INR planner, and India partner CTAs.
               </p>

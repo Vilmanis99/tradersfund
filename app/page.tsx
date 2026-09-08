@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
-import { getAllPosts, getAllCategories } from '@/lib/mdx'
+import { getAllPosts } from '@/lib/mdx'
 import {
   getAllFirms,
   getAllChallenges,
@@ -12,7 +12,6 @@ import {
 import { organizationSchema, websiteSchema, jsonLd } from '@/lib/schema'
 import BlogCard from '@/components/BlogCard'
 import NewsletterForm from '@/components/NewsletterForm'
-import Hero3D from '@/components/Hero3D'
 import AnimatedNumber from '@/components/AnimatedNumber'
 import TiltCard from '@/components/TiltCard'
 import FeaturedFirmSpotlight from '@/components/FeaturedFirmSpotlight'
@@ -48,8 +47,7 @@ export default function Home() {
   const firms = getAllFirms()
   const challenges = getAllChallenges()
   const changeWatchCount = getChallengeWatchEntries().length
-  const posts = getAllPosts().slice(0, 6)
-  const categories = getAllCategories()
+  const posts = getAllPosts().slice(0, 3)
   const challengesByFirm = new Map(
     firms.map(firm => {
       const slug = firmSlug(firm.name)
@@ -232,7 +230,7 @@ export default function Home() {
           <div className="hero-copy">
             <Link href="/prop-firm-challenges" className="hero-eyebrow">
               <span className="hero-eyebrow-dot" />
-              Live · <AnimatedNumber value={firms.length} duration={1100} /> firms ·{' '}
+              Source-dated · <AnimatedNumber value={firms.length} duration={1100} /> firms ·{' '}
               <AnimatedNumber value={freshChallenges.length} duration={1400} /> fresh products
               <ArrowRight size={12} />
             </Link>
@@ -265,15 +263,25 @@ export default function Home() {
             )}
           </div>
 
-          <div className="hero-3d-wrap">
-            <Hero3D firms={top5.map(f => ({
-              name: f.name,
-              logo: f.logo,
-              score: f.score,
-              profitSplitPct: f.profitSplitPct,
-              payoutFrequency: f.payoutFrequency,
-              reviewUrl: f.reviewUrl,
-            }))} />
+          <div className="home-finder-panel">
+            <span className="bento-tile-eyebrow">Start with your requirements</span>
+            <h2>Find a programme to compare</h2>
+            <p>Choose a size and evaluation type, then check the exact product rules.</p>
+            <form action="/prop-firm-challenges" method="get" className="home-finder-form">
+              <label htmlFor="home-size">Account size in USD</label>
+              <select id="home-size" name="size" defaultValue="50000">
+                {[...new Set(freshChallenges.flatMap(product => product.accountSizes.map(tier => tier.sizeUsd)))].sort((a, b) => a - b).map(size => <option key={size} value={size}>{size.toLocaleString('en-US')} USD</option>)}
+              </select>
+              <label htmlFor="home-program">Evaluation stages</label>
+              <select id="home-program" name="program" defaultValue="all">
+                <option value="all">All programmes</option>
+                <option value="instant">No evaluation</option>
+                <option value="one-step">1 step</option>
+                <option value="two-step">2 steps</option>
+              </select>
+              <button className="btn-primary" type="submit">Compare programmes <ArrowRight size={16} aria-hidden="true" /></button>
+            </form>
+            <p className="home-finder-note">Account size is not the purchase price. Check country eligibility before paying.</p>
           </div>
         </div>
       </section>
@@ -792,20 +800,6 @@ export default function Home() {
               All articles <ArrowRight size={14} />
             </Link>
           </div>
-
-          {categories.length > 0 && (
-            <div className="cat-rail">
-              {categories.slice(0, 10).map(c => (
-                <Link
-                  key={c}
-                  href={`/category/${c.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="cat-pill"
-                >
-                  {c}
-                </Link>
-              ))}
-            </div>
-          )}
 
           <div className="post-grid">
             {posts.map(post => <BlogCard key={post.slug} post={post} />)}

@@ -17,17 +17,17 @@ export default function Error({
 
   return (
     <div style={{ maxWidth: 640, margin: '0 auto', padding: '6rem 1.5rem', textAlign: 'center' }}>
-      <p style={{ color: '#f87171', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.1em', marginBottom: '1rem' }}>
+      <p style={{ color: 'var(--danger)', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.1em', marginBottom: '1rem' }}>
         Something went wrong
       </p>
-      <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 900, color: '#fff', marginBottom: '1rem', lineHeight: 1.2 }}>
+      <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 900, color: 'var(--text)', marginBottom: '1rem', lineHeight: 1.2 }}>
         Sorry, we hit an unexpected error.
       </h1>
       <p style={{ color: 'var(--muted)', marginBottom: '2rem' }}>
         Try again, or head back home.
       </p>
       {error.digest && (
-        <p style={{ color: '#64748b', fontSize: '0.75rem', fontFamily: 'monospace', marginBottom: '2rem' }}>
+        <p style={{ color: 'var(--muted)', fontSize: '0.75rem', fontFamily: 'monospace', marginBottom: '2rem' }}>
           ref: {error.digest}
         </p>
       )}

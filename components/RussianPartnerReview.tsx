@@ -169,7 +169,7 @@ export default function RussianPartnerReview({
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>свежих продуктов</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>ценовых уровней</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
-            <div className="ru-stat"><strong>{latestCapture}</strong><span>дата захвата источника</span></div>
+            <div className="ru-stat"><strong>{latestCapture}</strong><span>дата проверки источников</span></div>
           </div>
         </div>
       </section>
@@ -201,11 +201,11 @@ export default function RussianPartnerReview({
                     <strong>{firmName}</strong>
                     <span className="ru-pill">TFH {firm.score.toFixed(1)}/10</span>
                   </div>
-                  <p>{freshProducts.length} продуктов · {pricedTiers.length} подтверждённых цен · захват {latestCapture}</p>
+                  <p>{freshProducts.length} программ · {pricedTiers.length} подтверждённых цен · проверено {latestCapture}</p>
                   {firm.trustpilotScore != null && firm.trustpilotCount != null ? (
                     <p className="ru-review-trustpilot">
                       Trustpilot: {firm.trustpilotScore.toFixed(1)}/5 по {firm.trustpilotCount.toLocaleString('ru-RU')} отзывам,
-                      захват {firm.trustpilotCapturedAt ?? 'без даты'}; агрегат не доказывает reward по конкретному счёту.
+                      проверено {firm.trustpilotCapturedAt ?? 'дата не указана'}; средняя оценка не доказывает выплату по конкретному счёту.
                       {firm.trustpilotUrl ? <> <a href={firm.trustpilotUrl} target="_blank" rel="noopener noreferrer">Проверить профиль</a>.</> : null}
                     </p>
                   ) : null}
@@ -265,12 +265,12 @@ export default function RussianPartnerReview({
 
       <section className="ru-section" id="products">
         <div className="ru-shell">
-          <h2>Продукты и правила в текущем захвате</h2>
+          <h2>Программы и проверенные условия</h2>
           <p className="ru-muted">Цены остаются в валюте фирмы. Пустое поле означает, что число не подтверждено на странице оператора, а не бесплатный продукт.</p>
           {products.length > 0 && freshProducts.length === 0 && (
             <div className="ru-notice" data-russian-partner-review-freshness="stale">
               <strong>Свежих данных сейчас нет.</strong>{' '}
-              Последний доступный захват датирован {latestAnyCapture} и старше 30-дневного окна. Таблица и рекламные выводы требуют нового захвата перед оплатой.
+              Источники последний раз проверяли {latestAnyCapture}, более 30 дней назад. Цены временно скрыты; перед покупкой нужна повторная проверка условий фирмы.
             </div>
           )}
           <div className="ru-table-wrap">
@@ -402,7 +402,7 @@ export default function RussianPartnerReview({
               <div className="ru-review-author-avatar" aria-hidden="true">ED</div>
               <div>
                 <strong>Автор: Edris Derakhshi</strong>
-                <p>Основатель Traders Fund Hub, funded-трейдер с 2020 года и рыночный аналитик, публиковавшийся в CryptoQuant и CryptoPotato. Партнёрский статус отделён от редакционного балла, продуктовых чисел и country-check.</p>
+                <p>В обзоре сопоставлены программы {firmName}, правила просадки и условия выплат по официальным источникам. Даты проверки указаны рядом с данными, а партнёрская связь раскрыта отдельно.</p>
                 <Link href="/authors/edris-derakhshi">Профиль автора</Link>
               </div>
             </div>

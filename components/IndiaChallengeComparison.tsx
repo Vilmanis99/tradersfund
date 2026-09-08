@@ -70,7 +70,7 @@ const FIELD_STYLE = {
   borderRadius: 10,
   border: '1px solid var(--border)',
   background: 'var(--bg3)',
-  color: '#fff',
+  color: 'var(--text)',
   padding: '0 0.8rem',
   fontSize: '0.84rem',
   fontWeight: 700,
@@ -232,9 +232,9 @@ function ruleLabel(value: RuleAvailability) {
 }
 
 function ruleColor(value: RuleAvailability) {
-  if (value === true) return '#6ee7b7'
-  if (value === 'restricted') return '#fcd34d'
-  if (value === false) return '#fca5a5'
+  if (value === true) return 'var(--accent)'
+  if (value === 'restricted') return 'var(--gold)'
+  if (value === false) return 'var(--danger)'
   return 'var(--muted)'
 }
 
@@ -245,9 +245,9 @@ function evidenceStatusLabel(status: IndiaMatcherFirm['country']['status']) {
 }
 
 function evidenceStatusColor(status: IndiaMatcherFirm['country']['status']) {
-  if (status === 'verified') return '#6ee7b7'
-  if (status === 'partial') return '#fcd34d'
-  return '#fca5a5'
+  if (status === 'verified') return 'var(--accent)'
+  if (status === 'partial') return 'var(--gold)'
+  return 'var(--danger)'
 }
 
 function shortlistKey(row: ProductRow) {
@@ -1200,7 +1200,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                       <div className="india-shortlist-evidence">
                         <div>
                           <span>RBI Alert List snapshot</span>
-                          <strong style={{ color: '#6ee7b7' }}>Not found</strong>
+                          <strong style={{ color: 'var(--accent)' }}>Not found</strong>
                           <small>{firm.rbiAlert.summary}</small>
                           <a
                             href={firm.rbiAlert.sourceUrl}
@@ -1415,7 +1415,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                   {['Shortlist', 'Firm & programme', 'Entry & tiers', 'Targets & loss', 'Timing', 'Trading rules', 'Evidence & action'].map(label => (
                     <th key={label} scope="col" style={{
                       padding: '0.8rem',
-                      color: '#fff',
+                      color: 'var(--text)',
                       background: 'var(--bg3)',
                       borderBottom: '1px solid var(--border)',
                       textAlign: 'left',
@@ -1460,7 +1460,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         </button>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>
-                        <strong style={{ display: 'block', color: '#fff', fontSize: '0.82rem' }}>{firm.name}</strong>
+                        <strong style={{ display: 'block', color: 'var(--text)', fontSize: '0.82rem' }}>{firm.name}</strong>
                         <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.78rem', marginTop: '0.22rem' }}>
                           {product.name}
                         </span>
@@ -1477,10 +1477,10 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         <strong style={{
                           display: 'block',
                           color: accountSize === 'all'
-                            ? product.entryPrice ? '#fff' : '#fcd34d'
+                            ? product.entryPrice ? 'var(--text)' : 'var(--gold)'
                             : decisionMoneyLabel(product, 'entry', accountSize).startsWith('No ')
-                              ? '#fcd34d'
-                              : '#fff',
+                              ? 'var(--gold)'
+                              : 'var(--text)',
                           fontSize: '0.84rem',
                         }}>
                           {accountSize === 'all'
@@ -1496,7 +1496,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>
-                        <span style={{ display: 'block', color: '#fff', fontSize: '0.76rem', fontWeight: 800 }}>
+                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.76rem', fontWeight: 800 }}>
                           Target {profitTargetLabel(product)}
                         </span>
                         <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.7rem', marginTop: '0.3rem' }}>
@@ -1507,7 +1507,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>
-                        <span style={{ display: 'block', color: '#fff', fontSize: '0.72rem', fontWeight: 800 }}>
+                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.72rem', fontWeight: 800 }}>
                           Min days: {product.minTradingDays ?? 'None published'}
                         </span>
                         <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.69rem', marginTop: '0.3rem', textTransform: 'capitalize' }}>
@@ -1600,7 +1600,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
           </div>
         ) : (
           <div className="post-sidebar-card" style={{ marginTop: '1rem', padding: '1.5rem', textAlign: 'center' }}>
-            <h3 style={{ margin: 0, color: '#fff', fontSize: '1rem' }}>No sourced product matches every filter</h3>
+            <h3 style={{ margin: 0, color: 'var(--text)', fontSize: '1rem' }}>No sourced product matches every filter</h3>
             <p style={{ margin: '0.55rem auto 0', color: 'var(--muted)', fontSize: '0.82rem', maxWidth: 620 }}>
               Reset one filter rather than treating an unpublished or restricted rule as allowed.
             </p>

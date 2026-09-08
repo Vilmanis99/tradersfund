@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
-import { ArrowRight, BadgeCheck, Database, Scale, ShieldCheck } from 'lucide-react'
+import { ArrowRight, BadgeCheck, Scale, ShieldCheck } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianChallengeFinder from '@/components/RussianChallengeFinder'
 import { getRussianFinderRows } from '@/lib/challengeComparisonData'
@@ -134,7 +134,6 @@ export default function RussianBestPropFirmsPage() {
     .filter(item => item.products.length > 0 && item.products.every(product => isChallengeFresh(product)))
     .sort((a, b) => b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
 
-  const topFive = ranked.slice(0, 5)
   const globalPartners = ['fundednext', 'bright-funded', 'fundingpips']
     .map(slug => {
       const rankedItem = ranked.find(item => item.slug === slug)
@@ -157,8 +156,6 @@ export default function RussianBestPropFirmsPage() {
   const fundedNextProfile = partnerProfiles.find(item => item.slug === 'fundednext')
   const fundingPipsProfile = partnerProfiles.find(item => item.slug === 'fundingpips')
   const brightFundedProfile = partnerProfiles.find(item => item.slug === 'bright-funded')
-  const primaryPartnerProfiles = partnerProfiles.filter(item =>
-    item.slug === 'fundednext' || item.slug === 'bright-funded')
   const finderRows = getRussianFinderRows()
   const latestCapture = ranked
     .flatMap(item => item.products.map(product => product.sourceCapturedAt))
@@ -219,13 +216,10 @@ export default function RussianBestPropFirmsPage() {
             <div className="toc-title">Содержание рейтинга</div>
             <ol>
               <li><a href="#bystryy-otvet">Краткий ответ</a></li>
-              <li><a href="#glavnye-partnery">FundedNext и Bright Funded</a></li>
-              <li><a href="#podbor">Подбор по задаче</a></li>
+              <li><a href="#glavnye-partnery">Партнёры: обзоры и ограничения</a></li>
               <li><a href="#strana">Выбор по стране</a></li>
-              <li><a href="#top-5">Первые пять</a></li>
-              <li><a href="#partner-matrix">Три глобальных партнёра</a></li>
               <li><a href="#po-zadache">Выбор по бюджету, просадке и выплатам</a></li>
-              <li><a href="#polnyy-reyting">Полный рейтинг</a></li>
+              <li><a href="#polnyy-reyting">Расширенный список фирм</a></li>
               <li><a href="#kak-vybrat">Методика выбора</a></li>
               <li><a href="#rossiyskie-firmy">Российские проп-компании</a></li>
               <li><a href="#faq">Частые вопросы</a></li>
@@ -248,10 +242,11 @@ export default function RussianBestPropFirmsPage() {
       </section>
 
       <section className="ru-section" id="glavnye-partnery">
-        <div className="ru-shell" data-russian-ranking-primary-partners="fundednext-bright-funded">
+        <span id="partner-matrix" aria-hidden="true" />
+        <div className="ru-shell" data-russian-ranking-primary-partners="fundednext-bright-funded" data-russian-ranking-partners="single-section">
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ranking-primary-partners">
             <strong>Партнёрские ссылки.</strong>{' '}
-            Мы сотрудничаем с FundedNext и Bright Funded и можем получить комиссию после регистрации по нашей ссылке.
+            FundedNext и Bright Funded — основные партнёры сайта; FundingPips — дополнительный партнёр. Мы можем получить комиссию при покупке по нашей ссылке.
             Партнёрство не добавляет баллы в рейтинге. Перед оплатой подтвердите доступность программы для своей страны и документов.
           </div>
           <h2>FundedNext или Bright Funded: с чего начать сравнение</h2>
@@ -259,29 +254,28 @@ export default function RussianBestPropFirmsPage() {
             Сопоставьте валюту взноса, число этапов, торговую платформу, механизм просадки и способ получения прибыли.
             Подробный обзор объясняет ограничения каждой программы.
           </p>
-          <div className="ru-grid">
-            {primaryPartnerProfiles.map(item => {
+          <div className="ru-grid ru-ranking-partner-grid">
+            {partnerProfiles.map(item => {
               const isFundedNext = item.slug === 'fundednext'
-              const reviewHref = isFundedNext ? '/ru/obzor-fundednext' : '/ru/obzor-bright-funded'
+              const secondary = item.slug === 'fundingpips'
+              const reviewHref = isFundedNext ? '/ru/obzor-fundednext' : secondary ? '/ru/obzor-fundingpips' : '/ru/obzor-bright-funded'
               const phaseCounts = [...new Set(item.products.map(product => product.phases))].sort((a, b) => a - b)
               return (
-                <article className="ru-card" key={item.slug} data-russian-ranking-primary-partner={item.slug}>
+                <article className={`ru-card${secondary ? ' ru-ranking-secondary' : ''}`} key={item.slug} data-russian-ranking-primary-partner={secondary ? undefined : item.slug} data-russian-partner={item.slug}>
                   <div className="ru-card-head">
                     <h3>{item.firm.name}</h3>
-                    <span className="ru-score">Продуктов: {item.products.length}</span>
+                    <span className="ru-score">{secondary ? 'Дополнительный партнёр' : 'Основной партнёр'}</span>
                   </div>
                   <p>
-                    {isFundedNext
-                      ? `${item.pricedTiers} опубликованных цен в USD; среди ${item.products.length} маршрутов есть Stellar Instant с 0 оценочных фаз.`
-                      : `${item.pricedTiers} опубликованных цен в EUR для ${item.products.length} программ оценки; доступность платформы уточняйте для выбранной программы и страны.`}
+                    {item.products.length > 0 ? item.guidance.start : 'Источники требуют повторной проверки. До обновления не используйте прежние цены и правила для выбора программы.'}
                   </p>
                   <ul className="ru-facts">
                     <li><BadgeCheck size={14} aria-hidden="true" /> Диапазон входа: {item.range}</li>
-                    <li><ShieldCheck size={14} aria-hidden="true" /> Фазы: {phaseCounts.join(', ')}; просадка: {item.drawdowns.join(' / ')}</li>
-                    <li>{isFundedNext
-                      ? 'В профиле указаны банковский перевод, Rise и криптовалюта; доступность зависит от страны.'
-                      : 'Официальный справочник описывает банковский перевод в EUR и USDC ERC-20.'}</li>
+                    <li><ShieldCheck size={14} aria-hidden="true" /> Этапы: {phaseCounts.join(', ') || 'требуют проверки'}; просадка: {item.drawdowns.join(' / ') || 'требует проверки'}</li>
+                    <li>Программ: {item.products.length}; опубликованных цен: {item.pricedTiers}. Разные размеры счёта нельзя сравнивать только по минимальному взносу.</li>
                   </ul>
+                  {item.products.length > 0 && <details><summary>Страна, выплаты и важные ограничения</summary><p><strong>Страна:</strong> {item.guidance.country}</p><p><strong>Выплаты:</strong> {item.guidance.payout}</p><p><strong>Проверить:</strong> {item.guidance.watch}</p><p>Доступность платформы уточняйте для выбранной программы и страны.</p></details>}
+                  <p className="ru-source-line">Самая ранняя проверка источников: {item.products.map(product => product.sourceCapturedAt).sort()[0] ?? 'обновление ожидается'}.</p>
                   <div className="ru-actions">
                     <Link href={reviewHref} className="btn-outline">Русский обзор</Link>
                     <Link
@@ -297,7 +291,7 @@ export default function RussianBestPropFirmsPage() {
             })}
           </div>
           <p className="ru-source-line">
-            Для дополнительного сравнения ниже приведены условия FundingPips. Все три фирмы также представлены в общем рейтинге по редакционной оценке.
+            Это партнёрская подборка, а не места в рейтинге. Для сравнения одинаковых размеров счёта используйте подбор программ выше; цены указаны до скидок и дополнительных опций.
           </p>
         </div>
       </section>
@@ -331,114 +325,6 @@ export default function RussianBestPropFirmsPage() {
         </div>
       </section>
 
-      <section className="ru-section" id="top-5">
-        <div className="ru-shell">
-          <h2>Первые пять по текущему редакционному баллу</h2>
-          <p className="ru-muted">Карточки ниже выводятся из тех же фирменных и продуктовых данных, что и английская версия.</p>
-          <div className="ru-grid" data-russian-ranking="top-five">
-            {topFive.map((item, index) => {
-              const usdPrices = item.products.flatMap(product => product.accountSizes.flatMap(tier =>
-                tier.priceUsd != null && tier.priceUsd > 0 ? [tier.priceUsd] : []))
-              const eurPrices = item.products.flatMap(product => product.accountSizes.flatMap(tier =>
-                tier.priceEur != null && tier.priceEur > 0 ? [tier.priceEur] : []))
-              const entryPrices = [
-                ...(usdPrices.length ? [`от ${formatMoney(Math.min(...usdPrices), 'USD')}`] : []),
-                ...(eurPrices.length ? [`от ${formatMoney(Math.min(...eurPrices), 'EUR')}`] : []),
-              ].join(' / ') || 'цена не подтверждена'
-              const splits = [...new Set(item.products.flatMap(product =>
-                product.profitSplitPct == null ? [] : [product.profitSplitPct]))].sort((a, b) => a - b)
-              const drawdowns = [...new Set(item.products.map(product => drawdownLabel(product.drawdownType)))]
-              const reviewHref = item.slug === 'ftmo'
-                ? '/ru/obzor-ftmo'
-                : item.slug === 'fundednext'
-                  ? '/ru/obzor-fundednext'
-                  : item.slug === 'fundingpips'
-                  ? '/ru/obzor-fundingpips'
-                  : item.slug === 'bright-funded'
-                    ? '/ru/obzor-bright-funded'
-                    : item.firm.reviewUrl
-
-              return (
-                <article className="ru-card ru-ranking-card" key={item.slug} data-ranked-firm={item.slug}>
-                  <div className="ru-card-head">
-                    <span className="ru-rank">Место {index + 1}</span>
-                    <span className="ru-score">{item.firm.score.toFixed(1)}/10</span>
-                  </div>
-                  <h3>{item.firm.name}</h3>
-                  <ul className="ru-facts">
-                    <li><Database size={14} aria-hidden="true" /> {item.products.length} текущих продуктов</li>
-                    <li><BadgeCheck size={14} aria-hidden="true" /> вход {entryPrices}</li>
-                    <li><ShieldCheck size={14} aria-hidden="true" /> сплит {splits.length > 0 ? `${splits.join('–')}%` : 'не подтверждён'}; просадка: {drawdowns.join(' / ')}</li>
-                    <li>Источники проверены до {item.products.map(product => product.sourceCapturedAt).sort().at(-1)}</li>
-                  </ul>
-                  <Link
-                    className="ru-card-link"
-                    href={reviewHref}
-                    hrefLang={item.slug === 'ftmo' || item.slug === 'fundednext' || item.slug === 'fundingpips' || item.slug === 'bright-funded' ? 'ru' : 'en'}
-                  >
-                    {item.slug === 'ftmo' || item.slug === 'fundednext' || item.slug === 'fundingpips' || item.slug === 'bright-funded' ? 'Читать обзор на русском →' : 'Открыть полный обзор на английском →'}
-                  </Link>
-                </article>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="ru-section" id="partner-matrix">
-        <div
-          className="ru-shell"
-          data-russian-partner-shortlist="global"
-          data-russian-ranking-partner-matrix="three-global-partners"
-        >
-          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="partner-shortlist">
-            <strong>Партнёрские ссылки.</strong>{' '}
-            Переходы на сайты этих фирм могут принести нам комиссию. Она не влияет на редакционные оценки.
-            Перед оплатой проверьте страну, гражданство, документы и способы получения прибыли.
-          </div>
-          <h2>Сравнение FundedNext, Bright Funded и FundingPips</h2>
-          <p className="ru-muted">В этой таблице собраны наши партнёры. Используйте её для сравнения стоимости, просадки, выплат и ограничений. Порядок строк здесь не обозначает место в общем рейтинге.</p>
-          <div className="ru-table-wrap">
-            <table className="ru-table ru-partner-decision-table">
-              <thead>
-                <tr><th>Фирма и данные</th><th>Цена, сплит, просадка</th><th>Когда начинать сравнение</th><th>Страна, выплаты и главный риск</th><th>Действие</th></tr>
-              </thead>
-              <tbody>
-            {partnerProfiles.map(item => {
-              const reviewHref = item.slug === 'fundednext'
-                ? '/ru/obzor-fundednext'
-                : item.slug === 'fundingpips'
-                  ? '/ru/obzor-fundingpips'
-                  : item.slug === 'bright-funded'
-                  ? '/ru/obzor-bright-funded'
-                  : item.firm.reviewUrl
-              return (
-                <tr key={item.slug} data-russian-partner={item.slug}>
-                  <td><strong>{item.firm.name}</strong><br />TFH {item.firm.score.toFixed(1)}/10<br />{item.products.length} программ / {item.pricedTiers} цен<br />проверено {item.products.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'обновление ожидается'}</td>
-                  <td>{item.range}<br />базовые сплиты {item.splits.length > 0 ? `${item.splits.join('–')}%` : 'не подтверждены'}<br />{item.drawdowns.join(' / ') || 'просадка не подтверждена'}</td>
-                  <td>{item.guidance.start}</td>
-                  <td><strong>Страна:</strong> {item.guidance.country}<br /><strong>Выплаты:</strong> {item.guidance.payout}<br /><strong>Проверить:</strong> {item.guidance.watch}</td>
-                  <td>
-                    <div className="ru-ranking-table-actions">
-                    <Link href={reviewHref} className="btn-outline">Русский обзор</Link>
-                    <Link
-                      href={`/go/${item.slug}?from=ru-ranking-partner-shortlist`}
-                      rel="sponsored nofollow noopener"
-                      className="btn-primary"
-                    >
-                      Проверить условия <ArrowRight size={14} aria-hidden="true" />
-                    </Link>
-                    </div>
-                  </td>
-                </tr>
-              )
-            })}
-              </tbody>
-            </table>
-          </div>
-          <p className="ru-source-line">Цены указаны в исходной валюте до скидок и банковской конвертации. Условия, проверенные более 30 дней назад, не показываем до обновления источников.</p>
-        </div>
-      </section>
 
       <section className="ru-section" id="po-zadache">
         <div className="ru-shell" data-russian-ranking-intent-paths="payout-drawdown-budget">
@@ -480,27 +366,31 @@ export default function RussianBestPropFirmsPage() {
       </section>
 
       <section className="ru-section" id="polnyy-reyting">
-        <div className="ru-shell">
-          <h2>Список проп-компаний по редакционной оценке</h2>
-          <p className="ru-muted">Если у фирмы устареет хотя бы один продукт, она исчезнет из этой таблицы до следующей проверки источников.</p>
+        <span id="top-5" aria-hidden="true" />
+        <div className="ru-shell" data-russian-ranking="single-directory">
+          <h2>Расширенный список проп-компаний по редакционной оценке</h2>
+          <p className="ru-muted">В этом справочнике {ranked.length} фирм с актуальными по нашему сроку проверки источниками. Он шире подбора выше: включает разные рынки и фирмы, обзоры которых пока доступны только на английском. Это не единая таблица взаимозаменяемых программ.</p>
+          <p className="ru-muted">Балл TFH — редакционная оценка, не рейтинг отзывов трейдеров и не вероятность выплаты. Минимальный взнос относится к самому дешёвому опубликованному размеру, а не обязательно к выбранному в подборе счёту. Если у фирмы устареет хотя бы один продукт, она исчезнет из этой таблицы до следующей проверки источников.</p>
           <div className="ru-table-wrap">
             <table className="ru-table">
               <thead>
-                <tr><th>Место</th><th>Фирма</th><th>Балл</th><th>Продукты</th><th>Сплиты</th><th>Проверено</th><th>Связь</th></tr>
+                <tr><th>Место</th><th>Фирма и обзор</th><th>Балл TFH</th><th>Программы и вход</th><th>Доля трейдера / просадка</th><th>Самая ранняя проверка</th><th>Связь</th></tr>
               </thead>
               <tbody>
                 {ranked.map((item, index) => {
                   const splits = [...new Set(item.products.flatMap(product =>
                     product.profitSplitPct == null ? [] : [product.profitSplitPct]))].sort((a, b) => a - b)
-                  const latest = item.products.map(product => product.sourceCapturedAt).sort().at(-1)
+                  const oldest = item.products.map(product => product.sourceCapturedAt).sort()[0]
+                  const russianReview = item.slug === 'ftmo' ? '/ru/obzor-ftmo' : item.slug === 'fundednext' ? '/ru/obzor-fundednext' : item.slug === 'fundingpips' ? '/ru/obzor-fundingpips' : item.slug === 'bright-funded' ? '/ru/obzor-bright-funded' : null
+                  const drawdowns = [...new Set(item.products.map(product => drawdownLabel(product.drawdownType)))]
                   return (
-                    <tr key={item.slug}>
+                    <tr key={item.slug} data-ranked-firm={item.slug}>
                       <td>{index + 1}</td>
-                      <td><Link href={item.slug === 'ftmo' ? '/ru/obzor-ftmo' : item.slug === 'fundednext' ? '/ru/obzor-fundednext' : item.slug === 'fundingpips' ? '/ru/obzor-fundingpips' : item.slug === 'bright-funded' ? '/ru/obzor-bright-funded' : item.firm.reviewUrl}>{item.firm.name}</Link></td>
+                      <td><Link href={russianReview ?? item.firm.reviewUrl} hrefLang={russianReview ? 'ru' : 'en'}>{item.firm.name}</Link><br /><small>{russianReview ? 'Обзор на русском' : 'Обзор на английском'}</small></td>
                       <td>{item.firm.score.toFixed(1)}/10</td>
-                      <td>{item.products.length}</td>
-                      <td>{splits.length > 0 ? `${splits.join('–')}%` : '—'}</td>
-                      <td>{latest}</td>
+                      <td>Программ: {item.products.length}<br />Минимальный взнос: {productPricing(item.products).entry}</td>
+                      <td>{splits.length > 0 ? `${splits.join(' / ')}%` : 'не подтверждена'}<br />{drawdowns.join(' / ')}</td>
+                      <td>{oldest}</td>
                       <td>{item.firm.affiliateUrl ? 'партнёрская' : 'официальная'}</td>
                     </tr>
                   )
@@ -538,7 +428,7 @@ export default function RussianBestPropFirmsPage() {
             Если хотите начать без оценочных этапов, откройте <Link href="/ru/prop-firmy-bez-chelendzha">рейтинг проп-фирм без челленджа</Link>.
             Для валютных пар используйте <Link href="/ru/forex-prop-firmy">сравнение форекс-программ</Link>,
             для криптоинструментов — <Link href="/ru/luchshie-kripto-prop-firmy">обзор крипто-проп-фирм</Link>,
-            а для продуктового уровня — <Link href="/prop-firm-challenges" hrefLang="en">полный фильтр челленджей на английском</Link>.
+            а для сравнения конкретных программ — <Link href="#podbor">подбор на русском в начале страницы</Link>.
           </p>
         </div>
       </section>

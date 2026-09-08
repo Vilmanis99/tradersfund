@@ -119,7 +119,7 @@ export default function ContactForm() {
         {status === 'sending' ? 'Sending…' : 'Send Message'}
       </button>
       {status === 'error' && (
-        <p role="alert" style={{ color: '#f87171', fontSize: '0.85rem', marginTop: '0.75rem' }}>
+        <p role="alert" style={{ color: 'var(--danger)', fontSize: '0.85rem', marginTop: '0.75rem' }}>
           {feedback}
         </p>
       )}

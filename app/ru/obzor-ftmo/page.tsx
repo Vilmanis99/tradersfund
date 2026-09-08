@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import Link from '@/components/SafeLink'
 import {
@@ -22,7 +23,7 @@ import {
 } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru/obzor-ftmo'
@@ -89,7 +90,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Сколько стоит FTMO Challenge?',
-    a: 'В захвате от 28 августа 2026 года 2-Step стоит €89–€1,080, а 1-Step — €79–€999 для счетов от $10K до $200K. Размер счёта указан в USD, но fee публикуется в EUR; мы не пересчитываем его по временному курсу.',
+    a: 'По данным от 28 августа 2026 года 2-Step стоит €89–€1,080, а 1-Step — €79–€999 для счетов от $10K до $200K. Размер счёта указан в USD, а взнос — в EUR. В обзоре сохранены исходные валюты без пересчёта по временному курсу.',
   },
   {
     q: 'Чем FTMO 1-Step отличается от 2-Step?',
@@ -160,7 +161,7 @@ export default function RussianFtmoReviewPage() {
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
     datePublished: '2026-08-28',
-    dateModified: latestCapture,
+    dateModified: russianRouteDateModified(PATH, latestCapture),
     author: { '@type': 'Person', name: 'Edris Derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
     mainEntityOfPage: `https://tradersfundhub.com${PATH}`,
@@ -185,7 +186,7 @@ export default function RussianFtmoReviewPage() {
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
             <span>Автор: Edris Derakhshi</span>
-            <span>Обновлено: {latestCapture}</span>
+            <span>Обновлено: {russianRouteDateModified(PATH, latestCapture)}</span>
             <span>13 минут чтения</span>
           </div>
           <div className="ru-stats">
@@ -230,7 +231,7 @@ export default function RussianFtmoReviewPage() {
             <p>
               Этот обзор адресован русскоязычным людям в разных странах. Официальный список FTMO описывает территориальную доступность,
               поэтому жителю Латвии, Германии, Израиля, ОАЭ или другой страны нужно проверять собственное резидентство, документы,
-              платёжный метод и фактический checkout. Мы не переносим запрет для Российской Федерации на всех носителей русского языка,
+              способ оплаты и условия покупки. Мы не переносим запрет для Российской Федерации на всех носителей русского языка,
               но и не обещаем допуск человеку только по адресу за рубежом.
             </p>
             <p>
@@ -275,7 +276,7 @@ export default function RussianFtmoReviewPage() {
             </p>
             <p>
               Перед вводом карты проверьте 3 элемента: адрес начинается с ftmo.com, продукт называется FTMO Challenge: 1-Step или 2-Step,
-              а цена и валюта совпадают с checkout. Для США FTMO публикует отдельный переход на ftmo.oanda.com; цифры глобальной версии нельзя
+              а цена и валюта совпадают с выбранной страницей оплаты. Для США FTMO публикует отдельный переход на ftmo.oanda.com; цифры глобальной версии нельзя
               автоматически переносить на другую сущность или региональный storefront.
             </p>
           </div>
@@ -311,8 +312,8 @@ export default function RussianFtmoReviewPage() {
             <h2>Все 10 цен FTMO и true cost в EUR</h2>
             <p>
               FTMO маркирует размер симулируемого счёта в USD, но публикует fee в EUR. Мы сохраняем обе единицы и не применяем курс дня:
-              пересчёт €540 в доллары быстро устареет и скроет комиссию банка. Таблицы ниже используют только list price из захвата {latestCapture}
-              и функцию computeTrueCost() через challengeTierEconomics().
+              пересчёт €540 в доллары быстро устареет и скроет комиссию банка. В таблицах ниже использованы базовые цены,
+              проверенные {latestCapture}. Требуемая валовая прибыль рассчитывается как взнос, делённый на долю трейдера.
             </p>
             {freshProducts.map(product => (
               <div key={product.productSlug} data-russian-ftmo-pricing-product={product.productSlug}>
@@ -373,7 +374,7 @@ export default function RussianFtmoReviewPage() {
             <p>
               На 1-Step самый прибыльный день не должен превышать 50% суммы Positive Days’ Profit. Если положительные дни дали $10,000,
               один день не может составлять больше $5,000; иначе нужно продолжать торговлю, пока доля не снизится. Правило применяется не только
-              к прохождению challenge, но и к запросу reward. В structured capture 2-Step хранит null, потому что это ограничение там не опубликовано.
+              к прохождению оценки, но и к запросу выплаты. Для 2-Step такое ограничение в проверенном источнике не опубликовано; отсутствие данных не следует принимать за отдельное разрешение фирмы.
             </p>
             <p><a href={NEWS_URL} target="_blank" rel="noopener noreferrer">Проверить отдельное правило FTMO для торговли на новостях</a>.</p>
           </div>
@@ -468,7 +469,7 @@ export default function RussianFtmoReviewPage() {
             <ol>
               <li>Откройте официальный domain и подтвердите страну по текущему списку, а не по языку интерфейса.</li>
               <li>Выберите 1-Step или 2-Step по просадке, а не по разнице {eur((twoStep100k?.priceEur ?? 0) - (oneStep100k?.priceEur ?? 0))} на $100K.</li>
-              <li>Сохраните финальный EUR total checkout; отображаемая цена может отличаться из-за налога, региона или действующей акции.</li>
+              <li>Сохраните итоговую сумму в EUR на странице оплаты: она может отличаться из-за налога, региона или действующей акции.</li>
               <li>Для 1-Step смоделируйте Max Daily Loss {oneStep?.dailyLossPct ?? '—'}%, EOD-trailing и Best Day {oneStep?.consistencyRulePct ?? '—'}% вместе.</li>
               <li>Для 2-Step заложите {twoStep?.minTradingDays ?? '—'} торговых дня в каждой фазе и не считайте refund полученным до первой reward.</li>
               <li>Проверьте funded-правила новостей, overnight и weekend отдельно от evaluation-правил.</li>
@@ -476,7 +477,7 @@ export default function RussianFtmoReviewPage() {
             </ol>
             <div className="ru-actions">
               <Link href="/go/ftmo?from=ru-ftmo-review-checklist" rel="nofollow noopener" className="btn-outline">Официальный сайт FTMO</Link>
-              <Link href="/ru/luchshie-prop-firmy" className="btn-primary">Сравнить глобальные фирмы <ArrowRight size={14} aria-hidden="true" /></Link>
+              <Link href={getRussianReviewFinderHref('ftmo')} data-russian-review-finder="ftmo" className="btn-primary">Сравнить двухэтапные программы <ArrowRight size={14} aria-hidden="true" /></Link>
             </div>
             <p className="ru-source-line"><ExternalLink size={14} aria-hidden="true" /> Первичные источники: {sourceUrls.map((url, index) => <span key={url}>{index ? ' · ' : ''}<a href={url} target="_blank" rel="noopener noreferrer">страница {index + 1}</a></span>)}{' · '}<a href={COMPARISON_URL} target="_blank" rel="noopener noreferrer">сравнение продуктов</a>{' · '}<a href={PAYOUT_URL} target="_blank" rel="noopener noreferrer">выплаты</a>.</p>
             <p className="ru-source-line">Англоязычная проверка: <Link href="/blog/ftmo-review" hrefLang="en">FTMO review</Link>.</p>

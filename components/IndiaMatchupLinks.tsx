@@ -63,7 +63,7 @@ export default function IndiaMatchupLinks({
                 <FileCheck2 size={11} aria-hidden="true" />
                 {matchup.expectedProductCount} source-dated products
               </span>
-              <h3 style={{ color: '#fff', fontSize: '0.98rem', margin: '0.55rem 0 0' }}>
+              <h3 style={{ color: 'var(--text)', fontSize: '0.98rem', margin: '0.55rem 0 0' }}>
                 {matchup.title} for India
               </h3>
               <p style={{ color: 'var(--text)', fontSize: '0.8rem', lineHeight: 1.6, margin: '0.5rem 0' }}>

@@ -109,7 +109,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
    * route would light up Home.
    */
   function isActive(href: string): boolean {
-    if (href === '/') return pathname === '/'
+    if (href === '/' || href === '/ru') return pathname === href
     return pathname === href || pathname.startsWith(href + '/')
   }
 

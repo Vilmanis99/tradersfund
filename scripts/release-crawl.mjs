@@ -1043,7 +1043,7 @@ const russianExpectations = new Map([
       'data-russian-ranking-primary-partner="fundednext"',
       'data-russian-ranking-primary-partner="bright-funded"',
       'data-russian-affiliate-disclosure="ranking-primary-partners"',
-      'доступность платформы уточняйте для выбранной программы и страны.',
+      'Доступность платформы уточняйте для выбранной программы и страны.',
       '/go/fundednext?from=ru-ranking-primary-fundednext',
       '/go/bright-funded?from=ru-ranking-primary-bright-funded',
       'data-russian-challenge-finder="product-first"',
@@ -1051,15 +1051,16 @@ const russianExpectations = new Map([
       'data-russian-country-boundary="finder-not-access"',
       'data-finder-product=',
       'data-russian-ranking-country-paths="diaspora-not-russia"',
-      'data-russian-ranking="top-five"',
+      'data-russian-ranking="single-directory"',
       'data-russian-affiliate-disclosure="ranking"',
-      'data-russian-partner-shortlist="global"',
-      'data-russian-ranking-partner-matrix="three-global-partners"',
+      'data-russian-ranking-partners="single-section"',
       'data-russian-ranking-intent-paths="payout-drawdown-budget"',
-      'data-russian-affiliate-disclosure="partner-shortlist"',
-      '/go/fundednext?from=ru-ranking-partner-shortlist',
-      '/go/fundingpips?from=ru-ranking-partner-shortlist',
-      '/go/bright-funded?from=ru-ranking-partner-shortlist',
+      '/go/fundingpips?from=ru-ranking-primary-fundingpips',
+      'data-russian-partner="fundednext"',
+      'data-russian-partner="bright-funded"',
+      'data-russian-partner="fundingpips"',
+      'id="top-5"',
+      'id="partner-matrix"',
     ],
   }],
   ['/ru/luchshie-kripto-prop-firmy', {
@@ -1179,7 +1180,7 @@ const russianExpectations = new Map([
       'С чем сравнить Bright Funded',
       '/ru/vyplaty-prop-firm',
       '/ru/prop-firmy-bez-kyc',
-      '/authors/tara-mohseni',
+      '/authors/edris-derakhshi',
     ],
   }],
   ['/ru/chto-takoe-prop-firma', {
@@ -1668,14 +1669,14 @@ const russianRankingPrimaryIndex = russianRankingPage?.html.indexOf(
 const russianRankingMatcherIndex = russianRankingPage?.html.indexOf(
   'data-russian-challenge-finder="product-first"',
 ) ?? -1
-const russianRankingTopFiveIndex = russianRankingPage?.html.indexOf(
-  'data-russian-ranking="top-five"',
+const russianRankingDirectoryIndex = russianRankingPage?.html.indexOf(
+  'data-russian-ranking="single-directory"',
 ) ?? -1
 if (
   russianRankingPrimaryIndex < 0
   || russianRankingMatcherIndex < 0
   || russianRankingPrimaryIndex < russianRankingMatcherIndex
-  || russianRankingTopFiveIndex < russianRankingPrimaryIndex
+  || russianRankingDirectoryIndex < russianRankingPrimaryIndex
 ) {
   errors.push('/ru/luchshie-prop-firmy: product finder, disclosed partners and editorial ranking must appear in that order')
 }

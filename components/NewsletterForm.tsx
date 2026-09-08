@@ -89,12 +89,12 @@ export default function NewsletterForm({
             : (isRussian ? 'Подписаться' : 'Subscribe')}
       </button>
       {status === 'pending' && (
-        <span role="status" style={{ color: '#22c55e', fontSize: '0.8rem', position: 'absolute', bottom: -20 }}>
+        <span role="status" style={{ color: 'var(--accent)', fontSize: '0.8rem', position: 'absolute', bottom: -20 }}>
           {message}
         </span>
       )}
       {status === 'error' && (
-        <span role="alert" style={{ color: '#f87171', fontSize: '0.8rem', position: 'absolute', bottom: -20 }}>
+        <span role="alert" style={{ color: 'var(--danger)', fontSize: '0.8rem', position: 'absolute', bottom: -20 }}>
           {message}
         </span>
       )}

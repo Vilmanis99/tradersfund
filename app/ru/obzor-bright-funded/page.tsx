@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import Link from '@/components/SafeLink'
 import { AlertTriangle, ArrowRight, BadgeDollarSign, CheckCircle2, Database, ExternalLink } from 'lucide-react'
@@ -59,11 +60,11 @@ function targets(product: Challenge) {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какая программа Bright Funded самая дешёвая?',
-    a: 'В захвате от 27 августа 2026 года минимальная листинговая цена — €47 за 2-Step Bright на $5K. У программы две фазы с целями 8% и 5%, дневной лимит 4% и статический максимальный убыток 8%.',
+    a: 'По данным официальных страниц, проверенным 27 августа 2026 года, минимальная базовая цена — €47 за 2-Step Bright на $5K. У программы две фазы с целями 8% и 5%, дневной лимит 4% и статический максимальный убыток 8%.',
   },
   {
     q: 'Bright Funded доступен русскоязычным трейдерам?',
-    a: 'Язык сам по себе не ограничивает доступ. Опубликованный список запрещает регистрацию и покупку резидентам или гражданам Кубы, Ирана, Северной Кореи, Сирии, Вьетнама и Пакистана. Россия в списке не названа, но конкретный профиль всё равно должен пройти checkout, санкционную проверку и KYC.',
+    a: 'Язык сам по себе не определяет доступ. Опубликованный список запрещает регистрацию и покупку резидентам или гражданам Кубы, Ирана, Северной Кореи, Сирии, Вьетнама и Пакистана. Россия в списке не названа, но гражданство, место проживания, санкционные ограничения и документы конкретного трейдера всё равно нужно проверить до оплаты.',
   },
   {
     q: 'Можно ли зарегистрироваться, проживая в России?',
@@ -124,7 +125,7 @@ export default function RussianBrightFundedReviewPage() {
     ...faqs,
     ...(firm?.trustpilotRatingSuppressed ? [{
       q: 'Почему у Bright Funded нет средней оценки Trustpilot?',
-      a: `В захвате от ${firm.trustpilotCapturedAt ?? 'неуказанной даты'} агрегат был скрыт после отметки Trustpilot о нарушении правил платформы. Это отдельный статус suppression, а не оценка 0/5 и не отсутствие проверки; выплату, KYC и торговое правило конкретного счёта он сам по себе не доказывает.`,
+      a: `При проверке от ${firm.trustpilotCapturedAt ?? 'неуказанной даты'} средняя оценка была скрыта после отметки Trustpilot о нарушении правил платформы. Скрытая оценка не равна 0/5 и не означает, что профиль не проверяли. Этот статус сам по себе не подтверждает выплату, прохождение KYC или условия конкретного счёта.`,
     }] : []),
   ]
 
@@ -145,8 +146,8 @@ export default function RussianBrightFundedReviewPage() {
     dateModified: lastModified,
     author: {
       '@type': 'Person',
-      name: 'Tara Mohseni',
-      url: 'https://tradersfundhub.com/authors/tara-mohseni',
+      name: 'Edris Derakhshi',
+      url: 'https://tradersfundhub.com/authors/edris-derakhshi',
     },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
     mainEntityOfPage: `https://tradersfundhub.com${PATH}`,
@@ -166,7 +167,7 @@ export default function RussianBrightFundedReviewPage() {
           <h1>Bright Funded: обзор 2026 — 3 программы и 18 цен</h1>
           <p className="ru-lead">Bright Funded продаёт challenge в евро, а размер симулируемого счёта показывает в долларах. Главный выбор — не между «дешевле» и «дороже», а между 6% трейлинг-просадкой, 8% статикой и 10% статикой.</p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
-            <span>Автор: Tara Mohseni</span>
+            <span>Автор: Edris Derakhshi</span>
             <span>Обновлено: {lastModified}</span>
             <span>13 минут чтения</span>
           </div>
@@ -210,7 +211,7 @@ export default function RussianBrightFundedReviewPage() {
             <p><strong>1-Step сокращает оценку, но двигает пол убытка.</strong> На $100K он стоит {eur(oneStep100k?.priceEur)}, требует {oneStep?.profitTargets?.phase1 ?? '—'}% и использует {oneStep?.maxLossPct ?? '—'}% трейлинг от максимальной equity. Classic на том же $100K стоит {eur(classic100k?.priceEur)}, оставляет {classic?.maxLossPct ?? '—'}% статического пространства, но требует две фазы и {classic?.profitTargets?.phase1 ?? '—'}% в первой.</p>
             <p>Для русскоязычного пользователя за пределами России Bright Funded интересен именно как глобальная EUR-priced фирма. Для резидента или гражданина любой страны решение начинается с опубликованного списка ограничений, KYC и доступного способа выплаты, а не с языка сайта.</p>
             <div className="ru-notice" data-russian-bright-summary-cta="qualified-country-first">
-              <strong>Проверка до checkout.</strong> Сначала сопоставьте 4 поля: гражданство, страну проживания, способ оплаты и будущий payout rail. Отсутствие страны в опубликованном запрете не заменяет KYC-решение по конкретному профилю.
+              <strong>Что проверить до оплаты.</strong> Сопоставьте 4 условия: гражданство, страну проживания, способ оплаты и способ получения выплаты. Отсутствие страны в опубликованном запрете не заменяет проверку документов конкретного трейдера.
             </div>
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="bright-funded-summary">
               <strong>Партнёрское раскрытие.</strong> Если вы перейдёте к Bright Funded после этой проверки и зарегистрируетесь, мы можем получить комиссию. Она не меняет {freshProducts.length} проверенные программы, {pricedTiers.length} текущих цен или наш вывод о необходимости country-check до оплаты.
@@ -234,7 +235,7 @@ export default function RussianBrightFundedReviewPage() {
             >
               <h2 id="reviews">Отзывы о Bright Funded: почему мы не показываем среднюю оценку</h2>
               <p>
-                В захвате профиля Trustpilot от {firm.trustpilotCapturedAt ?? 'неуказанной даты'} агрегат Bright Funded был скрыт после отметки
+                При проверке профиля Trustpilot от {firm.trustpilotCapturedAt ?? 'неуказанной даты'} средняя оценка Bright Funded была скрыта после отметки
                 о нарушении правил платформы. Поэтому в нашей модели стоят <strong>не 0/5</strong>, а отдельный статус suppression без среднего балла
                 и количества: ноль, отсутствие данных и снятый агрегат означают три разные вещи.
               </p>
@@ -272,7 +273,7 @@ export default function RussianBrightFundedReviewPage() {
               <strong><AlertTriangle size={16} aria-hidden="true" /> Россия не названа в опубликованном списке, но это не персональная гарантия.</strong>{' '}
               Статья Bright Funded от 20 апреля 2026 года запрещает покупку и регистрацию людям, которые проживают в или имеют гражданство Кубы, Ирана, Северной Кореи, Сирии, Вьетнама и Пакистана. Проверка применяется к резидентству и гражданству, поэтому адрес, документы и платёжный профиль должны совпадать.
             </div>
-            <p>Русскоязычный трейдер в ЕС, Великобритании, Казахстане, ОАЭ, Израиле, Северной Америке или другой стране не должен выбирать ответ по языку. Перед оплатой нужно проверить точное гражданство и резидентство, затем пройти checkout своими данными и подтвердить доступный payout-метод. Мы не используем отсутствие страны в списке как обещание, что банк, санкционный фильтр или KYC примет конкретный профиль.</p>
+            <p>Для русскоязычного трейдера в ЕС, Великобритании, Казахстане, ОАЭ, Израиле, Северной Америке или другой стране важен фактический профиль, а не язык. Перед оплатой уточните ограничения по гражданству и месту проживания, используйте собственные данные и подтвердите способ получения выплаты. Отсутствие страны в списке не гарантирует, что банк, санкционная проверка или KYC одобрит конкретного трейдера.</p>
             <p><a href={COUNTRIES_URL} target="_blank" rel="noopener noreferrer">Открыть официальный список ограниченных стран</a>. VPN, прокси, чужая карта или неверный адрес не являются способом получить доступ: несоответствие данных создаёт риск закрытия счёта и отказа в reward.</p>
           </div>
         </section>
@@ -315,7 +316,7 @@ export default function RussianBrightFundedReviewPage() {
             <div className="ru-content">
               <h2 id="prices">Все {pricedTiers.length} листинговых цен</h2>
               <p>Счёт номинирован в USD, а challenge оплачивается в EUR. Таблица сохраняет валюту фирмы и не конвертирует её в рубли, тенге, дирхамы или доллары по курсу, который устареет после публикации.</p>
-              <div className="ru-notice"><strong>Временная акция не стала базовой ценой.</strong> На момент захвата сайт показывал код B2B30 и скидку 30%. Ни одна промо-сумма не записана ниже как постоянный листинг; финальную сумму нужно проверять в checkout.</div>
+              <div className="ru-notice"><strong>Акционная цена не равна базовой.</strong> На дату проверки сайт показывал код B2B30 и скидку 30%. В таблице ниже сохранены базовые цены без этой временной скидки; окончательную сумму проверяйте на странице оплаты.</div>
             </div>
             <div className="ru-table-wrap">
               <table className="ru-table" data-russian-bright-price-count={pricedTiers.length}>
@@ -375,7 +376,7 @@ export default function RussianBrightFundedReviewPage() {
               <section><h3>Срок первой и следующих выплат</h3><p>Справка указывает первый запрос через {freshProducts[0]?.payoutFirstDays ?? '—'} дней после первой funded-сделки, затем каждые 14 дней. Но та же страница называет bi-weekly режим дополнением. Это внутреннее противоречие Bright Funded: до покупки нужно получить подтверждение именно базового цикла выбранной конфигурации.</p></section>
               <section><h3>Два маршрута денег</h3><p>Банковский перевод обрабатывается в EUR, криптовыплата — в USDC по сети ERC-20. Опубликованного минимального reward нет: справка разрешает запрос от $0.01. Практически маленькая сумма всё равно может потерять заметную долю на банковской, сетевой или обменной комиссии.</p></section>
               <section><h3>15% Evaluation Profit Reward — не мгновенный cashback</h3><p>После минимум 10% совокупного роста на funded-счетах и одобренной выплаты Bright Funded создаёт новый funded-счёт, добавляя 15% прибыли оценочных фаз к его стартовому балансу. Бонус становится выводимым в следующем payout-цикле после одной активирующей сделки. Он не компенсирует fee сразу после прохождения challenge.</p></section>
-              <section><h3>80%, 90% и 100% — три разных условия</h3><p>Новый funded-счёт стартует с 80%. Доля 90% — checkout add-on; 100% относится к scaling plan. Для сравнения true cost мы используем только базовые 80%, иначе расчёт подменил бы стартовое условие рекламным потолком.</p></section>
+              <section><h3>80%, 90% и 100% — три разных условия</h3><p>На новом счёте после оценки базовая доля трейдера составляет 80%. Доля 90% доступна как платное дополнение при покупке; 100% относится к программе увеличения счёта. Расчёт окупаемости ниже использует базовые 80%, а не максимальный рекламируемый процент.</p></section>
             </div>
             <p><a href={REWARD_URL} target="_blank" rel="noopener noreferrer">Проверить официальные условия reward и payout</a>.</p>
           </div>
@@ -399,7 +400,7 @@ export default function RussianBrightFundedReviewPage() {
             <h2 id="diaspora">Что означает EUR-цена для русскоязычных за рубежом</h2>
             <p>Bright Funded отделяет валюту покупки от размера счёта: fee от {eur(minPrice)} до {eur(maxPrice)} списывается в евро, тогда как аккаунты маркируются $5K–$200K. Для человека с EUR-картой это убирает одну конверсию при покупке; для карты в другой валюте итог задаёт банк или платёжный провайдер.</p>
             <p>Маршрут выплаты тоже влияет на чистый результат. EUR bank transfer может быть удобнее пользователю с европейским банковским счётом, а USDC ERC-20 — пользователю с законным доступом к подходящему кошельку и off-ramp. Ни один маршрут не следует описывать как универсальный для «русских»: страна проживания, банк, налоговый статус и правила криптовалют различаются.</p>
-            <p>Практический фильтр состоит из 5 шагов: проверить гражданство и резидентство, увидеть EUR-total в checkout, использовать платёжный метод на своё имя, заранее выбрать EUR bank или USDC, затем сохранить условия выбранных add-ons. Такой порядок повышает шанс, что регистрация дойдёт до KYC и выплаты, а не остановится после покупки.</p>
+            <p>До покупки выполните 5 проверок: уточните ограничения по гражданству и месту проживания, посмотрите итоговую цену в EUR, выберите способ оплаты на своё имя, подтвердите получение выплаты банковским переводом в EUR или в USDC и сохраните условия платных дополнений. Эти проверки помогают заметить несовместимые условия заранее, но не гарантируют прохождение KYC или выплату.</p>
           </div>
         </section>
 
@@ -455,21 +456,21 @@ export default function RussianBrightFundedReviewPage() {
             data-russian-bright-comparison-prices={comparisonPriceCount}
           >
             <h2 id="alternatives">С чем сравнить Bright Funded</h2>
-            <p>Используйте 5 маршрутов по конкретному блокеру, а не ещё одну таблицу «лучших» брендов. Сначала отделите риск продукта, способ выплаты, KYC, валюту checkout и отсутствие подходящего варианта; только после этого возвращайтесь к регистрации.</p>
+            <p>Сравнивайте альтернативы по тому условию, которое вам не подходит: просадке, сроку выплаты, проверке документов или валюте оплаты. Следующие 5 материалов помогают разобрать эти различия до регистрации.</p>
             <ul className="ru-review-related-links">
-              <li><Link href="/ru/fundednext-vs-bright-funded">Bright Funded или FundedNext</Link> — прямое сравнение {comparisonProductCount} свежих продуктов и {comparisonPriceCount} USD/EUR цен по drawdown, true cost, payout и country-check.</li>
-              <li><Link href="/ru/obzor-fundednext">Обзор FundedNext</Link> — {fundedNextProducts.length} модели и {fundedNextPricedTierCount} текущих USD-цен, если EUR checkout, 30-дневный первый payout или один из 3 risk buckets Bright Funded не подходит.</li>
+              <li><Link href="/ru/fundednext-vs-bright-funded">Bright Funded или FundedNext</Link> — сравнение {comparisonProductCount} программ и {comparisonPriceCount} цен в USD/EUR: просадка, окупаемость взноса, выплаты и ограничения по стране.</li>
+              <li><Link href="/ru/obzor-fundednext">Обзор FundedNext</Link> — {fundedNextProducts.length} модели и {fundedNextPricedTierCount} цен в USD, если оплата в EUR, ожидание первого запроса выплаты 30 дней или один из 3 режимов просадки Bright Funded не подходит.</li>
               <li><Link href="/ru/vyplaty-prop-firm">Сравнение выплат проп-фирм</Link> — отдельная проверка 2 маршрутов Bright Funded, календаря reward и альтернатив до того, как комиссия банка или сети изменит чистый результат.</li>
               <li><Link href="/ru/prop-firmy-bez-kyc">Проверка KYC и страны</Link> — гражданство, резидентство, документы и payment ownership проверяются до цены; отсутствие страны в опубликованном запрете не равно персональному одобрению.</li>
-              <li><Link href="/ru/luchshie-prop-firmy">Полный рейтинг глобальных проп-фирм</Link> — следующий маршрут, если ни одна из {freshProducts.length} программ Bright Funded и {fundedNextProducts.length} моделей FundedNext не совпадает с торговым планом.</li>
+              <li><Link href={getRussianReviewFinderHref('bright-funded')} data-russian-review-finder="bright-funded">Подбор и сравнение программ</Link> — начните с двухэтапных вариантов, затем измените размер счёта, бюджет и число этапов под свой торговый план.</li>
             </ul>
 
             <div className="ru-review-author" aria-label="Автор обзора Bright Funded">
-              <div className="ru-review-author-avatar" aria-hidden="true">TM</div>
+              <div className="ru-review-author-avatar" aria-hidden="true">ED</div>
               <div>
-                <strong>Автор: Tara Mohseni</strong>
-                <p>Пишет финансовые материалы с 2020 года и работает с ними полный день с 2022 года после опыта с криптобиржей и розничным forex-брокером. В этом обзоре 3 программы, 18 EUR-цен и партнёрский CTA отделены друг от друга.</p>
-                <Link href="/authors/tara-mohseni">Профиль автора</Link>
+                <strong>Автор: Edris Derakhshi</strong>
+                <p>Обзор сравнивает 3 программы Bright Funded по официальным источникам: цены в EUR, правила просадки и условия выплат. Даты проверки указаны рядом с данными; партнёрская связь раскрыта отдельно.</p>
+                <Link href="/authors/edris-derakhshi">Профиль автора</Link>
               </div>
             </div>
           </div>

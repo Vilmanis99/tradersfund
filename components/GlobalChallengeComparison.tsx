@@ -71,7 +71,7 @@ const FIELD_STYLE = {
   borderRadius: 10,
   border: '1px solid var(--border)',
   background: 'var(--bg3)',
-  color: '#fff',
+  color: 'var(--text)',
   padding: '0 0.8rem',
   fontSize: '0.82rem',
   fontWeight: 700,
@@ -250,9 +250,9 @@ function ruleLabel(value: RuleAvailability) {
 }
 
 function ruleColor(value: RuleAvailability) {
-  if (value === true) return '#6ee7b7'
-  if (value === 'restricted') return '#fcd34d'
-  if (value === false) return '#fca5a5'
+  if (value === true) return 'var(--accent)'
+  if (value === 'restricted') return 'var(--gold)'
+  if (value === false) return 'var(--danger)'
   return 'var(--muted)'
 }
 
@@ -1341,7 +1341,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                     ].map(label => (
                       <th key={label} scope="col" style={{
                         padding: '0.8rem',
-                        color: '#fff',
+                        color: 'var(--text)',
                         background: 'var(--bg3)',
                         borderBottom: '1px solid var(--border)',
                         textAlign: 'left',
@@ -1401,7 +1401,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                             />
                           ) : null}
                           <span>
-                            <strong style={{ display: 'block', color: '#fff', fontSize: '0.8rem' }}>
+                            <strong style={{ display: 'block', color: 'var(--text)', fontSize: '0.8rem' }}>
                               {firm.name}
                             </strong>
                             <span style={{ color: 'var(--gold)', fontSize: '0.67rem', fontWeight: 800 }}>
@@ -1422,7 +1422,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 205 }}>
-                        <strong style={{ display: 'block', color: priceRange(tiersForSize(product.tiers, accountSize)) === 'Unverified' ? '#fcd34d' : '#fff', fontSize: '0.8rem' }}>
+                        <strong style={{ display: 'block', color: priceRange(tiersForSize(product.tiers, accountSize)) === 'Unverified' ? 'var(--gold)' : 'var(--text)', fontSize: '0.8rem' }}>
                           {priceRange(tiersForSize(product.tiers, accountSize))}
                         </strong>
                         <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.68rem', marginTop: '0.3rem' }}>
@@ -1438,7 +1438,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 170 }}>
-                        <strong style={{ display: 'block', color: '#fff', fontSize: '0.75rem' }}>
+                        <strong style={{ display: 'block', color: 'var(--text)', fontSize: '0.75rem' }}>
                           Target {profitTargetLabel(product)}
                         </strong>
                         <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.68rem', marginTop: '0.35rem' }}>
@@ -1452,7 +1452,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 190 }}>
-                        <strong style={{ display: 'block', color: '#fff', fontSize: '0.72rem' }}>
+                        <strong style={{ display: 'block', color: 'var(--text)', fontSize: '0.72rem' }}>
                           Daily {percentageOrTierDollars(product.dailyLossPct, product.tiers, 'dailyLossUsd')}
                         </strong>
                         <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.7rem', marginTop: '0.35rem' }}>
@@ -1463,7 +1463,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 175 }}>
-                        <span style={{ display: 'block', color: '#fff', fontSize: '0.7rem', fontWeight: 800, textTransform: 'capitalize' }}>
+                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.7rem', fontWeight: 800, textTransform: 'capitalize' }}>
                           {payoutLabel(product)}
                         </span>
                         <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.68rem', marginTop: '0.35rem' }}>
@@ -1559,7 +1559,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
           </>
         ) : (
           <div className="post-sidebar-card" style={{ marginTop: '1rem', padding: '1.5rem', textAlign: 'center' }}>
-            <h3 style={{ margin: 0, color: '#fff', fontSize: '1rem' }}>No sourced product matches every filter</h3>
+            <h3 style={{ margin: 0, color: 'var(--text)', fontSize: '1rem' }}>No sourced product matches every filter</h3>
             <p style={{ margin: '0.55rem auto 0', color: 'var(--muted)', fontSize: '0.82rem', maxWidth: 620 }}>
               Reset one filter rather than treating an unpublished rule or fee as a match.
             </p>

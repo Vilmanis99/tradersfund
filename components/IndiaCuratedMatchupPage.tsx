@@ -660,7 +660,7 @@ export default function IndiaCuratedMatchupPage({
                   style={{ padding: '1rem', textDecoration: 'none' }}
                 >
                   <span className="bento-tile-eyebrow">India head-to-head</span>
-                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.4rem' }}>
+                  <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.4rem' }}>
                     {matchup.title}
                   </strong>
                   <span style={{

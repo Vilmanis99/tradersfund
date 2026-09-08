@@ -76,7 +76,7 @@ function FirmHeroCard({
           )}
         </div>
         <div style={{ minWidth: 0 }}>
-          <h2 style={{ margin: 0, color: '#fff', fontSize: '1.15rem', fontWeight: 700, lineHeight: 1.2 }}>
+          <h2 style={{ margin: 0, color: 'var(--text)', fontSize: '1.15rem', fontWeight: 700, lineHeight: 1.2 }}>
             {firm.name}
           </h2>
           <span

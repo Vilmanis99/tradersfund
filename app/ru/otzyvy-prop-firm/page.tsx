@@ -420,7 +420,7 @@ export default function RussianPropFirmReviewsPage() {
             ) : null}
             <div className="ru-review-author" aria-label="Автор руководства по отзывам о проп-фирмах">
               <div className="ru-review-author-avatar" aria-hidden="true">ED</div>
-              <div><strong>Автор: Edris Derakhshi</strong><p>Основатель Traders Fund Hub, funded-трейдер с 2020 года и рыночный аналитик. Метод страницы отделяет пользовательское утверждение, первичный продуктовый источник и коммерческий CTA.</p><Link href="/authors/edris-derakhshi">Профиль автора</Link></div>
+              <div><strong>Автор: Edris Derakhshi</strong><p>Автор обзоров и руководств Traders Fund Hub. В этом материале отделяем отзыв трейдера от подтверждённых условий программы и объясняем, каких сведений не хватает для проверки выплаты.</p><Link href="/authors/edris-derakhshi" hrefLang="en">Профиль автора — на английском</Link></div>
             </div>
           </div>
         </section>

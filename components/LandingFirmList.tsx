@@ -189,7 +189,7 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
             <div style={{ marginBottom: '0.85rem' }}>
               <h3
                 id={headingId}
-                style={{ margin: 0, color: '#fff', fontSize: '1.05rem', fontWeight: 800 }}
+                style={{ margin: 0, color: 'var(--text)', fontSize: '1.05rem', fontWeight: 800 }}
               >
                 {label}
               </h3>

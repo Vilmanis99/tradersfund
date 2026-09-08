@@ -137,7 +137,7 @@ export default function CostCalculator({ challenge, firmName }: Props) {
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'space-between', gap: '1rem', marginBottom: '1.25rem' }}>
         <div>
           <span className="v4-eyebrow" style={{ display: 'block', marginBottom: '0.5rem' }}>Live cost model</span>
-          <h3 style={{ margin: 0, fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', letterSpacing: '-0.03em', color: '#fff', fontWeight: 800 }}>
+          <h3 style={{ margin: 0, fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', letterSpacing: '-0.03em', color: 'var(--text)', fontWeight: 800 }}>
             {firmName} <span style={{ color: 'var(--muted)', fontWeight: 600 }}>· {challenge.productName}</span>
           </h3>
         </div>
@@ -244,7 +244,7 @@ function Metric({
   return (
     <div
       style={{
-        background: 'rgba(255,255,255,0.025)',
+        background: 'rgba(32, 51, 55, 0.025)',
         border: '1px solid rgba(255,255,255,0.06)',
         borderRadius: 18,
         padding: '1rem 1.1rem',

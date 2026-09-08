@@ -38,7 +38,7 @@ const FIELD_STYLE = {
   borderRadius: 10,
   border: '1px solid var(--border)',
   background: 'var(--bg3)',
-  color: '#fff',
+  color: 'var(--text)',
   padding: '0 0.8rem',
   fontSize: '0.88rem',
   fontWeight: 700,
@@ -310,8 +310,8 @@ export default function IndiaFirmMatcher({ firms }: { firms: IndiaMatcherFirm[] 
               aria-live="polite"
               style={{ margin: 0, color: 'var(--text)', fontSize: '0.83rem', lineHeight: 1.5 }}
             >
-              <strong style={{ color: '#fff' }}>{results.length}</strong> firm{results.length === 1 ? '' : 's'} and{' '}
-              <strong style={{ color: '#fff' }}>
+              <strong style={{ color: 'var(--text)' }}>{results.length}</strong> firm{results.length === 1 ? '' : 's'} and{' '}
+              <strong style={{ color: 'var(--text)' }}>
                 {results.reduce((count, firm) => count + firm.matchingProducts.length, 0)}
               </strong>{' '}
               products match every selected requirement.
@@ -369,7 +369,7 @@ export default function IndiaFirmMatcher({ firms }: { firms: IndiaMatcherFirm[] 
                     }}>
                       {index === 0 ? 'Best rules fit' : `Match ${index + 1}`}
                     </div>
-                    <h3 style={{ margin: '0.18rem 0 0', color: '#fff', fontSize: '1.05rem' }}>
+                    <h3 style={{ margin: '0.18rem 0 0', color: 'var(--text)', fontSize: '1.05rem' }}>
                       {firm.name}
                     </h3>
                   </div>
@@ -385,7 +385,7 @@ export default function IndiaFirmMatcher({ firms }: { firms: IndiaMatcherFirm[] 
                     <div style={{ color: 'var(--muted)', fontSize: '0.68rem', fontWeight: 800 }}>
                       Evidence
                     </div>
-                    <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 900 }}>
+                    <div style={{ color: 'var(--text)', fontSize: '0.95rem', fontWeight: 900 }}>
                       {firm.evidenceScore}/12
                     </div>
                   </div>
@@ -393,7 +393,7 @@ export default function IndiaFirmMatcher({ firms }: { firms: IndiaMatcherFirm[] 
                     <div style={{ color: 'var(--muted)', fontSize: '0.68rem', fontWeight: 800 }}>
                       Entry from
                     </div>
-                    <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 900 }}>
+                    <div style={{ color: 'var(--text)', fontSize: '0.95rem', fontWeight: 900 }}>
                       {entryLabel(firm.matchingProducts)}
                     </div>
                   </div>
@@ -484,7 +484,7 @@ export default function IndiaFirmMatcher({ firms }: { firms: IndiaMatcherFirm[] 
           </div>
         ) : (
           <div className="post-sidebar-card" style={{ marginTop: '1rem', padding: '1.5rem', textAlign: 'center' }}>
-            <h3 style={{ margin: 0, color: '#fff', fontSize: '1rem' }}>No fully verified rule match</h3>
+            <h3 style={{ margin: 0, color: 'var(--text)', fontSize: '1rem' }}>No fully verified rule match</h3>
             <p style={{ margin: '0.55rem auto 0', color: 'var(--muted)', fontSize: '0.84rem', maxWidth: 620 }}>
               We will not turn a restricted or unpublished rule into a recommendation. Remove one requirement
               or ask the firm for written confirmation before paying.

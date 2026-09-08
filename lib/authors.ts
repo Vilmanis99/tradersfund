@@ -19,6 +19,10 @@ export interface Author {
   short: string
   /** Long-form, multi-paragraph bio. Plain text — split on blank lines. */
   long: string
+  /** Substantive biography update, independent of firm-price capture dates. */
+  updatedAt?: string
+  /** Public evidence for biography claims, not evidence of trading performance. */
+  references?: Array<{ label: string; url: string }>
   links?: {
     linkedin?: string
     twitter?: string
@@ -30,15 +34,20 @@ export const AUTHORS: Author[] = [
   {
     slug: 'edris-derakhshi',
     name: 'Edris Derakhshi',
-    role: 'Founder & Lead Editor',
+    role: 'Author',
     initials: 'ED',
     short:
-      'Edris is the founder of Traders Fund Hub. Funded trader since 2020, market analyst published on CryptoQuant and CryptoPotato.',
-    long: `Edris founded Traders Fund Hub after five years of trading funded accounts across forex, indices, and crypto. He built the site because the prop-firm category was dominated by review pages that read like firm press releases — long on hype, short on the numbers that determine whether a trader actually keeps any of their profit.
+      'Edris writes prop-firm reviews and trading guides for Traders Fund Hub, covering programme costs, drawdown rules and payout conditions.',
+    long: `Edris is an author at Traders Fund Hub. His articles cover prop-firm programmes, challenge costs, trading rules and the conditions attached to payouts.
 
-Before TFH, Edris ran TradingRage, a market-analysis content agency, and wrote regularly for CryptoQuant and CryptoPotato on derivatives markets, on-chain flows, and trader psychology. He has personally funded with FTMO, FundedNext, FundingPips, and Topstep, and verifies every payout cycle we publish.
+TradingRage identifies Edris Derakhshi as its founder. CryptoPotato has also published market analysis credited to him; examples and biography sources are linked below.
 
-His editorial principle: if a number on a review can't be traced to a primary source, it doesn't go in the review.`,
+The site's methodology explains how published programme terms are compared. A source-based review does not, by itself, establish that its author purchased an account, passed an evaluation or received a payout from the firm.`,
+    updatedAt: '2026-09-08',
+    references: [
+      { label: 'TradingRage: about the site and its founder', url: 'https://tradingrage.com/about' },
+      { label: 'CryptoPotato: market analysis credited to Edris Derakhshi', url: 'https://cryptopotato.com/whats-next-for-eth-after-10-weekly-decline-ethereum-price-analysis/' },
+    ],
     links: {
       linkedin: 'https://www.linkedin.com/in/edris-derakhshi',
       twitter: 'https://x.com/TradingRage',

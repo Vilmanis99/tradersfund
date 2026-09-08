@@ -234,7 +234,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
                 >
                   <span className="bento-tile-eyebrow">{item.eyebrow}</span>
-                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                     {item.title}
                   </strong>
                   <span style={{
@@ -260,7 +260,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
               className="post-sidebar-card"
               style={{ borderLeft: '3px solid var(--gold)', padding: '1.15rem 1.3rem' }}
             >
-              <strong style={{ color: '#fff' }}>
+              <strong style={{ color: 'var(--text)' }}>
                 Policy-supported UK access is not an FCA status.
               </strong>{' '}
               <span style={{ color: 'var(--text)', lineHeight: 1.65 }}>
@@ -326,7 +326,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
                 >
                   <span className="bento-tile-eyebrow">{item.eyebrow}</span>
-                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                     {item.title}
                   </strong>
                   <span style={{
@@ -386,7 +386,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
                 >
                   <span className="bento-tile-eyebrow">{item.eyebrow}</span>
-                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                     {item.title}
                   </strong>
                   <span style={{
@@ -446,7 +446,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
                 >
                   <span className="bento-tile-eyebrow">{item.eyebrow}</span>
-                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                     {item.title}
                   </strong>
                   <span style={{
@@ -487,7 +487,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
               {landing.evidenceGaps.map(gap => (
                 <article key={gap.firmName} className="post-sidebar-card" style={{ padding: '1.25rem' }}>
                   <span className="bento-tile-eyebrow">{gap.statusLabel}</span>
-                  <h3 style={{ color: '#fff', fontSize: '1rem', margin: '0.5rem 0' }}>
+                  <h3 style={{ color: 'var(--text)', fontSize: '1rem', margin: '0.5rem 0' }}>
                     {gap.firmName}
                   </h3>
                   <p style={{ color: 'var(--text)', fontSize: '0.86rem', lineHeight: 1.6, margin: 0 }}>
@@ -523,7 +523,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
               className="post-sidebar-card"
               style={{ borderLeft: '3px solid var(--gold)', padding: '1.15rem 1.3rem' }}
             >
-              <strong style={{ color: '#fff' }}>U.S. access is not a regulatory badge.</strong>{' '}
+              <strong style={{ color: 'var(--text)' }}>U.S. access is not a regulatory badge.</strong>{' '}
               <span style={{ color: 'var(--text)', lineHeight: 1.65 }}>
                 Each ranked firm has a dated first-party access source, but the CFTC says
                 registration and disciplinary history should be checked separately in NFA BASIC.{' '}
@@ -586,7 +586,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
                 >
                   <span className="bento-tile-eyebrow">{item.eyebrow}</span>
-                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                     {item.title}
                   </strong>
                   <span style={{
@@ -612,7 +612,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
               className="post-sidebar-card"
               style={{ borderLeft: '3px solid var(--gold)', padding: '1.15rem 1.3rem' }}
             >
-              <strong style={{ color: '#fff' }}>
+              <strong style={{ color: 'var(--text)' }}>
                 Exchange oversight is not a prop-firm registration badge.
               </strong>{' '}
               <span style={{ color: 'var(--text)', lineHeight: 1.65 }}>
@@ -678,7 +678,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
                 >
                   <span className="bento-tile-eyebrow">{item.eyebrow}</span>
-                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                     {item.title}
                   </strong>
                   <span style={{
@@ -744,7 +744,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
                 >
                   <span className="bento-tile-eyebrow">{item.eyebrow}</span>
-                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                     {item.title}
                   </strong>
                   <span style={{
@@ -804,7 +804,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
                 >
                   <span className="bento-tile-eyebrow">{item.eyebrow}</span>
-                  <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                  <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                     {item.title}
                   </strong>
                   <span style={{
@@ -841,7 +841,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                 style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
               >
                 <span className="bento-tile-eyebrow">India challenge comparison</span>
-                <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                   Filter every sourced product rule
                 </strong>
                 <span style={{
@@ -860,7 +860,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                 style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
               >
                 <span className="bento-tile-eyebrow">India challenge changes</span>
-                <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                   Follow material rule and price updates
                 </strong>
                 <span style={{
@@ -879,7 +879,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                 style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
               >
                 <span className="bento-tile-eyebrow">India payout guide</span>
-                <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                   Compare Bank, Wise, Rise and Crypto
                 </strong>
                 <span style={{
@@ -898,7 +898,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                 style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
               >
                 <span className="bento-tile-eyebrow">India matchup library</span>
-                <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                   Start with the decision, then choose the pair
                 </strong>
                 <span style={{
@@ -917,7 +917,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                 style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
               >
                 <span className="bento-tile-eyebrow">RBI &amp; FEMA guide</span>
-                <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                   Check the legal and remittance questions
                 </strong>
                 <span style={{
@@ -936,7 +936,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                 style={{ padding: '1.15rem 1.25rem', textDecoration: 'none' }}
               >
                 <span className="bento-tile-eyebrow">India tax-record guide</span>
-                <strong style={{ display: 'block', color: '#fff', marginTop: '0.45rem' }}>
+                <strong style={{ display: 'block', color: 'var(--text)', marginTop: '0.45rem' }}>
                   Reconcile every payout before filing
                 </strong>
                 <span style={{
@@ -1093,7 +1093,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
               {landing.decisionGuide.map(item => (
                 <article key={item.title} className="post-sidebar-card" style={{ padding: '1.35rem' }}>
                   <h3 style={{
-                    color: '#fff',
+                    color: 'var(--text)',
                     fontSize: '1rem',
                     lineHeight: 1.35,
                     margin: '0 0 0.65rem',
@@ -1122,7 +1122,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
             <span className="bento-tile-eyebrow">
               <ShieldCheck size={12} /> How we rank
             </span>
-            <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#fff', margin: '0.5rem 0 0.75rem' }}>
+            <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text)', margin: '0.5rem 0 0.75rem' }}>
               What this ranking measures
             </h2>
             <p style={{ color: 'var(--text)', fontSize: '0.95rem', lineHeight: 1.7, margin: 0 }}>

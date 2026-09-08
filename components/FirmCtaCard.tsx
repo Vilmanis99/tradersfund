@@ -62,7 +62,7 @@ export default function FirmCtaCard({ firm }: { firm: Firm }) {
 
         <div style={{ minWidth: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-            <strong style={{ color: '#fff', fontSize: '1.05rem' }}>{firm.name}</strong>
+            <strong style={{ color: 'var(--text)', fontSize: '1.05rem' }}>{firm.name}</strong>
             <span className="score-badge" style={{ fontSize: '0.78rem' }}>
               <Star size={11} aria-hidden="true" /> {firm.score}
             </span>
@@ -82,7 +82,7 @@ export default function FirmCtaCard({ firm }: { firm: Firm }) {
             <TrustpilotRating firm={firm} label />
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: 6, color: 'var(--muted)', fontSize: '0.82rem' }}>
-            {firm.profitSplitPct != null && <span><strong style={{ color: '#e2e8f0' }}>{firm.profitSplitPct}%</strong> split</span>}
+            {firm.profitSplitPct != null && <span><strong style={{ color: 'var(--text)' }}>{firm.profitSplitPct}%</strong> split</span>}
             {firm.payoutFrequency && <span style={{ textTransform: 'capitalize' }}>{firm.payoutFrequency.replace('-', ' ')} payouts</span>}
             {firm.maxAllocation && <span>Up to {firm.maxAllocation}</span>}
           </div>

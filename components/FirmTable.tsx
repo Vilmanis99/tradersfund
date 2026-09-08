@@ -293,9 +293,9 @@ export default function FirmTable({
     <div>
       <div style={{ marginBottom: '1rem' }}>
         <div style={{ position: 'relative', maxWidth: 420 }}>
-          <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: '#64748b' }} />
+          <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--muted)' }} />
           <input id="firm-search" type="text" aria-label="Search prop firms" placeholder="Search firms..." value={search} onChange={e => setSearch(e.target.value)}
-            style={{ width: '100%', padding: '9px 12px 9px 34px', background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 10, color: '#e2e8f0', fontSize: '0.875rem', outline: 'none' }} />
+            style={{ width: '100%', padding: '9px 12px 9px 34px', background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 10, color: 'var(--text)', fontSize: '0.875rem', outline: 'none' }} />
         </div>
       </div>
 
@@ -336,7 +336,7 @@ export default function FirmTable({
           flexWrap: 'wrap',
           gap: 6,
           marginBottom: '0.85rem',
-          color: '#94a3b8',
+          color: 'var(--muted)',
           fontSize: '0.8rem',
         }}>
           <span>Active preset:</span>
@@ -345,7 +345,7 @@ export default function FirmTable({
       )}
 
       <div style={{ marginBottom: '0.75rem' }}>
-        <span style={{ color: '#64748b', fontSize: '0.8rem', marginRight: 8 }}>Assets:</span>
+        <span style={{ color: 'var(--muted)', fontSize: '0.8rem', marginRight: 8 }}>Assets:</span>
         {allAssets.map(a => (
           <button key={a} className={`filter-pill${assetFilter === a ? ' active' : ''}`}
             onClick={() => setAssetFilter(a)} style={{ marginRight: 4, marginBottom: 4 }}>
@@ -355,7 +355,7 @@ export default function FirmTable({
       </div>
 
       <div style={{ marginBottom: '0.75rem' }}>
-        <span style={{ color: '#64748b', fontSize: '0.8rem', marginRight: 8 }}>Evaluation:</span>
+        <span style={{ color: 'var(--muted)', fontSize: '0.8rem', marginRight: 8 }}>Evaluation:</span>
         {PHASE_OPTIONS.map(phase => (
           <button
             key={phase}
@@ -371,7 +371,7 @@ export default function FirmTable({
       </div>
 
       <div style={{ marginBottom: '0.75rem' }}>
-        <span style={{ color: '#64748b', fontSize: '0.8rem', marginRight: 8 }}>Platforms:</span>
+        <span style={{ color: 'var(--muted)', fontSize: '0.8rem', marginRight: 8 }}>Platforms:</span>
         {allPlatforms.map(p => (
           <button key={p} className={`filter-pill${platformFilter === p ? ' active' : ''}`}
             onClick={() => setPlatformFilter(p)} style={{ marginRight: 4, marginBottom: 4 }}>
@@ -387,7 +387,7 @@ export default function FirmTable({
         flexWrap: 'wrap',
         marginBottom: '0.9rem',
       }}>
-        <label htmlFor="directory-account-size" style={{ display: 'grid', gap: 4, color: '#64748b', fontSize: '0.76rem' }}>
+        <label htmlFor="directory-account-size" style={{ display: 'grid', gap: 4, color: 'var(--muted)', fontSize: '0.76rem' }}>
           Account size
           <select
             id="directory-account-size"
@@ -398,7 +398,7 @@ export default function FirmTable({
               borderRadius: 9,
               border: '1px solid var(--border)',
               background: 'var(--bg3)',
-              color: '#e2e8f0',
+              color: 'var(--text)',
               padding: '0 0.7rem',
               fontWeight: 700,
             }}
@@ -411,7 +411,7 @@ export default function FirmTable({
             ))}
           </select>
         </label>
-        <label htmlFor="directory-drawdown" style={{ display: 'grid', gap: 4, color: '#64748b', fontSize: '0.76rem' }}>
+        <label htmlFor="directory-drawdown" style={{ display: 'grid', gap: 4, color: 'var(--muted)', fontSize: '0.76rem' }}>
           Drawdown
           <select
             id="directory-drawdown"
@@ -422,7 +422,7 @@ export default function FirmTable({
               borderRadius: 9,
               border: '1px solid var(--border)',
               background: 'var(--bg3)',
-              color: '#e2e8f0',
+              color: 'var(--text)',
               padding: '0 0.7rem',
               fontWeight: 700,
             }}
@@ -435,7 +435,7 @@ export default function FirmTable({
           </select>
         </label>
         <div>
-          <span style={{ display: 'block', color: '#64748b', fontSize: '0.76rem', marginBottom: 4 }}>Trading rules</span>
+          <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.76rem', marginBottom: 4 }}>Trading rules</span>
           {[
             ['News', newsOnly, setNewsOnly],
             ['EA', eaOnly, setEaOnly],
@@ -457,7 +457,7 @@ export default function FirmTable({
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
-        <label htmlFor="min-score" style={{ color: '#64748b', fontSize: '0.8rem' }}>Min Score:</label>
+        <label htmlFor="min-score" style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>Min Score:</label>
         <input id="min-score" type="range" className="range-slider" min={0} max={10} step={0.5} value={minScore}
           aria-valuetext={minScore > 0 ? `${minScore} or higher` : 'Any score'}
           onChange={e => setMinScore(Number(e.target.value))} style={{ maxWidth: 180 }} />
@@ -465,7 +465,7 @@ export default function FirmTable({
           {minScore > 0 ? `${minScore}+` : 'Any'}
         </span>
         {hasFilters && (
-          <button onClick={clearFilters} style={{ marginLeft: 'auto', padding: '4px 12px', borderRadius: 8, background: 'transparent', border: '1px solid var(--border)', color: '#94a3b8', fontSize: '0.8rem', cursor: 'pointer' }}>
+          <button onClick={clearFilters} style={{ marginLeft: 'auto', padding: '4px 12px', borderRadius: 8, background: 'transparent', border: '1px solid var(--border)', color: 'var(--muted)', fontSize: '0.8rem', cursor: 'pointer' }}>
             Clear All Filters
           </button>
         )}
@@ -474,7 +474,7 @@ export default function FirmTable({
       <div style={{ overflowX: 'auto', borderRadius: 18, border: '1px solid var(--border)' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
           <thead>
-            <tr style={{ background: 'linear-gradient(135deg, #1a3a2a, #1a2a30)', borderBottom: '1px solid var(--border)' }}>
+            <tr style={{ background: 'var(--accent-soft)', borderBottom: '1px solid var(--border)' }}>
               {[
                 { label: 'Firm', col: 'name' as const },
                 { label: 'Programs & entry', col: null },
@@ -491,7 +491,7 @@ export default function FirmTable({
                 const ariaSort = isSorted ? (sortDir === 'asc' ? 'ascending' : 'descending') : undefined
                 return (
                   <th key={label} aria-sort={ariaSort}
-                    style={{ padding: '12px 16px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>
+                    style={{ padding: '12px 16px', textAlign: 'left', color: 'var(--muted)', fontWeight: 600, whiteSpace: 'nowrap' }}>
                     {col ? (
                       <button type="button" onClick={() => toggleSort(col)}
                         style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'none', border: 'none', padding: 0, color: 'inherit', font: 'inherit', cursor: 'pointer' }}>
@@ -508,7 +508,7 @@ export default function FirmTable({
           </thead>
           <tbody>
             {filtered.length === 0 ? (
-              <tr><td colSpan={10} style={{ padding: '2rem', textAlign: 'center', color: '#64748b' }}>No firms found</td></tr>
+              <tr><td colSpan={10} style={{ padding: '2rem', textAlign: 'center', color: 'var(--muted)' }}>No firms found</td></tr>
             ) : filtered.map((firm, i) => {
               const isPartner = Boolean(firm.affiliateUrl)
               const slug = firmSlug(firm.name)
@@ -525,7 +525,7 @@ export default function FirmTable({
                 borderBottom: '1px solid var(--border)',
                 background: isPartner
                   ? 'linear-gradient(90deg, rgba(39,161,123,0.04), transparent 40%)'
-                  : (i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)'),
+                  : (i % 2 === 0 ? 'transparent' : 'rgba(32, 51, 55, 0.01)'),
                 transition: 'background 0.15s',
               }}
                 onMouseEnter={e => (e.currentTarget.style.background = 'rgba(39,161,123,0.08)')}
@@ -537,12 +537,12 @@ export default function FirmTable({
                     {firm.logo ? (
                       <Image src={firm.logo} alt={firm.name + ' logo'} width={28} height={28} style={{ objectFit: 'contain', borderRadius: 6, border: '1px solid var(--border)' }} />
                     ) : (
-                      <div style={{ width: 28, height: 28, borderRadius: 6, background: 'var(--bg3)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.65rem', color: '#64748b', fontWeight: 700 }}>
+                      <div style={{ width: 28, height: 28, borderRadius: 6, background: 'var(--bg3)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.65rem', color: 'var(--muted)', fontWeight: 700 }}>
                         {firm.name.substring(0, 2)}
                       </div>
                     )}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                      <span style={{ color: '#fff', fontWeight: 600 }}>{firm.name}</span>
+                      <span style={{ color: 'var(--text)', fontWeight: 600 }}>{firm.name}</span>
                       {(isPartner || (firm.discountCode && firm.discountPct)) && (
                         <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
                           {isPartner && (
@@ -563,19 +563,19 @@ export default function FirmTable({
                 <td style={{ padding: '12px 16px', minWidth: 170 }}>
                   <strong style={{
                     display: 'block',
-                    color: products.length ? '#fff' : '#fcd34d',
+                    color: products.length ? 'var(--text)' : 'var(--gold)',
                     fontSize: '0.8rem',
                   }}>
                     {minimumPublishedEntry(products)}
                   </strong>
-                  <span style={{ display: 'block', color: '#64748b', fontSize: '0.7rem', marginTop: 3 }}>
+                  <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.7rem', marginTop: 3 }}>
                     {products.length} sourced product{products.length === 1 ? '' : 's'}
                   </span>
                   <span style={{ display: 'flex', flexWrap: 'wrap', gap: 3, marginTop: 5 }}>
                     {programs.map(program => <span key={program} className="chip">{program}</span>)}
                   </span>
                   {drawdowns.length > 0 && (
-                    <span style={{ display: 'block', color: '#64748b', fontSize: '0.68rem', marginTop: 5 }}>
+                    <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.68rem', marginTop: 5 }}>
                       {drawdowns
                         .map(value => drawdownLabel(value as Exclude<DrawdownFilter, typeof ALL>))
                         .join(' · ')}
@@ -601,17 +601,17 @@ export default function FirmTable({
                     </a>
                   )}
                 </td>
-                <td style={{ padding: '12px 16px', color: '#94a3b8' }}>{firm.founded}</td>
+                <td style={{ padding: '12px 16px', color: 'var(--muted)' }}>{firm.founded}</td>
                 <td style={{ padding: '12px 16px' }}>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>{firm.assets?.map(a => <span key={a} className="chip">{a}</span>)}</div>
                 </td>
-                <td style={{ padding: '12px 16px', color: '#e2e8f0', fontWeight: 600 }}>{firm.maxAllocation}</td>
-                <td style={{ padding: '12px 16px', color: '#e2e8f0', fontWeight: 600, whiteSpace: 'nowrap' }}>
+                <td style={{ padding: '12px 16px', color: 'var(--text)', fontWeight: 600 }}>{firm.maxAllocation}</td>
+                <td style={{ padding: '12px 16px', color: 'var(--text)', fontWeight: 600, whiteSpace: 'nowrap' }}>
                   {firm.profitSplitPct != null ? (
                     <span>
                       {firm.profitSplitPct}%
                       {firm.payoutFrequency && (
-                        <span style={{ display: 'block', color: '#64748b', fontSize: '0.72rem', fontWeight: 500, textTransform: 'capitalize', marginTop: 2 }}>
+                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.72rem', fontWeight: 500, textTransform: 'capitalize', marginTop: 2 }}>
                           {firm.payoutFrequency.replace('-', ' ')}
                         </span>
                       )}
@@ -619,7 +619,7 @@ export default function FirmTable({
                   ) : '—'}
                 </td>
                 <td style={{ padding: '12px 16px' }}>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>{firm.platforms?.map(p => <span key={p} className="chip" style={{ background: 'rgba(39,161,123,0.1)', color: '#5eead4', borderColor: 'rgba(39,161,123,0.2)' }}>{p}</span>)}</div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>{firm.platforms?.map(p => <span key={p} className="chip" style={{ background: 'rgba(39,161,123,0.1)', color: 'var(--accent)', borderColor: 'rgba(39,161,123,0.2)' }}>{p}</span>)}</div>
                 </td>
                 <td style={{ padding: '12px 16px' }}><span className="score-badge">★ {firm.score}</span></td>
                 {/* Cited Trustpilot figure — links straight to the profile so
@@ -632,7 +632,7 @@ export default function FirmTable({
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: 5,
-                      color: isSelected ? 'var(--accent-light)' : '#94a3b8',
+                      color: isSelected ? 'var(--accent-light)' : 'var(--muted)',
                       fontSize: '0.72rem',
                       fontWeight: 700,
                       cursor: selectedSlugs.length >= 2 && !isSelected ? 'not-allowed' : 'pointer',

@@ -66,10 +66,10 @@ function watchLabel(kind: ChallengeWatchKind) {
 }
 
 function watchColor(kind: ChallengeWatchKind) {
-  if (kind === 'lineup-change') return '#6ee7b7'
-  if (kind === 'rule-change') return '#93c5fd'
-  if (kind === 'price-watch') return '#fcd34d'
-  return '#fca5a5'
+  if (kind === 'lineup-change') return 'var(--accent)'
+  if (kind === 'rule-change') return 'var(--info)'
+  if (kind === 'price-watch') return 'var(--gold)'
+  return 'var(--danger)'
 }
 
 export default function Page() {
@@ -200,7 +200,7 @@ export default function Page() {
             {stats.map(({ value, label, Icon }) => (
               <article key={label} className="post-sidebar-card" style={{ padding: '1.05rem' }}>
                 <Icon size={15} style={{ color: 'var(--accent-light)' }} />
-                <strong style={{ display: 'block', color: '#fff', fontSize: '1.25rem', marginTop: '0.45rem' }}>
+                <strong style={{ display: 'block', color: 'var(--text)', fontSize: '1.25rem', marginTop: '0.45rem' }}>
                   {value}
                 </strong>
                 <span style={{ color: 'var(--muted)', fontSize: '0.74rem' }}>{label}</span>
@@ -217,7 +217,7 @@ export default function Page() {
             borderColor: 'rgba(96, 165, 250, 0.32)',
             background: 'rgba(30, 64, 175, 0.09)',
           }}>
-            <span className="bento-tile-eyebrow" style={{ color: '#93c5fd' }}>
+            <span className="bento-tile-eyebrow" style={{ color: 'var(--info)' }}>
               <ShieldCheck size={12} /> Global product data is not country approval
             </span>
             <p style={{ color: 'var(--text)', fontSize: '0.82rem', lineHeight: 1.65, margin: '0.6rem 0 0' }}>
@@ -281,7 +281,7 @@ export default function Page() {
                         {entry.status === 'watch' ? <CircleAlert size={11} /> : <FileCheck2 size={11} />}
                         {watchLabel(entry.kind)} · {entry.status === 'watch' ? 'Watch' : 'Verified'}
                       </span>
-                      <h3 style={{ color: '#fff', fontSize: '1rem', margin: '0.45rem 0 0' }}>
+                      <h3 style={{ color: 'var(--text)', fontSize: '1rem', margin: '0.45rem 0 0' }}>
                         {entry.title}
                       </h3>
                     </div>
@@ -294,8 +294,8 @@ export default function Page() {
                   <p style={{ color: 'var(--text)', fontSize: '0.8rem', lineHeight: 1.65, margin: '0.65rem 0 0' }}>
                     {entry.summary}
                   </p>
-                  <p style={{ color: '#cbd5e1', fontSize: '0.76rem', lineHeight: 1.6, margin: '0.5rem 0 0' }}>
-                    <strong style={{ color: '#fff' }}>Trader impact:</strong> {entry.traderImpact}
+                  <p style={{ color: 'var(--muted)', fontSize: '0.76rem', lineHeight: 1.6, margin: '0.5rem 0 0' }}>
+                    <strong style={{ color: 'var(--text)' }}>Trader impact:</strong> {entry.traderImpact}
                   </p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.65rem', marginTop: '0.7rem' }}>
                     {entry.sourceUrls.map((sourceUrl, index) => (
@@ -319,7 +319,7 @@ export default function Page() {
                     ))}
                     <Link
                       href={firmBySlug.get(entry.firmSlug)?.reviewUrl || '/prop-firms'}
-                      style={{ color: '#cbd5e1', fontSize: '0.7rem', fontWeight: 800 }}
+                      style={{ color: 'var(--muted)', fontSize: '0.7rem', fontWeight: 800 }}
                     >
                       {entry.firmName} review <ArrowRight size={10} style={{ verticalAlign: '-1px' }} />
                     </Link>
@@ -371,7 +371,7 @@ export default function Page() {
               ['4. Sources expire', 'Every product needs a first-party source captured within 30 days. Stale rows disappear until the editorial capture is refreshed.'],
             ].map(([title, body]) => (
               <article key={title} className="post-sidebar-card" style={{ padding: '1.2rem' }}>
-                <h3 style={{ color: '#fff', fontSize: '0.94rem', margin: 0 }}>{title}</h3>
+                <h3 style={{ color: 'var(--text)', fontSize: '0.94rem', margin: 0 }}>{title}</h3>
                 <p style={{ color: 'var(--text)', fontSize: '0.79rem', lineHeight: 1.65, margin: '0.55rem 0 0' }}>
                   {body}
                 </p>
@@ -394,7 +394,7 @@ export default function Page() {
           <div style={{ display: 'grid', gap: '0.8rem' }}>
             {faqs.map(item => (
               <article key={item.q} className="post-sidebar-card" style={{ padding: '1.2rem' }}>
-                <h3 style={{ color: '#fff', fontSize: '0.94rem', margin: 0 }}>{item.q}</h3>
+                <h3 style={{ color: 'var(--text)', fontSize: '0.94rem', margin: 0 }}>{item.q}</h3>
                 <p style={{ color: 'var(--text)', fontSize: '0.8rem', lineHeight: 1.65, margin: '0.5rem 0 0' }}>
                   {item.a}
                 </p>

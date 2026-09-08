@@ -74,10 +74,21 @@ export default function RussianHomePage() {
 
       <section className="ru-hero ru-home-hero">
         <div className="ru-shell">
-          <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Для русскоязычных трейдеров по всему миру</div>
-          <h1>Выберите проп-фирму по условиям, а не обещаниям</h1>
-          <p className="ru-lead">Сравните стоимость участия, лимиты убытка и правила выплат. Объясняем условия глобальных проп-фирм на русском — с источниками и ограничениями.</p>
-          <RussianFinderEntry sizes={[...new Set(getRussianFinderRows().flatMap(row => row.product.tiers.map(tier => tier.sizeUsd)))].sort((a, b) => a - b)} />
+          <div className="ru-home-intro">
+            <div>
+              <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Для русскоязычных трейдеров по всему миру</div>
+              <h1>Выберите проп-фирму по условиям, а не обещаниям</h1>
+              <p className="ru-lead">Сравните стоимость участия, лимиты убытка и правила выплат. Объясняем условия глобальных проп-фирм на русском — с источниками и ограничениями.</p>
+              <Link href="/ru/luchshie-prop-firmy" className="ru-card-link">Посмотреть все фирмы <ArrowRight size={16} aria-hidden="true" /></Link>
+            </div>
+            <div className="home-finder-panel">
+              <span className="ru-home-partner-hero-label">Начните со своих требований</span>
+              <h2>Подберите программу</h2>
+              <p>Выберите размер счёта и тип оценки, затем сравните правила.</p>
+              <RussianFinderEntry sizes={[...new Set(getRussianFinderRows().flatMap(row => row.product.tiers.map(tier => tier.sizeUsd)))].sort((a, b) => a - b)} />
+              <p className="home-finder-note">Размер счёта — не цена покупки. Доступность страны нужно проверить отдельно.</p>
+            </div>
+          </div>
 
           <div className="ru-home-partner-hero" data-russian-home-hero-partners="fundednext-bright-funded">
             {featuredPartnerCards.map(item => (

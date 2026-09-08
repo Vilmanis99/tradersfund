@@ -88,9 +88,9 @@ export default async function AuthorPage({ params }: Props) {
               borderRadius: 24,
               background: 'linear-gradient(135deg, var(--accent), var(--accent2))',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: '#fff', fontWeight: 800, fontSize: '2rem',
+              color: 'var(--on-accent)', fontWeight: 800, fontSize: '2rem',
               flexShrink: 0,
-              boxShadow: '0 20px 50px -20px rgba(0,0,0,0.6), 0 0 30px -10px rgba(39,161,123,0.4)',
+              boxShadow: 'var(--shadow)',
             }}>
               {author.initials}
             </div>
@@ -132,6 +132,14 @@ export default async function AuthorPage({ params }: Props) {
         <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 1.5rem' }}>
           <div className="prose">
             {paragraphs.map((p, i) => <p key={i}>{p}</p>)}
+            {author.references?.length ? (
+              <>
+                <h2>Selected work and biography sources</h2>
+                <ul>{author.references.map(reference => (
+                  <li key={reference.url}><a href={reference.url} rel="noopener noreferrer">{reference.label}</a></li>
+                ))}</ul>
+              </>
+            ) : null}
           </div>
         </div>
       </section>

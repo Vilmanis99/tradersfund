@@ -34,7 +34,7 @@ export function TradingToolReviewStatus({ post }: { post: PostMeta }) {
         borderRadius: 12,
       }}
     >
-      <strong style={{ display: 'flex', alignItems: 'center', gap: 7, color: '#fff' }}>
+      <strong style={{ display: 'flex', alignItems: 'center', gap: 7, color: 'var(--text)' }}>
         <CalendarClock size={15} aria-hidden="true" /> Editorial snapshot ·{' '}
         {formatEditorialDate(editorialDate)}
       </strong>
@@ -97,7 +97,7 @@ export default function TradingToolReviewCluster({
                   minHeight: '100%',
                   gap: '0.5rem',
                   padding: '1rem',
-                  color: '#fff',
+                  color: 'var(--text)',
                   background: 'var(--bg2)',
                   border: '1px solid var(--border)',
                   borderRadius: 12,

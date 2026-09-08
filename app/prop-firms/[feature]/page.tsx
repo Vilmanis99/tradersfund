@@ -79,14 +79,14 @@ export default async function FeaturePage({ params }: Props) {
 
       <nav
         aria-label="Breadcrumb"
-        style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#64748b', fontSize: '0.875rem', marginBottom: '2rem' }}
+        style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--muted)', fontSize: '0.875rem', marginBottom: '2rem' }}
       >
         <Link href="/prop-firms" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'inherit', textDecoration: 'none' }}>
           <ArrowLeft size={14} aria-hidden="true" /> Prop Firm Lists
         </Link>
       </nav>
 
-      <h1 style={{ fontSize: '2.2rem', fontWeight: 900, color: '#fff', marginBottom: '0.75rem', lineHeight: 1.2 }}>
+      <h1 style={{ fontSize: '2.2rem', fontWeight: 900, color: 'var(--text)', marginBottom: '0.75rem', lineHeight: 1.2 }}>
         {feature.h1}
       </h1>
 
@@ -122,7 +122,7 @@ export default async function FeaturePage({ params }: Props) {
       />
 
       <section aria-label={`${feature.label} firms, ranked`} style={{ marginBottom: '3rem' }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text)', marginBottom: '0.5rem' }}>
           Ranked qualifying firms
         </h2>
         <p style={{ color: 'var(--muted)', fontSize: '0.92rem', margin: '0 0 1rem' }}>
@@ -136,7 +136,7 @@ export default async function FeaturePage({ params }: Props) {
         aria-label="Why this matters"
         style={{ paddingTop: '2.5rem', marginTop: '0.5rem', borderTop: '1px solid var(--border)' }}
       >
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text)', marginBottom: '0.5rem' }}>
           Why this matters
         </h2>
         <p style={{ color: 'var(--muted)', fontSize: '0.92rem', marginBottom: 0 }}>
@@ -164,7 +164,7 @@ export default async function FeaturePage({ params }: Props) {
         aria-label="Frequently asked questions"
         style={{ marginTop: '3rem' }}
       >
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', marginBottom: '1rem' }}>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text)', marginBottom: '1rem' }}>
           Frequently asked questions
         </h2>
         <FeatureFaq faqs={feature.faqs} />
@@ -174,7 +174,7 @@ export default async function FeaturePage({ params }: Props) {
         aria-label="Related prop firm lists"
         style={{ marginTop: '3rem' }}
       >
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', marginBottom: '1rem' }}>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text)', marginBottom: '1rem' }}>
           Browse more prop firm lists
         </h2>
         <div className="feature-hub-grid">

@@ -12174,23 +12174,23 @@ function checkRussianAcquisitionPilot() {
     'data-russian-ranking-article="decision-first"',
     'data-russian-ranking-country-paths="diaspora-not-russia"',
     'data-russian-ranking-primary-partners="fundednext-bright-funded"',
-    'data-russian-ranking-primary-partner={item.slug}',
+    'data-russian-ranking-primary-partner={secondary ? undefined : item.slug}',
     'data-russian-affiliate-disclosure="ranking-primary-partners"',
     "import RussianChallengeFinder from '@/components/RussianChallengeFinder'",
     '<RussianChallengeFinder initialRows={finderRows} />',
     'getRussianFinderRows()',
     'export const revalidate = 3600',
-    'data-russian-partner-shortlist="global"',
-    'data-russian-ranking-partner-matrix="three-global-partners"',
+    'data-russian-ranking-partners="single-section"',
+    'data-russian-ranking="single-directory"',
     'data-russian-ranking-intent-paths="payout-drawdown-budget"',
-    'data-russian-affiliate-disclosure="partner-shortlist"',
     "const globalPartners = ['fundednext', 'bright-funded', 'fundingpips']",
     'from=ru-ranking-primary-${item.slug}',
     '`/go/${item.slug}?from=ru-ranking-primary-${item.slug}`',
-    'from=ru-ranking-partner-shortlist',
-    '`/go/${item.slug}?from=ru-ranking-partner-shortlist`',
+    'data-russian-partner={item.slug}',
+    'id="partner-matrix"',
+    'id="top-5"',
     'rel="sponsored nofollow noopener"',
-    'доступность платформы уточняйте для выбранной программы и страны.',
+    'Доступность платформы уточняйте для выбранной программы и страны.',
     'href="/ru/rossiyskie-prop-kompanii"',
     'href="/ru/prop-firmy-bez-chelendzha"',
     'href="/ru/vyplaty-prop-firm"',
@@ -12203,14 +12203,14 @@ function checkRussianAcquisitionPilot() {
   }
   const primaryPartnerIndex = russianRankingPage.indexOf('data-russian-ranking-primary-partners="fundednext-bright-funded"')
   const partnerMatcherIndex = russianRankingPage.indexOf('<RussianChallengeFinder initialRows={finderRows} />')
-  const topFiveIndex = russianRankingPage.indexOf('data-russian-ranking="top-five"')
+  const directoryIndex = russianRankingPage.indexOf('data-russian-ranking="single-directory"')
   if (
     primaryPartnerIndex < 0
     || partnerMatcherIndex < 0
     || primaryPartnerIndex < partnerMatcherIndex
-    || topFiveIndex < primaryPartnerIndex
+    || directoryIndex < primaryPartnerIndex
   ) {
-    rows.push('Russian ranking must show the product finder, then disclosed partners, then the editorial top five')
+    rows.push('Russian ranking must show the product finder, one disclosed partner section, then the editorial directory')
   }
   for (const token of [
     'data-russian-partner-matcher="eligibility-first"',
@@ -12973,7 +12973,7 @@ function checkRussianAcquisitionPilot() {
       'href="/ru/vyplaty-prop-firm"',
       'href="/ru/prop-firmy-bez-kyc"',
       'aria-label="Автор обзора Bright Funded"',
-      'href="/authors/tara-mohseni"',
+      'href="/authors/edris-derakhshi"',
       'rel="sponsored nofollow noopener"',
     ]],
   ]) {

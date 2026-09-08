@@ -100,7 +100,7 @@ function EvidenceStatus() {
       gap: '0.35rem',
       padding: '0.25rem 0.55rem',
       borderRadius: 999,
-      color: '#fcd34d',
+      color: 'var(--gold)',
       background: 'rgba(245, 158, 11, 0.12)',
       fontSize: '0.68rem',
       fontWeight: 800,
@@ -230,7 +230,7 @@ export default function Page() {
                 <span className="bento-tile-eyebrow">
                   <Banknote size={12} /> {firms.length} firm{firms.length === 1 ? '' : 's'}
                 </span>
-                <h2 style={{ color: '#fff', fontSize: '1.1rem', margin: '0.55rem 0 0.45rem' }}>
+                <h2 style={{ color: 'var(--text)', fontSize: '1.1rem', margin: '0.55rem 0 0.45rem' }}>
                   {RAILS[rail].label}
                 </h2>
                 <p style={{ color: 'var(--muted)', fontSize: '0.8rem', lineHeight: 1.55, margin: 0 }}>
@@ -272,7 +272,7 @@ export default function Page() {
                     gap: '0.85rem',
                   }}>
                     <div>
-                      <h3 style={{ color: '#fff', fontSize: '1.15rem', margin: '0 0 0.55rem' }}>
+                      <h3 style={{ color: 'var(--text)', fontSize: '1.15rem', margin: '0 0 0.55rem' }}>
                         {entry.firmName}
                       </h3>
                       <RailPills rails={entry.payoutRails} />
@@ -287,19 +287,19 @@ export default function Page() {
                     marginTop: '1.1rem',
                   }}>
                     <div>
-                      <strong style={{ color: '#fff', fontSize: '0.76rem' }}>Published payout policy</strong>
+                      <strong style={{ color: 'var(--text)', fontSize: '0.76rem' }}>Published payout policy</strong>
                       <p style={{ color: 'var(--text)', fontSize: '0.82rem', lineHeight: 1.6, margin: '0.35rem 0 0' }}>
                         {entry.payout.summary}
                       </p>
                     </div>
                     <div>
-                      <strong style={{ color: '#fff', fontSize: '0.76rem' }}>Fee evidence</strong>
+                      <strong style={{ color: 'var(--text)', fontSize: '0.76rem' }}>Fee evidence</strong>
                       <p style={{ color: 'var(--text)', fontSize: '0.82rem', lineHeight: 1.6, margin: '0.35rem 0 0' }}>
                         {entry.fees.summary}
                       </p>
                     </div>
                     <div>
-                      <strong style={{ color: '#fff', fontSize: '0.76rem' }}>India availability signal</strong>
+                      <strong style={{ color: 'var(--text)', fontSize: '0.76rem' }}>India availability signal</strong>
                       <p style={{ color: 'var(--text)', fontSize: '0.82rem', lineHeight: 1.6, margin: '0.35rem 0 0' }}>
                         {entry.country.summary}
                       </p>
@@ -332,7 +332,7 @@ export default function Page() {
                         </a>
                       ))}
                       {firm && (
-                        <Link href={firm.reviewUrl} style={{ color: '#fff', fontSize: '0.74rem', fontWeight: 700 }}>
+                        <Link href={firm.reviewUrl} style={{ color: 'var(--text)', fontSize: '0.74rem', fontWeight: 700 }}>
                           Read review <ArrowRight size={10} />
                         </Link>
                       )}
@@ -352,11 +352,11 @@ export default function Page() {
             borderColor: 'rgba(239, 68, 68, 0.35)',
             background: 'rgba(127, 29, 29, 0.12)',
           }}>
-            <span className="bento-tile-eyebrow" style={{ color: '#fca5a5' }}>
+            <span className="bento-tile-eyebrow" style={{ color: 'var(--danger)' }}>
               <ShieldCheck size={12} /> Regulatory exclusion
             </span>
             <h2 id="rbi-excluded-heading" style={{
-              color: '#fff',
+              color: 'var(--text)',
               fontSize: '1.18rem',
               margin: '0.55rem 0 0.65rem',
             }}>
@@ -374,7 +374,7 @@ export default function Page() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.3rem',
-                color: '#fca5a5',
+                color: 'var(--danger)',
                 fontSize: '0.78rem',
                 fontWeight: 800,
                 marginTop: '0.8rem',
@@ -406,7 +406,7 @@ export default function Page() {
               ['4. Preserve the document trail', 'Keep the contract, payout approval, provider statement, transaction ID, FX rate and bank credit advice for your adviser.'],
             ].map(([title, body]) => (
               <article key={title} className="post-sidebar-card" style={{ padding: '1.25rem' }}>
-                <h3 style={{ color: '#fff', fontSize: '0.98rem', margin: '0 0 0.55rem' }}>{title}</h3>
+                <h3 style={{ color: 'var(--text)', fontSize: '0.98rem', margin: '0 0 0.55rem' }}>{title}</h3>
                 <p style={{ color: 'var(--text)', fontSize: '0.83rem', lineHeight: 1.65, margin: 0 }}>{body}</p>
               </article>
             ))}
@@ -430,7 +430,7 @@ export default function Page() {
           <div style={{ display: 'grid', gap: '0.8rem' }}>
             {faqs.map(item => (
               <article key={item.q} className="post-sidebar-card" style={{ padding: '1.25rem' }}>
-                <h3 style={{ color: '#fff', fontSize: '0.98rem', margin: '0 0 0.5rem' }}>{item.q}</h3>
+                <h3 style={{ color: 'var(--text)', fontSize: '0.98rem', margin: '0 0 0.5rem' }}>{item.q}</h3>
                 <p style={{ color: 'var(--text)', fontSize: '0.85rem', lineHeight: 1.65, margin: 0 }}>{item.a}</p>
               </article>
             ))}

@@ -393,8 +393,8 @@ export default function RussianCryptoPropFirmsPage() {
               <div className="ru-review-author-avatar" aria-hidden="true">ED</div>
               <div>
                 <strong>Автор: Edris Derakhshi</strong>
-                <p>Основатель Traders Fund Hub, funded-трейдер с 2020 года и рыночный аналитик. В этом рейтинге партнёрская комиссия отделена от market eligibility, порядка и продуктовых чисел.</p>
-                <Link href="/authors/edris-derakhshi">Профиль автора</Link>
+                <p>Автор обзоров и руководств Traders Fund Hub. В этом рейтинге различаем торговлю криптоактивами, оплату участия и получение прибыли в криптовалюте. Партнёрская комиссия не меняет порядок фирм.</p>
+                <Link href="/authors/edris-derakhshi" hrefLang="en">Профиль автора — на английском</Link>
               </div>
             </div>
           </div>

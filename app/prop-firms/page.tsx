@@ -159,7 +159,7 @@ export default async function PropFirmsHubPage({
                 <div style={{
                   fontSize: '1.45rem',
                   fontWeight: 800,
-                  color: label === 'priced products' ? 'var(--accent-light)' : '#fff',
+                  color: label === 'priced products' ? 'var(--accent-light)' : 'var(--text)',
                   fontVariantNumeric: 'tabular-nums',
                 }}>
                   <AnimatedNumber value={value as number} />
@@ -252,7 +252,7 @@ export default async function PropFirmsHubPage({
                     <span style={{
                       fontSize: '1.4rem',
                       fontWeight: 800,
-                      color: '#fff',
+                      color: 'var(--text)',
                       fontVariantNumeric: 'tabular-nums',
                     }}>
                       <AnimatedNumber value={count} duration={800} />

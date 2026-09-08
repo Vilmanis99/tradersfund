@@ -53,7 +53,7 @@ export default function FirmAlternatives({
         borderRadius: 14,
       }}
     >
-      <h2 style={{ fontSize: '1.05rem', color: '#fff', margin: 0, marginBottom: '1rem', fontWeight: 700 }}>
+      <h2 style={{ fontSize: '1.05rem', color: 'var(--text)', margin: 0, marginBottom: '1rem', fontWeight: 700 }}>
         Compare {current.name} with relevant alternatives
       </h2>
       <p style={{ color: 'var(--muted)', fontSize: '0.82rem', margin: '-0.35rem 0 1rem' }}>
@@ -90,7 +90,7 @@ export default function FirmAlternatives({
             >
               <Link href={firm.reviewUrl} style={{ color: 'inherit', textDecoration: 'none' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-                  <strong style={{ color: '#fff', fontSize: '0.95rem' }}>{firm.name}</strong>
+                  <strong style={{ color: 'var(--text)', fontSize: '0.95rem' }}>{firm.name}</strong>
                   {isPartner && (
                     <span className="partner-pill">
                       <Handshake size={9} /> Partner
@@ -159,7 +159,7 @@ export default function FirmAlternatives({
           borderRadius: 12,
         }}
       >
-        <summary style={{ color: '#fff', cursor: 'pointer', fontWeight: 700 }}>
+        <summary style={{ color: 'var(--text)', cursor: 'pointer', fontWeight: 700 }}>
           All {allRanked.length} {current.name} comparisons
         </summary>
         <p style={{ color: 'var(--muted)', fontSize: '0.8rem', margin: '0.75rem 0' }}>
@@ -193,7 +193,7 @@ export default function FirmAlternatives({
                     gap: '0.75rem',
                     minHeight: 52,
                     padding: '0.65rem 0.75rem',
-                    color: '#fff',
+                    color: 'var(--text)',
                     background: 'var(--bg2)',
                     border: '1px solid var(--border)',
                     borderRadius: 9,

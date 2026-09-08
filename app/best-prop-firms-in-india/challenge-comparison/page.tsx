@@ -200,7 +200,7 @@ export default function Page() {
             {stats.map(({ value, label, Icon }) => (
               <article key={label} className="post-sidebar-card" style={{ padding: '1.05rem' }}>
                 <Icon size={15} style={{ color: 'var(--accent-light)' }} />
-                <strong style={{ display: 'block', color: '#fff', fontSize: '1.25rem', marginTop: '0.45rem' }}>
+                <strong style={{ display: 'block', color: 'var(--text)', fontSize: '1.25rem', marginTop: '0.45rem' }}>
                   {value}
                 </strong>
                 <span style={{ color: 'var(--muted)', fontSize: '0.74rem' }}>{label}</span>
@@ -217,7 +217,7 @@ export default function Page() {
             borderColor: 'rgba(239, 68, 68, 0.35)',
             background: 'rgba(127, 29, 29, 0.12)',
           }}>
-            <span className="bento-tile-eyebrow" style={{ color: '#fca5a5' }}>
+            <span className="bento-tile-eyebrow" style={{ color: 'var(--danger)' }}>
               <CircleAlert size={12} /> Regulatory gate before commercial sorting
             </span>
             <p style={{ color: 'var(--text)', fontSize: '0.84rem', lineHeight: 1.65, margin: '0.65rem 0 0' }}>
@@ -261,7 +261,7 @@ export default function Page() {
               ['4. Source date attached', 'Every product links to the firm’s own public page and must pass the 30-day freshness audit.'],
             ].map(([title, body]) => (
               <article key={title} className="post-sidebar-card" style={{ padding: '1.2rem' }}>
-                <h3 style={{ color: '#fff', fontSize: '0.96rem', margin: 0 }}>{title}</h3>
+                <h3 style={{ color: 'var(--text)', fontSize: '0.96rem', margin: 0 }}>{title}</h3>
                 <p style={{ color: 'var(--text)', fontSize: '0.8rem', lineHeight: 1.65, margin: '0.55rem 0 0' }}>
                   {body}
                 </p>
@@ -290,7 +290,7 @@ export default function Page() {
                 padding: '1.15rem',
               }}>
                 <div style={{ flex: '0 1 170px' }}>
-                  <strong style={{ color: '#fff', fontSize: '0.88rem' }}>{firm.name}</strong>
+                  <strong style={{ color: 'var(--text)', fontSize: '0.88rem' }}>{firm.name}</strong>
                   <span style={{ display: 'block', color: 'var(--accent-light)', fontSize: '0.7rem', marginTop: '0.3rem' }}>
                     Evidence {firm.evidenceScore}/12
                   </span>
@@ -319,7 +319,7 @@ export default function Page() {
           <div style={{ display: 'grid', gap: '0.8rem' }}>
             {faqs.map(item => (
               <article key={item.q} className="post-sidebar-card" style={{ padding: '1.2rem' }}>
-                <h3 style={{ color: '#fff', fontSize: '0.96rem', margin: 0 }}>{item.q}</h3>
+                <h3 style={{ color: 'var(--text)', fontSize: '0.96rem', margin: 0 }}>{item.q}</h3>
                 <p style={{ color: 'var(--text)', fontSize: '0.82rem', lineHeight: 1.65, margin: '0.5rem 0 0' }}>
                   {item.a}
                 </p>

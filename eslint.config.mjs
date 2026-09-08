@@ -16,6 +16,7 @@ const eslintConfig = defineConfig([
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
+    ".preview/**", // Private preview servers, generated reports and design prototypes.
     "out/**",
     "build/**",
     "next-env.d.ts",

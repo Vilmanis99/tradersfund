@@ -12,17 +12,17 @@ import type { Firm } from '@/lib/firms'
 const STATUS: Record<IndiaEvidenceStatus, { label: string; color: string; background: string }> = {
   verified: {
     label: 'Captured',
-    color: '#86efac',
+    color: 'var(--accent)',
     background: 'rgba(34, 197, 94, 0.12)',
   },
   partial: {
     label: 'India test needed',
-    color: '#fcd34d',
+    color: 'var(--gold)',
     background: 'rgba(245, 158, 11, 0.12)',
   },
   unknown: {
     label: 'Unknown',
-    color: '#cbd5e1',
+    color: 'var(--muted)',
     background: 'rgba(148, 163, 184, 0.12)',
   },
 }
@@ -83,7 +83,7 @@ function RbiAlertCell({ alert }: { alert: IndiaRbiAlertEvidence }) {
           display: 'inline-flex',
           padding: '0.2rem 0.5rem',
           borderRadius: 999,
-          color: named ? '#fca5a5' : '#fcd34d',
+          color: named ? 'var(--danger)' : 'var(--gold)',
           background: named ? 'rgba(239, 68, 68, 0.13)' : 'rgba(245, 158, 11, 0.12)',
           fontSize: '0.68rem',
           fontWeight: 800,
@@ -168,7 +168,7 @@ export default function IndiaEvidenceMatrix({
                   <td style={{ padding: '1rem', verticalAlign: 'top', borderBottom: '1px solid var(--border)' }}>
                     <Link
                       href={reviewUrls.get(entry.firmName) ?? '/prop-firms'}
-                      style={{ color: '#fff', fontWeight: 800, textDecoration: 'none' }}
+                      style={{ color: 'var(--text)', fontWeight: 800, textDecoration: 'none' }}
                     >
                       {entry.firmName}
                     </Link>
