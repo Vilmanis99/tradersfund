@@ -41,7 +41,7 @@ export type RussianRoutePath =
 // that page changes materially; product/evidence freshness is tracked
 // separately in app/sitemap.ts. Never replace these with the deployment date.
 export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
-  '/ru': '2026-09-07',
+  '/ru': '2026-09-08',
   '/ru/chto-takoe-prop-firma': '2026-08-28',
   '/ru/dlya-russkoyazychnykh-treyderov': '2026-09-01',
   '/ru/forex-prop-firmy': '2026-08-28',
@@ -51,7 +51,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/fundednext-vs-fundingpips': '2026-09-01',
   '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-08-28',
   '/ru/luchshie-kripto-prop-firmy': '2026-08-28',
-  '/ru/luchshie-prop-firmy': '2026-09-07',
+  '/ru/luchshie-prop-firmy': '2026-09-08',
   '/ru/obzor-bright-funded': '2026-09-01',
   '/ru/obzor-eratrade': '2026-09-01',
   '/ru/obzor-ftmo': '2026-08-28',

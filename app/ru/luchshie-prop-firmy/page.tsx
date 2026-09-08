@@ -2,13 +2,16 @@ import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
 import { ArrowRight, BadgeCheck, Database, Scale, ShieldCheck } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
-import RussianPartnerMatcher from '@/components/RussianPartnerMatcher'
+import RussianChallengeFinder from '@/components/RussianChallengeFinder'
+import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/luchshie-prop-firmy'
+// Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
+export const revalidate = 3600
 const TITLE = 'Лучшие проп-компании 2026: сравнение цен и правил'
 const DESCRIPTION = 'Рейтинг проп-компаний для русскоязычных трейдеров: цены, просадка и выплаты. Сравните глобальные фирмы, счета без челленджа и российские компании.'
 
@@ -156,23 +159,7 @@ export default function RussianBestPropFirmsPage() {
   const brightFundedProfile = partnerProfiles.find(item => item.slug === 'bright-funded')
   const primaryPartnerProfiles = partnerProfiles.filter(item =>
     item.slug === 'fundednext' || item.slug === 'bright-funded')
-  const matcherProfiles = primaryPartnerProfiles
-    .filter(item => item.products.length > 0 && item.pricedTiers > 0)
-    .map(item => ({
-      slug: item.slug as 'fundednext' | 'bright-funded',
-      name: item.firm.name,
-      productCount: item.products.length,
-      hasInstant: item.products.some(product => product.phases === 0),
-      currencies: [
-        ...(item.products.some(product => product.accountSizes.some(tier => tier.priceUsd != null && tier.priceUsd > 0)) ? ['USD' as const] : []),
-        ...(item.products.some(product => product.accountSizes.some(tier => tier.priceEur != null && tier.priceEur > 0)) ? ['EUR' as const] : []),
-      ],
-      platforms: item.firm.platforms,
-      priceCount: item.pricedTiers,
-      priceRange: item.range,
-      captureDate: item.products.map(product => product.sourceCapturedAt).sort().at(0) ?? 'обновление ожидается',
-      reviewHref: item.slug === 'fundednext' ? '/ru/obzor-fundednext' : '/ru/obzor-bright-funded',
-    }))
+  const finderRows = getRussianFinderRows()
   const latestCapture = ranked
     .flatMap(item => item.products.map(product => product.sourceCapturedAt))
     .sort()
@@ -215,25 +202,15 @@ export default function RussianBestPropFirmsPage() {
             Начните с нужного формата: глобальная программа с проверкой навыков, счёт без челленджа
             или местная компания для биржевой торговли. Затем проверьте требования к вашей стране проживания.
           </p>
-          <div className="ru-grid">
-            <div className="ru-card">
-              <h2>Список глобальных проп-компаний</h2>
-              <p>Сравните редакционные оценки и условия программ. Для FundedNext и Bright Funded есть подробные обзоры на русском.</p>
-              <Link href="#polnyy-reyting" className="btn-primary btn-glow">Открыть рейтинг <ArrowRight size={15} aria-hidden="true" /></Link>
-            </div>
-            <div className="ru-card">
-              <h2>Финансирование без челленджа</h2>
-              <p>Если не хотите проходить оценочные этапы, сравните мгновенное финансирование: взнос, лимит убытка и условия первой выплаты.</p>
-              <Link href="/ru/prop-firmy-bez-chelendzha" className="btn-outline">Сравнить счета без челленджа</Link>
-            </div>
-            <div className="ru-card">
-              <h2>Российские проп-компании</h2>
-              <p>Если интересуют PropLive, TeamTraders и местная биржевая торговля, начните с отдельного разбора компаний и их договоров.</p>
-              <Link href="/ru/rossiyskie-prop-kompanii" className="btn-outline">Посмотреть российские компании</Link>
-            </div>
+          <div className="ru-actions">
+            <Link href="#podbor" className="btn-primary">Подобрать программу <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="#polnyy-reyting" className="btn-outline">Редакционный рейтинг</Link>
           </div>
+          <p className="ru-source-line">Другой формат: <Link href="/ru/prop-firmy-bez-chelendzha">счета без челленджа</Link> · <Link href="/ru/rossiyskie-prop-kompanii">российские проп-компании</Link>.</p>
         </div>
       </section>
+
+      <RussianChallengeFinder initialRows={finderRows} />
 
       <article data-russian-ranking-article="decision-first">
       <section className="ru-section ru-review-toc-section">
@@ -296,7 +273,7 @@ export default function RussianBestPropFirmsPage() {
                   <p>
                     {isFundedNext
                       ? `${item.pricedTiers} опубликованных цен в USD; среди ${item.products.length} маршрутов есть Stellar Instant с 0 оценочных фаз.`
-                      : `${item.pricedTiers} опубликованных цен в EUR для ${item.products.length} программ оценки; в профиле фирмы указаны MT5 и TradeLocker.`}
+                      : `${item.pricedTiers} опубликованных цен в EUR для ${item.products.length} программ оценки; доступность платформы уточняйте для выбранной программы и страны.`}
                   </p>
                   <ul className="ru-facts">
                     <li><BadgeCheck size={14} aria-hidden="true" /> Диапазон входа: {item.range}</li>
@@ -324,8 +301,6 @@ export default function RussianBestPropFirmsPage() {
           </p>
         </div>
       </section>
-
-      <RussianPartnerMatcher profiles={matcherProfiles} />
 
       <section className="ru-section" id="strana">
         <div className="ru-shell" data-russian-ranking-country-paths="diaspora-not-russia">

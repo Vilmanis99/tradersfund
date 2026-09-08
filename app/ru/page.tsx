@@ -3,12 +3,15 @@ import Image from 'next/image'
 import Link from '@/components/SafeLink'
 import { ArrowRight, BookOpenCheck, Globe2, Scale, Zap } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianFinderEntry from '@/components/RussianFinderEntry'
+import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 const PATH = '/ru'
+export const revalidate = 3600
 const TITLE = 'Проп-фирмы для русскоязычных трейдеров: цены и правила'
 const DESCRIPTION = 'Сравнение глобальных проп-фирм для русскоязычных трейдеров в разных странах: цены, просадки, выплаты, KYC и правила из первичных источников.'
 
@@ -74,9 +77,7 @@ export default function RussianHomePage() {
           <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Для русскоязычных трейдеров по всему миру</div>
           <h1>Выберите проп-фирму по условиям, а не обещаниям</h1>
           <p className="ru-lead">Сравните стоимость участия, лимиты убытка и правила выплат. Объясняем условия глобальных проп-фирм на русском — с источниками и ограничениями.</p>
-          <div className="ru-actions">
-            <Link href="/ru/luchshie-prop-firmy" className="btn-primary">Сравнить проп-фирмы <ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>
+          <RussianFinderEntry sizes={[...new Set(getRussianFinderRows().flatMap(row => row.product.tiers.map(tier => tier.sizeUsd)))].sort((a, b) => a - b)} />
 
           <div className="ru-home-partner-hero" data-russian-home-hero-partners="fundednext-bright-funded">
             {featuredPartnerCards.map(item => (

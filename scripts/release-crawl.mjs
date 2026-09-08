@@ -11,6 +11,8 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { dirname, extname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
+import { isFinderStateFragment } from '../lib/challengeComparison.ts'
+import { getRussianFinderRows } from '../lib/challengeComparisonData.ts'
 import {
   buildOutboundRelationships,
   outboundSlug,
@@ -467,7 +469,13 @@ for (const page of pages) {
   }
 }
 
+const russianFinderRows = getRussianFinderRows()
 for (const link of internalFragments) {
+  if (
+    link.target === '/ru/luchshie-prop-firmy'
+    && pageIds.get(link.target)?.has('podbor')
+    && isFinderStateFragment(link.fragment, russianFinderRows)
+  ) continue
   if (!pageIds.get(link.target)?.has(link.fragment)) {
     errors.push(
       `${link.source}: fragment #${link.fragment} is missing on ${link.target}`,
@@ -1035,15 +1043,13 @@ const russianExpectations = new Map([
       'data-russian-ranking-primary-partner="fundednext"',
       'data-russian-ranking-primary-partner="bright-funded"',
       'data-russian-affiliate-disclosure="ranking-primary-partners"',
-      'в профиле фирмы указаны MT5 и TradeLocker.',
+      'доступность платформы уточняйте для выбранной программы и страны.',
       '/go/fundednext?from=ru-ranking-primary-fundednext',
       '/go/bright-funded?from=ru-ranking-primary-bright-funded',
-      'data-russian-partner-matcher="eligibility-first"',
-      'data-russian-matcher-result="blocked"',
-      'data-russian-matcher-data-state="current"',
-      'data-russian-matcher-affiliate-actions="hidden-until-confirmed"',
-      'data-russian-matcher-block="country-kyc-payment-payout"',
-      'Коммерческий результат пока заблокирован.',
+      'data-russian-challenge-finder="product-first"',
+      'data-russian-affiliate-disclosure="challenge-finder"',
+      'data-russian-country-boundary="finder-not-access"',
+      'data-finder-product=',
       'data-russian-ranking-country-paths="diaspora-not-russia"',
       'data-russian-ranking="top-five"',
       'data-russian-affiliate-disclosure="ranking"',
@@ -1660,17 +1666,18 @@ const russianRankingPrimaryIndex = russianRankingPage?.html.indexOf(
   'data-russian-ranking-primary-partners="fundednext-bright-funded"',
 ) ?? -1
 const russianRankingMatcherIndex = russianRankingPage?.html.indexOf(
-  'data-russian-partner-matcher="eligibility-first"',
+  'data-russian-challenge-finder="product-first"',
 ) ?? -1
 const russianRankingTopFiveIndex = russianRankingPage?.html.indexOf(
   'data-russian-ranking="top-five"',
 ) ?? -1
 if (
   russianRankingPrimaryIndex < 0
-  || russianRankingMatcherIndex < russianRankingPrimaryIndex
-  || russianRankingTopFiveIndex < russianRankingMatcherIndex
+  || russianRankingMatcherIndex < 0
+  || russianRankingPrimaryIndex < russianRankingMatcherIndex
+  || russianRankingTopFiveIndex < russianRankingPrimaryIndex
 ) {
-  errors.push('/ru/luchshie-prop-firmy: primary partners and matcher do not precede the editorial top five')
+  errors.push('/ru/luchshie-prop-firmy: product finder, disclosed partners and editorial ranking must appear in that order')
 }
 if (russianRankingPage?.html.includes('from=ru-ranking-matcher-')) {
   errors.push('/ru/luchshie-prop-firmy: matcher affiliate actions rendered before eligibility confirmation')

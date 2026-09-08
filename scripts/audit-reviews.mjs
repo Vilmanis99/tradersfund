@@ -95,14 +95,6 @@ const GLOBAL_CHALLENGE_COMPONENT_FILE = path.join(
   ROOT,
   'components/GlobalChallengeComparison.tsx',
 )
-const GLOBAL_CHALLENGE_SOCIAL_FILE = path.join(
-  ROOT,
-  'app/prop-firm-challenges/opengraph-image.png',
-)
-const GLOBAL_CHALLENGE_SOCIAL_ALT_FILE = path.join(
-  ROOT,
-  'app/prop-firm-challenges/opengraph-image.alt.txt',
-)
 const CHALLENGE_CHANGES_PAGE_FILE = path.join(
   ROOT,
   'app/prop-firm-challenge-changes/page.tsx',
@@ -1984,15 +1976,11 @@ function checkGlobalChallengeSurface() {
     const requiredTokens = [
       "const PATH = '/prop-firm-challenges'",
       'alternates: { canonical: PATH }',
-      'getAllChallenges().filter(challenge => isChallengeFresh(challenge))',
-      'minimumCostToFundedUsd(challenge, tier)',
+      'buildChallengeComparisonRows(challenges, firms, watchEntries)',
+      'export const revalidate = 3600',
       'getChallengeWatchEntries',
-      'productChangeSignals(',
       'entry.sourceUrls',
       'GlobalChallengeComparison rows={rows}',
-      'SOCIAL_CARD_PRODUCT_COUNT = 89',
-      'SOCIAL_CARD_FIRM_COUNT = 19',
-      'Refresh the global challenge-comparison social card',
       'breadcrumbSchema',
       'faqPageSchema',
     ]
@@ -2138,13 +2126,10 @@ function checkGlobalChallengeSurface() {
     }
   }
 
-  if (!fs.existsSync(GLOBAL_CHALLENGE_SOCIAL_FILE)) {
-    rows.push('global challenge comparison social card is missing')
-  } else if (fs.statSync(GLOBAL_CHALLENGE_SOCIAL_FILE).size < 100_000) {
-    rows.push('global challenge comparison social card is unexpectedly small')
-  }
-  if (!fs.existsSync(GLOBAL_CHALLENGE_SOCIAL_ALT_FILE)) {
-    rows.push('global challenge comparison social-card alt text is missing')
+  const socialGenerator = path.join(ROOT, 'app/prop-firm-challenges/opengraph-image.tsx')
+  const socialSource = fs.existsSync(socialGenerator) ? fs.readFileSync(socialGenerator, 'utf8') : ''
+  if (!socialSource.includes('new ImageResponse(') || !socialSource.includes('export const alt =')) {
+    rows.push('global challenge comparison must generate a social card with accessible alt text')
   }
 
   if (rows.length) {
@@ -12191,9 +12176,10 @@ function checkRussianAcquisitionPilot() {
     'data-russian-ranking-primary-partners="fundednext-bright-funded"',
     'data-russian-ranking-primary-partner={item.slug}',
     'data-russian-affiliate-disclosure="ranking-primary-partners"',
-    "import RussianPartnerMatcher from '@/components/RussianPartnerMatcher'",
-    '<RussianPartnerMatcher profiles={matcherProfiles} />',
-    '.filter(item => item.products.length > 0 && item.pricedTiers > 0)',
+    "import RussianChallengeFinder from '@/components/RussianChallengeFinder'",
+    '<RussianChallengeFinder initialRows={finderRows} />',
+    'getRussianFinderRows()',
+    'export const revalidate = 3600',
     'data-russian-partner-shortlist="global"',
     'data-russian-ranking-partner-matrix="three-global-partners"',
     'data-russian-ranking-intent-paths="payout-drawdown-budget"',
@@ -12204,7 +12190,7 @@ function checkRussianAcquisitionPilot() {
     'from=ru-ranking-partner-shortlist',
     '`/go/${item.slug}?from=ru-ranking-partner-shortlist`',
     'rel="sponsored nofollow noopener"',
-    'в профиле фирмы указаны MT5 и TradeLocker.',
+    'доступность платформы уточняйте для выбранной программы и страны.',
     'href="/ru/rossiyskie-prop-kompanii"',
     'href="/ru/prop-firmy-bez-chelendzha"',
     'href="/ru/vyplaty-prop-firm"',
@@ -12216,14 +12202,15 @@ function checkRussianAcquisitionPilot() {
     rows.push('Russian ranking makes a product-wide TradeLocker claim without product-level evidence')
   }
   const primaryPartnerIndex = russianRankingPage.indexOf('data-russian-ranking-primary-partners="fundednext-bright-funded"')
-  const partnerMatcherIndex = russianRankingPage.indexOf('<RussianPartnerMatcher profiles={matcherProfiles} />')
+  const partnerMatcherIndex = russianRankingPage.indexOf('<RussianChallengeFinder initialRows={finderRows} />')
   const topFiveIndex = russianRankingPage.indexOf('data-russian-ranking="top-five"')
   if (
     primaryPartnerIndex < 0
-    || partnerMatcherIndex < primaryPartnerIndex
-    || topFiveIndex < partnerMatcherIndex
+    || partnerMatcherIndex < 0
+    || primaryPartnerIndex < partnerMatcherIndex
+    || topFiveIndex < primaryPartnerIndex
   ) {
-    rows.push('Russian ranking must show primary partners and the matcher before the editorial top five')
+    rows.push('Russian ranking must show the product finder, then disclosed partners, then the editorial top five')
   }
   for (const token of [
     'data-russian-partner-matcher="eligibility-first"',

@@ -22,57 +22,12 @@ import {
 } from 'lucide-react'
 import { trackSiteEvent as track } from '@/lib/clientAnalytics'
 import ProductChangeSignals from '@/components/ProductChangeSignals'
-import type { ChallengeProductSignal } from '@/lib/challengeWatch'
 import type {
-  ChallengeProfitTargets,
-  ChallengeRules,
   DrawdownType,
-  PayoutFrequency,
   RuleAvailability,
 } from '@/lib/firms'
-
-export interface GlobalChallengeTier {
-  sizeUsd: number
-  priceUsd: number | null
-  priceEur: number | null
-  costToFundedUsd: number | null
-  costToFundedEur: number | null
-  dailyLossUsd: number | null
-  maxLossUsd: number | null
-}
-
-export interface GlobalChallengeRow {
-  firm: {
-    slug: string
-    name: string
-    logo: string
-    reviewUrl: string
-    isPartner: boolean
-    score: number
-  }
-  product: {
-    name: string
-    slug: string
-    phases: 0 | 1 | 2 | 3
-    tiers: GlobalChallengeTier[]
-    pricingModel: 'one-off' | 'monthly-subscription' | 'split-payment'
-    profitTargets: ChallengeProfitTargets | null
-    dailyLossPct: number | null
-    maxLossPct: number | null
-    drawdownType: DrawdownType | null
-    minTradingDays: number | null
-    maxTradingDays: number | null
-    consistencyRulePct: number | null
-    profitSplitPct: number | null
-    payoutFirstDays: number | null
-    payoutFrequency: PayoutFrequency | null
-    rules: ChallengeRules
-    assetClass: 'cfd' | 'futures' | 'crypto' | 'prediction-markets'
-    sourceUrl: string
-    capturedAt: string
-    changeSignals: ChallengeProductSignal[]
-  }
-}
+import type { GlobalChallengeRow, GlobalChallengeTier } from '@/lib/challengeComparison'
+export type { GlobalChallengeRow, GlobalChallengeTier } from '@/lib/challengeComparison'
 
 type ProgramFilter = 'all' | 'instant' | 'one-step' | 'two-step' | 'three-step'
 type MarketFilter = 'all' | GlobalChallengeRow['product']['assetClass']

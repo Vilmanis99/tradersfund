@@ -13,28 +13,21 @@ import {
   SlidersHorizontal,
 } from 'lucide-react'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
-import GlobalChallengeComparison, {
-  type GlobalChallengeRow,
-} from '@/components/GlobalChallengeComparison'
+import GlobalChallengeComparison from '@/components/GlobalChallengeComparison'
+import { buildChallengeComparisonRows } from '@/lib/challengeComparisonData'
 import {
   getChallengeWatchEntries,
-  productChangeSignals,
   type ChallengeWatchKind,
 } from '@/lib/challengeWatch'
 import {
   getAllChallenges,
   getAllFirms,
-  isChallengeFresh,
-  minimumCostToFundedUsd,
 } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
 const PATH = '/prop-firm-challenges'
 const SITE = 'https://tradersfundhub.com'
-// Keep the build-time social-card check aligned with the current 30-day
-// freshness-filtered dataset. Stale counts should not block every deployment.
-const SOCIAL_CARD_PRODUCT_COUNT = 53
-const SOCIAL_CARD_FIRM_COUNT = 11
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'Prop Firm Challenge Comparison (2026): Prices & Rules',
@@ -54,10 +47,6 @@ export const metadata: Metadata = {
     description:
       'Filter product-level prices, targets, drawdown, payouts and trading rules without hiding missing data.',
   },
-}
-
-function firmSlug(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
 function dateLabel(value: string) {
@@ -85,63 +74,10 @@ function watchColor(kind: ChallengeWatchKind) {
 
 export default function Page() {
   const firms = getAllFirms()
-  const firmBySlug = new Map(firms.map(firm => [firmSlug(firm.name), firm]))
-  const challenges = getAllChallenges().filter(challenge => isChallengeFresh(challenge))
+  const firmBySlug = new Map(firms.map(firm => [firm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''), firm]))
+  const challenges = getAllChallenges()
   const watchEntries = getChallengeWatchEntries()
-  const rows: GlobalChallengeRow[] = challenges.flatMap(challenge => {
-    const firm = firmBySlug.get(challenge.firmSlug)
-    if (!firm) return []
-    return [{
-      firm: {
-        slug: challenge.firmSlug,
-        name: firm.name,
-        logo: firm.logo,
-        reviewUrl: firm.reviewUrl,
-        isPartner: Boolean(firm.affiliateUrl),
-        score: firm.score,
-      },
-      product: {
-        name: challenge.productName,
-        slug: challenge.productSlug,
-        phases: challenge.phases,
-        tiers: challenge.accountSizes.map(tier => ({
-          sizeUsd: tier.sizeUsd,
-          priceUsd: tier.priceUsd,
-          priceEur: tier.priceEur ?? null,
-          costToFundedUsd: minimumCostToFundedUsd(challenge, tier),
-          costToFundedEur:
-            tier.priceEur != null
-            && tier.priceEur > 0
-            && (tier.payLaterUsd ?? 0) === 0
-            && (tier.activationFeeUsd ?? challenge.activationFeeUsd ?? 0) === 0
-              ? tier.priceEur
-              : null,
-          dailyLossUsd: tier.dailyLossUsd ?? null,
-          maxLossUsd: tier.maxLossUsd ?? null,
-        })),
-        pricingModel: challenge.pricingModel ?? 'one-off',
-        profitTargets: challenge.profitTargets,
-        dailyLossPct: challenge.dailyLossPct,
-        maxLossPct: challenge.maxLossPct,
-        drawdownType: challenge.drawdownType,
-        minTradingDays: challenge.minTradingDays,
-        maxTradingDays: challenge.maxTradingDays,
-        consistencyRulePct: challenge.consistencyRulePct,
-        profitSplitPct: challenge.profitSplitPct,
-        payoutFirstDays: challenge.payoutFirstDays,
-        payoutFrequency: challenge.payoutFrequency,
-        rules: challenge.rules,
-        assetClass: challenge.assetClass,
-        sourceUrl: challenge.sourceUrl,
-        capturedAt: challenge.sourceCapturedAt,
-        changeSignals: productChangeSignals(
-          watchEntries,
-          challenge.firmSlug,
-          challenge.productSlug,
-        ),
-      },
-    }]
-  })
+  const rows = buildChallengeComparisonRows(challenges, firms, watchEntries)
   const trackedFirmCount = new Set(rows.map(row => row.firm.slug)).size
   const pricedProductCount = rows.filter(row =>
     row.product.tiers.some(tier =>
@@ -155,16 +91,6 @@ export default function Page() {
     0,
   )
   const latestCapture = rows.map(row => row.product.capturedAt).sort().at(-1)
-  if (
-    rows.length !== SOCIAL_CARD_PRODUCT_COUNT
-    || trackedFirmCount !== SOCIAL_CARD_FIRM_COUNT
-  ) {
-    throw new Error(
-      `Refresh the global challenge-comparison social card: expected `
-      + `${SOCIAL_CARD_PRODUCT_COUNT} products/${SOCIAL_CARD_FIRM_COUNT} firms, `
-      + `received ${rows.length}/${trackedFirmCount}`,
-    )
-  }
   const stats: Array<{ value: string; label: string; Icon: LucideIcon }> = [
     { value: rows.length.toString(), label: 'fresh products', Icon: Scale },
     { value: trackedFirmCount.toString(), label: 'firms covered', Icon: Database },

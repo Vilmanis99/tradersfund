@@ -16,7 +16,9 @@
     "preview:status": "node scripts/preview-server.mjs status",
     "indexnow:russian": "node scripts/submit-indexnow-russian.mjs",
     "capture:preview": "node scripts/merge-capture.mjs",
-    "capture:freshness": "node scripts/challenge-freshness.mjs"
+    "capture:freshness": "node scripts/challenge-freshness.mjs",
+    "test:finder": "node scripts/test-challenge-finder.mjs",
+    "check:finder-release": "node scripts/check-russian-finder-release.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

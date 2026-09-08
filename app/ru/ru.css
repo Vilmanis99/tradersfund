@@ -988,3 +988,89 @@
     justify-content: center;
   }
 }
+.ru-finder {
+  scroll-margin-top: 90px;
+}
+
+.ru-finder-heading h2 { max-width: 820px; }
+.ru-finder-disclosure { color: var(--text2, #b6bfd0); font-size: .85rem; line-height: 1.65; max-width: 960px; }
+.ru-finder-entry,
+.ru-finder-filters { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 24px 0 16px; }
+.ru-finder-entry { grid-template-columns: 1fr 1fr auto; max-width: 880px; align-items: end; padding: 20px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg2, #111722); }
+.ru-finder-entry label,
+.ru-finder-filters label { display: grid; gap: 8px; font-size: .8rem; font-weight: 650; min-width: 0; }
+.ru-finder-entry select,
+.ru-finder-filters select,
+.ru-finder-filters input { width: 100%; min-width: 0; min-height: 46px; border: 1px solid var(--border); border-radius: 9px; padding: 10px; background: var(--bg3, #1a2230); color: var(--text, #fff); font: inherit; }
+.ru-finder-filters input:disabled { opacity: .55; }
+.ru-finder-entry .btn-primary { min-height: 46px; }
+.ru-finder-advanced { border-bottom: 1px solid var(--border); padding: 8px 0 18px; }
+.ru-finder summary { cursor: pointer; font-size: .88rem; font-weight: 600; }
+.ru-finder summary svg { vertical-align: middle; margin-right: 6px; }
+.ru-finder-advanced p { color: var(--text2, #b6bfd0); font-size: .85rem; }
+.ru-finder-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin: 18px 0 12px; }
+.ru-finder-toolbar > p:first-child,
+.ru-finder-toolbar > h3:first-child { margin: 0 auto 0 0; }
+.ru-finder button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 12px; min-height: 42px; color: var(--text, #fff); background: var(--bg3, #1a2230); border: 1px solid var(--border); border-radius: 8px; font: inherit; font-size: .82rem; cursor: pointer; }
+.ru-finder button:hover:not(:disabled) { border-color: #34d399; }
+.ru-finder button:disabled { cursor: not-allowed; opacity: .45; }
+.ru-finder :focus-visible,
+.ru-finder-entry :focus-visible { outline: 2px solid #6ee7b7; outline-offset: 3px; }
+.ru-finder-results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 22px; }
+.ru-finder-card { display: flex; flex-direction: column; min-width: 0; padding: 22px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg2, #111722); }
+.ru-finder-card--selected { border-color: #34d399; box-shadow: 0 0 0 1px #34d399; }
+.ru-finder-card header { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.ru-finder-card header img { border-radius: 8px; object-fit: contain; }
+.ru-finder-card header > div { flex: 1; min-width: 120px; }
+.ru-finder-card header > div > span { font-size: .74rem; color: var(--text2, #b6bfd0); }
+.ru-finder-card h3 { font-size: 1.02rem; margin: 3px 0 0; }
+.ru-finder-phase { padding: 5px 8px; border-radius: 6px; font-size: .7rem; background: rgba(52, 211, 153, .09); color: #6ee7b7; }
+.ru-finder-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin: 22px 0 16px; }
+.ru-finder-price strong { font-size: 1.65rem; letter-spacing: -.04em; }
+.ru-finder-price span { font-size: .72rem; color: var(--text2, #b6bfd0); }
+.ru-finder-facts { margin: 0; }
+.ru-finder-facts > div { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); font-size: .79rem; line-height: 1.5; }
+.ru-finder-facts dt { color: var(--text2, #b6bfd0); }
+.ru-finder-facts dd { margin: 0; text-align: right; font-weight: 600; }
+.ru-finder-payout { color: var(--text2, #b6bfd0); font-size: .8rem; line-height: 1.65; }
+.ru-finder-details { font-size: .8rem; line-height: 1.7; margin: 0 0 20px; }
+.ru-finder-details p { font-size: inherit; }
+.ru-finder-caveat { border-left: 2px solid #6ee7b7; padding-left: 12px; margin: 16px 0; }
+.ru-finder-caveat p { margin: 8px 0; }
+.ru-finder-card-actions { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ru-finder-card-actions a { display: inline-flex; align-items: center; gap: 5px; font-size: .8rem; }
+.ru-finder-visit { font-size: .79rem; display: block; margin: 18px 0 6px; }
+.ru-finder-card > .ru-source-line { font-size: .7rem; line-height: 1.6; }
+.ru-finder-comparison { margin-top: 32px; border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+.ru-finder-comparison > p { font-size: .84rem; color: var(--text2, #b6bfd0); }
+.ru-finder-table-wrap { max-width: 100%; overflow-x: auto; }
+.ru-finder-comparison table { width: 100%; min-width: 600px; border-collapse: collapse; font-size: .8rem; }
+.ru-finder-comparison caption { text-align: left; padding: 12px 0; color: var(--text2, #b6bfd0); }
+.ru-finder-comparison th,
+.ru-finder-comparison td { text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); padding: 14px; line-height: 1.65; }
+.ru-finder-comparison thead th { min-width: 180px; }
+.ru-finder-comparison thead button { padding: 5px; margin: 6px 0 0 6px; }
+.ru-finder-different { background: rgba(52, 211, 153, .06); }
+.ru-finder-comparison small { display: block; font-weight: 400; color: #6ee7b7; }
+.ru-finder-country { margin-top: 24px; }
+.ru-finder-shortlist-bar { position: fixed; z-index: 45; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; width: max-content; max-width: calc(100% - 24px); padding: 10px 16px; background: #14271f; border: 1px solid #34d399; border-radius: 14px; box-shadow: 0 8px 40px #0009; font-size: .8rem; }
+.ru-finder-comparison { scroll-margin-top: 100px; }
+
+@media (max-width: 1050px) {
+  .ru-finder-results { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ru-finder-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ru-finder-entry { grid-template-columns: 1fr 1fr; }
+  .ru-finder-entry > a { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .ru-finder-results { grid-template-columns: 1fr; }
+  .ru-finder-card { padding: 18px; }
+  .ru-finder-entry { padding: 14px; gap: 10px; }
+  .ru-finder-entry label,
+  .ru-finder-filters label { font-size: .72rem; }
+  .ru-finder-filters input,
+  .ru-finder-filters select { font-size: .76rem; }
+  .ru-finder-comparison { padding: 12px; }
+  .ru-finder-shortlist-bar { gap: 6px; padding: 8px; font-size: .7rem; }
+  .ru-finder-shortlist-bar button { font-size: .7rem; padding: 8px; }
+}
