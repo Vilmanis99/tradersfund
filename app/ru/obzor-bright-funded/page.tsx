@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import Link from '@/components/SafeLink'
 import { AlertTriangle, ArrowRight, BadgeDollarSign, CheckCircle2, Database, ExternalLink } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -158,6 +159,7 @@ export default function RussianBrightFundedReviewPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
 
       <section className="ru-hero">
+        <div className="ru-shell"><RussianDataFreshnessNotice firmSlugs={['bright-funded']} /></div>
         <div className="ru-shell" data-russian-partner-review="bright-funded">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / Bright Funded</div>
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Условия проверены {latestCapture}</div>

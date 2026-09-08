@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import Link from '@/components/SafeLink'
 import {
   AlertTriangle,
@@ -99,7 +100,8 @@ function pricedTiers(product: Challenge) {
   return product.accountSizes.filter(tier => currency === 'USD' ? tier.priceUsd != null : tier.priceEur != null)
 }
 
-function priceRange(product: Challenge) {
+function priceRange(product: Challenge | undefined) {
+  if (!product) return 'требуется повторная проверка'
   const currency = challengeCurrency(product)
   const values = pricedTiers(product)
     .map(tier => currency === 'USD' ? tier.priceUsd : tier.priceEur)
@@ -111,7 +113,8 @@ function priceRange(product: Challenge) {
   return first === last ? first : `${first}–${last}`
 }
 
-function targetLabel(product: Challenge) {
+function targetLabel(product: Challenge | undefined) {
+  if (!product) return 'требуется повторная проверка'
   if (!product.profitTargets) return 'нет evaluation target'
   return Object.values(product.profitTargets).filter((value): value is number => value != null).map(value => `${value}%`).join(' / ')
 }
@@ -146,7 +149,6 @@ export default function FundedNextVsBrightFundedRussianPage() {
   const firms = getAllFirms()
   const allChallenges = getAllChallenges()
   const fundedNext = firms.find(firm => outboundSlug(firm.name) === 'fundednext')
-  const brightFunded = firms.find(firm => outboundSlug(firm.name) === 'bright-funded')
   const products = allChallenges.filter(product =>
     ['fundednext', 'bright-funded'].includes(product.firmSlug) && isChallengeFresh(product),
   )
@@ -210,6 +212,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
           data-russian-primary-comparison-prices={priceCount}
         >
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / FundedNext или Bright Funded</div>
+          <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Два главных партнёра · победитель зависит от продукта</div>
           <h1>FundedNext или Bright Funded: что выбрать в 2026 году</h1>
           <p className="ru-lead">
@@ -441,7 +444,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
               <table className="ru-table">
                 <thead><tr><th>Проверка</th><th>FundedNext</th><th>Bright Funded</th></tr></thead>
                 <tbody>
-                  <tr><td>Платформы</td><td>{fundedNext?.platforms.join(' · ')}</td><td>{brightFunded?.platforms.join(' · ')}</td></tr>
+                  <tr><td>Платформы</td><td><Link href="/ru/fundednext-mt5">MT5 и ограничения FundedNext</Link>: выбор зависит от модели, размера счёта и профиля.</td><td><Link href="/ru/prop-firmy-s-ctrader">cTrader и ограничения Bright Funded</Link>: список платформ фирмы не подтверждает доступность для каждого счёта.</td></tr>
                   <tr><td>KYC provider/process</td><td>FundedNext Verification Center</td><td>SumSub + Risk Team Security Check</td></tr>
                   <tr><td>Опубликованный срок</td><td>около 48 часов</td><td>1–2 рабочих дня, до 4 в peak period</td></tr>
                   <tr><td>Проверка адреса</td><td>может потребоваться документ до 3 месяцев</td><td>proof of address; список зависит от страны</td></tr>

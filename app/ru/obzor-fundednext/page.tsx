@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from '@/components/SafeLink'
 import { AlertTriangle, ArrowRight, BadgeDollarSign, CheckCircle2, Database } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { getDealsByFirm } from '@/lib/deals'
 import { challengeTierEconomics, getAllFirms, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -168,6 +169,7 @@ export default function RussianFundedNextReviewPage() {
       <section className="ru-hero">
         <div className="ru-shell">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / FundedNext</div>
+          <RussianDataFreshnessNotice firmSlugs={['fundednext']} />
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> {hasFreshProducts ? `Свежие данные продуктов: ${latestProductCapture}` : `Захват условий от ${latestProductCapture ?? 'неуказанной даты'} требует обновления`}</div>
           <h1>FundedNext: отзывы и обзор 2026 — 22 цены и 4 набора правил</h1>
           <p className="ru-lead">

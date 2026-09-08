@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import Image from 'next/image'
 import Link from './SafeLink'
 import { AlertTriangle, ArrowRight, BadgeDollarSign, Database, ExternalLink } from 'lucide-react'
@@ -157,6 +158,7 @@ export default function RussianPartnerReview({
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / {firmName}</div>
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Источник до {latestCapture}</div>
           <h1>{displayHeadline}</h1>
+          <RussianDataFreshnessNotice firmSlugs={[firmSlug]} />
           <p className="ru-lead">{lead}</p>
           <div className="ru-review-meta" aria-label={`Редакционные данные обзора ${firmName}`}>
             <span>Автор: Edris Derakhshi</span>

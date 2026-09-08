@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
 import { ArrowRight, BarChart3, CheckCircle2, Scale, ShieldCheck } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { getChallengesByFirm, getAllFirms, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
@@ -47,10 +48,8 @@ type ProductRow = {
   price: string
 }
 
-function requireProductRow(rows: ProductRow[], firm: string, productSlug: string) {
-  const row = rows.find(candidate => candidate.firm === firm && candidate.product.productSlug === productSlug)
-  if (!row) throw new Error(`Missing fresh ${firm} product ${productSlug}`)
-  return row
+function findProduct(rows: ProductRow[], firm: string, productSlug: string) {
+  return rows.find(candidate => candidate.firm === firm && candidate.product.productSlug === productSlug)?.product
 }
 
 function formatPrice(value: number, currency: 'USD' | 'EUR') {
@@ -120,12 +119,13 @@ export default function RussianFundedNextVsFundingPipsPage() {
   const sourceDates = productRows.map(row => row.product.sourceCapturedAt).sort()
   const latestCapture = sourceDates.at(-1) ?? 'дата не указана'
   const articleDateModified = russianRouteDateModified(PATH, latestCapture)
-  const fundedNextInstant = requireProductRow(productRows, 'FundedNext', 'stellar-instant').product
-  const fundingPipsZero = requireProductRow(productRows, 'FundingPips', 'zero').product
-  const fundedNextOneStep = requireProductRow(productRows, 'FundedNext', 'stellar-1-step').product
-  const fundingPipsOneStep = requireProductRow(productRows, 'FundingPips', '1-step-flex').product
-  const fundedNextTwoStep = requireProductRow(productRows, 'FundedNext', 'stellar-2-step').product
-  const fundingPipsTwoStep = requireProductRow(productRows, 'FundingPips', '2-step-pro').product
+  const fundedNextInstant = findProduct(productRows, 'FundedNext', 'stellar-instant')
+  const fundingPipsZero = findProduct(productRows, 'FundingPips', 'zero')
+  const fundedNextOneStep = findProduct(productRows, 'FundedNext', 'stellar-1-step')
+  const fundingPipsOneStep = findProduct(productRows, 'FundingPips', '1-step-flex')
+  const fundedNextTwoStep = findProduct(productRows, 'FundedNext', 'stellar-2-step')
+  const fundingPipsTwoStep = findProduct(productRows, 'FundingPips', '2-step-pro')
+  const missingPair = <p className="ru-muted">Условия одного или обоих продуктов требуют повторной проверки. Числовое сравнение этой пары временно скрыто.</p>
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
     { name: 'Рейтинг проп-фирм', url: '/ru/luchshie-prop-firmy' },
@@ -157,6 +157,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
           data-russian-comparison-editorial-date={articleDateModified}
         >
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / Сравнение</div>
+          <RussianDataFreshnessNotice firmSlugs={['fundednext', 'fundingpips']} />
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Продукт против продукта</div>
           <h1>FundedNext или FundingPips: сравнение для русскоязычных трейдеров</h1>
           <p className="ru-lead">
@@ -256,7 +257,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
           </p>
 
           <div className="ru-grid">
-            <article className="ru-card" data-russian-comparison-pair="instant">
+            {fundedNextInstant && fundingPipsZero ? <article className="ru-card" data-russian-comparison-pair="instant">
               <h3>Без оценки: Stellar Instant или FundingPips Zero</h3>
               <p>
                 У Stellar Instant лимит общей просадки {fundedNextInstant.maxLossPct}% trailing, стартовый split{' '}
@@ -274,9 +275,9 @@ export default function RussianFundedNextVsFundingPipsPage() {
                 <a href={fundedNextInstant.sourceUrl} target="_blank" rel="noopener noreferrer">Stellar Instant</a>;{' '}
                 <a href={fundingPipsZero.sourceUrl} target="_blank" rel="noopener noreferrer">FundingPips Zero</a>.
               </p>
-            </article>
+            </article> : <article className="ru-card"><h3>Без оценки: Stellar Instant или FundingPips Zero</h3>{missingPair}</article>}
 
-            <article className="ru-card" data-russian-comparison-pair="one-step">
+            {fundedNextOneStep && fundingPipsOneStep ? <article className="ru-card" data-russian-comparison-pair="one-step">
               <h3>Один этап: Stellar 1-Step или 1 Step Flex</h3>
               <p>
                 Stellar 1-Step ставит цель {fundedNextOneStep.profitTargets?.phase1}%, дневной лимит{' '}
@@ -295,9 +296,9 @@ export default function RussianFundedNextVsFundingPipsPage() {
                 <a href={fundedNextOneStep.sourceUrl} target="_blank" rel="noopener noreferrer">Stellar 1-Step</a>;{' '}
                 <a href={fundingPipsOneStep.sourceUrl} target="_blank" rel="noopener noreferrer">1 Step Flex</a>.
               </p>
-            </article>
+            </article> : <article className="ru-card"><h3>Один этап: Stellar 1-Step или 1 Step Flex</h3>{missingPair}</article>}
 
-            <article className="ru-card" data-russian-comparison-pair="two-step">
+            {fundedNextTwoStep && fundingPipsTwoStep ? <article className="ru-card" data-russian-comparison-pair="two-step">
               <h3>Два этапа: Stellar 2-Step или 2 Step Pro</h3>
               <p>
                 Stellar 2-Step публикует цели {targetLabel(fundedNextTwoStep)}, дневной лимит{' '}
@@ -316,7 +317,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
                 <a href={fundedNextTwoStep.sourceUrl} target="_blank" rel="noopener noreferrer">Stellar 2-Step</a>;{' '}
                 <a href={fundingPipsTwoStep.sourceUrl} target="_blank" rel="noopener noreferrer">2 Step Pro</a>.
               </p>
-            </article>
+            </article> : <article className="ru-card"><h3>Два этапа: Stellar 2-Step или 2 Step Pro</h3>{missingPair}</article>}
           </div>
         </div>
       </section>
@@ -332,7 +333,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
           </ol>
           <div className="ru-notice">
             <strong>Если нужен один этап и короткое стандартное reward-окно:</strong>{' '}
-            сначала изучите Stellar 1-Step с {fundedNextOneStep.payoutFirstDays}-дневным окном и его полные правила.
+            сначала изучите Stellar 1-Step и его полные правила.{fundedNextOneStep?.payoutFirstDays != null && <> В датированном источнике указано окно {fundedNextOneStep.payoutFirstDays} дней.</>}
             Если важнее конкретная структура FundingPips, выберите соответствующую модель, а не фирму целиком.
           </div>
           <div className="ru-actions" data-russian-comparison-decision-cta="primary-first">

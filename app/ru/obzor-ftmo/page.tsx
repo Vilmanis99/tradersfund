@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import Link from '@/components/SafeLink'
 import {
   AlertTriangle,
@@ -174,6 +175,7 @@ export default function RussianFtmoReviewPage() {
       <section className="ru-hero">
         <div className="ru-shell" data-russian-ftmo-review="search-to-decision">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / FTMO</div>
+          <RussianDataFreshnessNotice firmSlugs={['ftmo']} />
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Условия проверены {latestCapture}</div>
           <h1>FTMO: обзор 2026 — 2 программы и 10 цен</h1>
           <p className="ru-lead">
