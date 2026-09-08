@@ -62,3 +62,13 @@ export function getRussianReviewFinderHref(firmSlug: string, now = new Date()): 
   if (selected.length < 2) return '/ru/luchshie-prop-firmy#podbor'
   return `/ru/luchshie-prop-firmy#${serializeFinderState({ ...DEFAULT_FINDER_FILTERS, size: 50000, phases: '2' }, selected)}`
 }
+
+/** Same-size instant comparison; Bright Funded is not a phase-0 product. */
+export function getRussianInstantFinderHref(now = new Date()): string {
+  const available = new Set(getRussianFinderRows(now)
+    .filter(row => row.product.phases === 0 && row.product.tiers.some(tier => tier.sizeUsd === 10000))
+    .map(challengeKey))
+  const selected = ['fundednext:stellar-instant', 'fundingpips:zero'].filter(key => available.has(key))
+  if (selected.length < 2) return '/ru/luchshie-prop-firmy#podbor'
+  return `/ru/luchshie-prop-firmy#${serializeFinderState({ ...DEFAULT_FINDER_FILTERS, size: 10000, phases: '0' }, selected)}`
+}

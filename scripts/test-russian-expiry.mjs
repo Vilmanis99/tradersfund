@@ -70,7 +70,20 @@ try {
     .map(match => JSON.parse(match[1])).find(item => item['@type'] === 'Person')
   assert.equal(person?.jobTitle, 'Author', 'Person schema does not restore founder status')
   assert.equal(person?.description, edris.short)
-  const { getRussianReviewFinderHref, getRussianFinderRows } = require(path.join(root, 'lib/challengeComparisonData.ts'))
+  const { getRussianReviewFinderHref, getRussianFinderRows, getRussianInstantFinderHref } = require(path.join(root, 'lib/challengeComparisonData.ts'))
+  const instantEvidence = require(path.join(root, 'content/data/russian-fundednext-instant-evidence.json'))
+  const marketEvidence = require(path.join(root, 'content/data/russian-market-evidence.json'))
+  const { RUSSIAN_ROUTE_EDITORIAL_DATES } = require(path.join(root, 'lib/localizedRoutes.ts'))
+  const EvidenceNotice = require(path.join(root, 'components/RussianEvidenceFreshnessNotice.tsx')).default
+  clock = '2026-09-08T12:00:00Z'
+  for (const [captures, needsCheck] of [
+    [[], true], [['2026-09-08'], false], [['2026-08-09'], false], [['2026-08-08'], true],
+    [['2026-09-08', '2026-08-08'], true], [[''], true], [['not-a-date'], true], [['2030-01-01'], true],
+  ]) {
+    const notice = renderToStaticMarkup(React.createElement(EvidenceNotice, { evidence: captures.map(capturedAt => ({ label: 'правила', capturedAt })) }))
+    assert.equal(notice.includes('data-russian-guide-source-status="recapture-required"'), needsCheck, 'guide source notice handles independent, missing, stale and future dates')
+    if (needsCheck) assert(notice.includes('не подтверждают действующие условия'))
+  }
   const reviewed = {
     'obzor-ftmo': ['ftmo'], 'obzor-fundednext': ['fundednext'], 'obzor-bright-funded': ['bright-funded'],
     'obzor-fundingpips': ['fundingpips'], 'fundednext-vs-bright-funded': ['fundednext', 'bright-funded'],
@@ -78,7 +91,11 @@ try {
   }
   const products = getAllChallenges().filter(product => ['ftmo', 'fundednext', 'bright-funded', 'fundingpips'].includes(product.firmSlug))
   const offset = (date, days) => new RealDate(new RealDate(`${date}T00:00:00Z`).getTime() + days * 86400000).toISOString().slice(0, 10)
-  const boundaries = products.flatMap(product => [offset(product.sourceCapturedAt, 30), offset(product.sourceCapturedAt, 31)])
+  const instantProduct = products.find(product => product.firmSlug === 'fundednext' && product.productSlug === 'stellar-instant')
+  const instantSourceDates = [instantEvidence.capturedAt, instantEvidence.news.sourceCapturedAt, instantProduct.sourceCapturedAt,
+    marketEvidence.capturedAt]
+  const boundaries = [...products.map(product => product.sourceCapturedAt), ...instantSourceDates]
+    .flatMap(capturedAt => [offset(capturedAt, 30), offset(capturedAt, 31)])
   const dates = [...new Set([new RealDate().toISOString().slice(0, 10), ...boundaries, offset(boundaries.sort().at(-1), 365)])].sort()
   for (const date of dates) {
     clock = `${date}T12:00:00Z`
@@ -127,6 +144,27 @@ try {
           const needsRecapture = !scoped.length || scoped.some(product => !isChallengeFresh(product))
           assert.equal(html.includes('data-russian-source-status="recapture-required"'), needsRecapture, 'visible dated notice tracks relevant sources')
           if (needsRecapture) assert(html.includes('/ru/luchshie-prop-firmy#podbor'), 'expired reviews retain a finder handoff')
+        }
+        if (slug === 'fundednext-stellar-instant') {
+          const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
+          assert.doesNotMatch(visible, /\bCTA\b|\bcheckout\b|\bgates?\b|\bsnapshot\b|захват[а-яё]*|\bbuffer\b|\bgrowth\b|\bsetup\b|\breset fee\b|\bprofit high\b/iu, 'Instant guide uses reader-facing Russian')
+          assert(visible.includes('Автор: Edris Derakhshi'))
+          assert(html.includes('ru-review-article'), 'Instant guide inherits the shared readable article layout')
+          const schema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]))
+          const article = schema.find(item => item['@type'] === 'Article')
+          assert.equal(article?.author?.name, 'Edris Derakhshi')
+          assert.equal(article?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/fundednext-stellar-instant'])
+          const needsCheck = instantSourceDates.some(sourceCapturedAt => !isChallengeFresh({ sourceCapturedAt }))
+          assert.equal(html.includes('data-russian-guide-source-status="recapture-required"'), needsCheck, 'rule, price and access age are independent of editorial date')
+          assert.equal(schema.some(item => item['@type'] === 'FAQPage'), !needsCheck, 'dated archival answers do not remain current FAQ structured data')
+          for (const capturedAt of instantSourceDates) assert(visible.includes(capturedAt), 'actual source dates remain visible')
+          assert.equal((html.match(/data-russian-fundednext-instant-tier=/g) ?? []).length,
+            isChallengeFresh(instantProduct) ? instantProduct.accountSizes.filter(tier => tier.priceUsd > 0).length : 0, 'expired prices are hidden independently from explanatory rules')
+          assert(html.includes(getRussianInstantFinderHref().replace(/&/g, '&amp;')), 'instant guide carries a valid current comparison or safe fallback')
+          assert(visible.includes(`не более ${instantEvidence.news.newsMllEquityBufferMaximumUses} раз на одном счёте`), 'news adjustment includes its per-account use limit')
+          assert.equal(instantEvidence.news.newsMllEquityBufferMaximumUses, 3)
+          assert.match(instantEvidence.news.maximumUsesEvidenceQuote, /maximum of 3 times/)
+          assert.equal((html.match(/id="(?:answer|price|risk|payout|news|platform|holding|scale|reset|country|verdict|sources|faq)"/g) ?? []).length, 13, 'all established article anchors remain')
         }
         if (slug === 'fundednext-vs-fundingpips') {
           const fresh = products.filter(product => ['fundednext', 'fundingpips'].includes(product.firmSlug) && isChallengeFresh(product))

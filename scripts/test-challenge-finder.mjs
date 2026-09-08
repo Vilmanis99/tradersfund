@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { buildChallengeComparisonRows, getRussianFinderRows, getRussianReviewFinderHref } from '../lib/challengeComparisonData.ts'
+import { buildChallengeComparisonRows, getRussianFinderRows, getRussianReviewFinderHref, getRussianInstantFinderHref } from '../lib/challengeComparisonData.ts'
 import { getAllChallenges, getAllFirms, minimumCostToFundedUsd } from '../lib/firms.ts'
 import { challengeKey, DEFAULT_FINDER_FILTERS, filterChallengeRows, finderTier, isFinderStateFragment, parseFinderState, serializeFinderState, tierPrice } from '../lib/challengeComparison.ts'
 import { russianPayoutRequestLabel } from '../lib/russianProgrammeLabels.ts'
@@ -39,6 +39,21 @@ for (const firm of ['fundednext', 'bright-funded', 'fundingpips', 'ftmo']) {
   assert.equal(getRussianReviewFinderHref(firm, new Date('2030-01-01')), '/ru/luchshie-prop-firmy#podbor', 'expired presets retain a safe generic handoff')
 }
 assert.equal(getRussianReviewFinderHref('unknown', now), '/ru/luchshie-prop-firmy#podbor')
+
+const instantHash = new URL(getRussianInstantFinderHref(now), 'https://tradersfundhub.com').hash
+assert(isFinderStateFragment(instantHash, rows), 'instant guide handoff is a valid finder fragment')
+const instantState = parseFinderState(instantHash, rows)
+assert.equal(instantState.filters.size, 10000)
+assert.equal(instantState.filters.phases, '0')
+assert.equal(instantState.filters.currency, 'all')
+assert.deepEqual(instantState.selected, ['fundednext:stellar-instant', 'fundingpips:zero'])
+for (const key of instantState.selected) {
+  const row = rows.find(row => challengeKey(row) === key)
+  assert.equal(row.product.phases, 0, 'do not present Bright Funded evaluation as an instant alternative')
+  assert(finderTier(row, 10000), 'compare the same real account size')
+}
+assert.equal(getRussianInstantFinderHref(new Date('2030-01-01')), '/ru/luchshie-prop-firmy#podbor', 'expired instant pairs retain a safe handoff')
+assert.equal(getRussianInstantFinderHref(new Date('2020-01-01')), '/ru/luchshie-prop-firmy#podbor', 'future captures cannot create a comparison')
 
 for (const row of rows) {
   const original = products.find(product => product.firmSlug === row.firm.slug && product.productSlug === row.product.slug)

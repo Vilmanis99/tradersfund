@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { LOCALIZED_ROUTE_PAIRS, RUSSIAN_ONLY_ROUTES, RUSSIAN_ROUTE_EDITORIAL_DATES } from '../lib/localizedRoutes.ts'
-import { getRussianFinderRows, getRussianReviewFinderHref } from '../lib/challengeComparisonData.ts'
+import { getRussianFinderRows, getRussianReviewFinderHref, getRussianInstantFinderHref } from '../lib/challengeComparisonData.ts'
 import { challengeKey, DEFAULT_FINDER_FILTERS, filterChallengeRows } from '../lib/challengeComparison.ts'
 import { getAuthorBySlug } from '../lib/authors.ts'
 
@@ -41,7 +41,14 @@ for (const firm of ['fundednext', 'bright-funded', 'fundingpips', 'ftmo']) {
 const expected = filterChallengeRows(getRussianFinderRows(), DEFAULT_FINDER_FILTERS).map(challengeKey)
 const actual = [...ranking.matchAll(/data-finder-product="([^"]+)"/g)].map(match => match[1])
 assert.deepEqual(actual, expected, 'Server-rendered products match the same source-gated model as the UI')
-for (const pathname of ['/ru', '/ru/luchshie-prop-firmy', '/ru/obzor-fundednext', '/ru/obzor-bright-funded', '/ru/obzor-fundingpips', '/ru/obzor-ftmo', '/ru/otzyvy-prop-firm', '/ru/luchshie-kripto-prop-firmy']) {
+const instantGuide = pages.get('/ru/fundednext-stellar-instant')
+const instantText = instantGuide.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
+assert(instantGuide.includes('Автор:') && instantGuide.includes('Edris Derakhshi'), 'Instant guide has a visible author')
+assert(instantGuide.includes('data-russian-guide-source-status='), 'Instant guide exposes separate source age')
+assert(instantText.includes('не более 3 раз на одном счёте'), 'Instant news-adjustment limit is visible')
+assert(instantGuide.includes(getRussianInstantFinderHref().replace(/&/g, '&amp;')), 'published Instant comparison handoff')
+assert.doesNotMatch(instantText, /\bcheckout\b|\bbuffer\b|\bgates?\b|захват[а-яё]*/iu, 'published Instant guide has no internal jargon')
+for (const pathname of ['/ru', '/ru/luchshie-prop-firmy', '/ru/obzor-fundednext', '/ru/obzor-bright-funded', '/ru/obzor-fundingpips', '/ru/obzor-ftmo', '/ru/otzyvy-prop-firm', '/ru/luchshie-kripto-prop-firmy', '/ru/fundednext-stellar-instant']) {
   const block = sitemap.split('<url>').find(entry => entry.includes(`<loc>${production}${pathname}</loc>`))
   assert(block.includes(RUSSIAN_ROUTE_EDITORIAL_DATES[pathname]), `${pathname}: editorial lastmod`)
 }

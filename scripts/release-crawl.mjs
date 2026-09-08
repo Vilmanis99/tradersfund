@@ -1311,7 +1311,7 @@ const russianExpectations = new Map([
   }],
   ['/ru/fundednext-stellar-instant', {
     title: 'FundedNext Stellar Instant: правила и выплаты (2026)',
-    h1: 'FundedNext Stellar Instant: правила, trailing loss и выплаты',
+    h1: 'FundedNext Stellar Instant: просадка, стоимость и условия выплаты',
     markers: [
       'data-russian-fundednext-instant="product-lifecycle"',
       'data-russian-product-intent="fundednext-stellar-instant-rules"',
@@ -1338,6 +1338,8 @@ const russianExpectations = new Map([
       'data-russian-fundednext-instant-primary-partner="fundednext"',
       'data-russian-fundednext-instant-alternative="bright-funded"',
       'data-russian-fundednext-instant-sources="16"',
+      'data-russian-guide-source-status=',
+      'не более 3 раз на одном счёте',
       '$59.99–$599.99',
       'не совпадает с правилом «10% дешевле»',
       '/go/fundednext?from=ru-fundednext-instant-hero',

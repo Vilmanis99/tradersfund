@@ -66,10 +66,13 @@
   },
   "news": {
     "sourceUrl": "https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts",
+    "sourceCapturedAt": "2026-09-08",
     "windowMinutesBefore": 5,
     "windowMinutesAfter": 5,
     "countedProfitPct": 40,
     "newsMllEquityBufferPct": 1,
+    "newsMllEquityBufferMaximumUses": 3,
+    "maximumUsesEvidenceQuote": "This 1% buffer, the trader will get a maximum of 3 times in one single account.",
     "appliesTo": ["market executions", "pending orders", "partial closures"],
     "notes": [
       "News trading is allowed, but only 40% of profit from trades executed inside the named 10-minute window counts.",
