@@ -1,0 +1,7 @@
+# TradeDay source refresh — 2026-09-14
+
+TradeDay's public homepage and linked help articles were re-read on 14 September 2026. The current homepage exposes four account sizes for each of the three current paths: Quick Pay Intraday, Quick Pay End of Day, and Fast Pass End of Day. The 25K promotional monthly prices ($45, $54, and $59 respectively) were missing from the prior capture and are now represented in the challenge data.
+
+The refresh keeps the 55%-off prices as a dated promotional snapshot. TradeDay's support pricing table still publishes higher undiscounted list prices, and the homepage reset values conflict with billing guidance, so those values remain in notes and on the public watch rather than replacing the displayed evaluation fee. Quick Pay keeps a 30% evaluation consistency rule, five minimum evaluation days, no funded payout buffer, and a day-one $250 minimum request. Fast Pass keeps a 45% evaluation consistency rule and five qualifying payout days; the homepage's displayed three-day minimum conflicts with the current help article's no-formal-minimum language, so `minTradingDays` remains null.
+
+The capture was merged with `node scripts/merge-capture.mjs tradeday --dir .preview/tradeday-capture-2026-09-14 --write --accept-changes`. The resulting data is in `content/data/challenges/tradeday.json`, with the raw archive at `content/data/challenges/_captures/tradeday-2026-09-14.json`. The dated TradeDay watch entries were checked on the same date. No checkout, registration, or payout was submitted, and no deployment was started.

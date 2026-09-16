@@ -29,10 +29,10 @@ const PATH = '/prop-firm-challenge-changes'
 // These counts are a build-time consistency check for the social-card copy.
 // Keep them aligned with the current dated watch ledger so a new verified
 // change cannot strand the whole site on an older deployment.
-const SOCIAL_CARD_ENTRY_COUNT = 16
-const SOCIAL_CARD_FIRM_COUNT = 9
-const SOCIAL_CARD_VERIFIED_COUNT = 5
-const SOCIAL_CARD_WATCH_COUNT = 11
+const SOCIAL_CARD_ENTRY_COUNT = 30
+const SOCIAL_CARD_FIRM_COUNT = 16
+const SOCIAL_CARD_VERIFIED_COUNT = 15
+const SOCIAL_CARD_WATCH_COUNT = 15
 
 const TITLE = 'Prop Firm Challenge Changes & Rule Updates (2026)'
 const DESCRIPTION =
@@ -98,7 +98,7 @@ const FAQS = [
   },
   {
     q: 'How current is this change ledger?',
-    a: 'Every entry is linked to a current challenge capture. Product datasets older than 30 days fail the editorial freshness gate and must be recaptured before they can remain current.',
+    a: 'Each entry records its own first-party check date. A rule-only recheck can cite a separate dated evidence section; it does not refresh product prices. The 30-day editorial freshness gate applies independently to watch checks and product captures.',
   },
   {
     q: 'Does an India-screened badge mean the firm is RBI authorised?',

@@ -1,0 +1,20 @@
+{
+  "firmSlug": "fundednext",
+  "evaluation": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/8019669-what-is-the-leverage-of-the-trading-account",
+    "sourceCapturedAt": "2026-09-08",
+    "sourcePublishedAt": "2026-05-19",
+    "sourceFormat": "Two embedded images: Challenge Account and FundedNext Account",
+    "forexLeverage": {
+      "stellar-1-step": { "challenge": 30, "funded": 30 },
+      "stellar-2-step": { "challenge": 100, "funded": 100 },
+      "stellar-lite": { "challenge": 100, "funded": 100 }
+    },
+    "evidenceQuote": "Stellar 1-Step Account | Forex 1:30; Stellar 2-Step & Lite Account | Forex 1:100",
+    "notes": [
+      "Read both image tables, not just the text extractor output, which omits the figures.",
+      "Corrects the August 28 Russian forex capture, which incorrectly included Stellar 1-Step in the 1:100 group.",
+      "September 8 is our verification date, not a proven date when FundedNext changed this policy. Product prices and country eligibility were not refreshed."
+    ]
+  }
+}

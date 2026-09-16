@@ -1,0 +1,471 @@
+{
+  "firmSlug": "tradeify",
+  "officialDomain": "https://tradeify.co",
+  "capturedAt": "2026-09-14",
+  "capturedAtUtc": "2026-09-14T20:00:00Z",
+  "localEditorialDate": "2026-09-14",
+  "reviewStatus": "ready",
+  "releaseBlockers": [],
+  "pagesRead": [
+    "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+    "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+    "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+    "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+    "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+    "https://help.tradeify.co/en/articles/10495932-lightning-funded-account-payout-policy",
+    "https://help.tradeify.co/en/articles/10468318-guidelines-for-traders",
+    "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
+    "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+    "https://help.tradeify.co/en/articles/13196343-tradovate-order-entry-copy-trading",
+    "https://tradeify.co/funded-trader-agreement"
+  ],
+  "accessNotes": "FIRST-PARTY-ONLY recapture on 2026-09-14. The current Pricing Reference still publishes the four stored product lines and 16 base prices. The current Select payout policy introduces a purchase-date boundary at 1 September 2026 for Flex and Daily caps; the Challenge schema has no payout-cap fields, so the dated tables remain in provenance and watch notes. Current rule pages confirm no-news restrictions, the 4:45 PM ET flat time, conditional personal automation, same-owner copy trading only, and current Lightning payout goals.",
+  "unresolvedConflicts": [
+    {
+      "field": "selectPayoutCaps",
+      "sourceUrls": [
+        "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies"
+      ],
+      "resolution": "The policy publishes separate cap tables for accounts purchased before and after 1 September 2026. The comparison keeps the product-level challenge fields unchanged and exposes the date boundary in notes/watch rather than collapsing both tables into one number."
+    },
+    {
+      "field": "lightningPayoutRules",
+      "sourceUrls": [
+        "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+        "https://help.tradeify.co/en/articles/10495932-lightning-funded-account-payout-policy"
+      ],
+      "resolution": "Current pages distinguish post-September 2025 accounts from legacy accounts. Stored fields describe the current path; legacy exceptions remain in notes."
+    }
+  ],
+  "products": [
+    {
+      "firmSlug": "tradeify",
+      "productName": "Growth Evaluation",
+      "productSlug": "growth-evaluation",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 99,
+          "dailyLossUsd": 600,
+          "maxLossUsd": 1000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 145,
+          "dailyLossUsd": 1250,
+          "maxLossUsd": 2000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 255,
+          "dailyLossUsd": 2500,
+          "maxLossUsd": 3500,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 369,
+          "dailyLossUsd": 3750,
+          "maxLossUsd": 5000,
+          "refundable": false
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": 35,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": false,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "assetClass": "futures",
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "sourceCapturedAt": "2026-09-14",
+      "notes": [
+        "BASE LIST PRICES: $99 / $145 / $255 / $369 for $25K / $50K / $100K / $150K. Expiring promotions and the five-account bundle discount are excluded from single-account base prices.",
+        "ONE-TIME AND $0 ACTIVATION: Growth has no subscription rebill and no simulated-funded activation fee.",
+        "SIX-PERCENT TARGET: $1,500 / $3,000 / $6,000 / $9,000 by tier.",
+        "SOFT DAILY LOSS: $600 / $1,250 / $2,500 / $3,750; reaching it stops trading for the day rather than failing the account by itself.",
+        "EOD TRAILING LOSS: $1,000 / $2,000 / $3,500 / $5,000; tier-specific dollar caps remain in accountSizes rather than a false shared percentage.",
+        "ONE-DAY PASS: Growth evaluation has no consistency rule and can pass after one trading day. The 35% stored value is the simulated-funded payout gate.",
+        "PAYOUT GATE: every request cycle needs five qualifying profit days with $100 / $150 / $200 / $250 minimum daily profit by tier.",
+        "NINETY-PERCENT SPLIT: simulated-funded requests pay 90% to the trader; Elite Live uses 80/20.",
+        "DAY TRADING ONLY: positions must close by 4:45 PM ET, so overnight and weekend holding are prohibited.",
+        "NEWS ALLOWED: the separate microscalping payout gate requires over 50% of trades and over 50% of profit to come from trades longer than 10 seconds.",
+        "AUTOMATION AND COPYING RESTRICTED: a provably personal non-HFT bot is conditional; copy trading is limited to accounts the trader owns and manages.",
+        "ALL SALES FINAL: purchases, resets and other fees are non-refundable.",
+        "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-08-11.json",
+        "CURRENT REFRESH 2026-09-14: Pricing Reference currently lists $99 / $145 / $255 / $369 one-time for 25K / 50K / 100K / 150K.",
+        "Current Growth rules: 6% targets; dollar soft DLL $600 / $1,250 / $2,500 / $3,750; EOD trailing max loss $1,000 / $2,000 / $3,500 / $5,000; one trading day can pass because there is no evaluation consistency rule.",
+        "Current funded payout wording remains five qualifying winning days per request with a 90% trader split; the stored 35% value is the funded consistency gate, not an evaluation requirement."
+      ],
+      "fieldEvidence": {
+        "pricing": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+          "quote": "All plans are one-time purchases with no recurring billing."
+        },
+        "rules": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+          "quote": "Current account-size tables publish the targets and dollar drawdown limits."
+        },
+        "payouts": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+          "quote": "Updated this week; payout frequency, caps and current purchase-date distinctions are stated in the policy tables."
+        },
+        "conduct": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10468318-guidelines-for-traders",
+          "quote": "Personal bots may be allowed under conditions; copying other traders is not permitted; funded microscalping needs over 50% of trades and profit held longer than 10 seconds."
+        },
+        "schedule": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
+          "quote": "All positions must be closed by 4:45 PM Eastern Time each trading day."
+        },
+        "news": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+          "quote": "We do not have any rules against or guidelines around trading news events."
+        },
+        "copyTrading": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/13196343-tradovate-order-entry-copy-trading",
+          "quote": "You may only group trade between accounts you own and manage."
+        }
+      }
+    },
+    {
+      "firmSlug": "tradeify",
+      "productName": "Select Evaluation → Flex",
+      "productSlug": "select-flex",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 109,
+          "maxLossUsd": 1000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 165,
+          "maxLossUsd": 2000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 265,
+          "maxLossUsd": 3000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 369,
+          "maxLossUsd": 4500,
+          "refundable": false
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": false,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "assetClass": "futures",
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "sourceCapturedAt": "2026-09-14",
+      "notes": [
+        "BASE LIST PRICES: $109 / $165 / $265 / $369 for $25K / $50K / $100K / $150K. The same Select purchase later branches permanently into Flex or Daily.",
+        "RESET NON-SCHEMA CHANGE: Select 50K's current reset fee is $109, up from $95 in the July 28 capture; the $165 purchase price is unchanged.",
+        "ONE-TIME AND $0 ACTIVATION: Select has no subscription rebill and no activation fee.",
+        "SIX-PERCENT TARGET: $1,500 / $3,000 / $6,000 / $9,000 by tier.",
+        "THREE-DAY EVALUATION: Select requires 40% evaluation consistency, so no single trading day may exceed 40% of total evaluation profit.",
+        "NO DLL: Select evaluation and Flex funded mode publish no daily loss limit.",
+        "EOD TRAILING LOSS: $1,000 / $2,000 / $3,000 / $4,500 during evaluation and Select Flex funded mode.",
+        "PERMANENT FUNDED CHOICE: Flex is selected only after passing and cannot be switched to Daily on that account.",
+        "FLEX PAYOUT GATE: five winning days with $100 / $150 / $200 / $250 minimum profit by tier; request up to 50% of total profit within tier caps.",
+        "FUNDED CONSISTENCY: Select Flex has no funded consistency percentage despite the 40% evaluation gate.",
+        "NINETY-PERCENT SPLIT: simulated-funded requests pay 90% to the trader.",
+        "GENERAL RULES: positions close by 4:45 PM ET; news is allowed; same-owner copying and provably personal non-HFT automation are conditional.",
+        "ALL SALES FINAL: purchases, resets and other fees are non-refundable.",
+        "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-08-11.json"
+      ],
+      "fieldEvidence": {
+        "pricing": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+          "quote": "All plans are one-time purchases with no recurring billing."
+        },
+        "rules": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+          "quote": "Current account-size tables publish the targets and dollar drawdown limits."
+        },
+        "payouts": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+          "quote": "Updated this week; payout frequency, caps and current purchase-date distinctions are stated in the policy tables."
+        },
+        "conduct": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10468318-guidelines-for-traders",
+          "quote": "Personal bots may be allowed under conditions; copying other traders is not permitted; funded microscalping needs over 50% of trades and profit held longer than 10 seconds."
+        },
+        "schedule": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
+          "quote": "All positions must be closed by 4:45 PM Eastern Time each trading day."
+        },
+        "news": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+          "quote": "We do not have any rules against or guidelines around trading news events."
+        },
+        "copyTrading": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/13196343-tradovate-order-entry-copy-trading",
+          "quote": "You may only group trade between accounts you own and manage."
+        }
+      }
+    },
+    {
+      "firmSlug": "tradeify",
+      "productName": "Select Evaluation → Daily",
+      "productSlug": "select-daily",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 109,
+          "maxLossUsd": 1000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 165,
+          "maxLossUsd": 2000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 265,
+          "maxLossUsd": 3000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 369,
+          "maxLossUsd": 4500,
+          "refundable": false
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 1,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": false,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "assetClass": "futures",
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "sourceCapturedAt": "2026-09-14",
+      "notes": [
+        "BASE LIST PRICES: $109 / $165 / $265 / $369 for $25K / $50K / $100K / $150K. The purchase price is identical to Select Flex because the permanent choice occurs after passing.",
+        "RESET NON-SCHEMA CHANGE: Select 50K's current reset fee is $109, up from $95 in the July 28 capture; the $165 purchase price is unchanged.",
+        "ONE-TIME AND $0 ACTIVATION: Select has no subscription rebill and no activation fee.",
+        "SIX-PERCENT TARGET: $1,500 / $3,000 / $6,000 / $9,000 by tier.",
+        "THREE-DAY EVALUATION: Select requires 40% evaluation consistency.",
+        "EVALUATION RISK: no DLL and EOD trailing max loss of $1,000 / $2,000 / $3,000 / $4,500.",
+        "DAILY FUNDED RISK: DLL becomes $500 / $1,000 / $1,250 / $1,750 and max drawdown becomes $1,000 / $2,000 / $2,500 / $3,500.",
+        "PERMANENT FUNDED CHOICE: Daily is selected only after passing and cannot be switched to Flex on that account.",
+        "DAILY PAYOUT GATE: daily eligibility after exceeding the $1,100 / $2,100 / $2,600 / $3,600 buffer; minimum request $250.",
+        "DAILY CONTINUITY CAP: up to twice the profit earned between requests, capped at $600 / $1,000 / $1,500 / $2,500.",
+        "FUNDED CONSISTENCY: Select Daily has no funded consistency percentage despite the 40% evaluation gate.",
+        "NINETY-PERCENT SPLIT: simulated-funded requests pay 90% to the trader.",
+        "GENERAL RULES: positions close by 4:45 PM ET; news is allowed; same-owner copying and provably personal non-HFT automation are conditional.",
+        "ALL SALES FINAL: purchases, resets and other fees are non-refundable.",
+        "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-08-11.json"
+      ],
+      "fieldEvidence": {
+        "pricing": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+          "quote": "All plans are one-time purchases with no recurring billing."
+        },
+        "rules": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+          "quote": "Current account-size tables publish the targets and dollar drawdown limits."
+        },
+        "payouts": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+          "quote": "Updated this week; payout frequency, caps and current purchase-date distinctions are stated in the policy tables."
+        },
+        "conduct": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10468318-guidelines-for-traders",
+          "quote": "Personal bots may be allowed under conditions; copying other traders is not permitted; funded microscalping needs over 50% of trades and profit held longer than 10 seconds."
+        },
+        "schedule": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
+          "quote": "All positions must be closed by 4:45 PM Eastern Time each trading day."
+        },
+        "news": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+          "quote": "We do not have any rules against or guidelines around trading news events."
+        },
+        "copyTrading": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/13196343-tradovate-order-entry-copy-trading",
+          "quote": "You may only group trade between accounts you own and manage."
+        }
+      }
+    },
+    {
+      "firmSlug": "tradeify",
+      "productName": "Lightning Funded",
+      "productSlug": "lightning-funded",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 345,
+          "maxLossUsd": 1000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 492,
+          "dailyLossUsd": 1250,
+          "maxLossUsd": 2000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 660,
+          "dailyLossUsd": 2500,
+          "maxLossUsd": 4000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 796,
+          "dailyLossUsd": 3000,
+          "maxLossUsd": 5250,
+          "refundable": false
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "fundedDailyLossPct": null,
+      "fundedMaxLossPct": null,
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": 20,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 0,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": false,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "assetClass": "futures",
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "sourceCapturedAt": "2026-09-14",
+      "notes": [
+        "BASE LIST PRICES: $345 / $492 / $660 / $796 for $25K / $50K / $100K / $150K; no temporary promotional price is stored.",
+        "INSTANT SIMULATED FUNDING: Lightning has no evaluation phase, one-time billing, no activation fee and no reset option.",
+        "CURRENT RISK: no DLL on 25K; soft DLLs $1,250 / $2,500 / $3,000 on 50K / 100K / 150K. EOD trailing max loss is $1,000 / $2,000 / $4,000 / $5,250.",
+        "PAYOUT PROFIT GOALS: first request requires $1,500 / $3,000 / $6,000 / $9,000; these are payout eligibility goals, not an evaluation phase.",
+        "NO MINIMUM DAY COUNT: request eligibility follows the profit goal and consistency rule, with no minimum trading-day count.",
+        "PROGRESSIVE CONSISTENCY: 20% for payout 1, 25% for payout 2 and 30% thereafter on current accounts; stored 20% is the strict first-request gate.",
+        "NINETY-PERCENT SPLIT: simulated-funded requests pay 90% to the trader.",
+        "DAY TRADING ONLY: positions must close by 4:45 PM ET, so overnight and weekend holding are prohibited.",
+        "NEWS ALLOWED: the separate microscalping payout gate requires over 50% of trades and over 50% of profit to come from trades longer than 10 seconds.",
+        "AUTOMATION AND COPYING RESTRICTED: a provably personal non-HFT bot is conditional; copy trading is limited to accounts the trader owns and manages.",
+        "ALL SALES FINAL: a failed Lightning account requires a new purchase and no refund is offered.",
+        "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-08-11.json",
+        "CURRENT REFRESH 2026-09-14: Pricing Reference currently lists $345 / $492 / $660 / $796 one-time for 25K / 50K / 100K / 150K.",
+        "Current Lightning rules: no evaluation, no minimum trading-day count, EOD trailing max loss $1,000 / $2,000 / $4,000 / $5,250, and soft DLL none / $1,250 / $2,500 / $3,000.",
+        "Current payout policy requires profit goals of $1,500 / $3,000 / $6,000 / $9,000 for payout 1, then $1,000 / $2,000 / $3,500 / $4,500 for payout 2+ on post-12 September 2025 accounts; the 20% → 25% → 30% consistency progression and $1,000 minimum payout remain published."
+      ],
+      "fieldEvidence": {
+        "pricing": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+          "quote": "All plans are one-time purchases with no recurring billing."
+        },
+        "rules": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+          "quote": "Current account-size tables publish the targets and dollar drawdown limits."
+        },
+        "payouts": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10495932-lightning-funded-account-payout-policy",
+          "quote": "Updated this week; payout frequency, caps and current purchase-date distinctions are stated in the policy tables."
+        },
+        "conduct": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10468318-guidelines-for-traders",
+          "quote": "Personal bots may be allowed under conditions; copying other traders is not permitted; funded microscalping needs over 50% of trades and profit held longer than 10 seconds."
+        },
+        "schedule": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
+          "quote": "All positions must be closed by 4:45 PM Eastern Time each trading day."
+        },
+        "news": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+          "quote": "We do not have any rules against or guidelines around trading news events."
+        },
+        "copyTrading": {
+          "sourceUrl": "https://help.tradeify.co/en/articles/13196343-tradovate-order-entry-copy-trading",
+          "quote": "You may only group trade between accounts you own and manage."
+        }
+      }
+    }
+  ]
+}

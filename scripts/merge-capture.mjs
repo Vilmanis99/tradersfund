@@ -55,7 +55,7 @@ const validCaptureDate = value => {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value ?? ''))) return false
   const parsed = new Date(`${value}T00:00:00Z`)
   if (Number.isNaN(parsed.getTime())) return false
-  return parsed.getTime() <= Date.now()
+  return parsed.toISOString().slice(0, 10) === value && parsed.getTime() <= Date.now()
 }
 
 const num = v => {
@@ -118,6 +118,10 @@ const enumOrNull = (v, allowed) => {
 
 function projectProduct(firmSlug, p, capturedAt, problems) {
   const where = `${firmSlug} / ${p.productName ?? '(unnamed)'}`
+  const productCapturedAt = p.sourceCapturedAt === undefined ? capturedAt : p.sourceCapturedAt
+  if (!validCaptureDate(productCapturedAt) || productCapturedAt > capturedAt) {
+    problems.push(`${where}: sourceCapturedAt must be a valid date no later than the capture date`)
+  }
 
   const sourceUrl = nn(p.sourceUrl)
   if (!sourceUrl || !/^https?:\/\//i.test(sourceUrl)) {
@@ -171,6 +175,27 @@ function projectProduct(firmSlug, p, capturedAt, problems) {
 
   const rules = p.rules ?? {}
   const notes = Array.isArray(p.notes) ? [...p.notes] : []
+  for (const field of ['maxTradingDaysUnlimited', 'consistencyRuleApplies']) {
+    if (p[field] != null && typeof p[field] !== 'boolean') {
+      problems.push(`${where}: ${field} must be a boolean or null, never inferred from an empty numeric field`)
+    }
+  }
+  if (p.maxTradingDaysUnlimited === true && num(p.maxTradingDays) !== null) {
+    problems.push(`${where}: an unlimited period cannot also have a numeric maxTradingDays`)
+  }
+  if (p.consistencyRuleApplies === false && num(p.consistencyRulePct) !== null) {
+    problems.push(`${where}: no consistency rule cannot also have a consistencyRulePct`)
+  }
+  for (const field of ['minTradingDays', 'maxTradingDays']) {
+    const value = num(p[field])
+    if (value !== null && (!Number.isInteger(value) || value < (field === 'minTradingDays' ? 0 : 1))) {
+      problems.push(`${where}: ${field} must be ${field === 'minTradingDays' ? 'a non-negative' : 'a positive'} integer or null`)
+    }
+  }
+  const consistency = num(p.consistencyRulePct)
+  if (consistency !== null && (consistency <= 0 || consistency > 100)) {
+    problems.push(`${where}: consistencyRulePct must be above 0 and at most 100; use an explicit rule-absence flag, not 0`)
+  }
 
   return {
     firmSlug,
@@ -193,7 +218,9 @@ function projectProduct(firmSlug, p, capturedAt, problems) {
       : {}),
     minTradingDays: num(p.minTradingDays),
     maxTradingDays: num(p.maxTradingDays),
+    ...(p.maxTradingDaysUnlimited !== undefined ? { maxTradingDaysUnlimited: p.maxTradingDaysUnlimited } : {}),
     consistencyRulePct: num(p.consistencyRulePct),
+    ...(p.consistencyRuleApplies !== undefined ? { consistencyRuleApplies: p.consistencyRuleApplies } : {}),
     profitSplitPct: num(p.profitSplitPct),
     payoutFirstDays: num(p.payoutFirstDays),
     payoutFrequency: enumOrNull(p.payoutFrequency, PAYOUT_FREQUENCIES),
@@ -214,7 +241,7 @@ function projectProduct(firmSlug, p, capturedAt, problems) {
     ...(num(p.activationFeeUsd) !== null ? { activationFeeUsd: num(p.activationFeeUsd) } : {}),
     assetClass,
     sourceUrl,
-    sourceCapturedAt: capturedAt,
+    sourceCapturedAt: productCapturedAt,
     ...(notes.length ? { notes } : {}),
   }
 }
@@ -257,6 +284,13 @@ for (const file of files) {
   if (!validCaptureDate(capturedAt)) {
     problems.push(`capturedAt must be a real, non-future YYYY-MM-DD date; got ${JSON.stringify(capturedAt)}`)
   }
+  if (capture.reviewStatus !== undefined && !['draft', 'ready'].includes(capture.reviewStatus)) {
+    problems.push('reviewStatus must be draft or ready when supplied')
+  }
+  if (capture.releaseBlockers !== undefined && (!Array.isArray(capture.releaseBlockers)
+    || capture.releaseBlockers.some(item => typeof item !== 'string' || !item.trim()))) {
+    problems.push('releaseBlockers must be an array of non-empty explanations')
+  }
   if (problems.length) {
     console.log(`\n✗ ${file}`)
     for (const problem of problems) console.log(`  · ${problem}`)
@@ -298,6 +332,8 @@ for (const file of files) {
     console.log(`  · ${changes.length - 60} additional change(s) omitted from console output`)
   }
   if (capture.accessNotes) console.log(`  access: ${capture.accessNotes}`)
+  if (capture.reviewStatus === 'draft') console.log('  editorial status: draft (preview only)')
+  for (const reason of capture.releaseBlockers ?? []) console.log(`  release hold: ${reason}`)
   for (const p of problems) console.log(`  · ${p}`)
   if (problems.length) {
     console.log('  → SKIPPED: capture validation failed')
@@ -323,6 +359,15 @@ for (const file of files) {
       `  → note: no USD prices resolved${eur ? ` (${eur} tier(s) priced in EUR)` : ''} — ` +
         `merging for the corrected rules and real sourceUrl; pricing gap stays visible`
     )
+  }
+
+  // Acknowledging a semantic diff does not resolve conflicting sources or
+  // incomplete evidence. Draft captures remain inspectable without becoming
+  // freshly verified production data, even with --accept-changes.
+  if (write && (capture.reviewStatus === 'draft' || capture.releaseBlockers?.length)) {
+    console.log('  → SKIPPED: capture has an editorial hold; resolve releaseBlockers and mark reviewStatus ready before writing')
+    blocked++
+    continue
   }
 
   if (write && changes.length && !acceptChanges) {
@@ -366,3 +411,5 @@ console.log(
   `\n${files.length} capture(s), ${blocked} skipped.` +
     (write ? '' : ' Dry run — nothing written.')
 )
+// Automation must not mistake a skipped or invalid capture for a successful merge.
+if (blocked) process.exitCode = 1

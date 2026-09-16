@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
-import { ArrowRight, Building2, FileCheck2, Globe2, Scale, WalletCards } from 'lucide-react'
+import { ArrowRight, Building2, FileCheck2, Globe2, Scale, ShieldCheck, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
@@ -39,7 +40,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Как Era Trade описывает выплаты?',
-    a: 'Страница запроса выплаты указывает минимум 3 прибыльных дня, минимум 1% от стартового баланса, максимум 10% за payout period и обработку в течение 5 рабочих дней. Там же перечислены USDT, BTC, ETH и LTC; способ, сеть и KYC нужно перепроверить перед запросом.',
+    a: 'Страница запроса выплаты указывает минимум 3 прибыльных дня, минимум 1% от стартового баланса, максимум 10% за период выплаты и обработку в течение 5 рабочих дней. Там же перечислены USDT, BTC, ETH и LTC; способ, сеть и KYC нужно перепроверить перед запросом.',
   },
   {
     q: 'Есть ли у Era Trade партнёрская программа?',
@@ -47,11 +48,11 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Что происходит после достижения цели Era Trade?',
-    a: 'После второго этапа оператор описывает ручную проверку риск-командой, затем KYC, создание funded-аккаунта и подключение к системе риск-менеджмента. Это не мгновенная гарантия аккаунта: сохраните актуальную версию правил и дождитесь подтверждения проверки.',
+    a: 'После второго этапа оператор описывает ручную проверку риск-командой, затем KYC, создание профинансированного аккаунта и подключение к системе риск-менеджмента. Это не мгновенная гарантия аккаунта: сохраните актуальную версию правил и дождитесь подтверждения проверки.',
   },
   {
     q: 'Как часто можно запрашивать выплату Era Trade?',
-    a: 'В справке указаны периоды 15 или 30 дней на выбор после первой завершённой сделки funded-аккаунта. Для заявки нужны 3 прибыльных дня, закрытые сделки и отсутствие активных ордеров; обработка заявлена до 5 рабочих дней.',
+    a: 'В справке указаны периоды 15 или 30 дней на выбор после первой завершённой сделки на профинансированном аккаунте. Для заявки нужны 3 прибыльных дня, закрытые сделки и отсутствие активных ордеров; обработка заявлена до 5 рабочих дней.',
   },
 ]
 
@@ -87,7 +88,7 @@ export default function RussianEraTradeReviewPage() {
     url: `https://tradersfundhub.com${PATH}`,
     dateModified: marketEvidence.capturedAt,
     inLanguage: 'ru',
-    author: { '@type': 'Organization', name: 'Traders Fund Hub' },
+    author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
 
@@ -100,12 +101,14 @@ export default function RussianEraTradeReviewPage() {
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="era-trade" data-russian-local-review-status="verification-only">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/rossiyskie-prop-kompanii">Российские компании</Link> / Era Trade</div>
+          <RussianEvidenceFreshnessNotice evidence={[{ label: 'локальные условия Era Trade', capturedAt: marketEvidence.capturedAt }]} />
           <div className="ru-eyebrow"><Building2 size={14} aria-hidden="true" /> Локальное исследование, не рекомендация</div>
           <h1>Era Trade: обзор 2026 — правила, сплит и выплаты</h1>
           <p className="ru-lead">Разбираем официальные заявления Era Trade для русскоязычного трейдера: 6 000+ трейдеров, 70 стран, базовый сплит 80%, правила одно- и двухэтапных челленджей, условия выплаты и публичная партнёрская программа. Это проверка источников, а не подтверждение платёжеспособности или доступа.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Проверка источников: {marketEvidence.capturedAt}.</p>
           <div className="ru-actions">
             <Link href="#facts" className="btn-primary btn-glow">Проверить факты <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Сравнить глобальные фирмы</Link>
+            <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Сравнить глобальные фирмы</Link>
           </div>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{Number(localSignal?.claims.traders).toLocaleString('ru-RU')}+</strong><span>трейдеров по заявлению оператора</span></div>
@@ -160,6 +163,29 @@ export default function RussianEraTradeReviewPage() {
             <li><strong>Подайте выплату корректно:</strong> выберите 15- или 30-дневный период, закройте позиции и ордера, подтвердите 3 прибыльных дня и сохраните дату заявки.</li>
           </ol>
           <div className="ru-notice"><strong>Редакционный вывод:</strong> публичные проценты Era Trade являются правилами конкретного продукта, а не универсальным обещанием для любого аккаунта. Определение прибыльного дня описано отдельно в <SourceLink href={ERA_PROFITABLE_DAYS}>правиле 3 прибыльных дней</SourceLink>.</div>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell ru-content" data-russian-eratrade-analysis="worked-risk-example">
+          <h2>Пример расчёта лимитов на счёте 100 000</h2>
+          <p>Следующая таблица — арифметическая иллюстрация опубликованных процентов для условного счёта 100 000, а не обещание доступного размера или результата. Она показывает, почему 1-этапную и 2-этапную модели нельзя объединять в один «средний» набор правил.</p>
+          <div className="ru-table-wrap">
+            <table className="ru-table">
+              <thead><tr><th>Модель</th><th>Цель</th><th>Дневной лимит</th><th>Общий лимит</th><th>Арифметический эквивалент</th><th>Источник</th></tr></thead>
+              <tbody>
+                <tr><td>2 этапа, этап 1</td><td>8%</td><td>5%</td><td>10%</td><td>8 000 / 5 000 / 10 000</td><td><SourceLink href={ERA_TWO_STAGE}>Правила 2 этапов</SourceLink></td></tr>
+                <tr><td>2 этапа, этап 2</td><td>5%</td><td>5%</td><td>10%</td><td>5 000 / 5 000 / 10 000</td><td><SourceLink href={ERA_TWO_STAGE}>Правила 2 этапов</SourceLink></td></tr>
+                <tr><td>1 этап</td><td>11%</td><td>4%</td><td>8%</td><td>11 000 / 4 000 / 8 000</td><td><SourceLink href={ERA_ONE_STAGE}>Правила 1 этапа</SourceLink></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Для выплаты действует ещё один слой условий: 3 прибыльных дня, минимум 1% от стартового баланса и максимум 10% за выбранный период, после чего оператор заявляет обработку до 5 рабочих дней. На условном счёте 100 000 это 1 000 минимального результата и 10 000 верхней границы периода; это не равно гарантированной сумме выплаты.</p>
+          <div className="ru-grid">
+            <article className="ru-card"><ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Риск на идею</h3><p className="ru-muted">Общее ограничение 2% на одну торговую идею действует отдельно от дневного лимита. Дробление ордеров не превращает одну идею в несколько разрешённых рисков.</p><SourceLink href={ERA_RULES}>Ограничения стратегии</SourceLink></article>
+            <article className="ru-card"><WalletCards size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Период выплаты</h3><p className="ru-muted">После первой сделки funded-аккаунта оператор описывает выбор периода 15 или 30 дней. Зафиксируйте выбранный период до начала торговли и сохраните подтверждение заявки.</p><SourceLink href={ERA_PAYOUT_SYSTEM}>Система выплат</SourceLink></article>
+            <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Партнёрская ступень</h3><p className="ru-muted">Публичная программа начинается с 5% и указывает уровни до 60% при объёме покупок челленджей. Комиссия относится к партнёрскому договору и не подтверждает торговые условия.</p><SourceLink href={ERA_AFFILIATE}>Партнёрская программа</SourceLink></article>
+          </div>
         </div>
       </section>
 

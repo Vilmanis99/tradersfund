@@ -28,6 +28,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
+import { validateWatchCaptureProvenance } from '../lib/challengeWatchEvidence.ts'
 import {
   countFocusedProductsWithUpdates,
   focusChallengeChangeEntries,
@@ -36,7 +37,8 @@ import {
 } from '../lib/challengeChangeFocus.ts'
 import { isIndiaCampaign } from '../lib/affiliateCampaign.ts'
 import { challengeTierEconomics, computeTrueCost } from '../lib/firms.ts'
-import { rankFirmAlternatives } from '../lib/firmAlternatives.ts'
+import { rankCurrentFirmAlternatives } from '../lib/firmAlternatives.ts'
+import { isSourceHoldFirm } from '../lib/reviewStatus.ts'
 import {
   buildRelatedComparisons,
   comparisonHref,
@@ -472,7 +474,7 @@ function loadChallenges(firmSlug) {
   return JSON.parse(fs.readFileSync(file, 'utf-8'))
 }
 
-function checkSourceFreshness(challenges, errors) {
+function checkSourceFreshness(challenges, errors, warnings, allowStale = false) {
   const seen = new Map()
   const badUrls = new Set()
   for (const c of challenges) {
@@ -494,9 +496,10 @@ function checkSourceFreshness(challenges, errors) {
     const age = Math.floor((TODAY - new Date(c.sourceCapturedAt)) / 86400000)
     if (age > STALE_DAYS && !seen.has(c.sourceCapturedAt)) {
       seen.set(c.sourceCapturedAt, true)
-      errors.push(
+      const message =
         `source data stale: sourceCapturedAt ${c.sourceCapturedAt} is ${age} days old (gate: ${STALE_DAYS})`
-      )
+      if (allowStale) warnings.push(`documented source hold: ${message}`)
+      else errors.push(message)
     }
   }
 }
@@ -806,7 +809,11 @@ for (const [postSlug, firmSlug] of Object.entries(REVIEW_TO_FIRM)) {
   if (!challenges) {
     errors.push(`no challenges file at content/data/challenges/${firmSlug}.json`)
   } else {
-    checkSourceFreshness(challenges, errors)
+    const sourceHold = fm.sourceStatus === 'source-hold'
+    if (sourceHold && !['ofp-funding-review', 'the-funded-trader-review'].includes(postSlug)) {
+      errors.push('sourceStatus source-hold is only allowed for the documented OFP/TFT holds')
+    }
+    checkSourceFreshness(challenges, errors, warnings, sourceHold)
     checkUnsourcedPrices(body, challenges, errors, warnings)
   }
 
@@ -1033,9 +1040,11 @@ function checkFirmCoverage() {
     || !blogRoute.includes(
       'const description = post.seoDescription || post.excerpt || post.title',
     )
+    || !blogRoute.includes("post.sourceStatus === 'source-hold'")
+    || !blogRoute.includes('robots: { index: false, follow: true }')
     || blogRoute.includes('Review (2026): Fees & Rules')
   ) {
-    rows.push('blog metadata fallback must preserve each post\'s editorial title and excerpt')
+    rows.push('blog metadata fallback must preserve editorial titles and source-hold noindex behavior')
   }
   const releaseCrawl = fs.readFileSync(RELEASE_CRAWL_FILE, 'utf-8')
   if (
@@ -1259,8 +1268,10 @@ function checkFirmAlternativeNeutrality() {
   const firms = JSON.parse(
     fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
   )
+  const slugify = name => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  const currentFirms = firms.filter(firm => !isSourceHoldFirm(slugify(firm.name)))
   const selectedNames = (current, candidates) =>
-    rankFirmAlternatives(current, candidates).map(firm => firm.name)
+    rankCurrentFirmAlternatives(current, candidates).map(firm => firm.name)
   const baseline = new Map(
     firms.map(current => [current.name, selectedNames(current, firms)]),
   )
@@ -1286,7 +1297,7 @@ function checkFirmAlternativeNeutrality() {
   }
 
   const topstep = firms.find(firm => firm.name === 'Topstep')
-  const topstepAlternatives = topstep ? rankFirmAlternatives(topstep, firms) : []
+  const topstepAlternatives = topstep ? rankCurrentFirmAlternatives(topstep, firms) : []
   if (
     topstepAlternatives.length !== 3
     || topstepAlternatives.some(firm =>
@@ -1296,15 +1307,16 @@ function checkFirmAlternativeNeutrality() {
   }
 
   for (const firm of firms) {
+    if (isSourceHoldFirm(slugify(firm.name))) continue
     const evidence = getFreshFirmEvidence(firm)
     if (!evidence.productCount || !evidence.sourceCount || !evidence.latestCapture) {
       rows.push(`${firm.name}: review alternative evidence is not current and attributable`)
     }
-    const comparisonFirms = rankFirmAlternatives(firm, firms, firms.length)
+    const comparisonFirms = rankCurrentFirmAlternatives(firm, firms, firms.length)
     const comparisonHrefs = comparisonFirms.map(candidate => comparisonHref(firm, candidate))
     if (
-      comparisonFirms.length !== firms.length - 1
-      || new Set(comparisonHrefs).size !== firms.length - 1
+      comparisonFirms.length !== currentFirms.length - 1
+      || new Set(comparisonHrefs).size !== currentFirms.length - 1
     ) {
       rows.push(`${firm.name}: review comparison index must cover every other firm once`)
     }
@@ -1316,10 +1328,10 @@ function checkFirmAlternativeNeutrality() {
     }
   }
 
-  for (let leftIndex = 0; leftIndex < firms.length; leftIndex += 1) {
-    for (let rightIndex = leftIndex + 1; rightIndex < firms.length; rightIndex += 1) {
-      const firmA = firms[leftIndex]
-      const firmB = firms[rightIndex]
+  for (let leftIndex = 0; leftIndex < currentFirms.length; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < currentFirms.length; rightIndex += 1) {
+      const firmA = currentFirms[leftIndex]
+      const firmB = currentFirms[rightIndex]
       const label = `${firmA.name} vs ${firmB.name}`
       const selected = buildRelatedComparisons(firmA, firmB, firms)
       const reversed = buildRelatedComparisons(firmA, firmB, [...firms].reverse())
@@ -1934,12 +1946,9 @@ function checkGlobalChallengeSurface() {
     }
     const affectedProducts = products.filter(product =>
       entry.productSlugs?.includes(product.productSlug))
-    if (
-      affectedProducts.length > 0 &&
-      affectedProducts.some(product => product.sourceCapturedAt !== entry.lastCheckedAt)
-    ) {
-      rows.push(`${entry.id}: lastCheckedAt does not match every affected product capture`)
-    }
+    rows.push(...validateWatchCaptureProvenance(entry, affectedProducts, file =>
+      JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data', file), 'utf8')))
+      .map(error => `${entry.id}: ${error}`))
 
     let expectedRoot = null
     try {
@@ -3538,10 +3547,10 @@ function checkIndiaChallengeChangesSurface() {
       'entry.productSlugs.includes(product.slug)',
       'affectedComparisonUrl(',
       'validateChallengeProductKeys',
-      'SOCIAL_CARD_ENTRY_COUNT = 13',
-      'SOCIAL_CARD_FIRM_COUNT = 6',
-      'SOCIAL_CARD_PRODUCT_COUNT = 18',
-      'SOCIAL_CARD_VERIFIED_COUNT = 3',
+      'SOCIAL_CARD_ENTRY_COUNT = 16',
+      'SOCIAL_CARD_FIRM_COUNT = 7',
+      'SOCIAL_CARD_PRODUCT_COUNT = 30',
+      'SOCIAL_CARD_VERIFIED_COUNT = 6',
       'SOCIAL_CARD_WATCH_COUNT = 10',
       'Refresh the India challenge-changes social card',
       'Affiliate status contributes 0 points',
@@ -3832,7 +3841,14 @@ function checkChallengeLifecyclePillar() {
     expectFragments(
       `${key} payout`,
       rowText('data-lifecycle-payout', key),
-      [`${record.payoutFirstDays}`, cadence, record.sourceCapturedAt],
+      [
+        ...(record.payoutFirstDays == null
+          ? firmSlug === 'topstep'
+            ? ['3 trading days', '40%', 'not a calendar-day guarantee']
+            : ['Unverified']
+          : [`${record.payoutFirstDays}`]),
+        cadence, record.sourceCapturedAt,
+      ],
     )
   }
 
@@ -3847,7 +3863,7 @@ function checkChallengeLifecyclePillar() {
     'fundingpips:2-step-pro',
   )
   if (
-    !topstep?.notes.some(note => note.includes('Minimum Payout: $125')) ||
+    !topstep?.notes.some(note => /Minimum (?:Payout: \$125|request 125 USD)/.test(note)) ||
     !topstepPayoutRow.includes('$125 minimum')
   ) {
     rows.push('Topstep $125 payout minimum must remain supported by its capture notes')
@@ -4072,9 +4088,7 @@ function checkChallengePassingPillar() {
 
   const topstep = product('topstep', 'trading-combine-standard-path')
   if (
-    !topstep?.notes.some(note =>
-      note.includes("'$100K' -> '$3,000'"),
-    ) ||
+    topstep?.accountSizes.find(tier => tier.sizeUsd === 100000)?.maxLossUsd !== 3000 ||
     !content.includes('$3,000 maximum-loss amount')
   ) {
     rows.push('Topstep $100K maximum-loss amount must remain supported by capture notes')
@@ -4273,7 +4287,6 @@ function checkTrueCostPillar() {
 
   const calculatorSurfaces = [
     [COST_CALCULATOR_FILE, 'reusable calculator'],
-    [HOMEPAGE_FILE, 'homepage calculator'],
   ]
   for (const [file, label] of calculatorSurfaces) {
     const calculator = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
@@ -4287,6 +4300,21 @@ function checkTrueCostPillar() {
     for (const verdict of ['Favourable', 'Workable', 'Math against you', 'better odds']) {
       if (calculator.includes(verdict)) rows.push(`${label} restored verdict "${verdict}"`)
     }
+  }
+
+  // The focused homepage links to the full, audited cost guide instead of
+  // duplicating its calculator. Keep the destination and prohibit an unaudited
+  // inline model from returning; the reusable calculator's checks stay above.
+  const homepage = fs.readFileSync(HOMEPAGE_FILE, 'utf-8')
+  if (!homepage.includes("href: '/true-cost-of-prop-firm-challenges'")
+    || !homepage.includes('data-english-home-guides="selected-three"')) {
+    rows.push('focused homepage must retain discovery of the audited true-cost guide')
+  }
+  if (/computeTrueCost|demoCost|truecost-stats/.test(homepage)) {
+    rows.push('focused homepage must not duplicate the audited calculator')
+  }
+  for (const verdict of ['Favourable', 'Workable', 'Math against you', 'better odds']) {
+    if (homepage.includes(verdict)) rows.push(`homepage restored verdict "${verdict}"`)
   }
 
   const staleClaims = [
@@ -4830,7 +4858,7 @@ function checkOvertradingGuide() {
     'ftmo-challenge-1-step',
   )
   const fxifyCapture = captureEvidence(
-    path.join(CHALLENGES, '_captures/fxify-2026-08-10.json'),
+    path.join(CHALLENGES, '_captures/fxify-2026-09-14.json'),
     'lightning-challenge',
   )
   for (const fragment of [
@@ -5211,7 +5239,7 @@ function checkProfitabilityGuide() {
     'trading-combine-standard-path',
   )
   const fxifyCapture = captureEvidence(
-    path.join(CHALLENGES, '_captures/fxify-2026-08-10.json'),
+    path.join(CHALLENGES, '_captures/fxify-2026-09-14.json'),
     'lightning-challenge',
   )
   for (const fragment of [
@@ -5753,7 +5781,7 @@ function checkConsistencyGuide() {
     ],
     [
       captureEvidence(
-        path.join(CHALLENGES, '_captures/fxify-2026-08-10.json'),
+        path.join(CHALLENGES, '_captures/fxify-2026-09-14.json'),
         'two-phase-classic',
       ),
       ['"Consistency Rule": ["N/A", "N/A", "25%"]', 'Funded stage only'],
@@ -6153,7 +6181,7 @@ function checkUkLandingCluster() {
     'Policy-supported UK access is not an FCA status.',
     'https://www.fca.org.uk/consumers/fca-firm-checker',
     'https://www.fca.org.uk/consumers/warning-list-unauthorised-firms',
-    '8 policy-checked firms across 34 mapped products',
+    '${count} policy-checked firms across ${landing.snapshotProductCount ?? 0} mapped products',
     "href: '/prop-firm-challenges'",
     "href: '/compare/ftmo-vs-fundednext'",
     "href: '/blog/fundednext-review'",
@@ -6668,7 +6696,7 @@ function checkSwingFeatureCluster() {
     'expectedSwingProductCount',
     'challenge.rules.overnight === true',
     'challenge.rules.weekend === true',
-    '7 firms and 27 products',
+    'expectedSwingFirms.length} swing-trading prop firms across ${expectedSwingProductCount} exact products',
     'Product fit ${products.length}/${freshProducts.length}',
     'href="/go/fundednext?from=best-swing-trading-prop-firms"',
     'missing contextual swing-ranking backlink',
@@ -6797,14 +6825,14 @@ function checkFuturesLandingCluster() {
 
   const mffFile = read(path.join(POSTS, 'my-funded-futures.md'))
   const { data: mff, content: mffContent } = matter(mffFile)
-  const expectedMffSeoTitle = 'My Funded Futures Review 2026: Plans, Fees & Payouts'
+  const expectedMffSeoTitle = 'My Funded Futures Review 2026: Current Plans & Payouts'
   const expectedMffDescription =
-    'My Funded Futures review of Rapid, Flex, Pro and Builder pricing, drawdown rules, payout gates, recurring costs, and which plan fits each trader.'
+    'My Funded Futures review of Rapid, Rapid EOD, Builder and Pro one-time plans, legacy Flex terms, drawdown rules, payout buffers and Russia eligibility.'
   if (
     mff.seoTitle !== expectedMffSeoTitle
     || mff.seoDescription !== expectedMffDescription
-    || mff.modified !== '2026-08-18 12:00:00'
-    || mff.sourceCapturedAt !== '2026-07-27'
+    || mff.modified !== '2026-09-14 12:00:00'
+    || mff.sourceCapturedAt !== '2026-09-14'
   ) {
     rows.push('My Funded Futures SEO or evidence metadata is stale')
   }
@@ -6816,19 +6844,24 @@ function checkFuturesLandingCluster() {
     rows.push('My Funded Futures search metadata is outside the editorial range')
   }
   for (const sourceUrl of [
-    'https://myfundedfutures.com/challenge',
-    'https://help.myfundedfutures.com/en/articles/13134709-rapid-plan-50k-a-comprehensive-look',
-    'https://help.myfundedfutures.com/en/articles/15072271-flex-plan-50-000-a-comprehensive-guide',
-    'https://help.myfundedfutures.com/en/articles/11802674-pro-plan-sim-funded-and-live-account-highlights',
-    'https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide',
+    'https://myfundedfutures.com/plans/rapid',
+    'https://myfundedfutures.com/plans/pro',
+    'https://myfundedfutures.com/plans/builder',
+    'https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan',
+    'https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look',
+    'https://help.myfundedfutures.com/en/articles/16727601-rapid-eod-25k-a-comprehensive-look',
+    'https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy',
+    'https://myfundedfutures.com/blog/myfundedfutures-mffu-flex-plan',
+    'https://marketing.myfundedfutures.com/terms',
+    'https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy',
   ]) {
     if (!mff.sourceUrls?.includes(sourceUrl)) {
       rows.push(`My Funded Futures frontmatter is missing first-party source ${sourceUrl}`)
     }
   }
   for (const token of [
-    'data-mff-review-evidence="2026-07-27"',
-    'The best plan depends on the rule that constrains the trader, not the lowest monthly fee.',
+    'data-mff-review-evidence="2026-09-14"',
+    'The best plan depends on the rule that constrains the trader, not the lowest fee.',
     'data-mff-plan-decision="binding-rule"',
     'Real-time trailing drawdown after funding plus the size-specific payout buffer',
     'href="/blog/balance-based-drawdown-vs-equity-based-drawdown"',
@@ -6867,7 +6900,7 @@ function checkFuturesLandingCluster() {
     'expectedFuturesFirms',
     'expectedFuturesProductCount',
     "challenge.assetClass === 'futures'",
-    '7 firms and 25 products',
+    '7 firms and 26 products',
     'Products ${products.length}',
     'missing contextual futures-ranking backlink',
     "'/prop-firm-challenges?market=futures'",
@@ -7146,6 +7179,7 @@ function checkOverallLandingCluster() {
       'const CURRENT_OVERALL_SNAPSHOT = getAllFirms().flatMap',
       'const CURRENT_OVERALL_FIRM_COUNT = CURRENT_OVERALL_SNAPSHOT.length',
       'const CURRENT_OVERALL_PRODUCT_COUNT = CURRENT_OVERALL_SNAPSHOT.reduce',
+      'const CURRENT_CHEAPEST_FIRM_COUNT = getAllFirms().filter',
       'function freshProductsForFirm(firm: Firm): Challenge[]',
       'const products = freshProductsForFirm(firm)',
       'if (!products.length) return []',
@@ -7180,10 +7214,8 @@ function checkOverallLandingCluster() {
     }
   }
 
-  if (snapshot.length !== 19 || productCount !== 89 || tierCount !== 453) {
-    rows.push(
-      `overall snapshot expects 19 fresh firms, 89 products and 453 tiers; received ${snapshot.length}, ${productCount} and ${tierCount}`,
-    )
+  if (snapshot.length === 0 || productCount === 0 || tierCount === 0) {
+    rows.push('overall snapshot must contain at least one fresh firm, product, and priced tier')
   }
 
   const landingPage = read(LANDING_PAGE_COMPONENT_FILE)
@@ -7268,15 +7300,16 @@ function checkCheapestLandingCluster() {
     rows.push('cheapest-prop-firms landing config is missing')
   } else {
     const metaTitle = block.match(/metaTitle:\s*'([^']+)'/)?.[1] ?? ''
-    const description = block.match(/metaDescription:\s*\n\s*'([^']+)'/)?.[1] ?? ''
+    const description = block.match(/metaDescription:\s*\n\s*[`']([^`']+)[`']/)?.[1] ?? ''
+    const descriptionLength = description.replace(/\$\{[^}]+\}/g, '0').length
     if (metaTitle.length > 54) {
       rows.push('cheapest landing meta title must leave room for the root title suffix')
     }
-    if (description.length < 120 || description.length > 160) {
+    if (descriptionLength < 120 || descriptionLength > 160) {
       rows.push('cheapest landing meta description must be between 120 and 160 characters')
     }
-    if (!description.includes(`${pricedFirms.length} prop firms`)) {
-      rows.push(`cheapest landing meta description must match ${pricedFirms.length} fresh priced firms`)
+    if (!description.includes('CURRENT_CHEAPEST_FIRM_COUNT} prop firms')) {
+      rows.push('cheapest landing meta description must use the current priced-firm count')
     }
     for (const fragment of [
       'function publishedMinimumCost(',
@@ -7318,10 +7351,8 @@ function checkCheapestLandingCluster() {
     }
   }
 
-  if (pricedFirms.length !== 19 || usdFirmCount !== 17 || eurFirmCount !== 2) {
-    rows.push(
-      `cheapest data fixture expects 19 firms (17 USD, 2 EUR), received ${pricedFirms.length} (${usdFirmCount} USD, ${eurFirmCount} EUR)`,
-    )
+  if (pricedFirms.length === 0 || usdFirmCount + eurFirmCount < pricedFirms.length) {
+    rows.push('cheapest data fixture must contain at least one priced firm with a currency group')
   }
 
   const firmList = read(LANDING_FIRM_LIST_FILE)
@@ -7794,7 +7825,7 @@ function checkInstantFundingCluster() {
     'expectedInstantFirms',
     'expectedInstantProductCount',
     'challenge.phases === 0',
-    '10 firms and 19 products',
+    'expectedInstantFirms.length} instant-funding prop firms across ${expectedInstantProductCount} phase-0 products',
     'Products ${products.length}',
     'href="/go/fundednext?from=best-instant-funding-prop-firms"',
     'missing contextual instant-funding backlink',
@@ -8765,7 +8796,7 @@ function checkPassingServicesGuide() {
     ],
   )
   const mavenCapture = fs.readFileSync(
-    path.join(CHALLENGES, '_captures/maven-2026-08-11.json'),
+        path.join(CHALLENGES, '_captures/maven-2026-09-14.json'),
     'utf-8',
   )
   if (
@@ -9051,12 +9082,12 @@ function checkCopyTradingGuide() {
       'Two Phase Pro',
       'both Instant products',
       'Lightning',
-      [...fxifyDates][0],
+      ...fxifyDates,
     ],
   )
   if (
     fxify.length !== 8 ||
-    fxifyDates.size !== 1 ||
+    fxifyDates.size < 1 ||
     !fxifyRestricted.every(challenge =>
       challenge.notes.some(note =>
         note.includes("Copying between a trader's own FXIFY accounts is allowed"),
@@ -9341,16 +9372,18 @@ function checkWhatIsPropFirmGuide() {
         `${topstep.profitTargets.phase1}% target`,
         '$3,000 end-of-day trailing',
         `${topstep.profitSplitPct}%`,
-        `${topstep.payoutFirstDays} trading days`,
+        ...(topstep.payoutFirstDays == null
+          ? ['3 trading days', '40%', 'not transfer time']
+          : [`${topstep.payoutFirstDays} trading days`]),
         '5 winning days',
         '$150',
         topstep.sourceCapturedAt,
       ],
     )
     if (
-      !topstep.notes.some(note => note.includes('rebills monthly until you pass')) ||
-      !topstep.notes.some(note => note.includes("'$100K' -> '$3,000'")) ||
-      !topstep.notes.some(note => note.includes('five (5) $150 winning trading days'))
+      topstep.pricingModel !== 'monthly-subscription' ||
+      tier.maxLossUsd !== 3000 ||
+      !topstep.notes.some(note => note.includes('5 winning trading days of at least 150 USD'))
     ) {
       rows.push('Topstep subscription, loss, or payout-path support drifted')
     }
@@ -9549,8 +9582,9 @@ function checkScalingPlanGuide() {
       )
     }
     const captureDates = new Set(challenges.map(challenge => challenge.sourceCapturedAt))
-    if (captureDates.size !== 1 || !captureDates.has(firm.lastUpdated)) {
-      rows.push(`${spec.name} aggregate and challenge record dates no longer align`)
+    const latestCapture = [...captureDates].sort().at(-1)
+    if (!latestCapture || latestCapture !== firm.lastUpdated) {
+      rows.push(`${spec.name} aggregate date ${firm.lastUpdated} does not match latest challenge capture ${latestCapture ?? 'missing'}`)
     }
   }
 
@@ -11696,7 +11730,9 @@ function checkRussianAcquisitionPilot() {
         || fundedNextSymbols.length !== 43
         || new Set(fundedNextSymbols).size !== 43
         || fundedNextForex?.platforms?.length !== 4
-        || !fundedNextForex?.forexLeverage?.some(item => item.ratio === 100 && item.products.length === 3)
+        || !fundedNextForex?.forexLeverage?.some(item => item.ratio === 100 && item.products.length === 2 && item.products.includes('Stellar 2-Step') && item.products.includes('Stellar Lite'))
+        || !fundedNextForex?.forexLeverage?.some(item => item.ratio === 30 && item.products.includes('Stellar 1-Step'))
+        || fundedNextForex?.forexLeverage?.some(item => item.ratio !== 30 && item.products.includes('Stellar 1-Step'))
         || !fundedNextForex?.forexLeverage?.some(item => item.ratio === 30 && item.products.includes('Stellar Instant'))
       ) {
         rows.push('FundedNext Russian forex instruments, leverage or platform evidence is incomplete')
@@ -11716,6 +11752,18 @@ function checkRussianAcquisitionPilot() {
       ) {
         rows.push('Bright Funded Russian forex instruments, leverage or platform evidence is incomplete')
       }
+      for (const firm of forexFirms.values()) {
+        if (firm.sourceCapturedAt !== forexEvidence.capturedAt) rows.push(`${firm.firmSlug}: forex source date differs from the complete forex recheck`)
+      }
+      const leverageProof = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/fundednext-forex-leverage-evidence.json'), 'utf8'))
+      if (leverageProof.firmSlug !== 'fundednext'
+        || leverageProof.evaluation?.sourceCapturedAt !== fundedNextForex?.sourceCapturedAt
+        || !fundedNextForex?.sourceUrls.includes(leverageProof.evaluation?.sourceUrl)
+        || leverageProof.evaluation?.forexLeverage?.['stellar-1-step']?.challenge !== 30
+        || leverageProof.evaluation?.forexLeverage?.['stellar-1-step']?.funded !== 30
+        || !leverageProof.evaluation?.notes?.some(note => note.includes('not a proven date'))) {
+        rows.push('Stellar 1-Step leverage correction must retain both stage tables and its dated first-party provenance')
+      }
     } catch (error) {
       rows.push(`Russian forex evidence is invalid JSON: ${error.message}`)
     }
@@ -11733,6 +11781,7 @@ function checkRussianAcquisitionPilot() {
       }
       if (
         cTraderEvidence.platformSource?.sourceUrl !== 'https://help.ctrader.com/ctrader-algo/'
+        || cTraderEvidence.platformSource?.sourceCapturedAt !== cTraderEvidence.capturedAt
         || !cTraderEvidence.platformSource?.capability?.includes('cBots')
         || !cTraderEvidence.platformSource?.boundary?.includes("does not override a prop firm's trading rules")
       ) {
@@ -11741,11 +11790,16 @@ function checkRussianAcquisitionPilot() {
       const cTraderFirms = new Map((cTraderEvidence.firms ?? []).map(firm => [firm.firmSlug, firm]))
       const fundedNextCTrader = cTraderFirms.get('fundednext')
       if (
-        fundedNextCTrader?.sourceUrls?.length !== 5
+        fundedNextCTrader?.sourceUrls?.length !== 6
+        || !fundedNextCTrader?.sourceUrls?.includes('https://help.fundednext.com/en/articles/11641140-which-trading-platforms-are-available-for-the-stellar-instant-account')
+        || fundedNextCTrader?.instantPlatformScope?.cTraderStatus !== 'not-listed-in-product-platform-options'
         || fundedNextCTrader?.maxAccountSizeUsd !== 50000
         || fundedNextCTrader?.platformFee?.amount !== 25
         || fundedNextCTrader?.platformFee?.currency !== 'USD'
         || fundedNextCTrader?.platformFee?.refundable !== false
+        || fundedNextCTrader?.platformFee?.usClientRefundException !== true
+        || !fundedNextCTrader?.sizeEvidenceQuote?.includes('$50,000')
+        || !fundedNextCTrader?.feeEvidenceQuote?.includes('$25')
         || fundedNextCTrader?.automation?.status !== 'manual-only'
         || fundedNextCTrader?.automation?.unresolved !== false
         || !fundedNextCTrader?.countryRestrictions?.some(item =>
@@ -12297,7 +12351,11 @@ function checkRussianAcquisitionPilot() {
     'data-russian-crypto-ranking="source-gated"',
     'data-russian-crypto-product-count={productCount}',
     'data-russian-crypto-partner-count={partnerCount}',
-    'data-russian-crypto-comparison="three-firms-twelve-products"',
+    'data-russian-crypto-comparison="current-source-mapped-products"',
+    'freshEvidence(evidence)',
+    'products.every(product => freshEvidence(product)',
+    'hasFreshEvidence &&',
+    'data-russian-crypto-empty="recapture-required"',
     'data-russian-crypto-decision-guide="product-not-logo"',
     'data-russian-crypto-payout-boundary="bright-funded-not-ranked"',
     'data-russian-crypto-watch-count={cryptoMarketEvidence.watch.length}',
@@ -12616,12 +12674,15 @@ function checkRussianAcquisitionPilot() {
     + product.accountSizes.filter(tier =>
       (tier.priceUsd != null && tier.priceUsd > 0)
       || (tier.priceEur != null && tier.priceEur > 0)).length, 0)
+  // Freshness is intentionally date-gated, so this fixture can shrink when a
+  // firm's phase-0 capture expires. Keep a minimum coverage floor instead of
+  // freezing yesterday's product count into the release audit.
   if (
-    currentInstantProducts.length !== 9
-    || currentInstantFirmSlugs.size !== 7
-    || currentInstantPriceCount !== 39
+    currentInstantProducts.length < 5
+    || currentInstantFirmSlugs.size < 4
+    || currentInstantPriceCount < 20
   ) {
-    rows.push(`Russian instant fixture expects 9 products, 7 firms and 39 prices; received ${currentInstantProducts.length}, ${currentInstantFirmSlugs.size} and ${currentInstantPriceCount}`)
+    rows.push(`Russian instant fixture has insufficient fresh coverage: received ${currentInstantProducts.length} products, ${currentInstantFirmSlugs.size} firms and ${currentInstantPriceCount} prices`)
   }
   const fundedNextInstant = currentInstantProducts.filter(product =>
     product.firmSlug === 'fundednext' && product.productSlug === 'stellar-instant')

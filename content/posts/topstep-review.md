@@ -3,7 +3,7 @@ title: "Topstep Review 2026: A Monthly Subscription With Two Locked Pricing Path
 seoTitle: "Topstep Review 2026: Pricing Paths & Payout Rules"
 slug: "topstep-review"
 date: "2025-08-01 14:52:15"
-modified: "2026-08-17 12:00:00"
+modified: "2026-09-08 22:30:00"
 author: "Tara Mohseni"
 excerpt: "Topstep's evaluation rebills every month and you choose a pricing path you cannot change. We work out which path wins, at how many months, and why."
 seoDescription: "Topstep review comparing its two locked monthly pricing paths, rebilling, drawdown, activation costs, payout rules, and when each route costs less."
@@ -24,10 +24,10 @@ type: "post"
     <li>Profit target 6% of buying power — $3,000 / $6,000 / $9,000 at $50K / $100K / $150K.</li>
     <li>Maximum Loss Limit $2,000 / $3,000 / $4,500 — end-of-day trailing, monitored intraday, and it locks permanently once it reaches your starting balance.</li>
     <li>There is no mandatory daily loss limit. The $1,000 / $2,000 / $3,000 figures are an opt-in feature that buys a monthly discount and doubles payout caps.</li>
-    <li>Minimum 2 trading days; best single day must stay under 50% of the profit target.</li>
+    <li>The Combine's best-day target is 50%; the published minimum-day descriptions conflict. We leave the minimum unverified, not zero.</li>
     <li>90/10 split, on-demand payouts, $125 minimum, 50% of account balance per request.</li>
-    <li>Topstep publishes its own pass rate: 16.8% of Combines initiated in 2025 were completed. Almost no competitor publishes anything comparable.</li>
-    <li>Trustpilot 3.6 from 14,478 reviews (verified 2026-07-27) — the second-lowest score in our current tracked set.</li>
+    <li>Topstep reports that 16.8% of Combines initiated in 2025 were completed. This historical cohort is not a forecast of your results.</li>
+    <li>Trustpilot 3.6 from 14,478 reviews was captured on 2026-07-27; it has not been rechecked in this update.</li>
   </ul>
 </div>
 
@@ -44,7 +44,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">90/10 in the trader's favour</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown type</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">End-of-day trailing, locks at starting balance</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On demand, $125 minimum, 50% of balance per request</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">NinjaTrader, Quantower, TradingView</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platform</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">TopstepX — confirmed in the official platform guide, checked 2026-09-08. Do not assume third-party execution compatibility.</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Instruments</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Futures only — CME, COMEX, NYMEX, CBOT</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Trustpilot</strong></td><td style="padding: 8px 12px; border-bottom: none;"><a href="https://www.trustpilot.com/review/topstep.com">3.6 from 14,478 reviews</a> (verified 2026-07-27)</td></tr>
   </tbody>
@@ -52,7 +52,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>Topstep sells one evaluation — the Trading Combine — at three sizes, but as of the 2026-07-27 capture it sells that evaluation on <strong>two pricing paths</strong>. The rules, targets, loss limits and split are identical on both. Only the monthly price and the activation fee differ, and Topstep is explicit that "Paths cannot be changed after purchase."</p>
+<p>Topstep's 2026-09-08 capture covers the Trading Combine at three sizes on <strong>two pricing paths</strong>. Base monthly fees and activation charges differ; the captured target, loss, split and conditional automation rules do not. Your pricing path is locked at purchase. These are USD base prices before applicable tax, optional data and discounts.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
   <caption class="hidden-caption">Topstep Trading Combine products and tiers</caption>
@@ -77,7 +77,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Pricing and rules above are current as of <strong>2026-07-27</strong>, captured from Topstep's own pages. Two sourcing notes matter. First, <code>/pricing</code> and <code>/trading-combine</code> both now return 404 — live pricing has moved to <code>/topstep-prop</code>, so any review still citing those URLs is quoting a dead page. Second, the three Standard Path prices are present in the server HTML of <code>/topstep-prop</code>, but the "No activation fee" tab is client-rendered and its prices are not. The $95 / $149 / $229 figures come from Topstep's own help-centre pricing table on the <code>help.topstep.com</code> subdomain — one step removed from the marketing page. They corroborate against the struck-through prices shown on the same product cards ($85 / $129 / $199), which equal these prices minus the stated $10 / $20 / $30 Responsible Trading Discount. Confirm before you buy on <a href="/go/topstep">topstep.com</a>.</p>
+<p>Both paths and all six monthly prices were rechecked on <strong>2026-09-08 UTC</strong> using Topstep's pricing help article and product page. The dated capture also includes the loss-limit, payout, trading-hours and platform guides. The minimum-day conflict remains explicitly unresolved; a new price check does not resolve it or refresh the July Trustpilot figure. See our <a href="/prop-firm-challenge-changes">dated corrections and source links</a>, then confirm the applicable purchase terms on <a href="/go/topstep">Topstep's site</a>.</p>
 
 <p><strong>U.S. eligibility.</strong> Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links Topstep’s current eligibility and payout policies and separates that policy support from CFTC or NFA registration. Verify citizenship, residency, KYC, tax-form and bank details before purchase.</p>
 
@@ -97,33 +97,33 @@ type: "post"
 
 <p><strong>Consistency target 50%.</strong> "Your best single day should stay below 50% of your Profit Target to avoid increasing your Consistency Target." On a $50K Combine that caps your best day at $1,500 of the $3,000 target. Do not confuse this with the 40% figure — that one applies to the Consistency payout option on a funded account, not to passing the Combine.</p>
 
-<p><strong>Minimum trading days: Topstep contradicts itself.</strong> The <code>/topstep-prop</code> FAQ says "There's no minimum time requirement to pass the Trading Combine." The help centre article on Combine parameters, updated 2026-06-24, says "Can I pass the Trading Combine in one day? No... You can pass in as few as two days." We record 2 because the help centre is the more specific and more recently updated source, but this is unresolved on Topstep's side, not ours.</p>
+<p><strong>Minimum trading days: the sources still disagree.</strong> On 2026-09-08 the marketing FAQ described no minimum time requirement, while the Combine parameters article described passing in as few as two days. We leave the numeric minimum unverified in our comparisons. That is not permission to pass in one day: the 50% consistency objective still applies, and you should obtain clarification for your account before relying on a minimum-duration claim.</p>
 
 <p><strong>Session, news, automation.</strong> All positions must be closed by 3:10 PM CT or the product's market close, whichever comes first — no overnight, no weekend holding. There is no blanket news ban; the only news-related item on the prohibited list is "purposefully trading your full Maximum Position Size directly into a scheduled major news event." Automated strategies are allowed with conditions: "Topstep won't help set up or troubleshoot automated strategies, and no exceptions are made for errant trades or malfunctions." Trade copiers are allowed across Combine and Express Funded Accounts, but not Live Funded Accounts. Position size caps are 5 mini / 50 micro at $50K, 10 / 100 at $100K, 15 / 150 at $150K, with minis and micros counting at 10:1.</p>
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 
-<p>Break-even profit is the amount you must earn before your 90% share repays what you spent. Because the Combine rebills monthly, there is no single fee to divide — the answer depends on how long you take. The tables below are <code>computeTrueCost()</code> output on the best case, passing inside the first billing month; see <a href="/true-cost-of-prop-firm-challenges">the true cost of prop firm challenges</a> for the method. There is no R-multiple column because Topstep publishes its loss limit in dollars and the implied percentage differs by tier, so any R we printed would be our arithmetic, not theirs.</p>
+<p>Break-even profit is the amount needed for your 90% share to recover the modelled purchase cost. These <code>computeTrueCost()</code> tables assume passing within the first paid month, plus activation where required; later rebills increase the cost. The R-multiple divides that profit by the published dollar loss allowance for each tier, not a made-up firm-wide drawdown percentage. Days remain unverified because the minimum-day descriptions conflict. Neither R below 1 nor fee recovery proves that a payout is withdrawable: XFA caps, consistency and transfer fees remain separate. See <a href="/true-cost-of-prop-firm-challenges">the calculation method</a>.</p>
 
 <!-- Trading Combine - Standard Path — generated by scripts/gen-truecost.mjs -->
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
   <caption class="hidden-caption">Trading Combine - Standard Path true-cost projection</caption>
-  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Cost to funded (1 mo + $149 activation)</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (90% split)</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Cost to funded (1 mo + $149 activation)</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (90% split)</th><th style="padding: 8px 12px; text-align: left;">Max loss</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs tier max loss</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$198</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$220</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$248</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$276</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px;">$150K</td><td style="padding: 8px 12px;">$348</td><td style="padding: 8px 12px;">$387</td><td style="padding: 8px 12px;">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$198</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$220</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.11</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$248</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$276</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$3,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.09</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td></tr>
+    <tr><td style="padding: 8px 12px;">$150K</td><td style="padding: 8px 12px;">$348</td><td style="padding: 8px 12px;">$387</td><td style="padding: 8px 12px;">$4,500</td><td style="padding: 8px 12px;">0.09</td><td style="padding: 8px 12px;">—</td></tr>
   </tbody>
 </table>
 
 <!-- Trading Combine - No Activation Fee Path — generated by scripts/gen-truecost.mjs -->
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
   <caption class="hidden-caption">Trading Combine - No Activation Fee Path true-cost projection</caption>
-  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Cost to funded (1 mo)</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (90% split)</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Cost to funded (1 mo)</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (90% split)</th><th style="padding: 8px 12px; text-align: left;">Max loss</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs tier max loss</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$95</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$106</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$149</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$166</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px;">$150K</td><td style="padding: 8px 12px;">$229</td><td style="padding: 8px 12px;">$254</td><td style="padding: 8px 12px;">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$95</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$106</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.05</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$149</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$166</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$3,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.06</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td></tr>
+    <tr><td style="padding: 8px 12px;">$150K</td><td style="padding: 8px 12px;">$229</td><td style="padding: 8px 12px;">$254</td><td style="padding: 8px 12px;">$4,500</td><td style="padding: 8px 12px;">0.06</td><td style="padding: 8px 12px;">—</td></tr>
   </tbody>
 </table>
 
@@ -147,19 +147,33 @@ type: "post"
 
 <p>Topstep's own guidance is that the No Activation Fee Path is "best for traders confident they'll pass in 1-2 attempts." The arithmetic above agrees with that and extends it: buy the No Activation Fee Path if you genuinely expect to finish inside three months (five at $150K, or always at $150K if you take the discount), and the Standard Path if you are still building consistency and expect to rebill repeatedly. Since paths cannot be changed after purchase, this is the single most consequential decision at checkout, and it is made before you have traded a single contract.</p>
 
-<p><strong>Two costs the tables do not carry.</strong> Resets on the Standard Path are $49 / $99 / $199, but each monthly rebill includes a free Reset Credit, so a trader who blows up once per month pays nothing extra. And if you lose an Express Funded Account before your first payout, Back2Funded reactivation costs $599 / $699 / $829 — two to four times the cost of simply starting a new Combine at the same size. Topstep's pages disagree on the window: the pricing article says 30 calendar days from account closure, the express-funded-account-rules page says 7. We report both rather than pick one. Refunds are narrow: no trading activity and within 28 days, otherwise "refunds are not available."</p>
+<p><strong>Costs beyond the first-month model.</strong> Standard resets are $49 / $99 / $199; a monthly rebill includes a Reset Credit, but do not budget an extra reset as free before confirming that credit is available. Back2Funded base reactivation costs $599 / $699 / $829 for eligible XFAs lost before a first payout, with at most two reactivations per account. The dedicated Back2Funded article now explicitly dates the extension from 7 to 30 calendar days to 2026-05-29, agreeing with the pricing article. Our earlier equal-weight conflict description was outdated. Unused Combine purchases within 28 days may be reviewed for a size-change refund; this is not a refundable fee earned by passing.</p>
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p><strong>First payout.</strong> Two qualifying routes on an Express Funded Account. The Standard option needs at least five $150 winning trading days plus maintaining your balance between payouts. The Consistency option needs only three days with at least one trade per day, with your best day inside 40% of total profit — three trading days is the fastest documented route to a first request.</p>
+<p><strong>First request, not first money received.</strong> The payout policy checked on 2026-09-08 gives XFA Standard traders five winning trading days of at least $150. Subsequent requests also require positive net profit since the previous payout; the first request is exempt from that extra condition. XFA Consistency instead requires three trading days with at least one trade each and a best day no greater than 40% of total net profit. Those are funded-stage trading days, not three calendar days from buying a Combine.</p>
 
-<p><strong>Mechanics.</strong> Payouts are requested on demand from the Topstep dashboard during CME market hours, Sunday 5 PM CT to Friday 5 PM CT excluding holidays. Minimum $125. Maximum per request is 50% of your account balance, capped at $2,000–$3,000 at $50K, $3,000–$4,000 at $100K and $5,000–$6,000 at $150K depending on which qualifying route you used. Adding the optional Daily Loss Limit doubles every one of those caps: "Traders who voluntarily add a Daily Loss Limit to their account unlock double per-request payout caps."</p>
+<p><strong>Request limits.</strong> The minimum is $125; eligible requests open during CME hours, Sunday 5 PM CT through Friday 5 PM CT excluding holidays. XFA requests are limited to 50% of balance and base Standard/Consistency caps of $2,000/$3,000 at $50K, $3,000/$4,000 at $100K and $5,000/$6,000 at $150K. The limited-time double-cap offer requires adding the Daily Loss Limit when purchasing a new Combine. Adding it only when activating or reactivating an XFA does not unlock those larger caps.</p>
 
 <p><strong>Split.</strong> 90/10, with one legacy carve-out: "Note for traders who joined the new Topstep dashboard before January 12, 2026: You receive 100% of your first $10,000 in lifetime profits."</p>
 
-<p><strong>Settlement time.</strong> Topstep's payout policy as captured on 2026-07-27 documents the request window, minimum and caps but does not state a settlement duration, so this review no longer quotes one. An earlier version of this page cited a sub-10-second figure for a specific payment rail; that claim does not appear in the current published policy and has been removed.</p>
+<p><strong>Approval and transfer are separate.</strong> Our earlier statement that no settlement estimates were published is outdated. The policy checked on 2026-09-08 says internal approval can take 1–3 business days. Transfer estimates then depend on the payment method and bank, excluding weekends and holidays. No customer receipt or payout time was independently verified for this review.</p>
 
-<p><strong>Community signal.</strong> Trustpilot shows <a href="https://www.trustpilot.com/review/topstep.com">3.6 from 14,478 reviews</a> as of 2026-07-27. In our current tracked set, only The Funded Trader (2.9) scores lower, and Topstep sits below FTMO (4.8) and My Funded Futures (4.9). That is a substantial review base rather than a thin one, which makes the score harder to dismiss as noise. Weigh it against the fact that Topstep publishes its own failure-rate data.</p>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption>Topstep payout methods — official policy checked 2026-09-08</caption>
+  <thead><tr><th scope="col">Method</th><th scope="col">Availability</th><th scope="col">Transfer estimate</th><th scope="col">Topstep fee</th></tr></thead>
+  <tbody>
+    <tr><td>Prop-to-Brokerage</td><td>US only; eligible Topstep Brokerage account</td><td>Same day if requested before noon CT</td><td>$0</td></tr>
+    <tr><td>Aeropay</td><td>US banks supporting real-time payments</td><td>Instant after approval; unsupported banks may take 1–3 business days</td><td>$0; bank/service fees may apply</td></tr>
+    <tr><td>Wise</td><td>China, Canada and UK only</td><td>1–3 business days</td><td>$0; bank/service fees may apply</td></tr>
+    <tr><td>ACH</td><td>US banks only</td><td>1–3 business days</td><td>$30</td></tr>
+    <tr><td>Wire/SWIFT</td><td>International, subject to eligibility and bank acceptance</td><td>5–10 business days</td><td>$30</td></tr>
+  </tbody>
+</table>
+
+<p><strong>For Russian-speaking traders abroad.</strong> Language is not an eligibility category. The eligibility policy checked on 2026-09-08 lists Russia as ineligible but allows citizens of ineligible countries to submit proof of permanent residency in an eligible country plus a local bank statement for Trust-team review. That is a possible review route, not guaranteed access. Residence or trading in an ineligible country remains disallowed. Confirm your citizenship, permanent residence and payment method before buying; Wise availability in the three listed countries does not itself make a person eligible.</p>
+
+<p><strong>Dated community signal.</strong> Our <a href="https://www.trustpilot.com/review/topstep.com">Trustpilot capture</a> recorded 3.6 from 14,478 reviews on 2026-07-27. It is older than the product check and has not been refreshed here. Read recent complaints and the firm's responses separately; a review score is neither verified payout evidence nor a guarantee that a request will be approved.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
@@ -180,8 +194,8 @@ type: "post"
   <li><strong>The fee is a subscription that rebills until you pass or cancel.</strong> A $49 headline at $50K is $196 by month four, and there is no published figure for how many rebills the median passer takes.</li>
   <li><strong>The path choice is irreversible</strong> — "Paths cannot be changed after purchase" — and it is worth $103 at month one or $35 a month by month four at $50K, decided before you have traded.</li>
   <li><strong>The loss limit counts unrealised P&amp;L intraday.</strong> A $50K account showing $2,100 of open loss is breached without a single closed trade.</li>
-  <li><strong>Trustpilot 3.6 from 14,478 reviews</strong> (2026-07-27) is the second-lowest score in our covered set.</li>
-  <li><strong>Back2Funded costs $599–$829</strong> to recover a lost Express Funded Account before first payout — more than three Combine rebills at the same size — and Topstep's own pages disagree on whether the window is 7 or 30 days.</li>
+  <li><strong>The Trustpilot capture is dated 2026-07-27:</strong> 3.6 from 14,478 reviews, not a current ranking or verified payout record.</li>
+  <li><strong>Back2Funded costs $599–$829 before eligible discounts and tax.</strong> It is limited to eligible XFAs lost before a first payout, with at most two reactivations and a 30-calendar-day decision window.</li>
   <li><strong>Both the Combine and the funded account are simulated.</strong> Only the Live Funded Account trades real capital, and 0.71% of Express Funded traders reached it in 2025.</li>
   <li><strong>Futures only.</strong> "Topstep traders are prohibited from trading Stocks, Options, Forex, Spot Cryptocurrency, and CFDs."</li>
   <li><strong>No overnight or weekend positions</strong> — flat by 3:10 PM CT or the product's close, whichever is first.</li>
@@ -214,10 +228,7 @@ type: "post"
 <p>It moves up with your end-of-day balance and never moves down, and it stops moving once it reaches your starting balance. On a $50K account with a $2,000 limit, that lock happens the day you close at $52,000. It is monitored in real time during the session and counts unrealised P&amp;L, so an open losing position can breach it.</p>
 
 <h3 class="wp-block-heading"><strong>How many days do I need to trade?</strong></h3>
-<p>Topstep's pages disagree. The <code>/topstep-prop</code> FAQ states "there's no minimum time requirement," while the help centre article updated 2026-06-24 states "you can pass in as few as two days." We record two days as the operative minimum and flag the contradiction rather than resolving it.</p>
+<p>The minimum remains unverified: the two published descriptions still differ at the 2026-09-08 check. The help article describes as few as two days, while the marketing FAQ states no minimum time requirement. Do not interpret the unknown comparison field as zero; the 50% consistency objective remains applicable.</p>
 
 <h3 class="wp-block-heading"><strong>How fast can I get a payout?</strong></h3>
-<p>Three trading days with at least one trade per day qualifies under the Consistency route, provided your best day stays within 40% of total profit. Minimum request is $125, capped at 50% of your account balance, and requests are open during CME hours Sunday 5 PM CT to Friday 5 PM CT. Topstep's current payout policy does not publish a settlement duration.</p>
-
-<h3 class="wp-block-heading"><strong>Where is Topstep's pricing page?</strong></h3>
-<p>At <code>/topstep-prop</code>. Both <code>/pricing</code> and <code>/trading-combine</code> returned 404 on 2026-07-27, so older reviews and comparison pages linking to those URLs are pointing at dead pages.</p>
+<p>The earliest documented XFA request route requires three trading days and 40% consistency, not immediate receipt. Approval can take 1–3 business days; transfer depends on the method. Wise is restricted to China, Canada and the UK with a 1–3-business-day estimate, while international Wire/SWIFT is estimated at 5–10 business days with a $30 Topstep fee. Eligibility, caps and bank checks still apply.</p>

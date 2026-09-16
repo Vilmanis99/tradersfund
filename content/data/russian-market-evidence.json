@@ -462,6 +462,19 @@
         "FundedNext lists Russia among countries where bank-transfer performance rewards are unavailable.",
         "Until the first-party conflict is resolved at checkout and by support, the site must not describe FundedNext as available to Russian residents."
       ]
+    },
+    {
+      "firmSlug": "the-funded-trader",
+      "status": "restricted",
+      "sourceUrls": [
+        "https://www.thefundedtraderprogram.com/"
+      ],
+      "sourceCapturedAt": "2026-09-14",
+      "notes": [
+        "The current official homepage lists Russia among restricted countries and says eligibility includes country and KYC checks.",
+        "This access finding does not refresh the seven product price captures; the last structured product capture remains dated 2026-07-27.",
+        "A Russian-language review must not present The Funded Trader as available to a Russian resident without a current written confirmation."
+      ]
     }
   ],
   "kycEvidence": [

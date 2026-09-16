@@ -37,7 +37,7 @@
     "dailyLossPct": null,
     "maxLossPct": null,
     "drawdownType": "eod-trailing",
-    "minTradingDays": 5,
+    "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
     "profitSplitPct": 80,
@@ -54,7 +54,7 @@
     "activationFeeUsd": 130,
     "assetClass": "futures",
     "sourceUrl": "https://takeprofittrader.com/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
       "RECURRING: the five priceUsd values are MONTHLY subscription fees for the Test, not one-time challenge fees. Confirmed by the firm's own checkout consent string 'I agree to get billed every month and I acknowledge that I can cancel whenever I want' and by the NOFEE40 FAQ: 'that account's monthly subscription will always be 40% off ... As soon as you pass then the monthly subscription stops.'",
       "ONE-TIME ACTIVATION FEE CONFIRMED AT $130 and still in force. Homepage comparison table row 'Fees for PRO Account' reads 'One Time $130 Fee' (vs 'Monthly Recurring' for competitors); its tooltip reads 'Your monthly fees go away completely once you become a PRO Trader. Pay a one time $130 PRO Account setup fee, and ZERO monthly fees after that.' The fee is charged when converting a passed Test to a PRO account.",
@@ -67,7 +67,7 @@
       "Drawdown type differs by account stage: Test = End-Of-Day trailing (updates at 5PM EST), PRO = INTRADAY trailing (trails unrealized profit in real time), PRO+ = End-Of-Day. 'The drawdown across all three account types will STOP trailing once it has reached the initial account balance.' drawdownType above describes the Test only.",
       "BUFFER ZONE gates PRO withdrawals: 'you must build a buffer on the account first. You can withdraw your profits at 80% once you reach the level of your maximum drawdown'. PRO+ has no buffer requirement. Withdrawing profits still inside the buffer is only possible after the account is terminated, and is paid at 50% if <=60 days since account opening, 80% if >60 days.",
       "payoutFirstDays = 0 from the homepage differences table row 'Minimum Days Until First Withdrawal — Take Profit: 0 days' (vs '20-60 Days' for competitors), plus 'Withdrawals — PRO: Day one'. Subject to the buffer requirement above.",
-      "minTradingDays = 5: 'you must trade for a minimum of 5 trading days. A trading day is defined as any day in which you place at least one trade.' maxTradingDays is null because there is explicitly no limit: 'You may take as long as you want to complete the test.'",
+      "minTradingDays = 3 for new Test accounts from 2026-08-17: 'you must trade for a minimum of 3 trading days. A trading day is defined as any day in which you place at least one trade.' maxTradingDays is null because there is explicitly no limit: 'You may take as long as you want to complete the test.'",
       "consistencyRulePct = 50 applies to the TEST ONLY (homepage table: 'Consistency rule — Test: Yes | PRO: None | PRO+: None'): 'no single trading day may exceed 50% of your total net profits'. Breaching it does not fail the account — it raises the target: 'Updated Profit Goal = Net P/L x 2'.",
       "50-EXECUTIONS RULE applies to PRO only, not the Test: 'In the PRO Accounts, we ask that you do no more than 50 executions per day.'",
       "Max position size per tier (contracts): 25k=3, 50k=6, 75k=9, 100k=12, 150k=15. No scaling plan — same buying power in PRO as in the Test.",
@@ -76,7 +76,10 @@
       "refundable=false: TPT sells a cancellable monthly subscription, not a refundable one-time challenge fee, and no standard refund-on-pass policy exists on the firm's domain. Refunds appear only as limited-time promos (e.g. NOFEE100 refunds '100% of your first month's test subscription cost'). Treat as low-confidence.",
       "Accounts are SIM through Test and PRO; only PRO+ is live-routed. 41 tradable CME/NYMEX/COMEX/CBOT futures symbols returned by /accounts/api/subscriptions/products.",
       "Firm entity: TakeProfitTrader LLC. Brokers/data: Tradovate, NinjaTrader, Rithmic.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/take-profit-trader-2026-07-27.json"
+      "CURRENT MINIMUM-DAYS UPDATE: the official 2026-08-17 update changed new Test accounts from 5 to 3 minimum trading days. Existing evaluations and resets retain the 5-day minimum. The current homepage FAQ repeats “minimum of 3 days.”",
+      "CURRENT PAYOUT-PROCESSING UPDATE: the official 2026-07-20 payout update says the account-to-wallet step is automated in approximately 1–5 seconds after the dashboard balance update; wallet-to-bank timing still varies by payout method. Day-one and daily eligibility, no withdrawal cap, and the buffer gate remain unchanged.",
+      "Current official homepage account cards show the same five monthly list prices: $150 / $170 / $245 / $330 / $360 for $25K / $50K / $75K / $100K / $150K.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/take-profit-trader-2026-09-14.json"
     ]
   }
 ]

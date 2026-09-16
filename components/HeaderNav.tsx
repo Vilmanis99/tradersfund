@@ -57,6 +57,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const [lastPath, setLastPath] = useState(pathname)
   const navRef = useRef<HTMLDivElement | null>(null)
+  const mobileDialogRef = useRef<HTMLDialogElement | null>(null)
 
   // The server-rendered /ru layout and response header establish the Russian
   // language boundary for crawlers. Keep the document root in sync after
@@ -82,7 +83,10 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
       }
     }
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') setDropdownOpen(null)
+      if (e.key === 'Escape') {
+        navRef.current?.querySelector<HTMLButtonElement>('button[aria-expanded="true"]')?.focus()
+        setDropdownOpen(null)
+      }
     }
     document.addEventListener('mousedown', onPointerDown)
     document.addEventListener('touchstart', onPointerDown)
@@ -94,12 +98,24 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
     }
   }, [dropdownOpen])
 
-  // Lock body scroll while the mobile overlay is open.
+  // Native modal dialog provides focus containment, Escape and inert background.
+  // Keep scroll locking scoped to the time it is open, including route changes.
   useEffect(() => {
     if (!mobileOpen) return
+    const dialog = mobileDialogRef.current
+    if (!dialog) return
+    dialog.showModal()
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
-    return () => { document.body.style.overflow = prev }
+    const desktop = window.matchMedia('(min-width: 1001px)')
+    const onDesktop = () => { if (desktop.matches) setMobileOpen(false) }
+    desktop.addEventListener('change', onDesktop)
+    onDesktop()
+    return () => {
+      dialog.close()
+      document.body.style.overflow = prev
+      desktop.removeEventListener('change', onDesktop)
+    }
   }, [mobileOpen])
 
   /**
@@ -121,14 +137,16 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
         lang={isRussian ? 'ru' : 'en'}
         aria-label={isRussian ? 'Основная навигация' : 'Primary'}
       >
-        {activeNavLinks.map(link => (
+        {activeNavLinks.map((link, index) => (
           'children' in link && link.children ? (
-            <div key={link.label} className="nav-dropdown-wrap">
+            <div key={link.label} className="nav-dropdown-wrap" onBlur={event => {
+              if (!event.currentTarget.contains(event.relatedTarget)) setDropdownOpen(null)
+            }}>
               <button
                 type="button"
-                aria-haspopup="menu"
                 aria-expanded={dropdownOpen === link.label}
-                aria-current={isActive(link.href) ? 'page' : undefined}
+                aria-controls={`desktop-nav-group-${index}`}
+                data-active={isActive(link.href) || link.children.some(child => isActive(child.href)) || undefined}
                 onClick={() => setDropdownOpen(v => (v === link.label ? null : link.label))}
                 className="nav-link nav-link--button"
               >
@@ -142,21 +160,27 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
               </button>
               {dropdownOpen === link.label && (
                 <div
-                  role="menu"
-                  aria-label={link.label}
-                  className="nav-dropdown"
+                  id={`desktop-nav-group-${index}`}
+                  className={`nav-dropdown${link.children.length > 8 ? ' nav-dropdown--wide' : ''}`}
                 >
+                  <ul className="nav-dropdown-links">
                   {link.children.map(child => (
+                    <li key={child.href}>
                     <Link
-                      key={child.href}
                       href={child.href}
-                      role="menuitem"
                       className="nav-menu-item"
                       aria-current={isActive(child.href) ? 'page' : undefined}
                     >
                       {child.label}
                     </Link>
+                    </li>
                   ))}
+                  </ul>
+                  {dataStatus && !isRussian && link.href === '/prop-firms' && (
+                    <Link href="/prop-firm-challenge-changes" className="nav-source-status">
+                      Source-check coverage: {dataStatus}
+                    </Link>
+                  )}
                 </div>
               )}
             </div>
@@ -178,7 +202,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
           aria-label={isRussian ? 'Сравнить проп-фирмы' : 'Compare prop-firm challenge products'}
         >
           <GitCompare size={14} aria-hidden="true" />
-          {isRussian ? 'Сравнить' : 'Challenges'}
+          {isRussian ? 'Сравнить' : 'Compare'}
         </Link>
 
         <Link
@@ -192,23 +216,12 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
           {isRussian ? 'EN' : 'RU'}
         </Link>
 
-        {dataStatus && !isRussian && (
-          <Link
-            href="/prop-firm-challenge-changes"
-            className="nav-update-pill"
-            title={`Open challenge changes. Firm source-check coverage: ${dataStatus}`}
-            aria-label={`Open challenge changes. Firm source-check coverage: ${dataStatus}`}
-          >
-            <span className="nav-update-pill__dot" aria-hidden="true" />
-            <span className="nav-update-pill__text">{dataStatus}</span>
-          </Link>
-        )}
       </nav>
 
       <button
         type="button"
         className="mobile-toggle"
-        onClick={() => setMobileOpen(v => !v)}
+        onClick={() => { setDropdownOpen(null); setMobileOpen(true) }}
         aria-expanded={mobileOpen}
         aria-controls="mobile-menu"
         aria-label={mobileOpen
@@ -219,21 +232,20 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
       </button>
 
       {mobileOpen && (
-        <div
+        <dialog
+          ref={mobileDialogRef}
           id="mobile-menu"
           className="mobile-overlay"
-          role="dialog"
-          aria-modal="true"
           aria-label={isRussian ? 'Навигация по сайту' : 'Site navigation'}
+          onCancel={() => setMobileOpen(false)}
         >
-          <div className="mobile-overlay__aurora" aria-hidden="true">
-            <div className="aurora-orb aurora-orb--1" />
-            <div className="aurora-orb aurora-orb--2" />
-            <div className="aurora-orb aurora-orb--3" />
-            <div className="aurora-grid" />
-          </div>
-
           <div className="mobile-overlay__inner">
+            <div className="mobile-overlay__head">
+              <Link href={isRussian ? '/ru' : '/'}>{isRussian ? 'Главная' : 'Home'}</Link>
+              <button type="button" className="mobile-overlay__close" onClick={() => setMobileOpen(false)}>
+                {isRussian ? 'Закрыть' : 'Close'} <X size={20} aria-hidden="true" />
+              </button>
+            </div>
             <nav
               className="mobile-overlay__nav"
               lang={isRussian ? 'ru' : 'en'}
@@ -270,7 +282,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
                 <GitCompare size={16} aria-hidden="true" />
                 {isRussian ? 'Сравнить фирмы' : 'Compare challenges'}
               </Link>
-              <div className="mobile-overlay__socials" aria-label="Contact">
+              <div className="mobile-overlay__socials">
                 <Link
                   href={languageHref}
                   hrefLang={isRussian ? 'en' : 'ru'}
@@ -278,13 +290,13 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
                   aria-label={isRussian ? 'Открыть английскую версию' : 'Открыть русскую версию'}
                   className="mobile-overlay__social"
                 >
-                  <Languages size={18} aria-hidden="true" />
+                  <Languages size={18} aria-hidden="true" /> {isRussian ? 'EN' : 'RU'}
                 </Link>
-                <Link href="/contact" aria-label="Contact" className="mobile-overlay__social"><Mail size={18} aria-hidden="true" /></Link>
+                <Link href="/contact" hrefLang="en" className="mobile-overlay__social"><Mail size={18} aria-hidden="true" /> {isRussian ? 'Контакты (EN)' : 'Contact'}</Link>
               </div>
             </div>
           </div>
-        </div>
+        </dialog>
       )}
     </>
   )

@@ -38,9 +38,56 @@ function getMatchupFirms(config: IndiaMatchupConfig) {
   const firmA = matchupFirms.find(firm => firm.slug === config.firmSlugs[0])
   const firmB = matchupFirms.find(firm => firm.slug === config.firmSlugs[1])
   if (!firmA || !firmB) {
-    throw new Error(`${config.title} firms must both pass the current India gate`)
+    return null
   }
   return { firmA, firmB, matchupFirms: [firmA, firmB] }
+}
+
+function UnavailableMatchup({ config }: { config: IndiaMatchupConfig }) {
+  return (
+    <div>
+      <section className="blog-hero india-matchup-hero">
+        <div className="home-shell">
+          <Link href="/best-prop-firms-in-india/compare" className="post-back">
+            ← India prop-firm comparisons
+          </Link>
+          <div className="hero-eyebrow" style={{ marginBottom: '1.2rem' }}>
+            <CircleAlert size={12} aria-hidden="true" />
+            Comparison paused until both source sets are current
+          </div>
+          <h1 className="blog-hero-title">{config.title} <span className="gradient-text">for India</span></h1>
+          <p className="blog-hero-sub">
+            This matchup is temporarily withheld because one or both firms no longer pass the
+            dated India country, RBI and product-freshness gates. That is a data-status message,
+            not a verdict about either firm.
+          </p>
+          <div className="challenge-change-hero-actions">
+            <Link href="/best-prop-firms-in-india/compare" className="btn-primary btn-glow">
+              Browse current India matchups <ArrowRight size={15} />
+            </Link>
+            <Link href="/best-prop-firms-in-india/challenge-comparison" className="btn-outline">
+              Build a product comparison
+            </Link>
+          </div>
+        </div>
+      </section>
+      <section className="home-section">
+        <div className="home-shell">
+          <div className="challenge-change-principle-card">
+            <div>
+              <span className="bento-tile-eyebrow"><ShieldCheck size={12} aria-hidden="true" /> Publication gate</span>
+              <h2>No stale India comparison is published as current.</h2>
+            </div>
+            <p>
+              Recheck the firms&apos; own country, RBI-screening, pricing and rule pages before
+              relying on an older matchup. When both products pass again, this route can be
+              restored with a new source date.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
 }
 
 function dateLabel(value: string) {
@@ -212,7 +259,9 @@ export default function IndiaCuratedMatchupPage({
 }: {
   config: IndiaMatchupConfig
 }) {
-  const { firmA, firmB, matchupFirms } = getMatchupFirms(config)
+  const matchup = getMatchupFirms(config)
+  if (!matchup) return <UnavailableMatchup config={config} />
+  const { firmA, firmB, matchupFirms } = matchup
   const evidenceA = INDIA_EVIDENCE_BY_SLUG[config.firmSlugs[0]]
   const evidenceB = INDIA_EVIDENCE_BY_SLUG[config.firmSlugs[1]]
   if (!evidenceA || !evidenceB) {

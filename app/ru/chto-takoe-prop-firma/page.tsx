@@ -12,6 +12,7 @@ import {
   ShieldAlert,
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { getAllChallenges, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
@@ -28,14 +29,14 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
 const faqs: RussianFaqItem[] = [
   {
     q: 'Проп-фирма даёт трейдеру настоящие деньги?',
-    a: 'Не автоматически. В традиционном проп-деске может использоваться капитал компании, а глобальный retail-продукт часто начинается с симулированной оценки и может сохранять симулированную среду на funded-этапе. Договор конкретного продукта определяет среду, правила и право на вознаграждение.',
+    a: 'Не автоматически. В традиционном проп-деске может использоваться капитал компании, а глобальный розничный продукт часто начинается с симулированной оценки и может сохранять симулированную среду на профинансированном этапе. Договор конкретного продукта определяет среду, правила и право на вознаграждение.',
   },
   {
     q: 'Чем проп-фирма отличается от брокера?',
@@ -43,19 +44,19 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Что означает счёт $100 000?',
-    a: 'Это номинальный размер, от которого могут считаться цели и лимиты; он не означает депозит $100 000 на личном счёте трейдера. Денежный риск покупки начинается с fee, подписки, activation fee, reset и платных дополнений.',
+    a: 'Это номинальный размер, от которого могут считаться цели и лимиты; он не означает депозит $100 000 на личном счёте трейдера. Денежный риск покупки начинается со вступительного взноса, подписки, платы за активацию, повторной попытки и платных дополнений.',
   },
   {
     q: 'Можно ли выбрать проп-фирму только по проценту прибыли?',
-    a: 'Нет. Базовый profit split нужно читать вместе с daily loss, maximum loss, типом просадки, первой датой выплаты, consistency rule и условиями возврата fee. Максимум «до 95%» не заменяет базовый процент выбранного продукта.',
+    a: 'Нет. Базовую долю прибыли нужно читать вместе с дневным и общим лимитами убытка, типом просадки, первой датой выплаты, правилом стабильности и условиями возврата взноса. Максимум «до 95%» не заменяет базовый процент выбранного продукта.',
   },
   {
     q: 'Русская страница означает доступ для резидента России?',
-    a: 'Нет. Русский язык страницы предназначен для русскоязычной аудитории во всём мире. Доступ зависит от фактического гражданства и резидентства, KYC, IP, карты, платформы и payout-метода; эти поля проверяются до оплаты.',
+    a: 'Нет. Русский язык страницы предназначен для русскоязычной аудитории во всём мире. Доступ зависит от фактического гражданства и резидентства, KYC, IP, карты, платформы и метода выплаты; эти поля проверяются до оплаты.',
   },
   {
     q: 'Российская проп-компания и глобальная prop firm — одно и то же?',
-    a: 'Не обязательно. Российский оператор может отбирать трейдеров для Московской биржи, совмещать обучение и стажировку или заключать местный договор. Глобальный retail-челлендж обычно продаёт стандартизированную онлайн-оценку, часто на CFD или фьючерсах. Сравнивать их нужно как разные модели.',
+    a: 'Не обязательно. Российский оператор может отбирать трейдеров для Московской биржи, совмещать обучение и стажировку или заключать местный договор. Глобальный розничный челлендж обычно продаёт стандартизированную онлайн-оценку, часто на CFD или фьючерсах. Сравнивать их нужно как разные модели.',
   },
 ]
 
@@ -93,13 +94,17 @@ function formatTargets(product: Challenge) {
 }
 
 function formatLoss(product: Challenge) {
-  const daily = product.dailyLossPct == null ? 'daily —' : `daily ${product.dailyLossPct}%`
-  const maximum = product.maxLossPct == null ? 'max —' : `max ${product.maxLossPct}%`
+  const daily = product.dailyLossPct == null ? 'дневной —' : `дневной ${product.dailyLossPct}%`
+  const maximum = product.maxLossPct == null ? 'общий —' : `общий ${product.maxLossPct}%`
   const type = product.drawdownType === 'static'
-    ? 'static'
+    ? 'статический'
     : product.drawdownType === 'trailing'
-      ? 'trailing'
-      : product.drawdownType ?? 'тип не подтверждён'
+      ? 'плавающий'
+      : product.drawdownType === 'eod-trailing'
+        ? 'плавающий по итогам дня'
+        : product.drawdownType === 'balance-based'
+          ? 'от баланса'
+          : 'тип не подтверждён'
   return `${daily}; ${maximum} ${type}`
 }
 
@@ -135,6 +140,11 @@ export default function RussianWhatIsPropFirmPage() {
     inLanguage: 'ru',
     datePublished: '2026-08-28',
     dateModified: '2026-08-28',
+    author: {
+      '@type': 'Person',
+      name: 'Edris Derakhshi',
+      url: 'https://tradersfundhub.com/authors/edris-derakhshi',
+    },
     publisher: {
       '@type': 'Organization',
       name: 'Traders Fund Hub',
@@ -152,13 +162,15 @@ export default function RussianWhatIsPropFirmPage() {
       <section className="ru-hero">
         <div className="ru-shell">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Что такое проп-фирма</div>
+          <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <div className="ru-eyebrow"><CircleHelp size={14} aria-hidden="true" /> Термин без рекламных сокращений</div>
           <h1>Что такое проп-фирма и как она работает</h1>
           <p className="ru-lead">
             Проп-фирма использует правила компании, чтобы отбирать трейдеров и определять их вознаграждение.
             Но под одним словом скрываются как минимум 3 модели: традиционный торговый деск,
-            глобальная retail-оценка и локальный оператор с собственной программой отбора.
+            глобальная розничная оценка и локальный оператор с собственной программой отбора.
           </p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Обновлено 28.08.2026.</p>
           <div className="ru-stats" aria-label="Проверяемая база примеров">
             <div className="ru-stat"><strong>3</strong><span>разные модели слова «проп»</span></div>
             <div className="ru-stat"><strong>{products.length}</strong><span>продуктов 2 главных партнёров</span></div>
@@ -182,14 +194,14 @@ export default function RussianWhatIsPropFirmPage() {
           </div>
           <h2>Короткий ответ: проп-компания продаёт не баланс, а набор условий</h2>
           <p>
-            В глобальной retail-модели трейдер обычно оплачивает продукт, получает симулированный счёт,
-            выполняет 0, 1, 2 или 3 фазы и после проверки может заключить договор о performance reward.
+            В глобальной розничной модели трейдер обычно оплачивает продукт, получает симулированный счёт,
+            выполняет 0, 1, 2 или 3 фазы и после проверки может заключить договор о вознаграждении за результат.
             Поэтому надпись «$100 000 funded account» не доказывает депозит $100 000 на имя трейдера:
             юридическое значение имеют договор, среда исполнения и правило выплаты.
           </p>
           <p>
-            У продукта есть 2 разных вида риска. Денежный риск — fee, подписка, activation fee, reset и add-ons.
-            Торговый риск — daily loss, maximum loss, trailing или static drawdown, запрещённые стратегии и reward gate.
+            У продукта есть 2 разных вида риска. Денежный риск — вступительный взнос, подписка, плата за активацию, повторная попытка и дополнения.
+            Торговый риск — дневной и общий лимиты убытка, плавающая или статическая просадка, запрещённые стратегии и условие выплаты.
             Сравнение только по размеру счёта смешивает эти 2 величины и скрывает реальную точку отказа.
           </p>
           <div className="ru-grid">
@@ -201,12 +213,12 @@ export default function RussianWhatIsPropFirmPage() {
             <article className="ru-card">
               <ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Что проверяется</h3>
-              <p className="ru-muted">Цель по прибыли, daily loss, maximum loss, торговые дни, conduct rules и KYC конкретного продукта.</p>
+              <p className="ru-muted">Цель по прибыли, дневной и общий лимиты убытка, торговые дни, правила поведения и KYC конкретного продукта.</p>
             </article>
             <article className="ru-card">
               <FileCheck2 size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Что выплачивается</h3>
-              <p className="ru-muted">Не отображаемый баланс, а договорная доля одобренного результата после первой даты и всех reward-условий.</p>
+              <p className="ru-muted">Не отображаемый баланс, а договорная доля одобренного результата после первой даты и всех условий выплаты.</p>
             </article>
           </div>
         </div>
@@ -217,19 +229,19 @@ export default function RussianWhatIsPropFirmPage() {
           <h2>Три модели: одинаковое слово, разные отношения</h2>
           <p>
             Термин proprietary trading появился не как название онлайн-челленджа. В 2026 году русскоязычный поиск
-            смешивает 3 отношения: работу в традиционном деске, покупку глобальной retail-оценки и участие
+            смешивает 3 отношения: работу в традиционном деске, покупку глобальной розничной оценки и участие
             в локальной программе с биржевой инфраструктурой. Выбор начинается с определения модели, а не бренда.
           </p>
           <div className="ru-table-wrap">
             <table className="ru-table">
               <caption className="sr-only">Три модели проп-трейдинга</caption>
-              <thead><tr><th>Проверка</th><th>Традиционный деск</th><th>Глобальная retail-фирма</th><th>Локальный оператор</th></tr></thead>
+              <thead><tr><th>Проверка</th><th>Традиционный деск</th><th>Глобальная розничная фирма</th><th>Локальный оператор</th></tr></thead>
               <tbody>
-                <tr><td>Вход</td><td>найм или договорный отбор</td><td>checkout, 0–3 фазы</td><td>отбор, стажировка или локальная программа</td></tr>
-                <tr><td>Среда</td><td>капитал и инфраструктура деска</td><td>часто симулированная оценка и reward-контракт</td><td>может использовать Московскую биржу или собственную инфраструктуру</td></tr>
-                <tr><td>Оплата трейдера</td><td>зависит от трудового или подрядного договора</td><td>разовый fee, подписка или instant-продукт</td><td>стоимость и договор проверяются у оператора</td></tr>
-                <tr><td>Результат</td><td>вознаграждение по роли</td><td>доля одобренного performance reward</td><td>доля или выплата по локальному договору</td></tr>
-                <tr><td>Главный документ</td><td>договор с деском</td><td>product rules и funded agreement</td><td>оферта, договор и правила отбора</td></tr>
+                <tr><td>Вход</td><td>найм или договорный отбор</td><td>оформление, 0–3 фазы</td><td>отбор, стажировка или локальная программа</td></tr>
+                <tr><td>Среда</td><td>капитал и инфраструктура деска</td><td>часто симулированная оценка и договор о вознаграждении</td><td>может использовать Московскую биржу или собственную инфраструктуру</td></tr>
+                <tr><td>Оплата трейдера</td><td>зависит от трудового или подрядного договора</td><td>разовый взнос, подписка или продукт без оценки</td><td>стоимость и договор проверяются у оператора</td></tr>
+                <tr><td>Результат</td><td>вознаграждение по роли</td><td>доля одобренного результата</td><td>доля или выплата по локальному договору</td></tr>
+                <tr><td>Главный документ</td><td>договор с деском</td><td>правила продукта и договор о финансировании</td><td>оферта, договор и правила отбора</td></tr>
               </tbody>
             </table>
           </div>
@@ -244,22 +256,22 @@ export default function RussianWhatIsPropFirmPage() {
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Как работает глобальная retail-проп-фирма: 5 контрольных точек</h2>
+          <h2>Как работает глобальная розничная проп-фирма: 5 контрольных точек</h2>
           <ol>
-            <li><strong>Профиль страны.</strong> До checkout проверяются резидентство, гражданство, KYC, платёж и payout rail.</li>
-            <li><strong>Покупка продукта.</strong> Фиксируются валюта, цена, фазы, возврат fee и дополнительные платежи.</li>
-            <li><strong>Оценка.</strong> Трейдер достигает цели, не нарушая daily loss, maximum loss, minimum days и conduct rules.</li>
-            <li><strong>Проверка и договор.</strong> Результат проходит review, затем KYC и принятие funded agreement.</li>
-            <li><strong>Reward gate.</strong> Первая дата, profit split, consistency, минимальная сумма и выбранный способ выплаты определяют запрос.</li>
+            <li><strong>Профиль страны.</strong> До оплаты проверяются резидентство, гражданство, KYC, платёж и канал выплаты.</li>
+            <li><strong>Покупка продукта.</strong> Фиксируются валюта, цена, фазы, возврат взноса и дополнительные платежи.</li>
+            <li><strong>Оценка.</strong> Трейдер достигает цели, не нарушая дневной и общий лимиты убытка, минимум торговых дней и правила поведения.</li>
+            <li><strong>Проверка и договор.</strong> Результат проходит проверку, затем KYC и принятие договора о финансировании.</li>
+            <li><strong>Условие выплаты.</strong> Первая дата, доля прибыли, стабильность, минимальная сумма и выбранный способ выплаты определяют запрос.</li>
           </ol>
           <p>
-            Phase 0 убирает этап оценки, но не убирает остальные 4 контрольные точки.
-            FundedNext Stellar Instant в текущей записи имеет 0 фаз, 6% trailing maximum loss,
-            70% стартовый split и отдельный growth/EOD gate для on-demand reward. Термин instant описывает вход,
+            Фаза 0 убирает этап оценки, но не убирает остальные 4 контрольные точки.
+            FundedNext Stellar Instant в текущей записи имеет 0 фаз, 6% плавающую максимальную просадку,
+            70% стартовую долю и отдельное условие роста/EOD для выплаты по запросу. Термин instant описывает вход,
             а не обещает выплату сразу после первой прибыльной сделки.
           </p>
           <p>
-            Подробная схема целей, просадки и funded-этапа вынесена в отдельный
+            Подробная схема целей, просадки и профинансированного этапа вынесена в отдельный
             <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm"> гайд по 5 этапам челленджа</Link>.
             Здесь важна последовательность: если страна или KYC не проходят точку 1, низкая цена в точке 2 уже не создаёт подходящий продукт.
           </p>
@@ -278,7 +290,7 @@ export default function RussianWhatIsPropFirmPage() {
           <div className="ru-table-wrap" data-russian-prop-definition-products={products.length}>
             <table className="ru-table">
               <caption className="sr-only">Семь актуальных продуктов FundedNext и Bright Funded</caption>
-              <thead><tr><th>Фирма и продукт</th><th>Цена</th><th>Оценка</th><th>Просадка</th><th>Базовый split</th><th>Источник</th></tr></thead>
+            <thead><tr><th>Фирма и продукт</th><th>Цена</th><th>Оценка</th><th>Просадка</th><th>Базовая доля</th><th>Источник</th></tr></thead>
               <tbody>
                 {products.map(product => (
                   <tr key={`${product.firmSlug}:${product.productSlug}`} data-russian-product-example={`${product.firmSlug}:${product.productSlug}`}>
@@ -301,9 +313,9 @@ export default function RussianWhatIsPropFirmPage() {
             <article className="ru-card">
               <div className="ru-card-head"><h3>FundedNext</h3><span className="ru-score">{fundedNextProducts.length} продукта</span></div>
               <p className="ru-muted">
-                Stellar 2-Step, 1-Step, Lite и Instant различаются числом фаз, refund milestone,
-                maximum loss и первой датой reward. Для резидентов России официальные страницы содержат конфликт,
-                поэтому checkout и support проверяются до оплаты.
+                Stellar 2-Step, 1-Step, Lite и Instant различаются числом фаз, условием возврата взноса,
+                максимальной просадкой и первой датой выплаты. Для резидентов России официальные страницы содержат конфликт,
+            поэтому страница оплаты и поддержка проверяются до оплаты.
               </p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link>
@@ -315,8 +327,8 @@ export default function RussianWhatIsPropFirmPage() {
             <article className="ru-card">
               <div className="ru-card-head"><h3>Bright Funded</h3><span className="ru-score">{brightProducts.length} продукта</span></div>
               <p className="ru-muted">
-                1-Step, 2-Step Bright и 2-Step Classic используют EUR-цены, но дают разные daily/max loss и target.
-                SumSub KYC и Security Check остаются отдельными этапами после успешной оценки.
+                1-Step, 2-Step Bright и 2-Step Classic используют EUR-цены, но дают разные дневной/общий лимиты убытка и цели.
+                SumSub KYC и проверка безопасности остаются отдельными этапами после успешной оценки.
               </p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link>
@@ -339,12 +351,12 @@ export default function RussianWhatIsPropFirmPage() {
           <h2>Русскоязычный трейдер за рубежом: язык не равен профилю KYC</h2>
           <p>
             Русскоязычный резидент Германии, Латвии, Казахстана, ОАЭ или любой другой страны проверяется по фактическому профилю,
-            а не по языку браузера. У FundedNext KYC начинается после успешного challenge и до активации FundedNext Account;
+            а не по языку браузера. У FundedNext KYC начинается после успешного челленджа и до активации аккаунта FundedNext;
             официальный список документов включает паспорт, государственное удостоверение личности или residence permit.
             <a href={FUNDEDNEXT_KYC_URL} target="_blank" rel="nofollow noopener"> Проверить источник FundedNext</a>.
           </p>
           <p>
-            Bright Funded описывает другой маршрут: после финальной фазы используется SumSub KYC, затем Risk Team Security Check,
+            Bright Funded описывает другой маршрут: после финальной фазы используется SumSub KYC, затем проверка службы безопасности,
             который обычно занимает 1–2 рабочих дня и может занимать до 4 рабочих дней в пиковый период.
             <a href={BRIGHT_KYC_URL} target="_blank" rel="nofollow noopener"> Проверить источник Bright Funded</a>.
             Разные последовательности нельзя объединять в обещание «KYC пройдёт за один день».
@@ -379,8 +391,8 @@ export default function RussianWhatIsPropFirmPage() {
             <strong>Практическая развилка из 2 вопросов.</strong>{' '}
             Нужна местная биржа и договор с локальным оператором — откройте
             <Link href="/ru/rossiyskie-prop-kompanii"> 6 проверяемых примеров</Link>.
-            Нужен глобальный CFD retail-продукт — сравните FundedNext и Bright Funded,
-            затем заново проверьте страну, KYC и payout rail.
+            Нужен глобальный розничный CFD-продукт — сравните FundedNext и Bright Funded,
+            затем заново проверьте страну, KYC и платёжный канал.
           </div>
           <div className="ru-actions">
             <Link href="/ru/rossiyskie-prop-kompanii" className="btn-outline"><Building2 size={15} aria-hidden="true" /> Российские операторы</Link>
@@ -393,42 +405,42 @@ export default function RussianWhatIsPropFirmPage() {
         <div className="ru-shell ru-content">
           <h2>Как проп-фирма зарабатывает и что это меняет для трейдера</h2>
           <p>
-            У retail-фирмы могут быть несколько источников выручки: evaluation fee, подписка, activation fee,
-            reset и платные add-ons. Публичная цена одной попытки поэтому не отвечает на вопрос о полной стоимости;
-            нужно записать как минимум 5 денежных полей и отдельно условие возврата fee.
+            У розничной фирмы могут быть несколько источников выручки: взнос за оценку, подписка, плата за активацию,
+            повторная попытка и платные дополнения. Публичная цена одной попытки поэтому не отвечает на вопрос о полной стоимости;
+            нужно записать как минимум 5 денежных полей и отдельно условие возврата взноса.
           </p>
           <p>
-            Доход фирмы от fee сам по себе не доказывает ни мошенничество, ни будущую выплату.
-            Для решения важнее 4 проверяемых слоя: юридическое лицо, продуктовые правила, funded agreement и история изменений.
-            Скриншот payout или Trustpilot score не заменяет ни один из этих 4 документов.
+            Доход фирмы от взносов сам по себе не доказывает ни мошенничество, ни будущую выплату.
+            Для решения важнее 4 проверяемых слоя: юридическое лицо, продуктовые правила, договор о финансировании и история изменений.
+            Скриншот выплаты или оценка Trustpilot не заменяет ни один из этих 4 документов.
           </p>
           <p>
-            Безопасный бюджет принимает худший денежный результат попытки: reward равен $0, fee не возвращён,
+            Безопасный бюджет принимает худший денежный результат попытки: вознаграждение равно $0, взнос не возвращён,
             а повторная покупка не совершается автоматически. Если такой исход нарушает личный бюджет,
-            продукт не подходит независимо от рекламного split 80%, 90% или «до 95%».
+            продукт не подходит независимо от рекламной доли 80%, 90% или «до 95%».
           </p>
         </div>
       </section>
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Восемь полей, которые нужно выписать до checkout</h2>
+          <h2>Восемь полей, которые нужно выписать до оплаты</h2>
           <div className="ru-grid" data-russian-decision-checklist="eight-fields">
             <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>1. Профиль</h3><p className="ru-muted">Гражданство, резидентство, KYC, IP и доступный платёжный маршрут.</p></article>
             <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>2. Продукт</h3><p className="ru-muted">Точное название, 0–3 фазы, размер и торговая платформа.</p></article>
-            <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>3. Полная цена</h3><p className="ru-muted">Первый платёж, подписка, activation, reset, add-ons и refund milestone.</p></article>
-            <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>4. Цели</h3><p className="ru-muted">Phase 1–3 targets, minimum days и maximum days.</p></article>
-            <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>5. Просадка</h3><p className="ru-muted">Daily loss, maximum loss, static, balance, trailing или EOD.</p></article>
-            <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>6. Ограничения</h3><p className="ru-muted">News, overnight, weekend, EA, copying и consistency rule.</p></article>
-            <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>7. Reward</h3><p className="ru-muted">Базовый split, первая дата, минимум, цикл и причины отказа.</p></article>
+            <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>3. Полная цена</h3><p className="ru-muted">Первый платёж, подписка, активация, повторная попытка, дополнения и условие возврата.</p></article>
+            <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>4. Цели</h3><p className="ru-muted">Цели фаз 1–3, минимум и максимум торговых дней.</p></article>
+            <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>5. Просадка</h3><p className="ru-muted">Дневной и общий лимиты убытка, статическая, балансовая, плавающая просадка или EOD.</p></article>
+            <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>6. Ограничения</h3><p className="ru-muted">Новости, перенос позиций, выходные, советники, копирование и правило стабильности.</p></article>
+              <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>7. Вознаграждение</h3><p className="ru-muted">Базовая доля, первая дата, минимум, цикл и причины отказа.</p></article>
             <article className="ru-card"><CheckCircle2 size={20} color="var(--accent-light)" aria-hidden="true" /><h3>8. Выплата</h3><p className="ru-muted">Банк, wallet, сеть, валюта, комиссия и совпадение владельца счёта.</p></article>
           </div>
           <p>
-            После заполнения 8 полей используйте <Link href="/ru/luchshie-prop-firmy">русский рейтинг</Link> для shortlist,
+            После заполнения 8 полей используйте <Link href="/ru/luchshie-prop-firmy">русский рейтинг</Link> для короткого списка,
             <Link href="/ru/forex-prop-firmy"> forex-сравнение</Link> для валютных пар и плеча,
-            <Link href="/ru/vyplaty-prop-firm"> сравнение выплат</Link> для payout rail и
+            <Link href="/ru/vyplaty-prop-firm"> сравнение выплат</Link> для платёжного канала и
             <Link href="/ru/otzyvy-prop-firm"> методику отзывов</Link> для проверки повторяющихся жалоб.
-            Финальный источник — live checkout и договор в день оплаты.
+            Финальный источник — страница оплаты и договор в день покупки.
           </p>
           <div className="ru-actions">
             <Link href="/ru/obzor-fundednext" className="btn-primary">Начать с FundedNext <ArrowRight size={15} aria-hidden="true" /></Link>

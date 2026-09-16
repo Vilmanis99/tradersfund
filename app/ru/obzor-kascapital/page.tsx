@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
-import { ArrowRight, Building2, FileCheck2, Globe2, Scale, WalletCards } from 'lucide-react'
+import { ArrowRight, Building2, Calculator, FileCheck2, Globe2, Scale, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -16,22 +17,22 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
 const faqs: RussianFaqItem[] = [
   {
     q: 'KasCapital — это обычный CFD-челлендж?',
-    a: 'По опубликованному описанию KasCapital делает акцент на капитале компании, покупательной способности, комьюнити и наставниках, а не на стандартной двухэтапной CFD-оценке. Поэтому проценты и сроки нельзя напрямую сравнивать с глобальными challenge-продуктами.',
+    a: 'По опубликованному описанию KasCapital делает акцент на капитале компании, покупательной способности, сообществе и наставниках, а не на стандартной двухэтапной CFD-оценке. Поэтому проценты и сроки нельзя напрямую сравнивать с глобальными продуктами-челленджами.',
   },
   {
     q: 'Как KasCapital описывает выплаты?',
     a: 'На официальной странице указано, что заявки подаются через личный кабинет, выплаты проходят по понедельникам, а диапазон одной заявки составляет от 10 000 до 2 000 000 рублей. Перед регистрацией нужно открыть действующий регламент и проверить дату среза заявки.',
   },
   {
-    q: 'Есть ли у KasCapital публичная affiliate-программа?',
-    a: 'В проверке официального сайта от 24 августа 2026 года публичные affiliate- или referral-условия не найдены. Поэтому этот обзор не содержит локального /go/ перехода и не обещает комиссию.',
+    q: 'Есть ли у KasCapital публичная партнёрская программа?',
+    a: 'В проверке официального сайта от 24 августа 2026 года публичные партнёрские или реферальные условия не найдены. Поэтому этот обзор не содержит локального /go/ перехода и не обещает комиссию.',
   },
   {
     q: 'Подходит ли KasCapital русскоязычному трейдеру за пределами России?',
@@ -79,7 +80,7 @@ export default function RussianKasCapitalReviewPage() {
     url: `https://tradersfundhub.com${PATH}`,
     dateModified: marketEvidence.capturedAt,
     inLanguage: 'ru',
-    author: { '@type': 'Organization', name: 'Traders Fund Hub' },
+    author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
 
@@ -92,10 +93,12 @@ export default function RussianKasCapitalReviewPage() {
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="kascapital" data-russian-local-review-status="verification-only">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/rossiyskie-prop-kompanii">Российские компании</Link> / KasCapital</div>
+          <RussianEvidenceFreshnessNotice evidence={[{ label: 'локальные условия KasCapital', capturedAt: marketEvidence.capturedAt }]} />
           <div className="ru-eyebrow"><Building2 size={14} aria-hidden="true" /> Локальное исследование, не рекомендация</div>
           <h1>KasCapital: обзор 2026 — капитал, выплаты и правила</h1>
           <p className="ru-lead">Проверяем опубликованные заявления KasCapital о капитале компании, сообществе, доле прибыли до 95% и выплатах по понедельникам. Это отдельная российская модель, которую нельзя автоматически приравнивать к глобальному CFD-челленджу или считать подтвержденно безопасной.</p>
-          <div className="ru-actions"><Link href="#facts" className="btn-primary btn-glow">Проверить факты <ArrowRight size={15} aria-hidden="true" /></Link><Link href="/ru/luchshie-prop-firmy" className="btn-outline">Сравнить глобальные фирмы</Link></div>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Проверка источников: {marketEvidence.capturedAt}.</p>
+          <div className="ru-actions"><Link href="#facts" className="btn-primary btn-glow">Проверить факты <ArrowRight size={15} aria-hidden="true" /></Link><Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Сравнить глобальные фирмы</Link></div>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{localSignal?.claims.maximumProfitSharePct}%</strong><span>максимальная доля трейдера по заявлению</span></div>
             <div className="ru-stat"><strong>Пн</strong><span>заявленный день обработки выплат</span></div>
@@ -113,11 +116,11 @@ export default function RussianKasCapitalReviewPage() {
             <table className="ru-table" data-russian-local-review-facts="kascapital">
               <thead><tr><th>Пункт</th><th>Заявление оператора</th><th>Редакционный статус</th><th>Источник</th></tr></thead>
               <tbody>
-                <tr><td>Модель</td><td>Капитал компании, покупательная способность до 5 000 000 ₽ при примере 50 000 ₽ и плечо до 100</td><td>Описание оператора; не сопоставляем с CFD challenge</td><td><SourceLink href={KAS_HOME}>KasCapital</SourceLink></td></tr>
+                <tr><td>Модель</td><td>Капитал компании, покупательная способность до 5 000 000 ₽ при примере 50 000 ₽ и плечо до 100</td><td>Описание оператора; не сопоставляем с CFD-челленджем</td><td><SourceLink href={KAS_HOME}>KasCapital</SourceLink></td></tr>
                 <tr><td>Доля прибыли</td><td>До {localSignal?.claims.maximumProfitSharePct}% трейдеру</td><td>Максимум из маркетингового описания; проверьте уровень и договор</td><td><SourceLink href={KAS_HOME}>Условия на главной</SourceLink></td></tr>
                 <tr><td>Выплаты</td><td>Еженедельно по понедельникам; заявка от {Number(localSignal?.claims.minimumPayoutRub).toLocaleString('ru-RU')} до {Number(localSignal?.claims.maximumPayoutRub).toLocaleString('ru-RU')} ₽</td><td>Опубликованный диапазон, не независимая история выплат</td><td><SourceLink href={KAS_HOME}>FAQ оператора</SourceLink></td></tr>
                 <tr><td>Регистрация</td><td>500 ₽ на счёт после регистрации по описанию оператора</td><td>Бонус и его условия требуют проверки до регистрации</td><td><SourceLink href={KAS_HOME}>Как начать</SourceLink></td></tr>
-                <tr><td>Партнёрство</td><td>Публичных affiliate-условий в проверке не найдено</td><td>{affiliateSignal?.status === 'not-found' ? 'Локальный affiliate не активирован' : 'Нужна повторная проверка'}</td><td><SourceLink href={KAS_HOME}>Официальный сайт</SourceLink></td></tr>
+                <tr><td>Партнёрство</td><td>Публичных партнёрских условий в проверке не найдено</td><td>{affiliateSignal?.status === 'not-found' ? 'Локальная программа не активирована' : 'Нужна повторная проверка'}</td><td><SourceLink href={KAS_HOME}>Официальный сайт</SourceLink></td></tr>
               </tbody>
             </table>
           </div>
@@ -131,9 +134,9 @@ export default function RussianKasCapitalReviewPage() {
           <div className="ru-grid">
             <article className="ru-card"><Scale size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Рынок и плечо</h3><p className="ru-muted">Плечо до 100 и покупательная способность до 5 000 000 ₽ описаны как пример. Запросите перечень инструментов, комиссии, ограничения риска и момент принудительного закрытия.</p><SourceLink href={KAS_HOME}>Официальное описание</SourceLink></article>
             <article className="ru-card"><FileCheck2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Выплаты по понедельникам</h3><p className="ru-muted">Дата выплаты зависит от времени подачи заявки: на странице указаны пятничный срез и следующий понедельник. Сохраните действующий регламент и подтверждение заявки.</p><SourceLink href={KAS_HOME}>FAQ о выплатах</SourceLink></article>
-            <article className="ru-card"><WalletCards size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Нет локального affiliate</h3><p className="ru-muted">Публичная комиссия KasCapital в источнике не указана. Мы не превращаем локальный обзор в неподтверждённую реферальную рекламу.</p><SourceLink href={KAS_HOME}>Проверить условия</SourceLink></article>
+            <article className="ru-card"><WalletCards size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Нет локальной партнёрской программы</h3><p className="ru-muted">Публичная комиссия KasCapital в источнике не указана. Мы не превращаем локальный обзор в неподтверждённую реферальную рекламу.</p><SourceLink href={KAS_HOME}>Проверить условия</SourceLink></article>
           </div>
-          <div className="ru-notice" data-russian-local-affiliate="not-found"><strong>KasCapital не активирован как локальный партнёр.</strong> Глобальные CTA ниже отделены от этого исследования и ведут к продуктам с собственными источниками условий.</div>
+          <div className="ru-notice" data-russian-local-affiliate="not-found"><strong>KasCapital не активирован как локальный партнёр.</strong> Глобальные кнопки ниже отделены от этого исследования и ведут к продуктам с собственными источниками условий.</div>
         </div>
       </section>
 
@@ -151,8 +154,44 @@ export default function RussianKasCapitalReviewPage() {
       </section>
 
       <section className="ru-section">
+        <div className="ru-shell ru-content" data-russian-kascapital-analysis="maximum-versus-rule">
+          <h2>Как читать максимум 95% и пример ×100</h2>
+          <p>Максимальная доля 95% не означает, что каждый уровень, инструмент и выплата рассчитываются по одной формуле. До регистрации запросите таблицу грейдов: какой результат переводит трейдера на следующий уровень, какие комиссии удерживаются и что происходит при нарушении лимита.</p>
+          <div className="ru-grid">
+            <article className="ru-card">
+              <Calculator size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Покупательная способность</h3>
+              <p className="ru-muted">В примере оператора 50 000 ₽ и плечо ×100 дают до 5 000 000 ₽ покупательной способности. Это арифметика рекламного сценария, а не доступный лимит для каждого счёта и не прогноз результата.</p>
+              <SourceLink href={KAS_HOME}>Пример на официальной странице</SourceLink>
+            </article>
+            <article className="ru-card">
+              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Диапазон заявки</h3>
+              <p className="ru-muted">Публичное описание называет заявки от 10 000 до 2 000 000 ₽ и обработку по понедельникам. Уточните пятничный срез, время отсечения, комиссию и документы, иначе календарный день нельзя считать обещанием получения денег.</p>
+              <SourceLink href={KAS_HOME}>Условия выплат</SourceLink>
+            </article>
+            <article className="ru-card">
+              <FileCheck2 size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Бонус 500 ₽</h3>
+              <p className="ru-muted">Регистрационный бонус не заменяет оферту и регламент. Проверьте, является ли 500 ₽ частью стартового условия, какие действия нужны для его получения и может ли оператор изменить предложение.</p>
+              <SourceLink href={KAS_HOME}>Описание старта</SourceLink>
+            </article>
+          </div>
+          <h3>Минимальный пакет перед передачей документов</h3>
+          <ol>
+            <li>Действующая оферта с юридическим лицом, датой и порядком присоединения.</li>
+            <li>Полный регламент: инструменты, плечо, лимиты риска, грейды и причины закрытия.</li>
+            <li>Формула расчёта доли до 95% с примером для выбранного уровня, а не только верхний процент.</li>
+            <li>Порядок заявки после пятничного среза, сроки понедельника и удержания провайдера.</li>
+            <li>Правила KYC, резидентства, налоговых документов и изменения условий после регистрации.</li>
+          </ol>
+          <p className="ru-source-line">Пока эти документы не сопоставлены, KasCapital остаётся исследованием опубликованных заявлений, а не рекомендацией или подтверждением выплаты.</p>
+        </div>
+      </section>
+
+      <section className="ru-section">
         <div className="ru-shell" data-russian-local-global-funnel="kascapital">
-          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="kascapital-global-options"><strong>FundedNext и Bright Funded — два основных глобальных маршрута.</strong> Это коммерчески выделенная пара для отдельного сравнения, а не оценка KasCapital в глобальном рейтинге. Рублёвая локальная модель и CFD challenge не взаимозаменяемы; перед оплатой откройте действующие правила выбранной фирмы. Комиссия возможна после регистрации, но страну, KYC и выплаты нужно проверять на сайте выбранной фирмы.</div>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="kascapital-global-options"><strong>FundedNext и Bright Funded — два основных глобальных маршрута.</strong> Это коммерчески выделенная пара для отдельного сравнения, а не оценка KasCapital в глобальном рейтинге. Рублёвая локальная модель и CFD-челлендж не взаимозаменяемы; перед оплатой откройте действующие правила выбранной фирмы. Комиссия возможна после регистрации, но страну, KYC и выплаты нужно проверять на сайте выбранной фирмы.</div>
           <h2>Глобальные альтернативы для русскоязычных трейдеров</h2>
           <div className="ru-grid">
             {globalCards.map(item => (

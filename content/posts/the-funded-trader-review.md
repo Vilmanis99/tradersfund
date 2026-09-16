@@ -2,6 +2,7 @@
 title: "The Funded Trader Review 2026: Seven Products, Two You Can Price"
 seoTitle: "The Funded Trader Review 2026: Fees & Data Gaps"
 slug: "the-funded-trader-review"
+sourceStatus: "source-hold"
 date: "2025-11-15 10:00:00"
 modified: "2026-07-27 12:00:00"
 author: "Tara Mohseni"

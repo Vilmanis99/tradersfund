@@ -1,0 +1,45 @@
+{
+  "firmSlug": "bright-funded",
+  "scope": "Help-centre rule and country-list observations only. No challenge price, purchase availability or individual eligibility recapture.",
+  "sources": {
+    "platforms": {
+      "labelRu": "Платформы и ограничения профиля",
+      "sourceUrl": "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
+      "sourceCapturedAt": "2026-09-08",
+      "sourceQuote": "we have three platforms designed to provide the best experience for our users: DXTrade, cTrader and MT5.",
+      "notesRu": "Статья перечисляет MT5, DXTrade и cTrader, не TradeLocker. Для MT5 указаны ограничения по США и ОАЭ, для cTrader — по США; доступность конкретного профиля проверяется отдельно. Это проверка платформ, не обновление цен."
+    },
+    "rules": {
+      "labelRu": "Правила оценки и просадки",
+      "sourceUrl": "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+      "sourceCapturedAt": "2026-09-08",
+      "sourceQuote": "Trailing — follows the high-water mark (highest equity ever reached)."
+    },
+    "reward": {
+      "labelRu": "Вознаграждение и способы выплаты",
+      "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+      "sourceCapturedAt": "2026-09-08",
+      "sourceQuote": "After your first Reward Split, you can request a Reward Split bi-weekly (14 days).",
+      "notesRu": "Та же страница перечисляет выплаты раз в 14 дней среди дополнений. Противоречие базового цикла остаётся неразрешённым."
+    },
+    "news": {
+      "labelRu": "Торговля во время новостей",
+      "sourceUrl": "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news",
+      "sourceCapturedAt": "2026-09-08",
+      "sourceQuote": "5 minutes before and 5 minutes after the event"
+    },
+    "refund": {
+      "labelRu": "Возврат за неиспользованный счёт",
+      "sourceUrl": "https://help.brightfunded.com/en/articles/9460023-can-i-get-a-refund-for-my-brightfunded-challenge",
+      "sourceCapturedAt": "2026-09-08",
+      "sourceQuote": "Refund eligibility requires that the account was purchased within the last 30 days"
+    },
+    "countries": {
+      "labelRu": "Ограничения регистрации по стране",
+      "sourceUrl": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded",
+      "sourceCapturedAt": "2026-09-08",
+      "sourceQuote": "Traders from Pakistan with an active account can continue trading.",
+      "notesRu": "Список называет Кубу, Иран, Северную Корею, Сирию, Вьетнам и Пакистан; запрет новой покупки/регистрации относится к гражданству или проживанию. Исключение для уже активного пакистанского счёта не разрешает новую регистрацию. Отсутствие страны не является индивидуальным одобрением."
+    }
+  }
+}

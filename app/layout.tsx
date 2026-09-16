@@ -57,6 +57,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" data-theme="light" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }} suppressHydrationWarning>
+        {/* Keep the root document language aligned with the route before hydration.
+            The Russian segment also carries lang="ru" for crawlers and assistive
+            technology that do not execute scripts. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.lang = window.location.pathname.startsWith('/ru') ? 'ru' : 'en';",
+          }}
+        />
         {/* RSS autodiscovery — hoisted to <head> by React. Placed here (not in
             metadata.alternates) so per-page canonical overrides can't drop it. */}
         <link rel="alternate" type="application/rss+xml" title="Traders Fund Hub — Reviews & Guides" href="/feed.xml" />

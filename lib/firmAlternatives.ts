@@ -1,3 +1,5 @@
+import { getChallengesByFirm, isChallengeFresh } from './firms.ts'
+
 /**
  * The non-commercial fields used to select relevant review alternatives.
  * Keep partnership data out of this contract so selection cannot depend on it.
@@ -7,6 +9,10 @@ export interface AlternativeCandidate {
   assets: string[]
   platforms: string[]
   score: number
+}
+
+function candidateSlug(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
 function normalizedValues(values: readonly string[] = []) {
@@ -78,4 +84,23 @@ export function rankFirmAlternatives<T extends AlternativeCandidate>(
     )
     .slice(0, resultLimit)
     .map(entry => entry.firm)
+}
+
+/**
+ * Current alternatives only. The pure ranker above remains reusable for
+ * deterministic tests and historical tooling; this wrapper removes firms
+ * whose product captures have aged out of the 30-day evidence window.
+ */
+export function rankCurrentFirmAlternatives<T extends AlternativeCandidate>(
+  current: T,
+  allFirms: readonly T[],
+  limit = 3,
+  now = new Date(),
+) {
+  const currentFirms = allFirms.filter(firm =>
+    getChallengesByFirm(candidateSlug(firm.name)).some(challenge =>
+      isChallengeFresh(challenge, now),
+    ),
+  )
+  return rankFirmAlternatives(current, currentFirms, limit)
 }

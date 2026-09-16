@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight, ArrowUpRight, Handshake, Tag, Star } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
-import { rankFirmAlternatives } from '@/lib/firmAlternatives'
+import { rankCurrentFirmAlternatives } from '@/lib/firmAlternatives'
 import { firmSlug } from '@/lib/comparisons'
 import {
   comparisonHref,
@@ -37,7 +37,7 @@ export default function FirmAlternatives({
   current: Firm
   allFirms: Firm[]
 }) {
-  const allRanked = rankFirmAlternatives(current, allFirms, allFirms.length)
+  const allRanked = rankCurrentFirmAlternatives(current, allFirms, allFirms.length)
   const ranked = allRanked.slice(0, 3)
 
   if (!allRanked.length) return null

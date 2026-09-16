@@ -1,0 +1,26 @@
+{
+  "firmSlug": "crypto-fund-trader",
+  "scope": "Unresolved Ascend and Break source conflicts, not a complete product refresh or a verified purchase quote. Product capture dates remain 2026-07-27.",
+  "captureArchive": "challenges/_captures/crypto-fund-trader-2026-09-08.json",
+  "homepagePrices": {
+    "sourceUrl": "https://cryptofundtrader.com/",
+    "sourceCapturedAt": "2026-09-08",
+    "productSlugs": ["ascend", "break"],
+    "quote": "$899.00; $199.00",
+    "observation": "Homepage markup includes these 100K Ascend and Break fees. It does not establish current checkout availability; the selected public programmes in the September 8 capture were Instant, 1 Phase and 2 Phases."
+  },
+  "termsPrices": {
+    "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+    "sourceCapturedAt": "2026-09-08",
+    "productSlugs": ["ascend", "break"],
+    "quote": "780 USD; 200 USD",
+    "observation": "Sections 5.6.5 and 5.6.6 list these 100K Ascend and Break fees, conflicting with the homepage markup. Section 5.6.7 lists a further 328 USD Break activation fee at 100K; it is not a verified total entry price."
+  },
+  "breakAvailability": {
+    "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+    "sourceCapturedAt": "2026-09-08",
+    "productSlugs": ["break"],
+    "quote": "SOLD OUT",
+    "observation": "The dedicated product page displays a sold-out evaluation label despite publishing rules and activation fees. No purchase, support confirmation or discontinuation finding was made."
+  }
+}

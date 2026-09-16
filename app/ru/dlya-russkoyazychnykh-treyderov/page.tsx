@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from '@/components/SafeLink'
 import { ArrowRight, Globe2, ListChecks, ShieldCheck, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
@@ -111,7 +112,7 @@ export default function RussianDiasporaGuidePage() {
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
-    author: { '@type': 'Organization', name: 'Traders Fund Hub' },
+    author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
     dateModified: russianDiasporaEvidence.capturedAt,
   }
@@ -125,6 +126,7 @@ export default function RussianDiasporaGuidePage() {
       <section className="ru-hero">
         <div className="ru-shell" data-russian-diaspora-guide="global-access">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Для русскоязычных трейдеров</div>
+          <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Русский язык — не страна</div>
           <h1>Проп-фирмы для русскоязычных трейдеров: проверка доступа в разных странах</h1>
           <p className="ru-lead">
@@ -132,6 +134,7 @@ export default function RussianDiasporaGuidePage() {
             где они живут. Сначала определите свой KYC-маршрут, затем сравните конкретный продукт и только
             после этого переходите к глобальной фирме.
           </p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Проверка источников: {russianDiasporaEvidence.capturedAt}.</p>
           <div className="ru-home-partner-hero" data-russian-diaspora-hero-partners="fundednext-bright-funded">
             {primaryPartnerCards.map(item => {
               const isFundedNext = item.slug === 'fundednext'
@@ -154,7 +157,7 @@ export default function RussianDiasporaGuidePage() {
                   </div>
                   <p>
                     Актуальных продуктов: {item.freshProducts.length}; опубликованных цен: {item.priceCount}; валюта: {item.currency}.
-                    {' '}Сначала проверьте точную модель, страну и KYC, затем открывайте checkout.
+                    {' '}Сначала проверьте точную модель, страну и KYC, затем переходите к оформлению покупки.
                   </p>
                   <div className="ru-home-partner-hero-facts" aria-label={`Охват данных ${item.name}`}>
                     <span><strong>{item.freshProducts.length}</strong> продукта</span>
@@ -387,19 +390,19 @@ export default function RussianDiasporaGuidePage() {
             <article className="ru-card">
               <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Кошелёк, банк или валюта выплаты</h3>
-              <p className="ru-muted">Если неизвестны rail, token/network, валюта, provider fee или банковский маршрут, сравните eligibility, обработку фирмы и фактическое зачисление отдельно.</p>
+              <p className="ru-muted">Если неизвестны платёжный канал, токен и сеть, валюта, комиссия провайдера или банковский маршрут, сравните доступность, обработку фирмы и фактическое зачисление отдельно.</p>
               <Link href="/ru/vyplaty-prop-firm" className="ru-card-link">Сравнить маршруты выплаты →</Link>
             </article>
             <article className="ru-card">
               <ListChecks size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Не выбран конкретный продукт</h3>
-              <p className="ru-muted">Если выбор всё ещё сделан только по бренду, сопоставьте 7 продуктов FundedNext и Bright Funded по этапам, просадке, первой выплате и валюте checkout.</p>
+              <p className="ru-muted">Если выбор всё ещё сделан только по бренду, сопоставьте 7 продуктов FundedNext и Bright Funded по этапам, просадке, первой выплате и валюте оплаты.</p>
               <Link href="/ru/fundednext-vs-bright-funded" className="ru-card-link">Сравнить 7 продуктов →</Link>
             </article>
             <article className="ru-card">
               <Globe2 size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>Нужен локальный рынок, а не CFD challenge</h3>
-              <p className="ru-muted">Если задача связана с MOEX, стажировкой, рублёвым договором или локальным терминалом, не подменяйте её международным evaluation-продуктом.</p>
+              <h3>Нужен локальный рынок, а не CFD-челлендж</h3>
+              <p className="ru-muted">Если задача связана с MOEX, стажировкой, рублёвым договором или локальным терминалом, не подменяйте её международным продуктом с оценочным этапом.</p>
               <Link href="/ru/rossiyskie-prop-kompanii" className="ru-card-link">Проверить российские модели →</Link>
             </article>
           </div>

@@ -42,18 +42,18 @@ export const metadata: Metadata = {
     'FundingPips промокод',
   ],
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
 const generalFaqs: RussianFaqItem[] = [
   {
     q: 'Почему цена после скидки может отличаться от таблицы?',
-    a: 'Таблица умножает опубликованную листинговую цену на 1 минус процент скидки и сохраняет исходную валюту USD или EUR. Итог checkout может включать выбранную платформу, swap-free опцию, add-ons, налог или комиссию платёжного провайдера; решающей является сумма до подтверждения платежа.',
+    a: 'Таблица умножает опубликованную листинговую цену на 1 минус процент скидки и сохраняет исходную валюту USD или EUR. Итоговая сумма при оформлении может включать выбранную платформу, опцию без свопов, дополнения, налог или комиссию платёжного провайдера; решающей является сумма до подтверждения платежа.',
   },
   {
     q: 'Гарантирует ли партнёрская ссылка скидку?',
-    a: 'Нет. Партнёрская ссылка измеряет переход и может принести Traders Fund Hub комиссию, но скидку создаёт только действующий механизм фирмы: код на checkout, ссылка или персональный купон. Если итоговая сумма не изменилась, оплачивать по расчёту нашей таблицы нельзя.',
+    a: 'Нет. Партнёрская ссылка измеряет переход и может принести Traders Fund Hub комиссию, но скидку создаёт только действующий механизм фирмы: код при оплате, ссылка или персональный купон. Если итоговая сумма не изменилась, оплачивать по расчёту нашей таблицы нельзя.',
   },
   {
     q: 'Доступны ли эти предложения русскоязычным трейдерам за рубежом?',
@@ -61,7 +61,7 @@ const generalFaqs: RussianFaqItem[] = [
   },
   {
     q: 'Можно ли использовать VPN, если страна ограничена?',
-    a: 'Нет. VPN не меняет гражданство, резидентство, KYC-документы или платёжный профиль. Несовпадение данных может привести к отказу в аккаунте или выплате, поэтому доступ проверяется до покупки и повторно перед funded-account contract.',
+    a: 'Нет. VPN не меняет гражданство, резидентство, KYC-документы или платёжный профиль. Несовпадение данных может привести к отказу в аккаунте или выплате, поэтому доступ проверяется до покупки и повторно перед договором на профинансированный счёт.',
   },
   {
     q: 'Почему старые промокоды исчезают со страницы?',
@@ -83,14 +83,14 @@ const brightDealCodes: Record<string, string> = {
 
 function mechanismLabel(mechanism: Deal['mechanism']) {
   return ({
-    'checkout-code': 'Публичный код на checkout',
+  'checkout-code': 'Публичный код при оплате',
     'link-applied': 'Скидка применяется по ссылке',
     'earned-coupon': 'Персональный купон после условия',
   } as Record<Deal['mechanism'], string>)[mechanism]
 }
 
 function offerAction(deal: Deal) {
-  if (deal.mechanism === 'earned-coupon') return 'Начать Free Trial'
+  if (deal.mechanism === 'earned-coupon') return 'Начать бесплатный тест'
   if (deal.mechanism === 'link-applied') return 'Открыть предложение'
   return `Проверить ${deal.code ?? 'код'}`
 }
@@ -197,7 +197,7 @@ export default function RussianPropFirmOffersPage() {
   const faqs: RussianFaqItem[] = [
     ...(fundedNextDeal ? [{
       q: 'Какой промокод FundedNext действует сейчас?',
-      a: `В проверенном первичном источнике FundedNext описан персональный купон ${fundedNextDeal.pct}% после Free Trial, а не общая строка для немедленного копирования. Новый пользователь должен получить 5% прибыли минимум за 3 торговых дня в пределах 14-дневного окна. После цели фирма создаёт код, который действует 14 дней, применяется к CFD-планам и не действует на resets.`,
+a: `В проверенном первичном источнике FundedNext описан персональный купон ${fundedNextDeal.pct}% после Free Trial, а не общая строка для немедленного копирования. Новый пользователь должен получить 5% прибыли минимум за 3 торговых дня в пределах 14-дневного окна. После цели фирма создаёт код, который действует 14 дней, применяется к CFD-планам и не действует на повторные попытки.`,
     }] : []),
     ...(brightDeals.length > 0 ? [{
       q: 'Можно ли просто скопировать промокод Bright Funded?',
@@ -268,7 +268,7 @@ export default function RussianPropFirmOffersPage() {
             {latestVerified
               ? <>На {latestVerified} мы подтверждаем {deals.length} {russianPlural(deals.length, 'предложение', 'предложения', 'предложений')}: {offerSummary}.</>
               : <>Сейчас нет предложений, которые прошли нашу 30-дневную проверку. Сторонние и кешированные коды не считаются подтверждением.</>}
-            {fundedNextDeal && brightDeals.length > 0 && <>{' '}FundedNext и Bright Funded стоят первыми как главные партнёрские маршруты русской версии, но их механика различается: купон FundedNext нужно заработать, а коды Bright Funded вводятся на checkout.</>}
+            {fundedNextDeal && brightDeals.length > 0 && <>{' '}FundedNext и Bright Funded стоят первыми как главные партнёрские маршруты русской версии, но их механика различается: купон FundedNext нужно заработать, а коды Bright Funded вводятся при оплате.</>}
           </p>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{deals.length}</strong><span>свежих предложений</span></div>
@@ -295,13 +295,13 @@ export default function RussianPropFirmOffersPage() {
             <div className="ru-notice ru-disclosure">
               <strong>Партнёрское раскрытие.</strong>{' '}
               Переходы на FundedNext, Bright Funded и FundingPips могут принести нам комиссию после покупки.
-              Коммерческое выделение не меняет процент, цену в таблице или 30-дневное правило свежести; финальный checkout фирмы имеет приоритет.
+              Коммерческое выделение не меняет процент, цену в таблице или 30-дневное правило свежести; итоговая сумма на странице оплаты фирмы имеет приоритет.
             </div>
             <h2>Короткий ответ: {offerSummary}</h2>
             <p>
               {brightDeals.length > 0 && <>Bright Funded подтверждает {brightDeals.length} {russianPlural(brightDeals.length, 'строку', 'строки', 'строк')} для разных программ: {brightDeals.map(deal => deal.code).join(', ')}. </>}
               {fundingPipsDeal && <>FundingPips подтверждает {fundingPipsDeal.code} для первой покупки со скидкой {fundingPipsDeal.pct}%, кроме размера $100K. </>}
-              {fundedNextDeal && <>У FundedNext нет подтверждённого нами общего кода: новый пользователь сначала достигает цели Free Trial 5%, затем получает персональный купон {fundedNextDeal.pct}% на 14 дней.</>}
+              {fundedNextDeal && <>У FundedNext нет подтверждённого нами общего кода: новый пользователь сначала достигает цели бесплатного теста Free Trial 5%, затем получает персональный купон {fundedNextDeal.pct}% на 14 дней.</>}
               {deals.length === 0 && <>Проверяйте продуктовые правила и доступность страны, но не завершайте оплату по коду, который мы не смогли подтвердить на странице самой фирмы.</>}
             </p>
             <div
@@ -312,9 +312,9 @@ export default function RussianPropFirmOffersPage() {
               <table className="ru-table">
                 <thead><tr><th>Фирма</th><th>Механизм</th><th>Размер</th><th>Главное ограничение</th><th>Действие</th></tr></thead>
                 <tbody>
-                  {fundedNextDeal && <tr><td><strong>FundedNext</strong></td><td>Заработанный персональный купон</td><td>{fundedNextDeal.pct}%</td><td>Новый пользователь, Free Trial, CFD-планы, 14 дней</td><td><Link href="#fundednext-promokod">Проверить 4 шага</Link></td></tr>}
-                  {brightDeals.length > 0 && <tr><td><strong>Bright Funded</strong></td><td>{brightDeals.length} {russianPlural(brightDeals.length, 'публичный checkout-код', 'публичных checkout-кода', 'публичных checkout-кодов')}</td><td>{Math.min(...brightDeals.map(deal => deal.pct ?? 0))}%–{Math.max(...brightDeals.map(deal => deal.pct ?? 0))}%</td><td>Каждый код относится к своему продукту</td><td><Link href="#bright-funded-promokody">Сравнить {brightRows.length} цен</Link></td></tr>}
-                  {fundingPipsDeal && <tr><td><strong>FundingPips</strong></td><td>Публичный checkout-код</td><td>{fundingPipsDeal.pct}%</td><td>Первая покупка, без $100K</td><td><Link href="#fundingpips-promokod">Проверить {fundingPipsDeal.code}</Link></td></tr>}
+                  {fundedNextDeal && <tr><td><strong>FundedNext</strong></td><td>Заработанный персональный купон</td><td>{fundedNextDeal.pct}%</td><td>Новый пользователь, бесплатный тест Free Trial, CFD-планы, 14 дней</td><td><Link href="#fundednext-promokod">Проверить 4 шага</Link></td></tr>}
+                  {brightDeals.length > 0 && <tr><td><strong>Bright Funded</strong></td><td>{brightDeals.length} {russianPlural(brightDeals.length, 'публичный код при оплате', 'публичных кода при оплате', 'публичных кодов при оплате')}</td><td>{Math.min(...brightDeals.map(deal => deal.pct ?? 0))}%–{Math.max(...brightDeals.map(deal => deal.pct ?? 0))}%</td><td>Каждый код относится к своему продукту</td><td><Link href="#bright-funded-promokody">Сравнить {brightRows.length} цен</Link></td></tr>}
+                  {fundingPipsDeal && <tr><td><strong>FundingPips</strong></td><td>Публичный код при оплате</td><td>{fundingPipsDeal.pct}%</td><td>Первая покупка, без $100K</td><td><Link href="#fundingpips-promokod">Проверить {fundingPipsDeal.code}</Link></td></tr>}
                   {deals.length === 0 && <tr><td colSpan={5}>Нет предложений с первичным источником, проверенным за последние 30 дней.</td></tr>}
                 </tbody>
               </table>
@@ -327,15 +327,15 @@ export default function RussianPropFirmOffersPage() {
             <div className="ru-eyebrow"><ShieldCheck size={14} aria-hidden="true" /> Главный партнёр · условный купон</div>
             <h2>FundedNext промокод: почему публичной строки нет</h2>
             <p>
-              Официальные Free Trial Rules от 8 апреля 2026 года описывают не публичный код, а последовательность из 4 проверяемых шагов.
+              Официальные правила бесплатного теста Free Trial от 8 апреля 2026 года описывают не публичный код, а последовательность из 4 проверяемых шагов.
               На пробном счёте нужно получить 5% прибыли минимум за 3 торговых дня; 14-дневный отсчёт начинается с первой сделки.
-              Лимиты Free Trial составляют 5% за день и 10% максимально, Expert Advisors запрещены, одновременно разрешено до 30 открытых позиций.
+              Лимиты Free Trial составляют 5% за день и 10% максимально, советники Expert Advisors запрещены, одновременно разрешено до 30 открытых позиций.
             </p>
             <ol>
-              <li><strong>Открыть 1 активный Free Trial.</strong> Фирма связывает его с одним email и IP; после отключения можно запросить следующий пробный счёт.</li>
-              <li><strong>Достичь цели 5%.</strong> Требуется минимум 3 торговых дня внутри 14 календарных дней от первой сделки; reset для этого предложения не предусмотрен.</li>
-              <li><strong>Получить код от FundedNext.</strong> После цели персональная строка автоматически приходит на зарегистрированный email и появляется в разделе My Offers.</li>
-              <li><strong>Использовать код за 14 дней.</strong> Купон даёт 5% на CFD-планы только новому пользователю и не применяется к resets.</li>
+              <li><strong>Открыть 1 активный бесплатный тест.</strong> Фирма связывает его с одним email и IP; после отключения можно запросить следующий пробный счёт.</li>
+              <li><strong>Достичь цели 5%.</strong> Требуется минимум 3 торговых дня внутри 14 календарных дней от первой сделки; повторный запуск для этого предложения не предусмотрен.</li>
+              <li><strong>Получить код от FundedNext.</strong> После цели персональный код автоматически приходит на зарегистрированный email и появляется в разделе My Offers.</li>
+              <li><strong>Использовать код за 14 дней.</strong> Купон даёт 5% на CFD-планы только новому пользователю и не применяется к повторным попыткам.</li>
             </ol>
             <p className="ru-source-line">
               <CalendarCheck size={14} aria-hidden="true" /> Проверено {fundedNextDeal.verifiedOn} ·{' '}
@@ -345,7 +345,7 @@ export default function RussianPropFirmOffersPage() {
             </p>
             <div className="ru-actions">
               <Link href="/go/fundednext?from=ru-deals-fundednext-earned-coupon" rel="sponsored nofollow noopener" className="btn-primary">
-                Начать Free Trial FundedNext <ArrowRight size={15} aria-hidden="true" />
+                Начать бесплатный тест FundedNext <ArrowRight size={15} aria-hidden="true" />
               </Link>
               <Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор FundedNext</Link>
             </div>
@@ -353,8 +353,8 @@ export default function RussianPropFirmOffersPage() {
             <h3>Что дадут {fundedNextDeal.pct}% на опубликованных ценах</h3>
             <p>
               Ниже {fundedNextExamples.length} контрольных примеров из {fundedNextProducts.length} CFD-продуктов и {fundedNextPriceCount} текущих USD-цен.
-              Это расчёт после получения персонального купона, а не обещание скидки при первом открытии checkout.
-              Платформа, swap-free опция и дополнительные услуги в формулу не включены.
+              Это расчёт после получения персонального купона, а не обещание скидки при первом открытии страницы оплаты.
+              Платформа, опция без свопов и дополнительные услуги в формулу не включены.
             </p>
             <div className="ru-table-wrap" data-russian-deals-discount-table="currency-preserved">
               <table className="ru-table">
@@ -407,7 +407,7 @@ export default function RussianPropFirmOffersPage() {
             <h3>Все {brightRows.length} цен Bright Funded после своего кода</h3>
             <p>
               Таблица сохраняет EUR, потому что конвертация в рубли, доллары или тенге быстро устаревает и скрывает FX-комиссию.
-              «После кода» — арифметика от текущей листинговой цены без add-ons, налога и комиссии платёжного провайдера; оплачивать нужно только сумму, показанную самой фирмой.
+              «После кода» — арифметика от текущей листинговой цены без дополнений, налога и комиссии платёжного провайдера; оплачивать нужно только сумму, показанную самой фирмой.
             </p>
             <div className="ru-table-wrap" data-russian-deals-bright-price-rows={brightRows.length}>
               <table className="ru-table">
@@ -493,13 +493,13 @@ export default function RussianPropFirmOffersPage() {
           <div className="ru-shell" data-russian-deals-decision="product-before-discount">
             <h2>Скидка не исправляет неподходящий продукт</h2>
             <p>
-              Код меняет цену входа, но не меняет 4 главных ограничения: число evaluation phases, тип drawdown, путь к первой выплате и KYC.
-              Процент на checkout не превращает trailing drawdown в статический лимит, не делает невозвратный fee возвратным и не отменяет правила продукта.
+              Код меняет цену входа, но не меняет 4 главных ограничения: число оценочных этапов, тип просадки, путь к первой выплате и KYC.
+              Процент при оплате не превращает плавающую просадку в статический лимит, не делает невозвратный взнос возвратным и не отменяет правила продукта.
             </p>
             <div className="ru-grid">
-              <article className="ru-card"><Calculator size={22} color="var(--accent-light)" aria-hidden="true" /><h3>1. Выбрать правило</h3><p>Сопоставьте phases, daily loss, maximum loss и payout gate до сравнения процентов. <Link href="/ru/fundednext-vs-bright-funded">Таблица 7 продуктов</Link> показывает эти различия.</p></article>
+              <article className="ru-card"><Calculator size={22} color="var(--accent-light)" aria-hidden="true" /><h3>1. Выбрать правило</h3><p>Сопоставьте этапы, дневной и общий лимиты убытка и условие первой выплаты до сравнения процентов. <Link href="/ru/fundednext-vs-bright-funded">Таблица 7 продуктов</Link> показывает эти различия.</p></article>
               <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>2. Проверить профиль</h3><p>Страна, гражданство, резидентство и KYC проверяются по реальным данным. <Link href="/ru/dlya-russkoyazychnykh-treyderov">Маршрут для диаспоры</Link> отделяет язык от доступа.</p></article>
-              <article className="ru-card"><BadgePercent size={22} color="var(--accent-light)" aria-hidden="true" /><h3>3. Применить механизм</h3><p>Введите точный код для продукта или выполните условие получения персонального купона. Процент без изменения checkout total равен 0 фактической экономии.</p></article>
+              <article className="ru-card"><BadgePercent size={22} color="var(--accent-light)" aria-hidden="true" /><h3>3. Применить механизм</h3><p>Введите точный код для продукта или выполните условие получения персонального купона. Процент без изменения итоговой суммы оплаты равен 0 фактической экономии.</p></article>
               <article className="ru-card"><ClipboardCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>4. Сохранить доказательство</h3><p>Перед оплатой сохраните название плана, размер, валюту, код и финальную сумму. Эти 5 полей помогают разобрать спор по заказу.</p></article>
             </div>
           </div>
@@ -507,16 +507,16 @@ export default function RussianPropFirmOffersPage() {
 
         <section className="ru-section">
           <div className="ru-shell" data-russian-deals-checkout="final-total-controls">
-            <h2>Проверка checkout за 60 секунд</h2>
+            <h2>Проверка итоговой суммы за 60 секунд</h2>
             <ol>
               {brightDeals.length > 0 && <li><strong>Совпадает продукт:</strong> {brightDeals.map(deal => deal.scope).join(', ')} используют разные коды Bright Funded.</li>}
-              {(fundingPipsDeal || fundedNextDeal) && <li><strong>Совпадает покупатель:</strong> {fundingPipsDeal ? `${fundingPipsDeal.code} требует первую покупку` : ''}{fundingPipsDeal && fundedNextDeal ? ', а ' : ''}{fundedNextDeal ? `FundedNext ${fundedNextDeal.pct}% — нового пользователя, который выполнил Free Trial` : ''}.</li>}
+              {(fundingPipsDeal || fundedNextDeal) && <li><strong>Совпадает покупатель:</strong> {fundingPipsDeal ? `${fundingPipsDeal.code} требует первую покупку` : ''}{fundingPipsDeal && fundedNextDeal ? ', а ' : ''}{fundedNextDeal ? `FundedNext ${fundedNextDeal.pct}% — нового пользователя, который выполнил бесплатный тест Free Trial` : ''}.</li>}
               {fundingPipsDeal && <li><strong>Совпадает размер:</strong> FundingPips исключает $100K; ограничения других предложений читаются на первичном источнике.</li>}
               <li><strong>Совпадает валюта:</strong> FundedNext и FundingPips публикуют USD, Bright Funded — EUR; банк может добавить собственный FX.</li>
-              <li><strong>Изменился total:</strong> скидка должна быть видна до платежа. Скриншот кода без изменённой суммы не подтверждает её применение.</li>
-              <li><strong>Сохранён заказ:</strong> зафиксируйте дату, email, продукт, цену и order ID до первой сделки.</li>
+              <li><strong>Изменилась итоговая сумма:</strong> скидка должна быть видна до платежа. Скриншот кода без изменённой суммы не подтверждает её применение.</li>
+              <li><strong>Сохранён заказ:</strong> зафиксируйте дату, email, продукт, цену и идентификатор заказа до первой сделки.</li>
             </ol>
-            <div className="ru-notice"><strong>Стоп-сигнал:</strong> если checkout не принимает код, показывает другой продукт или возвращает полную цену, не завершайте платёж только потому, что сторонний сайт обещал скидку.</div>
+            <div className="ru-notice"><strong>Стоп-сигнал:</strong> если страница оплаты не принимает код, показывает другой продукт или возвращает полную цену, не завершайте платёж только потому, что сторонний сайт обещал скидку.</div>
           </div>
         </section>
 
@@ -525,7 +525,7 @@ export default function RussianPropFirmOffersPage() {
             <h2>Русскоязычный читатель — не обязательно резидент России</h2>
             <p>
               Эта страница написана для русскоязычных трейдеров по всему миру. Резидент Казахстана, Латвии, Германии, Израиля, Канады или ОАЭ
-              вводит один и тот же код, но проходит разные country, KYC, payment и payout проверки. Нельзя переносить результат одного профиля на другого только из-за общего языка.
+              вводит один и тот же код, но проходит разные проверки страны, KYC, оплаты и выплаты. Нельзя переносить результат одного профиля на другого только из-за общего языка.
             </p>
             <p>
               Для резидентов России действует ещё более строгая граница: русская локализация не обещает доступ к FundedNext, Bright Funded или FundingPips.

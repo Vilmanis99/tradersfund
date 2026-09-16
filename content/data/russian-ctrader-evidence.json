@@ -1,8 +1,9 @@
 {
-  "capturedAt": "2026-08-28",
+  "capturedAt": "2026-09-08",
   "scope": "First-party platform, fee, automation, login and profile restrictions used by the Russian-language cTrader decision page.",
   "platformSource": {
     "name": "cTrader Algo",
+    "sourceCapturedAt": "2026-09-08",
     "sourceUrl": "https://help.ctrader.com/ctrader-algo/",
     "capability": "cTrader supports cBots, indicators and plugins, with algorithm development in C# or Python.",
     "boundary": "Platform capability does not override a prop firm's trading rules."
@@ -11,21 +12,30 @@
     {
       "firmSlug": "fundednext",
       "firmName": "FundedNext",
-      "sourceCapturedAt": "2026-08-28",
+      "sourceCapturedAt": "2026-09-08",
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
         "https://help.fundednext.com/en/articles/9129580-trading-with-ctrader-at-fundednext",
         "https://help.fundednext.com/en/articles/8020087-will-i-get-back-my-registration-fee",
         "https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext",
-        "https://help.fundednext.com/en/articles/10726716-how-do-i-log-in-to-the-ctrader-platform"
+        "https://help.fundednext.com/en/articles/10726716-how-do-i-log-in-to-the-ctrader-platform",
+        "https://help.fundednext.com/en/articles/11641140-which-trading-platforms-are-available-for-the-stellar-instant-account"
       ],
       "platformStatus": "available-with-product-and-profile-limits",
       "maxAccountSizeUsd": 50000,
+      "sizeEvidenceQuote": "purchase a Challenge with an account size up to $50,000 on cTrader",
+      "feeEvidenceQuote": "$25 platform fee applies to all clients",
       "excludedAccountSizesUsd": [100000, 200000],
+      "instantPlatformScope": {
+        "platforms": ["MT4", "MT5"],
+        "usPlatform": "Match-Trader",
+        "cTraderStatus": "not-listed-in-product-platform-options"
+      },
       "platformFee": {
         "currency": "USD",
         "amount": 25,
         "refundable": false,
+        "usClientRefundException": true,
         "status": "published"
       },
       "automation": {
@@ -49,15 +59,16 @@
         "Use the supplied cTrader login ID and password."
       ],
       "notes": [
-        "The cTrader-specific article describes Challenge purchases up to $50,000; it does not establish cTrader availability for Stellar Instant.",
+        "The cTrader-specific article describes Challenge purchases up to $50,000. The separately checked Instant-specific platform article lists MT4/MT5 and a U.S.-only Match-Trader configuration; it does not list cTrader among the product's platform options.",
         "The $25 platform fee is additional to the product list price and is non-refundable under the standard rule.",
+        "The registration-fee article explicitly exempts U.S.-based clients from the non-refundable platform-fee rule. This does not establish access to new cTrader purchases, which the platform article separately excludes.",
         "Country, citizenship, residency, KYC, payment and payout eligibility remain separate checks."
       ]
     },
     {
       "firmSlug": "bright-funded",
       "firmName": "Bright Funded",
-      "sourceCapturedAt": "2026-08-28",
+      "sourceCapturedAt": "2026-09-08",
       "sourceUrls": [
         "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
         "https://help.brightfunded.com/en/articles/9241699-can-i-use-ea"

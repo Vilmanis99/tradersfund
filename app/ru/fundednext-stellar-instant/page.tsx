@@ -18,6 +18,8 @@ import {
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
+import RussianFundedNextEaNotice from '@/components/RussianFundedNextEaNotice'
+import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import instantEvidence from '@/content/data/russian-fundednext-instant-evidence.json'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { getDealsByFirm } from '@/lib/deals'
@@ -44,7 +46,7 @@ export const metadata: Metadata = {
     'FundedNext без челленджа',
   ],
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
@@ -106,6 +108,8 @@ export default function RussianFundedNextInstantPage() {
   const evidenceDates = [
     { label: 'основные правила', capturedAt: instantEvidence.capturedAt },
     { label: 'правило новостей', capturedAt: instantEvidence.news.sourceCapturedAt },
+    { label: 'советники EA', capturedAt: mt5Evidence.ea.sourceCapturedAt },
+    { label: 'советники Stellar Instant', capturedAt: mt5Evidence.instantEaScope.sourceCapturedAt },
     { label: 'цены', capturedAt: instant?.sourceCapturedAt ?? '' },
     { label: 'доступность страны', capturedAt: marketEvidence.capturedAt },
   ]
@@ -141,7 +145,7 @@ export default function RussianFundedNextInstantPage() {
     },
     {
       q: 'Разрешены ли советники и копирование сделок?',
-      a: 'Торговый советник должен быть настроен под собственную стратегию и не использовать уязвимости платформы. Копирование разрешено между Stellar Instant-счетами одного владельца, но не между Instant и Stellar 1-Step, 2-Step или Lite — даже если все счета принадлежат одному человеку.',
+      a: 'Для EA нужны собственные настройки, допустимая стратегия и соблюдение общих ограничений по платформе и размеру счёта. Статья Stellar Instant не подтверждает исключение из общего ограничения суммы — для увеличенного счёта нужен ответ фирмы. Копирование разрешено между Instant-счетами одного владельца, но не между Instant и Stellar 1-Step, 2-Step или Lite.',
     },
     {
       q: 'Подходит ли Stellar Instant русскоязычному трейдеру?',
@@ -400,20 +404,21 @@ export default function RussianFundedNextInstantPage() {
                 Разрешение на торговых советников не отменяет требований к собственной стратегии, а копирование сделок ограничено Instant-счетами одного владельца.
               </p>
             </div>
+            <RussianFundedNextEaNotice instant />
             <div className="ru-table-wrap">
               <table className="ru-table">
                 <thead><tr><th>Сценарий</th><th>Разрешено</th><th>Запрещено / ограничено</th></tr></thead>
                 <tbody>
                   <tr><td><strong>Платформа вне США</strong></td><td>MT4 или MT5</td><td>Проверить доступный вариант при оформлении</td></tr>
                   <tr><td><strong>Профиль США</strong></td><td>Match-Trader</td><td>MT4 и MT5 недоступны</td></tr>
-                  <tr><td><strong>Советник или индикатор</strong></td><td>Настроен под собственную стратегию</td><td>Нельзя использовать уязвимости платформы и запрещённые стратегии</td></tr>
+                  <tr><td><strong>Советник или индикатор</strong></td><td>Собственные настройки — одно из условий, не универсальное разрешение</td><td>Проверьте также платформу, размер счёта и отдельное правило EA</td></tr>
                   <tr><td><strong>Копирование сделок</strong></td><td>Instant ↔ Instant одного владельца</td><td>Другой владелец или Instant ↔ 1-Step/2-Step/Lite</td></tr>
                   <tr><td><strong>Подключение и VPS</strong></td><td>VPN/VPS допускаются</td><td>Фирма рекомендует постоянное устройство и выделенный IP-адрес</td></tr>
                 </tbody>
               </table>
             </div>
             <div className="ru-actions">
-              <Link href="/ru/fundednext-mt5" className="btn-outline">Руководство по MT5 и советникам</Link>
+              <Link href="/ru/fundednext-mt5#ea-rules" className="btn-outline">Руководство по MT5 и советникам</Link>
               <a href={instantEvidence.copyTrading.sourceUrl} target="_blank" rel="nofollow noopener" className="btn-outline">Правила копирования</a>
               <a href={instantEvidence.generalRules.sourceUrl} target="_blank" rel="nofollow noopener" className="btn-outline">Все правила Instant</a>
             </div>

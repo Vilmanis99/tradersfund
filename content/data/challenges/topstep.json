@@ -8,16 +8,19 @@
       {
         "sizeUsd": 50000,
         "priceUsd": 49,
+        "maxLossUsd": 2000,
         "refundable": false
       },
       {
         "sizeUsd": 100000,
         "priceUsd": 99,
+        "maxLossUsd": 3000,
         "refundable": false
       },
       {
         "sizeUsd": 150000,
         "priceUsd": 199,
+        "maxLossUsd": 4500,
         "refundable": false
       }
     ],
@@ -27,11 +30,11 @@
     "dailyLossPct": null,
     "maxLossPct": null,
     "drawdownType": "eod-trailing",
-    "minTradingDays": 2,
+    "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
     "profitSplitPct": 90,
-    "payoutFirstDays": 3,
+    "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
     "rules": {
       "news": "restricted",
@@ -43,29 +46,26 @@
     "pricingModel": "monthly-subscription",
     "activationFeeUsd": 149,
     "assetClass": "futures",
-    "sourceUrl": "https://www.topstep.com/topstep-prop",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceUrl": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
+    "sourceCapturedAt": "2026-09-08",
     "notes": [
-      "MONTHLY SUBSCRIPTION, not a one-off fee: 'The subscription fee rebills monthly until you pass the Trading Combine or cancel the subscription.' (https://www.topstep.com/topstep-prop). True cost = monthly price x number of months to pass, plus the activation fee.",
-      "XFA ACTIVATION FEE, Standard Path: $149, one-time, charged only AFTER you pass. Verbatim: 'Express Funded Activation Fee: $149' (/topstep-prop card) and 'Depends on your path: Standard Path - $149, charged once per XFA earned. No Activation Fee Path - $0.' (help.topstep.com/en/articles/14289835). Site tooltip: 'One-time Activation Fee - For the Standard account, this is only paid after you pass the Trading Combine.'",
-      "PROFIT TARGET in dollars per size: $50K = '$3,000', $100K = '$6,000', $150K = '$9,000' (all verbatim from /topstep-prop cards). This is a uniform 6% of buying power, which is why profitTargets.phase1 is recorded as 6.",
-      "MAXIMUM LOSS LIMIT in dollars per size (help.topstep.com/en/articles/8284204 table): '$50K' -> '$2,000', '$100K' -> '$3,000', '$150K' -> '$4,500'. maxLossPct is left null because the percentage is NOT uniform across tiers (4% / 3% / 3%) and Topstep never states it as a percentage.",
-      "DRAWDOWN IS END-OF-DAY TRAILING AND LOCKS: 'The MLL is a trailing limit. It rises as your end-of-day balance grows, but never moves down. Once it reaches your starting balance, it locks permanently.' Monitored intraday: 'The MLL updates at the end of each trading day but is monitored in real time throughout the session. Both realized and unrealized P&L count toward it.' Unrealized P&L counts. (https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit)",
-      "DAILY LOSS LIMIT IS OPTIONAL, NOT A RULE - this is why dailyLossPct is null. It is an opt-in feature Topstep calls the 'Responsible Trading Advantage' that buys you a discount and double payout caps. Opt-in amounts shown on /topstep-prop cards: $50K 'Daily Loss Limit: $1,000', $100K '$2,000', $150K '$3,000'. Site copy: 'Hit your limit and the platform won't allow any more trades until the next market open. It's not a rule break, it's just a safety net.'",
-      "MINIMUM TRADING DAYS = 2. Verbatim: 'Can I pass the Trading Combine in one day? No. Big spike days don't build funded traders, consistency does. You can pass in as few as two days, but keep your best day below 50% of your Profit Target.' (https://help.topstep.com/en/articles/8284197-trading-combine-parameters). CONFLICT NOTED: the /topstep-prop FAQ says 'There's no minimum time requirement to pass the Trading Combine' - the help center is the more specific and more recent source (updated June 24, 2026), so 2 is recorded.",
-      "CONSISTENCY TARGET during the Combine = 50%: 'your best single day should stay below 50% of your Profit Target to avoid increasing your Consistency Target.' Cards show 'Consistency Target: 50%'. NOTE this is different from the 40% consistency figure, which applies to the XFA Consistency payout path, not to passing the Combine.",
-      "MAX POSITION SIZE per tier (verbatim from /topstep-prop cards): $50K '5 mini / 50 micro', $100K '10 mini / 100 micro', $150K '15 mini / 150 micro'. 'Micros and minis count at a 10:1 ratio.'",
-      "RESET FEE (Standard Path, per /topstep-prop cards and help center table): $50K '$49', $100K '$99', $150K '$199'. Each monthly rebill includes a free reset: 'Monthly Reset Credit on Rebill: Included' / 'Get a free Reset Credit each time your subscription rebills.'",
-      "PAYOUTS - two selectable paths after passing. Option 1 Standard: 'Have at least five (5) $150 winning trading days' + 'Maintain your balance between payouts'. Option 2 Consistency: 'Trade at least three (3) days with at least one (1) trade per day' + 'Keep your best day within 40% of total profit'. payoutFirstDays=3 reflects the Consistency path minimum; the Standard path needs 5 winning days.",
-      "PAYOUT CAPS per request (from /topstep-prop cards, with the optional Daily Loss Limit / DOUBLE Payout Caps enabled): $50K Standard $2,000-$4,000, Consistency $3,000-$6,000; $100K Standard $3,000-$6,000, Consistency $4,000-$8,000; $150K Standard $5,000-$10,000, Consistency $6,000-$12,000. The base (no-DLL) caps in the payout policy are $50K $2,000/$3,000, $100K $3,000/$4,000, $150K $5,000/$6,000. Verbatim: 'Traders who voluntarily add a Daily Loss Limit to their account unlock double per-request payout caps. No DLL added = current caps remain unchanged.'",
-      "PAYOUT MECHANICS: 'Request Payouts in the Express Funded Account (XFA) and Live Funded Account (LFA) via your Topstep Dashboard', 'Available during CME market hours: Sunday 5 PM CT - Friday 5 PM CT (excluding holidays)', 'Minimum Payout: $125', 'Max Payout per request: 50% of your account balance up to the cap below.' Hence payoutFrequency = on-demand.",
-      "PROFIT SPLIT EXCEPTION: 'Note for traders who joined the new Topstep dashboard before January 12, 2026: You receive 100% of your first $10,000 in lifetime profits. After that, the 90/10 split applies.'",
-      "FUNDED STAGE IS STILL SIMULATED: 'In the Trading Combine and Express Funded Account, trading takes place in a simulated environment using real market data... Live Funded Accounts trade with real capital.' The XFA starts at a $0 balance, not the headline account size: 'The 50K, 100K, or 150K label refers to your buying power, not your starting balance.'",
-      "REFUNDS: subscription is effectively non-refundable once traded. 'If your purchase was made within the last 28 days and your account has had no trading activity, contact Trader Support to review your account for a refund so you can purchase the correct size. After 28 days or if any trading has occurred, refunds are not available.'",
-      "PASS RATE (Topstep's own published statistic, verbatim from the disclosure footer on https://www.topstep.com/topstep-prop): '2025 Trader Performance Statistics: From January through December 2025, (a) 16.8% of all Trading Combines initiated were successfully completed and afforded the opportunity to advance to the Funded Level, (b) 51.8% of individual participants who entered one or more Trading Combines advanced to the Funded Level in at least one of their Trading Combines, (c) 33.3% of all individual participants at the Funded Level received a payout, and (d) 0.71% of individual participants trading in an Express Funded Account were called up to a Live Funded Account.'",
-      "ALLOWED INSTRUMENTS (footer disclosure, /topstep-prop): 'Topstep traders are allowed to trade Futures products only, listed on the following exchanges: CME, COMEX, NYMEX & CBOT. Topstep traders are prohibited from trading Stocks, Options, Forex, Spot Cryptocurrency, and CFDs.'",
-      "BACK2FUNDED reactivation fees if the XFA is lost before first payout: '$50K XFA - $599', '$100K XFA - $699', '$150K XFA - $829'. Window: '30 calendar days from account closure' per the pricing article (the express-funded-account-rules page states 7 days for the offer to be accepted - the two Topstep pages disagree; not resolved).",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/topstep-2026-07-27.json"
+      "PRICING: https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions. Base USD monthly subscriptions: Standard 49/99/199 and No Activation Fee 95/149/229 at 50K/100K/150K. Standard activation 149 once per earned XFA; other path zero. Paths cannot be changed after purchase. Taxes may be added. https://www.topstep.com/topstep-prop confirms rebilling until passing or cancellation.",
+      "RISK: https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit. Tier maxLossUsd is 2000/3000/4500, not a uniform percentage: maxLossPct stays null. End-of-day trailing, locks at starting balance, monitored intraday including unrealised P&L; touching the limit is a breach. XFA starts at zero and first payout sets MLL to zero. Dollar tier limits allow the shared true-cost helper to compute a tier-specific risk multiple.",
+      "TARGET: https://www.topstep.com/topstep-prop. Profit targets 3000/6000/9000 at 50000/100000/150000 equal 6% in each case (normalisation, not a separately quoted percentage). The Combine is one evaluation stage before simulated XFA; Live is a separate progression.",
+      "DAILY LIMIT: https://www.topstep.com/topstep-prop. Optional 1000/2000/3000 dollar DLL, not a mandatory percentage or zero loss cap. dailyLossPct remains null. It stops trading until the next session. The pricing article gives No Activation Fee discounts of 10/20/30 recurring monthly, resulting in 85/129/199 before tax. Discount eligibility and opting into the lockout matter.",
+      "MINIMUM DAYS CONFLICT: https://help.topstep.com/en/articles/8284197-trading-combine-parameters says as few as two days, while https://www.topstep.com/topstep-prop says no minimum time requirement. Both statements remain visible at capture. minTradingDays is null: do not turn a conflicting claim into a verified two-day or zero-day filter. maxTradingDays is null; the subscription continues until pass/cancel, not a prepaid unlimited-duration fee.",
+      "CONSISTENCY: https://help.topstep.com/en/articles/8284197-trading-combine-parameters states best day should remain below 50% of the profit target to avoid increasing the target. Combine consistencyRulePct=50, distinct from XFA Consistency payout rule of 40%. Position caps 5/10/15 minis or 50/100/150 micros across tiers.",
+      "PAYOUT REQUEST: https://help.topstep.com/en/articles/8284233-topstep-payout-policy. XFA Standard requires 5 winning trading days of at least 150 USD and positive net profit since the last payout (first exempt). XFA Consistency requires 3 trading days with at least one trade each and best day at most 40% of total net profit. payoutFirstDays=null because one calendar-day scalar cannot represent both conditional trading-day routes. On-demand means eligible requests during CME market hours, not unconditional immediate payment.",
+      "PAYOUT AMOUNTS: https://help.topstep.com/en/articles/8284233-topstep-payout-policy. Minimum request 125 USD, standard share 90%. Maximum request is 50% of balance, with Standard/Consistency base caps 2000/3000 at 50K, 3000/4000 at 100K, 5000/6000 at 150K. Limited-time double caps require adding DLL when purchasing a new Combine; adding it at XFA activation/reactivation alone does not qualify. Legacy dashboard entrants before 2026-01-12 retain first 10000 lifetime profits at 100%, then 90/10.",
+      "TRANSFER TIMING: https://help.topstep.com/en/articles/8284233-topstep-payout-policy. Approval can take 1-3 business days separately from transfer. Prop-to-Brokerage: US only, same day if before noon CT, no fee. Aeropay: US banks, instant after approval if bank supports real-time payments (otherwise 1-3 business days), no Topstep fee. Wise: China/Canada/UK only, 1-3 business days, no Topstep fee. ACH: US banks, 1-3 business days, 30 USD. Wire/SWIFT: international, 5-10 business days, 30 USD. Third-party fees may apply; estimates exclude weekends/holidays. No independent payout receipt was verified.",
+      "HOURS AND INSTRUMENTS: https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade. Futures only, CME/COMEX/NYMEX/CBOT; flat by 15:10 CT or earlier product close, reopen 17:00 CT, Friday flat until Sunday. No overnight/weekend holding. FX futures are not spot forex; crypto futures are not spot crypto.",
+      "NEWS AND AUTOMATION: https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep prohibits full maximum-size entries into scheduled major news, unfair technology and SIM exploitation. https://help.topstep.com/en/articles/8284197-trading-combine-parameters permits automated strategies subject to conditions and gives no malfunction exceptions. Both pricing paths therefore use restricted EA flags; a higher subscription price grants no extra permission.",
+      "COPY TRADING: https://help.topstep.com/en/articles/14434175-topstepx. Copier available in Combine and XFA, not Live; Lead account must have lowest maximum position size in group, and scaling differences may disconnect copying. Both pricing paths use restricted flags, not blanket permission.",
+      "RESET AND REFUND: https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions. Reset prices equal monthly price for each path (including 95 USD for No Activation Fee 50K, now legible). Monthly rebill includes reset credit per https://www.topstep.com/topstep-prop. https://help.topstep.com/en/articles/8284197-trading-combine-parameters allows refund review only for unused purchases within 28 days when changing size; refundable=false denotes no earned fee-refund benefit, not denial of every statutory or unused-purchase refund.",
+      "BACK2FUNDED: https://help.topstep.com/en/articles/12060405-back2funded-rules-guidelines-and-how-it-works. 599/699/829 USD base reactivation fees, up to two per eligible XFA before first payout; 50 USD DLL discount conditional. The dedicated article explicitly dates the 7-to-30-calendar-day window change to 2026-05-29, corroborated by https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions. Older 7-day wording is superseded for this specified programme, not an unresolved equal-weight rule.",
+      "HISTORICAL STATISTICS: https://www.topstep.com/topstep-prop. Firm-published 2025 results still show 16.8% of Combines completed, 51.8% of participants advanced at least once, 33.3% of funded participants received payout, 0.71% of XFA traders called to Live. Historical cohorts, not our forecasts or independently audited outcomes.",
+      "ACCESS: https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep. Both citizenship and permanent residency matter. Russia is listed as ineligible; eligible-country permanent residency plus local bank statement can be submitted for Trust-team review by citizens of ineligible countries, not automatic approval. Residence or trading in an ineligible country remains disallowed. This capture does not refresh regional access datasets or Trustpilot.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/topstep-2026-09-08.json"
     ]
   },
   {
@@ -77,16 +77,19 @@
       {
         "sizeUsd": 50000,
         "priceUsd": 95,
+        "maxLossUsd": 2000,
         "refundable": false
       },
       {
         "sizeUsd": 100000,
         "priceUsd": 149,
+        "maxLossUsd": 3000,
         "refundable": false
       },
       {
         "sizeUsd": 150000,
         "priceUsd": 229,
+        "maxLossUsd": 4500,
         "refundable": false
       }
     ],
@@ -96,34 +99,42 @@
     "dailyLossPct": null,
     "maxLossPct": null,
     "drawdownType": "eod-trailing",
-    "minTradingDays": 2,
+    "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
     "profitSplitPct": 90,
-    "payoutFirstDays": 3,
+    "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
     "rules": {
       "news": "restricted",
       "weekend": false,
       "overnight": false,
-      "ea": true,
-      "copyTrading": true
+      "ea": "restricted",
+      "copyTrading": "restricted"
     },
     "pricingModel": "monthly-subscription",
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-09-08",
     "notes": [
-      "MONTHLY SUBSCRIPTION, same rebill mechanics as the Standard Path. Higher monthly price buys away the $149 activation fee. Verbatim: 'No Activation Fee Path: Higher monthly cost. No fee when you pass. Best for Traders confident they'll pass in 1-2 attempts.' vs 'Standard Path: Lower monthly cost. $149 Activation Fee charged once per Express Funded Account (XFA) earned. Best for Traders still building consistency.'",
-      "ACTIVATION FEE = $0 on this path: 'No Activation Fee Path - $0.'",
-      "PATH IS LOCKED IN AT PURCHASE: 'Important: Paths cannot be changed after purchase.'",
-      "RESPONSIBLE TRADING DISCOUNT applies to THIS path only (adding an optional Daily Loss Limit at checkout): 'There's now a Responsible Trading Discount when you add a DLL at purchase for No Activation Fee Trading Combines, Express Funded Account Activations, and Back2Funded Reactivations.' Discount amounts: '$10 off -> 50K', '$20 off -> 100K', '$30 off -> 150K', and 'Discount recurs monthly.' Net monthly with DLL: $85 / $129 / $199. These net figures also appear as the struck-through comparison prices on the /topstep-prop cards ('$85', '$129', '$199').",
-      "RESET FEES on this path (help center table): '100K' -> '$149', '150K' -> '$229'. The 50K reset fee cell for this path was NOT legible in the extracted table markup, so it is deliberately not recorded here.",
-      "All rules, targets, loss limits, drawdown mechanics, consistency, payout and split terms are IDENTICAL to the Standard Path - only the monthly price and activation fee differ. See the Standard Path product notes for the full verbatim evidence on each of those fields.",
-      "ACCESS CAVEAT: the 'No activation fee' tab on https://www.topstep.com/topstep-prop is client-rendered and its prices are NOT present in the server HTML. These prices come from Topstep's own help-center pricing article on the help.topstep.com subdomain, not from the marketing page. Cross-check: the struck-through prices on the /topstep-prop cards ($85/$129/$199) equal these prices minus the stated $10/$20/$30 Responsible Trading Discount, which corroborates the table.",
-      "PASS RATE (same published statistic): 'From January through December 2025, (a) 16.8% of all Trading Combines initiated were successfully completed and afforded the opportunity to advance to the Funded Level' - https://www.topstep.com/topstep-prop",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/topstep-2026-07-27.json"
+      "PRICING: https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions. Base USD monthly subscriptions: Standard 49/99/199 and No Activation Fee 95/149/229 at 50K/100K/150K. Standard activation 149 once per earned XFA; other path zero. Paths cannot be changed after purchase. Taxes may be added. https://www.topstep.com/topstep-prop confirms rebilling until passing or cancellation.",
+      "RISK: https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit. Tier maxLossUsd is 2000/3000/4500, not a uniform percentage: maxLossPct stays null. End-of-day trailing, locks at starting balance, monitored intraday including unrealised P&L; touching the limit is a breach. XFA starts at zero and first payout sets MLL to zero. Dollar tier limits allow the shared true-cost helper to compute a tier-specific risk multiple.",
+      "TARGET: https://www.topstep.com/topstep-prop. Profit targets 3000/6000/9000 at 50000/100000/150000 equal 6% in each case (normalisation, not a separately quoted percentage). The Combine is one evaluation stage before simulated XFA; Live is a separate progression.",
+      "DAILY LIMIT: https://www.topstep.com/topstep-prop. Optional 1000/2000/3000 dollar DLL, not a mandatory percentage or zero loss cap. dailyLossPct remains null. It stops trading until the next session. The pricing article gives No Activation Fee discounts of 10/20/30 recurring monthly, resulting in 85/129/199 before tax. Discount eligibility and opting into the lockout matter.",
+      "MINIMUM DAYS CONFLICT: https://help.topstep.com/en/articles/8284197-trading-combine-parameters says as few as two days, while https://www.topstep.com/topstep-prop says no minimum time requirement. Both statements remain visible at capture. minTradingDays is null: do not turn a conflicting claim into a verified two-day or zero-day filter. maxTradingDays is null; the subscription continues until pass/cancel, not a prepaid unlimited-duration fee.",
+      "CONSISTENCY: https://help.topstep.com/en/articles/8284197-trading-combine-parameters states best day should remain below 50% of the profit target to avoid increasing the target. Combine consistencyRulePct=50, distinct from XFA Consistency payout rule of 40%. Position caps 5/10/15 minis or 50/100/150 micros across tiers.",
+      "PAYOUT REQUEST: https://help.topstep.com/en/articles/8284233-topstep-payout-policy. XFA Standard requires 5 winning trading days of at least 150 USD and positive net profit since the last payout (first exempt). XFA Consistency requires 3 trading days with at least one trade each and best day at most 40% of total net profit. payoutFirstDays=null because one calendar-day scalar cannot represent both conditional trading-day routes. On-demand means eligible requests during CME market hours, not unconditional immediate payment.",
+      "PAYOUT AMOUNTS: https://help.topstep.com/en/articles/8284233-topstep-payout-policy. Minimum request 125 USD, standard share 90%. Maximum request is 50% of balance, with Standard/Consistency base caps 2000/3000 at 50K, 3000/4000 at 100K, 5000/6000 at 150K. Limited-time double caps require adding DLL when purchasing a new Combine; adding it at XFA activation/reactivation alone does not qualify. Legacy dashboard entrants before 2026-01-12 retain first 10000 lifetime profits at 100%, then 90/10.",
+      "TRANSFER TIMING: https://help.topstep.com/en/articles/8284233-topstep-payout-policy. Approval can take 1-3 business days separately from transfer. Prop-to-Brokerage: US only, same day if before noon CT, no fee. Aeropay: US banks, instant after approval if bank supports real-time payments (otherwise 1-3 business days), no Topstep fee. Wise: China/Canada/UK only, 1-3 business days, no Topstep fee. ACH: US banks, 1-3 business days, 30 USD. Wire/SWIFT: international, 5-10 business days, 30 USD. Third-party fees may apply; estimates exclude weekends/holidays. No independent payout receipt was verified.",
+      "HOURS AND INSTRUMENTS: https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade. Futures only, CME/COMEX/NYMEX/CBOT; flat by 15:10 CT or earlier product close, reopen 17:00 CT, Friday flat until Sunday. No overnight/weekend holding. FX futures are not spot forex; crypto futures are not spot crypto.",
+      "NEWS AND AUTOMATION: https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep prohibits full maximum-size entries into scheduled major news, unfair technology and SIM exploitation. https://help.topstep.com/en/articles/8284197-trading-combine-parameters permits automated strategies subject to conditions and gives no malfunction exceptions. Both pricing paths therefore use restricted EA flags; a higher subscription price grants no extra permission.",
+      "COPY TRADING: https://help.topstep.com/en/articles/14434175-topstepx. Copier available in Combine and XFA, not Live; Lead account must have lowest maximum position size in group, and scaling differences may disconnect copying. Both pricing paths use restricted flags, not blanket permission.",
+      "RESET AND REFUND: https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions. Reset prices equal monthly price for each path (including 95 USD for No Activation Fee 50K, now legible). Monthly rebill includes reset credit per https://www.topstep.com/topstep-prop. https://help.topstep.com/en/articles/8284197-trading-combine-parameters allows refund review only for unused purchases within 28 days when changing size; refundable=false denotes no earned fee-refund benefit, not denial of every statutory or unused-purchase refund.",
+      "BACK2FUNDED: https://help.topstep.com/en/articles/12060405-back2funded-rules-guidelines-and-how-it-works. 599/699/829 USD base reactivation fees, up to two per eligible XFA before first payout; 50 USD DLL discount conditional. The dedicated article explicitly dates the 7-to-30-calendar-day window change to 2026-05-29, corroborated by https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions. Older 7-day wording is superseded for this specified programme, not an unresolved equal-weight rule.",
+      "HISTORICAL STATISTICS: https://www.topstep.com/topstep-prop. Firm-published 2025 results still show 16.8% of Combines completed, 51.8% of participants advanced at least once, 33.3% of funded participants received payout, 0.71% of XFA traders called to Live. Historical cohorts, not our forecasts or independently audited outcomes.",
+      "ACCESS: https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep. Both citizenship and permanent residency matter. Russia is listed as ineligible; eligible-country permanent residency plus local bank statement can be submitted for Trust-team review by citizens of ineligible countries, not automatic approval. Residence or trading in an ineligible country remains disallowed. This capture does not refresh regional access datasets or Trustpilot.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/topstep-2026-09-08.json"
     ]
   }
 ]

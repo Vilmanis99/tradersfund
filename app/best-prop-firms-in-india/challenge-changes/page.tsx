@@ -15,6 +15,7 @@ import {
 import ChallengeChangeFeed, {
   type ChallengeChangeCardData,
 } from '@/components/ChallengeChangeFeed'
+import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
 import { validateChallengeProductKeys } from '@/lib/challengeChangeFocus'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { buildIndiaMatcherFirms } from '@/lib/indiaMatcher'
@@ -23,10 +24,10 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
 const SITE = 'https://tradersfundhub.com'
 const PATH = '/best-prop-firms-in-india/challenge-changes'
-const SOCIAL_CARD_ENTRY_COUNT = 13
-const SOCIAL_CARD_FIRM_COUNT = 6
-const SOCIAL_CARD_PRODUCT_COUNT = 18
-const SOCIAL_CARD_VERIFIED_COUNT = 3
+const SOCIAL_CARD_ENTRY_COUNT = 16
+const SOCIAL_CARD_FIRM_COUNT = 7
+const SOCIAL_CARD_PRODUCT_COUNT = 30
+const SOCIAL_CARD_VERIFIED_COUNT = 6
 const SOCIAL_CARD_WATCH_COUNT = 10
 
 export const metadata: Metadata = {
@@ -363,6 +364,11 @@ export default function Page() {
           </div>
         </div>
       </section>
+
+      <IndiaMatchupLinks
+        heading="Turn a change alert into a 2-firm decision"
+        description="Use the active India matchups to compare the affected product against a screened alternative, with the same dated payout, KYC and rule evidence."
+      />
 
       <section className="home-section">
         <div className="home-shell">

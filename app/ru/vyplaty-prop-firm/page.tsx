@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { fundedNextOneStepPayoutLabel } from '@/lib/fundedNextPayout'
+import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
 import Link from '@/components/SafeLink'
 import {
   AlertTriangle,
@@ -16,9 +18,10 @@ import {
   WalletCards,
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge, type Firm } from '@/lib/firms'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
@@ -38,42 +41,42 @@ export const metadata: Metadata = {
     'вывод прибыли проп фирма',
   ],
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какие способы выплаты предлагает FundedNext?',
-    a: 'Справка FundedNext от 27 августа 2026 года называет 6 маршрутов: USDT ERC20/TRC20, USDC ERC20, Confirmo, RiseWorks, Bank Transfer и прямой депозит в FNmarkets. Конкретный маршрут всё равно зависит от страны и доступности провайдера в кабинете.',
+    a: 'Справка FundedNext от 27 августа 2026 года называет 6 маршрутов: USDT ERC20/TRC20, USDC ERC20, Confirmo, RiseWorks, банковский перевод и прямой депозит в FNmarkets. Конкретный маршрут всё равно зависит от страны и доступности провайдера в кабинете.',
   },
   {
     q: 'Когда можно запросить первую выплату FundedNext?',
-    a: 'Срок зависит от продукта: Stellar 1-Step использует окно в 5 рабочих дней, Stellar 2-Step и Stellar Lite — первую дату через 21 день и затем цикл 14 дней. Stellar Instant использует отдельный on-demand gate после роста 5% и EOD-проверки.',
+    a: 'Срок зависит от продукта: Stellar 1-Step использует окно в 5 рабочих дней, Stellar 2-Step и Stellar Lite — первую дату через 21 день и затем цикл 14 дней. Stellar Instant использует отдельное условие выплаты по запросу после роста 5% и проверки EOD.',
   },
   {
-    q: 'Как Bright Funded выплачивает reward?',
-    a: 'Bright Funded публикует 2 метода: USDC в сети ERC-20 и банковский перевод в EUR. Стандартная первая дата наступает через 30 дней после первой funded-сделки, затем применяется 14-дневный цикл; финансовая команда указывает до 1 дня на обработку заявки.',
+    q: 'Как Bright Funded выплачивает вознаграждение?',
+    a: 'Bright Funded публикует 2 метода: USDC в сети ERC-20 и банковский перевод в EUR. Стандартная первая дата наступает через 30 дней после первой сделки на профинансированном счёте, затем применяется 14-дневный цикл; финансовая команда указывает до 1 дня на обработку заявки.',
   },
   {
     q: 'Берёт ли Bright Funded комиссию за выплату?',
-    a: 'Официальная справка говорит, что Bright Funded не удерживает собственную дополнительную payout fee. Однако сеть, банк, платёжный провайдер и конвертация могут взять отдельную комиссию; в справке приведён ориентир от $5 до $50 для некоторых случаев.',
+    a: 'Официальная справка говорит, что Bright Funded не удерживает собственную дополнительную комиссию за выплату. Однако сеть, банк, платёжный провайдер и конвертация могут взять отдельную комиссию; в справке приведён ориентир от $5 до $50 для некоторых случаев.',
   },
   {
     q: 'Можно ли вывести reward в криптовалюте без KYC?',
-    a: 'Нет. Криптомаршрут не отменяет KYC фирмы, проверку страны и правила провайдера. Bright Funded использует SumSub и последующую Risk Team Security Check, FundedNext требует подтверждение личности, а FundingPips отделяет Master Account KYC от дополнительного onboarding в Rise.',
+    a: 'Нет. Криптомаршрут не отменяет KYC фирмы, проверку страны и правила провайдера. Bright Funded использует SumSub и последующую проверку службы безопасности, FundedNext требует подтверждение личности, а FundingPips отделяет KYC мастер-счёта от дополнительного подключения в Rise.',
   },
   {
     q: 'Подходит ли криптовыплата резиденту России?',
-    a: 'Само наличие USDT или USDC не доказывает доступ. FundedNext прямо исключает Bank Transfer для списка стран, включая Россию, и одновременно публикует противоречивые формулировки о доступе российских резидентов. Проверять нужно гражданство, резидентство, адрес, KYC и payout provider — без VPN и неверных данных.',
+    a: 'Само наличие USDT или USDC не доказывает доступ. FundedNext прямо исключает банковский перевод для списка стран, включая Россию, и одновременно публикует противоречивые формулировки о доступе российских резидентов. Проверять нужно гражданство, резидентство, адрес, KYC и провайдера выплаты — без VPN и неверных данных.',
   },
   {
     q: 'Чем FundingPips отличается по выплатам?',
-    a: 'FundingPips называет 4 метода: Card, Crypto, Rise и Bank Transfer. В опубликованном процессе нужно закрыть сделки и ордера, подождать минимум 15 минут и использовать реквизиты на имя проверенного трейдера; внутренняя обработка занимает 1–3 рабочих дня, а получение может добавить 1–2 дня.',
+    a: 'FundingPips называет 4 метода: карта, криптовалюта, Rise и банковский перевод. В опубликованном процессе нужно закрыть сделки и ордера, подождать минимум 15 минут и использовать реквизиты на имя проверенного трейдера; внутренняя обработка занимает 1–3 рабочих дня, а получение может добавить 1–2 дня.',
   },
   {
     q: 'Как сравнивать payout prop-фирм правильно?',
-    a: 'Сравнивайте 4 разные стадии: допуск к первой заявке, отправку запроса, внутреннюю обработку фирмы и фактическое получение банком или кошельком. Затем вычитайте provider fee, network fee и FX из reward после сплита — рекламный процент сам по себе не показывает чистую сумму.',
+    a: 'Сравнивайте 4 разные стадии: допуск к первой заявке, отправку запроса, внутреннюю обработку фирмы и фактическое получение банком или кошельком. Затем вычитайте комиссию провайдера, комиссию сети и валютную конвертацию из вознаграждения после сплита — рекламный процент сам по себе не показывает чистую сумму.',
   },
 ]
 
@@ -97,7 +100,7 @@ const partnerRoutes = [
     name: 'FundingPips',
     reviewHref: '/ru/obzor-fundingpips',
     featured: false,
-    fit: 'Нужны Card, Crypto, Rise или Bank Transfer и подходит более долгий processing window.',
+    fit: 'Нужны карта, криптовалюта, Rise или банковский перевод, и подходит более длинное окно обработки.',
   },
 ] as const
 
@@ -109,7 +112,9 @@ const frequencyLabels: Record<string, string> = {
 }
 
 function payoutWindow(product: Challenge) {
-  if (product.payoutFirstDays === 0) return 'по запросу после отдельного gate'
+  const scoped = fundedNextOneStepPayoutLabel(product)
+  if (scoped) return scoped
+  if (product.payoutFirstDays === 0) return 'по запросу после отдельного условия'
   if (product.payoutFirstDays == null) return 'первая дата не опубликована'
   const frequency = product.payoutFrequency
     ? frequencyLabels[product.payoutFrequency] ?? product.payoutFrequency
@@ -127,7 +132,7 @@ function pricedTierCount(products: Challenge[]) {
 function methodSummary(slug: string) {
   if (slug === 'fundednext') return 'USDT ERC20/TRC20 · USDC ERC20 · Confirmo · RiseWorks · банк · FNmarkets'
   if (slug === 'bright-funded') return 'USDC ERC-20 · банковский перевод EUR'
-  return 'Card · Crypto · Rise · Bank Transfer'
+  return 'карта · криптовалюта · Rise · банковский перевод'
 }
 
 function processingSummary(slug: string) {
@@ -137,8 +142,8 @@ function processingSummary(slug: string) {
 }
 
 function feeSummary(slug: string) {
-  if (slug === 'fundednext') return 'gateway charge оплачивает трейдер'
-  if (slug === 'bright-funded') return 'нет fee фирмы; возможны внешние $5–$50+'
+  if (slug === 'fundednext') return 'комиссию платёжного шлюза оплачивает трейдер'
+  if (slug === 'bright-funded') return 'нет комиссии фирмы; возможны внешние $5–$50+'
   return 'зависит от карты, сети, Rise или банка'
 }
 
@@ -195,7 +200,7 @@ export default function RussianPayoutsPage() {
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
-    dateModified: latestCapture,
+    dateModified: russianRouteDateModified(PATH, latestCapture),
     author: {
       '@type': 'Person',
       name: 'Edris Derakhshi',
@@ -219,6 +224,7 @@ export default function RussianPayoutsPage() {
           data-russian-payout-featured-partners="fundednext-bright-funded"
         >
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Выплаты проп-фирм</div>
+          <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <div className="ru-eyebrow"><WalletCards size={14} aria-hidden="true" /> 4 этапа от прибыли до зачисления</div>
           <h1>Выплаты проп-фирм: FundedNext, Bright Funded и вывод прибыли</h1>
           <p className="ru-lead">
@@ -252,7 +258,7 @@ export default function RussianPayoutsPage() {
               <strong>Русский язык не равен резидентству России.</strong>{' '}
               Этот гайд рассчитан на русскоязычных трейдеров по всему миру. Гражданство, резидентство, адрес, KYC,
               санкционные ограничения, банк и кошелёк проверяются по фактическому профилю. Нельзя использовать VPN,
-              чужие реквизиты или неверные данные для обхода country rule.
+              чужие реквизиты или неверные данные для обхода правила страны.
             </div>
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="payout-ranking">
               <strong>Партнёрское раскрытие.</strong>{' '}
@@ -307,8 +313,8 @@ export default function RussianPayoutsPage() {
                     <div className="ru-card-head"><h3>{card.name}</h3><span className="ru-score">Главный партнёр</span></div>
                     <p className="ru-muted">
                       {isFundedNext
-                        ? 'Выбор для трейдера, которому важны USDT ERC20/TRC20, USDC ERC20, RiseWorks или другой из 6 опубликованных маршрутов. Четыре продукта имеют разные payout gates.'
-                        : 'Выбор для трейдера, которому достаточно USDC ERC-20 или банковского перевода в EUR. Три challenge-продукта используют стандартную первую дату 30 дней.'}
+                        ? 'Выбор для трейдера, которому важны USDT ERC20/TRC20, USDC ERC20, RiseWorks или другой из 6 опубликованных маршрутов. Четыре продукта имеют разные условия первой выплаты.'
+                        : 'Выбор для трейдера, которому достаточно USDC ERC-20 или банковского перевода в EUR. Три продукта с оценочным этапом используют стандартную первую дату 30 дней.'}
                     </p>
                     <ul className="ru-facts">
                       <li><WalletCards size={14} aria-hidden="true" /> Методов: {card.evidence?.methods.length}</li>
@@ -318,8 +324,8 @@ export default function RussianPayoutsPage() {
                     </ul>
                     <p className="ru-source-line">
                       {isFundedNext
-                        ? 'Bank Transfer недоступен для списка стран, включающего Россию; криптометод не разрешает отдельный country conflict.'
-                        : 'USDC ERC-20 не отменяет SumSub KYC, Risk Team Security Check и поддержку кошелька в стране трейдера.'}
+                        ? 'Банковский перевод недоступен для списка стран, включающего Россию; криптометод не устраняет отдельное противоречие по стране.'
+                        : 'USDC ERC-20 не отменяет SumSub KYC, проверку службы безопасности и поддержку кошелька в стране трейдера.'}
                     </p>
                     <div className="ru-actions">
                       <Link href={card.reviewHref} className="btn-outline">Русский обзор</Link>
@@ -343,10 +349,10 @@ export default function RussianPayoutsPage() {
               когда один рекламный срок разбит на 4 проверяемых этапа.
             </p>
             <div className="ru-grid">
-              <article className="ru-card"><CalendarClock size={22} color="var(--accent-light)" aria-hidden="true" /><h3>1. Eligibility</h3><p className="ru-muted">Продукт должен открыть pay day: например, 5 рабочих дней у FundedNext 1-Step или 30 дней у стандартной схемы Bright Funded.</p></article>
-              <article className="ru-card"><ListChecks size={22} color="var(--accent-light)" aria-hidden="true" /><h3>2. Request</h3><p className="ru-muted">Нужно закрыть обязательные позиции, выполнить profitability/consistency rule, пройти KYC и отправить заявку из dashboard.</p></article>
-              <article className="ru-card"><Clock3 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>3. Firm processing</h3><p className="ru-muted">FundedNext публикует до 24 часов, Bright Funded — до 1 дня финансовой команды, FundingPips — 1–3 рабочих дня.</p></article>
-              <article className="ru-card"><Landmark size={22} color="var(--accent-light)" aria-hidden="true" /><h3>4. Receipt</h3><p className="ru-muted">Кошелёк, сеть, Rise или банк могут добавить подтверждения, compliance review, выходные и 1–2 рабочих дня получения.</p></article>
+              <article className="ru-card"><CalendarClock size={22} color="var(--accent-light)" aria-hidden="true" /><h3>1. Допуск</h3><p className="ru-muted">Продукт должен открыть дату выплаты: например, 5 рабочих дней у FundedNext 1-Step или 30 дней у стандартной схемы Bright Funded.</p></article>
+              <article className="ru-card"><ListChecks size={22} color="var(--accent-light)" aria-hidden="true" /><h3>2. Заявка</h3><p className="ru-muted">Нужно закрыть обязательные позиции, выполнить правила прибыльности и стабильности, пройти KYC и отправить заявку из кабинета.</p></article>
+              <article className="ru-card"><Clock3 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>3. Обработка фирмой</h3><p className="ru-muted">FundedNext публикует до 24 часов, Bright Funded — до 1 дня финансовой команды, FundingPips — 1–3 рабочих дня.</p></article>
+              <article className="ru-card"><Landmark size={22} color="var(--accent-light)" aria-hidden="true" /><h3>4. Получение</h3><p className="ru-muted">Кошелёк, сеть, Rise или банк могут добавить подтверждения, проверку соответствия, выходные и 1–2 рабочих дня получения.</p></article>
             </div>
           </div>
         </section>
@@ -367,7 +373,7 @@ export default function RussianPayoutsPage() {
                     <tr key={`${card.slug}-${product.productSlug}`}>
                       <td>{card.name}</td>
                       <td>{product.productName}</td>
-                      <td>{payoutWindow(product)}</td>
+                      <td data-russian-payout-product={`${product.firmSlug}:${product.productSlug}`}>{payoutWindow(product)}</td>
                       <td>{product.profitSplitPct == null ? 'зависит от структуры' : `${product.profitSplitPct}%`}</td>
                       <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">Правила · {product.sourceCapturedAt}</a></td>
                     </tr>
@@ -380,47 +386,48 @@ export default function RussianPayoutsPage() {
 
         <section className="ru-section" data-russian-payout-methods="rail-token-currency">
           <div className="ru-shell ru-content">
+            <RussianFundedNextPayoutNotice />
             <h2>Крипто, банк, Rise и карта: точный метод важнее значка</h2>
             <p>
-              Слово Crypto ничего не говорит о токене и сети. USDT ERC20, USDT TRC20 и USDC ERC20 — три разных маршрута:
-              ошибочная сеть может сделать перевод невосстановимым. Bank Transfer тоже недостаточно точен без валюты,
+              Слово «криптовалюта» ничего не говорит о токене и сети. USDT ERC20, USDT TRC20 и USDC ERC20 — три разных маршрута:
+              ошибочная сеть может сделать перевод невосстановимым. Банковский перевод тоже недостаточно точен без валюты,
               страны банка, имени получателя и возможного correspondent bank.
             </p>
             <div className="ru-table-wrap">
               <table className="ru-table">
                 <thead><tr><th>Маршрут</th><th>Что подтвердить</th><th>Типичный скрытый слой</th><th>Практический вопрос</th></tr></thead>
                 <tbody>
-                  <tr><td>USDT/USDC</td><td>Токен, ERC20/TRC20, адрес и minimum</td><td>Network fee и support кошелька</td><td>Совпадает ли сеть в кабинете и кошельке?</td></tr>
-                  <tr><td>Банк</td><td>EUR/USD, IBAN/SWIFT, страна и имя</td><td>Correspondent fee и FX spread</td><td>Принимает ли банк платёж от этого provider?</td></tr>
-                  <tr><td>RiseWorks/Rise</td><td>Отдельный аккаунт, email и KYC</td><td>Onboarding и доступность страны</td><td>Совпадает ли email с аккаунтом фирмы?</td></tr>
-                  <tr><td>Card</td><td>Карта на имя проверенного трейдера</td><td>Issuer rule и возврат на исходный метод</td><td>Поддерживается ли reward, а не только refund?</td></tr>
+                  <tr><td>USDT/USDC</td><td>Токен, ERC20/TRC20, адрес и минимум</td><td>Комиссия сети и поддержка кошелька</td><td>Совпадает ли сеть в кабинете и кошельке?</td></tr>
+                  <tr><td>Банк</td><td>EUR/USD, IBAN/SWIFT, страна и имя</td><td>Комиссия банка-корреспондента и валютный спред</td><td>Принимает ли банк платёж от этого провайдера?</td></tr>
+                  <tr><td>RiseWorks/Rise</td><td>Отдельный аккаунт, email и KYC</td><td>Подключение и доступность страны</td><td>Совпадает ли email с аккаунтом фирмы?</td></tr>
+                  <tr><td>Карта</td><td>Карта на имя проверенного трейдера</td><td>Правило банка-эмитента и возврат на исходный метод</td><td>Поддерживается ли вознаграждение, а не только возврат?</td></tr>
                 </tbody>
               </table>
             </div>
             <div className="ru-notice">
               <strong>Перед подтверждением адреса.</strong>{' '}
-              Скопируйте токен и сеть из payout screen, сделайте screenshot условий, проверьте первые и последние символы
-              адреса и не переносите старый адрес из другой сети. Для банка сохраните валюту и fee schedule получателя.
+              Скопируйте токен и сеть с экрана выплаты, сделайте снимок экрана условий, проверьте первые и последние символы
+              адреса и не переносите старый адрес из другой сети. Для банка сохраните валюту и тарифы получателя.
             </div>
           </div>
         </section>
 
         <section className="ru-section" data-russian-payout-fees="firm-provider-network-fx">
           <div className="ru-shell ru-content">
-            <h2>Считайте чистую выплату, а не только profit split</h2>
+            <h2>Считайте чистую выплату, а не только долю прибыли</h2>
             <p>
-              Валовой reward сначала уменьшается на долю фирмы, затем на payout fee фирмы, provider fee, network fee
+              Валовое вознаграждение сначала уменьшается на долю фирмы, затем на комиссию фирмы за выплату, комиссию провайдера, комиссию сети
               и валютную конвертацию. Bright Funded заявляет 0 собственной дополнительной комиссии, но приводит диапазон
-              внешних расходов $5–$50 в некоторых случаях. FundedNext возлагает gateway charge на трейдера.
+              внешних расходов $5–$50 в некоторых случаях. FundedNext возлагает комиссию платёжного шлюза на трейдера.
             </p>
             <div className="ru-notice">
               <strong>Рабочая формула:</strong>{' '}
-              чистое получение = торговая прибыль × базовая доля − fee фирмы − fee провайдера − network/bank fee − FX.
-              Например, отсутствие fee фирмы не означает нулевую общую стоимость, если EUR перевод конвертируется банком
+              чистое получение = торговая прибыль × базовая доля − комиссия фирмы − комиссия провайдера − комиссия сети/банка − валютная конвертация.
+              Например, отсутствие комиссии фирмы не означает нулевую общую стоимость, если EUR перевод конвертируется банком
               или USDC отправляется по дорогой сети.
             </div>
             <p>
-              Минимальный payout тоже проверяется отдельно. Bright Funded пишет об отсутствии minimum reward и приводит
+              Минимальная выплата тоже проверяется отдельно. Bright Funded пишет об отсутствии минимального вознаграждения и приводит
               пример $0.01, но столь маленькая заявка может быть экономически бессмысленной после внешних расходов.
               Цель — не максимальное число запросов, а предсказуемая чистая сумма после всех 4 стадий.
             </p>
@@ -433,13 +440,13 @@ export default function RussianPayoutsPage() {
             <p>
               Аудитория этой страницы — не только жители России. Русскоязычный трейдер может жить в Латвии, Германии,
               Казахстане, ОАЭ, Израиле, США или другой стране. Решение принимает не язык интерфейса, а фактическая связка
-              документов, адреса, налогового резидентства и payout method.
+              документов, адреса, налогового резидентства и метода выплаты.
             </p>
             <div className="ru-grid">
-              <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент ЕС с EUR-счётом</h3><p className="ru-muted">Bright Funded bank transfer in EUR может уменьшить лишнюю FX-конвертацию, если KYC и банк поддерживают отправителя. Сравните банковскую fee с USDC ERC-20.</p></article>
-              <article className="ru-card"><Bitcoin size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент страны с разрешённым crypto route</h3><p className="ru-muted">FundedNext даёт USDT в 2 сетях и USDC ERC20, но кошелёк, travel rule и local reporting остаются обязанностью получателя.</p></article>
-              <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">Crypto не исправляет country restriction. У FundedNext есть официальный конфликт формулировок, а Bank Transfer прямо недоступен для списка, включающего Россию.</p></article>
-              <article className="ru-card"><ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Переезд или второе гражданство</h3><p className="ru-muted">Показывайте текущие документы и адрес, сообщайте фирме об изменении профиля и не выбирайте страну только ради checkout. Решение KYC индивидуально.</p></article>
+              <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент ЕС с EUR-счётом</h3><p className="ru-muted">Банковский перевод Bright Funded в EUR может уменьшить лишнюю валютную конвертацию, если KYC и банк поддерживают отправителя. Сравните банковскую комиссию с USDC ERC-20.</p></article>
+              <article className="ru-card"><Bitcoin size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент страны с разрешённым криптомаршрутом</h3><p className="ru-muted">FundedNext даёт USDT в 2 сетях и USDC ERC20, но кошелёк, правило передачи данных и местная отчётность остаются обязанностью получателя.</p></article>
+              <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">Криптовалюта не отменяет ограничение по стране. У FundedNext есть официальный конфликт формулировок, а банковский перевод прямо недоступен для списка, включающего Россию.</p></article>
+              <article className="ru-card"><ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Переезд или второе гражданство</h3><p className="ru-muted">Показывайте текущие документы и адрес, сообщайте фирме об изменении профиля и не выбирайте страну только ради оформления покупки. Решение KYC индивидуально.</p></article>
             </div>
             <div className="ru-actions">
               <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-primary">Проверить страну и профиль <ArrowRight size={15} aria-hidden="true" /></Link>
@@ -453,13 +460,13 @@ export default function RussianPayoutsPage() {
             <h2>FundingPips: вторичная альтернатива с четырьмя методами</h2>
             <p>
               FundingPips не заменяет два главных коммерческих маршрута, но полезен как контрольный вариант. Официальная
-              Reward Methods page называет Card, Crypto, Rise и Bank Transfer. Перед запросом нужно закрыть все сделки и
-              pending orders, подождать минимум 15 минут и использовать карту, кошелёк или счёт на имя проверенного трейдера.
+              Страница методов вознаграждения называет карту, криптовалюту, Rise и банковский перевод. Перед запросом нужно закрыть все сделки и
+              незакрытые ордера, подождать минимум 15 минут и использовать карту, кошелёк или счёт на имя проверенного трейдера.
             </p>
             <p>
               Опубликованное окно обработки — 1–3 рабочих дня внутри FundingPips и ещё 1–2 рабочих дня у кошелька или банка.
-              Rise требует отдельного onboarding с тем же email, government-issued ID и selfie. Поэтому 4 метода не означают
-              меньше проверок: Master Account Setup, KYC, Customer Agreement и payout onboarding остаются разными шагами.
+              Rise требует отдельного подключения с тем же email, удостоверением личности и selfie. Поэтому 4 метода не означают
+              меньше проверок: настройка мастер-счёта, KYC, соглашение с клиентом и подключение выплат остаются разными шагами.
             </p>
             <div className="ru-actions">
               <Link href="/ru/obzor-fundingpips" className="btn-outline">Русский обзор FundingPips</Link>
@@ -476,12 +483,12 @@ export default function RussianPayoutsPage() {
             <p>
               KasCapital публикует собственную RUB-модель и заявляет диапазон счёта от 10 000 до 2 000 000 ₽ с выплатами
               по понедельникам. PropLive и TeamTraders связаны с локальными рынками и инфраструктурой, отличной от глобальных
-              CFD challenges. Эти примеры полезны для сравнения договора и инструмента, но их нельзя смешивать с USDT/USDC
-              payout rails глобальных фирм.
+              CFD-продуктами с оценочным этапом. Эти примеры полезны для сравнения договора и инструмента, но их нельзя смешивать с USDT/USDC
+              платёжными каналами глобальных фирм.
             </p>
             <p>
               Мы пишем о локальных фирмах как об информационном мосте для читателя, который ищет «проп-компанию» на русском.
-              Если публичной affiliate programme нет, карточка не получает искусственный CTA. Коммерческий маршрут остаётся
+              Если публичной партнёрской программы нет, карточка не получает искусственный призыв к действию. Коммерческий маршрут остаётся
               прозрачным: подходящий международный пользователь сравнивает FundedNext и Bright Funded, а локальную модель
               выбирает только после проверки российского договора, рынка и юридического лица.
             </p>
@@ -496,11 +503,11 @@ export default function RussianPayoutsPage() {
           <div className="ru-shell ru-content">
             <h2>Что сохранить, если выплата задерживается</h2>
             <p>
-              Для разбора нужны 5 полей: точное время заявки, название продукта, статус в dashboard, дата завершения KYC
-              и идентификатор транзакции либо тикета. Слово «pending» без этих данных не показывает, на каком из 4 этапов возникла задержка.
+              Для разбора нужны 5 полей: точное время заявки, название продукта, статус в кабинете, дата завершения KYC
+              и идентификатор транзакции либо тикета. Один статус «в ожидании» без этих данных не показывает, на каком из 4 этапов возникла задержка.
             </p>
             <p>
-              Сначала сравните прошедшее время с опубликованным processing window фирмы, затем отдельно проверьте банк, сеть или payout provider.
+              Сначала сравните прошедшее время с опубликованным окном обработки фирмы, затем отдельно проверьте банк, сеть или провайдера выплаты.
               Не публикуйте документы, seed-фразу кошелька, полный адрес или идентификационный номер в открытом отзыве.
             </p>
           </div>
@@ -510,18 +517,18 @@ export default function RussianPayoutsPage() {
           <div className="ru-shell ru-content">
             <h2>Чек-лист перед регистрацией и первой заявкой</h2>
             <ol>
-              <li><strong>Проверьте country rule.</strong> Язык, паспорт, резидентство и адрес — 4 разные характеристики профиля.</li>
-              <li><strong>Выберите конкретный продукт.</strong> У {productCount} текущих продуктов разные first payout days, frequency и profit split.</li>
-              <li><strong>Зафиксируйте точный rail.</strong> Запишите токен, сеть, валюту банка или требования Rise/Card до оплаты challenge.</li>
+              <li><strong>Проверьте правило страны.</strong> Язык, паспорт, резидентство и адрес — 4 разные характеристики профиля.</li>
+              <li><strong>Выберите конкретный продукт.</strong> У {productCount} текущих продуктов разные сроки первой выплаты, циклы и доля прибыли.</li>
+              <li><strong>Зафиксируйте точный платёжный канал.</strong> Запишите токен, сеть, валюту банка или требования Rise/карты до оплаты продукта.</li>
               <li><strong>Пройдите KYC честно.</strong> Имя аккаунта, кошелька, карты и банка должно совпадать с проверенным трейдером.</li>
-              <li><strong>Разделите 4 срока.</strong> Eligibility, request, firm processing и receipt нельзя складывать в одно рекламное обещание.</li>
-              <li><strong>Посчитайте net reward.</strong> Вычтите firm, provider, network, bank и FX fees из суммы после базового сплита.</li>
-              <li><strong>Сохраните доказательства.</strong> Сделайте screenshot payout screen, rules и адреса до подтверждения OTP.</li>
+              <li><strong>Разделите 4 срока.</strong> Допуск, заявка, обработка фирмой и получение нельзя складывать в одно рекламное обещание.</li>
+              <li><strong>Посчитайте чистое вознаграждение.</strong> Вычтите комиссии фирмы, провайдера, сети, банка и конвертации из суммы после базового сплита.</li>
+              <li><strong>Сохраните доказательства.</strong> Сделайте снимок экрана страницы выплаты, правил и адреса до подтверждения OTP.</li>
             </ol>
             <div className="ru-notice">
               <CheckCircle2 size={16} aria-hidden="true" />{' '}
               <strong>Если профиль подходит:</strong> откройте русский обзор FundedNext или Bright Funded, сравните конкретный
-              продукт, затем переходите на официальный checkout через отмеченную партнёрскую ссылку.
+              продукт, затем переходите на официальную страницу оплаты через отмеченную партнёрскую ссылку.
             </div>
             <div className="ru-actions">
               <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Сравнить FundedNext и Bright Funded</Link>

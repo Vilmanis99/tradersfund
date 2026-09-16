@@ -5,9 +5,6 @@
  * the browser bundle.
  */
 export const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'India', href: '/best-prop-firms-in-india' },
   {
     label: 'Prop Firms',
     href: '/prop-firms',
@@ -19,12 +16,6 @@ export const navLinks = [
       { label: 'Compare Firms', href: '/compare' },
       { label: 'Discount Codes', href: '/prop-firm-discount-codes' },
       { label: 'Filter by Feature', href: '/prop-firms#focused-rule-lists' },
-      { label: 'India Comparisons', href: '/best-prop-firms-in-india/compare' },
-      { label: 'India Challenge Changes', href: '/best-prop-firms-in-india/challenge-changes' },
-      { label: 'India Challenge Rules', href: '/best-prop-firms-in-india/challenge-comparison' },
-      { label: 'India Payout Methods', href: '/best-prop-firms-in-india/payout-methods' },
-      { label: 'Best in UK', href: '/best-prop-firms-in-uk' },
-      { label: 'Best in US', href: '/best-prop-firms-in-us' },
       { label: 'Cheapest Firms', href: '/cheapest-prop-firms' },
       { label: 'Futures Firms', href: '/best-futures-prop-firms' },
       { label: 'Crypto Firms', href: '/best-crypto-prop-firms' },
@@ -33,17 +24,38 @@ export const navLinks = [
     ],
   },
   {
-    label: 'Learn',
-    href: '/how-prop-firm-challenges-work',
+    label: 'Guides & reviews',
+    href: '/blog',
     children: [
+      { label: 'All Reviews & Guides', href: '/blog' },
       { label: 'How to Pass a Challenge', href: '/how-to-pass-a-prop-firm-challenge' },
       { label: 'How Challenges Work', href: '/how-prop-firm-challenges-work' },
       { label: 'True Cost Math', href: '/true-cost-of-prop-firm-challenges' },
       { label: 'What is a Prop Firm?', href: '/blog/what-is-a-prop-firm' },
     ],
   },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  {
+    label: 'By country',
+    href: '/best-prop-firms-in-india',
+    children: [
+      { label: 'India Overview', href: '/best-prop-firms-in-india' },
+      { label: 'India Comparisons', href: '/best-prop-firms-in-india/compare' },
+      { label: 'India Challenge Changes', href: '/best-prop-firms-in-india/challenge-changes' },
+      { label: 'India Challenge Rules', href: '/best-prop-firms-in-india/challenge-comparison' },
+      { label: 'India Payout Methods', href: '/best-prop-firms-in-india/payout-methods' },
+      { label: 'Best in UK', href: '/best-prop-firms-in-uk' },
+      { label: 'Best in US', href: '/best-prop-firms-in-us' },
+    ],
+  },
+  {
+    label: 'About',
+    href: '/about',
+    children: [
+      { label: 'About Traders Fund Hub', href: '/about' },
+      { label: 'How We Review', href: '/methodology' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
 ] as const
 
 export type NavLink = (typeof navLinks)[number]

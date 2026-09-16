@@ -8,7 +8,7 @@ import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 
 const PATH = '/ru'
 export const revalidate = 3600
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'website' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'website', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
@@ -63,11 +63,12 @@ export default function RussianHomePage() {
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
+    dateModified: russianRouteDateModified(PATH),
     isPartOf: { '@type': 'WebSite', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
 
   return (
-    <div className="ru-home" data-russian-home-layout="focused">
+    <div className="ru-home ru-home--product-led" data-russian-home-layout="focused">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(pageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
@@ -77,15 +78,14 @@ export default function RussianHomePage() {
           <div className="ru-home-intro">
             <div>
               <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Для русскоязычных трейдеров по всему миру</div>
-              <h1>Выберите проп-фирму по условиям, а не обещаниям</h1>
-              <p className="ru-lead">Сравните стоимость участия, лимиты убытка и правила выплат. Объясняем условия глобальных проп-фирм на русском — с источниками и ограничениями.</p>
+              <h1>Проп-фирмы.<br /><span>Условия, которые можно сравнить.</span></h1>
+              <p className="ru-lead">Стоимость участия, допустимый убыток и правила выплат. Выберите параметры счёта и начните с программ, у которых есть датированные источники.</p>
               <Link href="/ru/luchshie-prop-firmy" className="ru-card-link">Посмотреть все фирмы <ArrowRight size={16} aria-hidden="true" /></Link>
             </div>
             <div className="home-finder-panel">
-              <span className="ru-home-partner-hero-label">Начните со своих требований</span>
-              <h2>Подберите программу</h2>
-              <p>Выберите размер счёта и тип оценки, затем сравните правила.</p>
-              <RussianFinderEntry sizes={[...new Set(getRussianFinderRows().flatMap(row => row.product.tiers.map(tier => tier.sizeUsd)))].sort((a, b) => a - b)} />
+              <span className="ru-home-partner-hero-label">Ваш короткий список начинается здесь</span>
+              <h2>Сравните программы</h2>
+              <RussianFinderEntry rows={getRussianFinderRows()} />
               <p className="home-finder-note">Размер счёта — не цена покупки. Доступность страны нужно проверить отдельно.</p>
             </div>
           </div>
@@ -106,6 +106,11 @@ export default function RussianHomePage() {
                     ? 'Программы с оплатой в USD: с оценочными этапами или без челленджа — Stellar Instant. В обзоре разбираем различия в просадке и выплатах.'
                     : 'Программы с оплатой в EUR и одним или двумя оценочными этапами. В обзоре разбираем лимиты убытка и ожидание первой выплаты.'
                   : 'Условия программ требуют повторной проверки. В обзоре объясняем модель работы и вопросы, которые стоит задать фирме перед оплатой.'}</p>
+                <p className="ru-home-partner-country-note" data-russian-partner-country-warning={item.slug}>
+                  {item.slug === 'fundednext'
+                    ? 'Для резидентов России доступность не подтверждена: официальные страницы фирмы противоречат друг другу.'
+                    : 'Россия не названа в опубликованном списке ограничений, но доступность конкретного профиля нужно подтвердить до оплаты.'}
+                </p>
                 <div className="ru-home-partner-hero-actions">
                   <Link href={item.reviewHref} className="btn-outline">Читать обзор {item.name}</Link>
                   <Link href={item.heroHref} rel="sponsored nofollow noopener" className="ru-home-partner-hero-review">Проверить условия {item.name} ↗</Link>
@@ -118,6 +123,21 @@ export default function RussianHomePage() {
           <Link href="/ru/fundednext-vs-bright-funded" className="ru-home-comparison-link">FundedNext или Bright Funded: сравнить отличия <ArrowRight size={15} aria-hidden="true" /></Link>
         </div>
       </section>
+
+      <div className="ru-section ru-home-category-section" role="navigation" aria-label="Навигация по разделам" data-russian-home-category-rail="decision-first">
+        <div className="ru-shell">
+          <div className="ru-category-rail">
+            <span className="ru-category-rail__label">Выберите задачу</span>
+            <nav className="ru-category-rail__links" aria-label="Быстрые переходы">
+              <Link href="/ru/luchshie-prop-firmy">Сравнить фирмы <ArrowRight size={14} aria-hidden="true" /></Link>
+              <Link href="/ru/obzor-fundednext">Обзор FundedNext <ArrowRight size={14} aria-hidden="true" /></Link>
+              <Link href="/ru/vyplaty-prop-firm">Проверить выплаты <ArrowRight size={14} aria-hidden="true" /></Link>
+              <Link href="/ru/dlya-russkoyazychnykh-treyderov">Для трейдеров по всему миру <ArrowRight size={14} aria-hidden="true" /></Link>
+              <Link href="/ru/rossiyskie-prop-kompanii">Российские компании <ArrowRight size={14} aria-hidden="true" /></Link>
+            </nav>
+          </div>
+        </div>
+      </div>
 
       <section className="ru-section" data-russian-home-next-step="reader-decision">
         <div className="ru-shell" data-russian-home-navigation="task-first">

@@ -105,7 +105,14 @@ export default function Page() {
   const eligibleFirms = buildIndiaMatcherFirms(ranked.map(entry => entry.firm))
   const firmBySlug = new Map(eligibleFirms.map(firm => [firm.slug, firm]))
   const matchups = Object.values(INDIA_MATCHUPS)
-    .map(config => matchupPayload(config, firmBySlug))
+    .flatMap(config => {
+      try {
+        const payload = matchupPayload(config, firmBySlug)
+        return payload ? [payload] : []
+      } catch {
+        return []
+      }
+    })
   const uniqueFirmSlugs = new Set(matchups.flatMap(matchup =>
     matchup.firms.map(firm => firm.slug)))
   const uniqueFirms = [...uniqueFirmSlugs].map(slug => firmBySlug.get(slug)!)

@@ -297,7 +297,7 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                 {
                   href: '/prop-firm-challenges',
                   eyebrow: 'Exact products',
-                  title: 'Compare all 34 mapped paths',
+                  title: `Compare all ${landing.snapshotProductCount ?? 0} mapped paths`,
                   body: 'Move from country policy to phases, fees, targets, loss limits, account stages and trading rules.',
                 },
                 {
@@ -976,9 +976,9 @@ export default function LandingPage({ landing }: { landing: Landing }) {
                   : isOverall
                     ? 'Editorial ranking with current product evidence'
                     : isUk
-                      ? '8 policy-checked firms across 34 mapped products'
+                      ? `${count} policy-checked firms across ${landing.snapshotProductCount ?? 0} mapped products`
                       : isUs
-                        ? '4 policy-checked firms across 14 mapped products'
+                        ? `${count} policy-checked firms across ${landing.snapshotProductCount ?? 0} mapped products`
                         : isFutures
                           ? `${count} verified firms across ${landing.snapshotProductCount ?? 0} current futures products`
                           : isInstant

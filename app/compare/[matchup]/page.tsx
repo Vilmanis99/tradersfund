@@ -30,6 +30,7 @@ import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import { TrustpilotPanel } from '@/components/TrustpilotRating'
 import RelatedComparisons from '@/components/RelatedComparisons'
 import { getAllFirms } from '@/lib/firms'
+import { isSourceHoldFirm } from '@/lib/reviewStatus'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 interface Props { params: Promise<{ matchup: string }> }
@@ -81,7 +82,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     overlay?.metaDescription ||
     (productMatchup.hasData
       ? `${firmA.name} vs ${firmB.name}: compare ${productTotal} challenge products by funded cost, profit split, drawdown and payout rules using first-party data.`
-      : `${firmA.name} vs ${firmB.name}: ${productTotal} current product captures. ${awaiting} needs a source recheck; no two-sided cost or winner claim is published.`)
+      : `${firmA.name} vs ${firmB.name}: ${productTotal} product captures. ${awaiting} needs a source recheck; no two-sided winner is published.`)
 
   return {
     title: { absolute: title },
@@ -90,6 +91,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/compare/${canonical}`,
       languages: getLanguageAlternates(`/compare/${canonical}`),
     },
+    ...(isSourceHoldFirm(parsed.a) || isSourceHoldFirm(parsed.b)
+      ? { robots: { index: false, follow: true } }
+      : {}),
     openGraph: { title, description, url: `/compare/${canonical}`, type: 'article' },
   }
 }

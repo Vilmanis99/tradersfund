@@ -5,6 +5,7 @@ import Image from 'next/image'
 import type { Challenge, Firm } from '@/lib/firms'
 import TrustpilotRating from './TrustpilotRating'
 import { formatCapturedAt } from '@/lib/trustpilot'
+import { directoryPlatformNames, firmPlatformEvidenceStatus, firmPlatformSourceUrl } from '@/lib/firmPlatforms'
 import {
   Search,
   ArrowUpDown,
@@ -133,7 +134,7 @@ export default function FirmTable({
 
   const allPlatforms = useMemo(() => {
     const s = new Set<string>()
-    firms.forEach(f => f.platforms?.forEach(p => s.add(p)))
+    firms.forEach(f => directoryPlatformNames(f).forEach(p => s.add(p)))
     return [ALL, ...Array.from(s).sort()]
   }, [firms])
 
@@ -151,7 +152,7 @@ export default function FirmTable({
     let list = [...firms]
     if (search) list = list.filter(f => f.name.toLowerCase().includes(search.toLowerCase()))
     if (assetFilter !== ALL) list = list.filter(f => f.assets?.includes(assetFilter))
-    if (platformFilter !== ALL) list = list.filter(f => f.platforms?.includes(platformFilter))
+    if (platformFilter !== ALL) list = list.filter(f => directoryPlatformNames(f).includes(platformFilter))
     if (minScore > 0) list = list.filter(f => f.score >= minScore)
     if (
       sizeFilter > 0 ||
@@ -471,7 +472,7 @@ export default function FirmTable({
         )}
       </div>
 
-      <div style={{ overflowX: 'auto', borderRadius: 18, border: '1px solid var(--border)' }}>
+      <div tabIndex={0} role="region" aria-label="Prop firm directory comparison table" style={{ overflowX: 'auto', borderRadius: 18, border: '1px solid var(--border)' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
           <thead>
             <tr style={{ background: 'var(--accent-soft)', borderBottom: '1px solid var(--border)' }}>
@@ -618,8 +619,16 @@ export default function FirmTable({
                     </span>
                   ) : '—'}
                 </td>
-                <td style={{ padding: '12px 16px' }}>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>{firm.platforms?.map(p => <span key={p} className="chip" style={{ background: 'rgba(39,161,123,0.1)', color: 'var(--accent)', borderColor: 'rgba(39,161,123,0.2)' }}>{p}</span>)}</div>
+                <td style={{ padding: '12px 16px' }} data-firm-platforms={slug} data-platform-source-status={firmPlatformEvidenceStatus(firm)}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>{directoryPlatformNames(firm).map(p => <span key={p} className="chip" style={{ fontSize: '0.875rem', background: 'rgba(39,161,123,0.1)', color: 'var(--accent)', borderColor: 'rgba(39,161,123,0.2)' }}>{p}</span>)}</div>
+                  <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.5, margin: '0.5rem 0 0' }}>
+                    {firm.platformEvidence ? <>
+                      {firmPlatformEvidenceStatus(firm) === 'fresh' ? 'Platform-only check: ' : 'Platform list needs rechecking. Last recorded date: '}
+                      {firmPlatformSourceUrl(firm) ? <a href={firmPlatformSourceUrl(firm)!} target="_blank" rel="nofollow noopener">{firm.platformEvidence.sourceCapturedAt || 'unverified date'}</a> : 'source unavailable'}.
+                    </> : 'Platform list not separately source-checked.'}
+                    {' '}Firm-level list, not confirmation for every programme or country.
+                  </p>
+                  {firm.platformEvidence && <details style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.5, marginTop: '0.5rem' }}><summary>Platform restrictions and scope</summary><p>{firm.platformEvidence.notes}</p></details>}
                 </td>
                 <td style={{ padding: '12px 16px' }}><span className="score-badge">★ {firm.score}</span></td>
                 {/* Cited Trustpilot figure — links straight to the profile so

@@ -3,12 +3,12 @@
     "firmSlug": "ftmo",
     "sourceUrl": "https://ftmo.com/en/faq/how-about-a-free-trial/",
     "landingUrl": "https://ftmo.com/en/ftmo-free-trial/",
-    "sourceCapturedAt": "2026-08-14",
+    "sourceCapturedAt": "2026-09-14",
     "durationDays": 14,
     "maxConcurrentAccounts": 1,
     "maxAccountSizeUsd": 200000,
     "passGrantsFunding": false,
-    "platforms": ["MT4", "MT5", "cTrader", "DXTrade"],
+    "platforms": ["MT4", "MT5", "cTrader", "TradingView"],
     "products": [
       {
         "productSlug": "ftmo-free-trial-1-step",
@@ -36,13 +36,15 @@
     "notes": [
       "FTMO's FAQ says the 2-Step trial uses paid 2-Step objectives except that the 10% target becomes 5% and 4 minimum days become 2.",
       "FTMO's FAQ says the 1-Step trial uses paid 1-Step objectives except that the 10% target becomes 5%.",
-      "The landing page says each trader may have one active trial, may delete it and start another, and receives no automatic FTMO Account eligibility after passing."
+      "The landing page says each trader may have one active trial, may delete it and start another, and receives no automatic FTMO Account eligibility after passing.",
+      "Rechecked on 2026-09-14 against the FTMO free-trial FAQ and landing page; both still state a 14-day trial and one active trial.",
+      "FTMO discontinued DXtrade for new platform selection on 2026-03-24; the current four-platform listing uses TradingView instead."
     ]
   },
   {
     "firmSlug": "fundednext",
     "sourceUrl": "https://help.fundednext.com/en/articles/8902893-fundednext-free-trial-rules",
-    "sourceCapturedAt": "2026-08-14",
+    "sourceCapturedAt": "2026-09-14",
     "durationDays": 14,
     "durationStarts": "first-trade",
     "maxConcurrentAccounts": 1,
@@ -73,7 +75,8 @@
     "notes": [
       "FundedNext's Help Center says the account disables after 14 calendar days from the first trade and has no reset option.",
       "The completion coupon is generated after reaching the 5% target, applies to eligible new users and CFD plans, expires after 14 days, and excludes resets.",
-      "Non-US trial accounts use MT5; US trial accounts use Match-Trader."
+      "Non-US trial accounts use MT5; US trial accounts use Match-Trader.",
+      "Rechecked on 2026-09-14 against the FundedNext Help Center free-trial rules page."
     ]
   }
 ]

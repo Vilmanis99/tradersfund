@@ -10,6 +10,7 @@ import {
 } from '@/lib/comparisons'
 import { freshChallenges } from '@/lib/challengeMatchup'
 import { getAllFirms } from '@/lib/firms'
+import { isSourceHoldFirm } from '@/lib/reviewStatus'
 import { breadcrumbSchema, jsonLd } from '@/lib/schema'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import AnimatedNumber from '@/components/AnimatedNumber'
@@ -116,7 +117,13 @@ export default function CompareHubPage() {
     ...curated.map(({ slug }) => directoryRow(pairBySlug.get(slug)!, true)),
   ]
   const pendingRows = getAllCanonicalPairs()
-    .filter(pair => !pairBySlug.has(pair.matchup))
+    .filter(pair => {
+      const aSlug = firmSlug(pair.firmA.name)
+      const bSlug = firmSlug(pair.firmB.name)
+      return !pairBySlug.has(pair.matchup)
+        && !isSourceHoldFirm(aSlug)
+        && !isSourceHoldFirm(bSlug)
+    })
     .map(pair => directoryRow({
       ...pair,
       evidence: pairEvidence(firmSlug(pair.firmA.name), firmSlug(pair.firmB.name)),

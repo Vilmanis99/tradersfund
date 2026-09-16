@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
 import { ArrowRight, BadgeCheck, Building2, CircleAlert, ExternalLink, Globe2 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import { getAllFirms } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
@@ -78,7 +79,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Есть ли у российских проп-компаний партнёрские программы?',
-    a: 'У Era Trade опубликована стандартная партнёрская программа с 5% за прямые покупки и уровнями до 60%. PropLive предлагает договорную модель наставникам и школам с долей до 50% от прибыли учеников. На проверенных страницах KasCapital, А-Лаб, TeamTraders и Trade System обычные публичные affiliate-условия не найдены.',
+    a: 'У Era Trade опубликована стандартная партнёрская программа с 5% за прямые покупки и уровнями до 60%. PropLive предлагает договорную модель наставникам и школам с долей до 50% от прибыли учеников. На проверенных страницах KasCapital, А-Лаб, TeamTraders и Trade System обычные публичные партнёрские условия не найдены.',
   },
   {
     q: 'Почему русскоязычному трейдеру всё равно сравнивать глобальные фирмы?',
@@ -113,7 +114,7 @@ export default function RussianPropCompaniesPage() {
     url: `https://tradersfundhub.com${PATH}`,
     dateModified: marketEvidence.capturedAt,
     inLanguage: 'ru',
-    author: { '@type': 'Organization', name: 'Traders Fund Hub' },
+    author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
   }
 
   return (
@@ -125,6 +126,7 @@ export default function RussianPropCompaniesPage() {
       <section className="ru-hero">
         <div className="ru-shell">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Российские компании</div>
+          <RussianEvidenceFreshnessNotice evidence={[{ label: 'исследование локальных компаний', capturedAt: marketEvidence.capturedAt }]} />
           <div className="ru-eyebrow"><Building2 size={14} aria-hidden="true" /> Проверка, а не рекомендация</div>
           <h1>Российские проп-компании в 2026 году: 6 проверяемых примеров</h1>
           <p className="ru-lead">
@@ -132,9 +134,10 @@ export default function RussianPropCompaniesPage() {
             реальная торговля на Московской бирже и локальная
             проп-инфраструктура. Ниже — только то, что удалось подтвердить на официальных страницах.
           </p>
+          <p className="ru-source-line">Автор исследования: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Проверка источников: {marketEvidence.capturedAt}.</p>
           <div className="ru-actions">
             <Link href="#tri-kompanii" className="btn-primary btn-glow">Сравнить 6 примеров <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Глобальные проп-фирмы</Link>
+            <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Глобальные проп-фирмы</Link>
           </div>
         </div>
       </section>
@@ -167,7 +170,7 @@ export default function RussianPropCompaniesPage() {
               <p className="ru-muted">
                 В верхнем счётчике опубликовано {Number(propLive?.claims.traders).toLocaleString('ru-RU')} трейдера
                 по всему миру, хотя ниже на той же странице осталось «более 10 700». Модель описана как торговля
-                на Московской бирже через брокера Финам, а не как обычный международный challenge-продукт.
+                на Московской бирже через брокера Финам, а не как обычный международный продукт-челлендж.
               </p>
               <SourceLink href={propLive?.sourceUrl ?? 'https://www.proplive.ru/'}>Официальная страница и модель</SourceLink>
               <Link href="/ru/obzor-proplive" className="ru-card-link">Открыть отдельный обзор PropLive →</Link>
@@ -204,7 +207,7 @@ export default function RussianPropCompaniesPage() {
                 Текущие страницы указывают две цели по {teamTraders?.claims.stageProfitPct}%, минимум{' '}
                 {teamTraders?.claims.minimumTradingSessions} торговых дней, дневной лимит {teamTraders?.claims.dailyLossLimitPct}%,
                 максимальный риск {teamTraders?.claims.maximumLossPct}% и две доли: {teamTraders?.claims.fundedDemoProfitSharePct}%
-                на funded demo и {teamTraders?.claims.profitSharePct}% на real. Архив всё ещё показывает старые 15 дней и 90%.
+                на демо-счёте с финансированием и {teamTraders?.claims.profitSharePct}% на реальном рынке. Архив всё ещё показывает старые 15 дней и 90%.
               </p>
               <SourceLink href={teamTraders?.sourceUrl ?? 'https://teamtraders.ru/faq'}>Текущий FAQ TeamTraders</SourceLink>
               <Link href="/ru/obzor-teamtraders" className="ru-card-link">Открыть отдельный обзор TeamTraders →</Link>
@@ -232,11 +235,11 @@ export default function RussianPropCompaniesPage() {
             Это коммерческое выделение, а не первые места среди российских компаний. Переход по кнопке может принести Traders Fund Hub комиссию. Это не меняет порядок проверки
             российских компаний и не подтверждает доступность выбранной страны или продукта.
           </div>
-          <h2>Если нужен международный challenge</h2>
+          <h2>Если нужен международный челлендж</h2>
           <p>
-            Локальная проп-компания и международный evaluation-продукт решают разные задачи. Если вам нужен
-            сопоставимый challenge с опубликованной ценой, сначала откройте русский обзор, затем проверьте
-            гражданство, резидентство, KYC, оплату и выплату на официальном checkout.
+            Локальная проп-компания и международный продукт с оценкой решают разные задачи. Если вам нужен
+            сопоставимый челлендж с опубликованной ценой, сначала откройте русский обзор, затем проверьте
+            гражданство, резидентство, KYC, оплату и выплату на официальной странице оплаты.
           </p>
           <div className="ru-grid">
             {globalPartners.map(item => (
@@ -285,17 +288,17 @@ export default function RussianPropCompaniesPage() {
                 </tr>
                 <tr>
                   <td>А-Лаб Групп</td>
-                  <td>На проверенной официальной странице публичные affiliate-условия не опубликованы.</td>
+                  <td>На проверенной официальной странице публичные партнёрские условия не опубликованы.</td>
                   <td>{aLabAffiliate?.status === 'not-found' ? 'Нет подтверждённой программы.' : 'Требуется повторная проверка.'}</td>
                 </tr>
                 <tr>
                   <td>TeamTraders</td>
-                  <td>Документация описывает отбор и правила трейдера; обычная публичная affiliate-программа не указана.</td>
+                  <td>Документация описывает отбор и правила трейдера; обычная публичная партнёрская программа не указана.</td>
                   <td>{teamTradersAffiliate?.status === 'not-found' ? 'Нет подтверждённой программы.' : 'Требуется повторная проверка.'}</td>
                 </tr>
                 <tr>
                   <td>Trade System</td>
-                  <td>На проверенной главной странице публичные affiliate-условия не опубликованы.</td>
+                  <td>На проверенной главной странице публичные партнёрские условия не опубликованы.</td>
                   <td>{tradeSystemAffiliate?.status === 'not-found' ? 'Нет подтверждённой программы.' : 'Требуется повторная проверка.'}</td>
                 </tr>
               </tbody>
@@ -329,7 +332,7 @@ export default function RussianPropCompaniesPage() {
             <Link href="/ru/obzor-fundednext">разбор FundedNext</Link>, затем получите письменное подтверждение фирмы.
           </div>
           <div className="ru-actions">
-            <Link href="/ru/luchshie-prop-firmy" className="btn-primary btn-glow">Сравнить глобальные фирмы <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-primary btn-glow">Сравнить глобальные фирмы <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-outline">Глобальные пути для русскоязычных</Link>
             <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm" className="btn-outline">Понять этапы челленджа</Link>
           </div>

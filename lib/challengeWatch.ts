@@ -19,6 +19,10 @@ export interface ChallengeWatchEntry {
   observedAt: string
   /** Most recent first-party recheck; routine checks must not rewrite observedAt. */
   lastCheckedAt: string
+  /** Rule-only rechecks may cite specific evidence sections without refreshing prices. */
+  ruleEvidenceRefs?: { file: string; section: string }[]
+  /** Unresolved conflicts have their own dated observations, not a refreshed product capture. */
+  sourceConflictEvidenceRefs?: { file: string; section: string }[]
   effectiveAt?: string
   title: string
   summary: string

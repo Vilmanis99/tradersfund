@@ -1,0 +1,49 @@
+{
+  "firmSlug": "fundednext",
+  "scope": "Narrow review rule checks, including evaluation-product payout timing. Does not refresh programme prices, country eligibility, Instant payout timing or Trustpilot.",
+  "sources": {
+    "copyGeneral": {
+      "labelRu": "Копирование на оценочных счетах и после оценки",
+      "sourceUrl": "https://help.fundednext.com/en/articles/8019805-what-is-the-copy-trading-rule-at-fundednext",
+      "sourceCapturedAt": "2026-09-08",
+      "productSlugs": ["stellar-1-step", "stellar-2-step", "stellar-lite"],
+      "sourceQuote": "FundedNext allows copy trading between multiple FundedNext Challenge Accounts owned by the same individual.",
+      "notesRu": "Общая статья различает собственные оценочные счета и счета после оценки; запрещает копирование с участием счёта после оценки. Отдельное правило Stellar Instant приведено отдельно."
+    },
+    "copyInstant": {
+      "labelRu": "Отдельное правило копирования Stellar Instant",
+      "sourceUrl": "https://help.fundednext.com/en/articles/11672342-is-copy-trading-allowed-in-stellar-instant",
+      "sourceCapturedAt": "2026-09-08",
+      "productSlugs": ["stellar-instant"],
+      "sourceQuote": "Copy trading between two or more Stellar Instant Accounts owned by the same individual is allowed.",
+      "notesRu": "Между разными владельцами и между Instant и 1-Step/2-Step/Lite копирование запрещено, даже у одного владельца."
+    },
+    "instantLoss": {
+      "labelRu": "Дневной и общий лимиты Stellar Instant",
+      "sourceUrl": "https://help.fundednext.com/en/articles/11641163-what-are-the-daily-loss-limit-and-the-maximum-loss-limit-for-the-stellar-instant-accounts",
+      "sourceCapturedAt": "2026-09-08",
+      "productSlugs": ["stellar-instant"],
+      "dailyLossLimitApplies": false,
+      "sourceQuote": "There are no Daily Loss Limits in Stellar Instant Accounts.",
+      "notesRu": "Отсутствие дневного лимита подтверждено только для Instant. Общая движущаяся граница убытка сохраняется и не сбрасывается после выплаты."
+    },
+    "payoutGeneral": {
+      "labelRu": "Сроки запроса и возврат взноса после оценки",
+      "sourceUrl": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
+      "sourceCapturedAt": "2026-09-08",
+      "productSlugs": ["stellar-1-step", "stellar-2-step", "stellar-lite"],
+      "oneStepDayUnit": "business-days",
+      "oneStepCycleBusinessDays": 5,
+      "sourceQuote": "Starting from the first trading cycle, you will receive Performance Rewards every 5 business days.",
+      "notesRu": "Для 1-Step источник уточняет рабочие дни. 2-Step и Lite: первый запрос через 21 день, следующие через 14. Возврат взноса: первая одобренная выплата 2-Step, третья 1-Step и Lite. Запрос подлежит проверке соблюдения правил и не является гарантией выплаты."
+    },
+    "newsGeneral": {
+      "labelRu": "Новостная прибыль после оценки 1-Step, 2-Step и Lite",
+      "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+      "sourceCapturedAt": "2026-09-08",
+      "productSlugs": ["stellar-1-step", "stellar-2-step", "stellar-lite"],
+      "sourceQuote": "The News Reward Share Rule applies only to Stellar 1-Step, Stellar 2-Step, and Stellar Lite FundedNext Accounts.",
+      "notesRu": "Правило зачёта 40% прибыли относится к десятиминутному окну после оценки. Для Instant нужна отдельная продуктовая статья."
+    }
+  }
+}

@@ -329,6 +329,13 @@ const CURRENT_OVERALL_PRODUCT_COUNT = CURRENT_OVERALL_SNAPSHOT.reduce(
   0,
 )
 
+const CURRENT_CHEAPEST_FIRM_COUNT = getAllFirms().filter(firm =>
+  getChallengesByFirm(firmSlug(firm.name)).some(challenge =>
+    isChallengeFresh(challenge)
+    && challenge.accountSizes.some(tier => publishedMinimumCost(challenge, tier) != null),
+  ),
+).length
+
 const CURRENT_INSTANT_SNAPSHOT = getAllFirms().flatMap(firm => {
   const products = freshInstantProducts(firm)
   return products.length ? [{ firm, products }] : []
@@ -556,6 +563,7 @@ export const LANDINGS: Landing[] = [
         body: `No. This snapshot maps ${CURRENT_UK_PRODUCT_COUNT} exact products while their records and the country sources remain current. Platforms, payment providers, KYC vendors, sanctions screening, and product availability can change before the 30-day source gate expires.`,
       },
     ],
+    snapshotProductCount: CURRENT_UK_PRODUCT_COUNT,
     lastReviewed: '2026-08-17',
   },
   {
@@ -615,6 +623,7 @@ export const LANDINGS: Landing[] = [
         body: 'Check legal name, residency, KYC, tax form and bank-country rules. Apex publishes U.S.-residency-matched ACH requirements, while Topstep lists W-9 handling for U.S. persons.',
       },
     ],
+    snapshotProductCount: CURRENT_US_PRODUCT_COUNT,
     lastReviewed: '2026-08-17',
   },
   {
@@ -684,7 +693,7 @@ export const LANDINGS: Landing[] = [
     h1: 'Cheapest Prop Firm Challenges (2026): USD & EUR',
     metaTitle: 'Cheapest Prop Firm Challenges (2026) — By Currency',
     metaDescription:
-      'Compare the lowest verified path to funded for 19 prop firms, ranked separately in USD and EUR with billing model, loss limits, reviews, and dated sources.',
+      `Compare the lowest verified path to funded for ${CURRENT_CHEAPEST_FIRM_COUNT} prop firms, ranked separately in USD and EUR with billing model, loss limits, reviews, and dated sources.`,
     intro:
       'The lowest checkout price is not always the lowest path to funded. We add any known after-pass or activation charge, keep recurring plans labelled, and rank USD and EUR products separately so a hidden exchange-rate assumption cannot reorder the list. Every included price comes from a product capture inside the 30-day freshness window.',
     sortDir: 'asc',

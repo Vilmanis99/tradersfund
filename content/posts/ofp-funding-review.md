@@ -2,8 +2,9 @@
 title: "OFP Funding Review 2026: Nine Products, 45 Priced Tiers, One $300K Ceiling"
 seoTitle: "OFP Funding Review 2026: Fees, Plans & $300K Cap"
 slug: "ofp-funding-review"
+sourceStatus: "source-hold"
 date: "2025-04-22 12:00:00"
-modified: "2026-08-17 12:00:00"
+modified: "2026-09-15 12:00:00"
 author: "Tara Mohseni"
 excerpt: "OFP sells nine products between $35 and $1,500 at an 80% base split. The cheap evaluations price at R = 0.02; Instant Plus costs six times more."
 seoDescription: "OFP Funding review comparing 9 products, 45 priced tiers, $35–$1,500 fees, 80% base splits, true cost, drawdown rules, and the $300K cap."
@@ -103,7 +104,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Pricing and rules current as of 2026-07-27, captured from <a href="/go/ofp-funding">OFP's own pricing widget</a>. Every price above is the 80% profit-split tier; the same account at a 100% split costs roughly 20% more, so the $100K Instant Classic (5%/10%) moves from $420 to $504. One caveat on provenance: ofpfunding.com renders its pricing table client-side, so only the Instant Lite $50,000 column is present in the server HTML. Every other figure comes from the firm's own embedded pricing payload — the data that draws the visible widget — and the Instant Lite column matched it field for field, including the $150 price, 3% daily, 5% max, 5% target, 5 minimum days and 30-day duration.</p>
+<p>The table is a 2026-07-27 structured capture from <a href="/go/ofp-funding">OFP's own pricing widget</a>. Every price above is the 80% profit-split tier; the same account at a 100% split costs roughly 20% more, so the $100K Instant Classic (5%/10%) moves from $420 to $504. On 2026-09-15 I rechecked the public selector in a browser and each of the nine model tabs rendered the same base ladders as this capture, but OFP's current Terms Schedule A shows conflicting model parameters and does not publish a complete price ladder. The terms conflict is recorded in the public watch, so the older table stays dated rather than being presented as a current checkout quote.</p>
 
 <p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> counts all 7 OFP no-evaluation rule sets instead of selecting only the first Instant Classic variant; daily loss, maximum loss, payout timing, and prices vary across those 7 products.</p>
 
@@ -113,7 +114,7 @@ type: "post"
 
 <p><strong>Daily loss is end-of-day equity based, not intraday balance based.</strong> The published formula is "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage", with equity stamped at midnight GMT+2. On that same $100,000 One Phase at 3% daily, day one gives you a $3,000 allowance. Close day one at $102,000 and day two's allowance becomes $3,060 measured down from $102,000, so your intraday floor that day is $98,940 — well above the $94,000 static floor. Profits raise the daily line; they never move the overall one.</p>
 
-<p><strong>The consistency rule is the one number OFP does not state consistently.</strong> The formula is published: "Inconsistency Score = Best Day Closed PnL / Total Closed PnL x 100". The threshold is not. OFP's pricing payload carries a per-product ceiling of 15% on One Phase and Two Phase, 20% on Instant Classic, and none at all on Lite, Plus, Pro and Prime. The help centre instead ties the threshold to the payout cycle: "On-Demand Accounts: Your score must be under 10%. Bi-Weekly Accounts: Your score must be under 15%. Monthly Accounts: Your score must be under 20%." Those two sources contradict each other — Instant Classic pays bi-weekly, which the help centre caps at 15%, while the pricing data says 20%. We have left the field null rather than pick a winner. What both sources agree on is the consequence: it is a soft rule, "you won't lose the account if the score exceeds the recommended", but "you are not entitled to request a payout".</p>
+<p><strong>The consistency rule is the one number OFP does not state consistently.</strong> The formula is published: "Inconsistency Score = Best Day Closed PnL / Total Closed PnL x 100". The selected default Classic configuration on the 2026-09-15 homepage rendered a 20% Consistency Ratio, while Lite, Plus, Pro, Prime, One Phase and Two Phase rendered "No". OFP's current Terms Schedule A instead lists 25% for Instant Classic and "No" for the other plans, while the help centre ties the threshold to the payout cycle: "On-Demand Accounts: Your score must be under 10%. Bi-Weekly Accounts: Your score must be under 15%. Monthly Accounts: Your score must be under 20%." Those first-party sources conflict, so we have left the structured field null rather than pick a winner. What all versions agree on is the consequence: it is a soft rule, "you won't lose the account if the score exceeds the recommended", but "you are not entitled to request a payout".</p>
 
 <p><strong>News trading is permitted with a four-minute blackout.</strong> OFP's wording: "Trading during economic news releases is permitted", but "Opening new trades is prohibited from 2 minutes before until 2 minutes after the release of high-impact economic news." Existing positions are not the target — opening new ones inside that window is.</p>
 

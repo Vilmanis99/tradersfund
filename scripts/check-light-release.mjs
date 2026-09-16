@@ -2,6 +2,7 @@
  * computed styles, gradient/image contrast and interactive states. No analytics calls. */
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
+import { localPreviewUrl } from './local-preview-url.mjs'
 
 const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8')
 const root = css.match(/:root\s*\{([^}]+)\}/)?.[1] || ''
@@ -33,7 +34,7 @@ for (const file of ['components/GlobalChallengeComparison.tsx', 'components/Indi
 }
 assert(readFileSync(new URL('../app/loading.tsx', import.meta.url), 'utf8').includes('min(300px, 100%)'), 'Loading cards also fit narrow phones')
 
-const base = new URL(process.argv[2] || 'http://127.0.0.1:3214')
+const base = new URL(localPreviewUrl(process.argv[2]))
 async function get(pathname) {
   const response = await fetch(new URL(pathname, base), { redirect: 'manual', signal: AbortSignal.timeout(30000) })
   return { status: response.status, text: await response.text() }

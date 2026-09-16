@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { minimumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import Link from '@/components/SafeLink'
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
@@ -94,15 +95,15 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Чем FTMO 1-Step отличается от 2-Step?',
-    a: '2-Step использует цели 10% и 5%, дневной лимит 5%, статический максимум 10%, минимум 4 торговых дня на фазу и базовый split 80%. 1-Step использует одну цель 10%, дневной лимит 3%, EOD-trailing максимум 10%, правило Best Day 50% и split 90%.',
+    a: '2-Step использует цели 10% и 5%, дневной лимит 5%, статический максимум 10%, минимум 4 торговых дня на фазу и базовую долю 80%. 1-Step использует одну цель 10%, дневной лимит 3%, EOD-трейлинг максимум 10%, правило Best Day 50% и долю 90%.',
   },
   {
-    q: 'Возвращает ли FTMO стоимость challenge?',
-    a: 'Для 2-Step — 100% вместе с первой одобренной reward-выплатой. Для 1-Step fee не возвращается даже после успешного прохождения. Поэтому €499 за 1-Step и €540 за 2-Step на $100K нельзя сравнивать как одинаковый расход.',
+    q: 'Возвращает ли FTMO стоимость челленджа?',
+    a: 'Для 2-Step — 100% вместе с первой одобренной выплатой вознаграждения. Для 1-Step взнос не возвращается даже после успешного прохождения. Поэтому €499 за 1-Step и €540 за 2-Step на $100K нельзя сравнивать как одинаковый расход.',
   },
   {
     q: 'Когда можно запросить первую выплату FTMO?',
-    a: 'FTMO публикует возможность запроса на 14-й день или позже после первой сделки на конкретном FTMO Account. Все позиции и отложенные ордера должны быть закрыты; проверка заявлена в пределах 1–2 рабочих дней, отправка — обычно ещё 1–2 рабочих дня после одобрения invoice.',
+    a: 'FTMO публикует возможность запроса на 14-й день или позже после первой сделки на конкретном счёте FTMO. Все позиции и отложенные ордера должны быть закрыты; проверка заявлена в пределах 1–2 рабочих дней, отправка — обычно ещё 1–2 рабочих дня после одобрения счёта.',
   },
   {
     q: 'Traders Fund Hub получает комиссию от FTMO?',
@@ -181,7 +182,7 @@ export default function RussianFtmoReviewPage() {
           <h1>FTMO: обзор 2026 — 2 программы и 10 цен</h1>
           <p className="ru-lead">
             FTMO 1-Step и 2-Step различаются не только числом фаз. У них разные дневные лимиты, механика максимального убытка,
-            правило Best Day, стартовый profit split и возврат fee. Для русскоязычного читателя первым фильтром остаётся страна,
+            правило Best Day, стартовая доля прибыли и возврат взноса. Для русскоязычного читателя первым фильтром остаётся страна,
             а не язык: Российская Федерация прямо указана FTMO среди неподдерживаемых территорий.
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
@@ -208,9 +209,9 @@ export default function RussianFtmoReviewPage() {
                 <li><a href="#verdict">Краткий вывод</a></li>
                 <li><a href="#official">Официальный сайт</a></li>
                 <li><a href="#products">1-Step против 2-Step</a></li>
-                <li><a href="#prices">10 цен и true cost</a></li>
+                <li><a href="#prices">10 цен и полная стоимость</a></li>
                 <li><a href="#risk">Просадка и Best Day</a></li>
-                <li><a href="#payout">Возврат fee и выплаты</a></li>
+                <li><a href="#payout">Возврат взноса и выплаты</a></li>
                 <li><a href="#fit">Кому подходит FTMO</a></li>
                 <li><a href="#alternatives">FundedNext и Bright Funded</a></li>
                 <li><a href="#checklist">Проверка перед оплатой</a></li>
@@ -236,7 +237,7 @@ export default function RussianFtmoReviewPage() {
             </p>
             <p>
               Практическое правило состоит из 4 проверок: страна фактического проживания, гражданство в KYC, имя владельца платежа и
-              доступность будущего payout-метода. Если хотя бы 1 поле не подтверждено самим FTMO, оплачивать challenge преждевременно.
+              доступность будущего способа выплаты. Если хотя бы 1 поле не подтверждено самим FTMO, оплачивать челлендж преждевременно.
               <a href={ACCESS_URL} target="_blank" rel="noopener noreferrer"> Проверить текущий список FTMO</a>.
             </p>
           </div>
@@ -246,15 +247,15 @@ export default function RussianFtmoReviewPage() {
           <div className="ru-shell ru-content" id="verdict" data-russian-ftmo-verdict="two-products-not-one-brand">
             <h2>Краткий вывод: выбирать нужно между 2 наборами ограничений</h2>
             <p>
-              2-Step логичнее для трейдера, которому важны статическая граница 10%, дневной лимит 5% и возврат 100% fee после первой
-              reward-выплаты. Цена $100K-счёта составляет {eur(twoStep100k?.priceEur)}, базовый split — {twoStep?.profitSplitPct ?? '—'}%,
-              а расчётный gross profit для компенсации fee до учёта возврата — {eur(twoStep100kEconomics?.breakEvenProfit)}.
+              2-Step логичнее для трейдера, которому важны статическая граница 10%, дневной лимит 5% и возврат 100% взноса после первой
+              выплаты вознаграждения. Цена $100K-счёта составляет {eur(twoStep100k?.priceEur)}, базовая доля — {twoStep?.profitSplitPct ?? '—'}%,
+              а расчётная валовая прибыль для компенсации взноса до учёта возврата — {eur(twoStep100kEconomics?.breakEvenProfit)}.
             </p>
             <p>
-              1-Step сокращает оценку до 1 фазы и начинает со split {oneStep?.profitSplitPct ?? '—'}%, но снижает дневной лимит до
+              1-Step сокращает оценку до 1 фазы и начинает с доли {oneStep?.profitSplitPct ?? '—'}%, но снижает дневной лимит до
               {oneStep?.dailyLossPct ?? '—'}%, двигает 10%-ю границу по EOD-механике и применяет Best Day {oneStep?.consistencyRulePct ?? '—'}%.
-              Fee {eur(oneStep100k?.priceEur)} на $100K не возвращается, а для его компенсации при split {oneStep?.profitSplitPct ?? '—'}%
-              нужен gross profit {eur(oneStep100kEconomics?.breakEvenProfit)}. Поэтому более низкая цена не означает более низкую полную стоимость решения.
+              Взнос {eur(oneStep100k?.priceEur)} на $100K не возвращается, а для его компенсации при доле {oneStep?.profitSplitPct ?? '—'}%
+              нужна валовая прибыль {eur(oneStep100kEconomics?.breakEvenProfit)}. Поэтому более низкая цена не означает более низкую полную стоимость решения.
             </p>
             <div className="ru-actions">
               <Link href="/go/ftmo?from=ru-ftmo-review-verdict" rel="nofollow noopener" className="btn-outline">
@@ -291,15 +292,15 @@ export default function RussianFtmoReviewPage() {
                   <tr><th>Условие</th><th>FTMO 2-Step</th><th>FTMO 1-Step</th><th>Почему это меняет решение</th></tr>
                 </thead>
                 <tbody>
-                  <tr><td>Фазы</td><td>{twoStep?.phases ?? '—'}</td><td>{oneStep?.phases ?? '—'}</td><td>1-Step убирает Verification, но не остальные ограничения.</td></tr>
+                  <tr><td>Фазы</td><td>{twoStep?.phases ?? '—'}</td><td>{oneStep?.phases ?? '—'}</td><td>1-Step убирает этап проверки, но не остальные ограничения.</td></tr>
                   <tr><td>Цели</td><td>{twoStep ? targetLabel(twoStep) : '—'}</td><td>{oneStep ? targetLabel(oneStep) : '—'}</td><td>У 2-Step общая цель распределена между 2 этапами.</td></tr>
                   <tr><td>Дневной лимит</td><td>{twoStep?.dailyLossPct ?? '—'}%</td><td>{oneStep?.dailyLossPct ?? '—'}%</td><td>На $100K разница составляет $2,000 дневного пространства.</td></tr>
                   <tr><td>Максимальный убыток</td><td>{twoStep?.maxLossPct ?? '—'}%, {drawdownLabels[twoStep?.drawdownType ?? ''] ?? '—'}</td><td>{oneStep?.maxLossPct ?? '—'}%, {drawdownLabels[oneStep?.drawdownType ?? ''] ?? '—'}</td><td>Одинаковые 10% работают по разной механике.</td></tr>
-                  <tr><td>Минимальные дни</td><td>{twoStep?.minTradingDays ?? '—'} на фазу</td><td>{oneStep?.minTradingDays ?? 'нет опубликованного минимума'}</td><td>2-Step нельзя завершить одной сделкой в каждой фазе.</td></tr>
-                  <tr><td>Best Day</td><td>{twoStep?.consistencyRulePct ?? 'нет'}</td><td>{oneStep?.consistencyRulePct ?? '—'}%</td><td>На 1-Step крупнейший положительный день влияет и на pass, и на reward.</td></tr>
-                  <tr><td>Базовый split</td><td>{twoStep?.profitSplitPct ?? '—'}%</td><td>{oneStep?.profitSplitPct ?? '—'}%</td><td>«До 90%» у 2-Step не равно стартовым 90%.</td></tr>
-                  <tr><td>Возврат fee</td><td>{twoStep100k?.refundable ? '100% с первой reward' : 'нет'}</td><td>{oneStep100k?.refundable ? 'да' : 'нет'}</td><td>Возврат меняет экономику успешного маршрута.</td></tr>
-                  <tr><td>Первая reward</td><td>{twoStep?.payoutFirstDays ?? '—'} дней</td><td>{oneStep?.payoutFirstDays ?? '—'} дней</td><td>Счёт начинается после первой сделки, а не после покупки challenge.</td></tr>
+                  <tr><td>Минимальные дни</td><td>{minimumTradingDaysLabel(twoStep?.minTradingDays ?? null, 'ru')} на фазу</td><td>{minimumTradingDaysLabel(oneStep?.minTradingDays ?? null, 'ru')}</td><td>2-Step нельзя завершить одной сделкой в каждой фазе.</td></tr>
+                  <tr><td>Best Day</td><td>{consistencyRuleLabel(twoStep ?? { consistencyRulePct: null }, 'ru')}</td><td>{consistencyRuleLabel(oneStep ?? { consistencyRulePct: null }, 'ru')}</td><td>На 1-Step крупнейший положительный день влияет и на прохождение, и на вознаграждение.</td></tr>
+                  <tr><td>Базовая доля</td><td>{twoStep?.profitSplitPct ?? '—'}%</td><td>{oneStep?.profitSplitPct ?? '—'}%</td><td>«До 90%» у 2-Step не равно стартовым 90%.</td></tr>
+                  <tr><td>Возврат взноса</td><td>{twoStep100k?.refundable ? '100% с первой выплаты' : 'нет'}</td><td>{oneStep100k?.refundable ? 'да' : 'нет'}</td><td>Возврат меняет экономику успешного маршрута.</td></tr>
+                  <tr><td>Первая выплата</td><td>{twoStep?.payoutFirstDays ?? '—'} дней</td><td>{oneStep?.payoutFirstDays ?? '—'} дней</td><td>Счёт начинается после первой сделки, а не после покупки челленджа.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -309,9 +310,9 @@ export default function RussianFtmoReviewPage() {
 
         <section className="ru-section">
           <div className="ru-shell ru-content" id="prices" data-russian-ftmo-price-count={pricedTiers.length} data-russian-ftmo-truecost={pricedTiers.length}>
-            <h2>Все 10 цен FTMO и true cost в EUR</h2>
+            <h2>Все 10 цен FTMO и полная стоимость в EUR</h2>
             <p>
-              FTMO маркирует размер симулируемого счёта в USD, но публикует fee в EUR. Мы сохраняем обе единицы и не применяем курс дня:
+              FTMO маркирует размер симулируемого счёта в USD, но публикует взнос в EUR. Мы сохраняем обе единицы и не применяем курс дня:
               пересчёт €540 в доллары быстро устареет и скроет комиссию банка. В таблицах ниже использованы базовые цены,
               проверенные {latestCapture}. Требуемая валовая прибыль рассчитывается как взнос, делённый на долю трейдера.
             </p>
@@ -320,7 +321,7 @@ export default function RussianFtmoReviewPage() {
                 <h3>{product.productName}</h3>
                 <div className="ru-table-wrap">
                   <table className="ru-table">
-                    <thead><tr><th>Счёт</th><th>Fee</th><th>Минимальный outlay</th><th>Gross profit для компенсации</th><th>Возврат</th></tr></thead>
+                    <thead><tr><th>Счёт</th><th>Взнос</th><th>Минимальные расходы</th><th>Валовая прибыль для компенсации</th><th>Возврат</th></tr></thead>
                     <tbody>
                       {[...product.accountSizes].sort((a, b) => a.sizeUsd - b.sizeUsd).map(tier => {
                         const economics = challengeTierEconomics(product, tier)
@@ -330,7 +331,7 @@ export default function RussianFtmoReviewPage() {
                             <td>{eur(tier.priceEur)}</td>
                             <td>{eur(economics?.minimumCost)}</td>
                             <td>{eur(economics?.breakEvenProfit)}</td>
-                            <td>{tier.refundable ? 'с первой reward' : 'не возвращается'}</td>
+                            <td>{tier.refundable ? 'с первой выплаты' : 'не возвращается'}</td>
                           </tr>
                         )
                       })}
@@ -342,7 +343,7 @@ export default function RussianFtmoReviewPage() {
             <p>
               На $100K разница list price составляет только {eur((twoStep100k?.priceEur ?? 0) - (oneStep100k?.priceEur ?? 0))}:
               {eur(twoStep100k?.priceEur)} против {eur(oneStep100k?.priceEur)}. Но у 2-Step возврат привязан к первой reward,
-              тогда как {eur(oneStep100k?.priceEur)} у 1-Step остаётся расходом даже после pass. Поэтому fee, refund и вероятность нарушения
+              тогда как {eur(oneStep100k?.priceEur)} у 1-Step остаётся расходом даже после прохождения. Поэтому взнос, возврат и вероятность нарушения
               конкретной просадки нужно моделировать одной системой, а не тремя рекламными тезисами.
             </p>
           </div>
@@ -350,13 +351,13 @@ export default function RussianFtmoReviewPage() {
 
         <section className="ru-section">
           <div className="ru-shell ru-content" id="risk" data-russian-ftmo-risk="static-vs-eod-trailing">
-            <h2>Статическая просадка против EOD-trailing</h2>
+            <h2>Статическая просадка против EOD-трейлинга</h2>
             <div className="ru-grid">
               <article className="ru-card">
                 <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
                 <h3>2-Step: фиксированная граница</h3>
                 <p>
-                  Для $100K 10%-й Maximum Loss означает исходную нижнюю границу $90,000, а 5%-й Max Daily Loss даёт $5,000 дневного лимита
+                  Для $100K 10%-й максимальный убыток означает исходную нижнюю границу $90,000, а 5%-й дневной лимит убытка даёт $5,000 дневного пространства
                   по формуле FTMO. Прибыльный день не поднимает постоянный максимум убытка, поэтому риск на сделку можно привязать к неизменной базе.
                 </p>
               </article>
@@ -364,7 +365,7 @@ export default function RussianFtmoReviewPage() {
                 <AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" />
                 <h3>1-Step: EOD-граница движется</h3>
                 <p>
-                  На $100K дневной лимит равен 3%, или $3,000, а 10%-й Maximum Loss пересчитывается как balance-based end-of-day trailing limit.
+                  На $100K дневной лимит равен 3%, или $3,000, а 10%-й максимальный убыток пересчитывается как плавающий лимит по балансу в конце дня.
                   Граница может повышаться после прибыльного закрытия дня, поэтому возврат накопленной прибыли способен нарушить 1-Step раньше,
                   чем статический 2-Step при той же надписи «10%».
                 </p>
@@ -382,26 +383,26 @@ export default function RussianFtmoReviewPage() {
 
         <section className="ru-section">
           <div className="ru-shell ru-content" id="payout" data-russian-ftmo-payout="day-14-refund-split">
-            <h2>Reward, возврат fee и реальный денежный цикл</h2>
+            <h2>Вознаграждение, возврат взноса и реальный денежный цикл</h2>
             <p>
               Обе программы публикуют первый запрос на 14-й день или позже после первой сделки FTMO Account. Перед запросом нужно закрыть все
-              позиции и pending orders. FTMO заявляет 1–2 рабочих дня на проверку и обычно ещё 1–2 рабочих дня на отправку после одобрения invoice;
-              это не означает гарантированное поступление в банк или кошелёк за 14 дней от покупки challenge.
+              позиции и отложенные ордера. FTMO заявляет 1–2 рабочих дня на проверку и обычно ещё 1–2 рабочих дня на отправку после одобрения счёта;
+              это не означает гарантированное поступление в банк или кошелёк за 14 дней от покупки челленджа.
             </p>
             <p>
-              Базовая доля 2-Step равна {twoStep?.profitSplitPct ?? '—'}% и может вырасти до 90% при выполнении отдельных условий Scaling Plan или
-              Premium Programme. Текущий Scaling Plan называет 4 обязательных поля: минимум 4 месяца с начала или прошлого scale-up,
-              не менее 10% net simulated profit над стартовым балансом за эти 4 месяца, минимум 2 обработанные reward-выплаты и положительный
+              Базовая доля 2-Step равна {twoStep?.profitSplitPct ?? '—'}% и может вырасти до 90% при выполнении отдельных условий плана масштабирования или
+              Premium Programme. Текущий план масштабирования называет 4 обязательных поля: минимум 4 месяца с начала или прошлого увеличения,
+              не менее 10% чистой симулированной прибыли над стартовым балансом за эти 4 месяца, минимум 2 обработанные выплаты вознаграждения и положительный
               баланс в момент увеличения. При выполнении условий баланс растёт на 25% каждые 4 месяца до совокупного лимита $2,000,000;
-              повышенный split 90% по этому маршруту относится к 2-Step. 1-Step начинает с {oneStep?.profitSplitPct ?? '—'}%, но не позволяет
-              оставлять reward для увеличения баланса по опубликованной payout-справке.
+              повышенная доля 90% по этому маршруту относится к 2-Step. 1-Step начинает с {oneStep?.profitSplitPct ?? '—'}%, но не позволяет
+              оставлять вознаграждение для увеличения баланса по опубликованной справке о выплатах.
             </p>
             <p>
-              2-Step возвращает 100% первоначального fee только вместе с первой reward-выплатой. Если трейдер прошёл 2 фазы, но нарушил funded-правило
-              до первой выплаты, возврат не состоялся. 1-Step не возвращает fee ни при pass, ни при reward, поэтому каждый повторный €79–€999 является
+              2-Step возвращает 100% первоначального взноса только вместе с первой выплатой вознаграждения. Если трейдер прошёл 2 фазы, но нарушил правило
+              профинансированного этапа до первой выплаты, возврат не состоялся. 1-Step не возвращает взнос ни при прохождении, ни при выплате, поэтому каждый повторный €79–€999 является
               новым невозвратным расходом.
             </p>
-            <p><a href={PAYOUT_URL} target="_blank" rel="noopener noreferrer">Официальная payout-справка</a>{' · '}<a href={FEES_URL} target="_blank" rel="noopener noreferrer">Правило возврата fee</a>{' · '}<a href={SCALING_URL} target="_blank" rel="noopener noreferrer">Условия Scaling Plan</a>.</p>
+            <p><a href={PAYOUT_URL} target="_blank" rel="noopener noreferrer">Официальная справка о выплатах</a>{' · '}<a href={FEES_URL} target="_blank" rel="noopener noreferrer">Правило возврата взноса</a>{' · '}<a href={SCALING_URL} target="_blank" rel="noopener noreferrer">Условия плана масштабирования</a>.</p>
           </div>
         </section>
 
@@ -411,8 +412,8 @@ export default function RussianFtmoReviewPage() {
             <div className="ru-grid">
               <article className="ru-card"><CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Подходит: статический риск</h3><p>2-Step подходит плану, который требует фиксированного 10%-го пола, 5%-го дневного пространства и допускает минимум 4 торговых дня на каждую из 2 фаз.</p></article>
               <article className="ru-card"><CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Подходит: одна фаза и ровные дни</h3><p>1-Step подходит стратегии, способной выдержать 3%-й дневной лимит, движущийся EOD-пол и Best Day 50% ради 1 оценочной фазы и стартового split 90%.</p></article>
-              <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Не подходит: Российская Федерация</h3><p>Официальный country list прямо исключает территорию. Ни русская версия обзора, ни способ выплаты, ни VPN не отменяют опубликованный запрет.</p></article>
-              <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Не подходит: концентрация прибыли</h3><p>Если 1 сильный день регулярно создаёт больше половины общей положительной прибыли, Best Day 50% на 1-Step может задержать pass и reward даже без нарушения 10%-го Maximum Loss.</p></article>
+              <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Не подходит: Российская Федерация</h3><p>Официальный список стран прямо исключает территорию. Ни русская версия обзора, ни способ выплаты, ни VPN не отменяют опубликованный запрет.</p></article>
+              <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Не подходит: концентрация прибыли</h3><p>Если 1 сильный день регулярно создаёт больше половины общей положительной прибыли, Best Day 50% на 1-Step может задержать прохождение и выплату даже без нарушения 10%-го максимального убытка.</p></article>
             </div>
           </div>
         </section>
@@ -427,7 +428,7 @@ export default function RussianFtmoReviewPage() {
             <h2>Если FTMO не подходит: FundedNext и Bright Funded</h2>
             <p>
               Альтернатива должна решать конкретную проблему FTMO, а не просто вести на другой логотип. Для русскоязычного жителя разрешённой страны
-              сначала сравниваются валюта fee, тип просадки, число фаз и payout; для резидента России отдельно проверяется country policy каждой фирмы.
+              сначала сравниваются валюта взноса, тип просадки, число фаз и выплата; для резидента России отдельно проверяются правила страны каждой фирмы.
               FundedNext сохраняет конфликт официальных формулировок по России, а отсутствие России в опубликованном списке Bright Funded не заменяет KYC.
             </p>
             <div className="ru-grid">
@@ -444,7 +445,7 @@ export default function RussianFtmoReviewPage() {
                     <p>
                       {item.slug === 'fundednext'
                         ? 'Начните с выбора между Stellar 2-Step, 1-Step, Lite и Instant; официальный конфликт по российским резидентам не позволяет обещать доступ.'
-                        : 'Начните с выбора между 1-Step, 2-Step Bright и 2-Step Classic; fee публикуется в EUR, а базовый split нельзя подменять платным или scaling-потолком.'}
+                        : 'Начните с выбора между 1-Step, 2-Step Bright и 2-Step Classic; взнос публикуется в EUR, а базовую долю нельзя подменять платным или масштабируемым потолком.'}
                     </p>
                     <div className="ru-actions">
                       <Link href={reviewHref} className="btn-outline">Русский обзор</Link>
@@ -465,15 +466,15 @@ export default function RussianFtmoReviewPage() {
 
         <section className="ru-section">
           <div className="ru-shell ru-content" id="checklist" data-russian-ftmo-checklist="seven-fields">
-            <h2>7 проверок перед покупкой challenge</h2>
+            <h2>7 проверок перед покупкой челленджа</h2>
             <ol>
-              <li>Откройте официальный domain и подтвердите страну по текущему списку, а не по языку интерфейса.</li>
+              <li>Откройте официальный домен и подтвердите страну по текущему списку, а не по языку интерфейса.</li>
               <li>Выберите 1-Step или 2-Step по просадке, а не по разнице {eur((twoStep100k?.priceEur ?? 0) - (oneStep100k?.priceEur ?? 0))} на $100K.</li>
               <li>Сохраните итоговую сумму в EUR на странице оплаты: она может отличаться из-за налога, региона или действующей акции.</li>
-              <li>Для 1-Step смоделируйте Max Daily Loss {oneStep?.dailyLossPct ?? '—'}%, EOD-trailing и Best Day {oneStep?.consistencyRulePct ?? '—'}% вместе.</li>
-              <li>Для 2-Step заложите {twoStep?.minTradingDays ?? '—'} торговых дня в каждой фазе и не считайте refund полученным до первой reward.</li>
-              <li>Проверьте funded-правила новостей, overnight и weekend отдельно от evaluation-правил.</li>
-              <li>Заранее проверьте KYC, имя платёжного метода и способ получения reward в фактической стране.</li>
+              <li>Для 1-Step смоделируйте дневной лимит убытка {oneStep?.dailyLossPct ?? '—'}%, EOD-трейлинг и Best Day {oneStep?.consistencyRulePct ?? '—'}% вместе.</li>
+              <li>Для 2-Step заложите {twoStep?.minTradingDays ?? '—'} торговых дня в каждой фазе и не считайте возврат полученным до первой выплаты.</li>
+              <li>Проверьте правила новостей, ночного и выходного удержания на профинансированном этапе отдельно от правил оценки.</li>
+              <li>Заранее проверьте KYC, имя платёжного метода и способ получения вознаграждения в фактической стране.</li>
             </ol>
             <div className="ru-actions">
               <Link href="/go/ftmo?from=ru-ftmo-review-checklist" rel="nofollow noopener" className="btn-outline">Официальный сайт FTMO</Link>

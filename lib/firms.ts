@@ -21,6 +21,13 @@ export interface Firm {
   assets: string[]
   maxAllocation: string
   platforms: string[]
+  /** A platform-only check; never refreshes prices, firm terms or individual eligibility. */
+  platformEvidence?: {
+    sourceUrl: string
+    sourceCapturedAt: string
+    sourceQuote: string
+    notes: string
+  }
   score: number
   logo: string
   /** Internal editorial review page. */
@@ -226,12 +233,16 @@ export interface Challenge {
   fundedMaxLossPct?: number | null
   /** Funded-stage drawdown method when it differs from the evaluation. */
   fundedDrawdownType?: DrawdownType | null
-  /** Minimum trading days to be eligible for funding/payout. Null = none. */
+  /** Minimum trading days for the captured stage. 0 = no minimum; null = unverified. */
   minTradingDays: number | null
-  /** Hard maximum trading days. Null = unlimited. */
+  /** Hard maximum trading days. Null alone does not establish an unlimited period. */
   maxTradingDays: number | null
+  /** Explicit source confirmation of no time limit; absent/null = unverified. */
+  maxTradingDaysUnlimited?: boolean | null
   /** Consistency rule as a % cap on a single day's contribution to total profit. */
   consistencyRulePct: number | null
+  /** false explicitly confirms no rule; null/absent does not. See notes for stage scope. */
+  consistencyRuleApplies?: boolean | null
   /** Profit split this product pays the trader (0–100). */
   profitSplitPct: number | null
   /** Days until the first payout request can be raised on this product. */

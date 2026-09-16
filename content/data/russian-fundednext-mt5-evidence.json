@@ -1,4 +1,5 @@
 {
+  "firmSlug": "fundednext",
   "capturedAt": "2026-08-28",
   "searchIntent": {
     "sourceType": "Google autocomplete",
@@ -84,7 +85,11 @@
   },
   "ea": {
     "sourceUrl": "https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext",
-    "sourceCapturedAt": "2026-08-28",
+    "sourceCapturedAt": "2026-09-08",
+    "manualOnlyFromAccountSizeUsd": 50000,
+    "parameterModificationToolsCountAsEa": true,
+    "sizeRestrictionEvidence": "Traders on accounts of $50,000 and above must trade fully manually on MetaTrader 4 or MetaTrader 5",
+    "sizeRestrictionNotes": "Observed in the official EA article on September 8. The article did not establish an effective date or grandfathering for existing accounts. Other guide source dates and all product price captures remain unchanged.",
     "allowedPlatforms": ["MT4", "MT5"],
     "manualOnlyPlatforms": ["cTrader", "Match-Trader"],
     "additionalFeeRequired": true,
@@ -96,6 +101,12 @@
     "forbiddenThirdPartyIntegrations": ["Telegram", "WhatsApp"],
     "challengePassingBotsAllowed": false,
     "enforcement": ["soft breach", "phase restart", "account suspension", "reward denial"]
+  },
+  "instantEaScope": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641338-can-i-use-ea-in-stellar-instant",
+    "sourceCapturedAt": "2026-09-08",
+    "accountSizeCutoffUsd": null,
+    "notes": "The product-specific article permits paid EA use subject to strategy rules but does not repeat the general article's account-size cutoff. It does not establish an exemption for scaled Instant accounts. Confirm applicability with FundedNext rather than infer an exception."
   },
   "strategyContinuity": {
     "sourceUrl": "https://help.fundednext.com/en/articles/8388896-are-there-any-restrictions-on-my-trading-strategy",

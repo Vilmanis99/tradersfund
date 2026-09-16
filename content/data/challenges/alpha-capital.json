@@ -12,7 +12,7 @@
       },
       {
         "sizeUsd": 10000,
-        "priceUsd": 99,
+        "priceUsd": 97,
         "refundable": false
       },
       {
@@ -57,9 +57,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
-    "sourceCapturedAt": "2026-08-11",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-08-11.json"
+      "Current fee rows are from Alpha Capital's first-party 2026 plan and pricing update: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Confirm the final checkout amount and selected variant before purchase.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-09-14.json",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-09-14.json"
     ]
   },
   {
@@ -121,9 +123,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
-    "sourceCapturedAt": "2026-08-11",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-08-11.json"
+      "Current fee rows are from Alpha Capital's first-party 2026 plan and pricing update: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Confirm the final checkout amount and selected variant before purchase.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-09-14.json",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-09-14.json"
     ]
   },
   {
@@ -134,22 +138,22 @@
     "accountSizes": [
       {
         "sizeUsd": 5000,
-        "priceUsd": null,
+        "priceUsd": 70,
         "refundable": false
       },
       {
         "sizeUsd": 10000,
-        "priceUsd": null,
+        "priceUsd": 147,
         "refundable": false
       },
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
+        "priceUsd": 247,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
+        "priceUsd": 357,
         "refundable": false
       },
       {
@@ -159,7 +163,7 @@
       },
       {
         "sizeUsd": 200000,
-        "priceUsd": null,
+        "priceUsd": 1097,
         "refundable": false
       }
     ],
@@ -185,9 +189,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
-    "sourceCapturedAt": "2026-08-11",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-08-11.json"
+      "Current fee rows are from Alpha Capital's first-party 2026 plan and pricing update: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Confirm the final checkout amount and selected variant before purchase.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-09-14.json",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-09-14.json"
     ]
   },
   {
@@ -245,9 +251,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
-    "sourceCapturedAt": "2026-08-11",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-08-11.json"
+      "Current fee rows are from Alpha Capital's first-party 2026 plan and pricing update: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Confirm the final checkout amount and selected variant before purchase.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-09-14.json",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-09-14.json"
     ]
   },
   {
@@ -258,37 +266,37 @@
     "accountSizes": [
       {
         "sizeUsd": 2500,
-        "priceUsd": null,
+        "priceUsd": 20,
         "refundable": false
       },
       {
         "sizeUsd": 5000,
-        "priceUsd": null,
+        "priceUsd": 67,
         "refundable": false
       },
       {
         "sizeUsd": 10000,
-        "priceUsd": null,
+        "priceUsd": 97,
         "refundable": false
       },
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
+        "priceUsd": 197,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
+        "priceUsd": 257,
         "refundable": false
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
+        "priceUsd": 457,
         "refundable": false
       },
       {
         "sizeUsd": 200000,
-        "priceUsd": null,
+        "priceUsd": 897,
         "refundable": false
       }
     ],
@@ -311,9 +319,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
-    "sourceCapturedAt": "2026-08-11",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-08-11.json"
+      "Current fee rows are from Alpha Capital's first-party 2026 plan and pricing update: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Confirm the final checkout amount and selected variant before purchase.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-09-14.json",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-09-14.json"
     ]
   }
 ]

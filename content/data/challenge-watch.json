@@ -1,5 +1,112 @@
 [
   {
+    "id": "topstep-request-timing-and-rule-correction-2026-09-08",
+    "firmSlug": "topstep",
+    "firmName": "Topstep",
+    "productSlugs": ["trading-combine-standard-path", "trading-combine-no-activation-fee-path"],
+    "kind": "rule-change",
+    "status": "verified",
+    "observedAt": "2026-09-08",
+    "lastCheckedAt": "2026-09-08",
+    "title": "Correction: Topstep payout eligibility is not a three-calendar-day transfer",
+    "summary": "The two monthly pricing paths and six base prices were rechecked. XFA payout requests require either three trading days with 40% consistency or five $150 winning days. Approval and transfer take additional time. Wise is limited to China, Canada and the UK; both pricing paths have conditional automation and copying rules.",
+    "traderImpact": "TFH removed the single calendar-day payout figure, corrected the No Activation Fee path's blanket automation permissions and added the published dollar loss limits per tier. Fee-recovery tables now use those tier limits. These are corrections to our representation, not a proven September change to all Topstep terms. Eligibility still depends on personal circumstances.",
+    "sourceUrls": ["https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions", "https://help.topstep.com/en/articles/8284233-topstep-payout-policy", "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit", "https://help.topstep.com/en/articles/8284197-trading-combine-parameters", "https://help.topstep.com/en/articles/14434175-topstepx"]
+  },
+  {
+    "id": "topstep-minimum-days-source-conflict-2026-09-08",
+    "firmSlug": "topstep",
+    "firmName": "Topstep",
+    "productSlugs": ["trading-combine-standard-path", "trading-combine-no-activation-fee-path"],
+    "kind": "source-conflict",
+    "status": "watch",
+    "observedAt": "2026-09-08",
+    "lastCheckedAt": "2026-09-08",
+    "title": "Topstep still gives different minimum-day descriptions",
+    "summary": "The Combine parameters article says passing can take as few as two days; the marketing FAQ says there is no minimum time requirement. Both statements were visible during this capture. TFH records the minimum-day field as unverified instead of publishing a verified two-day or zero-day minimum.",
+    "traderImpact": "Check the applicable Combine consistency requirement and obtain clarification before planning a one-day pass. The six monthly prices were separately verified; this unresolved rule does not establish a price change or a new account restriction.",
+    "sourceUrls": ["https://help.topstep.com/en/articles/8284197-trading-combine-parameters", "https://www.topstep.com/topstep-prop"]
+  },
+  {
+    "id": "crypto-fund-trader-reward-model-correction-2026-09-08",
+    "firmSlug": "crypto-fund-trader",
+    "firmName": "Crypto Fund Trader",
+    "productSlugs": ["evaluation", "accelerated", "instant"],
+    "kind": "rule-change",
+    "status": "verified",
+    "observedAt": "2026-09-08",
+    "lastCheckedAt": "2026-09-08",
+    "title": "Correction: CFT reward shares and payout timing depend on the programme",
+    "summary": "The three selected Instant starting tiers show a 50% reward share, while the 1-Phase and 2-Phase programmes show 80%. General reward requests require 15 traded days or 30 calendar days. Instant's no-minimum-days withdrawal/upgrade path requires 10% simulated profit; it is not unconditional immediate payment.",
+    "traderImpact": "This corrects TFH's blanket 80% and bi-weekly descriptions, not a proven September policy change. The regenerated Instant fee-recovery model uses the 50% starting share. Numeric payout timing is left unverified where the calendar field cannot express the conditions; no actual customer payout was independently verified.",
+    "sourceUrls": ["https://cryptofundtrader.com/", "https://cryptofundtrader.com/faq/"]
+  },
+  {
+    "id": "crypto-fund-trader-ascend-break-source-conflicts-2026-09-08",
+    "firmSlug": "crypto-fund-trader",
+    "firmName": "Crypto Fund Trader",
+    "productSlugs": ["ascend", "break"],
+    "kind": "price-watch",
+    "status": "verified",
+    "observedAt": "2026-09-08",
+    "lastCheckedAt": "2026-09-14",
+    "title": "CFT Ascend and Break fee ladders were resolved from current terms",
+    "summary": "The current Terms and Conditions list Ascend at $39 / $78 / $195 / $390 / $780 / $1,560 for $5K through $200K, and Break at $70 / $140 / $200 for $25K / $50K / $100K. Break activation fees remain $138 / $198 / $328. The shop lists Break products, while the dedicated page confirms the current rule set.",
+    "traderImpact": "CFT's Ascend and Break tiers can now appear in fresh price comparisons, but Ascend pays fixed scholarships rather than an ongoing percentage split and Break requires activation after review. Verify the selected tier and final checkout availability, especially where a page block still says sold out.",
+    "sourceUrls": ["https://cryptofundtrader.com/", "https://cryptofundtrader.com/terms-and-conditions/", "https://cryptofundtrader.com/break-challenge/"]
+  },
+  {
+    "id": "fundednext-ea-account-size-cutoff-2026-09-08",
+    "ruleEvidenceRefs": [{ "file": "russian-fundednext-mt5-evidence.json", "section": "ea" }],
+    "firmSlug": "fundednext",
+    "firmName": "FundedNext",
+    "productSlugs": ["stellar-1-step", "stellar-2-step", "stellar-lite"],
+    "kind": "rule-change",
+    "status": "verified",
+    "observedAt": "2026-09-08",
+    "lastCheckedAt": "2026-09-08",
+    "title": "FundedNext's EA article limits automation to accounts below $50,000",
+    "summary": "The official EA article requires manual trading from $50,000 upward on MT4/MT5, including tools that adjust SL, TP or position size. Smaller accounts require the paid add-on and strategy checks; cTrader and Match-Trader are manual-only. September 8 is our observation date, not an established policy-change date.",
+    "traderImpact": "Buying an EA add-on is not universal permission to automate. Check the exact account size and programme. The article gives no effective date or existing-account exemption; the product price captures have not been refreshed.",
+    "sourceUrls": ["https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext"]
+  },
+  {
+    "id": "fundednext-instant-ea-size-scope-2026-09-08",
+    "ruleEvidenceRefs": [
+      { "file": "russian-fundednext-mt5-evidence.json", "section": "ea" },
+      { "file": "russian-fundednext-mt5-evidence.json", "section": "instantEaScope" }
+    ],
+    "firmSlug": "fundednext",
+    "firmName": "FundedNext",
+    "productSlugs": ["stellar-instant"],
+    "kind": "source-conflict",
+    "status": "watch",
+    "observedAt": "2026-09-08",
+    "lastCheckedAt": "2026-09-08",
+    "title": "FundedNext's general and Instant EA articles differ in account-size detail",
+    "summary": "The general EA article includes a manual-only account-size cutoff. The Stellar Instant EA article permits conditional automation but does not repeat that cutoff or explicitly grant an exemption.",
+    "traderImpact": "Confirm how the general size rule applies before automating a scaled Instant account. An omitted limit in one article is not proof of an exception; retain the written answer for the exact programme and account size.",
+    "sourceUrls": [
+      "https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext",
+      "https://help.fundednext.com/en/articles/11641338-can-i-use-ea-in-stellar-instant"
+    ]
+  },
+  {
+    "id": "fundednext-stellar-one-step-forex-leverage-correction-2026-09-08",
+    "ruleEvidenceRefs": [{ "file": "fundednext-forex-leverage-evidence.json", "section": "evaluation" }],
+    "firmSlug": "fundednext",
+    "firmName": "FundedNext",
+    "productSlugs": ["stellar-1-step"],
+    "kind": "rule-change",
+    "status": "verified",
+    "observedAt": "2026-09-08",
+    "lastCheckedAt": "2026-09-08",
+    "title": "Correction: Stellar 1-Step forex leverage is 1:30, not 1:100",
+    "summary": "Our August 28 Russian forex capture incorrectly grouped Stellar 1-Step with the 1:100 evaluations. The official leverage article's image tables show 1:30 for Stellar 1-Step in both Challenge and FundedNext Accounts. September 8 records our correction, not a newly established policy-change date.",
+    "traderImpact": "Do not size a Stellar 1-Step position using the 1:100 figure for Stellar 2-Step or Lite. Recheck required margin for the exact programme; leverage does not increase its loss limits. This rule check did not refresh product prices.",
+    "sourceUrls": ["https://help.fundednext.com/en/articles/8019669-what-is-the-leverage-of-the-trading-account"]
+  },
+  {
     "id": "fundingpips-reward-cycles-minimum-days-2026-08-26",
     "firmSlug": "fundingpips",
     "firmName": "FundingPips",
@@ -56,12 +163,13 @@
     "kind": "price-watch",
     "status": "watch",
     "observedAt": "2026-07-28",
-    "lastCheckedAt": "2026-08-11",
+    "lastCheckedAt": "2026-09-14",
     "title": "Tradeify list prices and homepage promotions can diverge",
-    "summary": "Tradeify's June 24 pricing reference still maps 12 base purchases to account sizes. On 11 August, the homepage mixed 30%, 35%, and 40% promotion copy with placeholder card values; the Select 50K reset was $109 while its base purchase remained $165.",
-    "traderImpact": "The comparison stores the stable purchase price, not a temporary coupon or reset. Confirm the final discounted amount, reset cost, and product name in checkout before paying.",
+    "summary": "The 14 September first-party refresh still maps 16 base purchases across Growth, Select and Lightning. Temporary homepage promotions and placeholder card values remain separate from the Pricing Reference; the current Select payout policy also splits Flex and Daily caps by whether the account was purchased before or after 1 September 2026.",
+    "traderImpact": "The comparison stores stable base purchase prices, not a temporary coupon, reset fee or purchase-date payout cap. Confirm the final discount, reset cost, account purchase date and applicable payout table in checkout and the account agreement.",
     "sourceUrls": [
       "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
       "https://tradeify.co/"
     ]
   },
@@ -78,7 +186,7 @@
     "kind": "lineup-change",
     "status": "watch",
     "observedAt": "2026-07-28",
-    "lastCheckedAt": "2026-08-11",
+    "lastCheckedAt": "2026-09-14",
     "title": "LucidDaily launched with 4 configurable evaluation paths",
     "summary": "Lucid's help centre still documents 4 Daily variants, but the homepage selector omits Daily and its trading-hours page does not cover Daily. A general page broadly restricts red-folder news, while the funded-product page narrows the hard-breach window to U.S. high-impact USD events.",
     "traderImpact": "Confirm that Daily is purchasable and verify the exact DLL, drawdown, price, overnight, weekend, and news-calendar scope at checkout; no stable public Daily price was captured.",
@@ -105,14 +213,17 @@
     "kind": "lineup-change",
     "status": "verified",
     "observedAt": "2026-07-28",
-    "lastCheckedAt": "2026-07-28",
+    "lastCheckedAt": "2026-09-14",
     "effectiveAt": "2026-03-01",
     "title": "Apex moved new purchases to 4 one-time evaluation paths",
-    "summary": "Products bought after 1 March 2026 use Intraday or EOD drawdown with Standard or No Activation Fee pricing. The prior recurring products are Legacy.",
-    "traderImpact": "Older Apex reviews can describe a different billing and drawdown structure. Match any comparison to the product name shown at checkout.",
+    "summary": "Products bought after 1 March 2026 use Intraday or EOD drawdown with Standard or No Activation Fee pricing. The current help pages also confirm 30-day access, a 7-day activation deadline and no minimum evaluation trading days; the prior recurring products are Legacy.",
+    "traderImpact": "Older Apex reviews can describe a different billing and drawdown structure. Match the exact product shown at checkout, verify the dynamic fee, and note that the current evaluation may pass in one day without a minimum-day rule.",
     "sourceUrls": [
       "https://apextraderfunding.com/help-center/status/status-updates/",
-      "https://apextraderfunding.com/"
+      "https://apextraderfunding.com/",
+      "https://apextraderfunding.com/help-center/intraday-trailing-drawdown-accounts/intraday-trailing-drawdown-evaluations/",
+      "https://apextraderfunding.com/help-center/eod-trailing-drawdown-accounts/eod-evaluations/",
+      "https://apextraderfunding.com/help-center/billing/pa-activation-process-deadline-explained/"
     ]
   },
   {
@@ -127,9 +238,9 @@
     "kind": "price-watch",
     "status": "watch",
     "observedAt": "2026-07-28",
-    "lastCheckedAt": "2026-08-11",
+    "lastCheckedAt": "2026-09-14",
     "title": "TradeDay monthly prices were tied to a 55%-off promotion",
-    "summary": "The 55%-off TDNEW monthly fees were unchanged on 11 August, but crossed-out list prices still conflict with TradeDay's support table and reset prices differ across the homepage and billing articles.",
+    "summary": "The 55%-off TDNEW monthly fees were still visible on 14 September, including newly exposed 25K cards ($45/$54/$59), but crossed-out list prices still conflict with TradeDay's support table and reset prices differ across the homepage and billing articles.",
     "traderImpact": "Treat the table price as a dated promotional snapshot. Recheck the first month, renewal, and reset totals before paying.",
     "sourceUrls": [
       "https://www.tradeday.com/",
@@ -168,7 +279,7 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-07-27",
-    "lastCheckedAt": "2026-08-11",
+    "lastCheckedAt": "2026-09-14",
     "title": "Alpha Capital's own pages disagree on a 25K Pro price",
     "summary": "One official cost page states $137 for the 25K Alpha Pro 6% variant, while a separate official review page states $197 for a 25K Alpha Pro without identifying the target variant.",
     "traderImpact": "The $137 figure is retained only for the explicitly labelled 6% product. Verify the selected target and final checkout total before purchase.",
@@ -187,7 +298,7 @@
     "kind": "price-watch",
     "status": "watch",
     "observedAt": "2026-07-27",
-    "lastCheckedAt": "2026-08-11",
+    "lastCheckedAt": "2026-09-14",
     "title": "Alpha One prices do not identify the rule variant",
     "summary": "Alpha's cost table labels tiers only as Alpha One, while its plan page documents 6%, 10% and 12% variants with different targets, drawdown limits and size caps. The captured rules use the 10% variant, but the fee-to-variant mapping is unresolved.",
     "traderImpact": "Confirm the selected variant, its target, drawdown, account-size ceiling and final fee before paying; do not assume the stored fee buys the 10% rule set.",
@@ -206,7 +317,7 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-07-27",
-    "lastCheckedAt": "2026-08-11",
+    "lastCheckedAt": "2026-09-14",
     "title": "Alpha Capital disagrees on Alpha One payout schedules",
     "summary": "The homepage advertises Bi-Weekly or On-Demand with Alpha One selected, while the 2026 rules article and bi-weekly help article limit bi-weekly payouts to Alpha Pro and Alpha Three. The data retains the narrower on-demand schedule for Alpha One.",
     "traderImpact": "Confirm whether the purchased Alpha One account offers a 14-day cycle, on-demand requests or both before planning cash flow.",
@@ -215,6 +326,29 @@
       "https://alphacapitalgroup.uk/posts/alpha-capital-rules-explained-drawdown-profit-targets-daily-loss-and-evaluation-rules-2026",
       "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
       "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+    ]
+  },
+  {
+    "id": "alpha-capital-pricing-refresh-2026-09-14",
+    "firmSlug": "alpha-capital",
+    "firmName": "Alpha Capital",
+    "productSlugs": [
+      "alpha-one",
+      "alpha-pro-6",
+      "alpha-swing",
+      "alpha-three",
+      "alpha-direct"
+    ],
+    "kind": "price-watch",
+    "status": "verified",
+    "observedAt": "2026-09-14",
+    "lastCheckedAt": "2026-09-14",
+    "title": "Alpha Capital's current fee tables now cover all five tracked plans",
+    "summary": "The first-party July 23, 2026 pricing update lists 30 fees for the five tracked records. Alpha One 10% runs from $50 to $997, Alpha Pro 6% from $40 to $847, Alpha Swing from $70 to $1,097, Alpha Three from $67 to $697, and Alpha Direct from $20 to $897.",
+    "traderImpact": "The comparison now exposes previously unverified Swing and Alpha Direct tiers and corrects Alpha One 10K from $99 to $97. The Alpha One 6%/12% and Alpha Pro 8%/10% variants have different rule surfaces, so confirm the selected variant and final checkout total before paying.",
+    "sourceUrls": [
+      "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "https://alphacapitalgroup.uk/product"
     ]
   },
   {
@@ -227,7 +361,7 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-08-11",
-    "lastCheckedAt": "2026-08-11",
+    "lastCheckedAt": "2026-09-14",
     "title": "E8 Pro pages disagree on prices and configurable terms",
     "summary": "The current E8PRO v2 page lists $38 to $2,998 and fixed 8% target, 8% static drawdown and 2.5% daily-cap terms, with an 80% default or paid 100% add-on. Current help still shows the older $32 to $2,598 ladder, while an older custom-account article also lists 6%, 8% or 10% drawdown and a 90% payout variant.",
     "traderImpact": "The comparison follows the current product-specific v2 page and does not infer variant prices. Confirm the size, drawdown, payout option, platform surcharge and final total in checkout.",
@@ -249,14 +383,31 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-08-11",
-    "lastCheckedAt": "2026-08-11",
+    "lastCheckedAt": "2026-09-14",
     "title": "E8 One pages disagree on the default target and drawdown",
     "summary": "The rendered configurator and product page default to a 9% target, 4% daily drawdown and 6% trailing maximum drawdown, while E8's help article calls 6% target, 3% daily and 4% dynamic drawdown the preset. The comparison follows the rendered configuration attached to the captured prices.",
-    "traderImpact": "Verify the selected target, daily limit and maximum drawdown in the order confirmation before trading; Indian profiles are additionally capped at the $50K E8 One tier.",
+    "traderImpact": "Verify the selected target, daily limit and maximum drawdown in the order confirmation before trading; Indian and Kenyan profiles are additionally capped at the $200K E8 One tier.",
     "sourceUrls": [
       "https://e8markets.com/compare-simfi-funded-accounts",
       "https://e8markets.com/e8-one",
       "https://help.e8markets.com/en/articles/11775980-e8-one"
+    ]
+  },
+  {
+    "id": "e8-signature-price-refresh-2026-09-14",
+    "firmSlug": "e8-markets",
+    "firmName": "E8 Markets",
+    "productSlugs": ["e8-signature"],
+    "kind": "price-watch",
+    "status": "verified",
+    "observedAt": "2026-09-14",
+    "lastCheckedAt": "2026-09-14",
+    "title": "E8 Signature base prices refreshed",
+    "summary": "The current E8 Signature product page shows undiscounted one-time prices of $120 / $160 / $280 / $450 for $25K / $50K / $100K / $150K. The page also displays a 25% first-order code, but the comparison stores the list prices and treats the discount as promotional.",
+    "traderImpact": "The four Signature fees are $10–$60 higher than the prior capture, so true-cost and break-even comparisons move with them. Check the final checkout total and any active code before paying.",
+    "sourceUrls": [
+      "https://e8markets.com/e8-signature",
+      "https://help.e8markets.com/en/articles/8880316-what-is-the-custom-account"
     ]
   },
   {
@@ -269,7 +420,7 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-08-11",
-    "lastCheckedAt": "2026-08-11",
+    "lastCheckedAt": "2026-09-14",
     "title": "Maven publishes conflicting Instant payout timing",
     "summary": "Maven's pricing page says Instant payouts are available when requirements are met, while its FAQ and Terms specify a 10-business-day interval.",
     "traderImpact": "The comparison leaves Instant payout timing unknown. Confirm the first eligible request date and later cadence in the selected account terms before purchase.",
@@ -290,7 +441,7 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-07-27",
-    "lastCheckedAt": "2026-08-11",
+    "lastCheckedAt": "2026-09-14",
     "title": "Maven's Prediction pages disagree on loss limits",
     "summary": "The pricing page presents a 5% Phase-1 and 8% funded maximum loss for both Prediction paths, while the FAQ describes Essential as 3% trailing and Elite as 5% static.",
     "traderImpact": "Maximum-loss values remain unknown in the comparison. Confirm the exact Essential or Elite rule set shown in the account agreement before purchase.",
@@ -309,7 +460,7 @@
     "kind": "rule-change",
     "status": "verified",
     "observedAt": "2026-08-11",
-    "lastCheckedAt": "2026-08-11",
+    "lastCheckedAt": "2026-09-14",
     "effectiveAt": "2026-07-26",
     "title": "New TradeDay Fast Pass accounts use funded consistency",
     "summary": "Fast Pass Funded Sim accounts opened on or after 26 July 2026 must meet 45% gross-profit consistency for each payout; older accounts retain no funded consistency objective.",
@@ -328,7 +479,7 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-08-11",
-    "lastCheckedAt": "2026-08-11",
+    "lastCheckedAt": "2026-09-14",
     "title": "TradeDay disagrees on Fast Pass days and a payout cap",
     "summary": "The homepage says 3 minimum trading days while current support says no formal minimum; the 100K funded payout cap is $1,875 on the homepage and $1,850 in support.",
     "traderImpact": "The comparison leaves the minimum-day field unknown and does not choose a disputed 100K cap. Confirm both rules for the exact account before purchase or payout.",
@@ -336,6 +487,138 @@
       "https://www.tradeday.com/",
       "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405229-what-is-fast-pass-",
       "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy"
+    ]
+  },
+  {
+    "id": "fxify-current-price-display-conflict-2026-09-14",
+    "firmSlug": "fxify",
+    "firmName": "FXIFY",
+    "productSlugs": [
+      "one-phase",
+      "two-phase-classic",
+      "two-phase-standard",
+      "two-phase-pro",
+      "three-phase",
+      "instant-funding-standard",
+      "instant-funding-lite",
+      "lightning-challenge"
+    ],
+    "kind": "price-watch",
+    "status": "verified",
+    "observedAt": "2026-09-15",
+    "lastCheckedAt": "2026-09-15",
+    "title": "FXIFY checkout ladders verified; program-page cards still need a presentation fix",
+    "summary": "FXIFY's official checkout exposes named product/type selectors and exact current list-price ladders for all 8 structured products. The public program pages still render a generic $250/$5K card, and the older Instant Funding Lite launch article lists a different six-tier ladder; those are retained as presentation and historical caveats rather than used as checkout quotes.",
+    "traderImpact": "The structured comparison now uses the current read-only checkout ladder: 54 tiers across 8 FXIFY products, including five Instant Funding Lite tiers at $19/$44/$85/$169/$289. Coupons, add-ons, country eligibility, and the final checkout total are not included in list prices; re-check the routed checkout before paying.",
+    "sourceUrls": [
+      "https://trader.fxify.com/purchasechallenge",
+      "https://fxify.com/programs/one-phase/",
+      "https://fxify.com/programs/two-phase/",
+      "https://fxify.com/programs/three-phase-challenge/",
+      "https://fxify.com/programs/instant-funding/",
+      "https://fxify.com/programs/lightning-challenge/",
+      "https://fxify.com/blog/how-much-money-start-trading/",
+      "https://fxify.com/blog/introducing-fxify-instant-funding-lite/",
+      "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
+      "https://fxify.com/faqs/all-faqs/underpayment/"
+    ]
+  },
+  {
+    "id": "mffu-one-time-lineup-and-price-refresh-2026-09-14",
+    "firmSlug": "my-funded-futures",
+    "firmName": "My Funded Futures",
+    "productSlugs": ["rapid", "rapid-eod", "builder", "pro", "flex"],
+    "kind": "lineup-change",
+    "status": "verified",
+    "observedAt": "2026-09-14",
+    "lastCheckedAt": "2026-09-14",
+    "effectiveAt": "2026-08-20",
+    "title": "MFFU moved new purchases to one-time plans and added Rapid EOD",
+    "summary": "Current MFFU plan pages describe Rapid, Rapid EOD, Builder and Pro as one-time purchases with no renewals. The official Flex article labels Flex legacy and no longer offered to new buyers. Current plan pages expose only selected-tier prices in server-readable text, so this refresh retains only unambiguous first-party prices and leaves the other current tier prices unverified.",
+    "traderImpact": "Do not compare the old monthly subscription figures with a new MFFU checkout. Russia is on MFFU's restricted-country list and cannot purchase a new account. For current buyers, verify the selected size, one-time total, plan variant, payout buffer and any promotion in checkout; legacy subscriptions bought before the migration follow their original billing terms.",
+    "sourceUrls": [
+      "https://myfundedfutures.com/plans/rapid",
+      "https://myfundedfutures.com/plans/pro",
+      "https://myfundedfutures.com/plans/builder",
+      "https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan",
+      "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+      "https://help.myfundedfutures.com/en/articles/16727601-rapid-eod-25k-a-comprehensive-look",
+      "https://myfundedfutures.com/blog/myfundedfutures-mffu-flex-plan",
+      "https://marketing.myfundedfutures.com/terms",
+      "https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy"
+    ]
+  },
+  {
+    "id": "take-profit-trader-three-day-test-update-2026-09-14",
+    "firmSlug": "take-profit-trader",
+    "firmName": "Take Profit Trader",
+    "productSlugs": ["the-test"],
+    "kind": "rule-change",
+    "status": "verified",
+    "observedAt": "2026-09-14",
+    "lastCheckedAt": "2026-09-14",
+    "effectiveAt": "2026-08-17",
+    "title": "Take Profit Trader reduced new Test minimum days to three",
+    "summary": "Take Profit Trader's official 17 August update changed the minimum trading-day requirement for new Test accounts from five to three. Existing evaluations and resets retain the five-day minimum; the 50% consistency rule and other Test rules remain unchanged.",
+    "traderImpact": "A new Test can reach the PRO stage after three trading days when its profit target and other rules are satisfied. Check the account creation or reset date before relying on the shorter path, because an existing five-day evaluation is not retroactively changed.",
+    "sourceUrls": [
+      "https://takeprofittrader.com/blog/3-day-evals",
+      "https://takeprofittrader.com/",
+      "https://try.takeprofittrader.com/TPT-FAQs-nf40-4-0725"
+    ]
+  },
+  {
+    "id": "ofp-current-plan-display-conflict-2026-09-14",
+    "firmSlug": "ofp-funding",
+    "firmName": "OFP Funding",
+    "productSlugs": [
+      "instant-classic-3-daily-6-max-drawdown",
+      "instant-classic-5-daily-10-max-drawdown",
+      "instant-lite",
+      "instant-plus-3-daily-5-max-drawdown",
+      "instant-plus-5-daily-10-max-drawdown",
+      "instant-prime",
+      "instant-pro",
+      "one-phase-challenge",
+      "two-phase-challenge"
+    ],
+    "kind": "source-conflict",
+    "status": "watch",
+    "observedAt": "2026-09-14",
+    "lastCheckedAt": "2026-09-16",
+    "sourceConflictEvidenceRefs": [
+      { "file": "ofp-funding-plan-conflict-evidence.json", "section": "homepageSelector" },
+      { "file": "ofp-funding-plan-conflict-evidence.json", "section": "termsSchedule" },
+      { "file": "ofp-funding-plan-conflict-evidence.json", "section": "termsPdf" }
+    ],
+    "title": "OFP Funding's current selector does not map a stable price ladder to every model",
+    "summary": "The current OFP homepage shows a selected 50K Instant Lite configuration at $150, while the official terms describe several model families without a complete current price ladder. Selecting Lite's 100% split does not change the homepage's rendered 1:100* leverage block, while Schedule A specifies 1:30 for Lite. The older structured prices cannot be treated as current checkout quotes until the selected model, size and total are captured together.",
+    "traderImpact": "Keep OFP Funding's last structured product capture dated 27 July 2026. Compare rules as dated material only, then verify the model, account size, billing and final checkout total directly before paying.",
+    "sourceUrls": [
+      "https://ofpfunding.com/",
+      "https://ofpfunding.com/terms-and-conditions",
+      "https://my.ofpfunding.com/files/Terms-and-Conditions-of-Business.pdf"
+    ]
+  },
+  {
+    "id": "the-funded-trader-current-lineup-conflict-2026-09-14",
+    "firmSlug": "the-funded-trader",
+    "firmName": "The Funded Trader",
+    "productSlugs": ["knight", "knight-pro", "classic-1-step", "royal", "royal-pro", "classic-2-step", "dragon"],
+    "kind": "source-conflict",
+    "status": "watch",
+    "observedAt": "2026-09-14",
+    "lastCheckedAt": "2026-09-16",
+    "sourceConflictEvidenceRefs": [
+      { "file": "the-funded-trader-lineup-conflict-evidence.json", "section": "currentHomepage" },
+      { "file": "the-funded-trader-lineup-conflict-evidence.json", "section": "challengeConfigurator" }
+    ],
+    "title": "The Funded Trader's current lineup and package pricing do not map cleanly to the older tier capture",
+    "summary": "The firm's first-party homepage and configurator currently return a Deployment Paused page in a direct browser check. Cached package-level allocation and price snippets remain historical context, not a named-programme tier map, so the older product ladder remains unresolved.",
+    "traderImpact": "Do not present The Funded Trader as available to a Russian resident. Keep the last structured price capture dated 27 July 2026 and verify the selected programme, platform, add-ons, country eligibility and checkout total directly before paying.",
+    "sourceUrls": [
+      "https://www.thefundedtraderprogram.com/",
+      "https://www.thefundedtraderprogram.com/?p=36045"
     ]
   }
 ]

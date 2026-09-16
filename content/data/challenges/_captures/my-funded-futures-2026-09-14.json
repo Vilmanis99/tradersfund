@@ -1,0 +1,303 @@
+{
+  "firmSlug": "my-funded-futures",
+  "officialDomain": "https://myfundedfutures.com",
+  "capturedAt": "2026-09-14",
+  "reviewStatus": "ready",
+  "products": [
+    {
+      "firmSlug": "my-funded-futures",
+      "productName": "Rapid",
+      "productSlug": "rapid",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "maxLossUsd": 1000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 209,
+          "maxLossUsd": 2000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "maxLossUsd": 3000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": null,
+          "maxLossUsd": 4500,
+          "refundable": false
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": 50,
+      "profitSplitPct": 90,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": null,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "assetClass": "futures",
+      "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+      "sourceCapturedAt": "2026-09-14",
+      "notes": [
+        "Current Rapid plan page says one-time payment with no renewals and $0 activation fee for new purchases.",
+        "The current page exposes the regular $209 price for the linked 50K checkout; the remaining size prices are rendered by the client-side selector and were not mapped to a stable first-party figure in this capture, so they remain null rather than reusing the 27 July subscription prices.",
+        "Evaluation uses EOD trailing drawdown; the Sim Funded stage uses intraday trailing drawdown and the floor locks at +$100 after the buffer is secured.",
+        "The evaluation target is 6% (the official rules table gives $1,500 / $3,000 / $6,000 / $9,000 by size), with 2 minimum trading days and a 50% evaluation-only consistency rule.",
+        "The funded stage has no daily loss limit or consistency rule, a 90/10 split, a $500 minimum payout, and a required buffer of $1,100 / $2,100 / $3,100 / $4,600 by size. The first request is not a fixed day count because the buffer must be cleared.",
+        "The firm-wide restricted-country article lists Russia. A trader located in Russia cannot purchase a new account.",
+        "Capture sources: https://myfundedfutures.com/plans/rapid and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy"
+      ],
+      "fundedDrawdownType": "trailing"
+    },
+    {
+      "firmSlug": "my-funded-futures",
+      "productName": "Rapid EOD",
+      "productSlug": "rapid-eod",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "maxLossUsd": 1000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 157,
+          "maxLossUsd": 2000,
+          "refundable": false
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": 4,
+      "drawdownType": "eod-trailing",
+      "fundedDrawdownType": "eod-trailing",
+      "minTradingDays": 4,
+      "maxTradingDays": null,
+      "consistencyRulePct": 30,
+      "profitSplitPct": 90,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": null,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "assetClass": "futures",
+      "sourceUrl": "https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan",
+      "sourceCapturedAt": "2026-09-14",
+      "notes": [
+        "The official Rapid EOD 50K article states a $157 one-time cost, no activation fee, 4 minimum trading days, 30% evaluation consistency, EOD drawdown in both evaluation and Sim Funded, a $2,100 buffer, $500 minimum payout, and a 90/10 split.",
+        "The official Rapid EOD 25K help article confirms the 25K rules and $1,000 drawdown, but does not publish a stable price; its price remains null until a first-party tier price is exposed.",
+        "Rapid EOD is a separate product from standard Rapid: funded drawdown remains EOD instead of switching to intraday trailing.",
+        "The firm-wide restricted-country article lists Russia. A trader located in Russia cannot purchase a new account.",
+        "Capture sources: https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan, https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look, https://help.myfundedfutures.com/en/articles/16727601-rapid-eod-25k-a-comprehensive-look, and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy"
+      ]
+    },
+    {
+      "firmSlug": "my-funded-futures",
+      "productName": "Flex",
+      "productSlug": "flex",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 95,
+          "maxLossUsd": 1000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 153,
+          "maxLossUsd": 2000,
+          "refundable": false
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": 4,
+      "drawdownType": "eod-trailing",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": 50,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": null,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 0,
+      "assetClass": "futures",
+      "sourceUrl": "https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy",
+      "sourceCapturedAt": "2026-09-14",
+      "notes": [
+        "Flex is a legacy product. MFFU’s own Flex article says it is no longer offered to new buyers; these values describe legacy subscriptions and should not be presented as a current purchase option.",
+        "Legacy Flex subscriptions retain recurring 30-day billing under the terms that applied before the one-time-payment migration. The current terms distinguish legacy subscriptions from new one-time plans.",
+        "Legacy payout rules include 5 qualifying winning days, 50% of profits requestable, and a $3,000 or $5,000 cap depending on the legacy size/article. The exact account agreement controls.",
+        "The firm-wide restricted-country article lists Russia. A trader located in Russia cannot purchase a new account.",
+        "Capture sources: https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy, https://myfundedfutures.com/blog/myfundedfutures-mffu-flex-plan, https://marketing.myfundedfutures.com/terms, and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy"
+      ]
+    },
+    {
+      "firmSlug": "my-funded-futures",
+      "productName": "Pro",
+      "productSlug": "pro",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 265,
+          "maxLossUsd": 2000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "maxLossUsd": 3000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": null,
+          "maxLossUsd": 4500,
+          "refundable": false
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": 50,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": null,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "assetClass": "futures",
+      "sourceUrl": "https://myfundedfutures.com/plans/pro",
+      "sourceCapturedAt": "2026-09-14",
+      "notes": [
+        "Current Pro plan page says one-time payment with no renewals, $0 activation fee, and a regular $265 price for the linked 50K checkout. The 100K and 150K selector prices are not exposed as stable first-party text in this capture and remain null.",
+        "Pro evaluation uses a 6% target, $2,000 / $3,000 / $4,500 EOD maximum loss by size, 2 minimum trading days, and a 50% evaluation-only consistency rule.",
+        "Sim Funded Pro has no daily loss limit or funded consistency rule, a 14-day payout window from first trade plus the required buffer, $1,000 minimum payout, up to $100,000 per cycle, and an 80/20 split.",
+        "Tier 1 news trading is allowed in evaluation but not allowed in Sim Funded; the current page also describes a 7-calendar-day inactivity rule.",
+        "The firm-wide restricted-country article lists Russia. A trader located in Russia cannot purchase a new account.",
+        "Capture sources: https://myfundedfutures.com/plans/pro and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy"
+      ],
+      "fundedDrawdownType": "eod-trailing"
+    },
+    {
+      "firmSlug": "my-funded-futures",
+      "productName": "Builder",
+      "productSlug": "builder",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "maxLossUsd": 1000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "maxLossUsd": 2000,
+          "refundable": false
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": 4,
+      "drawdownType": "eod-trailing",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 2,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": null,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "assetClass": "futures",
+      "sourceUrl": "https://myfundedfutures.com/plans/builder",
+      "sourceCapturedAt": "2026-09-14",
+      "notes": [
+        "Current Builder page says one-time payment with no renewals and $0 activation fee. Its visible starting figures are promotional and do not map unambiguously to the 25K and 50K base tiers, so both prices remain null rather than carrying forward the July subscription prices.",
+        "Builder evaluation targets are $1,500 on 25K and $3,000 on 50K (6%); maximum EOD trailing loss is $1,000 and $2,000 by size, with a $1,000 soft pause on 50K, 1 minimum trading day, and no evaluation consistency rule.",
+        "Sim Funded Builder applies a 50% consistency rule at payout, requires 2 qualifying days per cycle, clears a $1,100 or $2,100 buffer, and caps payouts at $1,000 or $2,000. The cadence is every 48 hours, represented as on-demand because the schema has no 48-hour enum.",
+        "After 5 approved simulated payouts, MFFU describes a live transition with daily payouts, an 80/20 split, and no live consistency rule; the live account has different limits.",
+        "The firm-wide restricted-country article lists Russia. A trader located in Russia cannot purchase a new account.",
+        "Capture sources: https://myfundedfutures.com/plans/builder and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy"
+      ],
+      "consistencyRuleApplies": false,
+      "fundedDrawdownType": "eod-trailing"
+    }
+  ],
+  "pagesRead": [
+    "https://myfundedfutures.com/plans/rapid",
+    "https://myfundedfutures.com/plans/pro",
+    "https://myfundedfutures.com/plans/builder",
+    "https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan",
+    "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+    "https://help.myfundedfutures.com/en/articles/16727601-rapid-eod-25k-a-comprehensive-look",
+    "https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy",
+    "https://myfundedfutures.com/blog/myfundedfutures-mffu-flex-plan",
+    "https://marketing.myfundedfutures.com/terms",
+    "https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy"
+  ],
+  "accessNotes": "The new MFFU plan pages are client-rendered and expose only a selected tier price in server-readable text. This capture records only first-party prices that map unambiguously to a size: Rapid 50K $209, Rapid EOD 50K $157, and Pro 50K $265. Other current prices remain null rather than reusing the July subscription capture. Flex is retained only as a legacy product because MFFU’s own article says it is no longer offered to new buyers. New purchases use one-time payment terms; subscriptions bought before August 20, 2026 remain legacy recurring accounts. Russia is explicitly listed as restricted."
+}

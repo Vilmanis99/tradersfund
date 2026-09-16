@@ -40,7 +40,7 @@
     "fundedDailyLossPct": null,
     "fundedMaxLossPct": null,
     "fundedDrawdownType": "trailing",
-    "minTradingDays": 1,
+    "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 100,
@@ -56,7 +56,7 @@
     "pricingModel": "one-off",
     "assetClass": "futures",
     "sourceUrl": "https://apextraderfunding.com/",
-    "sourceCapturedAt": "2026-07-28",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
       "NEW PRODUCT ONLY: Apex states that products bought after March 1, 2026 use the new Intraday/EOD structure; earlier recurring products are Legacy and are not represented here.",
       "ONE-TIME EVALUATION: the new product card says 'ONE-TIME Fee. No Rebill. Eval Active for 30 Days' and says there are no resets.",
@@ -65,7 +65,7 @@
       "PROFIT TARGETS are $1,500 / $3,000 / $6,000 / $9,000 on $25K / $50K / $100K / $150K. Each equals 6% of the headline balance.",
       "INTRADAY TRAILING DRAWDOWN follows the highest balance in real time, includes unrealized gains, and never moves down. Dollar caps are $1,000 / $2,000 / $3,000 / $4,000.",
       "NO EVALUATION DAILY LOSS LIMIT applies on Intraday products; the real-time trailing threshold is the evaluation risk control.",
-      "ONE-DAY PASS: there is no minimum beyond one trading day, but the evaluation expires after 30 calendar days. A passed evaluation must be activated within 7 calendar days.",
+      "ONE-DAY PASS: there is no minimum trading-day requirement and the evaluation may pass in one day, but the evaluation expires after 30 calendar days. A passed evaluation must be activated within 7 calendar days.",
       "NO EVALUATION CONSISTENCY RULE applies. The Performance Account uses a 50% payout-consistency requirement: the largest profitable day must be below 50% of total profit since inception or the last approved payout.",
       "PAYOUT ELIGIBILITY requires 5 qualifying trading days, a $500 minimum request, the drawdown-plus-$100 safety net, and the 50% consistency rule. Each Performance Account closes after its 6th approved payout.",
       "100% PAYOUT SPLIT applies to approved Sim Funded Performance Account payouts.",
@@ -76,7 +76,8 @@
       "INACTIVITY: each new Performance Account needs at least 2 trading days with $50 or more net profit inside every rolling 30-day window; otherwise the PA can close permanently.",
       "Performance Accounts are simulated. Apex may invite selected traders into a separate live program.",
       "The published account path supports Rithmic, Tradovate and WealthCharts; certain EUREX products are available only through Tradovate.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/apex-trader-funding-2026-07-28.json"
+      "The current 2026-09-14 Intraday/EOD evaluation pages explicitly say no minimum trading days are required; one-day passage is possible when the target and rules are met.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/apex-trader-funding-2026-09-14.json"
     ]
   },
   {
@@ -123,7 +124,7 @@
     "fundedDailyLossPct": null,
     "fundedMaxLossPct": null,
     "fundedDrawdownType": "eod-trailing",
-    "minTradingDays": 1,
+    "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 100,
@@ -139,7 +140,7 @@
     "pricingModel": "one-off",
     "assetClass": "futures",
     "sourceUrl": "https://apextraderfunding.com/",
-    "sourceCapturedAt": "2026-07-28",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
       "EOD STANDARD uses the same post-March 1, 2026 one-time 30-day evaluation model, but current evaluation and activation prices remain null because the selected product cards could not be independently exposed.",
       "PROFIT TARGETS are $1,500 / $3,000 / $6,000 / $9,000, equal to 6% of $25K / $50K / $100K / $150K.",
@@ -152,7 +153,8 @@
       "EOD FIRST-REQUEST CAPS are $1,000 / $1,500 / $2,000 / $2,500. Each PA closes after 6 approved payouts.",
       "The 100% payout split, day-trading cutoff, restricted news rule, automation ban, same-user copy restriction and inactivity rule match the Intraday path.",
       "EOD Performance Accounts use tier-based contract and daily-loss scaling; the starting maximum contract counts are 2 / 4 / 6 / 10 across $25K / $50K / $100K / $150K.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/apex-trader-funding-2026-07-28.json"
+      "The current 2026-09-14 Intraday/EOD evaluation pages explicitly say no minimum trading days are required; one-day passage is possible when the target and rules are met.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/apex-trader-funding-2026-09-14.json"
     ]
   },
   {
@@ -199,7 +201,7 @@
     "fundedDailyLossPct": null,
     "fundedMaxLossPct": null,
     "fundedDrawdownType": "trailing",
-    "minTradingDays": 1,
+    "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 100,
@@ -215,13 +217,14 @@
     "pricingModel": "one-off",
     "assetClass": "futures",
     "sourceUrl": "https://apextraderfunding.com/",
-    "sourceCapturedAt": "2026-07-28",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
       "NO ACTIVATION FEE: Apex states that this path follows the same rules, drawdown, 30-day access and qualification process as Standard, but the PA activation price is $0.",
       "EVALUATION PRICES for all 4 sizes remain null because the dynamic first-party cards could not be independently exposed. No competitor price was copied.",
       "The 6% profit targets, $1,000 / $2,000 / $3,000 / $4,000 intraday trailing caps, one-day pass, 50% funded payout-consistency rule, 5 qualifying payout days, $500 minimum request, 100% split and 6-payout PA lifecycle match Intraday Standard.",
       "The no-evaluation-DLL rule, 4:59 PM ET flattening deadline, restricted news rule, automation ban, same-user copy restriction and 2-days-at-$50 inactivity rule also match Intraday Standard.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/apex-trader-funding-2026-07-28.json"
+      "The current 2026-09-14 Intraday/EOD evaluation pages explicitly say no minimum trading days are required; one-day passage is possible when the target and rules are met.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/apex-trader-funding-2026-09-14.json"
     ]
   },
   {
@@ -272,7 +275,7 @@
     "fundedDailyLossPct": null,
     "fundedMaxLossPct": null,
     "fundedDrawdownType": "eod-trailing",
-    "minTradingDays": 1,
+    "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 100,
@@ -288,13 +291,14 @@
     "pricingModel": "one-off",
     "assetClass": "futures",
     "sourceUrl": "https://apextraderfunding.com/",
-    "sourceCapturedAt": "2026-07-28",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
       "NO ACTIVATION FEE: Apex states that this path follows the same EOD rules, drawdown, 30-day access and qualification process as Standard, but the PA activation price is $0.",
       "EVALUATION PRICES for all 4 sizes remain null because the dynamic first-party cards could not be independently exposed. No competitor price was copied.",
       "The 6% profit targets, $500 / $1,000 / $1,500 / $2,000 evaluation DLLs, $1,000 / $2,000 / $3,000 / $4,000 EOD trailing caps, one-day pass, 50% funded payout-consistency rule, 5 qualifying payout days, $500 minimum request, 100% split and 6-payout PA lifecycle match EOD Standard.",
       "The 4:59 PM ET flattening deadline, restricted news rule, automation ban, same-user copy restriction and 2-days-at-$50 inactivity rule also match EOD Standard.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/apex-trader-funding-2026-07-28.json"
+      "The current 2026-09-14 Intraday/EOD evaluation pages explicitly say no minimum trading days are required; one-day passage is possible when the target and rules are met.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/apex-trader-funding-2026-09-14.json"
     ]
   }
 ]

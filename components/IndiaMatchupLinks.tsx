@@ -6,6 +6,7 @@ import {
   getIndiaMatchupsForFirm,
   indiaMatchupPath,
 } from '@/lib/indiaMatchups'
+import { buildLandingPayload, getLandingBySlug } from '@/lib/landings'
 
 export default function IndiaMatchupLinks({
   firmName,
@@ -17,9 +18,18 @@ export default function IndiaMatchupLinks({
   description?: string
 }) {
   const currentFirmSlug = firmName ? firmSlug(firmName) : null
-  const matchups = currentFirmSlug
+  const configuredMatchups = currentFirmSlug
     ? getIndiaMatchupsForFirm(currentFirmSlug)
     : Object.values(INDIA_MATCHUPS)
+  const landing = getLandingBySlug('best-prop-firms-in-india')
+  const eligibleFirmSlugs = new Set(
+    landing
+      ? buildLandingPayload(landing).ranked.map(entry => firmSlug(entry.firm.name))
+      : [],
+  )
+  const matchups = configuredMatchups.filter(matchup =>
+    matchup.firmSlugs.every(slug => eligibleFirmSlugs.has(slug)),
+  )
 
   if (!matchups.length) return null
 

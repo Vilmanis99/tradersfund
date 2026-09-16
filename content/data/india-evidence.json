@@ -141,7 +141,7 @@
   {
     "firmSlug": "fundednext",
     "firmName": "FundedNext",
-    "capturedAt": "2026-07-27",
+    "capturedAt": "2026-08-27",
     "restrictedJurisdictions": [
       "Bangladesh",
       "Myanmar",
@@ -223,7 +223,7 @@
   {
     "firmSlug": "fundingpips",
     "firmName": "FundingPips",
-    "capturedAt": "2026-07-27",
+    "capturedAt": "2026-08-27",
     "restrictedJurisdictions": [
       "Iran",
       "Vietnam",
@@ -287,7 +287,7 @@
   {
     "firmSlug": "bright-funded",
     "firmName": "Bright Funded",
-    "capturedAt": "2026-07-27",
+    "capturedAt": "2026-08-27",
     "restrictedJurisdictions": [
       "Cuba",
       "Iran",
@@ -356,7 +356,7 @@
   {
     "firmSlug": "fxify",
     "firmName": "FXIFY",
-    "capturedAt": "2026-07-27",
+    "capturedAt": "2026-09-14",
     "restrictedJurisdictions": [
       "United States",
       "Zimbabwe",
@@ -453,7 +453,7 @@
   {
     "firmSlug": "alpha-capital",
     "firmName": "Alpha Capital",
-    "capturedAt": "2026-07-28",
+    "capturedAt": "2026-09-14",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Belarus",
@@ -541,7 +541,7 @@
   {
     "firmSlug": "e8-markets",
     "firmName": "E8 Markets",
-    "capturedAt": "2026-07-28",
+    "capturedAt": "2026-09-14",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Albania",
@@ -593,9 +593,9 @@
         "e8-one"
       ],
       "accountSizeCapsUsd": {
-        "e8-one": 50000
+        "e8-one": 200000
       },
-      "summary": "Indian profiles may purchase E8 Pro and E8 Signature at all published sizes, plus E8 One only up to $50,000.",
+      "summary": "Indian profiles may purchase E8 Pro and E8 Signature at all published sizes, plus E8 One up to $200,000.",
       "sourceUrls": [
         "https://help.e8markets.com/en/articles/5514278-accepted-countries"
       ]
@@ -608,7 +608,7 @@
     },
     "country": {
       "status": "verified",
-      "summary": "E8 publishes India as a limited-product country: E8 Pro and E8 Signature at all sizes, and E8 One only up to $50,000; eligibility follows the verification document rather than current location.",
+      "summary": "E8 publishes India as a limited-product country: E8 Pro and E8 Signature at all sizes, and E8 One up to $200,000; eligibility follows the verification document rather than current location.",
       "sourceUrls": [
         "https://help.e8markets.com/en/articles/5514278-accepted-countries"
       ]
@@ -650,12 +650,12 @@
         "https://e8markets.com/e8-signature"
       ]
     },
-    "unresolved": "No completed Indian checkout, Veriff approval, WorkMarket bank receipt, or Rise cash or crypto receipt is independently verified; provider and INR conversion fees remain unpublished, and E8 One tiers above $50,000 are excluded for India."
+    "unresolved": "No completed Indian checkout, Veriff approval, WorkMarket bank receipt, or Rise cash or crypto receipt is independently verified; provider and INR conversion fees remain unpublished."
   },
   {
     "firmSlug": "city-traders-imperium",
     "firmName": "City Traders Imperium",
-    "capturedAt": "2026-07-28",
+    "capturedAt": "2026-09-14",
     "restrictedJurisdictions": [
       "North Korea",
       "Iran",
@@ -723,7 +723,7 @@
   {
     "firmSlug": "maven",
     "firmName": "Maven",
-    "capturedAt": "2026-07-28",
+    "capturedAt": "2026-09-14",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Belarus",
@@ -809,7 +809,7 @@
   {
     "firmSlug": "tradeify",
     "firmName": "Tradeify",
-    "capturedAt": "2026-07-28",
+    "capturedAt": "2026-09-14",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Albania",
@@ -932,7 +932,7 @@
   {
     "firmSlug": "tradeday",
     "firmName": "TradeDay",
-    "capturedAt": "2026-08-11",
+    "capturedAt": "2026-09-14",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Albania",

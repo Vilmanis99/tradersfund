@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
 import { ArrowRight, Building2, FileCheck2, Globe2, Scale, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
@@ -88,7 +89,7 @@ export default function RussianPropLiveReviewPage() {
     url: `https://tradersfundhub.com${PATH}`,
     dateModified: marketEvidence.capturedAt,
     inLanguage: 'ru',
-    author: { '@type': 'Organization', name: 'Traders Fund Hub' },
+    author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
 
@@ -101,6 +102,7 @@ export default function RussianPropLiveReviewPage() {
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="proplive" data-russian-local-review-status="verification-only">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/rossiyskie-prop-kompanii">Российские компании</Link> / PropLive</div>
+          <RussianEvidenceFreshnessNotice evidence={[{ label: 'локальные условия PropLive', capturedAt: marketEvidence.capturedAt }]} />
           <div className="ru-eyebrow"><Building2 size={14} aria-hidden="true" /> Локальное исследование, не рекомендация</div>
           <h1>PropLive: обзор 2026 — Мосбиржа, выплаты и условия</h1>
           <p className="ru-lead">
@@ -108,9 +110,10 @@ export default function RussianPropLiveReviewPage() {
             заявленный срок вывода, договор и отдельную партнёрскую программу. Это локальный обзор для
             русскоязычного поиска, а не подтверждение доступности или платёжеспособности.
           </p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Проверка источников: {marketEvidence.capturedAt}.</p>
           <div className="ru-actions">
             <Link href="#facts" className="btn-primary btn-glow">Проверить факты <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Сравнить глобальные фирмы</Link>
+            <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Сравнить глобальные фирмы</Link>
           </div>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{Number(localSignal?.claims.traders).toLocaleString('ru-RU')}</strong><span>трейдеров по заявлению оператора</span></div>
@@ -185,6 +188,42 @@ export default function RussianPropLiveReviewPage() {
             <article className="ru-card"><WalletCards size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Изменение условий</h3><p className="ru-muted">Пункт 18 описывает уведомление о несогласии в течение 3 календарных дней и прекращение договора через 5 календарных дней после получения уведомления компанией.</p><SourceLink href={PROP_LIVE_CONTRACT}>Пункт 18</SourceLink></article>
           </div>
           <p className="ru-source-line">Это разбор текста опубликованного договора, а не юридическое заключение. Сравните PDF с версией в личном кабинете: приложение, регламент и заявление о присоединении входят в договорный пакет.</p>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell ru-content" data-russian-proplive-due-diligence="decision-matrix">
+          <h2>Как оценивать PropLive до заявки</h2>
+          <p>У PropLive нужно разнести три разных вопроса: сколько стоит участие, где исполняются сделки и как рассчитывается вознаграждение. Фраза «нисколько» на главной странице отвечает только на вопрос о заявленном входном платеже; она не раскрывает приложение со стоимостью услуг, комиссии или изменения капитала.</p>
+          <div className="ru-grid">
+            <article className="ru-card">
+              <FileCheck2 size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Цена и обязательства</h3>
+              <p className="ru-muted">Сопоставьте рекламный старт без оплаты с пунктом 20 договора и приложением «Стоимость услуг». Попросите документ до регистрации: без него нельзя вывести итоговую сумму или понять, когда меняется оплата.</p>
+              <SourceLink href={PROP_LIVE_CONTRACT}>Пункт 20 и приложение</SourceLink>
+            </article>
+            <article className="ru-card">
+              <Scale size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Рынок и инфраструктура</h3>
+              <p className="ru-muted">Опубликованная модель относится к Московской бирже через Финам, а для CScalp оператор указывает компьютер на Windows. Уточните брокерский договор, комиссии, терминал и доступ из вашей страны, прежде чем передавать документы.</p>
+              <SourceLink href={PROP_LIVE_ABOUT}>Описание модели</SourceLink>
+            </article>
+            <article className="ru-card">
+              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Срок выплаты</h3>
+              <p className="ru-muted">Обещание вывода в течение 1 рабочего дня и в любой день недели — заявление оператора. Уточните, что считается рабочим днём, какой действует срез, какие документы нужны и кто несёт банковскую комиссию.</p>
+              <SourceLink href={PROP_LIVE_HOME}>FAQ о выводе</SourceLink>
+            </article>
+          </div>
+          <h3>Пять вопросов, которые стоит получить письменно</h3>
+          <ol>
+            <li>Какая юридическая сторона подписывает договор и какое приложение определяет стоимость услуг?</li>
+            <li>Какой брокерский счёт, терминал и набор инструментов доступны резиденту или нерезиденту РФ?</li>
+            <li>Как рассчитываются риск, изменение капитала и вознаграждение при отрицательном результате?</li>
+            <li>Какие документы нужны для запроса выплаты и отсчитывается ли 1 рабочий день от заявки или от проверки?</li>
+            <li>Какие условия партнёрской программы относятся к школе или наставнику, а не к обычному контентному сайту?</li>
+          </ol>
+          <p className="ru-source-line">Эта матрица не присваивает PropLive рейтинг: она показывает, какие пункты официальных страниц и договора нужно сопоставить перед решением.</p>
         </div>
       </section>
 

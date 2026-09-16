@@ -26,6 +26,8 @@ export function buildChallengeComparisonRows(
         fundedMaxLossPct: challenge.fundedMaxLossPct ?? null,
         fundedDrawdownType: challenge.fundedDrawdownType ?? null,
         minTradingDays: challenge.minTradingDays, maxTradingDays: challenge.maxTradingDays,
+        maxTradingDaysUnlimited: challenge.maxTradingDaysUnlimited ?? null,
+        consistencyRuleApplies: challenge.consistencyRuleApplies ?? null,
         consistencyRulePct: challenge.consistencyRulePct, profitSplitPct: challenge.profitSplitPct,
         payoutFirstDays: challenge.payoutFirstDays, payoutFrequency: challenge.payoutFrequency,
         rules: challenge.rules, assetClass: challenge.assetClass,

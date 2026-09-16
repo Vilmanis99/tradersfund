@@ -60,7 +60,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
-    "sourceCapturedAt": "2026-08-11",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
       "BASE LIST PRICES: $99 / $145 / $255 / $369 for $25K / $50K / $100K / $150K. Expiring promotions and the five-account bundle discount are excluded from single-account base prices.",
       "ONE-TIME AND $0 ACTIVATION: Growth has no subscription rebill and no simulated-funded activation fee.",
@@ -74,7 +74,11 @@
       "NEWS ALLOWED: the separate microscalping payout gate requires over 50% of trades and over 50% of profit to come from trades longer than 10 seconds.",
       "AUTOMATION AND COPYING RESTRICTED: a provably personal non-HFT bot is conditional; copy trading is limited to accounts the trader owns and manages.",
       "ALL SALES FINAL: purchases, resets and other fees are non-refundable.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-08-11.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-08-11.json",
+      "CURRENT REFRESH 2026-09-14: Pricing Reference currently lists $99 / $145 / $255 / $369 one-time for 25K / 50K / 100K / 150K.",
+      "Current Growth rules: 6% targets; dollar soft DLL $600 / $1,250 / $2,500 / $3,750; EOD trailing max loss $1,000 / $2,000 / $3,500 / $5,000; one trading day can pass because there is no evaluation consistency rule.",
+      "Current funded payout wording remains five qualifying winning days per request with a 90% trader split; the stored 35% value is the funded consistency gate, not an evaluation requirement.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-09-14.json"
     ]
   },
   {
@@ -134,7 +138,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
-    "sourceCapturedAt": "2026-08-11",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
       "BASE LIST PRICES: $109 / $165 / $265 / $369 for $25K / $50K / $100K / $150K. The same Select purchase later branches permanently into Flex or Daily.",
       "RESET NON-SCHEMA CHANGE: Select 50K's current reset fee is $109, up from $95 in the July 28 capture; the $165 purchase price is unchanged.",
@@ -149,7 +153,8 @@
       "NINETY-PERCENT SPLIT: simulated-funded requests pay 90% to the trader.",
       "GENERAL RULES: positions close by 4:45 PM ET; news is allowed; same-owner copying and provably personal non-HFT automation are conditional.",
       "ALL SALES FINAL: purchases, resets and other fees are non-refundable.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-08-11.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-08-11.json",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-09-14.json"
     ]
   },
   {
@@ -209,7 +214,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
-    "sourceCapturedAt": "2026-08-11",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
       "BASE LIST PRICES: $109 / $165 / $265 / $369 for $25K / $50K / $100K / $150K. The purchase price is identical to Select Flex because the permanent choice occurs after passing.",
       "RESET NON-SCHEMA CHANGE: Select 50K's current reset fee is $109, up from $95 in the July 28 capture; the $165 purchase price is unchanged.",
@@ -225,7 +230,8 @@
       "NINETY-PERCENT SPLIT: simulated-funded requests pay 90% to the trader.",
       "GENERAL RULES: positions close by 4:45 PM ET; news is allowed; same-owner copying and provably personal non-HFT automation are conditional.",
       "ALL SALES FINAL: purchases, resets and other fees are non-refundable.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-08-11.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-08-11.json",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-09-14.json"
     ]
   },
   {
@@ -286,7 +292,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
-    "sourceCapturedAt": "2026-08-11",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
       "BASE LIST PRICES: $345 / $492 / $660 / $796 for $25K / $50K / $100K / $150K; no temporary promotional price is stored.",
       "INSTANT SIMULATED FUNDING: Lightning has no evaluation phase, one-time billing, no activation fee and no reset option.",
@@ -299,7 +305,11 @@
       "NEWS ALLOWED: the separate microscalping payout gate requires over 50% of trades and over 50% of profit to come from trades longer than 10 seconds.",
       "AUTOMATION AND COPYING RESTRICTED: a provably personal non-HFT bot is conditional; copy trading is limited to accounts the trader owns and manages.",
       "ALL SALES FINAL: a failed Lightning account requires a new purchase and no refund is offered.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-08-11.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-08-11.json",
+      "CURRENT REFRESH 2026-09-14: Pricing Reference currently lists $345 / $492 / $660 / $796 one-time for 25K / 50K / 100K / 150K.",
+      "Current Lightning rules: no evaluation, no minimum trading-day count, EOD trailing max loss $1,000 / $2,000 / $4,000 / $5,250, and soft DLL none / $1,250 / $2,500 / $3,000.",
+      "Current payout policy requires profit goals of $1,500 / $3,000 / $6,000 / $9,000 for payout 1, then $1,000 / $2,000 / $3,500 / $4,500 for payout 2+ on post-12 September 2025 accounts; the 20% → 25% → 30% consistency progression and $1,000 minimum payout remain published.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeify-2026-09-14.json"
     ]
   }
 ]

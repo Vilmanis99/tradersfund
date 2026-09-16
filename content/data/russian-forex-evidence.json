@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-08-28",
+  "capturedAt": "2026-09-08",
   "searchDemand": {
     "sourceUrl": "https://a.pr-cy.ru/proptreiding.ru/",
     "sourceType": "third-party Yandex Moscow estimate",
@@ -18,7 +18,7 @@
     {
       "firmSlug": "fundednext",
       "firmName": "FundedNext",
-      "sourceCapturedAt": "2026-08-28",
+      "sourceCapturedAt": "2026-09-08",
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8224087-fundednext-tradable-assets-what-can-i-trade-on-fundednext-cfd-accounts",
         "https://help.fundednext.com/en/articles/8019669-what-is-the-leverage-of-the-trading-account",
@@ -40,19 +40,21 @@
       ],
       "platforms": ["MT4", "MT5", "cTrader", "Match-Trader"],
       "forexLeverage": [
-        { "products": ["Stellar 2-Step", "Stellar 1-Step", "Stellar Lite"], "ratio": 100 },
+        { "products": ["Stellar 2-Step", "Stellar Lite"], "ratio": 100 },
+        { "products": ["Stellar 1-Step"], "ratio": 30 },
         { "products": ["Stellar Instant"], "ratio": 30 }
       ],
       "notes": [
         "The published symbol list is for FundedNext CFD Stellar accounts and contains 43 unique forex pairs.",
         "The live terminal remains the final source for enabled symbols on a specific account and platform.",
-        "FundedNext's company disclosure and CFD restriction FAQ conflict on Russian-resident access, so no Russia-access promise is allowed."
+        "The September 8 recheck includes the leverage article's two embedded images: Stellar 1-Step forex is 1:30 in both stages, while Stellar 2-Step and Lite remain 1:100. This corrects our prior grouping; it does not establish a new policy-change date.",
+        "This forex-source recheck does not refresh challenge prices or the separate country-access evidence. No Russia-access promise is allowed."
       ]
     },
     {
       "firmSlug": "bright-funded",
       "firmName": "Bright Funded",
-      "sourceCapturedAt": "2026-08-28",
+      "sourceCapturedAt": "2026-09-08",
       "sourceUrls": [
         "https://help.brightfunded.com/en/articles/9268749-what-trading-assets-instruments-offers-brightfunded",
         "https://help.brightfunded.com/en/articles/9268380-what-is-the-leverage-in-brightfunded-s-simulated-trading-environment",
@@ -70,10 +72,15 @@
           "platform": "MT5",
           "profile": "citizen, resident, or living in the United States or United Arab Emirates",
           "status": "not available"
+        },
+        {
+          "platform": "cTrader",
+          "profile": "citizen, resident, or living in the United States",
+          "status": "not available"
         }
       ],
       "notes": [
-        "Bright Funded publishes major, minor and exotic forex coverage but does not publish a count on the captured help page.",
+        "Bright Funded publishes major, minor and exotic forex coverage and links an instrument sheet. The help page itself has no total; the linked sheet's row count has not been verified in this capture.",
         "The 1:100 forex leverage applies to both Challenge and Funded Account simulated environments.",
         "Platform eligibility is profile-specific and must be checked before purchasing a product."
       ]

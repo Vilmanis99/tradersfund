@@ -10,6 +10,7 @@ import {
   WalletCards,
 } from 'lucide-react'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
+import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
 import { getAllFirms } from '@/lib/firms'
 import {
   INDIA_EVIDENCE,
@@ -418,6 +419,11 @@ export default function Page() {
           </div>
         </div>
       </section>
+
+      <IndiaMatchupLinks
+        heading="Compare payout rails in context"
+        description="Pair payout-method evidence with the exact India-screened products and rules in an active head-to-head comparison."
+      />
 
       <section className="home-section" aria-labelledby="india-payout-faq-heading">
         <div className="home-shell" style={{ maxWidth: 900 }}>

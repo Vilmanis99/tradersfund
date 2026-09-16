@@ -3,7 +3,7 @@ title: "Apex Trader Funding Review 2026: New Rules, Real Trade-Offs"
 seoTitle: "Apex Trader Funding Review 2026: Fees & Payout Rules"
 slug: "apex-trader-funding-review"
 date: "2026-07-28"
-modified: "2026-08-17"
+modified: "2026-09-14"
 author: "Edris Derakhshi"
 excerpt: "Apex offers one-day futures evaluations and a 100% payout split, but dynamic pricing, trailing risk and a six-payout PA limit require care."
 seoDescription: "Apex Trader Funding review covering one-day futures evaluations, dynamic pricing, trailing drawdown, 100% payout split, PA limits, and current trade-offs."
@@ -16,7 +16,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 <p>Apex suits manual futures day traders who value one-day evaluations and 100% payouts.</p>
 
-<p>The March 1, 2026 relaunch created 4 distinct paths: Intraday Trail or End-of-Day Trail, each sold as Standard or No Activation Fee. The evaluation has no consistency rule and can pass in 1 day, but the Performance Account adds a 50% payout-consistency gate, a $500 request minimum and a maximum of 6 approved payouts before that PA closes.</p>
+<p>The March 1, 2026 relaunch created 4 distinct paths: Intraday Trail or End-of-Day Trail, each sold as Standard or No Activation Fee. The evaluation has no consistency rule or minimum trading-day requirement and may pass in 1 day, but the Performance Account adds a 50% payout-consistency gate, a $500 request minimum and a maximum of 6 approved payouts before that PA closes.</p>
 
 <!-- SECTION 2 - Quick facts -->
 <h2 class="wp-block-heading"><strong>Quick facts</strong></h2>
@@ -40,7 +40,7 @@ type: "post"
 
 <!-- SECTION 3 - Challenges available -->
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
-<p>Apex lists 4 new one-step products across 4 sizes. Every evaluation provides 30 calendar days of access, has no reset and can pass after 1 trading day. A dash in the fee column means the current first-party card could not be verified, not that the evaluation is free.</p>
+<p>Apex lists 4 new one-step products across 4 sizes. Every evaluation provides 30 calendar days of access, has no reset, has no minimum trading-day requirement and may pass in 1 day. A dash in the fee column means the current first-party card could not be verified, not that the evaluation is free.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
   <caption class="hidden-caption">Apex Trader Funding challenge rules by product and account size</caption>
@@ -64,7 +64,7 @@ type: "post"
     <tr><td style="padding: 8px 9px;">EOD - No Activation Fee</td><td style="padding: 8px 9px;">$150K</td><td style="padding: 8px 9px;">—</td><td style="padding: 8px 9px;">$0</td><td style="padding: 8px 9px;">$9,000</td><td style="padding: 8px 9px;">$2,000</td><td style="padding: 8px 9px;">$4,000 EOD</td><td style="padding: 8px 9px;">100%</td></tr>
   </tbody>
 </table>
-<p style="font-size: 0.82rem; color: var(--muted);">Rules and the single verified list price were captured from Apex's new-product selector and help center on 2026-07-28. Pricing is dynamic and coupon-dependent; confirm all 16 current checkout totals before paying.</p>
+<p style="font-size: 0.82rem; color: var(--muted);">Rules were recaptured from Apex's new-product selector and help center on 2026-09-14. The current selector remained dynamic and coupon-dependent; only the $199 25K Intraday Standard list price (plus $59 activation) is independently verified, so confirm all 16 current checkout totals before paying.</p>
 
 <p><strong>U.S. access.</strong> Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links Apex’s Terms of Use and its Payout Method for US-Based Users guide. Those first-party pages support access and ACH requirements; they do not turn Apex into an FCM or broker-dealer.</p>
 
@@ -94,11 +94,11 @@ type: "post"
   <caption class="hidden-caption">Intraday Trail - Standard true-cost projection</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Cost to funded (fee + tier activation)</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (100% split)</th><th style="padding: 8px 12px; text-align: left;">Max loss</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs tier max loss</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px;">$25K</td><td style="padding: 8px 12px;">$258</td><td style="padding: 8px 12px;">$258</td><td style="padding: 8px 12px;">$1,000</td><td style="padding: 8px 12px;">0.26</td><td style="padding: 8px 12px;">2</td></tr>
+    <tr><td style="padding: 8px 12px;">$25K</td><td style="padding: 8px 12px;">$258</td><td style="padding: 8px 12px;">$258</td><td style="padding: 8px 12px;">$1,000</td><td style="padding: 8px 12px;">0.26</td><td style="padding: 8px 12px;">—</td></tr>
   </tbody>
 </table>
 
-<p>The $258 break-even equals 0.26 times the $1,000 maximum loss and takes 2 modeled days at 1% daily growth. The other 15 product-size fees remain null, so no additional True-Cost tables can be generated without inventing checkout prices. That visible gap is preferable to treating a rotating coupon as permanent cost.</p>
+<p>The $258 break-even equals 0.26 times the $1,000 maximum loss. A modeled day count is omitted because Apex does not publish a daily-loss percentage for Intraday Trail. The other 15 product-size fees remain null, so no additional True-Cost tables can be generated without inventing checkout prices. That visible gap is preferable to treating a rotating coupon as permanent cost.</p>
 
 <!-- SECTION 6 - Payout speed -->
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
@@ -113,7 +113,7 @@ type: "post"
 <!-- SECTION 7 - Pros / Cons -->
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 <ul class="wp-block-list">
-  <li>All 4 account sizes can pass after 1 trading day with no evaluation consistency rule.</li>
+  <li>All 4 account sizes have no minimum trading-day requirement and may pass in 1 day, with no evaluation consistency rule.</li>
   <li>Approved Sim Funded payouts use a 100% split instead of a 80% or 90% share.</li>
   <li>Traders can choose intraday or end-of-day trailing drawdown across $25K, $50K, $100K and $150K.</li>
   <li>The No Activation Fee route publishes a $0 PA activation charge for all 8 Intraday/EOD size combinations.</li>
@@ -146,10 +146,10 @@ type: "post"
 <p>Yes. Apex's 2026 products cover futures through Rithmic, Tradovate and WealthCharts, with positions required to close before 4:59 PM ET.</p>
 
 <h3 class="wp-block-heading"><strong>How much does an Apex evaluation cost?</strong></h3>
-<p>The verified 25K Intraday Standard list fee was $199 plus $59 activation on 2026-07-28. The other 15 current prices remain unverified because Apex's selector and coupon amounts change dynamically.</p>
+<p>The current record for the 25K Intraday Standard list fee is $199 plus $59 activation, captured from Apex's first-party materials on 2026-09-14. The other 15 current prices remain unverified because Apex's selector and coupon amounts change dynamically.</p>
 
 <h3 class="wp-block-heading"><strong>Can an Apex evaluation pass in one day?</strong></h3>
-<p>Yes. Intraday and EOD evaluations have no minimum beyond 1 trading day and no evaluation consistency rule, but the target remains 6% and access expires after 30 calendar days.</p>
+<p>Yes. Intraday and EOD evaluations have no minimum trading-day requirement and no evaluation consistency rule, so they may pass in one day when the 6% target and other rules are met; access expires after 30 calendar days.</p>
 
 <h3 class="wp-block-heading"><strong>What is Apex's payout consistency rule?</strong></h3>
 <p>The PA rule requires the largest profitable day to be below 50% of net profit since inception or the last approved payout. Exactly 50% is not eligible.</p>

@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import { trackSiteEvent as track } from '@/lib/clientAnalytics'
 import ProductChangeSignals from '@/components/ProductChangeSignals'
+import { minimumTradingDaysLabel, maximumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 import type {
   DrawdownType,
   RuleAvailability,
@@ -73,7 +74,7 @@ const FIELD_STYLE = {
   background: 'var(--bg3)',
   color: 'var(--text)',
   padding: '0 0.8rem',
-  fontSize: '0.82rem',
+  fontSize: '1rem',
   fontWeight: 700,
 } as const
 
@@ -510,7 +511,7 @@ function FilterField({
 }) {
   return (
     <label htmlFor={id} style={{ display: 'grid', gap: '0.4rem' }}>
-      <span style={{ color: 'var(--muted)', fontSize: '0.7rem', fontWeight: 800 }}>
+      <span style={{ color: 'var(--muted)', fontSize: '0.875rem', fontWeight: 800 }}>
         {label}
       </span>
       <select
@@ -859,7 +860,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
   ]
 
   return (
-    <section className="home-section home-section--alt" aria-labelledby="global-challenge-table-heading">
+    <section className="home-section home-section--alt challenge-workspace" aria-labelledby="global-challenge-table-heading">
       <div style={{ maxWidth: 1480, margin: '0 auto', padding: '0 1.5rem' }}>
         <div className="section-head">
           <div>
@@ -879,7 +880,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
 
         <div className="post-sidebar-card" style={{ padding: '1.15rem' }}>
           <label htmlFor="global-challenge-search" style={{ display: 'grid', gap: '0.4rem', marginBottom: '0.8rem' }}>
-            <span style={{ color: 'var(--muted)', fontSize: '0.7rem', fontWeight: 800 }}>
+            <span style={{ color: 'var(--muted)', fontSize: '0.875rem', fontWeight: 800 }}>
               Search firm or product
             </span>
             <span style={{ position: 'relative', display: 'block', maxWidth: 480 }}>
@@ -1007,14 +1008,14 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
             paddingTop: '0.9rem',
             borderTop: '1px solid var(--border)',
           }}>
-            <p aria-live="polite" style={{ margin: 0, color: 'var(--text)', fontSize: '0.8rem', fontWeight: 800 }}>
+            <p aria-live="polite" style={{ margin: 0, color: 'var(--text)', fontSize: '0.875rem', fontWeight: 800 }}>
               Showing {visibleRows.length} of {rows.length} matching products
             </p>
             <button
               type="button"
               onClick={reset}
               className="btn-outline"
-              style={{ padding: '0.5rem 0.75rem', fontSize: '0.75rem' }}
+              style={{ padding: '0.5rem 0.75rem', fontSize: '0.875rem' }}
             >
               <RefreshCw size={12} /> Reset filters
             </button>
@@ -1252,7 +1253,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                     </small>
                   </div>
 
-                  <div className="india-decision-matrix-wrap">
+                  <div className="india-decision-matrix-wrap" tabIndex={0} role="region" aria-label="Shortlisted challenge comparison; scroll horizontally to see all columns">
                     <table className="india-decision-matrix">
                       <thead>
                         <tr>
@@ -1315,13 +1316,13 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
 
         {rows.length > 0 ? (
           <>
-            <div style={{
+            <div className="challenge-table-scroll" tabIndex={0} role="region" aria-label="Challenge comparison table; scroll horizontally to see all columns" style={{
               marginTop: '1rem',
               overflowX: 'auto',
               border: '1px solid var(--border)',
               borderRadius: 14,
             }}>
-              <table style={{
+              <table className="challenge-data-table" style={{
                 width: '100%',
                 minWidth: 1510,
                 borderCollapse: 'collapse',
@@ -1345,7 +1346,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                         background: 'var(--bg3)',
                         borderBottom: '1px solid var(--border)',
                         textAlign: 'left',
-                        fontSize: '0.7rem',
+                        fontSize: '0.875rem',
                         letterSpacing: '0.03em',
                         textTransform: 'uppercase',
                       }}>
@@ -1401,72 +1402,72 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                             />
                           ) : null}
                           <span>
-                            <strong style={{ display: 'block', color: 'var(--text)', fontSize: '0.8rem' }}>
+                            <strong style={{ display: 'block', color: 'var(--text)', fontSize: '1rem' }}>
                               {firm.name}
                             </strong>
-                            <span style={{ color: 'var(--gold)', fontSize: '0.67rem', fontWeight: 800 }}>
+                            <span style={{ color: 'var(--gold)', fontSize: '0.875rem', fontWeight: 800 }}>
                               Editorial {firm.score}/10
                             </span>
                           </span>
                         </span>
-                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.78rem', marginTop: '0.55rem', fontWeight: 700 }}>
+                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '1rem', marginTop: '0.55rem', fontWeight: 700 }}>
                           {product.name}
                         </span>
                         <span style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', marginTop: '0.45rem' }}>
-                          <span className="chip" style={{ display: 'inline-flex', fontSize: '0.64rem' }}>
+                          <span className="chip" style={{ display: 'inline-flex', fontSize: '0.875rem' }}>
                             {phasesLabel(product.phases)}
                           </span>
-                          <span className="chip" style={{ display: 'inline-flex', fontSize: '0.64rem' }}>
+                          <span className="chip" style={{ display: 'inline-flex', fontSize: '0.875rem' }}>
                             {marketLabel(product.assetClass)}
                           </span>
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 205 }}>
-                        <strong style={{ display: 'block', color: priceRange(tiersForSize(product.tiers, accountSize)) === 'Unverified' ? 'var(--gold)' : 'var(--text)', fontSize: '0.8rem' }}>
+                        <strong style={{ display: 'block', color: priceRange(tiersForSize(product.tiers, accountSize)) === 'Unverified' ? 'var(--gold)' : 'var(--text)', fontSize: '1rem' }}>
                           {priceRange(tiersForSize(product.tiers, accountSize))}
                         </strong>
-                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.68rem', marginTop: '0.3rem' }}>
+                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.875rem', marginTop: '0.3rem' }}>
                           {accountRange(tiersForSize(product.tiers, accountSize))}
                           {' · '}
                           {pricedTierLabel(tiersForSize(product.tiers, accountSize))}
                         </span>
-                        <span style={{ display: 'block', color: 'var(--accent-light)', fontSize: '0.68rem', marginTop: '0.35rem', fontWeight: 800 }}>
+                        <span style={{ display: 'block', color: 'var(--accent-light)', fontSize: '0.875rem', marginTop: '0.35rem', fontWeight: 800 }}>
                           {fundedFloorLabel(product, tiersForSize(product.tiers, accountSize))}
                         </span>
-                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.65rem', marginTop: '0.25rem' }}>
+                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.875rem', marginTop: '0.25rem' }}>
                           {pricingLabel(product.pricingModel)}
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 170 }}>
-                        <strong style={{ display: 'block', color: 'var(--text)', fontSize: '0.75rem' }}>
+                        <strong style={{ display: 'block', color: 'var(--text)', fontSize: '0.875rem' }}>
                           Target {profitTargetLabel(product)}
                         </strong>
-                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.68rem', marginTop: '0.35rem' }}>
-                          Minimum days: {product.minTradingDays ?? 'None'}
+                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.875rem', marginTop: '0.35rem' }}>
+                          Minimum days: {minimumTradingDaysLabel(product.minTradingDays)}
                         </span>
-                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.66rem', marginTop: '0.25rem' }}>
-                          Maximum days: {product.maxTradingDays ?? 'Unlimited'}
+                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.875rem', marginTop: '0.25rem' }}>
+                          Maximum days: {maximumTradingDaysLabel(product)}
                         </span>
-                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.66rem', marginTop: '0.25rem' }}>
-                          Consistency {product.consistencyRulePct == null ? 'none published' : `${product.consistencyRulePct}%`}
+                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.875rem', marginTop: '0.25rem' }}>
+                          Consistency: {consistencyRuleLabel(product)}
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 190 }}>
-                        <strong style={{ display: 'block', color: 'var(--text)', fontSize: '0.72rem' }}>
+                        <strong style={{ display: 'block', color: 'var(--text)', fontSize: '0.875rem' }}>
                           Daily {percentageOrTierDollars(product.dailyLossPct, product.tiers, 'dailyLossUsd')}
                         </strong>
-                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.7rem', marginTop: '0.35rem' }}>
+                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.875rem', marginTop: '0.35rem' }}>
                           Maximum {percentageOrTierDollars(product.maxLossPct, product.tiers, 'maxLossUsd')}
                         </span>
-                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.67rem', marginTop: '0.3rem' }}>
+                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.875rem', marginTop: '0.3rem' }}>
                           {drawdownLabel(product.drawdownType)}
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 175 }}>
-                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.7rem', fontWeight: 800, textTransform: 'capitalize' }}>
+                        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.875rem', fontWeight: 800, textTransform: 'capitalize' }}>
                           {payoutLabel(product)}
                         </span>
-                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.68rem', marginTop: '0.35rem' }}>
+                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.875rem', marginTop: '0.35rem' }}>
                           Profit split {product.profitSplitPct == null ? 'unverified' : `${product.profitSplitPct}%`}
                         </span>
                       </td>
@@ -1480,7 +1481,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                           <span key={label as string} style={{
                             display: 'block',
                             color: ruleColor(value as RuleAvailability),
-                            fontSize: '0.68rem',
+                            fontSize: '0.875rem',
                             marginBottom: '0.2rem',
                           }}>
                             {label as string}: {ruleLabel(value as RuleAvailability)}
@@ -1488,7 +1489,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                         ))}
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 175 }}>
-                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.66rem' }}>
+                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.875rem' }}>
                           Captured {dateLabel(product.capturedAt)}
                         </span>
                         <ProductChangeSignals signals={product.changeSignals} compact />
@@ -1501,7 +1502,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                             alignItems: 'center',
                             gap: '0.25rem',
                             color: 'var(--accent-light)',
-                            fontSize: '0.68rem',
+                            fontSize: '0.875rem',
                             fontWeight: 800,
                             marginTop: '0.35rem',
                           }}
@@ -1520,7 +1521,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                                 surface: 'global',
                                 product: `${firm.slug}:${product.slug}`,
                               })}
-                              style={{ padding: '0.48rem 0.62rem', fontSize: '0.68rem' }}
+                              style={{ padding: '0.48rem 0.62rem', fontSize: '0.875rem' }}
                             >
                               Check current offer <ExternalLink size={11} />
                             </Link>
@@ -1532,7 +1533,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                                 product: `${firm.slug}:${product.slug}`,
                               })}
                               className="btn-outline"
-                              style={{ padding: '0.48rem 0.62rem', fontSize: '0.68rem' }}
+                              style={{ padding: '0.48rem 0.62rem', fontSize: '0.875rem' }}
                             >
                               Read review <ArrowRight size={11} />
                             </Link>
@@ -1560,7 +1561,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
         ) : (
           <div className="post-sidebar-card" style={{ marginTop: '1rem', padding: '1.5rem', textAlign: 'center' }}>
             <h3 style={{ margin: 0, color: 'var(--text)', fontSize: '1rem' }}>No sourced product matches every filter</h3>
-            <p style={{ margin: '0.55rem auto 0', color: 'var(--muted)', fontSize: '0.82rem', maxWidth: 620 }}>
+            <p style={{ margin: '0.55rem auto 0', color: 'var(--muted)', fontSize: '1rem', maxWidth: 620 }}>
               Reset one filter rather than treating an unpublished rule or fee as a match.
             </p>
           </div>
@@ -1605,7 +1606,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
           </ul>
         </details>
 
-        <p style={{ margin: '0.85rem 0 0', color: 'var(--muted)', fontSize: '0.7rem', lineHeight: 1.55 }}>
+        <p style={{ margin: '0.85rem 0 0', color: 'var(--muted)', fontSize: '0.875rem', lineHeight: 1.55 }}>
           “Unverified” stays unknown rather than becoming zero, unlimited or allowed. EUR prices remain in EUR.
           Monthly funded-cost figures assume a first-cycle pass and exclude later rebills or resets.
         </p>

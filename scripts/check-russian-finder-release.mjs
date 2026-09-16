@@ -1,22 +1,30 @@
 import assert from 'node:assert/strict'
+import { localPreviewUrl } from './local-preview-url.mjs'
 import { LOCALIZED_ROUTE_PAIRS, RUSSIAN_ONLY_ROUTES, RUSSIAN_ROUTE_EDITORIAL_DATES } from '../lib/localizedRoutes.ts'
 import { getRussianFinderRows, getRussianReviewFinderHref, getRussianInstantFinderHref } from '../lib/challengeComparisonData.ts'
 import { challengeKey, DEFAULT_FINDER_FILTERS, filterChallengeRows } from '../lib/challengeComparison.ts'
+import { getAllChallenges, isChallengeFresh } from '../lib/firms.ts'
 import { getAuthorBySlug } from '../lib/authors.ts'
 
-const base = new URL(process.argv[2] || 'http://127.0.0.1:3214')
+const args = process.argv.slice(2)
+const base = new URL(localPreviewUrl(args.find(arg => !arg.startsWith('--'))))
+const dev = args.includes('--dev')
+assert(!dev || ['127.0.0.1', 'localhost', '[::1]'].includes(base.hostname), '--dev is only for a local cold-compiling server')
+const requestTimeoutMs = dev ? 60000 : 20000
 const production = 'https://tradersfundhub.com'
 const paths = [...new Set([...LOCALIZED_ROUTE_PAIRS.map(pair => pair.ru), ...RUSSIAN_ONLY_ROUTES])]
 const pages = new Map()
 const sitemap = await fetch(new URL('/sitemap.xml', base)).then(response => response.text())
 for (const pathname of paths) {
-  const response = await fetch(new URL(pathname, base), { redirect: 'manual', signal: AbortSignal.timeout(20000) })
+  const response = await fetch(new URL(pathname, base), { redirect: 'manual', signal: AbortSignal.timeout(requestTimeoutMs) })
+    .catch(error => { throw new Error(`${pathname}: request failed within ${requestTimeoutMs} ms`, { cause: error }) })
   assert.equal(response.status, 200, `${pathname}: HTTP status`)
   const html = await response.text()
   const body = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
   assert.equal((body.match(/<h1\b/g) ?? []).length, 1, `${pathname}: exactly one H1`)
   assert(body.includes(`rel="canonical" href="${production}${pathname}"`), `${pathname}: self canonical`)
   assert(body.includes('lang="ru"'), `${pathname}: Russian language declaration`)
+  assert(html.includes("document.documentElement.lang = window.location.pathname.startsWith('/ru') ? 'ru' : 'en';"), `${pathname}: root document language sync`)
   assert.doesNotMatch(body, /Основатель Traders Fund Hub|funded-трейдер с 2020 года/iu, `${pathname}: no unsupported author credentials`)
   assert(sitemap.includes(`<loc>${production}${pathname}</loc>`), `${pathname}: in sitemap`)
   pages.set(pathname, body)
@@ -25,6 +33,9 @@ const ranking = pages.get('/ru/luchshie-prop-firmy')
 const home = pages.get('/ru')
 assert(home.includes('data-russian-home-finder="programme-entry"'))
 assert(home.includes('/ru/luchshie-prop-firmy#size=50000'))
+assert(home.includes('data-russian-affiliate-disclosure="home-primary-partners"'))
+assert(home.includes('Для резидентов России доступность не подтверждена'))
+assert(home.includes('Россия не названа в опубликованном списке ограничений'))
 assert(ranking.includes('data-russian-challenge-finder="product-first"'))
 assert(!ranking.includes('Коммерческий результат пока заблокирован.'))
 assert(ranking.includes('data-russian-affiliate-disclosure="challenge-finder"'))
@@ -32,6 +43,12 @@ assert(ranking.includes('data-russian-country-boundary="finder-not-access"'))
 assert.equal((ranking.match(/data-russian-ranking="single-directory"/g) ?? []).length, 1)
 assert.equal((ranking.match(/data-russian-ranking-partners="single-section"/g) ?? []).length, 1)
 assert(!ranking.includes('data-russian-ranking="top-five"') && !ranking.includes('data-russian-ranking-partner-matrix'))
+const staleFirmCount = new Set(getAllChallenges().filter(product => !isChallengeFresh(product)).map(product => product.firmSlug)).size
+if (staleFirmCount > 0) {
+  assert(ranking.includes('data-russian-ranking-freshness-holds='), 'ranking explains source-gated firms held out of the table')
+} else {
+  assert(!ranking.includes('data-russian-ranking-freshness-holds='), 'ranking does not show an empty freshness hold panel')
+}
 for (const firm of ['fundednext', 'bright-funded', 'fundingpips', 'ftmo']) {
   const review = pages.get(`/ru/obzor-${firm}`)
   assert(review.includes('Автор: Edris Derakhshi'), `${firm}: established visible author`)
@@ -48,11 +65,48 @@ assert(instantGuide.includes('data-russian-guide-source-status='), 'Instant guid
 assert(instantText.includes('не более 3 раз на одном счёте'), 'Instant news-adjustment limit is visible')
 assert(instantGuide.includes(getRussianInstantFinderHref().replace(/&/g, '&amp;')), 'published Instant comparison handoff')
 assert.doesNotMatch(instantText, /\bcheckout\b|\bbuffer\b|\bgates?\b|захват[а-яё]*/iu, 'published Instant guide has no internal jargon')
+const mt5 = pages.get('/ru/fundednext-mt5')
+const mt5Text = mt5.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
+assert(mt5Text.includes('Автор: Edris Derakhshi'), 'MT5 author is visible')
+assert(mt5.includes('data-russian-guide-source-status='), 'MT5 evidence age is visible')
+assert(mt5.includes('data-russian-fundednext-ea-size='), 'MT5 EA condition is visible')
+assert(mt5.includes('https://help.fundednext.com/en/articles/11641338-can-i-use-ea-in-stellar-instant'), 'MT5 Instant scope conflict retains its first-party source')
+assert.doesNotMatch(mt5Text, /\bcheckout\b|\ballocation\b|\bdownload\b|\bCTA\b/iu, 'published MT5 guide has native reader-facing wording')
+const mt5Sitemap = sitemap.split('<url>').find(entry => entry.includes(`<loc>${production}/ru/fundednext-mt5</loc>`))
+assert(mt5Sitemap?.includes(RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/fundednext-mt5']), 'MT5 lastmod follows its actual editorial update')
+const cTrader = pages.get('/ru/prop-firmy-s-ctrader')
+const forex = pages.get('/ru/forex-prop-firmy')
+assert(forex.includes('Автор:') && forex.includes('Edris Derakhshi'), 'forex byline is visible')
+assert(forex.includes('data-russian-forex-correction="stellar-1-step-leverage"'), 'forex correction is visible')
+assert(forex.includes('data-russian-forex-leverage-product="fundednext:stellar-1-step">1:30</td>'), 'Stellar 1-Step forex leverage is corrected in the rendered table')
+assert(forex.includes('data-russian-guide-source-status='), 'forex separates evidence dates from article edits')
+assert(forex.includes(getRussianReviewFinderHref('fundednext').replace(/&/g, '&amp;')), 'forex comparison handoff works')
+const forexSitemap = sitemap.split('<url>').find(entry => entry.includes(`<loc>${production}/ru/forex-prop-firmy</loc>`))
+assert(forexSitemap?.includes(RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/forex-prop-firmy']), 'forex lastmod follows its actual editorial update')
+const cTraderText = cTrader.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
+assert(cTraderText.includes('Автор: Edris Derakhshi'), 'cTrader author is visible')
+assert(cTrader.includes('data-russian-guide-source-status='), 'cTrader separates source age from editorial updates')
+assert(cTrader.includes('https://help.fundednext.com/en/articles/8020087-will-i-get-back-my-registration-fee'), 'cTrader refund qualification has a visible official source')
+assert.doesNotMatch(cTraderText, /\bcheckout\b|\btier\b|\bCTA\b|захвачен/iu, 'published cTrader guide uses native wording')
+const cTraderSitemap = sitemap.split('<url>').find(entry => entry.includes(`<loc>${production}/ru/prop-firmy-s-ctrader</loc>`))
+assert(cTraderSitemap?.includes(RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/prop-firmy-s-ctrader']), 'cTrader lastmod follows its actual editorial update')
 for (const pathname of ['/ru', '/ru/luchshie-prop-firmy', '/ru/obzor-fundednext', '/ru/obzor-bright-funded', '/ru/obzor-fundingpips', '/ru/obzor-ftmo', '/ru/otzyvy-prop-firm', '/ru/luchshie-kripto-prop-firmy', '/ru/fundednext-stellar-instant']) {
   const block = sitemap.split('<url>').find(entry => entry.includes(`<loc>${production}${pathname}</loc>`))
-  assert(block.includes(RUSSIAN_ROUTE_EDITORIAL_DATES[pathname]), `${pathname}: editorial lastmod`)
+  assert(block, `${pathname}: sitemap entry`)
+  const lastmod = new Date(block.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1] ?? '').getTime()
+  const editorial = new Date(`${RUSSIAN_ROUTE_EDITORIAL_DATES[pathname]}T00:00:00Z`).getTime()
+  assert(Number.isFinite(lastmod) && lastmod >= editorial, `${pathname}: editorial lastmod`)
 }
 const edris = getAuthorBySlug('edris-derakhshi')
+const teamTraders = pages.get('/ru/obzor-teamtraders')
+const teamTradersText = teamTraders.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
+assert(teamTraders.includes('class="ru-review-article"') && teamTraders.includes('data-russian-teamtraders-article="dated-local-model"'))
+assert(teamTraders.includes('У нас нет проверенной истории выплат'))
+for (const id of ['tarify', 'etapy', 'pravila', 'vyplaty', 'raskhozhdeniya', 'oferta', 'istochniki', 'global-options']) assert(teamTraders.includes(`id="${id}"`), `TeamTraders section ${id}`)
+assert(teamTraders.includes(getRussianReviewFinderHref('fundednext').replace(/&/g, '&amp;')), 'TeamTraders global comparison handoff')
+assert(teamTradersText.includes(`Обновлено ${RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/obzor-teamtraders']}`), 'visible TeamTraders update date matches its sitemap date')
+const teamTradersSitemap = sitemap.split('<url>').find(entry => entry.includes(`<loc>${production}/ru/obzor-teamtraders</loc>`))
+assert(teamTradersSitemap?.includes(RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/obzor-teamtraders']), 'TeamTraders editorial lastmod')
 const authorResponse = await fetch(new URL(`/authors/${edris.slug}`, base))
 assert.equal(authorResponse.status, 200, 'author profile responds')
 const authorHtml = await authorResponse.text()

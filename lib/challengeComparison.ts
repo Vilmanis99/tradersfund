@@ -29,7 +29,9 @@ export interface GlobalChallengeRow {
     fundedDrawdownType: DrawdownType | null
     minTradingDays: number | null
     maxTradingDays: number | null
+    maxTradingDaysUnlimited?: boolean | null
     consistencyRulePct: number | null
+    consistencyRuleApplies?: boolean | null
     profitSplitPct: number | null
     payoutFirstDays: number | null
     payoutFrequency: PayoutFrequency | null
@@ -56,6 +58,15 @@ export const DEFAULT_FINDER_FILTERS: ChallengeFinderFilters = {
 }
 export const challengeKey = (row: GlobalChallengeRow) => `${row.firm.slug}:${row.product.slug}`
 export const finderTier = (row: GlobalChallengeRow, size: number) => row.product.tiers.find(tier => tier.sizeUsd === size)
+export function finderAccountSizes(rows: GlobalChallengeRow[]): number[] {
+  return [...new Set(rows.flatMap(row => row.product.tiers.map(tier => tier.sizeUsd)))]
+    .filter(size => Number.isFinite(size) && size > 0).sort((a, b) => a - b)
+}
+/** Preserve a supported choice; otherwise prefer the normal default, then a real tier. */
+export function resolveFinderSize(sizes: number[], requested = DEFAULT_FINDER_FILTERS.size): number | undefined {
+  return sizes.includes(requested) ? requested
+    : sizes.includes(DEFAULT_FINDER_FILTERS.size) ? DEFAULT_FINDER_FILTERS.size : sizes[0]
+}
 export function tierPrice(tier: GlobalChallengeTier, currency: FinderCurrency): number | null {
   return currency === 'USD' ? tier.priceUsd : tier.priceEur
 }
@@ -63,6 +74,14 @@ export function tierCurrency(tier: GlobalChallengeTier): FinderCurrency | null {
   if (tier.priceUsd != null && tier.priceUsd > 0) return 'USD'
   if (tier.priceEur != null && tier.priceEur > 0) return 'EUR'
   return null
+}
+
+/** Conditional windows, unqualified day counts, and business-day programmes stay separate. */
+function payoutTimingGroup(row: GlobalChallengeRow): number {
+  const days = row.product.payoutFirstDays
+  if (days == null || !Number.isInteger(days) || days < 0) return 3
+  if (row.firm.slug === 'fundednext' && row.product.slug === 'stellar-1-step') return 2
+  return days === 0 ? 0 : 1
 }
 
 /** Never order or budget-filter EUR amounts against USD amounts without an FX source. */
@@ -85,6 +104,8 @@ export function filterChallengeRows(rows: GlobalChallengeRow[], filters: Challen
       if (left !== right) return (left ?? Infinity) - (right ?? Infinity)
     }
     if (filters.sort === 'payout') {
+      const groupDifference = payoutTimingGroup(a) - payoutTimingGroup(b)
+      if (groupDifference) return groupDifference
       const left = a.product.payoutFirstDays
       const right = b.product.payoutFirstDays
       if (left !== right) return (left ?? Infinity) - (right ?? Infinity)
@@ -96,9 +117,10 @@ export function filterChallengeRows(rows: GlobalChallengeRow[], filters: Challen
 /** Fragment state is shareable without producing an indexable URL per combination. */
 export function parseFinderState(hash: string, rows: GlobalChallengeRow[]) {
   const params = new URLSearchParams(hash.replace(/^#/, ''))
-  const filters = { ...DEFAULT_FINDER_FILTERS }
+  const sizes = finderAccountSizes(rows)
+  const filters = { ...DEFAULT_FINDER_FILTERS, size: resolveFinderSize(sizes) ?? DEFAULT_FINDER_FILTERS.size }
   const size = Number(params.get('size'))
-  if (rows.some(row => row.product.tiers.some(tier => tier.sizeUsd === size))) filters.size = size
+  if (sizes.includes(size)) filters.size = size
   const phases = params.get('steps')
   if (['0', '1', '2', '3'].includes(phases ?? '')) filters.phases = phases as ChallengeFinderFilters['phases']
   const currency = params.get('currency')

@@ -21,7 +21,7 @@ type: "post"
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul>
-    <li>4 products and 23 priced tiers were captured from CTI’s first-party pages on 2026-07-27.</li>
+    <li>4 products and 23 priced tiers were captured from CTI’s first-party pages on 2026-09-14.</li>
     <li>1-Step and 2-Step are evaluation paths; Instant Funding and Direct Funding both record 0 phases.</li>
     <li>Starting splits are 80% on both evaluations, 50% on Instant Funding, and 70% on Direct Funding.</li>
     <li>1-Step uses 5% trailing drawdown; the other 3 products use static 6% or 10% caps.</li>
@@ -61,7 +61,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>All 23 prices and rules were captured from CTI’s 4 product pages on 2026-07-27. Every tier’s refundable field remains null because the captured pages do not publish a product-specific fee-return promise; null is not treated as refundable. Recheck the selected tier through <a href="/go/city-traders-imperium">CTI’s live product pages</a> before paying.</p>
+<p>All 23 prices and rules were captured from CTI’s 4 product pages on 2026-09-14. Every tier’s refundable field remains null because the captured pages do not publish a product-specific fee-return promise; null is not treated as refundable. Recheck the selected tier through <a href="/go/city-traders-imperium">CTI’s live product pages</a> before paying.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 
@@ -144,7 +144,7 @@ type: "post"
 
 <p>The structural reason is that both products charge a funded-account premium up front while halving or discounting the split. Skipping the evaluation is what you are buying, and at CTI that convenience costs between 10× and 17× on risk-adjusted terms. A trader who can pass a 1-Step at $100K pays $449 to reach an 80% split; reaching a comparable funded position through Direct Funding costs $3,999 at 70%.</p>
 
-<p>Pricing and rules above are current as of 2026-07-27, captured from CTI's own product pages. CTI does not publish a fee-refund promise anywhere on its site — its terms state fees are non-refundable except under its stated refund policy — so unlike most CFD firms you should not assume the entry fee comes back with your first payout.</p>
+<p>Pricing and rules above are current as of 2026-09-14, captured from CTI's own product pages. CTI does not publish a fee-refund promise anywhere on its site — its terms state fees are non-refundable except under its stated refund policy — so unlike most CFD firms you should not assume the entry fee comes back with your first payout.</p>
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
@@ -185,7 +185,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>What evidence does this CTI review verify?</strong></h3>
-<p>The review verifies 4 product rule sets and 23 prices captured from CTI pages on 2026-07-27. The separate Trustpilot capture records 4.2/5 from 1,633 reviews, but the site has no verified-payout badge and does not treat that aggregate as proof of an individual payout.</p>
+<p>The review verifies 4 product rule sets and 23 prices captured from CTI pages on 2026-09-14. The separate Trustpilot capture records 4.2/5 from 1,633 reviews, but the site has no verified-payout badge and does not treat that aggregate as proof of an individual payout.</p>
 
 <h3 class="wp-block-heading"><strong>What starting profit split does CTI pay?</strong></h3>
 <p>The answer depends on the product: 1-Step and 2-Step start at 80%, Direct Funding starts at 70%, and Instant Funding starts at 50%. Later 90%–100% VIP figures are scaling levels, not the 4 captured starting shares.</p>

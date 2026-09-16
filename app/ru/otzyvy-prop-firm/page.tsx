@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { fundedNextOneStepPayoutLabel } from '@/lib/fundedNextPayout'
+import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
 import Link from '@/components/SafeLink'
 import {
   AlertTriangle,
@@ -15,6 +17,7 @@ import {
   WalletCards,
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import {
   challengeCurrency,
@@ -43,7 +46,7 @@ export const metadata: Metadata = {
     'проп фирма скам',
   ],
   alternates: { canonical: PATH },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
@@ -70,7 +73,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Можно ли доверять отзывам о проп-фирмах без KYC?',
-    a: 'Фраза «без KYC» часто относится только к регистрации или оплате. Проверка личности может появиться перед funded-этапом или первой выплатой, поэтому пройдите отдельный KYC-чек-лист до покупки и не используйте VPN либо неверные данные.',
+    a: 'Фраза «без KYC» часто относится только к регистрации или оплате. Проверка личности может появиться перед профинансированным этапом или первой выплатой, поэтому пройдите отдельный KYC-чек-лист до покупки и не используйте VPN либо неверные данные.',
   },
   {
     q: 'Чем российские проп-компании отличаются от глобальных челленджей?',
@@ -78,7 +81,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Получает ли Traders Fund Hub партнёрскую комиссию?',
-    a: 'Да. CTA FundedNext, Bright Funded и отдельно обозначенный FundingPips могут приносить комиссию. Партнёрство не добавляет баллы, не подтверждает страну и не гарантирует выплату; на странице оно отделено от таблицы первичных продуктовых данных.',
+    a: 'Да. Призывы к действию для FundedNext, Bright Funded и отдельно обозначенный FundingPips могут приносить комиссию. Партнёрство не добавляет баллы, не подтверждает страну и не гарантирует выплату; на странице оно отделено от таблицы первичных продуктовых данных.',
   },
 ]
 
@@ -153,6 +156,8 @@ function lossLabel(product: Challenge) {
 }
 
 function payoutLabel(product: Challenge) {
+  const scoped = fundedNextOneStepPayoutLabel(product)
+  if (scoped) return scoped
   const first = product.payoutFirstDays == null ? 'первая дата не подтверждена' : `первая заявка: ${product.payoutFirstDays} дн.`
   const frequency = product.payoutFrequency
     ? payoutFrequencyLabels[product.payoutFrequency] ?? product.payoutFrequency
@@ -210,6 +215,7 @@ export default function RussianPropFirmReviewsPage() {
       <section className="ru-hero">
         <div className="ru-shell" data-russian-reviews-guide="long-form-source-gated">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Отзывы о проп-фирмах</div>
+          <RussianEvidenceFreshnessNotice evidence={[{ label: 'рынок и доступность', capturedAt: marketEvidence.capturedAt }, ...featuredProducts.map(product => ({ label: `${product.firmSlug}: ${product.productName}`, capturedAt: product.sourceCapturedAt }))]} />
           <div className="ru-eyebrow"><FileSearch size={14} aria-hidden="true" /> Проверка кейса до регистрации</div>
           <h1>Отзывы о проп-фирмах: проверка выплат, правил и KYC</h1>
           <p className="ru-lead">
@@ -221,11 +227,14 @@ export default function RussianPropFirmReviewsPage() {
             <span>Обновлено: {lastModified}</span>
             <span>15 минут чтения</span>
           </div>
+          <div className="ru-actions" data-russian-reviews-finder-handoff="neutral-selector">
+            <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Подобрать программу по условиям <ArrowRight size={15} aria-hidden="true" /></Link>
+          </div>
           <div className="ru-stats">
             <div className="ru-stat"><strong>7</strong><span>полей проверки одного отзыва</span></div>
             <div className="ru-stat"><strong>{featuredCards.length}</strong><span>главных партнёра, выделенных отдельно</span></div>
             <div className="ru-stat"><strong>{featuredProducts.length}</strong><span>актуальных продуктов FundedNext и Bright</span></div>
-            <div className="ru-stat"><strong>{featuredPriceCount}</strong><span>опубликованных USD/EUR цен</span></div>
+            <div className="ru-stat"><strong>{featuredPriceCount}</strong><span>опубликованных цен в USD/EUR</span></div>
           </div>
           <div className="ru-actions">
             <Link href="#featured-partners" className="btn-primary btn-glow">FundedNext и Bright Funded <ArrowRight size={15} aria-hidden="true" /></Link>
@@ -279,12 +288,12 @@ export default function RussianPropFirmReviewsPage() {
             </div>
             <div className="ru-grid">
               <article className="ru-card"><Database size={21} color="var(--accent-light)" aria-hidden="true" /><h3>1. Фирма и точный продукт</h3><p>Название бренда недостаточно: Stellar Instant с 0 этапов нельзя смешивать со Stellar 2-Step, а Bright 1-Step — с Bright 2-Step.</p></article>
-              <article className="ru-card"><BadgeDollarSign size={21} color="var(--accent-light)" aria-hidden="true" /><h3>2. Размер счёта и цена</h3><p>Запишите номинал, валюту и фактический взнос. USD, EUR, временная скидка и платный add-on создают разные денежные маршруты.</p></article>
-              <article className="ru-card"><ShieldAlert size={21} color="var(--accent-light)" aria-hidden="true" /><h3>3. Этап и названное правило</h3><p>Укажите evaluation или funded stage, дневную/общую просадку, consistency, новости, выходные либо copy trading — без общего слова «нарушение».</p></article>
+              <article className="ru-card"><BadgeDollarSign size={21} color="var(--accent-light)" aria-hidden="true" /><h3>2. Размер счёта и цена</h3><p>Запишите номинал, валюту и фактический взнос. USD, EUR, временная скидка и платное дополнение создают разные денежные маршруты.</p></article>
+              <article className="ru-card"><ShieldAlert size={21} color="var(--accent-light)" aria-hidden="true" /><h3>3. Этап и названное правило</h3><p>Укажите этап оценки или профинансированный этап, дневную/общую просадку, правило стабильности, новости, выходные либо копирование — без общего слова «нарушение».</p></article>
               <article className="ru-card"><WalletCards size={21} color="var(--accent-light)" aria-hidden="true" /><h3>4. Дата и сумма выплаты</h3><p>Нужны дата запроса, дата получения, валюта, сумма и удержанная комиссия; скриншот баланса не является подтверждением расчёта.</p></article>
-              <article className="ru-card"><CheckCircle2 size={21} color="var(--accent-light)" aria-hidden="true" /><h3>5. Profitable days и payout gate</h3><p>Первая заявка может зависеть от 5 прибыльных дней, 21 календарного дня, роста счёта или иной именованной проверки продукта.</p></article>
-              <article className="ru-card"><Globe2 size={21} color="var(--accent-light)" aria-hidden="true" /><h3>6. Страна, KYC и платёж</h3><p>Резидентство автора, документ, способ оплаты и payout rail должны совпадать с вашим маршрутом; язык комментария ничего из этого не доказывает.</p></article>
-              <article className="ru-card"><BookOpenCheck size={21} color="var(--accent-light)" aria-hidden="true" /><h3>7. Версия источника</h3><p>Сохраните URL и дату действующего правила. Наш 30-дневный gate не превращает старый отзыв в ложный, но не позволяет использовать его число как текущее.</p></article>
+              <article className="ru-card"><CheckCircle2 size={21} color="var(--accent-light)" aria-hidden="true" /><h3>5. Прибыльные дни и условие выплаты</h3><p>Первая заявка может зависеть от 5 прибыльных дней, 21 календарного дня, роста счёта или иной именованной проверки продукта.</p></article>
+              <article className="ru-card"><Globe2 size={21} color="var(--accent-light)" aria-hidden="true" /><h3>6. Страна, KYC и платёж</h3><p>Резидентство автора, документ, способ оплаты и маршрут выплаты должны совпадать с вашим маршрутом; язык комментария ничего из этого не доказывает.</p></article>
+              <article className="ru-card"><BookOpenCheck size={21} color="var(--accent-light)" aria-hidden="true" /><h3>7. Версия источника</h3><p>Сохраните URL и дату действующего правила. Наш 30-дневный срок актуальности не превращает старый отзыв в ложный, но не позволяет использовать его число как текущее.</p></article>
             </div>
           </div>
         </section>
@@ -293,7 +302,7 @@ export default function RussianPropFirmReviewsPage() {
           <div className="ru-shell" data-russian-reviews-featured-partners="fundednext-bright-funded">
             <div className="ru-content">
               <h2>Главные партнёрские маршруты после проверки отзывов</h2>
-              <p>FundedNext и Bright Funded стоят рядом как коммерческие варианты, а не как одинаковые продукты. Первый публикует 4 USD-модели, второй — 3 EUR-модели; решение должно начинаться с подходящего правила просадки, этапов и payout gate.</p>
+              <p>FundedNext и Bright Funded стоят рядом как коммерческие варианты, а не как одинаковые продукты. Первый публикует 4 USD-модели, второй — 3 EUR-модели; решение должно начинаться с подходящего правила просадки, этапов и условия выплаты.</p>
             </div>
             <div className="ru-grid">
               {featuredCards.map(card => (
@@ -306,7 +315,7 @@ export default function RussianPropFirmReviewsPage() {
                   </ul>
                   <p>{card.slug === 'fundednext'
                     ? 'Сначала выберите между 0, 1 и 2 этапами; затем проверьте возврат взноса, тип просадки и первую заявку. Для российского резидентства не делайте вывод из чужого отзыва: первичные страницы конфликтуют.'
-                    : 'Сначала выберите 1 или 2 этапа; затем проверьте trailing/static drawdown и первую заявку. USDC ERC-20 описывает выплату, а не торговый рынок или автоматическую доступность страны.'}</p>
+                    : 'Сначала выберите 1 или 2 этапа; затем проверьте трейлинг-/статическую просадку и первую заявку. USDC ERC-20 описывает выплату, а не торговый рынок или автоматическую доступность страны.'}</p>
                   <div className="ru-actions">
                     <Link href={card.reviewHref} className="btn-outline">Полный русский обзор</Link>
                     <Link href={`/go/${card.slug}?from=ru-reviews-guide-${card.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить {card.name} <ArrowRight size={14} aria-hidden="true" /></Link>
@@ -333,25 +342,26 @@ export default function RussianPropFirmReviewsPage() {
                       <td>{priceRange(product)}</td>
                       <td>{phaseLabel(product)}; {profitTargetLabel(product)}</td>
                       <td>{lossLabel(product)}</td>
-                      <td>{product.profitSplitPct == null ? 'сплит —' : `${product.profitSplitPct}% базовый`}; {payoutLabel(product)}</td>
+                      <td data-russian-payout-product={`${product.firmSlug}:${product.productSlug}`}>{product.profitSplitPct == null ? 'сплит —' : `${product.profitSplitPct}% базовый`}; {payoutLabel(product)}</td>
                       <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">{product.sourceCapturedAt} <ExternalLink size={12} aria-hidden="true" /></a></td>
                     </tr>
                   )))}
                 </tbody>
               </table>
             </div>
-            <p className="ru-source-line">Все {featuredProducts.length} строк проходят 30-дневный gate; {featuredPriceCount} цен показаны в исходной валюте фирмы без пересчёта в рубли.</p>
+            <p className="ru-source-line">Все {featuredProducts.length} строк проходят 30-дневную проверку актуальности; {featuredPriceCount} цен показаны в исходной валюте фирмы без пересчёта в рубли.</p>
+            <RussianFundedNextPayoutNotice />
           </div>
         </section>
 
         <section className="ru-section" id="payout-review">
           <div className="ru-shell ru-content" data-russian-reviews-payout-case="seven-facts">
             <h2>Как читать отзыв «проп-фирма выплатила»</h2>
-            <p>Фраза «получил выплату» подтверждает только личное утверждение автора. Проверяемый кейс связывает 7 фактов: продукт, номинал, funded-stage, дату запроса, дату получения, сумму/валюту и способ вывода. Отдельно нужны KYC и действовавший payout gate.</p>
+            <p>Фраза «получил выплату» подтверждает только личное утверждение автора. Проверяемый кейс связывает 7 фактов: продукт, номинал, профинансированный этап, дату запроса, дату получения, сумму/валюту и способ вывода. Отдельно нужны KYC и действовавшее условие выплаты.</p>
             <div className="ru-grid">
               <article className="ru-card"><h3>Сильный кейс</h3><p>Автор называет Stellar 2-Step $100K, дату первой заявки, 21-дневное ожидание, сумму, крипто/банк, KYC и источник правила, действовавший в тот день.</p></article>
-              <article className="ru-card"><h3>Слабый кейс</h3><p>Автор показывает dashboard и пишет «выплатили быстро», но не называет продукт, дату, payout method, сумму, документы или правило profitable days.</p></article>
-              <article className="ru-card"><h3>Что переносить нельзя</h3><p>Один успешный payout не гарантирует следующую заявку, другую страну, иной размер счёта или продукт с другой просадкой и consistency gate.</p></article>
+              <article className="ru-card"><h3>Слабый кейс</h3><p>Автор показывает личный кабинет и пишет «выплатили быстро», но не называет продукт, дату, способ выплаты, сумму, документы или правило прибыльных дней.</p></article>
+              <article className="ru-card"><h3>Что переносить нельзя</h3><p>Одна успешная выплата не гарантирует следующую заявку, другую страну, иной размер счёта или продукт с другой просадкой и условием стабильности.</p></article>
             </div>
             <div className="ru-actions"><Link href="/ru/vyplaty-prop-firm" className="btn-outline">Сравнить правила выплат</Link><Link href="/ru/prop-firmy-bez-kyc" className="btn-outline">Проверить KYC</Link></div>
           </div>
@@ -362,9 +372,9 @@ export default function RussianPropFirmReviewsPage() {
             <h2>Как читать жалобу «аккаунт заблокировали» или «проп-фирма — скам»</h2>
             <p>Негативный отзыв нельзя удалять из анализа, но и нельзя превращать в юридический вывод без фактов. Сначала определите 6 элементов: названное правило, этап, время сделки, версию договора, ответ поддержки и движение платежа.</p>
             <ol className="ru-steps">
-              <li><span>1</span><div><strong>Привяжите жалобу к правилу.</strong><p>«Нарушение» должно стать daily loss, maximum loss, news window, copy trading, IP/device, inactivity, consistency или KYC.</p></div></li>
-              <li><span>2</span><div><strong>Сверьте формулу и временную зону.</strong><p>Equity, balance, static, trailing и EOD дают разные breach-моменты; время сервера может не совпадать со временем автора.</p></div></li>
-              <li><span>3</span><div><strong>Отделите спор от повторяемого сигнала.</strong><p>Один анонимный пост — lead. Несколько кейсов с одним правилом и датой — причина искать официальное изменение или публичный watch.</p></div></li>
+              <li><span>1</span><div><strong>Привяжите жалобу к правилу.</strong><p>«Нарушение» должно стать дневным или общим лимитом убытка, окном новостей, копированием, IP/устройством, бездействием, правилом стабильности или KYC.</p></div></li>
+              <li><span>2</span><div><strong>Сверьте формулу и временную зону.</strong><p>Эквити, баланс, статическая, трейлинг- и EOD-просадка дают разные моменты нарушения; время сервера может не совпадать со временем автора.</p></div></li>
+              <li><span>3</span><div><strong>Отделите спор от повторяемого сигнала.</strong><p>Один анонимный пост — сигнал для проверки. Несколько кейсов с одним правилом и датой — причина искать официальное изменение или публичное наблюдение.</p></div></li>
               <li><span>4</span><div><strong>Не платите, пока конфликт не разрешён.</strong><p>Если договор и FAQ расходятся, сохраните письменный ответ поддержки. Устный ответ и VPN не исправляют контрактный или страновой запрет.</p></div></li>
             </ol>
           </div>
@@ -375,7 +385,7 @@ export default function RussianPropFirmReviewsPage() {
             <h2>Правдивый отзыв всё равно может не подходить вашему аккаунту</h2>
             <p>
               Отзыв подтверждает событие конкретного автора: продукт, дату, страну, правило и сумму. Он не превращает это событие
-              в гарантию для другого размера счёта, payout cycle, документа KYC или версии договора.
+              в гарантию для другого размера счёта, цикла выплат, документа KYC или версии договора.
             </p>
             <p>
               Переносите из кейса только проверяемые поля и заново сверяйте их с текущим источником фирмы. Итоговые ярлыки
@@ -388,15 +398,15 @@ export default function RussianPropFirmReviewsPage() {
           <div className="ru-shell" data-russian-reviews-local-models="bridge-not-ranking">
             <div className="ru-content">
               <h2>Российские отзывы полезны, но локальные и глобальные модели нельзя смешивать</h2>
-              <p>Локальные компании помогают понять русскоязычный договор, Московскую биржу и рублёвую выплату. Они являются bridge content: после изучения модели читатель отдельно решает, подходит ли ему глобальный CFD-челлендж FundedNext или Bright Funded.</p>
+              <p>Локальные компании помогают понять русскоязычный договор, Московскую биржу и рублёвую выплату. Они являются связующим материалом: после изучения модели читатель отдельно решает, подходит ли ему глобальный CFD-челлендж FundedNext или Bright Funded.</p>
             </div>
             <div className="ru-table-wrap">
               <table className="ru-table">
                 <thead><tr><th>Локальный пример</th><th>Опубликованный факт</th><th>Почему нельзя переносить на глобальную фирму</th><th>Источник</th></tr></thead>
                 <tbody>
-                  <tr><td><strong>PropLive</strong></td><td>{Number(localClaim('PropLive', 'traders')).toLocaleString('ru-RU')} трейдеров заявлены оператором; рынок — {localClaim('PropLive', 'market')}</td><td>MOEX/Финам и глобальный simulated CFD challenge используют разные договоры, инфраструктуру и payout path.</td><td><a href="https://www.proplive.ru/" target="_blank" rel="nofollow noopener">Оператор</a></td></tr>
-                  <tr><td><strong><Link href="/ru/obzor-teamtraders">TeamTraders</Link></strong></td><td>{localClaim('TeamTraders', 'stageProfitPct')}% цель, минимум {localClaim('TeamTraders', 'minimumTradingSessions')} дней, {localClaim('TeamTraders', 'dailyLossLimitPct')}% дневной лимит и до {localClaim('TeamTraders', 'profitSharePct')}% на real</td><td>Текущий FAQ добавляет funded demo с 70%; локальные цифры нельзя подставлять в правила Stellar или Bright.</td><td><a href="https://teamtraders.ru/faq" target="_blank" rel="nofollow noopener">Текущий FAQ</a></td></tr>
-                  <tr><td><strong>KasCapital</strong></td><td>Заявленный диапазон выплаты: {Number(localClaim('KasCapital', 'minimumPayoutRub')).toLocaleString('ru-RU')}–{Number(localClaim('KasCapital', 'maximumPayoutRub')).toLocaleString('ru-RU')} ₽; обработка в понедельник</td><td>Рублёвый payout range не сравнивается напрямую с USD/EUR fee, USDC или банковским маршрутом глобальной фирмы.</td><td><a href="https://kascapital.io/" target="_blank" rel="nofollow noopener">Оператор</a></td></tr>
+                  <tr><td><strong>PropLive</strong></td><td>{Number(localClaim('PropLive', 'traders')).toLocaleString('ru-RU')} трейдеров заявлены оператором; рынок — {localClaim('PropLive', 'market')}</td><td>MOEX/Финам и глобальная симулированная CFD-оценка используют разные договоры, инфраструктуру и маршрут выплаты.</td><td><a href="https://www.proplive.ru/" target="_blank" rel="nofollow noopener">Оператор</a></td></tr>
+                  <tr><td><strong><Link href="/ru/obzor-teamtraders">TeamTraders</Link></strong></td><td>{localClaim('TeamTraders', 'stageProfitPct')}% цель, минимум {localClaim('TeamTraders', 'minimumTradingSessions')} дней, {localClaim('TeamTraders', 'dailyLossLimitPct')}% дневной лимит и до {localClaim('TeamTraders', 'profitSharePct')}% на реальном рынке</td><td>Текущий FAQ добавляет демо-счёт с финансированием 70%; локальные цифры нельзя подставлять в правила Stellar или Bright.</td><td><a href="https://teamtraders.ru/faq" target="_blank" rel="nofollow noopener">Текущий FAQ</a></td></tr>
+                  <tr><td><strong>KasCapital</strong></td><td>Заявленный диапазон выплаты: {Number(localClaim('KasCapital', 'minimumPayoutRub')).toLocaleString('ru-RU')}–{Number(localClaim('KasCapital', 'maximumPayoutRub')).toLocaleString('ru-RU')} ₽; обработка в понедельник</td><td>Рублёвый диапазон выплаты нельзя напрямую сравнивать с комиссией USD/EUR, USDC или банковским маршрутом глобальной фирмы.</td><td><a href="https://kascapital.io/" target="_blank" rel="nofollow noopener">Оператор</a></td></tr>
                 </tbody>
               </table>
             </div>
@@ -409,7 +419,7 @@ export default function RussianPropFirmReviewsPage() {
             <h2>Решение после отзывов: от кейса к точному продукту</h2>
             <div className="ru-grid">
               <article className="ru-card"><h3>Если нужен выбор 0/1/2 этапа</h3><p>Начните с 4 моделей FundedNext, затем исключите продукт по просадке, возврату взноса, первой заявке и стране.</p><Link href="/ru/obzor-fundednext" className="ru-card-link">Обзор FundedNext →</Link></article>
-              <article className="ru-card"><h3>Если важны EUR-цены и USDC payout</h3><p>Начните с 3 моделей Bright Funded, затем разделите 1-Step и 2-Step по типу drawdown и payout wording.</p><Link href="/ru/obzor-bright-funded" className="ru-card-link">Обзор Bright Funded →</Link></article>
+              <article className="ru-card"><h3>Если важны цены в EUR и выплата USDC</h3><p>Начните с 3 моделей Bright Funded, затем разделите 1-Step и 2-Step по типу просадки и формулировкам выплаты.</p><Link href="/ru/obzor-bright-funded" className="ru-card-link">Обзор Bright Funded →</Link></article>
               <article className="ru-card"><h3>Если обе модели не подходят</h3><p>FundingPips остаётся дополнительным глобальным партнёром с {secondaryProducts.length} актуальными продуктами; он не входит в две главные карточки этой страницы.</p><Link href={secondaryRoute.reviewHref} className="ru-card-link">Обзор FundingPips →</Link></article>
             </div>
             {secondaryFirm?.affiliateUrl && secondaryProducts.length > 0 ? (

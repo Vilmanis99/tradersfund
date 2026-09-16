@@ -24,8 +24,8 @@ const SITE = 'https://tradersfundhub.com'
 // India gate can remove firms/products as evidence ages or RBI status changes;
 // stale hard-coded counts should not make an otherwise valid production build
 // fail and leave every route on the previous deployment.
-const SOCIAL_CARD_PRODUCT_COUNT = 40
-const SOCIAL_CARD_FIRM_COUNT = 8
+const SOCIAL_CARD_PRODUCT_COUNT = 44
+const SOCIAL_CARD_FIRM_COUNT = 9
 
 export const metadata: Metadata = {
   title: { absolute: 'India Prop Firm Challenge Comparison (2026)' },
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Prop Firm Challenge Comparison India (2026)',
     description:
-      'Filter 40 sourced products across 8 India-screened firms.',
+      'Filter 36 sourced products across 8 India-screened firms.',
   },
 }
 

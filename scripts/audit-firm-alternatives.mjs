@@ -8,7 +8,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { rankFirmAlternatives } from '../lib/firmAlternatives.ts'
+import { rankCurrentFirmAlternatives } from '../lib/firmAlternatives.ts'
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const firms = JSON.parse(
@@ -16,7 +16,7 @@ const firms = JSON.parse(
 )
 
 function selectedNames(current, candidates) {
-  return rankFirmAlternatives(current, candidates).map(firm => firm.name)
+  return rankCurrentFirmAlternatives(current, candidates).map(firm => firm.name)
 }
 
 function toggleAffiliateUrl(firm) {
@@ -69,7 +69,7 @@ for (let toggledIndex = 0; toggledIndex < firms.length; toggledIndex += 1) {
 const topstep = firms.find(firm => firm.name === 'Topstep')
 assert(topstep, 'Topstep is missing from content/data/firms.json')
 
-const topstepAlternatives = rankFirmAlternatives(topstep, firms)
+const topstepAlternatives = rankCurrentFirmAlternatives(topstep, firms)
 assert.equal(topstepAlternatives.length, 3, 'Topstep must have 3 alternatives')
 for (const alternative of topstepAlternatives) {
   assert(

@@ -6,11 +6,13 @@ import Link from 'next/link'
 import { ArrowRight, Check, Link2, Plus, Scale, SlidersHorizontal, X } from 'lucide-react'
 import {
   challengeKey, DEFAULT_FINDER_FILTERS, filterChallengeRows, finderTier, parseFinderState,
-  serializeFinderState, tierCurrency, tierPrice,
+  serializeFinderState, tierCurrency, tierPrice, finderAccountSizes,
   type ChallengeFinderFilters, type GlobalChallengeRow, type GlobalChallengeTier,
 } from '@/lib/challengeComparison'
 import { trackSiteEvent } from '@/lib/clientAnalytics'
 import { russianPayoutRequestLabel } from '@/lib/russianProgrammeLabels'
+import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
+import { minimumTradingDaysLabel, maximumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 
 const UNKNOWN = 'Нет подтверждённых данных'
 const percent = (value: number | null) => value == null ? UNKNOWN : `${value}%`
@@ -20,7 +22,7 @@ const phaseLabel = (phases: number) => phases === 0 ? 'Без оценки' : `$
 const drawdownLabel = (value: string | null) => ({ static: 'Статическая', trailing: 'Трейлинг', 'eod-trailing': 'Трейлинг по итогам дня', 'balance-based': 'По балансу' }[value ?? ''] ?? UNKNOWN)
 const ruleLabel = (value: boolean | 'restricted' | null) => value == null ? 'Не подтверждено' : value === 'restricted' ? 'С ограничениями' : value ? 'Разрешено' : 'Запрещено'
 function payoutLabel(row: GlobalChallengeRow) {
-  return russianPayoutRequestLabel(row.product)
+  return russianPayoutRequestLabel({ ...row.product, firmSlug: row.firm.slug, productSlug: row.product.slug })
 }
 function priceLabel(tier: GlobalChallengeTier | undefined) {
   if (!tier) return 'Этот размер не представлен'
@@ -75,9 +77,11 @@ function ProgrammeCaveat({ row }: { row: GlobalChallengeRow }) {
         ? 'Подвижный лимит может подняться вслед за ростом счёта. После отката допустимый убыток может оказаться меньше, чем предполагает начальный процент.'
         : 'Способ пересчёта лимита важнее одного процента: сравните базу расчёта и момент фиксации убытка в правилах программы.'}</p>
     {product.phases === 0 && <p>Отсутствие оценки не отменяет условий выплаты. Взнос не является депозитом, а размер счёта — суммой, которую можно вывести.</p>}
-    {product.consistencyRulePct != null && <p>Правило стабильности: {product.consistencyRulePct}%. Уточните, как считается доля лучшего дня и на каком этапе применяется ограничение.</p>}
+    <p>Минимум торговых дней: {minimumTradingDaysLabel(product.minTradingDays, 'ru')}. Максимальный срок: {maximumTradingDaysLabel(product, 'ru')}. Условия оценки и запроса выплаты могут различаться.</p>
+    <p>Правило стабильности: {consistencyRuleLabel(product, 'ru')}. Проверьте способ расчёта и этап применения. Неподтверждённое значение не означает отсутствие ограничения.</p>
     {product.phases > 0 && (product.fundedDailyLossPct != null || product.fundedMaxLossPct != null || product.fundedDrawdownType != null) && <p>После оценки условия могут отличаться: дневной лимит {percent(product.fundedDailyLossPct)}, общий {percent(product.fundedMaxLossPct)}, расчёт — {drawdownLabel(product.fundedDrawdownType)}. Пустое поле означает отсутствие отдельного подтверждения, а не отсутствие лимита.</p>}
     {product.changeSignals.length > 0 && <p>Есть замечания к источникам или изменения правил. Проверьте их в подробном обзоре до покупки.</p>}
+    {row.firm.slug === 'fundednext' && <p><Link href="/ru/fundednext-mt5#ea-rules">Ограничения FundedNext по размеру счёта для советников →</Link></p>}
     {row.firm.slug === 'bright-funded' && <p>Справочник Bright Funded противоречиво описывает двухнедельные выплаты и платную опцию. Не считайте сокращённый цикл частью базовой цены без подтверждения фирмы.</p>}
   </div>
 }
@@ -88,7 +92,7 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
   const { filters, selected } = useMemo(() => parseFinderState(hash, initialRows), [hash, initialRows])
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'failed'>('idle')
   const rows = useMemo(() => filterChallengeRows(initialRows, filters), [initialRows, filters])
-  const sizes = useMemo(() => [...new Set(initialRows.flatMap(row => row.product.tiers.map(tier => tier.sizeUsd)))].sort((a, b) => a - b), [initialRows])
+  const sizes = useMemo(() => finderAccountSizes(initialRows), [initialRows])
   const compared = selected.flatMap(key => initialRows.filter(row => challengeKey(row) === key))
   const firmCount = new Set(initialRows.map(row => row.firm.slug)).size
 
@@ -140,7 +144,9 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
         <p className="ru-muted">Фирм в текущем наборе: {firmCount}; программ: {initialRows.length}. Выберите размер счёта, затем сопоставьте до 3 программ. Регистрация не нужна.</p>
       </div></div>
       <p className="ru-finder-disclosure" data-russian-affiliate-disclosure="challenge-finder">FundedNext, Bright Funded и FundingPips — партнёры сайта; мы можем получить комиссию при покупке по ссылке. Партнёрство не влияет на фильтры и сортировку. По умолчанию фирмы расположены по алфавиту.</p>
+      {initialRows.some(row => row.firm.slug === 'fundednext' && row.product.slug === 'stellar-1-step') && <RussianFundedNextPayoutNotice />}
       {initialRows.length === 0 ? <div className="ru-notice" role="status">Данные требуют повторной проверки. До обновления цены и сравнение программ скрыты; обзоры ниже остаются доступны.</div> : <>
+        {filters.sort === 'payout' && <p className="ru-source-line" data-russian-payout-sort="separate-day-units">Сначала идут программы с отдельным условием запроса, затем сроки в днях, отдельно Stellar 1-Step с рабочими днями и в конце неподтверждённые сроки. Это группировка условий, а не рейтинг скорости получения денег. Условие запроса не означает немедленную выплату.</p>}
         <div className="ru-finder-filters" aria-label="Фильтры программ">
           <label>Размер счёта в USD<select value={filters.size} onChange={event => change('size', Number(event.target.value))}>{sizes.map(size => <option key={size} value={size}>{accountLabel(size)}</option>)}</select></label>
           <label>Оценочные этапы<select value={filters.phases} onChange={event => change('phases', event.target.value as ChallengeFinderFilters['phases'])}><option value="all">Все варианты</option><option value="0">Без челленджа</option><option value="1">1 этап</option><option value="2">2 этапа</option><option value="3">3 этапа</option></select></label>
@@ -149,7 +155,7 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
         </div>
         <details className="ru-finder-advanced"><summary><SlidersHorizontal size={16} aria-hidden="true" /> Просадка и сортировка</summary><div className="ru-finder-filters">
           <label>Тип общей просадки<select value={filters.drawdown} onChange={event => change('drawdown', event.target.value as ChallengeFinderFilters['drawdown'])}><option value="all">Все способы расчёта</option><option value="static">Статическая</option><option value="trailing">Трейлинг</option><option value="eod-trailing">Трейлинг по итогам дня</option><option value="balance-based">По балансу</option></select></label>
-          <label>Порядок результатов<select value={filters.sort} onChange={event => change('sort', event.target.value as ChallengeFinderFilters['sort'])}><option value="name">По названию фирмы</option><option value="fee" disabled={filters.currency === 'all'}>По цене в выбранной валюте</option><option value="payout">По сроку первого запроса выплаты</option></select></label>
+          <label>Порядок результатов<select value={filters.sort} onChange={event => change('sort', event.target.value as ChallengeFinderFilters['sort'])}><option value="name">По названию фирмы</option><option value="fee" disabled={filters.currency === 'all'}>По цене в выбранной валюте</option><option value="payout">По сроку запроса: рабочие дни отдельно</option></select></label>
         </div><p>Платформу уточняйте для выбранной программы и своей страны: общий список платформ фирмы не гарантирует доступность на каждом счёте.</p></details>
         <div className="ru-finder-toolbar">
           <p role="status" aria-live="polite">Найдено программ: <strong>{rows.length}</strong> · размер {accountLabel(filters.size)}</p>
@@ -201,6 +207,9 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
               ['Расчёт общей просадки', (row: GlobalChallengeRow) => drawdownLabel(row.product.drawdownType)],
               ['Доля трейдера', (row: GlobalChallengeRow) => percent(row.product.profitSplitPct)],
               ['Первый запрос выплаты', payoutLabel],
+              ['Минимум торговых дней', (row: GlobalChallengeRow) => minimumTradingDaysLabel(row.product.minTradingDays, 'ru')],
+              ['Максимальный срок', (row: GlobalChallengeRow) => maximumTradingDaysLabel(row.product, 'ru')],
+              ['Правило стабильности', (row: GlobalChallengeRow) => consistencyRuleLabel(row.product, 'ru')],
               ['Новости / советники', (row: GlobalChallengeRow) => `${ruleLabel(row.product.rules.news)} / ${ruleLabel(row.product.rules.ea)}`],
               ['Дата источника', (row: GlobalChallengeRow) => row.product.capturedAt],
             ].map(([label, read]) => {

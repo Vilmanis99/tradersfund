@@ -1,0 +1,60 @@
+{
+  "firmSlug": "fxify",
+  "scope": "Archived FXIFY program-page price-display conflict observed on 2026-09-14 and resolved for structured purchase data by the official checkout ladder captured on 2026-09-15. The legacy sections below preserve the conflicting server-rendered cards; they are not used as current tier quotes.",
+  "onePhaseCard": {
+    "sourceUrl": "https://fxify.com/programs/one-phase/",
+    "sourceCapturedAt": "2026-09-15",
+    "productSlugs": ["one-phase"],
+    "quote": "$250; For $5k account",
+    "observation": "The current One Phase page's server-readable selected card shows $250 for a $5K account, while the same page's public FAQ says a first payout can be requested after five minimum trading days and the older structured ladder is not exposed in the rendered card."
+  },
+  "twoPhaseCard": {
+    "sourceUrl": "https://fxify.com/programs/two-phase/",
+    "sourceCapturedAt": "2026-09-15",
+    "productSlugs": ["two-phase-classic", "two-phase-standard"],
+    "quote": "$250; For $5k account",
+    "observation": "The current Two Phase page repeats a generic $5K selected-card display while its URL-specific program contains multiple Two Phase variants. It does not provide a stable full ladder for Classic and Standard in the server-readable output; the separate first-party 2-Phase Pro announcement is used for that product's complete ladder."
+  },
+  "threePhaseCard": {
+    "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
+    "sourceCapturedAt": "2026-09-15",
+    "productSlugs": ["three-phase"],
+    "quote": "$250; For $5k account",
+    "observation": "The current Three Phase page also exposes a generic selected card rather than a complete tier-by-tier price ladder in the server-readable output."
+  },
+  "instantCard": {
+    "sourceUrl": "https://fxify.com/programs/instant-funding/",
+    "sourceCapturedAt": "2026-09-15",
+    "productSlugs": ["instant-funding-standard"],
+    "quote": "$250; For $5k account",
+    "observation": "The current Instant Funding page's generic selected card does not expose a stable Standard versus Lite price ladder in the server-readable output."
+  },
+  "lightningCard": {
+    "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+    "sourceCapturedAt": "2026-09-15",
+    "productSlugs": ["lightning-challenge"],
+    "quote": "$250; For $5k account",
+    "observation": "The current Lightning page's generic selected card conflicts with the programme's public starting-price statement and does not expose every tier in the server-readable output."
+  },
+  "officialRanges": {
+    "sourceUrl": "https://fxify.com/blog/how-much-money-start-trading/",
+    "sourceCapturedAt": "2026-09-15",
+    "productSlugs": ["one-phase", "two-phase-classic", "two-phase-standard", "three-phase", "instant-funding-standard", "lightning-challenge"],
+    "quote": "Lightning $59-$399; Instant Funding $69-$4,249; One-Phase $59-$2,950; Two-Phase $59-$2,950; Three-Phase $39-$1,599",
+    "observation": "FXIFY's own pricing article gives programme-level ranges for the remaining products, but not the complete per-tier ladders needed to replace their structured captures. The article is therefore supporting range evidence, not a substitute for exact tier prices; 2-Phase Pro is separately covered by its detailed announcement."
+  },
+  "underpaymentExample": {
+    "sourceUrl": "https://fxify.com/faqs/all-faqs/underpayment/",
+    "sourceCapturedAt": "2026-09-15",
+    "productSlugs": ["one-phase"],
+    "quote": "Example: 1-Phase, $5,000 balance costs $59.",
+    "observation": "The current FXIFY FAQ gives a $59 One-Phase $5K example, which conflicts with the $250 selected card on the current program-page output. It is an example in an underpayment explanation, not a complete current tier ladder."
+  },
+  "checkoutLadder": {
+    "sourceUrl": "https://trader.fxify.com/purchasechallenge",
+    "sourceCapturedAt": "2026-09-15",
+    "productSlugs": ["one-phase", "two-phase-classic", "two-phase-standard", "two-phase-pro", "three-phase", "instant-funding-standard", "instant-funding-lite", "lightning-challenge"],
+    "quote": "Read-only checkout selectors expose 54 current list-price tiers across 8 named products; Instant Funding Lite shows $2.5K/$5K/$10K/$25K/$50K at $19/$44/$85/$169/$289.",
+    "observation": "The official checkout is the purchase-time reference used by the 2026-09-15 structured capture. It resolves the usable tier ladders even though public program pages retain a generic $250/$5K card. The older February Instant Funding Lite launch article's six-tier ladder ($19/$39/$79/$149/$249/$399) is historical context only; coupons, add-ons, country eligibility and final checkout totals are not included in priceUsd."
+  }
+}

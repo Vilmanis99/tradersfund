@@ -45,9 +45,9 @@ function processExists(pid) {
   }
 }
 
-async function healthy() {
+async function healthy(targetUrl = baseUrl) {
   return new Promise(resolve => {
-    const request = get(baseUrl, {
+    const request = get(targetUrl, {
       agent: false,
       headers: { 'user-agent': 'TradersFundHubPreviewController/1.0' },
     }, response => {
@@ -56,15 +56,18 @@ async function healthy() {
         resolve(response.statusCode >= 200 && response.statusCode < 500)
       })
     })
-    request.setTimeout(2_000, () => request.destroy())
+    // The first request can render a large source-backed page tree on a cold
+    // start. Keep the controller from declaring a healthy server dead while
+    // Next is still warming its production runtime.
+    request.setTimeout(10_000, () => request.destroy())
     request.once('error', () => resolve(false))
   })
 }
 
-async function waitForHealth(maxWaitMs = 12_000) {
+async function waitForHealth(maxWaitMs = 60_000, targetUrl = baseUrl) {
   const deadline = Date.now() + maxWaitMs
   while (Date.now() < deadline) {
-    if (await healthy()) return true
+    if (await healthy(targetUrl)) return true
     await new Promise(resolve => setTimeout(resolve, 250))
   }
   return false
@@ -77,7 +80,8 @@ async function start() {
 
   const existing = readState()
   if (existing && processExists(existing.pid)) {
-    console.log(`Preview already running at ${baseUrl} (PID ${existing.pid}).`)
+    const existingBaseUrl = existing.port ? `http://127.0.0.1:${existing.port}` : baseUrl
+    console.log(`Preview already running at ${existingBaseUrl} (PID ${existing.pid}).`)
     return
   }
   if (await healthy()) {
@@ -137,15 +141,18 @@ async function stop() {
 
 async function status() {
   const state = readState()
-  const isHealthy = await healthy()
+  // A preview may be started with TFH_PREVIEW_PORT. Prefer the recorded port
+  // so a later status check does not silently probe the default port instead.
+  const activeBaseUrl = state?.port ? `http://127.0.0.1:${state.port}` : baseUrl
+  const isHealthy = await healthy(activeBaseUrl)
   if (state && processExists(state.pid)) {
     console.log(
-      `Preview PID ${state.pid}: ${isHealthy ? `healthy at ${baseUrl}` : 'running but unhealthy'}.`,
+      `Preview PID ${state.pid}: ${isHealthy ? `healthy at ${activeBaseUrl}` : 'running but unhealthy'}.`,
     )
     return
   }
   console.log(isHealthy
-    ? `${baseUrl} is healthy but is not controller-managed.`
+    ? `${activeBaseUrl} is healthy but is not controller-managed.`
     : 'Preview is stopped.')
   process.exitCode = isHealthy ? 0 : 1
 }

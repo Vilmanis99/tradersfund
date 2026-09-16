@@ -1,6 +1,37 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Local review workflow
+
+Build and review locally before any release. The production preview is detached so it can stay available while the checks run:
+
+```bash
+npm install
+npm run build
+npm run preview:start
+```
+
+Open the URL printed by `preview:start` (for example, `http://127.0.0.1:3216`). If the default port is occupied, set `TFH_PREVIEW_PORT` before starting; the local checks use that value (or the controller's recorded port) automatically:
+
+```powershell
+$env:TFH_PREVIEW_PORT = '3216'
+npm run preview:start
+npm run check:home-release
+npm run check:finder-release
+npm run check:light-release
+npm run crawl:release:strict
+```
+
+Stop the preview when finished with `npm run preview:stop`. These commands do not deploy or push anything.
+
+The focused English and Russian homepages intentionally surface the finder, a small set of decision links, and disclosed FundedNext/Bright Funded partner placements; the full article library remains available from the blog and directory.
+
+Reviews with an explicit `sourceStatus: "source-hold"` remain reachable as dated
+archives while a firm's first-party pricing or eligibility source is unavailable
+or contradictory. They are marked with a visible recheck notice, emitted with
+`noindex`, excluded from the sitemap and current alternatives, and do not relax
+the 30-day freshness gate for any other review.
+
+## Fast development mode
 
 First, run the development server:
 
@@ -29,8 +60,6 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Release approval
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployments are intentionally separate from local commits and previews. Do not push a Vercel-connected branch or start a remote deployment until the release has passed the local audit and received explicit approval.

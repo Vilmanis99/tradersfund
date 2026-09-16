@@ -1,5 +1,5 @@
 import { getPostBySlug, getAllPostData, getAllPosts } from '@/lib/mdx'
-import { getAllFirms } from '@/lib/firms'
+import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { postSchema, breadcrumbSchema, jsonLd } from '@/lib/schema'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -23,8 +23,14 @@ import TradingToolReviewCluster, {
 import { getTradingToolReviewLinks } from '@/lib/tradingToolReviews'
 import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { prepareArticleContent } from '@/lib/articleContent'
+import { getAuthorByName } from '@/lib/authors'
 
 interface Props { params: Promise<{ slug: string }> }
+
+// Re-check the firm-product age gate hourly so the reader warning appears
+// after a deployment even when no new article build is triggered.
+export const revalidate = 3600
 
 export async function generateStaticParams() {
   return getAllPosts().map(p => ({ slug: p.slug }))
@@ -42,6 +48,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: { absolute: title },
     description,
     alternates: { canonical: path, ...(languages ? { languages } : {}) },
+    ...(post.sourceStatus === 'source-hold'
+      ? { robots: { index: false, follow: true } }
+      : {}),
     openGraph: {
       title,
       description,
@@ -59,14 +68,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-function addHeadingIds(html: string): string {
-  return html.replace(/<h2([^>]*)>(.*?)<\/h2>/gi, (_match, attrs, content) => {
-    const text = content.replace(/<[^>]+>/g, '').trim()
-    const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-    return `<h2${attrs} id="${id}">${content}</h2>`
-  })
-}
-
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   const post = getPostBySlug(slug)
@@ -76,8 +77,10 @@ export default async function BlogPostPage({ params }: Props) {
   const outboundRelationships = buildOutboundRelationships(firms)
   const wordCount = post.content.replace(/<[^>]+>/g, '').split(/\s+/).length
   const readTime = Math.ceil(wordCount / 200)
+  const prepared = prepareArticleContent(post.content)
+  const author = post.author ? getAuthorByName(post.author) : undefined
   const contentWithIds = decoratePostOutboundLinks(
-    addHeadingIds(post.content),
+    prepared.html,
     outboundRelationships,
     slug,
   )
@@ -91,6 +94,11 @@ export default async function BlogPostPage({ params }: Props) {
   const related = rankRelatedPosts(post, relatedCandidates)
 
   const matchedFirm = firms.find(f => f.reviewUrl === `/blog/${slug}`)
+  const firmProducts = matchedFirm
+    ? getAllChallenges().filter(product => product.firmSlug === matchedFirm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''))
+    : []
+  const staleFirmProducts = firmProducts.filter(product => !isChallengeFresh(product))
+  const oldestFirmCapture = firmProducts.map(product => product.sourceCapturedAt).sort()[0]
   const postLd = postSchema(post, firms)
   const crumbsLd = breadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -105,9 +113,6 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* ═══════════════════════════════ ARTICLE HERO ═══════════════════════════════ */}
       <section className="post-hero">
-        <div className="aurora-orb aurora-orb--1" aria-hidden />
-        <div className="aurora-grid" aria-hidden />
-
         <div className="post-shell" style={{ position: 'relative', zIndex: 1 }}>
           <Link href="/blog" className="post-back">
             <ArrowLeft size={14} /> Back to all articles
@@ -130,7 +135,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="post-meta-strip">
             {post.author && (
               <span className="post-meta-item">
-                <User size={13} /> {post.author}
+                <User size={13} aria-hidden="true" /> {author ? <Link href={`/authors/${author.slug}`}>{post.author}</Link> : post.author}
               </span>
             )}
             {post.date && (
@@ -156,6 +161,14 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="post-shell post-body">
         <div className="post-layout">
           <article>
+            {matchedFirm && staleFirmProducts.length > 0 && (
+              <aside className="review-freshness-notice" data-review-source-status="recapture-required" aria-label="Review source freshness">
+                <strong>{post.sourceStatus === 'source-hold' ? 'Source hold — not included in current rankings.' : 'Source recheck required.'}</strong>{' '}
+                {staleFirmProducts.length} product {staleFirmProducts.length === 1 ? 'capture is' : 'captures are'} older than the 30-day freshness window.
+                Prices and rules may have changed; use the dated source links and the firm&apos;s current terms before paying.
+                {oldestFirmCapture && <span> Oldest capture: <time dateTime={oldestFirmCapture}>{oldestFirmCapture}</time>.</span>}
+              </aside>
+            )}
             {matchedFirm && (
               <AffiliateDisclosure
                 firmName={matchedFirm.name}
@@ -166,9 +179,9 @@ export default async function BlogPostPage({ params }: Props) {
             {matchedFirm && <FirmStatPanel firm={matchedFirm} />}
             <TradingToolReviewStatus post={post} />
 
-            <TableOfContents html={contentWithIds} />
+            <TableOfContents headings={prepared.headings} />
 
-            <div className="prose" style={{ maxWidth: '100%' }}
+            <div className="prose post-prose"
               dangerouslySetInnerHTML={{ __html: contentWithIds }} />
 
             {matchedFirm && <FirmAlternatives current={matchedFirm} allFirms={firms} />}
@@ -199,7 +212,8 @@ export default async function BlogPostPage({ params }: Props) {
               <h3 className="post-sidebar-title">Jump to the data</h3>
               <ul className="post-sidebar-list">
                 {[
-                  { label: 'Compare all firms', href: '/prop-firms' },
+                  { label: 'Compare programmes', href: '/prop-firm-challenges' },
+                  { label: 'Browse all firms', href: '/prop-firms' },
                   { label: 'Best in India', href: '/best-prop-firms-in-india' },
                   { label: 'India challenge rules', href: '/best-prop-firms-in-india/challenge-comparison' },
                   { label: 'India payout methods', href: '/best-prop-firms-in-india/payout-methods' },

@@ -49,7 +49,9 @@ export interface IndiaMatcherProduct {
   dailyLossPct: number | null
   maxLossPct: number | null
   maxTradingDays: number | null
+  maxTradingDaysUnlimited?: boolean | null
   consistencyRulePct: number | null
+  consistencyRuleApplies?: boolean | null
   entryPrice: IndiaMatcherEntryPrice | null
   accountSizesUsd: number[]
   payoutFirstDays: number | null
@@ -145,6 +147,8 @@ export function buildIndiaMatcherFirms(firms: Firm[]): IndiaMatcherFirm[] {
           dailyLossPct: challenge.dailyLossPct,
           maxLossPct: challenge.maxLossPct,
           maxTradingDays: challenge.maxTradingDays,
+          maxTradingDaysUnlimited: challenge.maxTradingDaysUnlimited ?? null,
+          consistencyRuleApplies: challenge.consistencyRuleApplies ?? null,
           consistencyRulePct: challenge.consistencyRulePct,
           entryPrice: publishedEntry(eligibleChallenge),
           accountSizesUsd: accountSizes.map(tier => tier.sizeUsd),

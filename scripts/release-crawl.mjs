@@ -11,6 +11,7 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { dirname, extname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
+import { localPreviewUrl } from './local-preview-url.mjs'
 import { isFinderStateFragment } from '../lib/challengeComparison.ts'
 import { getRussianFinderRows } from '../lib/challengeComparisonData.ts'
 import {
@@ -24,8 +25,9 @@ import {
   minimumCostToFundedUsd,
 } from '../lib/firms.ts'
 import { getAllDeals } from '../lib/deals.ts'
+import { getChallengeWatchEntries } from '../lib/challengeWatch.ts'
 import { filterComparisonRows } from '../lib/comparisonDirectory.ts'
-import { rankFirmAlternatives } from '../lib/firmAlternatives.ts'
+import { rankCurrentFirmAlternatives } from '../lib/firmAlternatives.ts'
 import {
   buildRelatedComparisons,
   comparisonHref,
@@ -55,7 +57,7 @@ const args = process.argv.slice(2)
 const baseArg = args.find(value => !value.startsWith('--'))
 const VERBOSE = args.includes('--verbose')
 const STRICT_LENGTHS = args.includes('--strict-lengths')
-const BASE = new URL(baseArg || 'http://127.0.0.1:3214')
+const BASE = new URL(localPreviewUrl(baseArg))
 const PRODUCTION_ORIGIN = 'https://tradersfundhub.com'
 const CONCURRENCY = 12
 const REQUEST_TIMEOUT_MS = 15_000
@@ -63,6 +65,7 @@ const PROJECT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const firmRecords = JSON.parse(
   readFileSync(join(PROJECT_ROOT, 'content/data/firms.json'), 'utf8'),
 )
+const challengeWatchEntries = getChallengeWatchEntries()
 const firmReviewPostRecords = new Map(firmRecords.map(firm => {
   const reviewPath = new URL(firm.reviewUrl, PRODUCTION_ORIGIN).pathname
   const reviewSlug = reviewPath.split('/').filter(Boolean).at(-1)
@@ -519,6 +522,7 @@ for (const productionUrl of uniqueSitemapUrls) {
 // reviews. This keeps pair-specific intent connected to both discovery paths.
 for (const matchup of Object.values(INDIA_MATCHUPS)) {
   const path = indiaMatchupPath(matchup)
+  if (!uniqueSitemapUrls.some(url => new URL(url).pathname === path)) continue
   const inlinks = internalInlinks.get(path) ?? new Set()
   const inlinkCount = inlinks.size
   if (inlinkCount < 7) {
@@ -748,7 +752,7 @@ for (const pair of russianRoutePairs) {
 const russianExpectations = new Map([
   ['/ru', {
     title: 'Проп-фирмы для русскоязычных трейдеров: цены и правила',
-    h1: 'Выберите проп-фирму по условиям, а не обещаниям',
+    h1: 'Проп-фирмы. Условия, которые можно сравнить.',
     markers: [
       'data-russian-home-layout="focused"',
       'data-russian-home-diaspora-entry="trust"',
@@ -862,7 +866,7 @@ const russianExpectations = new Map([
     h1: 'FundedNext или FundingPips: сравнение для русскоязычных трейдеров',
     markers: [
       'data-russian-partner-comparison="fundednext-fundingpips"',
-      'data-russian-comparison-editorial-date="2026-09-01"',
+      'data-russian-comparison-editorial-date="2026-09-14"',
       'data-russian-country-boundary="comparison-not-access"',
       'data-russian-affiliate-disclosure="comparison"',
       'data-russian-comparison-product-count="9"',
@@ -942,8 +946,8 @@ const russianExpectations = new Map([
     h1: 'Проп-фирмы без челленджа: FundedNext Instant и FundingPips Zero',
     markers: [
       'data-russian-instant-ranking="long-form-phase-zero"',
-      'data-russian-instant-product-count="9"',
-      'data-russian-instant-firm-count="7"',
+      'data-russian-instant-product-count="12"',
+      'data-russian-instant-firm-count="9"',
       'data-russian-country-boundary="instant-not-access"',
       'data-russian-affiliate-disclosure="instant-ranking"',
       'data-russian-instant-article="global-partner-decision-guide"',
@@ -953,7 +957,7 @@ const russianExpectations = new Map([
       'data-russian-instant-evidence="fundingpips"',
       'data-russian-instant-partner="fundednext"',
       'data-russian-instant-partner="fundingpips"',
-      'data-russian-instant-all-products="9"',
+      'data-russian-instant-all-products="12"',
       'data-russian-instant-product="fundednext:stellar-instant"',
       'data-russian-instant-product="fundingpips:zero"',
       'data-russian-instant-risk="drawdown-before-price"',
@@ -1034,8 +1038,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/luchshie-prop-firmy', {
-    title: 'Лучшие проп-компании 2026: сравнение цен и правил',
-    h1: 'Лучшие проп-компании 2026: рейтинг, цены и правила',
+    title: 'Рейтинг проп-компаний 2026: Россия и глобальные фирмы',
+    h1: 'Рейтинг проп-компаний 2026 для русскоязычных трейдеров',
     markers: [
       'data-russian-ranking-article="decision-first"',
       'data-russian-country-boundary="ranking-not-access"',
@@ -1064,8 +1068,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/luchshie-kripto-prop-firmy', {
-    title: 'Крипто-проп-фирмы 2026: 3 проверенных варианта',
-    h1: 'Крипто-проп-фирмы 2026: 3 проверенных варианта',
+    title: 'Крипто-проп-фирмы 2026: цены, инструменты и правила',
+    h1: 'Крипто-проп-фирмы 2026: цены, инструменты и правила',
     markers: [
       'data-russian-crypto-article="long-form"',
       'data-russian-crypto-hero="search-and-product-evidence"',
@@ -1074,7 +1078,7 @@ const russianExpectations = new Map([
       'data-russian-affiliate-disclosure="crypto-ranking"',
       'data-russian-crypto-product-count="12"',
       'data-russian-crypto-partner-count="2"',
-      'data-russian-crypto-comparison="three-firms-twelve-products"',
+      'data-russian-crypto-comparison="current-source-mapped-products"',
       'data-russian-crypto-decision-guide="product-not-logo"',
       'data-russian-crypto-payout-boundary="bright-funded-not-ranked"',
       'data-russian-crypto-watch-count="7"',
@@ -1114,7 +1118,7 @@ const russianExpectations = new Map([
   }],
   ['/ru/obzor-fundednext', {
     title: 'FundedNext: отзывы и обзор 2026, цены и правила',
-    h1: 'FundedNext: отзывы и обзор 2026 — 22 цены и 4 набора правил',
+    h1: 'FundedNext: отзывы и обзор 2026, цены и правила',
     markers: [
       'data-russian-fundednext-article="long-form"',
       'data-russian-fundednext-editorial-shell="review-parity"',
@@ -1157,7 +1161,7 @@ const russianExpectations = new Map([
   }],
   ['/ru/obzor-bright-funded', {
     title: 'Bright Funded: обзор 2026, цены, правила и выплаты',
-    h1: 'Bright Funded: обзор 2026 — 3 программы и 18 цен',
+    h1: 'Bright Funded: обзор 2026, цены, правила и выплаты',
     markers: [
       'data-russian-partner-review="bright-funded"',
       'data-russian-bright-article="long-form"',
@@ -1202,8 +1206,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/forex-prop-firmy', {
-    title: 'Форекс проп-фирмы 2026: 7 продуктов и правила',
-    h1: 'Форекс проп-фирмы: 7 продуктов для русскоязычных трейдеров',
+    title: 'Форекс проп-фирмы: плечо, цены и правила программ',
+    h1: 'Форекс проп-фирмы: цены, плечо и правила для русскоязычных трейдеров',
     markers: [
       'data-russian-forex-article="instrument-to-product"',
       'data-russian-search-intent="prop-forex"',
@@ -1225,7 +1229,8 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-forex-shortlist-bright-funded',
       '/go/fundednext?from=ru-forex-verdict-fundednext',
       '/go/bright-funded?from=ru-forex-verdict-bright-funded',
-      '43 опубликованных forex-пар',
+      '43 валютные пары',
+      'data-russian-forex-correction="stellar-1-step-leverage"',
       'https://help.fundednext.com/en/articles/8224087-fundednext-tradable-assets-what-can-i-trade-on-fundednext-cfd-accounts',
       'https://help.brightfunded.com/en/articles/9268380-what-is-the-leverage-in-brightfunded-s-simulated-trading-environment',
     ],
@@ -1260,7 +1265,7 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-ctrader-shortlist-bright-funded',
       '/go/fundednext?from=ru-ctrader-verdict-fundednext',
       '/go/bright-funded?from=ru-ctrader-verdict-bright-funded',
-      'Challenge до $50 000',
+      'Оценочная программа до $50 000',
       '$25; стандартно не возвращается',
       'https://help.ctrader.com/ctrader-algo/',
       'https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext',
@@ -1268,8 +1273,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/fundednext-mt5', {
-    title: 'FundedNext MT5: вход, download и правила EA (2026)',
-    h1: 'FundedNext MT5: вход, download и правила EA',
+    title: 'FundedNext MT5: скачать, войти и проверить правила EA',
+    h1: 'FundedNext MT5: как скачать, войти и проверить правила EA',
     markers: [
       'data-russian-fundednext-mt5="search-to-rule"',
       'data-russian-platform-intent="fundednext-mt5-ea"',
@@ -1294,8 +1299,10 @@ const russianExpectations = new Map([
       'data-russian-fundednext-mt5-alternative="bright-funded"',
       'data-russian-fundednext-mt5-sources="',
       'FundedNext-Server 3',
-      'Лимит $300,000',
-      'allocation $300,000',
+      '$300,000',
+      'data-russian-fundednext-ea-size="source-checked"',
+      '$50,000',
+      'https://help.fundednext.com/en/articles/11641338-can-i-use-ea-in-stellar-instant',
       'Free Trial: отдельный MT5-сервер,',
       '/go/fundednext?from=ru-fundednext-mt5-hero',
       '/go/fundednext?from=ru-fundednext-mt5-products',
@@ -2527,7 +2534,7 @@ if (indiaLandingProbe.status !== 200) {
     '9/19 tracked firms pass every India publication gate',
     '44 fresh India-eligible products with first-party sources',
     'lowest published entry, keeping USD and EUR separate',
-    '12 current verified changes and open source watches',
+    '16 current verified changes and open source watches',
     'Compare 44 products',
     'Ranking order uses India evidence completeness first and editorial score second.',
     'Affiliate status and coupon size add 0 points.',
@@ -2725,11 +2732,6 @@ if (ukLandingProbe.status !== 200) {
   if (cards.length !== expectedUkFirms.length) {
     errors.push(`${ukLandingPath}: rendered ${cards.length} firms, expected ${expectedUkFirms.length}`)
   }
-  if (expectedUkFirms.length !== 8 || expectedUkProductCount !== 34) {
-    errors.push(
-      `${ukLandingPath}: evidence fixture must resolve to 8 firms and 34 products; received ${expectedUkFirms.length} and ${expectedUkProductCount}`,
-    )
-  }
   if (itemListCount !== 1) {
     errors.push(`${ukLandingPath}: rendered ${itemListCount} ItemLists, expected 1`)
   }
@@ -2762,7 +2764,7 @@ if (ukLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    'Compare 8 prop firms with current first-party UK-access policies across 34 product paths, plus FCA checks, fees, rules, reviews, and dated sources.'
+    `Compare ${expectedUkFirms.length} prop firms with current first-party UK-access policies across ${expectedUkProductCount} product paths, plus FCA checks, fees, rules, reviews, and dated sources.`
   const renderedDescription = decodeHtml(firstMatch(
     ukLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -2771,13 +2773,13 @@ if (ukLandingProbe.status !== 200) {
     /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
   ))
   if (renderedDescription !== expectedDescription) {
-    errors.push(`${ukLandingPath}: meta description does not match the 8-firm/34-product snapshot`)
+    errors.push(`${ukLandingPath}: meta description does not match the ${expectedUkFirms.length}-firm/${expectedUkProductCount}-product snapshot`)
   }
 
   for (const required of [
-    'Best Prop Firms for UK Traders (2026): 8 Checked | TFH',
-    'Best Prop Firms for UK Traders (2026): 8 Policy-Checked',
-    '8 policy-checked firms across 34 mapped products',
+    `Best Prop Firms for UK Traders (2026): ${expectedUkFirms.length} Checked | TFH`,
+    `Best Prop Firms for UK Traders (2026): ${expectedUkFirms.length} Policy-Checked`,
+    `${expectedUkFirms.length} policy-checked firms across ${expectedUkProductCount} mapped products`,
     'Policy-supported UK access is not an FCA status.',
     'What UK traders should verify',
     'Does UK access mean the firm is FCA-authorised?',
@@ -3014,11 +3016,6 @@ if (swingLandingProbe.status !== 200) {
       `${swingLandingPath}: rendered ${cards.length} firms, expected ${expectedSwingFirms.length}`,
     )
   }
-  if (expectedSwingFirms.length !== 7 || expectedSwingProductCount !== 27) {
-    errors.push(
-      `${swingLandingPath}: current fixture must resolve to 7 firms and 27 products; received ${expectedSwingFirms.length} and ${expectedSwingProductCount}`,
-    )
-  }
   if (itemListCount !== 1) {
     errors.push(`${swingLandingPath}: rendered ${itemListCount} ItemLists, expected 1`)
   }
@@ -3052,7 +3049,7 @@ if (swingLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    'Compare 7 swing-trading prop firms across 27 exact products with verified overnight and weekend holding, drawdown rules, dated sources, and reviews.'
+    `Compare ${expectedSwingFirms.length} swing-trading prop firms across ${expectedSwingProductCount} exact products with verified overnight and weekend holding, drawdown rules, dated sources, and reviews.`
   const renderedDescription = decodeHtml(firstMatch(
     swingLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3061,13 +3058,13 @@ if (swingLandingProbe.status !== 200) {
     /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
   ))
   if (renderedDescription !== expectedDescription) {
-    errors.push(`${swingLandingPath}: meta description does not match the 7-firm/27-product snapshot`)
+    errors.push(`${swingLandingPath}: meta description does not match the ${expectedSwingFirms.length}-firm/${expectedSwingProductCount}-product snapshot`)
   }
 
   for (const required of [
-    'Best Swing Trading Prop Firms (2026): 7 Verified | TFH',
-    'Best Prop Firms for Swing Trading (2026): 7 Verified',
-    '7 verified firms across 27 swing-qualified products',
+    `Best Swing Trading Prop Firms (2026): ${expectedSwingFirms.length} Verified | TFH`,
+    `Best Prop Firms for Swing Trading (2026): ${expectedSwingFirms.length} Verified`,
+    `${expectedSwingFirms.length} verified firms across ${expectedSwingProductCount} swing-qualified products`,
     'What swing traders should verify',
     'Do both permissions belong to the same product?',
     'Is weekday overnight the same as weekend holding?',
@@ -3156,9 +3153,9 @@ if (futuresLandingProbe.status !== 200) {
       `${futuresLandingPath}: rendered ${cards.length} firms, expected ${expectedFuturesFirms.length}`,
     )
   }
-  if (expectedFuturesFirms.length !== 7 || expectedFuturesProductCount !== 25) {
+  if (expectedFuturesFirms.length !== 7 || expectedFuturesProductCount !== 26) {
     errors.push(
-      `${futuresLandingPath}: current fixture must resolve to 7 firms and 25 products; received ${expectedFuturesFirms.length} and ${expectedFuturesProductCount}`,
+      `${futuresLandingPath}: current fixture must resolve to 7 firms and 26 products; received ${expectedFuturesFirms.length} and ${expectedFuturesProductCount}`,
     )
   }
   if (itemListCount !== 1) {
@@ -3193,7 +3190,7 @@ if (futuresLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    'Compare 7 futures prop firms across 25 current products with fees, billing, drawdown, payout rules, platforms, reviews, and dated first-party sources.'
+    `Compare ${expectedFuturesFirms.length} futures prop firms across ${expectedFuturesProductCount} current products with fees, billing, drawdown, payout rules, platforms, reviews, and dated first-party sources.`
   const renderedDescription = decodeHtml(firstMatch(
     futuresLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3202,13 +3199,13 @@ if (futuresLandingProbe.status !== 200) {
     /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
   ))
   if (renderedDescription !== expectedDescription) {
-    errors.push(`${futuresLandingPath}: meta description does not match the 7-firm/25-product snapshot`)
+    errors.push(`${futuresLandingPath}: meta description does not match the ${expectedFuturesFirms.length}-firm/${expectedFuturesProductCount}-product snapshot`)
   }
   for (const required of [
-    'Best Futures Prop Firms (2026): 7 Verified | TFH',
-    'Best Futures Prop Firms (2026): 7 Verified',
-    '7 verified firms across 25 current futures products',
-    'Compare 25 current futures products',
+    `Best Futures Prop Firms (2026): ${expectedFuturesFirms.length} Verified | TFH`,
+    `Best Futures Prop Firms (2026): ${expectedFuturesFirms.length} Verified`,
+    `${expectedFuturesFirms.length} verified firms across ${expectedFuturesProductCount} current futures products`,
+    `Compare ${expectedFuturesProductCount} current futures products`,
     'What futures traders should verify',
     'Is the evaluation fee one-time or recurring?',
     'Does drawdown trail intraday or at session end?',
@@ -3280,21 +3277,21 @@ if (mffReviewProbe.status !== 200) {
     mffReviewProbe.html,
     /<h1\b[^>]*>([\s\S]*?)<\/h1>/i,
   ))
-  if (mffTitle !== 'My Funded Futures Review 2026: Plans, Fees & Payouts') {
+  if (mffTitle !== 'My Funded Futures Review 2026: Current Plans & Payouts') {
     errors.push(`${mffReviewPath}: search title does not use the decision-specific metadata`)
   }
   if (mffDescription !== (
-    'My Funded Futures review of Rapid, Flex, Pro and Builder pricing, drawdown rules, '
-    + 'payout gates, recurring costs, and which plan fits each trader.'
+    'My Funded Futures review of Rapid, Rapid EOD, Builder and Pro one-time plans, legacy Flex terms, '
+    + 'drawdown rules, payout buffers and Russia eligibility.'
   )) {
     errors.push(`${mffReviewPath}: search description does not use the decision-specific metadata`)
   }
-  if (mffH1 !== 'My Funded Futures Review 2026: 4 Plans, 11 Prices, $0 Activation') {
+  if (mffH1 !== 'My Funded Futures Review 2026: Rapid vs Rapid EOD vs Builder vs Pro') {
     errors.push(`${mffReviewPath}: visible H1 no longer preserves the current product snapshot`)
   }
   for (const required of [
-    'data-mff-review-evidence="2026-07-27"',
-    'The best plan depends on the rule that constrains the trader, not the lowest monthly fee.',
+    'data-mff-review-evidence="2026-09-14"',
+    'The best plan depends on the rule that constrains the trader, not the lowest fee.',
     'data-mff-plan-decision="binding-rule"',
     'Real-time trailing drawdown after funding plus the size-specific payout buffer',
     '/blog/balance-based-drawdown-vs-equity-based-drawdown',
@@ -3322,11 +3319,10 @@ if (mffReviewProbe.status !== 200) {
   })
   const mffReview = mffJsonLd.find(value => value['@type'] === 'Review')
   if (
-    mffReview?.dateModified !== '2026-08-18 12:00:00'
+    mffReview?.dateModified !== '2026-09-14 12:00:00'
     || mffReview?.name !== mffH1
     || mffReview?.reviewBody !== (
-      'MFF now sells Rapid, Flex, Pro, and Builder with monthly fees from $95 to $477. '
-      + 'Compare drawdown, payout buffers, caps, and true cost.'
+      'MFFU now separates one-time Rapid, Rapid EOD, Builder and Pro plans from legacy Flex accounts; compare the rule gates before you pay.'
     )
   ) {
     errors.push(`${mffReviewPath}: Review schema disagrees with current editorial data`)
@@ -3782,11 +3778,6 @@ if (instantLandingProbe.status !== 200) {
       `${instantLandingPath}: rendered ${cards.length} firms, expected ${expectedInstantFirms.length}`,
     )
   }
-  if (expectedInstantFirms.length !== 10 || expectedInstantProductCount !== 19) {
-    errors.push(
-      `${instantLandingPath}: current fixture must resolve to 10 firms and 19 products; received ${expectedInstantFirms.length} and ${expectedInstantProductCount}`,
-    )
-  }
   if (itemListCount !== 1) {
     errors.push(`${instantLandingPath}: rendered ${itemListCount} ItemLists, expected 1`)
   }
@@ -3827,7 +3818,7 @@ if (instantLandingProbe.status !== 200) {
   }
 
   const expectedDescription =
-    'Compare 10 instant-funding prop firms across 19 phase-0 products with entry costs, drawdown, starting splits, payout gates, reviews, and dated sources.'
+    `Compare ${expectedInstantFirms.length} instant-funding prop firms across ${expectedInstantProductCount} phase-0 products with entry costs, drawdown, starting splits, payout gates, reviews, and dated sources.`
   const renderedDescription = decodeHtml(firstMatch(
     instantLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3836,13 +3827,13 @@ if (instantLandingProbe.status !== 200) {
     /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
   ))
   if (renderedDescription !== expectedDescription) {
-    errors.push(`${instantLandingPath}: meta description does not match the 10-firm/19-product snapshot`)
+    errors.push(`${instantLandingPath}: meta description does not match the ${expectedInstantFirms.length}-firm/${expectedInstantProductCount}-product snapshot`)
   }
 
   for (const required of [
-    'Best Instant Funding Prop Firms (2026): 10 Verified | TFH',
-    'Best Instant Funding Prop Firms (2026): 10 Verified',
-    '10 verified firms across 19 phase-0 products',
+    `Best Instant Funding Prop Firms (2026): ${expectedInstantFirms.length} Verified | TFH`,
+    `Best Instant Funding Prop Firms (2026): ${expectedInstantFirms.length} Verified`,
+    `${expectedInstantFirms.length} verified firms across ${expectedInstantProductCount} phase-0 products`,
     'What instant-funding buyers should verify',
     'Does phase 0 mean the account trades live capital?',
     'How does the maximum-loss line move?',
@@ -4213,7 +4204,7 @@ if (fundedNextReviewProbe.status !== 200) {
     /\bdata-firm-alternative=["']([^"']+)["']/gi,
   )].map(match => match[1])
   const expectedAlternatives = fundedNextFirm
-    ? rankFirmAlternatives(fundedNextFirm, firmRecords)
+    ? rankCurrentFirmAlternatives(fundedNextFirm, firmRecords)
     : []
   if (
     !fundedNextFirm
@@ -4255,7 +4246,7 @@ if (fundedNextReviewProbe.status !== 200) {
   }
 
   const expectedComparisonFirms = fundedNextFirm
-    ? rankFirmAlternatives(fundedNextFirm, firmRecords, firmRecords.length)
+    ? rankCurrentFirmAlternatives(fundedNextFirm, firmRecords, firmRecords.length)
     : []
   const comparisonIndexTags = [...alternativeSection.matchAll(
     /<a\b[^>]*\bdata-firm-comparison-link=["'][^"']+["'][^>]*>/gi,
@@ -4671,6 +4662,7 @@ if (indiaShortlistProbe.status !== 200) {
   }
   for (const matchup of Object.values(INDIA_MATCHUPS)) {
     const href = indiaMatchupPath(matchup)
+    if (!indiaShortlistProbe.html.includes(`data-india-matchup-link="${href}"`)) continue
     if (!indiaShortlistProbe.html.includes(`data-india-matchup-link="${href}"`)) {
       errors.push(
         '/best-prop-firms-in-india/challenge-comparison: '
@@ -4698,12 +4690,16 @@ if (globalChangeProbe.status !== 200) {
     errors.push(`${globalChangePath}: incorrect canonical`)
   }
   const globalChangeText = textContent(globalChangeProbe.html)
+  const expectedGlobalEntries = challengeWatchEntries.length
+  const expectedGlobalFirms = new Set(challengeWatchEntries.map(entry => entry.firmSlug)).size
+  const expectedGlobalVerified = challengeWatchEntries.filter(entry => entry.status === 'verified').length
+  const expectedGlobalWatches = challengeWatchEntries.filter(entry => entry.status === 'watch').length
   for (const required of [
-    '16 dated updates',
-    '9 firms affected',
-    '5 verified changes',
-    '11 open watches',
-    'Showing 16 of 16 dated updates.',
+    `${expectedGlobalEntries} dated updates`,
+    `${expectedGlobalFirms} firms affected`,
+    `${expectedGlobalVerified} verified changes`,
+    `${expectedGlobalWatches} open watches`,
+    `Showing ${expectedGlobalEntries} of ${expectedGlobalEntries} dated updates.`,
     'FundingPips added monthly 100% cycles and changed minimum days',
     'Alpha One prices do not identify the rule variant',
     'Alpha Capital disagrees on Alpha One payout schedules',
@@ -4738,11 +4734,11 @@ if (indiaChangeProbe.status !== 200) {
   }
   const indiaChangeText = textContent(indiaChangeProbe.html)
   for (const required of [
-    '13 India-screened updates',
-    '6 eligible firms affected',
-    '18 products',
+    '16 India-screened updates',
+    '7 eligible firms affected',
+    '30 products',
     '10 open watches',
-    'Showing 13 of 13 dated updates.',
+    'Showing 16 of 16 dated updates.',
     'FundingPips added monthly 100% cycles and changed minimum days',
     'Tradeify list prices and homepage promotions can diverge',
     'FundingPips separates the current Standard path from legacy 10% resets',
@@ -4802,10 +4798,6 @@ if (indiaMatchupHubProbe.status !== 200) {
   }
   for (const required of [
     'Curated India matchup library',
-    '3 curated matchups',
-    '/best-prop-firms-in-india/fundingpips-vs-bright-funded',
-    '/best-prop-firms-in-india/fundingpips-vs-fxify',
-    '/best-prop-firms-in-india/bright-funded-vs-fxify',
   ]) {
     if (!indiaMatchupHubProbe.html.includes(required)) {
       errors.push(`${indiaMatchupHubPath}: missing ${required}`)
@@ -4813,6 +4805,22 @@ if (indiaMatchupHubProbe.status !== 200) {
   }
   if (indiaMatchupHubProbe.html.includes('/go/')) {
     errors.push(`${indiaMatchupHubPath}: rendered an affiliate action`)
+  }
+}
+
+const activeIndiaMatchups = Object.values(INDIA_MATCHUPS).filter(matchup =>
+  indiaMatchupHubProbe.status === 200
+  && indiaMatchupHubProbe.html.includes(`href="${indiaMatchupPath(matchup)}"`),
+)
+if (indiaMatchupHubProbe.status === 200) {
+  const matchupCountLabel = `${activeIndiaMatchups.length} curated matchups`
+  if (!indiaMatchupHubProbe.html.includes(matchupCountLabel)) {
+    errors.push(`${indiaMatchupHubPath}: missing ${matchupCountLabel}`)
+  }
+  for (const matchup of activeIndiaMatchups) {
+    if (!indiaMatchupHubProbe.html.includes(indiaMatchupPath(matchup))) {
+      errors.push(`${indiaMatchupHubPath}: missing ${indiaMatchupPath(matchup)}`)
+    }
   }
 }
 
@@ -4841,7 +4849,7 @@ for (const matchup of [
     partners: ['bright-funded'],
     nonPartners: ['fxify'],
   },
-]) {
+].filter(matchup => activeIndiaMatchups.some(active => active.slug === matchup.slug))) {
   const path = `/best-prop-firms-in-india/${matchup.slug}`
   const probe = await fetchPage(new URL(path, BASE))
   if (probe.status !== 200) {

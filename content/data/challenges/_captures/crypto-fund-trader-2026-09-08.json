@@ -1,0 +1,784 @@
+{
+  "firmSlug": "crypto-fund-trader",
+  "capturedAt": "2026-09-08",
+  "officialDomain": "https://cryptofundtrader.com/",
+  "reviewStatus": "ready",
+  "releaseBlockers": [],
+  "pagesRead": [
+    "https://cryptofundtrader.com/",
+    "https://cryptofundtrader.com/faq/",
+    "https://cryptofundtrader.com/terms-and-conditions/",
+    "https://cryptofundtrader.com/break-challenge/",
+    "https://cryptofundtrader.com/refund-policy/"
+  ],
+  "accessNotes": "Corrective mixed-age capture. Public homepage selection checked for all 15 1-Phase/2-Phase/Instant tiers on 2026-09-08; each Instant starting path shows 50%. No purchase, registration, support message or country-access validation. Ascend and Break remain dated 2026-07-27 and excluded by the existing freshness gate; conflicting/unconfirmed purchase fees are removed, not silently selected. This capture authorizes a local correction, not a release or complete product catalogue.",
+  "products": [
+    {
+      "firmSlug": "crypto-fund-trader",
+      "productName": "Evaluation (Standard 2-Phase)",
+      "productSlug": "evaluation",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 58,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$58.00",
+            "interpretation": "Displayed evaluation 5000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 110,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$110.00",
+            "interpretation": "Displayed evaluation 10000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 240,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$240.00",
+            "interpretation": "Displayed evaluation 25000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 389,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$389.00",
+            "interpretation": "Displayed evaluation 50000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 660,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$660.00",
+            "interpretation": "Displayed evaluation 100000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1250,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$1,250.00",
+            "interpretation": "Displayed evaluation 200000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": null
+      },
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "sourceCapturedAt": "2026-09-08",
+      "notes": [
+        "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
+        "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",
+        "General reward request: 15 traded days OR 30 calendar days, not a guaranteed calendar-day payout. Product-specific Ascend rules override this schedule.",
+        "Rule/source correction checked 2026-09-08. See https://cryptofundtrader.com/faq/ and https://cryptofundtrader.com/terms-and-conditions/. No independent payout verification."
+      ],
+      "pricingModel": "one-off",
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "2",
+          "interpretation": "Structural evaluation count; Instant's upgrade target is not an evaluation phase."
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "8%"
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "5%"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "5%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "10%"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://cryptofundtrader.com/",
+          "quote": "80%",
+          "interpretation": "Explicit phase-based final-stage table; not applicable to Ascend or Instant."
+        },
+        "rules": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "interpretation": "General news and overnight/weekend permissions; HFT/tick-scalping/arbitrage restrictions. Ascend news and Break copy rules are product-specific."
+        },
+        "refundable": {
+          "sourceUrl": "https://cryptofundtrader.com/refund-policy/",
+          "interpretation": "No verified refund on successful pass; leave null."
+        },
+        "maxTradingDays": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "no maximum time limit"
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "no minimum number",
+          "interpretation": "General evaluation answer; not applied over the Break-specific conflicting tables."
+        },
+        "maxTradingDaysUnlimited": {
+          "sourceUrl": "https://cryptofundtrader.com/",
+          "quote": "Maximum days traded Indefinite",
+          "interpretation": "Shown in the selected programme table; numeric maximum remains null."
+        }
+      },
+      "maxTradingDaysUnlimited": true
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "productName": "Ascend Evaluation",
+      "productSlug": "ascend",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$45.00",
+            "interpretation": "Observed homepage base fee for the 5000 USD tier; conflicts remain explicit in root releaseBlockers.",
+            "observedPriceUsd": 45
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$90.00",
+            "interpretation": "Observed homepage base fee for the 10000 USD tier; conflicts remain explicit in root releaseBlockers.",
+            "observedPriceUsd": 90
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$225.00",
+            "interpretation": "Observed homepage base fee for the 25000 USD tier; conflicts remain explicit in root releaseBlockers.",
+            "observedPriceUsd": 225
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$450.00",
+            "interpretation": "Observed homepage base fee for the 50000 USD tier; conflicts remain explicit in root releaseBlockers.",
+            "observedPriceUsd": 450
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$899.00",
+            "interpretation": "Observed homepage base fee for the 100000 USD tier; conflicts remain explicit in root releaseBlockers.",
+            "observedPriceUsd": 899
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$1,798.00",
+            "interpretation": "Observed homepage base fee for the 200000 USD tier; conflicts remain explicit in root releaseBlockers.",
+            "observedPriceUsd": 1798
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": null,
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": false
+      },
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+      "sourceCapturedAt": "2026-07-27",
+      "notes": [
+        "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
+        "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",
+        "Ascend finishes after phase 2 and pays a fixed scholarship: 210/420/1050/2100/4200/8400 USD for 5K/10K/25K/50K/100K/200K. No subsequent final-stage account; percentage-split True-Cost is inapplicable.",
+        "Rule/source correction checked 2026-09-08. See https://cryptofundtrader.com/faq/ and https://cryptofundtrader.com/terms-and-conditions/. No independent payout verification.",
+        "Complete product verification remains unresolved; sourceCapturedAt deliberately stays 2026-07-27. Base fees are null and this product must not return to current comparisons. This is not a discontinued-product finding.",
+        "Price conflict on 2026-09-08: homepage 45/90/225/450/899/1798 USD versus terms 39/78/195/390/780/1560 USD on 5K/10K/25K/50K/100K/200K. Neither schedule is an approved checkout quote."
+      ],
+      "pricingModel": "one-off",
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "2",
+          "interpretation": "Structural evaluation count; Instant's upgrade target is not an evaluation phase."
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "8%"
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "5%"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "5%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "10%"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": null,
+          "interpretation": "Section 8.vi specifies a fixed scholarship, then closes the study plan. No ongoing 80% final-stage split."
+        },
+        "rules": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "interpretation": "General news and overnight/weekend permissions; HFT/tick-scalping/arbitrage restrictions. Ascend news and Break copy rules are product-specific."
+        },
+        "refundable": {
+          "sourceUrl": "https://cryptofundtrader.com/refund-policy/",
+          "interpretation": "No verified refund on successful pass; leave null."
+        },
+        "maxTradingDays": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "no maximum time limit"
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "no minimum number",
+          "interpretation": "General evaluation answer; not applied over the Break-specific conflicting tables."
+        }
+      },
+      "scholarshipAwardsUsd": [
+        {
+          "sizeUsd": 5000,
+          "awardUsd": 210,
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "210"
+        },
+        {
+          "sizeUsd": 10000,
+          "awardUsd": 420,
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "420"
+        },
+        {
+          "sizeUsd": 25000,
+          "awardUsd": 1050,
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "1050"
+        },
+        {
+          "sizeUsd": 50000,
+          "awardUsd": 2100,
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "2100"
+        },
+        {
+          "sizeUsd": 100000,
+          "awardUsd": 4200,
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "4200"
+        },
+        {
+          "sizeUsd": 200000,
+          "awardUsd": 8400,
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "8400"
+        }
+      ]
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "productName": "Accelerated (1-Phase)",
+      "productSlug": "accelerated",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 40,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$40.00",
+            "interpretation": "Displayed accelerated 5000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 80,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$80.00",
+            "interpretation": "Displayed accelerated 10000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 219,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$219.00",
+            "interpretation": "Displayed accelerated 25000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 369,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$369.00",
+            "interpretation": "Displayed accelerated 50000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 619,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$619.00",
+            "interpretation": "Displayed accelerated 100000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1199,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$1,199.00",
+            "interpretation": "Displayed accelerated 200000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 6,
+      "drawdownType": "trailing",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": null
+      },
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "sourceCapturedAt": "2026-09-08",
+      "notes": [
+        "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
+        "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",
+        "General reward request: 15 traded days OR 30 calendar days, not a guaranteed calendar-day payout. Product-specific Ascend rules override this schedule.",
+        "Rule/source correction checked 2026-09-08. See https://cryptofundtrader.com/faq/ and https://cryptofundtrader.com/terms-and-conditions/. No independent payout verification."
+      ],
+      "pricingModel": "one-off",
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "1",
+          "interpretation": "Structural evaluation count; Instant's upgrade target is not an evaluation phase."
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "10%"
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": null
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "4%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "6%"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://cryptofundtrader.com/",
+          "quote": "80%",
+          "interpretation": "Explicit phase-based final-stage table; not applicable to Ascend or Instant."
+        },
+        "rules": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "interpretation": "General news and overnight/weekend permissions; HFT/tick-scalping/arbitrage restrictions. Ascend news and Break copy rules are product-specific."
+        },
+        "refundable": {
+          "sourceUrl": "https://cryptofundtrader.com/refund-policy/",
+          "interpretation": "No verified refund on successful pass; leave null."
+        },
+        "maxTradingDays": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "no maximum time limit"
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "no minimum number",
+          "interpretation": "General evaluation answer; not applied over the Break-specific conflicting tables."
+        },
+        "maxTradingDaysUnlimited": {
+          "sourceUrl": "https://cryptofundtrader.com/",
+          "quote": "Maximum days traded Indefinite",
+          "interpretation": "Shown in the selected programme table; numeric maximum remains null."
+        }
+      },
+      "maxTradingDaysUnlimited": true
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "productName": "Instant",
+      "productSlug": "instant",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": 125,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$125.00",
+            "interpretation": "Displayed instant 2500 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 240,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$240.00",
+            "interpretation": "Displayed instant 5000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 475,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$475.00",
+            "interpretation": "Displayed instant 10000 USD base tier, independently selected in the live homepage widget on 2026-09-08; no order submitted."
+          }
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": 4,
+      "maxLossPct": 6,
+      "drawdownType": null,
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 50,
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": null
+      },
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "sourceCapturedAt": "2026-09-08",
+      "notes": [
+        "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
+        "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",
+        "The no-minimum-days reward path requires 10% simulated profit and a withdrawal/upgrade request. An earlier request follows the general traded-day/calendar-day conditions.",
+        "Rule/source correction checked 2026-09-08. See https://cryptofundtrader.com/faq/ and https://cryptofundtrader.com/terms-and-conditions/. No independent payout verification.",
+        "Initial reward share is 50% on each selected starting tier; subsequent scale levels show 60/70/80/90%. This corrects our blanket 80% claim, not an established policy-change date.",
+        "Only the 4% daily and 6% overall percentages are confirmed; drawdownType remains null because its exact basis was not established. Numeric first-payout days/frequency are null to avoid ranking a conditional 10%-profit request as immediate unconditional payment."
+      ],
+      "pricingModel": "one-off",
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "0",
+          "interpretation": "Structural evaluation count; Instant's upgrade target is not an evaluation phase."
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": null
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": null
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "4%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "6%"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://cryptofundtrader.com/",
+          "quote": "50%",
+          "interpretation": "50% first level independently verified for all three starting sizes in the live product selector; generic 80% promotional text is not this product's initial schedule."
+        },
+        "rules": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "interpretation": "General news and overnight/weekend permissions; HFT/tick-scalping/arbitrage restrictions. Ascend news and Break copy rules are product-specific."
+        },
+        "refundable": {
+          "sourceUrl": "https://cryptofundtrader.com/refund-policy/",
+          "interpretation": "No verified refund on successful pass; leave null."
+        },
+        "maxTradingDays": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "no maximum time limit"
+        },
+        "profitTargets": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "10%",
+          "interpretation": "Withdrawal-and-upgrade threshold, not a phase-1 evaluation target; phase target stays null."
+        },
+        "maxTradingDaysUnlimited": {
+          "sourceUrl": "https://cryptofundtrader.com/",
+          "quote": "Maximum days traded Indefinite",
+          "interpretation": "Shown in the selected programme table; numeric maximum remains null."
+        }
+      },
+      "maxTradingDaysUnlimited": true
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "productName": "Break Challenge",
+      "productSlug": "break",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$70.00",
+            "interpretation": "Observed homepage base fee for the 25000 USD tier; conflicts remain explicit in root releaseBlockers.",
+            "observedPriceUsd": 70
+          },
+          "activationFeeUsd": 138,
+          "maxLossUsd": 1000,
+          "fieldEvidence": {
+            "activationFeeUsd": {
+              "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+              "quote": "138",
+              "interpretation": "Section 8.vii: due after passing and review; dashboard payment window 30 days."
+            },
+            "maxLossUsd": {
+              "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+              "quote": "1000",
+              "interpretation": "Initial published cash drawdown; ongoing trailing calculation is an unresolved conflict."
+            }
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$139.00",
+            "interpretation": "Observed homepage base fee for the 50000 USD tier; conflicts remain explicit in root releaseBlockers.",
+            "observedPriceUsd": 139
+          },
+          "activationFeeUsd": 198,
+          "maxLossUsd": 2000,
+          "fieldEvidence": {
+            "activationFeeUsd": {
+              "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+              "quote": "198",
+              "interpretation": "Section 8.vii: due after passing and review; dashboard payment window 30 days."
+            },
+            "maxLossUsd": {
+              "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+              "quote": "2000",
+              "interpretation": "Initial published cash drawdown; ongoing trailing calculation is an unresolved conflict."
+            }
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "$199.00",
+            "interpretation": "Observed homepage base fee for the 100000 USD tier; conflicts remain explicit in root releaseBlockers.",
+            "observedPriceUsd": 199
+          },
+          "activationFeeUsd": 328,
+          "maxLossUsd": 3000,
+          "fieldEvidence": {
+            "activationFeeUsd": {
+              "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+              "quote": "328",
+              "interpretation": "Section 8.vii: due after passing and review; dashboard payment window 30 days."
+            },
+            "maxLossUsd": {
+              "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+              "quote": "3000",
+              "interpretation": "Initial published cash drawdown; ongoing trailing calculation is an unresolved conflict."
+            }
+          }
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 0,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+      "sourceCapturedAt": "2026-07-27",
+      "notes": [
+        "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
+        "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",
+        "Break entry fee excludes mandatory tier activation: 138/198/328 USD. Purchase availability and base prices remain unresolved.",
+        "Break phase target differs by tier: 1250/3000/6000 USD for 25K/50K/100K. No product-wide percentage target is inferred.",
+        "No Daily Loss Limit is published, but null currently cannot distinguish explicit none from unknown. Do not turn null into zero globally.",
+        "40% consistency applies only at final-stage reward requests and resets after approved payouts. Own-account copying is restricted to the evaluation phase; final-stage copying is prohibited.",
+        "Rule/source correction checked 2026-09-08. See https://cryptofundtrader.com/faq/ and https://cryptofundtrader.com/terms-and-conditions/. No independent payout verification.",
+        "Complete product verification remains unresolved; sourceCapturedAt deliberately stays 2026-07-27. Base fees are null and this product must not return to current comparisons. This is not a discontinued-product finding.",
+        "Dedicated Break page says SOLD OUT on 2026-09-08; live homepage selectors expose Instant/1 Phase/2 Phases, not a verified Break purchase. Hidden homepage 70/139/199 USD disagrees with terms 70/140/200 USD.",
+        "Minimum evaluation days conflict: homepage 1 versus dedicated page 0. Initial dollar loss caps do not establish the ongoing highest-balance calculation."
+      ],
+      "pricingModel": "one-off",
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "1",
+          "interpretation": "Structural evaluation count; Instant's upgrade target is not an evaluation phase."
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": null
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": null
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": null
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": null
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+          "quote": "80%"
+        },
+        "rules": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "interpretation": "General news and overnight/weekend permissions; HFT/tick-scalping/arbitrage restrictions. Ascend news and Break copy rules are product-specific."
+        },
+        "refundable": {
+          "sourceUrl": "https://cryptofundtrader.com/refund-policy/",
+          "interpretation": "No verified refund on successful pass; leave null."
+        },
+        "maxTradingDays": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "no maximum time limit"
+        }
+      }
+    }
+  ],
+  "resolvedScope": [
+    "Ascend: retain programme and fixed-award evidence, but remove unsupported percentage split and all conflicting fee values; preserve older date.",
+    "Break: retain programme and verified activation fees; remove unconfirmed base fees, retain old date and explicit sold-out/price/minimum-day/trailing-method caveats.",
+    "Instant: use the product-specific 50% first-level schedule verified in all three live size selections. Unknown drawdown basis remains null; no evaluation target inferred from withdrawal threshold.",
+    "Conditional reward schedules remain null in numeric/calendar-frequency fields and are explained in notes/review; zero-day Instant request is withheld because eligibility depends on a profit threshold.",
+    "General copy permission remains unverified/null; no blanket permission or prohibition inferred.",
+    "Three-phase availability unverified, so the existing five-product coverage is not represented as the complete active catalogue."
+  ]
+}

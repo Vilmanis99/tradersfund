@@ -43,6 +43,7 @@ const schemas = html => [...html.matchAll(/<script type="application\/ld\+json">
 try {
   const { getAllChallenges, getAllFirms, isChallengeFresh } = require(path.join(root, 'lib/firms.ts'))
   const { getAllCanonicalPairs, getCurrentCanonicalPairs, getOverlay, firmSlug } = require(path.join(root, 'lib/comparisons.ts'))
+  const { isSourceHoldFirm } = require(path.join(root, 'lib/reviewStatus.ts'))
   const { buildChallengeMatchup, freshChallenges } = require(path.join(root, 'lib/challengeMatchup.ts'))
   const hub = require(path.join(root, 'app/compare/page.tsx'))
   const detail = require(path.join(root, 'app/compare/[matchup]/page.tsx'))
@@ -80,7 +81,15 @@ try {
     assert.deepEqual(linkedPairs, expectedPairs.map(pair => pair.matchup).sort(), `${date}: real server-rendered directory and metadata agree`)
     const pendingPairs = [...hubHtml.matchAll(/data-pending-matchup="([^"]+)"/g)].map(match => match[1]).sort()
     const currentSlugs = new Set(expectedPairs.map(pair => pair.matchup))
-    assert.deepEqual(pendingPairs, pairs.filter(pair => !currentSlugs.has(pair.matchup)).map(pair => pair.matchup).sort(), `${date}: excluded matchups remain discoverable with a separate source-status label`)
+    assert.deepEqual(
+      pendingPairs,
+      pairs
+        .filter(pair => !currentSlugs.has(pair.matchup))
+        .filter(pair => !isSourceHoldFirm(firmSlug(pair.firmA.name)) && !isSourceHoldFirm(firmSlug(pair.firmB.name)))
+        .map(pair => pair.matchup)
+        .sort(),
+      `${date}: excluded matchups remain discoverable with a separate source-status label`,
+    )
     assert.equal((hubHtml.match(/<h1\b/g) ?? []).length, 1)
     assert(hubHtml.includes('id="comparison-matchup-search"') && hubHtml.includes('for="comparison-matchup-search"'), 'search keeps a stable explicit label when its clear button appears')
     if (!expectedPairs.length) assert(visible(hubHtml).includes('No two-sided matchups currently pass the source checks'))
@@ -91,6 +100,19 @@ try {
       const freshA = trackedA.filter(product => isChallengeFresh(product))
       const freshB = trackedB.filter(product => isChallengeFresh(product))
       const model = buildChallengeMatchup({ name: pair.firmA.name, slug: firmSlug(pair.firmA.name) }, { name: pair.firmB.name, slug: firmSlug(pair.firmB.name) })
+      for (const [side, sideProducts] of [['a', freshA], ['b', freshB]]) {
+        for (const product of sideProducts) {
+          for (const [label, missing] of [
+            ['Min trading days', product.minTradingDays == null],
+            ['Max trading days', product.maxTradingDays == null && product.maxTradingDaysUnlimited !== true],
+            ['Consistency rule', product.consistencyRulePct == null && product.consistencyRuleApplies == null],
+          ]) {
+            if (!missing) continue
+            const group = model.ruleRows.find(row => row.label === label)?.[side].find(group => group.products.includes(product.productName))
+            assert.equal(group?.display, 'Unverified', `${date} ${pair.matchup}: ${product.productName} ${label} cannot turn a legacy null into permission`)
+          }
+        }
+      }
       assert.equal(model.hasData, Boolean(freshA.length && freshB.length), `${date} ${pair.matchup}: two-sided state`)
       assert.equal(model.a.excludedProducts.length, trackedA.length - freshA.length)
       assert.equal(model.b.excludedProducts.length, trackedB.length - freshB.length)

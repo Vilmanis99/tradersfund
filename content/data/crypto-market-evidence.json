@@ -7,7 +7,8 @@
       "marketModel": "multi-asset-cfd",
       "productSlugs": ["stellar-2-step", "stellar-1-step", "stellar-lite", "stellar-instant"],
       "sourceUrl": "https://help.fundednext.com/en/articles/8020350-what-is-the-contract-size-of-the-instruments",
-      "sourceCapturedAt": "2026-08-27",
+      "sourceCapturedAt": "2026-09-08",
+      "sourceQuote": "Cryptocurrency: 1, 100 & 1000 (Varies in different pairs)",
       "evidence": "FundedNext publishes cryptocurrency contract sizes of 1, 100, and 1,000 depending on the pair and states that the specifications apply to all accounts.",
       "evidenceRu": "FundedNext публикует размеры криптовалютных контрактов 1, 100 и 1 000 в зависимости от пары и указывает, что спецификации применяются ко всем счетам.",
       "scopeNoteRu": "Покрыты все 4 текущих CFD-продукта. Размер контракта зависит от пары, поэтому спецификация платформы остаётся главным источником на уровне символа.",
@@ -19,9 +20,10 @@
       "marketModel": "multi-asset-cfd",
       "productSlugs": ["1-step-flex"],
       "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
-      "sourceCapturedAt": "2026-08-27",
+      "sourceCapturedAt": "2026-09-08",
+      "sourceQuote": "Crypto leverage changes from 1:2 to 1:1",
       "evidence": "The 1 Step Flex specification publishes a 0.04% crypto commission, 1:2 crypto leverage during Phase 1, and 1:1 crypto leverage on the Master Account.",
-      "evidenceRu": "Спецификация 1 Step Flex указывает комиссию 0,04% за крипто, плечо 1:2 на Phase 1 и 1:1 на Master Account.",
+      "evidenceRu": "Спецификация 1 Step Flex указывает комиссию 0,04% за криптоинструменты, плечо 1:2 на оценочном этапе и 1:1 на следующем счёте Master Account.",
       "scopeNoteRu": "Привязан только 1 Step Flex. Остальные 4 продукта FundingPips не считаются автоматически доступными для крипторынка и могут иметь другие условия.",
       "scopeNote": "Only 1 Step Flex is mapped. The other 4 current FundingPips products are not assumed to share its crypto availability or trading conditions."
     },
@@ -39,21 +41,30 @@
         "omo-2-step"
       ],
       "sourceUrl": "https://maventrading.com/faqs",
-      "sourceCapturedAt": "2026-08-27",
+      "sourceCapturedAt": "2026-09-08",
+      "sourceQuote": "BTCEUR | BTCUSD | ETHBTC | ETHUSD",
       "evidence": "Maven's official FAQ lists BTCEUR, BTCUSD, ETHBTC, and ETHUSD among its tradable cryptocurrency instruments.",
       "evidenceRu": "Официальный FAQ Maven перечисляет BTCEUR, BTCUSD, ETHBTC и ETHUSD среди доступных криптовалютных инструментов.",
       "scopeNoteRu": "Привязаны 7 текущих CFD-продуктов. Две отдельные программы Prediction Markets исключены: общий список CFD-инструментов не доказывает торговлю криптовалютой внутри prediction-market контракта.",
       "scopeNote": "Seven current CFD products are mapped. The 2 separate Prediction Markets programs are excluded because the general CFD instrument list does not establish crypto trading inside a prediction-market contract."
     }
   ],
+  "payoutAlternative": {
+    "firmSlug": "bright-funded",
+    "firmName": "Bright Funded",
+    "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+    "sourceCapturedAt": "2026-09-08",
+    "sourceQuote": "Crypto payments are processed in USDC (ERC-20)",
+    "evidenceRu": "Справка перечисляет вознаграждение в USDC по сети ERC-20 и банковский перевод в EUR. Это проверка способа выплаты, не торговых инструментов или доступности страны."
+  },
   "watch": [
     {
       "firmSlug": "e8-markets",
       "firmName": "E8 Markets",
       "status": "product-capture-needed",
       "sourceUrl": "https://help.e8markets.com/en/articles/9799834-available-trading-platforms",
-      "sourceCapturedAt": "2026-08-11",
-      "evidence": "E8 explicitly references separate Forex and Crypto accounts, but the current structured capture contains only Forex product rows.",
+      "sourceCapturedAt": "2026-09-14",
+      "evidence": "E8's current help page explicitly covers both Forex and Crypto accounts and lists the available platforms, but the current structured capture contains only Forex product rows.",
       "nextStep": "Capture the current crypto-specific products, prices, leverage, payout rules, and available platforms before ranking."
     },
     {
@@ -71,8 +82,10 @@
       "status": "market-and-product-refresh-needed",
       "sourceUrl": "https://cryptofundtrader.com/choose-your-challenge/",
       "sourceCapturedAt": "2026-07-27",
-      "evidence": "The previous capture named more than 540 crypto pairs on MT5 and Match-Trader and more than 715 on Bybit, but both market evidence and all 5 product rows are now outside the 30-day window.",
-      "nextStep": "Recapture the current crypto markets, platforms, prices, drawdown, payout rules, and all product rows before returning the firm to the ranking."
+      "evidence": "The market/platform mapping remains dated July 27. A separate September 8 correction rechecked Evaluation, Accelerated and Instant; Ascend and Break retain older product dates with unverified entry prices. The former claim that all five products remain unchecked is no longer accurate.",
+      "nextStep": "Verify the exact crypto-market and platform scope for the three rechecked programmes. Reconcile Ascend and Break purchase terms separately; do not infer crypto availability from a payout method or return unresolved products to a current-price ranking.",
+      "productCorrectionAt": "2026-09-08",
+      "nextStepRu": "Для Evaluation, Accelerated и Instant нужно подтвердить точную связку программы, платформы и криптоинструментов. Цены входа Ascend и Break остаются неподтверждёнными; исправление от 8 сентября не обновляет старую проверку рынков."
     },
     {
       "firmSlug": "ftmo",

@@ -43,24 +43,30 @@
     "dailyLossPct": 5,
     "maxLossPct": 10,
     "drawdownType": "static",
-    "minTradingDays": null,
+    "minTradingDays": 0,
     "maxTradingDays": null,
+    "maxTradingDaysUnlimited": true,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
-    "payoutFirstDays": 15,
-    "payoutFrequency": "bi-weekly",
+    "payoutFirstDays": null,
+    "payoutFrequency": null,
     "rules": {
       "news": true,
       "weekend": true,
       "overnight": true,
       "ea": "restricted",
-      "copyTrading": false
+      "copyTrading": null
     },
+    "pricingModel": "one-off",
     "assetClass": "crypto",
     "sourceUrl": "https://cryptofundtrader.com/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-09-08",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-07-27.json"
+      "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
+      "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",
+      "General reward request: 15 traded days OR 30 calendar days, not a guaranteed calendar-day payout. Product-specific Ascend rules override this schedule.",
+      "Rule/source correction checked 2026-09-08. See https://cryptofundtrader.com/faq/ and https://cryptofundtrader.com/terms-and-conditions/. No independent payout verification.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-09-14.json"
     ]
   },
   {
@@ -71,32 +77,32 @@
     "accountSizes": [
       {
         "sizeUsd": 5000,
-        "priceUsd": 45,
+        "priceUsd": 39,
         "refundable": null
       },
       {
         "sizeUsd": 10000,
-        "priceUsd": 90,
+        "priceUsd": 78,
         "refundable": null
       },
       {
         "sizeUsd": 25000,
-        "priceUsd": 225,
+        "priceUsd": 195,
         "refundable": null
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": 450,
+        "priceUsd": 390,
         "refundable": null
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": 899,
+        "priceUsd": 780,
         "refundable": null
       },
       {
         "sizeUsd": 200000,
-        "priceUsd": 1798,
+        "priceUsd": 1560,
         "refundable": null
       }
     ],
@@ -107,10 +113,10 @@
     "dailyLossPct": 5,
     "maxLossPct": 10,
     "drawdownType": "static",
-    "minTradingDays": null,
+    "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
-    "profitSplitPct": 80,
+    "profitSplitPct": null,
     "payoutFirstDays": null,
     "payoutFrequency": null,
     "rules": {
@@ -120,11 +126,17 @@
       "ea": "restricted",
       "copyTrading": false
     },
+    "pricingModel": "one-off",
     "assetClass": "crypto",
-    "sourceUrl": "https://cryptofundtrader.com/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-07-27.json"
+      "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
+      "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",
+      "Ascend finishes after Phase 2 and pays a fixed scholarship: 210/420/1050/2100/4200/8400 USD for 5K/10K/25K/50K/100K/200K. No subsequent final-stage account; percentage-split True-Cost is inapplicable.",
+      "Current Section 5.6.5 of the official Terms and Conditions lists the complete Ascend fee ladder: $39 / $78 / $195 / $390 / $780 / $1,560 for 5K / 10K / 25K / 50K / 100K / 200K.",
+      "The current FAQ confirms Ascend availability, its Phase 2 scholarship ticket, no minimum evaluation days, and product-specific copy/news restrictions. No independent payout verification.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-09-14.json"
     ]
   },
   {
@@ -170,24 +182,30 @@
     "dailyLossPct": 4,
     "maxLossPct": 6,
     "drawdownType": "trailing",
-    "minTradingDays": null,
+    "minTradingDays": 0,
     "maxTradingDays": null,
+    "maxTradingDaysUnlimited": true,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
-    "payoutFirstDays": 15,
-    "payoutFrequency": "bi-weekly",
+    "payoutFirstDays": null,
+    "payoutFrequency": null,
     "rules": {
       "news": true,
       "weekend": true,
       "overnight": true,
       "ea": "restricted",
-      "copyTrading": false
+      "copyTrading": null
     },
+    "pricingModel": "one-off",
     "assetClass": "crypto",
     "sourceUrl": "https://cryptofundtrader.com/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-09-08",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-07-27.json"
+      "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
+      "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",
+      "General reward request: 15 traded days OR 30 calendar days, not a guaranteed calendar-day payout. Product-specific Ascend rules override this schedule.",
+      "Rule/source correction checked 2026-09-08. See https://cryptofundtrader.com/faq/ and https://cryptofundtrader.com/terms-and-conditions/. No independent payout verification.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-09-14.json"
     ]
   },
   {
@@ -212,30 +230,36 @@
         "refundable": null
       }
     ],
-    "profitTargets": {
-      "phase1": 10
-    },
+    "profitTargets": null,
     "dailyLossPct": 4,
     "maxLossPct": 6,
-    "drawdownType": "balance-based",
+    "drawdownType": null,
     "minTradingDays": 0,
     "maxTradingDays": null,
+    "maxTradingDaysUnlimited": true,
     "consistencyRulePct": null,
-    "profitSplitPct": 80,
-    "payoutFirstDays": 0,
-    "payoutFrequency": "on-demand",
+    "profitSplitPct": 50,
+    "payoutFirstDays": null,
+    "payoutFrequency": null,
     "rules": {
       "news": true,
       "weekend": true,
       "overnight": true,
       "ea": "restricted",
-      "copyTrading": false
+      "copyTrading": null
     },
+    "pricingModel": "one-off",
     "assetClass": "crypto",
     "sourceUrl": "https://cryptofundtrader.com/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-09-08",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-07-27.json"
+      "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
+      "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",
+      "The no-minimum-days reward path requires 10% simulated profit and a withdrawal/upgrade request. An earlier request follows the general traded-day/calendar-day conditions.",
+      "Rule/source correction checked 2026-09-08. See https://cryptofundtrader.com/faq/ and https://cryptofundtrader.com/terms-and-conditions/. No independent payout verification.",
+      "Initial reward share is 50% on each selected starting tier; subsequent scale levels show 60/70/80/90%. This corrects our blanket 80% claim, not an established policy-change date.",
+      "Only the 4% daily and 6% overall percentages are confirmed; drawdownType remains null because its exact basis was not established. Numeric first-payout days/frequency are null to avoid ranking a conditional 10%-profit request as immediate unconditional payment.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-09-14.json"
     ]
   },
   {
@@ -247,16 +271,22 @@
       {
         "sizeUsd": 25000,
         "priceUsd": 70,
+        "activationFeeUsd": 138,
+        "maxLossUsd": 1000,
         "refundable": null
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": 139,
+        "priceUsd": 140,
+        "activationFeeUsd": 198,
+        "maxLossUsd": 2000,
         "refundable": null
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": 199,
+        "priceUsd": 200,
+        "activationFeeUsd": 328,
+        "maxLossUsd": 3000,
         "refundable": null
       }
     ],
@@ -277,11 +307,19 @@
       "ea": "restricted",
       "copyTrading": "restricted"
     },
+    "pricingModel": "one-off",
     "assetClass": "crypto",
     "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
-    "sourceCapturedAt": "2026-07-27",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-07-27.json"
+      "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
+      "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",
+      "Break entry fees are $70 / $140 / $200 for $25K / $50K / $100K and require mandatory activation fees of $138 / $198 / $328 after passing and review.",
+      "Break phase targets are $1,250 / $3,000 / $6,000 for $25K / $50K / $100K. No product-wide percentage target is inferred.",
+      "The current dedicated Break page confirms no minimum trading days, no daily loss limit, 40% final-stage consistency, on-demand payouts and tier-specific trailing drawdown values.",
+      "The current shop lists Break evaluation and activation products. The 2026-09-14 refresh resolves the previous 70/139/199 homepage-versus-terms discrepancy with the current Terms and Conditions schedule.",
+      "The 100K Break page still displays a sold-out label in one page block; verify the final selected tier and checkout availability before payment. No independent payout verification.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-09-14.json"
     ]
   }
 ]

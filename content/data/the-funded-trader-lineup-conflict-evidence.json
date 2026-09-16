@@ -1,0 +1,49 @@
+{
+  "firmSlug": "the-funded-trader",
+  "scope": "The Funded Trader lineup, allocation and country-access observations captured on 2026-09-14, plus a direct first-party availability recheck on 2026-09-16. These observations do not refresh the structured product prices, which remain dated 2026-07-27.",
+  "homepageLineup": {
+    "sourceUrl": "https://www.thefundedtraderprogram.com/",
+    "sourceCapturedAt": "2026-09-14",
+    "productSlugs": [
+      "knight",
+      "knight-pro",
+      "classic-1-step",
+      "royal",
+      "royal-pro",
+      "classic-2-step",
+      "dragon"
+    ],
+    "quote": "Knight Pro: single-phase; up to $2.5M allocation; up to 95% VIP split. Russia is listed among restricted countries.",
+    "observation": "The current homepage presents a refreshed Knight, Royal and Dragon lineup and a Russia restriction, while the older structured capture contains seven products with a different allocation and price context. Country access is a current finding; the product price ladder is not refreshed by it."
+  },
+  "currentHomepage": {
+    "sourceUrl": "https://www.thefundedtraderprogram.com/",
+    "sourceCapturedAt": "2026-09-16",
+    "productSlugs": [
+      "knight",
+      "knight-pro",
+      "classic-1-step",
+      "royal",
+      "royal-pro",
+      "classic-2-step",
+      "dragon"
+    ],
+    "quote": "This deployment is temporarily paused",
+    "observation": "A direct browser check of the firm's own homepage returned a first-party Deployment Paused page, so no current programme selector, country gate or checkout total could be captured. Cached search content is retained as historical context only."
+  },
+  "challengeConfigurator": {
+    "sourceUrl": "https://www.thefundedtraderprogram.com/?p=36045",
+    "sourceCapturedAt": "2026-09-16",
+    "productSlugs": [
+      "knight",
+      "knight-pro",
+      "classic-1-step",
+      "royal",
+      "royal-pro",
+      "classic-2-step",
+      "dragon"
+    ],
+    "quote": "This deployment is temporarily paused",
+    "observation": "A direct browser check of the official configurator returned the same first-party Deployment Paused page. No product selector, platform, add-ons or checkout total was available for a complete tier capture."
+  }
+}

@@ -3,7 +3,7 @@ title: "Maven Prop Firm Review 2026: Nine Products, 80% Split, EAs Banned"
 seoTitle: "Maven Prop Firm Review 2026: Fees, Rules & EA Ban"
 slug: "maven-prop-firm-review"
 date: "2025-06-15 09:00:00"
-modified: "2026-08-17 12:00:00"
+modified: "2026-09-14 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Maven sells nine challenge products from $5 to $999 and pays 80% on the standard lineup — but bans EAs outright. Here is which product actually prices well."
 seoDescription: "Maven prop firm review comparing 9 products, $5–$999 fees, 80% standard splits, drawdown rules, true cost, and the ban on expert advisors."
@@ -54,7 +54,7 @@ type: "post"
 <p>Maven's pricing page carried nine distinct products at capture, each sold across five or six account sizes — 52 priced tiers in total. The table below gives the price ladder endpoints and the rule surface for each product; the per-tier fees for the five products most traders will actually shortlist appear in the True-Cost section below.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
-  <caption class="hidden-caption">Maven product lineup, captured 2026-08-11</caption>
+  <caption class="hidden-caption">Maven product lineup, captured 2026-09-14</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product</th><th style="padding: 8px 12px; text-align: left;">Phases</th><th style="padding: 8px 12px; text-align: left;">Account sizes</th><th style="padding: 8px 12px; text-align: left;">List price</th><th style="padding: 8px 12px; text-align: left;">Profit target</th><th style="padding: 8px 12px; text-align: left;">Daily loss</th><th style="padding: 8px 12px; text-align: left;">Max loss</th><th style="padding: 8px 12px; text-align: left;">Split</th></tr></thead>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Standard 1-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2K – $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$15 – $380</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>

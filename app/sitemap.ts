@@ -3,12 +3,14 @@ import { getAllPosts, getAllPages, getAllCategories, getPostsByCategory } from '
 import { getAllChallenges, getAllFirms } from '@/lib/firms'
 import { FEATURES } from '@/lib/features'
 import { getAllCanonicalPairs, COMPARISON_EDITORIAL_DATE } from '@/lib/comparisons'
-import { LANDINGS } from '@/lib/landings'
+import { LANDINGS, buildLandingPayload } from '@/lib/landings'
+import { buildIndiaMatcherFirms } from '@/lib/indiaMatcher'
 import { AUTHORS } from '@/lib/authors'
 import { getAllDeals } from '@/lib/deals'
 import { INDIA_EVIDENCE } from '@/lib/india'
 import { INDIA_MATCHUPS, indiaMatchupPath } from '@/lib/indiaMatchups'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
+import { isSourceHoldReview, isSourceHoldFirm } from '@/lib/reviewStatus'
 import {
   LOCALIZED_ROUTE_PAIRS,
   RUSSIAN_ONLY_ROUTES,
@@ -24,6 +26,7 @@ import russianForexEvidence from '@/content/data/russian-forex-evidence.json'
 import russianTeamTradersEvidence from '@/content/data/russian-teamtraders-evidence.json'
 
 const BASE_URL = 'https://tradersfundhub.com'
+const HOME_EDITORIAL_DATE = '2026-09-14'
 
 function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -90,7 +93,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const comparisonHubLastDate = new Date(Math.max(challengeComparisonLastDate.getTime(), comparisonTemplateLastDate.getTime()))
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: BASE_URL, lastModified: firmsLastDate, changeFrequency: 'daily', priority: 1 },
+    { url: BASE_URL, lastModified: new Date(Math.max(new Date(HOME_EDITORIAL_DATE).getTime(), challengeComparisonLastDate.getTime())), changeFrequency: 'daily', priority: 1 },
     { url: `${BASE_URL}/blog`, lastModified: new Date(blogLastModified), changeFrequency: 'daily', priority: 0.9 },
     { url: `${BASE_URL}/prop-firm-discount-codes`, lastModified: dealsLastDate, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/best-prop-firms-in-india/compare`, lastModified: indiaMatchupLastDate, changeFrequency: 'weekly', priority: 0.9 },
@@ -113,7 +116,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     }
   })
+  const indiaLanding = LANDINGS.find(landing => landing.slug === 'best-prop-firms-in-india')
+  const indiaEligibleFirmSlugs = new Set(
+    indiaLanding
+      ? buildIndiaMatcherFirms(
+          buildLandingPayload(indiaLanding).ranked.map(entry => entry.firm),
+        ).map(firm => firm.slug)
+      : [],
+  )
   const indiaMatchupRoutes: MetadataRoute.Sitemap = Object.values(INDIA_MATCHUPS)
+    .filter(matchup => matchup.firmSlugs.every(slug => indiaEligibleFirmSlugs.has(slug)))
     .map(matchup => ({
       url: `${BASE_URL}${indiaMatchupPath(matchup)}`,
       lastModified: indiaMatchupLastDate,
@@ -141,7 +153,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Preserve existing URLs; substantive template edits and the pair's own
   // source captures can update lastmod. Never use the current request date.
-  const compareRoutes: MetadataRoute.Sitemap = getAllCanonicalPairs().map(p => {
+  const compareRoutes: MetadataRoute.Sitemap = getAllCanonicalPairs()
+    .filter(p => {
+      const [aSlug, bSlug] = p.matchup.split('-vs-')
+      return !isSourceHoldFirm(aSlug) && !isSourceHoldFirm(bSlug)
+    })
+    .map(p => {
     const [aSlug, bSlug] = p.matchup.split('-vs-')
     const aDate = firmDateBySlug.get(aSlug)
     const bDate = firmDateBySlug.get(bSlug)
@@ -156,7 +173,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     }
-  })
+    })
 
   // Category archives are prerendered (app/category/[slug]) and Google is
   // already crawling them, but they were missing from the sitemap entirely —
@@ -177,12 +194,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   })
 
-  const postRoutes: MetadataRoute.Sitemap = posts.map(post => ({
+  const postRoutes: MetadataRoute.Sitemap = posts
+    .filter(post => !isSourceHoldReview(post.slug))
+    .map(post => ({
     url: `${BASE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.modified || post.date),
     changeFrequency: 'monthly',
     priority: 0.7,
-  }))
+    }))
 
   // Keep in sync with RESERVED in app/[slug]/page.tsx and the staticRoutes above.
   // `home` is rendered as `/`, `blog`/`main-table`/`prop-firms` have dedicated
@@ -242,14 +261,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       '/ru/fundednext-vs-fundingpips',
       russianChallengeLastModified('fundednext', 'fundingpips'),
     ],
-    ['/ru/chto-takoe-prop-firma', challengeComparisonLastDate],
-    ['/ru/kak-rabotayut-chellendzhi-prop-firm', challengeComparisonLastDate],
+    ['/ru/prop-firmy-bez-chelendzha', russianChallengeLastModified('fundednext', 'fundingpips', 'tradeify', 'lucid-trading', 'alpha-capital', 'city-traders-imperium', 'maven', 'crypto-fund-trader', 'fxify')],
   ])
   const russianRoutes: MetadataRoute.Sitemap = LOCALIZED_ROUTE_PAIRS.map(pair => ({
     url: `${BASE_URL}${pair.ru}`,
     lastModified: russianRouteLastModified(
       pair.ru,
-      russianDataLastModified.get(pair.ru) ?? challengeComparisonLastDate,
+      russianDataLastModified.get(pair.ru),
     ),
     changeFrequency: 'weekly',
     priority: pair.ru === '/ru' ? 0.85 : 0.8,
@@ -273,13 +291,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return {
       url: `${BASE_URL}${path}`,
-      lastModified: russianRouteLastModified(path, evidenceLastModified),
+      lastModified: russianRouteLastModified(
+        path,
+        russianDataLastModified.get(path) ?? evidenceLastModified,
+      ),
       changeFrequency: 'monthly',
       priority: 0.78,
     }
   })
 
-  return [...baseRoutes, ...russianRoutes, ...russianOnlyRoutes].map(route => {
+  // A few localized routes are also represented by an MDX page (for example
+  // the Russian no-challenge guide). Keep one sitemap entry per URL and use
+  // the newest defensible last-modified value when two sources overlap.
+  const uniqueRoutes = new Map<string, MetadataRoute.Sitemap[number]>()
+  for (const route of [...baseRoutes, ...russianRoutes, ...russianOnlyRoutes]) {
+    const current = uniqueRoutes.get(route.url)
+    if (!current) {
+      uniqueRoutes.set(route.url, route)
+      continue
+    }
+
+    const toTimestamp = (value: MetadataRoute.Sitemap[number]['lastModified']) => {
+      if (!value) return 0
+      if (value instanceof Date) return value.getTime()
+      return new Date(value).getTime()
+    }
+    if (toTimestamp(route.lastModified) > toTimestamp(current.lastModified)) {
+      uniqueRoutes.set(route.url, route)
+    }
+  }
+
+  return [...uniqueRoutes.values()].map(route => {
     const pair = getLocalizedRoutePair(new URL(route.url).pathname)
     if (!pair) return route
 

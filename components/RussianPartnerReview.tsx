@@ -56,6 +56,19 @@ const payoutLabels: Record<string, string> = {
   'on-demand': 'по запросу при выполнении условий',
 }
 
+const payoutMethodLabels: Record<string, string> = {
+  card: 'карта',
+  'bank wire': 'банковский перевод',
+  'bank transfer': 'банковский перевод',
+  crypto: 'криптовалюта',
+  rise: 'Rise',
+}
+
+function payoutMethodsLabel(methods: string[] | undefined) {
+  if (!methods?.length) return 'не опубликованы'
+  return methods.map(method => payoutMethodLabels[method.trim().toLowerCase()] ?? method).join(', ')
+}
+
 function formatCurrency(value: number, currency: 'USD' | 'EUR') {
   return `${currency === 'USD' ? '$' : '€'}${value.toLocaleString('en-US', {
     maximumFractionDigits: 2,
@@ -215,7 +228,7 @@ export default function RussianPartnerReview({
               <dl className="ru-review-firm-facts">
                 <div><dt>Продукты</dt><dd>{freshProducts.length}</dd></div>
                 <div><dt>Цены</dt><dd>{pricedTiers.length} в валюте фирмы</dd></div>
-                <div><dt>Способы выплаты</dt><dd>{firm.payoutMethods?.join(', ') ?? 'не опубликованы'}</dd></div>
+                <div><dt>Способы выплаты</dt><dd>{payoutMethodsLabel(firm.payoutMethods)}</dd></div>
                 <div><dt>Макс. распределение</dt><dd>{firm.maxAllocation}</dd></div>
               </dl>
 
@@ -392,7 +405,7 @@ export default function RussianPartnerReview({
         <section className="ru-section" id="alternatives">
           <div className="ru-shell ru-content">
             <h2>С чем сравнить {firmName}</h2>
-            <p>Сравнение должно отвечать на конкретный failure-point: страну, payout-rail, drawdown, календарь reward или стоимость попытки. Редакционный балл сам по себе не выбирает продукт.</p>
+            <p>Сравнение должно отвечать на конкретную точку риска: страну, маршрут выплаты, просадку, календарь вознаграждения или стоимость попытки. Редакционный балл сам по себе не выбирает продукт.</p>
             <ul className="ru-review-related-links">
               {relatedLinks.map(item => (
                 <li key={item.href}><Link href={item.href}>{item.label}</Link> — {item.body}</li>

@@ -12,14 +12,14 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 const PATH = '/ru/luchshie-prop-firmy'
 // Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
 export const revalidate = 3600
-const TITLE = 'Лучшие проп-компании 2026: сравнение цен и правил'
-const DESCRIPTION = 'Рейтинг проп-компаний для русскоязычных трейдеров: цены, просадка и выплаты. Сравните глобальные фирмы, счета без челленджа и российские компании.'
+const TITLE = 'Рейтинг проп-компаний 2026: Россия и глобальные фирмы'
+const DESCRIPTION = 'Список и рейтинг проп-компаний 2026 для русскоязычных трейдеров: фирмы России и за рубежом, программы без челленджа, цены, просадка, KYC и выплаты.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
@@ -87,6 +87,17 @@ const partnerGuidance: Record<string, {
 const slugify = (name: string) =>
   name.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
+const russianReviewRoutes: Record<string, string> = {
+  'bright-funded': '/ru/obzor-bright-funded',
+  'era-trade': '/ru/obzor-eratrade',
+  ftmo: '/ru/obzor-ftmo',
+  fundednext: '/ru/obzor-fundednext',
+  fundingpips: '/ru/obzor-fundingpips',
+  kascapital: '/ru/obzor-kascapital',
+  proplive: '/ru/obzor-proplive',
+  teamtraders: '/ru/obzor-teamtraders',
+}
+
 function formatMoney(value: number, currency: 'USD' | 'EUR') {
   const amount = value.toLocaleString('en-US', { maximumFractionDigits: 2 })
   return currency === 'USD' ? `$${amount}` : `€${amount}`
@@ -125,6 +136,26 @@ function productPricing(products: Challenge[]) {
 export default function RussianBestPropFirmsPage() {
   const firms = getAllFirms()
   const challenges = getAllChallenges()
+  const freshnessHolds = firms
+    .map(firm => {
+      const slug = slugify(firm.name)
+      const products = challenges.filter(challenge => challenge.firmSlug === slug)
+      const staleProducts = products.filter(product => !isChallengeFresh(product))
+      if (staleProducts.length === 0) return null
+      return {
+        firm,
+        slug,
+        staleProducts,
+        oldest: staleProducts.map(product => product.sourceCapturedAt).sort()[0],
+      }
+    })
+    .filter((item): item is {
+      firm: (typeof firms)[number]
+      slug: string
+      staleProducts: Challenge[]
+      oldest: string
+    } => Boolean(item))
+    .sort((a, b) => a.oldest.localeCompare(b.oldest) || a.firm.name.localeCompare(b.firm.name))
   const ranked = firms
     .map(firm => {
       const slug = slugify(firm.name)
@@ -180,6 +211,7 @@ export default function RussianBestPropFirmsPage() {
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
+    author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
   }
 
   return (
@@ -193,17 +225,27 @@ export default function RussianBestPropFirmsPage() {
         <div className="ru-shell">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Рейтинг</div>
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Для русскоязычных трейдеров в разных странах</div>
-          <h1>Лучшие проп-компании 2026: рейтинг, цены и правила</h1>
+          <h1>Рейтинг проп-компаний 2026 для русскоязычных трейдеров</h1>
           <p className="ru-lead">
             Сравните проп-фирмы по стоимости участия, допустимому убытку и условиям выплаты прибыли.
             Начните с нужного формата: глобальная программа с проверкой навыков, счёт без челленджа
             или местная компания для биржевой торговли. Затем проверьте требования к вашей стране проживания.
           </p>
+          <p className="ru-lead ru-lead--intent">
+            Если вы ищете проп-компании в России, сначала выберите сценарий: местная биржевая инфраструктура
+            или глобальная программа для русскоязычного трейдера за рубежом. Русский язык страницы сам по себе
+            не подтверждает доступность фирмы для резидента России.
+          </p>
+          <p className="ru-lead ru-lead--intent">
+            В списке есть программы с оценочными этапами и проп-фирмы с мгновенным финансированием без челленджа.
+            Если источник старше 30 дней, фирма переносится в блок ожидания повторной проверки, а не показывается как актуальная.
+          </p>
+          <p className="ru-source-line">Автор рейтинга: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Данные ранжирования обновляются после проверки источников.</p>
           <div className="ru-actions">
             <Link href="#podbor" className="btn-primary">Подобрать программу <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="#polnyy-reyting" className="btn-outline">Редакционный рейтинг</Link>
           </div>
-          <p className="ru-source-line">Другой формат: <Link href="/ru/prop-firmy-bez-chelendzha">счета без челленджа</Link> · <Link href="/ru/rossiyskie-prop-kompanii">российские проп-компании</Link>.</p>
+          <p className="ru-source-line">Другой формат: <Link href="/ru/prop-firmy-bez-chelendzha">счета без челленджа</Link> · <Link href="/ru/rossiyskie-prop-kompanii">список проп-компаний в России</Link>.</p>
         </div>
       </section>
 
@@ -398,6 +440,20 @@ export default function RussianBestPropFirmsPage() {
               </tbody>
             </table>
           </div>
+          {freshnessHolds.length > 0 && (
+            <aside className="review-freshness-notice ru-ranking-freshness-hold" data-russian-ranking-freshness-holds={freshnessHolds.length} aria-label="Проверка источников">
+              <strong>Фирмы временно исключены из таблицы.</strong>{' '}
+              У {freshnessHolds.length} фирм хотя бы один продукт старше 30 дней. Мы не показываем их цены и правила в рейтинге как текущие.
+              <ul>
+                {freshnessHolds.map(item => (
+                  <li key={item.slug}>
+                    <Link href={russianReviewRoutes[item.slug] ?? item.firm.reviewUrl}>{item.firm.name}</Link> — {item.staleProducts.length} продукт(ов), самая ранняя проверка {item.oldest};{' '}
+                    <a href={item.staleProducts[0].sourceUrl} target="_blank" rel="nofollow noopener">первичный источник</a>.
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          )}
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ranking">
             Некоторые фирмы используют партнёрские ссылки: мы можем получить комиссию,
             если читатель зарегистрируется после перехода. Это не меняет редакционный

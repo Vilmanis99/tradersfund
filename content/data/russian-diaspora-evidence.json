@@ -80,7 +80,7 @@
         "Vietnam",
         "Pakistan"
       ],
-      "defaultNotNamedNoteRu": "Не названа в общем списке регистрации; checkout, KYC, платёж и выплата не тестировались.",
+      "defaultNotNamedNoteRu": "Не названа в общем списке регистрации; оформление покупки, KYC, платёж и выплата не тестировались.",
       "restrictedNoteRu": "Названа в опубликованном списке запрета регистрации или покупки Challenge.",
       "overrides": {
         "united-arab-emirates": {

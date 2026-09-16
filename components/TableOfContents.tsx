@@ -1,21 +1,11 @@
-export default function TableOfContents({ html }: { html: string }) {
-  // Extract h2 headings from HTML content
-  const headings: { text: string; id: string }[] = []
-  const regex = /<h2[^>]*>(.*?)<\/h2>/gi
-  let match
-  while ((match = regex.exec(html)) !== null) {
-    const text = match[1].replace(/<[^>]+>/g, '').trim()
-    if (text) {
-      const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-      headings.push({ text, id })
-    }
-  }
+import type { ArticleHeading } from '@/lib/articleContent'
 
+export default function TableOfContents({ headings }: { headings: ArticleHeading[] }) {
   if (headings.length < 3) return null
 
   return (
-    <nav className="toc">
-      <div className="toc-title">Table of Contents</div>
+    <nav className="toc article-toc" aria-label="On this page">
+      <div className="toc-title">On this page</div>
       <ol>
         {headings.map(h => (
           <li key={h.id}>

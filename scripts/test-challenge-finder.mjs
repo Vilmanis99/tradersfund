@@ -4,6 +4,26 @@ import { buildChallengeComparisonRows, getRussianFinderRows, getRussianReviewFin
 import { getAllChallenges, getAllFirms, minimumCostToFundedUsd } from '../lib/firms.ts'
 import { challengeKey, DEFAULT_FINDER_FILTERS, filterChallengeRows, finderTier, isFinderStateFragment, parseFinderState, serializeFinderState, tierPrice } from '../lib/challengeComparison.ts'
 import { russianPayoutRequestLabel } from '../lib/russianProgrammeLabels.ts'
+import { fundedNextOneStepPayoutLabel, fundedNextPayoutSource, isFundedNextPayoutSourceFresh } from '../lib/fundedNextPayout.ts'
+import { minimumTradingDaysLabel, maximumTradingDaysLabel, consistencyRuleLabel } from '../lib/challengeRuleLabels.ts'
+
+for (const [locale, unknown, unlimited, absent] of [['en', 'Unverified', 'Unlimited', 'No rule'], ['ru', 'Не подтверждено', 'Без ограничения срока', 'Правило не применяется']]) {
+  for (const invalid of [null, undefined, -1, 1.5, NaN, Infinity, '0']) assert.equal(minimumTradingDaysLabel(invalid, locale), unknown)
+  assert.equal(minimumTradingDaysLabel(0, locale), '0', 'a verified zero stays distinct from unknown')
+  assert.equal(minimumTradingDaysLabel(5, locale), '5')
+  for (const value of [null, undefined, 0, -1, 2.5, NaN, '30']) assert.equal(maximumTradingDaysLabel({ maxTradingDays: value }, locale), unknown)
+  assert.equal(maximumTradingDaysLabel({ maxTradingDays: null, maxTradingDaysUnlimited: true }, locale), unlimited)
+  assert.equal(maximumTradingDaysLabel({ maxTradingDays: 30, maxTradingDaysUnlimited: true }, locale), unknown, 'conflicting finite/unlimited data fails closed')
+  assert.equal(maximumTradingDaysLabel({ maxTradingDays: 30, maxTradingDaysUnlimited: false }, locale), '30')
+  assert.equal(maximumTradingDaysLabel({ maxTradingDays: null, maxTradingDaysUnlimited: false }, locale), unknown)
+  assert.equal(maximumTradingDaysLabel({ maxTradingDays: 30, maxTradingDaysUnlimited: 'false' }, locale), unknown)
+  for (const value of [null, undefined, 0, -1, 101, NaN, Infinity, '50']) assert.equal(consistencyRuleLabel({ consistencyRulePct: value }, locale), unknown)
+  assert.equal(consistencyRuleLabel({ consistencyRulePct: 50 }, locale), '50%')
+  assert.equal(consistencyRuleLabel({ consistencyRulePct: null, consistencyRuleApplies: false }, locale), absent)
+  assert.equal(consistencyRuleLabel({ consistencyRulePct: 50, consistencyRuleApplies: false }, locale), unknown)
+  assert.equal(consistencyRuleLabel({ consistencyRulePct: 50, consistencyRuleApplies: 'false' }, locale), unknown)
+  assert.notEqual(consistencyRuleLabel({ consistencyRulePct: null, consistencyRuleApplies: true }, locale), absent)
+}
 
 for (const phases of [0, 1, 2, 3]) {
   assert.equal(russianPayoutRequestLabel({ phases, payoutFirstDays: null }), 'Уточните условия запроса')
@@ -18,6 +38,30 @@ const now = new Date('2026-09-08T12:00:00Z')
 const products = getAllChallenges()
 const firms = getAllFirms()
 const rows = getRussianFinderRows(now)
+const oneStepTiming = { firmSlug: 'fundednext', productSlug: 'stellar-1-step', payoutFirstDays: 5 }
+assert(fundedNextOneStepPayoutLabel(oneStepTiming, now).includes('5 раб. дн.'))
+assert(!fundedNextOneStepPayoutLabel(oneStepTiming, now).includes('еженедельно'))
+for (const payoutFirstDays of [null, 0, 7, NaN, Infinity, -1]) assert(fundedNextOneStepPayoutLabel({ ...oneStepTiming, payoutFirstDays }, now).includes('требует проверки'), 'conflicting or missing first-window data does not inherit a sourced cycle')
+assert.equal(fundedNextOneStepPayoutLabel({ ...oneStepTiming, firmSlug: 'other' }, now), null)
+assert.equal(fundedNextOneStepPayoutLabel({ ...oneStepTiming, productSlug: 'stellar-instant' }, now), null)
+const timingCapture = fundedNextPayoutSource.sourceCapturedAt
+try {
+  for (const sourceCapturedAt of ['', 'invalid', '2026-02-30', '2026-08-08', '2030-01-01']) {
+    fundedNextPayoutSource.sourceCapturedAt = sourceCapturedAt
+    assert(!isFundedNextPayoutSourceFresh(now))
+    assert(fundedNextOneStepPayoutLabel(oneStepTiming, now).includes('требует проверки'))
+  }
+  fundedNextPayoutSource.sourceCapturedAt = '2026-08-09'
+  assert(isFundedNextPayoutSourceFresh(now), 'day 30 inclusive')
+} finally { fundedNextPayoutSource.sourceCapturedAt = timingCapture }
+const payoutFixtures = [
+  ['conditional', 0], ['short', 7], ['long', 30], ['unknown', null], ['business', 5],
+].map(([name, payoutFirstDays]) => ({ ...rows[0], firm: { ...rows[0].firm, slug: name === 'business' ? 'fundednext' : name, name }, product: { ...rows[0].product, slug: name === 'business' ? 'stellar-1-step' : name, payoutFirstDays, tiers: [{ ...rows[0].product.tiers[0], sizeUsd: 50000 }] } }))
+assert.deepEqual(filterChallengeRows(payoutFixtures, { ...DEFAULT_FINDER_FILTERS, sort: 'payout' }).map(row => row.firm.name), ['conditional', 'short', 'long', 'business', 'unknown'], 'business days are grouped separately, not ranked as fewer calendar days')
+const ruleFixture = { ...products.find(product => product.firmSlug === 'fundednext'), maxTradingDays: null, maxTradingDaysUnlimited: true, consistencyRulePct: null, consistencyRuleApplies: false }
+const projectedRuleFixture = buildChallengeComparisonRows([ruleFixture], firms, [], now)[0].product
+assert.equal(projectedRuleFixture.maxTradingDaysUnlimited, true, 'unlimited confirmation survives the shared EN/RU projection')
+assert.equal(projectedRuleFixture.consistencyRuleApplies, false, 'explicit rule absence survives the shared EN/RU projection')
 assert.deepEqual([...new Set(rows.map(row => row.firm.slug))].sort(), ['bright-funded', 'ftmo', 'fundednext', 'fundingpips'])
 assert(rows.every(row => row.firm.reviewUrl.startsWith('/ru/obzor-')))
 

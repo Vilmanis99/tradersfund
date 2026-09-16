@@ -1,75 +1,69 @@
 import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
-import {
-  ArrowRight,
-  Calculator,
-  ChartCandlestick,
-  CircleAlert,
-  Database,
-  Globe2,
-  MonitorCog,
-  Scale,
-  ShieldCheck,
-  WalletCards,
-} from 'lucide-react'
+import { ArrowRight, ChartCandlestick, Globe2 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import { getAllChallenges, isChallengeFresh, type Challenge, type ChallengeAccountSize } from '@/lib/firms'
+import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import forexEvidence from '@/content/data/russian-forex-evidence.json'
+import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru/forex-prop-firmy'
-const TITLE = 'Форекс проп-фирмы 2026: 7 продуктов и правила'
-const DESCRIPTION = 'Сравнение 7 forex-продуктов FundedNext и Bright Funded: цены, плечо, просадка, платформы, валютные пары, KYC и доступ для русскоязычных.'
+const TITLE = 'Форекс проп-фирмы: плечо, цены и правила программ'
+const DESCRIPTION = 'Разбор форекс-программ FundedNext и Bright Funded: валютные пары, плечо, цены в USD и EUR, лимиты убытка, платформы и проверка доступа по стране.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
 const faqs: RussianFaqItem[] = [
   {
-    q: 'Что такое forex prop firm?',
-    a: 'Это retail-проп-фирма с программой оценки или instant-продуктом, где доступны симулированные forex-инструменты. Трейдер соблюдает цели и риск-лимиты, а после проверки может получать договорную долю одобренного performance reward.',
+    q: 'Что такое форекс-проп-фирма?',
+    a: 'В этой статье речь о платной программе с симулированными валютными инструментами. Участник соблюдает правила оценки и лимиты убытка, а вознаграждение зависит от договора и одобрения результата. Размер счёта не является суммой личного депозита.',
   },
   {
-    q: 'Forex-проп-фирма является брокером?',
-    a: 'Не обязательно. FundedNext прямо описывает Stellar как CFD-продукты в симулированной среде, а Bright Funded называет свою среду simulated. Проверять нужно юридическое лицо, договор, платформу и статус счёта, а не только наличие EURUSD.',
+    q: 'Форекс-проп-фирма является брокером?',
+    a: 'FundedNext описывает свои программы как симулированную торговлю, а Bright Funded также указывает симулированную среду. Наличие EURUSD в терминале само по себе не означает, что вы открыли обычный брокерский счёт с реальными средствами.',
   },
   {
-    q: 'У какой из двух фирм больше опубликованных forex-пар?',
-    a: 'FundedNext публикует список из 43 уникальных символов. Bright Funded подтверждает major, minor и exotic pairs, но на захваченной первичной странице не публикует итоговое число; поэтому сравнивать 43 с выдуманным числом Bright нельзя.',
+    q: 'Какое форекс-плечо у FundedNext?',
+    a: 'По источникам, проверенным 8 сентября 2026 года, у Stellar 1-Step и Stellar Instant — 1:30, у Stellar 2-Step и Stellar Lite — 1:100. В таблицах оценочного и следующего этапа Stellar 1-Step указано одинаковое форекс-плечо. Не переносите условия одного продукта на другой.',
   },
   {
     q: 'Плечо 1:100 лучше, чем 1:30?',
-    a: 'Не автоматически. 1:100 уменьшает требуемую маржу для той же позиции, но не расширяет daily loss или maximum loss. Для стратегии важны одновременно размер лота, стоп, корреляция, плавающий убыток и формула просадки.',
+    a: 'Само по себе — нет. При той же позиции большее плечо уменьшает требуемую маржу, но не увеличивает допустимый убыток. Нужно отдельно учитывать стоп, размер позиции, открытые убытки и правило просадки.',
   },
   {
-    q: 'Можно ли торговать forex без челленджа?',
-    a: 'FundedNext Stellar Instant имеет 0 фаз и forex-плечо 1:30, но сохраняет 6% trailing maximum loss, 70% стартовый split и отдельный reward gate. Отсутствие оценки не означает отсутствие правил.',
+    q: 'У какой фирмы больше валютных пар?',
+    a: 'В проверенном списке FundedNext — 43 уникальных валютных символа. Справка Bright Funded перечисляет категории пар и ссылается на отдельный список инструментов, но итоговое число в самой справке не указано. Мы не подставляем непроверенное число для сравнения.',
   },
   {
-    q: 'Доступны ли эти forex-проп-фирмы резидентам России?',
-    a: 'Нельзя давать общее обещание. Официальные страницы FundedNext противоречат друг другу по российским резидентам, а доступ Bright Funded также требует проверки страны, KYC, платформы, платежа и payout rail до покупки.',
+    q: 'Можно ли торговать форекс без челленджа?',
+    a: 'Stellar Instant — отдельная программа FundedNext без оценочных этапов. Это не отменяет лимиты убытка и условия вознаграждения. Перед выбором нужно прочитать правила именно Instant, а не другой программы Stellar.',
   },
   {
-    q: 'Есть ли российские forex-проп-компании?',
-    a: 'Русскоязычный или российский оператор не обязательно предлагает глобальную CFD forex-модель. Некоторые локальные компании работают с фьючерсами Московской биржи, обучением или стажировкой. Их нужно проверять отдельно от FundedNext и Bright Funded.',
+    q: 'Русская версия означает, что можно зарегистрироваться из России?',
+    a: 'Нет. Язык не подтверждает доступность услуги. Перед оплатой проверяются гражданство, резидентство, документы, платформа и способы платежа и выплаты. Разрешение открыть сайт не заменяет подтверждение соответствия условиям фирмы.',
   },
 ]
 
 function priceForTier(tier: ChallengeAccountSize) {
-  if (tier.priceUsd != null) return `$${tier.priceUsd.toFixed(2)}`
-  if (tier.priceEur != null) return `€${tier.priceEur.toFixed(0)}`
-  return 'не опубликована'
+  const prices = ([['USD', tier.priceUsd], ['EUR', tier.priceEur]] as const)
+    .flatMap(([currency, value]) => value != null && value > 0
+      ? [new Intl.NumberFormat('ru-RU', { style: 'currency', currency, maximumFractionDigits: 2 }).format(value)] : [])
+  return prices.length ? prices.join(' / ') : 'цена не подтверждена'
 }
 
 function referenceTier(product: Challenge) {
-  return product.accountSizes.find(tier => tier.sizeUsd === 100000)
-    ?? [...product.accountSizes].sort((a, b) => b.sizeUsd - a.sizeUsd)[0]
+  const tiers = product.accountSizes.filter(tier => tier.sizeUsd > 0)
+  return tiers.find(tier => tier.sizeUsd === 100000)
+    ?? [...tiers].sort((a, b) => b.sizeUsd - a.sizeUsd)[0]
 }
 
 function formatAccountSize(sizeUsd: number) {
@@ -77,30 +71,26 @@ function formatAccountSize(sizeUsd: number) {
 }
 
 function formatTargets(product: Challenge) {
-  if (product.phases === 0 || product.profitTargets == null) return '0 фаз'
-  const targets = [
-    product.profitTargets.phase1,
-    product.profitTargets.phase2,
-    product.profitTargets.phase3,
-  ].filter((target): target is number => target != null)
-  return targets.map(target => `${target}%`).join(' → ')
+  if (product.phases === 0) return 'Без оценки'
+  if (!product.profitTargets) return 'Цели не подтверждены'
+  const targets = [product.profitTargets.phase1, product.profitTargets.phase2, product.profitTargets.phase3]
+    .slice(0, product.phases)
+  return targets.map(target => target == null ? 'не подтверждена' : `${target}%`).join(' → ')
 }
 
 function formatRiskRoom(product: Challenge, tier: ChallengeAccountSize) {
-  const daily = product.dailyLossPct == null
-    ? 'daily не опубликован'
-    : `daily $${Math.round(tier.sizeUsd * product.dailyLossPct / 100).toLocaleString('en-US')}`
-  const maximum = product.maxLossPct == null
-    ? 'max не опубликован'
-    : `max $${Math.round(tier.sizeUsd * product.maxLossPct / 100).toLocaleString('en-US')}`
-  return `${daily}; ${maximum}`
+  const daily = tier.dailyLossUsd ?? (product.dailyLossPct == null ? null : tier.sizeUsd * product.dailyLossPct / 100)
+  const maximum = tier.maxLossUsd ?? (product.maxLossPct == null ? null : tier.sizeUsd * product.maxLossPct / 100)
+  const amount = (value: number | null) => value == null ? 'не подтверждён'
+    : new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(value)
+  return `Дневной: ${amount(daily)}; общий: ${amount(maximum)}`
 }
 
 function formatDrawdown(product: Challenge) {
-  if (product.drawdownType === 'static') return 'static'
-  if (product.drawdownType === 'trailing') return 'trailing'
-  if (product.drawdownType === 'eod-trailing') return 'EOD trailing'
-  return product.drawdownType ?? 'не подтверждён'
+  if (product.drawdownType === 'static') return 'Фиксированная граница'
+  if (product.drawdownType === 'trailing') return 'Скользящая граница'
+  if (product.drawdownType === 'eod-trailing') return 'Скользящая, по итогам дня'
+  return 'Тип не подтверждён'
 }
 
 function productFirm(product: Challenge) {
@@ -108,71 +98,70 @@ function productFirm(product: Challenge) {
 }
 
 export default function RussianForexPropFirmsPage() {
-  const products = getAllChallenges()
-    .filter(product => isChallengeFresh(product))
-    .filter(product => product.firmSlug === 'fundednext' || product.firmSlug === 'bright-funded')
-  const fundedNextProducts = products.filter(product => product.firmSlug === 'fundednext')
-  const brightProducts = products.filter(product => product.firmSlug === 'bright-funded')
-  const fundedNextEvidence = forexEvidence.firms.find(firm => firm.firmSlug === 'fundednext')
-  const brightEvidence = forexEvidence.firms.find(firm => firm.firmSlug === 'bright-funded')
-  const sourceCount = new Set([
-    ...products.map(product => product.sourceUrl),
-    ...forexEvidence.firms.flatMap(firm => firm.sourceUrls),
-  ]).size
+  const allProducts = getAllChallenges().filter(product => product.assetClass === 'cfd'
+    && (product.firmSlug === 'fundednext' || product.firmSlug === 'bright-funded'))
+  const products = allProducts.filter(product => isChallengeFresh(product))
+  const fundedNextEvidence = forexEvidence.firms.find(firm => firm.firmSlug === 'fundednext')!
+  const brightEvidence = forexEvidence.firms.find(firm => firm.firmSlug === 'bright-funded')!
+  const evidenceFresh = (firm: typeof fundedNextEvidence) => isChallengeFresh({ sourceCapturedAt: firm.sourceCapturedAt })
+  const fundedNextFresh = evidenceFresh(fundedNextEvidence)
+  const brightFresh = evidenceFresh(brightEvidence)
+  const symbols = fundedNextFresh ? fundedNextEvidence.forexSymbols ?? [] : []
+  const sourceCount = new Set([...allProducts.map(product => product.sourceUrl), ...forexEvidence.firms.flatMap(firm => firm.sourceUrls)]).size
+  const evidenceDates = [
+    ...forexEvidence.firms.map(firm => ({ label: `форекс-справки ${firm.firmName}`, capturedAt: firm.sourceCapturedAt })),
+    ...['fundednext', 'bright-funded'].map(slug => ({
+      label: `цены и правила ${slug === 'fundednext' ? 'FundedNext' : 'Bright Funded'}`,
+      capturedAt: allProducts.filter(product => product.firmSlug === slug).map(product => product.sourceCapturedAt).sort()[0] ?? '',
+    })),
+    { label: 'обзор доступа по стране', capturedAt: marketEvidence.capturedAt },
+  ]
+  const hasFreshEvidence = evidenceDates.every(item => isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
+  const updatedAt = russianRouteDateModified(PATH, forexEvidence.capturedAt)
 
   function leverageFor(product: Challenge) {
     const firm = forexEvidence.firms.find(item => item.firmSlug === product.firmSlug)
-    const rule = firm?.forexLeverage.find(item => item.products.includes(product.productName))
-    return rule ? `1:${rule.ratio}` : 'не подтверждено'
+    if (!firm || !evidenceFresh(firm)) return 'Требует перепроверки'
+    const rule = firm.forexLeverage.find(item => item.products.includes(product.productName))
+    return rule ? `1:${rule.ratio}` : 'Не подтверждено'
   }
 
-  const crumbs = breadcrumbSchema([
-    { name: 'Русская версия', url: '/ru' },
-    { name: 'Форекс проп-фирмы' },
-  ])
-  const faq = faqPageSchema(faqs)
+  const crumbs = breadcrumbSchema([{ name: 'Русская версия', url: '/ru' }, { name: 'Форекс проп-фирмы' }])
   const article = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: TITLE,
-    description: DESCRIPTION,
-    url: `https://tradersfundhub.com${PATH}`,
-    inLanguage: 'ru',
-    datePublished: '2026-08-28',
-    dateModified: '2026-08-28',
-    publisher: {
-      '@type': 'Organization',
-      name: 'Traders Fund Hub',
-      url: 'https://tradersfundhub.com',
-    },
+    '@context': 'https://schema.org', '@type': 'Article',
+    headline: TITLE, description: DESCRIPTION, url: `https://tradersfundhub.com${PATH}`,
+    inLanguage: 'ru', datePublished: '2026-08-28', dateModified: updatedAt,
+    author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
+    publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
     mainEntityOfPage: `https://tradersfundhub.com${PATH}`,
   }
 
   return (
-    <article data-russian-forex-article="instrument-to-product" data-russian-search-intent="prop-forex">
+    <article className="ru-review-article" data-russian-forex-article="instrument-to-product" data-russian-search-intent="prop-forex">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
+      {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Форекс проп-фирмы</div>
-          <div className="ru-eyebrow"><ChartCandlestick size={14} aria-hidden="true" /> Forex: продукт, а не логотип</div>
-          <h1>Форекс проп-фирмы: 7 продуктов для русскоязычных трейдеров</h1>
+          <div className="ru-eyebrow"><ChartCandlestick size={14} aria-hidden="true" /> От валютной пары к условиям программы</div>
+          <h1>Форекс проп-фирмы: цены, плечо и правила для русскоязычных трейдеров</h1>
           <p className="ru-lead">
-            Сравниваем 7 продуктов FundedNext и Bright Funded как forex-маршруты:
-            опубликованные валютные пары, плечо 1:30 или 1:100, цена, тип просадки,
-            платформа, KYC и первая дата reward. Русский язык не заменяет проверку страны.
+            Одинаковая пара EURUSD не означает одинаковые условия счёта. Сравниваем программы
+            FundedNext и Bright Funded: стоимость участия, кредитное плечо, лимиты убытка и
+            доступность терминала. Отдельно разбираем, что проверить перед оплатой из своей страны.
           </p>
-          <div className="ru-stats" aria-label="Проверяемая forex-выборка">
-            <div className="ru-stat"><strong>{products.length}</strong><span>актуальных продуктов</span></div>
-            <div className="ru-stat"><strong>{fundedNextEvidence?.forexSymbols?.length ?? '—'}</strong><span>пар в списке FundedNext</span></div>
-            <div className="ru-stat"><strong>{sourceCount}</strong><span>уникальных первичных страниц</span></div>
-            <div className="ru-stat"><strong>{forexEvidence.capturedAt}</strong><span>проверка forex-источников</span></div>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Обновлено {updatedAt}.</p>
+          <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
+          <div className="ru-stats" aria-label="Выборка с датированными источниками">
+            <div className="ru-stat"><strong>{products.length}</strong><span>программ с актуальными ценовыми записями</span></div>
+            <div className="ru-stat"><strong>{symbols.length || 'Проверить'}</strong><span>валютных пар в списке FundedNext</span></div>
+            <div className="ru-stat"><strong>{sourceCount}</strong><span>первичных страниц в разборе</span></div>
           </div>
           <div className="ru-actions">
-            <Link href="#produkty" className="btn-primary btn-glow">Сравнить 7 продуктов <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/ru/chto-takoe-prop-firma" className="btn-outline">Сначала понять модель</Link>
+            <Link href="#produkty" className="btn-primary">Сравнить программы <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="/ru/chto-takoe-prop-firma" className="btn-outline">Как устроена проп-фирма</Link>
           </div>
         </div>
       </section>
@@ -180,297 +169,288 @@ export default function RussianForexPropFirmsPage() {
       <section className="ru-section">
         <div className="ru-shell ru-content">
           <div className="ru-notice" data-russian-country-boundary="forex-profile-not-language">
-            <strong>Forex-инструмент не доказывает доступ страны.</strong>{' '}
-            Для русскоязычного трейдера в любой стране отдельно проверяются 7 полей:
-            резидентство, гражданство, KYC, IP, платёж, платформа и payout rail.
-            VPN не меняет договор, удостоверение личности или адрес.
+            <strong>Наличие форекс-инструментов не подтверждает доступ страны.</strong>{' '}
+            Русскоязычным трейдерам по всему миру нужно проверить гражданство, резидентство,
+            документы, ограничения по месту подключения, платёж, платформу и способ выплаты.
+            VPN не меняет договор или документы.
           </div>
-          <h2>Что означает «проп форекс» в этой статье</h2>
+          <h2>Что означает «проп форекс»</h2>
           <p>
-            Здесь «forex prop» означает глобальный retail-продукт с симулированными валютными инструментами,
-            оценкой от 0 до 2 фаз и договорным performance reward. Это не депозит у forex-брокера,
-            не покупка 43 валютных пар и не работа в традиционном банковском dealing desk.
+            Здесь речь о платной программе с симулированными валютными инструментами, а не о внесении
+            депозита на обычный брокерский счёт. <a href={fundedNextEvidence.sourceUrls[3]} target="_blank" rel="nofollow noopener">FundedNext описывает виртуальные средства и симулированную торговлю</a>;
+            Bright Funded также называет свою среду симулированной. Участник оплачивает доступ и
+            соблюдает условия договора, в том числе правила оценки результата.
           </p>
           <p>
-            Разница важна из-за 3 денежных объектов. Fee оплачивает доступ к оценке или instant-продукту;
-            номинал $100 000 задаёт базу части правил; payout относится только к одобренной доле результата.
-            Ни один из этих объектов нельзя автоматически считать личным брокерским балансом.
+            В этой модели нельзя смешивать три суммы. Вступительный взнос — стоимость участия;
+            номинал счёта — база для части торговых правил; вознаграждение — одобренная доля результата.
+            Например, надпись «счёт $100 000» не означает, что вам перечислят $100 000 или разрешат потерять всю эту сумму.
           </p>
           <p>
-            Английские термины forex, simulated account и performance reward сохранены рядом с русским объяснением,
-            потому что именно эти слова встречаются в правилах и checkout глобальных фирм. Перед оплатой сопоставьте
-            перевод с исходной формулировкой продукта, а не полагайтесь только на русскоязычную рекламу.
+            В договоре могут использоваться слова <em>simulated account</em> — симулированный счёт,
+            <em> performance reward</em> — вознаграждение за результат, и <em>drawdown</em> — просадка.
+            Сопоставляйте эти определения с конкретной программой: правила оценки и следующего этапа могут различаться.
           </p>
         </div>
       </section>
 
       <section className="ru-section" id="produkty" data-russian-forex-products={products.length}>
         <div className="ru-shell ru-content">
-          <h2>Семь текущих forex-продуктов: цена, плечо и риск</h2>
+          <h2>Сравнение программ: цена, плечо и допустимый убыток</h2>
           <p>
-            В таблице используется общий tier $100 000, если фирма его продаёт; у Stellar Instant показан максимальный tier $20 000.
-            Денежные daily/max значения вычисляются из номинала и текущего процента продукта, а не из возможной позиции 1:100.
-            Цена сохраняет исходную валюту: USD у FundedNext и EUR у Bright Funded.
+            Для каждой программы берём номинал $100 000, если он есть в записи; иначе — наибольший
+            доступный номинал. Поэтому строки не всегда относятся к одинаковому размеру счёта.
+            Взнос указан в исходной валюте, без пересчёта и без обещания, что он включает все доплаты.
           </p>
-          <div className="ru-table-wrap">
+          {products.length ? <div className="ru-table-wrap">
             <table className="ru-table">
-              <caption className="sr-only">Семь forex-продуктов FundedNext и Bright Funded</caption>
-              <thead><tr><th>Продукт</th><th>Tier / цена</th><th>Цель</th><th>Forex-плечо</th><th>Daily / max</th><th>Тип</th><th>Источник</th></tr></thead>
-              <tbody>
-                {products.map(product => {
-                  const tier = referenceTier(product)
-                  return (
-                    <tr key={`${product.firmSlug}:${product.productSlug}`} data-russian-forex-product={`${product.firmSlug}:${product.productSlug}`}>
-                      <td><strong>{productFirm(product)}</strong><br />{product.productName}</td>
-                      <td>{formatAccountSize(tier.sizeUsd)} / {priceForTier(tier)}</td>
-                      <td>{formatTargets(product)}</td>
-                      <td>{leverageFor(product)}</td>
-                      <td>{formatRiskRoom(product, tier)}</td>
-                      <td>{formatDrawdown(product)}</td>
-                      <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">{product.sourceCapturedAt}</a></td>
-                    </tr>
-                  )
-                })}
-              </tbody>
+              <caption>Цены и лимиты из продуктовых записей; плечо проверяется по отдельным справкам</caption>
+              <thead><tr><th scope="col">Программа</th><th scope="col">Номинал / базовый взнос</th><th scope="col">Цель оценки</th><th scope="col">Форекс-плечо</th><th scope="col">Начальные лимиты убытка</th><th scope="col">Просадка</th><th scope="col">Источник цены и правил</th></tr></thead>
+              <tbody>{products.map(product => {
+                const tier = referenceTier(product)
+                return <tr key={`${product.firmSlug}:${product.productSlug}`} data-russian-forex-product={`${product.firmSlug}:${product.productSlug}`}>
+                  <th scope="row"><strong>{productFirm(product)}</strong><br />{product.productName}</th>
+                  <td>{tier ? <>{formatAccountSize(tier.sizeUsd)} / {priceForTier(tier)}</> : 'Размеры счёта не подтверждены'}</td>
+                  <td>{formatTargets(product)}</td>
+                  <td data-russian-forex-leverage-product={`${product.firmSlug}:${product.productSlug}`}>{leverageFor(product)}</td>
+                  <td>{tier ? formatRiskRoom(product, tier) : 'Лимиты в деньгах не рассчитаны'}</td>
+                  <td>{formatDrawdown(product)}</td>
+                  <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">{product.sourceCapturedAt}</a></td>
+                </tr>
+              })}</tbody>
             </table>
-          </div>
+          </div> : <div className="ru-notice">Ценовые записи вышли за пределы окна проверки. Таблица появится после повторного сбора источников; это не означает, что фирмы прекратили работу.</div>}
           <p className="ru-source-line">
-            Продуктовые записи проверены не более 30 дней назад. Forex-плечо взято из отдельных первичных справок,
-            потому что цена и drawdown не доказывают margin rule. «Не опубликован» означает пробел источника, а не нулевой лимит.
+            Денежные лимиты берём из записи выбранного размера счёта, а при отсутствии таких значений
+            рассчитываем от номинала и процента. Это начальные ограничения, не остаток доступного убытка
+            в работающем терминале. Неизвестный лимит не считается нулевым.
           </p>
+          <div className="ru-actions" data-russian-forex-finder="same-size-evaluations">
+            <Link href={getRussianReviewFinderHref('fundednext')} className="btn-primary">Сравнить двухэтапные программы одного размера <ArrowRight size={15} aria-hidden="true" /></Link>
+          </div>
+          <p className="ru-source-line">В подборе можно изменить номинал и этапы. Наличие строки не подтверждает доступ конкретной валютной пары или платформы для вашей страны.</p>
         </div>
       </section>
 
       <section className="ru-section" data-russian-forex-featured-partners="fundednext-bright-funded">
         <div className="ru-shell ru-content">
-          <h2>FundedNext или Bright Funded для forex: где реальная развилка</h2>
+          <h2>FundedNext и Bright Funded: что сравнивать в первую очередь</h2>
           <p>
-            FundedNext даёт 4 продуктовых маршрута, включая 0-фазный Instant; Bright Funded даёт 3 оценки
-            с единым forex-плечом 1:100. Это коммерческий shortlist из 2 партнёров, а не утверждение,
-            что одна фирма подходит любому скальперу, swing-трейдеру или резидентству.
+            Это разбор двух партнёров сайта, а не полный рейтинг рынка. Удобнее начинать не с логотипа,
+            а с оценочных этапов, формулы просадки и подходящего размера счёта. Различия нужно проверять
+            на уровне программы: одно название фирмы не задаёт единое плечо или единый порядок выплат.
           </p>
           <div className="ru-grid">
             <article className="ru-card" data-russian-forex-featured-partner="fundednext">
-              <div className="ru-card-head"><h3>FundedNext</h3><span className="ru-score">{fundedNextProducts.length} продукта</span></div>
-              <ul className="ru-facts">
-                <li><Database size={14} aria-hidden="true" /> {fundedNextEvidence?.forexSymbols?.length ?? '—'} опубликованных forex-пар</li>
-                <li><Scale size={14} aria-hidden="true" /> 1:100 для 3 оценок; 1:30 для Instant</li>
-                <li><MonitorCog size={14} aria-hidden="true" /> MT4, MT5, cTrader, Match-Trader</li>
-                <li><WalletCards size={14} aria-hidden="true" /> Первый standard reward: 5 или 21 день по продукту</li>
-              </ul>
-              <p className="ru-muted">
-                Подходит для сравнения 0-, 1- и 2-фазного пути. Stellar Instant нельзя оценивать по правилам Stellar 2-Step:
-                у Instant ниже плечо, trailing max loss и отдельный reward gate.
-              </p>
+              <h3>FundedNext</h3>
+              <p>{fundedNextFresh
+                ? 'В проверенном списке — 43 валютные пары. Для Stellar 1-Step и Instant указано плечо 1:30; для Stellar 2-Step и Lite — 1:100.'
+                : 'Список инструментов и плечо требуют повторной проверки. Не переносите условия одной программы Stellar на другую.'}</p>
+              <p className="ru-muted">Сравните оценочную программу с отдельной моделью Instant. Доступ к терминалу и разрешение на автоматизацию проверяются отдельно.</p>
               <div className="ru-actions">
-                <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор</Link>
-                <Link href="/go/fundednext?from=ru-forex-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
-                </Link>
+                <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
+                <Link href="/go/fundednext?from=ru-forex-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></Link>
               </div>
             </article>
             <article className="ru-card" data-russian-forex-featured-partner="bright-funded">
-              <div className="ru-card-head"><h3>Bright Funded</h3><span className="ru-score">{brightProducts.length} продукта</span></div>
-              <ul className="ru-facts">
-                <li><Database size={14} aria-hidden="true" /> Major, minor и exotic pairs; число не опубликовано</li>
-                <li><Scale size={14} aria-hidden="true" /> 1:100 на Challenge и Funded Account</li>
-                <li><MonitorCog size={14} aria-hidden="true" /> DXTrade, cTrader, MT5</li>
-                <li><WalletCards size={14} aria-hidden="true" /> Первый standard reward: 30 дней</li>
-              </ul>
-              <p className="ru-muted">
-                Подходит для сравнения трёх EUR-priced оценок. 1-Step использует 6% trailing max,
-                а 2-Step Bright и Classic — 8% и 10% static; одинаковое плечо не делает риск одинаковым.
-              </p>
+              <h3>Bright Funded</h3>
+              <p>{brightFresh
+                ? 'Справка указывает форекс-плечо 1:100 на оценочном и следующем этапе. Это не означает, что программы имеют одинаковые цели или формулу просадки.'
+                : 'Форекс-справки требуют повторной проверки. Цены, цели и ограничения сравнивайте по отдельным программам, а не по общему максимуму фирмы.'}</p>
+              <p className="ru-muted">Проверяйте конкретную программу и валюту взноса. Перечень платформ не является подтверждением, что любая из них доступна вашему профилю.</p>
               <div className="ru-actions">
-                <Link href="/ru/obzor-bright-funded" className="btn-outline">Полный обзор</Link>
-                <Link href="/go/bright-funded?from=ru-forex-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить Bright Funded <ArrowRight size={14} aria-hidden="true" />
-                </Link>
+                <Link href="/ru/obzor-bright-funded" className="btn-outline">Полный обзор Bright Funded</Link>
+                <Link href="/go/bright-funded?from=ru-forex-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить Bright Funded <ArrowRight size={14} aria-hidden="true" /></Link>
               </div>
             </article>
           </div>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="forex-shortlist">
-            <strong>Партнёрское раскрытие.</strong>{' '}
-            Traders Fund Hub может получить комиссию после перехода на FundedNext или Bright Funded.
-            Коммерческая связь не меняет {products.length} строк, {sourceCount} первичных страниц,
-            формулу risk room или предупреждение о стране.
+            <strong>Партнёрские ссылки.</strong> Traders Fund Hub может получить комиссию после перехода
+            на FundedNext или Bright Funded. Это не меняет расчёты, ограничения по стране или объяснение неизвестных условий.
           </div>
         </div>
       </section>
 
-      <section className="ru-section" data-russian-forex-leverage="margin-not-risk-room">
+      <section className="ru-section" id="plecho" data-russian-forex-leverage="margin-not-risk-room">
         <div className="ru-shell ru-content">
-          <h2>Плечо 1:100 не превращает просадку 6% в просадку 100%</h2>
+          <h2>Плечо и просадка отвечают на разные вопросы</h2>
           <p>
-            Плечо определяет максимальную экспозицию относительно маржи, а drawdown определяет линию нарушения.
-            <a href={brightEvidence?.sourceUrls[1]} target="_blank" rel="nofollow noopener">Bright Funded приводит пример</a>:
-            на $100 000 Challenge Account forex-плечо 1:100 соответствует
-            $10 000 000 теоретической экспозиции. Но daily loss 3% на Bright 1-Step остаётся $3 000,
-            а 6% maximum loss — $6 000 по номиналу продукта.
+            Плечо влияет на маржу, необходимую для открытия позиции. Просадка определяет границу,
+            после которой счёт нарушает правила. Более высокая покупательная способность не
+            увеличивает разрешённый убыток и не делает позицию менее рискованной.
+          </p>
+          <aside className="ru-notice" data-russian-forex-correction="stellar-1-step-leverage">
+            <strong>Исправление от 8 сентября 2026 года.</strong> Ранее мы ошибочно включили Stellar 1-Step
+            в группу с плечом 1:100. В <a href={fundedNextEvidence.sourceUrls[1]} target="_blank" rel="nofollow noopener">таблицах FundedNext</a> для
+            оценочного и следующего этапа указано 1:30. Это исправление нашей записи, а не утверждение,
+            что фирма изменила правило именно в этот день.
+          </aside>
+          <p>
+            Учебный пример: при номинальной позиции $30 000 и плече 1:30 расчётная маржа составляет
+            $1 000, а при 1:100 — $300. Размер позиции при этом одинаковый, поэтому её прибыль или
+            убыток от одного и того же движения цены не уменьшается. Расчёт не учитывает специальные
+            требования к инструменту, валютную конвертацию и дополнительные ограничения фирмы.
           </p>
           <p>
-            Для FundedNext Stellar 2-Step tier $100 000 имеет 5% daily и 10% static maximum loss:
-            это $5 000 и $10 000 границы до учёта точной формулы equity и reset time.
-            Та же фирма даёт Instant только 1:30 и 6% trailing max; меньшая маржинальная мощность
-            не отменяет движения trailing-линии за новым максимумом.
+            Для контроля просадки проверьте три вещи: от чего считается граница, какие значения
+            учитываются при нарушении и когда граница пересчитывается. Фиксированная граница
+            относительно исходного номинала и скользящая граница за максимумом дают разные результаты
+            после прибыльной серии и последующего отката.
           </p>
-          <div className="ru-grid">
-            <article className="ru-card">
-              <Calculator size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>1. Стоп в валюте</h3>
-              <p className="ru-muted">Риск сделки = размер лота × стоимость пункта × стоп. Плечо не заменяет этот расчёт.</p>
-            </article>
-            <article className="ru-card">
-              <CircleAlert size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>2. Совокупный риск</h3>
-              <p className="ru-muted">EURUSD, GBPUSD и XAUUSD могут двигаться коррелированно; 3 позиции не являются 3 независимыми рисками.</p>
-            </article>
-            <article className="ru-card">
-              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>3. Остаток до breach</h3>
-              <p className="ru-muted">Считайте от текущей equity и правила static/trailing, а не от первоначального рекламного номинала.</p>
-            </article>
-          </div>
+          <p>
+            Денежная сумма из таблицы выше — не разрешённый риск каждой новой сделки. Из доступного
+            запаса могут уже быть использованы убытки, комиссии и другие учитываемые расходы;
+            открытый результат также может входить в проверку. Точный порядок нужно читать в правилах
+            дневного и общего лимита выбранного продукта.
+          </p>
         </div>
       </section>
 
       <section className="ru-section" data-russian-forex-instruments="published-vs-terminal">
         <div className="ru-shell ru-content">
-          <h2>Пары и платформы: что подтверждено первичными источниками</h2>
+          <h2>Валютные пары и платформы: общий список не равен доступу счёта</h2>
           <p>
-            FundedNext публикует {fundedNextEvidence?.forexSymbols?.length ?? '—'} уникальных forex-символа,
-            включая major, minor и exotic pairs. В список входят EURUSD, GBPUSD, USDJPY, EURGBP,
-            USDMXN, USDZAR и USDSEK; XAUUSD находится в отдельной категории commodities,
-            поэтому золото нельзя считать 44-й валютной парой.
+            В <a href={fundedNextEvidence.sourceUrls[0]} target="_blank" rel="nofollow noopener">справке FundedNext об инструментах</a>,
+            проверенной {fundedNextEvidence.sourceCapturedAt}, перечислены основные, кросс- и экзотические пары.
+            Примеры — EURUSD, GBPUSD, USDJPY и EURGBP. Золото XAUUSD относится к отдельной категории,
+            а не добавляет ещё одну валютную пару.
           </p>
           <p>
-            <a href={fundedNextEvidence?.sourceUrls[0]} target="_blank" rel="nofollow noopener">Справка FundedNext об инструментах</a>{' '}
-            называет 4 терминала: MT4, MT5, cTrader и Match-Trader, но финальный список нужно открывать
-            через Market Watch конкретного аккаунта. Публичный список от 9 апреля 2026 не гарантирует,
-            что каждый символ включён на любой платформе и сервере 28 августа 2026.
+            Окончательный список смотрите на нужном сервере и счёте. В MT4 или MT5 откройте
+            «Обзор рынка» (Market Watch), вызовите контекстное меню и выберите «Показать все» (Show All).
+            Затем проверьте спецификацию символа: размер контракта, торговые часы и условия расчёта.
+            Наличие названия в общей справке не гарантирует одинаковые настройки всех терминалов.
           </p>
           <p>
-            Bright Funded подтверждает <a href={brightEvidence?.sourceUrls[0]} target="_blank" rel="nofollow noopener">major, minor и exotic forex pairs</a>,
-            но не публикует итоговое число на захваченной странице. Отдельная
-            <a href={brightEvidence?.sourceUrls[2]} target="_blank" rel="nofollow noopener"> справка о 3 платформах</a>{' '}
-            называет DXTrade, cTrader и MT5 и предупреждает, что MT5 недоступен гражданам, резидентам или проживающим в США и ОАЭ.
+            <a href={brightEvidence.sourceUrls[0]} target="_blank" rel="nofollow noopener">Bright Funded перечисляет категории пар и даёт ссылку на список инструментов</a>.
+            В самой справке итоговое число не указано; мы не проверили число строк в связанном списке
+            и не используем его как преимущество одной фирмы над другой.
+          </p>
+          <p>
+            По <a href={brightEvidence.sourceUrls[2]} target="_blank" rel="nofollow noopener">платформенной справке Bright Funded</a>,
+            проверенной {brightEvidence.sourceCapturedAt}, MT5 недоступен гражданам, резидентам и проживающим
+            в США или ОАЭ, а cTrader — соответствующим профилям США. Применяются также ограничения по другим
+            запрещённым странам. Наличие DXTrade, cTrader или MT5 в общем перечне не отменяет эти условия.
           </p>
           <div className="ru-notice">
-            <strong>Проверка перед оплатой занимает 4 действия.</strong>{' '}
-            Откройте live symbol list, сравните contract size, сохраните spread/commission snapshot и подтвердите платформу для страны.
-            Логотип MT5 на общей странице не является гарантией MT5 для вашего профиля.
+            <strong>Перед оплатой уточните платформу для конкретного продукта.</strong> Проверьте её
+            доступность для номинала и страны, отдельный сбор, разрешение на советники и фактический
+            список символов. Поддержка роботов самим терминалом не является разрешением фирмы на их использование.
           </div>
           <div className="ru-actions">
-            <Link href="/ru/prop-firmy-s-ctrader" className="btn-primary">
-              Сравнить FundedNext и Bright Funded на cTrader <ArrowRight size={15} aria-hidden="true" />
-            </Link>
-            <Link href="/ru/fundednext-mt5" className="btn-outline">FundedNext MT5 и правила EA</Link>
+            <Link href="/ru/prop-firmy-s-ctrader" className="btn-primary">Разобрать условия cTrader <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="/ru/fundednext-mt5" className="btn-outline">FundedNext MT5 и правила советников</Link>
           </div>
         </div>
       </section>
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Цена челленджа — не полная стоимость forex-стратегии</h2>
+          <h2>Вступительный взнос — не полная стоимость стратегии</h2>
           <p>
-            Денежный путь содержит как минимум 6 слоёв: fee, повторная попытка, reset, add-on,
-            spread и commission. Для позиции, которую держат ночью, добавляется swap или swap-free условие.
-            В текущей структурированной записи есть fee и refund status, но нет универсального live spread;
-            поэтому таблица не придумывает стоимость пункта.
+            Разделите стоимость участия и издержки торговли. К взносу могут добавляться повторная
+            попытка, перезапуск счёта и платные опции; к результату сделок — спред, комиссия и перенос
+            позиции через ночь. Таблица базовых цен не позволяет заранее посчитать всю эту сумму.
           </p>
           <p>
-            У FundedNext Stellar 2-Step tier $100 000 стоит $549.99 и fee связан с первым одобренным reward;
-            Stellar 1-Step стоит $569.99, но refund для новых аккаунтов связан с третьим reward.
-            Разница $20 не отвечает на вопрос о более дешёвом пути без вероятности повторов и фактического refund milestone.
+            Для сравнения спредов нужен один и тот же символ, время наблюдения и тип счёта. Один снимок
+            EURUSD на спокойном рынке не описывает издержки во время новостей. Сохраните спецификацию
+            инструмента и отдельно уточните комиссию за открытие и закрытие позиции, а не только за одну сторону сделки.
           </p>
           <p>
-            У Bright Funded 2-Step Bright tier $100 000 стоит €477, а 1-Step и 2-Step Classic — по €497.
-            Экономия €20 сопровождается другой целью и другими daily/max rules. Конвертация EUR в RUB или USD
-            должна использовать курс и комиссию в день платежа; фиксированный пересчёт быстро становится ложным.
+            Условия возврата взноса — отдельный пункт договора. Не вычитайте возможный возврат из
+            суммы, которую придётся заплатить сейчас: он может зависеть от одобренного вознаграждения
+            и других требований. Правила возврата и выплат разобраны в обзорах программ.
           </p>
           <p>
-            Промокод уменьшает checkout, но не меняет 1:100 leverage, trailing/static drawdown или payout gate.
-            Текущие проверенные предложения находятся на <Link href="/ru/promokody-prop-firm">русской странице промокодов</Link>;
-            итоговую цену всё равно нужно сверять в checkout.
+            Сохраняйте USD и EUR как разные валюты сравнения. Фиксированный пересчёт в рубли может
+            скрыть курс банка и платёжную комиссию. <Link href="/ru/promokody-prop-firm">Проверенные промокоды</Link> следует
+            сверять с итоговой ценой перед оплатой; скидка на взнос сама по себе не изменяет торговые правила.
           </p>
         </div>
       </section>
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Country, KYC и payout: маршрут русскоязычного трейдера</h2>
+          <h2>Страна, документы и выплаты</h2>
           <p>
-            Русскоязычная аудитория живёт в десятках стран, поэтому статья не использует IP-язык как eligibility signal.
-            Для FundedNext официальный company disclosure и отдельный CFD FAQ конфликтуют по российским резидентам;
-            пока support и checkout не подтверждают профиль, покупка не должна описываться как доступная.
+            Разделяйте три проверки: можно ли купить программу, можно ли пройти идентификацию
+            и можно ли получить выплату на доступный вам счёт. Платёж, успешно принятый картой,
+            не доказывает выполнение остальных условий.
           </p>
           <p>
-            Bright Funded использует SumSub KYC после финальной оценки, затем Risk Team Security Check.
-            FundedNext проводит KYC после успешного challenge и до активации FundedNext Account.
-            Эти 2 последовательности различаются, но обе означают, что успешная forex-сделка до KYC не отменяет проверку документов.
+            Сопоставьте гражданство и резидентство с официальными ограничениями. Затем уточните
+            документы, момент проверки личности и допустимого получателя выплаты. Криптовалютный
+            способ выплаты не отменяет идентификацию или договорные ограничения.
           </p>
           <p>
-            Выплата также не определяется словом forex. Bright Funded публикует USDC ERC-20 и банковский перевод в EUR;
-            FundedNext публикует несколько rails, но их доступность зависит от страны. Криптовалютный payout
-            не отменяет KYC, договор или restriction profile.
+            Если официальные страницы расходятся, сохраните их и запросите письменное разъяснение
+            для своего профиля и программы. Русская версия сайта предназначена для русскоязычных
+            трейдеров в разных странах; она не является обещанием доступности услуг из России.
           </p>
           <div className="ru-actions">
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-primary"><Globe2 size={15} aria-hidden="true" /> Проверить профиль страны</Link>
-            <Link href="/ru/vyplaty-prop-firm" className="btn-outline">Сравнить способы выплаты</Link>
-            <Link href="/ru/prop-firmy-bez-kyc" className="btn-outline">Разобрать KYC</Link>
+            <Link href="/ru/vyplaty-prop-firm" className="btn-outline">Способы выплаты</Link>
+            <Link href="/ru/prop-firmy-bez-kyc" className="btn-outline">Требования к документам</Link>
           </div>
         </div>
       </section>
 
       <section className="ru-section" data-russian-forex-local-boundary="moex-not-cfd-forex">
         <div className="ru-shell ru-content">
-          <h2>Локальные российские компании используют другую продуктовую модель</h2>
+          <h2>Локальная проп-компания — не обязательно форекс-программа</h2>
           <p>
-            Трейдер, который ищет forex CFD, не должен автоматически переходить в любой русскоязычный «проп».
-            PropLive описывает торговлю на Московской бирже через Финам, а TeamTraders — фьючерсы Московской биржи.
-            Эти 2 модели могут быть полезны для локальной инфраструктуры, но они не заменяют EURUSD в глобальном CFD challenge.
+            В <Link href="/ru/rossiyskie-prop-kompanii">разборе российских проп-компаний</Link> отдельно рассматриваются
+            PropLive, TeamTraders и другие операторы. Их модель нужно проверять по рынку, договору,
+            условиям доступа и используемой инфраструктуре, а не по русскоязычному названию.
           </p>
           <p>
-            Отдельная проверка охватывает 6 операторов: Era Trade, PropLive, KasCapital, А-Лаб Групп,
-            TeamTraders и Trade System. Она не выдаёт список за forex-рейтинг и не использует отсутствие affiliate deal
-            как отрицательный продуктовый факт.
+            Биржевой фьючерс и симулированный валютный CFD — разные продукты. Работа с Московской
+            биржей, обучение или стажировка сами по себе не заменяют доступ к нужной паре в программе
+            FundedNext или Bright Funded. Наличие либо отсутствие партнёрской сделки с нашим сайтом
+            также не определяет пригодность локальной модели.
           </p>
-          <div className="ru-actions">
-            <Link href="/ru/rossiyskie-prop-kompanii" className="btn-outline">Проверить 6 локальных моделей</Link>
-            <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Вернуться к глобальному сравнению <ArrowRight size={15} aria-hidden="true" /></Link>
-          </div>
+          <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">FundedNext и Bright Funded: подробное сравнение</Link>
         </div>
       </section>
 
       <section className="ru-section" data-russian-forex-checklist="nine-fields">
         <div className="ru-shell ru-content">
-          <h2>Девять полей forex-продукта до checkout</h2>
+          <h2>Девять пунктов перед покупкой форекс-программы</h2>
           <ol>
-            <li><strong>Профиль:</strong> гражданство, резидентство, KYC и совпадение владельца платежа.</li>
-            <li><strong>Пара:</strong> точный symbol, contract size и доступность на выбранном сервере.</li>
-            <li><strong>Платформа:</strong> MT4, MT5, cTrader, Match-Trader или DXTrade для фактической страны.</li>
-            <li><strong>Плечо:</strong> 1:30 или 1:100 для названного продукта, а не firm-wide максимум.</li>
-            <li><strong>Стоимость:</strong> fee, currency, reset, add-on, spread, commission и swap.</li>
-            <li><strong>Просадка:</strong> daily, maximum, static/trailing, equity и reset time.</li>
-            <li><strong>Ограничения:</strong> news, overnight, weekend, EA, copying и prohibited conduct.</li>
-            <li><strong>Reward:</strong> base split, первая дата, consistency и refund milestone.</li>
-            <li><strong>Payout:</strong> rail, валюта, комиссия, минимум и доступность для профиля.</li>
+            <li><strong>Профиль:</strong> гражданство, резидентство, документы и владелец платежа.</li>
+            <li><strong>Инструмент:</strong> точный символ, размер контракта и доступность на нужном сервере.</li>
+            <li><strong>Терминал:</strong> выбранная платформа для программы, размера счёта и страны.</li>
+            <li><strong>Плечо:</strong> значение для валютной пары и этапа, а не рекламный максимум фирмы.</li>
+            <li><strong>Стоимость:</strong> валюта взноса, доплаты, повторные попытки, спред, комиссия и перенос позиции.</li>
+            <li><strong>Просадка:</strong> дневной и общий лимит, плавающий результат, движение границы и время пересчёта.</li>
+            <li><strong>Ограничения:</strong> новости, ночь, выходные, советники и копирование сделок.</li>
+            <li><strong>Вознаграждение:</strong> базовая доля, первая допустимая заявка, дополнительные требования и возврат взноса.</li>
+            <li><strong>Выплата:</strong> способ, валюта, комиссия, минимум и доступность для получателя.</li>
           </ol>
           <p>
-            Если 1 из 9 полей остаётся неизвестным, сохраните его как пробел, а не выбирайте рекламный максимум.
-            Для product-level решения откройте <Link href="/ru/obzor-fundednext">обзор FundedNext</Link>,
-            <Link href="/ru/obzor-bright-funded"> обзор Bright Funded</Link> и их
-            <Link href="/ru/fundednext-vs-bright-funded"> прямое сравнение 7 продуктов</Link>. Для MT5 download, login и EA-rule используйте
-            <Link href="/ru/fundednext-mt5"> отдельный гайд FundedNext MT5</Link>.
+            Неизвестное условие нужно уточнить, а не заменить наиболее выгодным предположением.
+            Начните с <Link href="/ru/obzor-fundednext">обзора FundedNext</Link> или
+            <Link href="/ru/obzor-bright-funded"> обзора Bright Funded</Link>, затем сопоставьте правила
+            с договором выбранной программы.
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="forex-verdict">
-            <strong>Финальный коммерческий маршрут.</strong>{' '}
-            Если после 9 проверок подходит FundedNext, используйте
-            <Link href="/go/fundednext?from=ru-forex-verdict-fundednext" rel="sponsored nofollow noopener"> текущий партнёрский переход</Link>.
-            Если подходит Bright Funded —
-            <Link href="/go/bright-funded?from=ru-forex-verdict-bright-funded" rel="sponsored nofollow noopener"> переход Bright Funded</Link>.
-            Мы можем получить комиссию; решение и риск остаются у трейдера.
+            <strong>Если программа подходит после проверки условий:</strong>{' '}
+            <Link href="/go/fundednext?from=ru-forex-verdict-fundednext" rel="sponsored nofollow noopener">проверить предложение FundedNext</Link> или
+            <Link href="/go/bright-funded?from=ru-forex-verdict-bright-funded" rel="sponsored nofollow noopener"> предложение Bright Funded</Link>.
+            Мы можем получить комиссию по этим ссылкам. Это не гарантия одобрения счёта или выплаты.
           </div>
+        </div>
+      </section>
+
+      <section className="ru-section" id="sources">
+        <div className="ru-shell ru-content">
+          <h2>Первичные источники и даты проверки</h2>
+          <p>Форекс-справки проверяются отдельно от цен и доступа по стране. Дата обновления статьи не обновляет эти записи автоматически.</p>
+          {forexEvidence.firms.map(firm => <div key={firm.firmSlug}>
+            <h3>{firm.firmName} · {firm.sourceCapturedAt}</h3>
+            <ul>{firm.sourceUrls.map((url, index) => <li key={url}><a href={url} target="_blank" rel="nofollow noopener">{firm.firmName}: {index === 0 ? 'инструменты' : index === 1 ? 'кредитное плечо' : index === 2 && firm.firmSlug === 'fundednext' ? 'плечо Stellar Instant' : index === 2 ? 'платформы и ограничения' : 'описание CFD-программ'}</a></li>)}</ul>
+          </div>)}
         </div>
       </section>
 
@@ -478,10 +458,7 @@ export default function RussianForexPropFirmsPage() {
         <div className="ru-shell ru-content">
           <h2>Частые вопросы</h2>
           <RussianFaq items={faqs} />
-          <p className="ru-source-line">
-            Forex evidence captured {forexEvidence.capturedAt}; product rows use their own sourceCapturedAt.
-            Материал информационный и не является финансовой или юридической рекомендацией.
-          </p>
+          <p className="ru-source-line">Ответы относятся к датированному разбору. Материал информационный и не является финансовой или юридической рекомендацией.</p>
         </div>
       </section>
     </article>

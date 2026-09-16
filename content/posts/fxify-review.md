@@ -3,7 +3,7 @@ title: "FXIFY Review 2026: 8 Products, 54 Prices, and No Single Drawdown Rule"
 seoTitle: "FXIFY Review 2026: Fees, Plans & Drawdown Rules"
 slug: "fxify-review"
 date: "2025-08-26 09:25:39"
-modified: "2026-08-17 12:00:00"
+modified: "2026-09-15 15:30:00"
 author: "Tara Mohseni"
 excerpt: "FXIFY gives rule-sensitive traders 8 CFD products, but trailing, static, unknown, and product-specific restrictions make the exact plan matter."
 seoDescription: "FXIFY review comparing 8 CFD products, 54 current prices, true cost, profit splits, and each plan's trailing, static, or product-specific drawdown."
@@ -19,7 +19,7 @@ type: "post"
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul>
-    <li>The 2026-08-10 capture contains <strong>8 CFD products and 54 product-size prices</strong>, from $19 Instant Funding Lite to $4,249 Instant Funding Standard.</li>
+    <li>The 2026-09-15 checkout capture contains <strong>8 CFD products and 54 product-size prices</strong>, from $19 Instant Funding Lite to $4,249 Instant Funding Standard.</li>
     <li>There is no firm-wide drawdown shortcut: captured products use 5% or 10% static, 4%, 6%, 8%, or 10% trailing, and 1 product whose drawdown type is not stated.</li>
     <li>The 5 phase products publish an 80% base split; Instant Standard, Instant Lite, and Lightning publish only “up to 90%,” so their base split remains unverified.</li>
     <li>News, weekend, and EA permissions differ by product: the 5 phase products allow all 3, both Instant variants reject all 3, and Lightning allows weekends but rejects news and EAs.</li>
@@ -46,7 +46,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>The 2026-08-10 source capture found 54 undiscounted prices across 8 CFD products. A blank split or drawdown type means FXIFY did not publish an exact base value in the captured material; it does not mean the rule is zero.</p>
+<p>The 2026-09-15 source capture found 54 undiscounted checkout prices across 8 CFD products. FXIFY's public program pages still show a generic $250/$5K card, so the official named checkout ladder is used for tier quotes and that presentation mismatch is called out rather than silently blended into the data. A blank split or drawdown type means FXIFY did not publish an exact base value in the captured material; it does not mean the rule is zero.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
   <caption class="hidden-caption">FXIFY challenge products</caption>
@@ -109,7 +109,7 @@ type: "post"
     <tr><td>Instant Funding Standard</td><td>0</td><td>$100K</td><td>$4,249</td><td>—</td><td>8% / 8% trailing</td><td>—</td></tr>
     <tr><td>Instant Funding Lite</td><td>0</td><td>$2.5K</td><td>$19</td><td>—</td><td>3% / 4% trailing</td><td>—</td></tr>
     <tr><td>Instant Funding Lite</td><td>0</td><td>$5K</td><td>$44</td><td>—</td><td>3% / 4% trailing</td><td>—</td></tr>
-    <tr><td>Instant Funding Lite</td><td>0</td><td>$10K</td><td>$89</td><td>—</td><td>3% / 4% trailing</td><td>—</td></tr>
+    <tr><td>Instant Funding Lite</td><td>0</td><td>$10K</td><td>$85</td><td>—</td><td>3% / 4% trailing</td><td>—</td></tr>
     <tr><td>Instant Funding Lite</td><td>0</td><td>$25K</td><td>$169</td><td>—</td><td>3% / 4% trailing</td><td>—</td></tr>
     <tr><td>Instant Funding Lite</td><td>0</td><td>$50K</td><td>$289</td><td>—</td><td>3% / 4% trailing</td><td>—</td></tr>
     <tr><td>Lightning Challenge</td><td>1</td><td>$10K</td><td>$59</td><td>5%</td><td>3% / 4% trailing</td><td>—</td></tr>
@@ -119,7 +119,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Pricing and rules were captured from FXIFY’s public program pages and product-scoped FAQs on 2026-08-10. Confirm the final price, Indian card acceptance, KYC availability, and any coupon on the routed <a href="/go/fxify">FXIFY checkout</a>; a temporary discount changes the fee but not the captured drawdown math.</p>
+<p>Tier prices were checked in FXIFY's read-only official checkout on 2026-09-15, with rules checked against the public program pages and product-scoped FAQs. Confirm the final price, Indian card acceptance, KYC availability, add-ons, and any coupon on the routed <a href="/go/fxify">FXIFY checkout</a>; a temporary discount changes the fee but not the captured drawdown math. The older six-tier Instant Lite launch article and generic program-page card remain historical/presentation context, not current checkout quotes.</p>
 
 <p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> keeps FXIFY Instant Standard and Instant Lite as 2 separate products because their 8% and 4% trailing maximum-loss caps, prices, and first-payout fields do not match.</p>
 
@@ -271,13 +271,13 @@ type: "post"
 <p>Among products with a verified 80% base split, the $39 Three Phase 5K tier has the lowest generated break-even profit at $49. Instant Lite starts lower at $19, but its base split is not published, so an exact break-even figure would be invented.</p>
 
 <h3 class="wp-block-heading"><strong>Can traders in India use FXIFY?</strong></h3>
-<p>India is not among the 35 restricted jurisdictions in the record captured on 2026-08-10. That is an availability observation, not regulatory advice or guaranteed acceptance; verify Indian card payment, KYC documents, platform access, and the offered payout rail, then compare the evidence gap on our <a href="/best-prop-firms-in-india">India prop-firm shortlist</a>.</p>
+<p>India is not among the 35 restricted jurisdictions in the record checked on 2026-09-15. That is an availability observation, not regulatory advice or guaranteed acceptance; verify Indian card payment, KYC documents, platform access, and the offered payout rail, then compare the evidence gap on our <a href="/best-prop-firms-in-india">India prop-firm shortlist</a>.</p>
 
 <h3 class="wp-block-heading"><strong>What's the difference between FXIFY's One-Phase and Lightning?</strong></h3>
 <p>Both use 1 evaluation phase, but One Phase has a 10% target, 3% daily loss, 6% trailing cap, and 5 minimum days with no captured maximum. Lightning has a 5% target, 3% daily loss, 4% trailing cap, 3 minimum days, a 5-day maximum, a 30% consistency rule, and no verified base split.</p>
 
 <h3 class="wp-block-heading"><strong>Does FXIFY allow EAs and news trading?</strong></h3>
-<p>The 5 phase products allow both EAs and news trading in the 2026-08-10 capture. Instant Standard, Instant Lite, and Lightning reject EAs; the 2 Instant products and Lightning also reject news trading.</p>
+<p>The 5 phase products allow both EAs and news trading in the 2026-09-15 capture. Instant Standard, Instant Lite, and Lightning reject EAs; the 2 Instant products and Lightning also reject news trading.</p>
 
 <h3 class="wp-block-heading"><strong>Is the FXIFY challenge fee refundable?</strong></h3>
 <p>The captured source says the One Phase, Two Phase, and Three Phase fees can be reimbursed with the first payout. Both Instant variants are non-refundable, while the Lightning FAQ states a 100% refund alongside its first withdrawal.</p>

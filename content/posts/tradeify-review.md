@@ -3,7 +3,7 @@ title: "Tradeify Review 2026: 16 Priced Tiers and 3 Funding Routes"
 seoTitle: "Tradeify Review 2026: Fees, Routes & Consistency Rules"
 slug: "tradeify-review"
 date: "2026-07-28"
-modified: "2026-08-17 12:00:00"
+modified: "2026-09-14 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Tradeify publishes 16 priced futures product-size combinations with EOD drawdown and 90% simulated payouts, but each route has a different consistency gate."
 seoDescription: "Tradeify review comparing 16 priced futures tiers, 3 funding routes, 90% simulated payouts, end-of-day drawdown, and route-specific consistency rules."
@@ -61,7 +61,7 @@ type: "post"
   </tbody>
 </table>
 </div>
-<p style="font-size: 0.82rem; color: var(--muted);">List prices and current rules were captured from Tradeify's first-party pages on 2026-08-11. Select appears twice because its single evaluation leads to a permanent Flex or Daily funded choice with different payout and risk rules. The homepage promotion is not applied to these base fees; confirm the product and final amount through <a href="/go/tradeify">Tradeify's current checkout path</a>. The Select $50K purchase remained $165, while its separately published reset fee was $109.</p>
+<p style="font-size: 0.82rem; color: var(--muted);">List prices and current rules were recaptured from Tradeify's first-party pages on 2026-09-14. Select appears twice because its single evaluation leads to a permanent Flex or Daily funded choice with different payout and risk rules. The homepage promotion is not applied to these base fees; confirm the product and final amount through <a href="/go/tradeify">Tradeify's current checkout path</a>. The Select $50K purchase remained $165, while its separately published reset fee was $109.</p>
 
 <p><strong>U.S. access.</strong> Tradeify’s Rules – Restricted Countries policy explicitly names the U.S. as an eligible example. Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links that dated first-party source and keeps eligibility separate from any CFTC or NFA registration claim.</p>
 
@@ -143,9 +143,9 @@ type: "post"
 
 <!-- SECTION 6 - Payout speed -->
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
-<p><strong>Growth and Flex each require 5 qualifying days.</strong> On $50K Growth, each day must earn at least $150 and the account must reach a $53,000 minimum balance; payout 1 is capped at $1,500. On $50K Select Flex, 5 days of at least $150 unlock a request for up to 50% of total profit, capped at $3,000.</p>
+<p><strong>Growth and Flex each require 5 qualifying days.</strong> On $50K Growth, each day must earn at least $150 and the account must reach a $53,000 minimum balance; payout 1 is capped at $1,500. On $50K Select Flex, 5 days of at least $150 unlock a request for up to 50% of total profit; the current policy caps accounts purchased after 1 September 2026 at $2,500, while earlier purchases use a $3,000 cap.</p>
 
-<p><strong>Select Daily and Lightning use eligibility gates instead of a calendar.</strong> A $50K Daily account needs profit above its $2,100 buffer and permits a minimum $250 request, subject to the 2-times-current-cycle-profit rule and $1,000 cap. A $50K Lightning account has 0 minimum days but needs $3,000 new profit and 20% consistency for payout 1.</p>
+<p><strong>Select Daily and Lightning use eligibility gates instead of a calendar.</strong> A $50K Daily account needs profit above its $2,100 buffer and permits a minimum $250 request, subject to the 2-times-current-cycle-profit rule; the current policy caps accounts purchased after 1 September 2026 at $1,250, while earlier purchases use a $1,000 cap. A $50K Lightning account has 0 minimum days but needs $3,000 new profit and 20% consistency for payout 1.</p>
 
 <p><strong>Tradeify publishes 24-48 hours for approved processing.</strong> Rise provides bank transfers, crypto tokens and region-dependent local currencies, while Plane is an alternative provider. Rise says bank withdrawal normally takes 1-3 business days and crypto takes hours to 1 day; no fixed India-specific bank, crypto-network, intermediary or INR conversion total is published.</p>
 
@@ -189,7 +189,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>How much does a Tradeify account cost?</strong></h3>
-<p>Growth list fees are $99, $145, $255 and $369; Select fees are $109, $165, $265 and $369; Lightning fees are $345, $492, $660 and $796 for $25K-$150K tiers. These are 2026-08-11 base purchase prices before temporary promotions; the separately published Select $50K reset fee was $109.</p>
+<p>Growth list fees are $99, $145, $255 and $369; Select fees are $109, $165, $265 and $369; Lightning fees are $345, $492, $660 and $796 for $25K-$150K tiers. These are 2026-09-14 base purchase prices before temporary promotions; the separately published Select $50K reset fee was $109.</p>
 
 <h3 class="wp-block-heading"><strong>Does Tradeify charge monthly or activation fees?</strong></h3>
 <p>No. The current Pricing Reference describes all 3 account types as one-time purchases with 0 recurring subscription charges, and Growth or Select activates the simulated funded stage for $0.</p>
@@ -198,7 +198,7 @@ type: "post"
 <p>The trader receives 90% of approved Growth, Select and Lightning simulated funded payouts. Elite Live uses an 80% trader split, so the 90% figure should not be projected onto the live stage.</p>
 
 <h3 class="wp-block-heading"><strong>Can Tradeify pay out daily?</strong></h3>
-<p>Yes, on Select Daily after its buffer and continuity gates. The minimum request is $250, while the cap is $600 / $1,000 / $1,500 / $2,500 for $25K / $50K / $100K / $150K.</p>
+<p>Yes, on Select Daily after its buffer and continuity gates. The minimum request is $250. For accounts purchased after 1 September 2026, the policy cap is $600 / $1,250 / $1,750 / $2,500 for $25K / $50K / $100K / $150K; older accounts use the prior $600 / $1,000 / $1,500 / $2,500 table.</p>
 
 <h3 class="wp-block-heading"><strong>Does Tradeify allow news trading, EAs and copying?</strong></h3>
 <p>News is allowed with no blackout, but the 50%-of-trades and 50%-of-profit microscalping test still applies. EAs are restricted to provably personal non-HFT systems, and copying is restricted to the trader's own accounts in the same direction.</p>

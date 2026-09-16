@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
 import { ArrowRight, Calculator, CheckCircle2, Flag, ShieldAlert, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -9,13 +10,13 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/kak-rabotayut-chellendzhi-prop-firm'
 const TITLE = 'Челлендж проп-фирмы: 5 этапов и правила (2026)'
-const DESCRIPTION = 'Как работает челлендж проп-фирмы: оплата, этапы оценки, просадка, правила funded-этапа, выплаты и проверка страны на текущих примерах.'
+const DESCRIPTION = 'Как работает челлендж проп-фирмы: оплата, этапы оценки, просадка, правила профинансированного этапа, выплаты и проверка страны на текущих примерах.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
@@ -26,7 +27,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Можно ли пройти челлендж за один день?',
-    a: 'Только если конкретный продукт не устанавливает минимальные торговые дни и другие ограничения. Быстрое достижение цели не отменяет проверку стратегии, KYC и правил funded-этапа.',
+    a: 'Только если конкретный продукт не устанавливает минимальные торговые дни и другие ограничения. Быстрое достижение цели не отменяет проверку стратегии, KYC и правил профинансированного этапа.',
   },
   {
     q: 'Что важнее: цена или просадка?',
@@ -34,7 +35,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Гарантирует ли прохождение челленджа выплату?',
-    a: 'Нет. После оценки действуют договор, KYC, правила funded-этапа, минимальная прибыль, правило консистентности, даты и способы выплаты. Нарушение на funded-этапе может лишить права на вознаграждение.',
+    a: 'Нет. После оценки действуют договор, KYC, правила профинансированного этапа, минимальная прибыль, правило консистентности, даты и способы выплаты. Нарушение на профинансированном этапе может лишить права на вознаграждение.',
   },
 ]
 
@@ -73,6 +74,7 @@ export default function RussianChallengeLifecyclePage() {
     inLanguage: 'ru',
     datePublished: '2026-08-24',
     dateModified: '2026-08-24',
+    author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: {
       '@type': 'Organization',
       name: 'Traders Fund Hub',
@@ -90,13 +92,15 @@ export default function RussianChallengeLifecyclePage() {
       <section className="ru-hero">
         <div className="ru-shell">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Как работают челленджи</div>
+          <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <div className="ru-eyebrow"><Flag size={14} aria-hidden="true" /> Пять этапов решения</div>
           <h1>Как работает челлендж проп-фирмы: от оплаты до выплаты</h1>
           <p className="ru-lead">
             Челлендж — не один тест, а цепочка из пяти решений: продукт, оценка,
-            проверка, funded-этап и выплата. Продукт без оценки пропускает средние
+            проверка, профинансированный этап и выплата. Продукт без оценки пропускает средние
             этапы, но не отменяет KYC, договор и правила риска.
           </p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Обновлено 24.08.2026.</p>
           <p className="ru-source-line">
             Если термин ещё не знаком, сначала прочитайте <Link href="/ru/chto-takoe-prop-firma">что такое проп-фирма и чем отличаются 3 модели</Link>.
           </p>
@@ -107,7 +111,7 @@ export default function RussianChallengeLifecyclePage() {
             <div className="ru-stat"><strong>{latestCapture ?? '—'}</strong><span>последний захват</span></div>
           </div>
           <div className="ru-actions">
-            <Link href="/ru/luchshie-prop-firmy" className="btn-primary btn-glow">Сравнить фирмы <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-primary btn-glow">Сравнить фирмы <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/ru/obzor-fundednext" className="btn-outline">Посмотреть на примере FundedNext</Link>
           </div>
         </div>
@@ -132,7 +136,7 @@ export default function RussianChallengeLifecyclePage() {
           <p>
             Сравнивайте не размер виртуального счёта, а сумму, которую реально можно
             потерять: первый платёж, будущий платёж после прохождения, ежемесячное
-            продление и activation fee. Цена $50 и счёт $50 000 не означают риск 0,1%:
+            продление и комиссия активации. Цена $50 и счёт $50 000 не означают риск 0,1%:
             торговый риск задаёт максимальная просадка, а денежный риск — все платежи.
           </p>
           <ul>
@@ -161,19 +165,42 @@ export default function RussianChallengeLifecyclePage() {
       </section>
 
       <section className="ru-section">
+        <div className="ru-shell ru-content" data-russian-challenge-guide-example="loss-budget">
+          <h2>Числовой пример: превратить проценты в лимит сделки</h2>
+          <p>Проценты становятся понятнее, если перевести их в деньги до первой сделки. Ниже приведены два условных сценария для виртуального счёта 50 000; это арифметика формулы, а не условия конкретной фирмы и не рекомендация по размеру позиции.</p>
+          <div className="ru-table-wrap">
+            <table className="ru-table">
+              <thead><tr><th>Условный набор правил</th><th>Цель</th><th>Дневной лимит</th><th>Общий лимит</th><th>Перевод в деньги</th></tr></thead>
+              <tbody>
+                <tr><td>8% / 5% / 10%</td><td>8% = 4 000</td><td>5% = 2 500</td><td>10% = 5 000</td><td>Плавающий убыток и закрытые сделки должны оставаться внутри обоих лимитов.</td></tr>
+                <tr><td>10% / 3% / 6%</td><td>10% = 5 000</td><td>3% = 1 500</td><td>6% = 3 000</td><td>Более высокая цель не компенсирует более узкий дневной и общий запас.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Практический вывод: дневной лимит задаёт бюджет на один торговый день, а максимальная просадка — бюджет на весь этап. Если правило рассчитывается по эквити, открытая позиция может использовать лимит ещё до закрытия сделки; если по балансу, момент фиксации будет другим. Формулу и время сброса нужно сохранить из правил выбранного продукта.</p>
+          <div className="ru-grid">
+            <article className="ru-card"><Calculator size={22} color="var(--accent-light)" aria-hidden="true" /><h3>До сделки</h3><p className="ru-muted">Запишите размер счёта, цель, дневной и общий лимит в валюте счёта. Затем определите максимальный риск стратегии, а не только размер стоп-лосса.</p></article>
+            <article className="ru-card"><ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Во время сделки</h3><p className="ru-muted">Проверьте, учитывает ли фирма плавающий результат, комиссии, своп и открытые ордера. Один и тот же процент даёт разный запас при балансовом и equity-расчёте.</p></article>
+            <article className="ru-card"><CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>После этапа</h3><p className="ru-muted">Сохраните новую версию правил профинансированного этапа: цель может исчезнуть, но KYC, консистентность, запрет новостей или минимальные прибыльные дни могут появиться.</p></article>
+          </div>
+          <p className="ru-source-line">Реальные проценты и цены проверяйте в карточке выбранного продукта и его первичном источнике: для русскоязычного сравнения начните с <Link href="/ru/luchshie-prop-firmy#podbor">подбора программ</Link>, а не с усреднённого примера.</p>
+        </div>
+      </section>
+
+      <section className="ru-section">
         <div className="ru-shell ru-content">
           <h2>Этап 3. Вторая фаза или проверка результатов</h2>
           <p>
             Двух- и трёхэтапные продукты повторяют проверку с новой целью. Одноэтапный
             продукт переходит к внутренней проверке результатов, а продукт без оценки (Phase 0)
-            начинает сразу с правилами funded-этапа. «Instant» описывает отсутствие оценки,
+            начинает сразу с правилами профинансированного этапа. «Instant» описывает отсутствие оценки,
             но не обещает реальный брокерский капитал или мгновенную выплату.
           </p>
           <div className="ru-table-wrap">
             <table className="ru-table">
               <thead><tr><th>Тип</th><th>Продуктов сейчас</th><th>Что пропускает</th><th>Что остаётся</th></tr></thead>
               <tbody>
-                <tr><td>Без оценки / instant</td><td>{phaseCounts.find(item => item.phases === 0)?.count ?? 0}</td><td>оценку и промежуточную проверку</td><td>KYC, правила funded-этапа, условия выплаты</td></tr>
+                <tr><td>Без оценки / instant</td><td>{phaseCounts.find(item => item.phases === 0)?.count ?? 0}</td><td>оценку и промежуточную проверку</td><td>KYC, правила профинансированного этапа, условия выплаты</td></tr>
                 <tr><td>1 этап</td><td>{phaseCounts.find(item => item.phases === 1)?.count ?? 0}</td><td>вторую цель</td><td>одна цель, лимиты, проверка</td></tr>
                 <tr><td>2 этапа</td><td>{phaseCounts.find(item => item.phases === 2)?.count ?? 0}</td><td>ничего</td><td>две цели и все лимиты</td></tr>
                 <tr><td>3 этапа</td><td>{phaseCounts.find(item => item.phases === 3)?.count ?? 0}</td><td>ничего</td><td>три цели и все лимиты</td></tr>
@@ -185,12 +212,12 @@ export default function RussianChallengeLifecyclePage() {
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Этап 4. Правила funded-этапа</h2>
+          <h2>Этап 4. Правила профинансированного этапа</h2>
           <p>
             После оценки правила могут измениться. Часто добавляются буфер до выплаты,
             правило консистентности, лимит контрактов, запрет новостей, ограничение копирования
             или новая формула трейлинг-просадки. Используйте отдельный чек-лист для
-            funded-этапа; успешная оценка не переносит автоматически все прежние условия.
+            профинансированного этапа; успешная оценка не переносит автоматически все прежние условия.
           </p>
           <ol>
             <li>Сохраните договор и правила в день активации.</li>

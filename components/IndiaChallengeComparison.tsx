@@ -21,6 +21,7 @@ import {
 } from 'lucide-react'
 import { trackSiteEvent as track } from '@/lib/clientAnalytics'
 import ProductChangeSignals from '@/components/ProductChangeSignals'
+import { minimumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 import type { DrawdownType, RuleAvailability } from '@/lib/firms'
 import type { IndiaMatcherFirm, IndiaMatcherProduct } from '@/lib/indiaMatcher'
 
@@ -1508,7 +1509,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>
                         <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.72rem', fontWeight: 800 }}>
-                          Min days: {product.minTradingDays ?? 'None published'}
+                          Min days: {minimumTradingDaysLabel(product.minTradingDays)}
                         </span>
                         <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.69rem', marginTop: '0.3rem', textTransform: 'capitalize' }}>
                           {payoutLabel(product)}
@@ -1533,7 +1534,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                           </span>
                         ))}
                         <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.67rem', marginTop: '0.25rem' }}>
-                          Consistency {product.consistencyRulePct == null ? 'none published' : `${product.consistencyRulePct}%`}
+                          Consistency: {consistencyRuleLabel(product)}
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>

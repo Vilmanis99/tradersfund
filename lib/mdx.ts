@@ -17,6 +17,8 @@ export interface PostMeta {
   excerpt: string
   /** Optional search-result description; the visible deck remains `excerpt`. */
   seoDescription?: string
+  /** A documented first-party source hold keeps the article reachable but not indexable. */
+  sourceStatus?: 'source-hold'
   categories: string[]
   tags: string[]
   type: 'post'

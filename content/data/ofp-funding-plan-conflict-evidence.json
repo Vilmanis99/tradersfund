@@ -1,0 +1,55 @@
+{
+  "firmSlug": "ofp-funding",
+  "scope": "Current OFP Funding plan-selector and first-party terms observations rechecked on 2026-09-16. These observations do not refresh the structured product prices, which remain dated 2026-07-27.",
+  "homepageSelector": {
+    "sourceUrl": "https://ofpfunding.com/",
+    "sourceCapturedAt": "2026-09-16",
+    "productSlugs": [
+      "instant-classic-3-daily-6-max-drawdown",
+      "instant-classic-5-daily-10-max-drawdown",
+      "instant-lite",
+      "instant-plus-3-daily-5-max-drawdown",
+      "instant-plus-5-daily-10-max-drawdown",
+      "instant-prime",
+      "instant-pro",
+      "one-phase-challenge",
+      "two-phase-challenge"
+    ],
+    "quote": "Choose Your Perfect Funding Plan; 50K Instant Lite selected at $150 with 80% split, 3% daily loss, 5% overall loss, 5% target and 5 minimum days.",
+    "observation": "The server-rendered page exposes one selected Lite configuration, but its public dynamic controls can be inspected for the other model tabs. A 2026-09-16 first-party recheck recorded the visible base-price ladders for all nine tracked products: Classic 3%/6% $35/$55/$90/$175/$335/$665/$1,000 (5K through 300K), Classic 5%/10% $45/$70/$110/$220/$420/$830/$1,250, Lite $150/$200/$390, Plus 3%/5% $125/$300/$600/$1,200, Plus 5%/10% $155/$375/$750/$1,500, Prime $190/$255/$340/$565/$1,080, Pro $190/$250/$420/$800, One Phase $35/$60/$110/$190/$299/$535, and Two Phase $40/$70/$140/$210/$385. The selected default Classic configuration rendered a 20% Consistency Ratio; the other visible tabs rendered 'No'. Selecting Lite's 100% split did not change its rendered 1:100* leverage/condition block, so the homepage still conflicts with Schedule A's 1:30 Lite leverage. These first-party observations match the older structured prices, but the terms' conflicting model parameters and absent price ladder mean they cannot safely refresh the product dates or replace a checkout-level capture."
+  },
+  "termsSchedule": {
+    "sourceUrl": "https://ofpfunding.com/terms-and-conditions",
+    "sourceCapturedAt": "2026-09-16",
+    "productSlugs": [
+      "instant-classic-3-daily-6-max-drawdown",
+      "instant-classic-5-daily-10-max-drawdown",
+      "instant-lite",
+      "instant-plus-3-daily-5-max-drawdown",
+      "instant-plus-5-daily-10-max-drawdown",
+      "instant-prime",
+      "instant-pro",
+      "one-phase-challenge",
+      "two-phase-challenge"
+    ],
+    "quote": "Schedule A - Available OFP Account Plans; Instant Lite lists 100% Profit Split, 1:30 Leverage and Consistency Rule No; Instant Classic lists 100% Profit Split, 1:100 Leverage and Consistency Rule Yes (25%).",
+    "observation": "The current terms describe model specifications and account-size ranges but do not publish the complete current price ladder. They also conflict with the homepage selector: the terms list 1:30 leverage for Lite while the selected homepage Lite configuration renders 1:100*, and the terms list a 25% Classic consistency rule while the selected homepage Classic configuration renders 20%. The two sources therefore cannot replace the structured capture without a checkout-level check."
+  },
+  "termsPdf": {
+    "sourceUrl": "https://my.ofpfunding.com/files/Terms-and-Conditions-of-Business.pdf",
+    "sourceCapturedAt": "2026-09-16",
+    "productSlugs": [
+      "instant-classic-3-daily-6-max-drawdown",
+      "instant-classic-5-daily-10-max-drawdown",
+      "instant-lite",
+      "instant-plus-3-daily-5-max-drawdown",
+      "instant-plus-5-daily-10-max-drawdown",
+      "instant-prime",
+      "instant-pro",
+      "one-phase-challenge",
+      "two-phase-challenge"
+    ],
+    "quote": "Schedule A — Available OFP Account Plans; Release Date: February 9, 2026; Instant Lite lists 1:30 leverage and no consistency rule; Instant Classic lists 1:100 leverage and a 20% consistency rule.",
+    "observation": "This first-party terms PDF is the published plan specification available on OFP's account domain. It confirms the Lite 1:30 leverage and Classic 20% consistency values, while the public homepage selector renders Lite at 1:100*. The PDF still does not publish the complete price ladder, so it strengthens the rule conflict record but cannot refresh the nine structured product prices or their capture dates."
+  }
+}
