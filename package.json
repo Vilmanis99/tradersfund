@@ -22,6 +22,7 @@
     "capture:freshness": "node scripts/challenge-freshness.mjs",
     "test:finder": "node scripts/test-challenge-finder.mjs",
     "test:navigation": "node scripts/test-navigation.mjs",
+    "test:campaign-attribution": "node scripts/test-campaign-attribution.mjs",
     "test:home-finder": "node scripts/test-home-finder.mjs",
     "test:firm-platforms": "node scripts/test-firm-platforms.mjs",
     "test:article-content": "node scripts/test-article-content.mjs",

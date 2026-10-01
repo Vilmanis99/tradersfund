@@ -56,7 +56,8 @@ export type CampaignAttribution = {
 
 function campaignLabel(value: string | null) {
   if (!value) return undefined
-  const sanitized = value.toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 60)
+  const sanitized = Array.from(value.normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}_-]/gu, ''))
+    .slice(0, 60).join('')
   return sanitized || undefined
 }
 
@@ -71,6 +72,18 @@ export function campaignAttribution(search: string): CampaignAttribution {
   if (medium) attribution.campaign_medium = medium
   if (name) attribution.campaign_name = name
   return attribution
+}
+
+/** Retain only allowlisted UTM labels during client-side navigation in this tab. */
+export function createCampaignAttributionTracker() {
+  let current: CampaignAttribution = {}
+  return (search: string): CampaignAttribution => {
+    const params = new URLSearchParams(search)
+    if (['utm_source', 'utm_medium', 'utm_campaign'].some(key => params.has(key))) {
+      current = campaignAttribution(search)
+    }
+    return { ...current }
+  }
 }
 
 const RUSSIAN_COMPARISON_PATHS = new Set([
