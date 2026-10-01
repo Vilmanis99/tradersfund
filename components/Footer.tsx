@@ -24,10 +24,12 @@ export default function Footer({
 }: FooterProps) {
   const pathname = usePathname()
   const isRussian = pathname === '/ru' || pathname.startsWith('/ru/')
-  const updatedLabel = latestCapture
+  const captureDateLabel = latestCapture
     ? new Date(`${latestCapture}T00:00:00Z`).toLocaleDateString(isRussian ? 'ru-RU' : 'en-US', {
-    month: 'short',
-    year: 'numeric',
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        timeZone: 'UTC',
       })
     : isRussian ? 'нет данных' : 'Not available'
 
@@ -123,8 +125,8 @@ export default function Footer({
           </div>
           <span className="footer-stat-divider" aria-hidden="true">·</span>
           <div className="footer-stat">
-            <span className="footer-stat-label">{isRussian ? 'Обновлено' : 'Updated'}</span>
-            <span className="footer-stat-num footer-stat-num--text">{updatedLabel}</span>
+            <span className="footer-stat-label">{isRussian ? 'Последний срез продукта' : 'Latest product capture'}</span>
+            <span className="footer-stat-num footer-stat-num--text">{captureDateLabel}</span>
           </div>
         </div>
 

@@ -20,6 +20,7 @@ import {
 } from '../lib/outboundDestinations.ts'
 import {
   challengeCurrency,
+  getAllChallenges,
   getChallengesByFirm,
   isChallengeFresh,
   minimumCostToFundedUsd,
@@ -66,6 +67,8 @@ const PROJECT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const firmRecords = JSON.parse(
   readFileSync(join(PROJECT_ROOT, 'content/data/firms.json'), 'utf8'),
 )
+const latestProductCapture = getAllChallenges()
+  .map(challenge => challenge.sourceCapturedAt).sort().at(-1)
 const challengeWatchEntries = getChallengeWatchEntries()
 const firmReviewPostRecords = new Map(firmRecords.map(firm => {
   const reviewPath = new URL(firm.reviewUrl, PRODUCTION_ORIGIN).pathname
@@ -327,6 +330,19 @@ for (const page of pages) {
     const footerHtml = firstMatch(page.html, /<footer\b[^>]*>([\s\S]*?)<\/footer>/i)
     if (!/<a\b[^>]*href="\/ru\/obzor-bright-funded"[^>]*>Обзор BrightFunded<\/a>/.test(footerHtml)) {
       errors.push(`${path}: Russian footer does not link to the BrightFunded review with the official brand spelling`)
+    }
+  }
+  if (path === '/' || path === '/ru' || path.startsWith('/ru/')) {
+    const isRussian = path === '/ru' || path.startsWith('/ru/')
+    const footerText = textContent(firstMatch(page.html, /<footer\b[^>]*>([\s\S]*?)<\/footer>/i))
+    const captureDate = latestProductCapture
+      ? new Date(`${latestProductCapture}T00:00:00Z`).toLocaleDateString(isRussian ? 'ru-RU' : 'en-US', {
+        day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
+      })
+      : isRussian ? 'нет данных' : 'Not available'
+    const captureLabel = isRussian ? 'Последний срез продукта' : 'Latest product capture'
+    if (!footerText.includes(`${captureLabel} ${captureDate}`)) {
+      errors.push(`${path}: footer product-capture label or date does not match source records`)
     }
   }
   const reviewedFirm = firmByReviewPath.get(path)
