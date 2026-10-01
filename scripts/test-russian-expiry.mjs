@@ -224,6 +224,13 @@ try {
   const marketEvidence = require(path.join(root, 'content/data/russian-market-evidence.json'))
   assert.equal(marketEvidence.localFirmSignals.find(item => item.operator === 'TeamTraders')?.sourceCapturedAt, teamTradersEvidence.capturedAt, 'TeamTraders directory signal uses the scoped public-terms recheck date')
   assert.equal(marketEvidence.affiliatePrograms.find(item => item.operator === 'TeamTraders')?.sourceCapturedAt, teamTradersEvidence.affiliateProgram.checkedAt, 'TeamTraders directory affiliate signal uses the scoped public-page check date')
+  const fundedNextAccessEvidence = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
+  assert.equal(marketEvidence.capturedAt, '2026-08-27', 'a scoped FundedNext check does not refresh the wider market snapshot')
+  assert.equal(fundedNextAccessEvidence?.status, 'conflicting', 'FundedNext is not marked accessible to Russian residents')
+  assert.equal(fundedNextAccessEvidence?.sourceCapturedAt, '2026-10-01', 'FundedNext access uses its own first-party recheck date')
+  assert.equal(new Set(fundedNextAccessEvidence.sourceObservations.map(item => item.sourceUrl)).size, 4, 'all four access sources have observations')
+  assert(fundedNextAccessEvidence.sourceObservations.every(item => item.sourceCapturedAt === fundedNextAccessEvidence.sourceCapturedAt), 'FundedNext access observations share the scoped capture date')
+  assert(fundedNextAccessEvidence.notes.some(item => item.includes('card-transfer restrictions')), 'Russian card country boundary is retained in access evidence')
   const fundedNextKycEvidence = marketEvidence.kycEvidence.find(item => item.firmSlug === 'fundednext')
   assert.equal(fundedNextKycEvidence?.sourceCapturedAt, '2026-10-01', 'FundedNext challenge KYC uses its first-party recheck date')
   assert(fundedNextKycEvidence.sourceObservations.every(item => item.sourceCapturedAt === fundedNextKycEvidence.sourceCapturedAt), 'FundedNext KYC observations match their scoped capture date')
@@ -232,6 +239,7 @@ try {
   assert.equal(fundedNextPayoutEvidence?.sourceCapturedAt, '2026-10-01', 'FundedNext payout methods and standard schedule use their first-party recheck date')
   assert.equal(fundedNextPayoutEvidence?.methods.length, 7, 'conditional card payout is a distinct seventh published route')
   assert(fundedNextPayoutEvidence.methods.some(item => item.includes('Card') && item.includes('saved during payment')), 'card payouts retain the payment-stage saved-card condition')
+  assert(fundedNextPayoutEvidence.countryBoundary.some(item => item.includes('Card Transfer') && item.includes('Russian Federation')), 'card payout country list is separate from the bank list')
   assert(fundedNextPayoutEvidence.sourceObservations.every(item => item.sourceCapturedAt === fundedNextPayoutEvidence.sourceCapturedAt), 'FundedNext payout observations match their scoped capture date')
   assert(fundedNextPayoutEvidence.processing.some(item => item.includes('standard') && item.includes('3-day') && item.includes('on-demand')), '21/14-day timing is scoped to the default checkout option')
   assert(fundedNextPayoutEvidence.scopeNote.includes('does not recheck Stellar Instant eligibility') && marketEvidence.capturedAt < fundedNextPayoutEvidence.sourceCapturedAt, 'payout recheck does not redate Instant or the wider market snapshot')
@@ -618,6 +626,7 @@ try {
   const RussianPayoutPage = payoutPages.find(([slug]) => slug === 'vyplaty-prop-firm')?.[1]
   assert(RussianPayoutPage, 'Russian payout guide remains part of the expiry fixture')
   const payoutGuideReference = renderToStaticMarkup(React.createElement(RussianPayoutPage))
+  assert(payoutGuideReference.includes('Russian Federation') || payoutGuideReference.includes('Российской Федерации'), 'payout guide names the distinct Russian card boundary')
   const payoutArticle = cryptoSchemas(payoutGuideReference).find(item => item['@type'] === 'Article')
   const latestPayoutEvidenceDate = marketEvidence.payoutEvidence.map(item => item.sourceCapturedAt).sort().at(-1)
   const latestPayoutProductDate = getAllChallenges().filter(product => ['fundednext', 'bright-funded', 'fundingpips'].includes(product.firmSlug) && isChallengeFresh(product))
@@ -660,6 +669,8 @@ try {
   const renderFundedReview = () => renderToStaticMarkup(React.createElement(FundedReviewModule.default))
   const fundedReviewRow = (html, slug) => html.match(new RegExp(`<tr\\b[^>]*data-russian-fundednext-product="${slug}"[^>]*>[\\s\\S]*?<\\/tr>`))?.[0]
   const fundedReference = renderFundedReview()
+  assert(fundedReference.includes(fundedNextAccessEvidence.sourceCapturedAt), 'FundedNext review shows the scoped access recheck date')
+  assert(fundedReference.includes('выплата на карту'), 'FundedNext review discloses the card payout boundary')
   assert(fundedReference.includes('data-fundednext-russian-products="4"'))
   assert(fundedReviewRow(fundedReference, 'stellar-instant').includes('Нет дневного лимита'), 'a named fresh Instant source supports the explicit absence')
   assert(fundedReviewRow(fundedReference, 'stellar-1-step').includes('5 раб. дн.'), 'one-step timing retains the source business-day unit')
@@ -1082,7 +1093,7 @@ try {
           assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'CollectionPage')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru'], 'homepage schema reflects the dated access-copy correction')
           assert.match(html, /<a\b[^>]*href="\/ru\/obzor-bright-funded"[^>]*>Читать обзор BrightFunded<\/a>/, 'homepage links to the Bright review with the first-party brand spelling')
           for (const [firmSlug, capturedAt] of [
-            ['fundednext', marketEvidence.capturedAt],
+            ['fundednext', fundedNextAccessEvidence.sourceCapturedAt],
             ['bright-funded', brightEvidence.sources.countries.sourceCapturedAt],
           ]) {
             const countryFresh = isChallengeFresh({ sourceCapturedAt: capturedAt })

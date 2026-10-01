@@ -452,16 +452,44 @@
     {
       "firmSlug": "fundednext",
       "status": "conflicting",
+      "sourceCapturedAt": "2026-10-01",
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
         "https://fundednext.com/company",
         "https://helpfutures.fundednext.com/en/articles/14274473-are-any-countries-restricted-on-fundednext-futures",
         "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits"
       ],
+      "sourceObservations": [
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "residents and citizens of Bangladesh, Myanmar, Belarus"
+        },
+        {
+          "sourceUrl": "https://fundednext.com/company",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "North Korea (DPRK), Myanmar, Belarus, Iran, and Russia."
+        },
+        {
+          "sourceUrl": "https://helpfutures.fundednext.com/en/articles/14274473-are-any-countries-restricted-on-fundednext-futures",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "Antigua and Barbuda | Fiji | Russian Federation"
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "Burkina Faso | Iraq | Russia | Vanuatu"
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "Lao People's Democratic Republic | Russian Federation | Zambia"
+        }
+      ],
       "notes": [
         "The CFD restriction article does not list Russia, while the company disclosure says FundedNext Ltd does not serve Russian residents.",
         "FundedNext Futures explicitly restricts Russian Federation account purchases.",
-        "FundedNext lists Russia among countries where bank-transfer performance rewards are unavailable.",
+        "FundedNext lists Russia for bank-transfer restrictions and Russian Federation for card-transfer restrictions on performance rewards.",
         "Until the first-party conflict is resolved at checkout and by support, the site must not describe FundedNext as available to Russian residents."
       ]
     },
@@ -628,6 +656,11 @@
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
           "sourceCapturedAt": "2026-10-01",
+          "quote": "Lao People's Democratic Republic | Russian Federation | Zambia"
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+          "sourceCapturedAt": "2026-10-01",
           "quote": "payouts are issued within 24 hours"
         },
         {
@@ -646,7 +679,7 @@
           "quote": "On-Demand Performance Reward"
         }
       ],
-      "scopeNote": "Rechecked payout routes and the standard evaluation-product schedule only; card payout requires a card saved during payment. This does not recheck Stellar Instant eligibility or resolve conflicting Russian-resident account access statements.",
+      "scopeNote": "Rechecked payout routes and the standard evaluation-product schedule only; card payout requires a card saved during payment and is restricted for Russian Federation. This does not recheck Stellar Instant eligibility or resolve conflicting Russian-resident account access statements.",
       "methods": [
         "USDT ERC20 or TRC20",
         "USDC ERC20",
@@ -671,6 +704,7 @@
       ],
       "countryBoundary": [
         "Bank Transfer is not available as a Performance Reward method for the countries listed by FundedNext, including Russia.",
+        "Card Transfer is separately restricted for Russian Federation; a saved payment card does not override this country restriction.",
         "A listed crypto method does not resolve the separate conflict in FundedNext's official Russian-resident access statements."
       ]
     },

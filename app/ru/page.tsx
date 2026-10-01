@@ -54,9 +54,10 @@ export default function RussianHomePage() {
     const fresh = products.length > 0 && products.every(product => isChallengeFresh(product))
     // Use the oldest capture so the date does not overstate freshness across products.
     const captureDate = fresh ? products.map(product => product.sourceCapturedAt).sort()[0] : null
+    const countryAccess = marketEvidence.firmAccess.find(item => item.firmSlug === route.slug)
     const countryCapturedAt = route.slug === 'bright-funded'
       ? brightEvidence.sources.countries.sourceCapturedAt
-      : marketEvidence.capturedAt
+      : countryAccess?.sourceCapturedAt ?? marketEvidence.capturedAt
     const countryFresh = isChallengeFresh({ sourceCapturedAt: countryCapturedAt })
     return { ...route, firm, fresh, captureDate, countryCapturedAt, countryFresh }
   }).filter(item => item.firm?.affiliateUrl)

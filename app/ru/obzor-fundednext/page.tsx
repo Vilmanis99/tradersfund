@@ -154,12 +154,14 @@ export default function RussianFundedNextReviewPage() {
   const pricedTiers = freshProducts.flatMap(product => product.accountSizes.flatMap(tier =>
     tier.priceUsd != null && Number.isFinite(tier.priceUsd) && tier.priceUsd > 0 ? [{ product, tier, price: tier.priceUsd }] : []))
   const accessEvidence = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
+  const accessCapturedAt = accessEvidence?.sourceCapturedAt ?? marketEvidence.capturedAt
   const sourceUrls = [...new Set(products.map(product => product.sourceUrl))]
   const latestProductCapture = products.map(product => product.sourceCapturedAt).filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date)).sort()[0]
   const ruleSources = Object.values(reviewEvidence.sources)
   const evidenceDates = [
     ...ruleSources.map(source => ({ label: source.labelRu, capturedAt: source.sourceCapturedAt })),
-    { label: 'страна и способы выплаты', capturedAt: marketEvidence.capturedAt },
+    { label: 'ограничения страны', capturedAt: accessCapturedAt },
+    { label: 'способы выплаты', capturedAt: marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundednext')?.sourceCapturedAt ?? marketEvidence.capturedAt },
     { label: 'остальные условия Stellar Instant', capturedAt: instantEvidence.capturedAt },
     { label: 'новости Stellar Instant', capturedAt: instantEvidence.news.sourceCapturedAt },
     { label: 'общие правила советников', capturedAt: mt5Evidence.ea.sourceCapturedAt },
@@ -381,13 +383,13 @@ export default function RussianFundedNextReviewPage() {
         <div className="ru-shell">
           <div id="access" className="ru-notice ru-anchor-target" data-fundednext-russia-access="conflicting">
             <strong><AlertTriangle size={16} aria-hidden="true" /> Для резидентов России данные противоречат друг другу.</strong>{' '}
-            Статья FundedNext по ограничениям CFD от 8 апреля 2026 года не называет
+            Статья FundedNext по ограничениям CFD, проверенная {accessCapturedAt}, не называет
             Россию, но корпоративная страница говорит, что FundedNext Ltd не обслуживает
             резидентов России. Futures-направление прямо запрещает покупку из России,
-            а банковский перевод для выплат в Россию недоступен. Мы не считаем доступ
+            а банковский перевод и выплата на карту для России недоступны. Мы не считаем доступ
             подтверждённым, пока поддержка и страница оплаты не подтвердят конкретный продукт и профиль.
           </div>
-          <p className="ru-source-line">Наблюдение официальных источников по стране: {marketEvidence.capturedAt}. Повторная проверка торгового правила не обновляет эту дату и не подтверждает индивидуальный доступ.</p>
+          <p className="ru-source-line">Наблюдение официальных источников по стране: {accessCapturedAt}. Эта выборочная проверка не обновляет общий снимок рынка от {marketEvidence.capturedAt} и не подтверждает индивидуальный доступ.</p>
           <div className="ru-actions" aria-label="Источники ограничений FundedNext">
             {accessEvidence?.sourceUrls.map((url, index) => (
               <a key={url} href={url} target="_blank" rel="noopener noreferrer" className="btn-outline">
@@ -771,7 +773,7 @@ export default function RussianFundedNextReviewPage() {
           <h2 id="sources">Источники и границы проверки</h2>
           <p>Проверка отдельного торгового правила не обновляет цену, список стран или статус Trustpilot. Ниже указаны независимые даты. Источники по ценам сохранены выше и после истечения срока проверки; доступ конкретного трейдера или фактическая выплата здесь не подтверждаются.</p>
           <ul>{ruleSources.map(source => <li key={source.sourceUrl}><a href={source.sourceUrl} target="_blank" rel="nofollow noopener">{source.labelRu}</a> — {source.sourceCapturedAt || 'дата не подтверждена'}.</li>)}</ul>
-          <p>Программы: {[...new Set(products.map(product => product.sourceCapturedAt || 'дата не подтверждена'))].sort().join(', ') || 'записи отсутствуют'}. Проверка источников по стране: {marketEvidence.capturedAt}.</p>
+          <p>Программы: {[...new Set(products.map(product => product.sourceCapturedAt || 'дата не подтверждена'))].sort().join(', ') || 'записи отсутствуют'}. Проверка источников по стране: {accessCapturedAt}.</p>
           <p>Остальные условия Instant: {instantEvidence.capturedAt}; отдельная проверка новостей: {instantEvidence.news.sourceCapturedAt}. Подробные источники доступны в <Link href="/ru/fundednext-stellar-instant">разборе Instant</Link>. Условия советников и даты их проверки приведены в блоке правил выше.</p>
         </div>
       </section>

@@ -11528,6 +11528,7 @@ function checkRussianAcquisitionPilot() {
         || !fundedNextPayout?.processing?.some(item => item.includes('standard') && item.includes('21 days') && item.includes('14-day'))
         || !fundedNextPayout?.fees?.some(item => item.includes('gateway charges'))
         || !fundedNextPayout?.countryBoundary?.some(item => item.includes('including Russia'))
+        || !fundedNextPayout?.countryBoundary?.some(item => item.includes('Card Transfer') && item.includes('Russian Federation'))
         || !fundedNextPayout?.scopeNote?.includes('does not recheck Stellar Instant eligibility')
       ) {
         rows.push('FundedNext payout methods, OTP, timing, fee or Russia boundary is incomplete')
@@ -11657,6 +11658,9 @@ function checkRussianAcquisitionPilot() {
       if (
         firmAccess.get('fundednext')?.status !== 'conflicting'
         || firmAccess.get('fundednext')?.sourceUrls?.length !== 4
+        || !validScopedCapture(firmAccess.get('fundednext')?.sourceCapturedAt)
+        || !hasScopedObservations(firmAccess.get('fundednext'))
+        || !firmAccess.get('fundednext')?.notes?.some(note => note.includes('card-transfer restrictions'))
         || !firmAccess.get('fundednext')?.notes?.some(note =>
           note.includes('must not describe FundedNext as available to Russian residents'))
       ) {

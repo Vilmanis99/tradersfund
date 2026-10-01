@@ -43,7 +43,7 @@ assert(home.includes('data-russian-affiliate-disclosure="home-primary-partners"'
 const marketEvidence = JSON.parse(readFileSync(new URL('../content/data/russian-market-evidence.json', import.meta.url), 'utf8'))
 const brightEvidence = JSON.parse(readFileSync(new URL('../content/data/russian-bright-funded-evidence.json', import.meta.url), 'utf8'))
 for (const [slug, capturedAt] of [
-  ['fundednext', marketEvidence.capturedAt],
+  ['fundednext', marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')?.sourceCapturedAt ?? marketEvidence.capturedAt],
   ['bright-funded', brightEvidence.sources.countries.sourceCapturedAt],
 ]) {
   const card = home.match(new RegExp(`<article[^>]*data-russian-home-hero-partner="${slug}"[^>]*>[\\s\\S]*?<\\/article>`))?.[0]

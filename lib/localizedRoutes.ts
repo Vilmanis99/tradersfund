@@ -55,7 +55,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/obzor-bright-funded': '2026-10-01',
   '/ru/obzor-eratrade': '2026-09-01',
   '/ru/obzor-ftmo': '2026-09-08',
-  '/ru/obzor-fundednext': '2026-09-08',
+  '/ru/obzor-fundednext': '2026-10-01',
   '/ru/obzor-fundingpips': '2026-09-08',
   '/ru/obzor-kascapital': '2026-09-01',
   '/ru/obzor-proplive': '2026-09-01',
@@ -66,7 +66,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/prop-firmy-bez-kyc': '2026-10-01',
   '/ru/prop-firmy-s-ctrader': '2026-09-08',
   '/ru/rossiyskie-prop-kompanii': '2026-10-01',
-  '/ru/vyplaty-prop-firm': '2026-09-30',
+  '/ru/vyplaty-prop-firm': '2026-10-01',
 } as const satisfies Record<RussianRoutePath, string>
 
 export function isRussianRoutePath(pathname: string): pathname is RussianRoutePath {
