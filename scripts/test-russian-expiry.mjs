@@ -1154,10 +1154,12 @@ try {
           const schema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]))
           assert.equal(schema.find(item => item['@type'] === 'Article')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/fundednext-mt5'])
           const freshProducts = products.filter(product => product.firmSlug === 'fundednext' && isChallengeFresh(product))
-          const needsCheck = !freshProducts.length || [...mt5SourceDates, marketEvidence.capturedAt].some(sourceCapturedAt => !isChallengeFresh({ sourceCapturedAt }))
+          const accessCapturedAt = fundedNextAccessEvidence?.sourceCapturedAt ?? marketEvidence.capturedAt
+          const needsCheck = !freshProducts.length || [...mt5SourceDates, accessCapturedAt].some(sourceCapturedAt => !isChallengeFresh({ sourceCapturedAt }))
           assert.equal(html.includes('data-russian-guide-source-status="recapture-required"'), needsCheck)
           assert.equal(schema.some(item => item['@type'] === 'FAQPage'), !needsCheck)
           for (const capturedAt of mt5SourceDates) assert(visible.includes(capturedAt), 'each independent MT5 source date stays visible')
+          assert(visible.includes(`Доступ по стране: ${accessCapturedAt}`), 'MT5 guide shows the scoped country-access check without redating platform rules')
           assert.equal((html.match(/data-russian-fundednext-mt5-product=/g) ?? []).length, freshProducts.length, 'expired product rows do not survive')
           assert.equal((html.match(/id="(?:answer|login|products|free-trial|ea-rules|continuity|platforms|checkout|country|verdict|sources|faq)"/g) ?? []).length, 12, 'existing MT5 article anchors survive')
         }

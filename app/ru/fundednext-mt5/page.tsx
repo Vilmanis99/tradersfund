@@ -119,6 +119,7 @@ export default function RussianFundedNextMt5Page() {
     .find(deal => deal.mechanism === 'earned-coupon' && deal.pct != null)
     : undefined
   const accessEvidence = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
+  const accessCapturedAt = accessEvidence?.sourceCapturedAt ?? marketEvidence.capturedAt
   const priceCount = products.reduce((total, product) => total + product.accountSizes.filter(tier =>
     tier.priceUsd != null && tier.priceUsd > 0,
   ).length, 0)
@@ -132,7 +133,7 @@ export default function RussianFundedNextMt5Page() {
     ...Object.entries(mt5Evidence).flatMap(([key, value]) => value && typeof value === 'object' && 'sourceCapturedAt' in value
       ? [{ label: key === 'ea' ? 'советники EA' : key === 'instantEaScope' ? 'советники Stellar Instant' : key === 'freeTrial' ? 'бесплатный тест' : key === 'platformAvailability' ? 'платформы' : key === 'strategyContinuity' ? 'сохранение стратегии' : key === 'prohibitedStrategies' ? 'запрещённые стратегии' : key === 'password' ? 'пароль' : key === 'utilities' ? 'загрузка' : 'вход в счёт', capturedAt: value.sourceCapturedAt }] : []),
     { label: 'цены', capturedAt: oldestProductCapture ?? '' },
-    { label: 'доступ по стране', capturedAt: marketEvidence.capturedAt },
+    { label: 'доступ по стране', capturedAt: accessCapturedAt },
   ]
   const hasFreshEvidence = evidenceDates.every(item => isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
   const sourceUrls = [...new Set([
@@ -474,7 +475,7 @@ export default function RussianFundedNextMt5Page() {
             </div>
             <div className="ru-notice">
               <strong>Для резидентов России остаётся конфликт.</strong>{' '}
-              В зафиксированной статье об ограничениях CFD Россия не названа, но корпоративная страница говорит, что компания не обслуживает её резидентов.
+              В отдельной проверке от {accessCapturedAt} статья об ограничениях CFD не называет Россию, но корпоративная страница говорит, что компания не обслуживает её резидентов.
               Установка MT5 не разрешает это противоречие. Перепроверьте оба источника и получите письменный ответ поддержки для своего профиля до оплаты.
             </div>
             <div className="ru-actions">
@@ -527,7 +528,7 @@ export default function RussianFundedNextMt5Page() {
                 <li key={url}><a href={url} target="_blank" rel="nofollow noopener">Источник {index + 1}</a></li>
               ))}
             </ol>
-            <p className="ru-source-line">Установка и исходные правила: {mt5Evidence.capturedAt}. Правило EA: {mt5Evidence.ea.sourceCapturedAt}. Самая ранняя проверка текущих цен: {oldestProductCapture ?? 'нужна повторная проверка'}. Предложение: {currentDeal?.verifiedOn ?? 'не показывается как действующее'}.</p>
+            <p className="ru-source-line">Установка и исходные правила: {mt5Evidence.capturedAt}. Правило EA: {mt5Evidence.ea.sourceCapturedAt}. Доступ по стране: {accessCapturedAt}. Самая ранняя проверка текущих цен: {oldestProductCapture ?? 'нужна повторная проверка'}. Предложение: {currentDeal?.verifiedOn ?? 'не показывается как действующее'}.</p>
           </div>
         </section>
 
