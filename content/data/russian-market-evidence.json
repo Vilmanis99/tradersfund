@@ -344,7 +344,7 @@
     {
       "operator": "TeamTraders",
       "sourceUrl": "https://teamtraders.ru/faq",
-      "sourceCapturedAt": "2026-08-28",
+      "sourceCapturedAt": "2026-10-01",
       "claims": {
         "stageProfitPct": 6,
         "minimumTradingSessions": 10,
@@ -359,9 +359,10 @@
         "market": "фьючерсы Московской биржи через Финам"
       },
       "notes": [
-        "Current homepage and FAQ terms were captured on 2026-08-28; the legacy /docs/ archive still says 15 sessions and a 90% split, while current pages say 10 days and 95% on the real account.",
+        "Current homepage and FAQ terms were rechecked on 2026-10-01; the historical 2026-08-28 /docs/ archive says 15 sessions and a 90% split, while current pages say 10 days and 95% on the real account.",
         "The current FAQ inserts a funded-demo stage with a 70% share and a 10% profit cap before the normal move to a real account.",
-        "Overnight positions are prohibited; selection-stage daily or maximum-risk breaches fail the selection under the current FAQ."
+        "Overnight positions are prohibited; selection-stage daily or maximum-risk breaches fail the selection under the current FAQ.",
+        "The separately linked prop-trading offer is currently unavailable; the live public training offer is not a substitute for programme-specific purchase terms."
       ]
     },
     {
@@ -422,8 +423,9 @@
       "operator": "TeamTraders",
       "status": "not-found",
       "sourceUrl": "https://teamtraders.ru/",
+      "sourceCapturedAt": "2026-10-01",
       "notes": [
-        "The official homepage, FAQ and prop-trading offer reviewed on 2026-08-28 do not publish an ordinary content-affiliate programme.",
+        "The current homepage, FAQ and public training rules checked on 2026-10-01 do not publish an ordinary content-affiliate programme; the older prop-trading offer is unavailable.",
         "Crypto-exchange rebate links in the footer are separate from a TeamTraders publisher-referral programme."
       ]
     },
@@ -484,7 +486,25 @@
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process"
       ],
-      "sourceCapturedAt": "2026-08-27",
+      "sourceCapturedAt": "2026-10-01",
+      "sourceObservations": [
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "Once you have successfully completed the challenge"
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "The verification process typically takes 48 hours."
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "issued within the last three months"
+        }
+      ],
+      "scopeNote": "This recheck covers KYC after an evaluation challenge, not Stellar Instant onboarding or country eligibility.",
       "required": true,
       "trigger": "After successfully completing the challenge and before FundedNext Account activation",
       "provider": "FundedNext Verification Center",
@@ -512,7 +532,29 @@
         "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
         "https://help.brightfunded.com/en/articles/9973224-how-does-the-kyc-process-work"
       ],
-      "sourceCapturedAt": "2026-08-27",
+      "sourceCapturedAt": "2026-09-29",
+      "sourceObservations": [
+        {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "through our partner SumSub"
+        },
+        {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "1–2 business days (Mon–Fri)"
+        },
+        {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "Up to 4 business days"
+        },
+        {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/9973224-how-does-the-kyc-process-work",
+          "sourceCapturedAt": "2026-09-29",
+          "quote": "proof of identity (e.g., a government-issued ID) and a proof of address"
+        }
+      ],
       "required": true,
       "trigger": "After passing the final evaluation stage and before the funded-account contract",
       "provider": "SumSub",
@@ -571,13 +613,47 @@
         "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
         "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward"
       ],
-      "sourceCapturedAt": "2026-08-27",
+      "sourceCapturedAt": "2026-10-01",
+      "sourceObservations": [
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "RiseWorks, Bank Transfer, Card and direct deposit to FNmarkets"
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "Card payout is available for traders who have at least one saved card on their account during the payment process"
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "payouts are issued within 24 hours"
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "every 5 business days"
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "First Performance Reward is available after 21 days. Subsequent rewards are available every 14 days."
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "On-Demand Performance Reward"
+        }
+      ],
+      "scopeNote": "Rechecked payout routes and the standard evaluation-product schedule only; card payout requires a card saved during payment. This does not recheck Stellar Instant eligibility or resolve conflicting Russian-resident account access statements.",
       "methods": [
         "USDT ERC20 or TRC20",
         "USDC ERC20",
         "Confirmo",
         "RiseWorks",
         "Bank Transfer",
+        "Card (card saved during payment required)",
         "Direct deposit to FNmarkets"
       ],
       "requestSteps": [
@@ -588,8 +664,7 @@
       "processing": [
         "FundedNext publishes payout issuance within 24 hours after a valid request.",
         "Stellar 1-Step rewards are scheduled every 5 business days.",
-        "Stellar 2-Step and Stellar Lite start after 21 days and then use 14-day cycles.",
-        "Stellar Instant on-demand eligibility requires its separate growth and EOD gate."
+        "The standard Stellar 2-Step and Stellar Lite option starts after 21 days and then uses 14-day cycles; separately selectable 3-day and on-demand payout options have different conditions."
       ],
       "fees": [
         "The trader is responsible for transfer gateway charges."
@@ -607,7 +682,34 @@
         "https://help.brightfunded.com/en/articles/11468668-how-can-i-request-my-payout",
         "https://help.brightfunded.com/en/articles/9241684-do-i-need-to-pay-charges-with-the-payouts"
       ],
-      "sourceCapturedAt": "2026-08-27",
+      "sourceCapturedAt": "2026-10-01",
+      "sourceObservations": [
+        {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "first Reward Split after 30 days"
+        },
+        {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "request a Reward Split bi-weekly (14 days)"
+        },
+        {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "Bi-weeky add-on (Payouts every 14 days)"
+        },
+        {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/11468668-how-can-i-request-my-payout",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "maximum of 1 day to be processed by our finance team"
+        },
+        {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/9241684-do-i-need-to-pay-charges-with-the-payouts",
+          "sourceCapturedAt": "2026-10-01",
+          "quote": "fees range between $5 and $50"
+        }
+      ],
       "methods": [
         "USDC on the ERC-20 network",
         "Bank Transfer in EUR"
@@ -619,7 +721,7 @@
       ],
       "processing": [
         "The first standard Reward Split is available 30 days after the first funded-account trade.",
-        "After the first Reward Split, the standard cycle is 14 days.",
+        "The reward article says another request is possible 14 days after the first Reward Split, but also lists a 14-day bi-weekly add-on; the base follow-up cycle is unresolved for a specific order.",
         "Bright Funded publishes a maximum of 1 day for finance-team processing after the request."
       ],
       "fees": [

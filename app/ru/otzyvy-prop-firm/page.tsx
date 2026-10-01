@@ -159,6 +159,9 @@ function payoutLabel(product: Challenge) {
   const scoped = fundedNextOneStepPayoutLabel(product)
   if (scoped) return scoped
   const first = product.payoutFirstDays == null ? 'первая дата не подтверждена' : `первая заявка: ${product.payoutFirstDays} дн.`
+  if (product.firmSlug === 'bright-funded') {
+    return `${first}; следующий цикл требует уточнения (14 дней также указаны как платное дополнение)`
+  }
   const frequency = product.payoutFrequency
     ? payoutFrequencyLabels[product.payoutFrequency] ?? product.payoutFrequency
     : 'частота не подтверждена'
@@ -172,7 +175,8 @@ function localClaim(operator: string, key: string) {
 
 export default function RussianPropFirmReviewsPage() {
   const firms = getAllFirms()
-  const freshChallenges = getAllChallenges().filter(product => isChallengeFresh(product))
+  const challenges = getAllChallenges()
+  const freshChallenges = challenges.filter(product => isChallengeFresh(product))
   const featuredCards = featuredRoutes.flatMap(route => {
     const firm = firms.find(candidate => outboundSlug(candidate.name) === route.slug)
     const products = freshChallenges.filter(product => product.firmSlug === route.slug)
@@ -188,6 +192,12 @@ export default function RussianPropFirmReviewsPage() {
     ?? marketEvidence.capturedAt
   const lastModified = russianRouteDateModified(PATH, latestCapture)
   const fundedNextAccess = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
+  const hasFreshResearch = isChallengeFresh({ sourceCapturedAt: marketEvidence.capturedAt })
+    && featuredCards.length === featuredRoutes.length
+    && featuredRoutes.every(route => {
+      const products = challenges.filter(product => product.firmSlug === route.slug)
+      return products.length > 0 && products.every(product => isChallengeFresh(product))
+    })
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -210,7 +220,7 @@ export default function RussianPropFirmReviewsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemListSchema(featuredCards.map(card => card.firm), TITLE)) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
+      {hasFreshResearch && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-reviews-guide="long-form-source-gated">
@@ -258,7 +268,7 @@ export default function RussianPropFirmReviewsPage() {
                 <li><a href="#country-check">Страна и KYC</a></li>
                 <li><a href="#review-checklist">7 полей проверки отзыва</a></li>
                 <li><a href="#featured-partners">FundedNext и Bright Funded</a></li>
-                <li><a href="#product-evidence">7 продуктов и 40 цен</a></li>
+                <li><a href="#product-evidence">{featuredProducts.length} продуктов и {featuredPriceCount} цен</a></li>
                 <li><a href="#payout-review">Как читать отзыв о выплате</a></li>
                 <li><a href="#negative-review">Как читать жалобу на блокировку</a></li>
                 <li><a href="#transferability">Переносимость отзыва</a></li>
@@ -302,7 +312,7 @@ export default function RussianPropFirmReviewsPage() {
           <div className="ru-shell" data-russian-reviews-featured-partners="fundednext-bright-funded">
             <div className="ru-content">
               <h2>Главные партнёрские маршруты после проверки отзывов</h2>
-              <p>FundedNext и Bright Funded стоят рядом как коммерческие варианты, а не как одинаковые продукты. Первый публикует 4 USD-модели, второй — 3 EUR-модели; решение должно начинаться с подходящего правила просадки, этапов и условия выплаты.</p>
+              <p>FundedNext и Bright Funded стоят рядом как коммерческие варианты, а не как одинаковые продукты. Актуальные модели с ценами в USD и EUR показаны ниже только при свежих источниках; решение должно начинаться с подходящего правила просадки, этапов и условия выплаты.</p>
             </div>
             <div className="ru-grid">
               {featuredCards.map(card => (
@@ -329,13 +339,14 @@ export default function RussianPropFirmReviewsPage() {
         <section className="ru-section" id="product-evidence">
           <div className="ru-shell" data-russian-reviews-product-evidence={featuredProducts.length}>
             <div className="ru-content">
-              <h2>Продуктовая проверка: 7 программ вместо одной оценки бренда</h2>
+              <h2>Продуктовая проверка: программы вместо одной оценки бренда</h2>
               <p>Таблица не повторяет отзывы и не присваивает победителя. Она показывает, какие числа должны совпасть с историей трейдера перед тем, как вы примените её к собственному выбору.</p>
             </div>
             <div className="ru-table-wrap">
               <table className="ru-table">
                 <thead><tr><th>Фирма и продукт</th><th>Цена</th><th>Этапы / цели</th><th>Просадка</th><th>Сплит / выплата</th><th>Источник</th></tr></thead>
                 <tbody>
+                  {featuredProducts.length === 0 && <tr><td colSpan={6}>Нет программ с актуальной проверкой за 30 дней.</td></tr>}
                   {featuredCards.flatMap(card => card.products.map(product => (
                     <tr key={`${card.slug}:${product.productSlug}`}>
                       <td><strong>{card.name}</strong><br />{product.productName}</td>
@@ -418,8 +429,8 @@ export default function RussianPropFirmReviewsPage() {
           <div className="ru-shell ru-content" data-russian-reviews-decision="reviews-to-product">
             <h2>Решение после отзывов: от кейса к точному продукту</h2>
             <div className="ru-grid">
-              <article className="ru-card"><h3>Если нужен выбор 0/1/2 этапа</h3><p>Начните с 4 моделей FundedNext, затем исключите продукт по просадке, возврату взноса, первой заявке и стране.</p><Link href="/ru/obzor-fundednext" className="ru-card-link">Обзор FundedNext →</Link></article>
-              <article className="ru-card"><h3>Если важны цены в EUR и выплата USDC</h3><p>Начните с 3 моделей Bright Funded, затем разделите 1-Step и 2-Step по типу просадки и формулировкам выплаты.</p><Link href="/ru/obzor-bright-funded" className="ru-card-link">Обзор Bright Funded →</Link></article>
+              <article className="ru-card"><h3>Если нужен выбор 0/1/2 этапа</h3><p>Начните с обзора моделей FundedNext, затем исключите продукт по просадке, возврату взноса, первой заявке и стране.</p><Link href="/ru/obzor-fundednext" className="ru-card-link">Обзор FundedNext →</Link></article>
+              <article className="ru-card"><h3>Если важны цены в EUR и выплата USDC</h3><p>Начните с обзора моделей Bright Funded, затем разделите 1-Step и 2-Step по типу просадки и формулировкам выплаты.</p><Link href="/ru/obzor-bright-funded" className="ru-card-link">Обзор Bright Funded →</Link></article>
               <article className="ru-card"><h3>Если обе модели не подходят</h3><p>FundingPips остаётся дополнительным глобальным партнёром с {secondaryProducts.length} актуальными продуктами; он не входит в две главные карточки этой страницы.</p><Link href={secondaryRoute.reviewHref} className="ru-card-link">Обзор FundingPips →</Link></article>
             </div>
             {secondaryFirm?.affiliateUrl && secondaryProducts.length > 0 ? (

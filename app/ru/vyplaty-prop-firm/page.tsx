@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
+import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge, type Firm } from '@/lib/firms'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
@@ -28,6 +29,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 const PATH = '/ru/vyplaty-prop-firm'
 const TITLE = 'Выплаты проп-фирм 2026: FundedNext и Bright Funded'
 const DESCRIPTION = 'Как вывести прибыль из FundedNext, Bright Funded и FundingPips: первая заявка, USDT/USDC, банк, сроки обработки, комиссии, KYC и ограничения страны.'
+const fundedNextPayoutEvidence = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundednext')
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -48,15 +50,15 @@ export const metadata: Metadata = {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какие способы выплаты предлагает FundedNext?',
-    a: 'Справка FundedNext от 27 августа 2026 года называет 6 маршрутов: USDT ERC20/TRC20, USDC ERC20, Confirmo, RiseWorks, банковский перевод и прямой депозит в FNmarkets. Конкретный маршрут всё равно зависит от страны и доступности провайдера в кабинете.',
+    a: `Справка FundedNext (проверка: ${fundedNextPayoutEvidence?.sourceCapturedAt ?? 'дата не указана'}) перечисляет USDT ERC20/TRC20, USDC ERC20, Confirmo, RiseWorks, банковский перевод, карту и прямой депозит в FNmarkets. Выплата на карту доступна только при наличии карты, сохранённой при оплате. Конкретный маршрут зависит от страны и доступности провайдера в кабинете.`,
   },
   {
     q: 'Когда можно запросить первую выплату FundedNext?',
-    a: 'Срок зависит от продукта: Stellar 1-Step использует окно в 5 рабочих дней, Stellar 2-Step и Stellar Lite — первую дату через 21 день и затем цикл 14 дней. Stellar Instant использует отдельное условие выплаты по запросу после роста 5% и проверки EOD.',
+    a: 'Срок зависит от продукта и выбранной опции: Stellar 1-Step использует окно в 5 рабочих дней, а стандартный вариант Stellar 2-Step и Stellar Lite — первую дату через 21 день и затем цикл 14 дней. Для 2-Step и Lite также опубликованы отдельные 3-дневный и вариант по запросу с другими условиями. У Stellar Instant отдельные условия, требующие проверки перед покупкой.',
   },
   {
     q: 'Как Bright Funded выплачивает вознаграждение?',
-    a: 'Bright Funded публикует 2 метода: USDC в сети ERC-20 и банковский перевод в EUR. Стандартная первая дата наступает через 30 дней после первой сделки на профинансированном счёте, затем применяется 14-дневный цикл; финансовая команда указывает до 1 дня на обработку заявки.',
+    a: 'Bright Funded публикует 2 метода: USDC в сети ERC-20 и банковский перевод в EUR. Первая заявка доступна через 30 дней после первой сделки на счёте после оценки. Та же справка обещает затем запрос каждые 14 дней, но одновременно называет 14-дневный цикл платным дополнением. Уточните базовый цикл выбранного заказа письменно; после заявки финансовая команда указывает до 1 дня на обработку.',
   },
   {
     q: 'Берёт ли Bright Funded комиссию за выплату?',
@@ -116,10 +118,14 @@ function payoutWindow(product: Challenge) {
   if (scoped) return scoped
   if (product.payoutFirstDays === 0) return 'по запросу после отдельного условия'
   if (product.payoutFirstDays == null) return 'первая дата не опубликована'
+  if (product.firmSlug === 'bright-funded') {
+    return `${product.payoutFirstDays} дн.; цикл после первой заявки требует уточнения (14 дней также указаны как платное дополнение)`
+  }
   const frequency = product.payoutFrequency
     ? frequencyLabels[product.payoutFrequency] ?? product.payoutFrequency
     : 'следующий цикл не опубликован'
-  return `${product.payoutFirstDays} дн.; ${frequency}`
+  const standardOnly = product.firmSlug === 'fundednext' && ['stellar-2-step', 'stellar-lite'].includes(product.productSlug)
+  return `${product.payoutFirstDays} дн.; ${frequency}${standardOnly ? ' (стандартный вариант; другие опции — при оформлении)' : ''}`
 }
 
 function pricedTierCount(products: Challenge[]) {
@@ -130,7 +136,7 @@ function pricedTierCount(products: Challenge[]) {
 }
 
 function methodSummary(slug: string) {
-  if (slug === 'fundednext') return 'USDT ERC20/TRC20 · USDC ERC20 · Confirmo · RiseWorks · банк · FNmarkets'
+  if (slug === 'fundednext') return 'USDT ERC20/TRC20 · USDC ERC20 · Confirmo · RiseWorks · банк · карта (сохранена при оплате) · FNmarkets'
   if (slug === 'bright-funded') return 'USDC ERC-20 · банковский перевод EUR'
   return 'карта · криптовалюта · Rise · банковский перевод'
 }
@@ -167,10 +173,16 @@ export default function RussianPayoutsPage() {
   const productCount = cards.reduce((sum, card) => sum + card.products.length, 0)
   const priceCount = cards.reduce((sum, card) => sum + pricedTierCount(card.products), 0)
   const sourceCount = new Set(cards.flatMap(card => card.evidence?.sourceUrls ?? [])).size
-  const latestCapture = [
-    ...cards.flatMap(card => card.products.map(product => product.sourceCapturedAt)),
-    ...cards.flatMap(card => card.evidence ? [card.evidence.sourceCapturedAt] : []),
-  ].sort().at(-1) ?? marketEvidence.capturedAt
+  const latestCapture = cards.flatMap(card => card.products.map(product => product.sourceCapturedAt)).sort().at(-1) ?? marketEvidence.capturedAt
+  const latestPayoutCapture = cards.flatMap(card => card.evidence ? [card.evidence.sourceCapturedAt] : []).sort().at(-1) ?? marketEvidence.capturedAt
+  const oldestPayoutCapture = cards.flatMap(card => card.evidence ? [card.evidence.sourceCapturedAt] : []).sort()[0] ?? marketEvidence.capturedAt
+  const hasFreshProducts = partnerRoutes.every(route => {
+    const products = challenges.filter(product => product.firmSlug === route.slug)
+    return products.length > 0 && products.every(product => isChallengeFresh(product))
+  })
+  const hasFreshResearch = cards.length === partnerRoutes.length && hasFreshProducts
+    && isChallengeFresh({ sourceCapturedAt: marketEvidence.capturedAt })
+    && cards.every(card => card.evidence && isChallengeFresh({ sourceCapturedAt: card.evidence.sourceCapturedAt }))
 
   const crumbs = breadcrumbSchema([
     { name: 'Traders Fund Hub', url: '/' },
@@ -200,7 +212,7 @@ export default function RussianPayoutsPage() {
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
-    dateModified: russianRouteDateModified(PATH, latestCapture),
+    dateModified: russianRouteDateModified(PATH, [latestCapture, latestPayoutCapture].sort().at(-1)),
     author: {
       '@type': 'Person',
       name: 'Edris Derakhshi',
@@ -214,7 +226,7 @@ export default function RussianPayoutsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
+      {hasFreshResearch && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
         <div
@@ -225,6 +237,10 @@ export default function RussianPayoutsPage() {
         >
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Выплаты проп-фирм</div>
           <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
+          <RussianEvidenceFreshnessNotice evidence={[
+            { label: 'исследование способов выплаты и KYC', capturedAt: marketEvidence.capturedAt },
+            ...cards.map(card => ({ label: `выплаты ${card.name}`, capturedAt: card.evidence?.sourceCapturedAt ?? '' })),
+          ]} />
           <div className="ru-eyebrow"><WalletCards size={14} aria-hidden="true" /> 4 этапа от прибыли до зачисления</div>
           <h1>Выплаты проп-фирм: FundedNext, Bright Funded и вывод прибыли</h1>
           <p className="ru-lead">
@@ -247,7 +263,7 @@ export default function RussianPayoutsPage() {
             </Link>
             <Link href="#sravnenie" className="btn-outline">Сначала сравнить выплаты</Link>
           </div>
-          <p className="ru-source-line">Снимок источников и продуктовых данных: {latestCapture}. Условия проверяются повторно перед оплатой и запросом выплаты.</p>
+          <p className="ru-source-line">Самая ранняя проверка процесса выплат: {oldestPayoutCapture}; последняя проверка продуктовых данных: {latestCapture}. Условия проверяются повторно перед оплатой и запросом выплаты.</p>
         </div>
       </section>
 
@@ -269,10 +285,11 @@ export default function RussianPayoutsPage() {
 
             <h2>Короткий ответ: какой способ выплаты выбрать</h2>
             <p>
-              Для выбора недостаточно сравнить «80% против 85%». Сначала проверьте, когда продукт допускает первую заявку,
+              Для выбора недостаточно сравнить один процент доли. Сначала проверьте, когда продукт допускает первую заявку,
               затем — точный токен, сеть или валюту банка, после этого — внутренний срок обработки и внешние комиссии.
-              В текущем снимке FundedNext предлагает самый широкий список из 6 методов, Bright Funded — самый простой
-              список из 2 методов, а FundingPips — 4 метода с более длинной опубликованной обработкой.
+              В зафиксированных справках FundedNext перечисляет {evidenceBySlug.get('fundednext')?.methods.length ?? 'несколько'} маршрутов,
+              Bright Funded — {evidenceBySlug.get('bright-funded')?.methods.length ?? 'несколько'}, а FundingPips — {evidenceBySlug.get('fundingpips')?.methods.length ?? 'несколько'}.
+              Сверьте даты источников и условия выбранного профиля: наличие маршрута в списке не гарантирует его доступность.
             </p>
             <div className="ru-table-wrap" data-russian-payout-matrix={cards.length}>
               <table className="ru-table">
@@ -313,7 +330,7 @@ export default function RussianPayoutsPage() {
                     <div className="ru-card-head"><h3>{card.name}</h3><span className="ru-score">Главный партнёр</span></div>
                     <p className="ru-muted">
                       {isFundedNext
-                        ? 'Выбор для трейдера, которому важны USDT ERC20/TRC20, USDC ERC20, RiseWorks или другой из 6 опубликованных маршрутов. Четыре продукта имеют разные условия первой выплаты.'
+                        ? 'Выбор для трейдера, которому важны USDT ERC20/TRC20, USDC ERC20, RiseWorks или выплата на карту, сохранённую при оплате. У программ разные условия первой выплаты; карта и другие маршруты зависят от профиля.'
                         : 'Выбор для трейдера, которому достаточно USDC ERC-20 или банковского перевода в EUR. Три продукта с оценочным этапом используют стандартную первую дату 30 дней.'}
                     </p>
                     <ul className="ru-facts">
@@ -359,7 +376,7 @@ export default function RussianPayoutsPage() {
 
         <section className="ru-section" data-russian-payout-product-table={productCount}>
           <div className="ru-shell ru-content">
-            <h2>Первая выплата по 12 текущим продуктам</h2>
+            <h2>Первая выплата по {productCount} текущим продуктам</h2>
             <p>
               Срок относится к конкретному продукту, а не к логотипу фирмы. Поэтому Stellar Instant нельзя усреднять со
               Stellar 2-Step, а FundingPips Zero — с 2 Step Pro. Значение «не опубликовано» сохранено как неизвестное,

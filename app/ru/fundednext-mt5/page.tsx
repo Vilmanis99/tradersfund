@@ -376,7 +376,9 @@ export default function RussianFundedNextMt5Page() {
             </p>
             <div className="ru-actions">
               {currentDeal ? <Link href="/go/fundednext?from=ru-fundednext-mt5-free-trial" rel="sponsored nofollow noopener" className="btn-primary">Начать Free Trial <ArrowRight size={15} aria-hidden="true" /></Link> : null}
-              <Link href="/ru/promokody-prop-firm#fundednext-promokod" className="btn-outline">Как получить персональный купон</Link>
+              <Link href={currentDeal ? '/ru/promokody-prop-firm#fundednext-promokod' : '/ru/promokody-prop-firm'} className="btn-outline">
+                {currentDeal ? 'Как получить персональный купон' : 'Проверить текущие предложения'}
+              </Link>
             </div>
           </div>
         </section>

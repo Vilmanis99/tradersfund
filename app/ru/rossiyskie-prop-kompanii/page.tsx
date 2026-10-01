@@ -4,6 +4,7 @@ import { ArrowRight, BadgeCheck, Building2, CircleAlert, ExternalLink, Globe2 } 
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import { getAllFirms } from '@/lib/firms'
+import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
 type LocalSignal = {
   operator: string
   sourceUrl: string
+  sourceCapturedAt?: string
   claims: Record<string, number | string | undefined>
   notes: string[]
 }
@@ -112,7 +114,7 @@ export default function RussianPropCompaniesPage() {
     headline: TITLE,
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
-    dateModified: marketEvidence.capturedAt,
+    dateModified: russianRouteDateModified(PATH, teamTraders?.sourceCapturedAt ?? marketEvidence.capturedAt),
     inLanguage: 'ru',
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
   }
@@ -209,6 +211,10 @@ export default function RussianPropCompaniesPage() {
                 максимальный риск {teamTraders?.claims.maximumLossPct}% и две доли: {teamTraders?.claims.fundedDemoProfitSharePct}%
                 на демо-счёте с финансированием и {teamTraders?.claims.profitSharePct}% на реальном рынке. Архив всё ещё показывает старые 15 дней и 90%.
               </p>
+              <p className="ru-source-line" data-russian-teamtraders-local-source={teamTraders?.sourceCapturedAt}>
+                Главная и FAQ проверены: {teamTraders?.sourceCapturedAt}. Архивные условия: 2026-08-28. Отдельная проп-оферта сейчас недоступна;
+                опубликованный договор обучения не заменяет условия этой программы.
+              </p>
               <SourceLink href={teamTraders?.sourceUrl ?? 'https://teamtraders.ru/faq'}>Текущий FAQ TeamTraders</SourceLink>
               <Link href="/ru/obzor-teamtraders" className="ru-card-link">Открыть отдельный обзор TeamTraders →</Link>
             </article>
@@ -256,7 +262,7 @@ export default function RussianPropCompaniesPage() {
             ))}
           </div>
           <div className="ru-actions">
-            <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Сравнить 7 глобальных продуктов <ArrowRight size={14} aria-hidden="true" /></Link>
+            <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Сравнить FundedNext и Bright Funded <ArrowRight size={14} aria-hidden="true" /></Link>
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-outline">Проверить страну и профиль</Link>
           </div>
         </div>

@@ -59,15 +59,26 @@ function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
+function isIsoCalendarDate(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false
+  const parsed = new Date(`${value}T00:00:00Z`)
+  return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value
+}
+
 /**
  * True only for a valid, non-future check performed within the last 30 days.
  */
 export function isDealFresh(deal: Pick<Deal, 'verifiedOn'>, now = new Date()): boolean {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(deal.verifiedOn)) return false
+  if (!isIsoCalendarDate(deal.verifiedOn)) return false
   const verified = new Date(`${deal.verifiedOn}T00:00:00Z`)
-  if (Number.isNaN(verified.getTime())) return false
   const ageDays = Math.floor((now.getTime() - verified.getTime()) / 86_400_000)
   return ageDays >= 0 && ageDays <= 30
+}
+
+export function isDealCurrent(deal: Pick<Deal, 'verifiedOn' | 'expiresOn'>, now = new Date()): boolean {
+  const today = now.toISOString().slice(0, 10)
+  return isDealFresh(deal, now)
+    && (!deal.expiresOn || (isIsoCalendarDate(deal.expiresOn) && deal.expiresOn >= today))
 }
 
 /** Return only non-expired offers whose verification is still fresh. */
@@ -75,11 +86,7 @@ export function getAllDeals(now = new Date()): Deal[] {
   if (!fs.existsSync(DEALS_PATH)) return []
   const raw = fs.readFileSync(DEALS_PATH, 'utf-8')
   const deals = JSON.parse(raw) as Deal[]
-  const today = now.toISOString().slice(0, 10)
-  return deals.filter(deal =>
-    isDealFresh(deal, now) &&
-    (!deal.expiresOn || deal.expiresOn >= today),
-  )
+  return deals.filter(deal => isDealCurrent(deal, now))
 }
 
 /** Non-expired deals for a single firm (slugified name). */

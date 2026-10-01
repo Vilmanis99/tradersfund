@@ -1,7 +1,16 @@
 {
-  "capturedAt": "2026-08-28",
+  "capturedAt": "2026-10-01",
+  "captureScope": "Current public programme terms on the homepage and FAQ, plus availability of the linked legal pages. The unavailable prop offer and legacy documentation remain historical 2026-08-28 observations, not current purchase terms.",
   "operator": "TeamTraders",
+  "availabilityCheck": {
+    "checkedAt": "2026-10-01",
+    "offerUrlStatus": "404",
+    "legacyDocsUrlStatus": "404",
+    "currentLegalUrl": "https://teamtraders.ru/rules",
+    "currentLegalScope": "The linked public offer describes paid online trading training, not explicitly the prop internship, funded-demo or real-account programme. It cannot be substituted for the unavailable prop offer."
+  },
   "searchIntent": {
+    "capturedAt": "2026-08-28",
     "queries": [
       "TeamTraders отзывы",
       "TeamTraders обзор",
@@ -13,7 +22,12 @@
     {
       "id": "home",
       "url": "https://teamtraders.ru/",
-      "capturedAt": "2026-08-28",
+      "capturedAt": "2026-10-01",
+      "recheckQuotes": [
+        "2 590 ₽/месяц",
+        "Торговых сессий мин.10",
+        "95% с прибыли"
+      ],
       "supports": [
         "three current RUB account sizes and monthly prices",
         "6% target per evaluation step",
@@ -27,7 +41,12 @@
     {
       "id": "faq",
       "url": "https://teamtraders.ru/faq",
-      "capturedAt": "2026-08-28",
+      "capturedAt": "2026-10-01",
+      "recheckQuotes": [
+        "10 торговых дней суммарно",
+        "Скидка на продление стажировки составляет 20%",
+        "составляет 70% от полученной прибыли"
+      ],
       "supports": [
         "two evaluation steps and funded-demo intermediate stage",
         "20% renewal discount conditions",
@@ -140,12 +159,13 @@
   },
   "affiliateProgram": {
     "status": "not-found",
+    "checkedAt": "2026-10-01",
     "checkedUrls": [
       "https://teamtraders.ru/",
       "https://teamtraders.ru/faq",
-      "https://teamtraders.ru/oferta_prop/"
+      "https://teamtraders.ru/rules"
     ],
-    "note": "No ordinary public content-publisher affiliate programme was found. Crypto-exchange rebate links in the footer are a different commercial relationship and are not a TeamTraders referral programme."
+    "note": "No ordinary public content-publisher affiliate programme was found on the current public pages checked. The unavailable prop offer is not a current source. Crypto-exchange rebate links in the footer are a different commercial relationship and are not a TeamTraders referral programme."
   },
   "sourceConflicts": [
     {
@@ -158,7 +178,7 @@
       "field": "real-account profit share",
       "currentValue": 95,
       "legacyValue": 90,
-      "resolution": "use the current homepage and FAQ; the offer says the actual calculation is stored in the web cabinet"
+      "resolution": "use the current homepage and FAQ; the archived 2026-08-28 prop offer stated that the actual calculation was stored in the web cabinet"
     },
     {
       "field": "available MOEX futures",

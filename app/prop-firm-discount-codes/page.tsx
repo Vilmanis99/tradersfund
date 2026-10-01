@@ -38,14 +38,10 @@ function marketsOf(assets: string[]): string[] {
   return m
 }
 
-const FAQS = [
+const GENERAL_FAQS = [
   {
     q: 'Are these discount codes verified?',
     a: 'Every active card has a first-party source and the date we checked it. A typeable code, automatic discount, and earned coupon are labeled separately; offers disappear after 30 days without a recheck.',
-  },
-  {
-    q: 'Is there a public FundedNext discount code today?',
-    a: 'The current verified FundedNext offer is not a public code. An eligible new user must reach the 5% Free Trial target; FundedNext then generates a personal 5% CFD-plan coupon that lasts 14 days and excludes resets.',
   },
   {
     q: 'Does an affiliate link guarantee a lower price?',
@@ -87,7 +83,19 @@ export default function Page() {
   })
   const liveCount = rows.length
   const codeCount = rows.filter(row => row.mechanism === 'checkout-code').length
-  const hasFundedNextOffer = rows.some(row => row.firmSlug === 'fundednext')
+  const fundedNextPublicCode = deals.find(deal => deal.firmSlug === 'fundednext' && deal.mechanism === 'checkout-code' && deal.code)
+  const fundedNextEarnedCoupon = deals.find(deal => deal.firmSlug === 'fundednext' && deal.mechanism === 'earned-coupon' && deal.pct === 5)
+  const fundedNextOtherOffer = deals.find(deal => deal.firmSlug === 'fundednext')
+  const faqs = [GENERAL_FAQS[0], {
+    q: 'Is there a public FundedNext discount code today?',
+    a: fundedNextPublicCode
+      ? `We verified ${fundedNextPublicCode.code} on ${fundedNextPublicCode.verifiedOn} for ${fundedNextPublicCode.scope ?? 'the stated offer scope'}. Confirm the final total and eligibility at checkout.`
+      : fundedNextEarnedCoupon
+        ? 'The current verified FundedNext offer is not a public code. An eligible new user must reach the 5% Free Trial target; FundedNext then generates a personal 5% CFD-plan coupon that lasts 14 days and excludes resets.'
+        : fundedNextOtherOffer
+          ? 'We have not verified a public FundedNext code. Check the dated offer card and the final checkout total before paying.'
+          : 'We have no FundedNext discount verified within the last 30 days. Do not rely on an older code or coupon claim; check the firm’s current terms and checkout total.',
+  }, ...GENERAL_FAQS.slice(1)]
   const fundedNextProducts = getChallengesByFirm('fundednext').filter(challenge =>
     isChallengeFresh(challenge),
   )
@@ -118,7 +126,7 @@ export default function Page() {
       },
     })),
   }
-  const faqSchema = faqPageSchema(FAQS)
+  const faqSchema = faqPageSchema(faqs)
 
   return (
     <main style={{ maxWidth: 1080, margin: '0 auto', padding: 'clamp(1.5rem, 4vw, 3rem) 1.25rem 4rem' }}>
@@ -163,7 +171,7 @@ export default function Page() {
         <DealsFilter rows={rows} />
       </section>
 
-      {hasFundedNextOffer && (
+      {fundedNextEarnedCoupon && (
         <section
           aria-labelledby="fundednext-offer-steps"
           data-fundednext-offer-steps="earned-coupon"
@@ -207,7 +215,7 @@ export default function Page() {
           Common questions
         </h2>
         <div style={{ display: 'grid', gap: '0.85rem' }}>
-          {FAQS.map(f => (
+          {faqs.map(f => (
             <details
               key={f.q}
               style={{

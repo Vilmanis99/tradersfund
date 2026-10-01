@@ -306,7 +306,7 @@ export function isChallengeFresh(
 ): boolean {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(challenge.sourceCapturedAt)) return false
   const captured = new Date(`${challenge.sourceCapturedAt}T00:00:00Z`)
-  if (Number.isNaN(captured.getTime())) return false
+  if (!Number.isFinite(captured.getTime()) || captured.toISOString().slice(0, 10) !== challenge.sourceCapturedAt) return false
   const ageDays = Math.floor((now.getTime() - captured.getTime()) / 86_400_000)
   return ageDays >= 0 && ageDays <= maxAgeDays
 }

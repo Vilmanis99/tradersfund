@@ -57,15 +57,16 @@
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://fundednext.com/cfds",
-    "sourceCapturedAt": "2026-08-27",
+    "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+    "sourceCapturedAt": "2026-09-29",
     "notes": [
       "Standard global USD list prices; promotions, platform fees and optional add-ons are excluded.",
-      "The base Reward Share is 80%; up to 95% requires an add-on or later progression.",
+      "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
       "The standard first reward window is 21 days, followed by 14-day cycles; compliance review still applies.",
-      "The registration fee is refundable with the first approved Performance Reward; platform fees are not.",
+      "The registration fee is refundable with the first approved Performance Reward, on request: https://help.fundednext.com/en/articles/8020087-will-i-get-back-my-registration-fee (rule rechecked 2026-10-01; product capture remains 2026-09-29).",
+      "Current pages allow news trading but limit the funded-stage profit treatment; the comparison keeps this as a restricted rule.",
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-08-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-09-29.json"
     ]
   },
   {
@@ -126,14 +127,13 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
-    "sourceCapturedAt": "2026-08-27",
+    "sourceCapturedAt": "2026-09-29",
     "notes": [
-      "Standard global USD list prices from the current product page; promotions and optional add-ons are excluded.",
-      "The base Reward Share is 80%; the current product page advertises up to 95% with the applicable conditions.",
+      "Standard global USD list prices; promotions and optional add-ons are excluded.",
+      "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
       "The first standard reward cycle is 5 business days; the fee refund is tied to the third reward for new accounts.",
-      "The fee refund is tied to the third approved reward for new accounts.",
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-08-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-09-29.json"
     ]
   },
   {
@@ -195,14 +195,13 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
-    "sourceCapturedAt": "2026-08-27",
+    "sourceCapturedAt": "2026-09-29",
     "notes": [
-      "Standard global USD list prices from the current product page; promotions and optional add-ons are excluded.",
-      "The base funded Reward Share is 80%; the product page advertises up to 95% with the applicable conditions.",
-      "The first standard reward window is 21 days, followed by 14-day cycles; the fee refund is tied to the third reward for new accounts.",
-      "The fee refund is tied to the third approved reward for new accounts.",
+      "Standard global USD list prices; promotions and optional add-ons are excluded.",
+      "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
+      "The standard first reward window is 21 days, followed by 14-day cycles; the fee refund is tied to the third reward for new accounts.",
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-08-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-09-29.json"
     ]
   },
   {
@@ -250,16 +249,16 @@
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://help.fundednext.com/en/articles/11641161-how-much-does-each-stellar-instant-account-cost",
-    "sourceCapturedAt": "2026-08-27",
+    "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+    "sourceCapturedAt": "2026-09-29",
     "notes": [
-      "The current official pricing article lists cents: $59.99, $149.99, $299.99 and $599.99; swap-free accounts cost 10% more.",
+      "Standard global USD list prices; promotions, swap-free pricing and optional add-ons are excluded.",
       "Stellar Instant has no evaluation phase and no refundable fee.",
-      "The starting Reward Share is 70%; official scale-up guidance raises it to 80% from tier 3.",
-      "On-demand eligibility requires 5% growth plus an EOD check; growth from 1% to under 5% uses a 14-day cycle.",
-      "On-demand payout eligibility requires 5% account growth and an EOD check; 1%-to-under-5% growth uses a 14-day cycle.",
+      "The starting Reward Share is 70%; current product guidance raises it to 80% from tier 3.",
+      "On-demand eligibility requires 5% growth; the normal alternative is a 14-day cycle.",
+      "On-demand eligibility requires 5% account growth and an end-of-day check: https://help.fundednext.com/en/articles/17253243-stellar-instant-account (rule rechecked 2026-10-01; product capture remains 2026-09-29).",
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-08-27.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-09-29.json"
     ]
   }
 ]

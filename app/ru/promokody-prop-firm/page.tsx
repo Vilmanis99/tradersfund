@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import CopyableCodePill from '@/components/CopyableCodePill'
+import brightOfferObservation from '@/content/data/russian-bright-offer-observation.json'
 import {
   getAllChallenges,
   getAllFirms,
@@ -23,13 +24,13 @@ import {
 import { getAllDeals, rankDeals, type Deal } from '@/lib/deals'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 
 export const revalidate = 86400
 
 const PATH = '/ru/promokody-prop-firm'
 const TITLE = 'Промокоды проп-фирм 2026: FundedNext и Bright'
-const DESCRIPTION = 'Проверенные промокоды FundedNext, Bright Funded и FundingPips: условия, цены после скидки, дата источника и безопасная проверка перед оплатой.'
+const DESCRIPTION = 'Промокоды FundedNext, Bright Funded и FundingPips: какие предложения прошли проверку за 30 дней, где сверить условия и итоговую цену перед оплатой.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -75,10 +76,10 @@ const reviewRoutes: Record<string, string> = {
   fundingpips: '/ru/obzor-fundingpips',
 }
 
-const brightDealCodes: Record<string, string> = {
-  'bright-funded-1-step': 'SUMMER30',
-  'bright-funded-2-step-bright': 'SUMMER25',
-  'bright-funded-2-step-classic': 'SUMMER15',
+const brightDealScopes: Record<string, string> = {
+  'bright-funded-1-step': '1-Step Challenge',
+  'bright-funded-2-step-bright': '2-Step Bright',
+  'bright-funded-2-step-classic': '2-Step Classic',
 }
 
 function mechanismLabel(mechanism: Deal['mechanism']) {
@@ -157,16 +158,17 @@ export default function RussianPropFirmOffersPage() {
   const fundingPipsProducts = currentProducts.filter(product => product.firmSlug === 'fundingpips')
   const fundedNextDeal = deals.find(deal => deal.firmSlug === 'fundednext')
   const brightDeals = deals.filter(deal => deal.firmSlug === 'bright-funded')
+  const advertisedBrightOffer = brightDeals.length === 0
+    && brightOfferObservation.status === 'advertised-unverified'
+    && !brightOfferObservation.checkoutVerified
+    && isChallengeFresh({ sourceCapturedAt: brightOfferObservation.sourceCapturedAt })
   const fundingPipsDeal = deals.find(deal => deal.firmSlug === 'fundingpips')
   const latestVerified = deals.map(deal => deal.verifiedOn).sort().at(-1) ?? null
   const codeDeals = deals.filter(deal => deal.mechanism === 'checkout-code')
   const earnedDeals = deals.filter(deal => deal.mechanism === 'earned-coupon')
   const codeCount = codeDeals.length
   const sourceCount = new Set(deals.map(deal => deal.sourceUrl)).size
-  const primaryProducts = [
-    ...(fundedNextDeal ? fundedNextProducts : []),
-    ...(brightDeals.length > 0 ? brightProducts : []),
-  ]
+  const primaryProducts = [...fundedNextProducts, ...brightProducts]
   const primaryPriceCount = primaryProducts.reduce((sum, product) => sum + pricedTiers(product).length, 0)
   const fundedNextExamples = fundedNextProducts.flatMap(product => {
     const tiers = pricedTiers(product)
@@ -175,14 +177,15 @@ export default function RussianPropFirmOffersPage() {
   })
   const fundedNextPriceCount = fundedNextProducts.reduce((sum, product) => sum + pricedTiers(product).length, 0)
   const brightRows = brightProducts.flatMap(product => {
-    const deal = brightDeals.find(candidate => candidate.code === brightDealCodes[product.productSlug])
+    const deal = brightDeals.find(candidate => candidate.scope === brightDealScopes[product.productSlug])
+      ?? brightDeals.find(candidate => candidate.scope === 'All challenges')
     return deal ? pricedTiers(product).map(tier => ({ product, tier, deal })) : []
   })
   const fundingPipsExamples = fundingPipsProducts.flatMap(product => pricedTiers(product)
     .filter(tier => [5000, 50000].includes(tier.sizeUsd))
     .map(tier => ({ product, tier })))
   const offerSummary = deals.length === 0
-    ? 'свежих предложений сейчас нет'
+    ? 'предложений, прошедших полную проверку, сейчас нет'
     : [
         codeCount > 0
           ? `${codeCount} ${russianPlural(codeCount, 'публичный код', 'публичных кода', 'публичных кодов')}`
@@ -202,6 +205,10 @@ a: `В проверенном первичном источнике FundedNext �
     ...(brightDeals.length > 0 ? [{
       q: 'Можно ли просто скопировать промокод Bright Funded?',
       a: `Да, но только после сопоставления кода с продуктом. Сейчас первичный источник подтверждает ${brightDeals.map(deal => `${deal.code} — ${deal.pct}% на ${deal.scope}`).join('; ')}. Перед оплатой нужно увидеть уменьшение итоговой суммы.`,
+    }] : []),
+    ...(advertisedBrightOffer ? [{
+      q: `Работает ли промокод ${brightOfferObservation.code} у Bright Funded?`,
+      a: `На ${brightOfferObservation.sourceCapturedAt} главная страница Bright Funded рекламирует код ${brightOfferObservation.code} и скидку ${brightOfferObservation.advertisedDiscountPct}%. Мы не подтвердили применение к конкретному заказу после шага ввода email, поэтому не считаем это проверенной скидкой. Сверьте итоговую сумму до оплаты.`,
     }] : []),
     ...(fundingPipsDeal ? [{
       q: `Как работает промокод FundingPips ${fundingPipsDeal.code}?`,
@@ -238,7 +245,7 @@ a: `В проверенном первичном источнике FundedNext �
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
-    ...(latestVerified ? { dateModified: latestVerified } : {}),
+    dateModified: russianRouteDateModified(PATH, latestVerified),
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
@@ -263,7 +270,7 @@ a: `В проверенном первичном источнике FundedNext �
           <div className="ru-eyebrow">
             <BadgePercent size={14} aria-hidden="true" /> {deals.length} {russianPlural(deals.length, 'предложение', 'предложения', 'предложений')} · {sourceCount} {russianPlural(sourceCount, 'первичный источник', 'первичных источника', 'первичных источников')}
           </div>
-          <h1>Промокоды проп-фирм: FundedNext, Bright Funded и реальные скидки</h1>
+          <h1>Промокоды проп-фирм: FundedNext, Bright Funded и проверка скидок</h1>
           <p className="ru-lead">
             {latestVerified
               ? <>На {latestVerified} мы подтверждаем {deals.length} {russianPlural(deals.length, 'предложение', 'предложения', 'предложений')}: {offerSummary}.</>
@@ -272,13 +279,14 @@ a: `В проверенном первичном источнике FundedNext �
           </p>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{deals.length}</strong><span>свежих предложений</span></div>
-            <div className="ru-stat"><strong>{codeCount}</strong><span>публичных кодов</span></div>
-            <div className="ru-stat"><strong>{primaryPriceCount}</strong><span>цен FundedNext и Bright</span></div>
+            <div className="ru-stat"><strong>{codeCount}</strong><span>проверенных публичных кодов</span></div>
+            <div className="ru-stat"><strong>{primaryPriceCount}</strong><span>базовых цен FundedNext и Bright</span></div>
             <div className="ru-stat"><strong>30 дней</strong><span>максимальный возраст проверки</span></div>
           </div>
           <div className="ru-actions">
             {fundedNextDeal && <Link href="#fundednext-promokod" className="btn-primary btn-glow">Как получить {fundedNextDeal.pct}% FundedNext <ArrowRight size={15} aria-hidden="true" /></Link>}
             {brightDeals.length > 0 && <Link href="#bright-funded-promokody" className="btn-outline">Коды Bright Funded</Link>}
+            {advertisedBrightOffer && <Link href="#bright-offer-status" className="btn-outline" data-russian-funnel-intent="bright_offer_status">Bright Funded: статус кода {brightOfferObservation.code}</Link>}
             <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить 2 фирмы</Link>
           </div>
         </div>
@@ -315,10 +323,22 @@ a: `В проверенном первичном источнике FundedNext �
                   {fundedNextDeal && <tr><td><strong>FundedNext</strong></td><td>Заработанный персональный купон</td><td>{fundedNextDeal.pct}%</td><td>Новый пользователь, бесплатный тест Free Trial, CFD-планы, 14 дней</td><td><Link href="#fundednext-promokod">Проверить 4 шага</Link></td></tr>}
                   {brightDeals.length > 0 && <tr><td><strong>Bright Funded</strong></td><td>{brightDeals.length} {russianPlural(brightDeals.length, 'публичный код при оплате', 'публичных кода при оплате', 'публичных кодов при оплате')}</td><td>{Math.min(...brightDeals.map(deal => deal.pct ?? 0))}%–{Math.max(...brightDeals.map(deal => deal.pct ?? 0))}%</td><td>Каждый код относится к своему продукту</td><td><Link href="#bright-funded-promokody">Сравнить {brightRows.length} цен</Link></td></tr>}
                   {fundingPipsDeal && <tr><td><strong>FundingPips</strong></td><td>Публичный код при оплате</td><td>{fundingPipsDeal.pct}%</td><td>Первая покупка, без $100K</td><td><Link href="#fundingpips-promokod">Проверить {fundingPipsDeal.code}</Link></td></tr>}
-                  {deals.length === 0 && <tr><td colSpan={5}>Нет предложений с первичным источником, проверенным за последние 30 дней.</td></tr>}
+                  {deals.length === 0 && <tr><td colSpan={5}>Нет предложений, прошедших полную проверку условий за последние 30 дней.</td></tr>}
                 </tbody>
               </table>
             </div>
+            {brightDeals.length === 0 && <div id="bright-offer-status" className="ru-notice" data-russian-bright-deal-fallback="no-current-code">
+              <h3>{advertisedBrightOffer ? 'Bright Funded: код рекламируется, но применение не проверено' : 'Bright Funded: подтверждённого промокода сейчас нет'}</h3>
+              {advertisedBrightOffer ? <>
+                <p data-russian-bright-offer-observation="advertised-unverified">На <time dateTime={brightOfferObservation.sourceCapturedAt}>{brightOfferObservation.sourceCapturedAt}</time> официальная главная страница Bright Funded показывает код <code>{brightOfferObservation.code}</code> и скидку {brightOfferObservation.advertisedDiscountPct}%. Мы не проверили, сработает ли код для вашего заказа после ввода email. Поэтому он не включён в таблицу проверенных предложений, а цены в обзоре указаны без скидки.</p>
+                <p>Сверьте программу, дополнения, доступность страны и окончательную сумму до оплаты. Если сумма не уменьшилась, не считайте рекламный процент полученной скидкой.</p>
+                <p className="ru-source-line"><a href={brightOfferObservation.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">Официальный анонс Bright Funded</a> · проверено {brightOfferObservation.sourceCapturedAt}; применение при оплате не подтверждено.</p>
+              </> : <p>Мы не проверили действующий код за последние 30 дней. Цены в обзоре указаны без скидки. Перед оплатой сверьте выбранную программу, итоговую сумму и доступность для вашей страны.</p>}
+              <div className="ru-actions">
+                <Link href="/ru/obzor-bright-funded" className="btn-outline">Смотреть обзор Bright Funded</Link>
+                {firmBySlug.get('bright-funded')?.affiliateUrl && <Link href="/go/bright-funded?from=ru-deals-bright-no-current-code" rel="sponsored nofollow noopener" className="btn-primary">Проверить текущую цену у Bright Funded <ArrowRight size={14} aria-hidden="true" /></Link>}
+              </div>
+            </div>}
           </div>
         </section>
 
@@ -497,7 +517,7 @@ a: `В проверенном первичном источнике FundedNext �
               Процент при оплате не превращает плавающую просадку в статический лимит, не делает невозвратный взнос возвратным и не отменяет правила продукта.
             </p>
             <div className="ru-grid">
-              <article className="ru-card"><Calculator size={22} color="var(--accent-light)" aria-hidden="true" /><h3>1. Выбрать правило</h3><p>Сопоставьте этапы, дневной и общий лимиты убытка и условие первой выплаты до сравнения процентов. <Link href="/ru/fundednext-vs-bright-funded">Таблица 7 продуктов</Link> показывает эти различия.</p></article>
+              <article className="ru-card"><Calculator size={22} color="var(--accent-light)" aria-hidden="true" /><h3>1. Выбрать правило</h3><p>Сопоставьте этапы, дневной и общий лимиты убытка и условие первой выплаты до сравнения процентов. <Link href="/ru/fundednext-vs-bright-funded">Таблица программ</Link> показывает эти различия.</p></article>
               <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>2. Проверить профиль</h3><p>Страна, гражданство, резидентство и KYC проверяются по реальным данным. <Link href="/ru/dlya-russkoyazychnykh-treyderov">Маршрут для диаспоры</Link> отделяет язык от доступа.</p></article>
               <article className="ru-card"><BadgePercent size={22} color="var(--accent-light)" aria-hidden="true" /><h3>3. Применить механизм</h3><p>Введите точный код для продукта или выполните условие получения персонального купона. Процент без изменения итоговой суммы оплаты равен 0 фактической экономии.</p></article>
               <article className="ru-card"><ClipboardCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>4. Сохранить доказательство</h3><p>Перед оплатой сохраните название плана, размер, валюту, код и финальную сумму. Эти 5 полей помогают разобрать спор по заказу.</p></article>

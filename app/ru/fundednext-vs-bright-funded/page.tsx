@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { fundedNextOneStepPayoutLabel, isFundedNextPayoutSourceFresh } from '@/lib/fundedNextPayout'
+import { fundedNextOneStepPayoutLabel, fundedNextPayoutSource, isFundedNextPayoutSourceFresh } from '@/lib/fundedNextPayout'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
@@ -199,17 +199,23 @@ export default function FundedNextVsBrightFundedRussianPage() {
   const evidenceDates = [
     { label: 'цены: самая ранняя проверка', capturedAt: latestCapture },
     { label: 'страна и способы выплаты', capturedAt: marketEvidence.capturedAt },
+    { label: 'FundedNext: срок запроса Stellar 1-Step', capturedAt: fundedNextPayoutSource.sourceCapturedAt },
     ...ruleSources.map(source => ({ label: source.labelRu, capturedAt: source.sourceCapturedAt })),
     ...[...payoutEvidence.values(), ...kycEvidence.values()].filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).map(source => ({ label: `${source.firmName}: процесс выплаты или проверка личности`, capturedAt: source.sourceCapturedAt })),
   ]
+  const latestEvidenceDate = [
+    ...relevantProducts.map(product => product.sourceCapturedAt),
+    ...evidenceDates.map(source => source.capturedAt),
+  ].filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date)).sort().at(-1) ?? latestCapture
   const completeEvidence = relevantProducts.length > 0 && products.length === relevantProducts.length
     && [oneStepFn, oneStepBright, twoStepFn, liteFn, instantFn, twoStepBright, classicBright].every(Boolean)
     && ['fundednext', 'bright-funded'].every(slug => payoutEvidence.has(slug) && kycEvidence.has(slug))
     && products.every(product => pricedTiers(product).length > 0)
     && evidenceDates.every(source => freshCapture(source.capturedAt)) && isFundedNextPayoutSourceFresh()
-  const sourceUrls = [...new Set([...relevantProducts.map(product => product.sourceUrl), ...ruleSources.map(source => source.sourceUrl), ...[...payoutEvidence.values(), ...kycEvidence.values()].filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).flatMap(source => source.sourceUrls), ...(accessEvidence?.sourceUrls ?? [])])]
+  const sourceUrls = [...new Set([...relevantProducts.map(product => product.sourceUrl), fundedNextPayoutSource.sourceUrl, ...ruleSources.map(source => source.sourceUrl), ...[...payoutEvidence.values(), ...kycEvidence.values()].filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).flatMap(source => source.sourceUrls), ...(accessEvidence?.sourceUrls ?? [])])]
   const sourceLabels = new Map<string, string>([
     ...relevantProducts.map(product => [product.sourceUrl, `${product.productName}: условия программы`] as const),
+    [fundedNextPayoutSource.sourceUrl, `FundedNext: ${fundedNextPayoutSource.labelRu}`] as const,
     ...ruleSources.map(source => [source.sourceUrl, `Bright Funded: ${source.labelRu}`] as const),
     ...[...payoutEvidence.values(), ...kycEvidence.values()].filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).flatMap(source => source.sourceUrls.map(url => [url, `${source.firmName}: ${'methods' in source ? 'способы выплаты' : 'проверка личности'}`] as const)),
   ])
@@ -238,7 +244,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
-    dateModified: russianRouteDateModified(PATH, latestCapture),
+    dateModified: russianRouteDateModified(PATH, latestEvidenceDate),
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }

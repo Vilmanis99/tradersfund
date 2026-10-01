@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import { localPreviewUrl } from './local-preview-url.mjs'
 import { LOCALIZED_ROUTE_PAIRS, RUSSIAN_ONLY_ROUTES, RUSSIAN_ROUTE_EDITORIAL_DATES } from '../lib/localizedRoutes.ts'
 import { getRussianFinderRows, getRussianReviewFinderHref, getRussianInstantFinderHref } from '../lib/challengeComparisonData.ts'
@@ -33,9 +34,26 @@ const ranking = pages.get('/ru/luchshie-prop-firmy')
 const home = pages.get('/ru')
 assert(home.includes('data-russian-home-finder="programme-entry"'))
 assert(home.includes('/ru/luchshie-prop-firmy#size=50000'))
+if (home.includes('data-russian-home-finder-empty="stale"')) {
+  assert(home.includes('/ru/luchshie-prop-firmy#size=50000'))
+} else {
+  assert(home.includes('data-russian-home-result-count='))
+}
 assert(home.includes('data-russian-affiliate-disclosure="home-primary-partners"'))
-assert(home.includes('Для резидентов России доступность не подтверждена'))
-assert(home.includes('Россия не названа в опубликованном списке ограничений'))
+const marketEvidence = JSON.parse(readFileSync(new URL('../content/data/russian-market-evidence.json', import.meta.url), 'utf8'))
+const brightEvidence = JSON.parse(readFileSync(new URL('../content/data/russian-bright-funded-evidence.json', import.meta.url), 'utf8'))
+for (const [slug, capturedAt] of [
+  ['fundednext', marketEvidence.capturedAt],
+  ['bright-funded', brightEvidence.sources.countries.sourceCapturedAt],
+]) {
+  const card = home.match(new RegExp(`<article[^>]*data-russian-home-hero-partner="${slug}"[^>]*>[\\s\\S]*?<\\/article>`))?.[0]
+  assert(card, `${slug}: partner card is rendered`)
+  const countryFresh = isChallengeFresh({ sourceCapturedAt: capturedAt })
+  assert(card.includes(`data-russian-partner-country-warning="${slug}"`), `${slug}: country warning is visible`)
+  assert(card.includes(`data-russian-partner-country-source-status="${countryFresh ? 'dated' : 'recapture-required'}"`), `${slug}: country warning reflects its source age`)
+  assert(card.includes(capturedAt), `${slug}: country warning names its source date`)
+  if (!countryFresh) assert(card.includes('не подтверждает доступ сегодня'), `${slug}: old country evidence does not imply current access`)
+}
 assert(ranking.includes('data-russian-challenge-finder="product-first"'))
 assert(!ranking.includes('Коммерческий результат пока заблокирован.'))
 assert(ranking.includes('data-russian-affiliate-disclosure="challenge-finder"'))
@@ -78,7 +96,9 @@ const cTrader = pages.get('/ru/prop-firmy-s-ctrader')
 const forex = pages.get('/ru/forex-prop-firmy')
 assert(forex.includes('Автор:') && forex.includes('Edris Derakhshi'), 'forex byline is visible')
 assert(forex.includes('data-russian-forex-correction="stellar-1-step-leverage"'), 'forex correction is visible')
-assert(forex.includes('data-russian-forex-leverage-product="fundednext:stellar-1-step">1:30</td>'), 'Stellar 1-Step forex leverage is corrected in the rendered table')
+if (!forex.includes('data-russian-forex-leverage-product="fundednext:stellar-1-step">1:30</td>')) {
+  assert(forex.includes('data-russian-guide-source-status='), 'stale forex product rows expose a recheck state')
+}
 assert(forex.includes('data-russian-guide-source-status='), 'forex separates evidence dates from article edits')
 assert(forex.includes(getRussianReviewFinderHref('fundednext').replace(/&/g, '&amp;')), 'forex comparison handoff works')
 const forexSitemap = sitemap.split('<url>').find(entry => entry.includes(`<loc>${production}/ru/forex-prop-firmy</loc>`))

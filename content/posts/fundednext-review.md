@@ -3,7 +3,7 @@ title: "FundedNext Review 2026: 22 Prices, 4 Rule Sets, and the India Checkout T
 seoTitle: "FundedNext Review 2026: Fees, Rules & Payouts"
 slug: "fundednext-review"
 date: "2024-09-02 15:16:05"
-modified: "2026-08-27"
+modified: "2026-09-29"
 author: "Edris Derakhshi"
 excerpt: "FundedNext starts new accounts at an 80% split, not 95%. Compare all 22 global prices, payout cycles, news rules, and India payment checks."
 seoDescription: "FundedNext review with 22 current prices, an 80% base split, and Stellar Lite, 1-Step, 2-Step and Instant rules, payouts, platforms and India access."
@@ -82,7 +82,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Pricing and rules are current as of 2026-08-27. These are global USD list prices, not FundedNext’s separate US schedule, and they exclude promotions, swap-free pricing, EA add-ons, the 95% add-on, and the non-refundable $25 cTrader or Match-Trader platform charge. Check the final configuration through <a href="/go/fundednext">FundedNext</a>.</p>
+<p>Pricing and rules are current as of 2026-09-29. These are global USD list prices, not FundedNext’s separate US schedule, and they exclude promotions, swap-free pricing, EA add-ons, the 95% add-on, and the non-refundable $25 cTrader or Match-Trader platform charge. Check the final configuration through <a href="/go/fundednext">FundedNext</a>.</p>
 
 <p><strong>U.S. residents.</strong> Do not use this global table as a U.S. checkout quote. Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links FundedNext’s separate USA Client Guide and records the Match-Trader-only platform rule; recheck that first-party guide and the final checkout before purchase.</p>
 

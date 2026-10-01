@@ -1,0 +1,11 @@
+{
+  "firmSlug": "bright-funded",
+  "status": "advertised-unverified",
+  "code": "3YEARS",
+  "advertisedDiscountPct": 30,
+  "sourceUrl": "https://brightfunded.com/",
+  "sourceCapturedAt": "2026-09-30",
+  "sourceQuotes": ["30% Off", "Code: 3YEARS"],
+  "checkoutVerified": false,
+  "notesRu": "Код и процент видны на главной странице фирмы. Применение к конкретному заказу, программе и дополнениям не проверено после шага ввода email; не включать в таблицу подтверждённых скидок и не рассчитывать цену после кода."
+}

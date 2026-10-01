@@ -63,17 +63,14 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://brightfunded.com/1-step",
-    "sourceCapturedAt": "2026-08-27",
+    "sourceCapturedAt": "2026-09-29",
     "notes": [
-      "All fees are EUR list prices. Temporary B2B30 promotional pricing is deliberately excluded.",
+      "All fees are EUR list prices; current anniversary and checkout promotions are excluded.",
       "The 6% maximum drawdown trails the highest equity in real time and locks at the original balance after 6% growth.",
       "The base funded reward split is 80%; 90% is a paid add-on and 100% is available only through scaling.",
-      "The first standard request is after 30 days and later requests are stated as 14-day cycles, but the same help article calls bi-weekly payouts an add-on; this wording conflict is unresolved.",
-      "Bank payouts are processed in EUR, crypto payouts in USDC ERC-20, and the help article publishes no minimum Reward.",
-      "A conditional 15% evaluation-profit reward is added to a new funded account only after at least 10% funded growth and an approved payout; it becomes withdrawable on the next payout after an activating trade.",
-      "Funded news executions in the 10-minute window lose the related profit; losses remain and the event is treated as a soft breach.",
-      "The separately advertised 100% challenge-fee refund is an add-on. The refundable tier flag records the standard unused-account refund within 30 days.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/bright-funded-2026-08-27.json"
+      "The payout article contains both a standard 30-day first request and a bi-weekly add-on description; the conflict remains unresolved.",
+      "The separately advertised 100% challenge-fee refund is an add-on; the refundable flag records the standard unused-account refund within 30 days.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/bright-funded-2026-09-29.json"
     ]
   },
   {
@@ -141,16 +138,14 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://brightfunded.com/2-step-bright",
-    "sourceCapturedAt": "2026-08-27",
+    "sourceCapturedAt": "2026-09-29",
     "notes": [
-      "All fees are EUR list prices. Temporary B2B30 promotional pricing is deliberately excluded.",
+      "All fees are EUR list prices; current anniversary and checkout promotions are excluded.",
       "The 8% maximum drawdown is static; daily loss is 4% and both phases require 5 trading days each.",
       "The base funded reward split is 80%; 90% is a paid add-on and 100% is available only through scaling.",
-      "The first standard request is after 30 days and later requests are stated as 14-day cycles, but the same help article calls bi-weekly payouts an add-on; this wording conflict is unresolved.",
-      "Bank payouts are processed in EUR, crypto payouts in USDC ERC-20, and the help article publishes no minimum Reward.",
-      "A conditional 15% evaluation-profit reward requires at least 10% funded growth and an approved payout before a new funded account receives the bonus.",
-      "The separately advertised 100% challenge-fee refund is an add-on. The refundable tier flag records the standard unused-account refund within 30 days.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/bright-funded-2026-08-27.json"
+      "The payout article contains both a standard 30-day first request and a bi-weekly add-on description; the conflict remains unresolved.",
+      "The separately advertised 100% challenge-fee refund is an add-on; the refundable flag records the standard unused-account refund within 30 days.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/bright-funded-2026-09-29.json"
     ]
   },
   {
@@ -218,16 +213,14 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://brightfunded.com/2-step-classic",
-    "sourceCapturedAt": "2026-08-27",
+    "sourceCapturedAt": "2026-09-29",
     "notes": [
-      "All fees are EUR list prices. Temporary B2B30 promotional pricing is deliberately excluded.",
+      "All fees are EUR list prices; current anniversary and checkout promotions are excluded.",
       "The 10% maximum drawdown is static; daily loss is 5% and both phases require 5 trading days each.",
       "The base funded reward split is 80%; 90% is a paid add-on and 100% is available only through scaling.",
-      "The first standard request is after 30 days and later requests are stated as 14-day cycles, but the same help article calls bi-weekly payouts an add-on; this wording conflict is unresolved.",
-      "Bank payouts are processed in EUR, crypto payouts in USDC ERC-20, and the help article publishes no minimum Reward.",
-      "A conditional 15% evaluation-profit reward requires at least 10% funded growth and an approved payout before a new funded account receives the bonus.",
-      "The separately advertised 100% challenge-fee refund is an add-on. The refundable tier flag records the standard unused-account refund within 30 days.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/bright-funded-2026-08-27.json"
+      "The payout article contains both a standard 30-day first request and a bi-weekly add-on description; the conflict remains unresolved.",
+      "The separately advertised 100% challenge-fee refund is an add-on; the refundable flag records the standard unused-account refund within 30 days.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/bright-funded-2026-09-29.json"
     ]
   }
 ]

@@ -11,7 +11,16 @@ export default function RussianFinderEntry({ rows }: { rows: GlobalChallengeRow[
   const [requestedSize, setSize] = useState(resolveFinderSize(sizes))
   const [phases, setPhases] = useState<ChallengeFinderFilters['phases']>('all')
   const size = resolveFinderSize(sizes, requestedSize)
-  if (size === undefined) return <div><p>Сейчас нет программ с актуальной проверкой источников. Обзоры и пояснения остаются доступны.</p><Link href="/ru/luchshie-prop-firmy" className="btn-primary">Открыть сравнение фирм <ArrowRight size={16} aria-hidden="true" /></Link></div>
+  if (size === undefined) return (
+    <div className="ru-home-finder-workspace" data-russian-home-finder="programme-entry" data-russian-home-finder-empty="stale">
+      <p>Сейчас нет программ с актуальной проверкой источников. Обзоры и пояснения остаются доступны.</p>
+      <Link
+        href="/ru/luchshie-prop-firmy#size=50000"
+        className="btn-primary"
+        onClick={() => trackSiteEvent('russian_finder_entry', { surface: 'russian_home_empty', account_size: null, phases: 'all' })}
+      >Открыть сравнение фирм <ArrowRight size={16} aria-hidden="true" /></Link>
+    </div>
+  )
   const filters = { ...DEFAULT_FINDER_FILTERS, size, phases }
   const matching = filterChallengeRows(rows, filters)
   const represented = new Set<string>()

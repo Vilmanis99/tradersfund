@@ -64,7 +64,7 @@ export default function Footer({
     { label: 'Обзор FTMO', href: '/ru/obzor-ftmo' },
     { label: 'Обзор FundedNext', href: '/ru/obzor-fundednext' },
     { label: 'Обзор FundingPips', href: '/ru/obzor-fundingpips' },
-    { label: 'Обзор Bright Funded', href: '/ru/obzor-bright-funded' },
+    { label: 'Обзор BrightFunded', href: '/ru/obzor-bright-funded' },
     { label: 'Все обзоры на английском', href: '/blog' },
   ] : [
     { label: 'FTMO Review', href: '/blog/ftmo-review' },

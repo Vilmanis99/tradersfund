@@ -24,11 +24,10 @@ import evidence from '@/content/data/russian-teamtraders-evidence.json'
 
 const PATH = '/ru/obzor-teamtraders'
 const TITLE = 'TeamTraders: отзывы и обзор условий 2026'
-const DESCRIPTION = 'Обзор TeamTraders: месячная стажировка, торговля на Мосбирже, переход с демо на реальный счёт, условия выплат и расхождения между FAQ и документацией.'
+const DESCRIPTION = 'Обзор TeamTraders: месячная стажировка, торговля на Мосбирже, переход с демо на реальный счёт, условия выплат и недоступная оферта проп-программы.'
 const TEAMTRADERS_HOME = 'https://teamtraders.ru/'
 const TEAMTRADERS_FAQ = 'https://teamtraders.ru/faq'
-const TEAMTRADERS_OFFER = 'https://teamtraders.ru/oferta_prop/'
-const TEAMTRADERS_LEGACY_DOCS = 'https://teamtraders.ru/docs/'
+const TEAMTRADERS_PUBLIC_RULES = 'https://teamtraders.ru/rules'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -60,7 +59,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Правда ли, что трейдер получает 95% прибыли?',
-    a: '95% относится к реальному счёту: компания описывает удержание 5% с каждого прибыльного дня. Для финансируемого демо-счёта указаны 70%, а в архивной документации — 90% для реального. Запросите применимые к вам условия у поддержки до регистрации, если они доступны только в кабинете.',
+    a: '95% относится к реальному счёту: компания описывает удержание 5% с каждого прибыльного дня. Для финансируемого демо-счёта указаны 70%. В сохранённой документации от 28 августа было 90% для реального счёта, но её адрес теперь возвращает 404; запросите действующие условия у поддержки до регистрации.',
   },
   {
     q: 'Можно ли переносить позиции через ночь или использовать роботов?',
@@ -91,9 +90,13 @@ function SourceLink({ href, children }: { href: string, children: React.ReactNod
 
 export default function RussianTeamTradersReviewPage() {
   const updatedAt = russianRouteDateModified(PATH, evidence.capturedAt)
+  const homeCapturedAt = evidence.sources.find(source => source.id === 'home')?.capturedAt ?? evidence.capturedAt
+  const faqCapturedAt = evidence.sources.find(source => source.id === 'faq')?.capturedAt ?? evidence.capturedAt
+  const archivedOfferCapturedAt = evidence.sources.find(source => source.id === 'offer')?.capturedAt ?? 'дата не указана'
+  const archivedDocsCapturedAt = evidence.sources.find(source => source.id === 'legacy-docs')?.capturedAt ?? 'дата не указана'
   const sourceLabels: Record<string, string> = {
     home: 'тарифы и описание программы', faq: 'правила и выплаты',
-    offer: 'публичная оферта', 'legacy-docs': 'архивная документация',
+    offer: 'ранее доступная оферта проп-программы', 'legacy-docs': 'ранее доступная документация',
   }
   const evidenceDates = [
     { label: 'сводный разбор', capturedAt: evidence.capturedAt },
@@ -155,6 +158,12 @@ export default function RussianTeamTradersReviewPage() {
           </p>
           <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Обновлено {updatedAt}.</p>
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
+          <div className="ru-notice" data-russian-teamtraders-legal-availability="prop-offer-unavailable">
+            <strong>Применимую оферту нужно запросить заново.</strong>{' '}
+            Проверка {evidence.availabilityCheck.checkedAt}: прежние адреса оферты проп-программы и документации
+            возвращают 404. Доступная на сайте <SourceLink href={TEAMTRADERS_PUBLIC_RULES}>оферта об обучении</SourceLink>
+            не подтверждает условия стажировки и финансируемых счетов.
+          </div>
           {hasFreshEvidence && <div className="ru-stats" aria-label="Цифры TeamTraders по датированным источникам">
             <div className="ru-stat"><strong>{evidence.accounts.length}</strong><span>тарифа: ₽500 тыс., ₽1 млн и ₽2 млн</span></div>
             <div className="ru-stat"><strong>{evidence.evaluation.profitTargetPctPerStep}% + {evidence.evaluation.profitTargetPctPerStep}%</strong><span>две цели отбора</span></div>
@@ -238,7 +247,7 @@ export default function RussianTeamTradersReviewPage() {
               </tbody>
             </table>
           </div>
-          <p className="ru-source-line"><SourceLink href={TEAMTRADERS_HOME}>Источник тарифов</SourceLink> · <SourceLink href={TEAMTRADERS_FAQ}>FAQ о продлении и риске</SourceLink> · снимок {evidence.capturedAt}.</p>
+          <p className="ru-source-line"><SourceLink href={TEAMTRADERS_HOME}>Источник тарифов</SourceLink> · проверено {homeCapturedAt}; <SourceLink href={TEAMTRADERS_FAQ}>FAQ о продлении и риске</SourceLink> · проверено {faqCapturedAt}. Применимая оферта проп-программы остаётся неподтверждённой.</p>
           <div className="ru-notice">
             <strong>Продление не безусловное.</strong>{' '}
             Скидка {evidence.evaluation.renewalDiscountPct}% опубликована только для счёта в плюсе без нарушения
@@ -251,7 +260,7 @@ export default function RussianTeamTradersReviewPage() {
         <div className="ru-shell ru-content">
           <h2>Путь до реального счёта: пять отдельных состояний</h2>
           <ol>
-            <li><strong>Бесплатный демо-счёт.</strong> По FAQ он позволяет проверить CScalp, подключение и стратегию; результат не засчитывается в отбор. До регистрации прочитайте оферту: отсутствие оплаты не отменяет её принятия.</li>
+            <li><strong>Бесплатный демо-счёт.</strong> По FAQ он позволяет проверить CScalp, подключение и стратегию; результат не засчитывается в отбор. До регистрации запросите применимый к проп-программе договор: прежний публичный адрес сейчас недоступен.</li>
             <li><strong>Оплаченный шаг 1.</strong> После активации начинается учёт результата: цель 6%, дневная граница 2%, общий максимум 4% и запрет на ночь.</li>
             <li><strong>Оплаченный шаг 2.</strong> Баланс этапа обновляется, а те же 6%/2%/4% применяются повторно; оба шага вместе должны включать минимум 10 торговых дней.</li>
             <li><strong>Финансируемый демо-счёт.</strong> По FAQ в разборе это промежуточный этап с долей 70%, максимальной прибылью 10% и возможностью выводить доступную прибыль частями.</li>
@@ -278,7 +287,7 @@ export default function RussianTeamTradersReviewPage() {
                 <tr><td>Перенос через ночь</td><td>Запрещён</td><td>Все позиции закрываются внутри дня; правило исключает обычную стратегию с многодневным удержанием позиции.</td></tr>
                 <tr><td>Роботы</td><td>Не предусмотрены</td><td>FAQ требует ручных решений через терминал; советники и алгоритмические стратегии не заявлены как допустимые.</td></tr>
                 <tr><td>Скальпинг и новости</td><td>Разрешены в рамках 2%/4%</td><td>Разрешение стратегии не отменяет проскальзывание и срабатывание робота контроля риска во время волатильности.</td></tr>
-                <tr><td>Инструменты</td><td>Выбранные ликвидные фьючерсы; добавление по запросу</td><td>Сначала прочитайте оферту; если она вам подходит, проверьте точный символ на демо-счёте: архивное обещание «все фьючерсы» уже не совпадает с FAQ.</td></tr>
+                <tr><td>Инструменты</td><td>Выбранные ликвидные фьючерсы; добавление по запросу</td><td>Запросите применимый договор и проверьте точный символ на демо-счёте: ранее сохранённое обещание «все фьючерсы» не совпадало с FAQ.</td></tr>
                 <tr><td>Комиссии</td><td>Списываются и влияют на результат демо-счёта</td><td>FAQ в разборе не публикует единую сумму; фактическую комиссию по контракту нужно увидеть в тестовом счёте.</td></tr>
               </tbody>
             </table>
@@ -320,44 +329,46 @@ export default function RussianTeamTradersReviewPage() {
         <div className="ru-shell">
           <h2>Почему старые отзывы TeamTraders показывают другие числа</h2>
           <p className="ru-muted">
-            На одном официальном домене одновременно доступны новая главная/FAQ и архив /docs/. Это создаёт 3
-            проверяемых конфликта, которые нельзя скрыть усреднением или выбором более привлекательной цифры.
+            При проверке {evidence.capturedAt} главная и FAQ расходились с сохранённой документацией по 3 пунктам.
+            При проверке {evidence.availabilityCheck.checkedAt} прежний адрес документации уже возвращал 404:
+            её цифры ниже — исторические, а не действующее предложение.
           </p>
           <div className="ru-table-wrap">
             <table className="ru-table">
-              <thead><tr><th>Поле</th><th>Главная и FAQ на дату разбора</th><th>Архив /docs/</th><th>Как читать</th></tr></thead>
+              <thead><tr><th>Поле</th><th>Главная и FAQ на дату разбора</th><th>Сохранённая документация от {archivedDocsCapturedAt}</th><th>Как читать</th></tr></thead>
               <tbody>
                 <tr><td>Минимальный срок</td><td>10 торговых дней на 2 шага</td><td>15 торговых сессий</td><td>Используем 10 как публикацию в разборе, но сохраняем скрин/условия кабинета перед оплатой.</td></tr>
-                <tr><td>Доля на реальном счёте</td><td>95%; компания удерживает 5%</td><td>90%</td><td>Оферта переносит расчёт в кабинет. Запросите условия письменно до регистрации, если они недоступны без входа.</td></tr>
+                <tr><td>Доля на реальном счёте</td><td>95%; компания удерживает 5%</td><td>90%</td><td>Запросите применимую долю и расчёт письменно до регистрации, если они недоступны без входа.</td></tr>
                 <tr><td>Фьючерсы</td><td>Выбранные ликвидные инструменты</td><td>Все доступные фьючерсы Мосбиржи</td><td>Решающим является список символов в бесплатном демо-счёте, а не старый общий текст.</td></tr>
               </tbody>
             </table>
           </div>
-          <p className="ru-source-line"><SourceLink href={TEAMTRADERS_FAQ}>FAQ в разборе</SourceLink> · <SourceLink href={TEAMTRADERS_LEGACY_DOCS}>Архивная документация</SourceLink> · сравнение зафиксировано {evidence.capturedAt}.</p>
+          <p className="ru-source-line"><SourceLink href={TEAMTRADERS_FAQ}>FAQ в разборе</SourceLink> · архивная документация сохранена {archivedDocsCapturedAt}; прежний адрес недоступен с проверки {evidence.availabilityCheck.checkedAt}.</p>
         </div>
       </section>
 
-      <section className="ru-section" id="oferta" data-russian-teamtraders-legal="offer-before-registration">
+      <section className="ru-section" id="oferta" data-russian-teamtraders-legal="prop-offer-unavailable">
         <div className="ru-shell ru-content">
-          <h2>Оферта и юридическая модель: регистрация уже считается акцептом</h2>
+          <h2>Оферта: применимый к проп-программе документ сейчас не подтверждён</h2>
           <p>
-            Оферта редакции {evidence.legal.offerRevision} называет предметом услуги разработку торговых стратегий.
-            Пункт 1.3 приравнивает регистрацию в веб-кабинете к заключению договора, а пункт 6.1 оставляет размер
-            вознаграждения и порядок расчёта в самом кабинете. Поэтому документ нужно прочитать до создания профиля,
-            а не после первой выплаты.
+            При проверке {evidence.availabilityCheck.checkedAt} адрес ранее сохранённой оферты проп-программы
+            возвращал 404. В сохранённом разборе от {archivedOfferCapturedAt} этот документ описывал разработку торговых стратегий,
+            принятие условий при регистрации и расчёт вознаграждения в кабинете. Без доступного оригинала нельзя
+            утверждать, что такая редакция действует сейчас.
           </p>
           <p>
-            В реквизитах указан {evidence.legal.operatorName}, ОГРНИП {evidence.legal.ogrnip} и ИНН {evidence.legal.inn}.
-            Пункт 5.4 позволяет компании менять условия с уведомлением через кабинет, а пункт 7.3 допускает одностороннее
-            расторжение любой стороной. Это описание опубликованного текста, не юридическая консультация.
+            В подвале сайта сейчас доступна <SourceLink href={TEAMTRADERS_PUBLIC_RULES}>оферта редакции {evidence.legal.offerRevision}</SourceLink>
+            {' '}от {evidence.legal.operatorName}, ОГРНИП {evidence.legal.ogrnip}, ИНН {evidence.legal.inn}.
+            Её предмет — платное дистанционное обучение трейдингу на 60 дней; она не описывает явно платный проп-отбор,
+            финансируемый демо-счёт и доли 70%/95%. Подменять ею исчезнувшую оферту проп-программы нельзя.
           </p>
           <div className="ru-notice" data-russian-teamtraders-checklist="eight-fields">
             <strong>Уточните 8 полей до регистрации:</strong> редакцию оферты, цену тарифа, срок оплаты, условия
             продления, доли на демо- и реальном счёте, способ выплаты, список инструментов и формулу вознаграждения.
             Если расчёт виден только после входа, запросите его у поддержки письменно до создания профиля.
-            Не создавайте аккаунт только ради чтения условий, с которыми регистрация уже означает согласие.
+            Не принимайте оферту об обучении за подтверждение условий проп-программы.
           </div>
-          <p className="ru-source-line"><FileCheck2 size={14} aria-hidden="true" /> <SourceLink href={TEAMTRADERS_OFFER}>Открыть публичную оферту</SourceLink>.</p>
+          <p className="ru-source-line"><FileCheck2 size={14} aria-hidden="true" /> <SourceLink href={TEAMTRADERS_PUBLIC_RULES}>Текущая ссылка «Правила оферты» на сайте TeamTraders</SourceLink> · редакция об обучении, не подтверждённый договор проп-программы.</p>
         </div>
       </section>
 
@@ -366,8 +377,9 @@ export default function RussianTeamTradersReviewPage() {
           <h2>Партнёрская прозрачность TeamTraders</h2>
           <div className="ru-notice" data-russian-local-affiliate="not-found">
             <strong>У нас нет партнёрской ссылки TeamTraders.</strong>{' '}
-            На {evidence.capturedAt} на главной, в FAQ и оферте мы не нашли опубликованных условий для сайтов,
-            привлекающих клиентов. Это не доказывает отсутствие частных договорённостей у компании.
+            При проверке {evidence.affiliateProgram.checkedAt} главной страницы, FAQ и страницы правил мы не нашли
+            публичных условий для сайтов, привлекающих клиентов. Недоступная прежняя оферта не считается текущим источником.
+            Это не доказывает отсутствие частных договорённостей у компании.
             Возврат части комиссий криптобирж в подвале — другая программа.
           </div>
           <p>
@@ -430,7 +442,7 @@ export default function RussianTeamTradersReviewPage() {
         <div className="ru-shell ru-content">
           <h2>Как принять решение по TeamTraders без веры в анонимный отзыв</h2>
           <ol>
-            <li><strong>Сначала прочитайте оферту:</strong> в пункте 1.3 регистрация названа акцептом. Запросите недоступные без входа условия у поддержки до создания профиля.</li>
+            <li><strong>Сначала запросите применимую оферту:</strong> прежний адрес договора проп-программы возвращает 404, а доступная оферта посвящена обучению. Уточните условия у поддержки до создания профиля.</li>
             <li><strong>Затем проверьте техническую совместимость:</strong> если договор вам подходит, уточните доступ к демо-счёту, CScalp, Privod Bondar 2.0 и нужному инструменту Мосбиржи. Бесплатный доступ не означает отсутствие договорных обязательств.</li>
             <li><strong>Сопоставьте стратегию с отбором:</strong> в разборе от {evidence.capturedAt} указаны две цели по 6%, минимум 10 торговых дней и лимиты 2%/4%. Исторический результат не гарантирует прохождения.</li>
             <li><strong>Уточните выплату письменно:</strong> отделите долю на финансируемом демо-счёте от доли на реальном и выясните метод, минимальную сумму, комиссии и сроки зачисления.</li>
@@ -449,7 +461,10 @@ export default function RussianTeamTradersReviewPage() {
         <div className="ru-shell ru-content">
           <h2>Источники и границы проверки</h2>
           <p>Это собственные публикации TeamTraders. Они подтверждают, что компания описывала такие условия, но не являются независимой проверкой её платёжеспособности или фактического исполнения договора. Упоминание Финама не означает, что мы независимо проверили брокерские отношения TeamTraders.</p>
-          <ul>{evidence.sources.map(source => <li key={source.id}><SourceLink href={source.url}>{sourceLabels[source.id] ?? source.id}</SourceLink> · проверка {source.capturedAt}</li>)}</ul>
+          <ul>{evidence.sources.map(source => <li key={source.id}>{source.id === 'offer' || source.id === 'legacy-docs'
+            ? <>{sourceLabels[source.id] ?? source.id} · сохранённая проверка {source.capturedAt}; прежний адрес возвращает 404 с проверки {evidence.availabilityCheck.checkedAt}</>
+            : <><SourceLink href={source.url}>{sourceLabels[source.id] ?? source.id}</SourceLink> · проверка {source.capturedAt}</>}
+          </li>)}</ul>
           <p>Дата обновления статьи относится к тексту. Ценовые записи глобальных партнёров проверяются отдельно и не обновляют данные TeamTraders.</p>
         </div>
       </section>

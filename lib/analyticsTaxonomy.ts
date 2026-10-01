@@ -48,6 +48,31 @@ const HIGH_INTENT_STAGES = new Set<JourneyStage>([
 export type ContentLocale = 'en' | 'ru'
 export type CampaignLocale = ContentLocale | 'unknown'
 
+export type CampaignAttribution = {
+  campaign_source?: string
+  campaign_medium?: string
+  campaign_name?: string
+}
+
+function campaignLabel(value: string | null) {
+  if (!value) return undefined
+  const sanitized = value.toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 60)
+  return sanitized || undefined
+}
+
+/** Keep only deliberate campaign labels; never forward arbitrary query state. */
+export function campaignAttribution(search: string): CampaignAttribution {
+  const params = new URLSearchParams(search)
+  const attribution: CampaignAttribution = {}
+  const source = campaignLabel(params.get('utm_source'))
+  const medium = campaignLabel(params.get('utm_medium'))
+  const name = campaignLabel(params.get('utm_campaign'))
+  if (source) attribution.campaign_source = source
+  if (medium) attribution.campaign_medium = medium
+  if (name) attribution.campaign_name = name
+  return attribution
+}
+
 const RUSSIAN_COMPARISON_PATHS = new Set([
   '/ru/fundednext-vs-bright-funded',
   '/ru/fundednext-vs-fundingpips',

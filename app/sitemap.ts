@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts, getAllPages, getAllCategories, getPostsByCategory } from '@/lib/mdx'
-import { getAllChallenges, getAllFirms } from '@/lib/firms'
+import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { FEATURES } from '@/lib/features'
 import { getAllCanonicalPairs, COMPARISON_EDITORIAL_DATE } from '@/lib/comparisons'
 import { LANDINGS, buildLandingPayload } from '@/lib/landings'
@@ -13,11 +13,14 @@ import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { isSourceHoldReview, isSourceHoldFirm } from '@/lib/reviewStatus'
 import {
   LOCALIZED_ROUTE_PAIRS,
+  RUSSIAN_ROUTE_EDITORIAL_DATES,
   RUSSIAN_ONLY_ROUTES,
   getLocalizedRoutePair,
   russianRouteLastModified,
 } from '@/lib/localizedRoutes'
 import russianMarketEvidence from '@/content/data/russian-market-evidence.json'
+import russianBrightEvidence from '@/content/data/russian-bright-funded-evidence.json'
+import russianFundedNextReviewEvidence from '@/content/data/russian-fundednext-review-evidence.json'
 import russianDiasporaEvidence from '@/content/data/russian-diaspora-evidence.json'
 import russianCTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
 import russianFundedNextInstantEvidence from '@/content/data/russian-fundednext-instant-evidence.json'
@@ -243,7 +246,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...pageRoutes,
   ]
 
-  const fundedNextLastModified = firms.find(firm => firm.name === 'FundedNext')?.lastUpdated
   const russianChallengeLastModified = (...firmSlugs: string[]) => {
     const capturedAt = challenges
       .filter(challenge => firmSlugs.includes(challenge.firmSlug))
@@ -252,15 +254,74 @@ export default function sitemap(): MetadataRoute.Sitemap {
       .at(-1)
     return new Date(capturedAt || challengeLastModified)
   }
+  const russianOldestChallengeLastModified = (...firmSlugs: string[]) => {
+    const capturedAt = challenges
+      .filter(challenge => firmSlugs.includes(challenge.firmSlug))
+      .map(challenge => challenge.sourceCapturedAt)
+      .filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date))
+      .sort()[0]
+    return new Date(capturedAt || russianMarketEvidence.capturedAt)
+  }
+  const russianFtmoCaptures = challenges.filter(challenge => challenge.firmSlug === 'ftmo')
+  const russianFtmoLastModified = new Date(
+    russianFtmoCaptures.filter(challenge => isChallengeFresh(challenge)).map(challenge => challenge.sourceCapturedAt).sort().at(-1)
+      ?? russianFtmoCaptures.map(challenge => challenge.sourceCapturedAt).sort().at(-1)
+      ?? russianMarketEvidence.capturedAt,
+  )
+  const russianPartnerSlugs = ['fundednext', 'bright-funded', 'fundingpips']
+  const russianEligiblePartnerSlugs = russianPartnerSlugs.filter(slug =>
+    firms.some(firm => slugify(firm.name) === slug && firm.affiliateUrl),
+  )
+  const russianPayoutLastModified = new Date([
+    ...challenges.filter(challenge => russianEligiblePartnerSlugs.includes(challenge.firmSlug) && isChallengeFresh(challenge))
+      .map(challenge => challenge.sourceCapturedAt),
+    ...russianMarketEvidence.payoutEvidence.filter(evidence => russianEligiblePartnerSlugs.includes(evidence.firmSlug))
+      .map(evidence => evidence.sourceCapturedAt),
+  ].sort().at(-1) ?? russianMarketEvidence.capturedAt)
+  const russianKycLastModified = new Date([
+    ...challenges.filter(challenge => russianEligiblePartnerSlugs.includes(challenge.firmSlug) && isChallengeFresh(challenge))
+      .map(challenge => challenge.sourceCapturedAt),
+    ...russianMarketEvidence.kycEvidence.filter(evidence => russianEligiblePartnerSlugs.includes(evidence.firmSlug))
+      .map(evidence => evidence.sourceCapturedAt),
+  ].sort().at(-1) ?? russianMarketEvidence.capturedAt)
+  const russianPrimaryComparisonLastModified = new Date([
+    ...challenges.filter(challenge => ['fundednext', 'bright-funded'].includes(challenge.firmSlug))
+      .map(challenge => challenge.sourceCapturedAt),
+    russianMarketEvidence.capturedAt,
+    russianFundedNextReviewEvidence.sources.payoutGeneral.sourceCapturedAt,
+    russianBrightEvidence.sources.rules.sourceCapturedAt,
+    russianBrightEvidence.sources.reward.sourceCapturedAt,
+    russianBrightEvidence.sources.platforms.sourceCapturedAt,
+    ...russianMarketEvidence.payoutEvidence.filter(evidence => ['fundednext', 'bright-funded'].includes(evidence.firmSlug))
+      .map(evidence => evidence.sourceCapturedAt),
+    ...russianMarketEvidence.kycEvidence.filter(evidence => ['fundednext', 'bright-funded'].includes(evidence.firmSlug))
+      .map(evidence => evidence.sourceCapturedAt),
+  ].filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date)).sort().at(-1) ?? russianMarketEvidence.capturedAt)
+  const russianReviewsLastModified = new Date(
+    challenges.filter(challenge => ['fundednext', 'bright-funded'].includes(challenge.firmSlug)
+      && russianEligiblePartnerSlugs.includes(challenge.firmSlug) && isChallengeFresh(challenge))
+      .map(challenge => challenge.sourceCapturedAt).sort().at(-1) ?? russianMarketEvidence.capturedAt,
+  )
+  const russianDealsLastModified = new Date(
+    getAllDeals().map(deal => deal.verifiedOn).sort().at(-1)
+      ?? RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/promokody-prop-firm'],
+  )
   const russianDataLastModified = new Map<string, Date>([
     ['/ru', challengeComparisonLastDate],
     ['/ru/luchshie-prop-firmy', challengeComparisonLastDate],
-    ['/ru/obzor-fundednext', new Date(fundedNextLastModified || challengeLastModified)],
+    ['/ru/obzor-fundednext', russianOldestChallengeLastModified('fundednext')],
     ['/ru/obzor-fundingpips', russianChallengeLastModified('fundingpips')],
+    ['/ru/obzor-bright-funded', russianOldestChallengeLastModified('bright-funded')],
+    ['/ru/obzor-ftmo', russianFtmoLastModified],
+    ['/ru/promokody-prop-firm', russianDealsLastModified],
+    ['/ru/fundednext-vs-bright-funded', russianPrimaryComparisonLastModified],
     [
       '/ru/fundednext-vs-fundingpips',
-      russianChallengeLastModified('fundednext', 'fundingpips'),
+      russianOldestChallengeLastModified('fundednext', 'fundingpips'),
     ],
+    ['/ru/vyplaty-prop-firm', russianPayoutLastModified],
+    ['/ru/prop-firmy-bez-kyc', russianKycLastModified],
+    ['/ru/otzyvy-prop-firm', russianReviewsLastModified],
     ['/ru/prop-firmy-bez-chelendzha', russianChallengeLastModified('fundednext', 'fundingpips', 'tradeify', 'lucid-trading', 'alpha-capital', 'city-traders-imperium', 'maven', 'crypto-fund-trader', 'fxify')],
   ])
   const russianRoutes: MetadataRoute.Sitemap = LOCALIZED_ROUTE_PAIRS.map(pair => ({

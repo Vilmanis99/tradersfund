@@ -280,18 +280,21 @@ export default function RussianWhatIsPropFirmPage() {
 
       <section className="ru-section" data-russian-global-funnel="fundednext-bright-funded">
         <div className="ru-shell ru-content">
-          <h2>Два главных партнёра: {products.length} продуктов вместо 2 логотипов</h2>
+          <h2>Два главных партнёра: сравнение программ вместо 2 логотипов</h2>
           <p>
             FundedNext и Bright Funded — наши 2 основных коммерческих маршрута, но партнёрство не превращает их
-            в универсальные варианты. Текущая выборка содержит {fundedNextProducts.length} продукта FundedNext и {brightProducts.length} продукта Bright Funded,
-            {pricedTierCount} ценовых уровней и диапазон от {phaseRange.at(0)} до {phaseRange.at(-1)} фаз.
-            Каждая строка ниже ведёт на первичную страницу продукта и показывает дату захвата.
+            в универсальные варианты. {products.length > 0 ? <>
+              Текущая выборка содержит {fundedNextProducts.length} продукта FundedNext и {brightProducts.length} продукта Bright Funded,
+              {pricedTierCount} ценовых уровней и диапазон от {phaseRange.at(0)} до {phaseRange.at(-1)} фаз.
+              Каждая строка ниже ведёт на первичную страницу продукта и показывает дату захвата.
+            </> : 'Сейчас нет программ с актуальной проверкой за 30 дней; перепроверьте первичные условия перед покупкой.'}
           </p>
           <div className="ru-table-wrap" data-russian-prop-definition-products={products.length}>
             <table className="ru-table">
-              <caption className="sr-only">Семь актуальных продуктов FundedNext и Bright Funded</caption>
+              <caption className="sr-only">{products.length} актуальных продуктов FundedNext и Bright Funded</caption>
             <thead><tr><th>Фирма и продукт</th><th>Цена</th><th>Оценка</th><th>Просадка</th><th>Базовая доля</th><th>Источник</th></tr></thead>
               <tbody>
+                {products.length === 0 && <tr><td colSpan={6}>Нет программ с актуальной проверкой за 30 дней.</td></tr>}
                 {products.map(product => (
                   <tr key={`${product.firmSlug}:${product.productSlug}`} data-russian-product-example={`${product.firmSlug}:${product.productSlug}`}>
                     <td><strong>{productFirm(product)}</strong><br />{product.productName}</td>

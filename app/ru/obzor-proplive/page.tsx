@@ -248,7 +248,7 @@ export default function RussianPropLiveReviewPage() {
               </article>
             ))}
           </div>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">все шесть исследовательских карточек</Link>; глобальное решение: <Link href="/ru/fundednext-vs-bright-funded">сравнение 7 продуктов FundedNext и Bright Funded</Link>.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">все шесть исследовательских карточек</Link>; глобальное решение: <Link href="/ru/fundednext-vs-bright-funded">сравнение программ FundedNext и Bright Funded</Link>.</p>
         </div>
       </section>
 

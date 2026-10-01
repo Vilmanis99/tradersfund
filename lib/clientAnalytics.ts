@@ -1,7 +1,7 @@
 'use client'
 
 import { track as trackVercel } from '@vercel/analytics'
-import { contentLocale, journeyStage } from './analyticsTaxonomy'
+import { campaignAttribution, contentLocale, journeyStage } from './analyticsTaxonomy'
 
 export const SITE_ANALYTICS_EVENT = 'tfh:site-analytics-event'
 
@@ -26,6 +26,7 @@ export function trackSiteEvent(
   const pathname = window.location.pathname
   const attributedProperties = {
     ...properties,
+    ...campaignAttribution(window.location.search),
     content_group: journeyStage(pathname),
     locale: contentLocale(pathname),
   }

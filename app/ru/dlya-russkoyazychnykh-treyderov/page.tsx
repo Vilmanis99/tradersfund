@@ -7,7 +7,7 @@ import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import {
   getRussianDiasporaCountryRows,
   russianDiasporaEvidence,
@@ -114,7 +114,7 @@ export default function RussianDiasporaGuidePage() {
     inLanguage: 'ru',
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
-    dateModified: russianDiasporaEvidence.capturedAt,
+    dateModified: russianRouteDateModified(PATH, russianDiasporaEvidence.capturedAt),
   }
 
   return (
@@ -396,8 +396,8 @@ export default function RussianDiasporaGuidePage() {
             <article className="ru-card">
               <ListChecks size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Не выбран конкретный продукт</h3>
-              <p className="ru-muted">Если выбор всё ещё сделан только по бренду, сопоставьте 7 продуктов FundedNext и Bright Funded по этапам, просадке, первой выплате и валюте оплаты.</p>
-              <Link href="/ru/fundednext-vs-bright-funded" className="ru-card-link">Сравнить 7 продуктов →</Link>
+              <p className="ru-muted">Если выбор всё ещё сделан только по бренду, сопоставьте программы FundedNext и Bright Funded по этапам, просадке, первой выплате и валюте оплаты. Число доступных строк зависит от свежести источников.</p>
+              <Link href="/ru/fundednext-vs-bright-funded" className="ru-card-link">Сравнить программы →</Link>
             </article>
             <article className="ru-card">
               <Globe2 size={22} color="var(--accent-light)" aria-hidden="true" />

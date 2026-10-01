@@ -24,9 +24,10 @@ import {
   isChallengeFresh,
   minimumCostToFundedUsd,
 } from '../lib/firms.ts'
-import { getAllDeals } from '../lib/deals.ts'
+import { getAllDeals, rankDeals } from '../lib/deals.ts'
 import { getChallengeWatchEntries } from '../lib/challengeWatch.ts'
 import { filterComparisonRows } from '../lib/comparisonDirectory.ts'
+import { getOverlay } from '../lib/comparisons.ts'
 import { rankCurrentFirmAlternatives } from '../lib/firmAlternatives.ts'
 import {
   buildRelatedComparisons,
@@ -321,6 +322,12 @@ for (const page of pages) {
   if (h1Count !== 1) errors.push(`${path}: expected 1 h1, found ${h1Count}`)
   if (/\bhref=["']#["']/i.test(page.html)) {
     errors.push(`${path}: contains an href="#" placeholder`)
+  }
+  if (path === '/ru' || path.startsWith('/ru/')) {
+    const footerHtml = firstMatch(page.html, /<footer\b[^>]*>([\s\S]*?)<\/footer>/i)
+    if (!/<a\b[^>]*href="\/ru\/obzor-bright-funded"[^>]*>Обзор BrightFunded<\/a>/.test(footerHtml)) {
+      errors.push(`${path}: Russian footer does not link to the BrightFunded review with the official brand spelling`)
+    }
   }
   const reviewedFirm = firmByReviewPath.get(path)
   if (reviewedFirm) {
@@ -749,6 +756,25 @@ for (const pair of russianRoutePairs) {
   }
 }
 
+const activeRussianDeals = rankDeals(getAllDeals(), firmRecords)
+const activeRussianBrightDeals = activeRussianDeals.filter(deal => deal.firmSlug === 'bright-funded')
+const activeRussianFundedNextDeal = activeRussianDeals.find(deal => deal.firmSlug === 'fundednext')
+const activeRussianFundingPipsDeal = activeRussianDeals.find(deal => deal.firmSlug === 'fundingpips')
+const russianDealCampaign = deal => `ru-deals-${deal.firmSlug}-${deal.code?.toLowerCase() ?? deal.mechanism}`
+const russianDealMechanisms = ['checkout-code', 'link-applied', 'earned-coupon']
+  .filter(mechanism => activeRussianDeals.some(deal => deal.mechanism === mechanism)).join('+') || 'none'
+const russianFnFundingPipsCaptures = ['fundednext', 'fundingpips']
+  .flatMap(slug => getChallengesByFirm(slug))
+  .map(product => product.sourceCapturedAt)
+  .filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date))
+  .sort()
+const russianFnFundingPipsDate = [
+  RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/fundednext-vs-fundingpips'],
+  russianFnFundingPipsCaptures[0],
+].filter(Boolean).sort().at(-1)
+const fundedNextInstantSourceUrl = getChallengesByFirm('fundednext')
+  .find(product => product.productSlug === 'stellar-instant')?.sourceUrl
+
 const russianExpectations = new Map([
   ['/ru', {
     title: 'Проп-фирмы для русскоязычных трейдеров: цены и правила',
@@ -763,6 +789,7 @@ const russianExpectations = new Map([
       'data-russian-home-hero-partners="fundednext-bright-funded"',
       'data-russian-home-hero-partner="fundednext"',
       'data-russian-home-hero-partner="bright-funded"',
+      'data-russian-partner-country-source-status=',
       'Проверить условия FundedNext',
       'Проверить условия Bright Funded',
       '/go/fundednext?from=ru-home-hero-fundednext',
@@ -866,7 +893,7 @@ const russianExpectations = new Map([
     h1: 'FundedNext или FundingPips: сравнение для русскоязычных трейдеров',
     markers: [
       'data-russian-partner-comparison="fundednext-fundingpips"',
-      'data-russian-comparison-editorial-date="2026-09-14"',
+      `data-russian-comparison-editorial-date="${russianFnFundingPipsDate}"`,
       'data-russian-country-boundary="comparison-not-access"',
       'data-russian-affiliate-disclosure="comparison"',
       'data-russian-comparison-product-count="9"',
@@ -878,7 +905,7 @@ const russianExpectations = new Map([
       'data-russian-comparison-decision="constraint-before-brand"',
       'data-russian-comparison-decision-cta="primary-first"',
       'Три пары продуктов, которые можно сравнивать без подмены модели',
-      'https://help.fundednext.com/en/articles/11641161-how-much-does-each-stellar-instant-account-cost',
+      ...(fundedNextInstantSourceUrl ? [fundedNextInstantSourceUrl] : []),
       'https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero',
       'https://fundednext.com/cfds/stellar-1-step',
       'https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex',
@@ -894,50 +921,52 @@ const russianExpectations = new Map([
   }],
   ['/ru/promokody-prop-firm', {
     title: 'Промокоды проп-фирм 2026: FundedNext и Bright',
-    h1: 'Промокоды проп-фирм: FundedNext, Bright Funded и реальные скидки',
+    h1: 'Промокоды проп-фирм: FundedNext, Bright Funded и проверка скидок',
     markers: [
       'data-russian-deals="verified-offers"',
       'data-russian-deals-guide="long-form-verified-offers"',
-      'data-russian-deal-count="5"',
+      `data-russian-deal-count="${activeRussianDeals.length}"`,
       'data-russian-offer-freshness="30-days"',
       'data-russian-deals-featured-partners="fundednext-bright-funded"',
       'data-russian-deals-article="checkout-intent-source-gated"',
       'data-russian-country-boundary="deals-not-access"',
       'data-russian-affiliate-disclosure="deals"',
-      'data-russian-deals-mechanisms="checkout-code+earned-coupon"',
+      `data-russian-deals-mechanisms="${russianDealMechanisms}"`,
       'data-russian-deals-fail-closed="conditional-firm-claims"',
-      'data-russian-deals-featured-partner="fundednext"',
-      'data-russian-deals-fundednext="earned-not-public"',
-      'data-russian-deals-discount-table="currency-preserved"',
-      'data-russian-deals-featured-partner="bright-funded"',
-      'data-russian-deals-bright="current-product-codes"',
-      'data-russian-deals-bright-price-rows="18"',
-      'data-russian-deals-secondary="fundingpips"',
+      ...(activeRussianFundedNextDeal ? [
+        'data-russian-deals-featured-partner="fundednext"',
+        'data-russian-deals-fundednext="earned-not-public"',
+        'data-russian-deals-discount-table="currency-preserved"',
+        `/go/fundednext?from=${russianDealCampaign(activeRussianFundedNextDeal)}`,
+        'FundedNext промокод: почему публичной строки нет',
+      ] : []),
+      ...(activeRussianBrightDeals.length ? [
+        'data-russian-deals-featured-partner="bright-funded"',
+        'data-russian-deals-bright="current-product-codes"',
+        'data-russian-deals-bright-price-rows=',
+        'цен Bright Funded после своего кода',
+        ...activeRussianBrightDeals.map(deal => `/go/bright-funded?from=${russianDealCampaign(deal)}`),
+      ] : [
+        'data-russian-bright-deal-fallback="no-current-code"',
+        '/go/bright-funded?from=ru-deals-bright-no-current-code',
+      ]),
+      ...(activeRussianFundingPipsDeal ? [
+        'data-russian-deals-secondary="fundingpips"',
+        `/go/fundingpips?from=${russianDealCampaign(activeRussianFundingPipsDeal)}`,
+        'FundingPips промокод',
+      ] : []),
       'data-russian-deals-decision="product-before-discount"',
       'data-russian-deals-checkout="final-total-controls"',
       'data-russian-deals-diaspora="language-not-residency"',
       'data-russian-deals-expiry="thirty-day-fail-closed"',
-      '/go/fundednext?from=ru-deals-fundednext-earned-coupon',
-      '/go/fundingpips?from=ru-deals-fundingpips-hello',
-      '/go/bright-funded?from=ru-deals-bright-funded-summer30',
-      '/go/bright-funded?from=ru-deals-bright-funded-summer25',
-      '/go/bright-funded?from=ru-deals-bright-funded-summer15',
-      '/go/fundednext?from=ru-deals-fundednext-earned-coupon-table',
-      '/go/fundingpips?from=ru-deals-fundingpips-hello-table',
-      '/go/bright-funded?from=ru-deals-bright-funded-summer30-table',
-      '/go/bright-funded?from=ru-deals-bright-funded-summer25-table',
-      '/go/bright-funded?from=ru-deals-bright-funded-summer15-table',
-      'HELLO',
-      'SUMMER30',
-      'SUMMER25',
-      'SUMMER15',
+      ...activeRussianDeals.flatMap(deal => [
+        `/go/${deal.firmSlug}?from=${russianDealCampaign(deal)}-table`,
+        ...(deal.code ? [deal.code] : []),
+      ]),
       '/ru/obzor-fundednext',
       '/ru/obzor-bright-funded',
       '/ru/obzor-fundingpips',
       '/ru/fundednext-vs-bright-funded',
-      'FundedNext промокод: почему публичной строки нет',
-      'цен Bright Funded после своего кода',
-      'FundingPips промокод',
       'Русскоязычный читатель — не обязательно резидент России',
     ],
   }],
@@ -1022,6 +1051,7 @@ const russianExpectations = new Map([
       'data-russian-kyc-evidence="fundednext"',
       'data-russian-kyc-evidence="bright-funded"',
       'data-russian-kyc-evidence="fundingpips"',
+      'data-russian-kyc-source-status=',
       'data-russian-kyc-featured-partners="fundednext-bright-funded"',
       'data-russian-kyc-featured-partner="fundednext"',
       'data-russian-kyc-featured-partner="bright-funded"',
@@ -1038,7 +1068,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/luchshie-prop-firmy', {
-    title: 'Рейтинг проп-компаний 2026: Россия и глобальные фирмы',
+    title: 'Проп-компании в России и за рубежом: рейтинг 2026',
     h1: 'Рейтинг проп-компаний 2026 для русскоязычных трейдеров',
     markers: [
       'data-russian-ranking-article="decision-first"',
@@ -1047,6 +1077,7 @@ const russianExpectations = new Map([
       'data-russian-ranking-primary-partner="fundednext"',
       'data-russian-ranking-primary-partner="bright-funded"',
       'data-russian-affiliate-disclosure="ranking-primary-partners"',
+      'data-russian-funnel-intent="ranking-finder"',
       'Доступность платформы уточняйте для выбранной программы и страны.',
       '/go/fundednext?from=ru-ranking-primary-fundednext',
       '/go/bright-funded?from=ru-ranking-primary-bright-funded',
@@ -1122,13 +1153,15 @@ const russianExpectations = new Map([
     markers: [
       'data-russian-fundednext-article="long-form"',
       'data-russian-fundednext-editorial-shell="review-parity"',
-      'data-russian-fundednext-current-offer="earned-coupon"',
+      ...(activeRussianFundedNextDeal ? ['data-russian-fundednext-current-offer="earned-coupon"'] : []),
       'data-russian-fundednext-reviews="aggregate-not-payout-proof"',
       'Отзывы о FundedNext: что означают',
       '/ru/otzyvy-prop-firm#review-checklist',
-      'а не публичный промокод.',
-      '/ru/promokody-prop-firm#fundednext-promokod',
-      '/go/fundednext?from=ru-fundednext-review-free-trial',
+      ...(activeRussianFundedNextDeal ? [
+        'а не публичный промокод.',
+        '/ru/promokody-prop-firm#fundednext-promokod',
+        '/go/fundednext?from=ru-fundednext-review-free-trial',
+      ] : []),
       '/ru/fundednext-stellar-instant',
       'data-fundednext-russia-access="conflicting"',
       'data-fundednext-russian-products="',
@@ -1138,7 +1171,7 @@ const russianExpectations = new Map([
   }],
   ['/ru/obzor-fundingpips', {
     title: 'FundingPips: обзор 2026, цены, правила и выплаты',
-    h1: 'FundingPips: обзор 2026 — 5 продуктов и 27 цен',
+    h1: 'FundingPips: обзор 2026 — цены, правила и выплаты',
     markers: [
       'data-russian-partner-review="fundingpips"',
       'data-russian-partner-article="fundingpips"',
@@ -1160,8 +1193,9 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-bright-funded', {
-    title: 'Bright Funded: обзор 2026, цены, правила и выплаты',
-    h1: 'Bright Funded: обзор 2026, цены, правила и выплаты',
+    title: 'BrightFunded: обзор 2026, цены, правила и выплаты',
+    h1: 'BrightFunded: обзор 2026, цены, правила и выплаты',
+    descriptionStartsWith: 'BrightFunded: обзор на русском',
     markers: [
       'data-russian-partner-review="bright-funded"',
       'data-russian-bright-article="long-form"',
@@ -1176,6 +1210,8 @@ const russianExpectations = new Map([
       'data-russian-bright-price-count="18"',
       'data-russian-bright-truecost="18"',
       'data-russian-bright-payouts="eur-usdc"',
+      'data-russian-bright-platforms="dated-source"',
+      'https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer',
       'data-russian-bright-diaspora="currency-first"',
       'data-russian-affiliate-disclosure="bright-funded"',
       'data-russian-bright-alternatives="failure-point-routing"',
@@ -1306,7 +1342,7 @@ const russianExpectations = new Map([
       'Free Trial: отдельный MT5-сервер,',
       '/go/fundednext?from=ru-fundednext-mt5-hero',
       '/go/fundednext?from=ru-fundednext-mt5-products',
-      '/go/fundednext?from=ru-fundednext-mt5-free-trial',
+      ...(activeRussianFundedNextDeal ? ['/go/fundednext?from=ru-fundednext-mt5-free-trial'] : []),
       '/go/fundednext?from=ru-fundednext-mt5-verdict',
       '/go/bright-funded?from=ru-fundednext-mt5-alternative-bright-funded',
       'https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext',
@@ -1350,7 +1386,7 @@ const russianExpectations = new Map([
       '$59.99–$599.99',
       'не совпадает с правилом «10% дешевле»',
       '/go/fundednext?from=ru-fundednext-instant-hero',
-      '/go/fundednext?from=ru-fundednext-instant-free-trial',
+      ...(activeRussianFundedNextDeal ? ['/go/fundednext?from=ru-fundednext-instant-free-trial'] : []),
       '/go/fundednext?from=ru-fundednext-instant-payout',
       '/go/fundednext?from=ru-fundednext-instant-verdict',
       '/go/bright-funded?from=ru-fundednext-instant-alternative-bright-funded',
@@ -1387,6 +1423,8 @@ const russianExpectations = new Map([
       '/ru/fundednext-vs-bright-funded',
       'А-Лаб Групп',
       'TeamTraders',
+      'data-russian-teamtraders-local-source="2026-10-01"',
+      'Отдельная проп-оферта сейчас недоступна',
       'Trade System',
     ],
   }],
@@ -1453,7 +1491,8 @@ const russianExpectations = new Map([
       'data-russian-teamtraders-rules="manual-intraday"',
       'data-russian-teamtraders-payouts="demo-70-real-95"',
       'data-russian-teamtraders-source-conflict="current-vs-legacy"',
-      'data-russian-teamtraders-legal="offer-before-registration"',
+      'data-russian-teamtraders-legal="prop-offer-unavailable"',
+      'data-russian-teamtraders-legal-availability="prop-offer-unavailable"',
       'data-russian-teamtraders-checklist="eight-fields"',
       'data-russian-affiliate-disclosure="teamtraders-global-options"',
       'data-russian-teamtraders-global-partner="fundednext"',
@@ -1461,7 +1500,7 @@ const russianExpectations = new Map([
       '/go/fundednext?from=ru-teamtraders-global-fundednext',
       '/go/bright-funded?from=ru-teamtraders-global-bright-funded',
       'https://teamtraders.ru/faq',
-      'https://teamtraders.ru/oferta_prop/',
+      'https://teamtraders.ru/rules',
       '10 торговых дней',
       '70%',
       '95%',
@@ -1538,6 +1577,18 @@ for (const [path, expectation] of russianExpectations) {
   }
   if (title !== expectation.title || h1 !== expectation.h1) {
     errors.push(`${path}: Russian title or H1 disagrees with the acquisition brief`)
+  }
+  if (expectation.descriptionStartsWith) {
+    const description = decodeHtml(firstMatch(
+      probe.html,
+      /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+    ) || firstMatch(
+      probe.html,
+      /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+    ))
+    if (!description.startsWith(expectation.descriptionStartsWith) || articleSchema?.description !== description) {
+      errors.push(`${path}: search description must use the official brand spelling and match Article schema`)
+    }
   }
   if (
     !probe.html.includes('lang="ru"')
@@ -1736,16 +1787,13 @@ for (const [path, href] of [
   ['/ru/fundednext-vs-fundingpips', '/go/fundednext?from=ru-comparison-fundednext-fundingpips'],
   ['/ru/fundednext-vs-fundingpips', '/go/fundednext?from=ru-comparison-fit-fundednext'],
   ['/ru/fundednext-vs-fundingpips', '/go/fundingpips?from=ru-comparison-fit-fundingpips'],
-  ['/ru/promokody-prop-firm', '/go/fundednext?from=ru-deals-fundednext-earned-coupon'],
-  ['/ru/promokody-prop-firm', '/go/fundingpips?from=ru-deals-fundingpips-hello'],
-  ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer30'],
-  ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer25'],
-  ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer15'],
-  ['/ru/promokody-prop-firm', '/go/fundednext?from=ru-deals-fundednext-earned-coupon-table'],
-  ['/ru/promokody-prop-firm', '/go/fundingpips?from=ru-deals-fundingpips-hello-table'],
-  ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer30-table'],
-  ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer25-table'],
-  ['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-funded-summer15-table'],
+  ...activeRussianDeals.flatMap(deal => [
+    ['/ru/promokody-prop-firm', `/go/${deal.firmSlug}?from=${russianDealCampaign(deal)}`],
+    ['/ru/promokody-prop-firm', `/go/${deal.firmSlug}?from=${russianDealCampaign(deal)}-table`],
+  ]),
+  ...(!activeRussianBrightDeals.length && firmRecords.some(firm => firm.name === 'Bright Funded' && firm.affiliateUrl)
+    ? [['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-no-current-code']]
+    : []),
   ['/ru/vyplaty-prop-firm', '/go/fundednext?from=ru-payouts-fundednext'],
   ['/ru/vyplaty-prop-firm', '/go/fundingpips?from=ru-payouts-fundingpips'],
   ['/ru/vyplaty-prop-firm', '/go/bright-funded?from=ru-payouts-bright-funded'],
@@ -1788,17 +1836,17 @@ for (const [path, href] of [
   ['/ru/prop-firmy-s-ctrader', '/go/bright-funded?from=ru-ctrader-verdict-bright-funded'],
   ['/ru/fundednext-mt5', '/go/fundednext?from=ru-fundednext-mt5-hero'],
   ['/ru/fundednext-mt5', '/go/fundednext?from=ru-fundednext-mt5-products'],
-  ['/ru/fundednext-mt5', '/go/fundednext?from=ru-fundednext-mt5-free-trial'],
+  ...(activeRussianFundedNextDeal ? [['/ru/fundednext-mt5', '/go/fundednext?from=ru-fundednext-mt5-free-trial']] : []),
   ['/ru/fundednext-mt5', '/go/fundednext?from=ru-fundednext-mt5-verdict'],
   ['/ru/fundednext-mt5', '/go/bright-funded?from=ru-fundednext-mt5-alternative-bright-funded'],
   ['/ru/fundednext-stellar-instant', '/go/fundednext?from=ru-fundednext-instant-hero'],
-  ['/ru/fundednext-stellar-instant', '/go/fundednext?from=ru-fundednext-instant-free-trial'],
+  ...(activeRussianFundedNextDeal ? [['/ru/fundednext-stellar-instant', '/go/fundednext?from=ru-fundednext-instant-free-trial']] : []),
   ['/ru/fundednext-stellar-instant', '/go/fundednext?from=ru-fundednext-instant-payout'],
   ['/ru/fundednext-stellar-instant', '/go/fundednext?from=ru-fundednext-instant-verdict'],
   ['/ru/fundednext-stellar-instant', '/go/bright-funded?from=ru-fundednext-instant-alternative-bright-funded'],
   ['/ru/luchshie-prop-firmy', '/go/fundednext?from=ru-ranking-primary-fundednext'],
   ['/ru/luchshie-prop-firmy', '/go/bright-funded?from=ru-ranking-primary-bright-funded'],
-  ['/ru/obzor-fundednext', '/go/fundednext?from=ru-fundednext-review-free-trial'],
+  ...(activeRussianFundedNextDeal ? [['/ru/obzor-fundednext', '/go/fundednext?from=ru-fundednext-review-free-trial']] : []),
   ['/ru', '/go/fundednext?from=ru-home-hero-fundednext'],
   ['/ru', '/go/bright-funded?from=ru-home-hero-bright-funded'],
 ]) {
@@ -2513,8 +2561,11 @@ if (comparisonHubProbe.status !== 200) {
   const fundedNextCurated = [...comparisonHubProbe.html.matchAll(
     /<a\b[^>]*\bdata-curated-matchup="ftmo-vs-fundednext"[^>]*>/gi,
   )][0]?.[0]
-  if (!fundedNextCurated) {
+  const currentFtmoFundedNextOverlay = getOverlay('ftmo-vs-fundednext')
+  if (currentFtmoFundedNextOverlay && !fundedNextCurated) {
     errors.push(`${comparisonHubPath}: current FTMO-vs-FundedNext editorial path is not featured`)
+  } else if (!currentFtmoFundedNextOverlay && fundedNextCurated) {
+    errors.push(`${comparisonHubPath}: stale FTMO-vs-FundedNext editorial path is still featured`)
   }
   if (comparisonHubText.includes('★ 9') || comparisonHubText.includes('★ 8')) {
     errors.push(`${comparisonHubPath}: restored score-only matchup tiles`)
@@ -2732,8 +2783,9 @@ if (ukLandingProbe.status !== 200) {
   if (cards.length !== expectedUkFirms.length) {
     errors.push(`${ukLandingPath}: rendered ${cards.length} firms, expected ${expectedUkFirms.length}`)
   }
-  if (itemListCount !== 1) {
-    errors.push(`${ukLandingPath}: rendered ${itemListCount} ItemLists, expected 1`)
+  const expectedUkItemLists = expectedUkFirms.length > 0 ? 1 : 0
+  if (itemListCount !== expectedUkItemLists) {
+    errors.push(`${ukLandingPath}: rendered ${itemListCount} ItemLists, expected ${expectedUkItemLists}`)
   }
 
   expectedUkFirms.forEach(({ firm, evidence, products }, index) => {
@@ -2805,15 +2857,18 @@ if (ukLandingProbe.status !== 200) {
     }
   }
 
-  const fundedNextCta = [...ukLandingProbe.html.matchAll(/<a\b[^>]*>/gi)]
-    .map(match => match[0])
-    .find(tag => tag.includes('href="/go/fundednext?from=best-prop-firms-in-uk"'))
-  if (
-    !fundedNextCta
-    || !fundedNextCta.includes('rel="sponsored nofollow noopener"')
-    || !fundedNextCta.includes('target="_blank"')
-  ) {
-    errors.push(`${ukLandingPath}: FundedNext ranking CTA is missing affiliate attribution`)
+  for (const { firm } of expectedUkFirms.filter(({ firm }) => firm.affiliateUrl)) {
+    const slug = outboundSlug(firm.name)
+    const partnerCta = [...ukLandingProbe.html.matchAll(/<a\b[^>]*>/gi)]
+      .map(match => match[0])
+      .find(tag => tag.includes(`href="/go/${slug}?from=best-prop-firms-in-uk"`))
+    if (
+      !partnerCta
+      || !partnerCta.includes('rel="sponsored nofollow noopener"')
+      || !partnerCta.includes('target="_blank"')
+    ) {
+      errors.push(`${ukLandingPath}: ${firm.name} ranking CTA is missing affiliate attribution`)
+    }
   }
   if (
     ukText.includes('Every firm below accepts UK-based traders')
@@ -2871,13 +2926,14 @@ if (usLandingProbe.status !== 200) {
   if (cards.length !== expectedUsFirms.length) {
     errors.push(`${usLandingPath}: rendered ${cards.length} firms, expected ${expectedUsFirms.length}`)
   }
-  if (expectedUsFirms.length !== 4 || expectedUsProductCount !== 14) {
+  if (expectedUsFirms.length > 0 && (expectedUsFirms.length !== 4 || expectedUsProductCount !== 14)) {
     errors.push(
       `${usLandingPath}: evidence fixture must resolve to 4 firms and 14 products; received ${expectedUsFirms.length} and ${expectedUsProductCount}`,
     )
   }
-  if (itemListCount !== 1) {
-    errors.push(`${usLandingPath}: rendered ${itemListCount} ItemLists, expected 1`)
+  const expectedUsItemLists = expectedUsFirms.length > 0 ? 1 : 0
+  if (itemListCount !== expectedUsItemLists) {
+    errors.push(`${usLandingPath}: rendered ${itemListCount} ItemLists, expected ${expectedUsItemLists}`)
   }
 
   expectedUsFirms.forEach(({ firm, evidence, products }, index) => {
@@ -2909,7 +2965,7 @@ if (usLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    'Compare 4 policy-checked prop firms for U.S. traders across 14 exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.'
+    `Compare ${expectedUsFirms.length} policy-checked prop firms for U.S. traders across ${expectedUsProductCount} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`
   const renderedDescription = decodeHtml(firstMatch(
     usLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -2922,9 +2978,9 @@ if (usLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    'Best Prop Firms for US Traders (2026): 4 Checked | TFH',
-    'Best Prop Firms for U.S. Traders (2026): 4 Policy-Checked',
-    '4 policy-checked firms across 14 mapped products',
+    `Best Prop Firms for US Traders (2026): ${expectedUsFirms.length} Checked | TFH`,
+    `Best Prop Firms for U.S. Traders (2026): ${expectedUsFirms.length} Policy-Checked`,
+    `${expectedUsFirms.length} policy-checked firms across ${expectedUsProductCount} mapped products`,
     'U.S. access is not a regulatory badge.',
     'What U.S. traders should verify',
     'Does access mean the firm is CFTC-registered?',
@@ -2949,15 +3005,18 @@ if (usLandingProbe.status !== 200) {
     if (!usLandingProbe.html.includes(required)) errors.push(`${usLandingPath}: missing ${required}`)
   }
 
-  const fundedNextCta = [...usLandingProbe.html.matchAll(/<a\b[^>]*>/gi)]
-    .map(match => match[0])
-    .find(tag => tag.includes('href="/go/fundednext?from=best-prop-firms-in-us"'))
-  if (
-    !fundedNextCta
-    || !fundedNextCta.includes('rel="sponsored nofollow noopener"')
-    || !fundedNextCta.includes('target="_blank"')
-  ) {
-    errors.push(`${usLandingPath}: FundedNext ranking CTA is missing affiliate attribution`)
+  for (const { firm } of expectedUsFirms.filter(({ firm }) => firm.affiliateUrl)) {
+    const slug = outboundSlug(firm.name)
+    const partnerCta = [...usLandingProbe.html.matchAll(/<a\b[^>]*>/gi)]
+      .map(match => match[0])
+      .find(tag => tag.includes(`href="/go/${slug}?from=best-prop-firms-in-us"`))
+    if (
+      !partnerCta
+      || !partnerCta.includes('rel="sponsored nofollow noopener"')
+      || !partnerCta.includes('target="_blank"')
+    ) {
+      errors.push(`${usLandingPath}: ${firm.name} ranking CTA is missing affiliate attribution`)
+    }
   }
   if (
     usText.includes('CFTC-aware')
@@ -3653,6 +3712,11 @@ for (const backlinkPath of [
 
 const discountHubPath = '/prop-firm-discount-codes'
 const expectedDeals = getAllDeals()
+const expectedFundedNextCoupon = expectedDeals.find(deal =>
+  deal.firmSlug === 'fundednext' && deal.mechanism === 'earned-coupon' && deal.pct === 5)
+const currentFundedNextProducts = getChallengesByFirm('fundednext').filter(product => isChallengeFresh(product))
+const currentFundedNextTierCount = currentFundedNextProducts.reduce((count, product) => count
+  + product.accountSizes.filter(tier => tier.priceUsd != null || tier.priceEur != null).length, 0)
 const discountHubProbe = await fetchPage(new URL(discountHubPath, BASE))
 if (discountHubProbe.status !== 200) {
   errors.push(`${discountHubPath}: HTTP ${discountHubProbe.status || discountHubProbe.error}`)
@@ -3705,27 +3769,35 @@ if (discountHubProbe.status !== 200) {
   for (const required of [
     'Prop Firm Discount Codes & Offers (2026)',
     'Current verified offers',
-    'How the FundedNext 5% offer works',
-    'There is no public FundedNext code to copy',
     'Earned coupon',
-    '5% after Free Trial',
-    'New users · CFD plans · no resets',
-    'Compare 4 products and 22 prices',
+    ...(expectedFundedNextCoupon ? [
+      'How the FundedNext 5% offer works',
+      'There is no public FundedNext code to copy',
+      expectedFundedNextCoupon.amountLabel,
+      expectedFundedNextCoupon.scope,
+      `Compare ${currentFundedNextProducts.length} products and ${currentFundedNextTierCount} prices`,
+    ].filter(Boolean) : expectedDeals.some(deal => deal.firmSlug === 'fundednext')
+      ? [] : ['We have no FundedNext discount verified within the last 30 days']),
   ]) {
     if (!discountText.includes(required)) errors.push(`${discountHubPath}: missing ${required}`)
   }
   for (const required of [
-    'href="/go/fundednext?from=discount-hub-earned-coupon"',
-    'data-affiliate-placement="discount-hub-earned-coupon"',
-    'rel="sponsored nofollow noopener"',
     'href="/blog/fundednext-review"',
-    'href="/compare/ftmo-vs-fundednext"',
-    'href="/blog/ftmo-free-trial-explained"',
     'href="/true-cost-of-prop-firm-challenges"',
+    ...(expectedFundedNextCoupon ? [
+      'href="/go/fundednext?from=discount-hub-earned-coupon"',
+      'data-affiliate-placement="discount-hub-earned-coupon"',
+      'rel="sponsored nofollow noopener"',
+      'href="/compare/ftmo-vs-fundednext"',
+      'href="/blog/ftmo-free-trial-explained"',
+    ] : []),
   ]) {
     if (!discountHubProbe.html.includes(required)) {
       errors.push(`${discountHubPath}: missing ${required}`)
     }
+  }
+  if (!expectedFundedNextCoupon && discountHubProbe.html.includes('data-fundednext-offer-steps="earned-coupon"')) {
+    errors.push(`${discountHubPath}: expired FundedNext coupon instructions still render`)
   }
   for (const staleClaim of [
     'No verified offer today',
@@ -4289,6 +4361,11 @@ if (fundedNextReviewProbe.status !== 200) {
 }
 
 const ftmoFundedNextPath = '/compare/ftmo-vs-fundednext'
+const ftmoFundedNextOverlay = getOverlay('ftmo-vs-fundednext')
+const currentFtmoProducts = getChallengesByFirm('ftmo').filter(product => isChallengeFresh(product))
+const currentFundedNextProductsForMatchup = getChallengesByFirm('fundednext').filter(product => isChallengeFresh(product))
+const currentMatchupProductCount = currentFtmoProducts.length + currentFundedNextProductsForMatchup.length
+const hasTwoSidedMatchup = currentFtmoProducts.length > 0 && currentFundedNextProductsForMatchup.length > 0
 const ftmoFundedNextProbe = await fetchPage(new URL(ftmoFundedNextPath, BASE))
 if (ftmoFundedNextProbe.status !== 200) {
   errors.push(
@@ -4322,13 +4399,21 @@ if (ftmoFundedNextProbe.status !== 200) {
   if (title !== 'FTMO vs FundedNext (2026)') {
     errors.push(`${ftmoFundedNextPath}: incorrect title ${title}`)
   }
-  if (
-    description
-      !== 'FTMO vs FundedNext using current 2026 fees, base splits, drawdowns, refund timing, payout gates, platforms and 6 captured challenge products.'
-  ) {
+  const expectedDescription = ftmoFundedNextOverlay?.metaDescription
+    ?? (hasTwoSidedMatchup
+      ? `FTMO vs FundedNext: compare ${currentMatchupProductCount} challenge products by funded cost, profit split, drawdown and payout rules using first-party data.`
+      : `FTMO vs FundedNext: ${currentMatchupProductCount} product captures. ${[
+        ...(!currentFtmoProducts.length ? ['FTMO'] : []),
+        ...(!currentFundedNextProductsForMatchup.length ? ['FundedNext'] : []),
+      ].join(' and ')} needs a source recheck; no two-sided winner is published.`)
+  if (description !== expectedDescription) {
     errors.push(`${ftmoFundedNextPath}: current product meta description is missing`)
   }
-  if (h1 !== 'FTMO vs FundedNext (2026): 2 Products vs 4 Paths') {
+  const expectedH1 = ftmoFundedNextOverlay?.h1
+    ?? (hasTwoSidedMatchup
+      ? `FTMO vs FundedNext (2026): ${currentFtmoProducts.length} vs ${currentFundedNextProductsForMatchup.length} Products`
+      : 'FTMO vs FundedNext: product evidence needs rechecking')
+  if (h1 !== expectedH1) {
     errors.push(`${ftmoFundedNextPath}: incorrect product-specific H1 ${h1}`)
   }
   if (canonicalKey(canonical) !== canonicalKey(`${PRODUCTION_ORIGIN}${ftmoFundedNextPath}`)) {
@@ -4411,9 +4496,10 @@ if (ftmoFundedNextProbe.status !== 200) {
 
   const itemListCount = (ftmoFundedNextProbe.html.match(/"@type":"ItemList"/g) ?? []).length
   const faqPageCount = (ftmoFundedNextProbe.html.match(/"@type":"FAQPage"/g) ?? []).length
-  if (itemListCount !== 1 || faqPageCount !== 1) {
+  const expectedFaqPageCount = ftmoFundedNextOverlay?.faqs?.length ? 1 : 0
+  if (itemListCount !== 1 || faqPageCount !== expectedFaqPageCount) {
     errors.push(
-      `${ftmoFundedNextPath}: expected 1 ItemList and 1 FAQPage, found ${itemListCount} and ${faqPageCount}`,
+      `${ftmoFundedNextPath}: expected 1 ItemList and ${expectedFaqPageCount} FAQPage, found ${itemListCount} and ${faqPageCount}`,
     )
   }
   const productIndex = matchupText.indexOf('Product-level: FTMO vs FundedNext')
@@ -4673,6 +4759,11 @@ if (indiaShortlistProbe.status !== 200) {
 }
 
 const globalChangePath = '/prop-firm-challenge-changes'
+const fundingPipsCurrentWatchTitle = challengeWatchEntries.find(entry =>
+  entry.id === 'fundingpips-reward-cycles-minimum-days-2026-08-26')?.title
+if (!fundingPipsCurrentWatchTitle) {
+  errors.push('challenge watch: FundingPips reward-cycle correction is missing')
+}
 const globalChangeProbe = await fetchPage(new URL(globalChangePath, BASE))
 if (globalChangeProbe.status !== 200) {
   errors.push(
@@ -4700,7 +4791,7 @@ if (globalChangeProbe.status !== 200) {
     `${expectedGlobalVerified} verified changes`,
     `${expectedGlobalWatches} open watches`,
     `Showing ${expectedGlobalEntries} of ${expectedGlobalEntries} dated updates.`,
-    'FundingPips added monthly 100% cycles and changed minimum days',
+    ...(fundingPipsCurrentWatchTitle ? [fundingPipsCurrentWatchTitle] : []),
     'Alpha One prices do not identify the rule variant',
     'Alpha Capital disagrees on Alpha One payout schedules',
     'E8 Pro pages disagree on prices and configurable terms',
@@ -4739,7 +4830,7 @@ if (indiaChangeProbe.status !== 200) {
     '30 products',
     '10 open watches',
     'Showing 16 of 16 dated updates.',
-    'FundingPips added monthly 100% cycles and changed minimum days',
+    ...(fundingPipsCurrentWatchTitle ? [fundingPipsCurrentWatchTitle] : []),
     'Tradeify list prices and homepage promotions can diverge',
     'FundingPips separates the current Standard path from legacy 10% resets',
     "Alpha Capital's own pages disagree on a 25K Pro price",

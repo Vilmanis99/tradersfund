@@ -20,9 +20,10 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/obzor-bright-funded'
-const TITLE = 'Bright Funded: обзор 2026, цены, правила и выплаты'
-const DESCRIPTION = 'Обзор Bright Funded на русском: цены программ в EUR, статическая и трейлинг-просадка, условия выплат, отзывы Trustpilot и проверка доступа по стране.'
+const TITLE = 'BrightFunded: обзор 2026, цены, правила и выплаты'
+const DESCRIPTION = 'BrightFunded: обзор на русском — цены в EUR, статическая и трейлинг-просадка, выплаты, Trustpilot и проверка доступа по стране.'
 // Sharing copy stays unchanged pending the separately requested approval.
+const SOCIAL_TITLE = 'Bright Funded: обзор 2026, цены, правила и выплаты'
 const SOCIAL_DESCRIPTION = 'Отзывы о Bright Funded и обзор на русском: 3 программы, 18 цен в EUR, просадка, выплаты, Trustpilot и проверка ограничений по стране.'
 export const revalidate = 3600
 
@@ -36,8 +37,8 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
-  twitter: { card: 'summary_large_image', title: TITLE, description: SOCIAL_DESCRIPTION },
+  openGraph: { title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
+  twitter: { card: 'summary_large_image', title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION },
 }
 
 const drawdownLabels: Record<string, string> = {
@@ -85,7 +86,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Можно ли зарегистрироваться, проживая в России?',
-    a: 'Россия отсутствует в опубликованном списке шести стран от 20 апреля 2026 года, но это не индивидуальное разрешение. До оплаты запросите письменное подтверждение поддержки для своего гражданства, резидентства, способа оплаты и будущего метода выплаты; VPN и неверные данные использовать нельзя.',
+    a: `Россия не названа в списке шести стран, проверенном ${brightEvidence.sources.countries.sourceCapturedAt}, но это не индивидуальное разрешение. До оплаты запросите письменное подтверждение поддержки для своего гражданства, резидентства, способа оплаты и будущего метода выплаты; VPN и неверные данные использовать нельзя.`,
   },
   {
     q: 'У Bright Funded начальная доля трейдера 90%?',
@@ -111,10 +112,14 @@ const faqs: RussianFaqItem[] = [
 
 export default function RussianBrightFundedReviewPage() {
   const firm = getAllFirms().find(candidate => candidate.name === 'Bright Funded')
-  const publicDealPcts = getDealsByFirm('bright-funded')
+  const publicBrightDeals = getDealsByFirm('bright-funded')
+  const publicDealPcts = publicBrightDeals
     .map(deal => deal.pct)
     .filter((pct): pct is number => pct != null)
   const bestPublicDealPct = publicDealPcts.length ? Math.max(...publicDealPcts) : null
+  const offerStatusHref = publicBrightDeals.length > 0
+    ? '/ru/promokody-prop-firm#bright-funded-promokody'
+    : '/ru/promokody-prop-firm#bright-offer-status'
   const products = getChallengesByFirm('bright-funded')
   const freshProducts = products.filter(product => freshSource(product))
   const pricedTiers = freshProducts.flatMap(product => product.accountSizes.flatMap(tier =>
@@ -191,7 +196,7 @@ export default function RussianBrightFundedReviewPage() {
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / Bright Funded</div>
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {latestCapture}</div>
           <h1>{TITLE}</h1>
-          <p className="ru-lead">Bright Funded указывает стоимость участия в евро, а размер симулированного счёта — в долларах. Разбираем различия программ оценки: когда граница убытка остаётся фиксированной, когда движется за прибылью и какие условия нужно выполнить до запроса выплаты.</p>
+          <p className="ru-lead">Bright Funded (на официальном сайте — BrightFunded) указывает стоимость участия в евро, а размер симулированного счёта — в долларах. Разбираем различия программ оценки: когда граница убытка остаётся фиксированной, когда движется за прибылью и какие условия нужно выполнить до запроса выплаты.</p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
             <span>Автор: Edris Derakhshi</span>
             <span>Обновлено: {lastModified}</span>
@@ -343,7 +348,7 @@ export default function RussianBrightFundedReviewPage() {
             <div className="ru-content">
               <h2 id="prices">Базовые цены в евро</h2>
               <p>Счёт номинирован в USD, а участие оплачивается в EUR. Таблица сохраняет валюту фирмы и не конвертирует её по курсу, который устареет после публикации. Число цен со свежими данными: {pricedTiers.length}.</p>
-              <div className="ru-notice"><strong>Акционная цена не равна базовой.</strong> В таблице сохранены цены без временных скидок. Сверьте окончательную сумму, платформу и выбранные дополнения на странице оплаты; старый промокод не считается действующим предложением.</div>
+              <div className="ru-notice" data-russian-bright-offer-handoff="qualified-status"><strong>Акционная цена не равна базовой.</strong> В таблице сохранены цены без временных скидок. <Link href={offerStatusHref}>Проверьте статус рекламируемого кода</Link>, затем сверьте окончательную сумму, платформу и выбранные дополнения на странице оплаты. Код, опубликованный фирмой, не считается проверенной скидкой до подтверждения итоговой суммы.</div>
               {!pricedTiers.length && <p className="ru-notice" data-russian-bright-empty="recapture-required">Свежих подтверждённых цен сейчас нет. Датированный разбор правил ниже сохранён, но не подтверждает текущую стоимость. <Link href="/ru/luchshie-prop-firmy#podbor">Открыть подбор с датами источников →</Link></p>}
             </div>
             <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Цены программ Bright Funded — таблицу можно прокрутить">
@@ -416,6 +421,7 @@ export default function RussianBrightFundedReviewPage() {
             <h2 id="rules">Новости, удержание, автоматизация и возвраты</h2>
             <div className="ru-prose-stack">
               <section><h3>Новостное окно после оценки</h3><p>По справке от {brightEvidence.sources.news.sourceCapturedAt} на этапах оценки новостная торговля не ограничена. После оценки исполнение за 5 минут до и 5 минут после важной новости, затрагивающей инструмент, приводит к вычету прибыли; убыток остаётся. Само это нарушение не закрывает счёт. Исключение относится к тейк-профиту сделки длительностью не менее 48 часов, а не ко всем старым позициям.</p></section>
+              <section data-russian-bright-platforms="dated-source"><h3>Платформы зависят от страны</h3><p>В <a href={brightEvidence.sources.platforms.sourceUrl} target="_blank" rel="noopener noreferrer">справке BrightFunded</a>, проверенной {brightEvidence.sources.platforms.sourceCapturedAt}, перечислены DXTrade, cTrader и MT5. MT5 недоступна при гражданстве, резидентстве или проживании в США либо ОАЭ; cTrader — при тех же связях с США. Общие ограничения регистрации действуют отдельно. Подтвердите доступность выбранной платформы для своего профиля до оплаты.</p></section>
               <section><h3>Перенос позиции не отменяет риск</h3><p>В датированных записях программ разрешён перенос ночью и через выходные. Это не отменяет своп, ценовой разрыв при открытии рынка и лимиты убытка. До торговли проверьте актуальные условия выбранного счёта; статическая граница и граница вслед за открытой прибылью работают по-разному.</p></section>
               <section><h3>Советники и копирование требуют отдельной проверки</h3><p>В записях программ автоматизация и копирование отмечены как ограниченные. Уточните платформу, владельца копируемых счетов и разрешённый сценарий. Наличие поддержки советников не является разрешением копировать сделки чужого трейдера или сигнального сервиса.</p></section>
               <section><h3>Отмена покупки и возврат за прохождение — разные условия</h3><p>Политика, проверенная {brightEvidence.sources.refund.sourceCapturedAt}, разрешает отмену в течение 30 дней после покупки, если не совершено ни одной сделки. Обработка заявлена за 48 часов, зачисление — за 3–10 рабочих дней. Это не обещание вернуть взнос за успешное прохождение; условия такого дополнения нужно проверить отдельно при покупке.</p></section>

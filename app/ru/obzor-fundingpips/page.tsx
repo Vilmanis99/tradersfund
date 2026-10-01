@@ -3,11 +3,13 @@ import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianPartnerReview from '@/components/RussianPartnerReview'
 import { challengeTierEconomics, getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru/obzor-fundingpips'
 const TITLE = 'FundingPips: обзор 2026, цены, правила и выплаты'
 const DESCRIPTION = 'Обзор FundingPips на русском: продукты и цены в USD, варианты сплита, просадка, выплаты и проверка страны перед регистрацией.'
 const REWARD_METHODS_URL = 'https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods'
+const REWARD_METHODS_CAPTURED_AT = '2026-09-30'
 const GET_STARTED_URL = 'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started'
 const RESPONSIBLE_TRADING_URL = 'https://help.fundingpips.com/hc/en-us/articles/47328410434065-Responsible-Trading-Policy'
 const WORKSPACE_URL = 'https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace'
@@ -59,15 +61,15 @@ function FundingPipsDeepDive() {
             <table className="ru-table" data-russian-fundingpips-reward-routes="five-products">
               <thead><tr><th>Продукт</th><th>Более быстрый маршрут</th><th>100% ежемесячно</th><th>Что меняется</th></tr></thead>
               <tbody>
-                <tr><td>1 Step Flex</td><td>85% раз в 14 дней</td><td>30 дней</td><td>Правило стабильности 35%, 7 дней по 0,5%; Striking 1% уже действует</td></tr>
-                <tr><td>2 Step Flex</td><td>85% или 95% раз в 14 дней</td><td>30 дней</td><td>95% требует 3 дней по 0,5%; ежемесячно — 35%, 7 дней и Striking 1%</td></tr>
+                <tr><td>1 Step Flex</td><td>80% раз в 14 дней</td><td>30 дней</td><td>Правило стабильности 35%, 7 дней по 0,5%; Striking 1% уже действует</td></tr>
+                <tr><td>2 Step Flex</td><td>80% или 95% раз в 14 дней</td><td>30 дней</td><td>95% требует 3 дней по 0,5%; ежемесячно — 35%, 7 дней и Striking 1%</td></tr>
                 <tr><td>2 Step Pro</td><td>80% каждые 7 дней</td><td>30 дней</td><td>Ежемесячный маршрут добавляет 35%, 7 дней по 0,5% и Striking 1%</td></tr>
                 <tr><td>2 Step Standard</td><td>60% еженедельно, 80% раз в 2 недели или 90% по запросу</td><td>30 дней</td><td>Выплата по запросу требует 35% и 2% прибыли; ежемесячно — 35%, 7 дней и Striking 1%</td></tr>
                 <tr><td>FundingPips Zero</td><td>95% раз в 14 дней</td><td>не опубликован</td><td>Правило стабильности 15%, 7 дней по 0,25%, защитный запас 3%</td></tr>
               </tbody>
             </table>
           </div>
-          <p className="ru-muted">Для новых счетов 2 Step Flex по маршруту 85% действует минимум {twoStepFlex?.minTradingDays ?? '—'} торговый день на фазу; 2 Step Pro требует {pro?.minTradingDays ?? '—'} дня на фазу. Старые счета до 26 августа могут сохранить прежний минимум, поэтому дата создания аккаунта влияет на правило.</p>
+          <p className="ru-muted">Для новых счетов 2 Step Flex по маршруту 80% действует минимум {twoStepFlex?.minTradingDays ?? '—'} торговый день на фазу; 2 Step Pro требует {pro?.minTradingDays ?? '—'} дня на фазу. Старые счета до 26 августа могут сохранить прежний минимум, поэтому дата создания аккаунта влияет на правило.</p>
         </div>
       </section>
 
@@ -75,7 +77,7 @@ function FundingPipsDeepDive() {
         <div className="ru-shell" data-russian-fundingpips-deep-dive="payout-methods">
           <div className="ru-content">
             <h2>Как FundingPips выплачивает вознаграждение русскоязычному трейдеру</h2>
-            <p>Официальная страница способов выплаты перечисляет 4 метода: карта, криптовалюта, Rise и банковский перевод. FundingPips обрабатывает запрос 1–3 рабочих дня, затем кошельку или банку может понадобиться ещё 1–2 рабочих дня. До запроса нужно закрыть все сделки и ожидающие ордера, подождать минимум 15 минут и использовать карту, кошелёк или счёт на своё имя.</p>
+            <p>Официальная страница традиционных способов выплаты перечисляет 4 метода: карта, криптовалюта, Rise и банковский перевод. Отдельно она предлагает купить новый челлендж за reward или перевести reward в Tradin с рекламируемым бонусом 30%; это другие маршруты, а не пятый способ вывода денег. FundingPips обрабатывает запрос 1–3 рабочих дня, затем кошельку или банку может понадобиться ещё 1–2 рабочих дня. До запроса нужно закрыть все сделки и ожидающие ордера, подождать минимум 15 минут и использовать карту, кошелёк или счёт на своё имя.</p>
           </div>
           <div className="ru-table-wrap">
             <table className="ru-table" data-russian-fundingpips-payout-routes="four">
@@ -92,7 +94,7 @@ function FundingPipsDeepDive() {
             <h3>Что это значит для русскоязычной диаспоры</h3>
             <p>Pay to Card и банковский перевод прямо называют Бельгию, Францию, Германию, Италию, Нидерланды, Испанию и Великобританию среди поддерживаемых регионов, но конкретный банк всё равно может отклонить быстрый маршрут. Казахстан и Израиль в опубликованном списке этих двух методов не названы; это не доказывает отсутствие всех вариантов выплаты, но требует проверки криптовалюты или Rise внутри верифицированного профиля. Резидент ОАЭ не должен доходить до этого шага: страна прямо ограничена.</p>
             <p>Все счета FundingPips номинированы в USD, даже если на странице оплаты выбрана другая валюта. Если вы платите в EUR, GBP, KZT или ILS, учитывайте банковскую конвертацию. Для выплаты отдельно проверьте комиссии сети и платёжного сервиса.</p>
-            <p className="ru-source-line"><a href={REWARD_METHODS_URL} target="_blank" rel="noopener noreferrer">Официальные способы выплаты</a> · <a href={GET_STARTED_URL} target="_blank" rel="noopener noreferrer">оплата, валюта счёта и KYC</a> · проверено 2026-08-27.</p>
+            <p className="ru-source-line"><a href={REWARD_METHODS_URL} target="_blank" rel="noopener noreferrer">Официальные способы выплаты</a> · <a href={GET_STARTED_URL} target="_blank" rel="noopener noreferrer">оплата, валюта счёта и KYC</a> · проверено {REWARD_METHODS_CAPTURED_AT}.</p>
           </div>
         </div>
       </section>
@@ -179,11 +181,12 @@ function FundingPipsDeepDive() {
 }
 
 export default function RussianFundingPipsReviewPage() {
+  const payoutEvidenceDate = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundingpips')?.sourceCapturedAt ?? ''
   return (
     <RussianPartnerReview
       path={PATH}
       title={TITLE}
-      headline="FundingPips: обзор 2026 — 5 продуктов и 27 цен"
+      headline="FundingPips: обзор 2026 — цены, правила и выплаты"
       description={DESCRIPTION}
       firmName="FundingPips"
       firmSlug="fundingpips"
@@ -193,20 +196,20 @@ export default function RussianFundingPipsReviewPage() {
       lead={<>FundingPips публикует пять разных наборов правил и несколько циклов выплат. После обновлений 15 и 26 августа 2026 года сравнивать нужно не только цену и рекламный процент, но также минимальные дни, правило стабильности, Striking System и дату создания аккаунта.</>}
       countryNote={<>FundingPips прямо указывает, что не обслуживает резидентов ОАЭ и Вьетнама, а также юрисдикций из применимых санкционных списков. Русскоязычному трейдеру в Дубае этот маршрут не подходит; в любой другой стране сначала подтвердите резидентство, KYC, оплату и вывод.</>}
       verdict={[
-        { title: '1 Step Flex', body: <>Цель 12%, дневной лимит 3% и статический максимум 12%. Маршрут 85% работает раз в 14 дней; ежемесячные 100% добавляют правило стабильности 35% и семь дней минимум по 0,5%.</> },
-        { title: '2 Step Flex', body: <>Цели 10% и 6%, дневной лимит 4%, статический максимум 12%. Вариант с долей 85% требует один день на фазу, 95% — три прибыльных дня. Ежемесячная выплата с долей 100% добавляет отдельные условия допуска.</> },
+        { title: '1 Step Flex', body: <>Цель 12%, дневной лимит 3% и статический максимум 12%. Маршрут 80% работает раз в 14 дней; ежемесячные 100% добавляют правило стабильности 35% и семь дней минимум по 0,5%.</> },
+        { title: '2 Step Flex', body: <>Цели 10% и 8%, дневной лимит 4%, статический максимум 12%. Вариант с долей 80% требует один день на фазу, 95% — три прибыльных дня. Ежемесячная выплата с долей 100% добавляет отдельные условия допуска.</> },
         { title: '2 Step Pro', body: <>Цели 6% и 6%, дневной лимит 3% и статический максимум 6%. Новые счета требуют два дня на фазу; можно сравнить 80% еженедельно с более медленными 100% ежемесячно.</> },
       ]}
       editorialNotes={[
         'Возврат комиссии для 1 Step Flex не подтверждён: страница вознаграждений и описание прежней модели 1 Step конфликтуют, поэтому поле возврата оставлено неопределённым.',
         'У 2 Step Standard нет одной доли или единой частоты: по запросу 90%, еженедельно 60%, раз в 2 недели 80% и ежемесячно 100% имеют разные сроки и условия.',
-        'Цены и правила повторно проверены 27 августа 2026 года после обновления официальных страниц 26 августа. Две цены для счетов $2.5K не указаны: источники противоречат друг другу.',
+        'Цены и правила повторно проверены 29 сентября 2026 года после обновления официальных страниц. Две цены для счетов $2.5K не указаны: источники противоречат друг другу.',
       ]}
       decisionGuide={{
         title: 'Как читать линейку FundingPips без ловушки одного сплита',
         intro: <>У FundingPips пять разных моделей, поэтому вопрос «какой процент?» недостаточен. Для решения сначала выберите риск-механику и способ запроса вознаграждения, а уже потом сравнивайте цену и доступность страны.</>,
         items: [
-          { title: 'Flex и Pro — разные компромиссы', body: <>2 Step Flex за $32 на $5K даёт 12% статического запаса и минимум один день на фазу по маршруту 85%. 2 Step Pro за $29 сокращает запас до 6% и требует два дня на фазу, но предлагает 80% еженедельно.</> },
+          { title: 'Flex и Pro — разные компромиссы', body: <>2 Step Flex за $32 на $5K даёт 12% статического запаса и минимум один день на фазу по маршруту 80%. 2 Step Pro за $29 сокращает запас до 6% и требует два дня на фазу, но предлагает 80% еженедельно.</> },
           { title: '100% меняет календарь', body: <>Ежемесячные 100% требуют правила стабильности 35%, семь прибыльных дней минимум по 0,5% и Striking System 1%. Сравнивайте реальную доступность выплаты, а не только процент после одобрения.</> },
           { title: 'Zero — не режим без правил', body: <>FundingPips Zero не имеет оценочного этапа, но сочетает плавающий лимит 5%, максимальный открытый риск 1%, минимум 7 прибыльных дней и правило стабильности до 15%. Такой маршрут нужно сравнивать с вашей статистикой, а не с ценой обычного челленджа.</> },
         ],
@@ -221,13 +224,14 @@ export default function RussianFundingPipsReviewPage() {
       ]}
       relatedLinks={[
         { href: getRussianReviewFinderHref('fundingpips'), label: 'Сравнить двухэтапные программы в подборе', body: 'начните с FundingPips и FundedNext на одном размере счёта; затем измените фильтры под свою стратегию' },
-        { href: '/ru/fundednext-vs-fundingpips', label: 'FundedNext или FundingPips', body: 'сравнение 4 продуктов FundedNext с 5 моделями FundingPips по цене, просадке и циклу выплат' },
+        { href: '/ru/fundednext-vs-fundingpips', label: 'FundedNext или FundingPips', body: 'сравнение программ по цене, просадке и циклу выплат' },
         { href: '/ru/prop-firmy-bez-chelendzha', label: 'Проп-фирмы без челленджа', body: 'FundingPips Zero рядом с FundedNext Stellar Instant и другими продуктами без оценочной фазы' },
         { href: '/ru/vyplaty-prop-firm', label: 'Выплаты проп-фирм', body: 'отдельная проверка первой даты, криптовалюты, банка и условий запроса' },
         { href: '/ru/obzor-bright-funded', label: 'Обзор Bright Funded', body: 'программы с ценами в EUR; доступность для своего гражданства и места проживания нужно проверить отдельно' },
       ]}
       readTime={15}
       firmAnalysis={<FundingPipsDeepDive />}
+      faqSourceDates={[payoutEvidenceDate, REWARD_METHODS_CAPTURED_AT]}
       faqs={[
         {
           q: 'Какой продукт FundingPips самый дешёвый?',
@@ -239,7 +243,7 @@ export default function RussianFundingPipsReviewPage() {
         },
         {
           q: 'Сколько минимальных дней у 2 Step Flex и Pro?',
-          a: 'Новые или сброшенные 2 Step Flex счета по маршруту 85% требуют один торговый день на фазу; маршрут 95% требует три прибыльных дня по 0,5%. Новые или сброшенные 2 Step Pro счета требуют два торговых дня на фазу. Старые счета до 26 августа 2026 года могут сохранить прежнее правило.',
+          a: 'Новые или сброшенные 2 Step Flex счета по маршруту 80% требуют один торговый день на фазу; маршрут 95% требует три прибыльных дня по 0,5%. Новые или сброшенные 2 Step Pro счета требуют два торговых дня на фазу. Старые счета до 26 августа 2026 года могут сохранить прежнее правило.',
         },
         {
           q: 'Можно ли использовать FundingPips из ОАЭ?',

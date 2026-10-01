@@ -202,7 +202,7 @@ export default function RussianEraTradeReviewPage() {
               </article>
             ))}
           </div>
-          <p className="ru-source-line">Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">исследование российских проп-компаний</Link>; глобальная развилка: <Link href="/ru/fundednext-vs-bright-funded">7 продуктов FundedNext и Bright Funded</Link>; отдельная локальная проверка: <Link href="/ru/obzor-proplive">PropLive</Link>.</p>
+          <p className="ru-source-line">Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">исследование российских проп-компаний</Link>; глобальная развилка: <Link href="/ru/fundednext-vs-bright-funded">сравнение FundedNext и Bright Funded</Link>; отдельная локальная проверка: <Link href="/ru/obzor-proplive">PropLive</Link>.</p>
         </div>
       </section>
 

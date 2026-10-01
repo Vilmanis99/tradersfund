@@ -14,9 +14,10 @@ import {
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
+import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge } from '@/lib/firms'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 
@@ -137,6 +138,15 @@ export default function RussianNoKycPage() {
   const sourceCount = new Set(marketEvidence.kycEvidence.flatMap(item => item.sourceUrls)).size
   const productCount = partnerCards.reduce((sum, item) => sum + item.products.length, 0)
   const priceCount = partnerCards.reduce((sum, item) => sum + item.priceCount, 0)
+  const hasFreshProducts = partnerRoutes.every(route => {
+    const products = allChallenges.filter(product => product.firmSlug === route.slug)
+    return products.length > 0 && products.every(product => isChallengeFresh(product))
+  })
+  const hasFreshResearch = partnerCards.length === partnerRoutes.length && hasFreshProducts
+    && isChallengeFresh({ sourceCapturedAt: marketEvidence.capturedAt })
+    && partnerCards.every(card => card.evidence && isChallengeFresh({ sourceCapturedAt: card.evidence.sourceCapturedAt }))
+  const latestProductCapture = partnerCards.flatMap(card => card.products.map(product => product.sourceCapturedAt)).sort().at(-1) ?? marketEvidence.capturedAt
+  const latestKycCapture = partnerCards.flatMap(card => card.evidence ? [card.evidence.sourceCapturedAt] : []).sort().at(-1) ?? marketEvidence.capturedAt
   const fundedNextAccess = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
   const localSignals = new Map(marketEvidence.localFirmSignals.map(item => [item.operator, item]))
   const propLive = localSignals.get('PropLive')
@@ -160,7 +170,7 @@ export default function RussianNoKycPage() {
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
-    dateModified: marketEvidence.capturedAt,
+    dateModified: russianRouteDateModified(PATH, [latestProductCapture, latestKycCapture].sort().at(-1)),
     author: {
       '@type': 'Person',
       name: 'Edris Derakhshi',
@@ -174,7 +184,7 @@ export default function RussianNoKycPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(list) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
+      {hasFreshResearch && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
         <div
@@ -184,10 +194,14 @@ export default function RussianNoKycPage() {
         >
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / KYC в проп-фирмах</div>
           <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
+          <RussianEvidenceFreshnessNotice evidence={[
+            { label: 'страновые и локальные условия', capturedAt: marketEvidence.capturedAt },
+            ...partnerCards.map(card => ({ label: `KYC ${card.name}`, capturedAt: card.evidence?.sourceCapturedAt ?? '' })),
+          ]} />
           <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> «Без KYC» не означает «без проверки»</div>
           <h1>KYC в проп-фирмах: FundedNext, Bright Funded и проверка документов</h1>
           <p className="ru-lead">
-            Проверили 3 партнёрские KYC-процедуры по 5 официальным страницам: когда фирма запрашивает документ,
+            Сопоставили {partnerCards.length} партнёрские KYC-процедуры по {sourceCount} официальным страницам: когда фирма запрашивает документ,
             кто сверяет адрес, сколько длится проверка и почему криптовыплата не отменяет проверку личности.
             Основные глобальные маршруты — FundedNext и Bright Funded; FundingPips показан как дополнительный вариант.
           </p>
@@ -202,7 +216,7 @@ export default function RussianNoKycPage() {
             <Link href="#kyc-matrix" className="btn-outline">Сравнить KYC</Link>
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-outline">Проверить страну</Link>
           </div>
-          <p className="ru-source-line">Первичные источники проверены {marketEvidence.capturedAt}. Условия нужно перепроверить перед оплатой.</p>
+          <p className="ru-source-line">Даты проверки KYC указаны по каждой фирме в таблице; страновые и локальные сведения сохранены от {marketEvidence.capturedAt}. Условия нужно перепроверить перед оплатой.</p>
         </div>
       </section>
 
@@ -280,7 +294,7 @@ export default function RussianNoKycPage() {
             <h2>KYC FundedNext, Bright Funded и FundingPips: одна таблица</h2>
             <p className="ru-muted">
               Таблица сравнивает именно момент проверки, документы и опубликованный срок. Она не объединяет разные продукты
-              под обещанием «верификации нет»: поле required равно true во всех 3 текущих записях.
+              под обещанием «верификации нет»: KYC указан как обязательный во всех {partnerCards.length} датированных записях.
             </p>
             <div className="ru-table-wrap">
               <table className="ru-table">
@@ -291,7 +305,7 @@ export default function RussianNoKycPage() {
                   {partnerCards.map(card => {
                     const copy = kycCopy[card.slug]
                     return (
-                      <tr key={card.slug} data-russian-kyc-evidence={card.slug}>
+                      <tr key={card.slug} data-russian-kyc-evidence={card.slug} data-russian-kyc-source-status={card.evidence && isChallengeFresh({ sourceCapturedAt: card.evidence.sourceCapturedAt }) ? 'dated' : 'recapture-required'}>
                         <td><strong>{card.name}</strong><br />KYC обязателен</td>
                         <td>{copy.trigger}</td>
                         <td>{copy.documents}</td>
@@ -302,6 +316,7 @@ export default function RussianNoKycPage() {
                               {index > 0 ? ' · ' : ''}<a href={sourceUrl} target="_blank" rel="noopener noreferrer">Источник {index + 1}</a>
                             </span>
                           ))}
+                          <br /><span>Проверено {card.evidence?.sourceCapturedAt ?? 'дата неизвестна'}{card.evidence && !isChallengeFresh({ sourceCapturedAt: card.evidence.sourceCapturedAt }) ? ' · требуется повторная проверка' : ''}</span>
                         </td>
                       </tr>
                     )
@@ -309,7 +324,7 @@ export default function RussianNoKycPage() {
                 </tbody>
               </table>
             </div>
-            <p className="ru-source-line">Снимок: {marketEvidence.capturedAt}. Число продуктов и цен берётся только из записей не старше 30 дней.</p>
+            <p className="ru-source-line">Даты KYC различаются по фирмам; общий страновой снимок — {marketEvidence.capturedAt}. Число продуктов и цен берётся только из записей не старше 30 дней.</p>
           </div>
         </section>
 
@@ -465,7 +480,7 @@ export default function RussianNoKycPage() {
               </article>
               <article className="ru-card">
                 <h3>TeamTraders</h3>
-                <p className="ru-muted">Опубликованы 15 торговых сессий, дневной лимит убытка 2% и доля прибыли {teamTraders?.claims.profitSharePct ?? '—'}% для фьючерсов Московской биржи. KYC-статус нельзя выводить из этих торговых правил.</p>
+                <p className="ru-muted">В FAQ, сохранённом {teamTraders?.sourceCapturedAt ?? 'без даты'}, указаны {teamTraders?.claims.minimumTradingSessions ?? 'неподтверждённое число'} торговых дней, дневной лимит убытка {teamTraders?.claims.dailyLossLimitPct ?? '—'}% и доля прибыли {teamTraders?.claims.profitSharePct ?? '—'}% на реальном счёте. Эти исторические правила не подтверждают текущий KYC-статус.</p>
                 <Link href="/ru/rossiyskie-prop-kompanii" className="ru-card-link">Смотреть первичный снимок →</Link>
               </article>
               <article className="ru-card">
@@ -524,8 +539,8 @@ export default function RussianNoKycPage() {
               <div>
                 <strong>Проверка источников: Edris Derakhshi</strong>
                 <p>
-                  Сопоставлены 3 KYC-процесса, 5 официальных страниц, 12 свежих продуктов и 67 опубликованных цен.
-                  Проверка фиксирует условия на {marketEvidence.capturedAt}; она не гарантирует решение compliance team по индивидуальному профилю.
+                  Сопоставлены {partnerCards.length} KYC-процесса, {sourceCount} официальных страниц, {productCount} свежих продуктов и {priceCount} опубликованных цен.
+                  Даты KYC указаны по каждой фирме; страновые и локальные сведения сохранены от {marketEvidence.capturedAt}. Этот разбор не гарантирует решение службы проверки по индивидуальному профилю.
                 </p>
                 <Link href="/authors/edris-derakhshi">Редакционный профиль и методология →</Link>
               </div>
@@ -536,6 +551,7 @@ export default function RussianNoKycPage() {
         <section className="ru-section" id="faq">
           <div className="ru-shell ru-content">
             <h2>Частые вопросы о KYC в проп-фирмах</h2>
+            {!hasFreshResearch && <p className="ru-notice">Ответы ниже относятся к датированным источникам. Пока не обновлены все 3 KYC-процесса и страновые условия, они не подтверждают действующие требования перед покупкой.</p>}
             <RussianFaq items={faqs} />
           </div>
         </section>

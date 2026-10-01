@@ -305,7 +305,9 @@ export default function RussianFundedNextInstantPage() {
                   Условия скидки {currentDeal.pct}% после Free Trial <ArrowRight size={14} aria-hidden="true" />
                 </Link>
               ) : null}
-              <Link href="/ru/promokody-prop-firm#fundednext-promokod" className="btn-outline">Ограничения акции</Link>
+              <Link href={currentDeal ? '/ru/promokody-prop-firm#fundednext-promokod' : '/ru/promokody-prop-firm'} className="btn-outline">
+                {currentDeal ? 'Ограничения акции' : 'Проверить текущие предложения'}
+              </Link>
               <a href={instantEvidence.pricing.sourceUrl} target="_blank" rel="nofollow noopener" className="btn-outline">Официальная страница цен</a>
             </div>
             {currentDeal && <p className="ru-source-line">Наличие акции FundedNext не подтверждает, что она применяется к выбранному Stellar Instant-счёту. Проверьте допустимую программу и итоговую цену до оплаты.</p>}

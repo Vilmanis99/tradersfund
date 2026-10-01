@@ -4,6 +4,8 @@ import Link from '@/components/SafeLink'
 import { ArrowRight, BookOpenCheck, Globe2, Scale, Zap } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianFinderEntry from '@/components/RussianFinderEntry'
+import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
+import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
@@ -52,7 +54,11 @@ export default function RussianHomePage() {
     const fresh = products.length > 0 && products.every(product => isChallengeFresh(product))
     // Use the oldest capture so the date does not overstate freshness across products.
     const captureDate = fresh ? products.map(product => product.sourceCapturedAt).sort()[0] : null
-    return { ...route, firm, fresh, captureDate }
+    const countryCapturedAt = route.slug === 'bright-funded'
+      ? brightEvidence.sources.countries.sourceCapturedAt
+      : marketEvidence.capturedAt
+    const countryFresh = isChallengeFresh({ sourceCapturedAt: countryCapturedAt })
+    return { ...route, firm, fresh, captureDate, countryCapturedAt, countryFresh }
   }).filter(item => item.firm?.affiliateUrl)
 
   const crumbs = breadcrumbSchema([{ name: 'Traders Fund Hub', url: '/' }, { name: 'Русская версия' }])
@@ -106,13 +112,17 @@ export default function RussianHomePage() {
                     ? 'Программы с оплатой в USD: с оценочными этапами или без челленджа — Stellar Instant. В обзоре разбираем различия в просадке и выплатах.'
                     : 'Программы с оплатой в EUR и одним или двумя оценочными этапами. В обзоре разбираем лимиты убытка и ожидание первой выплаты.'
                   : 'Условия программ требуют повторной проверки. В обзоре объясняем модель работы и вопросы, которые стоит задать фирме перед оплатой.'}</p>
-                <p className="ru-home-partner-country-note" data-russian-partner-country-warning={item.slug}>
+                <p className="ru-home-partner-country-note" data-russian-partner-country-warning={item.slug} data-russian-partner-country-source-status={item.countryFresh ? 'dated' : 'recapture-required'}>
                   {item.slug === 'fundednext'
-                    ? 'Для резидентов России доступность не подтверждена: официальные страницы фирмы противоречат друг другу.'
-                    : 'Россия не названа в опубликованном списке ограничений, но доступность конкретного профиля нужно подтвердить до оплаты.'}
+                    ? item.countryFresh
+                      ? `Доступность для резидентов России не подтверждена: официальные страницы, проверенные ${item.countryCapturedAt}, противоречат друг другу.`
+                      : `Страновые условия требуют новой проверки. В источниках от ${item.countryCapturedAt} были противоречия для резидентов России; это не подтверждает доступ сегодня.`
+                    : item.countryFresh
+                      ? `В списке ограничений, проверенном ${item.countryCapturedAt}, Россия не названа. Доступность конкретного профиля подтвердите до оплаты.`
+                      : `Список ограничений от ${item.countryCapturedAt} требует повторной проверки. Отсутствие России в старом списке не подтверждает доступ сегодня.`}
                 </p>
                 <div className="ru-home-partner-hero-actions">
-                  <Link href={item.reviewHref} className="btn-outline">Читать обзор {item.name}</Link>
+                  <Link href={item.reviewHref} className="btn-outline">Читать обзор {item.slug === 'bright-funded' ? 'BrightFunded' : item.name}</Link>
                   <Link href={item.heroHref} rel="sponsored nofollow noopener" className="ru-home-partner-hero-review">Проверить условия {item.name} ↗</Link>
                 </div>
                 <p className="ru-source-line ru-home-checked">{item.captureDate ? `Источники проверены: ${item.captureDate}` : 'Обновление источников ожидается'}</p>

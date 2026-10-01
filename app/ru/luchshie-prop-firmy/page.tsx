@@ -8,12 +8,14 @@ import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge } from 
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import marketEvidence from '@/content/data/russian-market-evidence.json'
+import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 
 const PATH = '/ru/luchshie-prop-firmy'
 // Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
 export const revalidate = 3600
-const TITLE = 'Рейтинг проп-компаний 2026: Россия и глобальные фирмы'
-const DESCRIPTION = 'Список и рейтинг проп-компаний 2026 для русскоязычных трейдеров: фирмы России и за рубежом, программы без челленджа, цены, просадка, KYC и выплаты.'
+const TITLE = 'Проп-компании в России и за рубежом: рейтинг 2026'
+const DESCRIPTION = 'Сравните проп-компании для трейдеров в России и за рубежом: цены, просадка, KYC, выплаты и программы без челленджа по проверенным источникам.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -197,6 +199,18 @@ export default function RussianBestPropFirmsPage() {
       (tier.priceUsd != null && tier.priceUsd > 0)
       || (tier.priceEur != null && tier.priceEur > 0)),
   ).length, 0)
+  const faqPartnerSlugs = ['fundednext', 'bright-funded', 'fundingpips']
+  const faqPartnerProducts = challenges.filter(product => faqPartnerSlugs.includes(product.firmSlug))
+  const faqKycEvidence = marketEvidence.kycEvidence.filter(item => faqPartnerSlugs.includes(item.firmSlug))
+  const faqPayoutEvidence = marketEvidence.payoutEvidence.filter(item => faqPartnerSlugs.includes(item.firmSlug))
+  const faqCurrent = faqPartnerSlugs.every(slug => faqPartnerProducts.some(product => product.firmSlug === slug)
+    && faqKycEvidence.some(item => item.firmSlug === slug)
+    && faqPayoutEvidence.some(item => item.firmSlug === slug))
+    && faqPartnerProducts.every(product => isChallengeFresh(product))
+    && [marketEvidence.capturedAt, brightEvidence.sources.countries.sourceCapturedAt,
+      ...faqKycEvidence.map(item => item.sourceCapturedAt),
+      ...faqPayoutEvidence.map(item => item.sourceCapturedAt)]
+      .every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -219,7 +233,7 @@ export default function RussianBestPropFirmsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(pageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(list) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
+      {faqCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell">
@@ -231,6 +245,10 @@ export default function RussianBestPropFirmsPage() {
             Начните с нужного формата: глобальная программа с проверкой навыков, счёт без челленджа
             или местная компания для биржевой торговли. Затем проверьте требования к вашей стране проживания.
           </p>
+          <div className="ru-actions">
+            <Link href="#podbor" className="btn-primary" data-russian-funnel-intent="ranking-finder">Подобрать программу <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="#polnyy-reyting" className="btn-outline">Редакционный рейтинг</Link>
+          </div>
           <p className="ru-lead ru-lead--intent">
             Если вы ищете проп-компании в России, сначала выберите сценарий: местная биржевая инфраструктура
             или глобальная программа для русскоязычного трейдера за рубежом. Русский язык страницы сам по себе
@@ -241,10 +259,6 @@ export default function RussianBestPropFirmsPage() {
             Если источник старше 30 дней, фирма переносится в блок ожидания повторной проверки, а не показывается как актуальная.
           </p>
           <p className="ru-source-line">Автор рейтинга: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Данные ранжирования обновляются после проверки источников.</p>
-          <div className="ru-actions">
-            <Link href="#podbor" className="btn-primary">Подобрать программу <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="#polnyy-reyting" className="btn-outline">Редакционный рейтинг</Link>
-          </div>
           <p className="ru-source-line">Другой формат: <Link href="/ru/prop-firmy-bez-chelendzha">счета без челленджа</Link> · <Link href="/ru/rossiyskie-prop-kompanii">список проп-компаний в России</Link>.</p>
         </div>
       </section>
@@ -319,7 +333,7 @@ export default function RussianBestPropFirmsPage() {
                   {item.products.length > 0 && <details><summary>Страна, выплаты и важные ограничения</summary><p><strong>Страна:</strong> {item.guidance.country}</p><p><strong>Выплаты:</strong> {item.guidance.payout}</p><p><strong>Проверить:</strong> {item.guidance.watch}</p><p>Доступность платформы уточняйте для выбранной программы и страны.</p></details>}
                   <p className="ru-source-line">Самая ранняя проверка источников: {item.products.map(product => product.sourceCapturedAt).sort()[0] ?? 'обновление ожидается'}.</p>
                   <div className="ru-actions">
-                    <Link href={reviewHref} className="btn-outline">Русский обзор</Link>
+                    <Link href={reviewHref} className="btn-outline">{item.slug === 'bright-funded' ? 'Обзор BrightFunded' : 'Русский обзор'}</Link>
                     <Link
                       href={`/go/${item.slug}?from=ru-ranking-primary-${item.slug}`}
                       rel="sponsored nofollow noopener"
@@ -381,7 +395,7 @@ export default function RussianBestPropFirmsPage() {
             <article className="ru-card">
               <h3>Цена в EUR</h3>
               <p>Bright Funded публикует цены в евро: минимальный взнос среди проверенных программ — {brightFundedProfile?.entry ?? 'не подтверждён'}. Если ваша карта в другой валюте, добавьте комиссию и курс конвертации своего банка.</p>
-              <p><Link href="/ru/obzor-bright-funded">Проверить 3 программы Bright Funded →</Link></p>
+              <p><Link href="/ru/obzor-bright-funded">Проверить программы Bright Funded →</Link></p>
             </article>
             <article className="ru-card">
               <h3>Мгновенное финансирование без челленджа</h3>
@@ -428,7 +442,7 @@ export default function RussianBestPropFirmsPage() {
                   return (
                     <tr key={item.slug} data-ranked-firm={item.slug}>
                       <td>{index + 1}</td>
-                      <td><Link href={russianReview ?? item.firm.reviewUrl} hrefLang={russianReview ? 'ru' : 'en'}>{item.firm.name}</Link><br /><small>{russianReview ? 'Обзор на русском' : 'Обзор на английском'}</small></td>
+                      <td><Link href={russianReview ?? item.firm.reviewUrl} hrefLang={russianReview ? 'ru' : 'en'}>{item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name}</Link><br /><small>{russianReview ? 'Обзор на русском' : 'Обзор на английском'}</small></td>
                       <td>{item.firm.score.toFixed(1)}/10</td>
                       <td>Программ: {item.products.length}<br />Минимальный взнос: {productPricing(item.products).entry}</td>
                       <td>{splits.length > 0 ? `${splits.join(' / ')}%` : 'не подтверждена'}<br />{drawdowns.join(' / ')}</td>
@@ -500,9 +514,10 @@ export default function RussianBestPropFirmsPage() {
         </div>
       </section>
 
-      <section className="ru-section" id="faq">
+      <section className="ru-section" id="faq" data-russian-ranking-faq-status={faqCurrent ? 'source-checked' : 'recheck-required'}>
         <div className="ru-shell ru-content">
           <h2>Частые вопросы</h2>
+          {!faqCurrent && <p className="ru-muted">Часть источников по доступу, KYC или выплатам старше 30 дней. Перед покупкой перепроверьте условия выбранной фирмы для своего профиля.</p>}
           <RussianFaq items={faqs} />
         </div>
       </section>

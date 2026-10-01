@@ -95,6 +95,9 @@ const russianMobile = render({ path: '/ru', mobile: true })
 for (const href of ['/ru', '/ru/obzor-fundednext', '/ru/obzor-bright-funded', '/ru/luchshie-prop-firmy', '/ru/rossiyskie-prop-kompanii']) {
   assert(hrefs(russianMobile).has(href), `Russian mobile entry retained: ${href}`)
 }
+for (const tree of [russianMobile, render({ path: '/ru', dropdown: 'Обзоры' })]) {
+  assert(nodes(tree).some(node => node.type === 'a' && node.props.href === '/ru/obzor-bright-funded' && node.props.children === 'BrightFunded'), 'Russian navigation uses the first-party BrightFunded spelling')
+}
 assert(renderToStaticMarkup(russianMobile).includes('Закрыть'), 'Russian close action is visible text')
 
 // Exercise the component's actual lifecycle callbacks with explicit DOM doubles.

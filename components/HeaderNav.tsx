@@ -25,7 +25,7 @@ const russianNavLinks = [
     href: '/ru/obzor-fundednext',
     children: [
       { label: 'FundedNext', href: '/ru/obzor-fundednext' },
-      { label: 'Bright Funded', href: '/ru/obzor-bright-funded' },
+      { label: 'BrightFunded', href: '/ru/obzor-bright-funded' },
       { label: 'FTMO', href: '/ru/obzor-ftmo' },
       { label: 'FundingPips', href: '/ru/obzor-fundingpips' },
     ],

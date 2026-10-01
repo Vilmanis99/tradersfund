@@ -1,0 +1,409 @@
+{
+  "firmSlug": "fundingpips",
+  "officialDomain": "https://fundingpips.com",
+  "capturedAt": "2026-09-29",
+  "pagesRead": [
+    "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+    "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+    "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+    "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models"
+  ],
+  "accessNotes": "All six FundingPips-owned Help Center pages were rechecked on 2026-09-29. USD prices and unresolved $2.5K rows are retained from the current first-party comparison. Conditional reward cycles, add-ons, evaluation-versus-Master rule differences, and the 2 Step Flex target change are preserved in the product notes.",
+  "products": [
+    {
+      "productName": "1 Step Flex",
+      "productSlug": "1-step-flex",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 59,
+          "refundable": null,
+          "evidence": "Current official comparison retains $59 for 1 Step Flex $5K."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 99,
+          "refundable": null,
+          "evidence": "Current official comparison retains $99 for 1 Step Flex $10K."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 210,
+          "refundable": null,
+          "evidence": "Current official comparison retains $210 for 1 Step Flex $25K."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 322,
+          "refundable": null,
+          "evidence": "Current official comparison retains $322 for 1 Step Flex $50K."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 566,
+          "refundable": null,
+          "evidence": "Current official comparison retains $566 for 1 Step Flex $100K."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 12
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 12,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+      "fieldEvidence": {
+        "profitTargets": "Official page: one 12% profit target.",
+        "dailyLossPct": "Official page: daily loss is configuration-dependent at 2% or 3%; 3% retained for the base captured route.",
+        "maxLossPct": "Official page: 12% static maximum loss.",
+        "minTradingDays": "Official page: no minimum trading days.",
+        "profitSplitPct": "Official page: 80% bi-weekly reward.",
+        "payoutFirstDays": "Official page: request a reward every two weeks.",
+        "rules.weekend": "Official page: evaluation holding is allowed; Master holding requires the Swing add-on.",
+        "rules.news": "Official page: evaluation news trading is allowed, but Master restricted-window profits may be deducted; retained as restricted.",
+        "prices": "Current official comparison retains the five published USD fees; no $200K price is published."
+      },
+      "notes": [
+        "The stored 80% split and 14-day cycle represent the current Bi-Weekly route; a Monthly 100% route has additional eligibility conditions.",
+        "The current page shows a 2% or 3% daily-loss configuration; this record retains 3% for the captured base route and does not imply both configurations are identical.",
+        "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
+        "Refundability remains unresolved because the official refund wording does not clearly name current 1 Step Flex."
+      ]
+    },
+    {
+      "productName": "2 Step Flex",
+      "productSlug": "2-step-flex",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 32,
+          "refundable": false,
+          "evidence": "Current official comparison retains $32 for 2 Step Flex $5K."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 59,
+          "refundable": false,
+          "evidence": "Current official comparison retains $59 for 2 Step Flex $10K."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 159,
+          "refundable": false,
+          "evidence": "Current official comparison retains $159 for 2 Step Flex $25K."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 269,
+          "refundable": false,
+          "evidence": "Current official comparison retains $269 for 2 Step Flex $50K."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 555,
+          "refundable": false,
+          "evidence": "Current official comparison retains $555 for 2 Step Flex $100K."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 8
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 12,
+      "drawdownType": "static",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": null,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+      "fieldEvidence": {
+        "profitTargets": "Official page: Phase 1 10% and Phase 2 8%.",
+        "dailyLossPct": "Official page: 4% daily loss.",
+        "maxLossPct": "Official page: 12% static maximum loss.",
+        "minTradingDays": "Official page: 1 day for the 80% route; 3 profitable days for the 95% route.",
+        "payoutFirstDays": "Official page: flexible bi-weekly reward routes.",
+        "rules.weekend": "Official page: evaluation holding is allowed; Master holding requires the Swing add-on.",
+        "prices": "Current official comparison retains the five published USD fees; no $200K price is published."
+      },
+      "notes": [
+        "Current first-party page changed the evaluation target to 10% then 8%; the older 10% then 6% value is retired.",
+        "Reward choice is conditional: 80% with 1 minimum trading day or 95% with 3 profitable days; the schema keeps split null because there is no single universal percentage.",
+        "New and reset accounts require the current minimum-day conditions; older accounts may retain legacy terms.",
+        "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on."
+      ]
+    },
+    {
+      "productName": "2 Step Pro",
+      "productSlug": "2-step-pro",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Current product and comparison pages publish no $2.5K price; retained as unresolved."
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 29,
+          "refundable": false,
+          "evidence": "Current official comparison retains $29 for 2 Step Pro $5K."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 55,
+          "refundable": false,
+          "evidence": "Current official comparison retains $55 for 2 Step Pro $10K."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 134,
+          "refundable": false,
+          "evidence": "Current official comparison retains $134 for 2 Step Pro $25K."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 224,
+          "refundable": false,
+          "evidence": "Current official comparison retains $224 for 2 Step Pro $50K."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 422,
+          "refundable": false,
+          "evidence": "Current official comparison retains $422 for 2 Step Pro $100K."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 844,
+          "refundable": false,
+          "evidence": "Current official comparison retains $844 for 2 Step Pro $200K."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": 6
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 7,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+      "fieldEvidence": {
+        "profitTargets": "Official page: 6% target in both phases.",
+        "dailyLossPct": "Official page: 3% daily loss.",
+        "maxLossPct": "Official page: 6% static maximum loss.",
+        "minTradingDays": "Official page: zero for the base page, with 2 days for new/reset accounts; 2 retained for current purchase context.",
+        "payoutMinimum": "Official page: Minimum reward request is 1% of Master Account size, including FundingPips' split.",
+        "payoutFirstDays": "Official page: current reward routes include weekly and monthly choices.",
+        "prices": "Current official comparison retains the six published USD fees; the $2.5K row remains unresolved."
+      },
+      "notes": [
+        "Weekly 80% is the stored shorter route; eligible Master Accounts may choose Monthly 100% with extra conditions.",
+        "Minimum reward request is 1% of Master Account size, including FundingPips' split, under the current 2 Step Pro page.",
+        "The current page shows zero minimum trading days for the base evaluation, while new and reset accounts require 2 per phase; 2 is retained for the current purchase context.",
+        "The $2.5K availability conflict remains unresolved and priceUsd stays null.",
+        "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on."
+      ]
+    },
+    {
+      "productName": "2 Step Standard",
+      "productSlug": "2-step-standard",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": null,
+          "refundable": null,
+          "evidence": "Current product and comparison pages publish no $2.5K price; retained as unresolved."
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 36,
+          "refundable": true,
+          "evidence": "Current official comparison retains $36 for 2 Step Standard $5K."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 66,
+          "refundable": true,
+          "evidence": "Current official comparison retains $66 for 2 Step Standard $10K."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 177,
+          "refundable": true,
+          "evidence": "Current official comparison retains $177 for 2 Step Standard $25K."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 299,
+          "refundable": true,
+          "evidence": "Current official comparison retains $299 for 2 Step Standard $50K."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 544,
+          "refundable": true,
+          "evidence": "Current official comparison retains $544 for 2 Step Standard $100K."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 35,
+      "profitSplitPct": null,
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "fieldEvidence": {
+        "profitTargets": "Official page: 8% Phase 1 and 5% Phase 2; the former 10% route is no longer offered.",
+        "dailyLossPct": "Official page: 3% or 5% depending on configuration; 5% retained for the stored route.",
+        "maxLossPct": "Official page: 10% static maximum loss.",
+        "minTradingDays": "Official page: 3 days per phase unless the 3% daily-loss add-on is selected.",
+        "consistencyRulePct": "Official reward routes include a 35% consistency condition for On Demand and Monthly paths.",
+        "prices": "Current official comparison retains the five published USD fees; the $2.5K row remains unresolved."
+      },
+      "notes": [
+        "No single split or frequency: current first-party page lists Weekly 60%, Bi-Weekly 80%, Monthly 100%, or On Demand 90% with separate conditions.",
+        "The 35% consistency score applies to On Demand and Monthly routes, not every evaluation path.",
+        "The current 8%-target Standard replaces the former 10%-target product.",
+        "The $2.5K availability conflict remains unresolved and priceUsd stays null.",
+        "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on."
+      ]
+    },
+    {
+      "productName": "FundingPips Zero",
+      "productSlug": "zero",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 60,
+          "refundable": false,
+          "evidence": "Current official comparison retains $60 for Zero $5K."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 88,
+          "refundable": false,
+          "evidence": "Current official comparison retains $88 for Zero $10K."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 188,
+          "refundable": false,
+          "evidence": "Current official comparison retains $188 for Zero $25K."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 244,
+          "refundable": false,
+          "evidence": "Current official comparison retains $244 for Zero $50K."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 444,
+          "refundable": false,
+          "evidence": "Current official comparison retains $444 for Zero $100K."
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 888,
+          "refundable": false,
+          "evidence": "Current official comparison retains $888 for Zero $200K."
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": 3,
+      "maxLossPct": 5,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 15,
+      "profitSplitPct": 95,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": false,
+        "weekend": false,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+      "fieldEvidence": {
+        "maxLossPct": "Official page: 5% trailing maximum loss.",
+        "drawdownType": "Official page: the loss limit trails highest equity and locks at breakeven after 5% profit.",
+        "consistencyRulePct": "Official page: 15% consistency score maximum.",
+        "profitSplitPct": "Official page: 95% bi-weekly split.",
+        "payoutFirstDays": "Official page: bi-weekly reward cycle.",
+        "rules.news": "Official page: news-window trading is prohibited.",
+        "rules.weekend": "Official page: weekend holding is prohibited.",
+        "prices": "Current official comparison retains the six published USD fees."
+      },
+      "notes": [
+        "The 5% max loss trails peak equity and locks at starting balance after equity first reaches 5% profit.",
+        "At least 7 profitable days of 0.25% or more are required in every rolling 30-day period; this is not a minimum trading-day field.",
+        "News-window and weekend holding violations are hard breaches; the account is simulated and begins directly at Master."
+      ]
+    }
+  ]
+}

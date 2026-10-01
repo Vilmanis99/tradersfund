@@ -34,7 +34,7 @@ for (const phases of [0, 1, 2, 3]) {
   assert.equal(label.includes('без оценки'), phases === 0)
 }
 
-const now = new Date('2026-09-08T12:00:00Z')
+const now = new Date('2026-10-01T12:00:00Z')
 const products = getAllChallenges()
 const firms = getAllFirms()
 const rows = getRussianFinderRows(now)
@@ -51,7 +51,7 @@ try {
     assert(!isFundedNextPayoutSourceFresh(now))
     assert(fundedNextOneStepPayoutLabel(oneStepTiming, now).includes('требует проверки'))
   }
-  fundedNextPayoutSource.sourceCapturedAt = '2026-08-09'
+  fundedNextPayoutSource.sourceCapturedAt = '2026-09-01'
   assert(isFundedNextPayoutSourceFresh(now), 'day 30 inclusive')
 } finally { fundedNextPayoutSource.sourceCapturedAt = timingCapture }
 const payoutFixtures = [
@@ -141,11 +141,11 @@ assert.deepEqual(forged.filters, DEFAULT_FINDER_FILTERS)
 assert.deepEqual(forged.selected, selected)
 
 const sample = products.find(product => product.firmSlug === 'fundednext')
-for (const sourceCapturedAt of ['2026-07-01', '2026-10-01', 'not-a-date']) {
+for (const sourceCapturedAt of ['2026-07-01', '2030-01-01', 'not-a-date']) {
   assert.equal(buildChallengeComparisonRows([{ ...sample, sourceCapturedAt }], firms, [], now).length, 0)
 }
-assert.equal(buildChallengeComparisonRows([{ ...sample, sourceCapturedAt: '2026-08-09' }], firms, [], now).length, 1, 'Day 30 remains within the current editorial gate')
-assert.equal(buildChallengeComparisonRows([{ ...sample, sourceCapturedAt: '2026-08-08' }], firms, [], now).length, 0, 'Day 31 expires')
+assert.equal(buildChallengeComparisonRows([{ ...sample, sourceCapturedAt: '2026-09-01' }], firms, [], now).length, 1, 'Day 30 remains within the current editorial gate')
+assert.equal(buildChallengeComparisonRows([{ ...sample, sourceCapturedAt: '2026-08-31' }], firms, [], now).length, 0, 'Day 31 expires')
 const unknown = buildChallengeComparisonRows([{ ...sample, profitSplitPct: null, dailyLossPct: null, accountSizes: [{ sizeUsd: 50000, priceUsd: null, refundable: null }] }], firms, [], now)[0]
 assert.equal(unknown.product.profitSplitPct, null)
 assert.equal(unknown.product.tiers[0].costToFundedUsd, null)

@@ -12,6 +12,7 @@ import {
 } from '@/lib/clientAnalytics'
 import {
   contentLocale,
+  campaignAttribution,
   goClickEventName,
   isHighIntentJourneyStage,
   journeyStage,
@@ -198,7 +199,9 @@ export default function AnalyticsProvider({
   useEffect(() => {
     if (journeyViewRef.current === pathname) return
     journeyViewRef.current = pathname
+    const campaign = campaignAttribution(window.location.search)
     trackVercel('journey_view', {
+      ...campaign,
       content_group: journeyStage(pathname),
       locale: contentLocale(pathname),
     })
@@ -208,6 +211,7 @@ export default function AnalyticsProvider({
     if (consent !== 'granted') return
     const stage = journeyStage(pathname)
     const locale = contentLocale(pathname)
+    const campaign = campaignAttribution(window.location.search)
 
     if (gaMeasurementId && gaReady) {
       const sanitizedLocation = `${window.location.origin}${pathname}`
@@ -218,12 +222,14 @@ export default function AnalyticsProvider({
         page_path: pathname,
       })
       window.gtag?.('event', 'page_view', {
+        ...campaign,
         page_location: sanitizedLocation,
         page_path: pathname,
         content_group: stage,
         locale,
       })
       window.gtag?.('event', 'journey_view', {
+        ...campaign,
         page_path: pathname,
         content_group: stage,
         locale,
@@ -242,11 +248,13 @@ export default function AnalyticsProvider({
     const optionalAnalyticsGranted = consent === 'granted'
     const currentStage = journeyStage(pathname)
     const currentLocale = contentLocale(pathname)
+    const campaign = campaignAttribution(window.location.search)
 
     const trackEvent = (name: string, parameters: SiteEventProperties = {}) => {
       if (optionalAnalyticsGranted && gaMeasurementId && gaReady) {
         window.gtag?.('event', name, {
           ...parameters,
+          ...campaign,
           page_path: pathname,
           content_group: currentStage,
           locale: currentLocale,
@@ -277,6 +285,7 @@ export default function AnalyticsProvider({
         const eventName = goClickEventName(firm, outboundRelationships)
         if (!eventName) return
         trackVercel(eventName, {
+          ...campaign,
           firm,
           placement,
           content_group: currentStage,
@@ -302,6 +311,7 @@ export default function AnalyticsProvider({
         }
         trackVercel('russian_funnel_intent', {
           ...properties,
+          ...campaign,
           content_group: currentStage,
           locale: currentLocale,
         })
@@ -315,7 +325,7 @@ export default function AnalyticsProvider({
       ) {
         const transition = russianFunnelTransition(pathname, destination.pathname)
         if (transition) {
-          trackVercel('russian_funnel_click', transition)
+          trackVercel('russian_funnel_click', { ...transition, ...campaign })
           trackEvent('russian_funnel_click', transition)
           return
         }
@@ -324,6 +334,7 @@ export default function AnalyticsProvider({
       if (destination.origin !== window.location.origin) {
         const destinationHost = destination.hostname.slice(0, 100)
         trackVercel('outbound_click', {
+          ...campaign,
           destination_host: destinationHost,
           content_group: currentStage,
           locale: currentLocale,
@@ -335,6 +346,7 @@ export default function AnalyticsProvider({
       if (destination.pathname.toLowerCase().endsWith('.csv')) {
         const resourcePath = destination.pathname.slice(0, 100)
         trackVercel('resource_download', {
+          ...campaign,
           resource_path: resourcePath,
           content_group: currentStage,
           locale: currentLocale,
@@ -347,6 +359,7 @@ export default function AnalyticsProvider({
         const destinationStage = journeyStage(destination.pathname)
         if (destinationStage !== currentStage && isHighIntentJourneyStage(destinationStage)) {
           trackVercel('journey_step', {
+            ...campaign,
             from_stage: currentStage,
             to_stage: destinationStage,
             locale: currentLocale,
@@ -367,6 +380,7 @@ export default function AnalyticsProvider({
           scrollDepths.current.add(threshold)
           if (threshold === 75) {
             trackVercel('deep_read', {
+              ...campaign,
               content_group: currentStage,
               percent_scrolled: threshold,
               locale: currentLocale,

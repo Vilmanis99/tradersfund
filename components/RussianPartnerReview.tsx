@@ -40,6 +40,7 @@ type RussianPartnerReviewProps = {
   readTime?: number
   firmAnalysis?: ReactNode
   faqs: RussianFaqItem[]
+  faqSourceDates: string[]
 }
 
 const drawdownLabels: Record<string, string> = {
@@ -129,6 +130,7 @@ export default function RussianPartnerReview({
   readTime = 12,
   firmAnalysis,
   faqs,
+  faqSourceDates,
 }: RussianPartnerReviewProps) {
   const firm = getAllFirms().find(candidate => candidate.name === firmName)
   const products = getChallengesByFirm(firmSlug)
@@ -148,6 +150,10 @@ export default function RussianPartnerReview({
     { name: `Обзор ${firmName}` },
   ])
   const faq = faqPageSchema(faqs)
+  const faqSchemaCurrent = products.length > 0
+    && products.every(product => isChallengeFresh(product))
+    && faqSourceDates.length > 0
+    && faqSourceDates.every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -164,7 +170,7 @@ export default function RussianPartnerReview({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
+      {faqSchemaCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-partner-review={firmSlug}>
@@ -426,6 +432,7 @@ export default function RussianPartnerReview({
       <section className="ru-section" id="faq">
         <div className="ru-shell ru-content">
           <h2>Частые вопросы</h2>
+          {!faqSchemaCurrent && <p className="ru-muted">Часть источников этих ответов старше 30 дней. Перед покупкой перепроверьте правила и доступность для своего профиля на сайте фирмы.</p>}
           <RussianFaq items={faqs} />
         </div>
       </section>
