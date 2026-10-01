@@ -12292,6 +12292,24 @@ function checkRussianAcquisitionPilot() {
   ]) {
     if (!fundedNextInstantEvidenceSource.includes(token)) rows.push(`Russian FundedNext Instant evidence is missing ${token}`)
   }
+  if (fundedNextInstantEvidenceSource) {
+    try {
+      const withdrawal = JSON.parse(fundedNextInstantEvidenceSource).withdrawal
+      const date = withdrawal?.sourceCapturedAt
+      const captured = typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(date)
+        ? new Date(`${date}T23:59:59Z`) : null
+      const ageDays = captured ? (Date.now() - captured.getTime()) / 86_400_000 : Number.NaN
+      if (
+        withdrawal?.sourceUrl !== 'https://help.fundednext.com/en/articles/11641804-how-can-i-withdraw-my-performance-reward'
+        || !captured || !Number.isFinite(ageDays) || captured.toISOString().slice(0, 10) !== date
+        || ageDays < -1 || ageDays > 30
+        || !withdrawal?.methods?.includes('Card')
+        || !withdrawal?.sourceQuote?.includes('saved card on their account')
+      ) rows.push('FundedNext Stellar Instant card payout needs a current, scoped first-party withdrawal capture')
+    } catch {
+      rows.push('FundedNext Stellar Instant payout evidence is not valid JSON')
+    }
+  }
 
   const propDefinitionPage = fs.existsSync(russianRouteFiles.get('/ru/chto-takoe-prop-firma'))
     ? fs.readFileSync(russianRouteFiles.get('/ru/chto-takoe-prop-firma'), 'utf8')

@@ -46,7 +46,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/dlya-russkoyazychnykh-treyderov': '2026-10-01',
   '/ru/forex-prop-firmy': '2026-09-08',
   '/ru/fundednext-mt5': '2026-09-08',
-  '/ru/fundednext-stellar-instant': '2026-09-08',
+  '/ru/fundednext-stellar-instant': '2026-10-01',
   '/ru/fundednext-vs-bright-funded': '2026-10-01',
   '/ru/fundednext-vs-fundingpips': '2026-09-14',
   '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-08-28',

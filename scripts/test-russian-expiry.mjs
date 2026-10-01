@@ -231,6 +231,9 @@ try {
   assert.equal(new Set(fundedNextAccessEvidence.sourceObservations.map(item => item.sourceUrl)).size, 4, 'all four access sources have observations')
   assert(fundedNextAccessEvidence.sourceObservations.every(item => item.sourceCapturedAt === fundedNextAccessEvidence.sourceCapturedAt), 'FundedNext access observations share the scoped capture date')
   assert(fundedNextAccessEvidence.notes.some(item => item.includes('card-transfer restrictions')), 'Russian card country boundary is retained in access evidence')
+  assert.equal(instantEvidence.capturedAt, '2026-08-29', 'a payout-only recheck does not refresh all Stellar Instant rules')
+  assert.equal(instantEvidence.withdrawal.sourceCapturedAt, '2026-10-01', 'Stellar Instant payout routes have their own first-party recheck date')
+  assert(instantEvidence.withdrawal.methods.includes('Card') && instantEvidence.withdrawal.sourceQuote.includes('saved card'), 'conditional card payout is captured for Stellar Instant')
   const fundedNextKycEvidence = marketEvidence.kycEvidence.find(item => item.firmSlug === 'fundednext')
   assert.equal(fundedNextKycEvidence?.sourceCapturedAt, '2026-10-01', 'FundedNext challenge KYC uses its first-party recheck date')
   assert(fundedNextKycEvidence.sourceObservations.every(item => item.sourceCapturedAt === fundedNextKycEvidence.sourceCapturedAt), 'FundedNext KYC observations match their scoped capture date')
@@ -341,7 +344,7 @@ try {
   const offset = (date, days) => new RealDate(new RealDate(`${date}T00:00:00Z`).getTime() + days * 86400000).toISOString().slice(0, 10)
   const instantProduct = products.find(product => product.firmSlug === 'fundednext' && product.productSlug === 'stellar-instant')
   const instantSourceDates = [instantEvidence.capturedAt, instantEvidence.news.sourceCapturedAt, instantProduct.sourceCapturedAt,
-    marketEvidence.capturedAt, mt5Evidence.ea.sourceCapturedAt, mt5Evidence.instantEaScope.sourceCapturedAt]
+    instantEvidence.withdrawal.sourceCapturedAt, fundedNextAccessEvidence.sourceCapturedAt, mt5Evidence.ea.sourceCapturedAt, mt5Evidence.instantEaScope.sourceCapturedAt]
   const mt5SourceDates = Object.values(mt5Evidence).filter(value => value && typeof value === 'object' && 'sourceCapturedAt' in value).map(value => value.sourceCapturedAt)
   const cTraderSourceDates = [cTraderEvidence.platformSource.sourceCapturedAt, ...cTraderEvidence.firms.map(firm => firm.sourceCapturedAt)]
   const cTraderFundedNext = cTraderEvidence.firms.find(firm => firm.firmSlug === 'fundednext')
@@ -1279,6 +1282,8 @@ try {
             isChallengeFresh(instantProduct) ? instantProduct.accountSizes.filter(tier => tier.priceUsd > 0).length : 0, 'expired prices are hidden independently from explanatory rules')
           assert(html.includes(getRussianInstantFinderHref().replace(/&/g, '&amp;')), 'instant guide carries a valid current comparison or safe fallback')
           assert(visible.includes(`не более ${instantEvidence.news.newsMllEquityBufferMaximumUses} раз на одном счёте`), 'news adjustment includes its per-account use limit')
+          assert(visible.includes('карта, сохранённая в аккаунте') && visible.includes(instantEvidence.withdrawal.sourceCapturedAt), 'Instant card route stays conditional and independently dated')
+          assert(visible.includes(`ограничений от ${fundedNextAccessEvidence.sourceCapturedAt}`) && visible.includes('Общий снимок рынка от 2026-08-27 остаётся старым'), 'new access check does not relabel the broad market or imply Instant eligibility')
           assert.equal(instantEvidence.news.newsMllEquityBufferMaximumUses, 3)
           assert.match(instantEvidence.news.maximumUsesEvidenceQuote, /maximum of 3 times/)
           assert.equal((html.match(/id="(?:answer|price|risk|payout|news|platform|holding|scale|reset|country|verdict|sources|faq)"/g) ?? []).length, 13, 'all established article anchors remain')

@@ -133,14 +133,18 @@
   },
   "withdrawal": {
     "sourceUrl": "https://help.fundednext.com/en/articles/11641804-how-can-i-withdraw-my-performance-reward",
-    "methods": ["USDT ERC20", "USDT TRC20", "USDC ERC20", "RiseWorks", "Bank Transfer", "FNmarkets deposit"],
+    "sourceCapturedAt": "2026-10-01",
+    "sourceQuote": "Card payout is available for traders who have at least one saved card on their account.",
+    "methods": ["USDT ERC20", "USDT TRC20", "USDC ERC20", "RiseWorks", "Bank Transfer", "Card", "FNmarkets deposit"],
     "processingHours": 24,
     "otpRequired": true,
     "kycRequired": true,
     "gatewayFeesPaidByTrader": true,
     "notes": [
       "The reward share moves to the FundedNext Wallet before the payout request.",
-      "A submitted withdrawal request cannot be cancelled."
+      "A submitted withdrawal request cannot be cancelled.",
+      "Card payout requires a card already saved on the trader account; the country and provider route must still be checked in the dashboard.",
+      "This payout-only recheck does not refresh the other Stellar Instant rules, programme prices, or individual account eligibility."
     ]
   },
   "postWithdrawalLossFloor": {

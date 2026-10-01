@@ -69,6 +69,7 @@ const lossExampleLabels: Record<string, string> = {
 
 const withdrawalMethodLabels: Record<string, string> = {
   'Bank Transfer': 'банковский перевод',
+  Card: 'карта, сохранённая в аккаунте',
   'FNmarkets deposit': 'пополнение FNmarkets',
 }
 
@@ -105,13 +106,15 @@ export default function RussianFundedNextInstantPage() {
   const brightFunded = firms.find(firm => outboundSlug(firm.name) === 'bright-funded')
   const currentDeal = getDealsByFirm('fundednext').find(deal => deal.mechanism === 'earned-coupon')
   const accessEvidence = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
+  const accessCapturedAt = accessEvidence?.sourceCapturedAt ?? marketEvidence.capturedAt
   const evidenceDates = [
     { label: 'основные правила', capturedAt: instantEvidence.capturedAt },
     { label: 'правило новостей', capturedAt: instantEvidence.news.sourceCapturedAt },
+    { label: 'способы вывода Stellar Instant', capturedAt: instantEvidence.withdrawal.sourceCapturedAt },
     { label: 'советники EA', capturedAt: mt5Evidence.ea.sourceCapturedAt },
     { label: 'советники Stellar Instant', capturedAt: mt5Evidence.instantEaScope.sourceCapturedAt },
     { label: 'цены', capturedAt: instant?.sourceCapturedAt ?? '' },
-    { label: 'доступность страны', capturedAt: marketEvidence.capturedAt },
+    { label: 'доступность страны', capturedAt: accessCapturedAt },
   ]
   const hasFreshEvidence = evidenceDates.every(item => isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
   const instantFinderHref = getRussianInstantFinderHref()
@@ -369,8 +372,9 @@ export default function RussianFundedNextInstantPage() {
             </div>
             <p>
               FundedNext заявляет обработку корректно оформленной заявки в течение {instantEvidence.withdrawal.processingHours} часов; это заявление фирмы, а не наш подтверждённый срок получения выплаты. Комиссию платёжного посредника оплачивает трейдер.
-              Опубликованы {instantEvidence.withdrawal.methods.map(method => withdrawalMethodLabels[method] ?? method).join(', ')}. Доступность конкретного способа для своей страны нужно проверить в личном кабинете.
+              Опубликованы {instantEvidence.withdrawal.methods.map(method => withdrawalMethodLabels[method] ?? method).join(', ')}. Для выплаты на карту нужна карта, уже сохранённая в аккаунте. Доступность конкретного способа для своей страны нужно проверить в личном кабинете.
             </p>
+            <p className="ru-source-line">Способы вывода Stellar Instant выборочно проверены {instantEvidence.withdrawal.sourceCapturedAt}; остальные правила программы сохраняют собственные даты проверки.</p>
             <div className="ru-actions" data-russian-affiliate-disclosure="fundednext-instant-payout">
               <Link href="/go/fundednext?from=ru-fundednext-instant-payout" rel="sponsored nofollow noopener" className="btn-primary">Проверить Stellar Instant <ArrowRight size={14} aria-hidden="true" /></Link>
               <Link href="/ru/vyplaty-prop-firm" className="btn-outline">Сравнить способы выплаты</Link>
@@ -493,7 +497,7 @@ export default function RussianFundedNextInstantPage() {
             </div>
             <div className="ru-notice">
               <strong>Резидентам России нельзя обещать доступ.</strong>{' '}
-              По проверке от {marketEvidence.capturedAt} справка об ограничениях CFD не называет Россию, но раскрытие информации компании говорит, что российские резиденты не обслуживаются; банковский вывод также ограничен. Это датированное противоречие, а не подтверждение доступа. До оплаты нужен письменный ответ поддержки по конкретному профилю.
+              По выборочной проверке ограничений от {accessCapturedAt} справка CFD не называет Россию, но раскрытие информации компании говорит, что российские резиденты не обслуживаются. Общая справка о выплатах отдельно ограничивает банковский перевод в Россию и относит Российскую Федерацию к списку ограничений для карт. Это не подтверждает доступ к Stellar Instant или конкретному способу вывода. Общий снимок рынка от {marketEvidence.capturedAt} остаётся старым; до оплаты нужен письменный ответ поддержки по конкретному профилю.
             </div>
             <div className="ru-actions">
               {accessEvidence?.sourceUrls.map((url, index) => <a key={url} href={url} target="_blank" rel="nofollow noopener" className="btn-outline">Источник доступа {index + 1}</a>)}
