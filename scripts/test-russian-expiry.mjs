@@ -531,6 +531,7 @@ try {
     for (const product of brightFixtureProducts) assert(html.includes(product.sourceUrl) || product.productSlug !== fixture.productSlug, 'expired programme retains its primary source link')
   } finally { firmsModule.getChallengesByFirm = originalByFirm }
   const brightSourceDates = [...Object.values(brightEvidence.sources).map(source => source.sourceCapturedAt), ...brightFixtureProducts.map(product => product.sourceCapturedAt)]
+  clock = '2026-10-01T12:00:00Z'
   const primaryModule = require(path.join(root, 'app/ru/fundednext-vs-bright-funded/page.tsx'))
   const renderPrimary = () => renderToStaticMarkup(React.createElement(primaryModule.default))
   const primaryReference = renderPrimary()
@@ -538,17 +539,20 @@ try {
   const primaryExpectedModified = [
     RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/fundednext-vs-bright-funded'],
     ...getAllChallenges().filter(product => ['fundednext', 'bright-funded'].includes(product.firmSlug)).map(product => product.sourceCapturedAt),
-    marketEvidence.capturedAt,
+    fundedNextAccessEvidence.sourceCapturedAt,
     fundedPayoutSource.sourceCapturedAt,
-    ...[brightEvidence.sources.rules, brightEvidence.sources.reward, brightEvidence.sources.platforms].map(source => source.sourceCapturedAt),
+    ...[brightEvidence.sources.rules, brightEvidence.sources.reward, brightEvidence.sources.platforms, brightEvidence.sources.countries].map(source => source.sourceCapturedAt),
     ...marketEvidence.payoutEvidence.filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).map(source => source.sourceCapturedAt),
     ...marketEvidence.kycEvidence.filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).map(source => source.sourceCapturedAt),
   ].sort().at(-1)
   assert.equal(cryptoSchemas(primaryReference).find(item => item['@type'] === 'Article')?.dateModified, primaryExpectedModified, 'Bright comparison Article reflects the newest scoped rule or product update')
   assert(primaryReference.includes(`href="${fundedPayoutSource.sourceUrl}"`) && primaryReference.includes(fundedPayoutSource.sourceCapturedAt), 'comparison exposes its Stellar 1-Step payout source and separate date')
+  assert(primaryReference.includes(`href="${brightEvidence.sources.countries.sourceUrl}"`) && primaryReference.includes(brightEvidence.sources.countries.sourceCapturedAt), 'comparison cites Bright Funded country restrictions separately')
+  assert(primaryReference.includes(fundedNextAccessEvidence.sourceCapturedAt), 'comparison shows the scoped FundedNext access date')
   const primaryVisible = primaryReference.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ')
   assert(primaryReference.includes('data-russian-primary-comparison-products="7"') && primaryReference.includes('data-russian-primary-comparison-prices="40"'))
-  assert(!cryptoSchemas(primaryReference).some(item => item['@type'] === 'FAQPage'), 'stale market-access evidence withholds the primary comparison FAQ schema')
+  assert(cryptoSchemas(primaryReference).some(item => item['@type'] === 'FAQPage'), 'current scoped evidence supports the comparison FAQ despite the older broad market snapshot')
+  assert(!primaryReference.includes('data-russian-primary-comparison-evidence="recapture-required"'), 'an unrelated older market snapshot does not stale the scoped comparison')
   assert.doesNotMatch(primaryModule.metadata.description, /7 продукт|40 цен|true cost/)
   assert.equal(primaryModule.metadata.openGraph.description, 'Сравнение FundedNext и Bright Funded по 7 продуктам и 40 ценам: USD или EUR, этапы, просадка, true cost, выплаты, KYC и выбор для трейдера.', 'existing sharing description is preserved pending explicit approval')
   assert.doesNotMatch(primaryVisible, /\b(?:evaluation|checkout|risk buckets?|true cost|cash.flow|gateway|payout window|TradeLocker|highest equity|eligibility|suppressed)\b/i, 'comparison uses reader-facing Russian and does not revive the incorrect TradeLocker contrast')
@@ -558,7 +562,7 @@ try {
   for (const id of ['comparison-products', 'comparison-one-step', 'comparison-two-step', 'comparison-instant', 'comparison-cost', 'comparison-payout', 'comparison-profile', 'sources']) {
     assert(primaryReference.includes(`href="#${id}"`) && primaryReference.includes(`id="${id}"`), `comparison contents points to actual section ${id}`)
   }
-  const primaryRuleSources = [brightEvidence.sources.rules, brightEvidence.sources.reward, brightEvidence.sources.platforms,
+  const primaryRuleSources = [brightEvidence.sources.rules, brightEvidence.sources.reward, brightEvidence.sources.platforms, brightEvidence.sources.countries, fundedNextAccessEvidence,
     ...marketEvidence.payoutEvidence.filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)),
     ...marketEvidence.kycEvidence.filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug))]
   for (const source of primaryRuleSources) {
@@ -573,6 +577,11 @@ try {
       }
     } finally { source.sourceCapturedAt = capturedAt }
   }
+  const originalAccessStatus = fundedNextAccessEvidence.status
+  try {
+    fundedNextAccessEvidence.status = 'restricted'
+    assert(!cryptoSchemas(renderPrimary()).some(item => item['@type'] === 'FAQPage'), 'changed FundedNext access status cannot keep the conflict-specific comparison FAQ')
+  } finally { fundedNextAccessEvidence.status = originalAccessStatus }
   const originalAllChallenges = firmsModule.getAllChallenges
   const primaryFixtures = structuredClone(originalAllChallenges())
   const primaryCostRow = html => html.match(/<tr[^>]*data-russian-comparison-cost="bright-funded:bright-funded-1-step"[^>]*>([\s\S]*?)<\/tr>/)?.[1]

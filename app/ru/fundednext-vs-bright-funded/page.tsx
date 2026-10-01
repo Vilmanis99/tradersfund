@@ -195,10 +195,10 @@ export default function FundedNextVsBrightFundedRussianPage() {
   const payoutEvidence = new Map(marketEvidence.payoutEvidence.map(item => [item.firmSlug, item]))
   const kycEvidence = new Map(marketEvidence.kycEvidence.map(item => [item.firmSlug, item]))
   const accessEvidence = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
-  const ruleSources = [brightEvidence.sources.rules, brightEvidence.sources.reward, brightEvidence.sources.platforms]
+  const ruleSources = [brightEvidence.sources.rules, brightEvidence.sources.reward, brightEvidence.sources.platforms, brightEvidence.sources.countries]
   const evidenceDates = [
     { label: 'цены: самая ранняя проверка', capturedAt: latestCapture },
-    { label: 'страна и способы выплаты', capturedAt: marketEvidence.capturedAt },
+    { label: 'FundedNext: ограничения по стране', capturedAt: accessEvidence?.sourceCapturedAt ?? marketEvidence.capturedAt },
     { label: 'FundedNext: срок запроса Stellar 1-Step', capturedAt: fundedNextPayoutSource.sourceCapturedAt },
     ...ruleSources.map(source => ({ label: source.labelRu, capturedAt: source.sourceCapturedAt })),
     ...[...payoutEvidence.values(), ...kycEvidence.values()].filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).map(source => ({ label: `${source.firmName}: процесс выплаты или проверка личности`, capturedAt: source.sourceCapturedAt })),
@@ -210,6 +210,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
   const completeEvidence = relevantProducts.length > 0 && products.length === relevantProducts.length
     && [oneStepFn, oneStepBright, twoStepFn, liteFn, instantFn, twoStepBright, classicBright].every(Boolean)
     && ['fundednext', 'bright-funded'].every(slug => payoutEvidence.has(slug) && kycEvidence.has(slug))
+    && accessEvidence?.status === 'conflicting' && accessEvidence.sourceUrls.length === 4
     && products.every(product => pricedTiers(product).length > 0)
     && evidenceDates.every(source => freshCapture(source.capturedAt)) && isFundedNextPayoutSourceFresh()
   const sourceUrls = [...new Set([...relevantProducts.map(product => product.sourceUrl), fundedNextPayoutSource.sourceUrl, ...ruleSources.map(source => source.sourceUrl), ...[...payoutEvidence.values(), ...kycEvidence.values()].filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).flatMap(source => source.sourceUrls), ...(accessEvidence?.sourceUrls ?? [])])]
