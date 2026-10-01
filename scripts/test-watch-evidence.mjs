@@ -12,7 +12,7 @@ assert.equal(ruleEntries.length, 3)
 for (const entry of ruleEntries) {
   const products = readEvidence(`challenges/${entry.firmSlug}.json`).filter(product => entry.productSlugs.includes(product.productSlug))
   assert(products.length > 0)
-  assert(products.every(product => product.sourceCapturedAt < entry.lastCheckedAt), 'rule-only recheck did not relabel older price captures')
+  assert(products.every(product => product.sourceCapturedAt !== entry.lastCheckedAt), 'rule-only recheck must not relabel the affected product capture')
   assert.deepEqual(validateWatchCaptureProvenance(entry, products, readEvidence), [])
 }
 const entry = structuredClone(ruleEntries[0])

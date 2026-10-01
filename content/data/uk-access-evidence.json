@@ -75,9 +75,9 @@
       "productSlugs": ["bright-funded-1-step", "bright-funded-2-step-bright", "bright-funded-2-step-classic"],
       "sourceUrl": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded",
       "sourcePublishedAt": "2026-04-20",
-      "sourceCapturedAt": "2026-08-17",
+      "sourceCapturedAt": "2026-10-01",
       "evidenceLabel": "Challenge-purchase policy",
-      "evidenceSummary": "Bright Funded publishes the residence and nationality restrictions for challenge purchases and registration; the United Kingdom is not restricted.",
+      "evidenceSummary": "Bright Funded's policy names Cuba, Iran, North Korea, Syria, Vietnam and Pakistan for residence or nationality restrictions on challenge purchases and registration; it does not name the United Kingdom. This is not a completed UK checkout or individual eligibility approval.",
       "decisionNote": "All 3 current EUR products are mapped. Keep the EUR list price separate from GBP card conversion, payment-provider fees, promotions, and any final checkout adjustment."
     },
     {

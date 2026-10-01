@@ -33,7 +33,7 @@ const hooks = registerHooks({
 })
 
 const RealDate = Date
-let clock = '2026-09-08T12:00:00Z'
+let clock = '2026-10-01T12:00:00Z'
 globalThis.Date = class extends RealDate {
   constructor(...args) { super(...(args.length ? args : [clock])) }
   static now() { return new RealDate(clock).getTime() }
@@ -51,7 +51,7 @@ try {
   const firms = getAllFirms()
   const pairs = getAllCanonicalPairs()
   const offset = (date, days) => new RealDate(new RealDate(`${date}T00:00:00Z`).getTime() + days * 86400000).toISOString().slice(0, 10)
-  const dates = [...new Set(['2026-09-08', ...products.flatMap(product => [offset(product.sourceCapturedAt, 30), offset(product.sourceCapturedAt, 31)]), '2030-01-01'])].sort()
+  const dates = [...new Set(['2026-10-01', ...products.flatMap(product => [offset(product.sourceCapturedAt, 30), offset(product.sourceCapturedAt, 31)]), '2030-01-01'])].sort()
   assert.match(fs.readFileSync(path.join(root, 'app/compare/layout.tsx'), 'utf8'), /export const revalidate = 3600\b/)
   if (process.argv.includes('--built')) {
     const manifest = JSON.parse(fs.readFileSync(path.join(root, '.next/prerender-manifest.json'), 'utf8'))
@@ -60,9 +60,9 @@ try {
       assert(typeof interval === 'number' && interval > 0 && interval <= 3600, `${route}: actual build inherits hourly regeneration`)
     }
   }
-  assert(getOverlay('ftmo-vs-fundednext'), 'the current editorial comparison remains available')
+  assert.equal(getOverlay('ftmo-vs-fundednext'), undefined, 'newer product captures withhold the stale editorial comparison')
   // Deliberately move the clock forward, then back, without reloading modules.
-  for (const date of [...dates, '2026-09-08']) {
+  for (const date of [...dates, '2026-10-01']) {
     clock = `${date}T12:00:00Z`
     const current = products.filter(product => isChallengeFresh(product))
     const eligible = new Set(current.map(product => product.firmSlug))

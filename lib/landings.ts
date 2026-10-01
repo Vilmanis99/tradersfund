@@ -289,6 +289,47 @@ function usProductsForEvidence(evidence: UsAccessEvidence): Challenge[] {
   return freshMappedProducts(evidence.firmSlug, evidence.productSlugs)
 }
 
+export interface AccessLandingSnapshot {
+  firmCount: number
+  productCount: number
+  latestSourceDate: string
+}
+
+function buildAccessLandingSnapshot<T extends { sourceCapturedAt: string }>(
+  evidence: readonly T[],
+  productsForEvidence: (entry: T) => Challenge[],
+): AccessLandingSnapshot {
+  const current = evidence.flatMap(entry => {
+    const products = productsForEvidence(entry)
+    return products.length ? [{ entry, products }] : []
+  })
+  const sourceDates = evidence.flatMap(entry => [
+    entry.sourceCapturedAt,
+    ...productsForEvidence(entry).map(product => product.sourceCapturedAt),
+  ]).filter(Boolean).sort()
+
+  return {
+    firmCount: current.length,
+    productCount: current.reduce((total, item) => total + item.products.length, 0),
+    latestSourceDate: sourceDates.at(-1) ?? '',
+  }
+}
+
+/**
+ * Country-access landing counts must be evaluated when the page renders, not
+ * only when the module is first loaded. Otherwise a statically built page can
+ * continue showing an expired country-policy snapshot after the 30-day gate.
+ */
+export function getAccessLandingSnapshot(slug: string): AccessLandingSnapshot | null {
+  if (slug === 'best-prop-firms-in-uk') {
+    return buildAccessLandingSnapshot(UK_ACCESS_EVIDENCE, ukProductsForEvidence)
+  }
+  if (slug === 'best-prop-firms-in-us') {
+    return buildAccessLandingSnapshot(US_ACCESS_EVIDENCE, usProductsForEvidence)
+  }
+  return null
+}
+
 const CURRENT_CRYPTO_SNAPSHOT = CRYPTO_MARKET_EVIDENCE.flatMap(evidence => {
   const products = cryptoProductsForEvidence(evidence)
   return products.length ? [{ evidence, products }] : []
@@ -1048,6 +1089,73 @@ export const LANDINGS: Landing[] = [
 
 export function getLandingBySlug(slug: string): Landing | undefined {
   return LANDINGS.find(l => l.slug === slug)
+}
+
+function withCurrentAccessCopy(
+  landing: Landing,
+  snapshot: AccessLandingSnapshot,
+): Landing {
+  if (landing.slug === 'best-prop-firms-in-uk') {
+    return {
+      ...landing,
+      h1: `Best Prop Firms for UK Traders (2026): ${snapshot.firmCount} Policy-Checked`,
+      metaTitle: `Best Prop Firms for UK Traders (2026): ${snapshot.firmCount} Checked`,
+      metaDescription:
+        `Compare ${snapshot.firmCount} prop firms with current first-party UK-access policies across ${snapshot.productCount} product paths, plus FCA checks, fees, rules, reviews, and dated sources.`,
+      intro:
+        `These ${snapshot.firmCount} firms publish a current global or country-based service policy that does not restrict United Kingdom residents or nationals, and all ${snapshot.productCount} mapped product rows remain inside the 30-day freshness window. That is policy-supported access, not a completed UK checkout, KYC approval, payout test, legal opinion, or FCA-authorisation finding. Editorial score sets the order; partnership status contributes 0 points.`,
+      decisionGuide: landing.decisionGuide?.map(item => item.title === 'Does the policy cover every product and platform forever?'
+        ? {
+            ...item,
+            body: `No. This snapshot maps ${snapshot.productCount} exact products while their records and the country sources remain current. Platforms, payment providers, KYC vendors, sanctions screening, and product availability can change before the 30-day source gate expires.`,
+          }
+        : item),
+      snapshotProductCount: snapshot.productCount,
+    }
+  }
+
+  return {
+    ...landing,
+    h1: `Best Prop Firms for U.S. Traders (2026): ${snapshot.firmCount} Policy-Checked`,
+    metaTitle: `Best Prop Firms for US Traders (2026): ${snapshot.firmCount} Checked`,
+    metaDescription:
+      `Compare ${snapshot.firmCount} policy-checked prop firms for U.S. traders across ${snapshot.productCount} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`,
+    intro:
+      `These ${snapshot.firmCount} firms publish current first-party evidence supporting ${snapshot.productCount} explicitly mapped product paths for U.S. residents. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
+    decisionGuide: landing.decisionGuide?.map(item => item.title === 'Are futures and CFD paths interchangeable?'
+      ? {
+          ...item,
+          body: `No. This snapshot maps ${snapshot.productCount} exact products: futures paths use exchange-listed contracts and product-specific market hours, while FundedNext’s 4 U.S. CFD paths use Match-Trader and cannot be treated as MT4, MT5, or CME futures accounts.`,
+        }
+      : item),
+    snapshotProductCount: snapshot.productCount,
+  }
+}
+
+/**
+ * Resolve a landing's current copy for render-time use. Most landings are
+ * static editorial snapshots; UK and U.S. access pages have a 30-day source
+ * gate and therefore need their counts, copy, and metadata refreshed together.
+ */
+export function getLandingForRender(slug: string): Landing | undefined {
+  const landing = getLandingBySlug(slug)
+  if (!landing) return undefined
+  const snapshot = getAccessLandingSnapshot(slug)
+  return snapshot ? withCurrentAccessCopy(landing, snapshot) : landing
+}
+
+/**
+ * Return a source-based sitemap date for access landings. Do not use the
+ * newest firm-wide capture: unrelated firm updates must not make an expired
+ * country-policy page look freshly reviewed.
+ */
+export function getLandingSourceLastModified(slug: string): Date | undefined {
+  const landing = getLandingBySlug(slug)
+  const snapshot = getAccessLandingSnapshot(slug)
+  if (!landing || !snapshot) return undefined
+  const dates = [landing.lastReviewed, snapshot.latestSourceDate].filter(Boolean).sort()
+  const latest = dates.at(-1)
+  return latest ? new Date(`${latest}T00:00:00Z`) : undefined
 }
 
 export function buildLandingPayload(landing: Landing) {

@@ -3,7 +3,7 @@ import { getAllPosts, getAllPages, getAllCategories, getPostsByCategory } from '
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { FEATURES } from '@/lib/features'
 import { getAllCanonicalPairs, COMPARISON_EDITORIAL_DATE } from '@/lib/comparisons'
-import { LANDINGS, buildLandingPayload } from '@/lib/landings'
+import { LANDINGS, buildLandingPayload, getLandingSourceLastModified } from '@/lib/landings'
 import { buildIndiaMatcherFirms } from '@/lib/indiaMatcher'
 import { AUTHORS } from '@/lib/authors'
 import { getAllDeals } from '@/lib/deals'
@@ -137,10 +137,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
 
   // Long-tail landings: /best-prop-firms-in-uk, /cheapest-prop-firms, etc.
-  // These are data-driven, so lastmod tracks firms.json freshness.
+  // These are data-driven, so lastmod tracks the relevant source snapshot.
   const landingRoutes: MetadataRoute.Sitemap = LANDINGS.map(l => ({
     url: `${BASE_URL}/${l.slug}`,
-    lastModified: firmsLastDate,
+    lastModified: getLandingSourceLastModified(l.slug) ?? firmsLastDate,
     changeFrequency: 'weekly',
     priority: 0.8,
   }))

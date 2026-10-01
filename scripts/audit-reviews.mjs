@@ -6132,6 +6132,9 @@ function checkUkLandingCluster() {
       'isAccessEvidenceFresh(evidence.sourceCapturedAt)',
       'const CURRENT_UK_FIRM_COUNT = CURRENT_UK_SNAPSHOT.length',
       'const CURRENT_UK_PRODUCT_COUNT = CURRENT_UK_SNAPSHOT.reduce',
+      'export function getAccessLandingSnapshot(slug: string): AccessLandingSnapshot | null',
+      'export function getLandingForRender(slug: string): Landing | undefined',
+      'export function getLandingSourceLastModified(slug: string): Date | undefined',
       'UK_ACCESS_EVIDENCE_BY_SLUG.get(slug)',
       'entry from ${minimumPublishedEntry(products)}',
       "trailingMetricLabel: 'UK access'",
@@ -6193,6 +6196,20 @@ function checkUkLandingCluster() {
     }
   }
 
+  const ukLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-uk/page.tsx'))
+  for (const fragment of [
+    'export const revalidate = 3600',
+    'getLandingForRender(SLUG)',
+    'export function generateMetadata(): Metadata',
+  ]) {
+    if (!ukLandingRoute.includes(fragment)) {
+      rows.push(`UK landing route is missing freshness safeguard "${fragment}"`)
+    }
+  }
+  if (!read(SITEMAP_FILE).includes('getLandingSourceLastModified(l.slug)')) {
+    rows.push('sitemap must use source-based lastmod for access landings')
+  }
+
   for (const file of [
     'ftmo-review.md',
     'fundednext-review.md',
@@ -6211,7 +6228,8 @@ function checkUkLandingCluster() {
     'ukAccessEvidence.firms.flatMap',
     'expectedUkProductCount',
     'Policy-supported UK access is not an FCA status.',
-    'href="/go/fundednext?from=best-prop-firms-in-uk"',
+    'expectedUkFirms.filter(({ firm }) => firm.affiliateUrl)',
+    'href="/go/${slug}?from=best-prop-firms-in-uk"',
   ]) {
     if (!crawler.includes(fragment)) {
       rows.push(`release crawl is missing UK-ranking safeguard: "${fragment}"`)
@@ -6433,6 +6451,9 @@ function checkUsLandingConsolidation() {
     'freshMappedProducts(evidence.firmSlug, evidence.productSlugs)',
     'const CURRENT_US_FIRM_COUNT = CURRENT_US_SNAPSHOT.length',
     'const CURRENT_US_PRODUCT_COUNT = CURRENT_US_SNAPSHOT.reduce',
+    'export function getAccessLandingSnapshot(slug: string): AccessLandingSnapshot | null',
+    'export function getLandingForRender(slug: string): Landing | undefined',
+    'export function getLandingSourceLastModified(slug: string): Date | undefined',
   ]) {
     if (!landings.includes(fragment)) {
       rows.push(`U.S. landing helper is missing "${fragment}"`)
@@ -6478,6 +6499,17 @@ function checkUsLandingConsolidation() {
   ]) {
     if (!landingPage.includes(fragment)) {
       rows.push(`U.S. landing component is missing "${fragment}"`)
+    }
+  }
+
+  const usLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-us/page.tsx'))
+  for (const fragment of [
+    'export const revalidate = 3600',
+    'getLandingForRender(SLUG)',
+    'export function generateMetadata(): Metadata',
+  ]) {
+    if (!usLandingRoute.includes(fragment)) {
+      rows.push(`U.S. landing route is missing freshness safeguard "${fragment}"`)
     }
   }
 
@@ -6536,7 +6568,8 @@ function checkUsLandingConsolidation() {
     'expectedUsFirms',
     'expectedUsProductCount',
     '14 products',
-    'href="/go/fundednext?from=best-prop-firms-in-us"',
+    'expectedUsFirms.filter(({ firm }) => firm.affiliateUrl)',
+    'href="/go/${slug}?from=best-prop-firms-in-us"',
     'missing contextual U.S.-ranking backlink',
   ]) {
     if (!crawler.includes(fragment)) {
@@ -7429,10 +7462,26 @@ function checkDiscountHub() {
     read(path.join(ROOT, 'content/data/firms.json')) || '[]',
   )
   const freeTrials = JSON.parse(read(FREE_TRIAL_DATA_FILE) || '[]')
+  const archive = JSON.parse(read(path.join(ROOT, 'content/data/deals-archive.json')) || 'null')
+  const brightObservation = JSON.parse(read(path.join(ROOT, 'content/data/russian-bright-offer-observation.json')) || 'null')
   const firmBySlug = new Map(firms.map(firm => [outboundSlug(firm.name), firm]))
   const mechanisms = new Set(['checkout-code', 'link-applied', 'earned-coupon'])
 
-  if (deals.length === 0) rows.push('deals.json must keep at least 1 freshly sourced offer')
+  // An empty active catalog is honest when every previous offer has aged out.
+  // Preserve the old records, but never force a stale code onto the public hub.
+  const archivedAt = new Date(`${archive?.archivedOn}T00:00:00Z`)
+  if (!archive || !Array.isArray(archive.offers) || !archive.reason || !/^\d{4}-\d{2}-\d{2}$/.test(archive.archivedOn ?? '')
+    || !Number.isFinite(archivedAt.getTime()) || archivedAt.toISOString().slice(0, 10) !== archive.archivedOn) {
+    rows.push('retired offers need a dated, recoverable archive')
+  } else {
+    for (const oldDeal of archive.offers) {
+      if (!oldDeal.firmSlug || !oldDeal.verifiedOn || !oldDeal.sourceUrl) rows.push('archived offer is missing its original provenance')
+      if (deals.some(deal => deal.firmSlug === oldDeal.firmSlug && deal.code === oldDeal.code
+        && deal.mechanism === oldDeal.mechanism && deal.verifiedOn === oldDeal.verifiedOn)) {
+        rows.push(`${oldDeal.firmSlug}: archived offer remains in the active catalog`)
+      }
+    }
+  }
   for (const [index, deal] of deals.entries()) {
     const label = deal.firmSlug || `row ${index + 1}`
     const firm = firmBySlug.get(deal.firmSlug)
@@ -7463,7 +7512,8 @@ function checkDiscountHub() {
 
     const checkedAt = new Date(`${deal.verifiedOn}T00:00:00Z`)
     const ageDays = Math.floor((TODAY - checkedAt) / 86_400_000)
-    if (Number.isNaN(checkedAt.getTime()) || ageDays < 0 || ageDays > STALE_DAYS) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(deal.verifiedOn) || !Number.isFinite(checkedAt.getTime())
+      || checkedAt.toISOString().slice(0, 10) !== deal.verifiedOn || ageDays < 0 || ageDays > STALE_DAYS) {
       rows.push(`${label}: verifiedOn is outside the ${STALE_DAYS}-day freshness gate`)
     }
     if (deal.expiresOn && deal.expiresOn < TODAY.toISOString().slice(0, 10)) {
@@ -7483,11 +7533,10 @@ function checkDiscountHub() {
 
   const fundedNextDeal = deals.find(deal => deal.firmSlug === 'fundednext')
   const fundedNextTrial = freeTrials.find(trial => trial.firmSlug === 'fundednext')
-  if (!fundedNextDeal || !fundedNextTrial) {
-    rows.push('FundedNext deal and Free Trial evidence must both exist')
-  } else {
-    const coupon = fundedNextTrial.completionCoupon
+  if (fundedNextDeal) {
+    const coupon = fundedNextTrial?.completionCoupon
     if (
+      !fundedNextTrial ||
       fundedNextDeal.mechanism !== 'earned-coupon' ||
       fundedNextDeal.code != null ||
       fundedNextDeal.pct !== coupon?.discountPct ||
@@ -7501,34 +7550,35 @@ function checkDiscountHub() {
     }
   }
   const fundingPipsDeal = deals.find(deal => deal.firmSlug === 'fundingpips')
-  if (
-    !fundingPipsDeal ||
+  if (fundingPipsDeal && (
     fundingPipsDeal.mechanism !== 'checkout-code' ||
     fundingPipsDeal.code !== 'HELLO' ||
     fundingPipsDeal.pct !== 20 ||
     fundingPipsDeal.sourceUrl !== 'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started' ||
     !(fundingPipsDeal.scope ?? '').includes('excludes $100K accounts')
-  ) {
+  )) {
     rows.push('FundingPips HELLO offer must match the official Get Started evidence')
   }
 
   const brightDeals = deals.filter(deal => deal.firmSlug === 'bright-funded')
-  const brightCodes = new Map(brightDeals.map(deal => [deal.code, deal]))
-  const expectedBrightOffers = [
-    ['SUMMER30', 30, '1-Step Challenge'],
-    ['SUMMER25', 25, '2-Step Bright'],
-    ['SUMMER15', 15, '2-Step Classic'],
-  ]
-  for (const [code, pct, scope] of expectedBrightOffers) {
-    const deal = brightCodes.get(code)
-    if (
-      !deal ||
-      deal.mechanism !== 'checkout-code' ||
-      deal.pct !== pct ||
-      deal.scope !== scope ||
-      deal.sourceUrl !== 'https://brightfunded.com/trading-updates'
-    ) {
-      rows.push(`BrightFunded ${code} offer must match the official Trading Updates evidence`)
+  if (!brightObservation || brightObservation.firmSlug !== 'bright-funded'
+    || brightObservation.status !== 'advertised-unverified' || brightObservation.checkoutVerified !== false
+    || typeof brightObservation.code !== 'string' || !brightObservation.code
+    || !Number.isInteger(brightObservation.advertisedDiscountPct) || brightObservation.advertisedDiscountPct <= 0
+    || !Array.isArray(brightObservation.sourceQuotes)
+    || !brightObservation.sourceQuotes.some(quote => typeof quote === 'string' && quote.includes(brightObservation.code))
+    || !brightObservation.sourceQuotes.some(quote => typeof quote === 'string' && quote.includes(String(brightObservation.advertisedDiscountPct)))) {
+    rows.push('Bright Funded advertisement must remain distinct from checkout-verified deals')
+  } else {
+    const checkedAt = new Date(`${brightObservation.sourceCapturedAt}T00:00:00Z`)
+    let sourceHost = ''
+    try { sourceHost = new URL(brightObservation.sourceUrl).hostname } catch { /* Invalid URL fails below. */ }
+    if (sourceHost !== 'brightfunded.com'
+      || !/^\d{4}-\d{2}-\d{2}$/.test(brightObservation.sourceCapturedAt)
+      || !Number.isFinite(checkedAt.getTime())
+      || checkedAt.toISOString().slice(0, 10) !== brightObservation.sourceCapturedAt
+      || brightDeals.some(deal => deal.code === brightObservation.code)) {
+      rows.push('Bright Funded advertised-only code cannot be a verified checkout offer')
     }
   }
 
@@ -7927,7 +7977,7 @@ function checkFundedNextAffiliatePath() {
       rows.push(`FundedNext review is missing conversion safeguard: ${fragment}`)
     }
   }
-  if (parsed.data.modified !== '2026-08-27') {
+  if (parsed.data.modified !== '2026-09-29') {
     rows.push('FundedNext review modified date must match the product-fit review date')
   }
   if (!ftmoRaw.includes('href="/compare/ftmo-vs-fundednext"')) {
@@ -9539,8 +9589,8 @@ function checkScalingPlanGuide() {
     {
       slug: 'fundingpips',
       name: 'FundingPips',
-      splitFragments: ['80%', '85%', '95%', 'selected payout structure'],
-      countFragments: [[80, 1], [85, 1], [95, 1]],
+      splitFragments: ['80%', '95%', 'selected payout structure'],
+      countFragments: [[80, 2], [95, 1]],
       nullCount: 2,
     },
     {
@@ -11208,6 +11258,26 @@ function checkRussianAcquisitionPilot() {
       if (Number.isNaN(capturedAt.getTime()) || ageDays < -1 || ageDays > 30) {
         rows.push(`Russian market evidence capture ${evidence.capturedAt || 'missing'} is outside the 30-day window`)
       }
+      const validScopedCapture = date => {
+        if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return false
+        const parsed = new Date(`${date}T00:00:00Z`)
+        return Number.isFinite(parsed.getTime())
+          && parsed.toISOString().slice(0, 10) === date
+          && date >= evidence.capturedAt
+          && parsed.getTime() <= Date.now()
+      }
+      const hasScopedObservations = item => {
+        if (!item?.sourceObservations) return true
+        const observations = item.sourceObservations
+        return Array.isArray(item.sourceUrls)
+          && Array.isArray(observations)
+          && observations.length >= item.sourceUrls.length
+          && item.sourceUrls.every(url => observations.some(observation => observation.sourceUrl === url))
+          && observations.every(observation => item.sourceUrls.includes(observation.sourceUrl)
+            && validScopedCapture(observation.sourceCapturedAt)
+            && typeof observation.quote === 'string' && observation.quote.length >= 20)
+          && item.sourceCapturedAt === observations.map(observation => observation.sourceCapturedAt).sort()[0]
+      }
       const queryFrequency = new Map((evidence.searchDemand?.queries ?? [])
         .map(item => [item.query, item.monthlyFrequency]))
       for (const [query, expected] of [
@@ -11421,7 +11491,7 @@ function checkRussianAcquisitionPilot() {
         rows.push(`Russian payout evidence must contain exactly 3 firms; received ${payoutEvidence.size}`)
       }
       const expectedPayoutHosts = new Map([
-        ['fundednext', { host: 'fundednext.com', sources: 2, methods: 6 }],
+        ['fundednext', { host: 'fundednext.com', sources: 2, methods: 7 }],
         ['bright-funded', { host: 'brightfunded.com', sources: 3, methods: 2 }],
         ['fundingpips', { host: 'fundingpips.com', sources: 2, methods: 4 }],
       ])
@@ -11429,7 +11499,8 @@ function checkRussianAcquisitionPilot() {
         const item = payoutEvidence.get(firmSlug)
         if (
           !item
-          || item.sourceCapturedAt !== evidence.capturedAt
+          || !validScopedCapture(item.sourceCapturedAt)
+          || !hasScopedObservations(item)
           || item.sourceUrls?.length !== expected.sources
           || item.methods?.length !== expected.methods
         ) {
@@ -11450,12 +11521,14 @@ function checkRussianAcquisitionPilot() {
       const fundedNextPayout = payoutEvidence.get('fundednext')
       if (
         !fundedNextPayout?.methods?.some(item => item.includes('USDT ERC20 or TRC20'))
+        || !fundedNextPayout?.methods?.some(item => item.includes('Card') && item.includes('saved during payment'))
         || !fundedNextPayout?.requestSteps?.some(item => item.includes('OTP'))
         || !fundedNextPayout?.processing?.some(item => item.includes('24 hours'))
         || !fundedNextPayout?.processing?.some(item => item.includes('5 business days'))
-        || !fundedNextPayout?.processing?.some(item => item.includes('21 days') && item.includes('14-day'))
+        || !fundedNextPayout?.processing?.some(item => item.includes('standard') && item.includes('21 days') && item.includes('14-day'))
         || !fundedNextPayout?.fees?.some(item => item.includes('gateway charges'))
         || !fundedNextPayout?.countryBoundary?.some(item => item.includes('including Russia'))
+        || !fundedNextPayout?.scopeNote?.includes('does not recheck Stellar Instant eligibility')
       ) {
         rows.push('FundedNext payout methods, OTP, timing, fee or Russia boundary is incomplete')
       }
@@ -11465,12 +11538,12 @@ function checkRussianAcquisitionPilot() {
         || !brightFundedPayout?.methods?.some(item => item.includes('EUR'))
         || !brightFundedPayout?.requestSteps?.some(item => item.includes('Close all open trades'))
         || !brightFundedPayout?.processing?.some(item => item.includes('30 days'))
-        || !brightFundedPayout?.processing?.some(item => item.includes('14 days'))
+        || !brightFundedPayout?.processing?.some(item => item.includes('14 days') && item.includes('add-on') && item.includes('unresolved'))
         || !brightFundedPayout?.processing?.some(item => item.includes('maximum of 1 day'))
         || !brightFundedPayout?.fees?.some(item => item.includes('does not charge'))
         || !brightFundedPayout?.fees?.some(item => item.includes('USD 5 to USD 50'))
       ) {
-        rows.push('Bright Funded payout methods, 30/14-day cycle, processing or fee evidence is incomplete')
+        rows.push('Bright Funded payout methods, 30-day first gate, unresolved 14-day cycle, processing or fee evidence is incomplete')
       }
       const fundingPipsPayout = payoutEvidence.get('fundingpips')
       if (
@@ -11516,6 +11589,9 @@ function checkRussianAcquisitionPilot() {
       ) {
         rows.push('А-Лаб operator-claim fixtures are missing from Russian evidence')
       }
+      const scopedTeamTradersEvidence = fs.existsSync(teamTradersEvidenceFile)
+        ? JSON.parse(fs.readFileSync(teamTradersEvidenceFile, 'utf8'))
+        : null
       if (
         localSignals.get('TeamTraders')?.claims?.stageProfitPct !== 6
         || localSignals.get('TeamTraders')?.claims?.minimumTradingSessions !== 10
@@ -11524,8 +11600,9 @@ function checkRussianAcquisitionPilot() {
         || localSignals.get('TeamTraders')?.claims?.fundedDemoProfitSharePct !== 70
         || localSignals.get('TeamTraders')?.claims?.profitSharePct !== 95
         || localSignals.get('TeamTraders')?.claims?.maximumCapitalRub !== 2_000_000
-        || localSignals.get('TeamTraders')?.sourceCapturedAt !== '2026-08-28'
+        || localSignals.get('TeamTraders')?.sourceCapturedAt !== scopedTeamTradersEvidence?.capturedAt
         || !localSignals.get('TeamTraders')?.notes?.some(note => note.includes('15 sessions and a 90% split'))
+        || !localSignals.get('TeamTraders')?.notes?.some(note => note.includes('prop-trading offer is currently unavailable'))
       ) {
         rows.push('TeamTraders current rules or legacy 15-day/90% conflict are missing from Russian evidence')
       }
@@ -11562,6 +11639,12 @@ function checkRussianAcquisitionPilot() {
           rows.push(`${operator} must remain affiliate-status not-found until sourced terms exist`)
         }
       }
+      if (
+        affiliatePrograms.get('TeamTraders')?.sourceCapturedAt !== scopedTeamTradersEvidence?.affiliateProgram?.checkedAt
+        || !affiliatePrograms.get('TeamTraders')?.notes?.some(note => note.includes('older prop-trading offer is unavailable'))
+      ) {
+        rows.push('TeamTraders affiliate status must retain the current public-page check and unavailable-offer caveat')
+      }
 
       const firmAccess = new Map((evidence.firmAccess ?? []).map(item => [item.firmSlug, item]))
       if (
@@ -11592,7 +11675,7 @@ function checkRussianAcquisitionPilot() {
       ])
       for (const [firmSlug, expectedHost] of expectedKycHosts) {
         const item = kycEvidence.get(firmSlug)
-        if (!item || item.required !== true || item.sourceCapturedAt !== evidence.capturedAt) {
+        if (!item || item.required !== true || !validScopedCapture(item.sourceCapturedAt) || !hasScopedObservations(item)) {
           rows.push(`${firmSlug}: KYC required flag or capture date is incomplete`)
           continue
         }
@@ -11615,6 +11698,7 @@ function checkRussianAcquisitionPilot() {
         fundedNextKyc?.sourceUrls?.length !== 1
         || fundedNextKyc?.documents?.length !== 3
         || !fundedNextKyc?.trigger?.includes('After successfully completing the challenge')
+        || !fundedNextKyc?.scopeNote?.includes('not Stellar Instant')
         || !fundedNextKyc?.timing?.some(item => item.includes('48 hours'))
         || !fundedNextKyc?.additionalChecks?.some(item => item.includes('3 months'))
       ) {
@@ -11658,6 +11742,19 @@ function checkRussianAcquisitionPilot() {
         rows.push(`TeamTraders evidence capture ${teamTradersEvidence.capturedAt || 'missing'} is outside the 30-day window`)
       }
       if (
+        !teamTradersEvidence.captureScope?.includes('historical 2026-08-28')
+        || teamTradersEvidence.searchIntent?.capturedAt !== '2026-08-28'
+        || teamTradersEvidence.availabilityCheck?.checkedAt !== teamTradersEvidence.capturedAt
+        || teamTradersEvidence.availabilityCheck?.offerUrlStatus !== '404'
+        || teamTradersEvidence.availabilityCheck?.legacyDocsUrlStatus !== '404'
+        || teamTradersEvidence.availabilityCheck?.currentLegalUrl !== 'https://teamtraders.ru/rules'
+        || !teamTradersEvidence.availabilityCheck?.currentLegalScope?.includes('training')
+        || teamTradersEvidence.affiliateProgram?.checkedAt !== teamTradersEvidence.capturedAt
+        || teamTradersEvidence.affiliateProgram?.checkedUrls?.includes('https://teamtraders.ru/oferta_prop/')
+      ) {
+        rows.push('TeamTraders current public recheck must remain separate from archived terms and the unavailable prop agreement')
+      }
+      if (
         teamTradersEvidence.operator !== 'TeamTraders'
         || teamTradersEvidence.sources?.length !== 4
         || teamTradersEvidence.accounts?.length !== 3
@@ -11688,7 +11785,22 @@ function checkRussianAcquisitionPilot() {
       }
       for (const source of teamTradersEvidence.sources ?? []) {
         try {
-          if (new URL(source.url).hostname !== 'teamtraders.ru' || source.capturedAt !== teamTradersEvidence.capturedAt) {
+          const sourceDate = typeof source.capturedAt === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(source.capturedAt)
+            ? new Date(`${source.capturedAt}T00:00:00Z`)
+            : null
+          const validSourceDate = sourceDate && Number.isFinite(sourceDate.getTime())
+            && sourceDate.toISOString().slice(0, 10) === source.capturedAt
+            && source.capturedAt <= new Date().toISOString().slice(0, 10)
+          const archived = source.id === 'offer' || source.id === 'legacy-docs'
+          const validScope = archived
+            ? source.capturedAt === '2026-08-28'
+              && source.capturedAt < teamTradersEvidence.capturedAt
+              && teamTradersEvidence.availabilityCheck?.[source.id === 'offer' ? 'offerUrlStatus' : 'legacyDocsUrlStatus'] === '404'
+            : (source.id === 'home' || source.id === 'faq')
+              && source.capturedAt === teamTradersEvidence.capturedAt
+              && Array.isArray(source.recheckQuotes) && source.recheckQuotes.length >= 3
+              && source.recheckQuotes.every(quote => typeof quote === 'string' && quote.trim())
+          if (new URL(source.url).hostname !== 'teamtraders.ru' || !validSourceDate || !validScope) {
             rows.push(`TeamTraders source is not current first-party evidence: ${source.url}`)
           }
         } catch {
@@ -11983,6 +12095,7 @@ function checkRussianAcquisitionPilot() {
     'data-russian-country-boundary="language-not-access"',
     'data-russian-home-hero-partners="fundednext-bright-funded"',
     'data-russian-home-hero-partner={item.slug}',
+    'data-russian-partner-country-source-status=',
     'ru-home-partner-hero-logo',
     '/go/fundednext?from=ru-home-hero-fundednext',
     '/go/bright-funded?from=ru-home-hero-bright-funded',
@@ -12207,6 +12320,7 @@ function checkRussianAcquisitionPilot() {
     "campaign: 'ru-local-research-fundednext'",
     "campaign: 'ru-local-research-bright-funded'",
     'href="/ru/fundednext-vs-bright-funded"',
+    'Сравнить FundedNext и Bright Funded',
     'Это не топ и не совет зарегистрироваться.',
     'многоуровневая Ambassador-схема нам не нужна',
     'href="/ru/dlya-russkoyazychnykh-treyderov"',
@@ -12256,6 +12370,7 @@ function checkRussianAcquisitionPilot() {
     'href="/ru/prop-firmy-bez-chelendzha"',
     'href="/ru/vyplaty-prop-firm"',
     'href="/ru/otzyvy-prop-firm"',
+    'Проверить программы Bright Funded →',
   ]) {
     if (!russianRankingPage.includes(token)) rows.push(`Russian global-partner shortlist is missing ${token}`)
   }
@@ -12404,7 +12519,8 @@ function checkRussianAcquisitionPilot() {
     'href="/ru/fundednext-vs-bright-funded"',
     'href="/ru/rossiyskie-prop-kompanii"',
     'getRussianDiasporaCountryRows()',
-    'dateModified: russianDiasporaEvidence.capturedAt',
+    'dateModified: russianRouteDateModified(PATH, russianDiasporaEvidence.capturedAt)',
+    'Число доступных строк зависит от свежести источников.',
     'Отсутствие страны в списке не подтверждает доступ',
     'href={source.url}',
   ]) {
@@ -12758,6 +12874,7 @@ function checkRussianAcquisitionPilot() {
     'data-russian-kyc-gates="checkout-account-contract-payout"',
     'data-russian-kyc-matrix={partnerCards.length}',
     'data-russian-kyc-evidence={card.slug}',
+    'data-russian-kyc-source-status=',
     'data-russian-kyc-featured-partners="fundednext-bright-funded"',
     'data-russian-kyc-featured-partner={card.slug}',
     'data-russian-kyc-documents="identity-address-selfie"',
@@ -12855,16 +12972,19 @@ function checkRussianAcquisitionPilot() {
     'data-russian-teamtraders-rules="manual-intraday"',
     'data-russian-teamtraders-payouts="demo-70-real-95"',
     'data-russian-teamtraders-source-conflict="current-vs-legacy"',
-    'data-russian-teamtraders-legal="offer-before-registration"',
+    'data-russian-teamtraders-legal="prop-offer-unavailable"',
     'data-russian-affiliate-disclosure="teamtraders-global-options"',
     'TEAMTRADERS_HOME',
     'TEAMTRADERS_FAQ',
-    'TEAMTRADERS_OFFER',
-    'TEAMTRADERS_LEGACY_DOCS',
+    'TEAMTRADERS_PUBLIC_RULES',
+    'data-russian-teamtraders-legal-availability="prop-offer-unavailable"',
     'ru-teamtraders-global-',
     'rel="sponsored nofollow noopener"',
   ]) {
     if (!russianTeamTradersPage.includes(token)) rows.push(`Russian TeamTraders review is missing ${token}`)
+  }
+  if (russianTeamTradersPage.includes('TEAMTRADERS_OFFER') || russianTeamTradersPage.includes('TEAMTRADERS_LEGACY_DOCS')) {
+    rows.push('Russian TeamTraders review must not link to unavailable offer or legacy documentation')
   }
   for (const [route, source, staleCampaign] of [
     ['/ru/rossiyskie-prop-kompanii', localFirmPage, 'ru-local-research-fundingpips'],
@@ -13011,6 +13131,7 @@ function checkRussianAcquisitionPilot() {
       'rel="sponsored nofollow noopener"',
     ]],
     ['/ru/obzor-bright-funded', [
+      'BrightFunded: обзор на русском —',
       'data-russian-partner-review="bright-funded"',
       'data-russian-bright-article="long-form"',
       'data-russian-bright-summary-cta="qualified-country-first"',
@@ -13021,6 +13142,7 @@ function checkRussianAcquisitionPilot() {
       'Почему у Bright Funded нет средней оценки Trustpilot?',
       'href="/ru/otzyvy-prop-firm#review-checklist"',
       'data-russian-bright-country-access="published-list"',
+      'списке шести стран, проверенном ${brightEvidence.sources.countries.sourceCapturedAt}',
       'data-russian-bright-plan-matrix="three-products"',
       'data-russian-bright-price-count={pricedTiers.length}',
       'data-russian-bright-truecost={pricedTiers.length}',
@@ -13028,8 +13150,10 @@ function checkRussianAcquisitionPilot() {
       'data-russian-bright-diaspora="currency-first"',
       'data-russian-affiliate-disclosure="bright-funded"',
       'import RussianAffiliateSupportCode from \'@/components/RussianAffiliateSupportCode\'',
-      "const publicDealPcts = getDealsByFirm('bright-funded')",
+      "const publicBrightDeals = getDealsByFirm('bright-funded')",
       'const bestPublicDealPct = publicDealPcts.length ? Math.max(...publicDealPcts) : null',
+      "? '/ru/promokody-prop-firm#bright-funded-promokody'",
+      ": '/ru/promokody-prop-firm#bright-offer-status'",
       '<RussianAffiliateSupportCode',
       'publicOfferPct={bestPublicDealPct}',
       'placement="bright-funded-review-verdict"',

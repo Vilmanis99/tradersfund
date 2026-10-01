@@ -1,23 +1,26 @@
 import type { Metadata } from 'next'
 import LandingPage from '@/components/LandingPage'
-import { getLandingBySlug } from '@/lib/landings'
+import { getLandingForRender } from '@/lib/landings'
 
 const SLUG = 'best-prop-firms-in-us'
-const landing = getLandingBySlug(SLUG)!
+export const revalidate = 3600
 
-export const metadata: Metadata = {
-  title: landing.metaTitle,
-  description: landing.metaDescription,
-  alternates: { canonical: `/${SLUG}` },
-  openGraph: {
+export function generateMetadata(): Metadata {
+  const landing = getLandingForRender(SLUG)!
+  return {
     title: landing.metaTitle,
     description: landing.metaDescription,
-    url: `/${SLUG}`,
-    type: 'article',
-  },
-  twitter: { card: 'summary_large_image', title: landing.metaTitle, description: landing.metaDescription },
+    alternates: { canonical: `/${SLUG}` },
+    openGraph: {
+      title: landing.metaTitle,
+      description: landing.metaDescription,
+      url: `/${SLUG}`,
+      type: 'article',
+    },
+    twitter: { card: 'summary_large_image', title: landing.metaTitle, description: landing.metaDescription },
+  }
 }
 
 export default function Page() {
-  return <LandingPage landing={landing} />
+  return <LandingPage landing={getLandingForRender(SLUG)!} />
 }

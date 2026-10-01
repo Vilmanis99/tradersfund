@@ -3,7 +3,7 @@ title: "How to Pass a Prop Firm Challenge: A Risk Plan (2026)"
 seoTitle: "How to Pass a Prop Firm Challenge: Risk Plan (2026)"
 slug: "how-to-pass-a-prop-firm-challenge"
 date: "2026-06-15 12:00:00"
-modified: "2026-08-28 12:00:00"
+modified: "2026-09-29 12:00:00"
 description: "Build a prop-firm challenge plan from the product's exact target, drawdown, trading-day, and consistency rules before placing the first trade."
 seoDescription: "Build a prop-firm challenge risk plan from exact loss limits, targets, trading days, consistency rules, and position-size math."
 type: "page"
@@ -32,10 +32,10 @@ type: "page"
   <caption class="hidden-caption">Current product rules used in the risk-plan examples</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product / tier</th><th style="padding: 8px 12px; text-align: left;">Target path</th><th style="padding: 8px 12px; text-align: left;">Loss controls</th><th style="padding: 8px 12px; text-align: left;">Trading days</th><th style="padding: 8px 12px; text-align: left;">Captured</th></tr></thead>
   <tbody>
-    <tr data-pass-plan="ftmo:ftmo-challenge-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FTMO 2-Step $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% daily / 10% static max</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4 minimum; no maximum captured</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-28</td></tr>
-    <tr data-pass-plan="fundednext:stellar-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext Stellar 2-Step $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% daily / 10% static max</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5 minimum; no maximum captured</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-08-27</td></tr>
+    <tr data-pass-plan="ftmo:ftmo-challenge-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FTMO 2-Step $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% daily / 10% static max</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4 minimum; no maximum captured</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-29</td></tr>
+    <tr data-pass-plan="fundednext:stellar-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext Stellar 2-Step $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8% then 5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% daily / 10% static max</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5 minimum; no maximum captured</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-29</td></tr>
     <tr data-pass-plan="fxify:lightning-challenge"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FXIFY Lightning $10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3% daily / 4% trailing max</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3 minimum / 5 maximum</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-15</td></tr>
-    <tr data-pass-plan="fundingpips:2-step-pro"><td style="padding: 8px 12px;">FundingPips 2 Step Pro $100K</td><td style="padding: 8px 12px;">6% then 6%</td><td style="padding: 8px 12px;">3% daily / 6% static max</td><td style="padding: 8px 12px;">2 minimum per phase; no maximum captured</td><td style="padding: 8px 12px;">2026-08-27</td></tr>
+    <tr data-pass-plan="fundingpips:2-step-pro"><td style="padding: 8px 12px;">FundingPips 2 Step Pro $100K</td><td style="padding: 8px 12px;">6% then 6%</td><td style="padding: 8px 12px;">3% daily / 6% static max</td><td style="padding: 8px 12px;">2 minimum per phase; no maximum captured</td><td style="padding: 8px 12px;">2026-09-29</td></tr>
   </tbody>
 </table>
 
