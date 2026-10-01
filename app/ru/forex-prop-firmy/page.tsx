@@ -9,6 +9,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import forexEvidence from '@/content/data/russian-forex-evidence.json'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
+import brightCountryEvidence from '@/content/data/russian-bright-funded-evidence.json'
 
 const PATH = '/ru/forex-prop-firmy'
 const TITLE = 'Форекс проп-фирмы: плечо, цены и правила программ'
@@ -106,17 +107,22 @@ export default function RussianForexPropFirmsPage() {
   const evidenceFresh = (firm: typeof fundedNextEvidence) => isChallengeFresh({ sourceCapturedAt: firm.sourceCapturedAt })
   const fundedNextFresh = evidenceFresh(fundedNextEvidence)
   const brightFresh = evidenceFresh(brightEvidence)
+  const fundedNextAccess = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
+  const brightCountry = brightCountryEvidence.sources.countries
   const symbols = fundedNextFresh ? fundedNextEvidence.forexSymbols ?? [] : []
-  const sourceCount = new Set([...allProducts.map(product => product.sourceUrl), ...forexEvidence.firms.flatMap(firm => firm.sourceUrls)]).size
+  const sourceCount = new Set([...allProducts.map(product => product.sourceUrl), ...forexEvidence.firms.flatMap(firm => firm.sourceUrls), ...(fundedNextAccess?.sourceUrls ?? []), brightCountry.sourceUrl]).size
   const evidenceDates = [
     ...forexEvidence.firms.map(firm => ({ label: `форекс-справки ${firm.firmName}`, capturedAt: firm.sourceCapturedAt })),
     ...['fundednext', 'bright-funded'].map(slug => ({
       label: `цены и правила ${slug === 'fundednext' ? 'FundedNext' : 'Bright Funded'}`,
       capturedAt: allProducts.filter(product => product.firmSlug === slug).map(product => product.sourceCapturedAt).sort()[0] ?? '',
     })),
-    { label: 'обзор доступа по стране', capturedAt: marketEvidence.capturedAt },
+    { label: 'ограничения FundedNext по стране', capturedAt: fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt },
+    { label: 'ограничения Bright Funded по стране', capturedAt: brightCountry.sourceCapturedAt },
   ]
-  const hasFreshEvidence = evidenceDates.every(item => isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
+  const hasFreshEvidence = allProducts.length > 0 && products.length === allProducts.length
+    && fundedNextAccess?.status === 'conflicting'
+    && evidenceDates.every(item => isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
   const updatedAt = russianRouteDateModified(PATH, forexEvidence.capturedAt)
 
   function leverageFor(product: Challenge) {
@@ -388,6 +394,7 @@ export default function RussianForexPropFirmsPage() {
             для своего профиля и программы. Русская версия сайта предназначена для русскоязычных
             трейдеров в разных странах; она не является обещанием доступности услуг из России.
           </p>
+          <p className="ru-source-line">По проверке от {fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt} официальные страницы FundedNext противоречат друг другу о доступе резидентов России. Список Bright Funded от {brightCountry.sourceCapturedAt} не называет Россию, но это не индивидуальное разрешение на покупку или выплату.</p>
           <div className="ru-actions">
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-primary"><Globe2 size={15} aria-hidden="true" /> Проверить профиль страны</Link>
             <Link href="/ru/vyplaty-prop-firm" className="btn-outline">Способы выплаты</Link>
@@ -451,6 +458,12 @@ export default function RussianForexPropFirmsPage() {
             <h3>{firm.firmName} · {firm.sourceCapturedAt}</h3>
             <ul>{firm.sourceUrls.map((url, index) => <li key={url}><a href={url} target="_blank" rel="nofollow noopener">{firm.firmName}: {index === 0 ? 'инструменты' : index === 1 ? 'кредитное плечо' : index === 2 && firm.firmSlug === 'fundednext' ? 'плечо Stellar Instant' : index === 2 ? 'платформы и ограничения' : 'описание CFD-программ'}</a></li>)}</ul>
           </div>)}
+          <h3>Ограничения по стране</h3>
+          <p>FundedNext: {fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt}; Bright Funded: {brightCountry.sourceCapturedAt}. Общий снимок рынка от {marketEvidence.capturedAt} не обновлён этой выборочной проверкой.</p>
+          <ul>
+            {fundedNextAccess?.sourceUrls.map((url, index) => <li key={url}><a href={url} target="_blank" rel="nofollow noopener">FundedNext: источник доступа {index + 1}</a></li>)}
+            <li><a href={brightCountry.sourceUrl} target="_blank" rel="nofollow noopener">Bright Funded: ограничения по стране</a></li>
+          </ul>
         </div>
       </section>
 

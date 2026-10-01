@@ -789,6 +789,19 @@ try {
     row = fixtureRow(fixture)
     assert(row.includes('цена не подтверждена') && row.includes('Дневной: не подтверждён; общий: не подтверждён'), 'unknown fees and risk stay unknown')
   } finally { firmsModule.getAllChallenges = originalGetChallenges }
+  const forexProductFixtures = structuredClone(originalGetChallenges())
+  const forexClock = clock
+  try {
+    clock = '2026-10-01T12:00:00Z'
+    firmsModule.getAllChallenges = () => forexProductFixtures
+    assert(cryptoSchemas(renderToStaticMarkup(React.createElement(ForexPage))).some(item => item['@type'] === 'FAQPage'), 'fully current scoped forex sources support the FAQ')
+    const oneForexProduct = forexProductFixtures.find(product => product.firmSlug === 'bright-funded' && product.assetClass === 'cfd')
+    oneForexProduct.sourceCapturedAt = '2030-01-01'
+    assert(!cryptoSchemas(renderToStaticMarkup(React.createElement(ForexPage))).some(item => item['@type'] === 'FAQPage'), 'one future-dated product blocks a current forex FAQ even when other product captures are fresh')
+  } finally {
+    firmsModule.getAllChallenges = originalGetChallenges
+    clock = forexClock
+  }
   assert.equal(mt5Evidence.ea.manualOnlyFromAccountSizeUsd, 50000)
   assert.equal(mt5Evidence.instantEaScope.accountSizeCutoffUsd, null, 'missing product-specific cutoff is not an exemption')
   const SecondaryComparison = require(path.join(root, 'app/ru/fundednext-vs-fundingpips/page.tsx'))
@@ -1250,7 +1263,8 @@ try {
           const scoped = getAllChallenges().filter(product => product.assetClass === 'cfd' && ['fundednext', 'bright-funded'].includes(product.firmSlug))
           const current = scoped.filter(product => isChallengeFresh(product))
           assert.deepEqual([...html.matchAll(/data-russian-forex-product="([^"]+)"/g)].map(match => match[1]), current.map(product => `${product.firmSlug}:${product.productSlug}`))
-          const needsCheck = [...forexSourceDates, ...scoped.map(product => product.sourceCapturedAt), marketEvidence.capturedAt].some(sourceCapturedAt => !isChallengeFresh({ sourceCapturedAt }))
+          const needsCheck = [...forexSourceDates, ...scoped.map(product => product.sourceCapturedAt), fundedNextAccessEvidence.sourceCapturedAt, brightEvidence.sources.countries.sourceCapturedAt]
+            .some(sourceCapturedAt => !isChallengeFresh({ sourceCapturedAt }))
           assert.equal(html.includes('data-russian-guide-source-status="recapture-required"'), needsCheck)
           assert.equal(schema.some(item => item['@type'] === 'FAQPage'), !needsCheck)
           for (const product of current) {
@@ -1263,6 +1277,9 @@ try {
           assert(html.includes(getRussianReviewFinderHref('fundednext').replace(/&/g, '&amp;')), 'forex handoff carries the existing same-size pair or its safe fallback')
           for (const id of ['produkty', 'plecho', 'sources', 'faq']) assert.equal((html.match(new RegExp(`id="${id}"`, 'g')) ?? []).length, 1)
           for (const firm of forexEvidence.firms) for (const url of firm.sourceUrls) assert(html.includes(url), 'all forex primary sources remain visible')
+          for (const url of fundedNextAccessEvidence.sourceUrls) assert(html.includes(`href="${url}"`), 'forex country warning links each conflicting FundedNext source')
+          assert(html.includes(`href="${brightEvidence.sources.countries.sourceUrl}"`) && visible.includes(`Bright Funded: ${brightEvidence.sources.countries.sourceCapturedAt}`), 'forex country warning cites the dated Bright Funded restriction list')
+          assert(visible.includes(`Общий снимок рынка от ${marketEvidence.capturedAt} не обновлён`), 'scoped country checks do not refresh broad Russian-market research')
           assert(html.includes('data-russian-forex-correction="stellar-1-step-leverage"') && visible.includes('исправление нашей записи'), 'correction is transparent and not presented as a new policy-change date')
         }
         if (slug === 'fundednext-stellar-instant') {
