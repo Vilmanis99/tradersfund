@@ -4,11 +4,13 @@ import { ArrowRight, Building2, Calculator, FileCheck2, Globe2, Scale, WalletCar
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
+import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru/obzor-kascapital'
+export const revalidate = 3600
 const TITLE = 'KasCapital: обзор условий и выплат (2026)'
 const DESCRIPTION = 'KasCapital на русском: заявленные 95% прибыли трейдеру, покупательная способность, понедельничные выплаты и проверка публичных условий.'
 const KAS_HOME = 'https://kascapital.io/'
@@ -32,7 +34,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Есть ли у KasCapital публичная партнёрская программа?',
-    a: 'В проверке официального сайта от 24 августа 2026 года публичные партнёрские или реферальные условия не найдены. Поэтому этот обзор не содержит локального /go/ перехода и не обещает комиссию.',
+    a: 'При проверке официального сайта публичные партнёрские или реферальные условия не найдены. Поэтому этот обзор не содержит локального /go/ перехода и не обещает комиссию.',
   },
   {
     q: 'Подходит ли KasCapital русскоязычному трейдеру за пределами России?',
@@ -50,7 +52,7 @@ const faqs: RussianFaqItem[] = [
 
 const globalRoutes = [
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
-  { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded' },
 ] as const
 
 function SourceLink({ href, children }: { href: string, children: React.ReactNode }) {
@@ -60,6 +62,10 @@ function SourceLink({ href, children }: { href: string, children: React.ReactNod
 export default function RussianKasCapitalReviewPage() {
   const localSignal = marketEvidence.localFirmSignals.find(item => item.operator === 'KasCapital')
   const affiliateSignal = marketEvidence.affiliatePrograms.find(item => item.operator === 'KasCapital')
+  const localSignalCapturedAt = localSignal?.sourceCapturedAt ?? ''
+  const affiliateCapturedAt = affiliateSignal?.sourceCapturedAt ?? ''
+  const faqSourcesCurrent = [marketEvidence.capturedAt, localSignal?.sourceCapturedAt ?? '', affiliateSignal?.sourceCapturedAt ?? '']
+    .every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
   const freshChallenges = getAllChallenges().filter(product => isChallengeFresh(product))
   const globalCards = globalRoutes.map(route => {
     const firm = getAllFirms().find(candidate => outboundSlug(candidate.name) === route.slug)
@@ -78,7 +84,7 @@ export default function RussianKasCapitalReviewPage() {
     headline: TITLE,
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
-    dateModified: marketEvidence.capturedAt,
+    dateModified: russianRouteDateModified(PATH),
     inLanguage: 'ru',
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
@@ -88,22 +94,26 @@ export default function RussianKasCapitalReviewPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
+      {faqSourcesCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="kascapital" data-russian-local-review-status="verification-only">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/rossiyskie-prop-kompanii">Российские компании</Link> / KasCapital</div>
-          <RussianEvidenceFreshnessNotice evidence={[{ label: 'локальные условия KasCapital', capturedAt: marketEvidence.capturedAt }]} />
+          <RussianEvidenceFreshnessNotice evidence={[
+            { label: 'общий снимок рынка', capturedAt: marketEvidence.capturedAt },
+            { label: 'заявления KasCapital на главной', capturedAt: localSignalCapturedAt },
+            { label: 'проверка партнёрских условий', capturedAt: affiliateCapturedAt },
+          ]} />
           <div className="ru-eyebrow"><Building2 size={14} aria-hidden="true" /> Локальное исследование, не рекомендация</div>
           <h1>KasCapital: обзор 2026 — капитал, выплаты и правила</h1>
           <p className="ru-lead">Проверяем опубликованные заявления KasCapital о капитале компании, сообществе, доле прибыли до 95% и выплатах по понедельникам. Это отдельная российская модель, которую нельзя автоматически приравнивать к глобальному CFD-челленджу или считать подтвержденно безопасной.</p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Проверка источников: {marketEvidence.capturedAt}.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Общий снимок рынка: {marketEvidence.capturedAt}; заявления на главной: {localSignalCapturedAt || 'дата не подтверждена'}.</p>
           <div className="ru-actions"><Link href="#facts" className="btn-primary btn-glow">Проверить факты <ArrowRight size={15} aria-hidden="true" /></Link><Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Сравнить глобальные фирмы</Link></div>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{localSignal?.claims.maximumProfitSharePct}%</strong><span>максимальная доля трейдера по заявлению</span></div>
             <div className="ru-stat"><strong>Пн</strong><span>заявленный день обработки выплат</span></div>
             <div className="ru-stat"><strong>{Number(localSignal?.claims.minimumPayoutRub).toLocaleString('ru-RU')} ₽</strong><span>минимум одной заявки</span></div>
-            <div className="ru-stat"><strong>{marketEvidence.capturedAt}</strong><span>дата снимка источников</span></div>
+            <div className="ru-stat"><strong>{localSignalCapturedAt || 'нет даты'}</strong><span>проверка заявлений на главной</span></div>
           </div>
         </div>
       </section>
@@ -124,7 +134,7 @@ export default function RussianKasCapitalReviewPage() {
               </tbody>
             </table>
           </div>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Снимок источников: {marketEvidence.capturedAt}. Числа выше являются заявлениями KasCapital и требуют повторной проверки после изменения регламента.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Общий снимок рынка: {marketEvidence.capturedAt}; заявления на главной: {localSignalCapturedAt || 'дата не подтверждена'}; партнёрская проверка: {affiliateCapturedAt || 'дата не подтверждена'}. Числа выше являются заявлениями KasCapital и требуют повторной проверки после изменения регламента.</p>
         </div>
       </section>
 
@@ -202,11 +212,11 @@ export default function RussianKasCapitalReviewPage() {
               </article>
             ))}
           </div>
-          <p className="ru-source-line">Другие локальные исследования: <Link href="/ru/rossiyskie-prop-kompanii">шесть российских моделей</Link>; глобальное сравнение: <Link href="/ru/fundednext-vs-bright-funded">FundedNext против Bright Funded</Link>; отдельный локальный обзор: <Link href="/ru/obzor-eratrade">Era Trade</Link>.</p>
+          <p className="ru-source-line">Другие локальные исследования: <Link href="/ru/rossiyskie-prop-kompanii">шесть российских моделей</Link>; глобальное сравнение: <Link href="/ru/fundednext-vs-bright-funded">FundedNext против BrightFunded</Link>; отдельный локальный обзор: <Link href="/ru/obzor-eratrade">Era Trade</Link>.</p>
         </div>
       </section>
 
-      <section className="ru-section"><div className="ru-shell ru-content"><h2>Частые вопросы</h2><RussianFaq items={faqs} /></div></section>
+      <section className="ru-section" data-russian-local-faq-status={faqSourcesCurrent ? 'dated' : 'recapture-required'}><div className="ru-shell ru-content"><h2>Частые вопросы</h2>{!faqSourcesCurrent && <p className="ru-muted">Источники ответов включают общий снимок рынка от {marketEvidence.capturedAt} и отдельные проверки KasCapital. Как минимум один источник требует повторной проверки; ответы ниже — датированный разбор, а не подтверждение действующего порядка выплат.</p>}<RussianFaq items={faqs} /></div></section>
     </>
   )
 }

@@ -1,6 +1,6 @@
 {
   "firmSlug": "bright-funded",
-  "scope": "Help-centre rule and country-list observations only. No challenge price, purchase availability or individual eligibility recapture.",
+  "scope": "Help-centre rules plus the Terms country-list conflict only. No challenge price, purchase availability or individual eligibility recapture.",
   "sources": {
     "platforms": {
       "labelRu": "Платформы и ограничения профиля",
@@ -40,6 +40,13 @@
       "sourceCapturedAt": "2026-09-30",
       "sourceQuote": "Traders from Pakistan with an active account can continue trading.",
       "notesRu": "Список называет Кубу, Иран, Северную Корею, Сирию, Вьетнам и Пакистан; запрет новой покупки/регистрации относится к гражданству или проживанию. Исключение для уже активного пакистанского счёта не разрешает новую регистрацию. Отсутствие страны не является индивидуальным одобрением."
+    },
+    "countryTerms": {
+      "labelRu": "Условия BrightFunded: географические ограничения",
+      "sourceUrl": "https://brightfunded.com/terms-and-conditions",
+      "sourceCapturedAt": "2026-10-01",
+      "sourceQuote": "Cuba, Iran, North Korea, Syria, and Vietnam.",
+      "notesRu": "Пункт 2 условий называет пять стран и не называет Пакистан, хотя справка включает его. Ограничение в условиях также относится к фактическому местонахождению; фирма сохраняет право вводить дополнительные ограничения. Ни один список не подтверждает индивидуальный доступ."
     }
   }
 }

@@ -10,6 +10,7 @@ import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/s
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
+import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 
 const PATH = '/ru/luchshie-prop-firmy'
 // Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
-const faqs: RussianFaqItem[] = [
+const faqs = (instantAnswer: string, fundingPipsAccessCurrent: boolean, brightCountryCurrent: boolean): RussianFaqItem[] => [
   {
     q: 'Какая проп-фирма лучшая?',
     a: 'Единой лучшей фирмы нет. Редакционный балл помогает сократить список, но итог зависит от конкретного продукта: цены, числа этапов, типа просадки, торговых ограничений и условий выплаты.',
@@ -40,19 +41,19 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какие проп-фирмы подходят русскоязычным трейдерам за границей?',
-    a: 'Перед выбором фирмы проверьте, принимает ли она ваше гражданство, страну проживания и документы для подтверждения личности (KYC). Затем уточните способы оплаты и получения прибыли. Русскоязычным трейдерам в разных странах доступны наши обзоры FundedNext, FundingPips и Bright Funded с отдельным разбором этих условий.',
+    a: 'Перед выбором фирмы проверьте, принимает ли она ваше гражданство, страну проживания и документы для подтверждения личности (KYC). Затем уточните способы оплаты и получения прибыли. Русскоязычным трейдерам в разных странах доступны наши обзоры FundedNext, FundingPips и BrightFunded с отдельным разбором этих условий.',
   },
   {
     q: 'Какая проп-фирма работает с резидентами России?',
-    a: 'Этот рейтинг не подтверждает доступ у глобальных фирм для резидентов России. Официальные страницы FundedNext противоречат друг другу; FundingPips применяет ограничения по резидентству и санкционным спискам; отсутствие страны в списке Bright Funded само по себе не означает, что фирма примет документы и оплату. До покупки получите письменное подтверждение для своего профиля. Компании, работающие с местной биржевой инфраструктурой, разобраны в отдельном списке российских проп-компаний.',
+    a: `Этот рейтинг не подтверждает доступ у глобальных фирм для резидентов России. Официальные страницы FundedNext противоречат друг другу; ${fundingPipsAccessCurrent ? `по справке FundingPips от ${fundingPipsAccessEvidence.sourceCapturedAt} действуют ограничения по резидентству и санкционным спискам` : `страновая справка FundingPips от ${fundingPipsAccessEvidence.sourceCapturedAt} требует повторной проверки`}; ${brightCountryCurrent ? 'справка и условия BrightFunded расходятся по Пакистану, а отсутствие России в проверенных списках не означает, что фирма примет документы и оплату' : 'страновые источники BrightFunded требуют повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня'}. До покупки получите письменное подтверждение для своего профиля. Компании, работающие с местной биржевой инфраструктурой, разобраны в отдельном списке российских проп-компаний.`,
   },
   {
     q: 'Есть ли проп-фирмы без челленджа?',
-    a: 'Да. Например, FundedNext Stellar Instant и FundingPips Zero не требуют прохождения оценочных этапов. Такие программы называют мгновенным финансированием (instant funding). Перед покупкой сравните взнос, подвижный лимит просадки, условия запроса выплаты и ограничения на распределение прибыли по торговым дням. Эти правила разобраны в отдельном сравнении счетов без челленджа.',
+    a: instantAnswer,
   },
   {
     q: 'Какие проп-фирмы выплачивают в криптовалюте?',
-    a: 'В данных FundedNext, FundingPips и Bright Funded указаны выплаты в криптовалюте. Конкретная монета, сеть, минимум, комиссия и доступность зависят от фирмы и страны, поэтому сначала откройте разбор выплат, а затем подтвердите метод в своём профиле.',
+    a: 'В данных FundedNext, FundingPips и BrightFunded указаны выплаты в криптовалюте. Конкретная монета, сеть, минимум, комиссия и доступность зависят от фирмы и страны, поэтому сначала откройте разбор выплат, а затем подтвердите метод в своём профиле.',
   },
   {
     q: 'Как проверять отзывы о проп-фирмах?',
@@ -74,13 +75,13 @@ const partnerGuidance: Record<string, {
   },
   fundingpips: {
     start: 'Нужен выбор между программами с одним, двумя оценочными этапами и счётом без челленджа.',
-    country: 'ОАЭ и Вьетнам прямо ограничены по резидентству; также применяются санкционные списки.',
+    country: 'Доступ зависит от резидентства и санкционных ограничений; сверяйте действующие правила до оплаты.',
     payout: 'В профиле перечислены карта, банковский перевод, Rise и криптовалюта; сроки выплаты зависят от программы.',
     watch: 'По программам различаются доля трейдера, ограничения на прибыль за один день и удержание позиций на выходных.',
   },
   'bright-funded': {
     start: 'Нужна программа с ценой в EUR и одним или двумя оценочными этапами.',
-    country: 'Опубликованный список ограничивает 6 стран; отсутствие страны в нём не гарантирует приём оплаты, документов или банковского перевода.',
+    country: 'Справка и условия BrightFunded расходятся по Пакистану; отсутствие России в проверенных списках не подтверждает возможность покупки или выплаты.',
     payout: 'Банковский перевод в EUR и USDC ERC-20 описаны в официальном справочнике.',
     watch: 'Обычная первая выплата указана через 30 дней; справочник противоречиво описывает двухнедельный цикл как платную опцию.',
   },
@@ -138,6 +139,17 @@ function productPricing(products: Challenge[]) {
 export default function RussianBestPropFirmsPage() {
   const firms = getAllFirms()
   const challenges = getAllChallenges()
+  const instantProducts = challenges.filter(product => product.phases === 0 && isChallengeFresh(product))
+  const instantPartnerExamples = instantProducts.filter(product =>
+    (product.firmSlug === 'fundednext' && product.productSlug === 'stellar-instant')
+    || (product.firmSlug === 'fundingpips' && product.productSlug === 'zero'))
+  const instantNames = instantPartnerExamples.map(product =>
+    product.firmSlug === 'fundednext' ? `FundedNext ${product.productName}` : product.productName).join(' и ')
+  const instantSummary = instantProducts.length > 0
+    ? `В текущих данных сравнения есть программы без оценочных этапов${instantNames ? `, в том числе ${instantNames}` : ''}.`
+    : 'Сейчас в данных сравнения нет программ без челленджа со свежей проверкой.'
+  const instantFaqAnswer = `${instantProducts.length > 0 ? 'Да. ' : ''}${instantSummary} Перед покупкой сравните взнос, механизм просадки, условия выплаты и ограничения на распределение прибыли по торговым дням в отдельном сравнении счетов без челленджа.`
+  const stellarInstantCurrent = instantPartnerExamples.some(product => product.firmSlug === 'fundednext')
   const freshnessHolds = firms
     .map(firm => {
       const slug = slugify(firm.name)
@@ -167,6 +179,9 @@ export default function RussianBestPropFirmsPage() {
     .filter(item => item.products.length > 0 && item.products.every(product => isChallengeFresh(product)))
     .sort((a, b) => b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
 
+  const fundingPipsAccessCurrent = isChallengeFresh({ sourceCapturedAt: fundingPipsAccessEvidence.sourceCapturedAt })
+  const brightCountryCurrent = [brightEvidence.sources.countries, brightEvidence.sources.countryTerms]
+    .every(source => isChallengeFresh({ sourceCapturedAt: source.sourceCapturedAt }))
   const globalPartners = ['fundednext', 'bright-funded', 'fundingpips']
     .map(slug => {
       const rankedItem = ranked.find(item => item.slug === slug)
@@ -183,7 +198,17 @@ export default function RussianBestPropFirmsPage() {
       ...productPricing(item.products),
       splits,
       drawdowns,
-      guidance: partnerGuidance[item.slug],
+      guidance: item.slug === 'fundingpips' ? {
+        ...partnerGuidance[item.slug],
+        country: fundingPipsAccessCurrent
+          ? `По справке от ${fundingPipsAccessEvidence.sourceCapturedAt} резиденты ОАЭ и Вьетнама ограничены; также применяются санкционные списки.`
+          : `Страновая справка от ${fundingPipsAccessEvidence.sourceCapturedAt} требует повторной проверки; старый список не подтверждает доступ сегодня.`,
+      } : item.slug === 'bright-funded' ? {
+        ...partnerGuidance[item.slug],
+        country: brightCountryCurrent
+          ? partnerGuidance[item.slug].country
+          : 'Страновые источники BrightFunded требуют повторной проверки; старые списки не подтверждают доступ к покупке или выплате сегодня.',
+      } : partnerGuidance[item.slug],
     }
   })
   const fundedNextProfile = partnerProfiles.find(item => item.slug === 'fundednext')
@@ -203,11 +228,18 @@ export default function RussianBestPropFirmsPage() {
   const faqPartnerProducts = challenges.filter(product => faqPartnerSlugs.includes(product.firmSlug))
   const faqKycEvidence = marketEvidence.kycEvidence.filter(item => faqPartnerSlugs.includes(item.firmSlug))
   const faqPayoutEvidence = marketEvidence.payoutEvidence.filter(item => faqPartnerSlugs.includes(item.firmSlug))
+  const brightCountrySources = {
+    helpUrl: brightEvidence.sources.countries.sourceUrl,
+    helpCapturedAt: brightEvidence.sources.countries.sourceCapturedAt,
+    termsUrl: brightEvidence.sources.countryTerms.sourceUrl,
+    termsCapturedAt: brightEvidence.sources.countryTerms.sourceCapturedAt,
+    current: brightCountryCurrent,
+  }
   const faqCurrent = faqPartnerSlugs.every(slug => faqPartnerProducts.some(product => product.firmSlug === slug)
     && faqKycEvidence.some(item => item.firmSlug === slug)
     && faqPayoutEvidence.some(item => item.firmSlug === slug))
     && faqPartnerProducts.every(product => isChallengeFresh(product))
-    && [marketEvidence.capturedAt, brightEvidence.sources.countries.sourceCapturedAt,
+    && [marketEvidence.capturedAt, brightEvidence.sources.countries.sourceCapturedAt, brightEvidence.sources.countryTerms.sourceCapturedAt, fundingPipsAccessEvidence.sourceCapturedAt,
       ...faqKycEvidence.map(item => item.sourceCapturedAt),
       ...faqPayoutEvidence.map(item => item.sourceCapturedAt)]
       .every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
@@ -216,8 +248,13 @@ export default function RussianBestPropFirmsPage() {
     { name: 'Русская версия', url: '/ru' },
     { name: 'Лучшие проп-фирмы 2026' },
   ])
-  const faq = faqPageSchema(faqs)
-  const list = itemListSchema(ranked.map(item => item.firm), TITLE)
+  const faqItems = faqs(instantFaqAnswer, fundingPipsAccessCurrent, brightCountryCurrent)
+  const faq = faqPageSchema(faqItems)
+  const list = itemListSchema(ranked.map(item => ({
+    ...item.firm,
+    name: item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name,
+    reviewUrl: russianReviewRoutes[item.slug] ?? item.firm.reviewUrl,
+  })), TITLE)
   const pageSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -254,8 +291,10 @@ export default function RussianBestPropFirmsPage() {
             или глобальная программа для русскоязычного трейдера за рубежом. Русский язык страницы сам по себе
             не подтверждает доступность фирмы для резидента России.
           </p>
-          <p className="ru-lead ru-lead--intent">
-            В списке есть программы с оценочными этапами и проп-фирмы с мгновенным финансированием без челленджа.
+          <p className="ru-lead ru-lead--intent" data-russian-ranking-instant-status={instantProducts.length > 0 ? 'source-checked' : 'recapture-required'}>
+            {instantProducts.length > 0
+              ? 'В данных сравнения есть программы с оценочными этапами и программы без челленджа.'
+              : 'Программы без челленджа в данных сравнения сейчас ожидают повторной проверки.'}
             Если источник старше 30 дней, фирма переносится в блок ожидания повторной проверки, а не показывается как актуальная.
           </p>
           <p className="ru-source-line">Автор рейтинга: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Данные ранжирования обновляются после проверки источников.</p>
@@ -263,7 +302,7 @@ export default function RussianBestPropFirmsPage() {
         </div>
       </section>
 
-      <RussianChallengeFinder initialRows={finderRows} />
+      <RussianChallengeFinder initialRows={finderRows} brightCountrySources={brightCountrySources} />
 
       <article data-russian-ranking-article="decision-first">
       <section className="ru-section ru-review-toc-section">
@@ -288,7 +327,9 @@ export default function RussianBestPropFirmsPage() {
         <div className="ru-shell ru-content">
           <h2>Какая проп-фирма лучшая для русскоязычного трейдера</h2>
           <p><strong>Выбирайте программу по правилам, которые сможете соблюдать.</strong> Для начала определите рынок и бюджет. Затем сравните допустимый убыток, ограничения вашей стратегии и срок первой выплаты. Подтвердите гражданство, страну проживания и документы для проверки личности (KYC) до оплаты.</p>
-          <p>Для сравнения глобальных программ начните с <Link href="/ru/fundednext-vs-bright-funded">FundedNext и Bright Funded</Link>: у них различаются валюты взноса, этапы оценки и условия просадки. Если нужен счёт без оценочного этапа, изучите <Link href="/ru/fundednext-stellar-instant">Stellar Instant</Link> и его ограничения. Для торговли через местную биржевую инфраструктуру откройте отдельный список российских компаний выше.</p>
+          <p>Для сравнения глобальных программ начните с <Link href="/ru/fundednext-vs-bright-funded">FundedNext и BrightFunded</Link>: у них различаются валюты взноса, этапы оценки и условия просадки. {stellarInstantCurrent
+            ? <>Если нужен счёт без оценочного этапа, изучите <Link href="/ru/fundednext-stellar-instant">Stellar Instant</Link> и его ограничения.</>
+            : <>Если нужен счёт без оценочного этапа, проверьте <Link href="/ru/prop-firmy-bez-chelendzha">актуальные программы без челленджа</Link> и их ограничения.</>}{' '}Для торговли через местную биржевую инфраструктуру откройте отдельный список российских компаний выше.</p>
           <div className="ru-notice" data-russian-country-boundary="ranking-not-access">
             <strong>Это не рейтинг доступности в России.</strong>{' '}
             Он написан по-русски для мировой русскоязычной аудитории. Страна,
@@ -302,10 +343,10 @@ export default function RussianBestPropFirmsPage() {
         <div className="ru-shell" data-russian-ranking-primary-partners="fundednext-bright-funded" data-russian-ranking-partners="single-section">
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ranking-primary-partners">
             <strong>Партнёрские ссылки.</strong>{' '}
-            FundedNext и Bright Funded — основные партнёры сайта; FundingPips — дополнительный партнёр. Мы можем получить комиссию при покупке по нашей ссылке.
+            FundedNext и BrightFunded — основные партнёры сайта; FundingPips — дополнительный партнёр. Мы можем получить комиссию при покупке по нашей ссылке.
             Партнёрство не добавляет баллы в рейтинге. Перед оплатой подтвердите доступность программы для своей страны и документов.
           </div>
-          <h2>FundedNext или Bright Funded: с чего начать сравнение</h2>
+          <h2>FundedNext или BrightFunded: с чего начать сравнение</h2>
           <p className="ru-muted">
             Сопоставьте валюту взноса, число этапов, торговую платформу, механизм просадки и способ получения прибыли.
             Подробный обзор объясняет ограничения каждой программы.
@@ -314,12 +355,13 @@ export default function RussianBestPropFirmsPage() {
             {partnerProfiles.map(item => {
               const isFundedNext = item.slug === 'fundednext'
               const secondary = item.slug === 'fundingpips'
+              const partnerName = item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name
               const reviewHref = isFundedNext ? '/ru/obzor-fundednext' : secondary ? '/ru/obzor-fundingpips' : '/ru/obzor-bright-funded'
               const phaseCounts = [...new Set(item.products.map(product => product.phases))].sort((a, b) => a - b)
               return (
                 <article className={`ru-card${secondary ? ' ru-ranking-secondary' : ''}`} key={item.slug} data-russian-ranking-primary-partner={secondary ? undefined : item.slug} data-russian-partner={item.slug}>
                   <div className="ru-card-head">
-                    <h3>{item.firm.name}</h3>
+                    <h3>{partnerName}</h3>
                     <span className="ru-score">{secondary ? 'Дополнительный партнёр' : 'Основной партнёр'}</span>
                   </div>
                   <p>
@@ -331,6 +373,20 @@ export default function RussianBestPropFirmsPage() {
                     <li>Программ: {item.products.length}; опубликованных цен: {item.pricedTiers}. Разные размеры счёта нельзя сравнивать только по минимальному взносу.</li>
                   </ul>
                   {item.products.length > 0 && <details><summary>Страна, выплаты и важные ограничения</summary><p><strong>Страна:</strong> {item.guidance.country}</p><p><strong>Выплаты:</strong> {item.guidance.payout}</p><p><strong>Проверить:</strong> {item.guidance.watch}</p><p>Доступность платформы уточняйте для выбранной программы и страны.</p></details>}
+                  {item.slug === 'bright-funded' && <p className="ru-source-line" data-russian-ranking-bright-country-conflict="help-six-terms-five" data-russian-ranking-bright-country-status={brightCountryCurrent ? 'dated' : 'recapture-required'}>
+                    По проверке от {brightEvidence.sources.countries.sourceCapturedAt}{' '}
+                    <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="nofollow noopener">справка BrightFunded</a> включала Пакистан;{' '}
+                    <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {brightEvidence.sources.countryTerms.sourceCapturedAt} его не называли.{' '}
+                    {brightCountryCurrent
+                      ? 'Россия не названа в обоих списках, но это не подтверждает доступ вашего профиля. Уточните до оплаты.'
+                      : 'Страновые условия требуют повторной проверки; отсутствие России в старых списках не подтверждает доступ сегодня.'}
+                  </p>}
+                  {item.slug === 'fundingpips' && <p className="ru-source-line" data-russian-ranking-fundingpips-country-status={fundingPipsAccessCurrent ? 'dated' : 'recapture-required'}>
+                    <a href={fundingPipsAccessEvidence.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">Страновая справка FundingPips</a> от {fundingPipsAccessEvidence.sourceCapturedAt}.{' '}
+                    {fundingPipsAccessCurrent
+                      ? 'Ограничение касается резидентов ОАЭ и Вьетнама; индивидуальный доступ в других странах не подтверждён.'
+                      : 'Условия требуют повторной проверки; прежний список не подтверждает доступ сегодня.'}
+                  </p>}
                   <p className="ru-source-line">Самая ранняя проверка источников: {item.products.map(product => product.sourceCapturedAt).sort()[0] ?? 'обновление ожидается'}.</p>
                   <div className="ru-actions">
                     <Link href={reviewHref} className="btn-outline">{item.slug === 'bright-funded' ? 'Обзор BrightFunded' : 'Русский обзор'}</Link>
@@ -339,7 +395,7 @@ export default function RussianBestPropFirmsPage() {
                       rel="sponsored nofollow noopener"
                       className="btn-primary"
                     >
-                      Проверить {item.firm.name} <ArrowRight size={14} aria-hidden="true" />
+                      {`Проверить ${partnerName} `}<ArrowRight size={14} aria-hidden="true" />
                     </Link>
                   </div>
                 </article>
@@ -359,12 +415,12 @@ export default function RussianBestPropFirmsPage() {
           <div className="ru-grid">
             <article className="ru-card">
               <h3>Резидент России</h3>
-              <p>У FundedNext официальные страницы противоречат друг другу; FundingPips применяет ограничения по резидентству и санкционным спискам. Отсутствие России в списке Bright Funded не подтверждает возможность покупки. Уточните условия для своих документов до оплаты.</p>
+              <p>У FundedNext официальные страницы противоречат друг другу; {fundingPipsAccessCurrent ? 'по проверенной справке FundingPips действуют ограничения по резидентству и санкционным спискам' : 'страновая справка FundingPips требует повторной проверки'}. {brightCountryCurrent ? 'Справка и условия BrightFunded расходятся по Пакистану; отсутствие России в проверенных списках не подтверждает возможность покупки.' : 'Страновые источники BrightFunded требуют повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня.'} Уточните условия для своих документов до оплаты.</p>
               <p><Link href="/ru/rossiyskie-prop-kompanii">Сначала открыть проверку России и местных компаний →</Link></p>
             </article>
             <article className="ru-card">
               <h3>ЕС или Великобритания</h3>
-              <p>Сверяйте точное резидентство, валюту карты и банк. Bright Funded публикует цены в EUR; FundedNext и FundingPips — в USD. Мы не пересчитываем их в одну «дешёвую» цену по временному FX-курсу.</p>
+              <p>Сверяйте точное резидентство, валюту карты и банк. BrightFunded публикует цены в EUR; FundedNext и FundingPips — в USD. Мы не пересчитываем их в одну «дешёвую» цену по временному FX-курсу.</p>
               <p><Link href="/ru/dlya-russkoyazychnykh-treyderov">Открыть глобальный гид для русскоязычных →</Link></p>
             </article>
             <article className="ru-card">
@@ -374,8 +430,8 @@ export default function RussianBestPropFirmsPage() {
             </article>
             <article className="ru-card">
               <h3>ОАЭ</h3>
-              <p>FundingPips прямо ограничивает резидентов ОАЭ, поэтому русскоязычному трейдеру в Дубае этот путь не подходит. FundedNext и Bright Funded всё равно требуют отдельной проверки конкретного профиля и способа выплаты.</p>
-              <p><Link href="/ru/obzor-fundingpips">Посмотреть источник ограничения FundingPips →</Link></p>
+              <p>{fundingPipsAccessCurrent ? 'По справке FundingPips резиденты ОАЭ ограничены, поэтому русскоязычному трейдеру с таким резидентством этот путь не подходит.' : `По справке от ${fundingPipsAccessEvidence.sourceCapturedAt} резиденты ОАЭ были ограничены; текущую политику нужно проверить заново.`} FundedNext и BrightFunded всё равно требуют отдельной проверки конкретного профиля и способа выплаты.</p>
+              <p><a href={fundingPipsAccessEvidence.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">Справка FundingPips</a> от {fundingPipsAccessEvidence.sourceCapturedAt} · <Link href="/ru/obzor-fundingpips">русский обзор →</Link></p>
             </article>
           </div>
         </div>
@@ -394,12 +450,14 @@ export default function RussianBestPropFirmsPage() {
             </article>
             <article className="ru-card">
               <h3>Цена в EUR</h3>
-              <p>Bright Funded публикует цены в евро: минимальный взнос среди проверенных программ — {brightFundedProfile?.entry ?? 'не подтверждён'}. Если ваша карта в другой валюте, добавьте комиссию и курс конвертации своего банка.</p>
-              <p><Link href="/ru/obzor-bright-funded">Проверить программы Bright Funded →</Link></p>
+              <p>BrightFunded публикует цены в евро: минимальный взнос среди проверенных программ — {brightFundedProfile?.entry ?? 'не подтверждён'}. Если ваша карта в другой валюте, добавьте комиссию и курс конвертации своего банка.</p>
+              <p><Link href="/ru/obzor-bright-funded">Проверить программы BrightFunded →</Link></p>
             </article>
-            <article className="ru-card">
+            <article className="ru-card" data-russian-ranking-instant-card={instantProducts.length > 0 ? 'source-checked' : 'recapture-required'}>
               <h3>Мгновенное финансирование без челленджа</h3>
-              <p>У FundedNext Stellar Instant и FundingPips Zero нет оценочных этапов. В обоих случаях граница допустимого убытка поднимается вслед за результатом счёта. Сравните её расчёт, взнос и условия запроса выплаты перед выбором.</p>
+              <p>{instantSummary} {instantPartnerExamples.length === 2 && instantPartnerExamples.every(product => product.drawdownType === 'trailing')
+                ? 'У обоих партнёрских примеров граница допустимого убытка поднимается вслед за результатом счёта.'
+                : 'Механизм просадки нужно сверить по каждой программе.'} Сравните взнос и условия запроса выплаты перед выбором.</p>
               <p><Link href="/ru/prop-firmy-bez-chelendzha">Сравнить проп-фирмы без челленджа →</Link></p>
             </article>
             <article className="ru-card">
@@ -409,7 +467,7 @@ export default function RussianBestPropFirmsPage() {
             </article>
             <article className="ru-card">
               <h3>Выплата в криптовалюте</h3>
-              <p>У всех трёх фирм указаны выплаты в криптовалюте, но сеть, минимум, комиссия и доступность по стране различаются. Bright Funded описывает USDC ERC-20; для FundedNext и FundingPips уточните монету и сеть в своём профиле.</p>
+              <p>У всех трёх фирм указаны выплаты в криптовалюте, но сеть, минимум, комиссия и доступность по стране различаются. BrightFunded описывает USDC ERC-20; для FundedNext и FundingPips уточните монету и сеть в своём профиле.</p>
               <p><Link href="/ru/vyplaty-prop-firm">Сравнить сроки и способы выплат →</Link></p>
             </article>
             <article className="ru-card">
@@ -437,7 +495,7 @@ export default function RussianBestPropFirmsPage() {
                   const splits = [...new Set(item.products.flatMap(product =>
                     product.profitSplitPct == null ? [] : [product.profitSplitPct]))].sort((a, b) => a - b)
                   const oldest = item.products.map(product => product.sourceCapturedAt).sort()[0]
-                  const russianReview = item.slug === 'ftmo' ? '/ru/obzor-ftmo' : item.slug === 'fundednext' ? '/ru/obzor-fundednext' : item.slug === 'fundingpips' ? '/ru/obzor-fundingpips' : item.slug === 'bright-funded' ? '/ru/obzor-bright-funded' : null
+                  const russianReview = russianReviewRoutes[item.slug]
                   const drawdowns = [...new Set(item.products.map(product => drawdownLabel(product.drawdownType)))]
                   return (
                     <tr key={item.slug} data-ranked-firm={item.slug}>
@@ -461,7 +519,7 @@ export default function RussianBestPropFirmsPage() {
               <ul>
                 {freshnessHolds.map(item => (
                   <li key={item.slug}>
-                    <Link href={russianReviewRoutes[item.slug] ?? item.firm.reviewUrl}>{item.firm.name}</Link> — {item.staleProducts.length} продукт(ов), самая ранняя проверка {item.oldest};{' '}
+                    <Link href={russianReviewRoutes[item.slug] ?? item.firm.reviewUrl}>{item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name}</Link> — {item.staleProducts.length} продукт(ов), самая ранняя проверка {item.oldest};{' '}
                     <a href={item.staleProducts[0].sourceUrl} target="_blank" rel="nofollow noopener">первичный источник</a>.
                   </li>
                 ))}
@@ -518,7 +576,7 @@ export default function RussianBestPropFirmsPage() {
         <div className="ru-shell ru-content">
           <h2>Частые вопросы</h2>
           {!faqCurrent && <p className="ru-muted">Часть источников по доступу, KYC или выплатам старше 30 дней. Перед покупкой перепроверьте условия выбранной фирмы для своего профиля.</p>}
-          <RussianFaq items={faqs} />
+          <RussianFaq items={faqItems} />
         </div>
       </section>
       </article>

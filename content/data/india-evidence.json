@@ -2,7 +2,7 @@
   {
     "firmSlug": "ftmo",
     "firmName": "FTMO",
-    "capturedAt": "2026-08-28",
+    "capturedAt": "2026-10-01",
     "restrictedJurisdictions": [
       "Iran",
       "Syria",
@@ -109,7 +109,7 @@
     },
     "kyc": {
       "status": "verified",
-      "summary": "FTMO Identity requests a passport or national ID, proof of address issued within 6 months, and usually reviews personal profiles within 1 business day.",
+      "summary": "FTMO Identity requests a passport or national ID showing nationality and proof of address issued within 6 months; personal compliance checks usually take under 1 business day. If the ID is solely in Hindi or another listed non-Latin script, FTMO asks for an international passport with Latin transcription.",
       "sourceUrls": [
         "https://ftmo.com/en/faq/what-is-the-legal-relationship-between-an-ftmo-trader-and-ftmo-after-signing-the-ftmo-account-agreement/"
       ]
@@ -141,7 +141,7 @@
   {
     "firmSlug": "fundednext",
     "firmName": "FundedNext",
-    "capturedAt": "2026-08-27",
+    "capturedAt": "2026-10-01",
     "restrictedJurisdictions": [
       "Bangladesh",
       "Myanmar",
@@ -178,7 +178,7 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from the 20-country CFD restriction list published on 2026-04-08.",
+      "summary": "India is absent from FundedNext's 20-country CFD restriction list dated 2026-08-27; the policy covers both residence and citizenship, and prohibits using a VPN or false identity to bypass restrictions.",
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds"
       ]
@@ -192,7 +192,7 @@
     },
     "kyc": {
       "status": "verified",
-      "summary": "Physical national ID, passport, or residence permit plus liveness; review is usually 48 hours and profile KYC renews every 90 days.",
+      "summary": "FundedNext requests a valid government ID, passport, or residence permit and says review typically takes 48 hours. It may separately require a utility bill or bank statement issued within 3 months; the current guide does not state a 90-day renewal rule.",
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process"
       ]
@@ -213,9 +213,11 @@
     },
     "currency": {
       "status": "verified",
-      "summary": "Global challenge list prices are in USD; cTrader or Match-Trader can add a non-refundable $25 platform fee.",
+      "summary": "Captured global CFD challenge list prices are in USD. For non-U.S. clients, selecting cTrader or Match-Trader adds a $25 platform fee that FundedNext says is non-refundable; final Indian card conversion remains untested.",
       "sourceUrls": [
-        "https://fundednext.com/pt/plan"
+        "https://fundednext.com/cfds/stellar-2-step",
+        "https://help.fundednext.com/en/articles/9438851-can-i-switch-between-trading-platforms",
+        "https://help.fundednext.com/en/articles/8020256-what-is-the-refund-policy-of-fundednext"
       ]
     },
     "unresolved": "No completed Indian card checkout or payout receipt has been independently verified."
@@ -223,7 +225,7 @@
   {
     "firmSlug": "fundingpips",
     "firmName": "FundingPips",
-    "capturedAt": "2026-08-27",
+    "capturedAt": "2026-10-01",
     "restrictedJurisdictions": [
       "Iran",
       "Vietnam",
@@ -241,7 +243,7 @@
     },
     "country": {
       "status": "verified",
-      "summary": "FundingPips says it serves 195+ countries, explicitly names Iran, Vietnam, and the UAE as restricted, and offers INR as an account currency; sanctions screening still applies.",
+      "summary": "FundingPips says it serves 195+ countries and names Iran, Vietnam, and the UAE as restricted resident countries; its footer also conditions service on sanctions lists, so the 3-country list is not exhaustive. India is not named.",
       "sourceUrls": [
         "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started"
       ]
@@ -255,7 +257,7 @@
     },
     "kyc": {
       "status": "verified",
-      "summary": "Post-evaluation KYC requests government ID, proof of address issued within 3 months, and a selfie; manual review can take up to 2 working days.",
+      "summary": "Master-account KYC requests government photo ID, proof of address dated within 3 months, and a selfie. The current guide says the compliance team contacts traders if manual review is needed, without promising a 2-day deadline.",
       "sourceUrls": [
         "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started"
       ]
@@ -276,10 +278,9 @@
     },
     "currency": {
       "status": "partial",
-      "summary": "INR is available as an account currency. FundingPips' 10 August 2026 first-party comparison exposes 27 USD list prices, while the final INR card conversion and 2 disputed $2.5K tiers remain unresolved.",
+      "summary": "FundingPips says all accounts are issued in USD regardless of the currency selected for payment. Whether INR is offered at checkout, the final conversion cost, and 2 disputed $2.5K purchase tiers remain unresolved.",
       "sourceUrls": [
-        "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
-        "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models"
+        "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started"
       ]
     },
     "unresolved": "No completed Indian checkout, KYC approval, or payout receipt is verified; the 2 disputed $2.5K tiers and Indian bank, card, or Rise payout availability remain unresolved."
@@ -287,7 +288,7 @@
   {
     "firmSlug": "bright-funded",
     "firmName": "Bright Funded",
-    "capturedAt": "2026-08-27",
+    "capturedAt": "2026-10-01",
     "restrictedJurisdictions": [
       "Cuba",
       "Iran",

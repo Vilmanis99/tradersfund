@@ -262,7 +262,7 @@ export default function RussianChallengeLifecyclePage() {
                     : item.firm.reviewUrl
               return (
                 <article className="ru-card" key={item.slug} data-russian-education-partner={item.slug}>
-                  <div className="ru-card-head"><h3>{item.firm.name}</h3><span className="ru-score">Партнёр</span></div>
+                  <div className="ru-card-head"><h3>{item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name}</h3><span className="ru-score">Партнёр</span></div>
                   <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; перед оплатой проверьте этапы, страну, KYC и правило выплаты конкретной модели.</p>
                   <div className="ru-actions">
                     <Link href={reviewHref} className="btn-outline">Открыть обзор</Link>

@@ -13,14 +13,15 @@ import brightCountryEvidence from '@/content/data/russian-bright-funded-evidence
 
 const PATH = '/ru/forex-prop-firmy'
 const TITLE = 'Форекс проп-фирмы: плечо, цены и правила программ'
-const DESCRIPTION = 'Разбор форекс-программ FundedNext и Bright Funded: валютные пары, плечо, цены в USD и EUR, лимиты убытка, платформы и проверка доступа по стране.'
+const DESCRIPTION = 'Разбор форекс-программ FundedNext и BrightFunded: валютные пары, плечо, цены в USD и EUR, лимиты убытка, платформы и проверка доступа по стране.'
+const SOCIAL_DESCRIPTION = 'Разбор форекс-программ FundedNext и Bright Funded: валютные пары, плечо, цены в USD и EUR, лимиты убытка, платформы и проверка доступа по стране.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
+  openGraph: { title: TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
+  twitter: { card: 'summary_large_image', title: TITLE, description: SOCIAL_DESCRIPTION },
 }
 
 const faqs: RussianFaqItem[] = [
@@ -47,10 +48,6 @@ const faqs: RussianFaqItem[] = [
   {
     q: 'Можно ли торговать форекс без челленджа?',
     a: 'Stellar Instant — отдельная программа FundedNext без оценочных этапов. Это не отменяет лимиты убытка и условия вознаграждения. Перед выбором нужно прочитать правила именно Instant, а не другой программы Stellar.',
-  },
-  {
-    q: 'Русская версия означает, что можно зарегистрироваться из России?',
-    a: 'Нет. Язык не подтверждает доступность услуги. Перед оплатой проверяются гражданство, резидентство, документы, платформа и способы платежа и выплаты. Разрешение открыть сайт не заменяет подтверждение соответствия условиям фирмы.',
   },
 ]
 
@@ -95,7 +92,13 @@ function formatDrawdown(product: Challenge) {
 }
 
 function productFirm(product: Challenge) {
-  return product.firmSlug === 'fundednext' ? 'FundedNext' : 'Bright Funded'
+  return product.firmSlug === 'fundednext' ? 'FundedNext' : 'BrightFunded'
+}
+
+function productDisplayName(product: Challenge) {
+  return product.firmSlug === 'bright-funded'
+    ? product.productName.replace(/^Bright Funded\b/, 'BrightFunded')
+    : product.productName
 }
 
 export default function RussianForexPropFirmsPage() {
@@ -109,8 +112,17 @@ export default function RussianForexPropFirmsPage() {
   const brightFresh = evidenceFresh(brightEvidence)
   const fundedNextAccess = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
   const brightCountry = brightCountryEvidence.sources.countries
+  const brightTerms = brightCountryEvidence.sources.countryTerms
+  const brightCountryCurrent = [brightCountry, brightTerms]
+    .every(source => isChallengeFresh({ sourceCapturedAt: source.sourceCapturedAt }))
+  const faqItems: RussianFaqItem[] = [...faqs, {
+    q: 'Русская версия означает, что можно зарегистрироваться из России?',
+    a: brightCountryCurrent
+      ? `Нет. Язык не подтверждает доступность услуги. Справка BrightFunded от ${brightCountry.sourceCapturedAt} включает Пакистан среди ограниченных стран, а условия от ${brightTerms.sourceCapturedAt} его не называют; отсутствие России в обоих списках не является разрешением. Перед оплатой проверяются гражданство, резидентство, документы, платформа и способы платежа и выплаты.`
+      : 'Нет. Язык не подтверждает доступность услуги. Страновые источники BrightFunded требуют повторной проверки; прежнее отсутствие России в списках не является разрешением сегодня. Перед оплатой проверьте гражданство, резидентство, документы, платформу и способы платежа и выплаты.',
+  }]
   const symbols = fundedNextFresh ? fundedNextEvidence.forexSymbols ?? [] : []
-  const sourceCount = new Set([...allProducts.map(product => product.sourceUrl), ...forexEvidence.firms.flatMap(firm => firm.sourceUrls), ...(fundedNextAccess?.sourceUrls ?? []), brightCountry.sourceUrl]).size
+  const sourceCount = new Set([...allProducts.map(product => product.sourceUrl), ...forexEvidence.firms.flatMap(firm => firm.sourceUrls), ...(fundedNextAccess?.sourceUrls ?? []), brightCountry.sourceUrl, brightTerms.sourceUrl]).size
   const evidenceDates = [
     ...forexEvidence.firms.map(firm => ({ label: `форекс-справки ${firm.firmName}`, capturedAt: firm.sourceCapturedAt })),
     ...['fundednext', 'bright-funded'].map(slug => ({
@@ -119,6 +131,7 @@ export default function RussianForexPropFirmsPage() {
     })),
     { label: 'ограничения FundedNext по стране', capturedAt: fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt },
     { label: 'ограничения Bright Funded по стране', capturedAt: brightCountry.sourceCapturedAt },
+    { label: 'условия BrightFunded: ограничения по стране', capturedAt: brightTerms.sourceCapturedAt },
   ]
   const hasFreshEvidence = allProducts.length > 0 && products.length === allProducts.length
     && fundedNextAccess?.status === 'conflicting'
@@ -146,7 +159,7 @@ export default function RussianForexPropFirmsPage() {
     <article className="ru-review-article" data-russian-forex-article="instrument-to-product" data-russian-search-intent="prop-forex">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
+      {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqItems)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell">
@@ -215,7 +228,7 @@ export default function RussianForexPropFirmsPage() {
               <tbody>{products.map(product => {
                 const tier = referenceTier(product)
                 return <tr key={`${product.firmSlug}:${product.productSlug}`} data-russian-forex-product={`${product.firmSlug}:${product.productSlug}`}>
-                  <th scope="row"><strong>{productFirm(product)}</strong><br />{product.productName}</th>
+                  <th scope="row"><strong>{productFirm(product)}</strong><br />{productDisplayName(product)}</th>
                   <td>{tier ? <>{formatAccountSize(tier.sizeUsd)} / {priceForTier(tier)}</> : 'Размеры счёта не подтверждены'}</td>
                   <td>{formatTargets(product)}</td>
                   <td data-russian-forex-leverage-product={`${product.firmSlug}:${product.productSlug}`}>{leverageFor(product)}</td>
@@ -240,12 +253,16 @@ export default function RussianForexPropFirmsPage() {
 
       <section className="ru-section" data-russian-forex-featured-partners="fundednext-bright-funded">
         <div className="ru-shell ru-content">
-          <h2>FundedNext и Bright Funded: что сравнивать в первую очередь</h2>
+          <h2>FundedNext и BrightFunded: что сравнивать в первую очередь</h2>
           <p>
             Это разбор двух партнёров сайта, а не полный рейтинг рынка. Удобнее начинать не с логотипа,
             а с оценочных этапов, формулы просадки и подходящего размера счёта. Различия нужно проверять
             на уровне программы: одно название фирмы не задаёт единое плечо или единый порядок выплат.
           </p>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="forex-shortlist">
+            <strong>Партнёрские ссылки.</strong> Traders Fund Hub может получить комиссию после перехода
+            на FundedNext или Bright Funded. Это не меняет расчёты, ограничения по стране или объяснение неизвестных условий.
+          </div>
           <div className="ru-grid">
             <article className="ru-card" data-russian-forex-featured-partner="fundednext">
               <h3>FundedNext</h3>
@@ -259,20 +276,23 @@ export default function RussianForexPropFirmsPage() {
               </div>
             </article>
             <article className="ru-card" data-russian-forex-featured-partner="bright-funded">
-              <h3>Bright Funded</h3>
+              <h3>BrightFunded</h3>
               <p>{brightFresh
                 ? 'Справка указывает форекс-плечо 1:100 на оценочном и следующем этапе. Это не означает, что программы имеют одинаковые цели или формулу просадки.'
                 : 'Форекс-справки требуют повторной проверки. Цены, цели и ограничения сравнивайте по отдельным программам, а не по общему максимуму фирмы.'}</p>
               <p className="ru-muted">Проверяйте конкретную программу и валюту взноса. Перечень платформ не является подтверждением, что любая из них доступна вашему профилю.</p>
+              <p className="ru-source-line" data-russian-forex-bright-country-status={brightCountryCurrent ? 'dated' : 'recapture-required'}>
+                <a href={brightCountry.sourceUrl} target="_blank" rel="nofollow noopener">Справка</a> от {brightCountry.sourceCapturedAt} включала Пакистан;{' '}
+                <a href={brightTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {brightTerms.sourceCapturedAt} его не называли.{' '}
+                {brightCountryCurrent
+                  ? 'Россия не названа в обоих списках, но это не подтверждает доступ вашего профиля. Уточните до оплаты.'
+                  : 'Страновые источники требуют повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня.'}
+              </p>
               <div className="ru-actions">
-                <Link href="/ru/obzor-bright-funded" className="btn-outline">Полный обзор Bright Funded</Link>
-                <Link href="/go/bright-funded?from=ru-forex-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить Bright Funded <ArrowRight size={14} aria-hidden="true" /></Link>
+                <Link href="/ru/obzor-bright-funded" className="btn-outline">Полный обзор BrightFunded</Link>
+                <Link href="/go/bright-funded?from=ru-forex-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" /></Link>
               </div>
             </article>
-          </div>
-          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="forex-shortlist">
-            <strong>Партнёрские ссылки.</strong> Traders Fund Hub может получить комиссию после перехода
-            на FundedNext или Bright Funded. Это не меняет расчёты, ограничения по стране или объяснение неизвестных условий.
           </div>
         </div>
       </section>
@@ -394,7 +414,16 @@ export default function RussianForexPropFirmsPage() {
             для своего профиля и программы. Русская версия сайта предназначена для русскоязычных
             трейдеров в разных странах; она не является обещанием доступности услуг из России.
           </p>
-          <p className="ru-source-line">По проверке от {fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt} официальные страницы FundedNext противоречат друг другу о доступе резидентов России. Список Bright Funded от {brightCountry.sourceCapturedAt} не называет Россию, но это не индивидуальное разрешение на покупку или выплату.</p>
+          <p className="ru-source-line">По проверке от {fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt} официальные страницы FundedNext противоречат друг другу о доступе резидентов России.</p>
+          <div className="ru-notice" data-russian-forex-country-conflict="help-six-terms-five" data-russian-forex-country-status={brightCountryCurrent ? 'dated' : 'recapture-required'}>
+            <strong>{brightCountryCurrent ? 'Списки стран BrightFunded расходятся.' : 'В датированном снимке списки стран BrightFunded расходились.'}</strong>{' '}
+            По записи от {brightCountry.sourceCapturedAt}{' '}
+            <a href={brightCountry.sourceUrl} target="_blank" rel="nofollow noopener">справка</a> включала Пакистан среди шести ограниченных стран;{' '}
+            <a href={brightTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {brightTerms.sourceCapturedAt} называли пять стран без Пакистана и допускали дополнительные ограничения.{' '}
+            {brightCountryCurrent
+              ? 'Россия не названа ни там, ни там, но это не индивидуальное разрешение на покупку или выплату. До оплаты подтвердите гражданство, резидентство и фактическое местонахождение у фирмы.'
+              : 'Списки требуют повторной проверки; прежнее отсутствие России в них не подтверждает доступ сегодня. До оплаты подтвердите гражданство, резидентство и фактическое местонахождение у фирмы.'}
+          </div>
           <div className="ru-actions">
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-primary"><Globe2 size={15} aria-hidden="true" /> Проверить профиль страны</Link>
             <Link href="/ru/vyplaty-prop-firm" className="btn-outline">Способы выплаты</Link>
@@ -417,7 +446,7 @@ export default function RussianForexPropFirmsPage() {
             FundedNext или Bright Funded. Наличие либо отсутствие партнёрской сделки с нашим сайтом
             также не определяет пригодность локальной модели.
           </p>
-          <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">FundedNext и Bright Funded: подробное сравнение</Link>
+          <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">FundedNext и BrightFunded: подробное сравнение</Link>
         </div>
       </section>
 
@@ -438,13 +467,13 @@ export default function RussianForexPropFirmsPage() {
           <p>
             Неизвестное условие нужно уточнить, а не заменить наиболее выгодным предположением.
             Начните с <Link href="/ru/obzor-fundednext">обзора FundedNext</Link> или
-            <Link href="/ru/obzor-bright-funded"> обзора Bright Funded</Link>, затем сопоставьте правила
+            <Link href="/ru/obzor-bright-funded"> обзора BrightFunded</Link>, затем сопоставьте правила
             с договором выбранной программы.
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="forex-verdict">
             <strong>Если программа подходит после проверки условий:</strong>{' '}
             <Link href="/go/fundednext?from=ru-forex-verdict-fundednext" rel="sponsored nofollow noopener">проверить предложение FundedNext</Link> или
-            <Link href="/go/bright-funded?from=ru-forex-verdict-bright-funded" rel="sponsored nofollow noopener"> предложение Bright Funded</Link>.
+            <Link href="/go/bright-funded?from=ru-forex-verdict-bright-funded" rel="sponsored nofollow noopener"> предложение BrightFunded</Link>.
             Мы можем получить комиссию по этим ссылкам. Это не гарантия одобрения счёта или выплаты.
           </div>
         </div>
@@ -455,14 +484,15 @@ export default function RussianForexPropFirmsPage() {
           <h2>Первичные источники и даты проверки</h2>
           <p>Форекс-справки проверяются отдельно от цен и доступа по стране. Дата обновления статьи не обновляет эти записи автоматически.</p>
           {forexEvidence.firms.map(firm => <div key={firm.firmSlug}>
-            <h3>{firm.firmName} · {firm.sourceCapturedAt}</h3>
+            <h3>{firm.firmSlug === 'bright-funded' ? 'BrightFunded' : firm.firmName} · {firm.sourceCapturedAt}</h3>
             <ul>{firm.sourceUrls.map((url, index) => <li key={url}><a href={url} target="_blank" rel="nofollow noopener">{firm.firmName}: {index === 0 ? 'инструменты' : index === 1 ? 'кредитное плечо' : index === 2 && firm.firmSlug === 'fundednext' ? 'плечо Stellar Instant' : index === 2 ? 'платформы и ограничения' : 'описание CFD-программ'}</a></li>)}</ul>
           </div>)}
           <h3>Ограничения по стране</h3>
-          <p>FundedNext: {fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt}; Bright Funded: {brightCountry.sourceCapturedAt}. Общий снимок рынка от {marketEvidence.capturedAt} не обновлён этой выборочной проверкой.</p>
+          <p>FundedNext: {fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt}; Bright Funded: справка {brightCountry.sourceCapturedAt}, условия {brightTerms.sourceCapturedAt}. Общий снимок рынка от {marketEvidence.capturedAt} не обновлён этой выборочной проверкой.</p>
           <ul>
             {fundedNextAccess?.sourceUrls.map((url, index) => <li key={url}><a href={url} target="_blank" rel="nofollow noopener">FundedNext: источник доступа {index + 1}</a></li>)}
             <li><a href={brightCountry.sourceUrl} target="_blank" rel="nofollow noopener">Bright Funded: ограничения по стране</a></li>
+            <li><a href={brightTerms.sourceUrl} target="_blank" rel="nofollow noopener">BrightFunded: условия и географические ограничения</a></li>
           </ul>
         </div>
       </section>
@@ -470,7 +500,7 @@ export default function RussianForexPropFirmsPage() {
       <section className="ru-section" id="faq">
         <div className="ru-shell ru-content">
           <h2>Частые вопросы</h2>
-          <RussianFaq items={faqs} />
+          <RussianFaq items={faqItems} />
           <p className="ru-source-line">Ответы относятся к датированному разбору. Материал информационный и не является финансовой или юридической рекомендацией.</p>
         </div>
       </section>

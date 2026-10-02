@@ -527,11 +527,11 @@ export default function RussianFundedNextInstantPage() {
               </article>
               {brightFunded?.affiliateUrl ? (
                 <article className="ru-card" data-russian-fundednext-instant-alternative="bright-funded">
-                  <h3>Bright Funded: альтернатива с челленджем</h3>
+                  <h3>BrightFunded: альтернатива с челленджем</h3>
                   <p>У Bright Funded есть оценочный этап: это другой формат, а не аналог счёта Instant. В обзоре приведены цены в евро и отдельные условия программ. Правила просадки, сброса и выплат FundedNext к Bright Funded не относятся.</p>
                   <div className="ru-actions">
-                    <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор Bright</Link>
-                    <Link href="/go/bright-funded?from=ru-fundednext-instant-alternative-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить Bright Funded</Link>
+                    <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
+                    <Link href="/go/bright-funded?from=ru-fundednext-instant-alternative-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded</Link>
                   </div>
                 </article>
               ) : null}

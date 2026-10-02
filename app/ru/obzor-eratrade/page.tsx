@@ -4,11 +4,13 @@ import { ArrowRight, Building2, FileCheck2, Globe2, Scale, ShieldCheck, WalletCa
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
+import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru/obzor-eratrade'
+export const revalidate = 3600
 const TITLE = 'Era Trade: обзор условий и выплат (2026)'
 const DESCRIPTION = 'Era Trade на русском: официальные заявления о 6 000 трейдерах, 70 странах, сплите 80%, правилах челленджа и выплатах до 5 рабочих дней.'
 const ERA_HOME = 'https://eratrade.net/'
@@ -58,7 +60,7 @@ const faqs: RussianFaqItem[] = [
 
 const globalRoutes = [
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
-  { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded' },
 ] as const
 
 function SourceLink({ href, children }: { href: string, children: React.ReactNode }) {
@@ -68,6 +70,10 @@ function SourceLink({ href, children }: { href: string, children: React.ReactNod
 export default function RussianEraTradeReviewPage() {
   const localSignal = marketEvidence.localFirmSignals.find(item => item.operator === 'Era Trade')
   const affiliateSignal = marketEvidence.affiliatePrograms.find(item => item.operator === 'Era Trade')
+  const localSignalCapturedAt = localSignal?.sourceCapturedAt ?? ''
+  const affiliateCapturedAt = affiliateSignal?.sourceCapturedAt ?? ''
+  const faqSourcesCurrent = [marketEvidence.capturedAt, localSignal?.sourceCapturedAt ?? '', affiliateSignal?.sourceCapturedAt ?? '']
+    .every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
   const freshChallenges = getAllChallenges().filter(product => isChallengeFresh(product))
   const globalCards = globalRoutes.map(route => {
     const firm = getAllFirms().find(candidate => outboundSlug(candidate.name) === route.slug)
@@ -86,7 +92,7 @@ export default function RussianEraTradeReviewPage() {
     headline: TITLE,
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
-    dateModified: marketEvidence.capturedAt,
+    dateModified: russianRouteDateModified(PATH),
     inLanguage: 'ru',
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
@@ -96,16 +102,20 @@ export default function RussianEraTradeReviewPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
+      {faqSourcesCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="era-trade" data-russian-local-review-status="verification-only">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/rossiyskie-prop-kompanii">Российские компании</Link> / Era Trade</div>
-          <RussianEvidenceFreshnessNotice evidence={[{ label: 'локальные условия Era Trade', capturedAt: marketEvidence.capturedAt }]} />
+          <RussianEvidenceFreshnessNotice evidence={[
+            { label: 'общий снимок рынка', capturedAt: marketEvidence.capturedAt },
+            { label: 'заявления Era Trade на главной', capturedAt: localSignalCapturedAt },
+            { label: 'партнёрская программа', capturedAt: affiliateCapturedAt },
+          ]} />
           <div className="ru-eyebrow"><Building2 size={14} aria-hidden="true" /> Локальное исследование, не рекомендация</div>
           <h1>Era Trade: обзор 2026 — правила, сплит и выплаты</h1>
           <p className="ru-lead">Разбираем официальные заявления Era Trade для русскоязычного трейдера: 6 000+ трейдеров, 70 стран, базовый сплит 80%, правила одно- и двухэтапных челленджей, условия выплаты и публичная партнёрская программа. Это проверка источников, а не подтверждение платёжеспособности или доступа.</p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Проверка источников: {marketEvidence.capturedAt}.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Общий снимок рынка: {marketEvidence.capturedAt}; заявления на главной: {localSignalCapturedAt || 'дата не подтверждена'}.</p>
           <div className="ru-actions">
             <Link href="#facts" className="btn-primary btn-glow">Проверить факты <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Сравнить глобальные фирмы</Link>
@@ -114,7 +124,7 @@ export default function RussianEraTradeReviewPage() {
             <div className="ru-stat"><strong>{Number(localSignal?.claims.traders).toLocaleString('ru-RU')}+</strong><span>трейдеров по заявлению оператора</span></div>
             <div className="ru-stat"><strong>{localSignal?.claims.countries}</strong><span>стран по заявлению оператора</span></div>
             <div className="ru-stat"><strong>{localSignal?.claims.baseProfitSplitPct}%</strong><span>базовый сплит трейдера</span></div>
-            <div className="ru-stat"><strong>{marketEvidence.capturedAt}</strong><span>дата снимка источников</span></div>
+            <div className="ru-stat"><strong>{localSignalCapturedAt || 'нет даты'}</strong><span>проверка заявлений на главной</span></div>
           </div>
         </div>
       </section>
@@ -137,7 +147,7 @@ export default function RussianEraTradeReviewPage() {
               </tbody>
             </table>
           </div>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Снимок источников: {marketEvidence.capturedAt}. Все суммы, проценты и сроки выше — формулировки официальных страниц Era Trade, а не независимая проверка.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Общий снимок источников: {marketEvidence.capturedAt}; показатели на главной: {localSignalCapturedAt || 'дата не подтверждена'}; партнёрская программа: {affiliateCapturedAt || 'дата не подтверждена'}. Остальные правила нужно перепроверить перед покупкой. Все суммы, проценты и сроки выше — заявления Era Trade, а не независимая проверка.</p>
         </div>
       </section>
 
@@ -202,12 +212,12 @@ export default function RussianEraTradeReviewPage() {
               </article>
             ))}
           </div>
-          <p className="ru-source-line">Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">исследование российских проп-компаний</Link>; глобальная развилка: <Link href="/ru/fundednext-vs-bright-funded">сравнение FundedNext и Bright Funded</Link>; отдельная локальная проверка: <Link href="/ru/obzor-proplive">PropLive</Link>.</p>
+          <p className="ru-source-line">Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">исследование российских проп-компаний</Link>; глобальная развилка: <Link href="/ru/fundednext-vs-bright-funded">сравнение FundedNext и BrightFunded</Link>; отдельная локальная проверка: <Link href="/ru/obzor-proplive">PropLive</Link>.</p>
         </div>
       </section>
 
-      <section className="ru-section">
-        <div className="ru-shell ru-content"><h2>Частые вопросы</h2><RussianFaq items={faqs} /></div>
+      <section className="ru-section" data-russian-local-faq-status={faqSourcesCurrent ? 'dated' : 'recapture-required'}>
+        <div className="ru-shell ru-content"><h2>Частые вопросы</h2>{!faqSourcesCurrent && <p className="ru-muted">Источники ответов включают общий снимок рынка от {marketEvidence.capturedAt} и отдельные проверки Era Trade. Как минимум один источник требует повторной проверки; ответы ниже — датированный разбор, а не подтверждение действующих правил или выплаты.</p>}<RussianFaq items={faqs} /></div>
       </section>
     </>
   )

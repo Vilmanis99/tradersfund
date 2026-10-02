@@ -22,8 +22,10 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 
 const PATH = '/ru/prop-firmy-bez-kyc'
-const TITLE = 'KYC в проп-фирмах 2026: FundedNext и Bright Funded'
-const DESCRIPTION = 'KYC в проп-фирмах: когда FundedNext, Bright Funded и FundingPips проверяют документы, адрес и личность до funded-счёта или выплаты.'
+const TITLE = 'KYC в проп-фирмах 2026: FundedNext и BrightFunded'
+const DESCRIPTION = 'KYC в проп-фирмах: когда FundedNext, BrightFunded и FundingPips проверяют документы, адрес и личность до funded-счёта или выплаты.'
+const SOCIAL_TITLE = 'KYC в проп-фирмах 2026: FundedNext и Bright Funded'
+const SOCIAL_DESCRIPTION = 'KYC в проп-фирмах: когда FundedNext, Bright Funded и FundingPips проверяют документы, адрес и личность до funded-счёта или выплаты.'
 const BRIGHT_REWARD_URL = 'https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account'
 
 export const metadata: Metadata = {
@@ -34,12 +36,12 @@ export const metadata: Metadata = {
     'проп фирмы без KYC',
     'проп фирмы без верификации',
     'FundedNext KYC',
-    'Bright Funded KYC',
+    'BrightFunded KYC',
     'FundingPips KYC',
   ],
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
+  openGraph: { title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
+  twitter: { card: 'summary_large_image', title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION },
 }
 
 const faqs: RussianFaqItem[] = [
@@ -52,7 +54,7 @@ const faqs: RussianFaqItem[] = [
     a: 'После успешного прохождения челленджа и до активации счёта FundedNext. Официальная инструкция называет 3 основных вида документа личности, допускает дополнительное подтверждение адреса в отдельных случаях и указывает типичный срок проверки около 48 часов.',
   },
   {
-    q: 'Когда Bright Funded запрашивает KYC?',
+    q: 'Когда BrightFunded запрашивает KYC?',
     a: 'После финального этапа оценки и до договора профинансированного аккаунта. Проверку проводит SumSub; после одобрения KYC команда рисков выполняет проверку безопасности за 1–2 рабочих дня, а в пиковые периоды — до 4 рабочих дней.',
   },
   {
@@ -79,7 +81,7 @@ const faqs: RussianFaqItem[] = [
 
 const partnerRoutes = [
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext', featured: true },
-  { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded', featured: true },
+  { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded', featured: true },
   { slug: 'fundingpips', name: 'FundingPips', reviewHref: '/ru/obzor-fundingpips', featured: false },
 ] as const
 
@@ -160,7 +162,7 @@ export default function RussianNoKycPage() {
   ])
   const faq = faqPageSchema(faqs)
   const list = itemListSchema(
-    featuredCards.flatMap(card => card.firm ? [card.firm] : []),
+    featuredCards.flatMap(card => card.firm ? [{ ...card.firm, name: card.name, reviewUrl: card.reviewHref }] : []),
     'Основные глобальные партнёры: проверка KYC',
   )
   const article = {
@@ -199,7 +201,7 @@ export default function RussianNoKycPage() {
             ...partnerCards.map(card => ({ label: `KYC ${card.name}`, capturedAt: card.evidence?.sourceCapturedAt ?? '' })),
           ]} />
           <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> «Без KYC» не означает «без проверки»</div>
-          <h1>KYC в проп-фирмах: FundedNext, Bright Funded и проверка документов</h1>
+          <h1>KYC в проп-фирмах: FundedNext, BrightFunded и проверка документов</h1>
           <p className="ru-lead">
             Сопоставили {partnerCards.length} партнёрские KYC-процедуры по {sourceCount} официальным страницам: когда фирма запрашивает документ,
             кто сверяет адрес, сколько длится проверка и почему криптовыплата не отменяет проверку личности.
@@ -291,7 +293,7 @@ export default function RussianNoKycPage() {
 
         <section className="ru-section" id="kyc-matrix">
           <div className="ru-shell" data-russian-kyc-matrix={partnerCards.length}>
-            <h2>KYC FundedNext, Bright Funded и FundingPips: одна таблица</h2>
+            <h2>KYC FundedNext, BrightFunded и FundingPips: одна таблица</h2>
             <p className="ru-muted">
               Таблица сравнивает именно момент проверки, документы и опубликованный срок. Она не объединяет разные продукты
               под обещанием «верификации нет»: KYC указан как обязательный во всех {partnerCards.length} датированных записях.
@@ -330,7 +332,7 @@ export default function RussianNoKycPage() {
 
         <section className="ru-section" id="main-partners">
           <div className="ru-shell" data-russian-kyc-featured-partners="fundednext-bright-funded">
-            <h2>Два основных маршрута: FundedNext и Bright Funded</h2>
+            <h2>Два основных маршрута: FundedNext и BrightFunded</h2>
             <p className="ru-muted">
               Выбор между ними начинается не с логотипа, а с 3 вопросов: какой документ доступен,
               совпадает ли страна профиля с политикой фирмы и сколько времени остаётся между оценкой и первым действием на профинансированном счёте.

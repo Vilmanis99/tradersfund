@@ -248,7 +248,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
             </article>
             <article className="ru-card" data-russian-comparison-partner="bright-funded">
               <CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>Bright Funded</h3>
+              <h3>BrightFunded</h3>
               <p className="ru-muted">Отдельный партнёр сайта; программ с актуальной проверкой: {brightFundedProducts.length}. Взносы в EUR требуют отдельного сравнения с USD, а не прямого сопоставления чисел.</p>
               <Link href="/ru/obzor-bright-funded" className="ru-card-link">Открыть русский обзор →</Link>
             </article>
@@ -432,7 +432,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
           </div>
           <p className="ru-source-line">
             Партнёрские ссылки не заменяют проверку профиля. Если рассматриваете взнос в EUR, откройте{' '}
-            <Link href="/ru/obzor-bright-funded">обзор Bright Funded</Link> и{' '}
+            <Link href="/ru/obzor-bright-funded">обзор BrightFunded</Link> и{' '}
             <Link href="/ru/fundednext-vs-bright-funded">его сравнение с FundedNext</Link>. Валюта оплаты — отдельный критерий, не доказательство доступности.
           </p>
         </div>
@@ -457,7 +457,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
           <div className="ru-actions">
             <Link href="/go/fundednext?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-primary btn-glow">Проверить FundedNext <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/go/fundingpips?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundingPips <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/go/bright-funded?from=ru-comparison-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить Bright Funded <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="/go/bright-funded?from=ru-comparison-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" /></Link>
           </div>
           <p className="ru-source-line"><ShieldCheck size={14} aria-hidden="true" /> Перед оплатой откройте правила выбранного продукта. Нужна англоязычная версия? <Link href="/compare/fundednext-vs-fundingpips" hrefLang="en">Открыть полное сравнение на английском</Link>.</p>
         </div>

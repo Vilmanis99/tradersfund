@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-01",
+  "capturedAt": "2026-10-02",
+  "recheckNote": "All four listed first-party pages were rechecked on 2026-10-02. FundedNext's CFD list and Futures/Russia disclosure remain product-specific; its MetaQuotes notice still limits US-based access. BrightFunded's help list still names Pakistan while its Terms do not, and the Terms still restrict MT5 for US/UAE profiles. This checks published lists only, not registration, KYC, payment or payout eligibility.",
   "scopeRu": "Срез сравнивает только опубликованные фирмами списки стран и отдельные ограничения продукта или платформы. Он не подтверждает регистрацию, KYC, оплату или выплату конкретному человеку.",
   "countries": [
     { "key": "kazakhstan", "labelRu": "Казахстан", "sourceName": "Kazakhstan" },

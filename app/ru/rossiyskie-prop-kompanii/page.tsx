@@ -3,22 +3,24 @@ import Link from '@/components/SafeLink'
 import { ArrowRight, BadgeCheck, Building2, CircleAlert, ExternalLink, Globe2 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
-import { getAllFirms } from '@/lib/firms'
+import { getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru/rossiyskie-prop-kompanii'
+export const revalidate = 3600
 const TITLE = 'Российские проп-компании: 6 реальных примеров (2026)'
-const DESCRIPTION = '6 российских проп-компаний: модели и выплаты по официальным источникам, затем отдельное сравнение с глобальными FundedNext и Bright Funded по KYC и правилам.'
+const DESCRIPTION = '6 российских проп-компаний: модели и выплаты по официальным источникам, затем отдельное сравнение с глобальными FundedNext и BrightFunded по KYC и правилам.'
+const SOCIAL_DESCRIPTION = '6 российских проп-компаний: модели и выплаты по официальным источникам, затем отдельное сравнение с глобальными FundedNext и Bright Funded по KYC и правилам.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
+  openGraph: { title: TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
+  twitter: { card: 'summary_large_image', title: TITLE, description: SOCIAL_DESCRIPTION },
 }
 
 type LocalSignal = {
@@ -33,6 +35,7 @@ type AffiliateSignal = {
   operator: string
   status: string
   sourceUrl: string
+  sourceCapturedAt?: string
   baseCommissionPct?: number
   maximumPublishedCommissionPct?: number
   minimumPayoutUsd?: number
@@ -56,6 +59,7 @@ const teamTraders = signalFor('TeamTraders')
 const teamTradersAffiliate = affiliateFor('TeamTraders')
 const tradeSystem = signalFor('Trade System')
 const tradeSystemAffiliate = affiliateFor('Trade System')
+const localClaimCheckDate = localSignals.map(item => item.sourceCapturedAt).filter((date): date is string => !!date).sort()[0] ?? marketEvidence.capturedAt
 
 const globalPartnerRoutes = [
   {
@@ -67,7 +71,7 @@ const globalPartnerRoutes = [
   },
   {
     slug: 'bright-funded',
-    name: 'Bright Funded',
+    name: 'BrightFunded',
     reviewHref: '/ru/obzor-bright-funded',
     campaign: 'ru-local-research-bright-funded',
     summary: 'Сравнение 1-Step и 2-Step с ценой в EUR, типом просадки и проверкой KYC.',
@@ -81,7 +85,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Есть ли у российских проп-компаний партнёрские программы?',
-    a: 'У Era Trade опубликована стандартная партнёрская программа с 5% за прямые покупки и уровнями до 60%. PropLive предлагает договорную модель наставникам и школам с долей до 50% от прибыли учеников. На проверенных страницах KasCapital, А-Лаб, TeamTraders и Trade System обычные публичные партнёрские условия не найдены.',
+    a: 'У Era Trade опубликована стандартная партнёрская программа с 5% за прямые покупки и уровнями до 60%. PropLive предлагает договорную модель наставникам и школам с долей до 50% от прибыли учеников. Trade System описывает долю наставников и партнёров от прибыли трейдеров, но не раскрывает ставку или условия для обычного издателя. На проверенных страницах KasCapital, А-Лаб и TeamTraders публичные партнёрские условия не найдены.',
   },
   {
     q: 'Почему русскоязычному трейдеру всё равно сравнивать глобальные фирмы?',
@@ -98,6 +102,10 @@ function SourceLink({ href, children }: { href: string; children: React.ReactNod
 }
 
 export default function RussianPropCompaniesPage() {
+  const faqSourcesCurrent = [marketEvidence.capturedAt,
+    ...localSignals.map(item => item.sourceCapturedAt ?? ''),
+    ...affiliateSignals.map(item => item.sourceCapturedAt ?? ''),
+  ].every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
   const globalPartners = globalPartnerRoutes.map(route => ({
     ...route,
     firm: getAllFirms().find(firm => outboundSlug(firm.name) === route.slug),
@@ -123,7 +131,7 @@ export default function RussianPropCompaniesPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
+      {faqSourcesCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell">
@@ -136,7 +144,7 @@ export default function RussianPropCompaniesPage() {
             реальная торговля на Московской бирже и локальная
             проп-инфраструктура. Ниже — только то, что удалось подтвердить на официальных страницах.
           </p>
-          <p className="ru-source-line">Автор исследования: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Проверка источников: {marketEvidence.capturedAt}.</p>
+          <p className="ru-source-line">Автор исследования: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Общий снимок рынка: {marketEvidence.capturedAt}; проверка заявлений шести локальных компаний: {localClaimCheckDate}.</p>
           <div className="ru-actions">
             <Link href="#tri-kompanii" className="btn-primary btn-glow">Сравнить 6 примеров <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Глобальные проп-фирмы</Link>
@@ -230,7 +238,7 @@ export default function RussianPropCompaniesPage() {
               <SourceLink href={tradeSystem?.sourceUrl ?? 'https://tsystem.pro/'}>Официальная страница Trade System</SourceLink>
             </article>
           </div>
-          <p className="ru-source-line">Снимок источников: {marketEvidence.capturedAt}. Плавающие счётчики и правила требуют повторной проверки перед публикацией полного обзора.</p>
+          <p className="ru-source-line">Общий снимок рынка: {marketEvidence.capturedAt}; заявления на официальных страницах шести компаний перепроверены: {localClaimCheckDate}. Отдельные обзоры, плавающие счётчики и правила требуют построчной проверки перед покупкой.</p>
         </div>
       </section>
 
@@ -262,7 +270,7 @@ export default function RussianPropCompaniesPage() {
             ))}
           </div>
           <div className="ru-actions">
-            <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Сравнить FundedNext и Bright Funded <ArrowRight size={14} aria-hidden="true" /></Link>
+            <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Сравнить FundedNext и BrightFunded <ArrowRight size={14} aria-hidden="true" /></Link>
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-outline">Проверить страну и профиль</Link>
           </div>
         </div>
@@ -304,8 +312,8 @@ export default function RussianPropCompaniesPage() {
                 </tr>
                 <tr>
                   <td>Trade System</td>
-                  <td>На проверенной главной странице публичные партнёрские условия не опубликованы.</td>
-                  <td>{tradeSystemAffiliate?.status === 'not-found' ? 'Нет подтверждённой программы.' : 'Требуется повторная проверка.'}</td>
+                  <td>Главная страница описывает долю наставников и партнёров от прибыли трейдеров, но не публикует ставку, критерии или условия для обычного издателя.</td>
+                  <td>{tradeSystemAffiliate?.status === 'described-no-terms' ? 'Модель описана; издательская программа не подтверждена.' : 'Требуется повторная проверка.'}</td>
                 </tr>
               </tbody>
             </table>
@@ -345,9 +353,10 @@ export default function RussianPropCompaniesPage() {
         </div>
       </section>
 
-      <section className="ru-section">
+      <section className="ru-section" data-russian-local-faq-status={faqSourcesCurrent ? 'dated' : 'recapture-required'}>
         <div className="ru-shell ru-content">
           <h2>Частые вопросы</h2>
+          {!faqSourcesCurrent && <p className="ru-muted">Источники ответов включают общий снимок рынка от {marketEvidence.capturedAt} и отдельные проверки компаний. Как минимум один источник требует повторной проверки; ответы ниже сохраняют датированные наблюдения, а не подтверждают действующие условия.</p>}
           <RussianFaq items={faqs} />
         </div>
       </section>

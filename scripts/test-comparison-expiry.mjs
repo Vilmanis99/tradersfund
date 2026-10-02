@@ -60,7 +60,7 @@ try {
       assert(typeof interval === 'number' && interval > 0 && interval <= 3600, `${route}: actual build inherits hourly regeneration`)
     }
   }
-  assert.equal(getOverlay('ftmo-vs-fundednext'), undefined, 'newer product captures withhold the stale editorial comparison')
+  assert.equal(getOverlay('ftmo-vs-fundednext')?.challengeReviewedAt, '2026-10-01', 'product-by-product editorial recheck restores the current comparison')
   // Deliberately move the clock forward, then back, without reloading modules.
   for (const date of [...dates, '2026-10-01']) {
     clock = `${date}T12:00:00Z`

@@ -6255,7 +6255,7 @@ function checkUsLandingConsolidation() {
   const expected = new Map([
     ['fundednext', {
       name: 'FundedNext', host: 'help.fundednext.com', status: 'explicit',
-      products: ['stellar-2-step', 'stellar-1-step', 'stellar-lite', 'stellar-instant'],
+      products: ['stellar-2-step', 'stellar-1-step', 'stellar-lite'],
     }],
     ['tradeify', {
       name: 'Tradeify', host: 'help.tradeify.co', status: 'explicit',
@@ -6330,6 +6330,12 @@ function checkUsLandingConsolidation() {
     if (!entry.platformConstraint || !entry.evidenceLabel || !entry.decisionNote) {
       rows.push(`${slug}: platform constraint, evidence label and decision note are required`)
     }
+    if (slug === 'fundednext' && (
+      entry.secondarySourceUrl !== 'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds'
+      || !entry.decisionNote.includes('Stellar Instant is excluded')
+    )) {
+      rows.push('fundednext: conflicting U.S. Stellar Instant policy must remain disclosed and excluded')
+    }
     if (entry.sourceCapturedAt !== capture?.capturedAt) {
       rows.push(`${slug}: sourceCapturedAt must match the root capture date`)
     }
@@ -6395,8 +6401,8 @@ function checkUsLandingConsolidation() {
     (total, spec) => total + spec.products.length,
     0,
   )
-  if (expectedProductCount !== 14) {
-    rows.push(`U.S. evidence fixture must map 14 products, received ${expectedProductCount}`)
+  if (expectedProductCount !== 13) {
+    rows.push(`U.S. evidence fixture must map 13 products, received ${expectedProductCount}`)
   }
 
   const landings = read(LANDINGS_CONFIG_FILE)
@@ -6567,7 +6573,7 @@ function checkUsLandingConsolidation() {
     "const usLandingPath = '/best-prop-firms-in-us'",
     'expectedUsFirms',
     'expectedUsProductCount',
-    '14 products',
+    '13 products',
     'expectedUsFirms.filter(({ firm }) => firm.affiliateUrl)',
     'href="/go/${slug}?from=best-prop-firms-in-us"',
     'missing contextual U.S.-ranking backlink',
@@ -6608,7 +6614,7 @@ function checkUsLandingConsolidation() {
 function checkSwingFeatureCluster() {
   const rows = []
   const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
-  const landings = read(LANDINGS_CONFIG_FILE)
+  const landings = read(LANDINGS_CONFIG_FILE).replace(/\r\n/g, '\n')
   const block = landings.match(
     /slug:\s*'best-swing-trading-prop-firms'([\s\S]*?)\n\s*},\n]/,
   )?.[1] ?? ''
@@ -9703,7 +9709,7 @@ function checkScalingPlanGuide() {
 function checkFundedNextComparisonOverlay() {
   const rows = []
   const comparisons = fs.existsSync(COMPARISONS_FILE)
-    ? fs.readFileSync(COMPARISONS_FILE, 'utf-8')
+    ? fs.readFileSync(COMPARISONS_FILE, 'utf-8').replace(/\r\n/g, '\n')
     : ''
   const overlayMatch = comparisons.match(
     /'ftmo-vs-fundednext':\s*\{([\s\S]*?)\n\s*\},\n\n\s*'ftmo-vs-fundingpips':/,
@@ -11040,6 +11046,7 @@ function checkWyckoffGuide() {
 /** Russian search acquisition must stay global, source-safe and affiliate-transparent. */
 function checkRussianAcquisitionPilot() {
   const rows = []
+  const warnings = []
   const evidenceFile = path.join(ROOT, 'content/data/russian-market-evidence.json')
   const cTraderEvidenceFile = path.join(ROOT, 'content/data/russian-ctrader-evidence.json')
   const forexEvidenceFile = path.join(ROOT, 'content/data/russian-forex-evidence.json')
@@ -11255,8 +11262,27 @@ function checkRussianAcquisitionPilot() {
       const evidence = JSON.parse(fs.readFileSync(evidenceFile, 'utf8'))
       const capturedAt = new Date(`${evidence.capturedAt}T23:59:59Z`)
       const ageDays = (Date.now() - capturedAt.getTime()) / 86_400_000
-      if (Number.isNaN(capturedAt.getTime()) || ageDays < -1 || ageDays > 30) {
-        rows.push(`Russian market evidence capture ${evidence.capturedAt || 'missing'} is outside the 30-day window`)
+      if (Number.isNaN(capturedAt.getTime()) || ageDays < -1) {
+        rows.push(`Russian market evidence capture ${evidence.capturedAt || 'missing'} is invalid or in the future`)
+      } else if (ageDays > 30) {
+        if (evidence.snapshotStatus !== 'historical'
+          || !evidence.snapshotNote?.includes('do not refresh the whole bundle')) {
+          rows.push(`Russian market evidence capture ${evidence.capturedAt} is outside the 30-day window without an explicit historical-snapshot boundary`)
+        } else {
+          const freshnessNotice = fs.readFileSync(path.join(ROOT, 'components/RussianEvidenceFreshnessNotice.tsx'), 'utf8')
+          if (!freshnessNotice.includes('data-russian-guide-source-status="recapture-required"')
+            || !freshnessNotice.includes('!isChallengeFresh({ sourceCapturedAt: item.capturedAt })')) {
+            rows.push('Expired Russian market evidence must render a recapture-required notice')
+          }
+          for (const route of ['/ru/rossiyskie-prop-kompanii', '/ru/prop-firmy-bez-kyc', '/ru/vyplaty-prop-firm']) {
+            const sourceFile = russianRouteFiles.get(route)
+            const source = sourceFile && fs.existsSync(sourceFile) ? fs.readFileSync(sourceFile, 'utf8') : ''
+            if (!source.includes('<RussianEvidenceFreshnessNotice') || !source.includes('capturedAt: marketEvidence.capturedAt')) {
+              rows.push(`${route}: expired broad-market snapshot is not included in the visible freshness notice`)
+            }
+          }
+          warnings.push(`Russian broad-market snapshot ${evidence.capturedAt} remains historical; scoped checks do not refresh its search-demand, country and KYC observations`)
+        }
       }
       const validScopedCapture = date => {
         if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return false
@@ -11266,6 +11292,8 @@ function checkRussianAcquisitionPilot() {
           && date >= evidence.capturedAt
           && parsed.getTime() <= Date.now()
       }
+      const isCurrentScopedCapture = date => validScopedCapture(date)
+        && (Date.now() - new Date(`${date}T23:59:59Z`).getTime()) / 86_400_000 <= 30
       const hasScopedObservations = item => {
         if (!item?.sourceObservations) return true
         const observations = item.sourceObservations
@@ -11563,6 +11591,11 @@ function checkRussianAcquisitionPilot() {
 
       const localSignals = new Map((evidence.localFirmSignals ?? [])
         .map(item => [item.operator, item]))
+      for (const item of localSignals.values()) {
+        if (!isCurrentScopedCapture(item.sourceCapturedAt)) {
+          rows.push(`${item.operator}: local-firm claims need a first-party check within 30 days`)
+        }
+      }
       if (
         localSignals.get('Era Trade')?.claims?.traders !== 6000
         || localSignals.get('Era Trade')?.claims?.countries !== 70
@@ -11613,6 +11646,11 @@ function checkRussianAcquisitionPilot() {
 
       const affiliatePrograms = new Map((evidence.affiliatePrograms ?? [])
         .map(item => [item.operator, item]))
+      for (const item of affiliatePrograms.values()) {
+        if (!isCurrentScopedCapture(item.sourceCapturedAt)) {
+          rows.push(`${item.operator}: local affiliate status needs a public-page check within 30 days`)
+        }
+      }
       const eraAffiliate = affiliatePrograms.get('Era Trade')
       const propLiveAffiliate = affiliatePrograms.get('PropLive')
       const kasAffiliate = affiliatePrograms.get('KasCapital')
@@ -11635,10 +11673,17 @@ function checkRussianAcquisitionPilot() {
       if (kasAffiliate?.status !== 'not-found') {
         rows.push('KasCapital must remain affiliate-status not-found until sourced terms exist')
       }
-      for (const operator of ['А-Лаб Групп', 'TeamTraders', 'Trade System']) {
+      for (const operator of ['А-Лаб Групп', 'TeamTraders']) {
         if (affiliatePrograms.get(operator)?.status !== 'not-found') {
           rows.push(`${operator} must remain affiliate-status not-found until sourced terms exist`)
         }
+      }
+      const tradeSystemAffiliate = affiliatePrograms.get('Trade System')
+      if (tradeSystemAffiliate?.status !== 'described-no-terms'
+        || tradeSystemAffiliate?.sourceUrl !== 'https://tsystem.pro/'
+        || !tradeSystemAffiliate?.sourceQuote?.includes('Наставники и партнеры')
+        || !tradeSystemAffiliate?.notes?.some(note => note.includes('ordinary content-affiliate terms'))) {
+        rows.push('Trade System mentor/partner share must not be misclassified as no program or a verified publisher commission')
       }
       if (
         affiliatePrograms.get('TeamTraders')?.sourceCapturedAt !== scopedTeamTradersEvidence?.affiliateProgram?.checkedAt
@@ -12100,6 +12145,9 @@ function checkRussianAcquisitionPilot() {
     'data-russian-home-hero-partners="fundednext-bright-funded"',
     'data-russian-home-hero-partner={item.slug}',
     'data-russian-partner-country-source-status=',
+    'data-russian-home-bright-country-conflict=',
+    'brightEvidence.sources.countryTerms.sourceCapturedAt',
+    'brightEvidence.sources.countryTerms.sourceUrl',
     'ru-home-partner-hero-logo',
     '/go/fundednext?from=ru-home-hero-fundednext',
     '/go/bright-funded?from=ru-home-hero-bright-funded',
@@ -12126,6 +12174,8 @@ function checkRussianAcquisitionPilot() {
     'data-russian-forex-featured-partners="fundednext-bright-funded"',
     'data-russian-forex-leverage="margin-not-risk-room"',
     'data-russian-forex-instruments="published-vs-terminal"',
+    'data-russian-forex-country-conflict="help-six-terms-five"',
+    'brightCountryEvidence.sources.countryTerms',
     'data-russian-forex-local-boundary="moex-not-cfd-forex"',
     'data-russian-forex-checklist="nine-fields"',
     'data-russian-affiliate-disclosure="forex-shortlist"',
@@ -12342,7 +12392,7 @@ function checkRussianAcquisitionPilot() {
     "campaign: 'ru-local-research-fundednext'",
     "campaign: 'ru-local-research-bright-funded'",
     'href="/ru/fundednext-vs-bright-funded"',
-    'Сравнить FundedNext и Bright Funded',
+    'Сравнить FundedNext и BrightFunded',
     'Это не топ и не совет зарегистрироваться.',
     'многоуровневая Ambassador-схема нам не нужна',
     'href="/ru/dlya-russkoyazychnykh-treyderov"',
@@ -12370,11 +12420,16 @@ function checkRussianAcquisitionPilot() {
   for (const token of [
     'data-russian-ranking-article="decision-first"',
     'data-russian-ranking-country-paths="diaspora-not-russia"',
+    'data-russian-ranking-instant-status=',
+    'data-russian-ranking-instant-card=',
+    'data-russian-ranking-bright-country-conflict="help-six-terms-five"',
+    'brightEvidence.sources.countryTerms.sourceCapturedAt',
+    'brightEvidence.sources.countryTerms.sourceUrl',
     'data-russian-ranking-primary-partners="fundednext-bright-funded"',
     'data-russian-ranking-primary-partner={secondary ? undefined : item.slug}',
     'data-russian-affiliate-disclosure="ranking-primary-partners"',
     "import RussianChallengeFinder from '@/components/RussianChallengeFinder'",
-    '<RussianChallengeFinder initialRows={finderRows} />',
+    '<RussianChallengeFinder initialRows={finderRows} brightCountrySources={brightCountrySources} />',
     'getRussianFinderRows()',
     'export const revalidate = 3600',
     'data-russian-ranking-partners="single-section"',
@@ -12392,7 +12447,7 @@ function checkRussianAcquisitionPilot() {
     'href="/ru/prop-firmy-bez-chelendzha"',
     'href="/ru/vyplaty-prop-firm"',
     'href="/ru/otzyvy-prop-firm"',
-    'Проверить программы Bright Funded →',
+    'Проверить программы BrightFunded →',
   ]) {
     if (!russianRankingPage.includes(token)) rows.push(`Russian global-partner shortlist is missing ${token}`)
   }
@@ -12400,7 +12455,7 @@ function checkRussianAcquisitionPilot() {
     rows.push('Russian ranking makes a product-wide TradeLocker claim without product-level evidence')
   }
   const primaryPartnerIndex = russianRankingPage.indexOf('data-russian-ranking-primary-partners="fundednext-bright-funded"')
-  const partnerMatcherIndex = russianRankingPage.indexOf('<RussianChallengeFinder initialRows={finderRows} />')
+  const partnerMatcherIndex = russianRankingPage.indexOf('<RussianChallengeFinder initialRows={finderRows} brightCountrySources={brightCountrySources} />')
   const directoryIndex = russianRankingPage.indexOf('data-russian-ranking="single-directory"')
   if (
     primaryPartnerIndex < 0
@@ -12553,6 +12608,9 @@ function checkRussianAcquisitionPilot() {
   if (!Number.isFinite(diasporaCapturedAt.getTime()) || diasporaAgeDays < 0 || diasporaAgeDays > 30) {
     rows.push(`Russian diaspora country evidence is ${diasporaAgeDays} day(s) old (gate: 30)`)
   }
+  if (!russianDiasporaEvidence.recheckNote?.includes(russianDiasporaEvidence.capturedAt)) {
+    rows.push('Russian diaspora country recheck note must identify its capture date')
+  }
   if (russianDiasporaEvidence.firms.map(firm => firm.slug).join(',') !== 'fundednext,bright-funded') {
     rows.push('Russian diaspora country evidence must contain FundedNext and Bright Funded in commercial order')
   }
@@ -12652,6 +12710,9 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(russianRouteFiles.get('/ru/fundednext-vs-bright-funded'), 'utf8')
     : ''
   for (const token of [
+    "const TITLE = 'FundedNext или BrightFunded: сравнение 2026'",
+    "const SOCIAL_TITLE = 'FundedNext или Bright Funded: сравнение 2026'",
+    'FundedNext или BrightFunded: что выбрать в 2026 году',
     'data-russian-primary-comparison="fundednext-bright-funded"',
     'data-russian-primary-comparison-products={products.length}',
     'data-russian-primary-comparison-prices={priceCount}',
@@ -12659,7 +12720,7 @@ function checkRussianAcquisitionPilot() {
     'data-russian-country-boundary="comparison-not-access"',
     'data-russian-affiliate-disclosure="fundednext-bright-comparison"',
     'data-russian-primary-comparison-matrix="five-constraints"',
-    'data-russian-primary-comparison-products="seven-current-products"',
+    'data-russian-primary-comparison-product-list="fresh-only"',
     'data-russian-primary-comparison-product={`${product.firmSlug}:${product.productSlug}`}',
     'data-russian-primary-comparison-one-step="same-caps-different-engine"',
     'data-russian-primary-comparison-two-step="matched-risk-buckets"',
@@ -12667,6 +12728,9 @@ function checkRussianAcquisitionPilot() {
     'data-russian-primary-comparison-cost="compute-true-cost"',
     'data-russian-primary-comparison-payout="methods-cycle-fees"',
     'data-russian-primary-comparison-kyc="two-required-processes"',
+    'data-russian-primary-comparison-country-conflict="help-six-terms-five"',
+    "data-russian-primary-comparison-country-status={countrySourcesCurrent ? 'dated' : 'recapture-required'}",
+    'brightEvidence.sources.countryTerms',
     'data-russian-primary-comparison-diaspora="language-not-residency"',
     'data-russian-primary-comparison-trust="suppressed-is-not-null"',
     'data-russian-primary-comparison-boundary="when-neither-fits"',
@@ -12782,7 +12846,9 @@ function checkRussianAcquisitionPilot() {
     'data-russian-instant-risk="drawdown-before-price"',
     'data-russian-instant-diaspora="country-before-checkout"',
     'data-russian-instant-definition="phase-zero-not-label"',
-    'data-russian-instant-bright="challenge-alternative-only"',
+    'data-russian-instant-bright={brightEvaluationOnly',
+    'brightCatalogFresh',
+    'brightPhaseZero.length > 0',
     'data-russian-instant-local-boundary="different-market-models"',
     'data-russian-instant-decision="risk-before-fee"',
     "{ slug: 'fundednext', name: 'FundedNext', productSlug: 'stellar-instant'",
@@ -13163,7 +13229,12 @@ function checkRussianAcquisitionPilot() {
       'firm?.trustpilotRatingSuppressed',
       'Почему у Bright Funded нет средней оценки Trustpilot?',
       'href="/ru/otzyvy-prop-firm#review-checklist"',
-      'data-russian-bright-country-access="published-list"',
+      "data-russian-bright-country-access={countrySourcesCurrent ? 'published-list' : 'historical-list'}",
+      "data-russian-bright-country-source-status={countrySourcesCurrent ? 'dated' : 'recapture-required'}",
+      'data-russian-bright-country-conflict="help-six-terms-five"',
+      'brightEvidence.sources.countryTerms.sourceUrl',
+      'BrightFunded доступен русскоязычным трейдерам?',
+      'пять стран без Пакистана',
       'списке шести стран, проверенном ${brightEvidence.sources.countries.sourceCapturedAt}',
       'data-russian-bright-plan-matrix="three-products"',
       'data-russian-bright-price-count={pricedTiers.length}',
@@ -13186,7 +13257,7 @@ function checkRussianAcquisitionPilot() {
       'data-russian-bright-comparison-prices={comparisonPriceCount}',
       'href="/ru/vyplaty-prop-firm"',
       'href="/ru/prop-firmy-bez-kyc"',
-      'aria-label="Автор обзора Bright Funded"',
+      'aria-label="Автор обзора BrightFunded"',
       'href="/authors/edris-derakhshi"',
       'rel="sponsored nofollow noopener"',
     ]],
@@ -13303,6 +13374,11 @@ function checkRussianAcquisitionPilot() {
     if (!releaseCrawl.includes(token)) rows.push(`release crawl is missing Russian safeguard ${token}`)
   }
 
+  totalWarnings += warnings.length
+  if (showWarnings && warnings.length) {
+    console.log('\n! Russian-language acquisition source holds')
+    for (const warning of warnings) console.log(`  · ${warning}`)
+  }
   if (rows.length) {
     console.log('\n✗ Russian-language acquisition and local-firm boundary')
     for (const row of rows) console.log(`  · ${row}`)

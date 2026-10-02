@@ -507,11 +507,11 @@ export default function RussianFundedNextMt5Page() {
               </article>
               {brightFirm?.affiliateUrl && brightFirm.platforms.includes('MT5') ? (
                 <article className="ru-card" data-russian-fundednext-mt5-alternative="bright-funded">
-                  <h3>Bright Funded: отдельная альтернатива для проверки</h3>
+                  <h3>BrightFunded: отдельная альтернатива для проверки</h3>
                   <p>В нашем профиле Bright Funded указан MT5, но это не подтверждение для любого счёта и страны. Цены выражены в евро; серверы, советники и проверка личности регулируются собственными условиями фирмы.</p>
                   <div className="ru-actions">
-                    <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор Bright</Link>
-                    <Link href="/go/bright-funded?from=ru-fundednext-mt5-alternative-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить Bright Funded</Link>
+                    <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
+                    <Link href="/go/bright-funded?from=ru-fundednext-mt5-alternative-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded</Link>
                   </div>
                 </article>
               ) : null}

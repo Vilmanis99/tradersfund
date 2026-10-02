@@ -4,13 +4,15 @@ import RussianPartnerReview from '@/components/RussianPartnerReview'
 import { challengeTierEconomics, getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
+import accessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 
 const PATH = '/ru/obzor-fundingpips'
+export const revalidate = 3600
 const TITLE = 'FundingPips: обзор 2026, цены, правила и выплаты'
 const DESCRIPTION = 'Обзор FundingPips на русском: продукты и цены в USD, варианты сплита, просадка, выплаты и проверка страны перед регистрацией.'
 const REWARD_METHODS_URL = 'https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods'
 const REWARD_METHODS_CAPTURED_AT = '2026-09-30'
-const GET_STARTED_URL = 'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started'
+const GET_STARTED_URL = accessEvidence.sourceUrl
 const RESPONSIBLE_TRADING_URL = 'https://help.fundingpips.com/hc/en-us/articles/47328410434065-Responsible-Trading-Policy'
 const WORKSPACE_URL = 'https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace'
 const MASTER_SETUP_URL = 'https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup'
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
-function FundingPipsDeepDive() {
+function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
   const products = getChallengesByFirm('fundingpips').filter(product => isChallengeFresh(product))
   const oneStep = products.find(product => product.productSlug === '1-step-flex')
   const twoStepFlex = products.find(product => product.productSlug === '2-step-flex')
@@ -92,9 +94,9 @@ function FundingPipsDeepDive() {
           </div>
           <div className="ru-content">
             <h3>Что это значит для русскоязычной диаспоры</h3>
-            <p>Pay to Card и банковский перевод прямо называют Бельгию, Францию, Германию, Италию, Нидерланды, Испанию и Великобританию среди поддерживаемых регионов, но конкретный банк всё равно может отклонить быстрый маршрут. Казахстан и Израиль в опубликованном списке этих двух методов не названы; это не доказывает отсутствие всех вариантов выплаты, но требует проверки криптовалюты или Rise внутри верифицированного профиля. Резидент ОАЭ не должен доходить до этого шага: страна прямо ограничена.</p>
+            <p>Pay to Card и банковский перевод прямо называют Бельгию, Францию, Германию, Италию, Нидерланды, Испанию и Великобританию среди поддерживаемых регионов, но конкретный банк всё равно может отклонить быстрый маршрут. Казахстан и Израиль в опубликованном списке этих двух методов не названы; это не доказывает отсутствие всех вариантов выплаты, но требует проверки криптовалюты или Rise внутри верифицированного профиля. {accessCurrent ? 'Резидент ОАЭ не должен доходить до этого шага: страна прямо ограничена.' : 'Ограничение для резидентов ОАЭ отмечено в прежней проверке; актуальные условия нужно подтвердить заново.'}</p>
             <p>Все счета FundingPips номинированы в USD, даже если на странице оплаты выбрана другая валюта. Если вы платите в EUR, GBP, KZT или ILS, учитывайте банковскую конвертацию. Для выплаты отдельно проверьте комиссии сети и платёжного сервиса.</p>
-            <p className="ru-source-line"><a href={REWARD_METHODS_URL} target="_blank" rel="noopener noreferrer">Официальные способы выплаты</a> · <a href={GET_STARTED_URL} target="_blank" rel="noopener noreferrer">оплата, валюта счёта и KYC</a> · проверено {REWARD_METHODS_CAPTURED_AT}.</p>
+            <p className="ru-source-line"><a href={REWARD_METHODS_URL} target="_blank" rel="noopener noreferrer">Официальные способы выплаты</a> · проверено {REWARD_METHODS_CAPTURED_AT}; <a href={GET_STARTED_URL} target="_blank" rel="noopener noreferrer">оплата, валюта счёта и KYC</a> · проверено {accessEvidence.sourceCapturedAt}.</p>
           </div>
         </div>
       </section>
@@ -169,8 +171,8 @@ function FundingPipsDeepDive() {
               <p>На мастер-счетах (Master Accounts) удержание через выходные сейчас ограничено, а у Zero это жёсткое нарушение. Трейдеру, который системно держит позицию с пятницы на понедельник, нужно сравнить русскоязычный рейтинг до оплаты.</p>
             </article>
             <article className="ru-card">
-              <h3>Не подходит резиденту ОАЭ</h3>
-              <p>Официальный справочный центр FundingPips прямо включает ОАЭ в ограничения по резидентству. Русскоязычному трейдеру в Дубае нельзя использовать этот маршрут только потому, что фирма зарегистрирована или представлена в ОАЭ.</p>
+              <h3>{accessCurrent ? 'Не подходит резиденту ОАЭ' : 'ОАЭ: перепроверьте доступ'}</h3>
+              <p>{accessCurrent ? 'Официальный справочный центр FundingPips прямо включает ОАЭ в ограничения по резидентству. Русскоязычному трейдеру в Дубае нельзя использовать этот маршрут только потому, что фирма зарегистрирована или представлена в ОАЭ.' : `Последняя проверка справки от ${accessEvidence.sourceCapturedAt} включала резидентов ОАЭ в ограничения. Источник устарел; подтвердите текущую политику до регистрации и оплаты.`}</p>
             </article>
           </div>
           <p className="ru-muted">Standard сохраняет {standard?.minTradingDays ?? '—'} дня на фазу, а Zero не имеет оценки, но сочетает плавающий лимит {zero?.maxLossPct ?? '—'}%, правило стабильности {zero?.consistencyRulePct ?? '—'}% и семь прибыльных дней. Это пять разных контрактов, а не единый «челлендж FundingPips».</p>
@@ -182,6 +184,7 @@ function FundingPipsDeepDive() {
 
 export default function RussianFundingPipsReviewPage() {
   const payoutEvidenceDate = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundingpips')?.sourceCapturedAt ?? ''
+  const accessCurrent = isChallengeFresh({ sourceCapturedAt: accessEvidence.sourceCapturedAt })
   return (
     <RussianPartnerReview
       path={PATH}
@@ -194,7 +197,12 @@ export default function RussianFundingPipsReviewPage() {
       affiliateFrom="ru-fundingpips-review-verdict"
       englishReviewHref="/blog/funding-pips-review"
       lead={<>FundingPips публикует пять разных наборов правил и несколько циклов выплат. После обновлений 15 и 26 августа 2026 года сравнивать нужно не только цену и рекламный процент, но также минимальные дни, правило стабильности, Striking System и дату создания аккаунта.</>}
-      countryNote={<>FundingPips прямо указывает, что не обслуживает резидентов ОАЭ и Вьетнама, а также юрисдикций из применимых санкционных списков. Русскоязычному трейдеру в Дубае этот маршрут не подходит; в любой другой стране сначала подтвердите резидентство, KYC, оплату и вывод.</>}
+      countryNote={<span data-russian-fundingpips-country-source-status={accessCurrent ? 'dated' : 'recapture-required'}>
+        <a href={GET_STARTED_URL} target="_blank" rel="nofollow noopener noreferrer">Справка FundingPips</a>, проверена {accessEvidence.sourceCapturedAt}:{' '}
+        {accessCurrent
+          ? 'фирма не принимает резидентов ОАЭ и Вьетнама и применяет ограничения по санкционным спискам. Русскоязычному трейдеру в Дубае этот маршрут не подходит; для любой другой страны отдельно подтвердите резидентство, KYC, оплату и вывод.'
+          : 'ранее справка ограничивала резидентов ОАЭ и Вьетнама. Страновые условия требуют повторной проверки; этот старый список не подтверждает доступ сегодня. До оплаты уточните резидентство, KYC и выплату напрямую у фирмы.'}
+      </span>}
       verdict={[
         { title: '1 Step Flex', body: <>Цель 12%, дневной лимит 3% и статический максимум 12%. Маршрут 80% работает раз в 14 дней; ежемесячные 100% добавляют правило стабильности 35% и семь дней минимум по 0,5%.</> },
         { title: '2 Step Flex', body: <>Цели 10% и 8%, дневной лимит 4%, статический максимум 12%. Вариант с долей 80% требует один день на фазу, 95% — три прибыльных дня. Ежемесячная выплата с долей 100% добавляет отдельные условия допуска.</> },
@@ -227,11 +235,11 @@ export default function RussianFundingPipsReviewPage() {
         { href: '/ru/fundednext-vs-fundingpips', label: 'FundedNext или FundingPips', body: 'сравнение программ по цене, просадке и циклу выплат' },
         { href: '/ru/prop-firmy-bez-chelendzha', label: 'Проп-фирмы без челленджа', body: 'FundingPips Zero рядом с FundedNext Stellar Instant и другими продуктами без оценочной фазы' },
         { href: '/ru/vyplaty-prop-firm', label: 'Выплаты проп-фирм', body: 'отдельная проверка первой даты, криптовалюты, банка и условий запроса' },
-        { href: '/ru/obzor-bright-funded', label: 'Обзор Bright Funded', body: 'программы с ценами в EUR; доступность для своего гражданства и места проживания нужно проверить отдельно' },
+        { href: '/ru/obzor-bright-funded', label: 'Обзор BrightFunded', body: 'программы с ценами в EUR; доступность для своего гражданства и места проживания нужно проверить отдельно' },
       ]}
       readTime={15}
-      firmAnalysis={<FundingPipsDeepDive />}
-      faqSourceDates={[payoutEvidenceDate, REWARD_METHODS_CAPTURED_AT]}
+      firmAnalysis={<FundingPipsDeepDive accessCurrent={accessCurrent} />}
+      faqSourceDates={[payoutEvidenceDate, REWARD_METHODS_CAPTURED_AT, accessEvidence.sourceCapturedAt]}
       faqs={[
         {
           q: 'Какой продукт FundingPips самый дешёвый?',
@@ -247,11 +255,15 @@ export default function RussianFundingPipsReviewPage() {
         },
         {
           q: 'Можно ли использовать FundingPips из ОАЭ?',
-          a: 'Нет по текущей официальной странице: FundingPips включает ОАЭ в список ограниченных резидентств. Русскоязычный трейдер в Дубае должен выбрать другую фирму и не обходить ограничение через VPN или неверный адрес.',
+          a: accessCurrent
+            ? `Нет для резидента ОАЭ по справке FundingPips, проверенной ${accessEvidence.sourceCapturedAt}: ОАЭ включены в ограничения. Русскоязычному трейдеру в Дубае следует выбрать другую фирму; не обходите ограничение через VPN или неверный адрес.`
+            : `По справке от ${accessEvidence.sourceCapturedAt} резиденты ОАЭ были ограничены, но страновой источник требует повторной проверки. Старое наблюдение не подтверждает доступ сегодня; уточните условия у FundingPips и не используйте VPN или неверный адрес.`,
         },
         {
           q: 'Можно ли зарегистрироваться из России?',
-          a: 'Доступ нужно подтвердить для конкретного трейдера. FundingPips прямо ограничивает Иран, Вьетнам, ОАЭ и юрисдикции из применимых списков FATF и санкционных списков ЕС/ООН. Общий текст не подтверждает возможность оплаты, прохождения KYC и получения выплаты для резидента России. Получите письменный ответ поддержки до оплаты; не используйте VPN или неверные данные для обхода ограничений.',
+          a: accessCurrent
+            ? `Доступ нужно подтвердить для конкретного трейдера. По справке FundingPips от ${accessEvidence.sourceCapturedAt} ограничены резиденты Ирана, Вьетнама, ОАЭ и юрисдикций из применимых списков FATF и санкционных списков ЕС/ООН. Это не подтверждает оплату, KYC и выплату для резидента России. Получите письменный ответ поддержки до оплаты; не обходите ограничения через VPN или неверные данные.`
+            : `Страновая справка FundingPips от ${accessEvidence.sourceCapturedAt} требует повторной проверки. Прежний список ограничений не подтверждает регистрацию, оплату, KYC или выплату резиденту России сегодня. Получите письменный ответ поддержки до оплаты; не обходите ограничения через VPN или неверные данные.`,
         },
         {
           q: 'Какие способы выплаты есть у FundingPips?',

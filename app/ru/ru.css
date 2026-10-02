@@ -353,8 +353,9 @@
 }
 
 .ru-home-partner-hero-disclosure {
+  grid-column: 1 / -1;
   max-width: 980px;
-  margin-top: 0.9rem;
+  margin: 0;
 }
 
 @media (max-width: 760px) {
@@ -1085,6 +1086,7 @@
 .ru-finder-details p { font-size: inherit; }
 .ru-finder-caveat { border-left: 2px solid #6ee7b7; padding-left: 12px; margin: 16px 0; }
 .ru-finder-caveat p { margin: 8px 0; }
+.ru-finder-bright-country { margin: 0 0 16px; padding: 10px 12px; font-size: .78rem; line-height: 1.55; }
 .ru-finder-card-actions { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .ru-finder-card-actions a { display: inline-flex; align-items: center; gap: 5px; font-size: .8rem; }
 .ru-finder-visit { font-size: .79rem; display: block; margin: 18px 0 6px; }

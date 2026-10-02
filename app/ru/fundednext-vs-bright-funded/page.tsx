@@ -36,8 +36,9 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
 const PATH = '/ru/fundednext-vs-bright-funded'
-const TITLE = 'FundedNext или Bright Funded: сравнение 2026'
-const DESCRIPTION = 'FundedNext или Bright Funded: сравнение программ, взносов в USD и EUR, просадки, условий запроса выплат, платформ и проверки личности.'
+const TITLE = 'FundedNext или BrightFunded: сравнение 2026'
+const DESCRIPTION = 'FundedNext или BrightFunded: сравнение программ, взносов в USD и EUR, просадки, условий запроса выплат, платформ и проверки личности.'
+const SOCIAL_TITLE = 'FundedNext или Bright Funded: сравнение 2026'
 const SOCIAL_DESCRIPTION = 'Сравнение FundedNext и Bright Funded по 7 продуктам и 40 ценам: USD или EUR, этапы, просадка, true cost, выплаты, KYC и выбор для трейдера.'
 
 export const revalidate = 3600
@@ -46,20 +47,22 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   keywords: [
+    'FundedNext или BrightFunded',
+    'FundedNext vs BrightFunded',
+    'BrightFunded сравнение',
     'FundedNext или Bright Funded',
     'FundedNext vs Bright Funded',
-    'Bright Funded сравнение',
     'FundedNext сравнение',
     'проп фирмы USD EUR',
   ],
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
-  twitter: { card: 'summary_large_image', title: TITLE, description: SOCIAL_DESCRIPTION },
+  openGraph: { title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
+  twitter: { card: 'summary_large_image', title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION },
 }
 
 const faqs: RussianFaqItem[] = [
   {
-    q: 'Что лучше: FundedNext или Bright Funded?',
+    q: 'Что лучше: FundedNext или BrightFunded?',
     a: 'Единого победителя нет. Сначала выберите программу с оценкой или без неё, допустимую просадку и валюту взноса. Затем сравните условия запроса вознаграждения и доступность платформы для своего профиля. Ни партнёрская ссылка, ни число программ сами по себе не делают фирму подходящей.',
   },
   {
@@ -71,7 +74,7 @@ const faqs: RussianFaqItem[] = [
     a: 'В датированных правилах Stellar 1-Step использует статическую общую границу убытка, а Bright Funded 1-Step — подвижную границу вслед за максимальной стоимостью счёта. Поэтому совпадающий процент просадки не означает одинаковый запас риска после прибыльной сделки. Цели, торговые дни и сроки запроса сравниваются отдельно в строках программ.',
   },
   {
-    q: 'Есть ли у Bright Funded финансирование без оценки?',
+    q: 'Есть ли у BrightFunded финансирование без оценки?',
     a: 'В разобранной линейке Bright Funded программы проходят оценку. Stellar Instant у FundedNext рассматривается отдельно как программа без оценочного этапа. Это не освобождает трейдера от лимита убытка, проверки личности и условий запроса вознаграждения; текущий состав предложения нужно сверять в таблице и у фирмы.',
   },
   {
@@ -85,10 +88,6 @@ const faqs: RussianFaqItem[] = [
   {
     q: 'Какая фирма удобнее русскоязычному трейдеру за рубежом?',
     a: 'Язык не определяет доступ. Резидент ЕС с EUR-счётом может предпочесть Bright Funded, а пользователь разрешённой юрисдикции с подходящим кошельком — один из криптомаршрутов FundedNext. Проверяются фактические гражданство, резидентство, адрес, платёж и KYC.',
-  },
-  {
-    q: 'Можно ли зарегистрироваться резиденту России?',
-    a: 'Нельзя делать общий вывод по этой странице. Проверка разных официальных разделов FundedNext выявила противоречивые сведения о России; доступ резиденту РФ здесь не подтверждён. До оплаты нужен ответ фирмы по конкретной программе и профилю. Для Bright Funded также требуется отдельная проверка страны и документов. Не используйте чужой адрес или неверные сведения.',
   },
 ]
 
@@ -195,7 +194,15 @@ export default function FundedNextVsBrightFundedRussianPage() {
   const payoutEvidence = new Map(marketEvidence.payoutEvidence.map(item => [item.firmSlug, item]))
   const kycEvidence = new Map(marketEvidence.kycEvidence.map(item => [item.firmSlug, item]))
   const accessEvidence = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
-  const ruleSources = [brightEvidence.sources.rules, brightEvidence.sources.reward, brightEvidence.sources.platforms, brightEvidence.sources.countries]
+  const ruleSources = [brightEvidence.sources.rules, brightEvidence.sources.reward, brightEvidence.sources.platforms, brightEvidence.sources.countries, brightEvidence.sources.countryTerms]
+  const countrySourcesCurrent = [brightEvidence.sources.countries, brightEvidence.sources.countryTerms]
+    .every(source => freshCapture(source.sourceCapturedAt))
+  const pageFaqs: RussianFaqItem[] = [...faqs, {
+    q: 'Можно ли зарегистрироваться резиденту России?',
+    a: countrySourcesCurrent
+      ? `Нельзя делать общий вывод по этой странице. Проверка разных официальных разделов FundedNext выявила противоречивые сведения о России; доступ резиденту РФ здесь не подтверждён. Справка BrightFunded от ${brightEvidence.sources.countries.sourceCapturedAt} включает Пакистан, а условия от ${brightEvidence.sources.countryTerms.sourceCapturedAt} его не называют. Ни один список не подтверждает допуск из России. До оплаты нужен ответ фирмы по конкретной программе и профилю. Не используйте чужой адрес или неверные сведения.`
+      : 'Доступ резиденту России здесь не подтверждён. Официальные страницы FundedNext противоречат друг другу, а страновые источники BrightFunded требуют повторной проверки: прежнее отсутствие России в списках не является разрешением сегодня. До оплаты запросите ответ фирм для конкретной программы и профиля. Не используйте чужой адрес или неверные сведения.',
+  }]
   const evidenceDates = [
     { label: 'цены: самая ранняя проверка', capturedAt: latestCapture },
     { label: 'FundedNext: ограничения по стране', capturedAt: accessEvidence?.sourceCapturedAt ?? marketEvidence.capturedAt },
@@ -225,9 +232,9 @@ export default function FundedNextVsBrightFundedRussianPage() {
     { name: 'Traders Fund Hub', url: '/' },
     { name: 'Русская версия', url: '/ru' },
     { name: 'Рейтинг проп-фирм', url: '/ru/luchshie-prop-firmy' },
-    { name: 'FundedNext или Bright Funded' },
+    { name: 'FundedNext или BrightFunded' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = faqPageSchema(pageFaqs)
   const itemList = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -235,7 +242,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
     numberOfItems: 2,
     itemListElement: [
       { '@type': 'ListItem', position: 1, item: { '@type': 'Organization', name: 'FundedNext', url: 'https://tradersfundhub.com/ru/obzor-fundednext' } },
-      { '@type': 'ListItem', position: 2, item: { '@type': 'Organization', name: 'Bright Funded', url: 'https://tradersfundhub.com/ru/obzor-bright-funded' } },
+      { '@type': 'ListItem', position: 2, item: { '@type': 'Organization', name: 'BrightFunded', url: 'https://tradersfundhub.com/ru/obzor-bright-funded' } },
     ],
   }
   const article = {
@@ -264,28 +271,48 @@ export default function FundedNextVsBrightFundedRussianPage() {
           data-russian-primary-comparison-products={products.length}
           data-russian-primary-comparison-prices={priceCount}
         >
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / FundedNext или Bright Funded</div>
+          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / FundedNext или BrightFunded</div>
           <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Два главных партнёра · победитель зависит от продукта</div>
-          <h1>FundedNext или Bright Funded: что выбрать в 2026 году</h1>
+          <h1>FundedNext или BrightFunded: что выбрать в 2026 году</h1>
           <p className="ru-lead">
             Сравниваем конкретные программы, а не рекламные максимумы двух фирм. В таблице — {products.length} программ
             и {priceCount} цен с актуальной проверкой источников. Разбираем валюту взноса, механику просадки,
             условия запроса вознаграждения и проверку личности перед участием.
           </p>
-          <div className="ru-stats" aria-label="Охват сравнения FundedNext и Bright Funded">
+          <div className="ru-stats" aria-label="Охват сравнения FundedNext и BrightFunded">
             <div className="ru-stat"><strong>{fundedNextProducts.length}</strong><span>продукта FundedNext</span></div>
-            <div className="ru-stat"><strong>{brightProducts.length}</strong><span>продукта Bright Funded</span></div>
+            <div className="ru-stat"><strong>{brightProducts.length}</strong><span>продукта BrightFunded</span></div>
             <div className="ru-stat"><strong>{priceCount}</strong><span>цен в исходных валютах</span></div>
             <div className="ru-stat"><strong>{latestCapture}</strong><span>самая ранняя проверка программ</span></div>
+          </div>
+          <div className="ru-notice" data-russian-country-boundary="comparison-not-access">
+            <strong>Русский язык не подтверждает доступность страны.</strong>{' '}
+            Страница рассчитана на русскоязычных трейдеров по всему миру. Перед оплатой проверяются гражданство,
+            резидентство, адрес, KYC, карта, банк, кошелёк и конкретный продукт. VPN и неверные данные не являются решением.
+          </div>
+          <div className="ru-notice" data-russian-primary-comparison-country-conflict="help-six-terms-five" data-russian-primary-comparison-country-status={countrySourcesCurrent ? 'dated' : 'recapture-required'}>
+            <strong>{countrySourcesCurrent ? 'У BrightFunded расходятся официальные списки стран.' : 'В датированном снимке списки стран BrightFunded расходились.'}</strong>{' '}
+            По записи от {brightEvidence.sources.countries.sourceCapturedAt}{' '}
+            <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="nofollow noopener">справка</a> включала Пакистан среди шести ограниченных стран;{' '}
+            <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {brightEvidence.sources.countryTerms.sourceCapturedAt} называли пять стран без Пакистана и допускали дополнительные ограничения.{' '}
+            {countrySourcesCurrent
+              ? 'Россия не названа ни в одном из этих списков, но это не подтверждает доступ для конкретного гражданства, резидентства и фактического местонахождения. Получите ответ фирмы до оплаты.'
+              : 'Списки требуют повторной проверки; прежнее отсутствие России в них не подтверждает доступ сегодня. Получите ответ фирмы до оплаты.'}
+          </div>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="fundednext-bright-comparison">
+            <strong>Партнёрское раскрытие.</strong>{' '}
+            FundedNext и Bright Funded — два главных коммерческих партнёра русской версии. Мы можем получить комиссию после
+            покупки по партнёрской ссылке. Комиссия не меняет правила сравнения и не добавляет фирме баллы.
+            Для обеих фирм доступны подробный обзор и ссылка на проверку условий.
           </div>
           <div className="ru-actions">
             <Link href="/go/fundednext?from=ru-fn-vs-bright-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
               Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
             </Link>
             <Link href="/go/bright-funded?from=ru-fn-vs-bright-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
-              Проверить Bright Funded <ArrowRight size={15} aria-hidden="true" />
+              Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" />
             </Link>
             <Link href="#verdict" className="btn-outline">Сначала увидеть различия</Link>
           </div>
@@ -295,19 +322,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
       <article className="ru-review-article" data-russian-primary-comparison-article="product-before-brand">
         <section className="ru-section" id="verdict">
           <div className="ru-shell ru-content">
-            <div className="ru-notice" data-russian-country-boundary="comparison-not-access">
-              <strong>Русский язык не подтверждает доступность страны.</strong>{' '}
-              Страница рассчитана на русскоязычных трейдеров по всему миру. Перед оплатой проверяются гражданство,
-              резидентство, адрес, KYC, карта, банк, кошелёк и конкретный продукт. VPN и неверные данные не являются решением.
-            </div>
-            <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="fundednext-bright-comparison">
-              <strong>Партнёрское раскрытие.</strong>{' '}
-              FundedNext и Bright Funded — два главных коммерческих партнёра русской версии. Мы можем получить комиссию после
-              покупки по партнёрской ссылке. Комиссия не меняет правила сравнения и не добавляет фирме баллы.
-              Для обеих фирм доступны подробный обзор и ссылка на проверку условий.
-            </div>
-
-            <nav className="toc ru-review-toc" aria-label="Содержание сравнения FundedNext и Bright Funded"><div className="toc-title">Содержание</div><ol>
+            <nav className="toc ru-review-toc" aria-label="Содержание сравнения FundedNext и BrightFunded"><div className="toc-title">Содержание</div><ol>
               <li><a href="#comparison-products">Программы и цены</a></li><li><a href="#comparison-one-step">Одноэтапные модели</a></li>
               <li><a href="#comparison-two-step">Двухэтапные модели</a></li><li><a href="#comparison-instant">Без оценочного этапа</a></li>
               <li><a href="#comparison-cost">Расходы и их возмещение</a></li><li><a href="#comparison-payout">Запрос выплаты</a></li>
@@ -322,7 +337,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             </p>
             <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Пять ограничений при выборе фирмы" data-russian-primary-comparison-matrix="five-constraints">
               <table className="ru-table">
-                <thead><tr><th>Ограничение</th><th>FundedNext</th><th>Bright Funded</th><th>Решение</th></tr></thead>
+                <thead><tr><th>Ограничение</th><th>FundedNext</th><th>BrightFunded</th><th>Решение</th></tr></thead>
                 <tbody>
                   <tr><td>Валюта оплаты</td><td>{fundedNextProducts.reduce((sum, product) => sum + pricedTiers(product).length, 0)} цен в USD</td><td>{brightProducts.reduce((sum, product) => sum + pricedTiers(product).length, 0)} цен в EUR</td><td>Сравнивайте итоговую сумму в валюте своего платёжного метода, включая конвертацию.</td></tr>
                   <tr><td>Без оценочного этапа</td><td>{instantFn ? 'Stellar Instant' : 'Требуется проверка предложения'}</td><td>{brightProducts.length ? (brightProducts.some(product => product.phases === 0) ? 'Проверьте строки программ ниже' : 'В проверенных программах есть оценка') : 'Требуется проверка предложения'}</td><td>Отсутствие оценки не отменяет условий запроса выплаты.</td></tr>
@@ -335,7 +350,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
           </div>
         </section>
 
-        <section className="ru-section" id="comparison-products" data-russian-primary-comparison-products="seven-current-products">
+        <section className="ru-section" id="comparison-products" data-russian-primary-comparison-product-list="fresh-only">
           <div className="ru-shell ru-content">
             <h2>Программы: этапы, цены, просадка и запрос выплаты</h2>
             <p>
@@ -375,7 +390,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             </p>
             <div className="ru-grid">
               <article className="ru-card"><Gauge size={22} color="var(--accent-light)" aria-hidden="true" /><h3>FundedNext Stellar 1-Step</h3><p className="ru-muted">Минимум торговых дней: {minimumTradingDaysLabel(oneStepFn?.minTradingDays ?? null, 'ru')}. Взнос: {priceRange(oneStepFn)}. Запрос вознаграждения: {oneStepFn ? payoutLabel(oneStepFn) : 'требует проверки'}. Статическая общая граница не поднимается вслед за прибылью; дневной лимит проверяется отдельно.</p></article>
-              <article className="ru-card"><Gauge size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Bright Funded 1-Step</h3><p className="ru-muted">Минимум торговых дней: {minimumTradingDaysLabel(oneStepBright?.minTradingDays ?? null, 'ru')}. Взнос: {priceRange(oneStepBright)}. Запрос вознаграждения: {oneStepBright ? payoutLabel(oneStepBright) : 'требует проверки'}. По датированным правилам подвижная граница следует за максимальной стоимостью счёта с учётом открытых позиций.</p></article>
+              <article className="ru-card"><Gauge size={22} color="var(--accent-light)" aria-hidden="true" /><h3>BrightFunded 1-Step</h3><p className="ru-muted">Минимум торговых дней: {minimumTradingDaysLabel(oneStepBright?.minTradingDays ?? null, 'ru')}. Взнос: {priceRange(oneStepBright)}. Запрос вознаграждения: {oneStepBright ? payoutLabel(oneStepBright) : 'требует проверки'}. По датированным правилам подвижная граница следует за максимальной стоимостью счёта с учётом открытых позиций.</p></article>
             </div>
             <p>
               Открытая прибыль может поднять подвижную границу ещё до закрытия позиции. Если затем цена развернётся,
@@ -396,7 +411,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             </p>
             <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Условия двухэтапных программ">
               <table className="ru-table">
-                <thead><tr><th>Что сравниваем</th><th>FundedNext</th><th>Bright Funded</th><th>Как читать</th></tr></thead>
+                <thead><tr><th>Что сравниваем</th><th>FundedNext</th><th>BrightFunded</th><th>Как читать</th></tr></thead>
                 <tbody>
                   <tr><td>Основная двухэтапная пара</td><td>Stellar 2-Step · цели {targetLabel(twoStepFn)}; день {percent(twoStepFn?.dailyLossPct)}, общий {percent(twoStepFn?.maxLossPct)}</td><td>2-Step Classic · цели {targetLabel(classicBright)}; день {percent(classicBright?.dailyLossPct)}, общий {percent(classicBright?.maxLossPct)}</td><td>Сопоставьте обе цели; не вычитайте проценты, если один показатель не подтверждён.</td></tr>
                   <tr><td>Lite и Bright</td><td>Stellar Lite · цели {targetLabel(liteFn)}; день {percent(liteFn?.dailyLossPct)}, общий {percent(liteFn?.maxLossPct)}</td><td>2-Step Bright · цели {targetLabel(twoStepBright)}; день {percent(twoStepBright?.dailyLossPct)}, общий {percent(twoStepBright?.maxLossPct)}</td><td>Проверьте запас риска вместе со стоимостью, а не только более низкий взнос.</td></tr>
@@ -487,7 +502,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             </p>
             <div className="ru-grid">
               <article className="ru-card"><WalletCards size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Что проверить у FundedNext</h3><p className="ru-muted">Поддерживает ли выбранный маршрут вашу страну, документы и кошелёк? Какая сумма останется после доли фирмы и внешних комиссий? Доступность криптоперевода не устраняет ограничение на участие в программе.</p></article>
-              <article className="ru-card"><BadgeDollarSign size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Что проверить у Bright Funded</h3><p className="ru-muted">Подходит ли USDC ERC-20 или банковский перевод в EUR? Какой цикл включён именно в ваш заказ и оплачено ли дополнение? До ответа не рассчитывайте на более раннее получение денег.</p></article>
+              <article className="ru-card"><BadgeDollarSign size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Что проверить у BrightFunded</h3><p className="ru-muted">Подходит ли USDC ERC-20 или банковский перевод в EUR? Какой цикл включён именно в ваш заказ и оплачено ли дополнение? До ответа не рассчитывайте на более раннее получение денег.</p></article>
             </div>
             <div className="ru-actions"><Link href="/ru/vyplaty-prop-firm" className="btn-outline">Разобрать 4 стадии выплаты</Link></div>
           </div>
@@ -510,7 +525,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             </p>
             <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Платформы и проверка личности">
               <table className="ru-table">
-                <thead><tr><th>Проверка</th><th>FundedNext</th><th>Bright Funded</th></tr></thead>
+                <thead><tr><th>Проверка</th><th>FundedNext</th><th>BrightFunded</th></tr></thead>
                 <tbody>
                   <tr><td>Платформы</td><td><Link href="/ru/fundednext-mt5">MT5 и ограничения FundedNext</Link>: выбор зависит от модели, размера счёта и профиля.</td><td><Link href="/ru/prop-firmy-s-ctrader">cTrader и ограничения Bright Funded</Link>: список платформ фирмы не подтверждает доступность для каждого счёта.</td></tr>
                   <tr><td>Кто проверяет</td><td>Центр проверки FundedNext</td><td>SumSub и команда риска Bright Funded</td></tr>
@@ -562,7 +577,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
 
         <section className="ru-section" data-russian-primary-comparison-boundary="when-neither-fits">
           <div className="ru-shell ru-content">
-            <h2>Когда не подходит ни FundedNext, ни Bright Funded</h2>
+            <h2>Когда не подходит ни FundedNext, ни BrightFunded</h2>
             <p>
               Эта пара не закрывает любую задачу. Для торговли фьючерсами MOEX откройте отдельное исследование локальных компаний;
               для других глобальных моделей используйте полный русский рейтинг, не подменяя его выводом из двух партнёрских карточек.
@@ -594,9 +609,9 @@ export default function FundedNextVsBrightFundedRussianPage() {
                 <div className="ru-actions"><Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link><Link href="/go/fundednext?from=ru-fn-vs-bright-verdict-fundednext" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></Link></div>
               </article>
               <article className="ru-card" data-russian-primary-comparison-cta="bright-funded">
-                <div className="ru-card-head"><h3>Выбрать Bright Funded</h3><span className="ru-score">Партнёр</span></div>
+                <div className="ru-card-head"><h3>Выбрать BrightFunded</h3><span className="ru-score">Партнёр</span></div>
                 <p className="ru-muted">Сопоставьте взнос в EUR, выбранную одно- или двухэтапную модель, доступную платформу и способ выплаты. Уточните базовый цикл и платные дополнения.</p>
-                <div className="ru-actions"><Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link><Link href="/go/bright-funded?from=ru-fn-vs-bright-verdict-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить Bright Funded <ArrowRight size={14} aria-hidden="true" /></Link></div>
+                <div className="ru-actions"><Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link><Link href="/go/bright-funded?from=ru-fn-vs-bright-verdict-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" /></Link></div>
               </article>
             </div>
             <p className="ru-source-line"><Database size={14} aria-hidden="true" /> {products.length} программ · {priceCount} цен · {sourceCount} официальных страниц программ. Самая ранняя проверка — {latestCapture}.</p>
@@ -610,7 +625,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             <ul>{sourceUrls.map((url, index) => <li key={url}><a href={url} target="_blank" rel="nofollow noopener">{sourceLabels.get(url) ?? `FundedNext: проверка доступа по стране, источник ${index + 1}`}</a></li>)}</ul>
             <h2>Частые вопросы</h2>
             {!completeEvidence && <p className="ru-notice" data-russian-primary-comparison-evidence="recapture-required">Не все данные подтверждены в текущем окне проверки. Ответы ниже сохраняют объяснение подхода, а не подтверждают действующее предложение.</p>}
-            <RussianFaq items={faqs} />
+            <RussianFaq items={pageFaqs} />
           </div>
         </section>
       </article>

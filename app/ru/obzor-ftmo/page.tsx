@@ -425,7 +425,7 @@ export default function RussianFtmoReviewPage() {
               FTMO не является нашим партнёром. FundedNext и Bright Funded являются партнёрами: если подходящий читатель зарегистрируется
               через помеченную ссылку, Traders Fund Hub может получить комиссию. Это не доказывает доступность страны и не меняет продуктовые числа.
             </div>
-            <h2>Если FTMO не подходит: FundedNext и Bright Funded</h2>
+            <h2>Если FTMO не подходит: FundedNext и BrightFunded</h2>
             <p>
               Альтернатива должна решать конкретную проблему FTMO, а не просто вести на другой логотип. Для русскоязычного жителя разрешённой страны
               сначала сравниваются валюта взноса, тип просадки, число фаз и выплата; для резидента России отдельно проверяются правила страны каждой фирмы.
@@ -436,7 +436,7 @@ export default function RussianFtmoReviewPage() {
                 const reviewHref = item.slug === 'fundednext' ? '/ru/obzor-fundednext' : '/ru/obzor-bright-funded'
                 return (
                   <article className="ru-card" key={item.slug} data-russian-ftmo-alternative={item.slug}>
-                    <div className="ru-card-head"><h3>{item.firm.name}</h3><span className="ru-score">Партнёр</span></div>
+                    <div className="ru-card-head"><h3>{item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name}</h3><span className="ru-score">Партнёр</span></div>
                     <ul className="ru-facts">
                       <li><Database size={14} aria-hidden="true" /> {item.products.length} свежих продуктов</li>
                       <li><BadgeDollarSign size={14} aria-hidden="true" /> {item.priceCount} опубликованных цен</li>
@@ -450,7 +450,7 @@ export default function RussianFtmoReviewPage() {
                     <div className="ru-actions">
                       <Link href={reviewHref} className="btn-outline">Русский обзор</Link>
                       <Link href={`/go/${item.slug}?from=ru-ftmo-alternative-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
-                        Проверить {item.firm.name} <ArrowRight size={14} aria-hidden="true" />
+                        Проверить {item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name} <ArrowRight size={14} aria-hidden="true" />
                       </Link>
                     </div>
                   </article>
@@ -458,7 +458,7 @@ export default function RussianFtmoReviewPage() {
               })}
             </div>
             <div className="ru-actions">
-              <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary"><Scale size={15} aria-hidden="true" /> Сравнить FundedNext и Bright Funded</Link>
+              <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary"><Scale size={15} aria-hidden="true" /> Сравнить FundedNext и BrightFunded</Link>
               <Link href="/ru/promokody-prop-firm" className="btn-outline">Проверить действующие предложения</Link>
             </div>
           </div>

@@ -369,10 +369,10 @@ export default function RussianCryptoPropFirmsPage() {
               <strong>Партнёрская ссылка.</strong> Переход ниже может принести нам комиссию. Это не добавляет Bright Funded в крипторейтинг и не подтверждает возможность получить USDC в каждой стране. До оплаты проверьте доступность метода для своих документов и места проживания.
             </div>
             <div className="ru-actions">
-              <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор Bright Funded</Link>
+              <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
               <a href={payoutEvidence.sourceUrl} target="_blank" rel="nofollow noopener" className="btn-outline">Официальная справка о выплатах</a>
               <Link href="/go/bright-funded?from=ru-crypto-ranking-payout-alternative" rel="sponsored nofollow noopener" className="btn-primary">
-                Проверить условия Bright Funded <ArrowRight size={14} aria-hidden="true" />
+                Проверить условия BrightFunded <ArrowRight size={14} aria-hidden="true" />
               </Link>
             </div>
           </div>

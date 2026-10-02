@@ -49,6 +49,7 @@ import {
   RUSSIAN_ROUTE_EDITORIAL_DATES,
   RUSSIAN_ONLY_ROUTES,
 } from '../lib/localizedRoutes.ts'
+import { russianDiasporaEvidence } from '../lib/russianDiasporaEvidence.ts'
 import {
   INDEXNOW_KEY,
   INDEXNOW_KEY_PATH,
@@ -330,6 +331,9 @@ for (const page of pages) {
     const footerHtml = firstMatch(page.html, /<footer\b[^>]*>([\s\S]*?)<\/footer>/i)
     if (!/<a\b[^>]*href="\/ru\/obzor-bright-funded"[^>]*>Обзор BrightFunded<\/a>/.test(footerHtml)) {
       errors.push(`${path}: Russian footer does not link to the BrightFunded review with the official brand spelling`)
+    }
+    if (!/<a\b[^>]*href="\/ru\/fundednext-vs-bright-funded"[^>]*>FundedNext или BrightFunded<\/a>/.test(footerHtml)) {
+      errors.push(`${path}: Russian footer does not label the comparison with the official BrightFunded spelling`)
     }
   }
   if (path === '/' || path === '/ru' || path.startsWith('/ru/')) {
@@ -806,8 +810,12 @@ const russianExpectations = new Map([
       'data-russian-home-hero-partner="fundednext"',
       'data-russian-home-hero-partner="bright-funded"',
       'data-russian-partner-country-source-status=',
+      'data-russian-home-bright-country-conflict="help-six-terms-five"',
+      'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
+      'https://brightfunded.com/terms-and-conditions',
       'Проверить условия FundedNext',
-      'Проверить условия Bright Funded',
+      'Проверить условия BrightFunded',
+      'FundedNext или BrightFunded: сравнить отличия',
       '/go/fundednext?from=ru-home-hero-fundednext',
       '/go/bright-funded?from=ru-home-hero-bright-funded',
       'data-russian-affiliate-disclosure="home-primary-partners"',
@@ -833,11 +841,12 @@ const russianExpectations = new Map([
       'data-russian-diaspora-hero-partner="fundednext"',
       'data-russian-diaspora-hero-partner="bright-funded"',
       'data-russian-diaspora-hero-disclosure="primary-affiliates"',
+      'data-russian-diaspora-bright-country-status=',
       'data-russian-diaspora-regions="kazakhstan-uae"',
       'data-russian-diaspora-regions="global-routes"',
       'data-russian-diaspora-country-matrix="published-lists-not-approval"',
       'data-russian-diaspora-country-count="11"',
-      'data-russian-diaspora-country-captured="2026-09-01"',
+      `data-russian-diaspora-country-captured="${russianDiasporaEvidence.capturedAt}"`,
       'data-russian-diaspora-country-boundary="absence-not-eligibility"',
       'data-russian-diaspora-country-evidence="first-party"',
       'data-russian-diaspora-country="kazakhstan"',
@@ -847,7 +856,6 @@ const russianExpectations = new Map([
       'data-russian-diaspora-status="restricted"',
       'data-russian-diaspora-status="product-specific"',
       'data-russian-diaspora-status="conflict"',
-      'Что публикуют FundedNext и Bright Funded по 11 страновым профилям',
       'Отсутствие страны в списке не подтверждает доступ',
       'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds',
       'https://fundednext.com/terms-of-service',
@@ -868,27 +876,27 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/fundednext-vs-bright-funded', {
-    title: 'FundedNext или Bright Funded: сравнение 2026',
-    h1: 'FundedNext или Bright Funded: что выбрать в 2026 году',
+    title: 'FundedNext или BrightFunded: сравнение 2026',
+    h1: 'FundedNext или BrightFunded: что выбрать в 2026 году',
     markers: [
+      'Что лучше: FundedNext или BrightFunded?',
+      'Проверить BrightFunded',
       'data-russian-primary-comparison="fundednext-bright-funded"',
-      'data-russian-primary-comparison-products="7"',
-      'data-russian-primary-comparison-prices="40"',
+      'data-russian-primary-comparison-products=',
+      'data-russian-primary-comparison-prices=',
       'data-russian-primary-comparison-article="product-before-brand"',
       'data-russian-country-boundary="comparison-not-access"',
       'data-russian-affiliate-disclosure="fundednext-bright-comparison"',
       'data-russian-primary-comparison-matrix="five-constraints"',
-      'data-russian-primary-comparison-products="seven-current-products"',
-      'data-russian-primary-comparison-product="fundednext:stellar-1-step"',
-      'data-russian-primary-comparison-product="fundednext:stellar-instant"',
-      'data-russian-primary-comparison-product="bright-funded:bright-funded-1-step"',
-      'data-russian-primary-comparison-product="bright-funded:bright-funded-2-step-bright"',
+      'data-russian-primary-comparison-product-list="fresh-only"',
       'data-russian-primary-comparison-one-step="same-caps-different-engine"',
       'data-russian-primary-comparison-two-step="matched-risk-buckets"',
       'data-russian-primary-comparison-instant="fundednext-only"',
       'data-russian-primary-comparison-cost="compute-true-cost"',
       'data-russian-primary-comparison-payout="methods-cycle-fees"',
       'data-russian-primary-comparison-kyc="two-required-processes"',
+      'data-russian-primary-comparison-country-conflict="help-six-terms-five"',
+      'data-russian-primary-comparison-country-status=',
       'data-russian-primary-comparison-diaspora="language-not-residency"',
       'data-russian-primary-comparison-trust="suppressed-is-not-null"',
       'data-russian-primary-comparison-boundary="when-neither-fits"',
@@ -900,8 +908,8 @@ const russianExpectations = new Map([
       '/go/fundednext?from=ru-fn-vs-bright-instant',
       '/go/fundednext?from=ru-fn-vs-bright-verdict-fundednext',
       '/go/bright-funded?from=ru-fn-vs-bright-verdict-bright-funded',
-      '7',
-      '40',
+      'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
+      'https://brightfunded.com/terms-and-conditions',
     ],
   }],
   ['/ru/fundednext-vs-fundingpips', {
@@ -936,8 +944,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/promokody-prop-firm', {
-    title: 'Промокоды проп-фирм 2026: FundedNext и Bright',
-    h1: 'Промокоды проп-фирм: FundedNext, Bright Funded и проверка скидок',
+    title: 'Промокоды проп-фирм 2026: статус FundedNext и BrightFunded',
+    h1: 'Промокоды проп-фирм: FundedNext, BrightFunded и проверка скидок',
     markers: [
       'data-russian-deals="verified-offers"',
       'data-russian-deals-guide="long-form-verified-offers"',
@@ -1020,8 +1028,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/vyplaty-prop-firm', {
-    title: 'Выплаты проп-фирм 2026: FundedNext и Bright Funded',
-    h1: 'Выплаты проп-фирм: FundedNext, Bright Funded и вывод прибыли',
+    title: 'Выплаты проп-фирм 2026: FundedNext и BrightFunded',
+    h1: 'Выплаты проп-фирм: FundedNext, BrightFunded и вывод прибыли',
     markers: [
       'data-russian-payout-guide="long-form-source-gated"',
       'data-russian-payout-partner-count="3"',
@@ -1054,8 +1062,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/prop-firmy-bez-kyc', {
-    title: 'KYC в проп-фирмах 2026: FundedNext и Bright Funded',
-    h1: 'KYC в проп-фирмах: FundedNext, Bright Funded и проверка документов',
+    title: 'KYC в проп-фирмах 2026: FundedNext и BrightFunded',
+    h1: 'KYC в проп-фирмах: FundedNext, BrightFunded и проверка документов',
     markers: [
       'data-russian-kyc-guide="long-form-source-gated"',
       'data-russian-kyc-partner-count=',
@@ -1092,6 +1100,8 @@ const russianExpectations = new Map([
       'data-russian-ranking-primary-partners="fundednext-bright-funded"',
       'data-russian-ranking-primary-partner="fundednext"',
       'data-russian-ranking-primary-partner="bright-funded"',
+      'FundedNext или BrightFunded: с чего начать сравнение',
+      'Проверить BrightFunded',
       'data-russian-affiliate-disclosure="ranking-primary-partners"',
       'data-russian-funnel-intent="ranking-finder"',
       'Доступность платформы уточняйте для выбранной программы и страны.',
@@ -1102,6 +1112,12 @@ const russianExpectations = new Map([
       'data-russian-country-boundary="finder-not-access"',
       'data-finder-product=',
       'data-russian-ranking-country-paths="diaspora-not-russia"',
+      'data-russian-ranking-instant-status=',
+      'data-russian-ranking-instant-card=',
+      'data-russian-ranking-bright-country-conflict="help-six-terms-five"',
+      'data-russian-ranking-bright-country-status=',
+      'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
+      'https://brightfunded.com/terms-and-conditions',
       'data-russian-ranking="single-directory"',
       'data-russian-affiliate-disclosure="ranking"',
       'data-russian-ranking-partners="single-section"',
@@ -1216,23 +1232,30 @@ const russianExpectations = new Map([
       'data-russian-partner-review="bright-funded"',
       'data-russian-bright-article="long-form"',
       'data-russian-bright-summary-cta="qualified-country-first"',
+      'data-russian-bright-summary-country-status=',
       'data-russian-affiliate-disclosure="bright-funded-summary"',
+      'Проверить BrightFunded',
       '/go/bright-funded?from=ru-bright-funded-review-summary',
       'data-russian-bright-reviews="suppressed-not-zero"',
-      'Отзывы о Bright Funded: почему мы не показываем среднюю оценку',
+      'Отзывы о BrightFunded: почему мы не показываем среднюю оценку',
       '/ru/otzyvy-prop-firm#review-checklist',
-      'data-russian-bright-country-access="published-list"',
+      'data-russian-bright-country-access=',
+      'data-russian-bright-country-source-status=',
+      'data-russian-bright-country-conflict="help-six-terms-five"',
+      'https://brightfunded.com/terms-and-conditions',
+      'BrightFunded доступен русскоязычным трейдерам?',
+      'пять стран без Пакистана',
       'data-russian-bright-plan-matrix="three-products"',
-      'data-russian-bright-price-count="18"',
-      'data-russian-bright-truecost="18"',
+      'data-russian-bright-price-count=',
+      'data-russian-bright-truecost=',
       'data-russian-bright-payouts="eur-usdc"',
       'data-russian-bright-platforms="dated-source"',
       'https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer',
       'data-russian-bright-diaspora="currency-first"',
       'data-russian-affiliate-disclosure="bright-funded"',
       'data-russian-bright-alternatives="failure-point-routing"',
-      'data-russian-bright-comparison-products="7"',
-      'data-russian-bright-comparison-prices="40"',
+      'data-russian-bright-comparison-products=',
+      'data-russian-bright-comparison-prices=',
       'С чем сравнить Bright Funded',
       '/ru/vyplaty-prop-firm',
       '/ru/prop-firmy-bez-kyc',
@@ -1264,15 +1287,15 @@ const russianExpectations = new Map([
       'data-russian-forex-article="instrument-to-product"',
       'data-russian-search-intent="prop-forex"',
       'data-russian-country-boundary="forex-profile-not-language"',
-      'data-russian-forex-products="7"',
-      'data-russian-forex-product="fundednext:stellar-2-step"',
-      'data-russian-forex-product="fundednext:stellar-instant"',
-      'data-russian-forex-product="bright-funded:bright-funded-1-step"',
+      'data-russian-forex-products=',
       'data-russian-forex-featured-partners="fundednext-bright-funded"',
       'data-russian-forex-featured-partner="fundednext"',
       'data-russian-forex-featured-partner="bright-funded"',
+      'data-russian-forex-bright-country-status=',
       'data-russian-forex-leverage="margin-not-risk-room"',
       'data-russian-forex-instruments="published-vs-terminal"',
+      'data-russian-forex-country-conflict="help-six-terms-five"',
+      'data-russian-forex-country-status=',
       'data-russian-forex-local-boundary="moex-not-cfd-forex"',
       'data-russian-forex-checklist="nine-fields"',
       'data-russian-affiliate-disclosure="forex-shortlist"',
@@ -1281,15 +1304,16 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-forex-shortlist-bright-funded',
       '/go/fundednext?from=ru-forex-verdict-fundednext',
       '/go/bright-funded?from=ru-forex-verdict-bright-funded',
-      '43 валютные пары',
       'data-russian-forex-correction="stellar-1-step-leverage"',
       'https://help.fundednext.com/en/articles/8224087-fundednext-tradable-assets-what-can-i-trade-on-fundednext-cfd-accounts',
       'https://help.brightfunded.com/en/articles/9268380-what-is-the-leverage-in-brightfunded-s-simulated-trading-environment',
+      'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
+      'https://brightfunded.com/terms-and-conditions',
     ],
   }],
   ['/ru/prop-firmy-s-ctrader', {
     title: 'Проп-фирмы с cTrader 2026: ограничения и цены',
-    h1: 'Проп-фирмы с cTrader: FundedNext или Bright Funded',
+    h1: 'Проп-фирмы с cTrader: FundedNext или BrightFunded',
     markers: [
       'data-russian-ctrader-article="platform-to-firm-rule"',
       'data-russian-platform-intent="ctrader-prop-firms"',
@@ -1621,6 +1645,101 @@ for (const [path, expectation] of russianExpectations) {
       errors.push(`${path}: missing Russian acquisition safeguard ${marker}`)
     }
   }
+  if (path === '/ru/dlya-russkoyazychnykh-treyderov') {
+    const status = firstMatch(probe.html, /data-russian-diaspora-country-source-status="([^"]+)"/)
+    const heading = `${status === 'dated' ? 'Что публикуют' : 'Что было опубликовано'} FundedNext и BrightFunded по 11 страновым профилям`
+    if (!['dated', 'recapture-required'].includes(status) || !pageText.includes(heading)) {
+      errors.push(`${path}: country-matrix heading must reflect its rendered source-age status`)
+    }
+    const brightWarning = probe.html.indexOf(`data-russian-diaspora-bright-country-status="${status}"`)
+    const firstBrightAction = probe.html.indexOf('href="/go/bright-funded?from=ru-diaspora-hero-bright-funded"')
+    const warningText = probe.html.slice(brightWarning, firstBrightAction)
+    const brightSources = russianDiasporaEvidence.firms.find(firm => firm.slug === 'bright-funded')?.sources ?? []
+    if (brightWarning < 0 || firstBrightAction <= brightWarning || brightSources.length !== 2
+      || brightSources.some(source => !warningText.includes(`href="${source.url}"`))
+      || !warningText.includes('Пакистан')) {
+      errors.push(`${path}: first-party Bright country-list conflict must appear before the hero affiliate action`)
+    }
+    if (status === 'recapture-required' && !warningText.includes('не подтверждает доступ сегодня')) {
+      errors.push(`${path}: expired Bright country warning must not imply current access`)
+    }
+  }
+  if (path === '/ru/fundednext-vs-bright-funded') {
+    const countryStatus = firstMatch(probe.html, /data-russian-primary-comparison-country-status="([^"]+)"/)
+    const warningIndex = probe.html.indexOf('data-russian-primary-comparison-country-conflict="help-six-terms-five"')
+    const firstBrightAction = probe.html.indexOf('href="/go/bright-funded?from=ru-fn-vs-bright-bright-funded"')
+    const countryWarning = firstMatch(probe.html, /<div class="ru-notice" data-russian-primary-comparison-country-conflict="help-six-terms-five"[^>]*>([\s\S]*?)<\/div>/)
+    const russiaAnswer = firstMatch(probe.html, /<summary>Можно ли зарегистрироваться резиденту России\?<\/summary><p>(.*?)<\/p>/)
+    if (!['dated', 'recapture-required'].includes(countryStatus) || warningIndex < 0 || firstBrightAction <= warningIndex
+      || !countryWarning.includes('help.brightfunded.com/en/articles/9286630')
+      || !countryWarning.includes('brightfunded.com/terms-and-conditions')) {
+      errors.push(`${path}: dated first-party Bright country conflict must precede the first affiliate action`)
+    }
+    if (countryStatus === 'recapture-required'
+      && (!countryWarning.includes('не подтверждает доступ сегодня')
+        || countryWarning.includes('Россия не названа ни в одном из этих списков')
+        || !russiaAnswer.includes('требуют повторной проверки'))) {
+      errors.push(`${path}: expired Bright country guidance must stay historical in the warning and visible FAQ`)
+    }
+    const productCount = firstMatch(probe.html, /data-russian-primary-comparison-products="(\d+)"/)
+    const priceCount = firstMatch(probe.html, /data-russian-primary-comparison-prices="(\d+)"/)
+    const productRows = [...probe.html.matchAll(/<tr\b[^>]*data-russian-primary-comparison-product="[^"]+"/g)].length
+    if (!/^\d+$/.test(productCount) || !/^\d+$/.test(priceCount)
+      || Number(productCount) !== productRows
+      || !pageText.includes(`В таблице — ${productCount} программ и ${priceCount} цен`)) {
+      errors.push(`${path}: visible product and price counts must match the rendered comparison rows`)
+    }
+  }
+  if (path === '/ru/luchshie-prop-firmy') {
+    const instantStatus = firstMatch(probe.html, /data-russian-ranking-instant-status="([^"]+)"/)
+    const instantCardStatus = firstMatch(probe.html, /data-russian-ranking-instant-card="([^"]+)"/)
+    if (!['source-checked', 'recapture-required'].includes(instantStatus) || instantCardStatus !== instantStatus) {
+      errors.push(`${path}: instant-funding summary and card must share the rendered source-age state`)
+    }
+    const brightStatus = firstMatch(probe.html, /data-russian-ranking-bright-country-status="([^"]+)"/)
+    const brightCard = firstMatch(probe.html, /<article\b[^>]*data-russian-ranking-primary-partner="bright-funded"[^>]*>([\s\S]*?)<\/article>/)
+    const warningIndex = brightCard.indexOf('data-russian-ranking-bright-country-status=')
+    const firstBrightAction = brightCard.indexOf('href="/go/bright-funded?from=ru-ranking-primary-bright-funded"')
+    const russiaAnswer = firstMatch(probe.html, /<summary>Какая проп-фирма работает с резидентами России\?<\/summary><p>(.*?)<\/p>/)
+    const russiaCard = firstMatch(probe.html, /<h3>Резидент России<\/h3><p>([\s\S]*?)<\/p>/)
+    if (!['dated', 'recapture-required'].includes(brightStatus) || warningIndex < 0 || firstBrightAction <= warningIndex
+      || !brightCard.includes('help.brightfunded.com/en/articles/9286630')
+      || !brightCard.includes('brightfunded.com/terms-and-conditions')) {
+      errors.push(`${path}: both dated Bright country sources must precede the ranking affiliate action`)
+    }
+    if (brightStatus === 'recapture-required'
+      && (!russiaAnswer.includes('страновые источники BrightFunded требуют повторной проверки')
+        || !russiaCard.includes('прежнее отсутствие России в списках не подтверждает доступ сегодня')
+        || (brightCard.includes('<details>') && !brightCard.includes('старые списки не подтверждают доступ к покупке или выплате сегодня')))) {
+      errors.push(`${path}: ranking Russia guidance must become historical with expired Bright sources`)
+    }
+  }
+  if (path === '/ru/forex-prop-firmy') {
+    const countryStatus = firstMatch(probe.html, /data-russian-forex-country-status="([^"]+)"/)
+    const cardStatus = firstMatch(probe.html, /data-russian-forex-bright-country-status="([^"]+)"/)
+    const brightCard = firstMatch(probe.html, /<article\b[^>]*data-russian-forex-featured-partner="bright-funded"[^>]*>([\s\S]*?)<\/article>/)
+    const warningIndex = brightCard.indexOf('data-russian-forex-bright-country-status=')
+    const firstBrightAction = brightCard.indexOf('href="/go/bright-funded?from=ru-forex-shortlist-bright-funded"')
+    const countryNotice = firstMatch(probe.html, /<div class="ru-notice" data-russian-forex-country-conflict="help-six-terms-five"[^>]*>([\s\S]*?)<\/div>/)
+    const russiaAnswer = firstMatch(probe.html, /<summary>Русская версия означает, что можно зарегистрироваться из России\?<\/summary><p>(.*?)<\/p>/)
+    if (!['dated', 'recapture-required'].includes(countryStatus) || cardStatus !== countryStatus
+      || warningIndex < 0 || firstBrightAction <= warningIndex
+      || !brightCard.includes('help.brightfunded.com/en/articles/9286630')
+      || !brightCard.includes('brightfunded.com/terms-and-conditions')) {
+      errors.push(`${path}: dated Bright country sources must precede the forex shortlist affiliate action`)
+    }
+    if (countryStatus === 'recapture-required'
+      && (!brightCard.includes('не подтверждает доступ сегодня')
+        || !countryNotice.includes('прежнее отсутствие России в них не подтверждает доступ сегодня')
+        || !russiaAnswer.includes('не является разрешением сегодня'))) {
+      errors.push(`${path}: expired Bright country guidance must become historical throughout the forex page`)
+    }
+    const productCount = firstMatch(probe.html, /data-russian-forex-products="(\d+)"/)
+    const productRows = [...probe.html.matchAll(/<tr\b[^>]*data-russian-forex-product="[^"]+"/g)].length
+    if (!/^\d+$/.test(productCount) || Number(productCount) !== productRows) {
+      errors.push(`${path}: rendered forex product count must match its current table rows`)
+    }
+  }
   for (const anchorTag of probe.html.matchAll(/<a\b[^>]*>/gi)) {
     const href = anchorTag[0].match(/\bhref="([^"]+)"/i)?.[1]?.replaceAll('&amp;', '&')
     if (!href?.startsWith('/go/')) continue
@@ -1733,6 +1852,40 @@ if (!russianBrightAlternatives) {
   errors.push('/ru/obzor-bright-funded: failure-point alternatives section did not render')
 } else if (russianBrightAlternatives.includes('/go/')) {
   errors.push('/ru/obzor-bright-funded: failure-point alternatives must remain non-commercial')
+}
+if (russianBrightPage) {
+  const brightHtml = russianBrightPage.html
+  const summaryStatus = firstMatch(brightHtml, /data-russian-bright-summary-country-status="([^"]+)"/)
+  const accessStatus = firstMatch(brightHtml, /data-russian-bright-country-source-status="([^"]+)"/)
+  const accessKind = firstMatch(brightHtml, /data-russian-bright-country-access="([^"]+)"/)
+  const accessStart = brightHtml.indexOf('<h2 id="access">')
+  const accessEnd = brightHtml.indexOf('<h2 id="plans">', accessStart)
+  const accessSection = accessStart >= 0 && accessEnd > accessStart ? brightHtml.slice(accessStart, accessEnd) : ''
+  if (!['dated', 'recapture-required'].includes(summaryStatus) || accessStatus !== summaryStatus
+    || accessKind !== (summaryStatus === 'dated' ? 'published-list' : 'historical-list') || !accessSection) {
+    errors.push('/ru/obzor-bright-funded: country guidance must share one rendered source-age state')
+  }
+  if (summaryStatus === 'recapture-required'
+    && (!accessSection.includes('Прежний список не подтверждает доступ из России сегодня.')
+      || accessSection.includes('Россия не названа в опубликованном списке')
+      || accessSection.includes('Россия не названа ни там, ни там'))) {
+    errors.push('/ru/obzor-bright-funded: expired country lists must be described as historical below the first CTA')
+  }
+  const counts = {
+    price: firstMatch(brightHtml, /data-russian-bright-price-count="(\d+)"/),
+    trueCost: firstMatch(brightHtml, /data-russian-bright-truecost="(\d+)"/),
+    products: firstMatch(brightHtml, /data-russian-bright-comparison-products="(\d+)"/),
+    comparisonPrices: firstMatch(brightHtml, /data-russian-bright-comparison-prices="(\d+)"/),
+  }
+  const priceRows = brightHtml.match(/<table\b[^>]*data-russian-bright-price-count="\d+"[^>]*>[\s\S]*?<tbody>([\s\S]*?)<\/tbody>/)?.[1]
+  const costRows = brightHtml.match(/<table\b[^>]*data-russian-bright-truecost="\d+"[^>]*>[\s\S]*?<tbody>([\s\S]*?)<\/tbody>/)?.[1]
+  if (Object.values(counts).some(value => !/^\d+$/.test(value)) || priceRows == null || costRows == null
+    || Number(counts.price) !== Number(counts.trueCost)
+    || Number(counts.price) !== [...priceRows.matchAll(/<tr\b/g)].length
+    || Number(counts.trueCost) !== [...costRows.matchAll(/<tr\b/g)].length
+    || !textContent(brightHtml).includes(`сравнение ${counts.products} программ и ${counts.comparisonPrices} цен в USD/EUR`)) {
+    errors.push('/ru/obzor-bright-funded: rendered price and comparison counts must match their visible rows and handoff')
+  }
 }
 
 const russianFundedNextPage = pages.find(page =>
@@ -2942,9 +3095,9 @@ if (usLandingProbe.status !== 200) {
   if (cards.length !== expectedUsFirms.length) {
     errors.push(`${usLandingPath}: rendered ${cards.length} firms, expected ${expectedUsFirms.length}`)
   }
-  if (expectedUsFirms.length > 0 && (expectedUsFirms.length !== 4 || expectedUsProductCount !== 14)) {
+  if (expectedUsFirms.length > 0 && (expectedUsFirms.length !== 4 || expectedUsProductCount !== 13)) {
     errors.push(
-      `${usLandingPath}: evidence fixture must resolve to 4 firms and 14 products; received ${expectedUsFirms.length} and ${expectedUsProductCount}`,
+      `${usLandingPath}: evidence fixture must resolve to 4 firms and 13 products; received ${expectedUsFirms.length} and ${expectedUsProductCount}`,
     )
   }
   const expectedUsItemLists = expectedUsFirms.length > 0 ? 1 : 0
@@ -2990,7 +3143,7 @@ if (usLandingProbe.status !== 200) {
     /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
   ))
   if (renderedDescription !== expectedDescription) {
-    errors.push(`${usLandingPath}: meta description does not match the 4-firm/14-product snapshot`)
+    errors.push(`${usLandingPath}: meta description does not match the 4-firm/13-product snapshot`)
   }
 
   for (const required of [

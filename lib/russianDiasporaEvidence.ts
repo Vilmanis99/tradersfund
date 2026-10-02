@@ -31,6 +31,7 @@ type DiasporaFirmEvidence = {
 
 export type RussianDiasporaEvidence = {
   capturedAt: string
+  recheckNote: string
   scopeRu: string
   countries: DiasporaCountry[]
   firms: DiasporaFirmEvidence[]

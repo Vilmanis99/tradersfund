@@ -21,7 +21,8 @@ import cTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
 
 const PATH = '/ru/prop-firmy-s-ctrader'
 const TITLE = 'Проп-фирмы с cTrader 2026: ограничения и цены'
-const DESCRIPTION = 'Сравнение FundedNext и Bright Funded для cTrader: лимиты счёта, комиссия платформы, cBot, страны, устройства и проверка перед оплатой.'
+const DESCRIPTION = 'Сравнение FundedNext и BrightFunded для cTrader: лимиты счёта, комиссия платформы, cBot, страны, устройства и проверка перед оплатой.'
+const SOCIAL_DESCRIPTION = 'Сравнение FundedNext и Bright Funded для cTrader: лимиты счёта, комиссия платформы, cBot, страны, устройства и проверка перед оплатой.'
 
 export const revalidate = 86400
 
@@ -29,8 +30,8 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
+  openGraph: { title: TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
+  twitter: { card: 'summary_large_image', title: TITLE, description: SOCIAL_DESCRIPTION },
 }
 
 const faqs: RussianFaqItem[] = [
@@ -43,7 +44,7 @@ const faqs: RussianFaqItem[] = [
     a: 'Нет. cTrader как платформа поддерживает алгоритмы, но FundedNext отдельно запрещает EA, ботов и алгоритмическую торговлю на cTrader. Все сделки на этом маршруте должны выполняться вручную.',
   },
   {
-    q: 'Можно ли использовать cBot в Bright Funded?',
+    q: 'Можно ли использовать cBot в BrightFunded?',
     a: 'Проверенная справка Bright Funded разрешает EA в целом и отдельно исключает API и автоматизацию на DXTrade, но не подтверждает совместимость cBot с cTrader. До покупки нужно получить письменный ответ поддержки для конкретной программы и сохранить его.',
   },
   {
@@ -142,7 +143,7 @@ export default function RussianCTraderPropFirmsPage() {
     numberOfItems: 2,
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'FundedNext', url: 'https://tradersfundhub.com/ru/obzor-fundednext' },
-      { '@type': 'ListItem', position: 2, name: 'Bright Funded', url: 'https://tradersfundhub.com/ru/obzor-bright-funded' },
+      { '@type': 'ListItem', position: 2, name: 'BrightFunded', url: 'https://tradersfundhub.com/ru/obzor-bright-funded' },
     ],
   }
 
@@ -157,7 +158,7 @@ export default function RussianCTraderPropFirmsPage() {
         <div className="ru-shell">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Проп-фирмы с cTrader</div>
           <div className="ru-eyebrow"><MonitorCog size={14} aria-hidden="true" /> Платформа ≠ разрешение фирмы</div>
-          <h1>Проп-фирмы с cTrader: FundedNext или Bright Funded</h1>
+          <h1>Проп-фирмы с cTrader: FundedNext или BrightFunded</h1>
           <p className="ru-lead">
             Сравниваем 2 глобальные проп-фирмы не по логотипу cTrader, а по ограничениям покупки:
             размер счёта, дополнительная комиссия, cBot, страна профиля, устройства и вход в аккаунт.
@@ -171,18 +172,18 @@ export default function RussianCTraderPropFirmsPage() {
             <div className="ru-stat"><strong>{fundedNextPlatformFee == null ? 'Проверить' : `$${fundedNextPlatformFee}`}</strong><span>стандартная комиссия FundedNext</span></div>
             <div className="ru-stat"><strong>{sourceCount}</strong><span>уникальных первичных страниц</span></div>
           </div>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ctrader-hero">
+            <strong>Партнёрское раскрытие.</strong>{' '}
+            Оба перехода коммерческие: Traders Fund Hub может получить комиссию после регистрации или покупки.
+            Подборка из 2 фирм не является полным каталогом и не отменяет проверку страны, личности и окончательных условий оплаты.
+          </div>
           <div className="ru-actions">
             <Link href="/go/fundednext?from=ru-ctrader-hero-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
               Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
             </Link>
             <Link href="/go/bright-funded?from=ru-ctrader-hero-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
-              Проверить Bright Funded
+              Проверить BrightFunded
             </Link>
-          </div>
-          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ctrader-hero">
-            <strong>Партнёрское раскрытие.</strong>{' '}
-            Оба перехода коммерческие: Traders Fund Hub может получить комиссию после регистрации или покупки.
-            Подборка из 2 фирм не является полным каталогом и не отменяет проверку страны, личности и окончательных условий оплаты.
           </div>
         </div>
       </section>
@@ -209,7 +210,7 @@ export default function RussianCTraderPropFirmsPage() {
           <div className="ru-table-wrap" data-russian-ctrader-matrix="two-primary-partners">
             <table className="ru-table">
               <caption>Правила платформы по проверке от {cTraderEvidence.capturedAt}; доступность для вашего профиля требует отдельного подтверждения.</caption>
-              <thead><tr><th>Поле</th><th>FundedNext</th><th>Bright Funded</th></tr></thead>
+              <thead><tr><th>Поле</th><th>FundedNext</th><th>BrightFunded</th></tr></thead>
               <tbody>
                 <tr><td><strong>Статус cTrader</strong></td><td>Доступен с лимитами продукта и профиля</td><td>Доступен с ограничениями профиля</td></tr>
                 <tr><td><strong>Размер счёта</strong></td><td>Оценочная программа до $50 000</td><td>Не опубликован в проверенной справке</td></tr>
@@ -260,7 +261,7 @@ export default function RussianCTraderPropFirmsPage() {
             а для профилей США — только Match-Trader. cTrader в этом списке не указан. Небольшой размер счёта
             не даёт основания переносить на Instant платформу оценочных программ.
           </p>
-          <h3>Bright Funded: базовая EUR-цена без выдуманной доплаты</h3>
+          <h3>BrightFunded: базовая EUR-цена без выдуманной доплаты</h3>
           <p>
             Для Bright Funded можно показать базовую цену счёта $50 000, но нельзя назвать её окончательной
             ценой с cTrader. Проверенная справка не публикует отдельную доплату и не обещает,
@@ -269,7 +270,7 @@ export default function RussianCTraderPropFirmsPage() {
           <div className="ru-table-wrap">
             <table className="ru-table">
               <caption className="sr-only">Базовые цены Bright Funded перед выбором cTrader</caption>
-              <thead><tr><th>Программа Bright Funded</th><th>Размер счёта</th><th>Базовая цена</th><th>Комиссия cTrader</th><th>Что проверить</th></tr></thead>
+              <thead><tr><th>Программа BrightFunded</th><th>Размер счёта</th><th>Базовая цена</th><th>Комиссия cTrader</th><th>Что проверить</th></tr></thead>
               <tbody>
                 {brightReferenceRows.map(({ product, tier }) => (
                   <tr key={product.productSlug} data-russian-ctrader-reference-product={`bright-funded:${product.productSlug}`}>
@@ -294,7 +295,12 @@ export default function RussianCTraderPropFirmsPage() {
 
       <section className="ru-section" data-russian-ctrader-featured-partners="fundednext-bright-funded">
         <div className="ru-shell ru-content">
-          <h2>FundedNext и Bright Funded: продукт до партнёрской ссылки</h2>
+          <h2>FundedNext и BrightFunded: продукт до партнёрской ссылки</h2>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ctrader-shortlist">
+            <strong>Почему обе фирмы показаны заметно.</strong>{' '}
+            FundedNext и Bright Funded — наши основные глобальные партнёры. Комиссия возможна по обоим маршрутам,
+            но неизвестная комиссия Bright Funded и запрет автоматизации FundedNext не скрываются за партнёрской рекомендацией.
+          </div>
           <div className="ru-grid">
             <article className="ru-card" data-russian-ctrader-featured-partner="fundednext">
               <div className="ru-card-head"><h3>FundedNext cTrader</h3><span className="ru-score">Ручная торговля</span></div>
@@ -316,7 +322,7 @@ export default function RussianCTraderPropFirmsPage() {
               </div>
             </article>
             <article className="ru-card" data-russian-ctrader-featured-partner="bright-funded">
-              <div className="ru-card-head"><h3>Bright Funded cTrader</h3><span className="ru-score">Нужна проверка cBot</span></div>
+              <div className="ru-card-head"><h3>BrightFunded cTrader</h3><span className="ru-score">Нужна проверка cBot</span></div>
               <ul className="ru-facts">
                 <li><MonitorCog size={14} aria-hidden="true" /> cTrader рядом с DXTrade и MT5</li>
                 <li><Smartphone size={14} aria-hidden="true" /> 5 опубликованных сред доступа</li>
@@ -330,15 +336,10 @@ export default function RussianCTraderPropFirmsPage() {
               <div className="ru-actions">
                 <Link href="/ru/obzor-bright-funded" className="btn-outline">Полный обзор</Link>
                 <Link href="/go/bright-funded?from=ru-ctrader-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить Bright Funded <ArrowRight size={14} aria-hidden="true" />
+                  Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
                 </Link>
               </div>
             </article>
-          </div>
-          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ctrader-shortlist">
-            <strong>Почему обе фирмы показаны заметно.</strong>{' '}
-            FundedNext и Bright Funded — наши основные глобальные партнёры. Комиссия возможна по обоим маршрутам,
-            но неизвестная комиссия Bright Funded и запрет автоматизации FundedNext не скрываются за партнёрской рекомендацией.
           </div>
         </div>
       </section>
@@ -463,7 +464,7 @@ export default function RussianCTraderPropFirmsPage() {
           <p>
             Если хотя бы 1 из 10 полей неизвестно, не заменяйте его рекламным максимумом. Для правил отдельных программ откройте
             <Link href="/ru/obzor-fundednext"> обзор FundedNext</Link>,
-            <Link href="/ru/obzor-bright-funded"> обзор Bright Funded</Link> и
+            <Link href="/ru/obzor-bright-funded"> обзор BrightFunded</Link> и
             <Link href="/ru/fundednext-vs-bright-funded"> прямое сравнение программ</Link>. Если стратегия требует автоматизации,
             <Link href="/ru/fundednext-mt5"> сравните MT5 и 7 правил EA</Link>, а не переносите cBot на другой терминал.
           </p>
@@ -472,7 +473,7 @@ export default function RussianCTraderPropFirmsPage() {
             Для ручной торговли в cTrader проверьте действующие ограничения и комиссию
             <Link href="/go/fundednext?from=ru-ctrader-verdict-fundednext" rel="sponsored nofollow noopener"> FundedNext</Link>.
             Для Bright Funded сначала подтвердите cBot, размер счёта и итоговую цену, затем используйте
-            <Link href="/go/bright-funded?from=ru-ctrader-verdict-bright-funded" rel="sponsored nofollow noopener"> Bright Funded</Link>.
+            <Link href="/go/bright-funded?from=ru-ctrader-verdict-bright-funded" rel="sponsored nofollow noopener"> BrightFunded</Link>.
             Мы можем получить комиссию; ни один переход не является обещанием доступа или выплаты.
           </div>
           <p><Link href="/ru/luchshie-prop-firmy#podbor">Перейти к подбору программ по размеру счёта и этапам</Link>. Подборщик сравнивает условия программ, но не подтверждает доступность cTrader для выбранного профиля.</p>

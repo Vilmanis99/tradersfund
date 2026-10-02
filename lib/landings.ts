@@ -657,7 +657,7 @@ export const LANDINGS: Landing[] = [
       },
       {
         title: 'Are futures and CFD paths interchangeable?',
-        body: `No. This snapshot maps ${CURRENT_US_PRODUCT_COUNT} exact products: futures paths use exchange-listed contracts and product-specific market hours, while FundedNext’s 4 U.S. CFD paths use Match-Trader and cannot be treated as MT4, MT5, or CME futures accounts.`,
+        body: `No. This snapshot maps ${CURRENT_US_PRODUCT_COUNT} exact products: futures paths use exchange-listed contracts and product-specific market hours, while FundedNext’s 3 mapped U.S. CFD evaluations use Match-Trader. Stellar Instant is excluded because FundedNext's official U.S. pages conflict on its availability.`,
       },
       {
         title: 'What must match before a U.S. payout?',
@@ -665,7 +665,7 @@ export const LANDINGS: Landing[] = [
       },
     ],
     snapshotProductCount: CURRENT_US_PRODUCT_COUNT,
-    lastReviewed: '2026-08-17',
+    lastReviewed: '2026-10-01',
   },
   {
     slug: 'best-prop-firms-in-india',
@@ -1125,7 +1125,7 @@ function withCurrentAccessCopy(
     decisionGuide: landing.decisionGuide?.map(item => item.title === 'Are futures and CFD paths interchangeable?'
       ? {
           ...item,
-          body: `No. This snapshot maps ${snapshot.productCount} exact products: futures paths use exchange-listed contracts and product-specific market hours, while FundedNext’s 4 U.S. CFD paths use Match-Trader and cannot be treated as MT4, MT5, or CME futures accounts.`,
+          body: `No. This snapshot maps ${snapshot.productCount} exact products: futures paths use exchange-listed contracts and product-specific market hours, while FundedNext’s 3 mapped U.S. CFD evaluations use Match-Trader. Stellar Instant is excluded because FundedNext's official U.S. pages conflict on its availability.`,
         }
       : item),
     snapshotProductCount: snapshot.productCount,

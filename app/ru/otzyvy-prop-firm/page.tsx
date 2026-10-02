@@ -32,7 +32,7 @@ import { russianRouteDateModified } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/otzyvy-prop-firm'
 const TITLE = 'Отзывы о проп-фирмах 2026: как проверить выплаты'
-const DESCRIPTION = 'Отзывы о проп-фирмах на русском: проверяем выплаты, блокировки, KYC и правила, затем сравниваем FundedNext и Bright Funded по свежим данным.'
+const DESCRIPTION = 'Отзывы о проп-фирмах на русском: как проверить выплаты, блокировки, KYC и правила; сравнение FundedNext и BrightFunded с датами источников.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     'проп фирмы отзывы',
     'отзывы о проп фирмах',
     'FundedNext отзывы',
-    'Bright Funded отзывы',
+    'BrightFunded отзывы',
     'проп фирма выплаты',
     'проп фирма скам',
   ],
@@ -64,7 +64,7 @@ const faqs: RussianFaqItem[] = [
     a: 'Сначала определите 1 из 4 продуктов: Stellar 2-Step, Stellar 1-Step, Stellar Lite или Stellar Instant. У них различаются 0–2 этапа, просадка, возврат взноса и первая стандартная заявка; официальный конфликт по российским резидентам нужно разрешить письменно до оплаты.',
   },
   {
-    q: 'Что проверять в отзывах о Bright Funded?',
+    q: 'Что проверять в отзывах о BrightFunded?',
     a: 'Сначала определите 1 из 3 программ и конкретный EUR-тариф. Базовые 80%, первая стандартная заявка и метод просадки зависят от продуктового контекста; USDC ERC-20 является способом выплаты, но не доказательством торговли BTC или ETH.',
   },
   {
@@ -87,7 +87,7 @@ const faqs: RussianFaqItem[] = [
 
 const featuredRoutes = [
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
-  { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded' },
 ] as const
 
 const secondaryRoute = {
@@ -219,7 +219,7 @@ export default function RussianPropFirmReviewsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemListSchema(featuredCards.map(card => card.firm), TITLE)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemListSchema(featuredCards.map(card => ({ ...card.firm, name: card.name, reviewUrl: card.reviewHref })), TITLE)) }} />
       {hasFreshResearch && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
@@ -430,7 +430,7 @@ export default function RussianPropFirmReviewsPage() {
             <h2>Решение после отзывов: от кейса к точному продукту</h2>
             <div className="ru-grid">
               <article className="ru-card"><h3>Если нужен выбор 0/1/2 этапа</h3><p>Начните с обзора моделей FundedNext, затем исключите продукт по просадке, возврату взноса, первой заявке и стране.</p><Link href="/ru/obzor-fundednext" className="ru-card-link">Обзор FundedNext →</Link></article>
-              <article className="ru-card"><h3>Если важны цены в EUR и выплата USDC</h3><p>Начните с обзора моделей Bright Funded, затем разделите 1-Step и 2-Step по типу просадки и формулировкам выплаты.</p><Link href="/ru/obzor-bright-funded" className="ru-card-link">Обзор Bright Funded →</Link></article>
+              <article className="ru-card"><h3>Если важны цены в EUR и выплата USDC</h3><p>Начните с обзора моделей Bright Funded, затем разделите 1-Step и 2-Step по типу просадки и формулировкам выплаты.</p><Link href="/ru/obzor-bright-funded" className="ru-card-link">Обзор BrightFunded →</Link></article>
               <article className="ru-card"><h3>Если обе модели не подходят</h3><p>FundingPips остаётся дополнительным глобальным партнёром с {secondaryProducts.length} актуальными продуктами; он не входит в две главные карточки этой страницы.</p><Link href={secondaryRoute.reviewHref} className="ru-card-link">Обзор FundingPips →</Link></article>
             </div>
             {secondaryFirm?.affiliateUrl && secondaryProducts.length > 0 ? (

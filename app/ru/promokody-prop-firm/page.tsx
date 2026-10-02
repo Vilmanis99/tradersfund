@@ -29,8 +29,10 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 export const revalidate = 86400
 
 const PATH = '/ru/promokody-prop-firm'
-const TITLE = 'Промокоды проп-фирм 2026: FundedNext и Bright'
-const DESCRIPTION = 'Промокоды FundedNext, Bright Funded и FundingPips: какие предложения прошли проверку за 30 дней, где сверить условия и итоговую цену перед оплатой.'
+const TITLE = 'Промокоды проп-фирм 2026: статус FundedNext и BrightFunded'
+const DESCRIPTION = 'Промокоды FundedNext, BrightFunded и FundingPips: какие предложения прошли проверку за 30 дней, где сверить условия и итоговую цену перед оплатой.'
+const SOCIAL_TITLE = 'Промокоды проп-фирм 2026: FundedNext и Bright'
+const SOCIAL_DESCRIPTION = 'Промокоды FundedNext, Bright Funded и FundingPips: какие предложения прошли проверку за 30 дней, где сверить условия и итоговую цену перед оплатой.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -39,12 +41,12 @@ export const metadata: Metadata = {
     'промокоды проп фирм',
     'FundedNext промокод',
     'FundedNext promo code',
-    'Bright Funded промокод',
+    'BrightFunded промокод',
     'FundingPips промокод',
   ],
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
+  openGraph: { title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
+  twitter: { card: 'summary_large_image', title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION },
 }
 
 const generalFaqs: RussianFaqItem[] = [
@@ -203,11 +205,11 @@ export default function RussianPropFirmOffersPage() {
 a: `В проверенном первичном источнике FundedNext описан персональный купон ${fundedNextDeal.pct}% после Free Trial, а не общая строка для немедленного копирования. Новый пользователь должен получить 5% прибыли минимум за 3 торговых дня в пределах 14-дневного окна. После цели фирма создаёт код, который действует 14 дней, применяется к CFD-планам и не действует на повторные попытки.`,
     }] : []),
     ...(brightDeals.length > 0 ? [{
-      q: 'Можно ли просто скопировать промокод Bright Funded?',
+      q: 'Можно ли просто скопировать промокод BrightFunded?',
       a: `Да, но только после сопоставления кода с продуктом. Сейчас первичный источник подтверждает ${brightDeals.map(deal => `${deal.code} — ${deal.pct}% на ${deal.scope}`).join('; ')}. Перед оплатой нужно увидеть уменьшение итоговой суммы.`,
     }] : []),
     ...(advertisedBrightOffer ? [{
-      q: `Работает ли промокод ${brightOfferObservation.code} у Bright Funded?`,
+      q: `Работает ли промокод ${brightOfferObservation.code} у BrightFunded?`,
       a: `На ${brightOfferObservation.sourceCapturedAt} главная страница Bright Funded рекламирует код ${brightOfferObservation.code} и скидку ${brightOfferObservation.advertisedDiscountPct}%. Мы не подтвердили применение к конкретному заказу после шага ввода email, поэтому не считаем это проверенной скидкой. Сверьте итоговую сумму до оплаты.`,
     }] : []),
     ...(fundingPipsDeal ? [{
@@ -233,7 +235,7 @@ a: `В проверенном первичном источнике FundedNext �
       position: index + 1,
       item: {
         '@type': 'Offer',
-        name: `${firmBySlug.get(deal.firmSlug)?.name ?? deal.firmSlug}: ${deal.amountLabel}`,
+        name: `${deal.firmSlug === 'bright-funded' ? 'BrightFunded' : firmBySlug.get(deal.firmSlug)?.name ?? deal.firmSlug}: ${deal.amountLabel}`,
         url: `https://tradersfundhub.com${PATH}#${deal.firmSlug}-${deal.code ?? deal.mechanism}`,
       },
     })),
@@ -270,7 +272,7 @@ a: `В проверенном первичном источнике FundedNext �
           <div className="ru-eyebrow">
             <BadgePercent size={14} aria-hidden="true" /> {deals.length} {russianPlural(deals.length, 'предложение', 'предложения', 'предложений')} · {sourceCount} {russianPlural(sourceCount, 'первичный источник', 'первичных источника', 'первичных источников')}
           </div>
-          <h1>Промокоды проп-фирм: FundedNext, Bright Funded и проверка скидок</h1>
+          <h1>Промокоды проп-фирм: FundedNext, BrightFunded и проверка скидок</h1>
           <p className="ru-lead">
             {latestVerified
               ? <>На {latestVerified} мы подтверждаем {deals.length} {russianPlural(deals.length, 'предложение', 'предложения', 'предложений')}: {offerSummary}.</>
@@ -328,15 +330,15 @@ a: `В проверенном первичном источнике FundedNext �
               </table>
             </div>
             {brightDeals.length === 0 && <div id="bright-offer-status" className="ru-notice" data-russian-bright-deal-fallback="no-current-code">
-              <h3>{advertisedBrightOffer ? 'Bright Funded: код рекламируется, но применение не проверено' : 'Bright Funded: подтверждённого промокода сейчас нет'}</h3>
+              <h3>{advertisedBrightOffer ? 'BrightFunded: код рекламируется, но применение не проверено' : 'BrightFunded: подтверждённого промокода сейчас нет'}</h3>
               {advertisedBrightOffer ? <>
                 <p data-russian-bright-offer-observation="advertised-unverified">На <time dateTime={brightOfferObservation.sourceCapturedAt}>{brightOfferObservation.sourceCapturedAt}</time> официальная главная страница Bright Funded показывает код <code>{brightOfferObservation.code}</code> и скидку {brightOfferObservation.advertisedDiscountPct}%. Мы не проверили, сработает ли код для вашего заказа после ввода email. Поэтому он не включён в таблицу проверенных предложений, а цены в обзоре указаны без скидки.</p>
                 <p>Сверьте программу, дополнения, доступность страны и окончательную сумму до оплаты. Если сумма не уменьшилась, не считайте рекламный процент полученной скидкой.</p>
                 <p className="ru-source-line"><a href={brightOfferObservation.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">Официальный анонс Bright Funded</a> · проверено {brightOfferObservation.sourceCapturedAt}; применение при оплате не подтверждено.</p>
               </> : <p>Мы не проверили действующий код за последние 30 дней. Цены в обзоре указаны без скидки. Перед оплатой сверьте выбранную программу, итоговую сумму и доступность для вашей страны.</p>}
               <div className="ru-actions">
-                <Link href="/ru/obzor-bright-funded" className="btn-outline">Смотреть обзор Bright Funded</Link>
-                {firmBySlug.get('bright-funded')?.affiliateUrl && <Link href="/go/bright-funded?from=ru-deals-bright-no-current-code" rel="sponsored nofollow noopener" className="btn-primary">Проверить текущую цену у Bright Funded <ArrowRight size={14} aria-hidden="true" /></Link>}
+                <Link href="/ru/obzor-bright-funded" className="btn-outline">Смотреть обзор BrightFunded</Link>
+                {firmBySlug.get('bright-funded')?.affiliateUrl && <Link href="/go/bright-funded?from=ru-deals-bright-no-current-code" rel="sponsored nofollow noopener" className="btn-primary">Проверить текущую цену у BrightFunded <ArrowRight size={14} aria-hidden="true" /></Link>}
               </div>
             </div>}
           </div>
@@ -402,7 +404,7 @@ a: `В проверенном первичном источнике FundedNext �
         {brightDeals.length > 0 && <section className="ru-section" id="bright-funded-promokody">
           <div className="ru-shell" data-russian-deals-featured-partner="bright-funded" data-russian-deals-bright="current-product-codes">
             <div className="ru-eyebrow"><BadgePercent size={14} aria-hidden="true" /> Главный партнёр · {brightDeals.length} {russianPlural(brightDeals.length, 'публичный код', 'публичных кода', 'публичных кодов')}</div>
-            <h2>Bright Funded: {brightDeals.map(deal => deal.code).join(', ')}</h2>
+            <h2>BrightFunded: {brightDeals.map(deal => deal.code).join(', ')}</h2>
             <p>
               Bright Funded разделяет скидки по продуктам: {brightDeals.map(deal => `${deal.code} уменьшает цену ${deal.scope} на ${deal.pct}%`).join('; ')}.
               Один код нельзя автоматически переносить на другую программу.
@@ -424,7 +426,7 @@ a: `В проверенном первичном источнике FundedNext �
               ))}
             </div>
 
-            <h3>Все {brightRows.length} цен Bright Funded после своего кода</h3>
+            <h3>Все {brightRows.length} цен BrightFunded после своего кода</h3>
             <p>
               Таблица сохраняет EUR, потому что конвертация в рубли, доллары или тенге быстро устаревает и скрывает FX-комиссию.
               «После кода» — арифметика от текущей листинговой цены без дополнений, налога и комиссии платёжного провайдера; оплачивать нужно только сумму, показанную самой фирмой.
@@ -451,8 +453,8 @@ a: `В проверенном первичном источнике FundedNext �
               </table>
             </div>
             <div className="ru-actions">
-              <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор Bright Funded</Link>
-              <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">FundedNext или Bright Funded <ArrowRight size={14} aria-hidden="true" /></Link>
+              <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
+              <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">FundedNext или BrightFunded <ArrowRight size={14} aria-hidden="true" /></Link>
             </div>
           </div>
         </section>}
@@ -599,7 +601,7 @@ a: `В проверенном первичном источнике FundedNext �
           <div className="ru-shell ru-content">
             <h2>Частые вопросы</h2>
             <RussianFaq items={faqs} />
-            <p className="ru-source-line"><ExternalLink size={14} aria-hidden="true" /> Английская пара страницы: <Link href="/prop-firm-discount-codes">Prop Firm Discount Codes</Link>. Русские обзоры: <Link href="/ru/obzor-fundednext">FundedNext</Link>, <Link href="/ru/obzor-bright-funded">Bright Funded</Link> и <Link href="/ru/obzor-fundingpips">FundingPips</Link>.</p>
+            <p className="ru-source-line"><ExternalLink size={14} aria-hidden="true" /> Английская пара страницы: <Link href="/prop-firm-discount-codes">Prop Firm Discount Codes</Link>. Русские обзоры: <Link href="/ru/obzor-fundednext">FundedNext</Link>, <Link href="/ru/obzor-bright-funded">BrightFunded</Link> и <Link href="/ru/obzor-fundingpips">FundingPips</Link>.</p>
           </div>
         </section>
       </article>

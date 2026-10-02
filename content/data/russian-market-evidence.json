@@ -1,5 +1,7 @@
 {
   "capturedAt": "2026-08-27",
+  "snapshotStatus": "historical",
+  "snapshotNote": "The root date preserves the August search-demand and broad market snapshot. Later first-party local-firm, access, KYC and payout checks carry their own dates; they do not refresh the whole bundle.",
   "searchDemand": {
     "sourceUrl": "https://a.pr-cy.ru/proptreiding.ru/",
     "sourceType": "third-party Yandex Moscow estimate",
@@ -289,6 +291,7 @@
     {
       "operator": "Era Trade",
       "sourceUrl": "https://eratrade.net/",
+      "sourceCapturedAt": "2026-10-01",
       "claims": {
         "traders": 6000,
         "countries": 70,
@@ -303,6 +306,7 @@
     {
       "operator": "PropLive",
       "sourceUrl": "https://www.proplive.ru/",
+      "sourceCapturedAt": "2026-10-01",
       "claims": {
         "traders": 13722,
         "market": "Moscow Exchange via Finam"
@@ -315,6 +319,7 @@
     {
       "operator": "KasCapital",
       "sourceUrl": "https://kascapital.io/",
+      "sourceCapturedAt": "2026-10-01",
       "claims": {
         "maximumProfitSharePct": 95,
         "minimumPayoutRub": 10000,
@@ -329,6 +334,7 @@
     {
       "operator": "А-Лаб Групп",
       "sourceUrl": "https://www.a-lab.name/",
+      "sourceCapturedAt": "2026-10-01",
       "claims": {
         "traders": 500,
         "quarterlyTurnoverRubClaimed": 1000000000000,
@@ -368,6 +374,7 @@
     {
       "operator": "Trade System",
       "sourceUrl": "https://tsystem.pro/",
+      "sourceCapturedAt": "2026-10-01",
       "claims": {
         "maximumProfitSharePct": 95,
         "market": "Московская биржа"
@@ -383,6 +390,7 @@
       "operator": "Era Trade",
       "status": "public",
       "sourceUrl": "https://help.eratrade.club/ru/affiliate-program-overview/",
+      "sourceCapturedAt": "2026-10-01",
       "baseCommissionPct": 5,
       "maximumPublishedCommissionPct": 60,
       "minimumPayoutUsd": 50,
@@ -397,6 +405,7 @@
       "operator": "PropLive",
       "status": "application-only",
       "sourceUrl": "https://www.proplive.ru/partnyoram",
+      "sourceCapturedAt": "2026-10-01",
       "maximumPublishedCommissionPct": 50,
       "notes": [
         "The published offer is aimed at trading mentors and schools rather than ordinary content affiliates.",
@@ -407,16 +416,18 @@
       "operator": "KasCapital",
       "status": "not-found",
       "sourceUrl": "https://kascapital.io/",
+      "sourceCapturedAt": "2026-10-01",
       "notes": [
-        "No public affiliate or referral terms were found on the official site in the 2026-08-24 check."
+        "No ordinary content-affiliate or referral terms were found on the reviewed official page in the 2026-10-01 check."
       ]
     },
     {
       "operator": "А-Лаб Групп",
       "status": "not-found",
       "sourceUrl": "https://www.a-lab.name/",
+      "sourceCapturedAt": "2026-10-01",
       "notes": [
-        "No public affiliate or referral terms were found on the reviewed official page in the 2026-08-24 check."
+        "No ordinary content-affiliate or referral terms were found on the reviewed official page in the 2026-10-01 check."
       ]
     },
     {
@@ -431,10 +442,13 @@
     },
     {
       "operator": "Trade System",
-      "status": "not-found",
+      "status": "described-no-terms",
       "sourceUrl": "https://tsystem.pro/",
+      "sourceCapturedAt": "2026-10-01",
+      "sourceQuote": "Наставники и партнеры помогают трейдерам развиваться и за это получают долю от их прибыли.",
       "notes": [
-        "No public affiliate or referral terms were found on the reviewed official page in the 2026-08-24 check."
+        "The official homepage describes a mentor/partner share of traders' profit but does not publish a percentage, qualification requirements or ordinary content-affiliate terms.",
+        "A public blog post mentions a referral program without publishing terms; this is not a verified publisher-affiliate offer."
       ]
     }
   ],

@@ -4,11 +4,13 @@ import { ArrowRight, Building2, FileCheck2, Globe2, Scale, WalletCards } from 'l
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
+import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 
 const PATH = '/ru/obzor-proplive'
+export const revalidate = 3600
 const TITLE = 'PropLive: обзор русской проп-компании (2026)'
 const DESCRIPTION = 'PropLive на русском: модель через Московскую биржу и Финам, заявления о выплатах, договор, KYC и партнёрская программа без смешения с глобальным рейтингом.'
 const PROP_LIVE_HOME = 'https://www.proplive.ru/'
@@ -58,7 +60,7 @@ const faqs: RussianFaqItem[] = [
 
 const globalRoutes = [
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
-  { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded' },
 ] as const
 
 function SourceLink({ href, children }: { href: string, children: React.ReactNode }) {
@@ -68,6 +70,10 @@ function SourceLink({ href, children }: { href: string, children: React.ReactNod
 export default function RussianPropLiveReviewPage() {
   const localSignal = marketEvidence.localFirmSignals.find(item => item.operator === 'PropLive')
   const affiliateSignal = marketEvidence.affiliatePrograms.find(item => item.operator === 'PropLive')
+  const localSignalCapturedAt = localSignal?.sourceCapturedAt ?? ''
+  const affiliateCapturedAt = affiliateSignal?.sourceCapturedAt ?? ''
+  const faqSourcesCurrent = [marketEvidence.capturedAt, localSignal?.sourceCapturedAt ?? '', affiliateSignal?.sourceCapturedAt ?? '']
+    .every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
   const freshChallenges = getAllChallenges().filter(product => isChallengeFresh(product))
   const globalCards = globalRoutes.map(route => {
     const firm = getAllFirms().find(candidate => outboundSlug(candidate.name) === route.slug)
@@ -87,7 +93,7 @@ export default function RussianPropLiveReviewPage() {
     headline: TITLE,
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
-    dateModified: marketEvidence.capturedAt,
+    dateModified: russianRouteDateModified(PATH),
     inLanguage: 'ru',
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
@@ -97,12 +103,16 @@ export default function RussianPropLiveReviewPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
+      {faqSourcesCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="proplive" data-russian-local-review-status="verification-only">
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/rossiyskie-prop-kompanii">Российские компании</Link> / PropLive</div>
-          <RussianEvidenceFreshnessNotice evidence={[{ label: 'локальные условия PropLive', capturedAt: marketEvidence.capturedAt }]} />
+          <RussianEvidenceFreshnessNotice evidence={[
+            { label: 'общий снимок рынка', capturedAt: marketEvidence.capturedAt },
+            { label: 'заявления PropLive на главной', capturedAt: localSignalCapturedAt },
+            { label: 'партнёрская страница', capturedAt: affiliateCapturedAt },
+          ]} />
           <div className="ru-eyebrow"><Building2 size={14} aria-hidden="true" /> Локальное исследование, не рекомендация</div>
           <h1>PropLive: обзор 2026 — Мосбиржа, выплаты и условия</h1>
           <p className="ru-lead">
@@ -110,7 +120,7 @@ export default function RussianPropLiveReviewPage() {
             заявленный срок вывода, договор и отдельную партнёрскую программу. Это локальный обзор для
             русскоязычного поиска, а не подтверждение доступности или платёжеспособности.
           </p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Проверка источников: {marketEvidence.capturedAt}.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Общий снимок рынка: {marketEvidence.capturedAt}; заявления на главной: {localSignalCapturedAt || 'дата не подтверждена'}.</p>
           <div className="ru-actions">
             <Link href="#facts" className="btn-primary btn-glow">Проверить факты <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Сравнить глобальные фирмы</Link>
@@ -119,7 +129,7 @@ export default function RussianPropLiveReviewPage() {
             <div className="ru-stat"><strong>{Number(localSignal?.claims.traders).toLocaleString('ru-RU')}</strong><span>трейдеров по заявлению оператора</span></div>
             <div className="ru-stat"><strong>1 день</strong><span>заявленный срок вывода</span></div>
             <div className="ru-stat"><strong>MOEX</strong><span>рынок в опубликованной модели</span></div>
-            <div className="ru-stat"><strong>{marketEvidence.capturedAt}</strong><span>дата снимка источников</span></div>
+            <div className="ru-stat"><strong>{localSignalCapturedAt || 'нет даты'}</strong><span>проверка заявлений на главной</span></div>
           </div>
         </div>
       </section>
@@ -248,13 +258,14 @@ export default function RussianPropLiveReviewPage() {
               </article>
             ))}
           </div>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">все шесть исследовательских карточек</Link>; глобальное решение: <Link href="/ru/fundednext-vs-bright-funded">сравнение программ FundedNext и Bright Funded</Link>.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">все шесть исследовательских карточек</Link>; глобальное решение: <Link href="/ru/fundednext-vs-bright-funded">сравнение программ FundedNext и BrightFunded</Link>.</p>
         </div>
       </section>
 
-      <section className="ru-section">
+      <section className="ru-section" data-russian-local-faq-status={faqSourcesCurrent ? 'dated' : 'recapture-required'}>
         <div className="ru-shell ru-content">
           <h2>Частые вопросы</h2>
+          {!faqSourcesCurrent && <p className="ru-muted">Источники ответов включают общий снимок рынка от {marketEvidence.capturedAt} и отдельные проверки PropLive. Как минимум один источник требует повторной проверки; ответы ниже — датированный разбор, а не подтверждение действующего договора или выплаты.</p>}
           <RussianFaq items={faqs} />
         </div>
       </section>

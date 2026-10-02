@@ -4,6 +4,7 @@ import Link from '@/components/SafeLink'
 import { ArrowRight, Globe2, ListChecks, ShieldCheck, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
+import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -15,6 +16,7 @@ import {
 } from '@/lib/russianDiasporaEvidence'
 
 const PATH = '/ru/dlya-russkoyazychnykh-treyderov'
+export const revalidate = 3600
 const TITLE = 'Проп-фирмы для русскоязычных трейдеров за рубежом'
 const DESCRIPTION = 'Как русскоязычным трейдерам в разных странах проверить KYC, оплату и правила глобальных проп-фирм перед регистрацией; честный маршрут к партнёрским обзорам.'
 
@@ -74,7 +76,7 @@ const primaryPartnerRoutes = [
   },
   {
     slug: 'bright-funded',
-    name: 'Bright Funded',
+    name: 'BrightFunded',
     reviewHref: '/ru/obzor-bright-funded',
     campaign: 'ru-diaspora-bright-funded',
     heroCampaign: 'ru-diaspora-hero-bright-funded',
@@ -86,6 +88,10 @@ const primaryPartnerRoutes = [
 export default function RussianDiasporaGuidePage() {
   const firms = getAllFirms()
   const challenges = getAllChallenges()
+  const countryMatrixCurrent = isChallengeFresh({ sourceCapturedAt: russianDiasporaEvidence.capturedAt })
+  const brightSources = russianDiasporaEvidence.firms.find(firm => firm.slug === 'bright-funded')?.sources ?? []
+  const brightHelpSource = brightSources.find(source => source.url.includes('help.brightfunded.com'))
+  const brightTermsSource = brightSources.find(source => source.url.includes('/terms-and-conditions'))
   const primaryPartnerCards = primaryPartnerRoutes.map(route => {
     const firm = firms.find(candidate => outboundSlug(candidate.name) === route.slug)
     const freshProducts = challenges.filter(challenge =>
@@ -121,7 +127,7 @@ export default function RussianDiasporaGuidePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
+      {countryMatrixCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-diaspora-guide="global-access">
@@ -135,6 +141,26 @@ export default function RussianDiasporaGuidePage() {
             после этого переходите к глобальной фирме.
           </p>
           <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Проверка источников: {russianDiasporaEvidence.capturedAt}.</p>
+          <RussianEvidenceFreshnessNotice evidence={[{ label: 'страновая матрица FundedNext и BrightFunded', capturedAt: russianDiasporaEvidence.capturedAt }]} />
+          <div className="ru-notice" data-russian-country-boundary="diaspora-not-access">
+            <strong>Страница не подтверждает доступность страны.</strong>{' '}
+            Русскоязычный интерфейс подходит людям в разных странах, но гражданство, резидентство,
+            IP, адрес, KYC, карта и способ выплаты проверяются отдельно. Резидентам России нельзя обходить
+            ограничения VPN, прокси или неверными данными.
+          </div>
+          <p className="ru-source-line ru-home-partner-hero-disclosure" data-russian-diaspora-hero-disclosure="primary-affiliates" data-russian-affiliate-disclosure="diaspora-hero">
+            FundedNext и BrightFunded коммерчески выделены как два главных партнёра. Мы можем получить комиссию
+            после регистрации по кнопке «Проверить условия»; это не подтверждает доступность вашей страны.
+          </p>
+          <div className="ru-notice" data-russian-diaspora-bright-country-status={countryMatrixCurrent ? 'dated' : 'recapture-required'}>
+            <strong>{countryMatrixCurrent ? 'Списки стран BrightFunded расходятся.' : 'В датированном снимке списки стран BrightFunded расходились.'}</strong>{' '}
+            В проверке от {russianDiasporaEvidence.capturedAt}{' '}
+            <a href={brightHelpSource?.url} target="_blank" rel="nofollow noopener">справка</a> включала Пакистан, а{' '}
+            <a href={brightTermsSource?.url} target="_blank" rel="nofollow noopener">условия</a> его не называли и допускали дополнительные ограничения.{' '}
+            {countryMatrixCurrent
+              ? 'Отсутствие России в списках не подтверждает доступ вашего профиля. До оплаты уточните гражданство, резидентство, местонахождение и выбранную платформу.'
+              : `Снимок от ${russianDiasporaEvidence.capturedAt} требует повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня. Получите ответ фирмы до оплаты.`}
+          </div>
           <div className="ru-home-partner-hero" data-russian-diaspora-hero-partners="fundednext-bright-funded">
             {primaryPartnerCards.map(item => {
               const isFundedNext = item.slug === 'fundednext'
@@ -182,10 +208,6 @@ export default function RussianDiasporaGuidePage() {
             <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить двух партнёров</Link>
             <Link href="#proverka" className="btn-outline">Пройти проверку перед оплатой</Link>
           </div>
-          <p className="ru-source-line ru-home-partner-hero-disclosure" data-russian-diaspora-hero-disclosure="primary-affiliates">
-            FundedNext и Bright Funded коммерчески выделены как два главных партнёра. Мы можем получить комиссию
-            после регистрации по кнопке «Проверить условия»; это не подтверждает доступность вашей страны.
-          </p>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{primaryPartnerCards.length}</strong><span>главных глобальных партнёра</span></div>
             <div className="ru-stat"><strong>{freshPartnerProducts}</strong><span>свежих продуктов в этих маршрутах</span></div>
@@ -196,12 +218,6 @@ export default function RussianDiasporaGuidePage() {
 
       <section className="ru-section">
         <div className="ru-shell">
-          <div className="ru-notice" data-russian-country-boundary="diaspora-not-access">
-            <strong>Страница не подтверждает доступность страны.</strong>{' '}
-            Русскоязычный интерфейс подходит людям в разных странах, но гражданство, резидентство,
-            IP, адрес, KYC, карта и способ выплаты проверяются отдельно. Резидентам России нельзя обходить
-            ограничения VPN, прокси или неверными данными.
-          </div>
           <h2>Три ситуации, которые нельзя смешивать</h2>
           <div className="ru-grid">
             <article className="ru-card">
@@ -260,12 +276,14 @@ export default function RussianDiasporaGuidePage() {
           className="ru-shell ru-content"
           data-russian-diaspora-country-count={diasporaCountryRows.length}
           data-russian-diaspora-country-captured={russianDiasporaEvidence.capturedAt}
+          data-russian-diaspora-country-source-status={countryMatrixCurrent ? 'dated' : 'recapture-required'}
         >
-          <h2>Что публикуют FundedNext и Bright Funded по {diasporaCountryRows.length} страновым профилям</h2>
+          <h2>{countryMatrixCurrent ? 'Что публикуют' : 'Что было опубликовано'} FundedNext и BrightFunded по {diasporaCountryRows.length} страновым профилям</h2>
           <p>
             Это не таблица «доступно/недоступно». Она показывает только, названа ли страна в общем списке,
             есть ли отдельное ограничение продукта или конфликт официальных страниц. Срез сделан{' '}
             {russianDiasporaEvidence.capturedAt}; регистрация, KYC, платёж и выплата не проходились.
+            {!countryMatrixCurrent && ' Срез требует повторной проверки и не описывает текущий доступ.'}
           </p>
           <div className="ru-notice" data-russian-diaspora-country-boundary="absence-not-eligibility">
             <strong>Отсутствие страны в списке не подтверждает доступ.</strong>{' '}
@@ -276,7 +294,7 @@ export default function RussianDiasporaGuidePage() {
               <thead>
                 <tr>
                   <th>Профиль страны</th>
-                  {russianDiasporaEvidence.firms.map(firm => <th key={firm.slug}>{firm.name}</th>)}
+                  {russianDiasporaEvidence.firms.map(firm => <th key={firm.slug}>{firm.slug === 'bright-funded' ? 'BrightFunded' : firm.name}</th>)}
                 </tr>
               </thead>
               <tbody>
@@ -285,7 +303,7 @@ export default function RussianDiasporaGuidePage() {
                     <td><strong>{country.labelRu}</strong></td>
                     {country.checks.map(check => (
                       <td key={check.firmSlug} data-russian-diaspora-status={check.status}>
-                        <strong>{countryStatusLabels[check.status]}</strong><br />
+                        <strong>{countryMatrixCurrent ? countryStatusLabels[check.status] : `На ${russianDiasporaEvidence.capturedAt}: ${countryStatusLabels[check.status].toLowerCase()}`}</strong><br />
                         <span className="ru-muted">{check.noteRu}</span>
                       </td>
                     ))}
@@ -396,7 +414,7 @@ export default function RussianDiasporaGuidePage() {
             <article className="ru-card">
               <ListChecks size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Не выбран конкретный продукт</h3>
-              <p className="ru-muted">Если выбор всё ещё сделан только по бренду, сопоставьте программы FundedNext и Bright Funded по этапам, просадке, первой выплате и валюте оплаты. Число доступных строк зависит от свежести источников.</p>
+              <p className="ru-muted">Если выбор всё ещё сделан только по бренду, сопоставьте программы FundedNext и BrightFunded по этапам, просадке, первой выплате и валюте оплаты. Число доступных строк зависит от свежести источников.</p>
               <Link href="/ru/fundednext-vs-bright-funded" className="ru-card-link">Сравнить программы →</Link>
             </article>
             <article className="ru-card">
@@ -456,6 +474,7 @@ export default function RussianDiasporaGuidePage() {
       <section className="ru-section">
         <div className="ru-shell ru-content">
           <h2>Частые вопросы</h2>
+          {!countryMatrixCurrent && <p className="ru-muted">Страновая матрица от {russianDiasporaEvidence.capturedAt} требует повторной проверки. Ответы ниже — общая методика, а не подтверждение текущего доступа к FundedNext или BrightFunded.</p>}
           <RussianFaq items={faqs} />
         </div>
       </section>

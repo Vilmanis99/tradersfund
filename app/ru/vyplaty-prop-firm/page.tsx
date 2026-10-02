@@ -27,8 +27,10 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
 const PATH = '/ru/vyplaty-prop-firm'
-const TITLE = 'Выплаты проп-фирм 2026: FundedNext и Bright Funded'
-const DESCRIPTION = 'Как вывести прибыль из FundedNext, Bright Funded и FundingPips: первая заявка, USDT/USDC, банк, сроки обработки, комиссии, KYC и ограничения страны.'
+const TITLE = 'Выплаты проп-фирм 2026: FundedNext и BrightFunded'
+const DESCRIPTION = 'Как вывести прибыль из FundedNext, BrightFunded и FundingPips: первая заявка, USDT/USDC, банк, сроки обработки, комиссии, KYC и ограничения страны.'
+const SOCIAL_TITLE = 'Выплаты проп-фирм 2026: FundedNext и Bright Funded'
+const SOCIAL_DESCRIPTION = 'Как вывести прибыль из FundedNext, Bright Funded и FundingPips: первая заявка, USDT/USDC, банк, сроки обработки, комиссии, KYC и ограничения страны.'
 const fundedNextPayoutEvidence = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundednext')
 
 export const metadata: Metadata = {
@@ -37,14 +39,14 @@ export const metadata: Metadata = {
   keywords: [
     'выплаты проп фирм',
     'FundedNext payout',
-    'Bright Funded payout',
+    'BrightFunded payout',
     'FundingPips payout',
     'проп фирмы USDT',
     'вывод прибыли проп фирма',
   ],
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
+  openGraph: { title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
+  twitter: { card: 'summary_large_image', title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION },
 }
 
 const faqs: RussianFaqItem[] = [
@@ -57,11 +59,11 @@ const faqs: RussianFaqItem[] = [
     a: 'Срок зависит от продукта и выбранной опции: Stellar 1-Step использует окно в 5 рабочих дней, а стандартный вариант Stellar 2-Step и Stellar Lite — первую дату через 21 день и затем цикл 14 дней. Для 2-Step и Lite также опубликованы отдельные 3-дневный и вариант по запросу с другими условиями. У Stellar Instant отдельные условия, требующие проверки перед покупкой.',
   },
   {
-    q: 'Как Bright Funded выплачивает вознаграждение?',
+    q: 'Как BrightFunded выплачивает вознаграждение?',
     a: 'Bright Funded публикует 2 метода: USDC в сети ERC-20 и банковский перевод в EUR. Первая заявка доступна через 30 дней после первой сделки на счёте после оценки. Та же справка обещает затем запрос каждые 14 дней, но одновременно называет 14-дневный цикл платным дополнением. Уточните базовый цикл выбранного заказа письменно; после заявки финансовая команда указывает до 1 дня на обработку.',
   },
   {
-    q: 'Берёт ли Bright Funded комиссию за выплату?',
+    q: 'Берёт ли BrightFunded комиссию за выплату?',
     a: 'Официальная справка говорит, что Bright Funded не удерживает собственную дополнительную комиссию за выплату. Однако сеть, банк, платёжный провайдер и конвертация могут взять отдельную комиссию; в справке приведён ориентир от $5 до $50 для некоторых случаев.',
   },
   {
@@ -92,7 +94,7 @@ const partnerRoutes = [
   },
   {
     slug: 'bright-funded',
-    name: 'Bright Funded',
+    name: 'BrightFunded',
     reviewHref: '/ru/obzor-bright-funded',
     featured: true,
     fit: 'Нужен простой выбор между USDC ERC-20 и банковским переводом в EUR.',
@@ -200,7 +202,7 @@ export default function RussianPayoutsPage() {
       position: index + 1,
       item: {
         '@type': 'Organization',
-        name: card.name,
+        name: card.slug === 'bright-funded' ? 'BrightFunded' : card.name,
         url: `https://tradersfundhub.com${russianReviewHref(card.slug, card.firm)}`,
       },
     })),
@@ -242,7 +244,7 @@ export default function RussianPayoutsPage() {
             ...cards.map(card => ({ label: `выплаты ${card.name}`, capturedAt: card.evidence?.sourceCapturedAt ?? '' })),
           ]} />
           <div className="ru-eyebrow"><WalletCards size={14} aria-hidden="true" /> 4 этапа от прибыли до зачисления</div>
-          <h1>Выплаты проп-фирм: FundedNext, Bright Funded и вывод прибыли</h1>
+          <h1>Выплаты проп-фирм: FundedNext, BrightFunded и вывод прибыли</h1>
           <p className="ru-lead">
             Сравнили {cards.length} процесса выплаты по {sourceCount} первичным страницам и {productCount} свежим продуктам.
             FundedNext и Bright Funded — два главных маршрута; FundingPips оставлен как вторичная альтернатива.
@@ -254,12 +256,24 @@ export default function RussianPayoutsPage() {
             <div className="ru-stat"><strong>{productCount}</strong><span>свежих продуктов партнёров</span></div>
             <div className="ru-stat"><strong>{priceCount}</strong><span>опубликованных цен</span></div>
           </div>
+          <div className="ru-notice" data-russian-country-boundary="payout-not-access">
+            <strong>Русский язык не равен резидентству России.</strong>{' '}
+            Этот гайд рассчитан на русскоязычных трейдеров по всему миру. Гражданство, резидентство, адрес, KYC,
+            санкционные ограничения, банк и кошелёк проверяются по фактическому профилю. Нельзя использовать VPN,
+            чужие реквизиты или неверные данные для обхода правила страны.
+          </div>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="payout-ranking">
+            <strong>Партнёрское раскрытие.</strong>{' '}
+            Мы можем получить комиссию после перехода через /go/ и регистрации. FundedNext и Bright Funded выделены
+            коммерчески, но цифры взяты из первичных источников, а FundingPips сохранён как реальная третья альтернатива.
+            Комиссия не меняет цену пользователя и не превращает метод выплаты в гарантию доступности.
+          </div>
           <div className="ru-actions">
             <Link href="/go/fundednext?from=ru-payouts-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
               Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
             </Link>
             <Link href="/go/bright-funded?from=ru-payouts-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
-              Проверить Bright Funded <ArrowRight size={15} aria-hidden="true" />
+              Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" />
             </Link>
             <Link href="#sravnenie" className="btn-outline">Сначала сравнить выплаты</Link>
           </div>
@@ -270,19 +284,6 @@ export default function RussianPayoutsPage() {
       <article data-russian-payout-article="diaspora-withdrawal-decision">
         <section className="ru-section" id="sravnenie">
           <div className="ru-shell ru-content">
-            <div className="ru-notice" data-russian-country-boundary="payout-not-access">
-              <strong>Русский язык не равен резидентству России.</strong>{' '}
-              Этот гайд рассчитан на русскоязычных трейдеров по всему миру. Гражданство, резидентство, адрес, KYC,
-              санкционные ограничения, банк и кошелёк проверяются по фактическому профилю. Нельзя использовать VPN,
-              чужие реквизиты или неверные данные для обхода правила страны.
-            </div>
-            <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="payout-ranking">
-              <strong>Партнёрское раскрытие.</strong>{' '}
-              Мы можем получить комиссию после перехода через /go/ и регистрации. FundedNext и Bright Funded выделены
-              коммерчески, но цифры взяты из первичных источников, а FundingPips сохранён как реальная третья альтернатива.
-              Комиссия не меняет цену пользователя и не превращает метод выплаты в гарантию доступности.
-            </div>
-
             <h2>Короткий ответ: какой способ выплаты выбрать</h2>
             <p>
               Для выбора недостаточно сравнить один процент доли. Сначала проверьте, когда продукт допускает первую заявку,
@@ -317,7 +318,7 @@ export default function RussianPayoutsPage() {
 
         <section className="ru-section" data-russian-payout-featured-partners="fundednext-bright-funded">
           <div className="ru-shell">
-            <h2>FundedNext и Bright Funded — два главных варианта</h2>
+            <h2>FundedNext и BrightFunded — два главных варианта</h2>
             <p className="ru-muted">
               Эти карточки ведут к глобальным фирмам, где Traders Fund Hub может получить партнёрскую комиссию.
               Выделение объяснено, а не скрыто: сначала русский обзор и ограничения, затем официальная страница оплаты.
@@ -548,9 +549,9 @@ export default function RussianPayoutsPage() {
               продукт, затем переходите на официальную страницу оплаты через отмеченную партнёрскую ссылку.
             </div>
             <div className="ru-actions">
-              <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Сравнить FundedNext и Bright Funded</Link>
+              <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Сравнить FundedNext и BrightFunded</Link>
               <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор FundedNext</Link>
-              <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор Bright Funded</Link>
+              <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор BrightFunded</Link>
               <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Полный русский рейтинг</Link>
             </div>
           </div>

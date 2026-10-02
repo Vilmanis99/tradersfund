@@ -77,7 +77,7 @@ const faqs: RussianFaqItem[] = [
 
 const globalRoutes = [
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
-  { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded' },
 ] as const
 
 function rub(value: number) {
@@ -434,7 +434,7 @@ export default function RussianTeamTradersReviewPage() {
             ))}
           </div>
           <p><Link href={finderHref} className="ru-card-link" data-russian-teamtraders-finder="global-cfd-only">{finderHref.endsWith('#podbor') ? 'Открыть подбор глобальных программ с датами проверки →' : 'Открыть две глобальные двухэтапные программы на одинаковый размер счёта →'}</Link> Это сравнение CFD-программ, не тарифов TeamTraders и не разрешение участвовать из любой страны.</p>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> <Link href="/ru/fundednext-vs-bright-funded">Сравнить программы FundedNext и Bright Funded</Link> · <Link href="/ru/dlya-russkoyazychnykh-treyderov">проверка профиля русскоязычного трейдера</Link>.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> <Link href="/ru/fundednext-vs-bright-funded">Сравнить программы FundedNext и BrightFunded</Link> · <Link href="/ru/dlya-russkoyazychnykh-treyderov">проверка профиля русскоязычного трейдера</Link>.</p>
         </div>
       </section>
 

@@ -750,10 +750,10 @@ export default function RussianFundedNextReviewPage() {
           <ul className="ru-review-related-links">
             <li><Link href="/ru/fundednext-stellar-instant">FundedNext Stellar Instant</Link> — пример движущейся границы убытка, условия выплат, новости и расхождение в цене перезапуска.</li>
             <li><Link href="/ru/fundednext-mt5">FundedNext MT5 и советники</Link> — установка, вход, серверы оплаченных и пробных счетов, ограничения автоматической торговли.</li>
-            <li><Link href="/ru/fundednext-vs-bright-funded">FundedNext или Bright Funded</Link> — цены в USD и EUR, просадка, компенсация взноса, выплаты и проверка личности.</li>
+            <li><Link href="/ru/fundednext-vs-bright-funded">FundedNext или BrightFunded</Link> — цены в USD и EUR, просадка, компенсация взноса, выплаты и проверка личности.</li>
             <li><Link href="/ru/fundednext-vs-fundingpips">FundedNext или FundingPips</Link> — различия программ по цене, просадке и условиям запроса выплаты.</li>
             <li><Link href="/ru/obzor-fundingpips">Обзор FundingPips</Link> — отдельный разбор правил другого глобального партнёра.</li>
-            <li><Link href="/ru/obzor-bright-funded">Обзор Bright Funded</Link> — программы с оплатой в EUR, если важна валюта покупки.</li>
+            <li><Link href="/ru/obzor-bright-funded">Обзор BrightFunded</Link> — программы с оплатой в EUR, если важна валюта покупки.</li>
             <li><Link href="/ru/luchshie-prop-firmy">Рейтинг проп-фирм</Link> — полный список, если условия Stellar не совпадают с вашим риск-планом.</li>
           </ul>
 

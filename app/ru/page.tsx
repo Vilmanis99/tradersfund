@@ -42,7 +42,7 @@ const faqs: RussianFaqItem[] = [
 
 const featuredPartnerRoutes = [
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext', heroHref: '/go/fundednext?from=ru-home-hero-fundednext' },
-  { slug: 'bright-funded', name: 'Bright Funded', reviewHref: '/ru/obzor-bright-funded', heroHref: '/go/bright-funded?from=ru-home-hero-bright-funded' },
+  { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded', heroHref: '/go/bright-funded?from=ru-home-hero-bright-funded' },
 ] as const
 
 export default function RussianHomePage() {
@@ -58,8 +58,12 @@ export default function RussianHomePage() {
     const countryCapturedAt = route.slug === 'bright-funded'
       ? brightEvidence.sources.countries.sourceCapturedAt
       : countryAccess?.sourceCapturedAt ?? marketEvidence.capturedAt
+    const brightTermsCapturedAt = route.slug === 'bright-funded'
+      ? brightEvidence.sources.countryTerms.sourceCapturedAt
+      : null
     const countryFresh = isChallengeFresh({ sourceCapturedAt: countryCapturedAt })
-    return { ...route, firm, fresh, captureDate, countryCapturedAt, countryFresh }
+      && (brightTermsCapturedAt === null || isChallengeFresh({ sourceCapturedAt: brightTermsCapturedAt }))
+    return { ...route, firm, fresh, captureDate, countryCapturedAt, brightTermsCapturedAt, countryFresh }
   }).filter(item => item.firm?.affiliateUrl)
 
   const crumbs = breadcrumbSchema([{ name: 'Traders Fund Hub', url: '/' }, { name: 'Русская версия' }])
@@ -98,6 +102,7 @@ export default function RussianHomePage() {
           </div>
 
           <div className="ru-home-partner-hero" data-russian-home-hero-partners="fundednext-bright-funded">
+            <p className="ru-source-line ru-home-partner-hero-disclosure" data-russian-affiliate-disclosure="home-primary-partners">FundedNext и BrightFunded — наши партнёры: переход на сайт фирмы может принести нам комиссию. Это не добавляет баллы в рейтинге и не означает, что программа подходит каждому.</p>
             {featuredPartnerCards.map(item => (
               <article
                 className={`ru-home-partner-hero-card${item.slug === 'fundednext' ? ' ru-home-partner-hero-card--fundednext' : ' ru-home-partner-hero-card--bright'}`}
@@ -113,25 +118,28 @@ export default function RussianHomePage() {
                     ? 'Программы с оплатой в USD: с оценочными этапами или без челленджа — Stellar Instant. В обзоре разбираем различия в просадке и выплатах.'
                     : 'Программы с оплатой в EUR и одним или двумя оценочными этапами. В обзоре разбираем лимиты убытка и ожидание первой выплаты.'
                   : 'Условия программ требуют повторной проверки. В обзоре объясняем модель работы и вопросы, которые стоит задать фирме перед оплатой.'}</p>
-                <p className="ru-home-partner-country-note" data-russian-partner-country-warning={item.slug} data-russian-partner-country-source-status={item.countryFresh ? 'dated' : 'recapture-required'}>
+                <p className="ru-home-partner-country-note" data-russian-partner-country-warning={item.slug} data-russian-partner-country-source-status={item.countryFresh ? 'dated' : 'recapture-required'} data-russian-home-bright-country-conflict={item.slug === 'bright-funded' ? 'help-six-terms-five' : undefined}>
                   {item.slug === 'fundednext'
                     ? item.countryFresh
                       ? `Доступность для резидентов России не подтверждена: официальные страницы, проверенные ${item.countryCapturedAt}, противоречат друг другу.`
                       : `Страновые условия требуют новой проверки. В источниках от ${item.countryCapturedAt} были противоречия для резидентов России; это не подтверждает доступ сегодня.`
-                    : item.countryFresh
-                      ? `В списке ограничений, проверенном ${item.countryCapturedAt}, Россия не названа. Доступность конкретного профиля подтвердите до оплаты.`
-                      : `Список ограничений от ${item.countryCapturedAt} требует повторной проверки. Отсутствие России в старом списке не подтверждает доступ сегодня.`}
+                    : <>
+                      <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="nofollow noopener">Справка BrightFunded</a> от {item.countryCapturedAt} включает Пакистан;{' '}
+                      <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {item.brightTermsCapturedAt} его не называют.{' '}
+                      {item.countryFresh
+                        ? 'Россия не названа в обоих списках, но это не подтверждает доступ вашего профиля. Уточните до оплаты.'
+                        : 'Страновые условия требуют повторной проверки; отсутствие России в старых списках не подтверждает доступ сегодня.'}
+                    </>}
                 </p>
                 <div className="ru-home-partner-hero-actions">
-                  <Link href={item.reviewHref} className="btn-outline">Читать обзор {item.slug === 'bright-funded' ? 'BrightFunded' : item.name}</Link>
-                  <Link href={item.heroHref} rel="sponsored nofollow noopener" className="ru-home-partner-hero-review">Проверить условия {item.name} ↗</Link>
+                  <Link href={item.reviewHref} className="btn-outline">{`Читать обзор ${item.name}`}</Link>
+                  <Link href={item.heroHref} rel="sponsored nofollow noopener" className="ru-home-partner-hero-review">{`Проверить условия ${item.name} ↗`}</Link>
                 </div>
                 <p className="ru-source-line ru-home-checked">{item.captureDate ? `Источники проверены: ${item.captureDate}` : 'Обновление источников ожидается'}</p>
               </article>
             ))}
           </div>
-          <p className="ru-source-line ru-home-partner-hero-disclosure" data-russian-affiliate-disclosure="home-primary-partners">FundedNext и Bright Funded — наши партнёры: переход на сайт фирмы может принести нам комиссию. Это не добавляет баллы в рейтинге и не означает, что программа подходит каждому.</p>
-          <Link href="/ru/fundednext-vs-bright-funded" className="ru-home-comparison-link">FundedNext или Bright Funded: сравнить отличия <ArrowRight size={15} aria-hidden="true" /></Link>
+          <Link href="/ru/fundednext-vs-bright-funded" className="ru-home-comparison-link">FundedNext или BrightFunded: сравнить отличия <ArrowRight size={15} aria-hidden="true" /></Link>
         </div>
       </section>
 

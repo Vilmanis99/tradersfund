@@ -202,6 +202,10 @@ export default function RussianPartnerReview({
             Партнёрство даёт <strong>0 баллов</strong> к оценке {firm?.score.toFixed(1) ?? '—'}/10
             и не меняет {freshProducts.length} продуктовых строк, {pricedTiers.length} цен или проверку страны.
           </div>
+          <div className="ru-notice ru-anchor-target" id="country-check" data-russian-partner-country-access="unconfirmed">
+            <strong><AlertTriangle size={16} aria-hidden="true" /> Язык страницы не подтверждает доступ.</strong>{' '}
+            {countryNote}
+          </div>
 
           {firm ? (
             <aside className="ru-review-firm-card" aria-label={`Краткая карточка ${firmName}`}>
@@ -270,15 +274,6 @@ export default function RussianPartnerReview({
               <li><a href="#faq">Частые вопросы</a></li>
             </ol>
           </nav>
-        </div>
-      </section>
-
-      <section className="ru-section" id="country-check">
-        <div className="ru-shell">
-          <div className="ru-notice" data-russian-partner-country-access="unconfirmed">
-            <strong><AlertTriangle size={16} aria-hidden="true" /> Язык страницы не подтверждает доступ.</strong>{' '}
-            {countryNote}
-          </div>
         </div>
       </section>
 

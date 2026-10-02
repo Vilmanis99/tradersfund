@@ -129,8 +129,8 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
 
   'ftmo-vs-fundednext': {
     matchupSlug: 'ftmo-vs-fundednext',
-    reviewedAt: '2026-08-28',
-    challengeReviewedAt: '2026-08-28',
+    reviewedAt: '2026-10-01',
+    challengeReviewedAt: '2026-10-01',
     h1: 'FTMO vs FundedNext (2026): 2 Products vs 4 Paths',
     metaDescription:
       'FTMO vs FundedNext using current 2026 fees, base splits, drawdowns, refund timing, payout gates, platforms and 6 captured challenge products.',

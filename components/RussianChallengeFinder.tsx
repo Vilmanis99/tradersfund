@@ -15,6 +15,17 @@ import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutN
 import { minimumTradingDaysLabel, maximumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 
 const UNKNOWN = 'Нет подтверждённых данных'
+const firmLabel = (row: GlobalChallengeRow) => row.firm.slug === 'bright-funded' ? 'BrightFunded' : row.firm.name
+const productLabel = (row: GlobalChallengeRow) => row.firm.slug === 'bright-funded'
+  ? row.product.name.replace(/^Bright Funded\b/, 'BrightFunded')
+  : row.product.name
+type BrightCountrySources = {
+  helpUrl: string
+  helpCapturedAt: string
+  termsUrl: string
+  termsCapturedAt: string
+  current: boolean
+}
 const percent = (value: number | null) => value == null ? UNKNOWN : `${value}%`
 const money = (value: number | null, currency: 'USD' | 'EUR') => value == null ? UNKNOWN : new Intl.NumberFormat('ru-RU', { style: 'currency', currency, maximumFractionDigits: 2 }).format(value)
 const accountLabel = (size: number) => money(size, 'USD')
@@ -86,7 +97,7 @@ function ProgrammeCaveat({ row }: { row: GlobalChallengeRow }) {
   </div>
 }
 
-export default function RussianChallengeFinder({ initialRows }: { initialRows: GlobalChallengeRow[] }) {
+export default function RussianChallengeFinder({ initialRows, brightCountrySources }: { initialRows: GlobalChallengeRow[]; brightCountrySources: BrightCountrySources }) {
   const [hashStore] = useState(createFinderHashStore)
   const hash = useSyncExternalStore(hashStore.subscribe, hashStore.getSnapshot, serverHash)
   const { filters, selected } = useMemo(() => parseFinderState(hash, initialRows), [hash, initialRows])
@@ -143,7 +154,7 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
         <h2>Подберите челлендж под свой бюджет и правила</h2>
         <p className="ru-muted">Фирм в текущем наборе: {firmCount}; программ: {initialRows.length}. Выберите размер счёта, затем сопоставьте до 3 программ. Регистрация не нужна.</p>
       </div></div>
-      <p className="ru-finder-disclosure" data-russian-affiliate-disclosure="challenge-finder">FundedNext, Bright Funded и FundingPips — партнёры сайта; мы можем получить комиссию при покупке по ссылке. Партнёрство не влияет на фильтры и сортировку. По умолчанию фирмы расположены по алфавиту.</p>
+      <p className="ru-finder-disclosure" data-russian-affiliate-disclosure="challenge-finder">FundedNext, BrightFunded и FundingPips — партнёры сайта; мы можем получить комиссию при покупке по ссылке. Партнёрство не влияет на фильтры и сортировку. По умолчанию фирмы расположены по алфавиту.</p>
       {initialRows.some(row => row.firm.slug === 'fundednext' && row.product.slug === 'stellar-1-step') && <RussianFundedNextPayoutNotice />}
       {initialRows.length === 0 ? <div className="ru-notice" role="status">Данные требуют повторной проверки. До обновления цены и сравнение программ скрыты; обзоры ниже остаются доступны.</div> : <>
         {filters.sort === 'payout' && <p className="ru-source-line" data-russian-payout-sort="separate-day-units">Сначала идут программы с отдельным условием запроса, затем сроки в днях, отдельно Stellar 1-Step с рабочими днями и в конце неподтверждённые сроки. Это группировка условий, а не рейтинг скорости получения денег. Условие запроса не означает немедленную выплату.</p>}
@@ -166,7 +177,7 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
         <p className="ru-source-line">Базовые взносы по датированным источникам, без временных скидок и дополнительных опций. Цены в разных валютах не пересчитываем. Размер счёта — номинал, а не доступная для вывода сумма.</p>
         <div className="ru-finder-selection" aria-label="Выбор для сравнения">
           <p role="status">{compared.length === 0 ? 'Нажмите «Сравнить» на 2–3 программах: таблица покажет различия в цене, просадке и выплатах.' : `Выбрано: ${compared.length}/3. ${compared.length === 1 ? 'Добавьте ещё одну программу.' : 'Можно открыть таблицу отличий.'}`}</p>
-          {compared.length > 0 && <><ul>{compared.map(row => <li key={challengeKey(row)}><span>{row.firm.name} · {row.product.name}</span><button type="button" aria-label={`Убрать из подборки ${row.firm.name} ${row.product.name}`} onClick={() => toggle(row)}><X size={15} aria-hidden="true" /></button></li>)}</ul><button type="button" onClick={openComparison}>Открыть таблицу сравнения <ArrowRight size={15} aria-hidden="true" /></button></>}
+          {compared.length > 0 && <><ul>{compared.map(row => <li key={challengeKey(row)}><span>{firmLabel(row)} · {productLabel(row)}</span><button type="button" aria-label={`Убрать из подборки ${firmLabel(row)} ${productLabel(row)}`} onClick={() => toggle(row)}><X size={15} aria-hidden="true" /></button></li>)}</ul><button type="button" onClick={openComparison}>Открыть таблицу сравнения <ArrowRight size={15} aria-hidden="true" /></button></>}
         </div>
         {rows.length === 0 && <div className="ru-notice">В нашем текущем наборе нет программы с таким сочетанием условий. Измените бюджет, размер или этапы. Это не означает, что таких предложений нет на всём рынке.</div>}
         <div className="ru-finder-results">
@@ -175,7 +186,7 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
             const key = challengeKey(row)
             const isSelected = selected.includes(key)
             return <article className={`ru-finder-card${isSelected ? ' ru-finder-card--selected' : ''}`} key={key} data-finder-product={key}>
-              <header><Image src={row.firm.logo} alt="" width={38} height={38} /><div><span>{row.firm.name}</span><h3>{row.product.name}</h3></div><span className="ru-finder-phase">{phaseLabel(row.product.phases)}</span></header>
+              <header><Image src={row.firm.logo} alt="" width={38} height={38} /><div><span>{firmLabel(row)}</span><h3>{productLabel(row)}</h3></div><span className="ru-finder-phase">{phaseLabel(row.product.phases)}</span></header>
               <div className="ru-finder-price"><strong>{priceLabel(tier)}</strong><span>базовый взнос{row.product.pricingModel === 'monthly-subscription' ? ' за месяц' : ''}</span></div>
               <dl className="ru-finder-facts"><div><dt>Цель оценки</dt><dd>{targets(row)}</dd></div><div><dt>Общий лимит убытка</dt><dd>{percent(row.product.maxLossPct)} · {drawdownLabel(row.product.drawdownType)}</dd></div><div><dt>Дневной лимит</dt><dd>{percent(row.product.dailyLossPct)}</dd></div><div><dt>Доля трейдера</dt><dd>{percent(row.product.profitSplitPct)}</dd></div></dl>
               <p className="ru-finder-payout"><strong>Первый запрос выплаты:</strong> {payoutLabel(row)}. Дополнительные условия и проверка правил сохраняются.</p>
@@ -185,8 +196,16 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
                 <ProgrammeCaveat row={row} />
                 <p>Цены и правила: <a href={row.product.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">официальный источник</a> · {row.product.capturedAt}.</p>
               </details>
-              <div className="ru-finder-card-actions"><button type="button" aria-pressed={isSelected} aria-label={`${isSelected ? 'Убрать из сравнения' : 'Сравнить'} ${row.firm.name} ${row.product.name}`} disabled={!isSelected && selected.length >= 3} onClick={() => toggle(row)}>{isSelected ? <Check size={15} aria-hidden="true" /> : <Plus size={15} aria-hidden="true" />}{isSelected ? 'В сравнении' : 'Сравнить'}</button><Link href={row.firm.reviewUrl}>Разбор правил <ArrowRight size={14} aria-hidden="true" /></Link></div>
-              <Link className="ru-finder-visit" href={`/go/${row.firm.slug}?from=ru-challenge-finder-${row.product.slug}`} prefetch={false} rel={row.firm.isPartner ? 'sponsored nofollow noopener' : 'nofollow noopener'}>Проверить условия у {row.firm.name} ↗</Link>
+              {row.firm.slug === 'bright-funded' && <div className="ru-notice ru-finder-bright-country" data-russian-country-boundary="ranking-finder-bright-not-access" data-russian-finder-bright-country-status={brightCountrySources.current ? 'dated' : 'recapture-required'}>
+                <strong>Доступ по стране не подтверждён.</strong>{' '}
+                <a href={brightCountrySources.helpUrl} target="_blank" rel="nofollow noopener noreferrer">Справка BrightFunded</a> от {brightCountrySources.helpCapturedAt} включает Пакистан;{' '}
+                <a href={brightCountrySources.termsUrl} target="_blank" rel="nofollow noopener noreferrer">условия</a> от {brightCountrySources.termsCapturedAt} его не называют.{' '}
+                {brightCountrySources.current
+                  ? 'Россия не названа в обоих списках, но это не одобрение вашего профиля. До оплаты уточните гражданство, резидентство, местонахождение, KYC, оплату и выплату.'
+                  : 'Страновые источники требуют повторной проверки. Прежнее отсутствие России в списках не подтверждает доступ сегодня; запросите ответ поддержки до оплаты.'}
+              </div>}
+              <div className="ru-finder-card-actions"><button type="button" aria-pressed={isSelected} aria-label={`${isSelected ? 'Убрать из сравнения' : 'Сравнить'} ${firmLabel(row)} ${productLabel(row)}`} disabled={!isSelected && selected.length >= 3} onClick={() => toggle(row)}>{isSelected ? <Check size={15} aria-hidden="true" /> : <Plus size={15} aria-hidden="true" />}{isSelected ? 'В сравнении' : 'Сравнить'}</button><Link href={row.firm.reviewUrl}>Разбор правил <ArrowRight size={14} aria-hidden="true" /></Link></div>
+              <Link className="ru-finder-visit" href={`/go/${row.firm.slug}?from=ru-challenge-finder-${row.product.slug}`} prefetch={false} rel={row.firm.isPartner ? 'sponsored nofollow noopener' : 'nofollow noopener'}>Проверить условия у {firmLabel(row)} ↗</Link>
               <span className="ru-source-line">Данные проверены: {row.product.capturedAt}{row.firm.isPartner ? ' · Партнёрская ссылка' : ' · Без партнёрской комиссии'}</span>
             </article>
           })}
@@ -198,7 +217,7 @@ export default function RussianChallengeFinder({ initialRows }: { initialRows: G
           <p className="ru-finder-scroll-hint">На узком экране прокрутите таблицу вправо, чтобы увидеть все выбранные программы.</p>
           <div className="ru-finder-table-wrap" tabIndex={0} role="region" aria-label="Таблица сравнения; на узком экране прокручивается вправо"><table>
             <caption>Один размер: {accountLabel(filters.size)}. Разные валюты не означают равную стоимость.</caption>
-            <thead><tr><th scope="col">Условие</th>{compared.map(row => <th scope="col" key={challengeKey(row)}>{row.firm.name}<br />{row.product.name}<button type="button" aria-label={`Убрать ${row.product.name}`} onClick={() => toggle(row)}><X size={16} aria-hidden="true" /></button></th>)}</tr></thead>
+            <thead><tr><th scope="col">Условие</th>{compared.map(row => <th scope="col" key={challengeKey(row)}>{firmLabel(row)}<br />{productLabel(row)}<button type="button" aria-label={`Убрать ${productLabel(row)}`} onClick={() => toggle(row)}><X size={16} aria-hidden="true" /></button></th>)}</tr></thead>
             <tbody>{[
               ['Базовый взнос', (row: GlobalChallengeRow) => priceLabel(finderTier(row, filters.size))],
               ['Минимальные обязательные платежи', (row: GlobalChallengeRow) => fundedCostLabel(finderTier(row, filters.size))],

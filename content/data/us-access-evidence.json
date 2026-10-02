@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-08-17",
+  "capturedAt": "2026-10-01",
   "firms": [
     {
       "firmSlug": "fundednext",
@@ -9,15 +9,15 @@
       "productSlugs": [
         "stellar-2-step",
         "stellar-1-step",
-        "stellar-lite",
-        "stellar-instant"
+        "stellar-lite"
       ],
       "platformConstraint": "Match-Trader for U.S. CFD accounts",
       "sourceUrl": "https://help.fundednext.com/en/articles/12673271-usa-client-guide-at-fundednext-cfd-accounts-platforms-rewards",
+      "secondarySourceUrl": "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
       "sourcePublishedAt": "2026-06-16",
-      "sourceCapturedAt": "2026-08-17",
+      "sourceCapturedAt": "2026-10-01",
       "evidenceLabel": "Explicit U.S. guide",
-      "decisionNote": "FundedNext's USA guide lists all 4 captured CFD products for U.S. clients and limits those accounts to Match-Trader. This is access evidence, not U.S. regulatory approval."
+      "decisionNote": "The USA guide supports these 3 evaluation paths on Match-Trader. It also lists Stellar Instant, but FundedNext's newer country-policy article says U.S. clients cannot access that product; Stellar Instant is excluded pending clarification. This is not U.S. regulatory approval."
     },
     {
       "firmSlug": "tradeify",
@@ -33,9 +33,9 @@
       "platformConstraint": "Futures evaluation; live-account eligibility remains policy-dependent",
       "sourceUrl": "https://help.tradeify.co/en/articles/10495888-rules-restricted-countries",
       "sourcePublishedAt": "2026-04-02",
-      "sourceCapturedAt": "2026-08-17",
+      "sourceCapturedAt": "2026-10-01",
       "evidenceLabel": "U.S. named eligible",
-      "decisionNote": "Tradeify's restricted-country policy explicitly uses the U.S. as an eligible-country example and does not place it in the Sim Funded-only table. KYC and current account rules still apply."
+      "decisionNote": "Tradeify's restricted-country policy explicitly uses the U.S. as an eligible-country example. Its current page does not publish a Sim Funded-only country table; live-account approval and KYC remain separate checks."
     },
     {
       "firmSlug": "topstep",
@@ -49,7 +49,7 @@
       "platformConstraint": "TopstepX; eligibility depends on citizenship, residency, and KYC",
       "sourceUrl": "https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep",
       "secondarySourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
-      "sourceCapturedAt": "2026-08-17",
+      "sourceCapturedAt": "2026-10-01",
       "evidenceLabel": "Policy + U.S. payout",
       "decisionNote": "Topstep's current eligibility tables do not place U.S. clients in the ineligible or XFA-only groups, and its payout policy publishes W-9 and U.S.-bank routes. Verify the exact profile before purchase."
     },
@@ -67,7 +67,7 @@
       "platformConstraint": "Futures evaluation with U.S.-residency-matched ACH payouts",
       "sourceUrl": "https://apextraderfunding.com/terms-of-use/",
       "secondarySourceUrl": "https://apextraderfunding.com/help-center/additional-helpful-items/payout-method-us-based-users/",
-      "sourceCapturedAt": "2026-08-17",
+      "sourceCapturedAt": "2026-10-01",
       "evidenceLabel": "Intended for U.S. users",
       "decisionNote": "Apex's terms say the program is intended for U.S. users; its U.S. payout guide requires matching U.S. residency and ACH bank details. Apex also states it is not an FCM or broker-dealer."
     }

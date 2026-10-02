@@ -179,7 +179,7 @@ export default function RussianWhatIsPropFirmPage() {
           </div>
           <div className="ru-actions">
             <Link href="#tri-modeli" className="btn-primary btn-glow">Понять 3 модели <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить FundedNext и Bright Funded</Link>
+            <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить FundedNext и BrightFunded</Link>
           </div>
         </div>
       </section>
@@ -312,6 +312,11 @@ export default function RussianWhatIsPropFirmPage() {
             Источников в таблице: {sourceCount}. Цены приведены в собственной валюте фирмы: USD для FundedNext и EUR для Bright Funded;
             временные промоакции и самостоятельный пересчёт в RUB не включены.
           </p>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="prop-definition">
+            <strong>Партнёрское раскрытие.</strong>{' '}
+            Переходы на FundedNext и Bright Funded могут принести Traders Fund Hub комиссию.
+            Коммерческая связь не меняет {products.length} строк, {pricedTierCount} цен, даты источников или предупреждение о доступе страны.
+          </div>
           <div className="ru-grid">
             <article className="ru-card">
               <div className="ru-card-head"><h3>FundedNext</h3><span className="ru-score">{fundedNextProducts.length} продукта</span></div>
@@ -328,7 +333,7 @@ export default function RussianWhatIsPropFirmPage() {
               </div>
             </article>
             <article className="ru-card">
-              <div className="ru-card-head"><h3>Bright Funded</h3><span className="ru-score">{brightProducts.length} продукта</span></div>
+              <div className="ru-card-head"><h3>BrightFunded</h3><span className="ru-score">{brightProducts.length} продукта</span></div>
               <p className="ru-muted">
                 1-Step, 2-Step Bright и 2-Step Classic используют EUR-цены, но дают разные дневной/общий лимиты убытка и цели.
                 SumSub KYC и проверка безопасности остаются отдельными этапами после успешной оценки.
@@ -336,15 +341,10 @@ export default function RussianWhatIsPropFirmPage() {
               <div className="ru-actions">
                 <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link>
                 <Link href="/go/bright-funded?from=ru-prop-definition-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить Bright Funded <ArrowRight size={14} aria-hidden="true" />
+                  Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
                 </Link>
               </div>
             </article>
-          </div>
-          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="prop-definition">
-            <strong>Партнёрское раскрытие.</strong>{' '}
-            Переходы на FundedNext и Bright Funded могут принести Traders Fund Hub комиссию.
-            Коммерческая связь не меняет {products.length} строк, {pricedTierCount} цен, даты источников или предупреждение о доступе страны.
           </div>
         </div>
       </section>
@@ -447,7 +447,7 @@ export default function RussianWhatIsPropFirmPage() {
           </p>
           <div className="ru-actions">
             <Link href="/ru/obzor-fundednext" className="btn-primary">Начать с FundedNext <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/ru/obzor-bright-funded" className="btn-outline">Проверить Bright Funded</Link>
+            <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор BrightFunded</Link>
           </div>
         </div>
       </section>

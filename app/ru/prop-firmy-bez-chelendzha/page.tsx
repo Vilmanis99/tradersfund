@@ -14,14 +14,15 @@ import {
   Zap,
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import instantEvidence from '@/content/data/russian-fundednext-instant-evidence.json'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge, type Firm } from '@/lib/firms'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, RUSSIAN_ROUTE_EDITORIAL_DATES } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 
 const PATH = '/ru/prop-firmy-bez-chelendzha'
 const TITLE = 'Проп-фирмы без челленджа 2026: FundedNext Instant'
-const DESCRIPTION = 'Сравнение проп-фирм без челленджа: FundedNext Stellar Instant, FundingPips Zero и другие свежие phase-0 продукты — цены, просадка, выплаты и KYC.'
+const DESCRIPTION = 'Сравнение программ без челленджа: FundedNext Stellar Instant, FundingPips Zero и другие модели с датами источников — цены, просадка, выплаты и KYC.'
 const FUNDEDNEXT_REWARD_URL = 'https://help.fundednext.com/en/articles/11641693-what-is-the-eligibility-criteria-for-my-performance-reward-in-the-stellar-instant-account'
 const FUNDEDNEXT_SCALE_URL = 'https://help.fundednext.com/en/articles/11641516-is-there-a-scale-up-plan-for-stellar-instant-accounts'
 const FUNDEDNEXT_NEWS_URL = 'https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts'
@@ -66,7 +67,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Есть ли финансирование без оценки у Bright Funded?',
-    a: 'Нет в текущем 30-дневном снимке. У Bright Funded 3 свежие программы: 1-Step и 2 варианта 2-Step, то есть все требуют оценки. Мы показываем Bright только как альтернативу с оценочным этапом и не включаем в рейтинг программ без оценки.',
+    a: 'В таблицу без оценки попадают только программы с подтверждённой фазой 0 и свежей проверкой. Линейку Bright Funded нужно сверять перед покупкой.',
   },
   {
     q: 'Можно ли купить финансирование без оценки русскоязычному трейдеру за рубежом?',
@@ -162,10 +163,39 @@ export default function RussianInstantPropFirmsPage() {
     const product = products.find(candidate => candidate.firmSlug === route.slug && candidate.productSlug === route.productSlug)
     return { ...route, firm, product }
   }).filter(item => item.firm?.affiliateUrl && item.product)
+  const fundedNextCard = partnerCards.find(card => card.slug === 'fundednext')
+  const fundingPipsCard = partnerCards.find(card => card.slug === 'fundingpips')
+  const partnerPairCurrent = Boolean(fundedNextCard && fundingPipsCard)
+  const fundedNextRulesFresh = [instantEvidence.capturedAt, instantEvidence.news.sourceCapturedAt]
+    .every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
+  const instantCatalog = challenges.filter(product => product.phases === 0)
+  const instantCatalogFresh = instantCatalog.length > 0 && instantCatalog.every(product => isChallengeFresh(product))
+  const riskExampleSlugs = ['maven', 'fundednext', 'fundingpips', 'fxify', 'tradeify', 'lucid-trading', 'alpha-capital']
+  const riskExamplesCurrent = riskExampleSlugs.every(firmSlug => products.some(product => product.firmSlug === firmSlug))
+    && instantCatalog.filter(product => riskExampleSlugs.includes(product.firmSlug)).every(product => isChallengeFresh(product))
   const nonPartnerProducts = products.filter(product => !partnerSlugSet.has(product.firmSlug))
   const brightFirm = firmBySlug.get('bright-funded')
-  const brightProducts = challenges.filter(product => product.firmSlug === 'bright-funded' && isChallengeFresh(product))
+  const allBrightProducts = challenges.filter(product => product.firmSlug === 'bright-funded')
+  const brightCatalogFresh = allBrightProducts.length > 0 && allBrightProducts.every(product => isChallengeFresh(product))
+  const brightProducts = brightCatalogFresh ? allBrightProducts : []
+  const brightPhaseZero = brightProducts.filter(product => product.phases === 0)
+  const brightEvaluationOnly = brightCatalogFresh && brightProducts.every(product => product.phases != null && product.phases > 0)
   const brightPriceCount = pricedTierCount(brightProducts)
+  const brightOldestCapture = allBrightProducts.map(product => product.sourceCapturedAt).sort()[0]
+  const brightFaqAnswer = brightEvaluationOnly
+    ? `Нет в продуктовом снимке от ${brightOldestCapture}: все проверенные программы Bright Funded требуют оценки. Мы показываем их отдельно от рейтинга программ без оценки.`
+    : brightCatalogFresh && brightPhaseZero.length > 0
+      ? `Да. В продуктовом снимке от ${brightOldestCapture} у Bright Funded есть программы без оценочного этапа; их свежие записи включены в таблицу фазы 0.`
+      : `Актуальную линейку Bright Funded подтвердить нельзя: последний продуктовый снимок датирован ${brightOldestCapture ?? 'неизвестно'}. Проверьте программы и этапы на сайте фирмы перед покупкой.`
+  const pageFaqs = faqs.filter(item => {
+    if (item.q === 'Сколько стоит FundedNext Stellar Instant?' || item.q === 'Как работает выплата FundedNext Instant?') return Boolean(fundedNextCard) && fundedNextRulesFresh
+    if (item.q === 'Какие главные правила FundingPips Zero?') return Boolean(fundingPipsCard)
+    if (item.q === 'Какая проп-фирма без челленджа самая дешёвая?') return instantCatalogFresh
+    return true
+  })
+    .map(item => item.q === 'Есть ли финансирование без оценки у Bright Funded?'
+      ? { ...item, a: brightFaqAnswer }
+      : item)
   const latestCapture = products.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'нет данных'
 
   const crumbs = breadcrumbSchema([
@@ -174,7 +204,9 @@ export default function RussianInstantPropFirmsPage() {
     { name: 'Рейтинг проп-фирм', url: '/ru/luchshie-prop-firmy' },
     { name: 'Проп-фирмы без челленджа' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = brightCatalogFresh && instantCatalogFresh && fundedNextRulesFresh
+    ? faqPageSchema(pageFaqs)
+    : null
   const itemList = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -197,7 +229,7 @@ export default function RussianInstantPropFirmsPage() {
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
-    dateModified: latestCapture,
+    dateModified: RUSSIAN_ROUTE_EDITORIAL_DATES[PATH],
     author: {
       '@type': 'Person',
       name: 'Edris Derakhshi',
@@ -211,7 +243,7 @@ export default function RussianInstantPropFirmsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
+      {faq ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} /> : null}
 
       <section className="ru-hero">
         <div
@@ -225,18 +257,24 @@ export default function RussianInstantPropFirmsPage() {
           <h1>Проп-фирмы без челленджа: FundedNext Instant и FundingPips Zero</h1>
           <p className="ru-lead">
             Сравнили {products.length} свежих продуктов без оценки у {instantFirmCount} глобальных фирм.
-            Два партнёрских маршрута действительно имеют продукт без оценочного этапа: FundedNext Stellar Instant и FundingPips Zero.
-            Bright Funded не включён в этот рейтинг, потому что его 3 текущие программы требуют оценки.
+            {partnerPairCurrent
+              ? ' В текущих продуктовых записях оба выделенных маршрута — FundedNext Stellar Instant и FundingPips Zero — не требуют оценки.'
+              : ' Продуктовые записи партнёров с истёкшей проверкой не включены в текущее сравнение.'}
+            {brightEvaluationOnly
+              ? ' Bright Funded не включён в этот рейтинг: все проверенные программы требуют оценки.'
+              : brightPhaseZero.length > 0
+                ? ' В таблицу также включены свежие программы Bright Funded без оценки.'
+                : ' Линейка Bright Funded требует повторной проверки; её прежние оценочные программы не считаются текущими.'}
           </p>
           <div className="ru-stats" aria-label="Текущий охват финансирования без оценки">
             <div className="ru-stat"><strong>{products.length}</strong><span>свежих продуктов без оценки</span></div>
             <div className="ru-stat"><strong>{instantFirmCount}</strong><span>фирм с подтверждённой фазой 0</span></div>
-            <div className="ru-stat"><strong>{partnerCards.length}</strong><span>партнёрских маршрута без оценки</span></div>
+            <div className="ru-stat"><strong>{partnerCards.length}</strong><span>партнёрских маршрутов без оценки</span></div>
             <div className="ru-stat"><strong>{instantPriceCount}</strong><span>опубликованных цен фазы 0</span></div>
           </div>
           <div className="ru-actions">
-            <Link href="#partner-instant" className="btn-primary btn-glow">Сравнить FundedNext и FundingPips <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="#all-products" className="btn-outline">Все {products.length} продуктов</Link>
+            <Link href="#partner-instant" className="btn-primary btn-glow">Проверить партнёрские программы <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="#all-products" className="btn-outline">Актуальные программы</Link>
             <Link href="#bright-alternative" className="btn-outline">Когда выбрать Bright Funded</Link>
           </div>
           <p className="ru-source-line">Последний продуктовый срез: {latestCapture}. Цену и правила нужно повторно проверить перед оплатой.</p>
@@ -259,14 +297,15 @@ export default function RussianInstantPropFirmsPage() {
           <div className="ru-shell ru-content">
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="instant-ranking">
               <strong>Партнёрское раскрытие и граница.</strong>{' '}
-              FundedNext и FundingPips выделены, потому что у каждой фирмы есть активная партнёрская ссылка и 1 свежий продукт без оценки.
-              Переход может принести нам комиссию. Bright Funded показан отдельно как альтернатива с оценочным этапом, а не маскируется под финансирование без оценки.
+              FundedNext и FundingPips выделены как партнёры; переход может принести нам комиссию.
+              В текущей таблице у них {partnerCards.length} проверенных продуктов без оценки. Истёкшая запись не считается текущей.
+              Bright Funded показан отдельно; партнёрская ссылка сама по себе не доказывает фазу 0.
             </div>
             <nav className="ru-review-toc" aria-label="Содержание руководства о финансировании без оценки">
               <strong>Содержание</strong>
               <ol>
                 <li><a href="#phase-zero">Что означает фаза 0</a></li>
-                <li><a href="#partner-instant">2 партнёрских продукта без оценки</a></li>
+                <li><a href="#partner-instant">Партнёрские программы без оценки</a></li>
                 <li><a href="#fundednext-instant">FundedNext Stellar Instant</a></li>
                 <li><a href="#fundingpips-zero">FundingPips Zero</a></li>
                 <li><a href="#all-products">Все актуальные продукты</a></li>
@@ -289,8 +328,8 @@ export default function RussianInstantPropFirmsPage() {
               После покупки остаются риск, условия выплаты, KYC, договор и правила страны; слово «мгновенный» не обнуляет ни одно из этих условий.
             </p>
             <div className="ru-grid">
-              <article className="ru-card"><Gauge size={22} color="var(--accent-light)" aria-hidden="true" /><h3>1. Просадка</h3><p className="ru-muted">Плавающий или EOD-трейлинг может двигаться вместе с equity и закрыть счёт до первой заявки.</p></article>
-              <article className="ru-card"><Scale size={22} color="var(--accent-light)" aria-hidden="true" /><h3>2. Распределение прибыли</h3><p className="ru-muted">FundingPips Zero публикует 15%; у других моделей без оценки текущая граница достигает 20%.</p></article>
+              <article className="ru-card"><Gauge size={22} color="var(--accent-light)" aria-hidden="true" /><h3>1. Просадка</h3><p className="ru-muted">Плавающий лимит убытка или EOD-трейлинг может двигаться вместе с equity и закрыть счёт до первой заявки.</p></article>
+              <article className="ru-card"><Scale size={22} color="var(--accent-light)" aria-hidden="true" /><h3>2. Распределение прибыли</h3><p className="ru-muted">Правило распределения прибыли проверяется для выбранного продукта: оно может ограничивать долю одного прибыльного дня.</p></article>
               <article className="ru-card"><CalendarClock size={22} color="var(--accent-light)" aria-hidden="true" /><h3>3. Условие выплаты</h3><p className="ru-muted">Заявка по запросу может требовать роста счёта, проверки закрытия дня, защитного буфера или цели по прибыли.</p></article>
               <article className="ru-card"><ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>4. KYC и договор</h3><p className="ru-muted">Отсутствие оценки не означает отсутствия подтверждения личности или клиентского соглашения.</p></article>
               <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>5. Страна</h3><p className="ru-muted">Гражданство, резидентство, оплата и доступность выплаты проверяются по фактическому профилю.</p></article>
@@ -301,11 +340,15 @@ export default function RussianInstantPropFirmsPage() {
         <section className="ru-section" id="partner-instant">
           <div className="ru-shell" data-russian-instant-featured-partners="fundednext-fundingpips">
             <h2>FundedNext Instant или FundingPips Zero: прямое сравнение</h2>
-            <p className="ru-muted">
-              У обеих моделей 0 оценочных этапов и невозвратный взнос, но точка нарушения и право на выплату различаются.
-              FundedNext начинается на $0.01 дешевле; эта разница не важнее 6% против 5% плавающего лимита убытка и разных условий выплаты.
-            </p>
-            <div className="ru-table-wrap">
+            <p className="ru-muted">Таблица показывает только программы фазы 0 с действующей проверкой продукта. Сравните размер счёта, базовый взнос и тип просадки; правила заявки на выплату сверяйте отдельно.</p>
+            {!partnerPairCurrent || !fundedNextRulesFresh ? (
+              <div className="ru-notice" data-russian-instant-partner-source-status="recapture-required">
+                {!partnerPairCurrent ? 'Не обе партнёрские программы имеют свежую продуктовую запись. ' : ''}
+                {!fundedNextRulesFresh ? `Отдельная проверка правил Stellar Instant от ${instantEvidence.capturedAt} вышла за 30-дневное окно. ` : ''}
+                Не используйте прежние суммы и условия заявки как текущие без повторной проверки.
+              </div>
+            ) : null}
+            {partnerCards.length > 0 ? <div className="ru-table-wrap">
               <table className="ru-table">
                 <thead><tr><th>Продукт</th><th>Размеры</th><th>Цена</th><th>Макс. убыток</th><th>Стартовый сплит</th><th>Условие выплаты</th></tr></thead>
                 <tbody>
@@ -318,25 +361,28 @@ export default function RussianInstantPropFirmsPage() {
                         <td>{accountRange(product)} · {product.accountSizes.length} уровней</td>
                         <td>{priceRange(product)}</td>
                         <td>{drawdownLabel(product)}</td>
-                        <td>{product.profitSplitPct ?? 'не опубликован'}%</td>
-                        <td>{isFundedNext ? 'рост 5% + EOD для заявки по запросу; 1–<5% — 14 дней' : '14 дней + правило 15% + буфер 3% + 7 прибыльных дней'}</td>
+                        <td>{product.profitSplitPct == null ? 'не опубликован' : `${product.profitSplitPct}%`}</td>
+                        <td>{isFundedNext
+                          ? fundedNextRulesFresh ? 'рост 5% + EOD для заявки по запросу; 1–<5% — 14 дней' : 'требует повторной проверки'
+                          : '14 дней + правило 15% + буфер 3% + 7 прибыльных дней'}</td>
                       </tr>
                     )
                   })}
                 </tbody>
               </table>
-            </div>
-            <p className="ru-source-line">Обе продуктовые записи имеют срез от {latestCapture}; акции и дополнительные опции не смешиваются с базовой ценой.</p>
+            </div> : <p className="ru-muted">Сейчас нет свежих партнёрских записей для сравнения. Проверьте официальные страницы программ и вернитесь к таблице после обновления данных.</p>}
+            <p className="ru-source-line">Текущие продуктовые записи: {partnerCards.length ? partnerCards.map(card => `${card.name} — ${card.product!.sourceCapturedAt}`).join('; ') : 'нет'}. Акции и дополнительные опции не смешиваются с базовой ценой.</p>
           </div>
         </section>
 
         <section className="ru-section" id="fundednext-instant">
           <div className="ru-shell" data-russian-instant-partner="fundednext">
-            <div className="ru-card-head"><h2>FundedNext Stellar Instant: 4 цены и плавающий лимит убытка 6%</h2><span className="ru-score">Главный партнёр без оценки</span></div>
+            <div className="ru-card-head"><h2>FundedNext Stellar Instant: цена и правила</h2><span className="ru-score">Партнёрская программа</span></div>
+            {fundedNextCard && fundedNextRulesFresh ? <>
             <div className="ru-grid">
               <article className="ru-card">
                 <h3>Цена и размер</h3>
-                <p className="ru-muted">$2K стоит $59.99, $5K — $149.99, $10K — $299.99, $20K — $599.99. Взнос не возвращается; опция без свопов добавляет 10% и не включена в базовые суммы.</p>
+                <p className="ru-muted">Проверенные базовые цены: {fundedNextCard.product!.accountSizes.map(tier => `${tier.sizeUsd == null ? 'размер не указан' : formatPrice(tier.sizeUsd, 'USD')} — ${tier.priceUsd == null ? 'не опубликована' : formatPrice(tier.priceUsd, 'USD')}`).join('; ')}. Взнос не возвращается; опция без свопов добавляет 10% и не включена в базовые суммы.</p>
               </article>
               <article className="ru-card">
                 <h3>Просадка и сплит</h3>
@@ -353,16 +399,21 @@ export default function RussianInstantPropFirmsPage() {
               До оплаты нужно отдельно подтвердить KYC и страну; для резидентов России официальные страницы FundedNext дают конфликтующие сигналы.
             </p>
             <p className="ru-source-line">
-              <a href={partnerCards.find(card => card.slug === 'fundednext')?.product?.sourceUrl} target="_blank" rel="noopener noreferrer">Официальная цена</a>{' · '}
+              <a href={fundedNextCard.product!.sourceUrl} target="_blank" rel="noopener noreferrer">Официальная цена</a>{' · '}
               <a href={FUNDEDNEXT_REWARD_URL} target="_blank" rel="noopener noreferrer">Условия вознаграждения</a>{' · '}
               <a href={FUNDEDNEXT_SCALE_URL} target="_blank" rel="noopener noreferrer">План масштабирования</a>{' · '}
               <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">Правило новостной прибыли</a>
             </p>
+            </> : <div className="ru-notice" data-russian-instant-fundednext-status="recapture-required">
+              {fundedNextCard
+                ? <>Ценовая запись Stellar Instant проверена {fundedNextCard.product!.sourceCapturedAt}; базовый диапазон — {priceRange(fundedNextCard.product!)}. Но отдельный снимок правил от {instantEvidence.capturedAt} устарел. Сверьте <a href={FUNDEDNEXT_REWARD_URL} target="_blank" rel="noopener noreferrer">условия выплаты</a>, <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">правило новостей</a> и доплаты до оплаты.</>
+                : <>Продуктовая запись Stellar Instant вышла за 30-дневное окно. Старые цены и условия нельзя считать текущими; откройте <Link href="/ru/fundednext-stellar-instant">датированный разбор</Link> и <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">официальное правило новостей</a>.</>}
+            </div>}
             <div className="ru-actions">
-              <Link href="/ru/fundednext-stellar-instant" className="btn-outline">Все правила Stellar Instant</Link>
+              <Link href="/ru/fundednext-stellar-instant" className="btn-outline">Датированный разбор Stellar Instant</Link>
               <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
               <Link href="/go/fundednext?from=ru-instant-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
-                Проверить Stellar Instant <ArrowRight size={14} aria-hidden="true" />
+                Проверить программы FundedNext <ArrowRight size={14} aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -370,11 +421,12 @@ export default function RussianInstantPropFirmsPage() {
 
         <section className="ru-section" id="fundingpips-zero">
           <div className="ru-shell" data-russian-instant-partner="fundingpips">
-            <div className="ru-card-head"><h2>FundingPips Zero: 6 цен и правило прибыли 15%</h2><span className="ru-score">Instant-партнёр</span></div>
+            <div className="ru-card-head"><h2>FundingPips Zero: цена и правила</h2><span className="ru-score">Партнёрская программа</span></div>
+            {fundingPipsCard ? <>
             <div className="ru-grid">
               <article className="ru-card">
                 <h3>Цена и размер</h3>
-                <p className="ru-muted">$5K стоит $60, затем $10K — $88, $25K — $188, $50K — $244, $100K — $444 и $200K — $888. Взнос не возвращается.</p>
+                <p className="ru-muted">Проверенные базовые цены: {fundingPipsCard.product!.accountSizes.map(tier => `${tier.sizeUsd == null ? 'размер не указан' : formatPrice(tier.sizeUsd, 'USD')} — ${tier.priceUsd == null ? 'не опубликована' : formatPrice(tier.priceUsd, 'USD')}`).join('; ')}. Взнос не возвращается.</p>
               </article>
               <article className="ru-card">
                 <h3>Плавающий убыток и открытый риск</h3>
@@ -393,10 +445,13 @@ export default function RussianInstantPropFirmsPage() {
               <a href={FUNDINGPIPS_ZERO_URL} target="_blank" rel="noopener noreferrer">Официальные правила Zero</a>{' · '}
               <a href={FUNDINGPIPS_COMPARE_URL} target="_blank" rel="noopener noreferrer">Сравнение моделей и цен</a>
             </p>
+            </> : <div className="ru-notice" data-russian-instant-fundingpips-status="recapture-required">
+              Продуктовая запись FundingPips Zero вышла за 30-дневное окно. Прежние суммы, просадку и условия выплаты нужно повторно проверить по <a href={FUNDINGPIPS_ZERO_URL} target="_blank" rel="noopener noreferrer">официальным правилам</a> до оплаты.
+            </div>}
             <div className="ru-actions">
               <Link href="/ru/obzor-fundingpips" className="btn-outline">Полный обзор FundingPips</Link>
               <Link href="/go/fundingpips?from=ru-instant-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">
-                Проверить FundingPips Zero <ArrowRight size={14} aria-hidden="true" />
+                Проверить программы FundingPips <ArrowRight size={14} aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -406,10 +461,10 @@ export default function RussianInstantPropFirmsPage() {
           <div className="ru-shell" data-russian-instant-all-products={products.length}>
             <h2>Все {products.length} свежих продуктов без оценки</h2>
             <p className="ru-muted">
-              Остальные {nonPartnerProducts.length} продуктов остаются в сравнении без партнёрской кнопки. Пустая цена или день выплаты означает,
-              что стабильное число не прошло first-party capture, а не что продукт бесплатный или платит мгновенно.
+              Непартнёрских строк — {nonPartnerProducts.length}. Пустая цена или день выплаты означает,
+              что число не подтверждено по официальному источнику, а не что продукт бесплатный или платит мгновенно.
             </p>
-            <div className="ru-table-wrap">
+            {products.length > 0 ? <div className="ru-table-wrap">
               <table className="ru-table">
                 <thead><tr><th>Фирма</th><th>Продукт</th><th>Цена</th><th>Сплит</th><th>Просадка</th><th>Правило прибыли</th><th>Первая заявка</th><th>Источник</th></tr></thead>
                 <tbody>
@@ -431,14 +486,15 @@ export default function RussianInstantPropFirmsPage() {
                   })}
                 </tbody>
               </table>
-            </div>
-            <p className="ru-source-line">Таблица сортирует 2 партнёрских продукта первыми, но не присваивает им дополнительные баллы.</p>
+            </div> : <div className="ru-notice" data-russian-instant-empty="recapture-required">Все продуктовые записи фазы 0 вышли за 30-дневное окно. Таблица вернётся после повторной проверки цен и правил на сайтах фирм.</div>}
+            <p className="ru-source-line">Актуальные партнёрские строки ({partnerCards.length}) идут первыми, но не получают дополнительных баллов.</p>
           </div>
         </section>
 
         <section className="ru-section" id="risk">
           <div className="ru-shell ru-content" data-russian-instant-risk="drawdown-before-price">
             <h2>Почему самая низкая цена может дать самый узкий запас до нарушения</h2>
+            {riskExamplesCurrent ? <>
             <p>
               Минимум $15 у Maven Instant выглядит дешевле $59.99 у FundedNext и $60 у FundingPips Zero,
               но Maven записан с плавающим лимитом убытка 3% и правилом 20%. Дешёвый взнос не расширяет просадку;
@@ -453,6 +509,9 @@ export default function RussianInstantPropFirmsPage() {
               Futures-модели Tradeify Lightning Funded и LucidDirect используют EOD-trailing в денежных величинах по размеру счёта;
               процент в сводной записи не подставляется. Это другая механика риска, поэтому нельзя ранжировать все строки только по одному полю максимального убытка.
             </p>
+            </> : <div className="ru-notice" data-russian-instant-risk-status="recapture-required">
+              Часть ценовых или риск-правил из прежнего сравнения вышла за 30-дневное окно. Не ранжируйте программы по архивной минимальной цене; сверяйте свежие строки выше и условия самой фирмы.
+            </div>}
             <div className="ru-notice">
               <strong>Порядок сравнения:</strong> сначала тип просадки и момент фиксации границы, затем правило распределения прибыли и цель выплаты,
               потом размер счёта и взнос. Если начать с цены, риск-план появляется слишком поздно.
@@ -495,27 +554,35 @@ export default function RussianInstantPropFirmsPage() {
         </section>
 
         <section className="ru-section" id="bright-alternative">
-          <div className="ru-shell" data-russian-instant-bright="challenge-alternative-only">
-            <h2>Bright Funded: глобальный партнёр, но не финансирование без оценки</h2>
+          <div className="ru-shell" data-russian-instant-bright={brightEvaluationOnly ? 'challenge-alternative-only' : brightPhaseZero.length > 0 ? 'phase-zero-listed' : 'recapture-required'}>
+            <h2>BrightFunded: проверка оценочного этапа</h2>
             <div className="ru-notice">
-              <strong>Не включаем Bright Funded в таблицу фазы 0.</strong>{' '}
-              Текущий снимок содержит {brightProducts.length} программы и {brightPriceCount} опубликованных EUR-цен:
-              1-Step, 2-Step Bright и 2-Step Classic. Поле phases равно 1, 2 и 2 — ни один продукт не равен 0.
+              {brightEvaluationOnly ? (
+                <><strong>Не включаем Bright Funded в таблицу фазы 0.</strong>{' '}
+                  Снимок от {brightOldestCapture}: оценочных программ — {brightProducts.length}; опубликованных EUR-цен — {brightPriceCount}. Ни у одной нет подтверждённой фазы 0.</>
+              ) : brightPhaseZero.length > 0 ? (
+                <><strong>Программы без оценки включены в таблицу выше.</strong>{' '}
+                  По снимку от {brightOldestCapture} число таких программ — {brightPhaseZero.length}; остальные модели проверяйте отдельно.</>
+              ) : (
+                <><strong>Нужна повторная проверка Bright Funded.</strong>{' '}
+                  Последний продуктовый снимок от {brightOldestCapture ?? 'неизвестной даты'} не подтверждает текущую линейку, число программ или цены. Сверьте этапы на сайте фирмы до оплаты.</>
+              )}
             </div>
+            {brightEvaluationOnly ? (
+              <p>
+                Проверенные программы требуют оценки. Сравните допустимую просадку, дату первой заявки на вознаграждение и KYC
+                в <Link href="/ru/obzor-bright-funded">обзоре BrightFunded</Link>, затем подтвердите условия выбранного заказа.
+              </p>
+            ) : null}
             <p>
-              Bright Funded подходит читателю, который готов пройти оценку ради выбора между 6%, 8% и 10% максимального убытка
-              в зависимости от программы. Первая заявка на вознаграждение записана через 30 дней; KYC проходит через SumSub,
-              затем команда риска выполняет проверку безопасности за 1–2 рабочих дня, до 4 дней в периоды пиковой нагрузки.
-            </p>
-            <p>
-              Эта карточка сохраняет нашу коммерческую цель без ложной категории: Bright остаётся одним из главных глобальных партнёров,
-              но кнопка ведёт к продукту с оценочным этапом. Если отсутствие оценки является обязательным фильтром, выбирайте между актуальными строками выше.
+              Переход к Bright Funded может принести нам комиссию. Партнёрский статус не подтверждает отсутствие оценки,
+              доступность продукта или право на покупку в вашей стране. Если отсутствие оценки обязательно, сверяйте только свежие строки таблицы выше.
             </p>
             <div className="ru-actions">
-              <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор Bright Funded</Link>
+              <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
               {brightFirm?.affiliateUrl ? (
                 <Link href="/go/bright-funded?from=ru-instant-bright-alternative" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить программы с оценкой <ArrowRight size={14} aria-hidden="true" />
+                  Проверить программы BrightFunded <ArrowRight size={14} aria-hidden="true" />
                 </Link>
               ) : null}
             </div>
@@ -544,7 +611,7 @@ export default function RussianInstantPropFirmsPage() {
               <li><strong>Зафиксируйте фазу 0.</strong> Убедитесь, что выбран точный продукт, а не одноимённая модель с оценкой.</li>
               <li><strong>Найдите точку нарушения.</strong> Запишите trailing, EOD-trailing или static и момент фиксации границы.</li>
               <li><strong>Рассчитайте риск позиции.</strong> Уложите худший сценарий сделки в дневной лимит, открытый риск и общий лимит убытка.</li>
-              <li><strong>Проверьте правило прибыли.</strong> Ограничение 15% или 20% может потребовать распределять прибыль между днями.</li>
+              <li><strong>Проверьте правило прибыли.</strong> Ограничение на долю одного прибыльного дня может потребовать распределять прибыль между днями.</li>
               <li><strong>Разберите выплату.</strong> Заявка по запросу, 14 дней и прибыльные дни — разные условия, а не скорость бренда.</li>
               <li><strong>Сверьте взнос.</strong> Базовая цена, опция, сброс, возврат и конвертация валюты считаются отдельно.</li>
               <li><strong>Подтвердите профиль.</strong> Гражданство, резидентство, KYC, платёжный адрес и способ выплаты должны совпадать.</li>
@@ -566,7 +633,7 @@ export default function RussianInstantPropFirmsPage() {
                 <strong>Проверка данных: Edris Derakhshi</strong>
                 <p>
                   Сопоставлены {products.length} продуктов фазы 0, {instantFirmCount} фирм, {instantPriceCount} опубликованных цен
-                  и первичные страницы каждого продукта. Партнёрский статус отделён от доступности: Bright Funded не получил метку «без оценки» без записи фазы 0.
+                  и первичные страницы каждого продукта. Партнёрский статус отделён от доступности: Bright Funded {brightPhaseZero.length > 0 ? 'получил строку фазы 0 только по свежей продуктовой записи.' : 'не получает метку «без оценки» без свежей записи фазы 0.'}
                 </p>
                 <Link href="/authors/edris-derakhshi">Редакционный профиль и методология →</Link>
               </div>
@@ -577,7 +644,7 @@ export default function RussianInstantPropFirmsPage() {
         <section className="ru-section" id="faq">
           <div className="ru-shell ru-content">
             <h2>Частые вопросы о проп-фирмах без челленджа</h2>
-            <RussianFaq items={faqs} />
+            <RussianFaq items={pageFaqs} />
           </div>
         </section>
       </article>

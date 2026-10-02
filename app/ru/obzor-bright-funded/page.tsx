@@ -81,14 +81,6 @@ const faqs: RussianFaqItem[] = [
     a: 'Минимальная цена определяется по свежим записям программ; она не включает платные дополнения.',
   },
   {
-    q: 'Bright Funded доступен русскоязычным трейдерам?',
-    a: 'Язык сам по себе не определяет доступ. В датированном списке запрещена новая регистрация для резидентов или граждан Кубы, Ирана, Северной Кореи, Сирии, Вьетнама и Пакистана. Для уже активных счетов трейдеров из Пакистана отдельно разрешено продолжение торговли. Отсутствие другой страны в списке не заменяет индивидуальную проверку до оплаты.',
-  },
-  {
-    q: 'Можно ли зарегистрироваться, проживая в России?',
-    a: `Россия не названа в списке шести стран, проверенном ${brightEvidence.sources.countries.sourceCapturedAt}, но это не индивидуальное разрешение. До оплаты запросите письменное подтверждение поддержки для своего гражданства, резидентства, способа оплаты и будущего метода выплаты; VPN и неверные данные использовать нельзя.`,
-  },
-  {
     q: 'У Bright Funded начальная доля трейдера 90%?',
     a: 'В датированной справке базовая доля составляет 80%. Доля 90% подключается как платное дополнение, а 100% относится к программе увеличения счёта и не является стартовым условием нового счёта после оценки.',
   },
@@ -132,6 +124,21 @@ export default function RussianBrightFundedReviewPage() {
   const hasFreshEvidence = products.length > 0 && freshProducts.length === products.length
     && evidenceSources.every(freshSource)
     && freshProducts.every(product => product.accountSizes.some(tier => tier.priceEur != null && Number.isFinite(tier.priceEur) && tier.priceEur > 0))
+  const countrySourcesCurrent = [brightEvidence.sources.countries, brightEvidence.sources.countryTerms].every(freshSource)
+  const countryFaqs: RussianFaqItem[] = [
+    {
+      q: 'BrightFunded доступен русскоязычным трейдерам?',
+      a: countrySourcesCurrent
+        ? `Язык сам по себе не определяет доступ. Справка, проверенная ${brightEvidence.sources.countries.sourceCapturedAt}, перечисляет шесть ограниченных стран, включая Пакистан; для уже активных пакистанских счетов указано исключение. Условия от ${brightEvidence.sources.countryTerms.sourceCapturedAt} называют пять стран без Пакистана и допускают дополнительные ограничения. Россия не названа в обоих списках, но это не подтверждает доступ конкретного трейдера: до оплаты проверьте гражданство, резидентство, местонахождение, KYC и способы платежа и выплаты.`
+        : 'Страновые источники требуют повторной проверки. В прежнем снимке справка и условия расходились по Пакистану; отсутствие России в тех списках не подтверждает доступ сегодня. До оплаты подтвердите гражданство, резидентство, фактическое местонахождение, KYC, оплату и выплату у фирмы.',
+    },
+    {
+      q: 'Можно ли зарегистрироваться, проживая в России?',
+      a: countrySourcesCurrent
+        ? `Россия не названа в списке шести стран, проверенном ${brightEvidence.sources.countries.sourceCapturedAt}, но это не индивидуальное разрешение. Справка включает Пакистан, а условия от ${brightEvidence.sources.countryTerms.sourceCapturedAt} перечисляют пять стран без Пакистана и допускают дополнительные ограничения. До оплаты запросите письменное подтверждение для своего гражданства, резидентства, фактического местонахождения, способа оплаты и выплаты; VPN и неверные данные использовать нельзя.`
+        : 'Доступ для проживающего в России не подтверждён. Страновые источники требуют повторной проверки, а отсутствие России в прошлых списках не является разрешением сегодня. Запросите письменный ответ поддержки для своего профиля и способа выплаты; VPN и неверные данные использовать нельзя.',
+    },
+  ]
   const hasFreshTrustpilot = freshSource({ sourceCapturedAt: firm?.trustpilotCapturedAt ?? '' })
   const fundedNextProducts = getChallengesByFirm('fundednext').filter(product => isChallengeFresh(product))
   const fundedNextPricedTierCount = fundedNextProducts.reduce((count, product) =>
@@ -149,11 +156,13 @@ export default function RussianBrightFundedReviewPage() {
   const maxPrice = pricedTiers.length ? Math.max(...pricedTiers.map(item => item.price)) : null
   const lowestTier = [...pricedTiers].sort((a, b) => a.price - b.price)[0]
   const pageFaqs: RussianFaqItem[] = [
-    ...faqs.map((faq, index) => index === 0 ? {
-      q: faq.q,
+    {
+      q: faqs[0].q,
       a: lowestTier ? `В текущей выборке минимальная базовая цена — ${eur(lowestTier.price)}: ${lowestTier.product.productName}, счёт $${lowestTier.tier.sizeUsd.toLocaleString('en-US')}. Дата проверки — ${lowestTier.product.sourceCapturedAt}. Это стоимость участия до платных дополнений; более низкая цена не означает меньший риск нарушения правил.`
         : 'В текущей выборке нет свежих подтверждённых цен, поэтому самая дешёвая программа не названа. Проверьте стоимость и условия на странице фирмы; датированный разбор ниже не заменяет текущую цену.',
-    } : faq),
+    },
+    ...countryFaqs,
+    ...faqs.slice(1),
     ...(firm?.trustpilotRatingSuppressed ? [{
       q: 'Почему у Bright Funded нет средней оценки Trustpilot?',
       a: `При проверке от ${firm.trustpilotCapturedAt ?? 'неуказанной даты'} средняя оценка была скрыта после отметки Trustpilot о нарушении правил платформы. Скрытая оценка не равна 0/5 и не означает, что профиль не проверяли. Этот статус сам по себе не подтверждает выплату, прохождение KYC или условия конкретного счёта.`,
@@ -163,7 +172,7 @@ export default function RussianBrightFundedReviewPage() {
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
     { name: 'Лучшие проп-фирмы', url: '/ru/luchshie-prop-firmy' },
-    { name: 'Обзор Bright Funded' },
+    { name: 'Обзор BrightFunded' },
   ])
   const faq = faqPageSchema(hasFreshTrustpilot ? pageFaqs : pageFaqs.filter(item => item.q !== 'Почему у Bright Funded нет средней оценки Trustpilot?'))
   const article = {
@@ -193,7 +202,7 @@ export default function RussianBrightFundedReviewPage() {
       <section className="ru-hero">
         <div className="ru-shell"><RussianDataFreshnessNotice firmSlugs={['bright-funded']} /><RussianEvidenceFreshnessNotice evidence={evidenceSources.map(source => ({ label: source.labelRu, capturedAt: source.sourceCapturedAt }))} /></div>
         <div className="ru-shell" data-russian-partner-review="bright-funded">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / Bright Funded</div>
+          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / BrightFunded</div>
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {latestCapture}</div>
           <h1>{TITLE}</h1>
           <p className="ru-lead">Bright Funded (на официальном сайте — BrightFunded) указывает стоимость участия в евро, а размер симулированного счёта — в долларах. Разбираем различия программ оценки: когда граница убытка остаётся фиксированной, когда движется за прибылью и какие условия нужно выполнить до запроса выплаты.</p>
@@ -213,7 +222,7 @@ export default function RussianBrightFundedReviewPage() {
       <article className="ru-review-article" data-russian-bright-article="long-form">
         <section className="ru-section ru-review-toc-section">
           <div className="ru-shell">
-            <nav className="toc ru-review-toc" aria-label="Содержание обзора Bright Funded">
+            <nav className="toc ru-review-toc" aria-label="Содержание обзора BrightFunded">
               <div className="toc-title">Содержание обзора</div>
               <ol>
                 <li><a href="#verdict">Краткий вывод</a></li>
@@ -242,7 +251,14 @@ export default function RussianBrightFundedReviewPage() {
             <p><strong>Для счёта $100K сравнивайте одинаковый размер.</strong> Проверенная цена 1-Step: {eur(oneStep100k?.priceEur)}; 2-Step Bright: {eur(bright100k?.priceEur)}; Classic: {eur(classic100k?.priceEur)}. Если одна из цен не подтверждена, нельзя вычислять «экономию», считая её равной нулю. Размер $100K обозначает номинал симулированного счёта, а не сумму, которую вам переводят.</p>
             <p>Для русскоязычного читателя Bright Funded — глобальная фирма с оплатой в EUR. Решение для гражданина или резидента любой страны начинается с ограничений, проверки личности и доступного способа выплаты. Русская версия обзора не означает, что фирма обслуживает всех русскоязычных пользователей.</p>
             <div className="ru-notice" data-russian-bright-summary-cta="qualified-country-first">
-              <strong>Что проверить до оплаты.</strong> Сопоставьте 4 условия: гражданство, страну проживания, способ оплаты и способ получения выплаты. Отсутствие страны в опубликованном запрете не заменяет проверку документов конкретного трейдера.
+              <strong>Что проверить до оплаты.</strong> Сопоставьте 5 условий: гражданство, страну проживания, фактическое местонахождение, способ оплаты и способ получения выплаты. Отсутствие страны в опубликованных списках не заменяет проверку документов конкретного трейдера.
+              <p className="ru-source-line" data-russian-bright-summary-country-status={countrySourcesCurrent ? 'dated' : 'recapture-required'}>
+                <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="noopener noreferrer">Справка BrightFunded</a> от {brightEvidence.sources.countries.sourceCapturedAt} включает Пакистан;{' '}
+                <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="noopener noreferrer">условия</a> от {brightEvidence.sources.countryTerms.sourceCapturedAt} его не называют.{' '}
+                {countrySourcesCurrent
+                  ? 'Россия не названа в обоих списках, но условия допускают дополнительные ограничения. Уточните доступ своего профиля до оплаты.'
+                  : 'Эти страновые источники требуют повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня.'}
+              </p>
             </div>
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="bright-funded-summary">
               <strong>Партнёрские ссылки.</strong> Если вы перейдёте к Bright Funded и зарегистрируетесь, мы можем получить комиссию. Партнёрство не меняет расчёты, порядок сравнения или необходимость проверить доступ из своей страны до оплаты.
@@ -250,7 +266,7 @@ export default function RussianBrightFundedReviewPage() {
             {firm?.affiliateUrl ? (
               <div className="ru-actions">
                 <Link href="/go/bright-funded?from=ru-bright-funded-review-summary" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
-                  Проверить страну и планы Bright Funded <ArrowRight size={15} aria-hidden="true" />
+                  Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" />
                 </Link>
                 <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сначала сравнить с FundedNext</Link>
               </div>
@@ -264,7 +280,7 @@ export default function RussianBrightFundedReviewPage() {
               className="ru-shell ru-content"
               data-russian-bright-reviews="suppressed-not-zero"
             >
-              <h2 id="reviews">Отзывы о Bright Funded: почему мы не показываем среднюю оценку</h2>
+              <h2 id="reviews">Отзывы о BrightFunded: почему мы не показываем среднюю оценку</h2>
               {!hasFreshTrustpilot && <p className="ru-notice">Наблюдение Trustpilot требует повторной проверки. Ниже сохранён статус на указанную дату, не подтверждение текущего состояния профиля.</p>}
               <p>
                 При проверке профиля Trustpilot от {firm.trustpilotCapturedAt ?? 'неуказанной даты'} средняя оценка Bright Funded была скрыта после отметки
@@ -301,11 +317,24 @@ export default function RussianBrightFundedReviewPage() {
         <section className="ru-section">
           <div className="ru-shell ru-content">
             <h2 id="access">Доступ для России и русскоязычных трейдеров за рубежом</h2>
-            <div className="ru-notice" data-russian-bright-country-access="published-list">
-              <strong><AlertTriangle size={16} aria-hidden="true" /> Россия не названа в опубликованном списке, но это не персональная гарантия.</strong>{' '}
-              В справке, проверенной {brightEvidence.sources.countries.sourceCapturedAt}, запрет новой покупки и регистрации относится к гражданам или резидентам Кубы, Ирана, Северной Кореи, Сирии, Вьетнама и Пакистана. Для уже активных счетов трейдеров из Пакистана указано исключение: торговлю можно продолжать. Это не разрешение новой регистрации.
+            <div className="ru-notice" data-russian-bright-country-access={countrySourcesCurrent ? 'published-list' : 'historical-list'} data-russian-bright-country-source-status={countrySourcesCurrent ? 'dated' : 'recapture-required'}>
+              <strong><AlertTriangle size={16} aria-hidden="true" /> {countrySourcesCurrent
+                ? 'Россия не названа в опубликованном списке, но это не персональная гарантия.'
+                : 'Прежний список не подтверждает доступ из России сегодня.'}</strong>{' '}
+              {countrySourcesCurrent
+                ? `В справке, проверенной ${brightEvidence.sources.countries.sourceCapturedAt}, запрет новой покупки и регистрации относится к гражданам или резидентам Кубы, Ирана, Северной Кореи, Сирии, Вьетнама и Пакистана. Для уже активных счетов трейдеров из Пакистана указано исключение: торговлю можно продолжать. Это не разрешение новой регистрации.`
+                : `Набор страновых источников (справка: ${brightEvidence.sources.countries.sourceCapturedAt || 'дата не указана'}; условия: ${brightEvidence.sources.countryTerms.sourceCapturedAt || 'дата не указана'}) требует повторной проверки. Старый список стран и исключение для уже активных счетов не разрешают новую регистрацию; запросите ответ фирмы для своего профиля до оплаты.`}
             </div>
-            <p>Для русскоязычного трейдера в ЕС, Великобритании, Казахстане, ОАЭ, Израиле, Северной Америке или другой стране важен фактический профиль, а не язык. Перед оплатой уточните ограничения по гражданству и месту проживания, используйте собственные данные и подтвердите способ получения выплаты. Отсутствие страны в списке не гарантирует, что банк, санкционная проверка или KYC одобрит конкретного трейдера.</p>
+            <div className="ru-notice" data-russian-bright-country-conflict="help-six-terms-five">
+              <strong>{countrySourcesCurrent ? 'Два официальных списка расходятся.' : 'В датированном снимке два официальных списка расходились.'}</strong>{' '}
+              {countrySourcesCurrent ? 'По проверке' : 'В записи'} от {brightEvidence.sources.countries.sourceCapturedAt || 'неуказанной даты'}{' '}
+              <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="noopener noreferrer">справка</a> включала Пакистан, а{' '}
+              <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="noopener noreferrer">условия BrightFunded</a> от {brightEvidence.sources.countryTerms.sourceCapturedAt || 'неуказанной даты'} называли пять стран без Пакистана.{' '}
+              {countrySourcesCurrent
+                ? 'Россия не названа ни там, ни там, но условия допускают дополнительные ограничения и учитывают фактическое местонахождение. До оплаты получите ответ поддержки для своего профиля; это расхождение не подтверждает доступ.'
+                : 'Списки требуют повторной проверки; прежнее отсутствие России в них не подтверждает доступ сегодня. До оплаты получите ответ поддержки для своего профиля.'}
+            </div>
+            <p>Для русскоязычного трейдера в ЕС, Великобритании, Казахстане, ОАЭ, Израиле, Северной Америке или другой стране важен фактический профиль, а не язык. Перед оплатой уточните ограничения по гражданству, месту проживания и фактическому местонахождению, используйте собственные данные и подтвердите способ получения выплаты. Отсутствие страны в списке не гарантирует, что банк, санкционная проверка или KYC одобрит конкретного трейдера.</p>
             <p><a href={COUNTRIES_URL} target="_blank" rel="noopener noreferrer">Открыть официальный список ограниченных стран</a>. Не используйте VPN, прокси, чужую карту или неверный адрес для обхода ограничений. Подтверждение должно относиться к вашим настоящим документам и обстоятельствам.</p>
           </div>
         </section>
@@ -313,10 +342,10 @@ export default function RussianBrightFundedReviewPage() {
         <section className="ru-section">
           <div className="ru-shell">
             <div className="ru-content">
-              <h2 id="plans">Сравнение программ Bright Funded</h2>
+              <h2 id="plans">Сравнение программ BrightFunded</h2>
               <p>В таблице цена относится к счёту $100K: так можно сравнить правила на одинаковом размере. Статическая просадка считается от первоначального баланса; трейлинг следует за достигнутым максимумом. Это различие важнее одного лишь числа этапов.</p>
             </div>
-            <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Сравнение программ Bright Funded — таблицу можно прокрутить">
+            <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Сравнение программ BrightFunded — таблицу можно прокрутить">
               <table className="ru-table" data-russian-bright-plan-matrix="three-products">
                 <thead><tr><th>Программа</th><th>Цена $100K</th><th>Фазы / цели</th><th>Дневной лимит</th><th>Макс. убыток</th><th>Тип</th><th>Мин. дни</th><th>Базовый сплит</th></tr></thead>
                 <tbody>
@@ -351,7 +380,7 @@ export default function RussianBrightFundedReviewPage() {
               <div className="ru-notice" data-russian-bright-offer-handoff="qualified-status"><strong>Акционная цена не равна базовой.</strong> В таблице сохранены цены без временных скидок. <Link href={offerStatusHref}>Проверьте статус рекламируемого кода</Link>, затем сверьте окончательную сумму, платформу и выбранные дополнения на странице оплаты. Код, опубликованный фирмой, не считается проверенной скидкой до подтверждения итоговой суммы.</div>
               {!pricedTiers.length && <p className="ru-notice" data-russian-bright-empty="recapture-required">Свежих подтверждённых цен сейчас нет. Датированный разбор правил ниже сохранён, но не подтверждает текущую стоимость. <Link href="/ru/luchshie-prop-firmy#podbor">Открыть подбор с датами источников →</Link></p>}
             </div>
-            <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Цены программ Bright Funded — таблицу можно прокрутить">
+            <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Цены программ BrightFunded — таблицу можно прокрутить">
               <table className="ru-table" data-russian-bright-price-count={pricedTiers.length}>
                 <thead><tr><th>Программа</th><th>Размер</th><th>Цена EUR</th><th>Цели</th><th>Лимиты</th><th>Дата</th></tr></thead>
                 <tbody>
@@ -378,7 +407,7 @@ export default function RussianBrightFundedReviewPage() {
               <p>По <Link href="/true-cost-of-prop-firm-challenges">единой методике расчёта расходов</Link> взнос делится на начальную долю трейдера, указанную в каждой строке. Получается порог валовой прибыли в EUR для компенсации одного взноса. Это расчёт при выполнении условий выплаты, а не прогноз дохода или обещание вернуть деньги.</p>
               <p>Отношение расходов к допустимому убытку здесь не рассчитывается: взнос выражен в EUR, а лимит — в USD. Без текущего курса их нельзя делить друг на друга. Повторная попытка, платные дополнения, конвертация банка и налоги в этот расчёт не входят.</p>
             </div>
-            <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Расчёт расходов Bright Funded — таблицу можно прокрутить">
+            <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Расчёт расходов BrightFunded — таблицу можно прокрутить">
               <table className="ru-table" data-russian-bright-truecost={pricedTiers.length}>
                 <thead><tr><th>Программа / счёт</th><th>Базовый взнос</th><th>Начальная доля трейдера</th><th>Прибыль для компенсации взноса</th></tr></thead>
                 <tbody>
@@ -441,7 +470,7 @@ export default function RussianBrightFundedReviewPage() {
 
         <section className="ru-section">
           <div className="ru-shell ru-content">
-            <h2 id="fit">Кому подходит и кому не подходит Bright Funded</h2>
+            <h2 id="fit">Кому подходит и кому не подходит BrightFunded</h2>
             <div className="ru-grid">
               <article className="ru-card"><CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Если нужна фиксированная граница</h3><p>Рассмотрите 2-Step Bright и Classic по датированным правилам статической просадки. Сопоставьте дневной лимит, общую границу и обе цели с собственной допустимой серией убытков.</p></article>
               <article className="ru-card"><CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Если позиции остаются открытыми</h3><p>Проверьте перенос на ночь и выходные, своп и исключение для тейк-профита после 48 часов. Отсутствие подтверждённого процента стабильности прибыли в наших данных не означает отсутствия такого правила.</p></article>
@@ -472,7 +501,7 @@ export default function RussianBrightFundedReviewPage() {
             {firm?.affiliateUrl ? (
               <div className="ru-actions">
                 <Link href="/go/bright-funded?from=ru-bright-funded-review-verdict" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
-                  Проверить страну и планы Bright Funded <ArrowRight size={15} aria-hidden="true" />
+                  Проверить страну и планы BrightFunded <ArrowRight size={15} aria-hidden="true" />
                 </Link>
                 <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить с FundedNext</Link>
                 <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Все глобальные фирмы</Link>
@@ -490,17 +519,17 @@ export default function RussianBrightFundedReviewPage() {
             data-russian-bright-comparison-products={comparisonProductCount}
             data-russian-bright-comparison-prices={comparisonPriceCount}
           >
-            <h2 id="alternatives">С чем сравнить Bright Funded</h2>
+            <h2 id="alternatives">С чем сравнить BrightFunded</h2>
             <p>Сравнивайте альтернативы по тому условию, которое вам не подходит: просадке, сроку выплаты, проверке документов или валюте оплаты. Следующие 5 материалов помогают разобрать эти различия до регистрации.</p>
             <ul className="ru-review-related-links">
-              <li><Link href="/ru/fundednext-vs-bright-funded">Bright Funded или FundedNext</Link> — сравнение {comparisonProductCount} программ и {comparisonPriceCount} цен в USD/EUR: просадка, окупаемость взноса, выплаты и ограничения по стране.</li>
+              <li><Link href="/ru/fundednext-vs-bright-funded">BrightFunded или FundedNext</Link> — сравнение {comparisonProductCount} программ и {comparisonPriceCount} цен в USD/EUR: просадка, окупаемость взноса, выплаты и ограничения по стране.</li>
               <li><Link href="/ru/obzor-fundednext">Обзор FundedNext</Link> — другая конфигурация цены, просадки и условий запроса выплаты. Число программ со свежими данными: {fundedNextProducts.length}; цен в USD: {fundedNextPricedTierCount}.</li>
               <li><Link href="/ru/vyplaty-prop-firm">Сравнение выплат проп-фирм</Link> — способы получения денег, календарь запросов и комиссии банка или сети.</li>
               <li><Link href="/ru/prop-firmy-bez-kyc">Проверка KYC и страны</Link> — гражданство, резидентство, документы и имя владельца платежа; отсутствие страны в запрете не равно персональному одобрению.</li>
               <li><Link href={getRussianReviewFinderHref('bright-funded')} data-russian-review-finder="bright-funded">Подбор и сравнение программ</Link> — начните с двухэтапных вариантов, затем измените размер счёта, бюджет и число этапов под свой торговый план.</li>
             </ul>
 
-            <div className="ru-review-author" aria-label="Автор обзора Bright Funded">
+            <div className="ru-review-author" aria-label="Автор обзора BrightFunded">
               <div className="ru-review-author-avatar" aria-hidden="true">ED</div>
               <div>
                 <strong>Автор: Edris Derakhshi</strong>

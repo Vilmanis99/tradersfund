@@ -72,7 +72,7 @@
       "firmName": "FXIFY",
       "status": "product-capture-needed",
       "sourceUrl": "https://fxify.com/faqs/all-faqs/crypto-accounts/which-accounts-can-i-trade-crypto-on/",
-      "sourceCapturedAt": "2026-08-17",
+      "sourceCapturedAt": "2026-10-01",
       "evidence": "FXIFY publishes a One Phase Crypto Challenge and an Instant Funding Crypto Account; its current structured rows are explicitly FOREX products.",
       "nextStep": "Capture both named crypto-only products as separate challenge records instead of applying FOREX prices or rules."
     },

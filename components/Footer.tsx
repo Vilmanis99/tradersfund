@@ -36,7 +36,7 @@ export default function Footer({
   const propFirmLinks = isRussian ? [
     { label: 'Рейтинг проп-фирм 2026', href: '/ru/luchshie-prop-firmy' },
     { label: 'Для русскоязычных трейдеров', href: '/ru/dlya-russkoyazychnykh-treyderov' },
-    { label: 'FundedNext или Bright Funded', href: '/ru/fundednext-vs-bright-funded' },
+    { label: 'FundedNext или BrightFunded', href: '/ru/fundednext-vs-bright-funded' },
     { label: 'FundedNext Stellar Instant', href: '/ru/fundednext-stellar-instant' },
     { label: 'FundedNext MT5 и EA', href: '/ru/fundednext-mt5' },
     { label: 'Промокоды и предложения', href: '/ru/promokody-prop-firm' },
