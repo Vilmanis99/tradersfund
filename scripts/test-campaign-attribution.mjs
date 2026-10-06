@@ -4,6 +4,7 @@ import vm from 'node:vm'
 import ts from 'typescript'
 import { campaignAttribution, createCampaignAttributionTracker } from '../lib/analyticsTaxonomy.ts'
 import * as analyticsTaxonomy from '../lib/analyticsTaxonomy.ts'
+import * as aiReferral from '../lib/aiReferral.ts'
 
 const incoming = '?utm_source=%D0%AF%D0%BD%D0%B4%D0%B5%D0%BA%D1%81&utm_medium=cpc&utm_campaign=BrightFunded_%D0%9E%D1%81%D0%B5%D0%BD%D1%8C%202026&email=person%40example.com'
 const expected = {
@@ -51,6 +52,7 @@ vm.runInNewContext(compiled, {
   require: name => {
     if (name === '@vercel/analytics') return { track: (event, properties) => emitted.push({ event, properties }) }
     if (name === './analyticsTaxonomy') return analyticsTaxonomy
+    if (name === './aiReferral') return aiReferral
     throw new Error(`Unexpected client analytics import: ${name}`)
   },
 }, { filename: 'lib/clientAnalytics.ts' })

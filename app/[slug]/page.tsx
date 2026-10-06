@@ -1,5 +1,5 @@
 import { getPageBySlug, getAllPages } from '@/lib/mdx'
-import { breadcrumbSchema, jsonLd } from '@/lib/schema'
+import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -7,6 +7,9 @@ import { ArrowRight, Clock } from 'lucide-react'
 import ContactForm from '@/components/ContactForm'
 import { isContactDeliveryConfigured } from '@/lib/brevo'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { extractArticleFaq, prepareArticleContent } from '@/lib/articleContent'
+import TableOfContents from '@/components/TableOfContents'
+import { getAuthorByName } from '@/lib/authors'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -86,12 +89,14 @@ function articleSchema({
   slug,
   date,
   modified,
+  author,
 }: {
   title: string
   description: string
   slug: string
   date?: string
   modified?: string
+  author?: string
 }) {
   const url = `https://tradersfundhub.com/${slug}`
   return {
@@ -101,9 +106,11 @@ function articleSchema({
     description,
     url,
     mainEntityOfPage: url,
+    ...(author ? { author: authorSchema(author) } : {}),
     ...(date ? { datePublished: date, dateModified: modified || date } : {}),
     publisher: {
       '@type': 'Organization',
+      '@id': 'https://tradersfundhub.com/#organization',
       name: 'Traders Fund Hub',
       url: 'https://tradersfundhub.com',
     },
@@ -180,12 +187,18 @@ export default async function DynamicPage({ params }: Props) {
     slug,
     date: page.date,
     modified: page.modified,
+    author: page.author,
   })
+  const isCostGuide = slug === 'true-cost-of-prop-firm-challenges'
+  const prepared = isCostGuide ? prepareArticleContent(page.content) : null
+  const faqs = isCostGuide ? extractArticleFaq(page.content, 'Common cost questions') : []
+  const author = page.author ? getAuthorByName(page.author) : undefined
 
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbsLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(articleLd) }} />
+      {faqs.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       {/* ═══════════════════════════════ HERO ═══════════════════════════════ */}
       <section className="blog-hero">
@@ -206,6 +219,7 @@ export default async function DynamicPage({ params }: Props) {
           {page.description && (
             <p className="blog-hero-sub">{page.description}</p>
           )}
+          {page.author && <p className="guide-byline">By {author ? <Link href={`/authors/${author.slug}`}>{page.author}</Link> : page.author} · <Link href="/methodology">Editorial methodology</Link></p>}
         </div>
       </section>
 
@@ -213,8 +227,9 @@ export default async function DynamicPage({ params }: Props) {
       <section className="home-section" style={{ paddingTop: '2.5rem' }}>
         <div style={{ maxWidth: isLegalPage ? 720 : 920, margin: '0 auto', padding: '0 1.5rem' }}>
           <article>
+            {prepared && <TableOfContents headings={prepared.headings} />}
             <div className="prose" style={{ maxWidth: '100%' }}
-              dangerouslySetInnerHTML={{ __html: page.content }} />
+              dangerouslySetInnerHTML={{ __html: prepared?.html ?? page.content }} />
           </article>
         </div>
       </section>

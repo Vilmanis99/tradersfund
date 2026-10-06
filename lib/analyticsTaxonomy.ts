@@ -225,8 +225,10 @@ export function russianFunnelTransition(
 export function goClickEventName(
   firmSlug: string,
   outboundRelationships: Readonly<Record<string, OutboundRelationship>>,
+  isSourceLink = false,
 ) {
   const relationship = outboundRelationships[firmSlug]
+  if (isSourceLink && (relationship === 'affiliate' || relationship === 'official')) return 'source_click'
   if (relationship === 'affiliate') return 'affiliate_click'
   if (relationship === 'official') return 'official_site_click'
   return null

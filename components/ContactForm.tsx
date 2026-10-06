@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { trackSiteEvent as track } from '@/lib/clientAnalytics'
+import { contactFieldErrors } from '@/lib/formValidation'
 
 type Status = 'idle' | 'sending' | 'pending' | 'error'
 
@@ -11,10 +12,24 @@ export default function ContactForm() {
   const [company, setCompany] = useState('') // honeypot
   const [status, setStatus] = useState<Status>('idle')
   const [feedback, setFeedback] = useState('')
+  const [errors, setErrors] = useState<ReturnType<typeof contactFieldErrors>>({})
+  function clearFieldError(field: keyof typeof errors) {
+    setErrors(current => ({ ...current, [field]: undefined }))
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (status === 'sending') return
+
+    const nextErrors = contactFieldErrors(name, email, message)
+    setErrors(nextErrors)
+    const firstError = Object.keys(nextErrors)[0]
+    if (firstError) {
+      setFeedback('')
+      const field = e.currentTarget.elements.namedItem(firstError)
+      if (field instanceof HTMLElement) requestAnimationFrame(() => field.focus())
+      return
+    }
 
     setStatus('sending')
     setFeedback('')
@@ -80,10 +95,14 @@ export default function ContactForm() {
           type="text"
           placeholder="Your name"
           value={name}
-          onChange={e => setName(e.target.value)}
+          onChange={e => { setName(e.target.value); clearFieldError('name') }}
+          autoComplete="name"
+          aria-invalid={Boolean(errors.name)}
+          aria-describedby={errors.name ? 'contact-name-error' : undefined}
           disabled={status === 'sending'}
           required
         />
+        {errors.name && <p id="contact-name-error" className="form-field-error">{errors.name}</p>}
       </div>
       <div>
         <label htmlFor="contact-email">Email</label>
@@ -93,10 +112,14 @@ export default function ContactForm() {
           type="email"
           placeholder="your@email.com"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={e => { setEmail(e.target.value); clearFieldError('email') }}
+          autoComplete="email"
+          aria-invalid={Boolean(errors.email)}
+          aria-describedby={errors.email ? 'contact-email-error' : undefined}
           disabled={status === 'sending'}
           required
         />
+        {errors.email && <p id="contact-email-error" className="form-field-error">{errors.email}</p>}
       </div>
       <div>
         <label htmlFor="contact-message">Message</label>
@@ -105,10 +128,13 @@ export default function ContactForm() {
           name="message"
           placeholder="How can we help you?"
           value={message}
-          onChange={e => setMessage(e.target.value)}
+          onChange={e => { setMessage(e.target.value); clearFieldError('message') }}
+          aria-invalid={Boolean(errors.message)}
+          aria-describedby={errors.message ? 'contact-message-error' : undefined}
           disabled={status === 'sending'}
           required
         />
+        {errors.message && <p id="contact-message-error" className="form-field-error">{errors.message}</p>}
       </div>
       <button
         type="submit"

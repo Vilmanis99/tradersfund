@@ -30,7 +30,8 @@ export function decoratePostOutboundLinks(
       /\bdata-affiliate-placement=(["'])([^"']+)\1/i,
     )?.[2]
     const campaign = postBodyCampaign(routeSlug, placement)
-    const rel = outboundRelationships[hrefMatch[3].toLowerCase()] === 'affiliate'
+    const isSourceLink = new URL(hrefMatch[2], 'https://tradersfundhub.com').searchParams.has('source')
+    const rel = !isSourceLink && outboundRelationships[hrefMatch[3].toLowerCase()] === 'affiliate'
       ? 'sponsored nofollow noopener'
       : 'nofollow noopener'
     const href = setCampaign(hrefMatch[2], campaign)

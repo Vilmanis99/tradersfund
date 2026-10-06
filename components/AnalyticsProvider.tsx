@@ -282,16 +282,17 @@ export default function AnalyticsProvider({
       if (destination.origin === window.location.origin && destination.pathname.startsWith('/go/')) {
         const firm = safeLabel(destination.pathname.split('/')[2])
         const placement = safeLabel(destination.searchParams.get('from'))
-        const eventName = goClickEventName(firm, outboundRelationships)
+        const isSourceLink = destination.searchParams.has('source')
+        const eventName = goClickEventName(firm, outboundRelationships, isSourceLink)
         if (!eventName) return
+        const properties = { firm, placement, ...(isSourceLink ? { source_product: safeLabel(destination.searchParams.get('source')) } : {}) }
         trackVercel(eventName, {
           ...campaign(),
-          firm,
-          placement,
+          ...properties,
           content_group: currentStage,
           locale: currentLocale,
         })
-        trackEvent(eventName, { firm, placement })
+        trackEvent(eventName, properties)
         return
       }
 

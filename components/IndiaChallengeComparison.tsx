@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -1108,15 +1108,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                     <article key={key} className="challenge-shortlist-card">
                       <div className="challenge-shortlist-card-head">
                         <div className="challenge-shortlist-firm">
-                          {firm.logo ? (
-                            <Image
-                              src={firm.logo}
-                              alt=""
-                              width={34}
-                              height={34}
-                              style={{ objectFit: 'contain' }}
-                            />
-                          ) : null}
+                          <FirmLogo name={firm.name} src={firm.logo} size={34} />
                           <div>
                             <span>{firm.name}</span>
                             <strong>{product.name}</strong>

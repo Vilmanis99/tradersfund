@@ -1,6 +1,6 @@
 import { getPostBySlug, getAllPostData, getAllPosts } from '@/lib/mdx'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
-import { postSchema, breadcrumbSchema, jsonLd } from '@/lib/schema'
+import { postSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -23,8 +23,10 @@ import TradingToolReviewCluster, {
 import { getTradingToolReviewLinks } from '@/lib/tradingToolReviews'
 import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
-import { prepareArticleContent } from '@/lib/articleContent'
+import { extractArticleFaq, prepareArticleContent } from '@/lib/articleContent'
 import { getAuthorByName } from '@/lib/authors'
+import { getChallengeWatchEntries } from '@/lib/challengeWatch'
+import ReviewProductSummary, { PRODUCT_SUMMARY_REVIEWS } from '@/components/ReviewProductSummary'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -99,6 +101,10 @@ export default async function BlogPostPage({ params }: Props) {
     : []
   const staleFirmProducts = firmProducts.filter(product => !isChallengeFresh(product))
   const oldestFirmCapture = firmProducts.map(product => product.sourceCapturedAt).sort()[0]
+  const hasProductSummary = PRODUCT_SUMMARY_REVIEWS.has(slug)
+  const watchEntries = hasProductSummary ? getChallengeWatchEntries() : []
+  const faqLd = hasProductSummary && firmProducts.length > 0 && staleFirmProducts.length === 0
+    ? faqPageSchema(extractArticleFaq(post.content)) : null
   const postLd = postSchema(post, firms)
   const crumbsLd = breadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -110,6 +116,7 @@ export default async function BlogPostPage({ params }: Props) {
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(postLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbsLd) }} />
+      {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqLd) }} />}
 
       {/* ═══════════════════════════════ ARTICLE HERO ═══════════════════════════════ */}
       <section className="post-hero">
@@ -175,8 +182,10 @@ export default async function BlogPostPage({ params }: Props) {
                 hasAffiliate={Boolean(matchedFirm.affiliateUrl)}
               />
             )}
-            {matchedFirm && <FirmCtaCard firm={matchedFirm} />}
-            {matchedFirm && <FirmStatPanel firm={matchedFirm} />}
+            {matchedFirm && <FirmCtaCard firm={matchedFirm} productSpecific={hasProductSummary} />}
+            {matchedFirm && (hasProductSummary
+              ? <ReviewProductSummary firm={matchedFirm} products={firmProducts} watchEntries={watchEntries} />
+              : <FirmStatPanel firm={matchedFirm} />)}
             <TradingToolReviewStatus post={post} />
 
             <TableOfContents headings={prepared.headings} />

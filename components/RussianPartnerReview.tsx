@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import Link from './SafeLink'
 import { AlertTriangle, ArrowRight, BadgeDollarSign, Database, ExternalLink } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -210,15 +210,7 @@ export default function RussianPartnerReview({
           {firm ? (
             <aside className="ru-review-firm-card" aria-label={`Краткая карточка ${firmName}`}>
               <div className="ru-review-firm-brand">
-                {firm.logo ? (
-                  <Image
-                    src={firm.logo}
-                    alt={`Логотип ${firmName}`}
-                    width={64}
-                    height={64}
-                    className="ru-review-firm-logo"
-                  />
-                ) : null}
+                <FirmLogo name={firmName} src={firm.logo} size={64} />
                 <div>
                   <div className="ru-review-firm-title-row">
                     <strong>{firmName}</strong>

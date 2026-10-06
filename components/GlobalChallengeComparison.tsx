@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -1104,15 +1104,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                     <article key={key} className="challenge-shortlist-card">
                       <div className="challenge-shortlist-card-head">
                         <div className="challenge-shortlist-firm">
-                          {firm.logo ? (
-                            <Image
-                              src={firm.logo}
-                              alt=""
-                              width={34}
-                              height={34}
-                              style={{ objectFit: 'contain' }}
-                            />
-                          ) : null}
+                          <FirmLogo name={firm.name} src={firm.logo} size={34} />
                           <div>
                             <span>{firm.name}</span>
                             <strong>{product.name}</strong>
@@ -1388,19 +1380,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 205 }}>
                         <span style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-                          {firm.logo ? (
-                            <Image
-                              src={firm.logo}
-                              alt=""
-                              width={30}
-                              height={30}
-                              style={{
-                                objectFit: 'contain',
-                                borderRadius: 7,
-                                border: '1px solid var(--border)',
-                              }}
-                            />
-                          ) : null}
+                          <FirmLogo name={firm.name} src={firm.logo} size={30} />
                           <span>
                             <strong style={{ display: 'block', color: 'var(--text)', fontSize: '1rem' }}>
                               {firm.name}

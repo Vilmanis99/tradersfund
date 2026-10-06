@@ -2,11 +2,17 @@
 
 import { track as trackVercel } from '@vercel/analytics'
 import { contentLocale, createCampaignAttributionTracker, journeyStage } from './analyticsTaxonomy'
+import { createAiReferralTracker } from './aiReferral'
 
 const rememberCampaignAttribution = createCampaignAttributionTracker()
+const rememberAiReferral = createAiReferralTracker()
 
 export function currentCampaignAttribution() {
-  return typeof window === 'undefined' ? {} : rememberCampaignAttribution(window.location.search)
+  if (typeof window === 'undefined') return {}
+  return {
+    ...rememberCampaignAttribution(window.location.search),
+    ...rememberAiReferral(typeof document === 'undefined' ? '' : document.referrer, window.location.search),
+  }
 }
 
 export const SITE_ANALYTICS_EVENT = 'tfh:site-analytics-event'

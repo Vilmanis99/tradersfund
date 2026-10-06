@@ -36,6 +36,8 @@ export interface PageMeta {
   description: string
   /** Optional search-result description; the visible deck remains `description`. */
   seoDescription?: string
+  /** Authored credit, only when supplied in the page frontmatter. */
+  author?: string
   type: 'page'
 }
 

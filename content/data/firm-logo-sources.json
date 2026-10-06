@@ -1,0 +1,52 @@
+{
+  "sourceCapturedAt": "2026-10-06",
+  "notes": "Brand assets downloaded unchanged from the firms' public pages or the CDN URLs those pages reference. This is an asset check only; it does not refresh prices, rules or platform evidence.",
+  "assets": [
+    {
+      "firmSlug": "crypto-fund-trader",
+      "localPath": "/images/firms/crypto-fund-trader.png",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "assetUrl": "https://cryptofundtrader.com/wp-content/uploads/2025/08/cropped-fav-icon-512x512-3-192x192.png"
+    },
+    {
+      "firmSlug": "topstep",
+      "localPath": "/images/firms/topstep.png",
+      "sourceUrl": "https://www.topstep.com/",
+      "assetUrl": "https://cdn.prod.website-files.com/69e902b0a74d3d99a517f56d/6aaae8164b0265ed7d5b3621_Topstep-Favicon.png"
+    },
+    {
+      "firmSlug": "city-traders-imperium",
+      "localPath": "/images/firms/city-traders-imperium.png",
+      "sourceUrl": "https://citytradersimperium.com/",
+      "assetUrl": "https://b4647544.assetcdn.net/2.0/4647544/wp-content/uploads/2020/03/City-Traders-Imperium-Logo-3-300x300.png?lossy=0&strip=1&webp=1"
+    },
+    {
+      "firmSlug": "take-profit-trader",
+      "localPath": "/images/firms/take-profit-trader.svg",
+      "sourceUrl": "https://takeprofittrader.com/",
+      "assetUrl": "https://takeprofittrader.com/assets/logo-dark.svg"
+    },
+    {
+      "firmSlug": "tradeday",
+      "localPath": "/images/firms/tradeday.png",
+      "sourceUrl": "https://www.tradeday.com/",
+      "assetUrl": "https://cdn.prod.website-files.com/696509b94e1d014f63369766/6a1bd7799220b415e43bd155_Asset%2072.png"
+    },
+    {
+      "firmSlug": "lucid-trading",
+      "localPath": "/images/firms/lucid-trading.png",
+      "sourceUrl": "https://support.lucidtrading.com/en/",
+      "assetUrl": "https://downloads.intercomcdn.com/i/o/xf3kis05/735242/e8d62b9c8297831d2696c785be94/bd10fe5d4189ae59e8918e69c7ace7ee.png"
+    },
+    {
+      "firmSlug": "tradeify",
+      "localPath": "/images/firms/tradeify.png",
+      "sourceUrl": "https://tradeify.co/",
+      "assetUrl": "https://cdn.prod.website-files.com/679b064a680c614548672a06/6a846285e316b302197e16d4_icon.png"
+    }
+  ],
+  "unresolved": [
+    { "firmSlug": "apex-trader-funding", "sourceUrl": "https://apextraderfunding.com/", "notes": "Official site and help center returned HTTP 403; browser also blocked access. Keep the initials fallback until a real asset is verified." },
+    { "firmSlug": "the-funded-trader", "sourceUrl": "https://www.thefundedtraderprogram.com/", "notes": "Official site and dashboard returned HTTP 402; help center returned HTTP 403. Keep the initials fallback until a real asset is verified." }
+  ]
+}

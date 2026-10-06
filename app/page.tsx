@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import FirmLogo from '@/components/FirmLogo'
 import type { Metadata } from 'next'
 import { getAllFirms, getAllChallenges, isChallengeFresh } from '@/lib/firms'
 import { organizationSchema, websiteSchema, jsonLd } from '@/lib/schema'
@@ -138,7 +138,7 @@ export default function Home() {
               {partners.map(partner => (
                 <article key={partner.slug} className="home-partner" data-english-home-partner={partner.slug} data-source-status={partner.fresh ? 'fresh' : 'recapture-required'}>
                   <div className="home-partner-brand">
-                    {partner.firm.logo && <Image src={partner.firm.logo} alt="" width={48} height={48} className="home-partner-logo" />}
+                    <FirmLogo name={partner.firm.name} src={partner.firm.logo} size={48} />
                     <h3>{partner.firm.name}</h3>
                   </div>
                   <p>

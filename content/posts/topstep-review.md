@@ -3,7 +3,7 @@ title: "Topstep Review 2026: A Monthly Subscription With Two Locked Pricing Path
 seoTitle: "Topstep Review 2026: Pricing Paths & Payout Rules"
 slug: "topstep-review"
 date: "2025-08-01 14:52:15"
-modified: "2026-09-08 22:30:00"
+modified: "2026-10-06"
 author: "Tara Mohseni"
 excerpt: "Topstep's evaluation rebills every month and you choose a pricing path you cannot change. We work out which path wins, at how many months, and why."
 seoDescription: "Topstep review comparing its two locked monthly pricing paths, rebilling, drawdown, activation costs, payout rules, and when each route costs less."
@@ -24,7 +24,7 @@ type: "post"
     <li>Profit target 6% of buying power — $3,000 / $6,000 / $9,000 at $50K / $100K / $150K.</li>
     <li>Maximum Loss Limit $2,000 / $3,000 / $4,500 — end-of-day trailing, monitored intraday, and it locks permanently once it reaches your starting balance.</li>
     <li>There is no mandatory daily loss limit. The $1,000 / $2,000 / $3,000 figures are an opt-in feature that buys a monthly discount and doubles payout caps.</li>
-    <li>The Combine's best-day target is 50%; the published minimum-day descriptions conflict. We leave the minimum unverified, not zero.</li>
+    <li>The Combine's best-day target is 55%, rechecked on 2026-10-06; the published minimum-day descriptions conflict. We leave the minimum unverified, not zero.</li>
     <li>90/10 split, on-demand payouts, $125 minimum, 50% of account balance per request.</li>
     <li>Topstep reports that 16.8% of Combines initiated in 2025 were completed. This historical cohort is not a forecast of your results.</li>
     <li>Trustpilot 3.6 from 14,478 reviews was captured on 2026-07-27; it has not been rechecked in this update.</li>
@@ -52,7 +52,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>Topstep's 2026-09-08 capture covers the Trading Combine at three sizes on <strong>two pricing paths</strong>. Base monthly fees and activation charges differ; the captured target, loss, split and conditional automation rules do not. Your pricing path is locked at purchase. These are USD base prices before applicable tax, optional data and discounts.</p>
+<p>Topstep's 2026-10-06 core product capture covers the Trading Combine at three sizes on <strong>two pricing paths</strong>. All six base monthly fees and both activation fees match the September capture; the Combine consistency target is now 55%. Your pricing path is locked at purchase. These are USD base prices before applicable tax, optional data and discounts. This update does not refresh the historical 2025 cohort figures or the July Trustpilot snapshot.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
   <caption class="hidden-caption">Topstep Trading Combine products and tiers</caption>
@@ -77,7 +77,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Both paths and all six monthly prices were rechecked on <strong>2026-09-08 UTC</strong> using Topstep's pricing help article and product page. The dated capture also includes the loss-limit, payout, trading-hours and platform guides. The minimum-day conflict remains explicitly unresolved; a new price check does not resolve it or refresh the July Trustpilot figure. See our <a href="/prop-firm-challenge-changes">dated corrections and source links</a>, then confirm the applicable purchase terms on <a href="/go/topstep">Topstep's site</a>.</p>
+<p>Both paths and all six monthly prices were rechecked on <strong>2026-10-06</strong> using Topstep's pricing help article and product page. Core loss limits, payout conditions, trading hours and automation conditions were also rechecked. The minimum-day conflict remains explicitly unresolved; this does not refresh the separate September platform capture or July Trustpilot figure. See our <a href="/prop-firm-challenge-changes">dated corrections and source links</a>, then confirm the applicable purchase terms on <a href="/go/topstep">Topstep's site</a>.</p>
 
 <p><strong>U.S. eligibility.</strong> Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links Topstep’s current eligibility and payout policies and separates that policy support from CFTC or NFA registration. Verify citizenship, residency, KYC, tax-form and bank details before purchase.</p>
 
@@ -95,9 +95,9 @@ type: "post"
 
 <p><strong>There is no mandatory daily loss limit.</strong> This is the rule most competitor comparisons get wrong. The $1,000 / $2,000 / $3,000 daily figures on Topstep's product cards are an opt-in feature — the Responsible Trading Advantage. In Topstep's words: "Hit your limit and the platform won't allow any more trades until the next market open. It's not a rule break, it's just a safety net." Opting in buys a recurring monthly discount on the No Activation Fee Path and doubles your per-request payout caps, so it is closer to a pricing lever than a restriction.</p>
 
-<p><strong>Consistency target 50%.</strong> "Your best single day should stay below 50% of your Profit Target to avoid increasing your Consistency Target." On a $50K Combine that caps your best day at $1,500 of the $3,000 target. Do not confuse this with the 40% figure — that one applies to the Consistency payout option on a funded account, not to passing the Combine.</p>
+<p><strong>Consistency target 55%.</strong> The consistency guide, Combine parameters and marketing cards now publish 55%, replacing the 50% figure in our September capture. The guide says the best day must stay at or below 55%, with no buffer; exceeding it increases the required profit target. Its $50K example recommends staying below $1,650 against the initial $3,000 target. Additional profits in the same session also increase that best day, so they cannot resolve the excess. The funded XFA Consistency payout route remains a separate 40% test. October 6 is our observation date, not a verified effective date.</p>
 
-<p><strong>Minimum trading days: the sources still disagree.</strong> On 2026-09-08 the marketing FAQ described no minimum time requirement, while the Combine parameters article described passing in as few as two days. We leave the numeric minimum unverified in our comparisons. That is not permission to pass in one day: the 50% consistency objective still applies, and you should obtain clarification for your account before relying on a minimum-duration claim.</p>
+<p><strong>Minimum trading days: the sources still disagree.</strong> At the 2026-10-06 check the marketing FAQ described no minimum time requirement, while the Combine parameters article described passing in as few as two days. We leave the numeric minimum unverified in our comparisons. That is not permission to pass in one day: the 55% consistency objective still applies, and you should obtain clarification for your account before relying on a minimum-duration claim.</p>
 
 <p><strong>Session, news, automation.</strong> All positions must be closed by 3:10 PM CT or the product's market close, whichever comes first — no overnight, no weekend holding. There is no blanket news ban; the only news-related item on the prohibited list is "purposefully trading your full Maximum Position Size directly into a scheduled major news event." Automated strategies are allowed with conditions: "Topstep won't help set up or troubleshoot automated strategies, and no exceptions are made for errant trades or malfunctions." Trade copiers are allowed across Combine and Express Funded Accounts, but not Live Funded Accounts. Position size caps are 5 mini / 50 micro at $50K, 10 / 100 at $100K, 15 / 150 at $150K, with minis and micros counting at 10:1.</p>
 
@@ -151,16 +151,16 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p><strong>First request, not first money received.</strong> The payout policy checked on 2026-09-08 gives XFA Standard traders five winning trading days of at least $150. Subsequent requests also require positive net profit since the previous payout; the first request is exempt from that extra condition. XFA Consistency instead requires three trading days with at least one trade each and a best day no greater than 40% of total net profit. Those are funded-stage trading days, not three calendar days from buying a Combine.</p>
+<p><strong>First request, not first money received.</strong> The payout policy rechecked on 2026-10-06 gives XFA Standard traders five winning trading days of at least $150. Subsequent requests also require positive net profit since the previous payout; the first request is exempt from that extra condition. XFA Consistency instead requires three trading days with at least one trade each and a best day no greater than 40% of total net profit. Those are funded-stage trading days, not three calendar days from buying a Combine.</p>
 
 <p><strong>Request limits.</strong> The minimum is $125; eligible requests open during CME hours, Sunday 5 PM CT through Friday 5 PM CT excluding holidays. XFA requests are limited to 50% of balance and base Standard/Consistency caps of $2,000/$3,000 at $50K, $3,000/$4,000 at $100K and $5,000/$6,000 at $150K. The limited-time double-cap offer requires adding the Daily Loss Limit when purchasing a new Combine. Adding it only when activating or reactivating an XFA does not unlock those larger caps.</p>
 
 <p><strong>Split.</strong> 90/10, with one legacy carve-out: "Note for traders who joined the new Topstep dashboard before January 12, 2026: You receive 100% of your first $10,000 in lifetime profits."</p>
 
-<p><strong>Approval and transfer are separate.</strong> Our earlier statement that no settlement estimates were published is outdated. The policy checked on 2026-09-08 says internal approval can take 1–3 business days. Transfer estimates then depend on the payment method and bank, excluding weekends and holidays. No customer receipt or payout time was independently verified for this review.</p>
+<p><strong>Approval and transfer are separate.</strong> Our earlier statement that no settlement estimates were published is outdated. The policy rechecked on 2026-10-06 says internal approval can take 1–3 business days. Transfer estimates then depend on the payment method and bank, excluding weekends and holidays. No customer receipt or payout time was independently verified for this review.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-  <caption>Topstep payout methods — official policy checked 2026-09-08</caption>
+  <caption>Topstep payout methods — official policy checked 2026-10-06</caption>
   <thead><tr><th scope="col">Method</th><th scope="col">Availability</th><th scope="col">Transfer estimate</th><th scope="col">Topstep fee</th></tr></thead>
   <tbody>
     <tr><td>Prop-to-Brokerage</td><td>US only; eligible Topstep Brokerage account</td><td>Same day if requested before noon CT</td><td>$0</td></tr>
@@ -204,7 +204,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should pick Topstep</strong></h2>
 
-<p>An intraday futures trader on CME products who can be flat by 3:10 PM CT, has a strategy that produces $3,000 on $50K of buying power without any single day exceeding $1,500, and who has an honest estimate of how many months that will take. If the estimate is one or two months, buy the No Activation Fee Path and pay $95 rather than $198. If you are still building consistency and expect to rebill through a third and fourth month, buy the Standard Path — it costs $35 less by month four at $50K and pulls away by $46 every month after. At $150K with the Responsible Trading Discount, take the No Activation Fee Path regardless: same $199 monthly, no $149, doubled payout caps.</p>
+<p>An intraday futures trader on CME products who can be flat by 3:10 PM CT, has a strategy that produces $3,000 on $50K of buying power while respecting the current 55% best-day limit, and who has an honest estimate of how many months that will take. If the estimate is one or two months, the No Activation Fee Path costs $95 for the first month rather than Standard's $198 including activation. If you are still building consistency and expect to rebill through a third and fourth month, Standard costs $35 less by month four at $50K and pulls away by $46 every month after. At $150K with the Responsible Trading Discount, the No Activation Fee Path has the same $199 monthly rate without the $149 activation charge; discount and doubled payout-cap eligibility must be confirmed for the purchase.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid Topstep</strong></h2>
 
@@ -213,7 +213,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>Is the Topstep fee a one-off payment?</strong></h3>
-<p>No. "The subscription fee rebills monthly until you pass the Trading Combine or cancel the subscription." At $50K the Standard Path is $49 per month, so four months to pass costs $196 in subscriptions plus the $149 activation fee on passing.</p>
+<p>Topstep’s Trading Combine is a monthly subscription, not a one-off challenge fee. The $50K Standard Path costs $49 per month plus $149 activation after passing; the $50K No Activation Fee Path costs $95 per month with $0 activation, as captured on 2026-10-06. Further billing cycles increase the total, and the pricing path cannot be changed after purchase. The <a href="/true-cost-of-prop-firm-challenges">true-cost guide</a> separates monthly rates, first-cycle funded-cost floors and actual cash spent.</p>
 
 <h3 class="wp-block-heading"><strong>Which Topstep pricing path is cheaper?</strong></h3>
 <p>It depends entirely on how many months you take. The crossover is $149 divided by the monthly premium: 3.2 months at $50K, 3.0 at $100K, 5.0 at $150K. Pass fast and the No Activation Fee Path wins; rebill repeatedly and the Standard Path wins. The choice cannot be changed after purchase.</p>
@@ -228,7 +228,7 @@ type: "post"
 <p>It moves up with your end-of-day balance and never moves down, and it stops moving once it reaches your starting balance. On a $50K account with a $2,000 limit, that lock happens the day you close at $52,000. It is monitored in real time during the session and counts unrealised P&amp;L, so an open losing position can breach it.</p>
 
 <h3 class="wp-block-heading"><strong>How many days do I need to trade?</strong></h3>
-<p>The minimum remains unverified: the two published descriptions still differ at the 2026-09-08 check. The help article describes as few as two days, while the marketing FAQ states no minimum time requirement. Do not interpret the unknown comparison field as zero; the 50% consistency objective remains applicable.</p>
+<p>The minimum remains unverified: the two published descriptions still differ at the 2026-10-06 check. The help article describes as few as two days, while the marketing FAQ states no minimum time requirement. Do not interpret the unknown comparison field as zero; the 55% consistency objective remains applicable.</p>
 
 <h3 class="wp-block-heading"><strong>How fast can I get a payout?</strong></h3>
-<p>The earliest documented XFA request route requires three trading days and 40% consistency, not immediate receipt. Approval can take 1–3 business days; transfer depends on the method. Wise is restricted to China, Canada and the UK with a 1–3-business-day estimate, while international Wire/SWIFT is estimated at 5–10 business days with a $30 Topstep fee. Eligibility, caps and bank checks still apply.</p>
+<p>The XFA Consistency route requires 3 trading days and a best day no greater than 40% of total net profit before requesting. XFA Standard instead requires 5 winning trading days of at least $150 each, plus its net-profit condition. Approval can take 1–3 business days separately from transfer; international Wire/SWIFT is estimated at 5–10 business days with a $30 Topstep fee. These 2026-10-06 source checks describe request eligibility and published estimates, not an independently verified payout receipt.</p>

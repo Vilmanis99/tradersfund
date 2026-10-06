@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import Link from 'next/link'
 import { Star, ArrowUpRight } from 'lucide-react'
 
@@ -66,17 +66,7 @@ export default function Hero3D({ firms }: { firms: Hero3DFirm[] }) {
               <div className="hero3d-card-glow" />
               <div className="hero3d-card-shine" />
               <div className="hero3d-card-logo">
-                {f.logo ? (
-                  <Image
-                    src={f.logo}
-                    alt=""
-                    width={56}
-                    height={56}
-                    style={{ objectFit: 'contain', width: 'auto', height: 'auto', maxWidth: '100%', maxHeight: '100%' }}
-                  />
-                ) : (
-                  <span className="hero3d-card-mark">{f.name.charAt(0)}</span>
-                )}
+                <FirmLogo name={f.name} src={f.logo} size={56} />
               </div>
               <div className="hero3d-card-name">{f.name}</div>
               <div className="hero3d-card-score">

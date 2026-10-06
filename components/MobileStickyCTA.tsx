@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useState, useCallback, useRef, useSyncExternalStore } from 'react'
-import Image from 'next/image'
+import { useEffect, useState, useSyncExternalStore } from 'react'
+import FirmLogo from './FirmLogo'
+import useCopyCode from './useCopyCode'
 import { Star, ArrowRight, Tag, Check } from 'lucide-react'
 
 /** Hydration flag has no external source to subscribe to — never notifies. */
@@ -33,8 +34,7 @@ export default function MobileStickyCTA(props: MobileStickyCTAProps) {
   const { name, logo, score, affiliateUrl, affiliateSlug, discountCode, discountPct } = props
 
   const [visible, setVisible] = useState(false)
-  const [copied, setCopied] = useState(false)
-  const copiedTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const { copied, failed, copy } = useCopyCode(discountCode || '')
 
   // Avoid SSR/CSR mismatch — only render after hydration so the matchMedia +
   // IO checks have run on the client. useSyncExternalStore gives us that
@@ -67,36 +67,6 @@ export default function MobileStickyCTA(props: MobileStickyCTAProps) {
     return () => observer.disconnect()
   }, [])
 
-  useEffect(() => {
-    return () => {
-      if (copiedTimeoutRef.current) clearTimeout(copiedTimeoutRef.current)
-    }
-  }, [])
-
-  const handleCopyCode = useCallback(async () => {
-    if (!discountCode) return
-    try {
-      if (navigator?.clipboard?.writeText) {
-        await navigator.clipboard.writeText(discountCode)
-      } else {
-        const el = document.createElement('textarea')
-        el.value = discountCode
-        el.setAttribute('readonly', '')
-        el.style.position = 'absolute'
-        el.style.left = '-9999px'
-        document.body.appendChild(el)
-        el.select()
-        document.execCommand('copy')
-        document.body.removeChild(el)
-      }
-      setCopied(true)
-      if (copiedTimeoutRef.current) clearTimeout(copiedTimeoutRef.current)
-      copiedTimeoutRef.current = setTimeout(() => setCopied(false), 2000)
-    } catch {
-      /* noop */
-    }
-  }, [discountCode])
-
   if (!mounted) return null
 
   const hasAffiliate = Boolean(affiliateUrl)
@@ -112,7 +82,7 @@ export default function MobileStickyCTA(props: MobileStickyCTAProps) {
       {discountCode && discountPct && (
         <button
           type="button"
-          onClick={handleCopyCode}
+          onClick={copy}
           className="mobile-cta-bar-discount"
           aria-label={`Copy discount code ${discountCode} to clipboard`}
         >
@@ -129,22 +99,11 @@ export default function MobileStickyCTA(props: MobileStickyCTAProps) {
           )}
         </button>
       )}
+      {failed && <p role="status" style={{ color: 'var(--danger)', fontSize: '0.75rem', marginBottom: 8 }}>Couldn’t copy. Copy manually: <code style={{ userSelect: 'all' }}>{discountCode}</code></p>}
 
       <div className="mobile-cta-bar-row">
         <div className="mobile-cta-bar-firm">
-          {logo ? (
-            <Image
-              src={logo}
-              alt=""
-              width={24}
-              height={24}
-              className="mobile-cta-bar-logo"
-            />
-          ) : (
-            <div className="mobile-cta-bar-logo mobile-cta-bar-logo--placeholder" aria-hidden="true">
-              {name.substring(0, 1).toUpperCase()}
-            </div>
-          )}
+          <FirmLogo name={name} src={logo} size={28} />
           <div className="mobile-cta-bar-meta">
             <strong className="mobile-cta-bar-name">{name}</strong>
             <span className="mobile-cta-bar-score">

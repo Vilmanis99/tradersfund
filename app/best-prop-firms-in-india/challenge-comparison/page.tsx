@@ -21,10 +21,10 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 const PATH = '/best-prop-firms-in-india/challenge-comparison'
 const SITE = 'https://tradersfundhub.com'
 // Keep the social-card copy aligned with the current screened dataset. The
-// India gate can remove firms/products as evidence ages or RBI status changes;
-// stale hard-coded counts should not make an otherwise valid production build
-// fail and leave every route on the previous deployment.
-const SOCIAL_CARD_PRODUCT_COUNT = 44
+// India gate can remove firms/products as evidence ages or RBI status changes.
+// Rebuild the image when the screened projection changes; the build guard
+// prevents publishing a card with outdated product counts.
+const SOCIAL_CARD_PRODUCT_COUNT = 49
 const SOCIAL_CARD_FIRM_COUNT = 9
 
 export const metadata: Metadata = {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Prop Firm Challenge Comparison India (2026)',
     description:
-      'Filter 36 sourced products across 8 India-screened firms.',
+      'Filter 49 sourced products across 9 India-screened firms.',
   },
 }
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useRef, useEffect } from 'react'
+import useCopyCode from './useCopyCode'
 import { Tag, Check } from 'lucide-react'
 import { trackSiteEvent } from '@/lib/clientAnalytics'
 
@@ -24,35 +24,13 @@ export default function CopyableCodePill({
   analyticsPlacement?: string
   analyticsOfferType?: 'public_checkout' | 'partner_support'
 }) {
-  const [copied, setCopied] = useState(false)
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const { copied, failed, copy } = useCopyCode(code)
   const labels = locale === 'ru'
     ? { copy: `Скопировать код скидки ${code}`, copied: 'Скопировано', offer: `${pct}% скидка — код ${code}` }
     : { copy: `Copy discount code ${code}`, copied: 'Copied!', offer: `${pct}% off — code ${code}` }
 
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    }
-  }, [])
-
-  const handleCopy = useCallback(async () => {
-    try {
-      if (navigator?.clipboard?.writeText) {
-        await navigator.clipboard.writeText(code)
-      } else {
-        // Legacy fallback for non-secure contexts.
-        const el = document.createElement('textarea')
-        el.value = code
-        el.setAttribute('readonly', '')
-        el.style.position = 'absolute'
-        el.style.left = '-9999px'
-        document.body.appendChild(el)
-        el.select()
-        document.execCommand('copy')
-        document.body.removeChild(el)
-      }
-      setCopied(true)
+  const handleCopy = async () => {
+    if (await copy()) {
       if (analyticsFirm && analyticsPlacement && analyticsOfferType) {
         // The code itself is deliberately excluded: the event measures intent
         // without sending a personal partner code to analytics providers.
@@ -63,14 +41,11 @@ export default function CopyableCodePill({
           discount_pct: pct,
         })
       }
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
-      timeoutRef.current = setTimeout(() => setCopied(false), 2000)
-    } catch {
-      // Silently ignore — pill stays in its prior state.
     }
-  }, [analyticsFirm, analyticsOfferType, analyticsPlacement, code, pct])
+  }
 
   return (
+    <span style={{ display: 'inline-flex', flexWrap: 'wrap', gap: 4, alignItems: 'center' }}>
     <button
       type="button"
       onClick={handleCopy}
@@ -112,5 +87,9 @@ export default function CopyableCodePill({
         </>
       )}
     </button>
+    {failed && <span role="status" style={{ color: 'var(--danger)', fontSize: '0.75rem' }}>
+      {locale === 'ru' ? 'Не удалось скопировать. Скопируйте вручную:' : 'Couldn’t copy. Copy manually:'} <code style={{ userSelect: 'all' }}>{code}</code>
+    </span>}
+    </span>
   )
 }

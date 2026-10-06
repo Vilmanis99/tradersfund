@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import { Star, ExternalLink, ArrowRight } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
 import { firmSlug } from '@/lib/comparisons'
@@ -61,19 +61,7 @@ function FirmHeroCard({
     >
       <div className="compare-firm-card-head">
         <div className="feature-firm-logo-tile" style={{ width: 56, height: 56 }}>
-          {firm.logo ? (
-            <Image
-              src={firm.logo}
-              alt={`${firm.name} logo`}
-              width={40}
-              height={40}
-              style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%' }}
-            />
-          ) : (
-            <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--accent-light)' }}>
-              {firm.name.substring(0, 2).toUpperCase()}
-            </span>
-          )}
+          <FirmLogo name={firm.name} src={firm.logo} size={48} />
         </div>
         <div style={{ minWidth: 0 }}>
           <h2 style={{ margin: 0, color: 'var(--text)', fontSize: '1.15rem', fontWeight: 700, lineHeight: 1.2 }}>

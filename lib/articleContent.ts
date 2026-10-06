@@ -1,6 +1,6 @@
 export interface ArticleHeading { text: string; id: string }
 
-function plainText(html: string) {
+export function articlePlainText(html: string) {
   const entities: Record<string, string> = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', ndash: '–', mdash: '—', rsquo: '’', lsquo: '‘', rdquo: '”', ldquo: '“' }
   return html.replace(/<[^>]*>/g, '').replace(/&(#x[\da-f]+|#\d+|[a-z]+);/gi, (entity, name: string) => {
     if (!name.startsWith('#')) return entities[name.toLowerCase()] ?? entity
@@ -15,7 +15,23 @@ function escapeAttribute(value: string) {
 
 const idAttribute = /\s+id\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/gi
 function readIds(attrs: string) {
-  return [...attrs.matchAll(idAttribute)].map(match => plainText(match[1] ?? match[2] ?? match[3]))
+  return [...attrs.matchAll(idAttribute)].map(match => articlePlainText(match[1] ?? match[2] ?? match[3]))
+}
+
+/** Extract only authored, visible question/answer pairs from a named section.
+ * Repository HTML is trusted; comments and scripts never become answers.
+ */
+export function extractArticleFaq(source: string, sectionName = 'FAQ') {
+  const clean = source.replace(/<!--[\s\S]*?-->|<(?:script|style)\b[^>]*>[\s\S]*?<\/(?:script|style)>/gi, '')
+  const sections = [...clean.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>([\s\S]*?)(?=<h2\b|$)/gi)]
+  const section = sections.find(match => articlePlainText(match[1]).toLowerCase() === sectionName.toLowerCase())
+  if (!section) return []
+  return [...section[2].matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>([\s\S]*?)(?=<h3\b|$)/gi)]
+    .map(match => ({
+      q: articlePlainText(match[1]),
+      a: [...match[2].matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(p => articlePlainText(p[1])).filter(Boolean).join(' '),
+    }))
+    .filter(({ q, a }) => q && a)
 }
 
 /** Enhance trusted repository article HTML, not arbitrary user-supplied markup.
@@ -35,7 +51,7 @@ export function prepareArticleContent(source: string): { html: string; headings:
       return `<div class="article-table-scroll" tabindex="0" role="region" aria-label="${label}">${markup}</div>`
     }
     if (attrs === undefined || content === undefined) return markup
-    const text = plainText(content)
+    const text = articlePlainText(content)
     if (!text) return markup
     const authoredId = readIds(attrs)[0]
     // Retain the existing English auto-generated fragment convention for old links.

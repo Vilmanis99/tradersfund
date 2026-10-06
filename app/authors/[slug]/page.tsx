@@ -36,6 +36,7 @@ function personSchema(author: ReturnType<typeof getAuthorBySlug>) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
+    '@id': `https://tradersfundhub.com/authors/${author.slug}#person`,
     name: author.name,
     jobTitle: author.role,
     description: author.short,
@@ -43,6 +44,7 @@ function personSchema(author: ReturnType<typeof getAuthorBySlug>) {
     sameAs: Object.values(author.links || {}).filter(Boolean),
     worksFor: {
       '@type': 'Organization',
+      '@id': 'https://tradersfundhub.com/#organization',
       name: 'Traders Fund Hub',
       url: 'https://tradersfundhub.com',
     },

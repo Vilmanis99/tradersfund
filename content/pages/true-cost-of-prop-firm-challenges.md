@@ -3,13 +3,14 @@ title: "True Cost of Prop Firm Challenges: Fee-Recovery Math (2026)"
 seoTitle: "Prop Firm Challenge True Cost: Fee-Recovery Math"
 slug: "true-cost-of-prop-firm-challenges"
 date: "2026-05-20 12:00:00"
-modified: "2026-09-08 22:30:00"
+modified: "2026-10-06"
+author: "Traders Fund Hub"
 description: "Calculate fee-recovery profit, refund-adjusted cash cost, retry cost, and the ratio between checkout cost and a challenge's starting loss room."
 seoDescription: "Calculate prop-firm fee-recovery profit, refund-adjusted cash cost, retry cost, loss-room ratio, and standardized growth days."
 type: "page"
 ---
 
-<p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;">A challenge fee is only one part of cost. The <a href="/prop-firms/high-profit-split">verified base profit split</a> determines how much gross account profit produces the same trader share as that fee; refunds, failed attempts, recurring billing, activation charges, and <a href="/blog/what-is-prop-firm-consistency-rule">consistency-based payout gates</a> determine the actual cash result. This guide defines each number before comparing products captured through 2026-08-28.</p>
+<p style="color: var(--muted); max-width: 700px; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.65;"><strong>Fee-recovery profit is the captured cost divided by the product’s <a href="/prop-firms/high-profit-split">verified base profit split</a>.</strong> That gross-profit calculation excludes refunds until received, failed attempts, extra monthly billing cycles and payout timing. The examples below identify their product, account size, currency and source date; an editorial update does not refresh those captures. Use the <a href="/prop-firm-challenges">dated product comparison</a> and <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> to check the inputs and payout gates.</p>
 
 <div class="key-takeaways">
   <div class="title">Read the model correctly</div>
@@ -45,7 +46,7 @@ type: "page"
     <tr data-true-cost-example="fundednext:stellar-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext Stellar 2-Step $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$549.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$687.49</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.069</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-29</td></tr>
     <tr data-true-cost-example="fundednext:stellar-instant"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FundedNext Stellar Instant $10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$299.99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">70%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$428.56</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.714</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-29</td></tr>
     <tr data-true-cost-example="ftmo:ftmo-challenge-2-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">FTMO 2-Step $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€540</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€675</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">— mixed currency</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-29</td></tr>
-    <tr data-true-cost-example="topstep:trading-combine-standard-path"><td style="padding: 8px 12px;">Topstep Standard Path $100K</td><td style="padding: 8px 12px;">$248 floor</td><td style="padding: 8px 12px;">90%</td><td style="padding: 8px 12px;">$275.56</td><td style="padding: 8px 12px;">0.092</td><td style="padding: 8px 12px;">—</td><td style="padding: 8px 12px;">2026-09-08</td></tr>
+    <tr data-true-cost-example="topstep:trading-combine-standard-path"><td style="padding: 8px 12px;">Topstep Standard Path $100K</td><td style="padding: 8px 12px;">$248 floor</td><td style="padding: 8px 12px;">90%</td><td style="padding: 8px 12px;">$275.56</td><td style="padding: 8px 12px;">0.092</td><td style="padding: 8px 12px;">—</td><td style="padding: 8px 12px;">2026-10-06</td></tr>
   </tbody>
 </table>
 
@@ -106,3 +107,17 @@ assumed_daily_growth = min(1%, captured_daily_loss_pct)</code></pre>
 </ol>
 
 <p>Fee recovery is only 1 input in the trader’s result. Use the <a href="/blog/is-prop-firm-trading-profitable">prop-firm profitability guide</a> to combine approved payouts and refunds actually received with every paid attempt, subscription, activation, reset, platform add-on, and withdrawal cost.</p>
+
+<h2>Common cost questions</h2>
+
+<h3>Does passing a challenge mean I have recovered its fee?</h3>
+<p>No. Passing, requesting a reward, receiving the trader share and receiving any fee refund are separate milestones. Fee-recovery profit compares gross approved profit with the captured purchase cost at the base split; cash net uses only payouts and refunds actually received. The <a href="/blog/fundednext-review">FundedNext review</a> shows why first-reward and third-reward refunds produce different cash timing.</p>
+
+<h3>Can I compare a EUR fee directly with a USD fee?</h3>
+<p>No. A dollar account label does not convert a euro purchase fee into dollars. The <a href="/blog/ftmo-review">FTMO review</a> keeps fees and fee-recovery profit in EUR; the <a href="/compare/ftmo-vs-fundednext">FTMO vs FundedNext comparison</a> keeps EUR and USD costs separate. A personal checkout comparison needs a dated exchange rate and any card conversion charge.</p>
+
+<h3>Does the cheapest monthly rate mean the cheapest funded account?</h3>
+<p>No. A recurring monthly rate excludes later billing cycles and may exclude activation after passing. The <a href="/blog/topstep-review">Topstep pricing-path review</a> compares both subscription paths and their activation charges. Model actual paid cycles, resets and after-pass charges before comparing them with a one-off challenge fee.</p>
+
+<h3>Do standardized growth days predict my first payout?</h3>
+<p>No. The model’s 1% compounded-growth assumption compares fee size; it does not predict performance, evaluation completion or payout approval. Minimum trading days, reward cycles, consistency rules and transfer processing remain separate product conditions. An unverified input stays blank rather than becoming permission or zero.</p>

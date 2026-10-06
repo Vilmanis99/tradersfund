@@ -146,7 +146,13 @@ html .ru-home-partner-hero-card::after { display: none; }
 html .ru-home-partner-hero-card h2 { font-size: 1.5rem; }
 html .ru-card-link { display: inline-flex; align-items: center; gap: 0.4rem; }
 /* White-wordmark source assets need a small brand well, not a dark page. */
-html img[src*="FundedNext-Logo"], html img[src*="ftmo-logo"] { background: #233b3d; border-radius: 8px; }
+html img[src*="FundedNext-Logo"], html img[src*="ftmo-logo"],
+html img[src*="FTMO-icon-light"], html img[src*="Icon-White"],
+html img[src*="logo-white"], html img[src*="lucid-trading.png"] { background: #233b3d; border-radius: 8px; }
+.firm-directory #firm-search:focus-visible { outline: 2px solid var(--accent) !important; outline-offset: 3px; }
+.firm-directory-table th:first-child, .firm-directory-table td:first-child { position: sticky; left: 0; z-index: 1; min-width: 170px; background: var(--bg2); box-shadow: 1px 0 0 var(--border); }
+.firm-directory-table th:first-child { z-index: 2; background: var(--accent-soft); }
+.firm-directory-table tr:hover td:first-child { background: var(--accent-soft); }
 html .ru-home-partner-hero-card > p { font-size: 0.95rem; }
 html .ru-card, html .ru-review-firm-card { box-shadow: none; background: var(--bg2); }
 html .ru-home-guide-list a { background: var(--bg2); padding: 1.25rem; border: 1px solid var(--border); border-radius: 12px; }
@@ -535,3 +541,46 @@ html .home--focused .home-finder-panel { border-radius: 10px; border-left: 3px s
   html .home--focused .home-partner,
   html .home--focused .home-guide { padding: 1.25rem; }
 }
+/* Directory controls remain expanded on desktop and compact on phones. */
+.directory-filter-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 0.85rem; font-size: 0.8rem; font-weight: 700; }
+.directory-filter-toggle, .directory-filter-done { display: none; }
+.directory-filters { margin-bottom: 1rem; }
+.directory-filter-toolbar .filter-pill, .directory-filters .filter-pill { min-height: 36px; }
+@media (max-width: 767px) {
+  .directory-filter-toggle, .directory-filter-done { display: inline-flex; }
+  .directory-filters { display: none; padding: 0.9rem; border: 1px solid var(--border); border-radius: 12px; background: var(--bg3); }
+  .directory-filters--open { display: block; }
+  .firm-directory .filter-pill { min-height: 44px; }
+  .directory-filter-done { width: 100%; justify-content: center; }
+}
+.form-field-error { color: var(--danger); font-size: 0.8rem; margin-top: 0.4rem; }
+html .newsletter-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; }
+html .newsletter-form input[type="email"] { min-width: 0; width: 100%; }
+html .newsletter-form button[type="submit"] { max-width: 140px; white-space: normal; min-height: 44px; }
+.newsletter-feedback { grid-column: 1 / -1; font-size: 0.8rem; line-height: 1.5; }
+html .newsletter-form .newsletter-another-email { background: transparent; border: 0; padding: 0; color: var(--accent); text-decoration: underline; font-size: inherit; box-shadow: none; }
+html input[aria-invalid="true"], html textarea[aria-invalid="true"] { border-color: var(--danger); }
+.review-product-summary { background: var(--bg2); border: 1px solid var(--border); border-radius: 18px; padding: clamp(1.1rem, 3vw, 1.6rem); margin: 1.5rem 0 2rem; }
+.review-product-summary-title { color: var(--text); font-weight: 800; font-size: 1.1rem; margin: 0 0 .55rem; }
+.review-product-summary-scope { color: var(--muted); font-size: .9rem; line-height: 1.65; margin: .7rem 0 1rem; }
+.review-product-summary a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.review-product-summary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; }
+.review-product-summary-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; min-width: 0; }
+.review-product-summary-card > strong { display: block; font-size: 1rem; color: var(--text); }
+.review-product-summary-date { font-size: .8rem; color: var(--muted); margin: .4rem 0 .8rem; }
+.review-product-summary-card dl { margin: 0; }
+.review-product-summary-card dt { font-size: .72rem; color: var(--muted); margin: .75rem 0 .25rem; }
+.review-product-summary-card dd { color: var(--text); font-size: .9rem; line-height: 1.5; font-weight: 650; margin: 0; overflow-wrap: anywhere; }
+.review-product-summary-card dd > span, .review-product-summary-card dd small { display: block; }
+.review-product-summary-card dd small { color: var(--muted); font-size: .78rem; font-weight: 400; }
+.guide-byline { color: var(--muted); font-size: .9rem; line-height: 1.6; margin-top: 1rem; }
+.guide-byline a { color: var(--accent); text-decoration: underline; }
+.review-product-source { margin: 1rem 0 0; font-size: .82rem; line-height: 1.5; }
+.review-product-source a { color: var(--accent); text-decoration: underline; }
+.review-product-source small, .review-product-source-watch small { display: block; color: var(--muted); font-size: .72rem; overflow-wrap: anywhere; }
+.review-product-source-watch { margin: .75rem 0 0; font-size: .8rem; line-height: 1.5; border-left: 3px solid var(--accent); padding-left: .65rem; }
+.review-product-source-watch a { color: var(--text); text-decoration: underline; }
+.review-product-summary-more { margin-top: 1rem; }
+.review-product-summary-more summary { cursor: pointer; color: var(--accent); font-size: .9rem; font-weight: 650; padding: .6rem 0; }
+.review-product-summary-more > .review-product-summary-grid { margin-top: .65rem; }
+@media (max-width: 600px) { .review-product-summary-grid { grid-template-columns: minmax(0, 1fr); } }

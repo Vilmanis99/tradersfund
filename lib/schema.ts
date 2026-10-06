@@ -1,12 +1,26 @@
 import { getChallengesByFirm, isChallengeFresh } from './firms'
 import type { Firm } from './firms'
 import type { PostMeta } from './mdx'
+import { getAuthorByName } from './authors'
+import { getChallengeWatchEntries } from './challengeWatch'
+import { challengeSourceDestination } from './challengeSources'
 import {
   isRussianRoutePath,
   russianRouteDateModified,
 } from './localizedRoutes'
 
 const SITE = 'https://tradersfundhub.com'
+
+/** Match the visible byline to its existing identity; never invent a biography. */
+export function authorSchema(name: string) {
+  if (name === 'Traders Fund Hub') return { '@type': 'Organization', '@id': `${SITE}/#organization`, name, url: SITE }
+  const author = getAuthorByName(name)
+  return {
+    '@type': 'Person',
+    name,
+    ...(author ? { '@id': `${SITE}/authors/${author.slug}#person`, url: `${SITE}/authors/${author.slug}` } : {}),
+  }
+}
 
 function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -61,9 +75,10 @@ export function postSchema(post: PostMeta & { content?: string }, allFirms: Firm
     image: ogImage,
     datePublished: post.date,
     dateModified: post.modified || post.date,
-    author: { '@type': 'Person', name: post.author },
+    author: authorSchema(post.author),
     publisher: {
       '@type': 'Organization',
+      '@id': `${SITE}/#organization`,
       name: 'Traders Fund Hub',
       url: SITE,
     },
@@ -76,9 +91,17 @@ export function postSchema(post: PostMeta & { content?: string }, allFirms: Firm
   // activation fees and split-payment products cannot be represented by a
   // single unqualified Offer.price without misleading searchers.
   const challenges = getChallengesByFirm(slugify(firm.name))
+  const unsettledProducts = new Set(getChallengeWatchEntries()
+    .filter(entry => entry.firmSlug === slugify(firm.name) && entry.status === 'watch' && (entry.kind === 'source-conflict' || entry.kind === 'price-watch'))
+    .flatMap(entry => entry.productSlugs))
+  const sourceUrls = [...new Set(challenges.flatMap(product => {
+    const source = challengeSourceDestination(firm, product.productSlug, challenges)
+    return source ? [source] : []
+  }))]
   const offers = challenges
     .filter(c =>
       isChallengeFresh(c) &&
+      !unsettledProducts.has(c.productSlug) &&
       c.pricingModel !== 'monthly-subscription' &&
       c.pricingModel !== 'split-payment' &&
       (c.activationFeeUsd == null || c.activationFeeUsd === 0))
@@ -137,6 +160,10 @@ export function postSchema(post: PostMeta & { content?: string }, allFirms: Firm
   const review = {
     '@context': 'https://schema.org',
     '@type': 'Review',
+    '@id': `${postUrl}#review`,
+    url: postUrl,
+    mainEntityOfPage: postUrl,
+    image: ogImage,
     itemReviewed: product,
     reviewRating: {
       '@type': 'Rating',
@@ -144,13 +171,15 @@ export function postSchema(post: PostMeta & { content?: string }, allFirms: Firm
       bestRating: 10,
       worstRating: 0,
     },
-    author: { '@type': 'Person', name: post.author },
+    author: authorSchema(post.author),
     datePublished: post.date,
     dateModified: post.modified || post.date,
     name: post.title,
     reviewBody: post.excerpt || post.title,
+    ...(sourceUrls.length > 0 ? { citation: sourceUrls.map(url => ({ '@type': 'WebPage', url })) } : {}),
     publisher: {
       '@type': 'Organization',
+      '@id': `${SITE}/#organization`,
       name: 'Traders Fund Hub',
       url: SITE,
     },
@@ -255,6 +284,7 @@ export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${SITE}/#organization`,
     name: 'Traders Fund Hub',
     url: SITE,
     // Must be a raster/SVG image Google can actually read — .ico is not in
@@ -310,7 +340,7 @@ export function blogIndexSchema(posts: PostMeta[]) {
       url: `${SITE}/blog/${p.slug}`,
       datePublished: p.date,
       dateModified: p.modified || p.date,
-      author: p.author ? { '@type': 'Person', name: p.author } : undefined,
+      author: p.author ? authorSchema(p.author) : undefined,
     })),
   }
 }

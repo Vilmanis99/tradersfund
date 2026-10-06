@@ -3,10 +3,10 @@ title: "Prop Firm Consistency Rule: Formulas and Examples (2026)"
 seoTitle: "Prop Firm Consistency Rule: Examples (2026)"
 slug: "what-is-prop-firm-consistency-rule"
 date: "2024-11-22 17:13:02"
-modified: "2026-09-08 22:30:00"
+modified: "2026-10-06 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "A prop-firm consistency rule can compare the best day with total profit, positive-day profit, or a target. Learn the formulas, stages, and consequences."
-seoDescription: "Learn how prop-firm consistency rules work, compare current 15%-50% product examples, and calculate the extra profit needed after a large best day."
+seoDescription: "Learn how prop-firm consistency rules work, compare current 15%-55% product examples, and calculate the extra profit needed after a large best day."
 categories: ["Prop Firms"]
 tags: ["prop firm consistency rule", "prop firm rules", "risk management"]
 type: "post"
@@ -56,7 +56,7 @@ type: "post"
 
 <h3>2. Best day compared with a fixed target</h3>
 
-<p>Topstep's Trading Combine uses a 50% Consistency Target against the Profit Target. Its captured rule says the best day should stay below 50% of that target to avoid increasing the Consistency Target. This is not the same calculation as dividing the best day by whatever net profit is currently on the account.</p>
+<p>Topstep's Trading Combine now publishes a 55% Consistency Target, rechecked on 2026-10-06. A best day above that share of the initial Profit Target raises the required target; the consistency guide also calculates the best day as a share of total profit and says there is no buffer. The remaining profit needed to resolve an excess must be earned in a separate trading session. The funded XFA Consistency payout route remains a distinct 40% test.</p>
 
 <h3>3. A published score with product-specific eligibility</h3>
 
@@ -64,15 +64,15 @@ type: "post"
 
 <p>A lot-size consistency rule is separate. It can compare position sizes, contracts, or risk per trade even when a product has no best-day percentage. Likewise, a minimum profitable-day condition counts qualifying days; it does not calculate the share contributed by the largest day.</p>
 
-<h2>Current product examples: 15% to 50% does not mean the same thing</h2>
+<h2>Current product examples: 15% to 55% does not mean the same thing</h2>
 
 <table data-consistency-examples="current-products" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
   <caption class="hidden-caption">Current product-level prop-firm consistency examples</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product</th><th style="padding: 8px 12px; text-align: left;">Published rule</th><th style="padding: 8px 12px; text-align: left;">Stage and denominator</th><th style="padding: 8px 12px; text-align: left;">Captured consequence or caveat</th><th style="padding: 8px 12px; text-align: left;">Captured</th></tr></thead>
   <tbody>
     <tr data-consistency-example="ftmo:ftmo-challenge-1-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/ftmo-review">FTMO 1-Step</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">50% Best Day rule</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Challenge and reward; Positive Days' Profit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Continue earning profit until no single day exceeds 50%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-29</td></tr>
-    <tr data-consistency-example="topstep:trading-combine-standard-path"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/topstep-review">Topstep Standard Path</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">50% Consistency Target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Trading Combine; Profit Target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">A larger best day can increase the Consistency Target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-08</td></tr>
-    <tr data-consistency-example="topstep:xfa-consistency-path"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/topstep-review">Topstep XFA Consistency path</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">40% best-day limit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Payout path; total profit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Also requires at least 3 trading days with 1 trade per day</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-08</td></tr>
+    <tr data-consistency-example="topstep:trading-combine-standard-path"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/topstep-review">Topstep Standard Path</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">55% Consistency Target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Trading Combine; Profit Target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">A larger best day can increase the Consistency Target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-06</td></tr>
+    <tr data-consistency-example="topstep:xfa-consistency-path"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/topstep-review">Topstep XFA Consistency path</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">40% best-day limit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Payout path; total profit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Also requires at least 3 trading days with 1 trade per day</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-06</td></tr>
     <tr data-consistency-example="fundingpips:zero"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/fundingpips-zero">FundingPips Zero</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">15% maximum Consistency Score</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Reward eligibility; full denominator not recorded</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Also records 7 profitable days of at least 0.25% in each rolling 30-day period</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-29</td></tr>
     <tr data-consistency-example="fxify:two-phase-classic"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/fxify-review">FXIFY Two Phase Classic</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">25% Consistency Rule</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Funded stage only; N/A in Phase 1 and Phase 2</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Full denominator is not recorded in the current capture</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-15</td></tr>
     <tr data-consistency-example="fundednext:stellar-instant"><td style="padding: 8px 12px;"><a href="/blog/fundednext-review">FundedNext Stellar Instant</a></td><td style="padding: 8px 12px;">No consistency rule in the captured official FAQ</td><td style="padding: 8px 12px;">Phase-0 simulated instant-funded product</td><td style="padding: 8px 12px;">Still has a 6% trailing maximum loss and separate payout gates</td><td style="padding: 8px 12px;">2026-09-29</td></tr>
@@ -99,7 +99,7 @@ type: "post"
 
 <p>The reusable formula is <code>required applicable profit = best-day profit / decimal limit</code>. Then calculate <code>additional profit = max(0, required applicable profit - current applicable profit)</code>. If a later day exceeds $1,200, the numerator changes and the calculation must be run again.</p>
 
-<p>Do not use this calculator for Topstep's Combine target rule. On the captured $100K Standard Path, the Profit Target is $6,000 and 50% is $3,000. A $3,500 best day is 58.33% of that fixed target, so it can increase the Consistency Target; it is not automatically the same as failing a 50% best-day-to-total-profit test.</p>
+<p>Topstep's Combine consequence differs from a payout eligibility check. On the captured $100K Standard Path, the initial Profit Target is $6,000 and its current 55% recommendation is $3,300. A $3,500 best day exceeds that recommendation and raises the required target; it is not an automatic account failure. Extra profits in that same session also enlarge the best day, so they cannot resolve the excess.</p>
 
 <div data-consistency-choice="fundednext" style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
   <strong style="color: #fff;">Comparing a captured no-consistency-rule option?</strong> FundedNext Stellar Instant's official FAQ capture says there is no consistency rule. The current $10K tier costs $299.99, starts at a 70% Reward Share, is non-refundable, and uses a 6% trailing maximum loss, so removing 1 gate does not make the product low-risk. Read the <a href="/blog/fundednext-review">FundedNext review</a>, then <a href="/go/fundednext">check FundedNext's live Stellar Instant terms</a> only if the trailing-loss and payout rules fit the strategy. We may earn a commission; the partnership does not change the displayed terms or editorial score.
@@ -140,7 +140,7 @@ type: "post"
 
 <h3>Does exceeding a consistency percentage fail the account?</h3>
 
-<p>Not always. FTMO 1-Step says the trader must continue until the Best Day is no more than 50% of Positive Days' Profit, while Topstep says a best day above 50% of the Combine Profit Target can increase the Consistency Target. The product's stated consequence controls.</p>
+<p>Not always. FTMO 1-Step says the trader must continue until the Best Day is no more than 50% of Positive Days' Profit, while Topstep's current Combine guide uses 55% and raises the required profit target after an excess. The product's stated consequence controls.</p>
 
 <h3>Can a losing day change the consistency score?</h3>
 

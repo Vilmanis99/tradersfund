@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import { Star, Handshake, Tag, ExternalLink, ArrowRight, ShieldCheck } from 'lucide-react'
 import type { LandingFirm } from '@/lib/landings'
 import TrustpilotRating from '@/components/TrustpilotRating'
@@ -38,17 +38,7 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
           >
             <span className="leader-rank">{String(i + 1).padStart(2, '0')}</span>
             <div className="leader-logo">
-              {firm.logo ? (
-                <Image
-                  src={firm.logo}
-                  alt=""
-                  width={48}
-                  height={48}
-                  style={{ objectFit: 'contain', width: 'auto', height: 'auto', maxWidth: '100%', maxHeight: '100%' }}
-                />
-              ) : (
-                <span className="logo-fallback">{firm.name.charAt(0)}</span>
-              )}
+              <FirmLogo name={firm.name} src={firm.logo} size={48} />
             </div>
             <div className="leader-body">
               <div className="leader-name">

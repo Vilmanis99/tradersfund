@@ -342,7 +342,7 @@
   },
   {
     "name": "Alpha Capital",
-    "founded": "2023",
+    "founded": "2021",
     "assets": [
       "Forex",
       "Indices",
@@ -409,7 +409,7 @@
     "trustpilotScore": 4.7,
     "trustpilotCount": 21119,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-09-14",
+    "lastUpdated": "2026-10-06",
     "trustpilotUrl": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
     "trustpilotCapturedAt": "2026-07-27"
   },
@@ -699,7 +699,7 @@
       "Bybit"
     ],
     "score": 7.4,
-    "logo": "",
+    "logo": "/images/firms/crypto-fund-trader.png",
     "reviewUrl": "/blog/crypto-fund-trader-review",
     "officialUrl": "https://cryptofundtrader.com/",
     "profitSplitPct": null,
@@ -749,7 +749,7 @@
       "notes": "TopstepX is the execution platform verified in this check. Third-party execution compatibility is not verified. The built-in copier is limited to Trading Combine and Express Funded Accounts, not Live. Platform access does not establish country or personal eligibility."
     },
     "score": 8.5,
-    "logo": "",
+    "logo": "/images/firms/topstep.png",
     "reviewUrl": "/blog/topstep-review",
     "officialUrl": "https://www.topstep.com/",
     "profitSplitPct": 90,
@@ -760,7 +760,7 @@
     ],
     "drawdownType": "eod-trailing",
     "minTradingDays": null,
-    "consistencyRule": "50% of profit target",
+    "consistencyRule": "55% Combine target; 40% XFA Consistency payout route",
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
     "eaAllowed": "restricted",
@@ -929,7 +929,7 @@
       "cTrader"
     ],
     "score": 7.9,
-    "logo": "",
+    "logo": "/images/firms/city-traders-imperium.png",
     "reviewUrl": "/blog/city-traders-imperium-review",
     "officialUrl": "https://citytradersimperium.com/",
     "profitSplitPct": 70,
@@ -1030,7 +1030,7 @@
       "Quantower"
     ],
     "score": 8.3,
-    "logo": "",
+    "logo": "/images/firms/take-profit-trader.svg",
     "reviewUrl": "/blog/take-profit-trader-review",
     "officialUrl": "https://takeprofittrader.com/",
     "profitSplitPct": 80,
@@ -1077,7 +1077,7 @@
       "Tradovate"
     ],
     "score": 8.6,
-    "logo": "",
+    "logo": "/images/firms/tradeday.png",
     "reviewUrl": "/blog/tradeday-review",
     "officialUrl": "https://www.tradeday.com/",
     "profitSplitPct": null,
@@ -1253,7 +1253,7 @@
       "MultiCharts"
     ],
     "score": 8.4,
-    "logo": "",
+    "logo": "/images/firms/lucid-trading.png",
     "reviewUrl": "/blog/lucid-trading-review",
     "officialUrl": "https://www.lucidtrading.com/",
     "profitSplitPct": 90,
@@ -1387,7 +1387,7 @@
       "WealthCharts"
     ],
     "score": 8.5,
-    "logo": "",
+    "logo": "/images/firms/tradeify.png",
     "reviewUrl": "/blog/tradeify-review",
     "officialUrl": "https://tradeify.co/",
     "profitSplitPct": 90,

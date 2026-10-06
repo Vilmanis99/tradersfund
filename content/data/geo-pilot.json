@@ -1,0 +1,222 @@
+{
+  "startedAt": "2026-10-06",
+  "scope": "English pilot. Editorial improvements do not refresh product capture dates.",
+  "pages": [
+    {
+      "path": "/blog/ftmo-review",
+      "schemaTypes": [
+        "Review",
+        "FAQPage"
+      ],
+      "productCards": 2
+    },
+    {
+      "path": "/blog/fundednext-review",
+      "schemaTypes": [
+        "Review",
+        "FAQPage"
+      ],
+      "productCards": 4
+    },
+    {
+      "path": "/blog/topstep-review",
+      "schemaTypes": [
+        "Review",
+        "FAQPage"
+      ],
+      "productCards": 2
+    },
+    {
+      "path": "/compare/ftmo-vs-fundednext",
+      "schemaTypes": [
+        "ItemList",
+        "FAQPage"
+      ],
+      "productCards": 0
+    },
+    {
+      "path": "/true-cost-of-prop-firm-challenges",
+      "schemaTypes": [
+        "Article",
+        "FAQPage"
+      ],
+      "productCards": 0
+    }
+  ],
+  "additionalPages": [
+    {
+      "path": "/blog/funding-pips-review",
+      "schemaTypes": [
+        "Review",
+        "FAQPage"
+      ],
+      "productCards": 5
+    },
+    {
+      "path": "/blog/fxify-review",
+      "schemaTypes": [
+        "Review",
+        "FAQPage"
+      ],
+      "productCards": 8
+    },
+    {
+      "path": "/blog/e8-markets-review",
+      "schemaTypes": [
+        "Review",
+        "FAQPage"
+      ],
+      "productCards": 3
+    },
+    {
+      "path": "/blog/alpha-capital-review",
+      "schemaTypes": [
+        "Review",
+        "FAQPage"
+      ],
+      "productCards": 10
+    }
+  ],
+  "promptSet": [
+    {
+      "id": "ftmo-cost",
+      "path": "/blog/ftmo-review",
+      "question": "How much does FTMO's $100K 2-Step challenge cost, and in which currency?"
+    },
+    {
+      "id": "ftmo-base-split",
+      "path": "/blog/ftmo-review",
+      "question": "Does FTMO pay 80% or 90% from the first reward?"
+    },
+    {
+      "id": "ftmo-drawdown",
+      "path": "/blog/ftmo-review",
+      "question": "Does FTMO 1-Step use the same drawdown rules as FTMO 2-Step?"
+    },
+    {
+      "id": "ftmo-refund",
+      "path": "/blog/ftmo-review",
+      "question": "Which FTMO challenge fee is refundable and when?"
+    },
+    {
+      "id": "fundednext-entry",
+      "path": "/blog/fundednext-review",
+      "question": "What is FundedNext's lowest captured global list fee and account size?"
+    },
+    {
+      "id": "fundednext-base-split",
+      "path": "/blog/fundednext-review",
+      "question": "Is FundedNext's 95% reward share the starting split?"
+    },
+    {
+      "id": "fundednext-instant",
+      "path": "/blog/fundednext-review",
+      "question": "How does FundedNext Stellar Instant differ from Stellar 2-Step?"
+    },
+    {
+      "id": "fundednext-first-reward",
+      "path": "/blog/fundednext-review",
+      "question": "When can I request the first FundedNext reward on each Stellar product?"
+    },
+    {
+      "id": "topstep-recurring",
+      "path": "/blog/topstep-review",
+      "question": "Is Topstep's Trading Combine price monthly or a one-off fee?"
+    },
+    {
+      "id": "topstep-activation",
+      "path": "/blog/topstep-review",
+      "question": "What activation fee applies to each Topstep pricing path?"
+    },
+    {
+      "id": "topstep-minimum-days",
+      "path": "/blog/topstep-review",
+      "question": "Is Topstep's minimum evaluation trading-day requirement verified?"
+    },
+    {
+      "id": "topstep-payout",
+      "path": "/blog/topstep-review",
+      "question": "How do Topstep XFA Standard and Consistency payout gates differ?"
+    },
+    {
+      "id": "compare-currency",
+      "path": "/compare/ftmo-vs-fundednext",
+      "question": "Is FundedNext cheaper than FTMO for a $100K account after currency differences?"
+    },
+    {
+      "id": "compare-base-split",
+      "path": "/compare/ftmo-vs-fundednext",
+      "question": "Which FTMO or FundedNext product has the highest base profit split?"
+    },
+    {
+      "id": "compare-static",
+      "path": "/compare/ftmo-vs-fundednext",
+      "question": "Which FTMO and FundedNext products use static maximum loss?"
+    },
+    {
+      "id": "compare-refunds",
+      "path": "/compare/ftmo-vs-fundednext",
+      "question": "How do FTMO and FundedNext challenge-fee refund milestones compare?"
+    },
+    {
+      "id": "cost-definition",
+      "path": "/true-cost-of-prop-firm-challenges",
+      "question": "What does fee-recovery profit mean for a prop-firm challenge?"
+    },
+    {
+      "id": "cost-refund",
+      "path": "/true-cost-of-prop-firm-challenges",
+      "question": "How should I count a challenge-fee refund in actual trading cash net?"
+    },
+    {
+      "id": "cost-monthly",
+      "path": "/true-cost-of-prop-firm-challenges",
+      "question": "How do monthly subscriptions and activation fees change a prop-firm challenge's true cost?"
+    },
+    {
+      "id": "cost-days",
+      "path": "/true-cost-of-prop-firm-challenges",
+      "question": "Do standardized fee-recovery growth days predict a payout date?"
+    }
+  ],
+  "measurement": {
+    "status": "not-measured",
+    "scope": "The fixed 20-question benchmark remains scoped to the original five pages. Additional pages receive readiness checks without assumed citation results.",
+    "engines": [
+      "ChatGPT search",
+      "Perplexity",
+      "Google AI Overviews or AI Mode",
+      "Microsoft Copilot"
+    ],
+    "instructions": [
+      "Record a pre-release baseline with the same 20 questions. Do not insert assumed citation counts.",
+      "For each observation record UTC timestamp, engine, visible model/mode, country/language, exact question, whether an AI answer appeared, cited TFH URL and whether its product claims were correct.",
+      "Distinguish a cited URL from an unlinked brand mention, and an absent AI answer from a citation failure. Repeat observations; personalized and changing answers are not stable rankings.",
+      "After an approved release, compare observations and AI-platform referral journeys over an initial 4–6 week pilot. This is an observation window, not a promised time to results.",
+      "Use Bing Webmaster Tools AI Performance for supported citation surfaces and Search Console's available AI/search reporting. No authenticated account data has been inspected in this pilot.",
+      "Existing analytics events add ai_source and ai_source_signal only when a recognized referrer host or utm_source supplies a signal. Ordinary Google/Bing traffic stays unclassified; missing referrers remain unknown.",
+      "Compare journey views with existing affiliate_click, official_site_click and newsletter events. Outbound clicks are intent signals, not confirmed purchases. Consent rules remain in place.",
+      "Use npm run audit:geo -- --url https://tradersfundhub.com --out .preview/geo-production-crawl.json for a bounded public HTML check. This does not prove indexing or bot-IP access."
+    ]
+  },
+  "observations": [],
+  "followUps": [
+    {
+      "firmSlug": "alpha-capital",
+      "status": "captured-with-public-watches",
+      "observedAt": "2026-10-06",
+      "sourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+      "sourcePublishedUpdate": "2026-09-21",
+      "reason": "The pricing article now lists different One and Pro fees from the September 14 dataset, identifies on-demand versus bi-weekly pricing, and describes changes to the offered Alpha One variants. Alpha Direct is mentioned at a different starting fee. The article does not supply every Swing and Direct tier or recheck all programme rules.",
+      "nextAction": "Recheck the remaining One, Swing and Three availability watches against first-party sources. Preserve the September 14 Three product date until a complete product recheck is possible; October 6 source-conflict observations do not refresh it.",
+      "completedAt": "2026-10-06",
+      "result": "Ten configurations and sixty published fees captured; Pro target/schedule choices separated, Three date retained, public availability conflicts recorded and review true-cost tables regenerated. This does not verify availability for every variant or an independent purchase/payout."
+    }
+  ],
+  "guidanceSources": [
+    "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+    "https://developers.google.com/search/docs/appearance/ai-features",
+    "https://developers.openai.com/api/docs/bots",
+    "https://www.bing.com/webmasters/help/ai-performance-9f8e7d6c"
+  ]
+}

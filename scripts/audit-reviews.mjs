@@ -1734,7 +1734,7 @@ function checkGlobalDirectorySurface() {
       'itemListSchema',
       'freshChallenges',
       'challenges={freshChallenges}',
-      'initialFilters={initialFilters}',
+      'await searchParams',
       'global-prop-firm-directory',
       'focused-rule-lists',
       'Head-to-head comparisons',
@@ -1786,8 +1786,12 @@ function checkGlobalDirectorySurface() {
       'selectedSlugs',
       'Compare selected',
       'product.accountSizes',
-      'latestProduct.sourceUrl',
-      'latestProduct.sourceCapturedAt',
+      'oldestProduct.sourceUrl',
+      'oldestProduct.sourceCapturedAt',
+      'matchingDirectoryProducts',
+      'parseDirectoryQuery',
+      'writeDirectoryQuery',
+      'useSearchParams',
       'from=prop-firms-directory',
     ]
     for (const token of requiredTokens) {
@@ -2115,8 +2119,15 @@ function checkGlobalChallengeSurface() {
 
   if (!fs.existsSync(CHALLENGE_CHANGES_SOCIAL_FILE)) {
     rows.push('challenge changes social card is missing')
-  } else if (fs.statSync(CHALLENGE_CHANGES_SOCIAL_FILE).size < 100_000) {
-    rows.push('challenge changes social card is unexpectedly small')
+  } else {
+    // Compression changes byte size without changing resolution or readability.
+    const png = fs.readFileSync(CHALLENGE_CHANGES_SOCIAL_FILE)
+    if (png.length < 1024 || png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a'
+      || png.toString('ascii', 12, 16) !== 'IHDR'
+      || png.readUInt32BE(16) < 1200 || png.readUInt32BE(20) < 630
+      || png.toString('ascii', png.length - 8, png.length - 4) !== 'IEND') {
+      rows.push('challenge changes social card must be a complete PNG of at least 1200 × 630')
+    }
   }
   if (!fs.existsSync(CHALLENGE_CHANGES_SOCIAL_ALT_FILE)) {
     rows.push('challenge changes social-card alt text is missing')
@@ -2848,6 +2859,14 @@ function checkAnalyticsMeasurementContract() {
   if (goClickEventName('unknown-firm', relationshipFixture) !== null) {
     rows.push('Unknown /go slugs must not be classified as affiliate or official clicks')
   }
+  for (const firmSlug of ['fundingpips', 'ftmo']) {
+    if (goClickEventName(firmSlug, relationshipFixture, true) !== 'source_click') {
+      rows.push('First-party product evidence must emit source_click, separately from purchase CTAs')
+    }
+  }
+  if (goClickEventName('unknown-firm', relationshipFixture, true) !== null) {
+    rows.push('Unknown source-link slugs must not receive research attribution')
+  }
 
   const russianBridge = russianFunnelTransition(
     '/ru/obzor-proplive',
@@ -2977,6 +2996,14 @@ function checkAnalyticsMeasurementContract() {
   ) {
     rows.push('Post-body official decorator failed its attribution/non-/go fixture')
   }
+  const decoratedSource = decoratePostOutboundLinks(
+    '<a href="/go/fundingpips?source=2-step-pro">Product source</a>',
+    fixtureRelationships,
+    'funding-pips-review',
+  )
+  if (!decoratedSource.includes('source=2-step-pro') || !decoratedSource.includes('rel="nofollow noopener"') || decoratedSource.includes('sponsored')) {
+    rows.push('Post-body product sources must retain their product key and exclude sponsored markup')
+  }
 
   const firms = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'))
   const outboundRelationships = buildOutboundRelationships(firms)
@@ -3002,7 +3029,7 @@ function checkAnalyticsMeasurementContract() {
         rows.push(`${postSlug}: body /go link points at unknown destination ${firmSlug}`)
       }
       const sponsored = /\brel=(["'])[^"']*\bsponsored\b[^"']*\1/i.test(tag)
-      if (sponsored !== (relationship === 'affiliate')) {
+      if (sponsored !== (relationship === 'affiliate' && !destination.searchParams.has('source'))) {
         rows.push(`${postSlug}: ${firmSlug} sponsored rel disagrees with outbound configuration`)
       }
     }
@@ -3051,7 +3078,9 @@ function checkAnalyticsMeasurementContract() {
       'locale: contentLocale(pathname)',
       'send_page_view: false',
       'page_location: sanitizedLocation',
-      'goClickEventName(firm, outboundRelationships)',
+      'goClickEventName(firm, outboundRelationships, isSourceLink)',
+      "destination.searchParams.has('source')",
+      "source_product: safeLabel(destination.searchParams.get('source'))",
       'if (!eventName) return',
       "trackVercel('russian_funnel_click'",
       "trackEvent('russian_funnel_click', transition)",
@@ -3100,7 +3129,7 @@ function checkAnalyticsMeasurementContract() {
       "data-russian-newsletter={isRussian ? 'global-rule-digest' : undefined}",
       "'X-TFH-Locale': locale",
       "placeholder={isRussian ? 'Ваш адрес электронной почты'",
-      "? (isRussian ? 'Подтвердить адрес' : 'Confirm email')",
+      "? (isRussian ? 'Проверьте почту' : 'Check your inbox')",
       '{ placement, locale }',
     ]],
     [path.join(ROOT, 'app/api/newsletter/route.ts'), [
@@ -3215,7 +3244,7 @@ function checkIndiaChallengeSurface() {
       'buildIndiaMatcherFirms',
       "getLandingBySlug('best-prop-firms-in-india')",
       "entry.rbiAlert.status === 'named'",
-      'SOCIAL_CARD_PRODUCT_COUNT = 44',
+      'SOCIAL_CARD_PRODUCT_COUNT = 49',
       'SOCIAL_CARD_FIRM_COUNT = 9',
       'Refresh the India challenge-comparison social card',
       'breadcrumbSchema',
@@ -3480,8 +3509,14 @@ function checkIndiaChallengeSurface() {
 
   if (!fs.existsSync(INDIA_CHALLENGE_SOCIAL_FILE)) {
     rows.push('India challenge comparison social card is missing')
-  } else if (fs.statSync(INDIA_CHALLENGE_SOCIAL_FILE).size < 100_000) {
-    rows.push('India challenge comparison social card is unexpectedly small')
+  } else {
+    const png = fs.readFileSync(INDIA_CHALLENGE_SOCIAL_FILE)
+    if (png.length < 1024 || png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a'
+      || png.toString('ascii', 12, 16) !== 'IHDR'
+      || png.readUInt32BE(16) < 1200 || png.readUInt32BE(20) < 630
+      || png.toString('ascii', png.length - 8, png.length - 4) !== 'IEND') {
+      rows.push('India challenge comparison social card must be a complete PNG of at least 1200 × 630')
+    }
   }
 
   const internalLinks = [
@@ -3547,11 +3582,11 @@ function checkIndiaChallengeChangesSurface() {
       'entry.productSlugs.includes(product.slug)',
       'affectedComparisonUrl(',
       'validateChallengeProductKeys',
-      'SOCIAL_CARD_ENTRY_COUNT = 16',
+      'SOCIAL_CARD_ENTRY_COUNT = 19',
       'SOCIAL_CARD_FIRM_COUNT = 7',
-      'SOCIAL_CARD_PRODUCT_COUNT = 30',
-      'SOCIAL_CARD_VERIFIED_COUNT = 6',
-      'SOCIAL_CARD_WATCH_COUNT = 10',
+      'SOCIAL_CARD_PRODUCT_COUNT = 35',
+      'SOCIAL_CARD_VERIFIED_COUNT = 8',
+      'SOCIAL_CARD_WATCH_COUNT = 11',
       'Refresh the India challenge-changes social card',
       'Affiliate status contributes 0 points',
       'ChallengeChangeFeed entries={entries}',
@@ -3605,11 +3640,16 @@ function checkIndiaChallengeChangesSurface() {
     }
   }
 
-  if (
-    !fs.existsSync(INDIA_CHALLENGE_CHANGES_SOCIAL_FILE)
-    || fs.statSync(INDIA_CHALLENGE_CHANGES_SOCIAL_FILE).size < 100_000
-  ) {
-    rows.push('India challenge changes social card is missing or unexpectedly small')
+  if (!fs.existsSync(INDIA_CHALLENGE_CHANGES_SOCIAL_FILE)) {
+    rows.push('India challenge changes social card is missing')
+  } else {
+    const png = fs.readFileSync(INDIA_CHALLENGE_CHANGES_SOCIAL_FILE)
+    if (png.length < 1024 || png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a'
+      || png.toString('ascii', 12, 16) !== 'IHDR'
+      || png.readUInt32BE(16) < 1200 || png.readUInt32BE(20) < 630
+      || png.toString('ascii', png.length - 8, png.length - 4) !== 'IEND') {
+      rows.push('India challenge changes social card must be a complete PNG of at least 1200 × 630')
+    }
   }
   const socialAlt = fs.existsSync(INDIA_CHALLENGE_CHANGES_SOCIAL_ALT_FILE)
     ? fs.readFileSync(INDIA_CHALLENGE_CHANGES_SOCIAL_ALT_FILE, 'utf-8').trim()
@@ -5827,9 +5867,9 @@ function checkConsistencyGuide() {
     expectFragments('Topstep target-based example', stripTags(content), [
       'captured $100K Standard Path',
       `Profit Target is ${money(target)}`,
-      `${topstep.consistencyRulePct}% is ${money(limitAmount)}`,
-      'A $3,500 best day is 58.33% of that fixed target',
-      'can increase the Consistency Target',
+      `${topstep.consistencyRulePct}% recommendation is ${money(limitAmount)}`,
+      'A $3,500 best day exceeds that recommendation',
+      'raises the required target',
     ])
   }
 
@@ -6110,9 +6150,9 @@ function checkUkLandingCluster() {
     }
   }
 
-  if (entries.length !== 8 || mappedProducts.size !== 34) {
+  if (entries.length !== 8 || mappedProducts.size !== 39) {
     rows.push(
-      `UK fixture expects 8 firms and 34 mapped products; received ${entries.length} and ${mappedProducts.size}`,
+      `UK fixture expects 8 firms and 39 mapped products; received ${entries.length} and ${mappedProducts.size}`,
     )
   }
 
@@ -6170,7 +6210,7 @@ function checkUkLandingCluster() {
 
   const expectedTitle = 'Best Prop Firms for UK Traders (2026): 8 Checked'
   const expectedDescription =
-    'Compare 8 prop firms with current first-party UK-access policies across 34 product paths, plus FCA checks, fees, rules, reviews, and dated sources.'
+    'Compare 8 prop firms with current first-party UK-access policies across 39 product paths, plus FCA checks, fees, rules, reviews, and dated sources.'
   if (expectedTitle.length > 54) rows.push('UK meta title leaves no room for the root suffix')
   if (expectedDescription.length < 120 || expectedDescription.length > 160) {
     rows.push('UK meta description must be between 120 and 160 characters')
@@ -7569,11 +7609,17 @@ function checkDiscountHub() {
   const brightDeals = deals.filter(deal => deal.firmSlug === 'bright-funded')
   if (!brightObservation || brightObservation.firmSlug !== 'bright-funded'
     || brightObservation.status !== 'advertised-unverified' || brightObservation.checkoutVerified !== false
-    || typeof brightObservation.code !== 'string' || !brightObservation.code
-    || !Number.isInteger(brightObservation.advertisedDiscountPct) || brightObservation.advertisedDiscountPct <= 0
-    || !Array.isArray(brightObservation.sourceQuotes)
-    || !brightObservation.sourceQuotes.some(quote => typeof quote === 'string' && quote.includes(brightObservation.code))
-    || !brightObservation.sourceQuotes.some(quote => typeof quote === 'string' && quote.includes(String(brightObservation.advertisedDiscountPct)))) {
+    || !Array.isArray(brightObservation.offers) || brightObservation.offers.length === 0
+    || new Set(brightObservation.offers.map(offer => offer.code)).size !== brightObservation.offers.length
+    || new Set(brightObservation.offers.map(offer => offer.productSlug)).size !== brightObservation.offers.length
+    || brightObservation.offers.some(offer =>
+      typeof offer.productSlug !== 'string' || !offer.productSlug.startsWith('bright-funded-')
+      || typeof offer.productName !== 'string' || !offer.productName
+      || typeof offer.code !== 'string' || !offer.code
+      || !Number.isInteger(offer.advertisedDiscountPct) || offer.advertisedDiscountPct <= 0 || offer.advertisedDiscountPct > 100
+      || !Array.isArray(offer.sourceQuotes)
+      || !offer.sourceQuotes.some(quote => typeof quote === 'string' && quote.includes(offer.code))
+      || !offer.sourceQuotes.some(quote => typeof quote === 'string' && quote.includes(offer.productName) && quote.includes(String(offer.advertisedDiscountPct))))) {
     rows.push('Bright Funded advertisement must remain distinct from checkout-verified deals')
   } else {
     const checkedAt = new Date(`${brightObservation.sourceCapturedAt}T00:00:00Z`)
@@ -7583,7 +7629,7 @@ function checkDiscountHub() {
       || !/^\d{4}-\d{2}-\d{2}$/.test(brightObservation.sourceCapturedAt)
       || !Number.isFinite(checkedAt.getTime())
       || checkedAt.toISOString().slice(0, 10) !== brightObservation.sourceCapturedAt
-      || brightDeals.some(deal => deal.code === brightObservation.code)) {
+      || brightDeals.some(deal => brightObservation.offers.some(offer => deal.code === offer.code))) {
       rows.push('Bright Funded advertised-only code cannot be a verified checkout offer')
     }
   }
@@ -7983,8 +8029,11 @@ function checkFundedNextAffiliatePath() {
       rows.push(`FundedNext review is missing conversion safeguard: ${fragment}`)
     }
   }
-  if (parsed.data.modified !== '2026-09-29') {
-    rows.push('FundedNext review modified date must match the product-fit review date')
+  // Later editorial improvements do not recapture the products. Keep the
+  // article date at or after the original product-fit correction, rather
+  // than requiring an old publication timestamp forever.
+  if (typeof parsed.data.modified !== 'string' || parsed.data.modified.slice(0, 10) < '2026-09-29') {
+    rows.push('FundedNext review modified date must not predate the product-fit correction')
   }
   if (!ftmoRaw.includes('href="/compare/ftmo-vs-fundednext"')) {
     rows.push('FTMO review is missing its contextual link to the FundedNext comparison')
@@ -9752,8 +9801,8 @@ function checkFundedNextComparisonOverlay() {
     }
     const categoryCount = (overlayText.match(/\{ category:/g) ?? []).length
     const faqCount = (overlayText.match(/\{ q:/g) ?? []).length
-    if (categoryCount !== 7 || faqCount !== 5) {
-      rows.push('ftmo-vs-fundednext must preserve 7 category calls and 5 factual FAQs')
+    if (categoryCount !== 7 || faqCount !== 7) {
+      rows.push('ftmo-vs-fundednext must preserve 7 category calls and 7 factual FAQs')
     }
 
     const expectedFragments = [
@@ -9762,7 +9811,7 @@ function checkFundedNextComparisonOverlay() {
       `${ftmoOneStep.profitSplitPct}%`,
       `${stellarInstant.profitSplitPct}%`,
       `${ftmoTwoStep.payoutFirstDays} days`,
-      `${stellarOneStep.payoutFirstDays} days`,
+      `${stellarOneStep.payoutFirstDays}-business-day`,
       `${stellarTwoStep.payoutFirstDays} days`,
       `€${tier(ftmoTwoStep, 100000).priceEur}`,
       `€${tier(ftmoOneStep, 100000).priceEur}`,

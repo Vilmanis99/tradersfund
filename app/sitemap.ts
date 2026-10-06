@@ -322,7 +322,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/ru/vyplaty-prop-firm', russianPayoutLastModified],
     ['/ru/prop-firmy-bez-kyc', russianKycLastModified],
     ['/ru/otzyvy-prop-firm', russianReviewsLastModified],
-    ['/ru/prop-firmy-bez-chelendzha', russianChallengeLastModified('fundednext', 'fundingpips', 'tradeify', 'lucid-trading', 'alpha-capital', 'city-traders-imperium', 'maven', 'crypto-fund-trader', 'fxify')],
+    // The instant guide's Article uses its editorial date; product rows show
+    // their own captures separately. Evaluation-only rechecks must not redate it.
   ])
   const russianRoutes: MetadataRoute.Sitemap = LOCALIZED_ROUTE_PAIRS.map(pair => ({
     url: `${BASE_URL}${pair.ru}`,

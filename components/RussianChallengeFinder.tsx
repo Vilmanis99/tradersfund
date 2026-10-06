@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState, useSyncExternalStore } from 'react'
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import Link from 'next/link'
 import { ArrowRight, Check, Link2, Plus, Scale, SlidersHorizontal, X } from 'lucide-react'
 import {
@@ -186,7 +186,7 @@ export default function RussianChallengeFinder({ initialRows, brightCountrySourc
             const key = challengeKey(row)
             const isSelected = selected.includes(key)
             return <article className={`ru-finder-card${isSelected ? ' ru-finder-card--selected' : ''}`} key={key} data-finder-product={key}>
-              <header><Image src={row.firm.logo} alt="" width={38} height={38} /><div><span>{firmLabel(row)}</span><h3>{productLabel(row)}</h3></div><span className="ru-finder-phase">{phaseLabel(row.product.phases)}</span></header>
+              <header><FirmLogo name={firmLabel(row)} src={row.firm.logo} size={38} /><div><span>{firmLabel(row)}</span><h3>{productLabel(row)}</h3></div><span className="ru-finder-phase">{phaseLabel(row.product.phases)}</span></header>
               <div className="ru-finder-price"><strong>{priceLabel(tier)}</strong><span>базовый взнос{row.product.pricingModel === 'monthly-subscription' ? ' за месяц' : ''}</span></div>
               <dl className="ru-finder-facts"><div><dt>Цель оценки</dt><dd>{targets(row)}</dd></div><div><dt>Общий лимит убытка</dt><dd>{percent(row.product.maxLossPct)} · {drawdownLabel(row.product.drawdownType)}</dd></div><div><dt>Дневной лимит</dt><dd>{percent(row.product.dailyLossPct)}</dd></div><div><dt>Доля трейдера</dt><dd>{percent(row.product.profitSplitPct)}</dd></div></dl>
               <p className="ru-finder-payout"><strong>Первый запрос выплаты:</strong> {payoutLabel(row)}. Дополнительные условия и проверка правил сохраняются.</p>

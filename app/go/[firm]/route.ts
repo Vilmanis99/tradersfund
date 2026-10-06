@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import { isIndiaCampaign } from '@/lib/affiliateCampaign'
 import { campaignLocale } from '@/lib/analyticsTaxonomy'
-import { getAllFirms } from '@/lib/firms'
+import { getAllFirms, getChallengesByFirm } from '@/lib/firms'
+import { challengeSourceDestination } from '@/lib/challengeSources'
 import { INDIA_EVIDENCE_BY_SLUG } from '@/lib/india'
 import {
   outboundSlug,
@@ -109,6 +110,22 @@ export async function GET(
   const match = getAllFirms().find(f => outboundSlug(f.name) === target)
   const url = new URL(req.url)
   const from = campaignFrom(url.searchParams.get('from'))
+
+  // Evidence links open the exact captured product page without affiliate
+  // attribution. Unknown sources must not fall through to a purchase CTA.
+  if (url.searchParams.has('source')) {
+    const sourceProduct = url.searchParams.get('source') ?? ''
+    const destination = match && challengeSourceDestination(match, sourceProduct, getChallengesByFirm(target))
+    if (!destination) {
+      return new NextResponse('Source unavailable', { status: 404, headers: {
+        'X-Robots-Tag': 'noindex, nofollow', 'Cache-Control': 'no-store',
+      } })
+    }
+    console.info(JSON.stringify({ event: 'source_click', firm: target, placement: from, source_product: sourceProduct }))
+    const response = redirectWithoutIndexing(destination, 302)
+    response.headers.set('Cache-Control', 'no-store')
+    return response
+  }
 
   if (!match) {
     // Reviewed tools/platforms that aren't prop firms (see PARTNERS above).

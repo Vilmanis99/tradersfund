@@ -50,12 +50,12 @@
       "firmSlug": "alpha-capital",
       "firmName": "Alpha Capital",
       "accessStatus": "policy-supported",
-      "productSlugs": ["alpha-one", "alpha-pro-6", "alpha-swing", "alpha-three", "alpha-direct"],
+      "productSlugs": ["alpha-one", "alpha-pro-6", "alpha-pro-6-on-demand", "alpha-pro-8-bi-weekly", "alpha-pro-8-on-demand", "alpha-pro-10-bi-weekly", "alpha-pro-10-on-demand", "alpha-swing", "alpha-three", "alpha-direct"],
       "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
       "sourceCapturedAt": "2026-10-01",
       "evidenceLabel": "Country-limitations policy",
       "evidenceSummary": "Alpha Capital says it is available in more than 150 countries and lists its nationality and residency exclusions; the United Kingdom is not excluded.",
-      "decisionNote": "All 5 current product records are mapped, but several price variants remain checkout-unverified. A .uk domain or UK company presence is not an FCA permission check."
+      "decisionNote": "All 10 captured configurations are mapped; this mapping update does not refresh the October 1 country-policy date. Exact purchase availability remains unsettled for One variants, Swing and Three. A .uk domain or UK company presence is not an FCA permission check."
     },
     {
       "firmSlug": "city-traders-imperium",

@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useRef, useState } from 'react'
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -350,15 +350,7 @@ export default function IndiaFirmMatcher({ firms }: { firms: IndiaMatcherFirm[] 
                 style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column' }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                  <div className="leader-logo" style={{ flex: '0 0 auto' }}>
-                    <Image
-                      src={firm.logo}
-                      alt=""
-                      width={44}
-                      height={44}
-                      style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%' }}
-                    />
-                  </div>
+                  <FirmLogo name={firm.name} src={firm.logo} size={44} />
                   <div style={{ minWidth: 0 }}>
                     <div style={{
                       color: index === 0 ? 'var(--accent-light)' : 'var(--muted)',

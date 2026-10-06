@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import Link from 'next/link'
 import { BadgeCheck, CalendarClock, ShieldCheck, ArrowUpRight } from 'lucide-react'
 import CopyableCodePill from './CopyableCodePill'
@@ -55,17 +55,7 @@ export default function DealCard({ deal }: { deal: DealCardData }) {
     <article className="deal-card">
       <div className="deal-card-head">
         <div className="deal-card-logo">
-          {deal.logo ? (
-            <Image
-              src={deal.logo}
-              alt={`${deal.firmName} logo`}
-              width={44}
-              height={44}
-              style={{ objectFit: 'contain', width: 'auto', height: 'auto', maxWidth: '100%', maxHeight: '100%' }}
-            />
-          ) : (
-            <span className="logo-fallback">{deal.firmName.charAt(0)}</span>
-          )}
+          <FirmLogo name={deal.firmName} src={deal.logo} size={44} />
         </div>
         <div className="deal-card-id">
           <span className="deal-card-name">{deal.firmName}</span>

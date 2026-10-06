@@ -3,7 +3,7 @@ title: "FundedNext Review 2026: 22 Prices, 4 Rule Sets, and the India Checkout T
 seoTitle: "FundedNext Review 2026: Fees, Rules & Payouts"
 slug: "fundednext-review"
 date: "2024-09-02 15:16:05"
-modified: "2026-09-29"
+modified: "2026-10-06"
 author: "Edris Derakhshi"
 excerpt: "FundedNext starts new accounts at an 80% split, not 95%. Compare all 22 global prices, payout cycles, news rules, and India payment checks."
 seoDescription: "FundedNext review with 22 current prices, an 80% base split, and Stellar Lite, 1-Step, 2-Step and Instant rules, payouts, platforms and India access."
@@ -213,17 +213,14 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
-<h3 class="wp-block-heading"><strong>Can traders in India use FundedNext?</strong></h3>
-<p>India was not among FundedNext’s 20 restricted CFD countries on 2026-07-27. This indicates service availability, not Indian regulatory approval; use your exact legal name and Indian address for checkout and KYC, then compare the captured evidence on our <a href="/best-prop-firms-in-india">India prop-firm shortlist</a>.</p>
-
-<h3 class="wp-block-heading"><strong>Can an Indian trader pay by card?</strong></h3>
-<p>FundedNext’s international-card checkout accepts Visa, Mastercard, and Amex, and the cardholder name must match the account name. It also lists 30 cryptocurrencies; a Local Payment option is available only when the dashboard shows support for the user’s country.</p>
+<h3 class="wp-block-heading"><strong>How much does a FundedNext challenge cost?</strong></h3>
+<p>The lowest captured global USD list fee is $32.99 for Stellar Lite’s $5K account. Stellar 2-Step starts at $59.99 for $6K, Stellar 1-Step at $65.99 for $6K, and Stellar Instant at $59.99 for $2K. The 2026-09-29 capture excludes promotions, optional add-ons and alternative-platform charges; the <a href="/compare/ftmo-vs-fundednext">FTMO vs FundedNext comparison</a> keeps those USD fees separate from FTMO’s EUR fees.</p>
 
 <h3 class="wp-block-heading"><strong>Is FundedNext’s base split really 95%?</strong></h3>
 <p>No. New Stellar 1-Step, 2-Step, and Lite accounts start at 80%, while Instant starts at 70%; 95% is a paid lifetime add-on, and standard scaling can raise challenge products to 90%.</p>
 
-<h3 class="wp-block-heading"><strong>Which FundedNext plan is cheapest?</strong></h3>
-<p>Stellar Lite $5K is lowest at $32.99, with 8% and 4% targets, 4% daily loss, and 8% static maximum loss. The next entry is $59 for $2K Instant or $59.99 for $6K 2-Step.</p>
+<h3 class="wp-block-heading"><strong>How does Stellar Instant differ from Stellar 2-Step?</strong></h3>
+<p>Stellar Instant has no evaluation, starts at a 70% split, uses a 6% trailing maximum loss, and has no fee refund. Stellar 2-Step has 2 phases with 8% and 5% targets, starts at 80%, uses a 10% static maximum loss, and attaches the fee refund to the first approved reward. Instant access does not mean an unconditional immediate payout; review the separate <a href="#payout-speed-in-practice">payout gates</a>.</p>
 
 <h3 class="wp-block-heading"><strong>How does the news rule work?</strong></h3>
 <p>On funded accounts, executions from 5 minutes before to 5 minutes after listed high-impact news receive a 40% profit count, while all losses remain. Challenge phases do not receive that adjustment.</p>
@@ -231,5 +228,8 @@ type: "post"
 <h3 class="wp-block-heading"><strong>When is the challenge fee refunded?</strong></h3>
 <p>Stellar 2-Step can request it with the first approved payout; new 1-Step and Lite purchases wait until the third. Stellar Instant has no refundable fee.</p>
 
-<h3 class="wp-block-heading"><strong>What KYC does an Indian trader need?</strong></h3>
-<p>FundedNext accepts a physical national ID, passport, or permanent residence permit plus liveness verification, with review typically around 48 hours. It can request proof of address from the last 3 months, and profile KYC renews every 90 days.</p>
+<h3 class="wp-block-heading"><strong>When can I request my first FundedNext payout?</strong></h3>
+<p>Stellar 1-Step uses a 5-business-day reward cycle; Stellar 2-Step and Lite allow the first standard request after 21 days. Stellar Instant’s on-demand route requires 5% growth and an end-of-day check, with a separate 14-day route for growth of at least 1% but below 5%. Eligibility and approval are separate from transfer time, and KYC must be Approved before a request.</p>
+
+<h3 class="wp-block-heading"><strong>Can traders in India use FundedNext?</strong></h3>
+<p>India was not among FundedNext’s 20 restricted CFD countries in the 2026-07-27 country check. That dated access evidence is separate from regulatory approval, payment availability and KYC: the cardholder and account names must match, and Local Payment requires dashboard support for the country. Use the <a href="/best-prop-firms-in-india">India comparison’s current country and payment checks</a> before purchasing.</p>

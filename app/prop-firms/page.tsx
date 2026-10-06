@@ -41,30 +41,17 @@ export const metadata: Metadata = {
 
 type DirectorySearchParams = Promise<Record<string, string | string[] | undefined>>
 
-const firstParam = (value: string | string[] | undefined) =>
-  Array.isArray(value) ? value[0] : value
-
 export default async function PropFirmsHubPage({
   searchParams,
 }: {
   searchParams: DirectorySearchParams
 }) {
-  const query = await searchParams
+  // Reading the request keeps the directory's URL state available during SSR.
+  await searchParams
   const firms = getAllFirms()
   const challenges = getAllChallenges()
   const freshChallenges = challenges.filter(challenge => isChallengeFresh(challenge))
   const tiles = getFeatureCounts()
-  const size = Number(firstParam(query.size))
-  const initialFilters = {
-    asset: firstParam(query.asset),
-    size: Number.isFinite(size) && size > 0 ? size : undefined,
-    phase: firstParam(query.phase),
-    drawdown: firstParam(query.drawdown),
-    news: firstParam(query.news) === 'allowed',
-    ea: firstParam(query.ea) === 'allowed',
-    overnight: firstParam(query.overnight) === 'allowed',
-    weekend: firstParam(query.weekend) === 'allowed',
-  }
   const pricedProductCount = freshChallenges.filter(challenge =>
     challenge.accountSizes.some(tier =>
       (tier.priceUsd != null && tier.priceUsd > 0)
@@ -126,9 +113,9 @@ export default async function PropFirmsHubPage({
           </p>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.7rem', marginTop: '1.4rem' }}>
-            <Link href="#global-prop-firm-directory" className="btn-primary btn-glow">
+            <a href="#global-prop-firm-directory" className="btn-primary btn-glow">
               Open the directory <ArrowRight size={15} />
-            </Link>
+            </a>
             <Link href="/prop-firm-challenges" className="btn-outline">
               Compare challenge products
             </Link>
@@ -191,7 +178,7 @@ export default async function PropFirmsHubPage({
         style={{ paddingTop: '2rem' }}
         aria-labelledby="global-directory-heading"
       >
-        <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 1.5rem' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div className="section-head">
             <div>
               <h2 id="global-directory-heading" className="section-title">
@@ -210,7 +197,6 @@ export default async function PropFirmsHubPage({
           <FirmTable
             firms={firms}
             challenges={freshChallenges}
-            initialFilters={initialFilters}
           />
         </div>
       </section>

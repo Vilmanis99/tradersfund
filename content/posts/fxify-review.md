@@ -3,9 +3,9 @@ title: "FXIFY Review 2026: 8 Products, 54 Prices, and No Single Drawdown Rule"
 seoTitle: "FXIFY Review 2026: Fees, Plans & Drawdown Rules"
 slug: "fxify-review"
 date: "2025-08-26 09:25:39"
-modified: "2026-09-15 15:30:00"
+modified: "2026-10-06"
 author: "Tara Mohseni"
-excerpt: "FXIFY gives rule-sensitive traders 8 CFD products, but trailing, static, unknown, and product-specific restrictions make the exact plan matter."
+excerpt: "Compare FXIFY's 8 CFD products by static or trailing drawdown, product-specific restrictions, and verified versus unverified base profit splits."
 seoDescription: "FXIFY review comparing 8 CFD products, 54 current prices, true cost, profit splits, and each plan's trailing, static, or product-specific drawdown."
 categories: ["Prop Firms"]
 tags: ["FXIFY", "Prop Firm"]
@@ -20,7 +20,7 @@ type: "post"
   <div class="title">Fast take</div>
   <ul>
     <li>The 2026-09-15 checkout capture contains <strong>8 CFD products and 54 product-size prices</strong>, from $19 Instant Funding Lite to $4,249 Instant Funding Standard.</li>
-    <li>There is no firm-wide drawdown shortcut: captured products use 5% or 10% static, 4%, 6%, 8%, or 10% trailing, and 1 product whose drawdown type is not stated.</li>
+    <li>There is no firm-wide drawdown shortcut: captured products use 5%, 8%, or 10% static maximum loss, or 4%, 6%, 8%, or 10% trailing maximum loss.</li>
     <li>The 5 phase products publish an 80% base split; Instant Standard, Instant Lite, and Lightning publish only “up to 90%,” so their base split remains unverified.</li>
     <li>News, weekend, and EA permissions differ by product: the 5 phase products allow all 3, both Instant variants reject all 3, and Lightning allows weekends but rejects news and EAs.</li>
     <li>The captured restriction list names 35 jurisdictions and does not name India; Indian traders must still confirm checkout, KYC, platform, and payout access before purchase.</li>
@@ -38,7 +38,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Captured products</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8 CFD products across 54 priced tiers</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Account sizes</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1K to $400K, depending on product</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Captured base split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% on 5 phase products; not stated for 3 products</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown types</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Static, trailing, and 1 unstated product</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown types</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Static and trailing, depending on the product</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Captured platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT5, DXTrade, or TradingView on phase-program pages</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>India screen</strong></td><td style="padding: 8px 12px; border-bottom: none;">India not among 35 captured restricted jurisdictions; checkout and KYC still decisive</td></tr>
   </tbody>
@@ -46,7 +46,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>The 2026-09-15 source capture found 54 undiscounted checkout prices across 8 CFD products. FXIFY's public program pages still show a generic $250/$5K card, so the official named checkout ladder is used for tier quotes and that presentation mismatch is called out rather than silently blended into the data. A blank split or drawdown type means FXIFY did not publish an exact base value in the captured material; it does not mean the rule is zero.</p>
+<p>The 2026-09-15 source capture found 54 undiscounted checkout prices across 8 CFD products. FXIFY's public program pages still show a generic $250/$5K card, so the official named checkout ladder is used for tier quotes and that presentation mismatch is called out rather than silently blended into the data. A blank base split means FXIFY did not publish an exact base percentage in the captured material; it does not mean the split is zero.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
   <caption class="hidden-caption">FXIFY challenge products</caption>
@@ -127,7 +127,7 @@ type: "post"
 
 <p><strong>Drawdown depends on the product.</strong> One Phase uses a 3% daily and 6% trailing maximum loss; on a $50K account those published percentages correspond to $1,500 daily and $3,000 maximum-loss budgets. Two Phase Standard uses 4% daily and 10% trailing, while Two Phase Classic uses 4% daily and 10% static. Three Phase is stricter in total room at 5% daily and 5% static.</p>
 
-<p><strong>Do not infer the missing rule.</strong> Two Phase Pro publishes a 4% daily and 8% maximum loss, but the captured page does not call that 8% limit static or trailing. Instant Standard uses 8% daily and 8% trailing; Instant Lite and Lightning each use 3% daily and 4% trailing.</p>
+<p><strong>Two Phase Pro uses static drawdown.</strong> Its product-specific announcement, included in the 2026-09-15 capture, identifies an 8% static maximum loss and a 4% daily limit. This resolves the generic program page's omission; read the <a href="/go/fxify?source=two-phase-pro">Two Phase Pro source</a> for the applicable rules. Instant Standard uses 8% daily and 8% trailing; Instant Lite and Lightning each use 3% daily and 4% trailing.</p>
 
 <p><strong>Three consistency rules need separate treatment.</strong> Two Phase Classic applies a 25% consistency rule only after funding, Instant Lite publishes 20%, and Lightning publishes 30%. Under a 25% cap, a $500 best profitable day requires at least $2,000 total qualifying profit because $500 divided by 25% equals $2,000; products with a null consistency field are not described here as “no rule.”</p>
 
@@ -248,7 +248,7 @@ type: "post"
 <ul class="wp-block-list">
   <li><strong>Instant Standard, Instant Lite, and Lightning lack a captured base split</strong>, blocking an exact true-cost comparison for 17 of the 54 prices.</li>
   <li><strong>Payout timing is product-specific</strong>: Two Phase Pro and Instant Lite use 10-day first-payout gates, Instant Standard uses 14 days, and Lightning uses 7 days before moving to a 14-day cycle.</li>
-  <li><strong>Two Phase Pro’s 8% maximum-loss type is unstated</strong>, which matters because static and trailing limits create different usable risk.</li>
+  <li><strong>Two Phase Pro requires 3 profitable days per phase</strong>, each earning at least 0.5% of the initial balance, so 3 days with small gains do not necessarily satisfy its trading-day requirement.</li>
   <li><strong>Instant Lite combines a 4% trailing maximum loss with a 20% consistency rule</strong>, a tight pairing even though its entry fee starts at $19.</li>
   <li><strong>Lightning requires 3 trading days inside a 5-day cap</strong> and also imposes a 30% consistency rule.</li>
   <li><strong>The 2 Instant products still lack a verified overnight rule</strong>, while copy trading is prohibited on Two Phase Pro, both Instant products, and Lightning and remains conditional on the other 4 phase products.</li>
@@ -260,7 +260,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should avoid FXIFY</strong></h2>
 
-<p>A trader who needs one firm-wide rule set should avoid FXIFY because its 8 products mix static, trailing, and unstated drawdown types. Indian swing traders considering either Instant product should obtain written overnight confirmation, while the 5 phase products and Lightning publish overnight permission; traders who require fully quantified economics should exclude the 3 products whose base split is not stated.</p>
+<p>A trader who needs one firm-wide rule set should avoid FXIFY because its 8 products mix static and trailing drawdown rules. Indian swing traders considering either Instant product should obtain written overnight confirmation, while the 5 phase products and Lightning publish overnight permission; traders who require fully quantified economics should exclude the 3 products whose base split is not stated.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
@@ -283,4 +283,4 @@ type: "post"
 <p>The captured source says the One Phase, Two Phase, and Three Phase fees can be reimbursed with the first payout. Both Instant variants are non-refundable, while the Lightning FAQ states a 100% refund alongside its first withdrawal.</p>
 
 <h3 class="wp-block-heading"><strong>Which FXIFY products have static drawdown?</strong></h3>
-<p>Two Phase Classic publishes a 10% static maximum loss and Three Phase publishes a 5% static maximum loss. One Phase, Two Phase Standard, both Instant variants, and Lightning are trailing; Two Phase Pro publishes 8% maximum loss without naming the type.</p>
+<p>Two Phase Classic publishes a 10% static maximum loss, Two Phase Pro publishes an 8% static maximum loss, and Three Phase publishes a 5% static maximum loss. One Phase, Two Phase Standard, both Instant variants, and Lightning use trailing limits in the 2026-09-15 capture. The <a href="/go/fxify?source=two-phase-pro">product-specific Pro announcement</a> confirms its static rule.</p>

@@ -3,7 +3,7 @@ title: "FTMO Review 2026: Euro-Priced, 80% on the 2-Step, 90% on the 1-Step"
 seoTitle: "FTMO Review 2026: 1-Step vs 2-Step Fees & Splits"
 slug: "ftmo-review"
 date: "2024-08-30 10:30:24"
-modified: "2026-09-29 12:00:00"
+modified: "2026-10-06"
 author: "Edris Derakhshi"
 excerpt: "FTMO publishes per-tier pricing — in euros, not dollars. €89–€1,080 for the refundable 2-Step at 80%, €79–€999 for the non-refundable 1-Step at 90%."
 seoDescription: "FTMO review comparing euro pricing, refundable 2-Step fees, non-refundable 1-Step fees, 80%–90% splits, drawdown rules, and true cost."
@@ -225,7 +225,7 @@ type: "post"
 
 <h3 class="wp-block-heading"><strong>How much does the FTMO Challenge cost?</strong></h3>
 
-<p>In euros, not dollars. The 2-Step is €1,080 / €540 / €345 / €250 / €89 for the $200K / $100K / $50K / $25K / $10K accounts; the 1-Step is €999 / €499 / €319 / €199 / €79 for the same balances. Prices captured from ftmo.com on 2026-09-29 and may be rounded up in display.</p>
+<p>FTMO’s captured CFD list fees are €89–€1,080 for the 2-Step and €79–€999 for the 1-Step. At the $100K account size, the respective list fees are €540 and €499; the account label is USD while the fee is EUR. These prices were captured on 2026-09-29, may be rounded in display, and exclude conditional promotions. Compare the same product and account size in the <a href="/compare/ftmo-vs-fundednext">FTMO vs FundedNext comparison</a> before choosing.</p>
 
 <h3 class="wp-block-heading"><strong>Is the FTMO profit split 80% or 90%?</strong></h3>
 
@@ -245,16 +245,8 @@ type: "post"
 
 <h3 class="wp-block-heading"><strong>How much profit do I need to break even on the fee?</strong></h3>
 
-<p>Fee ÷ split. On the 2-Step $100,000 tier that is €540 ÷ 0.80 = €675 of gross profit, or €600 once you reach the 90% rate — and the fee itself comes back with the first withdrawal. On the 1-Step $100,000 tier it is €499 ÷ 0.90 = €554, with no refund behind it.</p>
+<p>Before counting any refund, the $100K 2-Step’s €540 fee requires €675 of gross approved profit at its 80% base split. The $100K 1-Step’s €499 fee requires €554.44 at 90%, with no fee refund. These are fee-recovery calculations from the same model as the generated tables, not payout minimums or pass targets; the <a href="/true-cost-of-prop-firm-challenges">true-cost guide</a> explains refund-adjusted cash results and why a EUR fee cannot be divided by USD loss room without an exchange rate.</p>
 
 <h3 class="wp-block-heading"><strong>When can I take my first payout?</strong></h3>
 
 <p>On the 14th day after your first placed trade, or any day after that, with all open positions and pending orders closed. FTMO reviews the request within 1–2 business days and the reward is typically sent 1–2 business days after the invoice is approved.</p>
-
-<h3 class="wp-block-heading"><strong>Can I use an EA or copy trades on FTMO?</strong></h3>
-
-<p>EAs are allowed on evaluation and funded accounts, within platform limits of 200 orders at a time and 2,000 maximum positions per day, provided the trading is legitimate and conforms to real market conditions. On third-party copy trading we found no explicit ftmo.com statement in the 2026-09-29 capture, so we make no claim — confirm with support before mirroring another trader's signals.</p>
-
-<h3 class="wp-block-heading"><strong>Is FTMO regulated?</strong></h3>
-
-<p>No. FTMO operates as a Czech limited company selling simulated-trading evaluations, and no CFTC, NFA, FCA or CySEC framework covers that product. Its 4.8 Trustpilot score across 47,019 reviews as of 2026-07-27 is reputational evidence, not regulatory protection.</p>

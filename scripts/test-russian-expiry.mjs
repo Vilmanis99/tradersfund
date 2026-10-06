@@ -111,8 +111,15 @@ try {
   assert.equal(brightOfferObservation.status, 'advertised-unverified')
   assert.equal(brightOfferObservation.checkoutVerified, false, 'homepage advertising alone is not checkout verification')
   assert.equal(new URL(brightOfferObservation.sourceUrl).hostname, 'brightfunded.com')
-  assert(brightOfferObservation.sourceQuotes.some(quote => quote.includes(String(brightOfferObservation.advertisedDiscountPct))))
-  assert(brightOfferObservation.sourceQuotes.some(quote => quote.includes(brightOfferObservation.code)))
+  assert.deepEqual(brightOfferObservation.offers.map(offer => [offer.productSlug, offer.code, offer.advertisedDiscountPct]), [
+    ['bright-funded-1-step', 'RALLY30', 30],
+    ['bright-funded-2-step-bright', 'RALLY25', 25],
+    ['bright-funded-2-step-classic', 'RALLY15', 15],
+  ], 'current homepage codes are specific to their advertised products')
+  for (const offer of brightOfferObservation.offers) {
+    assert(offer.sourceQuotes.some(quote => quote.includes(offer.code)))
+    assert(offer.sourceQuotes.some(quote => quote.includes(offer.productName) && quote.includes(String(offer.advertisedDiscountPct))))
+  }
   const latestDealCheck = archivedDeals.offers.map(deal => deal.verifiedOn).sort().at(-1)
   assert(latestDealCheck, 'historical offer expiry fixture has a verified date')
   const primaryBasePriceCount = () => getAllChallenges()
@@ -147,16 +154,28 @@ try {
     assert(observedOfferHtml.includes('data-russian-bright-offer-observation="advertised-unverified"'), 'fresh first-party advertisement is visible but not treated as verified')
     assert(observedOfferHtml.includes('href="#bright-offer-status"') && observedOfferHtml.includes('id="bright-offer-status"'), 'Russian Bright-code search intent can reach the qualified observation')
     assert(observedOfferHtml.includes('data-russian-funnel-intent="bright_offer_status"'), 'Bright offer-status interest can be measured without code or profile data')
-    assert(observedOfferHtml.includes(brightOfferObservation.code) && observedOfferHtml.includes(brightOfferObservation.sourceUrl))
+    for (const offer of brightOfferObservation.offers) {
+      assert(observedOfferHtml.includes(offer.code) && observedOfferHtml.includes(offer.productName))
+    }
+    assert(observedOfferHtml.includes(brightOfferObservation.sourceUrl))
+    assert(!observedOfferHtml.includes('3YEARS'), 'superseded Bright code is absent from the current Russian page')
     assert(observedOfferHtml.includes('data-russian-deal-count="0"'), 'advertised-only code is excluded from verified deal count')
     assert(!observedOfferHtml.includes('data-russian-deals-bright="current-product-codes"'), 'advertised-only code gets no verified price table')
+    clock = new RealDate(new RealDate(`${brightOfferObservation.sourceCapturedAt}T12:00:00Z`).getTime() + 8 * 86_400_000).toISOString()
+    const expiredPromoHtml = renderToStaticMarkup(React.createElement(RussianOffers))
+    assert(!expiredPromoHtml.includes('data-russian-bright-offer-observation="advertised-unverified"'), 'advertised-only promo expires after seven days')
+    for (const offer of brightOfferObservation.offers) {
+      assert(!expiredPromoHtml.includes(offer.code), 'aged advertised code is not promoted')
+    }
     clock = new RealDate(new RealDate(`${brightOfferObservation.sourceCapturedAt}T12:00:00Z`).getTime() + 31 * 86_400_000).toISOString()
     const expiredObservationHtml = renderToStaticMarkup(React.createElement(RussianOffers))
     assert(expiredObservationHtml.includes(`<strong>${primaryBasePriceCount()}</strong><span>базовых цен FundedNext и Bright</span>`), 'base-price count expires with the source records')
     assert(!expiredObservationHtml.includes('data-russian-bright-offer-observation="advertised-unverified"'), 'day-31 advertisement needs a new source check')
     assert(!expiredObservationHtml.includes('href="#bright-offer-status"'), 'expired observation has no hero shortcut')
     assert(expiredObservationHtml.includes('id="bright-offer-status"'), 'expired observation leaves a valid status deep link')
-    assert(!expiredObservationHtml.includes(brightOfferObservation.code), 'old advertised code is not promoted after its 30-day window')
+    for (const offer of brightOfferObservation.offers) {
+      assert(!expiredObservationHtml.includes(offer.code), 'old advertised code is not promoted after its seven-day window')
+    }
   } finally { clock = originalClock }
   const { getAuthorBySlug } = require(path.join(root, 'lib/authors.ts'))
   const edris = getAuthorBySlug('edris-derakhshi')
@@ -184,14 +203,14 @@ try {
   const cftFeedHtml = renderToStaticMarkup(React.createElement(CftChangeFeed, {
     entries: cftChanges, surface: 'global', validProductKeys: cftChanges.flatMap(entry => entry.productKeys),
   }))
-  assert.equal(cftChanges.length, 2, 'CFT has separate correction and price records')
+  assert.equal(cftChanges.length, 3, 'CFT has correction, historical price capture and current source-conflict records')
   assert.equal(
     cftFeedHtml.includes('Conflict observed separately; full product verification remains unresolved.'),
     cftChanges.some(entry => entry.kind === 'source-conflict' && entry.status === 'watch'),
     'Actual feed labels an independent conflict only when the current CFT ledger has one',
   )
   for (const entry of cftChanges) {
-    assert(cftFeedHtml.includes(`id="${entry.id}"`), 'Both CFT records render, not just the JSON file')
+    assert(cftFeedHtml.includes(`id="${entry.id}"`), 'Every CFT record renders, not just the JSON file')
     for (const sourceUrl of entry.sourceUrls) assert(cftFeedHtml.includes(sourceUrl), 'Actual feed exposes every cited CFT source')
   }
   const comparisonSource = fs.readFileSync(path.join(root, 'components/GlobalChallengeComparison.tsx'), 'utf8')

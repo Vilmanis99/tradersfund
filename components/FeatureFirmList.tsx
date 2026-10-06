@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import { Star, ExternalLink, ArrowRight } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
 import TrustpilotRating from './TrustpilotRating'
@@ -73,19 +73,7 @@ export default function FeatureFirmList({
               </span>
 
               <div className="feature-firm-logo-tile">
-                {firm.logo ? (
-                  <Image
-                    src={firm.logo}
-                    alt={`${firm.name} logo`}
-                    width={40}
-                    height={40}
-                    style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%' }}
-                  />
-                ) : (
-                  <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--accent-light)' }}>
-                    {firm.name.substring(0, 2).toUpperCase()}
-                  </span>
-                )}
+                <FirmLogo name={firm.name} src={firm.logo} />
               </div>
 
               <div className="feature-firm-meta">

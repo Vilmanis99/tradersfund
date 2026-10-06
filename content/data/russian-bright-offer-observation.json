@@ -1,11 +1,31 @@
 {
   "firmSlug": "bright-funded",
   "status": "advertised-unverified",
-  "code": "3YEARS",
-  "advertisedDiscountPct": 30,
+  "offers": [
+    {
+      "productSlug": "bright-funded-1-step",
+      "productName": "1-Step",
+      "code": "RALLY30",
+      "advertisedDiscountPct": 30,
+      "sourceQuotes": ["RALLY30", "1-Step - 30% OFF"]
+    },
+    {
+      "productSlug": "bright-funded-2-step-bright",
+      "productName": "2-Step Bright",
+      "code": "RALLY25",
+      "advertisedDiscountPct": 25,
+      "sourceQuotes": ["RALLY25", "2-Step Bright - 25% OFF"]
+    },
+    {
+      "productSlug": "bright-funded-2-step-classic",
+      "productName": "2-Step Classic",
+      "code": "RALLY15",
+      "advertisedDiscountPct": 15,
+      "sourceQuotes": ["RALLY15", "2-Step Classic - 15% OFF"]
+    }
+  ],
   "sourceUrl": "https://brightfunded.com/",
-  "sourceCapturedAt": "2026-09-30",
-  "sourceQuotes": ["30% Off", "Code: 3YEARS"],
+  "sourceCapturedAt": "2026-10-02",
   "checkoutVerified": false,
-  "notesRu": "Код и процент видны на главной странице фирмы. Применение к конкретному заказу, программе и дополнениям не проверено после шага ввода email; не включать в таблицу подтверждённых скидок и не рассчитывать цену после кода."
+  "notesRu": "Три кода и процента видны на главной странице фирмы как Autumn Promo для разных программ. Ранее рекламировавшийся 3YEARS больше не виден на этой странице. Применение к конкретному заказу и дополнениям не проверено после шага ввода email; не включать в таблицу подтверждённых скидок и не рассчитывать цену после кода."
 }

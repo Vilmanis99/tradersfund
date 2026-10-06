@@ -1,0 +1,18 @@
+{
+  "firmSlug": "crypto-fund-trader",
+  "scope": "A price disagreement observed on October 6, not a complete product refresh or verified checkout quote. Existing product dates remain unchanged.",
+  "homepage": {
+    "sourceUrl": "https://cryptofundtrader.com/",
+    "sourceCapturedAt": "2026-10-06",
+    "productSlugs": ["ascend", "break"],
+    "quote": "$899.00; $199.00",
+    "observation": "Public homepage price blocks still differ from the 100K Ascend and Break amounts in the terms. Product/tier mapping follows the previously captured homepage structure; current checkout availability and final amounts have not been established."
+  },
+  "terms": {
+    "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+    "sourceCapturedAt": "2026-10-06",
+    "productSlugs": ["ascend", "break"],
+    "quote": "780 USD; 200 USD",
+    "observation": "Sections 5.6.5 and 5.6.6 retain these respective 100K evaluation fees. Section 5.6.7 separately lists a 328 USD Break activation fee. The terms alone do not resolve the differing homepage amounts."
+  }
+}

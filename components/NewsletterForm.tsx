@@ -1,6 +1,7 @@
 'use client'
-import { useState } from 'react'
+import { useId, useRef, useState } from 'react'
 import { trackSiteEvent as track } from '@/lib/clientAnalytics'
+import { isValidEmail } from '@/lib/formValidation'
 
 type Status = 'idle' | 'sending' | 'pending' | 'error'
 
@@ -13,18 +14,24 @@ export default function NewsletterForm({
   const [company, setCompany] = useState('') // honeypot
   const [status, setStatus] = useState<Status>('idle')
   const [message, setMessage] = useState<string>('')
+  const [emailInvalid, setEmailInvalid] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const feedbackId = useId()
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (status === 'sending') return
+    if (status === 'sending' || status === 'pending') return
 
-    if (!email || !email.includes('@')) {
+    if (!isValidEmail(email)) {
+      setEmailInvalid(true)
+      inputRef.current?.focus()
       setStatus('error')
       setMessage(isRussian ? 'Введите корректный адрес электронной почты.' : 'Please enter a valid email address.')
       return
     }
 
     setStatus('sending')
+    setEmailInvalid(false)
     setMessage('')
     try {
       const res = await fetch('/api/newsletter', {
@@ -42,7 +49,7 @@ export default function NewsletterForm({
         return
       }
       setStatus('pending')
-      setMessage(data.message || (isRussian ? 'Спасибо — подтвердите подписку в письме.' : "Thanks — we'll be in touch."))
+      setMessage(data.message || (isRussian ? 'Проверьте почту и подтвердите подписку в письме.' : 'Check your inbox and confirm your subscription.'))
       if (!company) {
         track('newsletter_double_opt_in_started', { placement, locale })
       }
@@ -74,10 +81,15 @@ export default function NewsletterForm({
       />
       <input
         type="email"
+        ref={inputRef}
+        name="email"
+        autoComplete="email"
+        aria-invalid={emailInvalid}
+        aria-describedby={message ? feedbackId : undefined}
         placeholder={isRussian ? 'Ваш адрес электронной почты' : 'Your email address'}
         value={email}
-        onChange={e => setEmail(e.target.value)}
-        disabled={status === 'sending'}
+        onChange={e => { setEmail(e.target.value); setEmailInvalid(false); if (status === 'error') { setStatus('idle'); setMessage('') } }}
+        disabled={status === 'sending' || status === 'pending'}
         aria-label={isRussian ? 'Адрес электронной почты' : 'Email address'}
         required
       />
@@ -85,16 +97,17 @@ export default function NewsletterForm({
         {status === 'sending'
           ? (isRussian ? 'Отправка…' : 'Sending…')
           : status === 'pending'
-            ? (isRussian ? 'Подтвердить адрес' : 'Confirm email')
+            ? (isRussian ? 'Проверьте почту' : 'Check your inbox')
             : (isRussian ? 'Подписаться' : 'Subscribe')}
       </button>
       {status === 'pending' && (
-        <span role="status" style={{ color: 'var(--accent)', fontSize: '0.8rem', position: 'absolute', bottom: -20 }}>
+        <span id={feedbackId} role="status" className="newsletter-feedback" style={{ color: 'var(--accent)' }}>
           {message}
+          {' '}<button type="button" className="newsletter-another-email" onClick={() => { setStatus('idle'); setMessage(''); requestAnimationFrame(() => inputRef.current?.focus()) }}>{isRussian ? 'Другой адрес' : 'Use another email'}</button>
         </span>
       )}
       {status === 'error' && (
-        <span role="alert" style={{ color: 'var(--danger)', fontSize: '0.8rem', position: 'absolute', bottom: -20 }}>
+        <span id={feedbackId} role="alert" className="newsletter-feedback" style={{ color: 'var(--danger)' }}>
           {message}
         </span>
       )}

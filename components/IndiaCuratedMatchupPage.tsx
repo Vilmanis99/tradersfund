@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -243,7 +243,7 @@ function EvidenceCell({ field }: { field: IndiaEvidenceField }) {
 function FirmHeader({ firm }: { firm: IndiaMatcherFirm }) {
   return (
     <div className="india-matchup-firm-head">
-      <Image src={firm.logo} alt="" width={42} height={42} />
+      <FirmLogo name={firm.name} src={firm.logo} size={42} />
       <div>
         <span>{firm.name}</span>
         <small>

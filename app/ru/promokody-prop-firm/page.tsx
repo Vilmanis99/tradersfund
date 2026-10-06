@@ -68,7 +68,7 @@ const generalFaqs: RussianFaqItem[] = [
   },
   {
     q: 'Почему старые промокоды исчезают со страницы?',
-    a: 'Мы скрываем предложение, если проверка старше 30 дней или опубликованная дата окончания уже прошла. Поэтому сезонный код не остаётся «актуальным» только потому, что продолжает встречаться на сторонних сайтах или в кеше поисковой системы.',
+    a: 'Мы скрываем проверенное предложение, если проверка старше 30 дней или опубликованная дата окончания уже прошла. Для рекламных кодов без проверки оплаты окно короче — 7 дней. Поэтому сезонный код не остаётся «актуальным» только потому, что продолжает встречаться на сторонних сайтах или в кеше поисковой системы.',
   },
 ]
 
@@ -163,7 +163,7 @@ export default function RussianPropFirmOffersPage() {
   const advertisedBrightOffer = brightDeals.length === 0
     && brightOfferObservation.status === 'advertised-unverified'
     && !brightOfferObservation.checkoutVerified
-    && isChallengeFresh({ sourceCapturedAt: brightOfferObservation.sourceCapturedAt })
+    && isChallengeFresh({ sourceCapturedAt: brightOfferObservation.sourceCapturedAt }, new Date(), 7)
   const fundingPipsDeal = deals.find(deal => deal.firmSlug === 'fundingpips')
   const latestVerified = deals.map(deal => deal.verifiedOn).sort().at(-1) ?? null
   const codeDeals = deals.filter(deal => deal.mechanism === 'checkout-code')
@@ -209,8 +209,8 @@ a: `В проверенном первичном источнике FundedNext �
       a: `Да, но только после сопоставления кода с продуктом. Сейчас первичный источник подтверждает ${brightDeals.map(deal => `${deal.code} — ${deal.pct}% на ${deal.scope}`).join('; ')}. Перед оплатой нужно увидеть уменьшение итоговой суммы.`,
     }] : []),
     ...(advertisedBrightOffer ? [{
-      q: `Работает ли промокод ${brightOfferObservation.code} у BrightFunded?`,
-      a: `На ${brightOfferObservation.sourceCapturedAt} главная страница Bright Funded рекламирует код ${brightOfferObservation.code} и скидку ${brightOfferObservation.advertisedDiscountPct}%. Мы не подтвердили применение к конкретному заказу после шага ввода email, поэтому не считаем это проверенной скидкой. Сверьте итоговую сумму до оплаты.`,
+      q: 'Работают ли рекламные промокоды BrightFunded?',
+      a: `На ${brightOfferObservation.sourceCapturedAt} главная страница Bright Funded рекламирует ${brightOfferObservation.offers.map(offer => `${offer.code} — ${offer.advertisedDiscountPct}% для ${offer.productName}`).join('; ')}. Мы не подтвердили применение к конкретному заказу после шага ввода email, поэтому не считаем их проверенными скидками. Сверьте итоговую сумму до оплаты.`,
     }] : []),
     ...(fundingPipsDeal ? [{
       q: `Как работает промокод FundingPips ${fundingPipsDeal.code}?`,
@@ -288,7 +288,7 @@ a: `В проверенном первичном источнике FundedNext �
           <div className="ru-actions">
             {fundedNextDeal && <Link href="#fundednext-promokod" className="btn-primary btn-glow">Как получить {fundedNextDeal.pct}% FundedNext <ArrowRight size={15} aria-hidden="true" /></Link>}
             {brightDeals.length > 0 && <Link href="#bright-funded-promokody" className="btn-outline">Коды Bright Funded</Link>}
-            {advertisedBrightOffer && <Link href="#bright-offer-status" className="btn-outline" data-russian-funnel-intent="bright_offer_status">Bright Funded: статус кода {brightOfferObservation.code}</Link>}
+            {advertisedBrightOffer && <Link href="#bright-offer-status" className="btn-outline" data-russian-funnel-intent="bright_offer_status">Bright Funded: статус рекламных кодов</Link>}
             <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить 2 фирмы</Link>
           </div>
         </div>
@@ -330,12 +330,14 @@ a: `В проверенном первичном источнике FundedNext �
               </table>
             </div>
             {brightDeals.length === 0 && <div id="bright-offer-status" className="ru-notice" data-russian-bright-deal-fallback="no-current-code">
-              <h3>{advertisedBrightOffer ? 'BrightFunded: код рекламируется, но применение не проверено' : 'BrightFunded: подтверждённого промокода сейчас нет'}</h3>
+              <h3>{advertisedBrightOffer ? 'BrightFunded: коды рекламируются, но применение не проверено' : 'BrightFunded: подтверждённого промокода сейчас нет'}</h3>
               {advertisedBrightOffer ? <>
-                <p data-russian-bright-offer-observation="advertised-unverified">На <time dateTime={brightOfferObservation.sourceCapturedAt}>{brightOfferObservation.sourceCapturedAt}</time> официальная главная страница Bright Funded показывает код <code>{brightOfferObservation.code}</code> и скидку {brightOfferObservation.advertisedDiscountPct}%. Мы не проверили, сработает ли код для вашего заказа после ввода email. Поэтому он не включён в таблицу проверенных предложений, а цены в обзоре указаны без скидки.</p>
+                <p data-russian-bright-offer-observation="advertised-unverified">На <time dateTime={brightOfferObservation.sourceCapturedAt}>{brightOfferObservation.sourceCapturedAt}</time> официальная главная страница Bright Funded показывает следующие коды для разных программ:</p>
+                <ul>{brightOfferObservation.offers.map(offer => <li key={offer.productSlug}>{offer.productName}: <code>{offer.code}</code> — рекламируемая скидка {offer.advertisedDiscountPct}%.</li>)}</ul>
+                <p>Мы не проверили, сработают ли эти коды для вашего заказа после ввода email. Поэтому они не включены в таблицу проверенных предложений, а цены в обзоре указаны без скидки.</p>
                 <p>Сверьте программу, дополнения, доступность страны и окончательную сумму до оплаты. Если сумма не уменьшилась, не считайте рекламный процент полученной скидкой.</p>
                 <p className="ru-source-line"><a href={brightOfferObservation.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">Официальный анонс Bright Funded</a> · проверено {brightOfferObservation.sourceCapturedAt}; применение при оплате не подтверждено.</p>
-              </> : <p>Мы не проверили действующий код за последние 30 дней. Цены в обзоре указаны без скидки. Перед оплатой сверьте выбранную программу, итоговую сумму и доступность для вашей страны.</p>}
+              </> : <p>Мы не проверили рекламные коды на сайте фирмы за последние 7 дней и не подтвердили их применение при оплате. Цены в обзоре указаны без скидки. Перед оплатой сверьте выбранную программу, итоговую сумму и доступность для вашей страны.</p>}
               <div className="ru-actions">
                 <Link href="/ru/obzor-bright-funded" className="btn-outline">Смотреть обзор BrightFunded</Link>
                 {firmBySlug.get('bright-funded')?.affiliateUrl && <Link href="/go/bright-funded?from=ru-deals-bright-no-current-code" rel="sponsored nofollow noopener" className="btn-primary">Проверить текущую цену у BrightFunded <ArrowRight size={14} aria-hidden="true" /></Link>}

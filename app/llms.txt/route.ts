@@ -11,10 +11,9 @@ const SITE = 'https://tradersfundhub.com'
 export const dynamic = 'force-static'
 
 /**
- * /llms.txt — the llmstxt.org standard. Gives LLMs (ChatGPT, Perplexity,
- * Claude, Google AI) a curated, link-rich map of the site so they cite the
- * right pages. Generated from the same data the site renders, so it stays
- * accurate without manual upkeep.
+ * Optional human-readable site map following the llmstxt.org proposal.
+ * It does not control crawler permissions or guarantee AI citations;
+ * Google Search does not use it. Generated from the site's own records.
  */
 export async function GET() {
   const firms = getAllFirms()
@@ -73,7 +72,7 @@ ${indiaMatchupLines}
 - [Prop firm discount codes & deals](${SITE}/prop-firm-discount-codes): verified discount codes and partner offers, each stamped with the date we last checked it — expired codes are removed, never invented.
 - [How prop firm challenges work](${SITE}/how-prop-firm-challenges-work): the five-stage lifecycle from buying a challenge to first payout.
 - [How to pass a prop firm challenge](${SITE}/how-to-pass-a-prop-firm-challenge): a risk-first playbook with the rules that quietly end accounts.
-- [The true cost of prop firm challenges](${SITE}/true-cost-of-prop-firm-challenges): break-even math and R-multiple analysis per challenge.
+- [The true cost of prop firm challenges](${SITE}/true-cost-of-prop-firm-challenges): fee-recovery math, refund-adjusted cash cost, recurring billing and currency limits. Cost / loss-room ratios are descriptive, not pass forecasts.
 - [How we score firms (methodology)](${SITE}/methodology): the scoring rubric and what it does and doesn't measure.
 
 ## Firm reviews

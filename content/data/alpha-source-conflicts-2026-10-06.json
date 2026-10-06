@@ -1,0 +1,48 @@
+{
+  "firmSlug": "alpha-capital",
+  "threeCost": {
+    "sourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+    "sourceCapturedAt": "2026-10-06",
+    "productSlugs": [
+      "alpha-three"
+    ],
+    "quote": "Alpha Three 10K | $10,000 | $67",
+    "notes": "The updated cost article still publishes all five Three fee tiers."
+  },
+  "threeAvailability": {
+    "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
+    "sourceCapturedAt": "2026-10-06",
+    "productSlugs": [
+      "alpha-three"
+    ],
+    "quote": "Alpha Three is not currently offered for new purchases at checkout.",
+    "notes": "The firm review treats Three as an existing-account programme, contradicting an available-for-purchase reading of the cost table."
+  },
+  "threeSelector": {
+    "sourceUrl": "https://alphacapitalgroup.uk/product",
+    "sourceCapturedAt": "2026-10-06",
+    "productSlugs": [
+      "alpha-three"
+    ],
+    "quote": "Direct Instant Qualified | 1 Step Standard 1-phase | 2 Step Standard 2-phase",
+    "notes": "The observed selector had no Three choice. This is a session observation, not proof of universal availability."
+  },
+  "swingSelector": {
+    "sourceUrl": "https://alphacapitalgroup.uk/product",
+    "sourceCapturedAt": "2026-10-06",
+    "productSlugs": [
+      "alpha-swing"
+    ],
+    "quote": "2 Step Standard 2-phase | Alpha Pro",
+    "notes": "The observed two-step account type was Pro, with no separate Swing choice. This is a session observation, not proof of universal availability."
+  },
+  "swingPricing": {
+    "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+    "sourceCapturedAt": "2026-10-06",
+    "productSlugs": [
+      "alpha-swing"
+    ],
+    "quote": "Also available: Alpha Swing",
+    "notes": "The article continues to publish Swing fee tiers. The observed selector did not expose an Alpha Swing account type."
+  }
+}

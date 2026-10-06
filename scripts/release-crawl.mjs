@@ -27,6 +27,7 @@ import {
 } from '../lib/firms.ts'
 import { getAllDeals, rankDeals } from '../lib/deals.ts'
 import { getChallengeWatchEntries } from '../lib/challengeWatch.ts'
+import { challengeSourceDestination } from '../lib/challengeSources.ts'
 import { filterComparisonRows } from '../lib/comparisonDirectory.ts'
 import { getOverlay } from '../lib/comparisons.ts'
 import { rankCurrentFirmAlternatives } from '../lib/firmAlternatives.ts'
@@ -467,7 +468,18 @@ for (const page of pages) {
     }
     const rel = firstMatch(tag, /\brel=["']([^"']*)["']/i).toLowerCase()
     const sponsored = rel.split(/\s+/).includes('sponsored')
-    if (sponsored !== (relationship === 'affiliate')) {
+    const isResearchLink = destination.searchParams.has('source')
+    if (isResearchLink) {
+      const firm = firmRecords.find(item => outboundSlug(item.name) === firmSlug)
+      const sourceProduct = destination.searchParams.get('source') ?? ''
+      if (!firm || !challengeSourceDestination(firm, sourceProduct, getChallengesByFirm(firmSlug))) {
+        errors.push(`${path}: /go/${firmSlug} research link has no valid first-party product source`)
+      }
+      if (!rel.split(/\s+/).includes('nofollow') || !rel.split(/\s+/).includes('noopener')) {
+        errors.push(`${path}: /go/${firmSlug} research link must carry nofollow and noopener`)
+      }
+    }
+    if (sponsored !== (relationship === 'affiliate' && !isResearchLink)) {
       errors.push(`${path}: /go/${firmSlug} sponsored rel disagrees with outbound configuration`)
     }
   }
@@ -2752,10 +2764,10 @@ if (indiaLandingProbe.status !== 200) {
   for (const required of [
     'Best Prop Firms in India 2026: RBI Alert-List Checked | TFH',
     '9/19 tracked firms pass every India publication gate',
-    '44 fresh India-eligible products with first-party sources',
+    '49 fresh India-eligible products with first-party sources',
     'lowest published entry, keeping USD and EUR separate',
-    '16 current verified changes and open source watches',
-    'Compare 44 products',
+    '19 current verified changes and open source watches',
+    'Compare 49 products',
     'Ranking order uses India evidence completeness first and editorial score second.',
     'Affiliate status and coupon size add 0 points.',
     'India evidence',
@@ -4930,6 +4942,16 @@ if (indiaShortlistProbe.status !== 200) {
 const globalChangePath = '/prop-firm-challenge-changes'
 const fundingPipsCurrentWatchTitle = challengeWatchEntries.find(entry =>
   entry.id === 'fundingpips-reward-cycles-minimum-days-2026-08-26')?.title
+const alphaCurrentWatchTitles = [
+  'alpha-capital-25k-pro-price-conflict',
+  'alpha-one-variant-price-mapping',
+  'alpha-one-payout-schedule-conflict',
+  'alpha-three-purchase-availability-conflict',
+  'alpha-swing-selector-availability-conflict',
+].map(id => challengeWatchEntries.find(entry => entry.id === id)?.title).filter(Boolean)
+if (alphaCurrentWatchTitles.length !== 5) {
+  errors.push('challenge watch: an Alpha Capital source-conflict or schedule entry is missing')
+}
 if (!fundingPipsCurrentWatchTitle) {
   errors.push('challenge watch: FundingPips reward-cycle correction is missing')
 }
@@ -4961,8 +4983,7 @@ if (globalChangeProbe.status !== 200) {
     `${expectedGlobalWatches} open watches`,
     `Showing ${expectedGlobalEntries} of ${expectedGlobalEntries} dated updates.`,
     ...(fundingPipsCurrentWatchTitle ? [fundingPipsCurrentWatchTitle] : []),
-    'Alpha One prices do not identify the rule variant',
-    'Alpha Capital disagrees on Alpha One payout schedules',
+    ...alphaCurrentWatchTitles,
     'E8 Pro pages disagree on prices and configurable terms',
     'E8 One pages disagree on the default target and drawdown',
   ]) {
@@ -4994,17 +5015,15 @@ if (indiaChangeProbe.status !== 200) {
   }
   const indiaChangeText = textContent(indiaChangeProbe.html)
   for (const required of [
-    '16 India-screened updates',
+    '19 India-screened updates',
     '7 eligible firms affected',
-    '30 products',
-    '10 open watches',
-    'Showing 16 of 16 dated updates.',
+    '35 products',
+    '11 open watches',
+    'Showing 19 of 19 dated updates.',
     ...(fundingPipsCurrentWatchTitle ? [fundingPipsCurrentWatchTitle] : []),
     'Tradeify list prices and homepage promotions can diverge',
     'FundingPips separates the current Standard path from legacy 10% resets',
-    "Alpha Capital's own pages disagree on a 25K Pro price",
-    'Alpha One prices do not identify the rule variant',
-    'Alpha Capital disagrees on Alpha One payout schedules',
+    ...alphaCurrentWatchTitles,
     'E8 One pages disagree on the default target and drawdown',
     'Affected products',
     'Affiliate status contributes 0 points',

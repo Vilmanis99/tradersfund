@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import { Star, ExternalLink } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
 import CopyableCodePill from './CopyableCodePill'
@@ -16,7 +16,7 @@ function slugify(name: string) {
  *
  * Drives entirely from firms.json — no hand-coded HTML per firm.
  */
-export default function FirmCtaCard({ firm }: { firm: Firm }) {
+export default function FirmCtaCard({ firm, productSpecific = false }: { firm: Firm; productSpecific?: boolean }) {
   const slug = slugify(firm.name)
   const goUrl = `/go/${slug}?from=review-cta`
   const hasAffiliate = Boolean(firm.affiliateUrl)
@@ -37,34 +37,13 @@ export default function FirmCtaCard({ firm }: { firm: Firm }) {
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', minWidth: 0 }}>
-        {firm.logo ? (
-          <Image
-            src={firm.logo}
-            alt={`${firm.name} logo`}
-            width={56}
-            height={56}
-            style={{ objectFit: 'contain', borderRadius: 10, border: '1px solid var(--border)', flexShrink: 0 }}
-          />
-        ) : (
-          <div
-            aria-hidden="true"
-            style={{
-              width: 56, height: 56, borderRadius: 10,
-              background: 'var(--bg3)', border: '1px solid var(--border)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '1.1rem', fontWeight: 800, color: 'var(--accent-light)',
-              flexShrink: 0,
-            }}
-          >
-            {firm.name.substring(0, 2).toUpperCase()}
-          </div>
-        )}
+        <FirmLogo name={firm.name} src={firm.logo} size={56} />
 
         <div style={{ minWidth: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
             <strong style={{ color: 'var(--text)', fontSize: '1.05rem' }}>{firm.name}</strong>
             <span className="score-badge" style={{ fontSize: '0.78rem' }}>
-              <Star size={11} aria-hidden="true" /> {firm.score}
+              <Star size={11} aria-hidden="true" /> {firm.score} / 10
             </span>
             {firm.discountCode && firm.discountPct && (
               <CopyableCodePill
@@ -82,9 +61,11 @@ export default function FirmCtaCard({ firm }: { firm: Firm }) {
             <TrustpilotRating firm={firm} label />
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: 6, color: 'var(--muted)', fontSize: '0.82rem' }}>
-            {firm.profitSplitPct != null && <span><strong style={{ color: 'var(--text)' }}>{firm.profitSplitPct}%</strong> split</span>}
-            {firm.payoutFrequency && <span style={{ textTransform: 'capitalize' }}>{firm.payoutFrequency.replace('-', ' ')} payouts</span>}
-            {firm.maxAllocation && <span>Up to {firm.maxAllocation}</span>}
+            {productSpecific ? <span>Fees, splits and payout gates differ by product. See the captured terms below.</span> : <>
+              {firm.profitSplitPct != null && <span><strong style={{ color: 'var(--text)' }}>{firm.profitSplitPct}%</strong> split</span>}
+              {firm.payoutFrequency && <span style={{ textTransform: 'capitalize' }}>{firm.payoutFrequency.replace('-', ' ')} payouts</span>}
+              {firm.maxAllocation && <span>Up to {firm.maxAllocation}</span>}
+            </>}
           </div>
         </div>
       </div>

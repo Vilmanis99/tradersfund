@@ -12,7 +12,8 @@ assert.equal(products.length, 2)
 assert.deepEqual(products.map(product => product.accountSizes.map(tier => tier.priceUsd)), [[49, 99, 199], [95, 149, 229]])
 assert.deepEqual(products.map(product => product.activationFeeUsd), [149, 0])
 for (const product of products) {
-  assert.equal(product.sourceCapturedAt, '2026-09-08')
+  assert.equal(product.sourceCapturedAt, '2026-10-06')
+  assert.equal(product.consistencyRulePct, 55, 'current Combine threshold is distinct from funded 40%')
   assert.equal(product.pricingModel, 'monthly-subscription')
   assert.equal(product.minTradingDays, null, 'Conflicting minimum must not become verified two-day or zero-day permission')
   assert.equal(product.payoutFirstDays, null, 'Conditional trading days are not unconditional calendar days')
@@ -20,8 +21,8 @@ for (const product of products) {
   assert.equal(product.rules.ea, 'restricted')
   assert.equal(product.rules.copyTrading, 'restricted')
   assert.deepEqual(product.accountSizes.map(tier => tier.maxLossUsd), [2000, 3000, 4500])
-  assert.equal(isChallengeFresh(product, new Date('2026-10-08T12:00:00Z')), true)
-  assert.equal(isChallengeFresh(product, new Date('2026-10-09T12:00:00Z')), false)
+  assert.equal(isChallengeFresh(product, new Date('2026-11-05T12:00:00Z')), true)
+  assert.equal(isChallengeFresh(product, new Date('2026-11-06T12:00:00Z')), false)
   const economics = challengeTierEconomics(product, product.accountSizes[1])
   assert.equal(economics.minimumCost, product.activationFeeUsd + product.accountSizes[1].priceUsd)
   assert.equal(economics.rMultiple, economics.breakEvenProfit / 3000)
@@ -41,6 +42,13 @@ for (const product of capture.products) {
     const host = new URL(evidence.sourceUrl).hostname
     assert(host === 'www.topstep.com' || host === 'help.topstep.com')
   }
+}
+const refreshed = json('content/data/challenges/_captures/topstep-2026-10-06.json')
+assert.equal(refreshed.reviewStatus, 'ready')
+assert.deepEqual(refreshed.releaseBlockers, [])
+for (const product of refreshed.products) {
+  assert.equal(product.consistencyRulePct, 55)
+  assert(product.fieldEvidence.consistencyRulePct.quote.includes('55%'))
 }
 const firm = getAllFirms().find(firm => firm.name === 'Topstep')
 assert.deepEqual(firm.platforms, ['TopstepX'])
@@ -68,12 +76,16 @@ for (const file of downstream) {
   const rows = read(file).split('\n').filter(line => line.includes('data-') && line.includes('topstep:'))
   assert(rows.length)
   for (const row of rows) {
-    assert(row.includes('2026-09-08'), `${file}: Topstep example date`)
+    assert(row.includes('2026-10-06'), `${file}: Topstep example date`)
     assert(!row.includes('null trading days'))
   }
 }
 const watches = json('content/data/challenge-watch.json').filter(entry => entry.firmSlug === 'topstep')
-assert.equal(watches.length, 2)
-assert.deepEqual(watches.map(entry => entry.status).sort(), ['verified', 'watch'])
+assert.equal(watches.length, 3)
+assert.deepEqual(watches.map(entry => entry.status).sort(), ['verified', 'verified', 'watch'])
 for (const entry of watches) assert.deepEqual(validateWatchCaptureProvenance(entry, products, () => { throw new Error('Full capture needs no rule-only lookup') }), [])
+assert(review.includes('Consistency target 55%') && review.includes('$1,650'))
+const consistencyGuide = read('content/posts/what-is-prop-firm-consistency-rule.md')
+assert(consistencyGuide.includes('55% Consistency Target') && consistencyGuide.includes('$3,300'))
+assert(!consistencyGuide.includes('Topstep says a best day above 50%'))
 console.log('PASS: Topstep six prices, conditional rules, tier loss math, exact review tables, five downstream guides, dated watch and preserved Trustpilot age.')

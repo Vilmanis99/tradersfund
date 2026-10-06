@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import FirmLogo from './FirmLogo'
 import { Star, ExternalLink, Check, Sparkles } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
 import CopyableCodePill from '@/components/CopyableCodePill'
@@ -42,13 +42,7 @@ export default function FeaturedFirmSpotlight({
               </span>
 
               <div className="featured-spotlight-head">
-                <div className="featured-spotlight-logo">
-                  {firm.logo ? (
-                    <Image src={firm.logo} alt="" width={52} height={52} style={{ objectFit: 'contain', width: 'auto', height: 'auto', maxWidth: '100%', maxHeight: '100%' }} />
-                  ) : (
-                    <span className="logo-fallback">{firm.name.charAt(0)}</span>
-                  )}
-                </div>
+                <FirmLogo name={firm.name} src={firm.logo} size={64} />
                 <div>
                   <h2 className="featured-spotlight-name">{firm.name}</h2>
                   <span className="featured-spotlight-score">

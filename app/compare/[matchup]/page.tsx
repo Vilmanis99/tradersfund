@@ -238,6 +238,11 @@ export default async function ComparePage({ params }: Props) {
 
           <ChallengeMatchup matchup={challengeMatchup} prose={matchupProse} />
 
+          {isFtmoFundedNext && <nav className="review-product-summary" aria-label="Read the evidence behind this comparison">
+            <p className="review-product-summary-title">Read the evidence behind the trade-offs</p>
+            <p className="review-product-summary-scope">The <Link href="/blog/ftmo-review">FTMO review</Link> explains its 1-Step and 2-Step rules. The <Link href="/blog/fundednext-review">FundedNext review</Link> separates its evaluation and Instant paths. The <Link href="/true-cost-of-prop-firm-challenges">true-cost guide</Link> explains fee recovery, refunds and currency limits; our <Link href="/methodology">methodology</Link> states how published terms are checked.</p>
+          </nav>}
+
             <section aria-label="Firm-level context" data-compare-firm-context>
               <h2 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.6rem)', fontWeight: 800, color: 'var(--text)', margin: '2.5rem 0 0.5rem', letterSpacing: '-0.01em' }}>
                 Firm-level context
