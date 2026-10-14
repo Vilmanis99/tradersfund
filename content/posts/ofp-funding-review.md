@@ -2,7 +2,6 @@
 title: "OFP Funding Review 2026: Six Instant Accounts, 40 Priced Tiers, One $300K Ceiling"
 seoTitle: "OFP Funding Review 2026: Legit? Fees, Rules & Payouts"
 slug: "ofp-funding-review"
-sourceStatus: "source-hold"
 date: "2025-04-22 12:00:00"
 modified: "2026-10-14 12:00:00"
 author: "Tara Mohseni"
