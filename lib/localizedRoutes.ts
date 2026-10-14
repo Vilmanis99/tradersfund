@@ -23,7 +23,6 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/prop-firmy-s-ctrader',
   '/ru/fundednext-mt5',
   '/ru/fundednext-stellar-instant',
-  '/ru/rossiyskie-prop-kompanii',
   '/ru/vyplaty-prop-firm',
   '/ru/prop-firmy-bez-kyc',
   '/ru/obzor-proplive',
@@ -31,6 +30,7 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/obzor-kascapital',
   '/ru/obzor-teamtraders',
   '/ru/otzyvy-prop-firm',
+  '/ru/ftmo-dlya-rossiyan',
 ] as const
 
 export type RussianRoutePath =
@@ -43,11 +43,12 @@ export type RussianRoutePath =
 export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru': '2026-10-01',
   '/ru/chto-takoe-prop-firma': '2026-08-28',
-  '/ru/dlya-russkoyazychnykh-treyderov': '2026-10-01',
+  '/ru/dlya-russkoyazychnykh-treyderov': '2026-10-14',
   '/ru/forex-prop-firmy': '2026-10-01',
   '/ru/fundednext-mt5': '2026-09-08',
   '/ru/fundednext-stellar-instant': '2026-10-01',
   '/ru/fundednext-vs-bright-funded': '2026-10-01',
+  '/ru/ftmo-dlya-rossiyan': '2026-10-14',
   '/ru/fundednext-vs-fundingpips': '2026-09-14',
   '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-08-28',
   '/ru/luchshie-kripto-prop-firmy': '2026-09-08',
@@ -61,11 +62,10 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/obzor-proplive': '2026-10-01',
   '/ru/obzor-teamtraders': '2026-10-01',
   '/ru/otzyvy-prop-firm': '2026-10-01',
-  '/ru/promokody-prop-firm': '2026-10-01',
+  '/ru/promokody-prop-firm': '2026-10-14',
   '/ru/prop-firmy-bez-chelendzha': '2026-10-01',
   '/ru/prop-firmy-bez-kyc': '2026-10-01',
   '/ru/prop-firmy-s-ctrader': '2026-10-01',
-  '/ru/rossiyskie-prop-kompanii': '2026-10-01',
   '/ru/vyplaty-prop-firm': '2026-10-01',
 } as const satisfies Record<RussianRoutePath, string>
 

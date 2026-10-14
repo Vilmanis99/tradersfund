@@ -440,7 +440,7 @@ export default function RussianCTraderPropFirmsPage() {
             изучайте локальные программы без предположения, что в них доступны EURUSD, cBot или привычный способ выплаты.
           </p>
           <div className="ru-actions">
-            <Link href="/ru/rossiyskie-prop-kompanii" className="btn-outline">Проверить локальные модели</Link>
+            <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie" className="btn-outline">Проверить локальные модели</Link>
             <Link href="/ru/forex-prop-firmy" className="btn-primary">Сравнить программы для валютной торговли <ArrowRight size={15} aria-hidden="true" /></Link>
           </div>
         </div>

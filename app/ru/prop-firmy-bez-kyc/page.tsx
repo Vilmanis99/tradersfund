@@ -484,7 +484,7 @@ export default function RussianNoKycPage() {
               <article className="ru-card">
                 <h3>TeamTraders</h3>
                 <p className="ru-muted">В FAQ, сохранённом {teamTraders?.sourceCapturedAt ?? 'без даты'}, указаны {teamTraders?.claims.minimumTradingSessions ?? 'неподтверждённое число'} торговых дней, дневной лимит убытка {teamTraders?.claims.dailyLossLimitPct ?? '—'}% и доля прибыли {teamTraders?.claims.profitSharePct ?? '—'}% на реальном счёте. Эти исторические правила не подтверждают текущий KYC-статус.</p>
-                <Link href="/ru/rossiyskie-prop-kompanii" className="ru-card-link">Смотреть первичный снимок →</Link>
+                <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie" className="ru-card-link">Смотреть первичный снимок →</Link>
               </article>
               <article className="ru-card">
                 <h3>KasCapital</h3>

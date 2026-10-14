@@ -436,7 +436,7 @@ export default function RussianForexPropFirmsPage() {
         <div className="ru-shell ru-content">
           <h2>Локальная проп-компания — не обязательно форекс-программа</h2>
           <p>
-            В <Link href="/ru/rossiyskie-prop-kompanii">разборе российских проп-компаний</Link> отдельно рассматриваются
+            В <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">разборе российских проп-компаний</Link> отдельно рассматриваются
             PropLive, TeamTraders и другие операторы. Их модель нужно проверять по рынку, договору,
             условиям доступа и используемой инфраструктуре, а не по русскоязычному названию.
           </p>

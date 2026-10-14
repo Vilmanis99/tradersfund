@@ -599,7 +599,7 @@ export default function RussianInstantPropFirmsPage() {
               не превращает локальную модель в FundedNext Instant или FundingPips Zero.
             </p>
             <p>
-              Для исследования местного рынка используйте <Link href="/ru/rossiyskie-prop-kompanii">6 проверяемых локальных примеров</Link>.
+              Для исследования местного рынка используйте <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">6 проверяемых локальных примеров</Link>.
               Они работают как информационный мост; коммерческий маршрут этой страницы остаётся глобальным и продуктовым.
             </p>
           </div>

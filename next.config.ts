@@ -88,6 +88,7 @@ function legacyRedirects() {
     // any external backlink pointing at them. Slug spellings differ between
     // the two schemes (go-e8markets vs the firms.json slug e8-markets), so
     // map them explicitly rather than with a wildcard.
+    { source: '/ru/rossiyskie-prop-kompanii', destination: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie', permanent: true },
     { source: '/go-ftmo', destination: '/go/ftmo', permanent: true },
     { source: '/go-fundingpips', destination: '/go/fundingpips', permanent: true },
     { source: '/go-fundednext', destination: '/go/fundednext', permanent: true },

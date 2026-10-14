@@ -122,61 +122,24 @@ try {
   }
   const latestDealCheck = archivedDeals.offers.map(deal => deal.verifiedOn).sort().at(-1)
   assert(latestDealCheck, 'historical offer expiry fixture has a verified date')
-  const primaryBasePriceCount = () => getAllChallenges()
-    .filter(product => ['fundednext', 'bright-funded'].includes(product.firmSlug) && isChallengeFresh(product))
-    .reduce((count, product) => count + product.accountSizes.filter(tier =>
-      (tier.priceUsd != null && tier.priceUsd > 0) || (tier.priceEur != null && tier.priceEur > 0)).length, 0)
-  const originalClock = clock
-  try {
-    clock = new RealDate(Math.max(
-      new RealDate(`${latestDealCheck}T12:00:00Z`).getTime() + 31 * 86_400_000,
-      new RealDate(originalClock).getTime(),
-    )).toISOString()
+  // Week 1 monthly promo hub (2026-10-14): status badges per firm, no codes for firms closed to Russia.
+  {
     const offersModule = require(path.join(root, 'app/ru/promokody-prop-firm/page.tsx'))
-    const RussianOffers = offersModule.default
-    const offersHtml = renderToStaticMarkup(React.createElement(RussianOffers))
-    assert.equal(offersModule.metadata.title.absolute, 'Промокоды проп-фирм 2026: статус FundedNext и BrightFunded', 'promo search title uses the exact brand without promising a live code')
-    assert.equal(offersModule.metadata.openGraph.title, 'Промокоды проп-фирм 2026: FundedNext и Bright', 'existing promo sharing title stays unchanged')
-    assert(offersHtml.includes('Промокоды проп-фирм: FundedNext, BrightFunded и проверка скидок'), 'empty offer catalog uses the exact brand without promising real discounts')
-    assert(offersHtml.includes(`<strong>${primaryBasePriceCount()}</strong><span>базовых цен FundedNext и Bright</span>`), 'base-price count stays useful without a verified code')
-    assert(offersHtml.includes('data-russian-bright-deal-fallback="no-current-code"'), 'expired Bright codes leave a useful fallback')
-    assert(offersHtml.includes('id="bright-offer-status"'), 'Bright offer status has a stable deep-link target without a verified code')
-    assert(offersHtml.includes('href="/ru/obzor-bright-funded"'), 'the fallback reaches the Russian Bright review')
-    assert(offersHtml.includes('href="/go/bright-funded?from=ru-deals-bright-no-current-code"'), 'the fallback reaches the shared partner redirect')
+    const offersHtml = renderToStaticMarkup(React.createElement(offersModule.default))
+    assert.match(offersModule.metadata.title.absolute, /^Промокоды проп-фирм — /, 'monthly promo hub title names the month')
+    assert(offersHtml.includes('id="kody"'), 'promo hub keeps the #kody deep-link target used by the Bright review')
+    assert(offersHtml.includes('ru-badge ru-badge--open') && offersHtml.includes('ru-badge ru-badge--closed'), 'promo hub shows Russia availability badges')
+    assert(!/href="\/go\/(ftmo|the5ers|e8-markets|fxify|maven|alpha-capital|lucid-trading|apex-trader-funding|tradeify|fundingpips|topstep)[?"]/.test(offersHtml), 'promo hub has no sign-up links for firms closed or unclear for Russia')
     assert(!offersHtml.includes('SUMMER30') && !offersHtml.includes('SUMMER25') && !offersHtml.includes('SUMMER15'), 'expired Bright codes are not advertised')
     const EnglishOffers = require(path.join(root, 'app/prop-firm-discount-codes/page.tsx')).default
-    const englishOffersHtml = renderToStaticMarkup(React.createElement(EnglishOffers))
-    assert(englishOffersHtml.includes('We have no FundedNext discount verified within the last 30 days'), 'expired English FAQ does not claim a current FundedNext coupon')
-    assert(!englishOffersHtml.includes('data-fundednext-offer-steps="earned-coupon"'), 'expired English coupon instructions do not render')
-    clock = `${brightOfferObservation.sourceCapturedAt}T12:00:00Z`
-    const observedOfferHtml = renderToStaticMarkup(React.createElement(RussianOffers))
-    assert(observedOfferHtml.includes(`<strong>${primaryBasePriceCount()}</strong><span>базовых цен FundedNext и Bright</span>`), 'fresh base prices remain visible while Bright offer is only advertised')
-    assert(observedOfferHtml.includes('data-russian-bright-offer-observation="advertised-unverified"'), 'fresh first-party advertisement is visible but not treated as verified')
-    assert(observedOfferHtml.includes('href="#bright-offer-status"') && observedOfferHtml.includes('id="bright-offer-status"'), 'Russian Bright-code search intent can reach the qualified observation')
-    assert(observedOfferHtml.includes('data-russian-funnel-intent="bright_offer_status"'), 'Bright offer-status interest can be measured without code or profile data')
-    for (const offer of brightOfferObservation.offers) {
-      assert(observedOfferHtml.includes(offer.code) && observedOfferHtml.includes(offer.productName))
-    }
-    assert(observedOfferHtml.includes(brightOfferObservation.sourceUrl))
-    assert(!observedOfferHtml.includes('3YEARS'), 'superseded Bright code is absent from the current Russian page')
-    assert(observedOfferHtml.includes('data-russian-deal-count="0"'), 'advertised-only code is excluded from verified deal count')
-    assert(!observedOfferHtml.includes('data-russian-deals-bright="current-product-codes"'), 'advertised-only code gets no verified price table')
-    clock = new RealDate(new RealDate(`${brightOfferObservation.sourceCapturedAt}T12:00:00Z`).getTime() + 8 * 86_400_000).toISOString()
-    const expiredPromoHtml = renderToStaticMarkup(React.createElement(RussianOffers))
-    assert(!expiredPromoHtml.includes('data-russian-bright-offer-observation="advertised-unverified"'), 'advertised-only promo expires after seven days')
-    for (const offer of brightOfferObservation.offers) {
-      assert(!expiredPromoHtml.includes(offer.code), 'aged advertised code is not promoted')
-    }
-    clock = new RealDate(new RealDate(`${brightOfferObservation.sourceCapturedAt}T12:00:00Z`).getTime() + 31 * 86_400_000).toISOString()
-    const expiredObservationHtml = renderToStaticMarkup(React.createElement(RussianOffers))
-    assert(expiredObservationHtml.includes(`<strong>${primaryBasePriceCount()}</strong><span>базовых цен FundedNext и Bright</span>`), 'base-price count expires with the source records')
-    assert(!expiredObservationHtml.includes('data-russian-bright-offer-observation="advertised-unverified"'), 'day-31 advertisement needs a new source check')
-    assert(!expiredObservationHtml.includes('href="#bright-offer-status"'), 'expired observation has no hero shortcut')
-    assert(expiredObservationHtml.includes('id="bright-offer-status"'), 'expired observation leaves a valid status deep link')
-    for (const offer of brightOfferObservation.offers) {
-      assert(!expiredObservationHtml.includes(offer.code), 'old advertised code is not promoted after its seven-day window')
-    }
-  } finally { clock = originalClock }
+    const originalClock = clock
+    try {
+      clock = new RealDate(Math.max(new RealDate(`${latestDealCheck}T12:00:00Z`).getTime() + 31 * 86_400_000, new RealDate(originalClock).getTime())).toISOString()
+      const englishOffersHtml = renderToStaticMarkup(React.createElement(EnglishOffers))
+      assert(englishOffersHtml.includes('We have no FundedNext discount verified within the last 30 days'), 'expired English FAQ does not claim a current FundedNext coupon')
+      assert(!englishOffersHtml.includes('data-fundednext-offer-steps="earned-coupon"'), 'expired English coupon instructions do not render')
+    } finally { clock = originalClock }
+  }
   const { getAuthorBySlug } = require(path.join(root, 'lib/authors.ts'))
   const edris = getAuthorBySlug('edris-derakhshi')
   assert.equal(edris.role, 'Author', 'the confirmed TFH role is author, not founder')
@@ -873,7 +836,7 @@ try {
   const FundingPipsReviewModule = require(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'))
   const fundingPipsReviewReference = renderToStaticMarkup(React.createElement(FundingPipsReviewModule.default))
   assert(fundingPipsReviewReference.includes('<h1>FundingPips: обзор 2026 — цены, правила и выплаты</h1>'), 'FundingPips review H1 does not promise a fixed product or price count')
-  // FundingPips is hidden on /ru pages (russiaStatus "unclear"): no affiliate action, alternatives block instead.
+  // FundingPips is hidden on /ru pages (russiaStatus "unclear", PR #2): no affiliate action, alternatives block instead.
   const fundingPipsSummaryAffiliate = 'data-russia-restricted="fundingpips"'
   assert(!fundingPipsReviewReference.includes('href="/go/fundingpips'), 'FundingPips review has no sign-up link while Russia status is unclear')
   assert(fundingPipsReviewReference.includes(fundingPipsSummaryAffiliate), 'FundingPips review shows the Russia alternatives block instead of the CTA')
@@ -1103,24 +1066,13 @@ try {
     clock = homeFixtureClock
   }
   const { russianDiasporaEvidence } = require(path.join(root, 'lib/russianDiasporaEvidence.ts'))
-  const RussianDiasporaPage = require(path.join(root, 'app/ru/dlya-russkoyazychnykh-treyderov/page.tsx')).default
-  const diasporaClock = clock
-  const diasporaCaptureDate = russianDiasporaEvidence.capturedAt
-  try {
-    for (const [day, current] of [[30, true], [31, false]]) {
-      clock = `${offset(diasporaCaptureDate, day)}T12:00:00Z`
-      const html = renderToStaticMarkup(React.createElement(RussianDiasporaPage))
-      assert(html.includes(`data-russian-diaspora-country-source-status="${current ? 'dated' : 'recapture-required'}"`), 'country matrix switches exactly at its own day-30 boundary')
-      assert.equal(cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), current, 'dated country answers do not remain current FAQ structured data after day 30')
-      if (!current) assert(html.includes(`На ${diasporaCaptureDate}: не названа в общем списке`) && html.includes('не описывает текущий доступ'), 'expired matrix labels and explanation become historical')
-    }
-    russianDiasporaEvidence.capturedAt = '2030-01-01'
-    clock = '2026-10-01T12:00:00Z'
-    const futureHtml = renderToStaticMarkup(React.createElement(RussianDiasporaPage))
-    assert(futureHtml.includes('data-russian-diaspora-country-source-status="recapture-required"') && !cryptoSchemas(futureHtml).some(item => item['@type'] === 'FAQPage'), 'a future-dated matrix cannot publish current eligibility answers')
-  } finally {
-    russianDiasporaEvidence.capturedAt = diasporaCaptureDate
-    clock = diasporaClock
+  // Week 1 rewrite (2026-10-14): diaspora page merges the former local-firms directory (#rossiyskie).
+  {
+    const RussianDiasporaPage = require(path.join(root, 'app/ru/dlya-russkoyazychnykh-treyderov/page.tsx')).default
+    const html = renderToStaticMarkup(React.createElement(RussianDiasporaPage))
+    assert(html.includes('id="rossiyskie"'), 'merged local-firm section keeps the #rossiyskie redirect target')
+    assert(/ru-badge ru-badge--(open|unclear|closed)/.test(html), 'availability matrix uses status badges')
+    assert(!/href="\/go\/(ftmo|the5ers|e8-markets|fxify|maven|alpha-capital|lucid-trading|apex-trader-funding|tradeify|fundingpips|topstep)[?"]/.test(html), 'diaspora page has no sign-up links for firms closed or unclear for Russia')
   }
   const localFaqOperators = {
     'obzor-proplive': 'PropLive',
@@ -1132,7 +1084,7 @@ try {
     'obzor-eratrade': 'партнёрская программа',
     'obzor-kascapital': 'проверка партнёрских условий',
   }
-  const localFaqSlugs = ['rossiyskie-prop-kompanii', ...Object.keys(localFaqOperators)]
+  const localFaqSlugs = Object.keys(localFaqOperators)
   const localFaqClock = clock
   const broadMarketCapture = marketEvidence.capturedAt
   try {
@@ -1284,7 +1236,7 @@ try {
         const brightPreclickDisclosures = {
           'fundednext-vs-bright-funded': 'fundednext-bright-comparison',
           'chto-takoe-prop-firma': 'prop-definition',
-          'dlya-russkoyazychnykh-treyderov': 'diaspora-hero',
+          'dlya-russkoyazychnykh-treyderov': 'russia-hub',
           'forex-prop-firmy': 'forex-shortlist',
           'prop-firmy-s-ctrader': 'ctrader-hero',
           'vyplaty-prop-firm': 'payout-ranking',
@@ -1319,35 +1271,11 @@ try {
           assert(!label.includes('Bright Funded'), `${slug || 'ru home'}: Bright affiliate label uses the first-party BrightFunded spelling`)
         }
         assert(!html.includes(brightFirm.affiliateUrl), `${slug || 'ru home'}: never expose a second Bright affiliate destination outside /go/`)
-        if (slug === 'rossiyskie-prop-kompanii') {
-          assert(html.includes('Модель описана; издательская программа не подтверждена.'), 'Trade System partnership description remains qualified for publishers')
-          assert(html.includes('Общий снимок рынка: 2026-08-27; заявления на официальных страницах шести компаний перепроверены: 2026-10-01'), 'fresh local checks do not redate the broad Russian market snapshot')
-          assert(html.includes(`data-russian-teamtraders-local-source="${teamTradersEvidence.capturedAt}"`), 'directory dates the rechecked TeamTraders card without relabelling the whole market snapshot')
-          assert(html.includes('Отдельная проп-оферта сейчас недоступна'), 'directory exposes the TeamTraders contract gap before readers leave the card')
-          assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/rossiyskie-prop-kompanii'])
-          assert(html.includes('Сравнить FundedNext и BrightFunded') && !html.includes('Сравнить 7 глобальных продуктов'), 'local-firm handoff never promises seven fresh partner products')
-        }
+// former rossiyskie-prop-kompanii route now 301s to /ru/dlya-russkoyazychnykh-treyderov#rossiyskie
         if (slug === 'dlya-russkoyazychnykh-treyderov') {
-          assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, russianRouteDateModified('/ru/dlya-russkoyazychnykh-treyderov', russianDiasporaEvidence.capturedAt), 'diaspora Article reflects the newer checked matrix date')
-          assert(html.includes('Число доступных строк зависит от свежести источников.') && !html.includes('Сравнить 7 продуктов'), 'diaspora handoff does not preserve a stale comparison count')
-          const currentMatrix = isChallengeFresh({ sourceCapturedAt: russianDiasporaEvidence.capturedAt })
-          assert(html.includes(`data-russian-diaspora-country-source-status="${currentMatrix ? 'dated' : 'recapture-required'}"`), 'country matrix status follows its own capture date')
-          assert.equal(cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), currentMatrix, 'diaspora FAQ schema expires with its country evidence')
-          const firstBrightAction = html.indexOf('href="/go/bright-funded?from=ru-diaspora-hero-bright-funded"')
-          const brightWarning = html.indexOf(`data-russian-diaspora-bright-country-status="${currentMatrix ? 'dated' : 'recapture-required'}"`)
-          assert(brightWarning >= 0 && brightWarning < firstBrightAction, 'diaspora Bright country-source warning precedes the first Bright affiliate action')
-          const heroDisclosure = html.slice(html.indexOf('data-russian-diaspora-hero-disclosure="primary-affiliates"'), brightWarning)
-          assert(heroDisclosure.includes('FundedNext и BrightFunded') && !heroDisclosure.includes('Bright Funded'), 'diaspora hero disclosure uses the first-party BrightFunded name')
-          const warningText = html.slice(brightWarning, firstBrightAction)
-          const brightSources = russianDiasporaEvidence.firms.find(firm => firm.slug === 'bright-funded')?.sources ?? []
-          for (const source of brightSources) {
-            assert(warningText.includes(`href="${source.url}"`), 'diaspora pre-click country warning links both first-party Bright sources')
-          }
-          assert(warningText.includes('Пакистан'), 'diaspora pre-click warning explains the Bright Help/Terms list discrepancy')
-          if (!currentMatrix) assert(warningText.includes('требует повторной проверки') && warningText.includes('не подтверждает доступ сегодня'), 'expired Bright country warning cannot imply current access')
+          assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/dlya-russkoyazychnykh-treyderov'], 'diaspora Article uses the Week 1 editorial date')
         }
         const countFreeComparisonLabels = {
-          'promokody-prop-firm': 'Таблица программ',
           'obzor-proplive': 'сравнение программ FundedNext и BrightFunded',
           'obzor-eratrade': 'сравнение FundedNext и BrightFunded',
         }
@@ -1391,7 +1319,7 @@ try {
           const fresh = captured.filter(product => isChallengeFresh(product))
           const tierCount = fresh.reduce((count, product) => count + product.accountSizes.filter(tier => tier.priceEur != null && tier.priceEur > 0).length, 0)
           assert(html.includes(`data-russian-bright-price-count="${tierCount}"`))
-          assert(html.includes('data-russian-bright-offer-handoff="qualified-status"') && html.includes('href="/ru/promokody-prop-firm#bright-offer-status"'), 'Bright review leads price readers directly to the qualified offer-status section')
+          assert(html.includes('data-russian-bright-offer-handoff="qualified-status"') && html.includes('href="/ru/promokody-prop-firm#kody"'), 'Bright review leads price readers directly to the monthly promo hub codes section')
           const valid = fresh.length === captured.length && Object.values(brightEvidence.sources).every(source => isChallengeFresh(source))
           assert.equal(cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), valid)
           if (valid) {

@@ -299,7 +299,7 @@ export default function RussianBestPropFirmsPage() {
             Если источник старше 30 дней, фирма переносится в блок ожидания повторной проверки, а не показывается как актуальная.
           </p>
           <p className="ru-source-line">Автор рейтинга: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Данные ранжирования обновляются после проверки источников.</p>
-          <p className="ru-source-line">Другой формат: <Link href="/ru/prop-firmy-bez-chelendzha">счета без челленджа</Link> · <Link href="/ru/rossiyskie-prop-kompanii">список проп-компаний в России</Link>.</p>
+          <p className="ru-source-line">Другой формат: <Link href="/ru/prop-firmy-bez-chelendzha">счета без челленджа</Link> · <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">список проп-компаний в России</Link>.</p>
         </div>
       </section>
 
@@ -417,7 +417,7 @@ export default function RussianBestPropFirmsPage() {
             <article className="ru-card">
               <h3>Резидент России</h3>
               <p>У FundedNext официальные страницы противоречат друг другу; {fundingPipsAccessCurrent ? 'по проверенной справке FundingPips действуют ограничения по резидентству и санкционным спискам' : 'страновая справка FundingPips требует повторной проверки'}. {brightCountryCurrent ? 'Справка и условия BrightFunded расходятся по Пакистану; отсутствие России в проверенных списках не подтверждает возможность покупки.' : 'Страновые источники BrightFunded требуют повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня.'} Уточните условия для своих документов до оплаты.</p>
-              <p><Link href="/ru/rossiyskie-prop-kompanii">Сначала открыть проверку России и местных компаний →</Link></p>
+              <p><Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Сначала открыть проверку России и местных компаний →</Link></p>
             </article>
             <article className="ru-card">
               <h3>ЕС или Великобритания</h3>
@@ -568,7 +568,7 @@ export default function RussianBestPropFirmsPage() {
           <p>Местная компания может быть полезна, если вам нужны Московская биржа, обучение или отбор в торговую команду. Сравните её договор, инструменты, комиссии и распределение прибыли отдельно от глобальных CFD-программ: условия одной модели нельзя переносить на другую.</p>
           <p>В отдельных обзорах <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-teamtraders">TeamTraders</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-kascapital">KasCapital</Link> разобраны юридическое лицо, рынок, отбор трейдеров и опубликованные условия расчётов. Начните с компании, которая предлагает нужные вам инструменты и формат работы, затем изучите договор и расходы.</p>
           <div className="ru-notice">
-            <strong>Сравните условия работы.</strong> В <Link href="/ru/rossiyskie-prop-kompanii">списке российских проп-компаний</Link> показаны различия местных моделей. Если интересует глобальная CFD-программа, используйте сравнение выше и отдельно подтвердите доступность в своей стране.
+            <strong>Сравните условия работы.</strong> В <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">списке российских проп-компаний</Link> показаны различия местных моделей. Если интересует глобальная CFD-программа, используйте сравнение выше и отдельно подтвердите доступность в своей стране.
           </div>
         </div>
       </section>
