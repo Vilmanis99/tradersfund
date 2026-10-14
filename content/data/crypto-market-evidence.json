@@ -58,7 +58,7 @@
     {
       "firmSlug": "e8-markets",
       "firmName": "E8 Markets",
-      "marketModel": "crypto-native",
+      "marketModel": "multi-asset-cfd",
       "productSlugs": [
         "e8-one-perpetuals",
         "e8-pro-perpetuals"
