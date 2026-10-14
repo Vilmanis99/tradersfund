@@ -54,7 +54,7 @@
     "activationFeeUsd": 130,
     "assetClass": "futures",
     "sourceUrl": "https://takeprofittrader.com/",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-14",
     "notes": [
       "RECURRING: the five priceUsd values are MONTHLY subscription fees for the Test, not one-time challenge fees. Confirmed by the firm's own checkout consent string 'I agree to get billed every month and I acknowledge that I can cancel whenever I want' and by the NOFEE40 FAQ: 'that account's monthly subscription will always be 40% off ... As soon as you pass then the monthly subscription stops.'",
       "ONE-TIME ACTIVATION FEE CONFIRMED AT $130 and still in force. Homepage comparison table row 'Fees for PRO Account' reads 'One Time $130 Fee' (vs 'Monthly Recurring' for competitors); its tooltip reads 'Your monthly fees go away completely once you become a PRO Trader. Pay a one time $130 PRO Account setup fee, and ZERO monthly fees after that.' The fee is charged when converting a passed Test to a PRO account.",
@@ -79,7 +79,7 @@
       "CURRENT MINIMUM-DAYS UPDATE: the official 2026-08-17 update changed new Test accounts from 5 to 3 minimum trading days. Existing evaluations and resets retain the 5-day minimum. The current homepage FAQ repeats “minimum of 3 days.”",
       "CURRENT PAYOUT-PROCESSING UPDATE: the official 2026-07-20 payout update says the account-to-wallet step is automated in approximately 1–5 seconds after the dashboard balance update; wallet-to-bank timing still varies by payout method. Day-one and daily eligibility, no withdrawal cap, and the buffer gate remain unchanged.",
       "Current official homepage account cards show the same five monthly list prices: $150 / $170 / $245 / $330 / $360 for $25K / $50K / $75K / $100K / $150K.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/take-profit-trader-2026-09-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/take-profit-trader-2026-10-14.json"
     ]
   }
 ]
