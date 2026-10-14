@@ -3146,7 +3146,7 @@ if (usLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Compare ${expectedUsFirms.length} policy-checked prop firms for U.S. traders across ${expectedUsProductCount} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`
+    `Best prop firms for US traders in 2026: ${expectedUsFirms.length} prop trading firms open to USA residents across ${expectedUsProductCount} exact futures and CFD products, with CFTC/NFA checks.`
   const renderedDescription = decodeHtml(firstMatch(
     usLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3159,8 +3159,8 @@ if (usLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Prop Firms for US Traders (2026): ${expectedUsFirms.length} Checked | TFH`,
-    `Best Prop Firms for U.S. Traders (2026): ${expectedUsFirms.length} Policy-Checked`,
+    `Best Prop Firms USA 2026: ${expectedUsFirms.length} Prop Trading Firms Checked | TFH`,
+    `Best Prop Firms for US Traders (2026): ${expectedUsFirms.length} Prop Trading Firms in the USA`,
     `${expectedUsFirms.length} policy-checked firms across ${expectedUsProductCount} mapped products`,
     'U.S. access is not a regulatory badge.',
     'What U.S. traders should verify',
