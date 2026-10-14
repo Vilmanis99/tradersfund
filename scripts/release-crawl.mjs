@@ -2997,7 +2997,7 @@ if (ukLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Compare ${expectedUkFirms.length} prop firms with current first-party UK-access policies across ${expectedUkProductCount} product paths, plus FCA checks, fees, rules, reviews, and dated sources.`
+    `Compare ${expectedUkFirms.length} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`
   const renderedDescription = decodeHtml(firstMatch(
     ukLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3010,8 +3010,8 @@ if (ukLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Prop Firms for UK Traders (2026): ${expectedUkFirms.length} Checked | TFH`,
-    `Best Prop Firms for UK Traders (2026): ${expectedUkFirms.length} Policy-Checked`,
+    `Best Prop Firms UK 2026: ${expectedUkFirms.length} Prop Trading Firms Checked | TFH`,
+    `Best Prop Firms UK (2026): ${expectedUkFirms.length} Prop Trading Firms That Accept UK Traders`,
     `${expectedUkFirms.length} policy-checked firms across ${expectedUkProductCount} mapped products`,
     'Policy-supported UK access is not an FCA status.',
     'What UK traders should verify',

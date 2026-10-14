@@ -552,12 +552,12 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-prop-firms-in-uk',
-    h1: `Best Prop Firms for UK Traders (2026): ${CURRENT_UK_FIRM_COUNT} Policy-Checked`,
-    metaTitle: `Best Prop Firms for UK Traders (2026): ${CURRENT_UK_FIRM_COUNT} Checked`,
+    h1: `Best Prop Firms UK (2026): ${CURRENT_UK_FIRM_COUNT} Prop Trading Firms That Accept UK Traders`,
+    metaTitle: `Best Prop Firms UK 2026: ${CURRENT_UK_FIRM_COUNT} Prop Trading Firms Checked`,
     metaDescription:
-      `Compare ${CURRENT_UK_FIRM_COUNT} prop firms with current first-party UK-access policies across ${CURRENT_UK_PRODUCT_COUNT} product paths, plus FCA checks, fees, rules, reviews, and dated sources.`,
+      `Compare ${CURRENT_UK_FIRM_COUNT} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`,
     intro:
-      `These ${CURRENT_UK_FIRM_COUNT} firms publish a current global or country-based service policy that does not restrict United Kingdom residents or nationals, and all ${CURRENT_UK_PRODUCT_COUNT} mapped product rows remain inside the 30-day freshness window. That is policy-supported access, not a completed UK checkout, KYC approval, payout test, legal opinion, or FCA-authorisation finding. Editorial score sets the order; partnership status contributes 0 points.`,
+      `Looking for a prop firm in the UK? These ${CURRENT_UK_FIRM_COUNT} prop trading firms currently publish a first-party country policy that does not exclude UK residents or nationals, across ${CURRENT_UK_PRODUCT_COUNT} current product paths. None of them is an FCA-authorised broker for funded accounts: most UK-facing prop firms sell evaluations and pay a share of simulated-account profits, so check FCA status, pricing currency, and the payout route yourself before paying. The table ranks by editorial score; affiliate status adds 0 points. Policy access is not a completed UK checkout, KYC approval, payout test, or legal opinion.`,
     sortDir: 'desc',
     rank: firms => firms
       .flatMap(firm => {
@@ -600,12 +600,28 @@ export const LANDINGS: Landing[] = [
         body: 'Keep each list price in its published currency, then use the live card or payment-provider GBP rate and disclosed fees at checkout. A stored conversion would age independently of the challenge price and can reverse a close comparison.',
       },
       {
+        title: 'Are there FCA-regulated prop firms in the UK?',
+        body: 'Retail evaluation-style prop firms generally sell a challenge and pay a profit share from a simulated or firm-controlled account, which is a different business from an FCA-authorised broker, and this page does not rank on FCA status. A London history, UK company number, payment agent, or .uk domain (Alpha Capital, City Traders Imperium and FXIFY each have a UK link) is not FCA authorisation. Search the firm and its payment entity on the FCA Register and Warning List before paying.',
+      },
+      {
+        title: 'Do UK traders pay tax on prop firm payouts?',
+        body: 'Usually yes. Payouts are commonly treated as trading or miscellaneous income rather than capital gains, and the spread-betting exemption does not obviously apply to a profit share. GOV.UK says gross trading income over £1,000 in a tax year means registering for Self Assessment by 5 October after that tax year; you can claim either the £1,000 trading allowance or actual expenses such as challenge fees, not both. Keep every fee and payout record and confirm your position with a UK accountant.',
+      },
+      {
+        title: 'Can I pay and get paid in GBP?',
+        body: 'Most firms here price challenges in USD or EUR (FTMO and Bright Funded checkouts are in EUR), so a UK card is charged after conversion and may add a non-sterling fee. Payouts are typically sent by bank transfer, crypto or a payments provider; check the receiving currency and fees for your chosen route before your first payout request.',
+      },
+      {
+        title: 'Which prop firms are based in the UK?',
+        body: 'Alpha Capital uses a .uk domain and UK company presence, City Traders Imperium has a London history, and FXIFY lists a UK-registered payment agent or office address, but none of those links makes the funded account a UK-regulated product. Rank on rules, payout record, cost, and platform fit first; location is secondary.',
+      },
+      {
         title: 'Does the policy cover every product and platform forever?',
         body: `No. This snapshot maps ${CURRENT_UK_PRODUCT_COUNT} exact products while their records and the country sources remain current. Platforms, payment providers, KYC vendors, sanctions screening, and product availability can change before the 30-day source gate expires.`,
       },
     ],
     snapshotProductCount: CURRENT_UK_PRODUCT_COUNT,
-    lastReviewed: '2026-08-17',
+    lastReviewed: '2026-10-14',
   },
   {
     slug: 'best-prop-firms-in-us',
@@ -1098,12 +1114,12 @@ function withCurrentAccessCopy(
   if (landing.slug === 'best-prop-firms-in-uk') {
     return {
       ...landing,
-      h1: `Best Prop Firms for UK Traders (2026): ${snapshot.firmCount} Policy-Checked`,
-      metaTitle: `Best Prop Firms for UK Traders (2026): ${snapshot.firmCount} Checked`,
+      h1: `Best Prop Firms UK (2026): ${snapshot.firmCount} Prop Trading Firms That Accept UK Traders`,
+      metaTitle: `Best Prop Firms UK 2026: ${snapshot.firmCount} Prop Trading Firms Checked`,
       metaDescription:
-        `Compare ${snapshot.firmCount} prop firms with current first-party UK-access policies across ${snapshot.productCount} product paths, plus FCA checks, fees, rules, reviews, and dated sources.`,
+        `Compare ${snapshot.firmCount} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`,
       intro:
-        `These ${snapshot.firmCount} firms publish a current global or country-based service policy that does not restrict United Kingdom residents or nationals, and all ${snapshot.productCount} mapped product rows remain inside the 30-day freshness window. That is policy-supported access, not a completed UK checkout, KYC approval, payout test, legal opinion, or FCA-authorisation finding. Editorial score sets the order; partnership status contributes 0 points.`,
+        `Looking for a prop firm in the UK? These ${snapshot.firmCount} prop trading firms currently publish a first-party country policy that does not exclude UK residents or nationals, across ${snapshot.productCount} current product paths. None of them is an FCA-authorised broker for funded accounts: most UK-facing prop firms sell evaluations and pay a share of simulated-account profits, so check FCA status, pricing currency, and the payout route yourself before paying. The table ranks by editorial score; affiliate status adds 0 points. Policy access is not a completed UK checkout, KYC approval, payout test, or legal opinion.`,
       decisionGuide: landing.decisionGuide?.map(item => item.title === 'Does the policy cover every product and platform forever?'
         ? {
             ...item,
