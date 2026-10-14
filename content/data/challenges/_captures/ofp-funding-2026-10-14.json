@@ -1,0 +1,537 @@
+{
+  "firmSlug": "ofp-funding",
+  "officialDomain": "https://ofpfunding.com",
+  "pagesRead": [
+    "https://ofpfunding.com/",
+    "https://ofpfunding.com/pricing-plans/ (301 -> https://ofpfunding.com/#pricing)",
+    "https://ofpfunding.com/trading-rules",
+    "https://help.ofpfunding.com/",
+    "https://help.ofpfunding.com/trading-rules-risk-management/",
+    "https://help.ofpfunding.com/what-are-the-trading-rules-every-ofp-trader-must-follow/",
+    "https://help.ofpfunding.com/what-is-the-maximum-drawdown-and-how-can-i-avoid-hitting-it/",
+    "https://help.ofpfunding.com/what-is-the-inconsistency-score-and-how-does-it-affect-my-account/",
+    "https://help.ofpfunding.com/how-does-the-payout-process-work-at-ofp-funding/",
+    "https://help.ofpfunding.com/do-you-have-a-maximum-risk-rule/",
+    "https://help.ofpfunding.com/payouts-profit-split/"
+  ],
+  "accessNotes": "RECAPTURE 2026-10-14: re-fetched https://ofpfunding.com/ (curl with desktop UA; 200) and parsed the embedded __NUXT_DATA__ plan payload (80 plan objects). The live lineup is ONLY Instant Lite, Instant Classic and Instant Plus, each in 3/5-or-6 and 5/10 drawdown variants and 80%/100% split. /trading-rules tabs also list only 'Instant Lite Instant Classic Instant Plus'. Products REMOVED because they no longer appear anywhere in the official payload or pages: instant-prime, instant-pro, one-phase-challenge, two-phase-challenge. Instant Lite 5%/10% variant added as a new row. Help-centre rule text carried forward. | Prior notes: ACCESS: ofpfunding.com returns HTTP 403 to the WebFetch tool (bot protection). Pages were retrieved over plain HTTPS with a standard desktop browser User-Agent, which returns HTTP 200. No geo-block encountered. ofpfunding.com/pricing-plans/ 301-redirects to the homepage anchor https://ofpfunding.com/#pricing. JS-GATING: the pricing widget and the per-product tabs on /trading-rules are client-side rendered; only ONE pricing column (Instant Lite / $50,000 / 80% split) and rules section 1 are present in the server HTML. METHOD + VALIDATION: all per-product numbers below come from the Nuxt __NUXT_DATA__ JSON payload embedded in the server HTML of ofpfunding.com itself - i.e. the firm's own published data that renders the visible widget, not a third party. It was validated against the one server-rendered column: the payload record for Instant Lite / $50,000 / 80% split gives price 150, dailyDrawdown 3, maxDrawdown 5, profitTarget 5, minTradingDays 5, maxTradingDays 30, payoutDays 30 - and the visible HTML independently renders '$150', 'Account Price', '$50,000 - Lite Account', '5% Overall Drawdown', '3% Daily Drawdown', 'Profit Target 5%', 'Minimum Trading Days 5', 'Account Duration 30 Days', 'Payout Day Monthly'. Exact match on every field. The other product columns could NOT be visually confirmed in a browser; treat them as firm-published data rather than firm-rendered data. CONSISTENCY RULE - UNRESOLVED, LEFT NULL: the pricing payload carries a 'maxScore' field (One Phase / Two Phase = 15, Instant Classic = 20, Instant Lite / Plus / Pro / Prime = null) which appears to feed the pricing table's 'Consistency Ratio' row. Only the null case was visually confirmed (Instant Lite renders 'No' / 'No Consistency'). The help centre instead ties the threshold to the payout cycle, not the product: 'On-Demand Accounts: Your score must be under 10%. Bi-Weekly Accounts: Your score must be under 15%. Monthly Accounts: Your score must be under 20%.' That directly contradicts the payload for Instant Classic (payoutDays=14 i.e. bi-weekly, but maxScore=20) and for Instant Lite (monthly, but no consistency rule shown). Because the firm's own two sources disagree and the rendered number was never observed, consistencyRulePct is null for every product. Formula published by the firm: 'Inconsistency Score = Best Day Closed PnL / Total Closed PnL x 100' (ofpfunding.com/trading-rules); it is a soft rule - 'you won't lose the account if the score exceeds the recommended' - but 'you are not entitled to request a payout'. INSTANT PLUS: sold on the pricing widget but has NO rules section on ofpfunding.com/trading-rules (only instant-lite, instant-classic, instant-pro, instant-prime, one-phase, two-phase categories exist there). Its product-specific rules are unverified. NOT PUBLISHED ANYWHERE ON THE FIRM'S DOMAIN (left null): weekend-holding rules, overnight/swap-holding rules, the per-phase profit-target split for the Two Phase product, and max trading days for every product except Instant Lite. PRICING STRUCTURE: every account is sold at two profit-split tiers, 80% (base price, recorded in priceUsd) and 100% (~20% more, recorded inside each accountSizes evidence string). Instant Classic and Instant Plus are additionally sold in two drawdown variants, which are emitted here as separate product objects. REFUNDABLE: 'traders are entitled to request a refund within 14 calendar days from the date of purchase, provided that the account has not been used and no trading activity has occurred' - so refundable=true only for an untouched account; 'Refunds are not available after the 14-day period has elapsed or once any trade has been placed.' OTHER VERIFIED FIRM-WIDE TERMS: leverage 'may range from a minimum of 1:1 to a maximum of 1:100' (dynamic); instruments 'Forex, Crypto, Indices, Metals & Energies'; platform MetaTrader 5 / OFP Platform; 'The total manageable accounts are capped at $300,000. Account merging is not supported at OFP Funding.'; inactivity 28 consecutive days -> suspension; withdrawals 'typically processed within an average timeframe of 48 hours', crypto/bank free below $500, above $500 via Rise with a fixed $50 fee; scaling plan '20% total profit over three months -> 25% return on your initial deposit'. Entity: OFP Funding Ltd (St. Lucia, company 2024-00577); payment agent FINTEKNOLOGY LTD, UK (15131112). Simulated/demo trading only; MT5 services 'not intended for U.S. citizens/residents'.",
+  "capturedAt": "2026-10-14",
+  "products": [
+    {
+      "productName": "Instant Classic (3% daily / 6% max drawdown)",
+      "productSlug": "instant-classic-3-daily-6-max-drawdown",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "refundable": true,
+          "sizeUsd": 5000,
+          "priceUsd": 35,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":35,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":5000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $42]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 10000,
+          "priceUsd": 55,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":55,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":10000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $66]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 25000,
+          "priceUsd": 90,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":90,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":25000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $108]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 50000,
+          "priceUsd": 175,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":175,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":50000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $210]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 100000,
+          "priceUsd": 335,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":335,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":100000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $402]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 200000,
+          "priceUsd": 665,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":665,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":200000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $798]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 300000,
+          "priceUsd": 1000,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":1000,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":300000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $1200]"
+        }
+      ],
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "Trading during economic news releases is permitted. ... Opening new trades is prohibited from 2 minutes before until 2 minutes after the release of high-impact economic news (a total 4-minute window)",
+        "weekend": null,
+        "overnight": null,
+        "ea": "The use of publicly distributed or commercially available third-party Expert Advisors (EAs) designed to exploit platform inefficiencies or coordinated trading behavior is prohibited.",
+        "copyTrading": "Copy trading refers to mirroring trades between accounts, whether internal (between OFP accounts) or external, in a manner that circumvents risk parameters or creates artificial scaling. This includes copying trades across multiple accounts owned by the same trader. Violation Consequence: Immediate account closure."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ofpfunding.com/#pricing",
+      "fieldEvidence": {
+        "accountSizes/priceUsd": "From the __NUXT_DATA__ payload embedded in the server HTML of https://ofpfunding.com/ (the firm's own data that renders the visible pricing widget). Example record: {\"price\":35,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}",
+        "dailyLossPct": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 3% from record: {\"price\":35,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+        "maxLossPct": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 6% from record: {\"price\":35,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+        "drawdownType": "\"This is a 'hard' limit based on your initial balance\" / \"This limit never changes during the challenge\" (https://ofpfunding.com/trading-rules). Help centre adds: \"The rule is calculated against your highest balance at the start of the period or after your last Reward\" (https://help.ofpfunding.com/what-is-the-maximum-drawdown-and-how-can-i-avoid-hitting-it/) - i.e. static within a payout cycle, rebased after each approved reward.",
+        "profitSplitPct": "Pricing widget selector: \"Select Profit Split  80%  100%\". 80% is the base price tier recorded in priceUsd; the 100% tier costs ~20% more (per-size 100% prices are given in each accountSizes evidence string). Homepage: \"Up to 100% profit split\".",
+        "profitTargets.phase1": "Not published for this product - null in the firm's own pricing data.",
+        "minTradingDays": "Pricing table row \"Minimum Trading Days\"; record: {\"price\":35,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}",
+        "maxTradingDays": "Not published - null in the firm's own pricing data.",
+        "payoutFrequency": "\"Traders may request bi-weekly rewards subject to the following conditions\" (https://ofpfunding.com/trading-rules); record payoutDays=14.",
+        "payoutFirstDays": "\"The first reward request may be submitted after 14 calendar days from the execution of the first trade, as determined by the profit cycle\" (https://ofpfunding.com/trading-rules)",
+        "consistencyRulePct": "LEFT NULL DELIBERATELY - see accessNotes. The firm's own two sources disagree and the rendered numeric value could not be observed.",
+        "rules.weekend": "No weekend-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
+        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre."
+      },
+      "notes": "No profit target and minTradingDays=0 in the firm's own pricing data. Two drawdown variants sold (3%/6% and 5%/10%).",
+      "sourceCapturedAt": "2026-10-14"
+    },
+    {
+      "productName": "Instant Classic (5% daily / 10% max drawdown)",
+      "productSlug": "instant-classic-5-daily-10-max-drawdown",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "refundable": true,
+          "sizeUsd": 5000,
+          "priceUsd": 45,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":45,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":5000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $54]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 10000,
+          "priceUsd": 70,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":70,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":10000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $84]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 25000,
+          "priceUsd": 110,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":110,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":25000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $132]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 50000,
+          "priceUsd": 220,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":220,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":50000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $264]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 100000,
+          "priceUsd": 420,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":420,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":100000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $504]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 200000,
+          "priceUsd": 830,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":830,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":200000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $996]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 300000,
+          "priceUsd": 1250,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":1250,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":300000,\"currency\":\"USD\",\"maxScore\":20,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null}  [100% profit-split variant priced $1500]"
+        }
+      ],
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "Trading during economic news releases is permitted. ... Opening new trades is prohibited from 2 minutes before until 2 minutes after the release of high-impact economic news (a total 4-minute window)",
+        "weekend": null,
+        "overnight": null,
+        "ea": "The use of publicly distributed or commercially available third-party Expert Advisors (EAs) designed to exploit platform inefficiencies or coordinated trading behavior is prohibited.",
+        "copyTrading": "Copy trading refers to mirroring trades between accounts, whether internal (between OFP accounts) or external, in a manner that circumvents risk parameters or creates artificial scaling. This includes copying trades across multiple accounts owned by the same trader. Violation Consequence: Immediate account closure."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ofpfunding.com/#pricing",
+      "fieldEvidence": {
+        "accountSizes/priceUsd": "From the __NUXT_DATA__ payload embedded in the server HTML of https://ofpfunding.com/ (the firm's own data that renders the visible pricing widget). Example record: {\"price\":45,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}",
+        "dailyLossPct": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 5% from record: {\"price\":45,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+        "maxLossPct": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 10% from record: {\"price\":45,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+        "drawdownType": "\"This is a 'hard' limit based on your initial balance\" / \"This limit never changes during the challenge\" (https://ofpfunding.com/trading-rules). Help centre adds: \"The rule is calculated against your highest balance at the start of the period or after your last Reward\" (https://help.ofpfunding.com/what-is-the-maximum-drawdown-and-how-can-i-avoid-hitting-it/) - i.e. static within a payout cycle, rebased after each approved reward.",
+        "profitSplitPct": "Pricing widget selector: \"Select Profit Split  80%  100%\". 80% is the base price tier recorded in priceUsd; the 100% tier costs ~20% more (per-size 100% prices are given in each accountSizes evidence string). Homepage: \"Up to 100% profit split\".",
+        "profitTargets.phase1": "Not published for this product - null in the firm's own pricing data.",
+        "minTradingDays": "Pricing table row \"Minimum Trading Days\"; record: {\"price\":45,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}",
+        "maxTradingDays": "Not published - null in the firm's own pricing data.",
+        "payoutFrequency": "\"Traders may request bi-weekly rewards subject to the following conditions\" (https://ofpfunding.com/trading-rules); record payoutDays=14.",
+        "payoutFirstDays": "\"The first reward request may be submitted after 14 calendar days from the execution of the first trade, as determined by the profit cycle\" (https://ofpfunding.com/trading-rules)",
+        "consistencyRulePct": "LEFT NULL DELIBERATELY - see accessNotes. The firm's own two sources disagree and the rendered numeric value could not be observed.",
+        "rules.weekend": "No weekend-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
+        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre."
+      },
+      "notes": "No profit target and minTradingDays=0 in the firm's own pricing data. Two drawdown variants sold (3%/6% and 5%/10%).",
+      "sourceCapturedAt": "2026-10-14"
+    },
+    {
+      "productName": "Instant Lite (3% daily / 5% max)",
+      "productSlug": "instant-lite",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "refundable": true,
+          "sizeUsd": 10000,
+          "priceUsd": 35,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":35,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":28,\"accountSize\":10000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":1,\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":28}  [100% profit-split variant priced $42]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 25000,
+          "priceUsd": 75,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":75,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":28,\"accountSize\":25000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":1,\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":28}  [100% profit-split variant priced $90]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 50000,
+          "priceUsd": 150,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":28,\"accountSize\":50000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":1,\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":28}  [100% profit-split variant priced $180]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 100000,
+          "priceUsd": 200,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":200,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":28,\"accountSize\":100000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":1,\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":28}  [100% profit-split variant priced $240]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 200000,
+          "priceUsd": 390,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":390,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":28,\"accountSize\":200000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":1,\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":28}  [100% profit-split variant priced $468]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 300000,
+          "priceUsd": 590,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":590,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":28,\"accountSize\":300000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":1,\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":28}  [100% profit-split variant priced $708]"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 5,
+        "phase2": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 5,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": 30,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "monthly",
+      "rules": {
+        "news": "Trading during economic news releases is permitted. ... Opening new trades is prohibited from 2 minutes before until 2 minutes after the release of high-impact economic news (a total 4-minute window)",
+        "weekend": null,
+        "overnight": null,
+        "ea": "The use of publicly distributed or commercially available third-party Expert Advisors (EAs) designed to exploit platform inefficiencies or coordinated trading behavior is prohibited.",
+        "copyTrading": "Copy trading refers to mirroring trades between accounts, whether internal (between OFP accounts) or external, in a manner that circumvents risk parameters or creates artificial scaling. This includes copying trades across multiple accounts owned by the same trader. Violation Consequence: Immediate account closure."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ofpfunding.com/#pricing",
+      "fieldEvidence": {
+        "accountSizes/priceUsd": "From the __NUXT_DATA__ payload embedded in the server HTML of https://ofpfunding.com/ (the firm's own data that renders the visible pricing widget). Example record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}",
+        "dailyLossPct": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 3% from record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}] (https://ofpfunding.com/trading-rules)",
+        "maxLossPct": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 5% from record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}] (https://ofpfunding.com/trading-rules)",
+        "drawdownType": "\"This is a 'hard' limit based on your initial balance\" / \"This limit never changes during the challenge\" (https://ofpfunding.com/trading-rules). Help centre adds: \"The rule is calculated against your highest balance at the start of the period or after your last Reward\" (https://help.ofpfunding.com/what-is-the-maximum-drawdown-and-how-can-i-avoid-hitting-it/) - i.e. static within a payout cycle, rebased after each approved reward.",
+        "profitSplitPct": "Pricing widget selector: \"Select Profit Split  80%  100%\". 80% is the base price tier recorded in priceUsd; the 100% tier costs ~20% more (per-size 100% prices are given in each accountSizes evidence string). Homepage: \"Up to 100% profit split\".",
+        "profitTargets.phase1": "Pricing table row \"Profit Target\" = 5%; record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}",
+        "minTradingDays": "Pricing table row \"Minimum Trading Days\"; record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}",
+        "maxTradingDays": "Pricing table row \"Account Duration\" = \"30 Days\" (server-rendered, directly observed); record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}",
+        "payoutFrequency": "Pricing table row \"Payout Day\" renders \"Monthly\" (server-rendered, directly observed); record payoutDays=30.",
+        "payoutFirstDays": "Not stated as a fixed number for this product; the site says only \"after the minimum number of calendar days from the execution of the first trade, as determined by the applicable profit cycle\".",
+        "consistencyRulePct": "LEFT NULL DELIBERATELY - see accessNotes. The firm's own two sources disagree and the rendered numeric value could not be observed.",
+        "rules.weekend": "No weekend-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
+        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre."
+      },
+      "notes": "Account valid 30 calendar days; one (1) reward request only. Pricing table 'Payout Day' renders 'Monthly'. Pricing table 'Consistency Ratio' renders 'No' for this product (server-rendered, directly observed).",
+      "sourceCapturedAt": "2026-10-14"
+    },
+    {
+      "productName": "Instant Lite (5% daily / 10% max)",
+      "productSlug": "instant-lite-5-daily-10-max-drawdown",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "refundable": true,
+          "sizeUsd": 10000,
+          "priceUsd": 50,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":50,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":28,\"accountSize\":10000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":1,\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":28}  [100% profit-split variant priced $60]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 25000,
+          "priceUsd": 95,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":95,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":28,\"accountSize\":25000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":1,\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":28}  [100% profit-split variant priced $114]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 50000,
+          "priceUsd": 190,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":190,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":28,\"accountSize\":50000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":1,\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":28}  [100% profit-split variant priced $228]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 100000,
+          "priceUsd": 250,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":250,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":28,\"accountSize\":100000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":1,\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":28}  [100% profit-split variant priced $300]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 200000,
+          "priceUsd": 490,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":490,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":28,\"accountSize\":200000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":1,\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":28}  [100% profit-split variant priced $588]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 300000,
+          "priceUsd": 740,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":740,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":28,\"accountSize\":300000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":1,\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":28}  [100% profit-split variant priced $888]"
+        }
+      ],
+      "profitTargets": {
+        "phase1": 5,
+        "phase2": null
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": 30,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "monthly",
+      "rules": {
+        "news": "Trading during economic news releases is permitted. ... Opening new trades is prohibited from 2 minutes before until 2 minutes after the release of high-impact economic news (a total 4-minute window)",
+        "weekend": null,
+        "overnight": null,
+        "ea": "The use of publicly distributed or commercially available third-party Expert Advisors (EAs) designed to exploit platform inefficiencies or coordinated trading behavior is prohibited.",
+        "copyTrading": "Copy trading refers to mirroring trades between accounts, whether internal (between OFP accounts) or external, in a manner that circumvents risk parameters or creates artificial scaling. This includes copying trades across multiple accounts owned by the same trader. Violation Consequence: Immediate account closure."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ofpfunding.com/#pricing",
+      "fieldEvidence": {
+        "accountSizes/priceUsd": "From the __NUXT_DATA__ payload embedded in the server HTML of https://ofpfunding.com/ (the firm's own data that renders the visible pricing widget). Example record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}",
+        "dailyLossPct": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 3% from record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}] (https://ofpfunding.com/trading-rules)",
+        "maxLossPct": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 5% from record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}] (https://ofpfunding.com/trading-rules)",
+        "drawdownType": "\"This is a 'hard' limit based on your initial balance\" / \"This limit never changes during the challenge\" (https://ofpfunding.com/trading-rules). Help centre adds: \"The rule is calculated against your highest balance at the start of the period or after your last Reward\" (https://help.ofpfunding.com/what-is-the-maximum-drawdown-and-how-can-i-avoid-hitting-it/) - i.e. static within a payout cycle, rebased after each approved reward.",
+        "profitSplitPct": "Pricing widget selector: \"Select Profit Split  80%  100%\". 80% is the base price tier recorded in priceUsd; the 100% tier costs ~20% more (per-size 100% prices are given in each accountSizes evidence string). Homepage: \"Up to 100% profit split\".",
+        "profitTargets.phase1": "Pricing table row \"Profit Target\" = 5%; record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}",
+        "minTradingDays": "Pricing table row \"Minimum Trading Days\"; record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}",
+        "maxTradingDays": "Pricing table row \"Account Duration\" = \"30 Days\" (server-rendered, directly observed); record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}",
+        "payoutFrequency": "Pricing table row \"Payout Day\" renders \"Monthly\" (server-rendered, directly observed); record payoutDays=30.",
+        "payoutFirstDays": "Not stated as a fixed number for this product; the site says only \"after the minimum number of calendar days from the execution of the first trade, as determined by the applicable profit cycle\".",
+        "consistencyRulePct": "LEFT NULL DELIBERATELY - see accessNotes. The firm's own two sources disagree and the rendered numeric value could not be observed.",
+        "rules.weekend": "No weekend-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
+        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre."
+      },
+      "notes": "Account valid 30 calendar days; one (1) reward request only. Pricing table 'Payout Day' renders 'Monthly'. Pricing table 'Consistency Ratio' renders 'No' for this product (server-rendered, directly observed).",
+      "sourceCapturedAt": "2026-10-14"
+    },
+    {
+      "productName": "Instant Plus (3% daily / 5% max drawdown)",
+      "productSlug": "instant-plus-3-daily-5-max-drawdown",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "refundable": true,
+          "sizeUsd": 5000,
+          "priceUsd": 70,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":70,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":5000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $84]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 10000,
+          "priceUsd": 110,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":110,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":10000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $132]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 25000,
+          "priceUsd": 180,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":180,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":25000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $216]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 50000,
+          "priceUsd": 350,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":350,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":50000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $420]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 100000,
+          "priceUsd": 670,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":670,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":100000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $804]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 200000,
+          "priceUsd": 1330,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":1330,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":200000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $1596]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 300000,
+          "priceUsd": 2000,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":2000,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":300000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $2400]"
+        }
+      ],
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 5,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "Trading during economic news releases is permitted. ... Opening new trades is prohibited from 2 minutes before until 2 minutes after the release of high-impact economic news (a total 4-minute window)",
+        "weekend": null,
+        "overnight": null,
+        "ea": "The use of publicly distributed or commercially available third-party Expert Advisors (EAs) designed to exploit platform inefficiencies or coordinated trading behavior is prohibited.",
+        "copyTrading": "Copy trading refers to mirroring trades between accounts, whether internal (between OFP accounts) or external, in a manner that circumvents risk parameters or creates artificial scaling. This includes copying trades across multiple accounts owned by the same trader. Violation Consequence: Immediate account closure."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ofpfunding.com/#pricing",
+      "fieldEvidence": {
+        "accountSizes/priceUsd": "From the __NUXT_DATA__ payload embedded in the server HTML of https://ofpfunding.com/ (the firm's own data that renders the visible pricing widget). Example record: {\"price\":125,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}",
+        "dailyLossPct": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 3% from record: {\"price\":125,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+        "maxLossPct": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 5% from record: {\"price\":125,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+        "drawdownType": "\"This is a 'hard' limit based on your initial balance\" / \"This limit never changes during the challenge\" (https://ofpfunding.com/trading-rules). Help centre adds: \"The rule is calculated against your highest balance at the start of the period or after your last Reward\" (https://help.ofpfunding.com/what-is-the-maximum-drawdown-and-how-can-i-avoid-hitting-it/) - i.e. static within a payout cycle, rebased after each approved reward.",
+        "profitSplitPct": "Pricing widget selector: \"Select Profit Split  80%  100%\". 80% is the base price tier recorded in priceUsd; the 100% tier costs ~20% more (per-size 100% prices are given in each accountSizes evidence string). Homepage: \"Up to 100% profit split\".",
+        "profitTargets.phase1": "Not published for this product - null in the firm's own pricing data.",
+        "minTradingDays": "Pricing table row \"Minimum Trading Days\"; record: {\"price\":125,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}",
+        "maxTradingDays": "Not published - null in the firm's own pricing data.",
+        "payoutFrequency": "\"Traders may request bi-weekly rewards subject to the following conditions\" (https://ofpfunding.com/trading-rules); record payoutDays=14.",
+        "payoutFirstDays": "\"The first reward request may be submitted after 14 calendar days from the execution of the first trade, as determined by the profit cycle\" (https://ofpfunding.com/trading-rules)",
+        "consistencyRulePct": "LEFT NULL DELIBERATELY - see accessNotes. The firm's own two sources disagree and the rendered numeric value could not be observed.",
+        "rules.weekend": "No weekend-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
+        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre."
+      },
+      "notes": "Instant Plus has NO section on ofpfunding.com/trading-rules (only Instant Lite, Classic, Pro, Prime, One Phase, Two Phase are published there), so its product-specific rules are unverified.",
+      "sourceCapturedAt": "2026-10-14"
+    },
+    {
+      "productName": "Instant Plus (5% daily / 10% max drawdown)",
+      "productSlug": "instant-plus-5-daily-10-max-drawdown",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "refundable": true,
+          "sizeUsd": 5000,
+          "priceUsd": 90,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":90,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":5000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $108]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 10000,
+          "priceUsd": 140,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":140,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":10000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $168]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 25000,
+          "priceUsd": 220,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":220,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":25000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $264]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 50000,
+          "priceUsd": 440,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":440,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":50000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $528]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 100000,
+          "priceUsd": 840,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":840,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":100000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $1008]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 200000,
+          "priceUsd": 1660,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":1660,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":200000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $1992]"
+        },
+        {
+          "refundable": true,
+          "sizeUsd": 300000,
+          "priceUsd": 2500,
+          "evidence": "Live https://ofpfunding.com/ __NUXT_DATA__ on 2026-10-14: {\"price\":2500,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"leverage\":100,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"newsTrading\":1,\"payoutDays\":14,\"accountSize\":300000,\"currency\":\"USD\",\"maxScore\":null,\"percent1Rule\":0,\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null}  [100% profit-split variant priced $3000]"
+        }
+      ],
+      "profitTargets": {
+        "phase1": null,
+        "phase2": null
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "Trading during economic news releases is permitted. ... Opening new trades is prohibited from 2 minutes before until 2 minutes after the release of high-impact economic news (a total 4-minute window)",
+        "weekend": null,
+        "overnight": null,
+        "ea": "The use of publicly distributed or commercially available third-party Expert Advisors (EAs) designed to exploit platform inefficiencies or coordinated trading behavior is prohibited.",
+        "copyTrading": "Copy trading refers to mirroring trades between accounts, whether internal (between OFP accounts) or external, in a manner that circumvents risk parameters or creates artificial scaling. This includes copying trades across multiple accounts owned by the same trader. Violation Consequence: Immediate account closure."
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ofpfunding.com/#pricing",
+      "fieldEvidence": {
+        "accountSizes/priceUsd": "From the __NUXT_DATA__ payload embedded in the server HTML of https://ofpfunding.com/ (the firm's own data that renders the visible pricing widget). Example record: {\"price\":155,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}",
+        "dailyLossPct": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 5% from record: {\"price\":155,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+        "maxLossPct": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 10% from record: {\"price\":155,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+        "drawdownType": "\"This is a 'hard' limit based on your initial balance\" / \"This limit never changes during the challenge\" (https://ofpfunding.com/trading-rules). Help centre adds: \"The rule is calculated against your highest balance at the start of the period or after your last Reward\" (https://help.ofpfunding.com/what-is-the-maximum-drawdown-and-how-can-i-avoid-hitting-it/) - i.e. static within a payout cycle, rebased after each approved reward.",
+        "profitSplitPct": "Pricing widget selector: \"Select Profit Split  80%  100%\". 80% is the base price tier recorded in priceUsd; the 100% tier costs ~20% more (per-size 100% prices are given in each accountSizes evidence string). Homepage: \"Up to 100% profit split\".",
+        "profitTargets.phase1": "Not published for this product - null in the firm's own pricing data.",
+        "minTradingDays": "Pricing table row \"Minimum Trading Days\"; record: {\"price\":155,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}",
+        "maxTradingDays": "Not published - null in the firm's own pricing data.",
+        "payoutFrequency": "\"Traders may request bi-weekly rewards subject to the following conditions\" (https://ofpfunding.com/trading-rules); record payoutDays=14.",
+        "payoutFirstDays": "\"The first reward request may be submitted after 14 calendar days from the execution of the first trade, as determined by the profit cycle\" (https://ofpfunding.com/trading-rules)",
+        "consistencyRulePct": "LEFT NULL DELIBERATELY - see accessNotes. The firm's own two sources disagree and the rendered numeric value could not be observed.",
+        "rules.weekend": "No weekend-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
+        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre."
+      },
+      "notes": "Instant Plus has NO section on ofpfunding.com/trading-rules (only Instant Lite, Classic, Pro, Prime, One Phase, Two Phase are published there), so its product-specific rules are unverified.",
+      "sourceCapturedAt": "2026-10-14"
+    }
+  ]
+}
