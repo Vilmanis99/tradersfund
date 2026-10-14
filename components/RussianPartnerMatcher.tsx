@@ -11,6 +11,7 @@ import {
   type RussianMatcherPriority,
   type RussianMatcherPartnerSlug,
 } from '@/lib/russianPartnerMatcher'
+import { RuGoLink } from '@/components/RuGoLink'
 
 export interface RussianPartnerMatcherProfile extends RussianMatcherCapability {
   slug: RussianMatcherPartnerSlug
@@ -191,14 +192,14 @@ export default function RussianPartnerMatcher({
                     </ul>
                     <div className="ru-actions">
                       <Link href={profile.reviewHref} className="btn-outline">Сначала прочитать обзор</Link>
-                      <Link
+                      <RuGoLink firm={profile.slug}
                         href={`/go/${profile.slug}?from=ru-ranking-matcher-${profile.slug}`}
                         prefetch={false}
                         rel="sponsored nofollow noopener"
                         className="btn-primary"
                       >
                         Проверить {profile.name} <ArrowRight size={14} aria-hidden="true" />
-                      </Link>
+                      </RuGoLink>
                     </div>
                   </article>
                 ))}

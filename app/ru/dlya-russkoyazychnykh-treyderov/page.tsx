@@ -14,6 +14,7 @@ import {
   russianDiasporaEvidence,
   type RussianDiasporaCountryStatus,
 } from '@/lib/russianDiasporaEvidence'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/dlya-russkoyazychnykh-treyderov'
 export const revalidate = 3600
@@ -191,13 +192,13 @@ export default function RussianDiasporaGuidePage() {
                     <span><strong>{item.captureDate ?? '—'}</strong> проверено</span>
                   </div>
                   <div className="ru-home-partner-hero-actions">
-                    <Link
+                    <RuGoLink firm={item.slug}
                       href={`/go/${item.slug}?from=${item.heroCampaign}`}
                       rel="sponsored nofollow noopener"
                       className="btn-primary btn-glow"
                     >
                       Проверить условия {item.name} <ArrowRight size={15} aria-hidden="true" />
-                    </Link>
+                    </RuGoLink>
                     <Link href={item.reviewHref} className="ru-home-partner-hero-review">Сначала прочитать обзор</Link>
                   </div>
                 </article>
@@ -360,14 +361,14 @@ export default function RussianDiasporaGuidePage() {
           </div>
           <div className="ru-actions">
             {primaryPartnerCards.map(item => (
-              <Link
+              <RuGoLink firm={item.slug}
                 key={item.slug}
                 href={`/go/${item.slug}?from=ru-diaspora-regions-${item.slug}`}
                 rel="sponsored nofollow noopener"
                 className="btn-primary"
               >
                 Проверить {item.name} <ArrowRight size={14} aria-hidden="true" />
-              </Link>
+              </RuGoLink>
             ))}
           </div>
         </div>
@@ -445,9 +446,9 @@ export default function RussianDiasporaGuidePage() {
                 <p className="ru-source-line">{item.freshProducts.length} свежих продуктов в текущем захвате данных.</p>
                 <div className="ru-actions">
                   <Link href={item.reviewHref} className="btn-outline">Читать разбор</Link>
-                  <Link href={`/go/${item.slug}?from=${item.campaign}`} rel="sponsored nofollow noopener" className="btn-primary">
+                  <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=${item.campaign}`} rel="sponsored nofollow noopener" className="btn-primary">
                     Проверить условия <ArrowRight size={14} aria-hidden="true" />
-                  </Link>
+                  </RuGoLink>
                 </div>
               </article>
             ))}

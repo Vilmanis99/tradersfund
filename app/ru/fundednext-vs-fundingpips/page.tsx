@@ -9,6 +9,7 @@ import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { challengeCurrency, challengeTierEconomics, minimumCostToFundedUsd, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/fundednext-vs-fundingpips'
 const TITLE = 'FundedNext или FundingPips: сравнение 2026'
@@ -426,9 +427,9 @@ export default function RussianFundedNextVsFundingPipsPage() {
             <Link href="/go/fundednext?from=ru-comparison-fit-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
               Проверить продукты FundedNext <ArrowRight size={15} aria-hidden="true" />
             </Link>
-            <Link href="/go/fundingpips?from=ru-comparison-fit-fundingpips" rel="sponsored nofollow noopener" className="btn-outline">
+            <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-comparison-fit-fundingpips" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить продукты FundingPips <ArrowRight size={15} aria-hidden="true" />
-            </Link>
+            </RuGoLink>
           </div>
           <p className="ru-source-line">
             Партнёрские ссылки не заменяют проверку профиля. Если рассматриваете взнос в EUR, откройте{' '}
@@ -456,7 +457,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
           </div>
           <div className="ru-actions">
             <Link href="/go/fundednext?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-primary btn-glow">Проверить FundedNext <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/go/fundingpips?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundingPips <ArrowRight size={15} aria-hidden="true" /></Link>
+            <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundingPips <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
             <Link href="/go/bright-funded?from=ru-comparison-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" /></Link>
           </div>
           <p className="ru-source-line"><ShieldCheck size={14} aria-hidden="true" /> Перед оплатой откройте правила выбранного продукта. Нужна англоязычная версия? <Link href="/compare/fundednext-vs-fundingpips" hrefLang="en">Открыть полное сравнение на английском</Link>.</p>

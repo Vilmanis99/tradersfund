@@ -11,6 +11,7 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/luchshie-prop-firmy'
 // Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
@@ -390,13 +391,13 @@ export default function RussianBestPropFirmsPage() {
                   <p className="ru-source-line">Самая ранняя проверка источников: {item.products.map(product => product.sourceCapturedAt).sort()[0] ?? 'обновление ожидается'}.</p>
                   <div className="ru-actions">
                     <Link href={reviewHref} className="btn-outline">{item.slug === 'bright-funded' ? 'Обзор BrightFunded' : 'Русский обзор'}</Link>
-                    <Link
+                    <RuGoLink firm={item.slug}
                       href={`/go/${item.slug}?from=ru-ranking-primary-${item.slug}`}
                       rel="sponsored nofollow noopener"
                       className="btn-primary"
                     >
                       {`Проверить ${partnerName} `}<ArrowRight size={14} aria-hidden="true" />
-                    </Link>
+                    </RuGoLink>
                   </div>
                 </article>
               )

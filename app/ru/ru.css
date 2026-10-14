@@ -1125,3 +1125,14 @@
   .ru-finder-shortlist-bar { gap: 6px; padding: 8px; font-size: .7rem; }
   .ru-finder-shortlist-bar button { font-size: .7rem; padding: 8px; }
 }
+
+.ru-restricted-alternatives {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  border-radius: 0.5rem;
+  background: rgba(245, 158, 11, 0.08);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.ru-restricted-alternatives a { text-decoration: underline; }

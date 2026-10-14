@@ -8,6 +8,7 @@ import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/obzor-kascapital'
 export const revalidate = 3600
@@ -208,7 +209,7 @@ export default function RussianKasCapitalReviewPage() {
               <article className="ru-card" key={item.slug} data-russian-local-global-partner={item.slug}>
                 <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Главный партнёр</span></div>
                 <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; сопоставьте конкретный продукт, KYC, первую выплату и метод вывода.</p>
-                <div className="ru-actions"><Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link><Link href={`/go/${item.slug}?from=ru-kascapital-global-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></Link></div>
+                <div className="ru-actions"><Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link><RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-kascapital-global-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></RuGoLink></div>
               </article>
             ))}
           </div>

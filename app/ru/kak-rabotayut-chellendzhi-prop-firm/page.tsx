@@ -7,6 +7,7 @@ import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/kak-rabotayut-chellendzhi-prop-firm'
 const TITLE = 'Челлендж проп-фирмы: 5 этапов и правила (2026)'
@@ -266,9 +267,9 @@ export default function RussianChallengeLifecyclePage() {
                   <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; перед оплатой проверьте этапы, страну, KYC и правило выплаты конкретной модели.</p>
                   <div className="ru-actions">
                     <Link href={reviewHref} className="btn-outline">Открыть обзор</Link>
-                    <Link href={`/go/${item.slug}?from=ru-challenge-guide-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
+                    <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-challenge-guide-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
                       Проверить условия <ArrowRight size={14} aria-hidden="true" />
-                    </Link>
+                    </RuGoLink>
                   </div>
                 </article>
               )

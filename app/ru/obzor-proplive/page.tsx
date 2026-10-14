@@ -8,6 +8,7 @@ import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/obzor-proplive'
 export const revalidate = 3600
@@ -253,7 +254,7 @@ export default function RussianPropLiveReviewPage() {
                 <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; сравните CFD-модель с рынком PropLive и отдельно проверьте страну, KYC и вывод.</p>
                 <div className="ru-actions">
                   <Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link>
-                  <Link href={`/go/${item.slug}?from=ru-proplive-global-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></Link>
+                  <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-proplive-global-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
                 </div>
               </article>
             ))}

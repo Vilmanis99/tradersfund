@@ -948,9 +948,7 @@ const russianExpectations = new Map([
       'https://fundednext.com/cfds',
       'https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model',
       '/go/fundednext?from=ru-comparison-fundednext-fundingpips',
-      '/go/fundingpips?from=ru-comparison-fundednext-fundingpips',
       '/go/fundednext?from=ru-comparison-fit-fundednext',
-      '/go/fundingpips?from=ru-comparison-fit-fundingpips',
       'data-russian-comparison-partner="bright-funded"',
       '/go/bright-funded?from=ru-comparison-bright-funded',
     ],
@@ -1032,7 +1030,6 @@ const russianExpectations = new Map([
       'data-russian-instant-local-boundary="different-market-models"',
       'data-russian-instant-decision="risk-before-fee"',
       '/go/fundednext?from=ru-instant-fundednext',
-      '/go/fundingpips?from=ru-instant-fundingpips',
       '/go/bright-funded?from=ru-instant-bright-alternative',
       '/ru/fundednext-stellar-instant',
       'https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts',
@@ -1065,7 +1062,6 @@ const russianExpectations = new Map([
       'data-russian-payout-delay-record="five-fields"',
       'data-russian-payout-decision="net-receipt-before-registration"',
       '/go/fundednext?from=ru-payouts-fundednext',
-      '/go/fundingpips?from=ru-payouts-fundingpips',
       '/go/bright-funded?from=ru-payouts-bright-funded',
       '/go/fundednext?from=ru-payouts-card-fundednext',
       '/go/bright-funded?from=ru-payouts-card-bright-funded',
@@ -1100,7 +1096,6 @@ const russianExpectations = new Map([
       'data-russian-kyc-secondary-partner="fundingpips"',
       '/go/fundednext?from=ru-kyc-fundednext',
       '/go/bright-funded?from=ru-kyc-bright-funded',
-      '/go/fundingpips?from=ru-kyc-fundingpips',
     ],
   }],
   ['/ru/luchshie-prop-firmy', {
@@ -1134,7 +1129,6 @@ const russianExpectations = new Map([
       'data-russian-affiliate-disclosure="ranking"',
       'data-russian-ranking-partners="single-section"',
       'data-russian-ranking-intent-paths="payout-drawdown-budget"',
-      '/go/fundingpips?from=ru-ranking-primary-fundingpips',
       'data-russian-partner="fundednext"',
       'data-russian-partner="bright-funded"',
       'data-russian-partner="fundingpips"',
@@ -1158,7 +1152,6 @@ const russianExpectations = new Map([
       'data-russian-crypto-payout-boundary="bright-funded-not-ranked"',
       'data-russian-crypto-watch-count="7"',
       '/go/fundednext?from=ru-crypto-ranking',
-      '/go/fundingpips?from=ru-crypto-ranking',
       '/go/bright-funded?from=ru-crypto-ranking-payout-alternative',
     ],
   }],
@@ -1184,7 +1177,6 @@ const russianExpectations = new Map([
       'data-russian-ftmo-alternative="fundednext"',
       'data-russian-ftmo-alternative="bright-funded"',
       'data-russian-ftmo-checklist="seven-fields"',
-      '/go/ftmo?from=ru-ftmo-review-verdict',
       '/go/fundednext?from=ru-ftmo-alternative-fundednext',
       '/go/bright-funded?from=ru-ftmo-alternative-bright-funded',
       '/ru/fundednext-vs-bright-funded',
@@ -1233,7 +1225,6 @@ const russianExpectations = new Map([
       'data-russian-fundingpips-deep-dive="pros-cons"',
       'data-russian-fundingpips-deep-dive="fit"',
       'data-russian-affiliate-disclosure="fundingpips"',
-      '/go/fundingpips?from=ru-fundingpips-review-summary',
     ],
   }],
   ['/ru/obzor-bright-funded', {
@@ -1456,7 +1447,6 @@ const russianExpectations = new Map([
       'data-russian-affiliate-disclosure="challenge-guide"',
       'data-russian-education-partner-cta="challenge-guide"',
       '/go/fundednext?from=ru-challenge-guide-fundednext',
-      '/go/fundingpips?from=ru-challenge-guide-fundingpips',
       '/go/bright-funded?from=ru-challenge-guide-bright-funded',
     ],
   }],
@@ -1578,7 +1568,6 @@ const russianExpectations = new Map([
       'data-russian-reviews-decision="reviews-to-product"',
       'data-russian-reviews-secondary-partner="fundingpips"',
       '/go/fundednext?from=ru-reviews-guide-fundednext',
-      '/go/fundingpips?from=ru-reviews-guide-fundingpips',
       '/go/bright-funded?from=ru-reviews-guide-bright-funded',
     ],
   }],
@@ -1935,24 +1924,36 @@ if (
 }
 const russianFtmoPage = pages.find(page =>
   new URL(page.productionUrl).pathname === '/ru/obzor-ftmo')
-const russianFtmoOfficialCta = [...(russianFtmoPage?.html ?? '').matchAll(/<a\b[^>]*>/gi)]
-  .map(match => match[0])
-  .find(tag => tag.includes('/go/ftmo?from=ru-ftmo-review-verdict')) || ''
+// FTMO restricts Russia (russiaStatus in firms.json): /ru pages must not link
+// to /go/ftmo and must render the alternatives block instead.
 if (
-  !russianFtmoOfficialCta
-  || !russianFtmoOfficialCta.includes('rel="nofollow noopener"')
-  || russianFtmoOfficialCta.includes('sponsored')
+  (russianFtmoPage?.html ?? '').includes('/go/ftmo')
+  || !(russianFtmoPage?.html ?? '').includes('data-russia-restricted="ftmo"')
 ) {
-  errors.push('/ru/obzor-ftmo: FTMO official CTA is missing or falsely labelled as sponsored')
+  errors.push('/ru/obzor-ftmo: FTMO sign-up link rendered or Russia alternatives block missing')
+}
+// No /ru page may link to /go/ for a firm hidden for Russia (restricted or unclear).
+{
+  const hiddenForRussia = firmRecords
+    .filter(firm => firm.russiaStatus === 'restricted' || firm.russiaStatus === 'unclear')
+    .map(firm => outboundSlug(firm.name))
+    .concat(['the5ers'])
+  for (const page of pages) {
+    const pagePath = new URL(page.productionUrl).pathname
+    if (pagePath !== '/ru' && !pagePath.startsWith('/ru/')) continue
+    for (const slug of hiddenForRussia) {
+      if (new RegExp(`href="/go/${slug}(?:[?"#])`).test(page.html)) {
+        errors.push(`${pagePath}: /go/${slug} rendered although the firm is hidden for Russia`)
+      }
+    }
+  }
 }
 for (const [path, href] of [
   ['/ru/obzor-ftmo', '/go/fundednext?from=ru-ftmo-alternative-fundednext'],
   ['/ru/obzor-ftmo', '/go/bright-funded?from=ru-ftmo-alternative-bright-funded'],
-  ['/ru/obzor-fundingpips', '/go/fundingpips?from=ru-fundingpips-review-verdict'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-summary'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-verdict'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],
-  ['/ru/luchshie-kripto-prop-firmy', '/go/fundingpips?from=ru-crypto-ranking'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/bright-funded?from=ru-crypto-ranking-payout-alternative'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-diaspora-hero-fundednext'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/bright-funded?from=ru-diaspora-hero-bright-funded'],
@@ -1967,7 +1968,6 @@ for (const [path, href] of [
   ['/ru/fundednext-vs-bright-funded', '/go/bright-funded?from=ru-fn-vs-bright-verdict-bright-funded'],
   ['/ru/fundednext-vs-fundingpips', '/go/fundednext?from=ru-comparison-fundednext-fundingpips'],
   ['/ru/fundednext-vs-fundingpips', '/go/fundednext?from=ru-comparison-fit-fundednext'],
-  ['/ru/fundednext-vs-fundingpips', '/go/fundingpips?from=ru-comparison-fit-fundingpips'],
   ...activeRussianDeals.flatMap(deal => [
     ['/ru/promokody-prop-firm', `/go/${deal.firmSlug}?from=${russianDealCampaign(deal)}`],
     ['/ru/promokody-prop-firm', `/go/${deal.firmSlug}?from=${russianDealCampaign(deal)}-table`],
@@ -1976,18 +1976,14 @@ for (const [path, href] of [
     ? [['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-no-current-code']]
     : []),
   ['/ru/vyplaty-prop-firm', '/go/fundednext?from=ru-payouts-fundednext'],
-  ['/ru/vyplaty-prop-firm', '/go/fundingpips?from=ru-payouts-fundingpips'],
   ['/ru/vyplaty-prop-firm', '/go/bright-funded?from=ru-payouts-bright-funded'],
   ['/ru/vyplaty-prop-firm', '/go/fundednext?from=ru-payouts-card-fundednext'],
   ['/ru/vyplaty-prop-firm', '/go/bright-funded?from=ru-payouts-card-bright-funded'],
   ['/ru/kak-rabotayut-chellendzhi-prop-firm', '/go/fundednext?from=ru-challenge-guide-fundednext'],
-  ['/ru/kak-rabotayut-chellendzhi-prop-firm', '/go/fundingpips?from=ru-challenge-guide-fundingpips'],
   ['/ru/kak-rabotayut-chellendzhi-prop-firm', '/go/bright-funded?from=ru-challenge-guide-bright-funded'],
   ['/ru/prop-firmy-bez-kyc', '/go/fundednext?from=ru-kyc-fundednext'],
-  ['/ru/prop-firmy-bez-kyc', '/go/fundingpips?from=ru-kyc-fundingpips'],
   ['/ru/prop-firmy-bez-kyc', '/go/bright-funded?from=ru-kyc-bright-funded'],
   ['/ru/prop-firmy-bez-chelendzha', '/go/fundednext?from=ru-instant-fundednext'],
-  ['/ru/prop-firmy-bez-chelendzha', '/go/fundingpips?from=ru-instant-fundingpips'],
   ['/ru/prop-firmy-bez-chelendzha', '/go/bright-funded?from=ru-instant-bright-alternative'],
   ['/ru/fundednext-vs-fundingpips', '/go/bright-funded?from=ru-comparison-bright-funded'],
   ['/ru/rossiyskie-prop-kompanii', '/go/fundednext?from=ru-local-research-fundednext'],
@@ -2001,7 +1997,6 @@ for (const [path, href] of [
   ['/ru/obzor-teamtraders', '/go/fundednext?from=ru-teamtraders-global-fundednext'],
   ['/ru/obzor-teamtraders', '/go/bright-funded?from=ru-teamtraders-global-bright-funded'],
   ['/ru/otzyvy-prop-firm', '/go/fundednext?from=ru-reviews-guide-fundednext'],
-  ['/ru/otzyvy-prop-firm', '/go/fundingpips?from=ru-reviews-guide-fundingpips'],
   ['/ru/otzyvy-prop-firm', '/go/bright-funded?from=ru-reviews-guide-bright-funded'],
   ['/ru/chto-takoe-prop-firma', '/go/fundednext?from=ru-prop-definition-fundednext'],
   ['/ru/chto-takoe-prop-firma', '/go/bright-funded?from=ru-prop-definition-bright-funded'],

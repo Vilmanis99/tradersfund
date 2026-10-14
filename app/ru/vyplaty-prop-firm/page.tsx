@@ -25,6 +25,7 @@ import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge, type F
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/vyplaty-prop-firm'
 const TITLE = 'Выплаты проп-фирм 2026: FundedNext и BrightFunded'
@@ -347,9 +348,9 @@ export default function RussianPayoutsPage() {
                     </p>
                     <div className="ru-actions">
                       <Link href={card.reviewHref} className="btn-outline">Русский обзор</Link>
-                      <Link href={`/go/${card.slug}?from=ru-payouts-card-${card.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
+                      <RuGoLink firm={card.slug} href={`/go/${card.slug}?from=ru-payouts-card-${card.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
                         Проверить {card.name} <ArrowRight size={14} aria-hidden="true" />
-                      </Link>
+                      </RuGoLink>
                     </div>
                   </article>
                 )
@@ -488,9 +489,9 @@ export default function RussianPayoutsPage() {
             </p>
             <div className="ru-actions">
               <Link href="/ru/obzor-fundingpips" className="btn-outline">Русский обзор FundingPips</Link>
-              <Link href="/go/fundingpips?from=ru-payouts-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">
+              <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-payouts-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">
                 Проверить FundingPips <ArrowRight size={15} aria-hidden="true" />
-              </Link>
+              </RuGoLink>
             </div>
           </div>
         </section>
