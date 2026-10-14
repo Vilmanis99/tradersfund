@@ -21,6 +21,37 @@
   --violet: #5c478f;
   --on-accent: #ffffff;
   --shadow: 0 8px 28px rgba(32, 51, 55, 0.07);
+
+  /* ── Design tokens (home redesign) ── */
+  --ink: #0d1f1c;
+  --ink-2: #132b27;
+  --ink-3: #0a3a31;
+  --brand-bright: #5fd4b4;
+  --amber: #f5a524;
+  --amber-strong: #e08e0b;
+  --amber-ink: #1f1400;
+  --amber-soft: #fff7e6;
+  --status-open: #047857;
+  --status-open-bg: #dcfce7;
+  --status-unclear: #92400e;
+  --status-unclear-bg: #fef3c7;
+  --status-closed: #b91c1c;
+  --status-closed-bg: #fee2e2;
+  --fs-display: clamp(2.125rem, 1.2rem + 3.2vw, 3.5rem);
+  --fs-h2: clamp(1.625rem, 1.3rem + 1vw, 2.25rem);
+  --fs-h3: clamp(1.1875rem, 1.1rem + 0.3vw, 1.375rem);
+  --fs-body: 1rem;
+  --fs-small: 0.8125rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-section: clamp(3.5rem, 2rem + 4vw, 6rem);
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --shadow-card: 0 1px 2px rgba(13, 31, 28, 0.06), 0 8px 24px rgba(13, 31, 28, 0.06);
 }
 
 * { box-sizing: border-box; }
