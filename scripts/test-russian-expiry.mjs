@@ -873,13 +873,11 @@ try {
   const FundingPipsReviewModule = require(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'))
   const fundingPipsReviewReference = renderToStaticMarkup(React.createElement(FundingPipsReviewModule.default))
   assert(fundingPipsReviewReference.includes('<h1>FundingPips: обзор 2026 — цены, правила и выплаты</h1>'), 'FundingPips review H1 does not promise a fixed product or price count')
-  const fundingPipsSummaryAffiliate = 'href="/go/fundingpips?from=ru-fundingpips-review-summary"'
-  const fundingPipsCountryAnchor = 'id="country-check" data-russian-partner-country-access="unconfirmed"'
-  assert(fundingPipsReviewReference.indexOf(fundingPipsCountryAnchor) >= 0
-    && fundingPipsReviewReference.indexOf(fundingPipsCountryAnchor) < fundingPipsReviewReference.indexOf(fundingPipsSummaryAffiliate),
-  'the sourced country warning appears before the first FundingPips affiliate action')
+  // FundingPips is hidden on /ru pages (russiaStatus "unclear"): no affiliate action, alternatives block instead.
+  const fundingPipsSummaryAffiliate = 'data-russia-restricted="fundingpips"'
+  assert(!fundingPipsReviewReference.includes('href="/go/fundingpips'), 'FundingPips review has no sign-up link while Russia status is unclear')
+  assert(fundingPipsReviewReference.includes(fundingPipsSummaryAffiliate), 'FundingPips review shows the Russia alternatives block instead of the CTA')
   assert.equal((fundingPipsReviewReference.match(/id="country-check"/g) ?? []).length, 1, 'moving the warning preserves one country-check anchor')
-  assert(fundingPipsReviewReference.slice(0, fundingPipsReviewReference.indexOf(fundingPipsSummaryAffiliate)).includes(`href="${fundingPipsAccessEvidence.sourceUrl}"`), 'the first affiliate action follows a direct first-party country source')
   assert(!cryptoSchemas(fundingPipsReviewReference).some(item => item['@type'] === 'FAQPage'), 'stale FundingPips payout evidence withholds review FAQ schema')
   assert(fundingPipsReviewReference.includes('Часть источников этих ответов старше 30 дней.'), 'dated FAQ answers remain visibly qualified')
   const fundingPipsPayoutEvidence = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundingpips')
@@ -897,7 +895,6 @@ try {
       fundingPipsAccessEvidence.sourceCapturedAt = invalidDate
       const staleReview = renderToStaticMarkup(React.createElement(FundingPipsReviewModule.default))
       assert(staleReview.includes('data-russian-fundingpips-country-source-status="recapture-required"'), 'country warning becomes historical when its own evidence is old or invalid')
-      assert(staleReview.indexOf('data-russian-fundingpips-country-source-status="recapture-required"') < staleReview.indexOf(fundingPipsSummaryAffiliate), 'the historical warning still precedes the first affiliate action')
       assert(!cryptoSchemas(staleReview).some(item => item['@type'] === 'FAQPage'), 'old country source independently withholds review FAQ schema')
       assert(staleReview.includes('старый список не подтверждает доступ сегодня') && staleReview.includes('страновой источник требует повторной проверки'), 'country warning and visible answer do not imply current access')
       assert(!staleReview.includes('<h3>Не подходит резиденту ОАЭ</h3>'), 'expired country evidence cannot retain a current fit verdict')

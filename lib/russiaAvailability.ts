@@ -51,7 +51,7 @@ export function ruGoHref(slug: string, from: string): string | null {
 
 export const RUSSIA_ALTERNATIVES = [
   { name: 'Upscale', href: 'https://upscale.trade/ru/', external: true, sponsored: false },
-  { name: 'Crypto Fund Trader', href: '/go/crypto-fund-trader?from=ru-restricted-alternatives', external: false, sponsored: true },
+  { name: 'Crypto Fund Trader', href: '/blog/crypto-fund-trader-review', external: false, sponsored: false },
   { name: 'BrightFunded', href: '/ru/obzor-bright-funded', external: false, sponsored: false },
   { name: 'FundedNext CFD', href: '/ru/obzor-fundednext', external: false, sponsored: false },
 ] as const

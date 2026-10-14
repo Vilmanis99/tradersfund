@@ -1,114 +1,117 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from '@/components/SafeLink'
-import { ArrowRight, Globe2, ShieldCheck, WalletCards } from 'lucide-react'
+import { ArrowRight, Globe2, ListChecks, ShieldCheck, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
+import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
+import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
+import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import {
+  getRussianDiasporaCountryRows,
+  russianDiasporaEvidence,
+  type RussianDiasporaCountryStatus,
+} from '@/lib/russianDiasporaEvidence'
 import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/dlya-russkoyazychnykh-treyderov'
-const CHECKED = '14.10.2026'
-const CHECKED_ISO = '2026-10-14'
 export const revalidate = 3600
-const TITLE = 'Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ (проверено 10.2026)'
-const DESCRIPTION = 'Какие проп-компании работают с Россией в 2026 году: таблица 15 фирм со статусом для РФ, Беларуси и Казахстана, способами выплаты и ссылками на официальные правила.'
+const TITLE = 'Проп-фирмы для русскоязычных трейдеров за рубежом'
+const DESCRIPTION = 'Как русскоязычным трейдерам в разных странах проверить KYC, оплату и правила глобальных проп-фирм перед регистрацией; честный маршрут к партнёрским обзорам.'
+
+const countryStatusLabels: Record<RussianDiasporaCountryStatus, string> = {
+  'not-named': 'Не названа в общем списке',
+  restricted: 'Ограничена',
+  'product-specific': 'Есть ограничение продукта',
+  conflict: 'Источники конфликтуют',
+}
+
+const diasporaCountryRows = getRussianDiasporaCountryRows()
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
-  keywords: [
-    'проп фирмы для россиян',
-    'проп компании для россиян',
-    'проп компании которые работают в россии',
-    'проп компании работающие с россией',
-    'проп трейдинг в россии',
-    'проп компании форекс для россиян',
-  ],
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
   openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
-type Row = {
-  firm: string
-  russia: string
-  belarus: string
-  kazakhstan: string
-  payout: string
-  status: 'open' | 'unclear' | 'closed'
-  source: string
-  review?: string
-}
-
-// Источник: ru-availability.csv, проверка 2026-10-14. «не указано» = страна не названа в списке ограничений,
-// это не письменное подтверждение доступа. «не проверено» = данных нет, не додумывать.
-const rows: Row[] = [
-  { firm: 'Upscale', russia: 'Принимает (ограничений по странам не заявлено)', belarus: 'Принимает', kazakhstan: 'Принимает', payout: 'Оплата криптовалютой; выплаты в USDT на собственный некастодиальный кошелёк; KYC нет', status: 'open', source: 'https://upscale.trade/ru/faq' },
-  { firm: 'Crypto Fund Trader', russia: 'Принимает на Match-Trader; маршрут Bybit — по правилам Bybit', belarus: 'Так же', kazakhstan: 'Так же', payout: 'Оплата: карта, PayPal, Apple/Google Pay, крипта (карта и PayPal могут не пройти из банков РФ). Выплаты: банк EUR/USD, USDT ERC20/TRC20, BTC, ETH', status: 'open', source: 'https://cryptofundtrader.com/faq/', review: '/blog/crypto-fund-trader-review' },
-  { firm: 'BrightFunded', russia: 'Не в списке ограничений', belarus: 'Не в списке', kazakhstan: 'Не в списке', payout: 'Выплаты: USDC (ERC-20), банковский перевод в EUR. Оплата — не проверено', status: 'open', source: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded', review: '/ru/obzor-bright-funded' },
-  { firm: 'FundedNext (CFD)', russia: 'Не в списке ограничений CFD', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Выплаты: USDT (ERC20/TRC20), USDC, RiseWorks, банк, карта. Оплата — не проверено', status: 'open', source: 'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds', review: '/ru/obzor-fundednext' },
-  { firm: 'FundedNext Futures', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://fundednext.com/terms-of-service' },
-  { firm: 'FundingPips', russia: 'Неясно: Россия прямо не названа, но исключены страны из санкционных списков FATF и ЕС/ООН', belarus: 'Неясно', kazakhstan: 'Не названа', payout: 'Карта, USDT/USDC ERC-20, Rise (Rise требует KYC), банк', status: 'unclear', source: 'https://fundingpips.com/terms-and-conditions', review: '/ru/obzor-fundingpips' },
-  { firm: 'Topstep', russia: 'Неясно: исключены страны под всеобъемлющими санкциями OFAC и лица из списка SDN; Россия в найденном фрагменте не названа', belarus: 'Не названа', kazakhstan: 'Не названа', payout: 'Не проверено', status: 'unclear', source: 'https://www.topstep.com/terms-of-use/' },
-  { firm: 'FTMO', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Ограничена', payout: 'Не проверено', status: 'closed', source: 'https://ftmo.com/en/faq/who-can-join-ftmo/', review: '/ru/ftmo-dlya-rossiyan' },
-  { firm: 'The5ers', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://the5ers.com/faq/' },
-  { firm: 'E8 Markets', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не проверено', payout: 'Не проверено', status: 'closed', source: 'https://help.e8markets.com/en/articles/5514278-accepted-countries' },
-  { firm: 'FXIFY', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не проверено', payout: 'Не проверено', status: 'closed', source: 'https://fxify.com/faqs/all-faqs/what-countries-are-accepted/' },
-  { firm: 'Maven', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://maventrading.com/faq' },
-  { firm: 'Alpha Capital', russia: 'Ограничена (по гражданству или резидентству)', belarus: 'Ограничена', kazakhstan: 'Не проверено', payout: 'Не проверено', status: 'closed', source: 'https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations' },
-  { firm: 'Apex Trader Funding', russia: 'Ограничена', belarus: 'Не проверено', kazakhstan: 'Не проверено', payout: 'Не проверено', status: 'closed', source: 'https://apextraderfunding.com/help-center/getting-started/restricted-countries/' },
-  { firm: 'Tradeify', russia: 'Ограничена', belarus: 'Не проверено', kazakhstan: 'Не проверено', payout: 'Не проверено', status: 'closed', source: 'https://help.tradeify.co/en/articles/10495888-rules-restricted-countries' },
-  { firm: 'Lucid Trading', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Ограничена', payout: 'Не проверено', status: 'closed', source: 'https://support.lucidtrading.com/en/articles/11404636-restricted-countries' },
-]
-
-const badge: Record<Row['status'], string> = {
-  open: `Открыта для РФ · проверено ${CHECKED}`,
-  unclear: `Неясно — ждём письменного ответа · проверено ${CHECKED}`,
-  closed: `Недоступно для РФ · проверено ${CHECKED}`,
-}
-
-// Российские проп-компании — блок перенесён со страницы /ru/rossiyskie-prop-kompanii (слияние).
-const localFirms = [
-  { name: 'Era Trade', href: '/ru/obzor-eratrade' },
-  { name: 'PropLive', href: '/ru/obzor-proplive' },
-  { name: 'KasCapital', href: '/ru/obzor-kascapital' },
-  { name: 'TeamTraders', href: '/ru/obzor-teamtraders' },
-  { name: 'А-Лаб', href: null },
-  { name: 'Trade System', href: null },
-] as const
-
 const faqs: RussianFaqItem[] = [
   {
-    q: 'Какие проп-компании работают с Россией в 2026 году?',
-    a: `На ${CHECKED} без оговорок по России работают Upscale (ограничений по странам не заявлено) и Crypto Fund Trader на платформе Match-Trader. BrightFunded и CFD-направление FundedNext не включают Россию в свои списки ограничений. FTMO, The5ers, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Tradeify, Lucid Trading и FundedNext Futures Россию ограничивают.`,
+    q: 'Можно ли русскоязычному трейдеру зарегистрироваться из другой страны?',
+    a: 'Иногда да, но язык сайта ничего не гарантирует. Фирма может проверять отдельно гражданство, страну проживания, адрес, документ KYC, платёжный маршрут и санкционные ограничения. Используйте только правдивые данные и подтвердите маршрут у фирмы до оплаты.',
   },
   {
-    q: 'Можно ли пройти челлендж FTMO из России?',
-    a: 'Нет. Россия есть в официальном списке стран FTMO, где услуги не предоставляются. Подробности и альтернативы — на странице «FTMO для россиян».',
+    q: 'Что проверять, если я переехал или имею два гражданства?',
+    a: 'Сначала определите, какие сведения фирма просит в KYC: гражданство, резидентство, адрес и документ. Не выбирайте страну только потому, что карта или IP относятся к ней, и не отправляйте документы с противоречивыми данными.',
   },
   {
-    q: 'Почему нельзя просто включить VPN?',
-    a: 'VPN не меняет гражданство, резидентство и документы для KYC. FundedNext прямо указывает, что использование VPN или ложных данных о стране ведёт к закрытию аккаунта; страна у E8 Markets определяется по документу KYC, а не по IP. Риск — потерять и оплату челленджа, и прибыль.',
+    q: 'Почему русская страница ведёт к глобальным, а не только российским фирмам?',
+    a: 'Русскоязычные трейдеры живут во многих юрисдикциях. Глобальные продукты дают более широкий набор моделей для сравнения, но доступность всё равно устанавливается по конкретному человеку, стране и продукту. Российские операторы вынесены в отдельное исследование, а не смешаны с партнёрским рейтингом.',
   },
   {
-    q: 'Отсутствие России в списке ограничений — это гарантия?',
-    a: 'Нет. Это лишь значит, что страна не названа. FundedNext, например, оставляет за собой право блокировать санкционные страны и страны, с которыми не работают её платёжные провайдеры, а BrightFunded исключает лиц из санкционных списков. Перед оплатой задайте вопрос поддержке и сохраните ответ.',
+    q: 'Можно ли использовать VPN, если фирма не принимает мою страну?',
+    a: 'Нет. VPN, прокси или неверное указание страны не превращают запрещённый маршрут в разрешённый и могут создать проблему с KYC или выплатой. Если правила неясны, запросите письменное подтверждение у поддержки или выберите другой продукт.',
   },
   {
-    q: 'Есть ли российские проп-компании?',
-    a: 'Да, например Era Trade, PropLive, KasCapital, TeamTraders, А-Лаб и Trade System. Мы описываем их как проверяемые примеры, а не как рейтинг: полный захват цен, правил и истории выплат по ним пока не проведён.',
+    q: 'Есть ли отдельные проп-фирмы для русскоязычных в Казахстане или ОАЭ?',
+    a: 'Отдельная русская страница фирмы не подтверждает доступ. Для Казахстана, ОАЭ и любой другой страны сначала сопоставьте гражданство, фактическое резидентство, адрес, документ KYC, способ оплаты и выплату; международный бренд или русскоязычная реклама сами по себе ничего не гарантируют.',
   },
   {
-    q: 'Как получить выплату из проп-фирмы в России?',
-    a: 'Чаще всего — в криптовалюте: Upscale платит в USDT, Crypto Fund Trader — в USDT, BTC или ETH, FundedNext — в USDT и USDC, BrightFunded — в USDC. Подробнее о выводе — в разделе о выплатах проп-фирм.',
+    q: 'Как выбирать проп-фирмы русскоязычному трейдеру в Европе или Грузии?',
+    a: 'Русский язык определяет язык объяснения, а не доступ к продукту. Для Европы, Грузии, Армении, Израиля, США и других стран отдельно проверьте резидентство, гражданство, KYC, платёж и выплату в правилах выбранного продукта.',
   },
 ]
 
-export default function RussiaAvailabilityPage() {
+const primaryPartnerRoutes = [
+  {
+    slug: 'fundednext',
+    name: 'FundedNext',
+    reviewHref: '/ru/obzor-fundednext',
+    campaign: 'ru-diaspora-fundednext',
+    heroCampaign: 'ru-diaspora-hero-fundednext',
+    currency: 'USD',
+    summary: 'Русский разбор с отдельной проверкой противоречивых ограничений по стране.',
+  },
+  {
+    slug: 'bright-funded',
+    name: 'BrightFunded',
+    reviewHref: '/ru/obzor-bright-funded',
+    campaign: 'ru-diaspora-bright-funded',
+    heroCampaign: 'ru-diaspora-hero-bright-funded',
+    currency: 'EUR',
+    summary: 'Русский разбор с валютой фирмы, KYC и предупреждениями о доступности.',
+  },
+] as const
+
+export default function RussianDiasporaGuidePage() {
+  const firms = getAllFirms()
+  const challenges = getAllChallenges()
+  const countryMatrixCurrent = isChallengeFresh({ sourceCapturedAt: russianDiasporaEvidence.capturedAt })
+  const brightSources = russianDiasporaEvidence.firms.find(firm => firm.slug === 'bright-funded')?.sources ?? []
+  const brightHelpSource = brightSources.find(source => source.url.includes('help.brightfunded.com'))
+  const brightTermsSource = brightSources.find(source => source.url.includes('/terms-and-conditions'))
+  const primaryPartnerCards = primaryPartnerRoutes.map(route => {
+    const firm = firms.find(candidate => outboundSlug(candidate.name) === route.slug)
+    const freshProducts = challenges.filter(challenge =>
+      challenge.firmSlug === route.slug && isChallengeFresh(challenge),
+    )
+    const priceCount = freshProducts.reduce((total, product) => total + product.accountSizes.filter(tier =>
+      (tier.priceUsd != null && tier.priceUsd > 0)
+      || (tier.priceEur != null && tier.priceEur > 0),
+    ).length, 0)
+    const captureDate = freshProducts.map(product => product.sourceCapturedAt).sort().at(-1)
+    return { ...route, firm, freshProducts, priceCount, captureDate }
+  }).filter(item => item.firm?.affiliateUrl)
+
+  const freshPartnerProducts = primaryPartnerCards.reduce((sum, item) => sum + item.freshProducts.length, 0)
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
-    { name: 'Проп-фирмы для россиян' },
+    { name: 'Для русскоязычных трейдеров' },
   ])
+  const faq = faqPageSchema(faqs)
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -118,213 +121,353 @@ export default function RussiaAvailabilityPage() {
     inLanguage: 'ru',
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
-    dateModified: CHECKED_ISO,
+    dateModified: russianRouteDateModified(PATH, russianDiasporaEvidence.capturedAt),
   }
-  const openCount = rows.filter(r => r.status === 'open').length
-  const closedCount = rows.filter(r => r.status === 'closed').length
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
+      {countryMatrixCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
-        <div className="ru-shell" data-russia-availability-hub="2026-10">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Проп-фирмы для россиян</div>
-          <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Статус для РФ · проверено {CHECKED}</div>
-          <h1>Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ</h1>
+        <div className="ru-shell" data-russian-diaspora-guide="global-access">
+          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Для русскоязычных трейдеров</div>
+          <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
+          <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Русский язык — не страна</div>
+          <h1>Проп-фирмы для русскоязычных трейдеров: проверка доступа в разных странах</h1>
           <p className="ru-lead">
-            Из 15 проп-фирм, чьи правила мы открыли {CHECKED}, ограничений для России не называют только четыре.
-            Остальные либо прямо пишут «Russian Federation» в списке запрещённых стран, либо прячут Россию за
-            формулировкой «санкционные юрисдикции». Ниже — кто есть кто, со ссылкой на первоисточник по каждой строке.
+            Эта страница предназначена для русскоязычных трейдеров по всему миру — независимо от того,
+            где они живут. Сначала определите свой KYC-маршрут, затем сравните конкретный продукт и только
+            после этого переходите к глобальной фирме.
           </p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Источники открыты {CHECKED}.</p>
-          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="russia-hub">
-            <strong>Партнёрское раскрытие.</strong>{' '}
-            По кнопкам регистрации Traders Fund Hub может получить комиссию. Кнопки стоят только у фирм, которые на {CHECKED}
-            не ограничивают Россию; на порядок таблицы и статусы это не влияет.
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Проверка источников: {russianDiasporaEvidence.capturedAt}.</p>
+          <RussianEvidenceFreshnessNotice evidence={[{ label: 'страновая матрица FundedNext и BrightFunded', capturedAt: russianDiasporaEvidence.capturedAt }]} />
+          <div className="ru-notice" data-russian-country-boundary="diaspora-not-access">
+            <strong>Страница не подтверждает доступность страны.</strong>{' '}
+            Русскоязычный интерфейс подходит людям в разных странах, но гражданство, резидентство,
+            IP, адрес, KYC, карта и способ выплаты проверяются отдельно. Резидентам России нельзя обходить
+            ограничения VPN, прокси или неверными данными.
+          </div>
+          <p className="ru-source-line ru-home-partner-hero-disclosure" data-russian-diaspora-hero-disclosure="primary-affiliates" data-russian-affiliate-disclosure="diaspora-hero">
+            FundedNext и BrightFunded коммерчески выделены как два главных партнёра. Мы можем получить комиссию
+            после регистрации по кнопке «Проверить условия»; это не подтверждает доступность вашей страны.
+          </p>
+          <div className="ru-notice" data-russian-diaspora-bright-country-status={countryMatrixCurrent ? 'dated' : 'recapture-required'}>
+            <strong>{countryMatrixCurrent ? 'Списки стран BrightFunded расходятся.' : 'В датированном снимке списки стран BrightFunded расходились.'}</strong>{' '}
+            В проверке от {russianDiasporaEvidence.capturedAt}{' '}
+            <a href={brightHelpSource?.url} target="_blank" rel="nofollow noopener">справка</a> включала Пакистан, а{' '}
+            <a href={brightTermsSource?.url} target="_blank" rel="nofollow noopener">условия</a> его не называли и допускали дополнительные ограничения.{' '}
+            {countryMatrixCurrent
+              ? 'Отсутствие России в списках не подтверждает доступ вашего профиля. До оплаты уточните гражданство, резидентство, местонахождение и выбранную платформу.'
+              : `Снимок от ${russianDiasporaEvidence.capturedAt} требует повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня. Получите ответ фирмы до оплаты.`}
+          </div>
+          <div className="ru-home-partner-hero" data-russian-diaspora-hero-partners="fundednext-bright-funded">
+            {primaryPartnerCards.map(item => {
+              const isFundedNext = item.slug === 'fundednext'
+              return (
+                <article
+                  className={`ru-home-partner-hero-card${isFundedNext ? ' ru-home-partner-hero-card--fundednext' : ' ru-home-partner-hero-card--bright'}`}
+                  key={item.slug}
+                  data-russian-diaspora-hero-partner={item.slug}
+                >
+                  <div className="ru-home-partner-hero-brand">
+                    {item.firm?.logo ? (
+                      <span className="ru-home-partner-hero-logo" aria-hidden="true">
+                        <Image src={item.firm.logo} alt="" width={72} height={72} />
+                      </span>
+                    ) : null}
+                    <div>
+                      <span className="ru-home-partner-hero-label">Главный глобальный партнёр</span>
+                      <h2>{item.name}</h2>
+                    </div>
+                  </div>
+                  <p>
+                    Актуальных продуктов: {item.freshProducts.length}; опубликованных цен: {item.priceCount}; валюта: {item.currency}.
+                    {' '}Сначала проверьте точную модель, страну и KYC, затем переходите к оформлению покупки.
+                  </p>
+                  <div className="ru-home-partner-hero-facts" aria-label={`Охват данных ${item.name}`}>
+                    <span><strong>{item.freshProducts.length}</strong> продукта</span>
+                    <span><strong>{item.priceCount}</strong> цен</span>
+                    <span><strong>{item.captureDate ?? '—'}</strong> проверено</span>
+                  </div>
+                  <div className="ru-home-partner-hero-actions">
+                    <RuGoLink firm={item.slug}
+                      href={`/go/${item.slug}?from=${item.heroCampaign}`}
+                      rel="sponsored nofollow noopener"
+                      className="btn-primary btn-glow"
+                    >
+                      Проверить условия {item.name} <ArrowRight size={15} aria-hidden="true" />
+                    </RuGoLink>
+                    <Link href={item.reviewHref} className="ru-home-partner-hero-review">Сначала прочитать обзор</Link>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+          <div className="ru-actions ru-home-secondary-actions">
+            <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить двух партнёров</Link>
+            <Link href="#proverka" className="btn-outline">Пройти проверку перед оплатой</Link>
           </div>
           <div className="ru-stats">
-            <div className="ru-stat"><strong>{openCount}</strong><span>открыты или не называют РФ</span></div>
-            <div className="ru-stat"><strong>2</strong><span>неясно, ждём ответа поддержки</span></div>
-            <div className="ru-stat"><strong>{closedCount}</strong><span>продуктов ограничивают РФ</span></div>
+            <div className="ru-stat"><strong>{primaryPartnerCards.length}</strong><span>главных глобальных партнёра</span></div>
+            <div className="ru-stat"><strong>{freshPartnerProducts}</strong><span>свежих продуктов в этих маршрутах</span></div>
+            <div className="ru-stat"><strong>5</strong><span>проверок до регистрации</span></div>
           </div>
         </div>
       </section>
 
-      <section className="ru-section" id="tablica">
-        <div className="ru-shell ru-content">
-          <h2>Таблица: какие проп-компании работают в России</h2>
+      <section className="ru-section">
+        <div className="ru-shell">
+          <h2>Три ситуации, которые нельзя смешивать</h2>
+          <div className="ru-grid">
+            <article className="ru-card">
+              <Globe2 size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Живёте за пределами России</h3>
+              <p className="ru-muted">Проверьте, какие поля фирма считает определяющими: гражданство, резидентство, адрес или документ. Не делайте вывод только по языку страницы и месту нахождения карты.</p>
+            </article>
+            <article className="ru-card">
+              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Переехали или имеете два гражданства</h3>
+              <p className="ru-muted">Подготовьте непротиворечивый KYC-маршрут и заранее спросите поддержку, какие документы и страна указываются в договоре. Сохраняйте ответ до оплаты.</p>
+            </article>
+            <article className="ru-card">
+              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Русскоязычный трейдер в любой другой стране</h3>
+              <p className="ru-muted">Сначала выберите рынок и продукт, затем проверьте платёж, платформу, ограничения и выплату именно для вашей юрисдикции. Язык — удобство, а не разрешение.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="ru-section" id="kazakhstan-oae">
+        <div className="ru-shell ru-content" data-russian-diaspora-regions="kazakhstan-uae">
+          <h2>Казахстан и ОАЭ: страна проживания не равна доступу</h2>
           <p>
-            «Не в списке» означает, что страна не названа в официальном перечне ограничений — это не письменное
-            разрешение. «Не проверено» — данных в первоисточнике мы не нашли и ничего не додумываем.
-            У FundedNext два направления с разными правилами, поэтому строк 16, а фирм 15.
+            Два русскоязычных трейдера в Казахстане или ОАЭ могут иметь разные гражданство, документы и платёжные профили.
+            Поэтому местная регистрация, язык интерфейса и возможность купить глобальный продукт проверяются отдельно:
+            где вы живёте, какое гражданство указываете, какой документ принимает KYC и каким способом фирма выплачивает именно вам.
           </p>
+          <div className="ru-grid">
+            <article className="ru-card">
+              <Globe2 size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Казахстан</h3>
+              <p className="ru-muted">Проверьте адрес и резидентство в договоре, валюту и провайдера оплаты, а также доступность выбранного продукта. Казахстанская карта не доказывает, что фирма принимает любое гражданство.</p>
+            </article>
+            <article className="ru-card">
+              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>ОАЭ и страны GCC</h3>
+              <p className="ru-muted">Юрисдикция фирмы, страна проживания трейдера и место выплаты могут быть разными. Сохраните письменное подтверждение KYC и метода выплаты до регистрации.</p>
+            </article>
+            <article className="ru-card">
+              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Русскоязычный маршрут</h3>
+              <p className="ru-muted">После пяти проверок откройте глобальный обзор ниже; если страна или продукт не подтверждены, не используйте VPN и не подменяйте данные.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="ru-section"
+        id="country-matrix"
+        data-russian-diaspora-country-matrix="published-lists-not-approval"
+      >
+        <div
+          className="ru-shell ru-content"
+          data-russian-diaspora-country-count={diasporaCountryRows.length}
+          data-russian-diaspora-country-captured={russianDiasporaEvidence.capturedAt}
+          data-russian-diaspora-country-source-status={countryMatrixCurrent ? 'dated' : 'recapture-required'}
+        >
+          <h2>{countryMatrixCurrent ? 'Что публикуют' : 'Что было опубликовано'} FundedNext и BrightFunded по {diasporaCountryRows.length} страновым профилям</h2>
+          <p>
+            Это не таблица «доступно/недоступно». Она показывает только, названа ли страна в общем списке,
+            есть ли отдельное ограничение продукта или конфликт официальных страниц. Срез сделан{' '}
+            {russianDiasporaEvidence.capturedAt}; регистрация, KYC, платёж и выплата не проходились.
+            {!countryMatrixCurrent && ' Срез требует повторной проверки и не описывает текущий доступ.'}
+          </p>
+          <div className="ru-notice" data-russian-diaspora-country-boundary="absence-not-eligibility">
+            <strong>Отсутствие страны в списке не подтверждает доступ.</strong>{' '}
+            {russianDiasporaEvidence.scopeRu}
+          </div>
           <div className="ru-table-wrap">
-            <table className="ru-table" data-russia-availability-table="15-firms">
-              <caption className="hidden-caption">Статус 15 проп-фирм для России, Беларуси и Казахстана на {CHECKED}</caption>
+            <table className="ru-table" data-russian-diaspora-country-evidence="first-party">
               <thead>
                 <tr>
-                  <th>Фирма</th>
-                  <th>Статус</th>
-                  <th>Россия</th>
-                  <th>Беларусь</th>
-                  <th>Казахстан</th>
-                  <th>Оплата и выплаты</th>
-                  <th>Источник</th>
+                  <th>Профиль страны</th>
+                  {russianDiasporaEvidence.firms.map(firm => <th key={firm.slug}>{firm.slug === 'bright-funded' ? 'BrightFunded' : firm.name}</th>)}
                 </tr>
               </thead>
               <tbody>
-                {rows.map(row => (
-                  <tr key={row.firm} data-russia-status={row.status}>
-                    <td><strong>{row.review ? <Link href={row.review}>{row.firm}</Link> : row.firm}</strong></td>
-                    <td><span className={`ru-badge ru-badge--${row.status}`}>{badge[row.status]}</span></td>
-                    <td>{row.russia}</td>
-                    <td>{row.belarus}</td>
-                    <td>{row.kazakhstan}</td>
-                    <td>{row.payout}</td>
-                    <td><a href={row.source} target="_blank" rel="nofollow noopener noreferrer">правила</a></td>
+                {diasporaCountryRows.map(country => (
+                  <tr key={country.key} data-russian-diaspora-country={country.key}>
+                    <td><strong>{country.labelRu}</strong></td>
+                    {country.checks.map(check => (
+                      <td key={check.firmSlug} data-russian-diaspora-status={check.status}>
+                        <strong>{countryMatrixCurrent ? countryStatusLabels[check.status] : `На ${russianDiasporaEvidence.capturedAt}: ${countryStatusLabels[check.status].toLowerCase()}`}</strong><br />
+                        <span className="ru-muted">{check.noteRu}</span>
+                      </td>
+                    ))}
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
           <p className="ru-source-line">
-            Apex Trader Funding и Tradeify закрыли свои страницы от нашего сборщика (ошибка 403): статус взят из
-            поисковой выдачи и агрегатора funded.now, поэтому уверенность средняя.
+            Первичные страницы:{' '}
+            {russianDiasporaEvidence.firms.flatMap(firm => firm.sources).map((source, index, sources) => (
+              <span key={source.url}>
+                <a href={source.url} target="_blank" rel="noopener noreferrer">{source.labelRu}</a>
+                {index < sources.length - 1 ? '; ' : '.'}
+              </span>
+            ))}
           </p>
         </div>
       </section>
 
-      <section className="ru-section" id="otkryty">
-        <div className="ru-shell">
-          <h2>Четыре проп-фирмы, открытые для России</h2>
+      <section className="ru-section" id="global-regions">
+        <div className="ru-shell ru-content" data-russian-diaspora-regions="global-routes">
+          <h2>Русскоязычные трейдеры в Европе, на Кавказе и в других странах</h2>
+          <p>
+            Русскоязычные трейдеры в Европе, Грузии и Израиле могут читать один разбор, но проходят проверку
+            по разным профилям. Язык аудитории не создаёт отдельный статус у фирмы: один и тот же глобальный
+            продукт нужно проверять по фактической стране, гражданству, документу и маршруту выплаты.
+          </p>
           <div className="ru-grid">
-            <article className="ru-card" data-russia-open="upscale">
-              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>Upscale</h3>
-              <p className="ru-muted">Ограничений по странам не заявлено, KYC нет (вход через Telegram, Google или кошелёк), выплаты в USDT на собственный некастодиальный кошелёк. Обратная сторона отсутствия KYC — меньше юридических гарантий: оценивайте риск сами.</p>
-              <div className="ru-actions">
-                {/* TODO: заменить на /go/upscale после подтверждения партнёрской программы Upscale и добавления фирмы в firms.json */}
-                <a href="https://upscale.trade/ru/" target="_blank" rel="nofollow noopener noreferrer" className="btn-primary">
-                  Открыть Upscale <ArrowRight size={14} aria-hidden="true" />
-                </a>
-              </div>
+            <article className="ru-card">
+              <Globe2 size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Европа</h3>
+              <p className="ru-muted">Для Германии, Латвии, Польши, Чехии и других стран сохраните адрес резидентства и документ, который фирма примет на KYC. Русский интерфейс не заменяет проверку страны в договоре.</p>
             </article>
-            <article className="ru-card" data-russia-open="crypto-fund-trader">
-              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>Crypto Fund Trader</h3>
-              <p className="ru-muted">На Match-Trader ограничений по странам нет; на маршруте Bybit действуют правила Bybit, MT5 недоступен для США. Выплаты — USDT ERC20/TRC20, BTC, ETH или банк. Карта и PayPal из российских банков могут не пройти — заложите оплату криптой.</p>
-              <div className="ru-actions">
-                <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
-              </div>
-            </article>
-            <article className="ru-card" data-russia-open="bright-funded">
+            <article className="ru-card">
               <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>BrightFunded</h3>
-              <p className="ru-muted">В списке ограничений — Куба, Иран, КНДР, Сирия, Вьетнам и Пакистан; России нет. При этом фирма исключает лиц из санкционных списков. Выплаты — USDC (ERC-20) или банковский перевод в EUR.</p>
-              <div className="ru-actions">
-                <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор</Link>
-                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
-              </div>
+              <h3>Кавказ и Центральная Азия</h3>
+              <p className="ru-muted">Для Грузии, Армении, Узбекистана и Казахстана заранее сопоставьте гражданство, адрес, карту или криптометод и валюту выплаты с условиями конкретного продукта.</p>
             </article>
-            <article className="ru-card" data-russia-open="fundednext">
-              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>FundedNext (только CFD)</h3>
-              <p className="ru-muted">Россия не названа в списке ограничений CFD, но FundedNext Futures её ограничивает — не перепутайте продукт при оплате. Пункт 5.5 условий позволяет фирме блокировать санкционные страны и страны, которые не обслуживают её платёжные провайдеры. Выплаты — USDT, USDC, RiseWorks, банк, карта.</p>
-              <div className="ru-actions">
-                <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить FundedNext CFD <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
-              </div>
+            <article className="ru-card">
+              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Израиль, Северная Америка и другие маршруты</h3>
+              <p className="ru-muted">Если страна менялась, запросите письменное подтверждение у поддержки до оплаты. Не используйте VPN или чужие документы: несоответствие может проявиться только при выплате.</p>
             </article>
           </div>
-          <p className="ru-source-line">
-            FundingPips и Topstep: кнопок нет, пока поддержка письменно не подтвердит, что принимает резидентов РФ.
-          </p>
-        </div>
-      </section>
-
-      <section className="ru-section" id="pochemu">
-        <div className="ru-shell ru-content">
-          <h2>Почему проп-фирмы закрываются для России</h2>
           <p>
-            Причин три, и все они видны в самих правилах. Первая — санкции: FundingPips исключает юрисдикции из
-            санкционных списков FATF и ЕС/ООН, Topstep — страны под всеобъемлющими санкциями OFAC и лиц из списка SDN.
-            Вторая — платёжные провайдеры: FundedNext прямо оговаривает право блокировать страны, с которыми не работают
-            её провайдеры, — поэтому карта российского банка может не пройти даже там, где страна формально не запрещена.
-            Третья — KYC: Alpha Capital смотрит и на гражданство, и на резидентство, а E8 Markets определяет страну по
-            документу, а не по IP. Россиянин, живущий в другой стране, у Alpha Capital всё равно попадает под ограничение.
+            После проверки откройте <Link href="/ru/luchshie-prop-firmy">русский глобальный рейтинг</Link> и
+            сравните свежие продукты, а не рекламное обещание «для всех русскоязычных».
           </p>
-        </div>
-      </section>
-
-      <section className="ru-section" id="vpn">
-        <div className="ru-shell ru-content">
-          <h2>VPN и чужие данные: почему аккаунт закроют</h2>
-          <p>
-            Схема «зайду через VPN, а выплату получу на крипту» ломается на KYC. FTMO проверяет личность (FTMO Identity)
-            до выхода на профинансированный счёт, E8 Markets сверяет страну с документом, а FundedNext в своих правилах
-            называет VPN и ложное указание страны основанием для закрытия аккаунта. Посчитайте: вы платите за челлендж,
-            проходите две фазы, доходите до первой выплаты — и на проверке документов теряете и взнос, и прибыль.
-            Если ваша страна закрыта, выбирайте фирму из четырёх открытых, а не обходной путь.
-          </p>
+          <div className="ru-notice ru-disclosure" data-russian-diaspora-region-funnel="global-partners">
+            <strong>Глобальные переходы после проверки региона.</strong>{' '}
+            Кнопки ниже могут приносить Traders Fund Hub комиссию. Это не подтверждает доступность вашей страны:
+            сначала сверяйте KYC, оплату и выплату у выбранной фирмы.
+          </div>
+          <div className="ru-actions">
+            {primaryPartnerCards.map(item => (
+              <RuGoLink firm={item.slug}
+                key={item.slug}
+                href={`/go/${item.slug}?from=ru-diaspora-regions-${item.slug}`}
+                rel="sponsored nofollow noopener"
+                className="btn-primary"
+              >
+                Проверить {item.name} <ArrowRight size={14} aria-hidden="true" />
+              </RuGoLink>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="ru-section" id="proverka">
         <div className="ru-shell ru-content">
-          <h2>Как проверить проп-фирму самостоятельно</h2>
+          <h2>Пять проверок перед регистрацией</h2>
           <ol>
-            <li><strong>Найдите официальный список ограничений</strong> — обычно это раздел FAQ или справки «restricted countries». Ищите «Russian Federation» и «sanctions».</li>
-            <li><strong>Проверьте продукт, а не бренд.</strong> У FundedNext CFD и Futures разные списки.</li>
-            <li><strong>Выясните, что проверяет KYC:</strong> гражданство, резидентство или документ.</li>
-            <li><strong>Сверьте оплату и выплату.</strong> Если принимают только карты и PayPal, из РФ оплата может не пройти; ищите крипту.</li>
-            <li><strong>Напишите в поддержку</strong> и сохраните письменный ответ до оплаты — особенно для FundingPips и Topstep.</li>
+            <li><strong>Идентичность:</strong> какие гражданство, резидентство, адрес и документы запросит KYC.</li>
+            <li><strong>Доступ:</strong> есть ли ваша страна или гражданство в ограничениях конкретной фирмы и продукта.</li>
+            <li><strong>Оплата:</strong> проходит ли выбранный способ оплаты без обхода правил и с понятной комиссией.</li>
+            <li><strong>Правила:</strong> цена, тип просадки, цели, торговые ограничения и первая выплата у нужного размера счёта.</li>
+            <li><strong>Вывод:</strong> доступен ли вам метод выплаты и какие документы потребуются после успешного этапа.</li>
           </ol>
+          <p>
+            Если один пункт не подтверждён, не превращайте предположение в рекомендацию. Откройте страницу
+            конкретного продукта, задайте вопрос поддержке и сравните альтернативы в{' '}
+            <Link href="/ru/luchshie-prop-firmy">русском рейтинге глобальных фирм</Link>.
+          </p>
         </div>
       </section>
 
-      <section className="ru-section" id="rossiyskie">
-        <div className="ru-shell ru-content" data-merged-from="/ru/rossiyskie-prop-kompanii">
-          <h2>Российские проп-компании: шесть проверяемых примеров</h2>
+      <section className="ru-section" data-russian-diaspora-decision-router="four-unresolved-fields">
+        <div className="ru-shell ru-content">
+          <h2>Откройте маршрут по вопросу, который ещё не закрыт</h2>
           <p>
-            Если вам нужен не CFD-челлендж, а локальный рынок (MOEX, рублёвый договор, стажировка), смотрите российских
-            операторов. Это не рейтинг и не совет регистрироваться: полный захват цен, правил и истории выплат по ним мы
-            пока не провели.
+            Не переходите к регистрации с общим выводом «страна подходит». Выберите один нерешённый блок —
+            документы, получение денег, правила продукта или тип рынка — и сначала проверьте его на отдельной странице.
           </p>
-          <ul>
-            {localFirms.map(firm => (
-              <li key={firm.name}>{firm.href ? <Link href={firm.href}>{firm.name} — отдельный обзор</Link> : firm.name}</li>
+          <div className="ru-grid">
+            <article className="ru-card">
+              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Гражданство, адрес или документы</h3>
+              <p className="ru-muted">Если гражданство, резидентство, адрес, ID и selfie проверяются разными сторонами, начните с четырёх KYC-этапов и письменных вопросов поддержке.</p>
+              <Link href="/ru/prop-firmy-bez-kyc" className="ru-card-link">Открыть проверку KYC →</Link>
+            </article>
+            <article className="ru-card">
+              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Кошелёк, банк или валюта выплаты</h3>
+              <p className="ru-muted">Если неизвестны платёжный канал, токен и сеть, валюта, комиссия провайдера или банковский маршрут, сравните доступность, обработку фирмы и фактическое зачисление отдельно.</p>
+              <Link href="/ru/vyplaty-prop-firm" className="ru-card-link">Сравнить маршруты выплаты →</Link>
+            </article>
+            <article className="ru-card">
+              <ListChecks size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Не выбран конкретный продукт</h3>
+              <p className="ru-muted">Если выбор всё ещё сделан только по бренду, сопоставьте программы FundedNext и BrightFunded по этапам, просадке, первой выплате и валюте оплаты. Число доступных строк зависит от свежести источников.</p>
+              <Link href="/ru/fundednext-vs-bright-funded" className="ru-card-link">Сравнить программы →</Link>
+            </article>
+            <article className="ru-card">
+              <Globe2 size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Нужен локальный рынок, а не CFD-челлендж</h3>
+              <p className="ru-muted">Если задача связана с MOEX, стажировкой, рублёвым договором или локальным терминалом, не подменяйте её международным продуктом с оценочным этапом.</p>
+              <Link href="/ru/rossiyskie-prop-kompanii" className="ru-card-link">Проверить российские модели →</Link>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell" data-russian-affiliate-disclosure="diaspora-guide">
+          <div className="ru-notice ru-disclosure">
+            <strong>Партнёрское раскрытие.</strong>{' '}
+            Часть глобальных фирм ниже имеет партнёрскую ссылку. Мы можем получить комиссию,
+            если читатель зарегистрируется после перехода; это не меняет порядок рейтинга, цены или
+            проверку доступа. Перед оплатой подтвердите условия у самой фирмы.
+          </div>
+          <h2>Два главных глобальных обзора на русском</h2>
+          <p className="ru-muted">Сначала откройте разбор, затем переходите на официальную страницу оплаты только после проверки своей юрисдикции.</p>
+          <div className="ru-grid">
+            {primaryPartnerCards.map(item => (
+              <article className="ru-card" key={item.slug} data-russian-diaspora-partner={item.slug}>
+                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">{item.firm?.score.toFixed(1) ?? '—'}/10</span></div>
+                <p className="ru-muted">{item.summary}</p>
+                <p className="ru-source-line">{item.freshProducts.length} свежих продуктов в текущем захвате данных.</p>
+                <div className="ru-actions">
+                  <Link href={item.reviewHref} className="btn-outline">Читать разбор</Link>
+                  <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=${item.campaign}`} rel="sponsored nofollow noopener" className="btn-primary">
+                    Проверить условия <ArrowRight size={14} aria-hidden="true" />
+                  </RuGoLink>
+                </div>
+              </article>
             ))}
-          </ul>
-          <p>
-            Партнёрские условия: у Era Trade опубликована программа с 5% за прямые покупки и уровнями до 60%; PropLive предлагает
-            наставникам и школам долю до 50% от прибыли учеников; Trade System не раскрывает ставку для издателей; у KasCapital,
-            А-Лаб и TeamTraders публичных партнёрских условий не найдено.
+          </div>
+          <p className="ru-source-line">
+            Вторичный глобальный вариант: <Link href="/ru/obzor-fundingpips">отдельный обзор FundingPips</Link>. Он не входит в два коммерчески выделенных маршрута этой страницы.{' '}
+            Нужны локальные примеры? Смотрите отдельное <Link href="/ru/rossiyskie-prop-kompanii">исследование «Российские проп-компании»</Link>:
+            оно не является рейтингом и не содержит неактивированных партнёрских переходов. Локальные разборы: <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link>, <Link href="/ru/obzor-kascapital">KasCapital</Link> и <Link href="/ru/obzor-teamtraders">TeamTraders</Link>.
           </p>
         </div>
       </section>
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
-          <h2>Что читать дальше</h2>
-          <ul>
-            <li><Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян: почему недоступно и чем заменить</Link></li>
-            <li><Link href="/ru/luchshie-prop-firmy">Рейтинг проп-фирм</Link></li>
-            <li><Link href="/ru/vyplaty-prop-firm">Выплаты проп-фирм: USDT, USDC, Rise</Link></li>
-            <li><Link href="/ru/promokody-prop-firm">Промокоды проп-фирм</Link></li>
-          </ul>
-          <div className="ru-notice" data-russian-risk-disclaimer="russia-hub">
-            <strong>Риск.</strong> Торговля на рынках с плечом связана с высоким риском; большинство участников не проходит
-            челлендж, а оплата за него не возвращается. Статусы стран меняются — мы перепроверяем их еженедельно, дата последней
-            проверки указана в каждой строке.
+          <h2>Короткий чек-лист перед кликом</h2>
+          <div className="ru-grid">
+            <article className="ru-card"><ListChecks size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Сохраните источник</h3><p className="ru-muted">Откройте страницу правил и зафиксируйте дату, продукт, размер счёта и способ выплаты.</p></article>
+            <article className="ru-card"><ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Не скрывайте страну</h3><p className="ru-muted">Несовпадение IP, адреса, документа и платёжного профиля может повлиять на KYC и выплату.</p></article>
+            <article className="ru-card"><WalletCards size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Считайте полную стоимость</h3><p className="ru-muted">Сравнивайте не только входную цену, но и активацию, повторную оплату, возврат и условия первой выплаты.</p></article>
           </div>
         </div>
       </section>
@@ -332,6 +475,7 @@ export default function RussiaAvailabilityPage() {
       <section className="ru-section">
         <div className="ru-shell ru-content">
           <h2>Частые вопросы</h2>
+          {!countryMatrixCurrent && <p className="ru-muted">Страновая матрица от {russianDiasporaEvidence.capturedAt} требует повторной проверки. Ответы ниже — общая методика, а не подтверждение текущего доступа к FundedNext или BrightFunded.</p>}
           <RussianFaq items={faqs} />
         </div>
       </section>
