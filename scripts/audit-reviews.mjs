@@ -7424,7 +7424,7 @@ function checkCheapestLandingCluster() {
       'Does the number include activation or pay-later charges?',
       'What does a monthly minimum mean?',
       'Why can the smallest fee still be expensive?',
-      "lastReviewed: '2026-08-17'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`cheapest landing is missing "${fragment}"`)
@@ -7439,8 +7439,8 @@ function checkCheapestLandingCluster() {
         rows.push(`cheapest landing restored incomplete or rounded pricing: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('cheapest landing must keep exactly 4 cost-basis decision questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 7) {
+      rows.push('cheapest landing must keep exactly 7 cost-basis decision questions')
     }
   }
 
@@ -7770,8 +7770,8 @@ function checkInstantFundingCluster() {
       'const CURRENT_INSTANT_FIRM_COUNT = CURRENT_INSTANT_SNAPSHOT.length',
       'const CURRENT_INSTANT_PRODUCT_COUNT = CURRENT_INSTANT_SNAPSHOT.reduce',
       'isChallengeFresh(challenge) && challenge.phases === 0',
-      'h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Verified`',
-      'metaTitle: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Verified`',
+      'h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Firms With No Evaluation`',
+      'metaTitle: `Best Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} Compared`',
       'snapshotProductCount: CURRENT_INSTANT_PRODUCT_COUNT',
       'const products = freshInstantProducts(firm)',
       'products.flatMap(product => product.accountSizes.flatMap',
@@ -7785,7 +7785,7 @@ function checkInstantFundingCluster() {
       'How does the maximum-loss line move?',
       'How much loss room repays the one-time fee?',
       'What unlocks the first payout?',
-      "lastReviewed: '2026-08-17'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`instant-funding landing is missing "${fragment}"`)
@@ -7801,8 +7801,8 @@ function checkInstantFundingCluster() {
         rows.push(`instant-funding landing restored first-product logic: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('instant-funding landing must keep exactly 4 product-level decision questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 7) {
+      rows.push('instant-funding landing must keep exactly 7 product-level decision questions')
     }
   }
 
@@ -7941,7 +7941,7 @@ function checkInstantFundingCluster() {
     'expectedInstantFirms',
     'expectedInstantProductCount',
     'challenge.phases === 0',
-    'expectedInstantFirms.length} instant-funding prop firms across ${expectedInstantProductCount} phase-0 products',
+    'expectedInstantFirms.length} firms and ${expectedInstantProductCount} no-evaluation accounts compared',
     'Products ${products.length}',
     'href="/go/fundednext?from=best-instant-funding-prop-firms"',
     'missing contextual instant-funding backlink',

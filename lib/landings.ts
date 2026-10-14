@@ -731,12 +731,12 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'cheapest-prop-firms',
-    h1: 'Cheapest Prop Firm Challenges (2026): USD & EUR',
-    metaTitle: 'Cheapest Prop Firm Challenges (2026) — By Currency',
+    h1: 'Cheapest Prop Firms (2026): Prop Firm Fees Compared in USD & EUR',
+    metaTitle: 'Cheapest Prop Firms 2026: Challenge Fees Compared',
     metaDescription:
-      `Compare the lowest verified path to funded for ${CURRENT_CHEAPEST_FIRM_COUNT} prop firms, ranked separately in USD and EUR with billing model, loss limits, reviews, and dated sources.`,
+      `Cheapest prop firms in 2026: a prop firm fees comparison of ${CURRENT_CHEAPEST_FIRM_COUNT} prop firms, with true cost to funded in USD and EUR, loss limits and dated sources.`,
     intro:
-      'The lowest checkout price is not always the lowest path to funded. We add any known after-pass or activation charge, keep recurring plans labelled, and rank USD and EUR products separately so a hidden exchange-rate assumption cannot reorder the list. Every included price comes from a product capture inside the 30-day freshness window.',
+      'Looking for a cheap prop firm? The lowest checkout price is not always the lowest path to funded. We add any known after-pass or activation charge, keep recurring plans labelled, and rank USD and EUR products separately so a hidden exchange-rate assumption cannot reorder the list. Every included price comes from a product capture inside the 30-day freshness window.',
     sortDir: 'asc',
     rank: firms => {
       const byCurrency: Record<ChallengeCurrency, LandingFirm[]> = {
@@ -802,6 +802,18 @@ export const LANDINGS: Landing[] = [
       'A firm qualifies when at least 1 product price was captured from its own site within 30 days. Each currency group ranks the minimum known cash outlay to reach funded: checkout plus any same-currency after-pass or activation fee. A monthly subscription assumes a first-cycle pass, so it is a floor rather than an average. USD and EUR are never converted or ranked against each other; affiliate status, coupons, account headline, and editorial score add 0 points.',
     decisionGuide: [
       {
+        title: 'Which fees should a prop firm fees comparison include?',
+        body: 'Start with the challenge or account price, then add any activation or after-pass fee, monthly subscription cycles, resets, platform or market-data fees, and payout costs. Payout costs vary: OFP Funding, for example, says payouts over $500 go through Rise with a fixed $50 fee. This table adds only charges the product record publishes in the same currency.',
+      },
+      {
+        title: 'What is the cheapest crypto prop firm?',
+        body: 'This table ranks every priced product, not only crypto ones, so a cheap row may not let you trade BTC or ETH. Use the crypto prop firm ranking, which shows entry prices only for products with current first-party crypto-market evidence, then compare crypto leverage and commission on that exact product.',
+      },
+      {
+        title: 'What is the cheapest instant funding prop firm?',
+        body: 'Instant accounts skip the evaluation but usually cost more per dollar of account size. The instant funding ranking shows the minimum known cost of every phase-0 product, which is the fair comparison for instant accounts.',
+      },
+      {
         title: 'Are USD and EUR prices directly ranked together?',
         body: 'No. The 2 currency groups are independent because a live exchange rate, card spread, and tax can change the converted checkout amount. Compare prices in the currency your payment provider will actually settle.',
       },
@@ -818,16 +830,16 @@ export const LANDINGS: Landing[] = [
         body: 'A low-notional tier can pair a small fee with less dollar loss room, a lower starting split, or stricter payout gates. Compare fee recovery against the exact maximum-loss amount instead of the account headline.',
       },
     ],
-    lastReviewed: '2026-08-17',
+    lastReviewed: '2026-10-14',
   },
   {
     slug: 'best-instant-funding-prop-firms',
-    h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Verified`,
-    metaTitle: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Verified`,
+    h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Firms With No Evaluation`,
+    metaTitle: `Best Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} Compared`,
     metaDescription:
-      `Compare ${CURRENT_INSTANT_FIRM_COUNT} instant-funding prop firms across ${CURRENT_INSTANT_PRODUCT_COUNT} phase-0 products with entry costs, drawdown, starting splits, payout gates, reviews, and dated sources.`,
+      `Best instant funding prop firms in 2026: ${CURRENT_INSTANT_FIRM_COUNT} firms and ${CURRENT_INSTANT_PRODUCT_COUNT} no-evaluation accounts compared on cost, drawdown, profit split and payout rules.`,
     intro:
-      `These ${CURRENT_INSTANT_FIRM_COUNT} firms have ${CURRENT_INSTANT_PRODUCT_COUNT} products captured within 30 days whose structured phase count is 0. That means the product skips an evaluation target; it does not prove that the account uses live firm capital. Every card names each qualifying path and links its distinct first-party sources before comparing the loss line, total known cost, starting split, and payout gate.`,
+      `Want a prop firm with instant funding, so you can skip the challenge? These ${CURRENT_INSTANT_FIRM_COUNT} firms have ${CURRENT_INSTANT_PRODUCT_COUNT} products captured within 30 days whose structured phase count is 0. That means the product skips an evaluation target; it does not prove that the account uses live firm capital. Every card names each qualifying path and links its distinct first-party sources before comparing the loss line, total known cost, starting split, and payout gate.`,
     sortDir: 'desc',
     snapshotProductCount: CURRENT_INSTANT_PRODUCT_COUNT,
     rank: firms => firms
@@ -870,6 +882,18 @@ export const LANDINGS: Landing[] = [
       `A firm qualifies only when at least 1 structured product captured within 30 days sets phases to 0. Every qualifying product contributes to the ${CURRENT_INSTANT_FIRM_COUNT}-firm, ${CURRENT_INSTANT_PRODUCT_COUNT}-product snapshot; missing prices or starting splits stay visibly unverified. The order uses our editorial score, while affiliate status, product count, price, profit split, drawdown type, and payout speed add 0 points. “Instant” describes the missing evaluation phase, not verified live-capital execution.`,
     decisionGuide: [
       {
+        title: 'What is an instant funding prop firm?',
+        body: 'An instant funding prop firm sells an account with no evaluation phase: you pay once and trade toward a payout straight away instead of first hitting a profit target. The trade-off is usually a higher price for the same account size and tighter drawdown or payout gates.',
+      },
+      {
+        title: 'What is the cheapest instant funding prop firm?',
+        body: 'Sort by the minimum known cost on each card, which includes any published activation charge, then check the loss room you get for that price. For entry prices across every challenge type, see the cheapest prop firms comparison.',
+      },
+      {
+        title: 'Is instant funding better than a 1-step challenge?',
+        body: 'Only if paying more to skip the evaluation suits you. A 1-step challenge usually costs less for the same account size but needs a profit target first; an instant account starts earning toward a payout immediately but often has stricter drawdown, consistency or payout rules. Compare both on total cost and maximum loss.',
+      },
+      {
         title: 'Does phase 0 mean the account trades live capital?',
         body: 'No. Phase 0 proves only that the structured product has no evaluation target. Treat funded, simulated-funded, and live-capital execution as separate account-stage claims, then verify the agreement for the selected product.',
       },
@@ -886,7 +910,7 @@ export const LANDINGS: Landing[] = [
         body: 'A phase-0 purchase can still require profitable days, a consistency score, a safety cushion, minimum growth, or a waiting period. Verify every payout gate and whether the purchase fee is refundable before checkout.',
       },
     ],
-    lastReviewed: '2026-08-17',
+    lastReviewed: '2026-10-14',
   },
   {
     slug: 'best-futures-prop-firms',

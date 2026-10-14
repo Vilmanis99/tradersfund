@@ -3730,8 +3730,8 @@ if (cheapestLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    'Cheapest Prop Firm Challenges (2026) — By Currency | TFH',
-    'Cheapest Prop Firm Challenges (2026): USD & EUR',
+    'Cheapest Prop Firms 2026: Challenge Fees Compared | TFH',
+    'Cheapest Prop Firms (2026): Prop Firm Fees Compared in USD & EUR',
     'USD-denominated products',
     'EUR-denominated products',
     'What price-first buyers should verify',
@@ -3958,7 +3958,7 @@ if (instantLandingProbe.status !== 200) {
   }
 
   const expectedDescription =
-    `Compare ${expectedInstantFirms.length} instant-funding prop firms across ${expectedInstantProductCount} phase-0 products with entry costs, drawdown, starting splits, payout gates, reviews, and dated sources.`
+    `Best instant funding prop firms in 2026: ${expectedInstantFirms.length} firms and ${expectedInstantProductCount} no-evaluation accounts compared on cost, drawdown, profit split and payout rules.`
   const renderedDescription = decodeHtml(firstMatch(
     instantLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3971,8 +3971,8 @@ if (instantLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Instant Funding Prop Firms (2026): ${expectedInstantFirms.length} Verified | TFH`,
-    `Best Instant Funding Prop Firms (2026): ${expectedInstantFirms.length} Verified`,
+    `Best Instant Funding Prop Firms 2026: ${expectedInstantFirms.length} Compared | TFH`,
+    `Best Instant Funding Prop Firms (2026): ${expectedInstantFirms.length} Firms With No Evaluation`,
     `${expectedInstantFirms.length} verified firms across ${expectedInstantProductCount} phase-0 products`,
     'What instant-funding buyers should verify',
     'Does phase 0 mean the account trades live capital?',
