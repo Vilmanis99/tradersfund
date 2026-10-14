@@ -1145,14 +1145,14 @@ try {
     assert.equal((englishHtml.match(/<h1\b/g) ?? []).length, 1)
     assert.doesNotMatch(englishHtml, /(?:NaN|Infinity|Invalid Date)/)
     assert(englishHtml.includes('data-english-home-layout="focused"'))
-    assert.equal((englishHtml.match(/<section\b/g) ?? []).length, 4, 'English home has one comparison, partner, decision and guide section')
+    assert.equal((englishHtml.match(/<section\b/g) ?? []).length, 5, 'English home has one hero, comparison, partner, guide and FAQ section')
     assert.equal((englishHtml.match(/data-english-home-partners="single-section"/g) ?? []).length, 1)
     assert.deepEqual([...englishHtml.matchAll(/data-english-home-partner="([^"]+)"/g)].map(match => match[1]), ['fundednext', 'bright-funded'], 'only the two primary partners get commercial homepage placement')
     assert(englishHtml.includes('data-english-home-affiliate-disclosure="primary-partners"') && englishHtml.includes('not a ranking'))
     assert.equal((englishHtml.match(/data-english-home-guide="selected"/g) ?? []).length, 3, 'home keeps a curated guide entry, not a latest-article feed')
     assert.doesNotMatch(englishHtml, /class="(?:bento-grid|leaderboard|picker-card|marquee|truecost-card|cta-final|featured-spotlight)/, 'duplicate rankings, pickers, promotions and calculator are absent')
-    const sectionOrder = ['id="home-programmes"', 'data-english-home-partners="single-section"', 'data-english-home-tools="decision-links"', 'data-english-home-guides="selected-three"'].map(marker => englishHtml.indexOf(marker))
-    assert(sectionOrder.every((position, index) => position >= 0 && (index === 0 || position > sectionOrder[index - 1])), 'comparison precedes commercial placement, tools and selected guides')
+    const sectionOrder = ['id="home-programmes"', 'data-english-home-comparison="cheapest-per-firm"', 'data-english-home-partners="single-section"', 'data-english-home-guides="selected-three"'].map(marker => englishHtml.indexOf(marker))
+    assert(sectionOrder.every((position, index) => position >= 0 && (index === 0 || position > sectionOrder[index - 1])), 'finder and comparison table precede commercial placement and selected guides')
     for (const href of ['/prop-firms', '/compare', '/methodology', '/prop-firm-challenge-changes', '/best-prop-firms-in-india', '/ru', '/blog', '/true-cost-of-prop-firm-challenges', '/how-prop-firm-challenges-work', '/how-to-pass-a-prop-firm-challenge']) {
       assert(englishHtml.includes(`href="${href}"`), `homepage retains ${href} discovery`)
     }
@@ -1474,7 +1474,7 @@ try {
             assert(card?.includes(`data-russian-partner-country-source-status="${countryFresh ? 'dated' : 'recapture-required'}"`), 'each homepage partner uses its own country-source age')
             assert(card.includes(capturedAt), 'the homepage country warning shows its own source date')
             if (firmSlug === 'bright-funded') {
-              assert(card.includes('<h2>BrightFunded</h2>') && card.includes('Проверить условия BrightFunded'), 'Russian homepage uses the first-party BrightFunded brand in the prominent partner heading and CTA')
+              assert(/<h[23]>BrightFunded<\/h[23]>/.test(card) && card.includes('Проверить условия BrightFunded'), 'Russian homepage uses the first-party BrightFunded brand in the prominent partner heading and CTA')
               assert(card.includes('data-russian-home-bright-country-conflict="help-six-terms-five"'), 'Bright homepage card displays the country-list disagreement before the affiliate action')
               assert(card.includes(`href="${brightEvidence.sources.countries.sourceUrl}"`) && card.includes(`href="${brightEvidence.sources.countryTerms.sourceUrl}"`), 'Bright homepage card links both first-party country sources')
               assert(card.includes(brightEvidence.sources.countryTerms.sourceCapturedAt), 'Bright homepage card shows the independently captured Terms date')
