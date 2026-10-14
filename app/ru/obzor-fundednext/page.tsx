@@ -20,8 +20,8 @@ import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/obzor-fundednext'
-const TITLE = 'FundedNext: отзывы и обзор 2026, цены и правила'
-const DESCRIPTION = 'Обзор FundedNext на русском: цены программ Stellar, просадка, условия выплат, копирование сделок, отзывы и проверка доступа из своей страны.'
+const TITLE = 'FundedNext проп: отзывы и обзор 2026, цены и правила'
+const DESCRIPTION = 'FundedNext проп-компания: обзор на русском — цены программ Stellar, просадка, условия выплат, копирование сделок, отзывы и проверка доступа из своей страны.'
 // Preserve existing sharing copy until its separate update is approved.
 const SOCIAL_DESCRIPTION = 'Отзывы о FundedNext и обзор на русском: 4 модели Stellar, 22 цены, просадка, выплаты, Free Trial и проверка ограничений по стране.'
 export const revalidate = 3600
@@ -440,6 +440,22 @@ export default function RussianFundedNextReviewPage() {
           </div>
         </section>
       ) : null}
+
+      <section className="ru-section" id="fundednext-prop">
+        <div className="ru-shell ru-content" data-russian-fundednext-brand="prop-company">
+          <h2>FundedNext проп: что это за компания</h2>
+          <p>
+            FundedNext — проп-компания, основанная в 2022 году. По нашему профилю фирмы она предлагает торговлю форексом, криптовалютой,
+            индексами и сырьём на MT4, MT5, cTrader и Match-Trader, а максимальный капитал с учётом масштабирования — до $300 000.
+            Выплаты — банковским переводом, через Rise или в криптовалюте (USDT ERC20/TRC20, USDC).
+          </p>
+          <p>
+            Для трейдеров из России важна одна деталь: на 14.10.2026 Россия не названа в списке ограничений CFD-направления FundedNext,
+            а FundedNext Futures Россию ограничивает. Выбирайте CFD-программу и не используйте VPN — фирма называет ложные данные о
+            стране основанием для закрытия аккаунта. Сравнение с другими фирмами — <Link href="/ru/fundednext-vs-bright-funded">FundedNext или BrightFunded</Link>.
+          </p>
+        </div>
+      </section>
 
       <section className="ru-section">
         <div className="ru-shell">

@@ -18,12 +18,22 @@ import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified, russianPublishedHref } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 
 const PATH = '/ru'
 export const revalidate = 3600
+
+// Basics links switch on as each new RU page's route is registered (lib/localizedRoutes.ts).
+const RU_HOME_BASICS = [
+  { href: '/ru/prop-trejding', title: 'Что такое проп-трейдинг', text: 'Как работает торговля на капитале фирмы.' },
+  { href: '/ru/funded-account', title: 'Funded account', text: 'Что такое финансируемый счёт и как его получить.' },
+  { href: '/ru/prop-kompanii-v-rossii', title: 'Проп-компании в России', text: 'Какие фирмы работают с РФ и как платят.' },
+  { href: '/ru/prop-kompanii-otzyvy', title: 'Отзывы о проп-компаниях', text: 'Красные флаги и доказательства выплат.' },
+  { href: '/ru/obzor-the5ers', title: 'Обзор The5ers', text: 'Условия и доступ для трейдеров из РФ.' },
+  { href: '/ru/luchshie-prop-firmy', title: 'Рейтинг проп-компаний', text: 'Сравнение условий и доступ из России.' },
+]
 const TITLE = 'Проп-фирмы для русскоязычных трейдеров: цены и правила'
 const DESCRIPTION = 'Сравнение глобальных проп-фирм для русскоязычных трейдеров в разных странах: цены, просадки, выплаты, KYC и правила из первичных источников.'
 
@@ -145,6 +155,17 @@ export default function RussianHomePage() {
           <DisclosureNote summary={<>Часть ссылок партнёрские. Порядок — не реклама. Размер счёта — не цена. Доступность для РФ проверяйте перед оплатой.</>}>
             <p>Отметка доступа основана на поле russiaStatus и проверке условий фирм; она не заменяет проверку вашего гражданства, резидентства и способа оплаты. Нужна местная биржевая торговля? <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские проп-компании разобраны отдельно.</Link></p>
           </DisclosureNote>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell" data-russian-home-basics="osnovy">
+          <h2>Основы</h2>
+          <div className="ru-home-guide-list">
+            {RU_HOME_BASICS.filter(item => russianPublishedHref(item.href)).map(item => (
+              <Link key={item.href} href={item.href}><span><strong>{item.title}</strong><span>{item.text}</span></span><ArrowRight size={20} aria-hidden="true" /></Link>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -183,7 +183,7 @@ export default function FtmoForRussiansPage() {
           </div>
           <p>
             Ловушка у FundedNext: CFD-направление Россию не ограничивает, а FundedNext Futures — ограничивает. Выбирайте
-            именно CFD-челлендж. У Crypto Fund Trader карта и PayPal из российских банков могут не пройти — платите криптой.
+            именно CFD-челлендж. Crypto Fund Trader принимает и криптовалюту — этот способ не зависит от карты (по данным на 14.10.2026).
           </p>
           <p>
             Полная таблица 15 фирм — на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">«Проп-фирмы для россиян в 2026»</Link>.

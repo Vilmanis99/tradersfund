@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "firmSlug": "fundingpips",
+    "status": "partner",
+    "mechanism": "checkout-code",
+    "code": "HELLO",
+    "pct": 20,
+    "amountLabel": "20% off",
+    "scope": "First purchase; not valid on the $100K account",
+    "verifiedOn": "2026-10-14",
+    "sourceUrl": "https://fundingpips.com/",
+    "sourceLabel": "Prop Firm Tracker (checked 2026-10-14)",
+    "ctaLabel": "Use code HELLO",
+    "note": "First purchase only; excludes the $100K account. No end date published.",
+    "_todo": "TODO: sourceUrl is the firm homepage; replace with the real promo/terms page (source: Prop Firm Tracker 2026-10-14)."
+  },
+  {
+    "firmSlug": "fundednext",
+    "status": "partner",
+    "mechanism": "checkout-code",
+    "code": "STRTN",
+    "amountLabel": "Up to 33% off",
+    "scope": "Four smallest Stellar accounts",
+    "verifiedOn": "2026-10-14",
+    "sourceUrl": "https://fundednext.com/",
+    "sourceLabel": "Prop Firm Tracker (checked 2026-10-14)",
+    "ctaLabel": "Use code STRTN",
+    "note": "Live from 2026-10-12; discount varies by account, up to 33%.",
+    "_todo": "TODO: sourceUrl is the firm homepage; replace with the real promo/terms page (source: Prop Firm Tracker 2026-10-14)."
+  }
+]
