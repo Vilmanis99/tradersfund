@@ -70,6 +70,22 @@
       "evidenceRu": "Официальный FAQ FXIFY делит счета на FOREX и CRYPTO и указывает, что CRYPTO-счета предназначены исключительно для торговли криптовалютами: это One Phase Crypto Challenge и Instant Funding Crypto Account.",
       "scopeNote": "Only the 2 dedicated crypto products are mapped. FXIFY's 8 FOREX products cannot trade crypto and are excluded.",
       "scopeNoteRu": "Привязаны только 2 отдельных криптопродукта. 8 FOREX-продуктов FXIFY не позволяют торговать криптовалютой и исключены."
+    },
+    {
+      "firmSlug": "e8-markets",
+      "firmName": "E8 Markets",
+      "marketModel": "crypto-native",
+      "productSlugs": [
+        "e8-one-perpetuals",
+        "e8-pro-perpetuals"
+      ],
+      "sourceUrl": "https://e8markets.com/e8-pro",
+      "sourceCapturedAt": "2026-10-14",
+      "sourceQuote": "Perpetuals 24/7 (Hyperliquid) BTC, Gold, Oil, Nasdaq, Nvidia",
+      "evidence": "E8's official product pages offer a separate Perpetual market (Hyperliquid perpetuals, 24/7, including BTC) alongside Classic Markets, with its own E8 One and E8 Pro configurations.",
+      "evidenceRu": "Официальные страницы E8 предлагают отдельный рынок Perpetual (бессрочные контракты Hyperliquid, 24/7, включая BTC) наряду с Classic Markets, с собственными конфигурациями E8 One и E8 Pro.",
+      "scopeNote": "Only the 2 Perpetual configurations (E8 One and E8 Pro) are mapped. The Perpetual venue also lists non-crypto underlyings (gold, oil, Nasdaq, Nvidia); Classic Markets and E8 Signature products are excluded.",
+      "scopeNoteRu": "Привязаны только 2 конфигурации Perpetual (E8 One и E8 Pro). На площадке Perpetual есть и некриптовые базовые активы (золото, нефть, Nasdaq, Nvidia); продукты Classic Markets и E8 Signature исключены."
     }
   ],
   "payoutAlternative": {
@@ -81,15 +97,6 @@
     "evidenceRu": "Справка перечисляет вознаграждение в USDC по сети ERC-20 и банковский перевод в EUR. Это проверка способа выплаты, не торговых инструментов или доступности страны."
   },
   "watch": [
-    {
-      "firmSlug": "e8-markets",
-      "firmName": "E8 Markets",
-      "status": "product-capture-needed",
-      "sourceUrl": "https://help.e8markets.com/en/articles/9799834-available-trading-platforms",
-      "sourceCapturedAt": "2026-09-14",
-      "evidence": "E8's current help page explicitly covers both Forex and Crypto accounts and lists the available platforms, but the current structured capture contains only Forex product rows.",
-      "nextStep": "Capture the current crypto-specific products, prices, leverage, payout rules, and available platforms before ranking."
-    },
     {
       "firmSlug": "crypto-fund-trader",
       "firmName": "Crypto Fund Trader",
