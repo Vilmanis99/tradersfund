@@ -949,12 +949,12 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-crypto-prop-firms',
-    h1: `Best Crypto Prop Firms (2026): ${CURRENT_CRYPTO_FIRM_COUNT} Verified`,
-    metaTitle: `Best Crypto Prop Firms (2026): ${CURRENT_CRYPTO_FIRM_COUNT} Verified`,
+    h1: `Best Crypto Prop Firms (2026): ${CURRENT_CRYPTO_FIRM_COUNT} Crypto Prop Trading Firms Compared`,
+    metaTitle: `Best Crypto Prop Firms 2026: ${CURRENT_CRYPTO_FIRM_COUNT} Firms Compared`,
     metaDescription:
-      `Compare ${CURRENT_CRYPTO_FIRM_COUNT} crypto prop firms across ${CURRENT_CRYPTO_PRODUCT_COUNT} mapped products using current rules, market-specific evidence, source dates, and reviews.`,
+      `Best crypto prop firms for 2026: ${CURRENT_CRYPTO_FIRM_COUNT} crypto prop trading firms compared on BTC/ETH access, leverage, commission, entry price and payout rules.`,
     intro:
-      `Trading crypto is not the same as paying or withdrawing in crypto. These ${CURRENT_CRYPTO_FIRM_COUNT} firms have a current first-party source that explicitly names crypto as a tradable market plus ${CURRENT_CRYPTO_PRODUCT_COUNT} exact product records inside the 30-day freshness window. Crypto-native products rank before multi-asset CFD products, then editorial score breaks ties. The ${CRYPTO_MARKET_WATCH.length} excluded firms remain visible below as evidence gaps rather than borrowing stale or forex-only prices and rules.`,
+      `Looking for the best crypto prop firm? Start with one question: can you actually trade BTC and ETH on the product you buy? Paying or withdrawing in crypto does not count. These ${CURRENT_CRYPTO_FIRM_COUNT} firms have a current first-party source that explicitly names crypto as a tradable market plus ${CURRENT_CRYPTO_PRODUCT_COUNT} exact product records inside the 30-day freshness window. Crypto-native products rank before multi-asset CFD products, then editorial score breaks ties. The ${CRYPTO_MARKET_WATCH.length} excluded firms remain visible below as evidence gaps rather than borrowing stale or forex-only prices and rules.`,
     sortDir: 'desc',
     snapshotProductCount: CURRENT_CRYPTO_PRODUCT_COUNT,
     rank: firms => firms
@@ -1018,6 +1018,22 @@ export const LANDINGS: Landing[] = [
         title: 'What do leverage, commission, consistency, and payout rules do?',
         body: 'A large symbol list does not offset low leverage, percentage commission, a moving loss floor, or a consistency gate. Compare those rules on the exact product rather than importing a firm-wide headline.',
       },
+      {
+        title: 'What is a crypto prop firm?',
+        body: 'A crypto prop firm sells an evaluation, or instant funding, in which you trade crypto instruments such as BTCUSD or ETHUSD on a simulated account and are paid a share of the profits once you meet its rules. Some firms offer dedicated crypto accounts; most listed here are multi-asset CFD firms whose products include a few crypto pairs alongside forex, indices and metals.',
+      },
+      {
+        title: 'Which crypto pairs can I trade?',
+        body: 'It depends on the firm and the product, and the lists are often short. On the dates captured here, the FundingPips 1 Step Flex page listed BTCUSD and ETHUSD, and Maven listed BTCEUR, BTCUSD, ETHBTC and ETHUSD. If you need altcoins, confirm the symbol in the platform specification before you pay.',
+      },
+      {
+        title: 'What is the cheapest crypto prop firm?',
+        body: 'Compare the entry price shown on each card above for the exact crypto-mapped product, not a firm-wide starting price for a forex-only plan. A low entry fee can come with 1:1 or 1:2 crypto leverage, percentage commission or a one-lot-per-click limit, so judge the cost together with the rules. For entry prices across every product, see the cheapest prop firms ranking.',
+      },
+      {
+        title: 'Are there crypto futures prop firms?',
+        body: 'The firms currently ranked here offer crypto through multi-asset CFD products on simulated accounts, not exchange-listed crypto futures. Futures prop firms trade CME-style contracts with their own product rules; see the futures prop firm ranking and check whether a specific crypto contract is enabled before buying.',
+      },
     ],
     evidenceGaps: CRYPTO_MARKET_WATCH.map(item => ({
       firmName: item.firmName,
@@ -1029,7 +1045,7 @@ export const LANDINGS: Landing[] = [
       sourceUrl: item.sourceUrl,
       sourceCapturedAt: item.sourceCapturedAt,
     })),
-    lastReviewed: '2026-08-27',
+    lastReviewed: '2026-10-14',
   },
   {
     slug: 'best-swing-trading-prop-firms',
