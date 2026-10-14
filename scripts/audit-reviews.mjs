@@ -329,7 +329,6 @@ const REVIEW_TO_FIRM = {
   'my-funded-futures': 'my-funded-futures',
   'ofp-funding-review': 'ofp-funding',
   'take-profit-trader-review': 'take-profit-trader',
-  'the-funded-trader-review': 'the-funded-trader',
   'topstep-review': 'topstep',
   'tradeday-review': 'tradeday',
   'tradeify-review': 'tradeify',
@@ -6200,7 +6199,7 @@ function checkUkLandingCluster() {
       'What should match before checkout and KYC?',
       'How should USD and EUR fees be compared in GBP?',
       'Does the policy cover every product and platform forever?',
-      "lastReviewed: '2026-08-17'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`UK landing is missing "${fragment}"`)
@@ -6217,14 +6216,14 @@ function checkUkLandingCluster() {
         rows.push(`UK landing restored aggregate or unsupported logic: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('UK landing must keep exactly 4 decision-guide questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 8) {
+      rows.push('UK landing must keep exactly 8 decision-guide questions')
     }
   }
 
-  const expectedTitle = 'Best Prop Firms for UK Traders (2026): 8 Checked'
+  const expectedTitle = 'Best Prop Firms UK 2026: 8 Prop Trading Firms Checked'
   const expectedDescription =
-    'Compare 8 prop firms with current first-party UK-access policies across 39 product paths, plus FCA checks, fees, rules, reviews, and dated sources.'
+    'Compare 8 prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.'
   if (expectedTitle.length > 54) rows.push('UK meta title leaves no room for the root suffix')
   if (expectedDescription.length < 120 || expectedDescription.length > 160) {
     rows.push('UK meta description must be between 120 and 160 characters')
@@ -6467,13 +6466,13 @@ function checkUsLandingConsolidation() {
     rows.push('best-prop-firms-in-us landing config is missing')
   } else {
     const expectedDescription =
-      `Compare ${expected.size} policy-checked prop firms for U.S. traders across ${expectedProductCount} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`
+      `Best prop firms for US traders in 2026: ${expected.size} prop trading firms open to USA residents across ${expectedProductCount} exact futures and CFD products, with CFTC/NFA checks.`
     if (expectedDescription.length < 120 || expectedDescription.length > 160) {
       rows.push('U.S. landing meta description must be between 120 and 160 characters')
     }
     const requiredFragments = [
-      'h1: `Best Prop Firms for U.S. Traders (2026): ${CURRENT_US_FIRM_COUNT} Policy-Checked`',
-      'metaTitle: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Checked`',
+      'h1: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Prop Trading Firms in the USA`',
+      'metaTitle: `Best Prop Firms USA 2026: ${CURRENT_US_FIRM_COUNT} Prop Trading Firms Checked`',
       'CURRENT_US_PRODUCT_COUNT} exact futures and CFD products',
       'US_ACCESS_EVIDENCE_BY_SLUG.get(slug)',
       'usProductsForEvidence(evidence)',
@@ -6502,8 +6501,8 @@ function checkUsLandingConsolidation() {
         rows.push(`U.S. landing restored unsafe eligibility logic: "${staleClaim}"`)
       }
     }
-    if ((landingBlock.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('U.S. landing must keep exactly 4 decision-guide questions')
+    if ((landingBlock.match(/title:\s*'/g) ?? []).length !== 7) {
+      rows.push('U.S. landing must keep exactly 7 decision-guide questions')
     }
   }
   for (const fragment of [
@@ -7153,7 +7152,7 @@ function checkCryptoLandingCluster() {
       'Does weekend or 24/7 access actually apply?',
       'What do leverage, commission, consistency, and payout rules do?',
       'evidenceGaps: CRYPTO_MARKET_WATCH.map',
-      "lastReviewed: '2026-08-27'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`crypto landing is missing "${fragment}"`)
@@ -7169,13 +7168,13 @@ function checkCryptoLandingCluster() {
         rows.push(`crypto landing restored aggregate or payment-based logic: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('crypto landing must keep exactly 4 product-level decision questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 8) {
+      rows.push('crypto landing must keep exactly 8 product-level decision questions')
     }
   }
 
   const expectedDescription =
-    `Compare ${ranked.length} crypto prop firms across ${mappedProducts.size} mapped products using current rules, market-specific evidence, source dates, and reviews.`
+    `Best crypto prop firms for 2026: ${ranked.length} crypto prop trading firms compared on BTC/ETH access, leverage, commission, entry price and payout rules.`
   if (expectedDescription.length < 120 || expectedDescription.length > 160) {
     rows.push('crypto landing meta description must be between 120 and 160 characters')
   }

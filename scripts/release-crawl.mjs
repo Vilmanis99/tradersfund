@@ -2884,7 +2884,7 @@ if (ukLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Compare ${expectedUkFirms.length} prop firms with current first-party UK-access policies across ${expectedUkProductCount} product paths, plus FCA checks, fees, rules, reviews, and dated sources.`
+    `Compare ${expectedUkFirms.length} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`
   const renderedDescription = decodeHtml(firstMatch(
     ukLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -2897,8 +2897,8 @@ if (ukLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Prop Firms for UK Traders (2026): ${expectedUkFirms.length} Checked | TFH`,
-    `Best Prop Firms for UK Traders (2026): ${expectedUkFirms.length} Policy-Checked`,
+    `Best Prop Firms UK 2026: ${expectedUkFirms.length} Prop Trading Firms Checked | TFH`,
+    `Best Prop Firms UK (2026): ${expectedUkFirms.length} Prop Trading Firms That Accept UK Traders`,
     `${expectedUkFirms.length} policy-checked firms across ${expectedUkProductCount} mapped products`,
     'Policy-supported UK access is not an FCA status.',
     'What UK traders should verify',
@@ -3033,7 +3033,7 @@ if (usLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Compare ${expectedUsFirms.length} policy-checked prop firms for U.S. traders across ${expectedUsProductCount} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`
+    `Best prop firms for US traders in 2026: ${expectedUsFirms.length} prop trading firms open to USA residents across ${expectedUsProductCount} exact futures and CFD products, with CFTC/NFA checks.`
   const renderedDescription = decodeHtml(firstMatch(
     usLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3046,8 +3046,8 @@ if (usLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Prop Firms for US Traders (2026): ${expectedUsFirms.length} Checked | TFH`,
-    `Best Prop Firms for U.S. Traders (2026): ${expectedUsFirms.length} Policy-Checked`,
+    `Best Prop Firms USA 2026: ${expectedUsFirms.length} Prop Trading Firms Checked | TFH`,
+    `Best Prop Firms for US Traders (2026): ${expectedUsFirms.length} Prop Trading Firms in the USA`,
     `${expectedUsFirms.length} policy-checked firms across ${expectedUsProductCount} mapped products`,
     'U.S. access is not a regulatory badge.',
     'What U.S. traders should verify',
@@ -3582,7 +3582,7 @@ if (cryptoLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Crypto Prop Firms (2026): ${expectedCryptoFirms.length} Verified | TFH`,
+    `Best Crypto Prop Firms 2026: ${expectedCryptoFirms.length} Firms Compared | TFH`,
     `${expectedCryptoFirms.length} evidence-backed firms across ${expectedCryptoProductCount} mapped products`,
     `Not ranked yet: ${cryptoMarketEvidence.watch.length} evidence gaps`,
     'What crypto traders should verify',

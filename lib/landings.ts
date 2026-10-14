@@ -552,12 +552,12 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-prop-firms-in-uk',
-    h1: `Best Prop Firms for UK Traders (2026): ${CURRENT_UK_FIRM_COUNT} Policy-Checked`,
-    metaTitle: `Best Prop Firms for UK Traders (2026): ${CURRENT_UK_FIRM_COUNT} Checked`,
+    h1: `Best Prop Firms UK (2026): ${CURRENT_UK_FIRM_COUNT} Prop Trading Firms That Accept UK Traders`,
+    metaTitle: `Best Prop Firms UK 2026: ${CURRENT_UK_FIRM_COUNT} Prop Trading Firms Checked`,
     metaDescription:
-      `Compare ${CURRENT_UK_FIRM_COUNT} prop firms with current first-party UK-access policies across ${CURRENT_UK_PRODUCT_COUNT} product paths, plus FCA checks, fees, rules, reviews, and dated sources.`,
+      `Compare ${CURRENT_UK_FIRM_COUNT} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`,
     intro:
-      `These ${CURRENT_UK_FIRM_COUNT} firms publish a current global or country-based service policy that does not restrict United Kingdom residents or nationals, and all ${CURRENT_UK_PRODUCT_COUNT} mapped product rows remain inside the 30-day freshness window. That is policy-supported access, not a completed UK checkout, KYC approval, payout test, legal opinion, or FCA-authorisation finding. Editorial score sets the order; partnership status contributes 0 points.`,
+      `Looking for a prop firm in the UK? These ${CURRENT_UK_FIRM_COUNT} prop trading firms currently publish a first-party country policy that does not exclude UK residents or nationals, across ${CURRENT_UK_PRODUCT_COUNT} current product paths. None of them is an FCA-authorised broker for funded accounts: most UK-facing prop firms sell evaluations and pay a share of simulated-account profits, so check FCA status, pricing currency, and the payout route yourself before paying. The table ranks by editorial score; affiliate status adds 0 points. Policy access is not a completed UK checkout, KYC approval, payout test, or legal opinion.`,
     sortDir: 'desc',
     rank: firms => firms
       .flatMap(firm => {
@@ -600,21 +600,37 @@ export const LANDINGS: Landing[] = [
         body: 'Keep each list price in its published currency, then use the live card or payment-provider GBP rate and disclosed fees at checkout. A stored conversion would age independently of the challenge price and can reverse a close comparison.',
       },
       {
+        title: 'Are there FCA-regulated prop firms in the UK?',
+        body: 'Retail evaluation-style prop firms generally sell a challenge and pay a profit share from a simulated or firm-controlled account, which is a different business from an FCA-authorised broker, and this page does not rank on FCA status. A London history, UK company number, payment agent, or .uk domain (Alpha Capital, City Traders Imperium and FXIFY each have a UK link) is not FCA authorisation. Search the firm and its payment entity on the FCA Register and Warning List before paying.',
+      },
+      {
+        title: 'Do UK traders pay tax on prop firm payouts?',
+        body: 'Usually yes. Payouts are commonly treated as trading or miscellaneous income rather than capital gains, and the spread-betting exemption does not obviously apply to a profit share. GOV.UK says gross trading income over £1,000 in a tax year means registering for Self Assessment by 5 October after that tax year; you can claim either the £1,000 trading allowance or actual expenses such as challenge fees, not both. Keep every fee and payout record and confirm your position with a UK accountant.',
+      },
+      {
+        title: 'Can I pay and get paid in GBP?',
+        body: 'Most firms here price challenges in USD or EUR (FTMO and Bright Funded checkouts are in EUR), so a UK card is charged after conversion and may add a non-sterling fee. Payouts are typically sent by bank transfer, crypto or a payments provider; check the receiving currency and fees for your chosen route before your first payout request.',
+      },
+      {
+        title: 'Which prop firms are based in the UK?',
+        body: 'Alpha Capital uses a .uk domain and UK company presence, City Traders Imperium has a London history, and FXIFY lists a UK-registered payment agent or office address, but none of those links makes the funded account a UK-regulated product. Rank on rules, payout record, cost, and platform fit first; location is secondary.',
+      },
+      {
         title: 'Does the policy cover every product and platform forever?',
         body: `No. This snapshot maps ${CURRENT_UK_PRODUCT_COUNT} exact products while their records and the country sources remain current. Platforms, payment providers, KYC vendors, sanctions screening, and product availability can change before the 30-day source gate expires.`,
       },
     ],
     snapshotProductCount: CURRENT_UK_PRODUCT_COUNT,
-    lastReviewed: '2026-08-17',
+    lastReviewed: '2026-10-14',
   },
   {
     slug: 'best-prop-firms-in-us',
-    h1: `Best Prop Firms for U.S. Traders (2026): ${CURRENT_US_FIRM_COUNT} Policy-Checked`,
-    metaTitle: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Checked`,
+    h1: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Prop Trading Firms in the USA`,
+    metaTitle: `Best Prop Firms USA 2026: ${CURRENT_US_FIRM_COUNT} Prop Trading Firms Checked`,
     metaDescription:
-      `Compare ${CURRENT_US_FIRM_COUNT} policy-checked prop firms for U.S. traders across ${CURRENT_US_PRODUCT_COUNT} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`,
+      `Best prop firms for US traders in 2026: ${CURRENT_US_FIRM_COUNT} prop trading firms open to USA residents across ${CURRENT_US_PRODUCT_COUNT} exact futures and CFD products, with CFTC/NFA checks.`,
     intro:
-      `These ${CURRENT_US_FIRM_COUNT} firms publish current first-party evidence supporting ${CURRENT_US_PRODUCT_COUNT} explicitly mapped product paths for U.S. residents. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
+      `Looking for a prop firm that accepts US traders? Most forex and CFD prop firms exclude U.S. residents, so this list only includes the ${CURRENT_US_FIRM_COUNT} firms that publish current first-party evidence supporting ${CURRENT_US_PRODUCT_COUNT} explicitly mapped product paths for U.S. residents, mostly futures evaluations plus a small number of Match-Trader CFD paths. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
     sortDir: 'desc',
     rank: firms => firms
       .flatMap(firm => {
@@ -647,6 +663,18 @@ export const LANDINGS: Landing[] = [
     methodology:
       'A firm appears only when a first-party U.S.-access policy was captured within 30 days and every explicitly mapped product record is also current. A missing restriction is not enough. Editorial score sets the order; affiliate status, coupon size, product count, asset class and platform add 0 points. Access evidence does not establish CFTC or NFA registration, legal status, payout approval, or availability in every state.',
     decisionGuide: [
+      {
+        title: 'Are forex prop firms legal in the US?',
+        body: 'For live retail forex, the NFA says only certain regulated entities, including CFTC-registered FCMs and RFEDs that are NFA members, may act as the counterparty to off-exchange forex trades with U.S. retail customers. Evaluation-style prop firms sell simulated accounts instead, which is why most CFD-based firms exclude U.S. residents. This page lists firms that say they accept U.S. residents; it is not a legal opinion on any firm.',
+      },
+      {
+        title: 'Can US traders trade forex with a prop firm?',
+        body: 'Yes, but the options are narrower. FundedNext publishes a U.S. CFD route on Match-Trader for its mapped Stellar evaluations. Futures firms trade exchange-listed contracts, which can include currency futures where the product lists them. Check the product\'s tradable-instrument list before buying.',
+      },
+      {
+        title: 'Why are most US-friendly prop firms futures firms?',
+        body: 'Futures trade on regulated exchanges, so futures prop firms can offer U.S. residents simulated evaluations on exchange-listed contracts without the forex and CFD counterparty limits above. Each futures firm still sets its own data fees, activation fees, drawdown and payout rules, so compare the exact product.',
+      },
       {
         title: 'Does access mean the firm is CFTC-registered?',
         body: 'No. The CFTC says certain derivatives businesses and individuals must register and recommends checking NFA BASIC. A firm’s U.S.-access page proves only what the firm currently says it offers.',
@@ -957,12 +985,12 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-crypto-prop-firms',
-    h1: `Best Crypto Prop Firms (2026): ${CURRENT_CRYPTO_FIRM_COUNT} Verified`,
-    metaTitle: `Best Crypto Prop Firms (2026): ${CURRENT_CRYPTO_FIRM_COUNT} Verified`,
+    h1: `Best Crypto Prop Firms (2026): ${CURRENT_CRYPTO_FIRM_COUNT} Crypto Prop Trading Firms Compared`,
+    metaTitle: `Best Crypto Prop Firms 2026: ${CURRENT_CRYPTO_FIRM_COUNT} Firms Compared`,
     metaDescription:
-      `Compare ${CURRENT_CRYPTO_FIRM_COUNT} crypto prop firms across ${CURRENT_CRYPTO_PRODUCT_COUNT} mapped products using current rules, market-specific evidence, source dates, and reviews.`,
+      `Best crypto prop firms for 2026: ${CURRENT_CRYPTO_FIRM_COUNT} crypto prop trading firms compared on BTC/ETH access, leverage, commission, entry price and payout rules.`,
     intro:
-      `Trading crypto is not the same as paying or withdrawing in crypto. These ${CURRENT_CRYPTO_FIRM_COUNT} firms have a current first-party source that explicitly names crypto as a tradable market plus ${CURRENT_CRYPTO_PRODUCT_COUNT} exact product records inside the 30-day freshness window. Crypto-native products rank before multi-asset CFD products, then editorial score breaks ties. The ${CRYPTO_MARKET_WATCH.length} excluded firms remain visible below as evidence gaps rather than borrowing stale or forex-only prices and rules.`,
+      `Looking for the best crypto prop firm? Start with one question: can you actually trade BTC and ETH on the product you buy? Paying or withdrawing in crypto does not count. These ${CURRENT_CRYPTO_FIRM_COUNT} firms have a current first-party source that explicitly names crypto as a tradable market plus ${CURRENT_CRYPTO_PRODUCT_COUNT} exact product records inside the 30-day freshness window. Crypto-native products rank before multi-asset CFD products, then editorial score breaks ties. The ${CRYPTO_MARKET_WATCH.length} excluded firms remain visible below as evidence gaps rather than borrowing stale or forex-only prices and rules.`,
     sortDir: 'desc',
     snapshotProductCount: CURRENT_CRYPTO_PRODUCT_COUNT,
     rank: firms => firms
@@ -1026,6 +1054,22 @@ export const LANDINGS: Landing[] = [
         title: 'What do leverage, commission, consistency, and payout rules do?',
         body: 'A large symbol list does not offset low leverage, percentage commission, a moving loss floor, or a consistency gate. Compare those rules on the exact product rather than importing a firm-wide headline.',
       },
+      {
+        title: 'What is a crypto prop firm?',
+        body: 'A crypto prop firm sells an evaluation, or instant funding, in which you trade crypto instruments such as BTCUSD or ETHUSD on a simulated account and are paid a share of the profits once you meet its rules. Some firms offer dedicated crypto accounts; most listed here are multi-asset CFD firms whose products include a few crypto pairs alongside forex, indices and metals.',
+      },
+      {
+        title: 'Which crypto pairs can I trade?',
+        body: 'It depends on the firm and the product, and the lists are often short. On the dates captured here, the FundingPips 1 Step Flex page listed BTCUSD and ETHUSD, and Maven listed BTCEUR, BTCUSD, ETHBTC and ETHUSD. If you need altcoins, confirm the symbol in the platform specification before you pay.',
+      },
+      {
+        title: 'What is the cheapest crypto prop firm?',
+        body: 'Compare the entry price shown on each card above for the exact crypto-mapped product, not a firm-wide starting price for a forex-only plan. A low entry fee can come with 1:1 or 1:2 crypto leverage, percentage commission or a one-lot-per-click limit, so judge the cost together with the rules. For entry prices across every product, see the cheapest prop firms ranking.',
+      },
+      {
+        title: 'Are there crypto futures prop firms?',
+        body: 'The firms currently ranked here offer crypto through multi-asset CFD products on simulated accounts, not exchange-listed crypto futures. Futures prop firms trade CME-style contracts with their own product rules; see the futures prop firm ranking and check whether a specific crypto contract is enabled before buying.',
+      },
     ],
     evidenceGaps: CRYPTO_MARKET_WATCH.map(item => ({
       firmName: item.firmName,
@@ -1037,7 +1081,7 @@ export const LANDINGS: Landing[] = [
       sourceUrl: item.sourceUrl,
       sourceCapturedAt: item.sourceCapturedAt,
     })),
-    lastReviewed: '2026-08-27',
+    lastReviewed: '2026-10-14',
   },
   {
     slug: 'best-swing-trading-prop-firms',
@@ -1114,12 +1158,12 @@ function withCurrentAccessCopy(
   if (landing.slug === 'best-prop-firms-in-uk') {
     return {
       ...landing,
-      h1: `Best Prop Firms for UK Traders (2026): ${snapshot.firmCount} Policy-Checked`,
-      metaTitle: `Best Prop Firms for UK Traders (2026): ${snapshot.firmCount} Checked`,
+      h1: `Best Prop Firms UK (2026): ${snapshot.firmCount} Prop Trading Firms That Accept UK Traders`,
+      metaTitle: `Best Prop Firms UK 2026: ${snapshot.firmCount} Prop Trading Firms Checked`,
       metaDescription:
-        `Compare ${snapshot.firmCount} prop firms with current first-party UK-access policies across ${snapshot.productCount} product paths, plus FCA checks, fees, rules, reviews, and dated sources.`,
+        `Compare ${snapshot.firmCount} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`,
       intro:
-        `These ${snapshot.firmCount} firms publish a current global or country-based service policy that does not restrict United Kingdom residents or nationals, and all ${snapshot.productCount} mapped product rows remain inside the 30-day freshness window. That is policy-supported access, not a completed UK checkout, KYC approval, payout test, legal opinion, or FCA-authorisation finding. Editorial score sets the order; partnership status contributes 0 points.`,
+        `Looking for a prop firm in the UK? These ${snapshot.firmCount} prop trading firms currently publish a first-party country policy that does not exclude UK residents or nationals, across ${snapshot.productCount} current product paths. None of them is an FCA-authorised broker for funded accounts: most UK-facing prop firms sell evaluations and pay a share of simulated-account profits, so check FCA status, pricing currency, and the payout route yourself before paying. The table ranks by editorial score; affiliate status adds 0 points. Policy access is not a completed UK checkout, KYC approval, payout test, or legal opinion.`,
       decisionGuide: landing.decisionGuide?.map(item => item.title === 'Does the policy cover every product and platform forever?'
         ? {
             ...item,
@@ -1132,12 +1176,12 @@ function withCurrentAccessCopy(
 
   return {
     ...landing,
-    h1: `Best Prop Firms for U.S. Traders (2026): ${snapshot.firmCount} Policy-Checked`,
-    metaTitle: `Best Prop Firms for US Traders (2026): ${snapshot.firmCount} Checked`,
+    h1: `Best Prop Firms for US Traders (2026): ${snapshot.firmCount} Prop Trading Firms in the USA`,
+    metaTitle: `Best Prop Firms USA 2026: ${snapshot.firmCount} Prop Trading Firms Checked`,
     metaDescription:
-      `Compare ${snapshot.firmCount} policy-checked prop firms for U.S. traders across ${snapshot.productCount} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`,
+      `Best prop firms for US traders in 2026: ${snapshot.firmCount} prop trading firms open to USA residents across ${snapshot.productCount} exact futures and CFD products, with CFTC/NFA checks.`,
     intro:
-      `These ${snapshot.firmCount} firms publish current first-party evidence supporting ${snapshot.productCount} explicitly mapped product paths for U.S. residents. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
+      `Looking for a prop firm that accepts US traders? Most forex and CFD prop firms exclude U.S. residents, so this list only includes the ${snapshot.firmCount} firms that publish current first-party evidence supporting ${snapshot.productCount} explicitly mapped product paths for U.S. residents, mostly futures evaluations plus a small number of Match-Trader CFD paths. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
     decisionGuide: landing.decisionGuide?.map(item => item.title === 'Are futures and CFD paths interchangeable?'
       ? {
           ...item,
