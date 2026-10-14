@@ -1,0 +1,171 @@
+{
+  "firmSlug": "ftmo",
+  "officialDomain": "https://ftmo.com",
+  "capturedAt": "2026-10-14",
+  "pagesRead": [
+    "https://ftmo.com/en/2-step-challenge/",
+    "https://ftmo.com/en/1-step-challenge/",
+    "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+    "https://ftmo.com/faq/why-is-there-a-fee/",
+    "https://promo.ftmo.com/m26b-practice-trading-without-risk/"
+  ],
+  "accessNotes": "RECAPTURE 2026-10-14: Re-fetched the official 1-Step and 2-Step pages and parsed the embedded 'prices' data: 2-Step EUR 1,080/540/345/250/89 and 1-Step EUR 999/499/319/199/79 for 200K/100K/50K/25K/10K, identical to the 2026-09-29 capture; the 100K conditional promo (439 / 399) is still present and still excluded. The same data block also carries an 'instant' price ladder (2,999/1,499/749/339/169) with a start_now_url_instant link; an FTMO Instant product is NOT added because its rules were not captured. FAQ rule text carried forward. | Prior capture ftmo-2026-09-29.json notes carried forward where not superseded: Rechecked against FTMO's current first-party product, FAQ, fee, and pricing pages on 2026-09-29. Prices are list prices; conditional $100K promotions are not stored as the base price.",
+  "currencyNote": "FTMO publishes these CFD Challenge fees in EUR. Account sizes remain expressed as USD simulated capital; no FX conversion was applied.",
+  "products": [
+    {
+      "productName": "FTMO Challenge: 2-Step",
+      "productSlug": "ftmo-challenge-2-step",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 200000,
+          "priceEur": 1080,
+          "refundable": true,
+          "evidence": "Live https://ftmo.com/en/2-step-challenge/ on 2026-10-14, embedded \"prices\" data step_2: \"price\":\"1080\"; matches the $200,000 EUR-priced tier."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceEur": 540,
+          "refundable": true,
+          "evidence": "Live https://ftmo.com/en/2-step-challenge/ on 2026-10-14, embedded \"prices\" data step_2: \"price\":\"540\" with \"discounted\":true,\"discounted_price\":\"439\"; matches the $100,000 EUR-priced tier."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceEur": 345,
+          "refundable": true,
+          "evidence": "Live https://ftmo.com/en/2-step-challenge/ on 2026-10-14, embedded \"prices\" data step_2: \"price\":\"345\"; matches the $50,000 EUR-priced tier."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceEur": 250,
+          "refundable": true,
+          "evidence": "Live https://ftmo.com/en/2-step-challenge/ on 2026-10-14, embedded \"prices\" data step_2: \"price\":\"250\"; matches the $25,000 EUR-priced tier."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceEur": 89,
+          "refundable": true,
+          "evidence": "Live https://ftmo.com/en/2-step-challenge/ on 2026-10-14, embedded \"prices\" data step_2: \"price\":\"89\"; matches the $10,000 EUR-priced tier."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 4,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": "restricted",
+        "ea": "restricted",
+        "copyTrading": null
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+      "priceSourceUrl": "https://promo.ftmo.com/m26b-practice-trading-without-risk/",
+      "fieldEvidence": {
+        "phases": "FTMO describes the 2-Step as a two-phase Evaluation Process.",
+        "profitTargets": "Official objectives list 10% for the Challenge and 5% for Verification.",
+        "dailyLossPct": "Official objectives list a 5% Max Daily Loss.",
+        "maxLossPct": "Official objectives list a 10% Max Loss.",
+        "drawdownType": "Official comparison describes the 2-Step Max Loss as static.",
+        "minTradingDays": "Official objectives list 4 minimum trading days.",
+        "maxTradingDays": "Official objectives list an unlimited trading period.",
+        "profitSplitPct": "FTMO's withdrawal FAQ states 80% for 2-Step, increasing to 90% under Scaling Plan or Premium conditions.",
+        "payoutFirstDays": "FTMO's withdrawal FAQ allows a Reward claim on the 14th or any following day after the first trade.",
+        "payoutFrequency": "FTMO describes Rewards as requestable on demand after the minimum period.",
+        "refundable": "FTMO's fee FAQ states the 2-Step fee is refunded with the first Reward withdrawal.",
+        "news": "FTMO says selected-news restrictions apply to Standard FTMO Accounts, not the Evaluation Process.",
+        "weekendOvernight": "FTMO says overnight and weekend restrictions apply to Standard FTMO Accounts, not the Evaluation Process.",
+        "assetClass": "FTMO identifies these Challenges as CFD products."
+      }
+    },
+    {
+      "productName": "FTMO Challenge: 1-Step",
+      "productSlug": "ftmo-challenge-1-step",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 200000,
+          "priceEur": 999,
+          "refundable": false,
+          "evidence": "Live https://ftmo.com/en/1-step-challenge/ on 2026-10-14, embedded \"prices\" data step_1: \"price\":\"999\"; matches the $200,000 EUR-priced tier."
+        },
+        {
+          "sizeUsd": 100000,
+          "priceEur": 499,
+          "refundable": false,
+          "evidence": "Live https://ftmo.com/en/1-step-challenge/ on 2026-10-14, embedded \"prices\" data step_1: \"price\":\"499\" with \"discounted\":true,\"discounted_price\":\"399\"; matches the $100,000 EUR-priced tier."
+        },
+        {
+          "sizeUsd": 50000,
+          "priceEur": 319,
+          "refundable": false,
+          "evidence": "Live https://ftmo.com/en/1-step-challenge/ on 2026-10-14, embedded \"prices\" data step_1: \"price\":\"319\"; matches the $50,000 EUR-priced tier."
+        },
+        {
+          "sizeUsd": 25000,
+          "priceEur": 199,
+          "refundable": false,
+          "evidence": "Live https://ftmo.com/en/1-step-challenge/ on 2026-10-14, embedded \"prices\" data step_1: \"price\":\"199\"; matches the $25,000 EUR-priced tier."
+        },
+        {
+          "sizeUsd": 10000,
+          "priceEur": 79,
+          "refundable": false,
+          "evidence": "Live https://ftmo.com/en/1-step-challenge/ on 2026-10-14, embedded \"prices\" data step_1: \"price\":\"79\"; matches the $10,000 EUR-priced tier."
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 10,
+      "drawdownType": "eod-trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 50,
+      "profitSplitPct": 90,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": "restricted",
+        "ea": "restricted",
+        "copyTrading": null
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+      "priceSourceUrl": "https://promo.ftmo.com/new-1-step-challenge/",
+      "fieldEvidence": {
+        "phases": "FTMO describes the 1-Step as a single evaluation phase with no Verification phase.",
+        "profitTargets": "Official objectives list a 10% Profit Target.",
+        "dailyLossPct": "Official objectives list a 3% Max Daily Loss.",
+        "maxLossPct": "Official objectives list a 10% Max Loss.",
+        "drawdownType": "FTMO describes the 1-Step Max Loss as end-of-day trailing.",
+        "maxTradingDays": "Official objectives list an unlimited trading period.",
+        "consistencyRulePct": "Official objectives list a 50% Best Day Rule.",
+        "profitSplitPct": "Official objectives list 90% rewards.",
+        "payoutFirstDays": "FTMO's withdrawal FAQ allows a Reward claim on the 14th or any following day after the first trade.",
+        "payoutFrequency": "FTMO describes Rewards as requestable on demand after the minimum period.",
+        "refundable": "FTMO's fee FAQ states the 1-Step fee is not refunded after passing.",
+        "news": "FTMO says selected-news restrictions apply to Standard FTMO Accounts, not the Evaluation Process.",
+        "weekendOvernight": "FTMO says overnight and weekend restrictions apply to Standard FTMO Accounts, not the Evaluation Process.",
+        "assetClass": "FTMO identifies these Challenges as CFD products."
+      }
+    }
+  ],
+  "fieldsLeftNull": [
+    "copyTrading policy is not stated in the current first-party pages checked",
+    "1-Step minimum trading days is not listed as a required objective"
+  ]
+}
