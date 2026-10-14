@@ -93,8 +93,9 @@
     "firmName": "Bright Funded",
     "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
     "sourceCapturedAt": "2026-10-14",
-    "sourceQuote": "Crypto payments are processed in USDC (ERC-20)",
-    "evidenceRu": "Справка перечисляет вознаграждение в USDC по сети ERC-20 и банковский перевод в EUR. Это проверка способа выплаты, не торговых инструментов или доступности страны."
+    "sourceQuote": "Bank transfers are processed in Euros (€) Crypto payments are processed in USDC (ERC-20)",
+    "evidenceRu": "Справка перечисляет вознаграждение в USDC по сети ERC-20 и банковский перевод в EUR. Это проверка способа выплаты, не торговых инструментов или доступности страны.",
+    "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json"
   },
   "watch": [
     {
