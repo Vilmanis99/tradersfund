@@ -50,7 +50,6 @@ import {
   RUSSIAN_ROUTE_EDITORIAL_DATES,
   RUSSIAN_ONLY_ROUTES,
 } from '../lib/localizedRoutes.ts'
-import { russianDiasporaEvidence } from '../lib/russianDiasporaEvidence.ts'
 import {
   INDEXNOW_KEY,
   INDEXNOW_KEY_PATH,
@@ -789,12 +788,7 @@ for (const pair of russianRoutePairs) {
 }
 
 const activeRussianDeals = rankDeals(getAllDeals(), firmRecords)
-const activeRussianBrightDeals = activeRussianDeals.filter(deal => deal.firmSlug === 'bright-funded')
 const activeRussianFundedNextDeal = activeRussianDeals.find(deal => deal.firmSlug === 'fundednext')
-const activeRussianFundingPipsDeal = activeRussianDeals.find(deal => deal.firmSlug === 'fundingpips')
-const russianDealCampaign = deal => `ru-deals-${deal.firmSlug}-${deal.code?.toLowerCase() ?? deal.mechanism}`
-const russianDealMechanisms = ['checkout-code', 'link-applied', 'earned-coupon']
-  .filter(mechanism => activeRussianDeals.some(deal => deal.mechanism === mechanism)).join('+') || 'none'
 const russianFnFundingPipsCaptures = ['fundednext', 'fundingpips']
   .flatMap(slug => getChallengesByFirm(slug))
   .map(product => product.sourceCapturedAt)
@@ -836,7 +830,7 @@ const russianExpectations = new Map([
       '/ru/luchshie-prop-firmy',
       '/ru/prop-firmy-bez-chelendzha',
       '/ru/chto-takoe-prop-firma',
-      '/ru/rossiyskie-prop-kompanii',
+      '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie',
       'data-russian-home-guides="selected-three"',
       '/ru/kak-rabotayut-chellendzhi-prop-firm',
       '/ru/vyplaty-prop-firm',
@@ -845,46 +839,21 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/dlya-russkoyazychnykh-treyderov', {
-    title: 'Проп-фирмы для русскоязычных трейдеров за рубежом',
-    h1: 'Проп-фирмы для русскоязычных трейдеров: проверка доступа в разных странах',
+    title: 'Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ (проверено 10.2026)',
+    h1: 'Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ',
     markers: [
-      'data-russian-diaspora-guide="global-access"',
-      'data-russian-diaspora-hero-partners="fundednext-bright-funded"',
-      'data-russian-diaspora-hero-partner="fundednext"',
-      'data-russian-diaspora-hero-partner="bright-funded"',
-      'data-russian-diaspora-hero-disclosure="primary-affiliates"',
-      'data-russian-diaspora-bright-country-status=',
-      'data-russian-diaspora-regions="kazakhstan-uae"',
-      'data-russian-diaspora-regions="global-routes"',
-      'data-russian-diaspora-country-matrix="published-lists-not-approval"',
-      'data-russian-diaspora-country-count="11"',
-      `data-russian-diaspora-country-captured="${russianDiasporaEvidence.capturedAt}"`,
-      'data-russian-diaspora-country-boundary="absence-not-eligibility"',
-      'data-russian-diaspora-country-evidence="first-party"',
-      'data-russian-diaspora-country="kazakhstan"',
-      'data-russian-diaspora-country="belarus"',
-      'data-russian-diaspora-country="russia"',
-      'data-russian-diaspora-status="not-named"',
-      'data-russian-diaspora-status="restricted"',
-      'data-russian-diaspora-status="product-specific"',
-      'data-russian-diaspora-status="conflict"',
-      'Отсутствие страны в списке не подтверждает доступ',
-      'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds',
-      'https://fundednext.com/terms-of-service',
-      'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
-      'https://brightfunded.com/terms-and-conditions',
-      'data-russian-diaspora-region-funnel="global-partners"',
-      'data-russian-diaspora-decision-router="four-unresolved-fields"',
+      'data-russia-availability-hub="2026-10"',
+      'data-russia-availability-table="15-firms"',
       'data-russian-country-boundary="diaspora-not-access"',
-      'data-russian-affiliate-disclosure="diaspora-guide"',
-      '/go/fundednext?from=ru-diaspora-hero-fundednext',
-      '/go/bright-funded?from=ru-diaspora-hero-bright-funded',
-      '/go/fundednext?from=ru-diaspora-fundednext',
-      '/go/bright-funded?from=ru-diaspora-bright-funded',
-      '/ru/prop-firmy-bez-kyc',
-      '/ru/vyplaty-prop-firm',
-      '/ru/fundednext-vs-bright-funded',
-      '/ru/rossiyskie-prop-kompanii',
+      'data-russian-affiliate-disclosure="russia-hub"',
+      'data-russian-risk-disclaimer="russia-hub"',
+      'id="rossiyskie"',
+      '/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards',
+      '/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards',
+      '/ru/obzor-eratrade',
+      '/ru/obzor-proplive',
+      '/ru/obzor-kascapital',
+      '/ru/obzor-teamtraders',
     ],
   }],
   ['/ru/fundednext-vs-bright-funded', {
@@ -954,54 +923,29 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/promokody-prop-firm', {
-    title: 'Промокоды проп-фирм 2026: статус FundedNext и BrightFunded',
-    h1: 'Промокоды проп-фирм: FundedNext, BrightFunded и проверка скидок',
+    title: 'Промокоды проп-фирм — октябрь 2026: FundedNext, Upscale, BrightFunded',
+    h1: 'Промокоды проп-фирм — октябрь 2026',
     markers: [
-      'data-russian-deals="verified-offers"',
-      'data-russian-deals-guide="long-form-verified-offers"',
-      `data-russian-deal-count="${activeRussianDeals.length}"`,
-      'data-russian-offer-freshness="30-days"',
-      'data-russian-deals-featured-partners="fundednext-bright-funded"',
-      'data-russian-deals-article="checkout-intent-source-gated"',
-      'data-russian-country-boundary="deals-not-access"',
-      'data-russian-affiliate-disclosure="deals"',
-      `data-russian-deals-mechanisms="${russianDealMechanisms}"`,
-      'data-russian-deals-fail-closed="conditional-firm-claims"',
-      ...(activeRussianFundedNextDeal ? [
-        'data-russian-deals-featured-partner="fundednext"',
-        'data-russian-deals-fundednext="earned-not-public"',
-        'data-russian-deals-discount-table="currency-preserved"',
-        `/go/fundednext?from=${russianDealCampaign(activeRussianFundedNextDeal)}`,
-        'FundedNext промокод: почему публичной строки нет',
-      ] : []),
-      ...(activeRussianBrightDeals.length ? [
-        'data-russian-deals-featured-partner="bright-funded"',
-        'data-russian-deals-bright="current-product-codes"',
-        'data-russian-deals-bright-price-rows=',
-        'цен Bright Funded после своего кода',
-        ...activeRussianBrightDeals.map(deal => `/go/bright-funded?from=${russianDealCampaign(deal)}`),
-      ] : [
-        'data-russian-bright-deal-fallback="no-current-code"',
-        '/go/bright-funded?from=ru-deals-bright-no-current-code',
-      ]),
-      ...(activeRussianFundingPipsDeal ? [
-        'data-russian-deals-secondary="fundingpips"',
-        `/go/fundingpips?from=${russianDealCampaign(activeRussianFundingPipsDeal)}`,
-        'FundingPips промокод',
-      ] : []),
-      'data-russian-deals-decision="product-before-discount"',
-      'data-russian-deals-checkout="final-total-controls"',
-      'data-russian-deals-diaspora="language-not-residency"',
-      'data-russian-deals-expiry="thirty-day-fail-closed"',
-      ...activeRussianDeals.flatMap(deal => [
-        `/go/${deal.firmSlug}?from=${russianDealCampaign(deal)}-table`,
-        ...(deal.code ? [deal.code] : []),
-      ]),
-      '/ru/obzor-fundednext',
-      '/ru/obzor-bright-funded',
-      '/ru/obzor-fundingpips',
-      '/ru/fundednext-vs-bright-funded',
-      'Русскоязычный читатель — не обязательно резидент России',
+      'id="kody"',
+      'data-russian-affiliate-disclosure="promo-hub"',
+      'data-russian-risk-disclaimer="promo-hub"',
+      'ru-badge ru-badge--open',
+      'ru-badge ru-badge--closed',
+      '/go/fundednext?from=ru-promokody-prop-firm-card-1',
+      '/go/bright-funded?from=ru-promokody-prop-firm-card-3',
+    ],
+  }],
+  ['/ru/ftmo-dlya-rossiyan', {
+    title: 'FTMO для россиян: можно ли пройти челлендж из РФ и чем заменить',
+    h1: 'FTMO для россиян: можно ли пройти челлендж из РФ и чем заменить',
+    markers: [
+      'data-ftmo-russia="restricted"',
+      'data-ftmo-restricted="cis"',
+      'data-ftmo-alternatives="russia"',
+      'data-russian-affiliate-disclosure="ftmo-russia"',
+      'data-russian-risk-disclaimer="ftmo-russia"',
+      'https://ftmo.com/en/faq/who-can-join-ftmo/',
+      '/ru/obzor-ftmo',
     ],
   }],
   ['/ru/prop-firmy-bez-chelendzha', {
@@ -1450,26 +1394,6 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-challenge-guide-bright-funded',
     ],
   }],
-  ['/ru/rossiyskie-prop-kompanii', {
-    title: 'Российские проп-компании: 6 реальных примеров (2026)',
-    h1: 'Российские проп-компании в 2026 году: 6 проверяемых примеров',
-    markers: [
-      '6 российских проп-компаний: модели и выплаты по официальным источникам',
-      'data-russian-local-firms="verification-only"',
-      'data-russian-affiliate-opportunity="unactivated"',
-      'data-russian-country-boundary="local-to-global"',
-      'data-russian-local-global-funnel="partner-routes"',
-      'data-russian-affiliate-disclosure="local-research-primary-partners"',
-      '/go/fundednext?from=ru-local-research-fundednext',
-      '/go/bright-funded?from=ru-local-research-bright-funded',
-      '/ru/fundednext-vs-bright-funded',
-      'А-Лаб Групп',
-      'TeamTraders',
-      'data-russian-teamtraders-local-source="2026-10-01"',
-      'Отдельная проп-оферта сейчас недоступна',
-      'Trade System',
-    ],
-  }],
   ['/ru/obzor-proplive', {
     title: 'PropLive: обзор русской проп-компании (2026)',
     h1: 'PropLive: обзор 2026 — Мосбиржа, выплаты и условия',
@@ -1647,22 +1571,10 @@ for (const [path, expectation] of russianExpectations) {
     }
   }
   if (path === '/ru/dlya-russkoyazychnykh-treyderov') {
-    const status = firstMatch(probe.html, /data-russian-diaspora-country-source-status="([^"]+)"/)
-    const heading = `${status === 'dated' ? 'Что публикуют' : 'Что было опубликовано'} FundedNext и BrightFunded по 11 страновым профилям`
-    if (!['dated', 'recapture-required'].includes(status) || !pageText.includes(heading)) {
-      errors.push(`${path}: country-matrix heading must reflect its rendered source-age status`)
-    }
-    const brightWarning = probe.html.indexOf(`data-russian-diaspora-bright-country-status="${status}"`)
-    const firstBrightAction = probe.html.indexOf('href="/go/bright-funded?from=ru-diaspora-hero-bright-funded"')
-    const warningText = probe.html.slice(brightWarning, firstBrightAction)
-    const brightSources = russianDiasporaEvidence.firms.find(firm => firm.slug === 'bright-funded')?.sources ?? []
-    if (brightWarning < 0 || firstBrightAction <= brightWarning || brightSources.length !== 2
-      || brightSources.some(source => !warningText.includes(`href="${source.url}"`))
-      || !warningText.includes('Пакистан')) {
-      errors.push(`${path}: first-party Bright country-list conflict must appear before the hero affiliate action`)
-    }
-    if (status === 'recapture-required' && !warningText.includes('не подтверждает доступ сегодня')) {
-      errors.push(`${path}: expired Bright country warning must not imply current access`)
+    const disclosure = probe.html.indexOf('data-russian-affiliate-disclosure="russia-hub"')
+    const firstAction = probe.html.search(/href="\/go\//)
+    if (disclosure < 0 || (firstAction >= 0 && firstAction < disclosure)) {
+      errors.push(`${path}: affiliate disclosure must appear before the first sign-up action`)
     }
   }
   if (path === '/ru/fundednext-vs-bright-funded') {
@@ -1826,21 +1738,8 @@ if (russianArticleSchemaCount !== 24) {
 
 const russianDiasporaPage = pages.find(page =>
   new URL(page.productionUrl).pathname === '/ru/dlya-russkoyazychnykh-treyderov')
-const russianDiasporaDecisionRouter = firstMatch(
-  russianDiasporaPage?.html ?? '',
-  /<section\b[^>]*data-russian-diaspora-decision-router="four-unresolved-fields"[^>]*>([\s\S]*?)<\/section>/i,
-)
-if (russianDiasporaDecisionRouter.includes('/go/')) {
-  errors.push('/ru/dlya-russkoyazychnykh-treyderov: qualification router must remain non-commercial')
-}
-const russianDiasporaCountryMatrix = firstMatch(
-  russianDiasporaPage?.html ?? '',
-  /<section\b[^>]*data-russian-diaspora-country-matrix="published-lists-not-approval"[^>]*>([\s\S]*?)<\/section>/i,
-)
-if (!russianDiasporaCountryMatrix) {
-  errors.push('/ru/dlya-russkoyazychnykh-treyderov: first-party country matrix did not render')
-} else if (russianDiasporaCountryMatrix.includes('/go/')) {
-  errors.push('/ru/dlya-russkoyazychnykh-treyderov: country evidence must remain non-commercial')
+if (!/ru-badge ru-badge--(open|unclear|closed)/.test(russianDiasporaPage?.html ?? '')) {
+  errors.push('/ru/dlya-russkoyazychnykh-treyderov: Russia availability table with status badges did not render')
 }
 
 const russianBrightPage = pages.find(page =>
@@ -1955,12 +1854,8 @@ for (const [path, href] of [
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-verdict'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/bright-funded?from=ru-crypto-ranking-payout-alternative'],
-  ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-diaspora-hero-fundednext'],
-  ['/ru/dlya-russkoyazychnykh-treyderov', '/go/bright-funded?from=ru-diaspora-hero-bright-funded'],
-  ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-diaspora-fundednext'],
-  ['/ru/dlya-russkoyazychnykh-treyderov', '/go/bright-funded?from=ru-diaspora-bright-funded'],
-  ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-diaspora-regions-fundednext'],
-  ['/ru/dlya-russkoyazychnykh-treyderov', '/go/bright-funded?from=ru-diaspora-regions-bright-funded'],
+  ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards'],
+  ['/ru/dlya-russkoyazychnykh-treyderov', '/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards'],
   ['/ru/fundednext-vs-bright-funded', '/go/fundednext?from=ru-fn-vs-bright-fundednext'],
   ['/ru/fundednext-vs-bright-funded', '/go/bright-funded?from=ru-fn-vs-bright-bright-funded'],
   ['/ru/fundednext-vs-bright-funded', '/go/fundednext?from=ru-fn-vs-bright-instant'],
@@ -1968,13 +1863,6 @@ for (const [path, href] of [
   ['/ru/fundednext-vs-bright-funded', '/go/bright-funded?from=ru-fn-vs-bright-verdict-bright-funded'],
   ['/ru/fundednext-vs-fundingpips', '/go/fundednext?from=ru-comparison-fundednext-fundingpips'],
   ['/ru/fundednext-vs-fundingpips', '/go/fundednext?from=ru-comparison-fit-fundednext'],
-  ...activeRussianDeals.flatMap(deal => [
-    ['/ru/promokody-prop-firm', `/go/${deal.firmSlug}?from=${russianDealCampaign(deal)}`],
-    ['/ru/promokody-prop-firm', `/go/${deal.firmSlug}?from=${russianDealCampaign(deal)}-table`],
-  ]),
-  ...(!activeRussianBrightDeals.length && firmRecords.some(firm => firm.name === 'Bright Funded' && firm.affiliateUrl)
-    ? [['/ru/promokody-prop-firm', '/go/bright-funded?from=ru-deals-bright-no-current-code']]
-    : []),
   ['/ru/vyplaty-prop-firm', '/go/fundednext?from=ru-payouts-fundednext'],
   ['/ru/vyplaty-prop-firm', '/go/bright-funded?from=ru-payouts-bright-funded'],
   ['/ru/vyplaty-prop-firm', '/go/fundednext?from=ru-payouts-card-fundednext'],
@@ -1986,8 +1874,6 @@ for (const [path, href] of [
   ['/ru/prop-firmy-bez-chelendzha', '/go/fundednext?from=ru-instant-fundednext'],
   ['/ru/prop-firmy-bez-chelendzha', '/go/bright-funded?from=ru-instant-bright-alternative'],
   ['/ru/fundednext-vs-fundingpips', '/go/bright-funded?from=ru-comparison-bright-funded'],
-  ['/ru/rossiyskie-prop-kompanii', '/go/fundednext?from=ru-local-research-fundednext'],
-  ['/ru/rossiyskie-prop-kompanii', '/go/bright-funded?from=ru-local-research-bright-funded'],
   ['/ru/obzor-proplive', '/go/fundednext?from=ru-proplive-global-fundednext'],
   ['/ru/obzor-proplive', '/go/bright-funded?from=ru-proplive-global-bright-funded'],
   ['/ru/obzor-eratrade', '/go/fundednext?from=ru-eratrade-global-fundednext'],
@@ -2034,23 +1920,12 @@ for (const [path, href] of [
     errors.push(`${path}: controlled affiliate CTA is missing or mislabelled`)
   }
 }
-const russianLocalFirmPage = pages.find(page =>
-  new URL(page.productionUrl).pathname === '/ru/rossiyskie-prop-kompanii')
-// Permit only the explicitly separated global-partner handoff; local-firm
-// research itself must remain verification-only and every CTA must be tagged.
-const approvedLocalGlobalHandoff =
-  russianLocalFirmPage?.html.includes('data-russian-local-global-funnel="partner-routes"') &&
-  russianLocalFirmPage?.html.includes('from=ru-local-research-') &&
-  russianLocalFirmPage?.html.includes('rel="sponsored nofollow noopener"')
-if (russianLocalFirmPage?.html.includes('/go/') && !approvedLocalGlobalHandoff) {
-  errors.push('/ru/rossiyskie-prop-kompanii: unapproved local-firm affiliate action rendered')
-}
+// /ru/rossiyskie-prop-kompanii was merged into /ru/dlya-russkoyazychnykh-treyderov#rossiyskie (301 in next.config.ts).
 
 // Local-company intent hands off to the two explicitly declared primary
 // partners. FundingPips remains available in broader comparisons, but must not
 // be restored as an equal third card in these focused bridge sections.
 for (const [path, staleCampaign] of [
-  ['/ru/rossiyskie-prop-kompanii', 'ru-local-research-fundingpips'],
   ['/ru/obzor-proplive', 'ru-proplive-global-fundingpips'],
   ['/ru/obzor-eratrade', 'ru-eratrade-global-fundingpips'],
   ['/ru/obzor-kascapital', 'ru-kascapital-global-fundingpips'],

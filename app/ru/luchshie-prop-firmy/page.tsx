@@ -299,7 +299,7 @@ export default function RussianBestPropFirmsPage() {
             Если источник старше 30 дней, фирма переносится в блок ожидания повторной проверки, а не показывается как актуальная.
           </p>
           <p className="ru-source-line">Автор рейтинга: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Данные ранжирования обновляются после проверки источников.</p>
-          <p className="ru-source-line">Другой формат: <Link href="/ru/prop-firmy-bez-chelendzha">счета без челленджа</Link> · <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">список проп-компаний в России</Link>.</p>
+          <p className="ru-source-line">Другой формат: <Link href="/ru/prop-firmy-bez-chelendzha">счета без челленджа</Link> · <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">список проп-компаний в России</Link>. · <Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян</Link></p>
         </div>
       </section>
 

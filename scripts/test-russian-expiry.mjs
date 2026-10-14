@@ -249,7 +249,7 @@ try {
   assert(brightPayoutEvidence?.processing.some(item => item.includes('14 days') && item.includes('add-on') && item.includes('unresolved')), 'Bright payout evidence retains the first-party cycle conflict')
   assert.equal(brightPayoutEvidence?.sourceCapturedAt, brightPayoutEvidence?.sourceObservations.map(item => item.sourceCapturedAt).sort()[0], 'Bright payout date is the oldest cited observation')
   assert.equal(brightKycEvidence?.sourceCapturedAt, brightKycEvidence?.sourceObservations.map(item => item.sourceCapturedAt).sort()[0], 'Bright KYC date is the oldest cited observation')
-  const { RUSSIAN_ROUTE_EDITORIAL_DATES, russianRouteDateModified } = require(path.join(root, 'lib/localizedRoutes.ts'))
+  const { RUSSIAN_ROUTE_EDITORIAL_DATES } = require(path.join(root, 'lib/localizedRoutes.ts'))
   const EvidenceNotice = require(path.join(root, 'components/RussianEvidenceFreshnessNotice.tsx')).default
   clock = '2026-09-29T12:00:00Z'
   const originalTeamEvidence = JSON.stringify(teamTradersEvidence)

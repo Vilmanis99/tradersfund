@@ -217,7 +217,7 @@ export default function RussiaAvailabilityPage() {
               <h3>Crypto Fund Trader</h3>
               <p className="ru-muted">На Match-Trader ограничений по странам нет; на маршруте Bybit действуют правила Bybit, MT5 недоступен для США. Выплаты — USDT ERC20/TRC20, BTC, ETH или банк. Карта и PayPal из российских банков могут не пройти — заложите оплату криптой.</p>
               <div className="ru-actions">
-                <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="nofollow noopener" className="btn-primary">
                   Проверить Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" />
                 </RuGoLink>
               </div>

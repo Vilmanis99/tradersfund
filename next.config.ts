@@ -82,13 +82,14 @@ function legacyRedirects() {
       destination: 'https://tradersfundhub.com/:path*',
       permanent: true,
     },
+    // RU Week 1: the local-firms directory was merged into the Russia hub.
+    { source: '/ru/rossiyskie-prop-kompanii', destination: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie', statusCode: 301 },
     // WordPress-era affiliate links used a hyphen (/go-ftmo); the Next.js
     // route is a path segment (/go/ftmo). Every legacy link was hard-404ing —
     // including the "Visit X" CTA buttons still embedded in migrated MDX and
     // any external backlink pointing at them. Slug spellings differ between
     // the two schemes (go-e8markets vs the firms.json slug e8-markets), so
     // map them explicitly rather than with a wildcard.
-    { source: '/ru/rossiyskie-prop-kompanii', destination: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie', permanent: true },
     { source: '/go-ftmo', destination: '/go/ftmo', permanent: true },
     { source: '/go-fundingpips', destination: '/go/fundingpips', permanent: true },
     { source: '/go-fundednext', destination: '/go/fundednext', permanent: true },

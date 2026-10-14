@@ -4,6 +4,7 @@ import { ArrowRight, ShieldAlert } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
+import { goLinkRel } from '@/lib/russiaAvailability'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/ftmo-dlya-rossiyan'
@@ -170,7 +171,7 @@ export default function FtmoForRussiansPage() {
                         // TODO: заменить на /go/upscale после подтверждения партнёрской программы Upscale
                         <a href="https://upscale.trade/ru/" target="_blank" rel="nofollow noopener noreferrer" className="btn-primary">Открыть <ArrowRight size={14} aria-hidden="true" /></a>
                       ) : (
-                        <RuGoLink firm={alt.slug} href={`/go/${alt.slug}?from=ru-ftmo-dlya-rossiyan-table-${index + 1}`} rel="sponsored nofollow noopener" className="btn-primary">
+                        <RuGoLink firm={alt.slug} href={`/go/${alt.slug}?from=ru-ftmo-dlya-rossiyan-table-${index + 1}`} rel={goLinkRel(alt.slug)} className="btn-primary">
                           Проверить <ArrowRight size={14} aria-hidden="true" />
                         </RuGoLink>
                       )}

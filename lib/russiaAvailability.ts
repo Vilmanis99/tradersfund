@@ -55,3 +55,14 @@ export const RUSSIA_ALTERNATIVES = [
   { name: 'BrightFunded', href: '/ru/obzor-bright-funded', external: false, sponsored: false },
   { name: 'FundedNext CFD', href: '/ru/obzor-fundednext', external: false, sponsored: false },
 ] as const
+
+const AFFILIATE_SLUGS = new Set(
+  (firms as Array<{ name: string; affiliateUrl?: string | null }>)
+    .filter((firm) => Boolean(firm.affiliateUrl))
+    .map((firm) => outboundSlug(firm.name)),
+)
+
+/** rel for a /go/ link: sponsored only when the firm has a configured affiliate URL. */
+export function goLinkRel(slug: string): string {
+  return AFFILIATE_SLUGS.has(slug) ? 'sponsored nofollow noopener' : 'nofollow noopener'
+}

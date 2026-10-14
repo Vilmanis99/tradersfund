@@ -7,6 +7,7 @@ import { getAllDeals, type Deal } from '@/lib/deals'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { goLinkRel } from '@/lib/russiaAvailability'
 
 export const revalidate = 86400
 
@@ -162,7 +163,7 @@ export default function RussianPromoHubPage() {
                         Открыть {firm.name} <ArrowRight size={14} aria-hidden="true" />
                       </a>
                     ) : (
-                      <RuGoLink firm={firm.slug} href={`/go/${firm.slug}?from=${from}`} rel="sponsored nofollow noopener" className="btn-primary">
+                      <RuGoLink firm={firm.slug} href={`/go/${firm.slug}?from=${from}`} rel={goLinkRel(firm.slug)} className="btn-primary">
                         Перейти в {firm.name} <ArrowRight size={14} aria-hidden="true" />
                       </RuGoLink>
                     )}
