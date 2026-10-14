@@ -865,7 +865,7 @@ function checkFirmAggregates() {
   const firmsPath = path.join(ROOT, 'content/data/firms.json')
   if (!fs.existsSync(firmsPath)) return 0
   const firms = JSON.parse(fs.readFileSync(firmsPath, 'utf-8'))
-  const slugify = n => n.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  const slugify = n => n.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
 
   const FIELDS = [
     ['drawdownType', c => c.drawdownType],
@@ -949,7 +949,7 @@ function checkFirmCoverage() {
   const searchDescriptions = new Map()
   const firms = JSON.parse(fs.readFileSync(firmsPath, 'utf-8'))
   const slugify = name =>
-    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
 
   for (const firm of firms) {
     const firmSlug = slugify(firm.name)
@@ -1092,7 +1092,7 @@ function checkTrustAndCommercialSurface() {
     ['bright-funded', 'https://brightfunded.com/a/nIfOFrQBTUK-00O1dIjiSQ'],
   ])
   const slugify = name =>
-    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
   const officialRoot = hostname => {
     const parts = hostname.toLowerCase().replace(/^www\./, '').split('.').filter(Boolean)
     const suffix = parts.slice(-2).join('.')
@@ -1281,7 +1281,7 @@ function checkFirmAlternativeNeutrality() {
   const firms = JSON.parse(
     fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
   )
-  const slugify = name => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  const slugify = name => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
   const currentFirms = firms.filter(firm => !isSourceHoldFirm(slugify(firm.name)))
   const selectedNames = (current, candidates) =>
     rankCurrentFirmAlternatives(current, candidates).map(firm => firm.name)
@@ -1864,7 +1864,7 @@ function checkGlobalChallengeSurface() {
   const rows = []
   const firms = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'))
   const firmSlugs = new Set(firms.map(firm =>
-    firm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')))
+    firm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */))
   const challengeByFirm = new Map()
 
   for (const firmSlug of firmSlugs) {
@@ -2453,7 +2453,7 @@ function checkIndiaEvidence() {
   const firmsPath = path.join(ROOT, 'content/data/firms.json')
   const firms = JSON.parse(fs.readFileSync(firmsPath, 'utf-8'))
   const slugify = name =>
-    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
   const firmsBySlug = new Map(firms.map(firm => [slugify(firm.name), firm]))
   const requiredFields = ['country', 'checkout', 'kyc', 'payout', 'fees', 'currency']
   const statuses = new Set(['verified', 'partial', 'unknown'])
@@ -3464,7 +3464,7 @@ function checkIndiaChallengeSurface() {
       : ''
     if (
       !socialAlt
-      || !/FundingPips vs (Bright Funded|FXIFY)|Bright Funded vs FXIFY/.test(socialAlt)
+      || !/FundingPips vs (Bright ?Funded|FXIFY)|Bright ?Funded vs FXIFY/.test(socialAlt)
     ) {
       rows.push(`${routePath} social card alt text is missing the matchup`)
     }
@@ -6330,7 +6330,7 @@ function checkUsLandingConsolidation() {
   ])
   const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
   const slugify = name =>
-    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
 
   let capture = null
   if (!fs.existsSync(US_ACCESS_EVIDENCE_FILE)) {
@@ -7494,7 +7494,7 @@ function checkCheapestLandingCluster() {
     'USD-denominated products',
     'EUR-denominated products',
     'Maven Standard 3-Step',
-    'Bright Funded 2-Step Bright',
+    'BrightFunded 2-Step Bright',
   ]) {
     if (!crawler.includes(fragment)) {
       rows.push(`release crawl is missing cheapest-ranking safeguard: "${fragment}"`)
@@ -13291,7 +13291,7 @@ function checkRussianAcquisitionPilot() {
       '/go/bright-funded?from=ru-bright-funded-review-summary',
       'data-russian-bright-reviews="suppressed-not-zero"',
       'firm?.trustpilotRatingSuppressed',
-      'Почему у Bright Funded нет средней оценки Trustpilot?',
+      'Почему у BrightFunded нет средней оценки Trustpilot?',
       'href="/ru/otzyvy-prop-firm#review-checklist"',
       "data-russian-bright-country-access={countrySourcesCurrent ? 'published-list' : 'historical-list'}",
       "data-russian-bright-country-source-status={countrySourcesCurrent ? 'dated' : 'recapture-required'}",

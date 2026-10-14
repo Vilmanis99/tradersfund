@@ -61,15 +61,15 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Как BrightFunded выплачивает вознаграждение?',
-    a: 'Bright Funded публикует 2 метода: USDC в сети ERC-20 и банковский перевод в EUR. Первая заявка доступна через 30 дней после первой сделки на счёте после оценки. Та же справка обещает затем запрос каждые 14 дней, но одновременно называет 14-дневный цикл платным дополнением. Уточните базовый цикл выбранного заказа письменно; после заявки финансовая команда указывает до 1 дня на обработку.',
+    a: 'BrightFunded публикует 2 метода: USDC в сети ERC-20 и банковский перевод в EUR. Первая заявка доступна через 30 дней после первой сделки на счёте после оценки. Та же справка обещает затем запрос каждые 14 дней, но одновременно называет 14-дневный цикл платным дополнением. Уточните базовый цикл выбранного заказа письменно; после заявки финансовая команда указывает до 1 дня на обработку.',
   },
   {
     q: 'Берёт ли BrightFunded комиссию за выплату?',
-    a: 'Официальная справка говорит, что Bright Funded не удерживает собственную дополнительную комиссию за выплату. Однако сеть, банк, платёжный провайдер и конвертация могут взять отдельную комиссию; в справке приведён ориентир от $5 до $50 для некоторых случаев.',
+    a: 'Официальная справка говорит, что BrightFunded не удерживает собственную дополнительную комиссию за выплату. Однако сеть, банк, платёжный провайдер и конвертация могут взять отдельную комиссию; в справке приведён ориентир от $5 до $50 для некоторых случаев.',
   },
   {
     q: 'Можно ли вывести reward в криптовалюте без KYC?',
-    a: 'Нет. Криптомаршрут не отменяет KYC фирмы, проверку страны и правила провайдера. Bright Funded использует SumSub и последующую проверку службы безопасности, FundedNext требует подтверждение личности, а FundingPips отделяет KYC мастер-счёта от дополнительного подключения в Rise.',
+    a: 'Нет. Криптомаршрут не отменяет KYC фирмы, проверку страны и правила провайдера. BrightFunded использует SumSub и последующую проверку службы безопасности, FundedNext требует подтверждение личности, а FundingPips отделяет KYC мастер-счёта от дополнительного подключения в Rise.',
   },
   {
     q: 'Подходит ли криптовыплата резиденту России?',
@@ -248,7 +248,7 @@ export default function RussianPayoutsPage() {
           <h1>Выплаты проп-фирм: FundedNext, BrightFunded и вывод прибыли</h1>
           <p className="ru-lead">
             Сравнили {cards.length} процесса выплаты по {sourceCount} первичным страницам и {productCount} свежим продуктам.
-            FundedNext и Bright Funded — два главных маршрута; FundingPips оставлен как вторичная альтернатива.
+            FundedNext и BrightFunded — два главных маршрута; FundingPips оставлен как вторичная альтернатива.
             Срок первой заявки, обработка фирмой и зачисление на кошелёк или банковский счёт показаны отдельно.
           </p>
           <div className="ru-stats" aria-label="Охват payout-исследования">
@@ -265,7 +265,7 @@ export default function RussianPayoutsPage() {
           </div>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="payout-ranking">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            Мы можем получить комиссию после перехода через /go/ и регистрации. FundedNext и Bright Funded выделены
+            Мы можем получить комиссию после перехода через /go/ и регистрации. FundedNext и BrightFunded выделены
             коммерчески, но цифры взяты из первичных источников, а FundingPips сохранён как реальная третья альтернатива.
             Комиссия не меняет цену пользователя и не превращает метод выплаты в гарантию доступности.
           </div>
@@ -290,7 +290,7 @@ export default function RussianPayoutsPage() {
               Для выбора недостаточно сравнить один процент доли. Сначала проверьте, когда продукт допускает первую заявку,
               затем — точный токен, сеть или валюту банка, после этого — внутренний срок обработки и внешние комиссии.
               В зафиксированных справках FundedNext перечисляет {evidenceBySlug.get('fundednext')?.methods.length ?? 'несколько'} маршрутов,
-              Bright Funded — {evidenceBySlug.get('bright-funded')?.methods.length ?? 'несколько'}, а FundingPips — {evidenceBySlug.get('fundingpips')?.methods.length ?? 'несколько'}.
+              BrightFunded — {evidenceBySlug.get('bright-funded')?.methods.length ?? 'несколько'}, а FundingPips — {evidenceBySlug.get('fundingpips')?.methods.length ?? 'несколько'}.
               Сверьте даты источников и условия выбранного профиля: наличие маршрута в списке не гарантирует его доступность.
             </p>
             <div className="ru-table-wrap" data-russian-payout-matrix={cards.length}>
@@ -368,9 +368,9 @@ export default function RussianPayoutsPage() {
               когда один рекламный срок разбит на 4 проверяемых этапа.
             </p>
             <div className="ru-grid">
-              <article className="ru-card"><CalendarClock size={22} color="var(--accent-light)" aria-hidden="true" /><h3>1. Допуск</h3><p className="ru-muted">Продукт должен открыть дату выплаты: например, 5 рабочих дней у FundedNext 1-Step или 30 дней у стандартной схемы Bright Funded.</p></article>
+              <article className="ru-card"><CalendarClock size={22} color="var(--accent-light)" aria-hidden="true" /><h3>1. Допуск</h3><p className="ru-muted">Продукт должен открыть дату выплаты: например, 5 рабочих дней у FundedNext 1-Step или 30 дней у стандартной схемы BrightFunded.</p></article>
               <article className="ru-card"><ListChecks size={22} color="var(--accent-light)" aria-hidden="true" /><h3>2. Заявка</h3><p className="ru-muted">Нужно закрыть обязательные позиции, выполнить правила прибыльности и стабильности, пройти KYC и отправить заявку из кабинета.</p></article>
-              <article className="ru-card"><Clock3 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>3. Обработка фирмой</h3><p className="ru-muted">FundedNext публикует до 24 часов, Bright Funded — до 1 дня финансовой команды, FundingPips — 1–3 рабочих дня.</p></article>
+              <article className="ru-card"><Clock3 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>3. Обработка фирмой</h3><p className="ru-muted">FundedNext публикует до 24 часов, BrightFunded — до 1 дня финансовой команды, FundingPips — 1–3 рабочих дня.</p></article>
               <article className="ru-card"><Landmark size={22} color="var(--accent-light)" aria-hidden="true" /><h3>4. Получение</h3><p className="ru-muted">Кошелёк, сеть, Rise или банк могут добавить подтверждения, проверку соответствия, выходные и 1–2 рабочих дня получения.</p></article>
             </div>
           </div>
@@ -436,7 +436,7 @@ export default function RussianPayoutsPage() {
             <h2>Считайте чистую выплату, а не только долю прибыли</h2>
             <p>
               Валовое вознаграждение сначала уменьшается на долю фирмы, затем на комиссию фирмы за выплату, комиссию провайдера, комиссию сети
-              и валютную конвертацию. Bright Funded заявляет 0 собственной дополнительной комиссии, но приводит диапазон
+              и валютную конвертацию. BrightFunded заявляет 0 собственной дополнительной комиссии, но приводит диапазон
               внешних расходов $5–$50 в некоторых случаях. FundedNext возлагает комиссию платёжного шлюза на трейдера.
             </p>
             <div className="ru-notice">
@@ -446,7 +446,7 @@ export default function RussianPayoutsPage() {
               или USDC отправляется по дорогой сети.
             </div>
             <p>
-              Минимальная выплата тоже проверяется отдельно. Bright Funded пишет об отсутствии минимального вознаграждения и приводит
+              Минимальная выплата тоже проверяется отдельно. BrightFunded пишет об отсутствии минимального вознаграждения и приводит
               пример $0.01, но столь маленькая заявка может быть экономически бессмысленной после внешних расходов.
               Цель — не максимальное число запросов, а предсказуемая чистая сумма после всех 4 стадий.
             </p>
@@ -462,7 +462,7 @@ export default function RussianPayoutsPage() {
               документов, адреса, налогового резидентства и метода выплаты.
             </p>
             <div className="ru-grid">
-              <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент ЕС с EUR-счётом</h3><p className="ru-muted">Банковский перевод Bright Funded в EUR может уменьшить лишнюю валютную конвертацию, если KYC и банк поддерживают отправителя. Сравните банковскую комиссию с USDC ERC-20.</p></article>
+              <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент ЕС с EUR-счётом</h3><p className="ru-muted">Банковский перевод BrightFunded в EUR может уменьшить лишнюю валютную конвертацию, если KYC и банк поддерживают отправителя. Сравните банковскую комиссию с USDC ERC-20.</p></article>
               <article className="ru-card"><Bitcoin size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент страны с разрешённым криптомаршрутом</h3><p className="ru-muted">FundedNext даёт USDT в 2 сетях и USDC ERC20, но кошелёк, правило передачи данных и местная отчётность остаются обязанностью получателя.</p></article>
               <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">Криптовалюта не отменяет ограничение по стране. У FundedNext есть официальный конфликт формулировок, а банковский перевод и выплата на карту прямо ограничены для России.</p></article>
               <article className="ru-card"><ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Переезд или второе гражданство</h3><p className="ru-muted">Показывайте текущие документы и адрес, сообщайте фирме об изменении профиля и не выбирайте страну только ради оформления покупки. Решение KYC индивидуально.</p></article>
@@ -508,7 +508,7 @@ export default function RussianPayoutsPage() {
             <p>
               Мы пишем о локальных фирмах как об информационном мосте для читателя, который ищет «проп-компанию» на русском.
               Если публичной партнёрской программы нет, карточка не получает искусственный призыв к действию. Коммерческий маршрут остаётся
-              прозрачным: подходящий международный пользователь сравнивает FundedNext и Bright Funded, а локальную модель
+              прозрачным: подходящий международный пользователь сравнивает FundedNext и BrightFunded, а локальную модель
               выбирает только после проверки российского договора, рынка и юридического лица.
             </p>
             <div className="ru-actions">
@@ -546,7 +546,7 @@ export default function RussianPayoutsPage() {
             </ol>
             <div className="ru-notice">
               <CheckCircle2 size={16} aria-hidden="true" />{' '}
-              <strong>Если профиль подходит:</strong> откройте русский обзор FundedNext или Bright Funded, сравните конкретный
+              <strong>Если профиль подходит:</strong> откройте русский обзор FundedNext или BrightFunded, сравните конкретный
               продукт, затем переходите на официальную страницу оплаты через отмеченную партнёрскую ссылку.
             </div>
             <div className="ru-actions">

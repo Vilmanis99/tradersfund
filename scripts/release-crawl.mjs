@@ -1235,7 +1235,7 @@ const russianExpectations = new Map([
       'data-russian-bright-alternatives="failure-point-routing"',
       'data-russian-bright-comparison-products=',
       'data-russian-bright-comparison-prices=',
-      'С чем сравнить Bright Funded',
+      'С чем сравнить BrightFunded',
       '/ru/vyplaty-prop-firm',
       '/ru/prop-firmy-bez-kyc',
       '/authors/edris-derakhshi',
@@ -3775,7 +3775,7 @@ if (cheapestLandingProbe.status !== 200) {
     'What does a monthly minimum mean?',
     'Why can the smallest fee still be expensive?',
     'Maven Standard 3-Step',
-    'Bright Funded 2-Step Bright',
+    'BrightFunded 2-Step Bright',
   ]) {
     if (!cheapestText.includes(required)) {
       errors.push(`${cheapestLandingPath}: missing ${required}`)
@@ -5028,7 +5028,7 @@ if (indiaMatchupHubProbe.status === 200) {
 for (const matchup of [
   {
     slug: 'fundingpips-vs-bright-funded',
-    title: 'FundingPips vs Bright Funded',
+    title: 'FundingPips vs BrightFunded',
     products: 8,
     campaign: 'fundingpips-bright-funded',
     partners: ['fundingpips', 'bright-funded'],
@@ -5044,7 +5044,7 @@ for (const matchup of [
   },
   {
     slug: 'bright-funded-vs-fxify',
-    title: 'Bright Funded vs FXIFY',
+    title: 'BrightFunded vs FXIFY',
     products: 11,
     campaign: 'bright-funded-fxify',
     partners: ['bright-funded'],
