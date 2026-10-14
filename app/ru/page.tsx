@@ -89,7 +89,7 @@ export default function RussianHomePage() {
           <div className="ru-home-intro">
             <div>
               <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Для русскоязычных трейдеров по всему миру</div>
-              <h1>Проп-фирмы.<br /><span>Условия, которые можно сравнить.</span></h1>
+              <h1>Проп-фирмы и проп-компании 2026: сравнение условий</h1>
               <p className="ru-lead">Стоимость участия, допустимый убыток и правила выплат. Выберите параметры счёта и начните с программ, у которых есть датированные источники.</p>
               <Link href="/ru/luchshie-prop-firmy" className="ru-card-link">Посмотреть все фирмы <ArrowRight size={16} aria-hidden="true" /></Link>
             </div>

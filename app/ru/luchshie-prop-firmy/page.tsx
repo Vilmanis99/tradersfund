@@ -7,7 +7,8 @@ import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import { russianRankingDataDate } from '@/lib/russianRouteDates'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
@@ -245,6 +246,7 @@ export default function RussianBestPropFirmsPage() {
       ...faqPayoutEvidence.map(item => item.sourceCapturedAt)]
       .every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
 
+  const rankingUpdated = russianRouteDateModified(PATH, russianRankingDataDate().slice(0, 10))
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
     { name: 'Лучшие проп-фирмы 2026' },
@@ -263,6 +265,7 @@ export default function RussianBestPropFirmsPage() {
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
+    dateModified: rankingUpdated,
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
   }
 
@@ -298,7 +301,7 @@ export default function RussianBestPropFirmsPage() {
               : 'Программы без челленджа в данных сравнения сейчас ожидают повторной проверки.'}
             Если источник старше 30 дней, фирма переносится в блок ожидания повторной проверки, а не показывается как актуальная.
           </p>
-          <p className="ru-source-line">Автор рейтинга: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Данные ранжирования обновляются после проверки источников.</p>
+          <p className="ru-source-line" data-russian-ranking-updated={rankingUpdated}>Обновлено: {rankingUpdated} · Автор рейтинга: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Данные ранжирования обновляются после проверки источников.</p>
           <p className="ru-source-line">Другой формат: <Link href="/ru/prop-firmy-bez-chelendzha">счета без челленджа</Link> · <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">список проп-компаний в России</Link>. · <Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян</Link></p>
         </div>
       </section>

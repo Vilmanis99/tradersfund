@@ -15,9 +15,12 @@ import {
   LOCALIZED_ROUTE_PAIRS,
   RUSSIAN_ROUTE_EDITORIAL_DATES,
   RUSSIAN_ONLY_ROUTES,
+  RUSSIAN_PLANNED_ROUTE_EDITORIAL_DATES,
   getLocalizedRoutePair,
   russianRouteLastModified,
 } from '@/lib/localizedRoutes'
+import { publishedRussianPlannedRoutes } from '@/lib/russianPlannedRoutes'
+import { russianRankingDataDate } from '@/lib/russianRouteDates'
 import russianMarketEvidence from '@/content/data/russian-market-evidence.json'
 import russianBrightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import russianFundedNextReviewEvidence from '@/content/data/russian-fundednext-review-evidence.json'
@@ -308,7 +311,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   )
   const russianDataLastModified = new Map<string, Date>([
     ['/ru', challengeComparisonLastDate],
-    ['/ru/luchshie-prop-firmy', challengeComparisonLastDate],
+    ['/ru/luchshie-prop-firmy', new Date(`${russianRankingDataDate().slice(0, 10)}T00:00:00Z`)],
     ['/ru/obzor-fundednext', russianOldestChallengeLastModified('fundednext')],
     ['/ru/obzor-fundingpips', russianChallengeLastModified('fundingpips')],
     ['/ru/obzor-bright-funded', russianOldestChallengeLastModified('bright-funded')],
@@ -365,8 +368,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // A few localized routes are also represented by an MDX page (for example
   // the Russian no-challenge guide). Keep one sitemap entry per URL and use
   // the newest defensible last-modified value when two sources overlap.
+  // Planned RU routes (lib/localizedRoutes.ts) enter the sitemap only once
+  // their page file exists, so reserved slugs never publish an empty URL.
+  const russianPlannedRoutes: MetadataRoute.Sitemap = publishedRussianPlannedRoutes().flatMap(path => {
+    const editorialDate = RUSSIAN_PLANNED_ROUTE_EDITORIAL_DATES[path]
+    return editorialDate ? [{
+      url: `${BASE_URL}${path}`,
+      lastModified: new Date(`${editorialDate}T00:00:00Z`),
+      changeFrequency: 'monthly' as const,
+      priority: 0.78,
+    }] : []
+  })
+
   const uniqueRoutes = new Map<string, MetadataRoute.Sitemap[number]>()
-  for (const route of [...baseRoutes, ...russianRoutes, ...russianOnlyRoutes]) {
+  for (const route of [...baseRoutes, ...russianRoutes, ...russianOnlyRoutes, ...russianPlannedRoutes]) {
     const current = uniqueRoutes.get(route.url)
     if (!current) {
       uniqueRoutes.set(route.url, route)

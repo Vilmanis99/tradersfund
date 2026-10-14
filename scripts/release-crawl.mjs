@@ -804,7 +804,7 @@ const fundedNextInstantSourceUrl = getChallengesByFirm('fundednext')
 const russianExpectations = new Map([
   ['/ru', {
     title: 'Проп-фирмы для русскоязычных трейдеров: цены и правила',
-    h1: 'Проп-фирмы. Условия, которые можно сравнить.',
+    h1: 'Проп-фирмы и проп-компании 2026: сравнение условий',
     markers: [
       'data-russian-home-layout="focused"',
       'data-russian-home-diaspora-entry="trust"',

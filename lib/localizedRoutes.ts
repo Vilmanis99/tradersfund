@@ -33,6 +33,25 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/ftmo-dlya-rossiyan',
 ] as const
 
+/**
+ * Planned Russian routes: reserved slugs whose pages are not written yet.
+ * They are NOT in the sitemap or linked anywhere until app/ru/<slug>/page.tsx
+ * exists (see lib/russianPlannedRoutes.ts and docs/ru-writer-new-pages.md).
+ * To publish one, move it into RUSSIAN_ONLY_ROUTES and RUSSIAN_ROUTE_EDITORIAL_DATES.
+ */
+export const RUSSIAN_PLANNED_ROUTES = [
+  '/ru/prop-trejding',
+  '/ru/funded-account',
+] as const
+
+export type RussianPlannedRoutePath = (typeof RUSSIAN_PLANNED_ROUTES)[number]
+
+/** Editorial date per planned route; null until the writer publishes the page. */
+export const RUSSIAN_PLANNED_ROUTE_EDITORIAL_DATES: Record<RussianPlannedRoutePath, string | null> = {
+  '/ru/prop-trejding': null,
+  '/ru/funded-account': null,
+}
+
 export type RussianRoutePath =
   | (typeof LOCALIZED_ROUTE_PAIRS)[number]['ru']
   | (typeof RUSSIAN_ONLY_ROUTES)[number]
