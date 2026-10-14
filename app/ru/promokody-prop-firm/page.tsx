@@ -49,7 +49,8 @@ const hubFirms: HubFirm[] = [
   { slug: 'fundednext', name: 'FundedNext (CFD)', review: '/ru/obzor-fundednext', russiaNote: 'Россия не в списке ограничений CFD; FundedNext Futures Россию ограничивает.' },
   { slug: 'upscale', name: 'Upscale', review: null, russiaNote: 'Ограничений по странам не заявлено, KYC нет, выплаты в USDT.', external: 'https://upscale.trade/ru/' },
   { slug: 'bright-funded', name: 'BrightFunded', review: '/ru/obzor-bright-funded', russiaNote: 'Россия не в списке ограничений; исключены лица из санкционных списков.' },
-  { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', review: '/blog/crypto-fund-trader-review', russiaNote: 'Принимает на Match-Trader; карта и PayPal из банков РФ могут не пройти.' },
+  { slug: 'fundingpips', name: 'FundingPips', review: '/ru/obzor-fundingpips', russiaNote: 'Доступ для РФ не ясен (проверено 14.10.2026).' },
+  { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', review: '/blog/crypto-fund-trader-review', russiaNote: 'На Match-Trader ограничений по странам нет. Оплата: карта, PayPal, Apple/Google Pay, криптовалюта (по данным на 14.10.2026).' },
 ]
 
 const faqs: RussianFaqItem[] = [
@@ -135,12 +136,12 @@ export default function RussianPromoHubPage() {
                 <article className="ru-card" key={firm.slug} data-russian-promo-firm={firm.slug} data-russian-promo-status={deal ? 'verified' : 'pending'}>
                   <div className="ru-card-head">
                     <h3><BadgePercent size={18} aria-hidden="true" /> {firm.name}</h3>
-                    <span className="ru-badge ru-badge--open">Открыта для РФ · проверено {CHECKED}</span>
+                    {/* access badge rendered next to the CTA by RuGoLink (PR #6) */}
                   </div>
                   <p className="ru-muted">{firm.russiaNote}</p>
                   {deal ? (
                     <>
-                      {deal.code ? <CopyableCodePill code={deal.code} pct={deal.pct ?? 0} locale="ru" analyticsFirm={firm.slug} /> : <p><strong>Скидка применяется по ссылке, код вводить не нужно.</strong></p>}
+                      {deal.code ? <CopyableCodePill code={deal.code} pct={deal.pct} locale="ru" analyticsFirm={firm.slug} /> : <p><strong>Скидка применяется по ссылке, код вводить не нужно.</strong></p>}
                       <p><strong>{deal.amountLabel}</strong>{deal.scope ? ` · ${deal.scope}` : ''}</p>
                       <p className="ru-source-line">
                         Проверено {deal.verifiedOn}{deal.expiresOn ? ` · действует до ${deal.expiresOn}` : ''} ·{' '}
@@ -182,7 +183,7 @@ export default function RussianPromoHubPage() {
             <li><strong>Выберите продукт до кода.</strong> У FundedNext берите CFD-челлендж: направление Futures Россию ограничивает.</li>
             <li><strong>Введите код на странице оплаты</strong> в поле купона — или перейдите по ссылке, если скидка применяется автоматически (это указано в карточке).</li>
             <li><strong>Сверьте итоговую сумму до подтверждения.</strong> Если цена не изменилась, код не сработал — не платите в расчёте на скидку.</li>
-            <li><strong>Платите способом, который работает из РФ.</strong> У Crypto Fund Trader и Upscale это криптовалюта; карта российского банка может не пройти.</li>
+            <li><strong>Выбирайте способ оплаты, не зависящий от карты.</strong> У Crypto Fund Trader и Upscale в официальном списке есть криптовалюта; работают ли карты, выпущенные в России, фирмы официально не сообщают.</li>
           </ol>
         </div>
       </section>

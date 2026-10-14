@@ -7,7 +7,7 @@
  *   npm run crawl:release -- http://127.0.0.1:3214
  */
 
-import { readdirSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { dirname, extname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
@@ -788,7 +788,7 @@ for (const pair of russianRoutePairs) {
 }
 
 const activeRussianDeals = rankDeals(getAllDeals(), firmRecords)
-const activeRussianFundedNextDeal = activeRussianDeals.find(deal => deal.firmSlug === 'fundednext')
+const activeRussianFundedNextDeal = activeRussianDeals.find(deal => deal.firmSlug === 'fundednext' && deal.mechanism === 'earned-coupon')
 const russianFnFundingPipsCaptures = ['fundednext', 'fundingpips']
   .flatMap(slug => getChallengesByFirm(slug))
   .map(product => product.sourceCapturedAt)
@@ -935,6 +935,29 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-promokody-prop-firm-card-3',
     ],
   }],
+  // Batch 1/2 new pages: expectations apply only once app/ru/<slug>/page.tsx exists.
+  ...[
+    ['/ru/prop-trejding', {
+      title: 'Проп трейдинг: что это и как начать торговать в 2026', h1: 'Проп-трейдинг: торговля на капитал компании',
+      markers: ['data-russian-prop-trading="guide"', '"@type":"FAQPage"', 'href="/go/bright-funded?'],
+    }],
+    ['/ru/funded-account', {
+      title: 'Funded account (фандед аккаунт): что это и как получить', h1: 'Funded account (фандед аккаунт): что это и как получить',
+      markers: ['data-russian-funded-account="guide"', '"@type":"FAQPage"', 'href="/go/bright-funded?'],
+    }],
+    ['/ru/prop-kompanii-v-rossii', {
+      title: 'Проп компании в России 2026: какие работают с РФ', h1: 'Проп компании в России 2026: какие работают с РФ',
+      markers: ['data-russian-prop-firms-russia-payments'],
+    }],
+    ['/ru/prop-kompanii-otzyvy', {
+      title: 'Проп-компании: отзывы трейдеров 2026 — сводка по 19 фирмам', h1: 'Проп-компании: отзывы трейдеров 2026',
+      markers: ['id="krasnye-flagi"', 'id="dokazatelstva-vyplat"', 'id="verdikty"'],
+    }],
+    ['/ru/obzor-the5ers', {
+      title: 'The5ers: обзор 2026 — программы, правила, доступ из России', h1: 'The5ers: обзор 2026 — программы, правила, доступ из России',
+      markers: ['rel="nofollow noopener noreferrer" class="btn-outline" data-russian-the5ers-official="non-affiliate"', 'data-russian-the5ers-programs="2026-10-14"'],
+    }],
+  ].filter(([route]) => existsSync(new URL(`../app${route}/page.tsx`, import.meta.url))),
   ['/ru/ftmo-dlya-rossiyan', {
     title: 'FTMO для россиян: можно ли пройти челлендж из РФ и чем заменить',
     h1: 'FTMO для россиян: можно ли пройти челлендж из РФ и чем заменить',
@@ -1043,10 +1066,15 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/luchshie-prop-firmy', {
-    title: 'Проп-компании в России и за рубежом: рейтинг 2026',
-    h1: 'Рейтинг проп-компаний 2026 для русскоязычных трейдеров',
+    title: 'Проп-компании 2026: рейтинг лучших для трейдеров из РФ',
+    h1: 'Проп-компании: рейтинг 2026',
     markers: [
       'data-russian-ranking-article="decision-first"',
+      'data-russian-ranking-russia-access',
+      'data-russian-ranking-russia-table',
+      'data-russian-ranking-top10',
+      'data-russian-ranking-promos',
+      'data-russian-ranking-updated',
       'data-russian-country-boundary="ranking-not-access"',
       'data-russian-ranking-primary-partners="fundednext-bright-funded"',
       'data-russian-ranking-primary-partner="fundednext"',
@@ -1100,7 +1128,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-ftmo', {
-    title: 'FTMO: обзор 2026, цены, правила и доступ для русскоязычных',
+    title: 'FTMO проп: обзор 2026, цены, правила и доступ для русскоязычных',
     h1: 'FTMO: обзор 2026 — 2 программы и 10 цен',
     markers: [
       'data-russian-ftmo-review="search-to-decision"',
@@ -1128,8 +1156,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-fundednext', {
-    title: 'FundedNext: отзывы и обзор 2026, цены и правила',
-    h1: 'FundedNext: отзывы и обзор 2026, цены и правила',
+    title: 'FundedNext проп: отзывы и обзор 2026, цены и правила',
+    h1: 'FundedNext проп: отзывы и обзор 2026, цены и правила',
     markers: [
       'data-russian-fundednext-article="long-form"',
       'data-russian-fundednext-editorial-shell="review-parity"',
@@ -1150,10 +1178,14 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-fundingpips', {
-    title: 'FundingPips: обзор 2026, цены, правила и выплаты',
-    h1: 'FundingPips: обзор 2026 — цены, правила и выплаты',
+    title: 'FundingPips: отзывы, обзор 2026 и доступ из России',
+    h1: 'FundingPips: отзывы и обзор 2026 — цены, правила, доступ из России',
     markers: [
       'data-russian-partner-review="fundingpips"',
+      'data-russian-fundingpips-russia',
+      'data-russian-fundingpips-reviews',
+      'data-russian-fundingpips-promo',
+      'data-russian-fundingpips-rules',
       'data-russian-partner-article="fundingpips"',
       'data-russian-partner-editorial-shell="fundingpips"',
       'data-russian-partner-country-access="unconfirmed"',
@@ -1852,7 +1884,7 @@ const russianFtmoPage = pages.find(page =>
       if (match[0].includes('data-russia-badge="column"')) {
         const rowStart = page.html.lastIndexOf('<tr', match.index)
         const tableStart = page.html.lastIndexOf('<table', match.index)
-        if (rowStart < tableStart || !/<th>Россия<\/th>/.test(page.html.slice(tableStart, rowStart))) {
+        if (rowStart < tableStart || !/<th>[^<]*Росси/.test(page.html.slice(tableStart, rowStart))) {
           errors.push(`${pagePath}: /go/${slug} hides its Russia-access badge outside a table with a Россия column`)
         }
         continue

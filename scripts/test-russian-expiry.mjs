@@ -103,7 +103,12 @@ try {
   assert.equal(isDealCurrent({ verifiedOn: '2026-09-30', expiresOn: '2026-10-01' }, new RealDate('2026-10-02T12:00:00Z')), false, 'a code expires after its stated end day')
   const deals = JSON.parse(fs.readFileSync(path.join(root, 'content/data/deals.json'), 'utf8'))
   const archivedDeals = JSON.parse(fs.readFileSync(path.join(root, 'content/data/deals-archive.json'), 'utf8'))
-  assert.equal(deals.length, 0, 'unreverified offers are retired from the active catalog')
+  // Batch 1 (2026-10-14): HELLO (FundingPips) and STRTN (FundedNext) are active; each needs a code, check date and source.
+  assert.deepEqual(deals.map(deal => [deal.firmSlug, deal.code]), [['fundingpips', 'HELLO'], ['fundednext', 'STRTN']], 'active catalog holds the batch 1 codes only')
+  for (const deal of deals) {
+    assert(/^\d{4}-\d{2}-\d{2}$/.test(deal.verifiedOn), `${deal.code}: dated check`)
+    assert(deal.sourceUrl && deal.sourceLabel, `${deal.code}: stated source`)
+  }
   assert.equal(archivedDeals.offers.length, 5, 'all five historical offers remain recoverable')
   assert.deepEqual(archivedDeals.offers.filter(deal => deal.firmSlug === 'bright-funded').map(deal => deal.code).sort(), ['SUMMER15', 'SUMMER25', 'SUMMER30'], 'old Bright codes remain archival, not current')
   const brightOfferObservation = require(path.join(root, 'content/data/russian-bright-offer-observation.json'))
@@ -120,7 +125,7 @@ try {
     assert(offer.sourceQuotes.some(quote => quote.includes(offer.code)))
     assert(offer.sourceQuotes.some(quote => quote.includes(offer.productName) && quote.includes(String(offer.advertisedDiscountPct))))
   }
-  const latestDealCheck = archivedDeals.offers.map(deal => deal.verifiedOn).sort().at(-1)
+  const latestDealCheck = [...archivedDeals.offers, ...deals].map(deal => deal.verifiedOn).sort().at(-1)
   assert(latestDealCheck, 'historical offer expiry fixture has a verified date')
   // Week 1 monthly promo hub (2026-10-14): status badges per firm, no codes for firms closed to Russia.
   {
@@ -129,7 +134,9 @@ try {
     assert.match(offersModule.metadata.title.absolute, /^Промокоды проп-фирм — /, 'monthly promo hub title names the month')
     assert(offersHtml.includes('id="kody"'), 'promo hub keeps the #kody deep-link target used by the Bright review')
     assert(offersHtml.includes('ru-badge ru-badge--open') && offersHtml.includes('ru-badge ru-badge--closed'), 'promo hub shows Russia availability badges')
-    assert(!/href="\/go\/(ftmo|the5ers|e8-markets|fxify|maven|alpha-capital|lucid-trading|apex-trader-funding|tradeify|fundingpips|topstep)[?"]/.test(offersHtml), 'promo hub has no sign-up links for firms closed or unclear for Russia')
+    // PR #6 rule: every firm keeps its CTA; restricted/unclear firms carry a Russia-access badge instead.
+    assert(offersHtml.includes('data-russia-status="unclear" data-russia-firm="fundingpips"'), 'promo hub FundingPips CTA carries the unclear Russia-access badge')
+    assert(offersHtml.includes('HELLO') && offersHtml.includes('STRTN'), 'promo hub shows the batch 1 codes')
     assert(!offersHtml.includes('SUMMER30') && !offersHtml.includes('SUMMER25') && !offersHtml.includes('SUMMER15'), 'expired Bright codes are not advertised')
     const EnglishOffers = require(path.join(root, 'app/prop-firm-discount-codes/page.tsx')).default
     const originalClock = clock
@@ -835,7 +842,7 @@ try {
   assert.equal(FundedReviewModule.metadata.openGraph.description, 'Отзывы о FundedNext и обзор на русском: 4 модели Stellar, 22 цены, просадка, выплаты, Free Trial и проверка ограничений по стране.', 'sharing copy is preserved pending approval')
   const FundingPipsReviewModule = require(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'))
   const fundingPipsReviewReference = renderToStaticMarkup(React.createElement(FundingPipsReviewModule.default))
-  assert(fundingPipsReviewReference.includes('<h1>FundingPips: обзор 2026 — цены, правила и выплаты</h1>'), 'FundingPips review H1 does not promise a fixed product or price count')
+  assert(fundingPipsReviewReference.includes('<h1>FundingPips: отзывы и обзор 2026 — цены, правила, доступ из России</h1>'), 'FundingPips review H1 does not promise a fixed product or price count')
   // FundingPips keeps its CTA on /ru pages with an "unclear" Russia-access badge (russiaStatus in firms.json).
   const fundingPipsSummaryAffiliate = 'href="/go/fundingpips?from=ru-fundingpips-review-summary"'
   assert(fundingPipsReviewReference.includes(fundingPipsSummaryAffiliate), 'FundingPips review keeps its sign-up CTA')
@@ -1296,7 +1303,7 @@ try {
           if (html.includes('data-russian-reviews-product-evidence="0"')) assert(html.includes('Нет программ с актуальной проверкой за 30 дней.'), 'empty reviews table explains the source expiry')
         }
         if (slug === 'obzor-fundingpips') {
-          assert(html.includes('<h1>FundingPips: обзор 2026 — цены, правила и выплаты</h1>'), 'FundingPips review headline remains count-free across source expiry')
+          assert(html.includes('<h1>FundingPips: отзывы и обзор 2026 — цены, правила, доступ из России</h1>'), 'FundingPips review headline remains count-free across source expiry')
           assert(!html.includes('сравнение 4 продуктов FundedNext с 5 моделями FundingPips'), 'FundingPips comparison handoff does not promise expired products')
           if (html.includes('data-russian-product-count="0"')) assert(!cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), 'expired product prices cannot retain FundingPips FAQ schema')
         }

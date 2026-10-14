@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
+import { RuRelatedLinks } from '@/components/RuPendingLink'
 import { ArrowRight, Globe2, ShieldCheck, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -44,9 +45,9 @@ type Row = {
 // это не письменное подтверждение доступа. «не проверено» = данных нет, не додумывать.
 const rows: Row[] = [
   { firm: 'Upscale', russia: 'Принимает (ограничений по странам не заявлено)', belarus: 'Принимает', kazakhstan: 'Принимает', payout: 'Оплата криптовалютой; выплаты в USDT на собственный некастодиальный кошелёк; KYC нет', status: 'open', source: 'https://upscale.trade/ru/faq' },
-  { firm: 'Crypto Fund Trader', russia: 'Принимает на Match-Trader; маршрут Bybit — по правилам Bybit', belarus: 'Так же', kazakhstan: 'Так же', payout: 'Оплата: карта, PayPal, Apple/Google Pay, крипта (карта и PayPal могут не пройти из банков РФ). Выплаты: банк EUR/USD, USDT ERC20/TRC20, BTC, ETH', status: 'open', source: 'https://cryptofundtrader.com/faq/', review: '/blog/crypto-fund-trader-review' },
-  { firm: 'BrightFunded', russia: 'Не в списке ограничений', belarus: 'Не в списке', kazakhstan: 'Не в списке', payout: 'Выплаты: USDC (ERC-20), банковский перевод в EUR. Оплата — не проверено', status: 'open', source: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded', review: '/ru/obzor-bright-funded' },
-  { firm: 'FundedNext (CFD)', russia: 'Не в списке ограничений CFD', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Выплаты: USDT (ERC20/TRC20), USDC, RiseWorks, банк, карта. Оплата — не проверено', status: 'open', source: 'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds', review: '/ru/obzor-fundednext' },
+  { firm: 'Crypto Fund Trader', russia: 'На Match-Trader ограничений по странам нет; MT5 закрыт только для резидентов США (по данным на 14.10.2026)', belarus: 'Так же', kazakhstan: 'Так же', payout: 'Оплата: карта, PayPal, Apple Pay, Google Pay, криптовалюта. Выплаты: банк EUR/USD, USDT ERC20/TRC20, BTC, ETH', status: 'open', source: 'https://cryptofundtrader.com/faq/', review: '/blog/crypto-fund-trader-review' },
+  { firm: 'BrightFunded', russia: 'Не в списке ограничений', belarus: 'Не в списке', kazakhstan: 'Не в списке', payout: 'Оплата: криптовалюта (BTC вкл. Lightning, USDT TRC20, USDC ERC-20, ETH, LTC, TRX, SOL) или карта. Выплаты: USDC (ERC-20), банковский перевод в EUR', status: 'open', source: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded', review: '/ru/obzor-bright-funded' },
+  { firm: 'FundedNext (CFD)', russia: 'Не в списке ограничений CFD', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Оплата: криптовалюта (1%; Binance Pay, BTC, ETH, LTC, DOGE, SOL, USDT, USDC), PayPal (1%), Skrill (3%), Apple/Google Pay, карты на своё имя. Выплаты: USDT (ERC20/TRC20), USDC, RiseWorks, банк, карта', status: 'open', source: 'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds', review: '/ru/obzor-fundednext' },
   { firm: 'FundedNext Futures', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://fundednext.com/terms-of-service' },
   { firm: 'FundingPips', russia: 'Неясно: Россия прямо не названа, но исключены страны из санкционных списков FATF и ЕС/ООН', belarus: 'Неясно', kazakhstan: 'Не названа', payout: 'Карта, USDT/USDC ERC-20, Rise (Rise требует KYC), банк', status: 'unclear', source: 'https://fundingpips.com/terms-and-conditions', review: '/ru/obzor-fundingpips' },
   { firm: 'Topstep', russia: 'Неясно: исключены страны под всеобъемлющими санкциями OFAC и лица из списка SDN; Россия в найденном фрагменте не названа', belarus: 'Не названа', kazakhstan: 'Не названа', payout: 'Не проверено', status: 'unclear', source: 'https://www.topstep.com/terms-of-use/' },
@@ -190,6 +191,14 @@ export default function RussiaAvailabilityPage() {
               </tbody>
             </table>
           </div>
+          <p className="ru-source-line" data-russian-diaspora-payment-sources="2026-10-14">
+            Способы оплаты и выплат BrightFunded и FundedNext — по данным на 14.10.2026:{' '}
+            <a href="https://help.brightfunded.com/en/articles/9286623" target="_blank" rel="nofollow noopener noreferrer">справка BrightFunded 1</a>,{' '}
+            <a href="https://help.brightfunded.com/en/articles/12000749" target="_blank" rel="nofollow noopener noreferrer">справка BrightFunded 2</a>,{' '}
+            <a href="https://help.fundednext.com/en/articles/8020089" target="_blank" rel="nofollow noopener noreferrer">справка FundedNext 1</a>,{' '}
+            <a href="https://help.fundednext.com/en/articles/13990618" target="_blank" rel="nofollow noopener noreferrer">справка FundedNext 2</a>.
+            Работу карт «Мир» и карт российских банков мы не подтверждали.
+          </p>
           <p className="ru-source-line">
             Apex Trader Funding и Tradeify закрыли свои страницы от нашего сборщика (ошибка 403): статус взят из
             поисковой выдачи и агрегатора funded.now, поэтому уверенность средняя.
@@ -215,7 +224,7 @@ export default function RussiaAvailabilityPage() {
             <article className="ru-card" data-russia-open="crypto-fund-trader">
               <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Crypto Fund Trader</h3>
-              <p className="ru-muted">На Match-Trader ограничений по странам нет; на маршруте Bybit действуют правила Bybit, MT5 недоступен для США. Выплаты — USDT ERC20/TRC20, BTC, ETH или банк. Карта и PayPal из российских банков могут не пройти — заложите оплату криптой.</p>
+              <p className="ru-muted">На Match-Trader ограничений по странам нет; MT5 закрыт только для резидентов США. Выплаты — USDT ERC20/TRC20, BTC, ETH или банк. Работают ли карты, выпущенные в России, фирма не сообщает; криптовалюта от карты не зависит.</p>
               <div className="ru-actions">
                 <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="nofollow noopener" className="btn-primary">
                   Проверить Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" />
@@ -258,7 +267,7 @@ export default function RussiaAvailabilityPage() {
             Причин три, и все они видны в самих правилах. Первая — санкции: FundingPips исключает юрисдикции из
             санкционных списков FATF и ЕС/ООН, Topstep — страны под всеобъемлющими санкциями OFAC и лиц из списка SDN.
             Вторая — платёжные провайдеры: FundedNext прямо оговаривает право блокировать страны, с которыми не работают
-            её провайдеры, — поэтому карта российского банка может не пройти даже там, где страна формально не запрещена.
+            её провайдеры, — а фирмы официально не сообщают, принимаются ли карты, выпущенные в России, даже там, где страна формально не запрещена.
             Третья — KYC: Alpha Capital смотрит и на гражданство, и на резидентство, а E8 Markets определяет страну по
             документу, а не по IP. Россиянин, живущий в другой стране, у Alpha Capital всё равно попадает под ограничение.
           </p>
@@ -285,7 +294,7 @@ export default function RussiaAvailabilityPage() {
             <li><strong>Найдите официальный список ограничений</strong> — обычно это раздел FAQ или справки «restricted countries». Ищите «Russian Federation» и «sanctions».</li>
             <li><strong>Проверьте продукт, а не бренд.</strong> У FundedNext CFD и Futures разные списки.</li>
             <li><strong>Выясните, что проверяет KYC:</strong> гражданство, резидентство или документ.</li>
-            <li><strong>Сверьте оплату и выплату.</strong> Если принимают только карты и PayPal, из РФ оплата может не пройти; ищите крипту.</li>
+            <li><strong>Сверьте оплату и выплату.</strong> Если принимают только карты и PayPal, учтите: фирмы официально не сообщают, принимаются ли карты, выпущенные в России; ищите крипту.</li>
             <li><strong>Напишите в поддержку</strong> и сохраните письменный ответ до оплаты — особенно для FundingPips и Topstep.</li>
           </ol>
         </div>
@@ -331,6 +340,7 @@ export default function RussiaAvailabilityPage() {
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
+          <RuRelatedLinks marker="diaspora" items={[{ href: '/ru/prop-kompanii-v-rossii', label: 'проп-компании в России' }, { href: '/ru/obzor-the5ers', label: 'обзор The5ers' }]} />
           <h2>Частые вопросы</h2>
           <RussianFaq items={faqs} />
         </div>

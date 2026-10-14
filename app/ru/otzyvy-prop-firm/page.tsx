@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { fundedNextOneStepPayoutLabel } from '@/lib/fundedNextPayout'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
 import Link from '@/components/SafeLink'
+import { RuRelatedLinks } from '@/components/RuPendingLink'
 import {
   AlertTriangle,
   ArrowRight,
@@ -448,7 +449,7 @@ export default function RussianPropFirmReviewsPage() {
         </section>
 
         <section className="ru-section" id="faq">
-          <div className="ru-shell ru-content"><h2>Частые вопросы</h2><RussianFaq items={faqs} /></div>
+          <div className="ru-shell ru-content"><RuRelatedLinks marker="reviews" items={[{ href: '/ru/prop-kompanii-otzyvy', label: 'отзывы о проп-компаниях' }]} /><h2>Частые вопросы</h2><RussianFaq items={faqs} /></div>
         </section>
       </article>
     </>

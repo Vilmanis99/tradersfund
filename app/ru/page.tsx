@@ -10,7 +10,7 @@ import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified, russianPublishedHref } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru'
@@ -45,6 +45,16 @@ const featuredPartnerRoutes = [
   { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded', heroHref: '/go/bright-funded?from=ru-home-hero-bright-funded' },
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext', heroHref: '/go/fundednext?from=ru-home-hero-fundednext' },
 ] as const
+
+// Basics links switch on as each new RU page's route is registered (lib/localizedRoutes.ts).
+const RU_HOME_BASICS = [
+  { href: '/ru/prop-trejding', title: 'Что такое проп-трейдинг', text: 'Как работает торговля на капитале фирмы.' },
+  { href: '/ru/funded-account', title: 'Funded account', text: 'Что такое финансируемый счёт и как его получить.' },
+  { href: '/ru/prop-kompanii-v-rossii', title: 'Проп-компании в России', text: 'Какие фирмы работают с РФ и как платят.' },
+  { href: '/ru/prop-kompanii-otzyvy', title: 'Отзывы о проп-компаниях', text: 'Красные флаги и доказательства выплат.' },
+  { href: '/ru/obzor-the5ers', title: 'Обзор The5ers', text: 'Условия и доступ для трейдеров из РФ.' },
+  { href: '/ru/luchshie-prop-firmy', title: 'Рейтинг проп-компаний', text: 'Сравнение условий и доступ из России.' },
+]
 
 export default function RussianHomePage() {
   const firms = getAllFirms()
@@ -208,6 +218,17 @@ export default function RussianHomePage() {
             <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm"><span><strong>Как пройти оценку, не нарушив правила</strong><span>Цель по прибыли, просадка и этапы челленджа.</span></span><ArrowRight size={20} aria-hidden="true" /></Link>
             <Link href="/ru/vyplaty-prop-firm"><span><strong>Когда и как можно получить выплату</strong><span>Сроки, способы перевода и проверка документов.</span></span><ArrowRight size={20} aria-hidden="true" /></Link>
             <Link href="/ru/promokody-prop-firm"><span><strong>Как проверить скидку перед оплатой</strong><span>Условия предложений и итоговая цена участия.</span></span><ArrowRight size={20} aria-hidden="true" /></Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="ru-section">
+        <div className="ru-shell" data-russian-home-basics="osnovy">
+          <h2>Основы</h2>
+          <div className="ru-home-guide-list">
+            {RU_HOME_BASICS.filter(item => russianPublishedHref(item.href)).map(item => (
+              <Link key={item.href} href={item.href}><span><strong>{item.title}</strong><span>{item.text}</span></span><ArrowRight size={20} aria-hidden="true" /></Link>
+            ))}
           </div>
         </div>
       </section>
