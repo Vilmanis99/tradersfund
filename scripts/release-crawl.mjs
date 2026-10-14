@@ -3176,7 +3176,7 @@ if (swingLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Compare ${expectedSwingFirms.length} swing-trading prop firms across ${expectedSwingProductCount} exact products with verified overnight and weekend holding, drawdown rules, dated sources, and reviews.`
+    `Best prop firms for swing traders: ${expectedSwingFirms.length} swing-trading prop firms across ${expectedSwingProductCount} exact products with verified overnight and weekend holding.`
   const renderedDescription = decodeHtml(firstMatch(
     swingLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3189,8 +3189,8 @@ if (swingLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Swing Trading Prop Firms (2026): ${expectedSwingFirms.length} Verified | TFH`,
-    `Best Prop Firms for Swing Trading (2026): ${expectedSwingFirms.length} Verified`,
+    `Best Prop Firms for Swing Trading 2026: ${expectedSwingFirms.length} Compared | TFH`,
+    `Best Prop Firms for Swing Trading (2026): ${expectedSwingFirms.length} Allow Overnight and Weekend Holds`,
     `${expectedSwingFirms.length} verified firms across ${expectedSwingProductCount} swing-qualified products`,
     'What swing traders should verify',
     'Do both permissions belong to the same product?',
@@ -3317,7 +3317,7 @@ if (futuresLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Compare ${expectedFuturesFirms.length} futures prop firms across ${expectedFuturesProductCount} current products with fees, billing, drawdown, payout rules, platforms, reviews, and dated first-party sources.`
+    `Best futures prop firms 2026: ${expectedFuturesFirms.length} futures prop firms ranked across ${expectedFuturesProductCount} products on fees, billing, drawdown, payout rules and platforms.`
   const renderedDescription = decodeHtml(firstMatch(
     futuresLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3329,8 +3329,8 @@ if (futuresLandingProbe.status !== 200) {
     errors.push(`${futuresLandingPath}: meta description does not match the ${expectedFuturesFirms.length}-firm/${expectedFuturesProductCount}-product snapshot`)
   }
   for (const required of [
-    `Best Futures Prop Firms (2026): ${expectedFuturesFirms.length} Verified | TFH`,
-    `Best Futures Prop Firms (2026): ${expectedFuturesFirms.length} Verified`,
+    `Best Futures Prop Firms 2026: ${expectedFuturesFirms.length} Ranked and Compared | TFH`,
+    `Best Futures Prop Firms (2026): ${expectedFuturesFirms.length} Futures Prop Firms Ranked`,
     `${expectedFuturesFirms.length} verified firms across ${expectedFuturesProductCount} current futures products`,
     `Compare ${expectedFuturesProductCount} current futures products`,
     'What futures traders should verify',
@@ -3830,12 +3830,12 @@ if (discountHubProbe.status !== 200) {
     }
   }
 
-  if (discountTitle !== 'Prop Firm Discount Codes & Offers (2026) | TFH') {
+  if (discountTitle !== 'Prop Firm Discount Codes & Promo Codes (2026) | TFH') {
     errors.push(`${discountHubPath}: title suffix is missing or duplicated: ${discountTitle}`)
   }
 
   for (const required of [
-    'Prop Firm Discount Codes & Offers (2026)',
+    'Prop Firm Discount Codes & Promo Codes (2026)',
     'Current verified offers',
     'Earned coupon',
     ...(expectedFundedNextCoupon ? [

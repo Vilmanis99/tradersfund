@@ -5624,10 +5624,10 @@ function checkConsistencyGuide() {
     ].join(' ')
   }
 
-  if (data.title !== 'Prop Firm Consistency Rule: Formulas and Examples (2026)') {
+  if (data.title !== 'What Is the Prop Firm Consistency Rule? Formulas and Examples (2026)') {
     rows.push('title must preserve consistency-rule, formula, examples, and current-year intent')
   }
-  if (data.seoTitle !== 'Prop Firm Consistency Rule: Examples (2026)') {
+  if (data.seoTitle !== 'What Is a Prop Firm Consistency Rule? Examples (2026)') {
     rows.push('seoTitle must preserve the primary search intent and current year')
   }
   if (typeof data.seoTitle !== 'string' || data.seoTitle.length > 60) {
@@ -6691,8 +6691,8 @@ function checkSwingFeatureCluster() {
       'isChallengeFresh(challenge)',
       'challenge.rules.overnight === true',
       'challenge.rules.weekend === true',
-      'h1: `Best Prop Firms for Swing Trading (2026): ${CURRENT_SWING_FIRM_COUNT} Verified`',
-      'metaTitle: `Best Swing Trading Prop Firms (2026): ${CURRENT_SWING_FIRM_COUNT} Verified`',
+      'h1: `Best Prop Firms for Swing Trading (2026): ${CURRENT_SWING_FIRM_COUNT} Allow Overnight and Weekend Holds`',
+      'metaTitle: `Best Prop Firms for Swing Trading 2026: ${CURRENT_SWING_FIRM_COUNT} Compared`',
       'snapshotProductCount: CURRENT_SWING_PRODUCT_COUNT',
       'const qualifying = swingCompatibleProducts(firm)',
       "trailingMetricLabel: 'Product fit'",
@@ -6702,7 +6702,7 @@ function checkSwingFeatureCluster() {
       'label: `${joinNatural(source.productNames)} rule source`',
       'at least 1 product captured within 30 days sets both overnight and weekend holding to allowed on that same product',
       'affiliate status, coupon size, the ${CURRENT_SWING_PRODUCT_COUNT}-product coverage count, and drawdown type add 0 points',
-      "lastReviewed: '2026-08-17'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`swing landing is missing "${fragment}"`)
@@ -6718,8 +6718,8 @@ function checkSwingFeatureCluster() {
         rows.push(`swing landing restored unsupported logic: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('swing landing must keep exactly 4 product-level decision questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 6) {
+      rows.push('swing landing must keep exactly 6 product-level decision questions')
     }
   }
 
@@ -6831,8 +6831,8 @@ function checkFuturesLandingCluster() {
       'const CURRENT_FUTURES_FIRM_COUNT = CURRENT_FUTURES_SNAPSHOT.length',
       'const CURRENT_FUTURES_PRODUCT_COUNT = CURRENT_FUTURES_SNAPSHOT.reduce',
       "isChallengeFresh(challenge) && challenge.assetClass === 'futures'",
-      'h1: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Verified`',
-      'metaTitle: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Verified`',
+      'h1: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Futures Prop Firms Ranked`',
+      'metaTitle: `Best Futures Prop Firms 2026: ${CURRENT_FUTURES_FIRM_COUNT} Ranked and Compared`',
       'snapshotProductCount: CURRENT_FUTURES_PRODUCT_COUNT',
       'const products = freshFuturesProducts(firm)',
       'pricingModelLabel(product.pricingModel)',
@@ -6844,7 +6844,7 @@ function checkFuturesLandingCluster() {
       'Does drawdown trail intraday or at session end?',
       'Is the funded stage simulated or live?',
       'Which entity is actually regulated?',
-      "lastReviewed: '2026-08-17'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`futures landing is missing "${fragment}"`)
@@ -6860,8 +6860,8 @@ function checkFuturesLandingCluster() {
         rows.push(`futures landing restored unsupported logic: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('futures landing must keep exactly 4 product-level decision questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 6) {
+      rows.push('futures landing must keep exactly 6 product-level decision questions')
     }
   }
 
@@ -7650,7 +7650,7 @@ function checkDiscountHub() {
 
   const title = page.match(/const TITLE = '([^']+)'/)?.[1] ?? ''
   const description = page.match(/const DESCRIPTION =\s*\n\s*'([^']+)'/)?.[1] ?? ''
-  if (title !== 'Prop Firm Discount Codes & Offers (2026)') {
+  if (title !== 'Prop Firm Discount Codes & Promo Codes (2026)') {
     rows.push('discount hub title must preserve intent without duplicating the root TFH suffix')
   }
   if (description.length < 120 || description.length > 160) {
@@ -9629,7 +9629,7 @@ function checkScalingPlanGuide() {
     }
   }
 
-  if (data.seoTitle !== 'Prop Firm Scaling Plans Explained (2026)') {
+  if (data.seoTitle !== 'Prop Firm Scaling Plan Explained: What to Compare (2026)') {
     rows.push('seoTitle must preserve scaling-plan intent and current year')
   }
   if (
