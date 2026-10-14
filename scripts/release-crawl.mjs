@@ -1764,8 +1764,11 @@ for (const [path, expectation] of russianExpectations) {
     }
   }
 }
-if (russianArticleSchemaCount !== 24) {
-  errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected 24`)
+// 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers']
+  .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
+if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
+  errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}`)
 }
 
 const russianDiasporaPage = pages.find(page =>
