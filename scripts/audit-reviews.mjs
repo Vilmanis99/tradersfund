@@ -6453,13 +6453,13 @@ function checkUsLandingConsolidation() {
     rows.push('best-prop-firms-in-us landing config is missing')
   } else {
     const expectedDescription =
-      `Compare ${expected.size} policy-checked prop firms for U.S. traders across ${expectedProductCount} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`
+      `Best prop firms for US traders in 2026: ${expected.size} prop trading firms open to USA residents across ${expectedProductCount} exact futures and CFD products, with CFTC/NFA checks.`
     if (expectedDescription.length < 120 || expectedDescription.length > 160) {
       rows.push('U.S. landing meta description must be between 120 and 160 characters')
     }
     const requiredFragments = [
-      'h1: `Best Prop Firms for U.S. Traders (2026): ${CURRENT_US_FIRM_COUNT} Policy-Checked`',
-      'metaTitle: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Checked`',
+      'h1: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Prop Trading Firms in the USA`',
+      'metaTitle: `Best Prop Firms USA 2026: ${CURRENT_US_FIRM_COUNT} Prop Trading Firms Checked`',
       'CURRENT_US_PRODUCT_COUNT} exact futures and CFD products',
       'US_ACCESS_EVIDENCE_BY_SLUG.get(slug)',
       'usProductsForEvidence(evidence)',
@@ -6488,8 +6488,8 @@ function checkUsLandingConsolidation() {
         rows.push(`U.S. landing restored unsafe eligibility logic: "${staleClaim}"`)
       }
     }
-    if ((landingBlock.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('U.S. landing must keep exactly 4 decision-guide questions')
+    if ((landingBlock.match(/title:\s*'/g) ?? []).length !== 7) {
+      rows.push('U.S. landing must keep exactly 7 decision-guide questions')
     }
   }
   for (const fragment of [

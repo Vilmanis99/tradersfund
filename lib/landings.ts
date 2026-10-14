@@ -625,12 +625,12 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-prop-firms-in-us',
-    h1: `Best Prop Firms for U.S. Traders (2026): ${CURRENT_US_FIRM_COUNT} Policy-Checked`,
-    metaTitle: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Checked`,
+    h1: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Prop Trading Firms in the USA`,
+    metaTitle: `Best Prop Firms USA 2026: ${CURRENT_US_FIRM_COUNT} Prop Trading Firms Checked`,
     metaDescription:
-      `Compare ${CURRENT_US_FIRM_COUNT} policy-checked prop firms for U.S. traders across ${CURRENT_US_PRODUCT_COUNT} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`,
+      `Best prop firms for US traders in 2026: ${CURRENT_US_FIRM_COUNT} prop trading firms open to USA residents across ${CURRENT_US_PRODUCT_COUNT} exact futures and CFD products, with CFTC/NFA checks.`,
     intro:
-      `These ${CURRENT_US_FIRM_COUNT} firms publish current first-party evidence supporting ${CURRENT_US_PRODUCT_COUNT} explicitly mapped product paths for U.S. residents. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
+      `Looking for a prop firm that accepts US traders? Most forex and CFD prop firms exclude U.S. residents, so this list only includes the ${CURRENT_US_FIRM_COUNT} firms that publish current first-party evidence supporting ${CURRENT_US_PRODUCT_COUNT} explicitly mapped product paths for U.S. residents, mostly futures evaluations plus a small number of Match-Trader CFD paths. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
     sortDir: 'desc',
     rank: firms => firms
       .flatMap(firm => {
@@ -663,6 +663,18 @@ export const LANDINGS: Landing[] = [
     methodology:
       'A firm appears only when a first-party U.S.-access policy was captured within 30 days and every explicitly mapped product record is also current. A missing restriction is not enough. Editorial score sets the order; affiliate status, coupon size, product count, asset class and platform add 0 points. Access evidence does not establish CFTC or NFA registration, legal status, payout approval, or availability in every state.',
     decisionGuide: [
+      {
+        title: 'Are forex prop firms legal in the US?',
+        body: 'For live retail forex, the NFA says only certain regulated entities, including CFTC-registered FCMs and RFEDs that are NFA members, may act as the counterparty to off-exchange forex trades with U.S. retail customers. Evaluation-style prop firms sell simulated accounts instead, which is why most CFD-based firms exclude U.S. residents. This page lists firms that say they accept U.S. residents; it is not a legal opinion on any firm.',
+      },
+      {
+        title: 'Can US traders trade forex with a prop firm?',
+        body: 'Yes, but the options are narrower. FundedNext publishes a U.S. CFD route on Match-Trader for its mapped Stellar evaluations. Futures firms trade exchange-listed contracts, which can include currency futures where the product lists them. Check the product\'s tradable-instrument list before buying.',
+      },
+      {
+        title: 'Why are most US-friendly prop firms futures firms?',
+        body: 'Futures trade on regulated exchanges, so futures prop firms can offer U.S. residents simulated evaluations on exchange-listed contracts without the forex and CFD counterparty limits above. Each futures firm still sets its own data fees, activation fees, drawdown and payout rules, so compare the exact product.',
+      },
       {
         title: 'Does access mean the firm is CFTC-registered?',
         body: 'No. The CFTC says certain derivatives businesses and individuals must register and recommends checking NFA BASIC. A firm’s U.S.-access page proves only what the firm currently says it offers.',
@@ -1148,12 +1160,12 @@ function withCurrentAccessCopy(
 
   return {
     ...landing,
-    h1: `Best Prop Firms for U.S. Traders (2026): ${snapshot.firmCount} Policy-Checked`,
-    metaTitle: `Best Prop Firms for US Traders (2026): ${snapshot.firmCount} Checked`,
+    h1: `Best Prop Firms for US Traders (2026): ${snapshot.firmCount} Prop Trading Firms in the USA`,
+    metaTitle: `Best Prop Firms USA 2026: ${snapshot.firmCount} Prop Trading Firms Checked`,
     metaDescription:
-      `Compare ${snapshot.firmCount} policy-checked prop firms for U.S. traders across ${snapshot.productCount} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`,
+      `Best prop firms for US traders in 2026: ${snapshot.firmCount} prop trading firms open to USA residents across ${snapshot.productCount} exact futures and CFD products, with CFTC/NFA checks.`,
     intro:
-      `These ${snapshot.firmCount} firms publish current first-party evidence supporting ${snapshot.productCount} explicitly mapped product paths for U.S. residents. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
+      `Looking for a prop firm that accepts US traders? Most forex and CFD prop firms exclude U.S. residents, so this list only includes the ${snapshot.firmCount} firms that publish current first-party evidence supporting ${snapshot.productCount} explicitly mapped product paths for U.S. residents, mostly futures evaluations plus a small number of Match-Trader CFD paths. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
     decisionGuide: landing.decisionGuide?.map(item => item.title === 'Are futures and CFD paths interchangeable?'
       ? {
           ...item,
