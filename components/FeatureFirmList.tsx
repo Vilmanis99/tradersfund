@@ -1,3 +1,4 @@
+import { firmSlug } from '@/lib/firmSlug'
 import Link from 'next/link'
 import FirmLogo from './FirmLogo'
 import { Star, ExternalLink, ArrowRight } from 'lucide-react'
@@ -5,7 +6,7 @@ import type { Firm } from '@/lib/firms'
 import TrustpilotRating from './TrustpilotRating'
 
 function slugify(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  return firmSlug(name)
 }
 
 /**

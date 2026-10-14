@@ -35,6 +35,9 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
   const visit = (row: ComparisonRow, className: string, layout: 'table' | 'cards') => row.goHref
     ? <Link href={`${row.goHref}?from=${placement}-${layout}`} prefetch={false} rel="sponsored nofollow noopener" target="_blank" className={className} data-russia-status={row.russiaStatus ?? undefined}>{t.visit}</Link>
     : <Link href={row.reviewUrl} className={className.replace('th-btn--amber', 'th-btn--ghost')}>{t.review}</Link>
+  const official = (row: ComparisonRow) => row.officialUrl
+    ? <a href={row.officialUrl} target="_blank" rel="nofollow noopener" className="th-link" data-home-official-site={row.firmSlug}>{t.official} <span aria-hidden="true">↗</span><span className="sr-only"> ({locale === 'ru' ? 'откроется в новой вкладке' : 'opens in a new tab'})</span></a>
+    : null
   const badge = (row: ComparisonRow) => row.russiaStatus ? <RuAccessBadgeView firm={row.firmSlug} status={row.russiaStatus} hint={false} /> : null
 
   return (
@@ -67,7 +70,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
                 <td className="th-num">{pct(row.profitSplitPct)}</td>
                 <td className="th-col--opt">{row.payoutFrequency ? t.payout[row.payoutFrequency] ?? row.payoutFrequency : na}</td>
                 <td className="th-muted th-small th-col--opt"><time dateTime={row.checkedOn}>{row.checkedOn}</time></td>
-                <td><div className="th-row-actions">{visit(row, 'th-btn th-btn--amber th-btn--sm', 'table')}{row.goHref ? <Link href={row.reviewUrl} className="th-link">{t.review}</Link> : null}</div>{badge(row) ? <div className="th-row-badge">{badge(row)}</div> : null}</td>
+                <td><div className="th-row-actions">{visit(row, 'th-btn th-btn--amber th-btn--sm', 'table')}{row.goHref ? <Link href={row.reviewUrl} className="th-link">{t.review}</Link> : official(row)}</div>{badge(row) ? <div className="th-row-badge">{badge(row)}</div> : null}</td>
               </tr>
             ))}
           </tbody>
@@ -85,6 +88,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
               <div><dt>{t.cols.loss}</dt><dd>{pct(row.dailyLossPct)} / {pct(row.maxLossPct)}</dd></div>
             </dl>
             {visit(row, 'th-btn th-btn--amber th-btn--block', 'cards')}
+            {row.goHref ? null : official(row)}
             {badge(row)}
           </li>
         ))}

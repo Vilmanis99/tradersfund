@@ -1,3 +1,4 @@
+import { firmSlug as stableFirmSlug } from '@/lib/firmSlug'
 import CopyableCodePill from '@/components/CopyableCodePill'
 import type { Firm } from '@/lib/firms'
 
@@ -25,7 +26,7 @@ export default function RussianAffiliateSupportCode({
   if (!code || pct == null || !sourceUrl || !verifiedAt) return null
 
   const betterPublicOffer = publicOfferPct != null && publicOfferPct > pct
-  const firmSlug = firm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  const firmSlug = stableFirmSlug(firm.name)
 
   return (
     <div

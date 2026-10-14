@@ -78,15 +78,15 @@ function freshSource(source: { sourceCapturedAt: string }) {
 
 const faqs: RussianFaqItem[] = [
   {
-    q: 'Какая программа Bright Funded самая дешёвая?',
+    q: 'Какая программа BrightFunded самая дешёвая?',
     a: 'Минимальная цена определяется по свежим записям программ; она не включает платные дополнения.',
   },
   {
-    q: 'У Bright Funded начальная доля трейдера 90%?',
+    q: 'У BrightFunded начальная доля трейдера 90%?',
     a: 'В датированной справке базовая доля составляет 80%. Доля 90% подключается как платное дополнение, а 100% относится к программе увеличения счёта и не является стартовым условием нового счёта после оценки.',
   },
   {
-    q: 'Как Bright Funded выплачивает вознаграждение?',
+    q: 'Как BrightFunded выплачивает вознаграждение?',
     a: 'Датированная справка указывает банковский перевод в EUR и USDC в сети ERC-20. Минимальная сумма вознаграждения не установлена: указан даже запрос при $0.01. Это не отменяет остальных условий запроса, а комиссия банка, сети или обмена может сделать микровыплату невыгодной.',
   },
   {
@@ -104,7 +104,7 @@ const faqs: RussianFaqItem[] = [
 ]
 
 export default function RussianBrightFundedReviewPage() {
-  const firm = getAllFirms().find(candidate => candidate.name === 'Bright Funded')
+  const firm = getAllFirms().find(candidate => candidate.name === 'BrightFunded')
   const publicBrightDeals = getDealsByFirm('bright-funded')
   const publicDealPcts = publicBrightDeals
     .map(deal => deal.pct)
@@ -165,7 +165,7 @@ export default function RussianBrightFundedReviewPage() {
     ...countryFaqs,
     ...faqs.slice(1),
     ...(firm?.trustpilotRatingSuppressed ? [{
-      q: 'Почему у Bright Funded нет средней оценки Trustpilot?',
+      q: 'Почему у BrightFunded нет средней оценки Trustpilot?',
       a: `При проверке от ${firm.trustpilotCapturedAt ?? 'неуказанной даты'} средняя оценка была скрыта после отметки Trustpilot о нарушении правил платформы. Скрытая оценка не равна 0/5 и не означает, что профиль не проверяли. Этот статус сам по себе не подтверждает выплату, прохождение KYC или условия конкретного счёта.`,
     }] : []),
   ]
@@ -175,7 +175,7 @@ export default function RussianBrightFundedReviewPage() {
     { name: 'Лучшие проп-фирмы', url: '/ru/luchshie-prop-firmy' },
     { name: 'Обзор BrightFunded' },
   ])
-  const faq = faqPageSchema(hasFreshTrustpilot ? pageFaqs : pageFaqs.filter(item => item.q !== 'Почему у Bright Funded нет средней оценки Trustpilot?'))
+  const faq = faqPageSchema(hasFreshTrustpilot ? pageFaqs : pageFaqs.filter(item => item.q !== 'Почему у BrightFunded нет средней оценки Trustpilot?'))
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -206,7 +206,7 @@ export default function RussianBrightFundedReviewPage() {
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / BrightFunded</div>
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {latestCapture}</div>
           <h1>{TITLE}</h1>
-          <p className="ru-lead">Bright Funded (на официальном сайте — BrightFunded) указывает стоимость участия в евро, а размер симулированного счёта — в долларах. Разбираем различия программ оценки: когда граница убытка остаётся фиксированной, когда движется за прибылью и какие условия нужно выполнить до запроса выплаты.</p>
+          <p className="ru-lead">BrightFunded (на официальном сайте — BrightFunded) указывает стоимость участия в евро, а размер симулированного счёта — в долларах. Разбираем различия программ оценки: когда граница убытка остаётся фиксированной, когда движется за прибылью и какие условия нужно выполнить до запроса выплаты.</p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
             <span>Автор: Edris Derakhshi</span>
             <span>Обновлено: {lastModified}</span>
@@ -235,9 +235,9 @@ export default function RussianBrightFundedReviewPage() {
                 <li><a href="#payouts">Выплаты и условный бонус</a></li>
                 <li><a href="#rules">Новости, удержание и возвраты</a></li>
                 <li><a href="#diaspora">Евро-цена для русскоязычных за рубежом</a></li>
-                <li><a href="#fit">Кому подходит Bright Funded</a></li>
+                <li><a href="#fit">Кому подходит BrightFunded</a></li>
                 <li><a href="#register">Проверка перед регистрацией</a></li>
-                <li><a href="#alternatives">С чем сравнить Bright Funded</a></li>
+                <li><a href="#alternatives">С чем сравнить BrightFunded</a></li>
                 <li><a href="#sources">Источники и даты проверки</a></li>
                 <li><a href="#faq">Частые вопросы</a></li>
               </ol>
@@ -250,7 +250,7 @@ export default function RussianBrightFundedReviewPage() {
             <h2 id="verdict">Краткий вывод</h2>
             <p><strong>Начните сравнение с риска, а затем переходите к цене.</strong> В датированных условиях 2-Step Bright использует статическую границу убытка, а 1-Step — движущуюся. Дешёвый вход сам по себе не делает два этапа легче одного. В актуальной таблице ниже отдельно указаны цели, минимальные дни и стоимость каждой программы; отсутствующие условия не заменяются нулём.</p>
             <p><strong>Для счёта $100K сравнивайте одинаковый размер.</strong> Проверенная цена 1-Step: {eur(oneStep100k?.priceEur)}; 2-Step Bright: {eur(bright100k?.priceEur)}; Classic: {eur(classic100k?.priceEur)}. Если одна из цен не подтверждена, нельзя вычислять «экономию», считая её равной нулю. Размер $100K обозначает номинал симулированного счёта, а не сумму, которую вам переводят.</p>
-            <p>Для русскоязычного читателя Bright Funded — глобальная фирма с оплатой в EUR. Решение для гражданина или резидента любой страны начинается с ограничений, проверки личности и доступного способа выплаты. Русская версия обзора не означает, что фирма обслуживает всех русскоязычных пользователей.</p>
+            <p>Для русскоязычного читателя BrightFunded — глобальная фирма с оплатой в EUR. Решение для гражданина или резидента любой страны начинается с ограничений, проверки личности и доступного способа выплаты. Русская версия обзора не означает, что фирма обслуживает всех русскоязычных пользователей.</p>
             <div className="ru-notice" data-russian-bright-summary-cta="qualified-country-first">
               <strong>Что проверить до оплаты.</strong> Сопоставьте 5 условий: гражданство, страну проживания, фактическое местонахождение, способ оплаты и способ получения выплаты. Отсутствие страны в опубликованных списках не заменяет проверку документов конкретного трейдера.
               <p className="ru-source-line" data-russian-bright-summary-country-status={countrySourcesCurrent ? 'dated' : 'recapture-required'}>
@@ -262,7 +262,7 @@ export default function RussianBrightFundedReviewPage() {
               </p>
             </div>
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="bright-funded-summary">
-              <strong>Партнёрские ссылки.</strong> Если вы перейдёте к Bright Funded и зарегистрируетесь, мы можем получить комиссию. Партнёрство не меняет расчёты, порядок сравнения или необходимость проверить доступ из своей страны до оплаты.
+              <strong>Партнёрские ссылки.</strong> Если вы перейдёте к BrightFunded и зарегистрируетесь, мы можем получить комиссию. Партнёрство не меняет расчёты, порядок сравнения или необходимость проверить доступ из своей страны до оплаты.
             </div>
             {firm?.affiliateUrl ? (
               <div className="ru-actions">
@@ -284,7 +284,7 @@ export default function RussianBrightFundedReviewPage() {
               <h2 id="reviews">Отзывы о BrightFunded: почему мы не показываем среднюю оценку</h2>
               {!hasFreshTrustpilot && <p className="ru-notice">Наблюдение Trustpilot требует повторной проверки. Ниже сохранён статус на указанную дату, не подтверждение текущего состояния профиля.</p>}
               <p>
-                При проверке профиля Trustpilot от {firm.trustpilotCapturedAt ?? 'неуказанной даты'} средняя оценка Bright Funded была скрыта после отметки
+                При проверке профиля Trustpilot от {firm.trustpilotCapturedAt ?? 'неуказанной даты'} средняя оценка BrightFunded была скрыта после отметки
                 о нарушении правил платформы. Это <strong>не 0/5</strong>, а скрытая средняя оценка без отображения среднего балла
                 и количества: ноль, отсутствие данных и снятый агрегат означают три разные вещи.
               </p>
@@ -510,7 +510,7 @@ export default function RussianBrightFundedReviewPage() {
             ) : <p>Партнёрская ссылка не настроена; используйте рейтинг для сравнения.</p>}
             <p className="ru-source-line"><BadgeDollarSign size={14} aria-hidden="true" /> Окончательная цена и право на участие определяются фирмой; переход по партнёрской ссылке не гарантирует одобрение.</p>
             <p className="ru-source-line"><ExternalLink size={14} aria-hidden="true" /> Продуктовые источники: {sourceUrls.map((url, index) => <span key={url}>{index ? ' · ' : ''}<a href={url} target="_blank" rel="noopener noreferrer">страница {index + 1}</a></span>)}</p>
-            <p className="ru-source-line">Подробная англоязычная проверка: <Link href="/blog/bright-funded-prop-firm" hrefLang="en">Bright Funded review</Link>.</p>
+            <p className="ru-source-line">Подробная англоязычная проверка: <Link href="/blog/bright-funded-prop-firm" hrefLang="en">BrightFunded review</Link>.</p>
           </div>
         </section>
 
@@ -534,7 +534,7 @@ export default function RussianBrightFundedReviewPage() {
               <div className="ru-review-author-avatar" aria-hidden="true">ED</div>
               <div>
                 <strong>Автор: Edris Derakhshi</strong>
-                <p>Обзор разбирает программы Bright Funded по официальным источникам: цены в EUR, просадку и выплаты. Даты проверки указаны рядом с данными; партнёрская связь раскрыта отдельно.</p>
+                <p>Обзор разбирает программы BrightFunded по официальным источникам: цены в EUR, просадку и выплаты. Даты проверки указаны рядом с данными; партнёрская связь раскрыта отдельно.</p>
                 <Link href="/authors/edris-derakhshi">Профиль автора</Link>
               </div>
             </div>

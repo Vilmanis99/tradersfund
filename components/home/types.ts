@@ -21,5 +21,7 @@ export interface ComparisonRow {
   checkedOn: string
   /** /go/<slug> without campaign; the table appends ?from=<placement>-table|-cards. */
   goHref: string | null
+  /** First-party site, shown as a non-sponsored link when there is no affiliate link. */
+  officialUrl: string | null
   russiaStatus: RussiaStatus | null
 }

@@ -202,7 +202,7 @@ export default function RussianEraTradeReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell" data-russian-local-global-funnel="era-trade">
-          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="eratrade-global-options"><strong>FundedNext и Bright Funded — два основных глобальных маршрута.</strong> Они коммерчески выделены для отдельного онлайн-сравнения, а не объявлены победителями над Era Trade. Дата захвата определяет, можно ли цитировать продуктовые цифры; при просрочке откройте текущую страницу оплаты. Партнёрская комиссия возможна после регистрации, но не меняет порядок проверки страны, KYC и правил.</div>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="eratrade-global-options"><strong>FundedNext и BrightFunded — два основных глобальных маршрута.</strong> Они коммерчески выделены для отдельного онлайн-сравнения, а не объявлены победителями над Era Trade. Дата захвата определяет, можно ли цитировать продуктовые цифры; при просрочке откройте текущую страницу оплаты. Партнёрская комиссия возможна после регистрации, но не меняет порядок проверки страны, KYC и правил.</div>
           <h2>Глобальные альтернативы для русскоязычных трейдеров</h2>
           <div className="ru-grid">
             {globalCards.map(item => (

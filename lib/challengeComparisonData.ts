@@ -1,3 +1,4 @@
+import { firmSlug } from './firmSlug.ts'
 import { getAllChallenges, getAllFirms, isChallengeFresh, minimumCostToFundedUsd, type Challenge, type Firm } from './firms.ts'
 import { getChallengeWatchEntries, productChangeSignals, type ChallengeWatchEntry } from './challengeWatch.ts'
 import { challengeKey, DEFAULT_FINDER_FILTERS, serializeFinderState, type GlobalChallengeRow } from './challengeComparison.ts'
@@ -6,7 +7,7 @@ import { challengeKey, DEFAULT_FINDER_FILTERS, serializeFinderState, type Global
 export function buildChallengeComparisonRows(
   challenges: Challenge[], firms: Firm[], watch: ChallengeWatchEntry[], now = new Date(),
 ): GlobalChallengeRow[] {
-  const firmBySlug = new Map(firms.map(firm => [firm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''), firm]))
+  const firmBySlug = new Map(firms.map(firm => [firmSlug(firm.name), firm]))
   return challenges.filter(challenge => isChallengeFresh(challenge, now)).flatMap(challenge => {
     const firm = firmBySlug.get(challenge.firmSlug)
     if (!firm) return []
@@ -65,7 +66,7 @@ export function getRussianReviewFinderHref(firmSlug: string, now = new Date()): 
   return `/ru/luchshie-prop-firmy#${serializeFinderState({ ...DEFAULT_FINDER_FILTERS, size: 50000, phases: '2' }, selected)}`
 }
 
-/** Same-size instant comparison; Bright Funded is not a phase-0 product. */
+/** Same-size instant comparison; BrightFunded is not a phase-0 product. */
 export function getRussianInstantFinderHref(now = new Date()): string {
   const available = new Set(getRussianFinderRows(now)
     .filter(row => row.product.phases === 0 && row.product.tiers.some(tier => tier.sizeUsd === 10000))

@@ -46,7 +46,7 @@ if (Number.isNaN(asOf.getTime())) {
 }
 
 const slugify = value =>
-  value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
 
 const firms = JSON.parse(fs.readFileSync(FIRMS, 'utf-8'))
 const firmNameBySlug = new Map(firms.map(firm => [slugify(firm.name), firm.name]))

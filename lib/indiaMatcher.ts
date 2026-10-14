@@ -1,3 +1,4 @@
+import { firmSlug } from './firmSlug.ts'
 import 'server-only'
 
 import {
@@ -103,8 +104,6 @@ export interface IndiaMatcherFirm {
   products: IndiaMatcherProduct[]
 }
 
-const firmSlug = (name: string) =>
-  name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 function publishedEntry(challenge: Challenge): IndiaMatcherEntryPrice | null {
   const usd = challenge.accountSizes

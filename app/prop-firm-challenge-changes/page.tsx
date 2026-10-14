@@ -1,3 +1,4 @@
+import { firmSlug } from '@/lib/firmSlug'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { LucideIcon } from 'lucide-react'
@@ -66,9 +67,6 @@ function dateLabel(value: string) {
   })
 }
 
-function firmSlug(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-}
 
 function affectedComparisonUrl(firm: string, productSlugs: string[]) {
   const path = '/prop-firm-challenges'

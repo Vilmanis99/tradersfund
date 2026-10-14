@@ -51,8 +51,8 @@ export const metadata: Metadata = {
     'FundedNext или BrightFunded',
     'FundedNext vs BrightFunded',
     'BrightFunded сравнение',
-    'FundedNext или Bright Funded',
-    'FundedNext vs Bright Funded',
+    'FundedNext или BrightFunded',
+    'FundedNext vs BrightFunded',
     'FundedNext сравнение',
     'проп фирмы USD EUR',
   ],
@@ -68,27 +68,27 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'У кого дешевле челлендж?',
-    a: 'Взносы FundedNext указаны в USD, Bright Funded — в EUR. Численно меньшая цена в другой валюте не доказывает экономию. Выберите одинаковый размер счёта, проверьте этапы и сравните итоговые суммы со всеми дополнениями и конвертацией при оплате.',
+    a: 'Взносы FundedNext указаны в USD, BrightFunded — в EUR. Численно меньшая цена в другой валюте не доказывает экономию. Выберите одинаковый размер счёта, проверьте этапы и сравните итоговые суммы со всеми дополнениями и конвертацией при оплате.',
   },
   {
     q: 'Чем отличаются 1-Step программы?',
-    a: 'В датированных правилах Stellar 1-Step использует статическую общую границу убытка, а Bright Funded 1-Step — подвижную границу вслед за максимальной стоимостью счёта. Поэтому совпадающий процент просадки не означает одинаковый запас риска после прибыльной сделки. Цели, торговые дни и сроки запроса сравниваются отдельно в строках программ.',
+    a: 'В датированных правилах Stellar 1-Step использует статическую общую границу убытка, а BrightFunded 1-Step — подвижную границу вслед за максимальной стоимостью счёта. Поэтому совпадающий процент просадки не означает одинаковый запас риска после прибыльной сделки. Цели, торговые дни и сроки запроса сравниваются отдельно в строках программ.',
   },
   {
     q: 'Есть ли у BrightFunded финансирование без оценки?',
-    a: 'В разобранной линейке Bright Funded программы проходят оценку. Stellar Instant у FundedNext рассматривается отдельно как программа без оценочного этапа. Это не освобождает трейдера от лимита убытка, проверки личности и условий запроса вознаграждения; текущий состав предложения нужно сверять в таблице и у фирмы.',
+    a: 'В разобранной линейке BrightFunded программы проходят оценку. Stellar Instant у FundedNext рассматривается отдельно как программа без оценочного этапа. Это не освобождает трейдера от лимита убытка, проверки личности и условий запроса вознаграждения; текущий состав предложения нужно сверять в таблице и у фирмы.',
   },
   {
     q: 'Где быстрее первая выплата?',
-    a: 'Сравнивайте начало отсчёта и единицы времени: Stellar 1-Step использует рабочие дни, а Instant — отдельные условия запроса. У Bright Funded есть противоречие между описанием стандартного следующего цикла и платного дополнения. Срок подачи заявки не включает все проверки и время зачисления получателю.',
+    a: 'Сравнивайте начало отсчёта и единицы времени: Stellar 1-Step использует рабочие дни, а Instant — отдельные условия запроса. У BrightFunded есть противоречие между описанием стандартного следующего цикла и платного дополнения. Срок подачи заявки не включает все проверки и время зачисления получателю.',
   },
   {
     q: 'Какие способы выплаты доступны?',
-    a: 'У FundedNext нужно различать токен, сеть и платёжного посредника, а не считать каждый значок отдельным способом. Bright Funded публикует USDC в сети ERC-20 и банковский перевод в EUR. Для обеих фирм важны страна, проверка личности, поддержка банком или кошельком и итоговые комиссии.',
+    a: 'У FundedNext нужно различать токен, сеть и платёжного посредника, а не считать каждый значок отдельным способом. BrightFunded публикует USDC в сети ERC-20 и банковский перевод в EUR. Для обеих фирм важны страна, проверка личности, поддержка банком или кошельком и итоговые комиссии.',
   },
   {
     q: 'Какая фирма удобнее русскоязычному трейдеру за рубежом?',
-    a: 'Язык не определяет доступ. Резидент ЕС с EUR-счётом может предпочесть Bright Funded, а пользователь разрешённой юрисдикции с подходящим кошельком — один из криптомаршрутов FundedNext. Проверяются фактические гражданство, резидентство, адрес, платёж и KYC.',
+    a: 'Язык не определяет доступ. Резидент ЕС с EUR-счётом может предпочесть BrightFunded, а пользователь разрешённой юрисдикции с подходящим кошельком — один из криптомаршрутов FundedNext. Проверяются фактические гражданство, резидентство, адрес, платёж и KYC.',
   },
 ]
 
@@ -225,7 +225,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
   const sourceLabels = new Map<string, string>([
     ...relevantProducts.map(product => [product.sourceUrl, `${product.productName}: условия программы`] as const),
     [fundedNextPayoutSource.sourceUrl, `FundedNext: ${fundedNextPayoutSource.labelRu}`] as const,
-    ...ruleSources.map(source => [source.sourceUrl, `Bright Funded: ${source.labelRu}`] as const),
+    ...ruleSources.map(source => [source.sourceUrl, `BrightFunded: ${source.labelRu}`] as const),
     ...[...payoutEvidence.values(), ...kycEvidence.values()].filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).flatMap(source => source.sourceUrls.map(url => [url, `${source.firmName}: ${'methods' in source ? 'способы выплаты' : 'проверка личности'}`] as const)),
   ])
 
@@ -304,7 +304,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
           </div>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="fundednext-bright-comparison">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            FundedNext и Bright Funded — два главных коммерческих партнёра русской версии. Мы можем получить комиссию после
+            FundedNext и BrightFunded — два главных коммерческих партнёра русской версии. Мы можем получить комиссию после
             покупки по партнёрской ссылке. Комиссия не меняет правила сравнения и не добавляет фирме баллы.
             Для обеих фирм доступны подробный обзор и ссылка на проверку условий.
           </div>
@@ -333,7 +333,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             <p>
               <strong>Начните с формата участия и допустимого риска.</strong> Stellar Instant рассматривается как отдельная
               программа без оценки; наличие этого варианта не делает остальные модели FundedNext подходящими автоматически.
-              У Bright Funded сравнивайте одноэтапную модель с подвижной границей убытка и двухэтапные модели со статической.
+              У BrightFunded сравнивайте одноэтапную модель с подвижной границей убытка и двухэтапные модели со статической.
               Следующий фильтр — взнос в USD или EUR и способ получения вознаграждения, доступный именно вашему профилю.
             </p>
             <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Пять ограничений при выборе фирмы" data-russian-primary-comparison-matrix="five-constraints">
@@ -356,7 +356,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             <h2>Программы: этапы, цены, просадка и запрос выплаты</h2>
             <p>
               Сравнивайте одинаковый размер счёта и число оценочных этапов. Строка Stellar 1-Step не описывает правила
-              Stellar Instant, а условия Bright Funded 2-Step Bright нельзя переносить на Classic.
+              Stellar Instant, а условия BrightFunded 2-Step Bright нельзя переносить на Classic.
               Неподтверждённая цель или дневной лимит остаются неизвестными, а не означают отсутствие ограничения.
             </p>
             <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Программы, цены и правила двух фирм">
@@ -365,7 +365,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
                 <tbody>
                   {products.map(product => (
                     <tr key={`${product.firmSlug}:${product.productSlug}`} data-russian-primary-comparison-product={`${product.firmSlug}:${product.productSlug}`}>
-                      <td><strong>{product.firmSlug === 'fundednext' ? 'FundedNext' : 'Bright Funded'}</strong><br />{product.productName}</td>
+                      <td><strong>{product.firmSlug === 'fundednext' ? 'FundedNext' : 'BrightFunded'}</strong><br />{product.productName}</td>
                       <td>{product.phases} · {targetLabel(product)}</td>
                       <td>{priceRange(product)}<br />{pricedTiers(product).length} размеров</td>
                       <td>{drawdownLabel(product)}</td>
@@ -385,7 +385,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             <h2>1-Step против 1-Step: важен способ пересчёта убытка</h2>
             <p>
               У Stellar 1-Step цель — {targetLabel(oneStepFn)}, дневной лимит — {percent(oneStepFn?.dailyLossPct)},
-              общий — {percent(oneStepFn?.maxLossPct)}. У Bright Funded 1-Step соответственно {targetLabel(oneStepBright)},
+              общий — {percent(oneStepFn?.maxLossPct)}. У BrightFunded 1-Step соответственно {targetLabel(oneStepBright)},
               {percent(oneStepBright?.dailyLossPct)} и {percent(oneStepBright?.maxLossPct)}. Каждое значение взято из своей программы:
               совпадение отдельных процентов не доказывает одинаковые условия.
             </p>
@@ -395,7 +395,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             </div>
             <p>
               Открытая прибыль может поднять подвижную границу ещё до закрытия позиции. Если затем цена развернётся,
-              запас до нарушения способен сократиться. В <a href={brightEvidence.sources.rules.sourceUrl} target="_blank" rel="nofollow noopener">правилах Bright Funded</a>
+              запас до нарушения способен сократиться. В <a href={brightEvidence.sources.rules.sourceUrl} target="_blank" rel="nofollow noopener">правилах BrightFunded</a>
               {' '}описана фиксация границы на стартовом балансе после заданного роста. Меньший минимум торговых дней сам по себе
               не делает прохождение проще: сначала проверьте, выдерживает ли стратегия эту механику.
             </p>
@@ -406,7 +406,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
           <div className="ru-shell ru-content">
             <h2>2-Step: сопоставьте лимиты риска и цели каждого этапа</h2>
             <p>
-              Начните с пары Stellar 2-Step и Bright Funded 2-Step Classic, затем рассмотрите Stellar Lite и 2-Step Bright.
+              Начните с пары Stellar 2-Step и BrightFunded 2-Step Classic, затем рассмотрите Stellar Lite и 2-Step Bright.
               У каждой программы отдельно сопоставьте дневной и общий лимиты, обе цели и минимум торговых дней.
               Если условия одной программы изменятся, прежнее сходство пары перестанет быть основанием для выбора.
             </p>
@@ -436,7 +436,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             <div className="ru-notice">
               <Zap size={16} aria-hidden="true" />{' '}
               <strong>Отсутствие оценки не означает отсутствие ограничений.</strong> Движущаяся граница убытка, проверка личности,
-              доступность по стране и проверка торговых действий сохраняются. Не включайте оценочную программу Bright Funded
+              доступность по стране и проверка торговых действий сохраняются. Не включайте оценочную программу BrightFunded
               в сравнение счетов без оценки только потому, что у неё похожая стоимость.
             </div>
             <div className="ru-actions">
@@ -495,7 +495,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
               а не в день покупки программы, и не подтверждает срок поступления на ваш счёт.
             </p>
             <p>
-              <a href={brightEvidence.sources.reward.sourceUrl} target="_blank" rel="nofollow noopener">Bright Funded публикует</a>
+              <a href={brightEvidence.sources.reward.sourceUrl} target="_blank" rel="nofollow noopener">BrightFunded публикует</a>
               {' '}USDC в сети ERC-20 и банковский перевод в EUR. На той же странице следующий цикл описан как двухнедельный,
               но выплаты раз в 14 дней также перечислены среди платных дополнений. Это противоречие остаётся неразрешённым:
               не включайте сокращённый цикл в базовую цену без письменного подтверждения фирмы. Комиссии банка, сети и конвертации
@@ -519,7 +519,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
               Для Stellar Instant, где оценки нет, порядок активации нужно проверять отдельно.
             </p>
             <p>
-              Проверка Bright Funded от {kycEvidence.get('bright-funded')?.sourceCapturedAt ?? 'неподтверждённой даты'} описывает
+              Проверка BrightFunded от {kycEvidence.get('bright-funded')?.sourceCapturedAt ?? 'неподтверждённой даты'} описывает
               {' '}{kycEvidence.get('bright-funded')?.provider ?? 'неподтверждённого провайдера'} для личности и адреса, затем проверку торгового счёта командой риска.
               Одобрение документов, подписание договора и активация — отдельные шаги. Опубликованный ориентир не гарантирует срок для профиля,
               по которому запрошены дополнительные сведения.
@@ -528,8 +528,8 @@ export default function FundedNextVsBrightFundedRussianPage() {
               <table className="ru-table">
                 <thead><tr><th>Проверка</th><th>FundedNext</th><th>BrightFunded</th></tr></thead>
                 <tbody>
-                  <tr><td>Платформы</td><td><Link href="/ru/fundednext-mt5">MT5 и ограничения FundedNext</Link>: выбор зависит от модели, размера счёта и профиля.</td><td><Link href="/ru/prop-firmy-s-ctrader">cTrader и ограничения Bright Funded</Link>: список платформ фирмы не подтверждает доступность для каждого счёта.</td></tr>
-                  <tr><td>Кто проверяет</td><td>Центр проверки FundedNext</td><td>SumSub и команда риска Bright Funded</td></tr>
+                  <tr><td>Платформы</td><td><Link href="/ru/fundednext-mt5">MT5 и ограничения FundedNext</Link>: выбор зависит от модели, размера счёта и профиля.</td><td><Link href="/ru/prop-firmy-s-ctrader">cTrader и ограничения BrightFunded</Link>: список платформ фирмы не подтверждает доступность для каждого счёта.</td></tr>
+                  <tr><td>Кто проверяет</td><td>Центр проверки FundedNext</td><td>SumSub и команда риска BrightFunded</td></tr>
                   <tr><td>Этап активации</td><td>Для оценочной модели — после прохождения оценки; Instant проверяется отдельно</td><td>Документы, проверка счёта, договор и активация</td></tr>
                   <tr><td>Проверка адреса</td><td>Дополнительный документ может потребоваться</td><td>Перечень документов зависит от страны</td></tr>
                 </tbody>
@@ -547,9 +547,9 @@ export default function FundedNextVsBrightFundedRussianPage() {
               с правилами фирмы и посредника; не подбирайте адрес или страну ради прохождения проверки.
             </p>
             <div className="ru-grid">
-              <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>EUR-счёт в поддерживаемой стране</h3><p className="ru-muted">Взнос Bright Funded и его банковская выплата указаны в EUR. Проверьте итоговую сумму заказа, комиссию банка и совпадение владельца счёта с документами.</p></article>
+              <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>EUR-счёт в поддерживаемой стране</h3><p className="ru-muted">Взнос BrightFunded и его банковская выплата указаны в EUR. Проверьте итоговую сумму заказа, комиссию банка и совпадение владельца счёта с документами.</p></article>
               <article className="ru-card"><WalletCards size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Поддерживаемый криптокошелёк</h3><p className="ru-muted">Проверьте токен и сеть, имя владельца, требования посредника и возможность последующего обмена. ERC-20 и TRC-20 нельзя считать одним адресным форматом.</p></article>
-              <article className="ru-card"><MonitorSmartphone size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Нужна конкретная платформа</h3><p className="ru-muted">Статья Bright Funded перечисляет MT5, DXTrade и cTrader. Значит, cTrader не является исключительным преимуществом FundedNext в этой паре. Страна и выбранная программа проверяются отдельно.</p></article>
+              <article className="ru-card"><MonitorSmartphone size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Нужна конкретная платформа</h3><p className="ru-muted">Статья BrightFunded перечисляет MT5, DXTrade и cTrader. Значит, cTrader не является исключительным преимуществом FundedNext в этой паре. Страна и выбранная программа проверяются отдельно.</p></article>
               <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">У FundedNext статус остаётся «конфликт»: {accessEvidence?.sourceUrls.length ?? 0} официальных страницы не дают безопасного общего ответа. Bright тоже проверяется отдельно.</p></article>
             </div>
             <div className="ru-actions"><Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-primary">Проверить профиль и страну <ArrowRight size={15} aria-hidden="true" /></Link><Link href="/ru/prop-firmy-bez-kyc" className="btn-outline">Разобрать KYC</Link><Link href="/ru/prop-firmy-s-ctrader" className="btn-outline">Сравнить правила cTrader</Link></div>
@@ -563,7 +563,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
               На снимке Trustpilot от {fundedNext?.trustpilotCapturedAt ?? 'неуказанной даты'} FundedNext имел
               {fundedNext?.trustpilotScore ?? '—'}/5 при {fundedNext?.trustpilotCount?.toLocaleString('en-US') ?? '—'} отзывах.
               Это сводка пользовательских отзывов, а не проверка каждой выплаты.
-              {' '}{brightFunded?.trustpilotRatingSuppressed ? `У Bright Funded в записи от ${brightFunded.trustpilotCapturedAt ?? 'неподтверждённой даты'} отмечено снятие общей оценки за нарушение правил платформы; это не нулевая оценка.` : 'Статус общей оценки Bright Funded нужно уточнить в его обзоре.'}
+              {' '}{brightFunded?.trustpilotRatingSuppressed ? `У BrightFunded в записи от ${brightFunded.trustpilotCapturedAt ?? 'неподтверждённой даты'} отмечено снятие общей оценки за нарушение правил платформы; это не нулевая оценка.` : 'Статус общей оценки BrightFunded нужно уточнить в его обзоре.'}
             </p>
             {(!freshCapture(fundedNext?.trustpilotCapturedAt ?? '') || !freshCapture(brightFunded?.trustpilotCapturedAt ?? '')) && <p className="ru-notice">Наблюдения Trustpilot требуют повторной проверки. Здесь сохранены датированные сведения, а не текущая оценка фирм.</p>}
             <div className="ru-notice">

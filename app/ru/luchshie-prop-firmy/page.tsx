@@ -1,3 +1,4 @@
+import { firmSlug } from '@/lib/firmSlug'
 import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
 import { ArrowRight, BadgeCheck, Scale, ShieldCheck } from 'lucide-react'
@@ -90,8 +91,7 @@ const partnerGuidance: Record<string, {
   },
 }
 
-const slugify = (name: string) =>
-  name.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+const slugify = (name: string) => firmSlug(name.replace(/&/g, 'and'))
 
 const russianReviewRoutes: Record<string, string> = {
   'bright-funded': '/ru/obzor-bright-funded',

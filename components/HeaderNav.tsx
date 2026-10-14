@@ -241,7 +241,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
         >
           <div className="mobile-overlay__inner">
             <div className="mobile-overlay__head">
-              <Link href={isRussian ? '/ru' : '/'}>{isRussian ? 'Главная' : 'Home'}</Link>
+              <Link href={isRussian ? '/ru' : '/'} className="mobile-overlay__brand">Traders Fund Hub</Link>
               <button type="button" className="mobile-overlay__close" onClick={() => setMobileOpen(false)}>
                 {isRussian ? 'Закрыть' : 'Close'} <X size={20} aria-hidden="true" />
               </button>

@@ -1,3 +1,4 @@
+import { firmSlug } from './firmSlug.ts'
 import {
   challengeCurrency,
   getAllFirms,
@@ -36,8 +37,6 @@ import rawUkAccessEvidence from '@/content/data/uk-access-evidence.json'
  *   - LANDINGS = geographic + commercial slices (UK, US, cheapest, futures)
  */
 
-const firmSlug = (name: string) =>
-  name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 export interface LandingFirm {
   firm: Firm
