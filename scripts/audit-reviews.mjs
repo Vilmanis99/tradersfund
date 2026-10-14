@@ -6186,7 +6186,7 @@ function checkUkLandingCluster() {
       'What should match before checkout and KYC?',
       'How should USD and EUR fees be compared in GBP?',
       'Does the policy cover every product and platform forever?',
-      "lastReviewed: '2026-08-17'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`UK landing is missing "${fragment}"`)
@@ -6203,14 +6203,14 @@ function checkUkLandingCluster() {
         rows.push(`UK landing restored aggregate or unsupported logic: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('UK landing must keep exactly 4 decision-guide questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 8) {
+      rows.push('UK landing must keep exactly 8 decision-guide questions')
     }
   }
 
-  const expectedTitle = 'Best Prop Firms for UK Traders (2026): 8 Checked'
+  const expectedTitle = 'Best Prop Firms UK 2026: 8 Prop Trading Firms Checked'
   const expectedDescription =
-    'Compare 8 prop firms with current first-party UK-access policies across 39 product paths, plus FCA checks, fees, rules, reviews, and dated sources.'
+    'Compare 8 prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.'
   if (expectedTitle.length > 54) rows.push('UK meta title leaves no room for the root suffix')
   if (expectedDescription.length < 120 || expectedDescription.length > 160) {
     rows.push('UK meta description must be between 120 and 160 characters')
