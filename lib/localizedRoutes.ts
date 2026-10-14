@@ -24,6 +24,7 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/fundednext-mt5',
   '/ru/fundednext-stellar-instant',
   '/ru/vyplaty-prop-firm',
+  '/ru/prop-kompanii-v-rossii',
   '/ru/prop-firmy-bez-kyc',
   '/ru/obzor-proplive',
   '/ru/obzor-eratrade',
@@ -85,6 +86,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/prop-firmy-bez-chelendzha': '2026-10-01',
   '/ru/prop-firmy-bez-kyc': '2026-10-01',
   '/ru/prop-firmy-s-ctrader': '2026-10-01',
+  '/ru/prop-kompanii-v-rossii': '2026-10-14',
   '/ru/vyplaty-prop-firm': '2026-10-01',
 } as const satisfies Record<RussianRoutePath, string>
 
