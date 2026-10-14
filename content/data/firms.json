@@ -209,8 +209,9 @@
     "headquarters": "Wan Chai, Hong Kong",
     "country": "Comoros",
     "regulation": null,
-    "corporateSourceUrl": "https://fundednext.com/",
-    "corporateCapturedAt": "2026-10-14"
+    "corporateSourceUrl": "https://fundednext.com/company",
+    "corporateCapturedAt": "2026-10-14",
+    "corporateNote": "Hong Kong office belongs to sister company FundedNext Limited (operates fundednext.com); the contracting entity FundedNext Ltd is registered in Comoros."
   },
   {
     "name": "FundingPips",
@@ -511,11 +512,12 @@
     "trustpilotCapturedAt": "2026-10-01",
     "russiaStatus": "available",
     "legalEntity": "BrightFunded Ltd",
-    "headquarters": "Dubai, United Arab Emirates",
+    "headquarters": "Suite 5, Place Creole Building, Rodney Bay, Gros-Islet, Saint Lucia",
     "country": "Saint Lucia",
     "regulation": null,
     "corporateSourceUrl": "https://brightfunded.com/",
-    "corporateCapturedAt": "2026-10-14"
+    "corporateCapturedAt": "2026-10-14",
+    "corporateNote": "Physical address of BrightFunded Ltd. Bright Global FZCO (Dubai Silicon Oasis, UAE) is a separate affiliate."
   },
   {
     "name": "OFP Funding",

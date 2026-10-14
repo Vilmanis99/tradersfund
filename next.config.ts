@@ -61,6 +61,8 @@ function legacyRedirects() {
   return [
     // The Funded Trader delisted 2026-10-14 (official sites offline, HTTP 402).
     { source: '/go/the-funded-trader', destination: '/best-prop-firms-2026', permanent: true },
+    // Old WordPress attachment pages under the retired review.
+    { source: '/the-funded-trader-review/:path*', destination: '/best-prop-firms-2026', permanent: true },
     // The default *.vercel.app domain serves the same production build — a
     // duplicate-content host. Send it to the canonical apex domain. (Safe:
     // requests on tradersfundhub.com don't match the host condition, and

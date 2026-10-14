@@ -88,6 +88,8 @@ export interface Firm {
   country?: string | null
   /** Licence/authorisation the firm itself states; null when none is stated. Not an FCA/regulator finding. */
   regulation?: string | null
+  /** Clarifies which group entity a corporate field belongs to. */
+  corporateNote?: string | null
   /** Official page the corporate fields above were read from. */
   corporateSourceUrl?: string | null
   /** ISO date the corporate fields were captured. */
