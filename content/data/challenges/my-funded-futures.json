@@ -7,7 +7,7 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
+        "priceUsd": 145,
         "maxLossUsd": 1000,
         "refundable": false
       },
@@ -19,13 +19,13 @@
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
+        "priceUsd": 356,
         "maxLossUsd": 3000,
         "refundable": false
       },
       {
         "sizeUsd": 150000,
-        "priceUsd": null,
+        "priceUsd": 463,
         "maxLossUsd": 4500,
         "refundable": false
       }
@@ -54,7 +54,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://myfundedfutures.com/plans/rapid",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-14",
     "notes": [
       "Current Rapid plan page says one-time payment with no renewals and $0 activation fee for new purchases.",
       "The current page exposes the regular $209 price for the linked 50K checkout; the remaining size prices are rendered by the client-side selector and were not mapped to a stable first-party figure in this capture, so they remain null rather than reusing the 27 July subscription prices.",
@@ -63,7 +63,7 @@
       "The funded stage has no daily loss limit or consistency rule, a 90/10 split, a $500 minimum payout, and a required buffer of $1,100 / $2,100 / $3,100 / $4,600 by size. The first request is not a fixed day count because the buffer must be cleared.",
       "The firm-wide restricted-country article lists Russia. A trader located in Russia cannot purchase a new account.",
       "Capture sources: https://myfundedfutures.com/plans/rapid and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-09-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-14.json"
     ]
   },
   {
@@ -109,14 +109,14 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-14",
     "notes": [
       "The official Rapid EOD 50K article states a $157 one-time cost, no activation fee, 4 minimum trading days, 30% evaluation consistency, EOD drawdown in both evaluation and Sim Funded, a $2,100 buffer, $500 minimum payout, and a 90/10 split.",
       "The official Rapid EOD 25K help article confirms the 25K rules and $1,000 drawdown, but does not publish a stable price; its price remains null until a first-party tier price is exposed.",
       "Rapid EOD is a separate product from standard Rapid: funded drawdown remains EOD instead of switching to intraday trailing.",
       "The firm-wide restricted-country article lists Russia. A trader located in Russia cannot purchase a new account.",
       "Capture sources: https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan, https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look, https://help.myfundedfutures.com/en/articles/16727601-rapid-eod-25k-a-comprehensive-look, and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-09-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-14.json"
     ]
   },
   {
@@ -127,13 +127,13 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": 95,
+        "priceUsd": null,
         "maxLossUsd": 1000,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": 153,
+        "priceUsd": null,
         "maxLossUsd": 2000,
         "refundable": false
       }
@@ -161,14 +161,14 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-14",
     "notes": [
       "Flex is a legacy product. MFFU’s own Flex article says it is no longer offered to new buyers; these values describe legacy subscriptions and should not be presented as a current purchase option.",
       "Legacy Flex subscriptions retain recurring 30-day billing under the terms that applied before the one-time-payment migration. The current terms distinguish legacy subscriptions from new one-time plans.",
       "Legacy payout rules include 5 qualifying winning days, 50% of profits requestable, and a $3,000 or $5,000 cap depending on the legacy size/article. The exact account agreement controls.",
       "The firm-wide restricted-country article lists Russia. A trader located in Russia cannot purchase a new account.",
       "Capture sources: https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy, https://myfundedfutures.com/blog/myfundedfutures-mffu-flex-plan, https://marketing.myfundedfutures.com/terms, and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-09-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-14.json"
     ]
   },
   {
@@ -185,13 +185,13 @@
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
+        "priceUsd": 401,
         "maxLossUsd": 3000,
         "refundable": false
       },
       {
         "sizeUsd": 150000,
-        "priceUsd": null,
+        "priceUsd": 557,
         "maxLossUsd": 4500,
         "refundable": false
       }
@@ -220,7 +220,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://myfundedfutures.com/plans/pro",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-14",
     "notes": [
       "Current Pro plan page says one-time payment with no renewals, $0 activation fee, and a regular $265 price for the linked 50K checkout. The 100K and 150K selector prices are not exposed as stable first-party text in this capture and remain null.",
       "Pro evaluation uses a 6% target, $2,000 / $3,000 / $4,500 EOD maximum loss by size, 2 minimum trading days, and a 50% evaluation-only consistency rule.",
@@ -228,7 +228,7 @@
       "Tier 1 news trading is allowed in evaluation but not allowed in Sim Funded; the current page also describes a 7-calendar-day inactivity rule.",
       "The firm-wide restricted-country article lists Russia. A trader located in Russia cannot purchase a new account.",
       "Capture sources: https://myfundedfutures.com/plans/pro and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-09-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-14.json"
     ]
   },
   {
@@ -239,13 +239,13 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
+        "priceUsd": 105,
         "maxLossUsd": 1000,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
+        "priceUsd": 153,
         "maxLossUsd": 2000,
         "refundable": false
       }
@@ -275,7 +275,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://myfundedfutures.com/plans/builder",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-14",
     "notes": [
       "Current Builder page says one-time payment with no renewals and $0 activation fee. Its visible starting figures are promotional and do not map unambiguously to the 25K and 50K base tiers, so both prices remain null rather than carrying forward the July subscription prices.",
       "Builder evaluation targets are $1,500 on 25K and $3,000 on 50K (6%); maximum EOD trailing loss is $1,000 and $2,000 by size, with a $1,000 soft pause on 50K, 1 minimum trading day, and no evaluation consistency rule.",
@@ -283,7 +283,7 @@
       "After 5 approved simulated payouts, MFFU describes a live transition with daily payouts, an 80/20 split, and no live consistency rule; the live account has different limits.",
       "The firm-wide restricted-country article lists Russia. A trader located in Russia cannot purchase a new account.",
       "Capture sources: https://myfundedfutures.com/plans/builder and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-09-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-14.json"
     ]
   }
 ]
