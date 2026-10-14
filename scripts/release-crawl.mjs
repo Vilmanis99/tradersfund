@@ -3690,7 +3690,7 @@ if (cryptoLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Crypto Prop Firms (2026): ${expectedCryptoFirms.length} Verified | TFH`,
+    `Best Crypto Prop Firms 2026: ${expectedCryptoFirms.length} Firms Compared | TFH`,
     `${expectedCryptoFirms.length} evidence-backed firms across ${expectedCryptoProductCount} mapped products`,
     `Not ranked yet: ${cryptoMarketEvidence.watch.length} evidence gaps`,
     'What crypto traders should verify',

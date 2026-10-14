@@ -7139,7 +7139,7 @@ function checkCryptoLandingCluster() {
       'Does weekend or 24/7 access actually apply?',
       'What do leverage, commission, consistency, and payout rules do?',
       'evidenceGaps: CRYPTO_MARKET_WATCH.map',
-      "lastReviewed: '2026-08-27'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`crypto landing is missing "${fragment}"`)
@@ -7155,13 +7155,13 @@ function checkCryptoLandingCluster() {
         rows.push(`crypto landing restored aggregate or payment-based logic: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('crypto landing must keep exactly 4 product-level decision questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 8) {
+      rows.push('crypto landing must keep exactly 8 product-level decision questions')
     }
   }
 
   const expectedDescription =
-    `Compare ${ranked.length} crypto prop firms across ${mappedProducts.size} mapped products using current rules, market-specific evidence, source dates, and reviews.`
+    `Best crypto prop firms for 2026: ${ranked.length} crypto prop trading firms compared on BTC/ETH access, leverage, commission, entry price and payout rules.`
   if (expectedDescription.length < 120 || expectedDescription.length > 160) {
     rows.push('crypto landing meta description must be between 120 and 160 characters')
   }
