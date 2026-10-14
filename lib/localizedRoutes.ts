@@ -30,6 +30,7 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/obzor-kascapital',
   '/ru/obzor-teamtraders',
   '/ru/otzyvy-prop-firm',
+  '/ru/obzor-the5ers',
   '/ru/ftmo-dlya-rossiyan',
 ] as const
 
@@ -80,6 +81,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/obzor-kascapital': '2026-10-01',
   '/ru/obzor-proplive': '2026-10-01',
   '/ru/obzor-teamtraders': '2026-10-01',
+  '/ru/obzor-the5ers': '2026-10-14',
   '/ru/otzyvy-prop-firm': '2026-10-01',
   '/ru/promokody-prop-firm': '2026-10-14',
   '/ru/prop-firmy-bez-chelendzha': '2026-10-01',
