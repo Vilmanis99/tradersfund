@@ -8,6 +8,7 @@ import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/rossiyskie-prop-kompanii'
 export const revalidate = 3600
@@ -262,9 +263,9 @@ export default function RussianPropCompaniesPage() {
                 <p className="ru-muted">{item.summary}</p>
                 <div className="ru-actions">
                   <Link href={item.reviewHref} className="btn-outline">Читать русский обзор</Link>
-                  <Link href={`/go/${item.slug}?from=${item.campaign}`} rel="sponsored nofollow noopener" className="btn-primary">
+                  <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=${item.campaign}`} rel="sponsored nofollow noopener" className="btn-primary">
                     Проверить условия <ArrowRight size={14} aria-hidden="true" />
-                  </Link>
+                  </RuGoLink>
                 </div>
               </article>
             ))}

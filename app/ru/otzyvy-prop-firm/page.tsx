@@ -29,6 +29,7 @@ import {
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/otzyvy-prop-firm'
 const TITLE = 'Отзывы о проп-фирмах 2026: как проверить выплаты'
@@ -328,7 +329,7 @@ export default function RussianPropFirmReviewsPage() {
                     : 'Сначала выберите 1 или 2 этапа; затем проверьте трейлинг-/статическую просадку и первую заявку. USDC ERC-20 описывает выплату, а не торговый рынок или автоматическую доступность страны.'}</p>
                   <div className="ru-actions">
                     <Link href={card.reviewHref} className="btn-outline">Полный русский обзор</Link>
-                    <Link href={`/go/${card.slug}?from=ru-reviews-guide-${card.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить {card.name} <ArrowRight size={14} aria-hidden="true" /></Link>
+                    <RuGoLink firm={card.slug} href={`/go/${card.slug}?from=ru-reviews-guide-${card.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить {card.name} <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
                   </div>
                 </article>
               ))}
@@ -436,7 +437,7 @@ export default function RussianPropFirmReviewsPage() {
             {secondaryFirm?.affiliateUrl && secondaryProducts.length > 0 ? (
               <div className="ru-notice ru-disclosure" data-russian-reviews-secondary-partner="fundingpips">
                 <strong>Дополнительный партнёрский маршрут.</strong>{' '}
-                После русского обзора можно <Link href="/go/fundingpips?from=ru-reviews-guide-fundingpips" rel="sponsored nofollow noopener">проверить текущие условия FundingPips</Link>. Комиссия не делает его заменой FundedNext или Bright Funded и не подтверждает доступность страны.
+                После русского обзора можно <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-reviews-guide-fundingpips" rel="sponsored nofollow noopener">проверить текущие условия FundingPips</RuGoLink>. Комиссия не делает его заменой FundedNext или Bright Funded и не подтверждает доступность страны.
               </div>
             ) : null}
             <div className="ru-review-author" aria-label="Автор руководства по отзывам о проп-фирмах">

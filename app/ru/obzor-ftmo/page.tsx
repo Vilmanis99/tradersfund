@@ -26,6 +26,7 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/obzor-ftmo'
 const TITLE = 'FTMO: обзор 2026, цены, правила и доступ для русскоязычных'
@@ -79,7 +80,7 @@ function targetLabel(product: Challenge) {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какой официальный сайт FTMO?',
-    a: 'Официальный глобальный домен — ftmo.com. Маршрут /go/ftmo на Traders Fund Hub ведёт на этот домен без партнёрской комиссии. Проверяйте домен перед вводом платёжных данных: похожее название в рекламе или Telegram не доказывает связь с FTMO.',
+    a: 'Официальный глобальный домен — ftmo.com. FTMO не принимает резидентов России, поэтому на русских страницах Traders Fund Hub нет перехода на регистрацию в FTMO. Проверяйте домен перед вводом платёжных данных: похожее название в рекламе или Telegram не доказывает связь с FTMO.',
   },
   {
     q: 'Работает ли FTMO с резидентами России?',
@@ -258,9 +259,9 @@ export default function RussianFtmoReviewPage() {
               нужна валовая прибыль {eur(oneStep100kEconomics?.breakEvenProfit)}. Поэтому более низкая цена не означает более низкую полную стоимость решения.
             </p>
             <div className="ru-actions">
-              <Link href="/go/ftmo?from=ru-ftmo-review-verdict" rel="nofollow noopener" className="btn-outline">
+              <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-ftmo-review-verdict" rel="nofollow noopener" className="btn-outline">
                 Открыть официальный сайт FTMO <ExternalLink size={14} aria-hidden="true" />
-              </Link>
+              </RuGoLink>
               <Link href="#alternatives" className="btn-primary">Сравнить партнёрские альтернативы <ArrowRight size={14} aria-hidden="true" /></Link>
             </div>
             <p className="ru-source-line">Ссылка FTMO не является партнёрской: Traders Fund Hub не получает комиссию за этот переход.</p>
@@ -449,9 +450,9 @@ export default function RussianFtmoReviewPage() {
                     </p>
                     <div className="ru-actions">
                       <Link href={reviewHref} className="btn-outline">Русский обзор</Link>
-                      <Link href={`/go/${item.slug}?from=ru-ftmo-alternative-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
+                      <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-ftmo-alternative-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
                         Проверить {item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name} <ArrowRight size={14} aria-hidden="true" />
-                      </Link>
+                      </RuGoLink>
                     </div>
                   </article>
                 )
@@ -477,7 +478,7 @@ export default function RussianFtmoReviewPage() {
               <li>Заранее проверьте KYC, имя платёжного метода и способ получения вознаграждения в фактической стране.</li>
             </ol>
             <div className="ru-actions">
-              <Link href="/go/ftmo?from=ru-ftmo-review-checklist" rel="nofollow noopener" className="btn-outline">Официальный сайт FTMO</Link>
+              <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-ftmo-review-checklist" rel="nofollow noopener" className="btn-outline">Официальный сайт FTMO</RuGoLink>
               <Link href={getRussianReviewFinderHref('ftmo')} data-russian-review-finder="ftmo" className="btn-primary">Сравнить двухэтапные программы <ArrowRight size={14} aria-hidden="true" /></Link>
             </div>
             <p className="ru-source-line"><ExternalLink size={14} aria-hidden="true" /> Первичные источники: {sourceUrls.map((url, index) => <span key={url}>{index ? ' · ' : ''}<a href={url} target="_blank" rel="noopener noreferrer">страница {index + 1}</a></span>)}{' · '}<a href={COMPARISON_URL} target="_blank" rel="noopener noreferrer">сравнение продуктов</a>{' · '}<a href={PAYOUT_URL} target="_blank" rel="noopener noreferrer">выплаты</a>.</p>

@@ -124,7 +124,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-09-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/ftmo.com",
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "restricted"
   },
   {
     "name": "FundedNext",
@@ -196,7 +197,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-09-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/fundednext.com",
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "available"
   },
   {
     "name": "FundingPips",
@@ -251,7 +253,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-09-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/fundingpips.com",
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "unclear"
   },
   {
     "name": "E8 Markets",
@@ -338,7 +341,8 @@
     "lastUpdated": "2026-09-14",
     "trustpilotUrl": "https://www.trustpilot.com/review/e8markets.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "restricted"
   },
   {
     "name": "Alpha Capital",
@@ -411,7 +415,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-10-06",
     "trustpilotUrl": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "restricted"
   },
   {
     "name": "Bright Funded",
@@ -473,7 +478,8 @@
     "lastUpdated": "2026-09-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/brightfunded.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-10-01"
+    "trustpilotCapturedAt": "2026-10-01",
+    "russiaStatus": "available"
   },
   {
     "name": "OFP Funding",
@@ -521,7 +527,8 @@
     "lastUpdated": "2026-07-27",
     "trustpilotUrl": "https://www.trustpilot.com/review/ofpfunding.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "unverified"
   },
   {
     "name": "Maven",
@@ -596,7 +603,8 @@
     "lastUpdated": "2026-08-11",
     "trustpilotUrl": "https://www.trustpilot.com/review/maventrading.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "restricted"
   },
   {
     "name": "FXIFY",
@@ -682,7 +690,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-09-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/fxify.com",
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "restricted"
   },
   {
     "name": "Crypto Fund Trader",
@@ -730,7 +739,8 @@
     "lastUpdated": "2026-07-27",
     "trustpilotUrl": "https://www.trustpilot.com/review/cryptofundtrader.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "available"
   },
   {
     "name": "Topstep",
@@ -779,7 +789,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-07-27",
     "trustpilotUrl": "https://www.trustpilot.com/review/topstep.com",
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "unclear"
   },
   {
     "name": "My Funded Futures",
@@ -912,7 +923,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-09-14",
     "trustpilotUrl": "https://www.trustpilot.com/review/myfundedfutures.com",
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "unverified"
   },
   {
     "name": "City Traders Imperium",
@@ -965,7 +977,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-07-28",
     "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "unverified"
   },
   {
     "name": "The Funded Trader",
@@ -1014,7 +1027,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-07-27",
     "trustpilotUrl": "https://www.trustpilot.com/review/thefundedtraderprogram.com",
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "unverified"
   },
   {
     "name": "Take Profit Trader",
@@ -1061,7 +1075,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-07-27",
     "trustpilotUrl": "https://www.trustpilot.com/review/takeprofittrader.com",
-    "trustpilotCapturedAt": "2026-07-27"
+    "trustpilotCapturedAt": "2026-07-27",
+    "russiaStatus": "unverified"
   },
   {
     "name": "TradeDay",
@@ -1189,7 +1204,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-08-11",
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeday.com",
-    "trustpilotCapturedAt": "2026-07-28"
+    "trustpilotCapturedAt": "2026-07-28",
+    "russiaStatus": "unverified"
   },
   {
     "name": "Apex Trader Funding",
@@ -1229,7 +1245,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-09-14",
     "trustpilotUrl": "https://www.trustpilot.com/review/apextraderfunding.com",
-    "trustpilotCapturedAt": "2026-07-28"
+    "trustpilotCapturedAt": "2026-07-28",
+    "russiaStatus": "restricted"
   },
   {
     "name": "Lucid Trading",
@@ -1366,7 +1383,8 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-08-11",
     "trustpilotUrl": "https://www.trustpilot.com/review/lucidtrading.com",
-    "trustpilotCapturedAt": "2026-07-28"
+    "trustpilotCapturedAt": "2026-07-28",
+    "russiaStatus": "restricted"
   },
   {
     "name": "Tradeify",
@@ -1477,6 +1495,7 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-08-11",
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeify.co",
-    "trustpilotCapturedAt": "2026-07-28"
+    "trustpilotCapturedAt": "2026-07-28",
+    "russiaStatus": "restricted"
   }
 ]

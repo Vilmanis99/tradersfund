@@ -15,6 +15,8 @@ export interface FirmRatings {
 }
 
 export interface Firm {
+  /** Availability for residents of Russia; drives /ru CTAs (see lib/russiaAvailability.ts). */
+  russiaStatus?: 'available' | 'restricted' | 'unclear' | 'unverified'
   // ── Core identity ──
   name: string
   founded: string

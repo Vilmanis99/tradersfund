@@ -26,6 +26,7 @@ import {
   getLocalizedRoutePair,
   russianRouteDateModified,
 } from '@/lib/localizedRoutes'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/luchshie-kripto-prop-firmy'
 const TITLE = 'Крипто-проп-фирмы 2026: цены, инструменты и правила'
@@ -287,9 +288,9 @@ export default function RussianCryptoPropFirmsPage() {
                       <Link href={reviewHref} className="btn-outline">{reviewHref.startsWith('/ru/') ? 'Русский обзор' : 'Английский обзор'}</Link>
                       <a href={evidence.sourceUrl} target="_blank" rel="nofollow noopener" className="btn-outline">Источник <ExternalLink size={13} aria-hidden="true" /></a>
                       {affiliate ? (
-                        <Link href={`/go/${evidence.firmSlug}?from=ru-crypto-ranking`} rel="sponsored nofollow noopener" className="btn-primary">
+                        <RuGoLink firm={evidence.firmSlug} href={`/go/${evidence.firmSlug}?from=ru-crypto-ranking`} rel="sponsored nofollow noopener" className="btn-primary">
                           Проверить текущие условия <ArrowRight size={14} aria-hidden="true" />
-                        </Link>
+                        </RuGoLink>
                       ) : null}
                     </div>
                   </article>

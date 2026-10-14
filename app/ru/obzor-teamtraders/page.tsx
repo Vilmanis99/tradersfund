@@ -21,6 +21,7 @@ import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import evidence from '@/content/data/russian-teamtraders-evidence.json'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/obzor-teamtraders'
 const TITLE = 'TeamTraders: отзывы и обзор условий 2026'
@@ -422,13 +423,13 @@ export default function RussianTeamTradersReviewPage() {
                 <p className="ru-source-line">Дата цен не подтверждает актуальность ограничений по стране и способов выплаты.</p>
                 <div className="ru-actions">
                   <Link href={item.reviewHref} className="btn-outline">Сначала открыть обзор</Link>
-                  <Link
+                  <RuGoLink firm={item.slug}
                     href={`/go/${item.slug}?from=ru-teamtraders-global-${item.slug}`}
                     rel="sponsored nofollow noopener"
                     className="btn-primary"
                   >
                     Проверить {item.name} <ArrowRight size={14} aria-hidden="true" />
-                  </Link>
+                  </RuGoLink>
                 </div>
               </article>
             ))}

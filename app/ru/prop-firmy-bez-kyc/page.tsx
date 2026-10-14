@@ -20,6 +20,7 @@ import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge } from 
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/prop-firmy-bez-kyc'
 const TITLE = 'KYC в проп-фирмах 2026: FundedNext и BrightFunded'
@@ -370,9 +371,9 @@ export default function RussianNoKycPage() {
                     )}
                     <div className="ru-actions">
                       <Link href={card.reviewHref} className="btn-outline">Русский обзор</Link>
-                      <Link href={`/go/${card.slug}?from=ru-kyc-${card.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
+                      <RuGoLink firm={card.slug} href={`/go/${card.slug}?from=ru-kyc-${card.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
                         Проверить {card.name} <ArrowRight size={14} aria-hidden="true" />
-                      </Link>
+                      </RuGoLink>
                     </div>
                   </article>
                 )
@@ -520,9 +521,9 @@ export default function RussianNoKycPage() {
                 </p>
                 <div className="ru-actions">
                   <Link href={secondaryCard.reviewHref} className="btn-outline">Русский обзор</Link>
-                  <Link href="/go/fundingpips?from=ru-kyc-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">
+                  <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-kyc-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">
                     Проверить FundingPips <ArrowRight size={14} aria-hidden="true" />
-                  </Link>
+                  </RuGoLink>
                 </div>
               </article>
             ) : null}

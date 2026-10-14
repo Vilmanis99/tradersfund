@@ -19,6 +19,7 @@ import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge, type F
 import { getLanguageAlternates, RUSSIAN_ROUTE_EDITORIAL_DATES } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/prop-firmy-bez-chelendzha'
 const TITLE = 'Проп-фирмы без челленджа 2026: FundedNext Instant'
@@ -450,9 +451,9 @@ export default function RussianInstantPropFirmsPage() {
             </div>}
             <div className="ru-actions">
               <Link href="/ru/obzor-fundingpips" className="btn-outline">Полный обзор FundingPips</Link>
-              <Link href="/go/fundingpips?from=ru-instant-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">
+              <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-instant-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">
                 Проверить программы FundingPips <ArrowRight size={14} aria-hidden="true" />
-              </Link>
+              </RuGoLink>
             </div>
           </div>
         </section>

@@ -25,6 +25,7 @@ import { getAllDeals, rankDeals, type Deal } from '@/lib/deals'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import { RuGoLink } from '@/components/RuGoLink'
 
 export const revalidate = 86400
 
@@ -420,9 +421,9 @@ a: `В проверенном первичном источнике FundedNext �
                   <p>{deal.note}</p>
                   <p className="ru-source-line"><CalendarCheck size={14} aria-hidden="true" /> Проверено {deal.verifiedOn} · <a href={deal.sourceUrl} target="_blank" rel="noopener noreferrer">{deal.sourceLabel}</a></p>
                   <div className="ru-actions">
-                    <Link href={`/go/${deal.firmSlug}?from=${campaignFor(deal)}`} rel="sponsored nofollow noopener" className="btn-primary">
+                    <RuGoLink firm={deal.firmSlug} href={`/go/${deal.firmSlug}?from=${campaignFor(deal)}`} rel="sponsored nofollow noopener" className="btn-primary">
                       {offerAction(deal)} <ArrowRight size={14} aria-hidden="true" />
-                    </Link>
+                    </RuGoLink>
                   </div>
                 </article>
               ))}
@@ -507,7 +508,7 @@ a: `В проверенном первичном источнике FundedNext �
             </div>
             <p className="ru-muted">Показаны $5K и $50K как 2 контрольных размера каждого продукта. $100K намеренно отсутствует: официальный источник исключает его из предложения {fundingPipsDeal.code}.</p>
             <div className="ru-actions">
-              <Link href={`/go/fundingpips?from=${campaignFor(fundingPipsDeal)}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить {fundingPipsDeal.code} на FundingPips <ArrowRight size={14} aria-hidden="true" /></Link>
+              <RuGoLink firm="fundingpips" href={`/go/fundingpips?from=${campaignFor(fundingPipsDeal)}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить {fundingPipsDeal.code} на FundingPips <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               <Link href="/ru/obzor-fundingpips" className="btn-outline">Русский обзор FundingPips</Link>
             </div>
           </div>
@@ -587,7 +588,7 @@ a: `В проверенном первичном источнике FundedNext �
                         <td><a href={deal.sourceUrl} target="_blank" rel="noopener noreferrer">{deal.sourceLabel}</a></td>
                         <td>
                           <Link href={reviewRoutes[deal.firmSlug] ?? firm.reviewUrl}>Обзор</Link>{' · '}
-                          <Link href={`/go/${deal.firmSlug}?from=${campaignFor(deal)}-table`} rel={isAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}>{offerAction(deal)}</Link>
+                          <RuGoLink firm={deal.firmSlug} href={`/go/${deal.firmSlug}?from=${campaignFor(deal)}-table`} rel={isAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}>{offerAction(deal)}</RuGoLink>
                         </td>
                       </tr>
                     )
