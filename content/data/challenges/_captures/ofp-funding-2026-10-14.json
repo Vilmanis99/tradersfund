@@ -100,7 +100,15 @@
         "payoutFirstDays": "\"The first reward request may be submitted after 14 calendar days from the execution of the first trade, as determined by the profit cycle\" (https://ofpfunding.com/trading-rules)",
         "consistencyRulePct": "LEFT NULL DELIBERATELY - see accessNotes. The firm's own two sources disagree and the rendered numeric value could not be observed.",
         "rules.weekend": "No weekend-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
-        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre."
+        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
+        "payoutFirstDaysQuote": {
+          "sourceUrl": "https://ofpfunding.com/trading-rules",
+          "quote": "The first reward request may be submitted 14 calendar days after the first trade is executed on the account, provided all trading criteria have been satisfied."
+        },
+        "payoutFrequencyQuote": {
+          "sourceUrl": "https://ofpfunding.com/trading-rules",
+          "quote": "Following the initial reward, subsequent reward requests may be submitted after each additional 14-day period, with the calculation period resetting after every approved reward, as long as the trading criteria continue to be met."
+        }
       },
       "notes": "No profit target and minTradingDays=0 in the firm's own pricing data. Two drawdown variants sold (3%/6% and 5%/10%).",
       "sourceCapturedAt": "2026-10-14"
@@ -188,7 +196,15 @@
         "payoutFirstDays": "\"The first reward request may be submitted after 14 calendar days from the execution of the first trade, as determined by the profit cycle\" (https://ofpfunding.com/trading-rules)",
         "consistencyRulePct": "LEFT NULL DELIBERATELY - see accessNotes. The firm's own two sources disagree and the rendered numeric value could not be observed.",
         "rules.weekend": "No weekend-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
-        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre."
+        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
+        "payoutFirstDaysQuote": {
+          "sourceUrl": "https://ofpfunding.com/trading-rules",
+          "quote": "The first reward request may be submitted 14 calendar days after the first trade is executed on the account, provided all trading criteria have been satisfied."
+        },
+        "payoutFrequencyQuote": {
+          "sourceUrl": "https://ofpfunding.com/trading-rules",
+          "quote": "Following the initial reward, subsequent reward requests may be submitted after each additional 14-day period, with the calculation period resetting after every approved reward, as long as the trading criteria continue to be met."
+        }
       },
       "notes": "No profit target and minTradingDays=0 in the firm's own pricing data. Two drawdown variants sold (3%/6% and 5%/10%).",
       "sourceCapturedAt": "2026-10-14"
@@ -270,7 +286,11 @@
         "payoutFirstDays": "Not stated as a fixed number for this product; the site says only \"after the minimum number of calendar days from the execution of the first trade, as determined by the applicable profit cycle\".",
         "consistencyRulePct": "LEFT NULL DELIBERATELY - see accessNotes. The firm's own two sources disagree and the rendered numeric value could not be observed.",
         "rules.weekend": "No weekend-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
-        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre."
+        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
+        "payoutFrequencyQuote": {
+          "sourceUrl": "https://ofpfunding.com/trading-rules",
+          "quote": "Once the reward has been approved or the 30-day validity period has expired (whichever occurs first), the Instant Lite account will be considered concluded, and no further reward requests shall be permitted."
+        }
       },
       "notes": "Account valid 30 calendar days; one (1) reward request only. Pricing table 'Payout Day' renders 'Monthly'. Pricing table 'Consistency Ratio' renders 'No' for this product (server-rendered, directly observed).",
       "sourceCapturedAt": "2026-10-14"
@@ -352,7 +372,11 @@
         "payoutFirstDays": "Not stated as a fixed number for this product; the site says only \"after the minimum number of calendar days from the execution of the first trade, as determined by the applicable profit cycle\".",
         "consistencyRulePct": "LEFT NULL DELIBERATELY - see accessNotes. The firm's own two sources disagree and the rendered numeric value could not be observed.",
         "rules.weekend": "No weekend-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
-        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre."
+        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
+        "payoutFrequencyQuote": {
+          "sourceUrl": "https://ofpfunding.com/trading-rules",
+          "quote": "Once the reward has been approved or the 30-day validity period has expired (whichever occurs first), the Instant Lite account will be considered concluded, and no further reward requests shall be permitted."
+        }
       },
       "notes": "Account valid 30 calendar days; one (1) reward request only. Pricing table 'Payout Day' renders 'Monthly'. Pricing table 'Consistency Ratio' renders 'No' for this product (server-rendered, directly observed).",
       "sourceCapturedAt": "2026-10-14"
@@ -440,7 +464,15 @@
         "payoutFirstDays": "\"The first reward request may be submitted after 14 calendar days from the execution of the first trade, as determined by the profit cycle\" (https://ofpfunding.com/trading-rules)",
         "consistencyRulePct": "LEFT NULL DELIBERATELY - see accessNotes. The firm's own two sources disagree and the rendered numeric value could not be observed.",
         "rules.weekend": "No weekend-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
-        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre."
+        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
+        "payoutFirstDaysQuote": {
+          "sourceUrl": "https://ofpfunding.com/trading-rules",
+          "quote": "The first reward request may be submitted 14 calendar days after the first trade is executed on the account, provided all trading criteria have been satisfied."
+        },
+        "payoutFrequencyQuote": {
+          "sourceUrl": "https://ofpfunding.com/trading-rules",
+          "quote": "Following the initial reward, subsequent reward requests may be submitted after each additional 14-day period, with the calculation period resetting after every approved reward, as long as the trading criteria continue to be met."
+        }
       },
       "notes": "Instant Plus has NO section on ofpfunding.com/trading-rules (only Instant Lite, Classic, Pro, Prime, One Phase, Two Phase are published there), so its product-specific rules are unverified.",
       "sourceCapturedAt": "2026-10-14"
@@ -528,7 +560,15 @@
         "payoutFirstDays": "\"The first reward request may be submitted after 14 calendar days from the execution of the first trade, as determined by the profit cycle\" (https://ofpfunding.com/trading-rules)",
         "consistencyRulePct": "LEFT NULL DELIBERATELY - see accessNotes. The firm's own two sources disagree and the rendered numeric value could not be observed.",
         "rules.weekend": "No weekend-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
-        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre."
+        "rules.overnight": "No overnight/swap-holding rule is published anywhere on ofpfunding.com/trading-rules or the OFP help centre.",
+        "payoutFirstDaysQuote": {
+          "sourceUrl": "https://ofpfunding.com/trading-rules",
+          "quote": "The first reward request may be submitted 14 calendar days after the first trade is executed on the account, provided all trading criteria have been satisfied."
+        },
+        "payoutFrequencyQuote": {
+          "sourceUrl": "https://ofpfunding.com/trading-rules",
+          "quote": "Following the initial reward, subsequent reward requests may be submitted after each additional 14-day period, with the calculation period resetting after every approved reward, as long as the trading criteria continue to be met."
+        }
       },
       "notes": "Instant Plus has NO section on ofpfunding.com/trading-rules (only Instant Lite, Classic, Pro, Prime, One Phase, Two Phase are published there), so its product-specific rules are unverified.",
       "sourceCapturedAt": "2026-10-14"
