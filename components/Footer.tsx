@@ -155,7 +155,7 @@ export default function Footer({
 
           {/* Prop Firms */}
           <div className="footer-col">
-          <h4 className="footer-eyebrow">{isRussian ? 'Проп-фирмы' : 'Prop Firms'}</h4>
+          <h3 className="footer-eyebrow">{isRussian ? 'Проп-фирмы' : 'Prop Firms'}</h3>
             <ul className="footer-list">
               {propFirmLinks.map(l => <FooterLink key={l.href} {...l} />)}
             </ul>
@@ -163,10 +163,10 @@ export default function Footer({
 
           {/* Latest reviews — green-tint eyebrow with pulse dot */}
           <div className="footer-col">
-            <h4 className="footer-eyebrow footer-eyebrow--live">
+            <h3 className="footer-eyebrow footer-eyebrow--live">
               <span className="hero-eyebrow-dot" aria-hidden="true" />
               {isRussian ? 'Последние обзоры' : 'Latest reviews'}
-            </h4>
+            </h3>
             <ul className="footer-list">
               {reviewLinks.map(l => <FooterLink key={l.href} {...l} />)}
             </ul>
@@ -174,7 +174,7 @@ export default function Footer({
 
           {/* Company */}
           <div className="footer-col">
-          <h4 className="footer-eyebrow">{isRussian ? 'О сайте' : 'Company'}</h4>
+          <h3 className="footer-eyebrow">{isRussian ? 'О сайте' : 'Company'}</h3>
             <ul className="footer-list">
               {companyLinks.map(l => <FooterLink key={l.href} {...l} />)}
             </ul>

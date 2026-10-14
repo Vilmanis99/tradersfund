@@ -210,7 +210,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
           hrefLang={isRussian ? 'en' : 'ru'}
           lang={isRussian ? 'en' : 'ru'}
           className="nav-link"
-          aria-label={isRussian ? 'Открыть английскую версию' : 'Открыть русскую версию'}
+          aria-label={isRussian ? 'EN — open the English version' : 'RU — открыть русскую версию'}
         >
           <Languages size={14} aria-hidden="true" />
           {isRussian ? 'EN' : 'RU'}
@@ -287,7 +287,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
                   href={languageHref}
                   hrefLang={isRussian ? 'en' : 'ru'}
                   lang={isRussian ? 'en' : 'ru'}
-                  aria-label={isRussian ? 'Открыть английскую версию' : 'Открыть русскую версию'}
+                  aria-label={isRussian ? 'EN — open the English version' : 'RU — открыть русскую версию'}
                   className="mobile-overlay__social"
                 >
                   <Languages size={18} aria-hidden="true" /> {isRussian ? 'EN' : 'RU'}

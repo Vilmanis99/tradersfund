@@ -30,10 +30,11 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
   const chips: Chip[] = locale === 'ru' ? ['all', 'open', 'cfd', 'futures', 'one', 'two'] : ['all', 'cfd', 'futures', 'one', 'two']
   const visible = rows.filter(row => matches(row, chip))
   const money = (row: ComparisonRow) => new Intl.NumberFormat(t.locale, { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
-  const pct = (value: number | null) => value == null ? '—' : `${value}%`
+  const na = <span className="th-na" title={t.notPublished}><span aria-hidden="true">—</span><span className="sr-only">{t.notPublished}</span></span>
+  const pct = (value: number | null) => value == null ? na : `${value}%`
   const visit = (row: ComparisonRow, className: string, layout: 'table' | 'cards') => row.goHref
     ? <Link href={`${row.goHref}?from=${placement}-${layout}`} prefetch={false} rel="sponsored nofollow noopener" target="_blank" className={className} data-russia-status={row.russiaStatus ?? undefined}>{t.visit}</Link>
-    : <Link href={row.reviewUrl} className={className}>{t.review}</Link>
+    : <Link href={row.reviewUrl} className={className.replace('th-btn--amber', 'th-btn--ghost')}>{t.review}</Link>
   const badge = (row: ComparisonRow) => row.russiaStatus ? <RuAccessBadgeView firm={row.firmSlug} status={row.russiaStatus} hint={false} /> : null
 
   return (
@@ -48,7 +49,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
         <table className="th-table">
           <thead><tr>
             <th scope="col">{t.cols.firm}</th><th scope="col">{t.cols.programme}</th><th scope="col">{t.cols.fee}</th><th scope="col">{t.cols.target}</th>
-            <th scope="col">{t.cols.loss}</th><th scope="col">{t.cols.split}</th><th scope="col">{t.cols.payout}</th><th scope="col">{t.cols.checked}</th><th scope="col"><span className="sr-only">{t.visit}</span></th>
+            <th scope="col">{t.cols.loss}</th><th scope="col">{t.cols.split}</th><th scope="col" className="th-col--opt">{t.cols.payout}</th><th scope="col" className="th-col--opt">{t.cols.checked}</th><th scope="col"><span className="sr-only">{t.visit}</span></th>
           </tr></thead>
           <tbody>
             {visible.map(row => (
@@ -64,9 +65,9 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
                 <td className="th-num">{pct(row.profitTarget)}</td>
                 <td className="th-num">{pct(row.dailyLossPct)} / {pct(row.maxLossPct)}</td>
                 <td className="th-num">{pct(row.profitSplitPct)}</td>
-                <td>{row.payoutFrequency ? t.payout[row.payoutFrequency] ?? row.payoutFrequency : '—'}</td>
-                <td className="th-muted th-small"><time dateTime={row.checkedOn}>{row.checkedOn}</time></td>
-                <td><div className="th-row-actions">{visit(row, 'th-btn th-btn--amber th-btn--sm', 'table')}<Link href={row.reviewUrl} className="th-link">{t.review}</Link></div>{badge(row) ? <div className="th-row-badge">{badge(row)}</div> : null}</td>
+                <td className="th-col--opt">{row.payoutFrequency ? t.payout[row.payoutFrequency] ?? row.payoutFrequency : na}</td>
+                <td className="th-muted th-small th-col--opt"><time dateTime={row.checkedOn}>{row.checkedOn}</time></td>
+                <td><div className="th-row-actions">{visit(row, 'th-btn th-btn--amber th-btn--sm', 'table')}{row.goHref ? <Link href={row.reviewUrl} className="th-link">{t.review}</Link> : null}</div>{badge(row) ? <div className="th-row-badge">{badge(row)}</div> : null}</td>
               </tr>
             ))}
           </tbody>
