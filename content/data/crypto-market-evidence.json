@@ -5,7 +5,12 @@
       "firmSlug": "fundednext",
       "firmName": "FundedNext",
       "marketModel": "multi-asset-cfd",
-      "productSlugs": ["stellar-2-step", "stellar-1-step", "stellar-lite", "stellar-instant"],
+      "productSlugs": [
+        "stellar-2-step",
+        "stellar-1-step",
+        "stellar-lite",
+        "stellar-instant"
+      ],
       "sourceUrl": "https://help.fundednext.com/en/articles/8020350-what-is-the-contract-size-of-the-instruments",
       "sourceCapturedAt": "2026-10-14",
       "sourceQuote": "Cryptocurrency: 1, 100 & 1000 (Varies in different pairs)",
@@ -18,7 +23,9 @@
       "firmSlug": "fundingpips",
       "firmName": "FundingPips",
       "marketModel": "multi-asset-cfd",
-      "productSlugs": ["1-step-flex"],
+      "productSlugs": [
+        "1-step-flex"
+      ],
       "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
       "sourceCapturedAt": "2026-10-14",
       "sourceQuote": "Crypto leverage changes from 1:2 to 1:1",
@@ -47,6 +54,22 @@
       "evidenceRu": "Официальный FAQ Maven перечисляет BTCEUR, BTCUSD, ETHBTC и ETHUSD среди доступных криптовалютных инструментов.",
       "scopeNoteRu": "Привязаны 7 текущих CFD-продуктов. Две отдельные программы Prediction Markets исключены: общий список CFD-инструментов не доказывает торговлю криптовалютой внутри prediction-market контракта.",
       "scopeNote": "Seven current CFD products are mapped. The 2 separate Prediction Markets programs are excluded because the general CFD instrument list does not establish crypto trading inside a prediction-market contract."
+    },
+    {
+      "firmSlug": "fxify",
+      "firmName": "FXIFY",
+      "marketModel": "crypto-native",
+      "productSlugs": [
+        "crypto-standard-1-step",
+        "crypto-instant-funding"
+      ],
+      "sourceUrl": "https://fxify.com/faqs/all-faqs/crypto-accounts/which-accounts-can-i-trade-crypto-on/",
+      "sourceCapturedAt": "2026-10-14",
+      "sourceQuote": "CRYPTO accounts are exclusively for trading cryptocurrencies. The CRYPTO account options include a One Phase Crypto Challenge and an Instant Funding Crypto Account.",
+      "evidence": "FXIFY's official FAQ splits accounts into FOREX and CRYPTO and states that CRYPTO accounts are exclusively for trading cryptocurrencies, offered as a One Phase Crypto Challenge and an Instant Funding Crypto Account.",
+      "evidenceRu": "Официальный FAQ FXIFY делит счета на FOREX и CRYPTO и указывает, что CRYPTO-счета предназначены исключительно для торговли криптовалютами: это One Phase Crypto Challenge и Instant Funding Crypto Account.",
+      "scopeNote": "Only the 2 dedicated crypto products are mapped. FXIFY's 8 FOREX products cannot trade crypto and are excluded.",
+      "scopeNoteRu": "Привязаны только 2 отдельных криптопродукта. 8 FOREX-продуктов FXIFY не позволяют торговать криптовалютой и исключены."
     }
   ],
   "payoutAlternative": {
@@ -66,15 +89,6 @@
       "sourceCapturedAt": "2026-09-14",
       "evidence": "E8's current help page explicitly covers both Forex and Crypto accounts and lists the available platforms, but the current structured capture contains only Forex product rows.",
       "nextStep": "Capture the current crypto-specific products, prices, leverage, payout rules, and available platforms before ranking."
-    },
-    {
-      "firmSlug": "fxify",
-      "firmName": "FXIFY",
-      "status": "product-capture-needed",
-      "sourceUrl": "https://fxify.com/faqs/all-faqs/crypto-accounts/which-accounts-can-i-trade-crypto-on/",
-      "sourceCapturedAt": "2026-10-01",
-      "evidence": "FXIFY publishes a One Phase Crypto Challenge and an Instant Funding Crypto Account; its current structured rows are explicitly FOREX products.",
-      "nextStep": "Capture both named crypto-only products as separate challenge records instead of applying FOREX prices or rules."
     },
     {
       "firmSlug": "crypto-fund-trader",
