@@ -28,8 +28,10 @@
 .th-hero__title em { font-style: normal; color: var(--amber); }
 .th-hero__lead { font-size: clamp(1rem, 0.9rem + 0.4vw, 1.1875rem); color: #b9cdc8; max-width: 36rem; margin: var(--space-6) 0 var(--space-8); line-height: 1.6; }
 .th-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-.th-counters { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; gap: var(--space-8); margin: 2.75rem 0 0; }
-.th-counters div { display: flex; flex-direction: column-reverse; }
+.th-counters { display: grid; align-items: start; grid-template-columns: repeat(4, auto); justify-content: start; gap: var(--space-8); margin: 2.75rem 0 0; }
+.th-counters > div { display: flex; flex-direction: column; justify-content: flex-start; margin: 0; padding: 0; }
+.th-counters dt { margin: 0; line-height: 1.4; }
+.th-counters dd { order: -1; white-space: nowrap; }
 .th-counters dt { font-size: var(--fs-small); color: #93aba5; }
 .th-counters dd { margin: 0; font-size: 1.75rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
 .th-hero__aside > * { background: #fff; color: var(--text); border-radius: var(--radius-lg); box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
