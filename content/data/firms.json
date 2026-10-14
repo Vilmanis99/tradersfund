@@ -981,56 +981,6 @@
     "russiaStatus": "unverified"
   },
   {
-    "name": "The Funded Trader",
-    "founded": "2021",
-    "assets": [
-      "Forex",
-      "Indices",
-      "Commodities",
-      "Crypto"
-    ],
-    "maxAllocation": "$1,500,000",
-    "platforms": [
-      "cTrader",
-      "Match-Trader",
-      "DXtrade"
-    ],
-    "score": 7.7,
-    "logo": "",
-    "reviewUrl": "/blog/the-funded-trader-review",
-    "officialUrl": "https://www.thefundedtraderprogram.com/",
-    "profitSplitPct": 80,
-    "payoutFrequency": "bi-weekly",
-    "payoutMethods": [
-      "Bank wire",
-      "Crypto",
-      "Rise"
-    ],
-    "drawdownType": "static",
-    "minTradingDays": null,
-    "consistencyRule": null,
-    "scalingPlan": true,
-    "newsTradingAllowed": true,
-    "eaAllowed": true,
-    "overnightAllowed": null,
-    "weekendAllowed": true,
-    "copyTradingAllowed": null,
-    "countriesRestricted": [],
-    "ratings": {
-      "conditions": null,
-      "support": null,
-      "payouts": null,
-      "platform": null
-    },
-    "trustpilotScore": 2.9,
-    "trustpilotCount": 21965,
-    "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-07-27",
-    "trustpilotUrl": "https://www.trustpilot.com/review/thefundedtraderprogram.com",
-    "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "unverified"
-  },
-  {
     "name": "Take Profit Trader",
     "founded": "2021",
     "assets": [

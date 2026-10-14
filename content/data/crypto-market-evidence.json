@@ -135,15 +135,6 @@
       "sourceCapturedAt": "2026-07-27",
       "evidence": "The previous source named Crypto among simulated instruments, but the market evidence and all 9 mapped product rows are now stale.",
       "nextStep": "Refresh the instrument source and all 9 product records before returning OFP Funding to the ranking."
-    },
-    {
-      "firmSlug": "the-funded-trader",
-      "firmName": "The Funded Trader",
-      "status": "market-and-product-refresh-needed",
-      "sourceUrl": "https://www.thefundedtraderprogram.com/",
-      "sourceCapturedAt": "2026-07-27",
-      "evidence": "The previous FAQ named crypto on supported CFD platforms, but the source and all 7 mapped product rows are now outside the 30-day window.",
-      "nextStep": "Refresh the platform-market evidence and all 7 product records before restoring the firm to the ranking."
     }
   ]
 }

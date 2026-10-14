@@ -315,7 +315,6 @@ const REVIEW_TO_FIRM = {
   'my-funded-futures': 'my-funded-futures',
   'ofp-funding-review': 'ofp-funding',
   'take-profit-trader-review': 'take-profit-trader',
-  'the-funded-trader-review': 'the-funded-trader',
   'topstep-review': 'topstep',
   'tradeday-review': 'tradeday',
   'tradeify-review': 'tradeify',

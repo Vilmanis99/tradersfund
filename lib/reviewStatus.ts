@@ -8,12 +8,10 @@
  */
 export const SOURCE_HOLD_REVIEW_SLUGS = new Set([
   'ofp-funding-review',
-  'the-funded-trader-review',
 ])
 
 export const SOURCE_HOLD_FIRM_SLUGS = new Set([
   'ofp-funding',
-  'the-funded-trader',
 ])
 
 export function isSourceHoldReview(slug: string): boolean {
