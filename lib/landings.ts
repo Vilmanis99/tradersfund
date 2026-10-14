@@ -942,12 +942,12 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-futures-prop-firms',
-    h1: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Verified`,
-    metaTitle: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Verified`,
+    h1: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Futures Prop Firms Ranked`,
+    metaTitle: `Best Futures Prop Firms 2026: ${CURRENT_FUTURES_FIRM_COUNT} Ranked and Compared`,
     metaDescription:
-      `Compare ${CURRENT_FUTURES_FIRM_COUNT} futures prop firms across ${CURRENT_FUTURES_PRODUCT_COUNT} current products with fees, billing, drawdown, payout rules, platforms, reviews, and dated first-party sources.`,
+      `Best futures prop firms 2026: ${CURRENT_FUTURES_FIRM_COUNT} futures prop firms ranked across ${CURRENT_FUTURES_PRODUCT_COUNT} products on fees, billing, drawdown, payout rules and platforms.`,
     intro:
-      `These ${CURRENT_FUTURES_FIRM_COUNT} firms have ${CURRENT_FUTURES_PRODUCT_COUNT} current products whose structured asset class is futures. Every card names each path and links its distinct first-party sources. Some evaluations rebill monthly; others use a one-time fee, and drawdown can trail intraday or update at the end of the session. CFTC oversight of a designated futures exchange does not automatically make the evaluation provider, software platform, or data connection CFTC-registered.`,
+      `Looking for the best futures prop firm? These ${CURRENT_FUTURES_FIRM_COUNT} firms have ${CURRENT_FUTURES_PRODUCT_COUNT} current products whose structured asset class is futures. Every card names each path and links its distinct first-party sources. Some evaluations rebill monthly; others use a one-time fee, and drawdown can trail intraday or update at the end of the session. CFTC oversight of a designated futures exchange does not automatically make the evaluation provider, software platform, or data connection CFTC-registered.`,
     sortDir: 'desc',
     snapshotProductCount: CURRENT_FUTURES_PRODUCT_COUNT,
     rank: firms => firms
@@ -981,6 +981,14 @@ export const LANDINGS: Landing[] = [
       `A firm qualifies only when at least 1 structured product captured within 30 days explicitly sets assetClass to futures. A firm-level Futures label without a fresh product does not qualify. The order across ${CURRENT_FUTURES_FIRM_COUNT} firms uses our editorial score; affiliate status, coupon size, the ${CURRENT_FUTURES_PRODUCT_COUNT}-product count, billing model, platform, and drawdown type add 0 points. Each card names every current product and links each distinct first-party source.`,
     decisionGuide: [
       {
+        title: 'What is a futures prop firm?',
+        body: 'A futures prop firm sells an evaluation on exchange-listed futures contracts, such as equity-index, energy, metals or currency futures, usually on a simulated account, and pays a share of profits once you pass and meet its payout rules. Pricing is often a monthly subscription plus an activation fee rather than a one-time CFD challenge fee.',
+      },
+      {
+        title: 'How should I compare futures prop firms?',
+        body: 'Compare the total cost to funded (every monthly rebill plus activation), whether drawdown trails intraday or at end of day, payout gates such as winning days or consistency, and which platforms and data feeds the product supports. Headline account size matters less than the dollar loss room you get for that cost.',
+      },
+      {
         title: 'Is the evaluation fee one-time or recurring?',
         body: 'Read pricingModel before comparing headline prices. A monthly subscription can rebill until the trader passes or cancels, while a one-time evaluation can still add a funded-account activation payment.',
       },
@@ -997,7 +1005,7 @@ export const LANDINGS: Landing[] = [
         body: 'The CFTC oversees designated contract markets and requires certain derivatives intermediaries to register. Exchange oversight does not by itself establish the registration status of an evaluation provider or software platform; check NFA BASIC separately.',
       },
     ],
-    lastReviewed: '2026-08-17',
+    lastReviewed: '2026-10-14',
   },
   {
     slug: 'best-crypto-prop-firms',
@@ -1101,12 +1109,12 @@ export const LANDINGS: Landing[] = [
   },
   {
     slug: 'best-swing-trading-prop-firms',
-    h1: `Best Prop Firms for Swing Trading (2026): ${CURRENT_SWING_FIRM_COUNT} Verified`,
-    metaTitle: `Best Swing Trading Prop Firms (2026): ${CURRENT_SWING_FIRM_COUNT} Verified`,
+    h1: `Best Prop Firms for Swing Trading (2026): ${CURRENT_SWING_FIRM_COUNT} Allow Overnight and Weekend Holds`,
+    metaTitle: `Best Prop Firms for Swing Trading 2026: ${CURRENT_SWING_FIRM_COUNT} Compared`,
     metaDescription:
-      `Compare ${CURRENT_SWING_FIRM_COUNT} swing-trading prop firms across ${CURRENT_SWING_PRODUCT_COUNT} exact products with verified overnight and weekend holding, drawdown rules, dated sources, and reviews.`,
+      `Best prop firms for swing traders: ${CURRENT_SWING_FIRM_COUNT} swing-trading prop firms across ${CURRENT_SWING_PRODUCT_COUNT} exact products with verified overnight and weekend holding.`,
     intro:
-      `These ${CURRENT_SWING_FIRM_COUNT} firms have ${CURRENT_SWING_PRODUCT_COUNT} current products whose first-party captures explicitly allow both weekday overnight and weekend holding on the same path. That does not mean every product qualifies: each card names every matching product, its drawdown types, capture dates, and direct rule sources. Static drawdown is not assumed, and permission to hold does not remove gap, swap, or loss-limit risk.`,
+      `Need a prop firm that allows swing trading? These ${CURRENT_SWING_FIRM_COUNT} firms have ${CURRENT_SWING_PRODUCT_COUNT} current products whose first-party captures explicitly allow both weekday overnight and weekend holding on the same path. That does not mean every product qualifies: each card names every matching product, its drawdown types, capture dates, and direct rule sources. Static drawdown is not assumed, and permission to hold does not remove gap, swap, or loss-limit risk.`,
     sortDir: 'desc',
     snapshotProductCount: CURRENT_SWING_PRODUCT_COUNT,
     rank: firms => firms
@@ -1135,6 +1143,14 @@ export const LANDINGS: Landing[] = [
       `A firm qualifies only when at least 1 product captured within 30 days sets both overnight and weekend holding to allowed on that same product. Restricted, blocked, missing, and stale fields do not qualify. The order across ${CURRENT_SWING_FIRM_COUNT} firms uses our editorial score; affiliate status, coupon size, the ${CURRENT_SWING_PRODUCT_COUNT}-product coverage count, and drawdown type add 0 points. Each card reports exact product coverage because another product from the same firm can use different holding rules.`,
     decisionGuide: [
       {
+        title: 'What makes a prop firm good for swing trading?',
+        body: 'A swing trader needs to hold positions overnight and over the weekend on the same product, a drawdown rule that does not punish open-profit swings, and costs such as swaps that the profit split can absorb. Many firms allow overnight holds but close or restrict weekend positions, so check both permissions on the exact product.',
+      },
+      {
+        title: 'Which prop firms allow swing trading?',
+        body: 'Only the products listed above currently have first-party captures that explicitly allow both weekday overnight and weekend holding on the same path. Some firms offer weekend holding only through a separate swing account or a paid add-on, so match the permission to the product you actually buy.',
+      },
+      {
         title: 'Do both permissions belong to the same product?',
         body: 'They must. A firm-wide overnight flag and a different product’s weekend permission do not prove that either account supports a multi-day trade through Friday’s close.',
       },
@@ -1151,7 +1167,7 @@ export const LANDINGS: Landing[] = [
         body: 'Check swap or rollover charges, triple-swap day, weekend gaps, instrument hours, news restrictions, and whether the funded stage changes any rule shown during evaluation.',
       },
     ],
-    lastReviewed: '2026-08-17',
+    lastReviewed: '2026-10-14',
   },
 ]
 

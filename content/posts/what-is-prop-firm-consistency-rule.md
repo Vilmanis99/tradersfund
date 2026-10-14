@@ -1,12 +1,12 @@
 ---
-title: "Prop Firm Consistency Rule: Formulas and Examples (2026)"
-seoTitle: "Prop Firm Consistency Rule: Examples (2026)"
+title: "What Is the Prop Firm Consistency Rule? Formulas and Examples (2026)"
+seoTitle: "What Is a Prop Firm Consistency Rule? Examples (2026)"
 slug: "what-is-prop-firm-consistency-rule"
 date: "2024-11-22 17:13:02"
 modified: "2026-10-06 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "A prop-firm consistency rule can compare the best day with total profit, positive-day profit, or a target. Learn the formulas, stages, and consequences."
-seoDescription: "Learn how prop-firm consistency rules work, compare current 15%-55% product examples, and calculate the extra profit needed after a large best day."
+seoDescription: "What is the consistency rule in a prop firm? See the formulas, current 15%-55% product examples, and how to calculate the extra profit after a big best day."
 categories: ["Prop Firms"]
 tags: ["prop firm consistency rule", "prop firm rules", "risk management"]
 type: "post"
