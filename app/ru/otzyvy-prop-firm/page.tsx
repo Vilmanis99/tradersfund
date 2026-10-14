@@ -422,7 +422,7 @@ export default function RussianPropFirmReviewsPage() {
                 </tbody>
               </table>
             </div>
-            <p className="ru-source-line">Все 3 числа являются заявлениями операторов, а не независимым аудитом выплат. <Link href="/ru/rossiyskie-prop-kompanii">Проверить 6 локальных моделей</Link>.</p>
+            <p className="ru-source-line">Все 3 числа являются заявлениями операторов, а не независимым аудитом выплат. <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Проверить 6 локальных моделей</Link>.</p>
           </div>
         </section>
 

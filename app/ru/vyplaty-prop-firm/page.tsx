@@ -270,12 +270,12 @@ export default function RussianPayoutsPage() {
             Комиссия не меняет цену пользователя и не превращает метод выплаты в гарантию доступности.
           </div>
           <div className="ru-actions">
-            <Link href="/go/fundednext?from=ru-payouts-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-payouts-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
               Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
-            </Link>
-            <Link href="/go/bright-funded?from=ru-payouts-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
+            </RuGoLink>
+            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-payouts-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" />
-            </Link>
+            </RuGoLink>
             <Link href="#sravnenie" className="btn-outline">Сначала сравнить выплаты</Link>
           </div>
           <p className="ru-source-line">Самая ранняя проверка процесса выплат: {oldestPayoutCapture}; последняя проверка продуктовых данных: {latestCapture}. Условия проверяются повторно перед оплатой и запросом выплаты.</p>
@@ -512,7 +512,7 @@ export default function RussianPayoutsPage() {
               выбирает только после проверки российского договора, рынка и юридического лица.
             </p>
             <div className="ru-actions">
-              <Link href="/ru/rossiyskie-prop-kompanii" className="btn-outline">Сравнить локальные модели</Link>
+              <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie" className="btn-outline">Сравнить локальные модели</Link>
               <Link href="/ru/obzor-kascapital" className="btn-outline">Разбор KasCapital</Link>
             </div>
           </div>

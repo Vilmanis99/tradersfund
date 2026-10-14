@@ -413,9 +413,9 @@ export default function RussianInstantPropFirmsPage() {
             <div className="ru-actions">
               <Link href="/ru/fundednext-stellar-instant" className="btn-outline">Датированный разбор Stellar Instant</Link>
               <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
-              <Link href="/go/fundednext?from=ru-instant-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-instant-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
                 Проверить программы FundedNext <ArrowRight size={14} aria-hidden="true" />
-              </Link>
+              </RuGoLink>
             </div>
           </div>
         </section>
@@ -582,9 +582,9 @@ export default function RussianInstantPropFirmsPage() {
             <div className="ru-actions">
               <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
               {brightFirm?.affiliateUrl ? (
-                <Link href="/go/bright-funded?from=ru-instant-bright-alternative" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-instant-bright-alternative" rel="sponsored nofollow noopener" className="btn-primary">
                   Проверить программы BrightFunded <ArrowRight size={14} aria-hidden="true" />
-                </Link>
+                </RuGoLink>
               ) : null}
             </div>
           </div>
@@ -599,7 +599,7 @@ export default function RussianInstantPropFirmsPage() {
               не превращает локальную модель в FundedNext Instant или FundingPips Zero.
             </p>
             <p>
-              Для исследования местного рынка используйте <Link href="/ru/rossiyskie-prop-kompanii">6 проверяемых локальных примеров</Link>.
+              Для исследования местного рынка используйте <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">6 проверяемых локальных примеров</Link>.
               Они работают как информационный мост; коммерческий маршрут этой страницы остаётся глобальным и продуктовым.
             </p>
           </div>

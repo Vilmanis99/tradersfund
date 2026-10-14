@@ -17,7 +17,7 @@ const russianNavLinks = [
       { label: 'Без челленджа', href: '/ru/prop-firmy-bez-chelendzha' },
       { label: 'Проп-фирмы с cTrader', href: '/ru/prop-firmy-s-ctrader' },
       { label: 'Крипто-проп', href: '/ru/luchshie-kripto-prop-firmy' },
-      { label: 'Местные компании', href: '/ru/rossiyskie-prop-kompanii' },
+      { label: 'Местные компании', href: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie' },
     ],
   },
   {

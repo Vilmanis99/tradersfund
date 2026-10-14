@@ -18,6 +18,7 @@ import { getAllChallenges, isChallengeFresh, type Challenge, type ChallengeAccou
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import cTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/prop-firmy-s-ctrader'
 const TITLE = 'Проп-фирмы с cTrader 2026: ограничения и цены'
@@ -178,12 +179,12 @@ export default function RussianCTraderPropFirmsPage() {
             Подборка из 2 фирм не является полным каталогом и не отменяет проверку страны, личности и окончательных условий оплаты.
           </div>
           <div className="ru-actions">
-            <Link href="/go/fundednext?from=ru-ctrader-hero-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-hero-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
               Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
-            </Link>
-            <Link href="/go/bright-funded?from=ru-ctrader-hero-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
+            </RuGoLink>
+            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-ctrader-hero-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить BrightFunded
-            </Link>
+            </RuGoLink>
           </div>
         </div>
       </section>
@@ -316,9 +317,9 @@ export default function RussianCTraderPropFirmsPage() {
               </p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор</Link>
-                <Link href="/go/fundednext?from=ru-ctrader-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
                   Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
-                </Link>
+                </RuGoLink>
               </div>
             </article>
             <article className="ru-card" data-russian-ctrader-featured-partner="bright-funded">
@@ -335,9 +336,9 @@ export default function RussianCTraderPropFirmsPage() {
               </p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-bright-funded" className="btn-outline">Полный обзор</Link>
-                <Link href="/go/bright-funded?from=ru-ctrader-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-ctrader-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">
                   Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
-                </Link>
+                </RuGoLink>
               </div>
             </article>
           </div>
@@ -440,7 +441,7 @@ export default function RussianCTraderPropFirmsPage() {
             изучайте локальные программы без предположения, что в них доступны EURUSD, cBot или привычный способ выплаты.
           </p>
           <div className="ru-actions">
-            <Link href="/ru/rossiyskie-prop-kompanii" className="btn-outline">Проверить локальные модели</Link>
+            <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie" className="btn-outline">Проверить локальные модели</Link>
             <Link href="/ru/forex-prop-firmy" className="btn-primary">Сравнить программы для валютной торговли <ArrowRight size={15} aria-hidden="true" /></Link>
           </div>
         </div>
@@ -471,9 +472,9 @@ export default function RussianCTraderPropFirmsPage() {
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ctrader-verdict">
             <strong>Финальный маршрут.</strong>{' '}
             Для ручной торговли в cTrader проверьте действующие ограничения и комиссию
-            <Link href="/go/fundednext?from=ru-ctrader-verdict-fundednext" rel="sponsored nofollow noopener"> FundedNext</Link>.
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-verdict-fundednext" rel="sponsored nofollow noopener"> FundedNext</RuGoLink>.
             Для Bright Funded сначала подтвердите cBot, размер счёта и итоговую цену, затем используйте
-            <Link href="/go/bright-funded?from=ru-ctrader-verdict-bright-funded" rel="sponsored nofollow noopener"> BrightFunded</Link>.
+            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-ctrader-verdict-bright-funded" rel="sponsored nofollow noopener"> BrightFunded</RuGoLink>.
             Мы можем получить комиссию; ни один переход не является обещанием доступа или выплаты.
           </div>
           <p><Link href="/ru/luchshie-prop-firmy#podbor">Перейти к подбору программ по размеру счёта и этапам</Link>. Подборщик сравнивает условия программ, но не подтверждает доступность cTrader для выбранного профиля.</p>

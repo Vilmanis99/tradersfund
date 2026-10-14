@@ -86,6 +86,20 @@ import {
 } from '../lib/tradingToolReviews.ts'
 import { diffChallengeProducts } from './challenge-diff.mjs'
 
+/**
+ * Shared homepage components take markers and links as props, so accept the
+ * prop/object form of a JSX attribute: href="/x" -> href: '/x', and
+ * data-a="b" -> 'data-a': 'b'. Rendered-HTML checks still see the attribute.
+ */
+function sourceHasToken(source, token) {
+  if (source.includes(token)) return true
+  const attr = token.match(/^([a-z][a-z-]*)="([^"]*)"$/)
+  if (attr) return source.includes(`${attr[1]}: '${attr[2]}'`) || source.includes(`'${attr[1]}': '${attr[2]}'`)
+  const expr = token.match(/^([a-z][a-z-]*)=\{([^}]*)\}$/)
+  if (expr) return source.includes(`'${expr[1]}': ${expr[2]}`)
+  return false
+}
+
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const POSTS = path.join(ROOT, 'content/posts')
 const CHALLENGES = path.join(ROOT, 'content/data/challenges')
@@ -4346,7 +4360,7 @@ function checkTrueCostPillar() {
   // inline model from returning; the reusable calculator's checks stay above.
   const homepage = fs.readFileSync(HOMEPAGE_FILE, 'utf-8')
   if (!homepage.includes("href: '/true-cost-of-prop-firm-challenges'")
-    || !homepage.includes('data-english-home-guides="selected-three"')) {
+    || !sourceHasToken(homepage, 'data-english-home-guides="selected-three"')) {
     rows.push('focused homepage must retain discovery of the audited true-cost guide')
   }
   if (/computeTrueCost|demoCost|truecost-stats/.test(homepage)) {
@@ -12151,7 +12165,9 @@ function checkRussianAcquisitionPilot() {
       '<h1>',
       'RussianFaq',
     ]) {
-      if (!source.includes(token)) rows.push(`${route}: Russian page is missing ${token}`)
+      // The /ru home renders its single H1 through the shared HeroBlock component.
+      const present = source.includes(token) || (token === '<h1>' && route === '/ru' && source.includes('<HeroBlock'))
+      if (!present) rows.push(`${route}: Russian page is missing ${token}`)
     }
     for (const unsafe of [
       'FundedNext доступен в России',
@@ -12208,7 +12224,7 @@ function checkRussianAcquisitionPilot() {
     'rel="sponsored nofollow noopener"',
     'data-russian-home-guides="selected-three"',
   ]) {
-    if (!russianHub.includes(token)) rows.push('Russian home reader path is missing ' + token)
+    if (!sourceHasToken(russianHub, token)) rows.push('Russian home reader path is missing ' + token)
   }
 
   const forexPage = fs.existsSync(russianRouteFiles.get('/ru/forex-prop-firmy'))

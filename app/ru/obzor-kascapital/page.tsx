@@ -76,7 +76,7 @@ export default function RussianKasCapitalReviewPage() {
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
-    { name: 'Российские проп-компании', url: '/ru/rossiyskie-prop-kompanii' },
+    { name: 'Российские проп-компании', url: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie' },
     { name: 'Обзор KasCapital' },
   ])
   const article = {
@@ -99,7 +99,7 @@ export default function RussianKasCapitalReviewPage() {
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="kascapital" data-russian-local-review-status="verification-only">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/rossiyskie-prop-kompanii">Российские компании</Link> / KasCapital</div>
+          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские компании</Link> / KasCapital</div>
           <RussianEvidenceFreshnessNotice evidence={[
             { label: 'общий снимок рынка', capturedAt: marketEvidence.capturedAt },
             { label: 'заявления KasCapital на главной', capturedAt: localSignalCapturedAt },
@@ -213,7 +213,7 @@ export default function RussianKasCapitalReviewPage() {
               </article>
             ))}
           </div>
-          <p className="ru-source-line">Другие локальные исследования: <Link href="/ru/rossiyskie-prop-kompanii">шесть российских моделей</Link>; глобальное сравнение: <Link href="/ru/fundednext-vs-bright-funded">FundedNext против BrightFunded</Link>; отдельный локальный обзор: <Link href="/ru/obzor-eratrade">Era Trade</Link>.</p>
+          <p className="ru-source-line">Другие локальные исследования: <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">шесть российских моделей</Link>; глобальное сравнение: <Link href="/ru/fundednext-vs-bright-funded">FundedNext против BrightFunded</Link>; отдельные локальные обзоры: <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-teamtraders">TeamTraders</Link>.</p>
         </div>
       </section>
 

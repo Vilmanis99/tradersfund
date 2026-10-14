@@ -42,7 +42,7 @@ export default function Footer({
     { label: 'Промокоды и предложения', href: '/ru/promokody-prop-firm' },
     { label: 'Выплаты проп-фирм', href: '/ru/vyplaty-prop-firm' },
     { label: 'Без KYC: проверка условий', href: '/ru/prop-firmy-bez-kyc' },
-    { label: 'Российские компании', href: '/ru/rossiyskie-prop-kompanii' },
+    { label: 'Российские компании', href: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie' },
     { label: 'Что такое проп-фирма', href: '/ru/chto-takoe-prop-firma' },
   ] : [
     { label: 'Best Prop Firms 2026', href: '/best-prop-firms-2026' },

@@ -372,9 +372,9 @@ export default function RussianCryptoPropFirmsPage() {
             <div className="ru-actions">
               <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
               <a href={payoutEvidence.sourceUrl} target="_blank" rel="nofollow noopener" className="btn-outline">Официальная справка о выплатах</a>
-              <Link href="/go/bright-funded?from=ru-crypto-ranking-payout-alternative" rel="sponsored nofollow noopener" className="btn-primary">
+              <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-crypto-ranking-payout-alternative" rel="sponsored nofollow noopener" className="btn-primary">
                 Проверить условия BrightFunded <ArrowRight size={14} aria-hidden="true" />
-              </Link>
+              </RuGoLink>
             </div>
           </div>
         </section>

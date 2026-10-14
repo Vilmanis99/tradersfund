@@ -5,8 +5,8 @@ import { outboundSlug } from '@/lib/outboundDestinations'
  * Russia availability gate for /ru pages.
  *
  * Source of truth: `russiaStatus` in content/data/firms.json (populated from
- * the 2026-10-14 ru-availability check). Firms marked `restricted` or
- * `unclear` must not get a sign-up CTA or /go/ link on Russian pages.
+ * the 2026-10-14 ru-availability check). Every firm keeps its sign-up CTA on
+ * /ru pages; RuGoLink renders a Russia-access badge from this status.
  * EN pages never call this helper.
  */
 export type RussiaStatus = 'available' | 'restricted' | 'unclear' | 'unverified'
@@ -38,20 +38,13 @@ export function russiaStatusFor(slugOrName: string): RussiaStatus {
   return EXTRA_RESTRICTED[key] ?? STATUS_BY_SLUG[key] ?? 'unverified'
 }
 
-/** True when a /ru page must hide sign-up CTAs and /go/ links for this firm. */
-export function isHiddenOnRussianPages(slugOrName: string): boolean {
-  const status = russiaStatusFor(slugOrName)
-  return status === 'restricted' || status === 'unclear'
-}
+const AFFILIATE_SLUGS = new Set(
+  (firms as Array<{ name: string; affiliateUrl?: string | null }>)
+    .filter((firm) => Boolean(firm.affiliateUrl))
+    .map((firm) => outboundSlug(firm.name)),
+)
 
-/** /go/ href for RU pages, or null when the firm is hidden for Russia. */
-export function ruGoHref(slug: string, from: string): string | null {
-  return isHiddenOnRussianPages(slug) ? null : `/go/${slug}?from=${from}`
+/** rel for a /go/ link: sponsored only when the firm has a configured affiliate URL. */
+export function goLinkRel(slug: string): string {
+  return AFFILIATE_SLUGS.has(slug) ? 'sponsored nofollow noopener' : 'nofollow noopener'
 }
-
-export const RUSSIA_ALTERNATIVES = [
-  { name: 'Upscale', href: 'https://upscale.trade/ru/', external: true, sponsored: false },
-  { name: 'Crypto Fund Trader', href: '/blog/crypto-fund-trader-review', external: false, sponsored: false },
-  { name: 'BrightFunded', href: '/ru/obzor-bright-funded', external: false, sponsored: false },
-  { name: 'FundedNext CFD', href: '/ru/obzor-fundednext', external: false, sponsored: false },
-] as const

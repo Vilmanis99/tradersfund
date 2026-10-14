@@ -16,6 +16,7 @@ import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { getAllChallenges, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/chto-takoe-prop-firma'
 const TITLE = 'Что такое проп-фирма: как это работает в 2026 году'
@@ -248,7 +249,7 @@ export default function RussianWhatIsPropFirmPage() {
           <p>
             Эта граница объясняет 2 частые ошибки: глобальный челлендж не является вакансией,
             а локальная компания с торговлей на Московской бирже не обязана быть аналогом CFD-программы.
-            Наш раздел <Link href="/ru/rossiyskie-prop-kompanii">о 6 локальных операторах</Link> поэтому отделён
+            Наш раздел <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">о 6 локальных операторах</Link> поэтому отделён
             от <Link href="/ru/luchshie-prop-firmy">рейтинга глобальных продуктов</Link>.
           </p>
         </div>
@@ -327,9 +328,9 @@ export default function RussianWhatIsPropFirmPage() {
               </p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link>
-                <Link href="/go/fundednext?from=ru-prop-definition-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-definition-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
                   Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
-                </Link>
+                </RuGoLink>
               </div>
             </article>
             <article className="ru-card">
@@ -340,9 +341,9 @@ export default function RussianWhatIsPropFirmPage() {
               </p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link>
-                <Link href="/go/bright-funded?from=ru-prop-definition-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-prop-definition-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">
                   Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
-                </Link>
+                </RuGoLink>
               </div>
             </article>
           </div>
@@ -393,12 +394,12 @@ export default function RussianWhatIsPropFirmPage() {
           <div className="ru-notice">
             <strong>Практическая развилка из 2 вопросов.</strong>{' '}
             Нужна местная биржа и договор с локальным оператором — откройте
-            <Link href="/ru/rossiyskie-prop-kompanii"> 6 проверяемых примеров</Link>.
+            <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"> 6 проверяемых примеров</Link>.
             Нужен глобальный розничный CFD-продукт — сравните FundedNext и Bright Funded,
             затем заново проверьте страну, KYC и платёжный канал.
           </div>
           <div className="ru-actions">
-            <Link href="/ru/rossiyskie-prop-kompanii" className="btn-outline"><Building2 size={15} aria-hidden="true" /> Российские операторы</Link>
+            <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie" className="btn-outline"><Building2 size={15} aria-hidden="true" /> Российские операторы</Link>
             <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Глобальное сравнение <ArrowRight size={15} aria-hidden="true" /></Link>
           </div>
         </div>

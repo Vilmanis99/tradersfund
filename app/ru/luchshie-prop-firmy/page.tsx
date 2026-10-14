@@ -7,11 +7,13 @@ import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import { russianRankingDataDate } from '@/lib/russianRouteDates'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
 
 const PATH = '/ru/luchshie-prop-firmy'
 // Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
@@ -178,7 +180,9 @@ export default function RussianBestPropFirmsPage() {
       return { firm, slug, products }
     })
     .filter(item => item.products.length > 0 && item.products.every(product => isChallengeFresh(product)))
-    .sort((a, b) => b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
+    // Firms open to Russia (russiaStatus available, e.g. BrightFunded) first, then by score.
+    .sort((a, b) => Number(russiaStatusFor(b.slug) === 'available') - Number(russiaStatusFor(a.slug) === 'available')
+      || b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
 
   const fundingPipsAccessCurrent = isChallengeFresh({ sourceCapturedAt: fundingPipsAccessEvidence.sourceCapturedAt })
   const brightCountryCurrent = [brightEvidence.sources.countries, brightEvidence.sources.countryTerms]
@@ -245,6 +249,7 @@ export default function RussianBestPropFirmsPage() {
       ...faqPayoutEvidence.map(item => item.sourceCapturedAt)]
       .every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
 
+  const rankingUpdated = russianRouteDateModified(PATH, russianRankingDataDate().slice(0, 10))
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
     { name: 'Лучшие проп-фирмы 2026' },
@@ -263,6 +268,7 @@ export default function RussianBestPropFirmsPage() {
     description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
+    dateModified: rankingUpdated,
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
   }
 
@@ -298,8 +304,8 @@ export default function RussianBestPropFirmsPage() {
               : 'Программы без челленджа в данных сравнения сейчас ожидают повторной проверки.'}
             Если источник старше 30 дней, фирма переносится в блок ожидания повторной проверки, а не показывается как актуальная.
           </p>
-          <p className="ru-source-line">Автор рейтинга: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Данные ранжирования обновляются после проверки источников.</p>
-          <p className="ru-source-line">Другой формат: <Link href="/ru/prop-firmy-bez-chelendzha">счета без челленджа</Link> · <Link href="/ru/rossiyskie-prop-kompanii">список проп-компаний в России</Link>.</p>
+          <p className="ru-source-line" data-russian-ranking-updated={rankingUpdated}>Обновлено: {rankingUpdated} · Автор рейтинга: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Данные ранжирования обновляются после проверки источников.</p>
+          <p className="ru-source-line">Другой формат: <Link href="/ru/prop-firmy-bez-chelendzha">счета без челленджа</Link> · <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">список проп-компаний в России</Link>. · <Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян</Link></p>
         </div>
       </section>
 
@@ -417,7 +423,7 @@ export default function RussianBestPropFirmsPage() {
             <article className="ru-card">
               <h3>Резидент России</h3>
               <p>У FundedNext официальные страницы противоречат друг другу; {fundingPipsAccessCurrent ? 'по проверенной справке FundingPips действуют ограничения по резидентству и санкционным спискам' : 'страновая справка FundingPips требует повторной проверки'}. {brightCountryCurrent ? 'Справка и условия BrightFunded расходятся по Пакистану; отсутствие России в проверенных списках не подтверждает возможность покупки.' : 'Страновые источники BrightFunded требуют повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня.'} Уточните условия для своих документов до оплаты.</p>
-              <p><Link href="/ru/rossiyskie-prop-kompanii">Сначала открыть проверку России и местных компаний →</Link></p>
+              <p><Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Сначала открыть проверку России и местных компаний →</Link></p>
             </article>
             <article className="ru-card">
               <h3>ЕС или Великобритания</h3>
@@ -568,7 +574,7 @@ export default function RussianBestPropFirmsPage() {
           <p>Местная компания может быть полезна, если вам нужны Московская биржа, обучение или отбор в торговую команду. Сравните её договор, инструменты, комиссии и распределение прибыли отдельно от глобальных CFD-программ: условия одной модели нельзя переносить на другую.</p>
           <p>В отдельных обзорах <Link href="/ru/obzor-proplive">PropLive</Link>, <Link href="/ru/obzor-teamtraders">TeamTraders</Link>, <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-kascapital">KasCapital</Link> разобраны юридическое лицо, рынок, отбор трейдеров и опубликованные условия расчётов. Начните с компании, которая предлагает нужные вам инструменты и формат работы, затем изучите договор и расходы.</p>
           <div className="ru-notice">
-            <strong>Сравните условия работы.</strong> В <Link href="/ru/rossiyskie-prop-kompanii">списке российских проп-компаний</Link> показаны различия местных моделей. Если интересует глобальная CFD-программа, используйте сравнение выше и отдельно подтвердите доступность в своей стране.
+            <strong>Сравните условия работы.</strong> В <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">списке российских проп-компаний</Link> показаны различия местных моделей. Если интересует глобальная CFD-программа, используйте сравнение выше и отдельно подтвердите доступность в своей стране.
           </div>
         </div>
       </section>

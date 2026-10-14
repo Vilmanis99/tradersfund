@@ -86,6 +86,8 @@ function legacyRedirects() {
       destination: 'https://tradersfundhub.com/:path*',
       permanent: true,
     },
+    // RU Week 1: the local-firms directory was merged into the Russia hub.
+    { source: '/ru/rossiyskie-prop-kompanii', destination: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie', statusCode: 301 },
     // WordPress-era affiliate links used a hyphen (/go-ftmo); the Next.js
     // route is a path segment (/go/ftmo). Every legacy link was hard-404ing —
     // including the "Visit X" CTA buttons still embedded in migrated MDX and

@@ -18,6 +18,7 @@ import {
 import { getDealsByFirm } from '@/lib/deals'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/obzor-bright-funded'
 const TITLE = 'BrightFunded: обзор 2026, цены, правила и выплаты'
@@ -111,7 +112,7 @@ export default function RussianBrightFundedReviewPage() {
   const bestPublicDealPct = publicDealPcts.length ? Math.max(...publicDealPcts) : null
   const offerStatusHref = publicBrightDeals.length > 0
     ? '/ru/promokody-prop-firm#bright-funded-promokody'
-    : '/ru/promokody-prop-firm#bright-offer-status'
+    : '/ru/promokody-prop-firm#kody'
   const products = getChallengesByFirm('bright-funded')
   const freshProducts = products.filter(product => freshSource(product))
   const pricedTiers = freshProducts.flatMap(product => product.accountSizes.flatMap(tier =>
@@ -265,9 +266,9 @@ export default function RussianBrightFundedReviewPage() {
             </div>
             {firm?.affiliateUrl ? (
               <div className="ru-actions">
-                <Link href="/go/bright-funded?from=ru-bright-funded-review-summary" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-bright-funded-review-summary" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
                   Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" />
-                </Link>
+                </RuGoLink>
                 <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сначала сравнить с FundedNext</Link>
               </div>
             ) : null}
@@ -500,9 +501,9 @@ export default function RussianBrightFundedReviewPage() {
             />
             {firm?.affiliateUrl ? (
               <div className="ru-actions">
-                <Link href="/go/bright-funded?from=ru-bright-funded-review-verdict" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-bright-funded-review-verdict" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
                   Проверить страну и планы BrightFunded <ArrowRight size={15} aria-hidden="true" />
-                </Link>
+                </RuGoLink>
                 <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить с FundedNext</Link>
                 <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Все глобальные фирмы</Link>
               </div>
