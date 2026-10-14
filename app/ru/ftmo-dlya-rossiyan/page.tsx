@@ -171,7 +171,7 @@ export default function FtmoForRussiansPage() {
                         // TODO: заменить на /go/upscale после подтверждения партнёрской программы Upscale
                         <a href="https://upscale.trade/ru/" target="_blank" rel="nofollow noopener noreferrer" className="btn-primary">Открыть <ArrowRight size={14} aria-hidden="true" /></a>
                       ) : (
-                        <RuGoLink firm={alt.slug} href={`/go/${alt.slug}?from=ru-ftmo-dlya-rossiyan-table-${index + 1}`} rel={goLinkRel(alt.slug)} className="btn-primary">
+                        <RuGoLink firm={alt.slug} hideBadge href={`/go/${alt.slug}?from=ru-ftmo-dlya-rossiyan-table-${index + 1}`} rel={goLinkRel(alt.slug)} className="btn-primary">
                           Проверить <ArrowRight size={14} aria-hidden="true" />
                         </RuGoLink>
                       )}

@@ -1848,6 +1848,15 @@ const russianFtmoPage = pages.find(page =>
         errors.push(`${pagePath}: /go/${slug} CTA lacks the RuGoLink Russia status (${status})`)
         continue
       }
+      // hideBadge: the link sits in a table whose Russia-status column replaces the badge.
+      if (match[0].includes('data-russia-badge="column"')) {
+        const rowStart = page.html.lastIndexOf('<tr', match.index)
+        const tableStart = page.html.lastIndexOf('<table', match.index)
+        if (rowStart < tableStart || !/<th>Россия<\/th>/.test(page.html.slice(tableStart, rowStart))) {
+          errors.push(`${pagePath}: /go/${slug} hides its Russia-access badge outside a table with a Россия column`)
+        }
+        continue
+      }
       const following = page.html.slice(match.index, match.index + 4000)
       if (!following.includes(`data-russia-status="${status}" data-russia-firm="${slug}"`)) {
         errors.push(`${pagePath}: /go/${slug} CTA is missing its Russia-access badge (${status})`)
