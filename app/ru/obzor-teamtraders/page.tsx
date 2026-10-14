@@ -119,7 +119,7 @@ export default function RussianTeamTradersReviewPage() {
   const crumbs = breadcrumbSchema([
     { name: 'Traders Fund Hub', url: '/' },
     { name: 'Русская версия', url: '/ru' },
-    { name: 'Российские проп-компании', url: '/ru/rossiyskie-prop-kompanii' },
+    { name: 'Российские проп-компании', url: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie' },
     { name: 'Обзор TeamTraders' },
   ])
   const faq = faqPageSchema(datedFaqs)
@@ -149,7 +149,7 @@ export default function RussianTeamTradersReviewPage() {
         data-russian-local-review-status="verification-only"
       >
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/rossiyskie-prop-kompanii">Местные компании</Link> / TeamTraders</div>
+          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Местные компании</Link> / TeamTraders</div>
           <div className="ru-eyebrow"><SearchCheck size={14} aria-hidden="true" /> TeamTraders отзывы · проверка первичных источников</div>
           <h1>TeamTraders: отзывы и обзор условий 2026 года</h1>
           <p className="ru-lead">
@@ -454,7 +454,7 @@ export default function RussianTeamTradersReviewPage() {
             конкретному клиенту TeamTraders. Данные от {evidence.capturedAt} показывают различия между этапами
             и противоречия официальных страниц, но не заменяют договор и письменный ответ по вашей ситуации.
           </p>
-          <p className="ru-source-line"><CalendarDays size={14} aria-hidden="true" /> Разбор источников от {evidence.capturedAt}; редакционное обновление — {updatedAt}. <Link href="/ru/rossiyskie-prop-kompanii">Вернуться к 6 локальным примерам</Link>.</p>
+          <p className="ru-source-line"><CalendarDays size={14} aria-hidden="true" /> Разбор источников от {evidence.capturedAt}; редакционное обновление — {updatedAt}. <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Вернуться к 6 локальным примерам</Link>.</p>
         </div>
       </section>
 

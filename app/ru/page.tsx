@@ -152,7 +152,7 @@ export default function RussianHomePage() {
               <Link href="/ru/obzor-fundednext">Обзор FundedNext <ArrowRight size={14} aria-hidden="true" /></Link>
               <Link href="/ru/vyplaty-prop-firm">Проверить выплаты <ArrowRight size={14} aria-hidden="true" /></Link>
               <Link href="/ru/dlya-russkoyazychnykh-treyderov">Для трейдеров по всему миру <ArrowRight size={14} aria-hidden="true" /></Link>
-              <Link href="/ru/rossiyskie-prop-kompanii">Российские компании <ArrowRight size={14} aria-hidden="true" /></Link>
+              <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские компании <ArrowRight size={14} aria-hidden="true" /></Link>
             </nav>
           </div>
         </div>
@@ -195,7 +195,7 @@ export default function RussianHomePage() {
             <h3>Сначала проверьте свою страну</h3>
             <p className="ru-muted">Русский язык не означает доступность в России. До оплаты уточните требования к гражданству, проживанию и документам, а также способы оплаты и выплаты.</p>
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="ru-card-link" data-russian-home-diaspora-entry="trust">Проверить страну и KYC →</Link>
-            <p className="ru-source-line">Нужна местная биржевая торговля? <Link href="/ru/rossiyskie-prop-kompanii">Российские проп-компании разобраны отдельно.</Link></p>
+            <p className="ru-source-line">Нужна местная биржевая торговля? <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские проп-компании разобраны отдельно.</Link></p>
           </div>
         </div>
       </section>

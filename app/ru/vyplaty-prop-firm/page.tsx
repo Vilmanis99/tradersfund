@@ -512,7 +512,7 @@ export default function RussianPayoutsPage() {
               выбирает только после проверки российского договора, рынка и юридического лица.
             </p>
             <div className="ru-actions">
-              <Link href="/ru/rossiyskie-prop-kompanii" className="btn-outline">Сравнить локальные модели</Link>
+              <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie" className="btn-outline">Сравнить локальные модели</Link>
               <Link href="/ru/obzor-kascapital" className="btn-outline">Разбор KasCapital</Link>
             </div>
           </div>

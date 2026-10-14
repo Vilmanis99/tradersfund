@@ -584,7 +584,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             </p>
             <p>
               Если ни одна фирма письменно не подтверждает вашу страну, документы или способ выплаты, не оплачивайте участие до выяснения условий.
-              <Link href="/ru/rossiyskie-prop-kompanii"> Локальные модели</Link> и <Link href="/ru/luchshie-prop-firmy">полный рейтинг</Link> используют другие наборы продуктов.
+              <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"> Локальные модели</Link> и <Link href="/ru/luchshie-prop-firmy">полный рейтинг</Link> используют другие наборы продуктов.
             </p>
           </div>
         </section>
