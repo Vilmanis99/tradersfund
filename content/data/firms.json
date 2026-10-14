@@ -125,7 +125,13 @@
     "lastUpdated": "2026-09-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/ftmo.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "restricted"
+    "russiaStatus": "restricted",
+    "legalEntity": "FTMO Evaluation Global s.r.o.",
+    "headquarters": "Prague, Czech Republic",
+    "country": "Czech Republic",
+    "regulation": null,
+    "corporateSourceUrl": "https://ftmo.com/en/imprint/",
+    "corporateCapturedAt": "2026-10-14"
   },
   {
     "name": "FundedNext",
@@ -198,7 +204,13 @@
     "lastUpdated": "2026-09-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/fundednext.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "available"
+    "russiaStatus": "available",
+    "legalEntity": "FundedNext Ltd",
+    "headquarters": "Wan Chai, Hong Kong",
+    "country": "Comoros",
+    "regulation": null,
+    "corporateSourceUrl": "https://fundednext.com/",
+    "corporateCapturedAt": "2026-10-14"
   },
   {
     "name": "FundingPips",
@@ -254,7 +266,13 @@
     "lastUpdated": "2026-09-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/fundingpips.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "unclear"
+    "russiaStatus": "unclear",
+    "legalEntity": "FundingPips Corp",
+    "headquarters": "Dubai, United Arab Emirates",
+    "country": "Comoros",
+    "regulation": "International Brokerage and Clearing House License, Ibc Regulation Act 2014 (License No. Bfx2024004); the firm states it does not conduct brokerage services",
+    "corporateSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+    "corporateCapturedAt": "2026-10-14"
   },
   {
     "name": "E8 Markets",
@@ -342,7 +360,13 @@
     "trustpilotUrl": "https://www.trustpilot.com/review/e8markets.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "restricted"
+    "russiaStatus": "restricted",
+    "legalEntity": "E8 Funding LLC",
+    "headquarters": "Dallas, Texas, United States",
+    "country": "United States",
+    "regulation": null,
+    "corporateSourceUrl": "https://e8markets.com/",
+    "corporateCapturedAt": "2026-10-14"
   },
   {
     "name": "Alpha Capital",
@@ -416,7 +440,13 @@
     "lastUpdated": "2026-10-06",
     "trustpilotUrl": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "restricted"
+    "russiaStatus": "restricted",
+    "legalEntity": "Alpha Capital Group Limited",
+    "headquarters": "Harpenden, England, United Kingdom",
+    "country": "United Kingdom",
+    "regulation": null,
+    "corporateSourceUrl": "https://alphacapitalgroup.uk/",
+    "corporateCapturedAt": "2026-10-14"
   },
   {
     "name": "Bright Funded",
@@ -479,7 +509,13 @@
     "trustpilotUrl": "https://www.trustpilot.com/review/brightfunded.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-10-01",
-    "russiaStatus": "available"
+    "russiaStatus": "available",
+    "legalEntity": "BrightFunded Ltd",
+    "headquarters": "Dubai, United Arab Emirates",
+    "country": "Saint Lucia",
+    "regulation": null,
+    "corporateSourceUrl": "https://brightfunded.com/",
+    "corporateCapturedAt": "2026-10-14"
   },
   {
     "name": "OFP Funding",
@@ -691,7 +727,13 @@
     "lastUpdated": "2026-09-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/fxify.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "restricted"
+    "russiaStatus": "restricted",
+    "legalEntity": null,
+    "headquarters": null,
+    "country": null,
+    "regulation": null,
+    "corporateSourceUrl": null,
+    "corporateCapturedAt": null
   },
   {
     "name": "Crypto Fund Trader",
@@ -978,7 +1020,13 @@
     "lastUpdated": "2026-07-28",
     "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "unverified"
+    "russiaStatus": "unverified",
+    "legalEntity": "City Traders Imperium Limited",
+    "headquarters": "San José, Costa Rica",
+    "country": "Comoros",
+    "regulation": "License No. L15969/CTI (Comoros Union company number 15969)",
+    "corporateSourceUrl": "https://citytradersimperium.com/",
+    "corporateCapturedAt": "2026-10-14"
   },
   {
     "name": "Take Profit Trader",

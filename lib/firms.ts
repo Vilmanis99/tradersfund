@@ -79,6 +79,20 @@ export interface Firm {
   // ── Availability ──
   countriesRestricted?: string[]
 
+  // ── Corporate identity (optional; null = not confirmed from an official source) ──
+  /** Contracting/operating legal entity as named on the firm's own site. */
+  legalEntity?: string | null
+  /** Main stated operating office (city, country). */
+  headquarters?: string | null
+  /** Jurisdiction where the contracting entity is incorporated. */
+  country?: string | null
+  /** Licence/authorisation the firm itself states; null when none is stated. Not an FCA/regulator finding. */
+  regulation?: string | null
+  /** Official page the corporate fields above were read from. */
+  corporateSourceUrl?: string | null
+  /** ISO date the corporate fields were captured. */
+  corporateCapturedAt?: string | null
+
   // ── Social proof ──
   ratings?: FirmRatings
   trustpilotScore?: number | null
