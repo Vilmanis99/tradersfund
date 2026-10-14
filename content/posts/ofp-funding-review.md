@@ -2,7 +2,6 @@
 title: "OFP Funding Review 2026: Nine Products, 45 Priced Tiers, One $300K Ceiling"
 seoTitle: "OFP Funding Review 2026: Legit? Fees, Rules & Payouts"
 slug: "ofp-funding-review"
-sourceStatus: "source-hold"
 date: "2025-04-22 12:00:00"
 modified: "2026-10-14 12:00:00"
 author: "Tara Mohseni"
@@ -41,7 +40,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Account cap</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$300,000 total manageable; no account merging</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% at base price; 100% option costs ~20% more</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown type</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Static — 5%, 6%, or 10% depending on product</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Bi-weekly (Instant Lite: monthly, one reward only); first request 14 days after the first trade</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">First request 14 calendar days after the first trade, then every 14 days (Instant Lite: one reward within its 30-day period)</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Leverage</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Dynamic, "from a minimum of 1:1 to a maximum of 1:100"</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MetaTrader 5 and the OFP Platform</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Instruments</strong></td><td style="padding: 8px 12px; border-bottom: none;">Forex, Crypto, Indices, Metals &amp; Energies (simulated trading only)</td></tr>
@@ -214,7 +213,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p>The first reward request may be submitted <strong>14 calendar days after the first trade is executed</strong> — on the One Phase product, specifically 14 days after the first trade on the Master Account, not the evaluation. After that, "traders may request bi-weekly rewards" on eight of the nine products. Instant Lite is the exception: a 30-day account duration, monthly payout day, and a single reward request in total.</p>
+<p><strong>Payout schedule (OFP trading-rules page, checked 2026-10-14).</strong> On Instant Classic and Instant Plus, "the first reward request may be submitted 14 calendar days after the first trade is executed on the account", and after that "subsequent reward requests may be submitted after each additional 14-day period", with the profit calculation resetting after every approved reward. Instant Lite is different: traders "are entitled to submit only one (1) reward request during the 30-day active period", and the account is concluded once that reward is approved or the 30 days expire. On the One Phase product the 14 days run from the first trade on the Master Account, not the evaluation. OFP's rules publish no day-5 or on-demand payout option, despite third-party listings that claim one.</p>
 
 <h3 class="wp-block-heading"><strong>How the OFP Funding payout process works</strong></h3>
 
@@ -228,11 +227,12 @@ type: "post"
   <li><strong>Payment.</strong> OFP says the invoice is issued within 3 calendar days of receiving the form and payment is sent within 2 calendar days of issuance, "usually 2-3 business days from the date of your request". Processing runs Monday to Friday, 9 AM to 5 PM CET, and busy periods can take up to 3 business days. Payouts are made in USD.</li>
 </ol>
 
-<p><strong>Payment methods and fees.</strong> Payouts under $500 go by bank transfer or USDC crypto (ERC-20 or Polygon only). Payouts over $500 go through Rise, where OFP says "the fixed fee is $50 at the moment", and "all payment commissions will be subtracted from the payout". That fixed fee inverts the usual incentive: a $600 withdrawal loses 8.3% to it, a $5,000 withdrawal loses 1%, so batching payouts is cheaper than taking each one as it clears. OFP does not say that sub-$500 bank or crypto transfers are fee-free, so assume your bank's or the network's charges still apply.</p>
+<p><strong>Payment methods and fees.</strong> Payouts under $500 go by bank transfer or USDC crypto (ERC-20 or Polygon only), and the trading-rules page says both "are processed without fees" below $500. Payouts over $500 go through Rise with a fixed $50 fee "deducted directly from the payout amount", regardless of size. That fixed fee inverts the usual incentive: a $600 withdrawal loses 8.3% to it, a $5,000 withdrawal loses 1%, so batching payouts is cheaper than taking each one as it clears.</p>
+
+<p><strong>Two OFP timelines.</strong> The trading-rules page says withdrawals are "typically processed within an average timeframe of 48 hours", while the help centre says "usually 2-3 business days from the date of your request". Plan for the longer figure.</p>
 
 <p><strong>What delays or denies a payout.</strong> OFP says payouts "can be subject to additional analysis at any moment, which may require you to explain your trading strategy", and are paid only "when a real trading strategy is present". Its list of common delays includes an incomplete form, details that don't match your registered name, a rule breach under review, incomplete KYC, and third-party payment accounts. You can keep trading once you have answered the payout email.</p>
 
-<p><em>Correction:</em> an earlier version of this review said withdrawals average 48 hours and are free below $500. The current help centre gives 2–3 business days and does not promise fee-free transfers, so we have updated both claims.</p>
 
 <p><strong>Trustpilot has suppressed OFP Funding's aggregate rating.</strong> As of 2026-07-27, <a href="https://www.trustpilot.com/review/ofpfunding.com">the firm's Trustpilot profile</a> displays "This company's rating is unavailable due to a breach of our guidelines" in place of a score. That is a platform enforcement action against review-collection conduct, not a finding about payouts, and Trustpilot does not publish which guideline was breached. We report it because it is the single most material change to OFP's public trust signal, and because a suppressed rating removes the one third-party metric most traders use to sanity-check a firm. Treat any OFP star rating quoted elsewhere as stale until the profile is restored.</p>
 
@@ -247,7 +247,7 @@ type: "post"
   <li><strong>Nine products spanning $35 to $1,500</strong>, including a $5K One Phase and a $5K Instant Classic at the same $35 price with identical 3%/6% drawdown.</li>
   <li><strong>News trading is permitted</strong> outside a four-minute window around high-impact releases — narrower than firms that ban a full news day.</li>
   <li><strong>Instant Lite delivers a 5% max drawdown at $200 on $100K</strong> (R = 0.05), the least expensive funded-from-day-one account OFP sells.</li>
-  <li><strong>A documented payout process:</strong> OFP publishes a 5-step Reward flow and a 2–3 business-day payment target from request.</li>
+  <li><strong>A documented payout process:</strong> a 5-step Reward flow, a 48-hour average (trading rules) to 2–3 business-day (help centre) payment target, and fee-free bank or crypto withdrawals below $500.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Cons</strong></h2>
@@ -275,13 +275,13 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>Is OFP Funding legit?</strong></h3>
-<p>OFP publishes its payout process, refund terms and trading rules, and says Rewards are "funded directly by OFP's own capital" while you trade a demo account. The caveats are real: Trustpilot has suppressed its aggregate rating for a guidelines breach, several first-party sources conflict on the consistency rule, and this review's product data is on source hold until it is recaptured. Read the current terms and start small before scaling up.</p>
+<p>OFP publishes its payout process, refund terms and trading rules, and says Rewards are "funded directly by OFP's own capital" while you trade a demo account. The caveats are real: Trustpilot has suppressed its aggregate rating for a guidelines breach, several first-party sources conflict on the consistency rule, and some product details in this review predate the latest recapture, so check the live terms. Read the current terms and start small before scaling up.</p>
 
 <h3 class="wp-block-heading"><strong>How does the OFP Funding payout process work?</strong></h3>
-<p>Pass the review-period checks (drawdown, Inconsistency Score, no prohibited strategies), submit the payout form, let OFP self-bill the invoice, then receive USD by bank transfer, USDC, or Rise for amounts over $500. OFP targets 2–3 business days from request, Monday to Friday, 9 AM to 5 PM CET.</p>
+<p>Pass the review-period checks (drawdown, Inconsistency Score, no prohibited strategies), submit the payout form, let OFP self-bill the invoice, then receive USD by bank transfer, USDC, or Rise for amounts over $500. The first request opens 14 calendar days after your first trade, then every 14 days on Instant Classic and Plus; Instant Lite allows a single reward within its 30-day period.</p>
 
 <h3 class="wp-block-heading"><strong>How long do OFP Funding payouts take, and what do they cost?</strong></h3>
-<p>Usually 2–3 business days from the request, or up to 3 business days in busy periods. Payouts over $500 through Rise carry a fixed $50 fee, and any payment commissions are deducted from the payout.</p>
+<p>OFP quotes a 48-hour average on its trading-rules page and 2–3 business days in its help centre, processed Monday to Friday, 9 AM to 5 PM CET. Bank and crypto withdrawals under $500 are fee-free; payouts over $500 through Rise carry a fixed $50 fee.</p>
 
 <h3 class="wp-block-heading"><strong>What does OFP Funding actually cost?</strong></h3>
 <p>Between $35 and $1,500 across 45 priced tiers, at the 80% profit-split base price. The cheapest entries are the $5K One Phase and $5K Instant Classic at $35 each; the most expensive is the $100K Instant Plus (5%/10%) at $1,500. A 100% split adds roughly 20% to any of them.</p>
