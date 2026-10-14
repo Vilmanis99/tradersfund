@@ -5,7 +5,12 @@
       "firmSlug": "fundednext",
       "firmName": "FundedNext",
       "marketModel": "multi-asset-cfd",
-      "productSlugs": ["stellar-2-step", "stellar-1-step", "stellar-lite", "stellar-instant"],
+      "productSlugs": [
+        "stellar-2-step",
+        "stellar-1-step",
+        "stellar-lite",
+        "stellar-instant"
+      ],
       "sourceUrl": "https://help.fundednext.com/en/articles/8020350-what-is-the-contract-size-of-the-instruments",
       "sourceCapturedAt": "2026-09-08",
       "sourceQuote": "Cryptocurrency: 1, 100 & 1000 (Varies in different pairs)",
@@ -18,7 +23,9 @@
       "firmSlug": "fundingpips",
       "firmName": "FundingPips",
       "marketModel": "multi-asset-cfd",
-      "productSlugs": ["1-step-flex"],
+      "productSlugs": [
+        "1-step-flex"
+      ],
       "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
       "sourceCapturedAt": "2026-09-08",
       "sourceQuote": "Crypto leverage changes from 1:2 to 1:1",
@@ -47,6 +54,22 @@
       "evidenceRu": "Официальный FAQ Maven перечисляет BTCEUR, BTCUSD, ETHBTC и ETHUSD среди доступных криптовалютных инструментов.",
       "scopeNoteRu": "Привязаны 7 текущих CFD-продуктов. Две отдельные программы Prediction Markets исключены: общий список CFD-инструментов не доказывает торговлю криптовалютой внутри prediction-market контракта.",
       "scopeNote": "Seven current CFD products are mapped. The 2 separate Prediction Markets programs are excluded because the general CFD instrument list does not establish crypto trading inside a prediction-market contract."
+    },
+    {
+      "firmSlug": "e8-markets",
+      "firmName": "E8 Markets",
+      "marketModel": "crypto-native",
+      "productSlugs": [
+        "e8-one-perpetuals",
+        "e8-pro-perpetuals"
+      ],
+      "sourceUrl": "https://e8markets.com/e8-pro",
+      "sourceCapturedAt": "2026-10-14",
+      "sourceQuote": "Perpetuals 24/7 (Hyperliquid) BTC, Gold, Oil, Nasdaq, Nvidia",
+      "evidence": "E8's official product pages offer a separate Perpetual market (Hyperliquid perpetuals, 24/7, including BTC) alongside Classic Markets, with its own E8 One and E8 Pro configurations.",
+      "evidenceRu": "Официальные страницы E8 предлагают отдельный рынок Perpetual (бессрочные контракты Hyperliquid, 24/7, включая BTC) наряду с Classic Markets, с собственными конфигурациями E8 One и E8 Pro.",
+      "scopeNote": "Only the 2 Perpetual configurations (E8 One and E8 Pro) are mapped. The Perpetual venue also lists non-crypto underlyings (gold, oil, Nasdaq, Nvidia); Classic Markets and E8 Signature products are excluded.",
+      "scopeNoteRu": "Привязаны только 2 конфигурации Perpetual (E8 One и E8 Pro). На площадке Perpetual есть и некриптовые базовые активы (золото, нефть, Nasdaq, Nvidia); продукты Classic Markets и E8 Signature исключены."
     }
   ],
   "payoutAlternative": {
@@ -58,15 +81,6 @@
     "evidenceRu": "Справка перечисляет вознаграждение в USDC по сети ERC-20 и банковский перевод в EUR. Это проверка способа выплаты, не торговых инструментов или доступности страны."
   },
   "watch": [
-    {
-      "firmSlug": "e8-markets",
-      "firmName": "E8 Markets",
-      "status": "product-capture-needed",
-      "sourceUrl": "https://help.e8markets.com/en/articles/9799834-available-trading-platforms",
-      "sourceCapturedAt": "2026-09-14",
-      "evidence": "E8's current help page explicitly covers both Forex and Crypto accounts and lists the available platforms, but the current structured capture contains only Forex product rows.",
-      "nextStep": "Capture the current crypto-specific products, prices, leverage, payout rules, and available platforms before ranking."
-    },
     {
       "firmSlug": "fxify",
       "firmName": "FXIFY",
