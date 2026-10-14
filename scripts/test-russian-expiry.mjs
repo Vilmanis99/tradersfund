@@ -836,10 +836,10 @@ try {
   const FundingPipsReviewModule = require(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'))
   const fundingPipsReviewReference = renderToStaticMarkup(React.createElement(FundingPipsReviewModule.default))
   assert(fundingPipsReviewReference.includes('<h1>FundingPips: обзор 2026 — цены, правила и выплаты</h1>'), 'FundingPips review H1 does not promise a fixed product or price count')
-  // FundingPips is hidden on /ru pages (russiaStatus "unclear", PR #2): no affiliate action, alternatives block instead.
-  const fundingPipsSummaryAffiliate = 'data-russia-restricted="fundingpips"'
-  assert(!fundingPipsReviewReference.includes('href="/go/fundingpips'), 'FundingPips review has no sign-up link while Russia status is unclear')
-  assert(fundingPipsReviewReference.includes(fundingPipsSummaryAffiliate), 'FundingPips review shows the Russia alternatives block instead of the CTA')
+  // FundingPips keeps its CTA on /ru pages with an "unclear" Russia-access badge (russiaStatus in firms.json).
+  const fundingPipsSummaryAffiliate = 'href="/go/fundingpips?from=ru-fundingpips-review-summary"'
+  assert(fundingPipsReviewReference.includes(fundingPipsSummaryAffiliate), 'FundingPips review keeps its sign-up CTA')
+  assert(fundingPipsReviewReference.includes('data-russia-status="unclear" data-russia-firm="fundingpips"'), 'FundingPips CTA carries the unclear Russia-access badge')
   assert.equal((fundingPipsReviewReference.match(/id="country-check"/g) ?? []).length, 1, 'moving the warning preserves one country-check anchor')
   assert(!cryptoSchemas(fundingPipsReviewReference).some(item => item['@type'] === 'FAQPage'), 'stale FundingPips payout evidence withholds review FAQ schema')
   assert(fundingPipsReviewReference.includes('Часть источников этих ответов старше 30 дней.'), 'dated FAQ answers remain visibly qualified')

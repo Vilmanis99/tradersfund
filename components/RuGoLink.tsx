@@ -1,34 +1,40 @@
 import Link from 'next/link'
 import type { ComponentProps } from 'react'
-import { isHiddenOnRussianPages, RUSSIA_ALTERNATIVES } from '@/lib/russiaAvailability'
+import { russiaStatusFor, type RussiaStatus } from '@/lib/russiaAvailability'
 
-/**
- * Block shown on /ru pages instead of a sign-up CTA for firms that restrict
- * Russia (or whose status is unclear). Uses only <span> elements so it is
- * valid inside paragraphs, list items and action rows.
- */
-export function RuRestrictedAlternatives({ firm }: { firm?: string }) {
+const BADGE: Record<RussiaStatus, { modifier: 'open' | 'closed' | 'unclear'; label: string }> = {
+  available: { modifier: 'open', label: 'Открыта для РФ' },
+  restricted: { modifier: 'closed', label: 'Недоступно для РФ' },
+  unclear: { modifier: 'unclear', label: 'Доступ для РФ не ясен' },
+  unverified: { modifier: 'unclear', label: 'Доступ для РФ не проверен' },
+}
+
+/** Russia-access badge driven by firms.json russiaStatus. Inline markup only. */
+export function RuAccessBadge({ firm }: { firm: string }) {
+  const status = russiaStatusFor(firm)
+  const badge = BADGE[status]
   return (
-    <span className="ru-restricted-alternatives" data-russia-restricted={firm ?? 'unknown'} role="note">
-      <strong>Недоступно в РФ — альтернативы:</strong>{' '}
-      {RUSSIA_ALTERNATIVES.map((alt, index) => (
-        <span key={alt.name}>
-          {index > 0 ? ', ' : ''}
-          {alt.external ? (
-            <a href={alt.href} target="_blank" rel="nofollow noopener noreferrer">{alt.name}</a>
-          ) : (
-            <Link href={alt.href} prefetch={false} rel={alt.sponsored ? 'sponsored nofollow noopener' : undefined}>{alt.name}</Link>
-          )}
-        </span>
-      ))}
+    <span className="ru-access">
+      <span className={`ru-badge ru-badge--${badge.modifier}`} data-russia-status={status} data-russia-firm={firm}>{badge.label}</span>
+      {status === 'restricted' ? (
+        <>{' '}<Link href="/ru/dlya-russkoyazychnykh-treyderov" prefetch={false} className="ru-access-hint">альтернативы</Link></>
+      ) : null}
     </span>
   )
 }
 
 type RuGoLinkProps = ComponentProps<typeof Link> & { firm: string }
 
-/** Drop-in replacement for <Link href="/go/..."> on /ru pages. */
+/**
+ * Drop-in replacement for <Link href="/go/..."> on /ru pages. Every firm keeps
+ * its sign-up CTA; a Russia-access badge (russiaStatus) is rendered next to it.
+ */
 export function RuGoLink({ firm, ...props }: RuGoLinkProps) {
-  if (isHiddenOnRussianPages(firm)) return <RuRestrictedAlternatives firm={firm} />
-  return <Link {...props} />
+  return (
+    <>
+      <Link {...props} data-russia-status={russiaStatusFor(firm)} />
+      {' '}
+      <RuAccessBadge firm={firm} />
+    </>
+  )
 }

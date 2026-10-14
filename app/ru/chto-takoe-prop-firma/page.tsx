@@ -16,6 +16,7 @@ import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { getAllChallenges, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/chto-takoe-prop-firma'
 const TITLE = 'Что такое проп-фирма: как это работает в 2026 году'
@@ -327,9 +328,9 @@ export default function RussianWhatIsPropFirmPage() {
               </p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link>
-                <Link href="/go/fundednext?from=ru-prop-definition-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-definition-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
                   Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
-                </Link>
+                </RuGoLink>
               </div>
             </article>
             <article className="ru-card">
@@ -340,9 +341,9 @@ export default function RussianWhatIsPropFirmPage() {
               </p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link>
-                <Link href="/go/bright-funded?from=ru-prop-definition-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-prop-definition-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">
                   Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
-                </Link>
+                </RuGoLink>
               </div>
             </article>
           </div>

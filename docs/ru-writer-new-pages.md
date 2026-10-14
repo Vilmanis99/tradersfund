@@ -11,8 +11,9 @@ Until a page file exists, a reserved route is **not** in the sitemap and must no
    Then use `russianRouteDateModified(PATH)` for the Article `dateModified` and the visible "Обновлено" date.
    (Interim option: keep it planned and just set its date in `RUSSIAN_PLANNED_ROUTE_EDITORIAL_DATES`; the sitemap
    includes a planned route only when the page file exists **and** a date is set.)
-3. Sign-up CTAs: only via `RuGoLink` (`components/RuGoLink.tsx`); firms with `russiaStatus` restricted/unclear
-   render the «Недоступно в РФ — альтернативы» block automatically. Use `goLinkRel(slug)` for `rel`.
+3. Sign-up CTAs: only via `RuGoLink` (`components/RuGoLink.tsx`). Every firm keeps its CTA; RuGoLink adds a
+   Russia-access badge from `russiaStatus` (open / closed / unclear) and an «альтернативы» hint for restricted firms.
+   Use `goLinkRel(slug)` for `rel`. Put universal firms (e.g. BrightFunded) first where the ranking allows.
 4. Internal links to a planned route from other pages: use `russianPlannedHref('/ru/<slug>')` from
    `lib/russianPlannedRoutes.ts` (server components only) — it returns `null` until the page exists, so no 404 links ship.
 5. Add the page to `scripts/release-crawl.mjs` (title, H1, markers) and bump the expected Russian Article schema count;

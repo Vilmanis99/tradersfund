@@ -11,6 +11,7 @@ import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru'
 export const revalidate = 3600
@@ -41,8 +42,8 @@ const faqs: RussianFaqItem[] = [
 ]
 
 const featuredPartnerRoutes = [
-  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext', heroHref: '/go/fundednext?from=ru-home-hero-fundednext' },
   { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded', heroHref: '/go/bright-funded?from=ru-home-hero-bright-funded' },
+  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext', heroHref: '/go/fundednext?from=ru-home-hero-fundednext' },
 ] as const
 
 export default function RussianHomePage() {
@@ -133,7 +134,7 @@ export default function RussianHomePage() {
                 </p>
                 <div className="ru-home-partner-hero-actions">
                   <Link href={item.reviewHref} className="btn-outline">{`Читать обзор ${item.name}`}</Link>
-                  <Link href={item.heroHref} rel="sponsored nofollow noopener" className="ru-home-partner-hero-review">{`Проверить условия ${item.name} ↗`}</Link>
+                  <RuGoLink firm={item.slug} href={item.heroHref} rel="sponsored nofollow noopener" className="ru-home-partner-hero-review">{`Проверить условия ${item.name} ↗`}</RuGoLink>
                 </div>
                 <p className="ru-source-line ru-home-checked">{item.captureDate ? `Источники проверены: ${item.captureDate}` : 'Обновление источников ожидается'}</p>
               </article>

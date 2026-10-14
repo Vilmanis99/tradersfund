@@ -34,6 +34,7 @@ import {
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/fundednext-vs-bright-funded'
 const TITLE = 'FundedNext или BrightFunded: сравнение 2026'
@@ -308,12 +309,12 @@ export default function FundedNextVsBrightFundedRussianPage() {
             Для обеих фирм доступны подробный обзор и ссылка на проверку условий.
           </div>
           <div className="ru-actions">
-            <Link href="/go/fundednext?from=ru-fn-vs-bright-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fn-vs-bright-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
               Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
-            </Link>
-            <Link href="/go/bright-funded?from=ru-fn-vs-bright-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
+            </RuGoLink>
+            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-fn-vs-bright-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" />
-            </Link>
+            </RuGoLink>
             <Link href="#verdict" className="btn-outline">Сначала увидеть различия</Link>
           </div>
         </div>
@@ -440,7 +441,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             </div>
             <div className="ru-actions">
               <Link href="/ru/prop-firmy-bez-chelendzha" className="btn-outline">Сравнение программ без оценки</Link>
-              <Link href="/go/fundednext?from=ru-fn-vs-bright-instant" rel="sponsored nofollow noopener" className="btn-primary">Проверить Stellar Instant <ArrowRight size={15} aria-hidden="true" /></Link>
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fn-vs-bright-instant" rel="sponsored nofollow noopener" className="btn-primary">Проверить Stellar Instant <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
             </div>
           </div>
         </section>
@@ -606,12 +607,12 @@ export default function FundedNextVsBrightFundedRussianPage() {
               <article className="ru-card" data-russian-primary-comparison-cta="fundednext">
                 <div className="ru-card-head"><h3>Выбрать FundedNext</h3><span className="ru-score">Партнёр</span></div>
                 <p className="ru-muted">Начните с нужной модели Stellar: оценка или Instant, взнос в USD, отдельные правила просадки и запроса вознаграждения. Подтвердите программу и профиль до покупки.</p>
-                <div className="ru-actions"><Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link><Link href="/go/fundednext?from=ru-fn-vs-bright-verdict-fundednext" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></Link></div>
+                <div className="ru-actions"><Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link><RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fn-vs-bright-verdict-fundednext" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink></div>
               </article>
               <article className="ru-card" data-russian-primary-comparison-cta="bright-funded">
                 <div className="ru-card-head"><h3>Выбрать BrightFunded</h3><span className="ru-score">Партнёр</span></div>
                 <p className="ru-muted">Сопоставьте взнос в EUR, выбранную одно- или двухэтапную модель, доступную платформу и способ выплаты. Уточните базовый цикл и платные дополнения.</p>
-                <div className="ru-actions"><Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link><Link href="/go/bright-funded?from=ru-fn-vs-bright-verdict-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" /></Link></div>
+                <div className="ru-actions"><Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link><RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-fn-vs-bright-verdict-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink></div>
               </article>
             </div>
             <p className="ru-source-line"><Database size={14} aria-hidden="true" /> {products.length} программ · {priceCount} цен · {sourceCount} официальных страниц программ. Самая ранняя проверка — {latestCapture}.</p>

@@ -1823,26 +1823,34 @@ if (
 }
 const russianFtmoPage = pages.find(page =>
   new URL(page.productionUrl).pathname === '/ru/obzor-ftmo')
-// FTMO restricts Russia (russiaStatus in firms.json): /ru pages must not link
-// to /go/ftmo and must render the alternatives block instead.
-if (
-  (russianFtmoPage?.html ?? '').includes('/go/ftmo')
-  || !(russianFtmoPage?.html ?? '').includes('data-russia-restricted="ftmo"')
-) {
-  errors.push('/ru/obzor-ftmo: FTMO sign-up link rendered or Russia alternatives block missing')
-}
-// No /ru page may link to /go/ for a firm hidden for Russia (restricted or unclear).
+// FTMO restricts Russia: the official (non-sponsored) link stays, with a closed Russia-access badge.
 {
-  const hiddenForRussia = firmRecords
-    .filter(firm => firm.russiaStatus === 'restricted' || firm.russiaStatus === 'unclear')
-    .map(firm => outboundSlug(firm.name))
-    .concat(['the5ers'])
+  const ftmoHtml = russianFtmoPage?.html ?? ''
+  const ftmoCta = [...ftmoHtml.matchAll(/<a\b[^>]*>/gi)].map(match => match[0])
+    .find(tag => tag.includes('/go/ftmo?from=ru-ftmo-review-verdict')) || ''
+  if (!ftmoCta || !ftmoCta.includes('rel="nofollow noopener"') || ftmoCta.includes('sponsored')) {
+    errors.push('/ru/obzor-ftmo: FTMO official CTA is missing or falsely labelled as sponsored')
+  }
+  if (!ftmoHtml.includes('data-russia-status="restricted" data-russia-firm="ftmo"')) {
+    errors.push('/ru/obzor-ftmo: FTMO CTA is missing its closed Russia-access badge')
+  }
+}
+// Every /go/ CTA on /ru pages carries a Russia-access badge matching firms.json russiaStatus.
+{
+  const statusBySlug = new Map(firmRecords.map(firm => [outboundSlug(firm.name), firm.russiaStatus ?? 'unverified']))
   for (const page of pages) {
     const pagePath = new URL(page.productionUrl).pathname
     if (pagePath !== '/ru' && !pagePath.startsWith('/ru/')) continue
-    for (const slug of hiddenForRussia) {
-      if (new RegExp(`href="/go/${slug}(?:[?"#])`).test(page.html)) {
-        errors.push(`${pagePath}: /go/${slug} rendered although the firm is hidden for Russia`)
+    for (const match of page.html.matchAll(/<a\b[^>]*href="\/go\/([a-z0-9-]+)[?"#][^>]*>/g)) {
+      const slug = match[1]
+      const status = statusBySlug.get(slug) ?? 'unverified'
+      if (!match[0].includes(`data-russia-status="${status}"`)) {
+        errors.push(`${pagePath}: /go/${slug} CTA lacks the RuGoLink Russia status (${status})`)
+        continue
+      }
+      const following = page.html.slice(match.index, match.index + 4000)
+      if (!following.includes(`data-russia-status="${status}" data-russia-firm="${slug}"`)) {
+        errors.push(`${pagePath}: /go/${slug} CTA is missing its Russia-access badge (${status})`)
       }
     }
   }

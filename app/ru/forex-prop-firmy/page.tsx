@@ -10,6 +10,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import forexEvidence from '@/content/data/russian-forex-evidence.json'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightCountryEvidence from '@/content/data/russian-bright-funded-evidence.json'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/forex-prop-firmy'
 const TITLE = 'Форекс проп-фирмы: плечо, цены и правила программ'
@@ -272,7 +273,7 @@ export default function RussianForexPropFirmsPage() {
               <p className="ru-muted">Сравните оценочную программу с отдельной моделью Instant. Доступ к терминалу и разрешение на автоматизацию проверяются отдельно.</p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
-                <Link href="/go/fundednext?from=ru-forex-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></Link>
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               </div>
             </article>
             <article className="ru-card" data-russian-forex-featured-partner="bright-funded">
@@ -290,7 +291,7 @@ export default function RussianForexPropFirmsPage() {
               </p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-bright-funded" className="btn-outline">Полный обзор BrightFunded</Link>
-                <Link href="/go/bright-funded?from=ru-forex-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" /></Link>
+                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-forex-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               </div>
             </article>
           </div>
@@ -472,8 +473,8 @@ export default function RussianForexPropFirmsPage() {
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="forex-verdict">
             <strong>Если программа подходит после проверки условий:</strong>{' '}
-            <Link href="/go/fundednext?from=ru-forex-verdict-fundednext" rel="sponsored nofollow noopener">проверить предложение FundedNext</Link> или
-            <Link href="/go/bright-funded?from=ru-forex-verdict-bright-funded" rel="sponsored nofollow noopener"> предложение BrightFunded</Link>.
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-verdict-fundednext" rel="sponsored nofollow noopener">проверить предложение FundedNext</RuGoLink> или
+            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-forex-verdict-bright-funded" rel="sponsored nofollow noopener"> предложение BrightFunded</RuGoLink>.
             Мы можем получить комиссию по этим ссылкам. Это не гарантия одобрения счёта или выплаты.
           </div>
         </div>
