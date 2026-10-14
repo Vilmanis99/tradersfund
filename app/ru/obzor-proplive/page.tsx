@@ -84,7 +84,7 @@ export default function RussianPropLiveReviewPage() {
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
-    { name: 'Российские проп-компании', url: '/ru/rossiyskie-prop-kompanii' },
+    { name: 'Российские проп-компании', url: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie' },
     { name: 'Обзор PropLive' },
   ])
   const faq = faqPageSchema(faqs)
@@ -108,7 +108,7 @@ export default function RussianPropLiveReviewPage() {
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="proplive" data-russian-local-review-status="verification-only">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/rossiyskie-prop-kompanii">Российские компании</Link> / PropLive</div>
+          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские компании</Link> / PropLive</div>
           <RussianEvidenceFreshnessNotice evidence={[
             { label: 'общий снимок рынка', capturedAt: marketEvidence.capturedAt },
             { label: 'заявления PropLive на главной', capturedAt: localSignalCapturedAt },
@@ -259,7 +259,7 @@ export default function RussianPropLiveReviewPage() {
               </article>
             ))}
           </div>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Локальные примеры: <Link href="/ru/rossiyskie-prop-kompanii">все шесть исследовательских карточек</Link>; глобальное решение: <Link href="/ru/fundednext-vs-bright-funded">сравнение программ FundedNext и BrightFunded</Link>.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Локальные примеры: <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">все шесть исследовательских карточек</Link>; глобальное решение: <Link href="/ru/fundednext-vs-bright-funded">сравнение программ FundedNext и BrightFunded</Link>. Отдельные локальные обзоры: <Link href="/ru/obzor-eratrade">Era Trade</Link>, <Link href="/ru/obzor-teamtraders">TeamTraders</Link>.</p>
         </div>
       </section>
 

@@ -28,6 +28,7 @@ import { getLanguageAlternates, RUSSIAN_ROUTE_EDITORIAL_DATES } from '@/lib/loca
 import { getRussianInstantFinderHref } from '@/lib/challengeComparisonData'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/fundednext-stellar-instant'
 const TITLE = 'FundedNext Stellar Instant: правила и выплаты (2026)'
@@ -206,9 +207,9 @@ export default function RussianFundedNextInstantPage() {
           </div>
           <div className="ru-actions" data-russian-affiliate-disclosure="fundednext-instant-hero">
             {fundedNext?.affiliateUrl ? (
-              <Link href="/go/fundednext?from=ru-fundednext-instant-hero" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-hero" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
                 Проверить Stellar Instant <ArrowRight size={15} aria-hidden="true" />
-              </Link>
+              </RuGoLink>
             ) : null}
             <Link href="#risk" className="btn-outline">Как работает просадка</Link>
             <Link href={instantFinderHref} className="btn-outline">Сравнить программы без челленджа</Link>
@@ -304,9 +305,9 @@ export default function RussianFundedNextInstantPage() {
             </div>
             <div className="ru-actions">
               {currentDeal ? (
-                <Link href="/go/fundednext?from=ru-fundednext-instant-free-trial" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-free-trial" rel="sponsored nofollow noopener" className="btn-primary">
                   Условия скидки {currentDeal.pct}% после Free Trial <ArrowRight size={14} aria-hidden="true" />
-                </Link>
+                </RuGoLink>
               ) : null}
               <Link href={currentDeal ? '/ru/promokody-prop-firm#fundednext-promokod' : '/ru/promokody-prop-firm'} className="btn-outline">
                 {currentDeal ? 'Ограничения акции' : 'Проверить текущие предложения'}
@@ -376,7 +377,7 @@ export default function RussianFundedNextInstantPage() {
             </p>
             <p className="ru-source-line">Способы вывода Stellar Instant выборочно проверены {instantEvidence.withdrawal.sourceCapturedAt}; остальные правила программы сохраняют собственные даты проверки.</p>
             <div className="ru-actions" data-russian-affiliate-disclosure="fundednext-instant-payout">
-              <Link href="/go/fundednext?from=ru-fundednext-instant-payout" rel="sponsored nofollow noopener" className="btn-primary">Проверить Stellar Instant <ArrowRight size={14} aria-hidden="true" /></Link>
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-payout" rel="sponsored nofollow noopener" className="btn-primary">Проверить Stellar Instant <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               <Link href="/ru/vyplaty-prop-firm" className="btn-outline">Сравнить способы выплаты</Link>
               <a href={instantEvidence.postWithdrawalLossFloor.sourceUrl} target="_blank" rel="nofollow noopener" className="btn-outline">Лимит убытка после вывода</a>
             </div>
@@ -521,7 +522,7 @@ export default function RussianFundedNextInstantPage() {
                 <h3>FundedNext Stellar Instant</h3>
                 <p>{hasFreshProduct ? `Сравните ${pricedTiers.length} размера счёта по ценам от ${instant!.sourceCapturedAt}` : 'Цены требуют повторной проверки'}. До оплаты проверьте не только взнос, но и оба варианта запроса выплаты, платформу и доступность для своего профиля.</p>
                 <div className="ru-actions">
-                  <Link href="/go/fundednext?from=ru-fundednext-instant-verdict" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></Link>
+                  <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-verdict" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
                   <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор</Link>
                 </div>
               </article>
@@ -531,7 +532,7 @@ export default function RussianFundedNextInstantPage() {
                   <p>У Bright Funded есть оценочный этап: это другой формат, а не аналог счёта Instant. В обзоре приведены цены в евро и отдельные условия программ. Правила просадки, сброса и выплат FundedNext к Bright Funded не относятся.</p>
                   <div className="ru-actions">
                     <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
-                    <Link href="/go/bright-funded?from=ru-fundednext-instant-alternative-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded</Link>
+                    <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-fundednext-instant-alternative-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded</RuGoLink>
                   </div>
                 </article>
               ) : null}

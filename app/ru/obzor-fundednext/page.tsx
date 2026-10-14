@@ -17,6 +17,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import reviewEvidence from '@/content/data/russian-fundednext-review-evidence.json'
 import instantEvidence from '@/content/data/russian-fundednext-instant-evidence.json'
 import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
+import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/obzor-fundednext'
 const TITLE = 'FundedNext: отзывы и обзор 2026, цены и правила'
@@ -301,13 +302,13 @@ export default function RussianFundedNextReviewPage() {
 
               <div className="ru-review-firm-action">
                 <p>До покупки подтвердите доступность для своей страны, документы для KYC, платформу и итоговую сумму оплаты.</p>
-                <Link
+                <RuGoLink firm="fundednext"
                   href="/go/fundednext?from=ru-fundednext-review-summary"
                   rel="sponsored nofollow noopener"
                   className="btn-primary btn-glow"
                 >
                   Открыть текущие планы <ArrowRight size={15} aria-hidden="true" />
-                </Link>
+                </RuGoLink>
               </div>
             </aside>
           ) : null}
@@ -332,13 +333,13 @@ export default function RussianFundedNextReviewPage() {
                 <Link href="/ru/promokody-prop-firm#fundednext-promokod" className="btn-outline">
                   Проверить все 4 шага
                 </Link>
-                <Link
+                <RuGoLink firm="fundednext"
                   href="/go/fundednext?from=ru-fundednext-review-free-trial"
                   rel="sponsored nofollow noopener"
                   className="btn-primary"
                 >
                   Начать Free Trial FundedNext <ArrowRight size={15} aria-hidden="true" />
-                </Link>
+                </RuGoLink>
               </div>
             </aside>
           )}
@@ -622,7 +623,7 @@ export default function RussianFundedNextReviewPage() {
           <h2 className="ru-review-secondary-heading">Кому FundedNext не подходит</h2>
           <p>Если стратегия зависит от исполнения во время новостей, сначала проверьте правило для своей программы и этапа. Неполный зачёт прибыльных сделок при сохранении убытков может изменить её результат.</p>
           <p>Алгоритмическому трейдеру на cTrader или Match-Trader нельзя переносить правила MT4/MT5 на выбранную платформу. Резиденту России не следует оплачивать челлендж до письменного подтверждения конкретного профиля: датированные официальные источники дают противоречивые сигналы.</p>
-          <p>Перед регистрацией сохраните страницу выбранного продукта, проверьте юридическое лицо, итоговую валюту, KYC и доступный платёжный метод. Затем можно открыть <Link href="/go/fundednext?from=ru-fundednext-review-guide" rel="sponsored nofollow noopener">актуальные планы FundedNext</Link> через контролируемый переход; партнёрская ссылка не меняет цифры или вывод обзора.</p>
+          <p>Перед регистрацией сохраните страницу выбранного продукта, проверьте юридическое лицо, итоговую валюту, KYC и доступный платёжный метод. Затем можно открыть <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-review-guide" rel="sponsored nofollow noopener">актуальные планы FundedNext</RuGoLink> через контролируемый переход; партнёрская ссылка не меняет цифры или вывод обзора.</p>
         </div>
       </section>
 
@@ -725,13 +726,13 @@ export default function RussianFundedNextReviewPage() {
           </div>
           {firm?.affiliateUrl ? (
             <div className="ru-actions">
-              <Link
+              <RuGoLink firm="fundednext"
                 href="/go/fundednext?from=ru-fundednext-review-verdict"
                 rel="sponsored nofollow noopener"
                 className="btn-primary btn-glow"
               >
                 Проверить страну и условия на FundedNext <ArrowRight size={15} aria-hidden="true" />
-              </Link>
+              </RuGoLink>
               <Link href={getRussianReviewFinderHref('fundednext')} className="btn-outline" data-russian-review-finder="fundednext">
                 Сравнить двухэтапные программы
               </Link>
