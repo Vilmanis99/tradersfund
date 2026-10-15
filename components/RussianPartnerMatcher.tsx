@@ -118,7 +118,7 @@ export default function RussianPartnerMatcher({
         <div className="ru-matcher-head">
           <div>
             <div className="ru-eyebrow"><SlidersHorizontal size={14} aria-hidden="true" /> 2 шага без ввода персональных данных</div>
-            <h2 id="russian-partner-matcher-heading">Подобрать FundedNext или Bright Funded по задаче</h2>
+            <h2 id="russian-partner-matcher-heading">Подобрать FundedNext или BrightFunded по задаче</h2>
             <p className="ru-muted">
               Инструмент не проверяет документы и не определяет доступность страны. Он показывает коммерческий маршрут
               только после вашего отдельного подтверждения четырёх полей.

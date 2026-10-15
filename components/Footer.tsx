@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { TrendingUp } from 'lucide-react'
 import NewsletterForm from './NewsletterForm'
-import AnimatedNumber from './AnimatedNumber'
 import AnalyticsPreferencesButton from './AnalyticsPreferencesButton'
 
 type FooterProps = {
@@ -15,10 +14,12 @@ type FooterProps = {
   newsletterEnabled: boolean
 }
 
+type FooterLinkItem = { label: string; href: string }
+type FooterColumn = { title: string; links: FooterLinkItem[] }
+
 export default function Footer({
   firmCount,
   pricedChallengeCount,
-  articleCount,
   latestCapture,
   newsletterEnabled,
 }: FooterProps) {
@@ -33,178 +34,155 @@ export default function Footer({
       })
     : isRussian ? 'нет данных' : 'Not available'
 
-  const propFirmLinks = isRussian ? [
-    { label: 'Рейтинг проп-фирм 2026', href: '/ru/luchshie-prop-firmy' },
-    { label: 'Для русскоязычных трейдеров', href: '/ru/dlya-russkoyazychnykh-treyderov' },
-    { label: 'FundedNext или BrightFunded', href: '/ru/fundednext-vs-bright-funded' },
-    { label: 'FundedNext Stellar Instant', href: '/ru/fundednext-stellar-instant' },
-    { label: 'FundedNext MT5 и EA', href: '/ru/fundednext-mt5' },
-    { label: 'Промокоды и предложения', href: '/ru/promokody-prop-firm' },
-    { label: 'Выплаты проп-фирм', href: '/ru/vyplaty-prop-firm' },
-    { label: 'Без KYC: проверка условий', href: '/ru/prop-firmy-bez-kyc' },
-    { label: 'Российские компании', href: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie' },
-    { label: 'Что такое проп-фирма', href: '/ru/chto-takoe-prop-firma' },
+  const columns: FooterColumn[] = isRussian ? [
+    { title: 'Сравнение', links: [
+      { label: 'Рейтинг проп-фирм 2026', href: '/ru/luchshie-prop-firmy' },
+      { label: 'FundedNext или BrightFunded', href: '/ru/fundednext-vs-bright-funded' },
+      { label: 'Промокоды и предложения', href: '/ru/promokody-prop-firm' },
+      { label: 'Выплаты проп-фирм', href: '/ru/vyplaty-prop-firm' },
+      { label: 'Без KYC: проверка условий', href: '/ru/prop-firmy-bez-kyc' },
+      { label: 'Что такое проп-фирма', href: '/ru/chto-takoe-prop-firma' },
+    ] },
+    { title: 'Для трейдеров', links: [
+      { label: 'Для русскоязычных трейдеров', href: '/ru/dlya-russkoyazychnykh-treyderov' },
+      { label: 'Российские компании', href: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie' },
+      { label: 'FundedNext Stellar Instant', href: '/ru/fundednext-stellar-instant' },
+      { label: 'FundedNext MT5 и EA', href: '/ru/fundednext-mt5' },
+    ] },
+    { title: 'Обзоры', links: [
+      { label: 'Обзор FTMO', href: '/ru/obzor-ftmo' },
+      { label: 'Обзор FundedNext', href: '/ru/obzor-fundednext' },
+      { label: 'Обзор FundingPips', href: '/ru/obzor-fundingpips' },
+      { label: 'Обзор BrightFunded', href: '/ru/obzor-bright-funded' },
+      { label: 'Все обзоры (EN)', href: '/blog' },
+    ] },
+    { title: 'О сайте', links: [
+      { label: 'О нас', href: '/about' },
+      { label: 'Как оцениваем фирмы', href: '/methodology' },
+      { label: 'Авторы', href: '/authors' },
+      { label: 'Контакты', href: '/contact' },
+    ] },
   ] : [
-    { label: 'Best Prop Firms 2026', href: '/best-prop-firms-2026' },
-    { label: 'Global Directory', href: '/prop-firms' },
-    { label: 'Compare Challenges', href: '/prop-firm-challenges' },
-    { label: 'Challenge Changes', href: '/prop-firm-challenge-changes' },
-    { label: 'Best Firms in UK', href: '/best-prop-firms-in-uk' },
-    { label: 'Best Firms in US', href: '/best-prop-firms-in-us' },
-    { label: 'Best Firms in India', href: '/best-prop-firms-in-india' },
-    { label: 'India Challenge Comparison', href: '/best-prop-firms-in-india/challenge-comparison' },
-    { label: 'India Comparisons', href: '/best-prop-firms-in-india/compare' },
-    { label: 'India Challenge Changes', href: '/best-prop-firms-in-india/challenge-changes' },
-    { label: 'Cheapest Firms', href: '/cheapest-prop-firms' },
-    { label: 'Discount Codes', href: '/prop-firm-discount-codes' },
-    { label: 'Futures Firms', href: '/best-futures-prop-firms' },
-    { label: 'Crypto Firms', href: '/best-crypto-prop-firms' },
-    { label: 'Swing Trading Firms', href: '/best-swing-trading-prop-firms' },
-    { label: 'How Challenges Work', href: '/how-prop-firm-challenges-work' },
+    { title: 'Compare', links: [
+      { label: 'Best Prop Firms 2026', href: '/best-prop-firms-2026' },
+      { label: 'Firm directory', href: '/prop-firms' },
+      { label: 'Compare challenges', href: '/prop-firm-challenges' },
+      { label: 'Rule changes', href: '/prop-firm-challenge-changes' },
+      { label: 'Cheapest firms', href: '/cheapest-prop-firms' },
+      { label: 'Discount codes', href: '/prop-firm-discount-codes' },
+      { label: 'How challenges work', href: '/how-prop-firm-challenges-work' },
+    ] },
+    { title: 'By country & style', links: [
+      { label: 'UK', href: '/best-prop-firms-in-uk' },
+      { label: 'US', href: '/best-prop-firms-in-us' },
+      { label: 'India', href: '/best-prop-firms-in-india' },
+      { label: 'India: challenge comparison', href: '/best-prop-firms-in-india/challenge-comparison' },
+      { label: 'India: firm matchups', href: '/best-prop-firms-in-india/compare' },
+      { label: 'India: rule changes', href: '/best-prop-firms-in-india/challenge-changes' },
+      { label: 'Futures', href: '/best-futures-prop-firms' },
+      { label: 'Crypto', href: '/best-crypto-prop-firms' },
+      { label: 'Swing trading', href: '/best-swing-trading-prop-firms' },
+    ] },
+    { title: 'Reviews', links: [
+      { label: 'FTMO', href: '/blog/ftmo-review' },
+      { label: 'FundedNext', href: '/blog/fundednext-review' },
+      { label: 'FundingPips', href: '/blog/funding-pips-review' },
+      { label: 'E8 Markets', href: '/blog/e8-markets-review' },
+      { label: 'Alpha Capital', href: '/blog/alpha-capital-review' },
+      { label: 'All reviews & guides', href: '/blog' },
+    ] },
+    { title: 'Company', links: [
+      { label: 'About us', href: '/about' },
+      { label: 'How we score firms', href: '/methodology' },
+      { label: 'Authors', href: '/authors' },
+      { label: 'Contact', href: '/contact' },
+    ] },
   ]
-  const reviewLinks = isRussian ? [
-    { label: 'Обзор FTMO', href: '/ru/obzor-ftmo' },
-    { label: 'Обзор FundedNext', href: '/ru/obzor-fundednext' },
-    { label: 'Обзор FundingPips', href: '/ru/obzor-fundingpips' },
-    { label: 'Обзор BrightFunded', href: '/ru/obzor-bright-funded' },
-    { label: 'Все обзоры на английском', href: '/blog' },
-  ] : [
-    { label: 'FTMO Review', href: '/blog/ftmo-review' },
-    { label: 'FundedNext Review', href: '/blog/fundednext-review' },
-    { label: 'FundingPips Review', href: '/blog/funding-pips-review' },
-    { label: 'E8 Markets Review', href: '/blog/e8-markets-review' },
-    { label: 'Alpha Capital Review', href: '/blog/alpha-capital-review' },
-  ]
-  const companyLinks = isRussian ? [
-    { label: 'Английская версия', href: '/' },
-    { label: 'О нас', href: '/about' },
-    { label: 'Как оцениваем фирмы', href: '/methodology' },
-    { label: 'Авторы', href: '/authors' },
-    { label: 'Блог', href: '/blog' },
-    { label: 'Контакты', href: '/contact' },
-    { label: 'Политика конфиденциальности', href: '/privacy-policy' },
-    { label: 'Дисклеймеры', href: '/disclaimers' },
-  ] : [
-    { label: 'Русская версия', href: '/ru' },
-    { label: 'About Us', href: '/about' },
-    { label: 'How We Score Firms', href: '/methodology' },
-    { label: 'Authors', href: '/authors' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Contact', href: '/contact' },
-    { label: 'Privacy Policy', href: '/privacy-policy' },
-    { label: 'Disclaimers', href: '/disclaimers' },
-  ]
+
+  const t = isRussian ? {
+    home: '/ru',
+    tagline: `Сравнение ${firmCount} проп-фирм: цены, правила и выплаты с датой каждого источника.`,
+    independence: 'Редакция независима: партнёрство не влияет на оценки и порядок.',
+    captureLabel: 'Последний срез продукта',
+    products: `${pricedChallengeCount} программ с ценой`,
+    disclaimer: 'Трейдинг связан с высоким риском убытка. Информация не является финансовой рекомендацией. Часть ссылок партнёрские.',
+    fullDisclaimer: 'Полный текст',
+    rights: 'Все права защищены.',
+    language: { label: 'English', href: '/', hrefLang: 'en' },
+    method: 'Методика',
+    privacy: 'Конфиденциальность',
+    disclaimers: 'Дисклеймеры',
+    nav: 'Навигация по сайту',
+  } : {
+    home: '/',
+    tagline: `Compare ${firmCount} prop firms on fees, rules and payouts, with a date on every source.`,
+    independence: 'Editorially independent: partnerships never change scores or order.',
+    captureLabel: 'Latest product capture',
+    products: `${pricedChallengeCount} priced programmes`,
+    disclaimer: 'Trading involves significant risk of loss. Information only, not financial advice. Some links are affiliate links.',
+    fullDisclaimer: 'Full disclaimers',
+    rights: 'All rights reserved.',
+    language: { label: 'Русская версия', href: '/ru', hrefLang: 'ru' },
+    method: 'Methodology',
+    privacy: 'Privacy',
+    disclaimers: 'Disclaimers',
+    nav: 'Site links',
+  }
 
   return (
-    <footer className="footer-aurora" lang={isRussian ? 'ru' : 'en'}>
-      <div className="aurora-orb aurora-orb--3 footer-orb" aria-hidden="true" />
-      <div className="footer-accent-line" aria-hidden="true" />
-
-      <div className="footer-shell">
-        {/* Stats strip */}
-        <div className="footer-stats">
-          <div className="footer-stat">
-            <span className="footer-stat-num">
-              <AnimatedNumber value={firmCount} />
-            </span>
-            <span className="footer-stat-label">{isRussian ? 'фирм отслеживается' : 'firms tracked'}</span>
-          </div>
-          <span className="footer-stat-divider" aria-hidden="true">·</span>
-          <div className="footer-stat">
-            <span className="footer-stat-num">
-              <AnimatedNumber value={pricedChallengeCount} />
-            </span>
-            <span className="footer-stat-label">{isRussian ? 'свежих продуктов с ценой' : 'fresh priced products'}</span>
-          </div>
-          <span className="footer-stat-divider" aria-hidden="true">·</span>
-          <div className="footer-stat">
-            <span className="footer-stat-num">
-              <AnimatedNumber value={articleCount} />
-            </span>
-            <span className="footer-stat-label">{isRussian ? 'статей' : 'articles'}</span>
-          </div>
-          <span className="footer-stat-divider" aria-hidden="true">·</span>
-          <div className="footer-stat">
-            <span className="footer-stat-label">{isRussian ? 'Последний срез продукта' : 'Latest product capture'}</span>
-            <span className="footer-stat-num footer-stat-num--text">{captureDateLabel}</span>
-          </div>
-        </div>
-
-        <div className="footer-grid">
-          {/* Brand + Newsletter — glass card */}
-          <div className="footer-brand-card">
-            <Link href={isRussian ? '/ru' : '/'} className="footer-brand">
-              <div className="footer-brand-mark">
-                <TrendingUp size={15} color="#fff" />
-              </div>
-              <span className="footer-brand-name">Traders Fund Hub</span>
+    <footer className="tf-foot" lang={isRussian ? 'ru' : 'en'}>
+      <div className="tf-foot__shell">
+        <div className="tf-foot__top">
+          <div className="tf-foot__brand">
+            <Link href={t.home} className="tf-foot__logo">
+              <span className="tf-foot__mark" aria-hidden="true"><TrendingUp size={16} /></span>
+              <span>Traders <b>Fund</b> Hub</span>
             </Link>
-            <p className="footer-brand-copy">
-              {isRussian
-                ? 'Проверяемый источник обзоров проп-фирм, сравнений и обучения трейдингу.'
-                : 'Your trusted source for prop firm reviews, comparisons, and trading education.'}
+            <p className="tf-foot__tagline">{t.tagline}</p>
+            <p className="tf-foot__note">{t.independence}</p>
+            <p className="tf-foot__fresh">
+              <span className="tf-foot__dot" aria-hidden="true" />
+              <span>{t.captureLabel} {captureDateLabel}</span>
+              <span className="tf-foot__sep" aria-hidden="true">·</span>
+              <span>{t.products}</span>
             </p>
             {newsletterEnabled && (
-              <>
-                <p className="footer-brand-tagline">{isRussian ? 'Еженедельные изменения правил глобальных фирм' : 'Get the weekly rule-change digest'}</p>
+              <div className="tf-foot__newsletter">
                 <NewsletterForm placement="footer" locale={isRussian ? 'ru' : 'en'} />
-              </>
+              </div>
             )}
-
           </div>
-
-          {/* Prop Firms */}
-          <div className="footer-col">
-          <h4 className="footer-eyebrow">{isRussian ? 'Проп-фирмы' : 'Prop Firms'}</h4>
-            <ul className="footer-list">
-              {propFirmLinks.map(l => <FooterLink key={l.href} {...l} />)}
-            </ul>
-          </div>
-
-          {/* Latest reviews — green-tint eyebrow with pulse dot */}
-          <div className="footer-col">
-            <h4 className="footer-eyebrow footer-eyebrow--live">
-              <span className="hero-eyebrow-dot" aria-hidden="true" />
-              {isRussian ? 'Последние обзоры' : 'Latest reviews'}
-            </h4>
-            <ul className="footer-list">
-              {reviewLinks.map(l => <FooterLink key={l.href} {...l} />)}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div className="footer-col">
-          <h4 className="footer-eyebrow">{isRussian ? 'О сайте' : 'Company'}</h4>
-            <ul className="footer-list">
-              {companyLinks.map(l => <FooterLink key={l.href} {...l} />)}
-            </ul>
-          </div>
+          <nav className="tf-foot__cols" aria-label={t.nav}>
+            {columns.map(column => (
+              <div className="tf-foot__col" key={column.title}>
+                <h2 className="tf-foot__heading">{column.title}</h2>
+                <ul>
+                  {column.links.map(link => (
+                    <li key={link.href}><Link href={link.href} className="tf-foot__link">{link.label}</Link></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
         </div>
 
-        <div className="footer-bottom">
-          <div className="footer-bottom-legal">
-            <p className="footer-bottom-copyright">
-              © {new Date().getFullYear()} Traders Fund Hub. {isRussian ? 'Все права защищены.' : 'All rights reserved.'}
-            </p>
+        <p className="tf-foot__disclaimer">
+          {t.disclaimer} <Link href="/disclaimers" className="tf-foot__inline">{t.fullDisclaimer} →</Link>
+        </p>
+
+        <div className="tf-foot__bottom">
+          <p>© {new Date().getFullYear()} Traders Fund Hub. {t.rights}</p>
+          <ul className="tf-foot__legal">
+            <li><Link href={t.language.href} hrefLang={t.language.hrefLang} lang={t.language.hrefLang} className="tf-foot__link">{t.language.label}</Link></li>
+            <li><Link href="/methodology" className="tf-foot__link">{t.method}</Link></li>
+            <li><Link href="/privacy-policy" className="tf-foot__link">{t.privacy}</Link></li>
+            <li><Link href="/disclaimers" className="tf-foot__link">{t.disclaimers}</Link></li>
             {(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID) && (
-              <AnalyticsPreferencesButton locale={isRussian ? 'ru' : 'en'} />
+              <li><AnalyticsPreferencesButton locale={isRussian ? 'ru' : 'en'} /></li>
             )}
-          </div>
-          <p className="footer-bottom-disclaimer">
-            {isRussian
-              ? 'Дисклеймер: трейдинг связан со значительным риском убытка. Сайт носит информационный характер и не является финансовой рекомендацией.'
-              : 'Disclaimer: Trading involves significant risk of loss. This site is for informational purposes only and does not constitute financial advice.'}
-          </p>
+          </ul>
         </div>
       </div>
     </footer>
-  )
-}
-
-function FooterLink({ label, href }: { label: string; href: string }) {
-  return (
-    <li>
-      <Link href={href} className="footer-link">{label}</Link>
-    </li>
   )
 }

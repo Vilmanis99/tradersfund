@@ -45,6 +45,7 @@ function load(file) {
       if (specifier === './TrustpilotRating') return { __esModule: true, default: () => null }
       if (specifier === './FirmLogo') return load('components/FirmLogo.tsx')
       if (specifier === '@/lib/trustpilot') return { formatCapturedAt: date => date }
+      if (specifier === '@/lib/firmSlug') return load('lib/firmSlug.ts')
       if (specifier === '@/lib/firmPlatforms') return load('lib/firmPlatforms.ts')
       if (specifier === '@/lib/firmDirectory') return load('lib/firmDirectory.ts')
       return require(specifier)
@@ -56,7 +57,7 @@ function load(file) {
 const FirmTable = load('components/FirmTable.tsx').default
 const { directoryPlatformNames, firmPlatformEvidenceStatus } = load('lib/firmPlatforms.ts')
 const allFirms = JSON.parse(readFileSync(new URL('../content/data/firms.json', import.meta.url), 'utf8'))
-const bright = allFirms.find(firm => firm.name === 'Bright Funded')
+const bright = allFirms.find(firm => firm.name === 'BrightFunded')
 assert.deepEqual(bright.platforms, ['MT5', 'DXTrade', 'cTrader'])
 assert.equal(bright.platformEvidence.sourceUrl, 'https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer')
 const legacy = { ...bright, name: 'Legacy fixture', affiliateUrl: '', platformEvidence: undefined, platforms: ['TradeLocker'] }
@@ -151,14 +152,14 @@ tree = render(allFirms)
 const buttons = nodes(tree).filter(node => node.type === 'button').map(node => node.props.children)
 assert(buttons.includes('DXTrade') && !buttons.includes('DXtrade'), 'case variants share one platform filter')
 assert(buttons.includes('Match-Trader') && !buttons.includes('Match-Trade'), 'legacy Match-Trade label shares one platform filter')
-const checkbox = nodes(tree).find(node => node.props['aria-label'] === 'Select Bright Funded for comparison')
+const checkbox = nodes(tree).find(node => node.props['aria-label'] === 'Select BrightFunded for comparison')
 checkbox.props.onChange()
 tree = render(allFirms)
-const remove = nodes(tree).find(node => node.props['aria-label'] === 'Remove Bright Funded from comparison')
+const remove = nodes(tree).find(node => node.props['aria-label'] === 'Remove BrightFunded from comparison')
 assert(remove, 'selected firm stays identifiable outside the filtered rows')
 remove.props.onClick()
 tree = render(allFirms)
-assert(!nodes(tree).some(node => node.props['aria-label'] === 'Remove Bright Funded from comparison'))
+assert(!nodes(tree).some(node => node.props['aria-label'] === 'Remove BrightFunded from comparison'))
 console.log('PASS: same-product filters, empty-result recovery, forgiving brand search, platform aliases and comparison removal.')
 
 const FirmLogo = load('components/FirmLogo.tsx').default

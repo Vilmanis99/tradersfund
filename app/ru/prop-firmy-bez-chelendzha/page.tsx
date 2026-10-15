@@ -67,8 +67,8 @@ const faqs: RussianFaqItem[] = [
     a: 'Минимальная опубликованная цена в текущей таблице — $15 у Maven Instant, но цена не сравнивает размер счёта, плавающий лимит убытка 3%, правило 20% и условия выплаты. Среди 2 партнёрских маршрутов FundedNext начинается с $59.99, а FundingPips Zero — с $60.',
   },
   {
-    q: 'Есть ли финансирование без оценки у Bright Funded?',
-    a: 'В таблицу без оценки попадают только программы с подтверждённой фазой 0 и свежей проверкой. Линейку Bright Funded нужно сверять перед покупкой.',
+    q: 'Есть ли финансирование без оценки у BrightFunded?',
+    a: 'В таблицу без оценки попадают только программы с подтверждённой фазой 0 и свежей проверкой. Линейку BrightFunded нужно сверять перед покупкой.',
   },
   {
     q: 'Можно ли купить финансирование без оценки русскоязычному трейдеру за рубежом?',
@@ -184,17 +184,17 @@ export default function RussianInstantPropFirmsPage() {
   const brightPriceCount = pricedTierCount(brightProducts)
   const brightOldestCapture = allBrightProducts.map(product => product.sourceCapturedAt).sort()[0]
   const brightFaqAnswer = brightEvaluationOnly
-    ? `Нет в продуктовом снимке от ${brightOldestCapture}: все проверенные программы Bright Funded требуют оценки. Мы показываем их отдельно от рейтинга программ без оценки.`
+    ? `Нет в продуктовом снимке от ${brightOldestCapture}: все проверенные программы BrightFunded требуют оценки. Мы показываем их отдельно от рейтинга программ без оценки.`
     : brightCatalogFresh && brightPhaseZero.length > 0
-      ? `Да. В продуктовом снимке от ${brightOldestCapture} у Bright Funded есть программы без оценочного этапа; их свежие записи включены в таблицу фазы 0.`
-      : `Актуальную линейку Bright Funded подтвердить нельзя: последний продуктовый снимок датирован ${brightOldestCapture ?? 'неизвестно'}. Проверьте программы и этапы на сайте фирмы перед покупкой.`
+      ? `Да. В продуктовом снимке от ${brightOldestCapture} у BrightFunded есть программы без оценочного этапа; их свежие записи включены в таблицу фазы 0.`
+      : `Актуальную линейку BrightFunded подтвердить нельзя: последний продуктовый снимок датирован ${brightOldestCapture ?? 'неизвестно'}. Проверьте программы и этапы на сайте фирмы перед покупкой.`
   const pageFaqs = faqs.filter(item => {
     if (item.q === 'Сколько стоит FundedNext Stellar Instant?' || item.q === 'Как работает выплата FundedNext Instant?') return Boolean(fundedNextCard) && fundedNextRulesFresh
     if (item.q === 'Какие главные правила FundingPips Zero?') return Boolean(fundingPipsCard)
     if (item.q === 'Какая проп-фирма без челленджа самая дешёвая?') return instantCatalogFresh
     return true
   })
-    .map(item => item.q === 'Есть ли финансирование без оценки у Bright Funded?'
+    .map(item => item.q === 'Есть ли финансирование без оценки у BrightFunded?'
       ? { ...item, a: brightFaqAnswer }
       : item)
   const latestCapture = products.map(product => product.sourceCapturedAt).sort().at(-1) ?? 'нет данных'
@@ -262,10 +262,10 @@ export default function RussianInstantPropFirmsPage() {
               ? ' В текущих продуктовых записях оба выделенных маршрута — FundedNext Stellar Instant и FundingPips Zero — не требуют оценки.'
               : ' Продуктовые записи партнёров с истёкшей проверкой не включены в текущее сравнение.'}
             {brightEvaluationOnly
-              ? ' Bright Funded не включён в этот рейтинг: все проверенные программы требуют оценки.'
+              ? ' BrightFunded не включён в этот рейтинг: все проверенные программы требуют оценки.'
               : brightPhaseZero.length > 0
-                ? ' В таблицу также включены свежие программы Bright Funded без оценки.'
-                : ' Линейка Bright Funded требует повторной проверки; её прежние оценочные программы не считаются текущими.'}
+                ? ' В таблицу также включены свежие программы BrightFunded без оценки.'
+                : ' Линейка BrightFunded требует повторной проверки; её прежние оценочные программы не считаются текущими.'}
           </p>
           <div className="ru-stats" aria-label="Текущий охват финансирования без оценки">
             <div className="ru-stat"><strong>{products.length}</strong><span>свежих продуктов без оценки</span></div>
@@ -276,7 +276,7 @@ export default function RussianInstantPropFirmsPage() {
           <div className="ru-actions">
             <Link href="#partner-instant" className="btn-primary btn-glow">Проверить партнёрские программы <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="#all-products" className="btn-outline">Актуальные программы</Link>
-            <Link href="#bright-alternative" className="btn-outline">Когда выбрать Bright Funded</Link>
+            <Link href="#bright-alternative" className="btn-outline">Когда выбрать BrightFunded</Link>
           </div>
           <p className="ru-source-line">Последний продуктовый срез: {latestCapture}. Цену и правила нужно повторно проверить перед оплатой.</p>
         </div>
@@ -300,7 +300,7 @@ export default function RussianInstantPropFirmsPage() {
               <strong>Партнёрское раскрытие и граница.</strong>{' '}
               FundedNext и FundingPips выделены как партнёры; переход может принести нам комиссию.
               В текущей таблице у них {partnerCards.length} проверенных продуктов без оценки. Истёкшая запись не считается текущей.
-              Bright Funded показан отдельно; партнёрская ссылка сама по себе не доказывает фазу 0.
+              BrightFunded показан отдельно; партнёрская ссылка сама по себе не доказывает фазу 0.
             </div>
             <nav className="ru-review-toc" aria-label="Содержание руководства о финансировании без оценки">
               <strong>Содержание</strong>
@@ -313,7 +313,7 @@ export default function RussianInstantPropFirmsPage() {
                 <li><a href="#risk">Просадка и условия выплат</a></li>
                 <li><a href="#diaspora">Русскоязычные за рубежом</a></li>
                 <li><a href="#instant-definition">Программа без оценки или ускоренный челлендж</a></li>
-                <li><a href="#bright-alternative">Bright Funded как альтернатива</a></li>
+                <li><a href="#bright-alternative">BrightFunded как альтернатива</a></li>
                 <li><a href="#decision">Решение до покупки</a></li>
                 <li><a href="#faq">Частые вопросы</a></li>
               </ol>
@@ -559,13 +559,13 @@ export default function RussianInstantPropFirmsPage() {
             <h2>BrightFunded: проверка оценочного этапа</h2>
             <div className="ru-notice">
               {brightEvaluationOnly ? (
-                <><strong>Не включаем Bright Funded в таблицу фазы 0.</strong>{' '}
+                <><strong>Не включаем BrightFunded в таблицу фазы 0.</strong>{' '}
                   Снимок от {brightOldestCapture}: оценочных программ — {brightProducts.length}; опубликованных EUR-цен — {brightPriceCount}. Ни у одной нет подтверждённой фазы 0.</>
               ) : brightPhaseZero.length > 0 ? (
                 <><strong>Программы без оценки включены в таблицу выше.</strong>{' '}
                   По снимку от {brightOldestCapture} число таких программ — {brightPhaseZero.length}; остальные модели проверяйте отдельно.</>
               ) : (
-                <><strong>Нужна повторная проверка Bright Funded.</strong>{' '}
+                <><strong>Нужна повторная проверка BrightFunded.</strong>{' '}
                   Последний продуктовый снимок от {brightOldestCapture ?? 'неизвестной даты'} не подтверждает текущую линейку, число программ или цены. Сверьте этапы на сайте фирмы до оплаты.</>
               )}
             </div>
@@ -576,7 +576,7 @@ export default function RussianInstantPropFirmsPage() {
               </p>
             ) : null}
             <p>
-              Переход к Bright Funded может принести нам комиссию. Партнёрский статус не подтверждает отсутствие оценки,
+              Переход к BrightFunded может принести нам комиссию. Партнёрский статус не подтверждает отсутствие оценки,
               доступность продукта или право на покупку в вашей стране. Если отсутствие оценки обязательно, сверяйте только свежие строки таблицы выше.
             </p>
             <div className="ru-actions">
@@ -634,7 +634,7 @@ export default function RussianInstantPropFirmsPage() {
                 <strong>Проверка данных: Edris Derakhshi</strong>
                 <p>
                   Сопоставлены {products.length} продуктов фазы 0, {instantFirmCount} фирм, {instantPriceCount} опубликованных цен
-                  и первичные страницы каждого продукта. Партнёрский статус отделён от доступности: Bright Funded {brightPhaseZero.length > 0 ? 'получил строку фазы 0 только по свежей продуктовой записи.' : 'не получает метку «без оценки» без свежей записи фазы 0.'}
+                  и первичные страницы каждого продукта. Партнёрский статус отделён от доступности: BrightFunded {brightPhaseZero.length > 0 ? 'получил строку фазы 0 только по свежей продуктовой записи.' : 'не получает метку «без оценки» без свежей записи фазы 0.'}
                 </p>
                 <Link href="/authors/edris-derakhshi">Редакционный профиль и методология →</Link>
               </div>
