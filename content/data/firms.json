@@ -920,6 +920,7 @@
       "Cambodia",
       "Cameroon",
       "Central African Republic",
+      "China",
       "Congo",
       "Côte D'Ivoire",
       "Crimea",
@@ -1045,7 +1046,8 @@
       "Syria",
       "North Korea",
       "Cuba",
-      "Iran"
+      "Iran",
+      "Russia"
     ],
     "ratings": {
       "conditions": null,
@@ -1059,13 +1061,16 @@
     "lastUpdated": "2026-10-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "unverified",
+    "russiaStatus": "restricted",
     "legalEntity": "City Traders Imperium Limited",
     "headquarters": "San José, Costa Rica",
     "country": "Comoros",
     "regulation": "License No. L15969/CTI (Comoros Union company number 15969)",
     "corporateSourceUrl": "https://citytradersimperium.com/",
-    "corporateCapturedAt": "2026-10-14"
+    "corporateCapturedAt": "2026-10-14",
+    "russiaSourceUrl": "https://citytradersimperium.com/",
+    "russiaSourceQuote": "CTI does not offer services to residents of North Korea, Iran, Syria, Cuba, or Russia, or to anyone under international sanctions.",
+    "countriesRestrictedSourceUrl": "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf"
   },
   {
     "name": "Take Profit Trader",

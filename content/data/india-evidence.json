@@ -695,24 +695,25 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from CTI's current 5-jurisdiction restriction statement; sanctions and local-law screening remain conditional, and an older terms PDF omits Russia from its shorter list.",
+      "summary": "India is absent from CTI's current 5-jurisdiction restriction statement; sanctions and local-law screening remain conditional, and the current terms PDF (§6.5.1) omits Russia from its shorter list, while the homepage FAQ includes it.",
       "sourceUrls": [
         "https://citytradersimperium.com/2-step-challenge/",
-        "https://citytradersimperium.com/wp-content/uploads/2025/09/CTI-FZCO-City-Traders-Imperium-Terms-Conditions.pdf"
+        "https://citytradersimperium.com/",
+        "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf"
       ]
     },
     "checkout": {
       "status": "partial",
       "summary": "CTI's terms document bank-transfer invoicing and payment-provider transaction charges, but the methods presented to an Indian checkout are not independently tested.",
       "sourceUrls": [
-        "https://citytradersimperium.com/wp-content/uploads/2025/09/CTI-FZCO-City-Traders-Imperium-Terms-Conditions.pdf"
+        "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf"
       ]
     },
     "kyc": {
       "status": "verified",
       "summary": "SumSub KYC requests a government ID with at least 3 months remaining, proof of address issued within 3 months, and a live photo or video selfie.",
       "sourceUrls": [
-        "https://citytradersimperium.com/wp-content/uploads/2025/04/City-Traders-Imperium-Terms-and-Conditions.pdf"
+        "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf"
       ]
     },
     "payout": {
