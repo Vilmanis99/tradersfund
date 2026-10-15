@@ -1,11 +1,10 @@
+import { firmSlug } from '@/lib/firmSlug'
 import Link from 'next/link'
 import FirmLogo from './FirmLogo'
 import { Star, ExternalLink, Check, Sparkles } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
 import CopyableCodePill from '@/components/CopyableCodePill'
 
-const firmSlug = (name: string) =>
-  name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 /**
  * Prominent, explicitly disclosed spotlight for our headline commercial partner.

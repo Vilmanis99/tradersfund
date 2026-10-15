@@ -1,3 +1,4 @@
+import { firmSlug } from '@/lib/firmSlug'
 import { getPostBySlug, getAllPostData, getAllPosts } from '@/lib/mdx'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { postSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -97,7 +98,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   const matchedFirm = firms.find(f => f.reviewUrl === `/blog/${slug}`)
   const firmProducts = matchedFirm
-    ? getAllChallenges().filter(product => product.firmSlug === matchedFirm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''))
+    ? getAllChallenges().filter(product => product.firmSlug === firmSlug(matchedFirm.name))
     : []
   const staleFirmProducts = firmProducts.filter(product => !isChallengeFresh(product))
   const oldestFirmCapture = firmProducts.map(product => product.sourceCapturedAt).sort()[0]
@@ -251,7 +252,7 @@ export default async function BlogPostPage({ params }: Props) {
           logo={matchedFirm.logo}
           score={matchedFirm.score}
           affiliateUrl={matchedFirm.affiliateUrl}
-          affiliateSlug={matchedFirm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}
+          affiliateSlug={firmSlug(matchedFirm.name)}
           discountCode={matchedFirm.discountCode}
           discountPct={matchedFirm.discountPct}
         />
