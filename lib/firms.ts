@@ -25,12 +25,23 @@ export interface FirmRuleField<T> {
   byProduct: Record<string, T | null> | null
   evidence: RuleEvidence[]
 }
+/** USD amount keyed by account size in USD, e.g. { "50000": 2000 }. */
+export type UsdBySize = Record<string, number>
+export type LossLimitUnit = 'pct' | 'usd' | 'mixed'
 export interface FirmRules {
   capturedAt: string
   captureFile: string
+  /** Fresh official-read capture used to add verbatim evidence/overrides, if any. */
+  freshReadFile?: string
+  /** Whether loss limits are published as % of balance (forex/CFD) or USD per size (futures). */
+  lossLimitUnit: LossLimitUnit | null
   drawdownType: FirmRuleField<string>
   dailyLossPct: FirmRuleField<number>
   maxLossPct: FirmRuleField<number>
+  /** Futures: daily loss limit in USD per account size (null summary = not published / not confirmed). */
+  dailyLossUsd: FirmRuleField<UsdBySize>
+  /** Futures: max loss / trailing drawdown in USD per account size. */
+  maxLossUsd: FirmRuleField<UsdBySize>
   consistencyPct: FirmRuleField<number>
   profitSplitPct: FirmRuleField<number>
   payoutFrequency: FirmRuleField<string>
@@ -38,7 +49,7 @@ export interface FirmRules {
   weekendHolding: FirmRuleField<RuleAvailability>
   platforms: FirmRuleField<string[]>
 }
-export const FIRM_RULE_FIELDS = ['drawdownType', 'dailyLossPct', 'maxLossPct', 'consistencyPct', 'profitSplitPct', 'payoutFrequency', 'newsTrading', 'weekendHolding', 'platforms'] as const
+export const FIRM_RULE_FIELDS = ['drawdownType', 'dailyLossPct', 'maxLossPct', 'dailyLossUsd', 'maxLossUsd', 'consistencyPct', 'profitSplitPct', 'payoutFrequency', 'newsTrading', 'weekendHolding', 'platforms'] as const
 export type FirmRuleKey = typeof FIRM_RULE_FIELDS[number]
 
 /** Optional 0–10 editorial sub-ratings. Null means the axis is not yet rated. */

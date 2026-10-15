@@ -1,6 +1,9 @@
 // Derives firm-level `rules` (typed FirmRules) in firms.json from the latest
 // fresh (<=30 days) challenge capture per firm. Values come from the live
 // challenges/<slug>.json products; evidence from that capture's fieldEvidence.
+// Fresh official reads in content/data/firm-rules/_captures/firm-rules-<date>.json
+// (<=30 days) add verbatim evidence and may override value/byProduct/summary.
+// USD loss limits (futures) come from accountSizes[].dailyLossUsd/maxLossUsd.
 // A field without fresh evidence is left null. Usage: node scripts/build-firm-rules.mjs [--today YYYY-MM-DD]
 import fs from 'node:fs'
 import path from 'node:path'
@@ -23,13 +26,29 @@ const FIELDS = {
   newsTrading: { get: p => p.rules?.news ?? null, keys: ['rules.news', 'news'] },
   weekendHolding: { get: p => p.rules?.weekend ?? null, keys: ['rules.weekend', 'weekend', 'weekendOvernight'] },
 }
-const fmt = v => v === true ? 'allowed' : v === false ? 'not allowed' : typeof v === 'number' ? `${v}%` : String(v)
+const usdBySize = key => p => {
+  const o = Object.fromEntries((p.accountSizes ?? []).filter(a => a[key] != null).map(a => [String(a.sizeUsd), a[key]]))
+  return Object.keys(o).length ? o : null
+}
+FIELDS.dailyLossUsd = { get: usdBySize('dailyLossUsd'), keys: ['dailyLossUsd'] }
+FIELDS.maxLossUsd = { get: usdBySize('maxLossUsd'), keys: ['maxLossUsd'] }
+const money = n => '$' + n.toLocaleString('en-US')
+const fmtUsd = o => Object.entries(o).map(([k, v]) => `${money(v)} (${Number(k) / 1000}K)`).join(' / ')
+const fmt = v => v && typeof v === 'object' && !Array.isArray(v) ? fmtUsd(v) : v === true ? 'allowed' : v === false ? 'not allowed' : typeof v === 'number' ? `${v}%` : String(v)
 
 const caps = {}
 for (const f of fs.readdirSync(path.join(ROOT, 'content/data/challenges/_captures'))) {
   const m = f.match(/^(.*)-(\d{4}-\d{2}-\d{2})\.json$/); if (!m) continue
   if (!caps[m[1]] || m[2] > caps[m[1]].date) caps[m[1]] = { date: m[2], file: `content/data/challenges/_captures/${f}` }
 }
+
+const rulesCapDir = path.join(ROOT, 'content/data/firm-rules/_captures')
+let fresh = null
+for (const f of fs.existsSync(rulesCapDir) ? fs.readdirSync(rulesCapDir) : []) {
+  const m = f.match(/^firm-rules-(\d{4}-\d{2}-\d{2})\.json$/); if (!m || age(m[1]) > MAX_AGE) continue
+  if (!fresh || m[1] > fresh.date) fresh = { date: m[1], file: `content/data/firm-rules/_captures/${f}` }
+}
+const freshData = fresh ? JSON.parse(fs.readFileSync(path.join(ROOT, fresh.file), 'utf8')).firms : {}
 
 const firmsPath = path.join(ROOT, 'content/data/firms.json')
 const firms = JSON.parse(fs.readFileSync(firmsPath, 'utf8'))
@@ -62,8 +81,22 @@ for (const firm of firms) {
       if (seen.has(k)) continue
       seen.add(k); evidence.push({ ...ev, capturedAt: cap.date, captureFile: cap.file, productSlug: p.productSlug })
     }
+    const ov = freshData[slug]?.[field]
+    if (ov) {
+      const fe = ov.evidence.map(e => ({ sourceUrl: e.sourceUrl, quote: e.quote, quoteKind: 'verbatim', capturedAt: fresh.date, captureFile: fresh.file, productSlug: null }))
+      // fresh verbatim reads replace older paraphrased capture notes for this field
+      const keep = evidence.filter(e => e.quoteKind === 'verbatim')
+      evidence.splice(0, evidence.length, ...fe, ...keep)
+      if ('byProduct' in ov) { for (const k of Object.keys(byProduct)) delete byProduct[k]; Object.assign(byProduct, ov.byProduct ?? {}) }
+      if ('value' in ov && !('byProduct' in ov)) for (const k of Object.keys(byProduct)) byProduct[k] = ov.value
+    }
     const vals = Object.values(byProduct)
     const known = vals.filter(v => v !== null)
+    if (ov?.summary && evidence.length) {
+      const uni = known.length > 0 && vals.every(v => JSON.stringify(v) === JSON.stringify(vals[0]))
+      rules[field] = { value: 'value' in ov ? ov.value : uni ? vals[0] : null, summary: ov.summary, byProduct: Object.keys(byProduct).length && ov.byProduct !== null ? byProduct : null, evidence: evidence.slice(0, 6) }
+      continue
+    }
     if (!evidence.length || !known.length) { rules[field] = { value: null, summary: null, byProduct: null, evidence: [] }; continue }
     const uniform = vals.every(v => JSON.stringify(v) === JSON.stringify(vals[0]))
     let summary
@@ -73,9 +106,15 @@ for (const firm of firms) {
       for (const p of products) { const v = byProduct[p.productSlug]; const g = v === null ? 'not stated' : fmt(v); groups.set(g, [...(groups.get(g) ?? []), p.productName]) }
       summary = 'Product-specific: ' + [...groups].map(([g, names]) => `${g} on ${names.join(', ')}`).join('; ')
     }
-    rules[field] = { value: uniform ? vals[0] : null, summary, byProduct, evidence: evidence.slice(0, 4) }
+    rules[field] = { value: uniform ? vals[0] : null, summary, byProduct, evidence: evidence.slice(0, 6) }
   }
-  rules.platforms = prevPlatforms ?? { value: null, summary: null, byProduct: null, evidence: [] }
+  const pov = freshData[slug]?.platforms
+  rules.platforms = pov
+    ? { value: pov.value, summary: pov.value.join(', '), byProduct: null, evidence: pov.evidence.map(e => ({ sourceUrl: e.sourceUrl, quote: e.quote, quoteKind: 'verbatim', capturedAt: fresh.date, captureFile: fresh.file, productSlug: null })) }
+    : prevPlatforms ?? { value: null, summary: null, byProduct: null, evidence: [] }
+  const hasUsd = rules.dailyLossUsd.summary || rules.maxLossUsd.summary
+  rules.lossLimitUnit = rules.maxLossPct.summary || rules.dailyLossPct.summary ? (hasUsd ? 'mixed' : 'pct') : hasUsd ? 'usd' : null
+  if (fresh && freshData[slug]) rules.freshReadFile = fresh.file
   firm.rules = rules
 }
 fs.writeFileSync(firmsPath, JSON.stringify(firms, null, 2) + '\n')

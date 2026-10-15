@@ -336,41 +336,40 @@
           }
         ]
       },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
       "platforms": {
         "value": [
-          "MT4",
           "MT5",
+          "MT4",
+          "TradingView",
           "cTrader"
         ],
-        "summary": "MT4, MT5, cTrader (not confirmed on the official page read: DXTrade)",
+        "summary": "MT5, MT4, TradingView, cTrader",
         "byProduct": null,
         "evidence": [
           {
             "sourceUrl": "https://ftmo.com/en/trading-platforms/",
-            "quote": "ies served FTMO MetaTrader 5 FTMO MetaTrader 5 (MT5) is the modern evolution of MT4, built for traders who want more power, more precision, and more room to scale.",
+            "quote": "FTMO MetaTrader 5 ... FTMO MetaTrader 4 ... TradingView ... FTMO cTrader",
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://ftmo.com/en/trading-platforms/",
-            "quote": "orldwide $650M+ Paid in rewards 10 years Trusted for 140+ Countries served FTMO MetaTrader 5 FTMO MetaTrader 5 (MT5) is the modern evolution of MT4, built for traders who w",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://ftmo.com/en/trading-platforms/",
-            "quote": "ailable for: Web Browser Windows MacOS iOS Android Linux Debian Linux Snap FTMO cTrader FTMO cTrader is a modern, professional-grade platform built for both discretion",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
           }
         ]
-      }
+      },
+      "lossLimitUnit": "pct",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -586,9 +585,31 @@
       },
       "consistencyPct": {
         "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "summary": "Product-specific: 40% best-day rule only when the On-Demand Performance Reward option is chosen on Stellar 2-Step and Stellar Lite; none on Stellar Instant; Stellar 1-Step not re-confirmed",
+        "byProduct": {
+          "stellar-2-step": null,
+          "stellar-1-step": null,
+          "stellar-lite": null,
+          "stellar-instant": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards",
+            "quote": "For traders using the Stellar 2-Step or Stellar Lite Account, the On-Demand Performance Reward is now a built-in payout option ... You must have maintained the 40% consistency rule across your trades.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
+            "quote": "There are no consistency rules in the Stellar Instant Account",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "profitSplitPct": {
         "value": null,
@@ -742,6 +763,18 @@
           }
         ]
       },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
       "platforms": {
         "value": [
           "MT4",
@@ -761,7 +794,9 @@
             "productSlug": null
           }
         ]
-      }
+      },
+      "lossLimitUnit": "pct",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -941,6 +976,14 @@
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
             "productSlug": "2-step-standard"
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "Official page: 5% trailing maximum loss.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "zero"
           }
         ]
       },
@@ -1004,9 +1047,24 @@
       },
       "payoutFrequency": {
         "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "summary": "Product-specific: bi-weekly on 1 Step Flex, 2 Step Flex, FundingPips Zero; weekly on 2 Step Pro; trader-selected (weekly, bi-weekly, monthly or on-demand) on 2 Step Standard",
+        "byProduct": {
+          "1-step-flex": "bi-weekly",
+          "2-step-flex": "bi-weekly",
+          "2-step-pro": "weekly",
+          "2-step-standard": null,
+          "zero": "bi-weekly"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Flexible reward cycles : Weekly 60%, Bi-Weekly 80%, Monthly 100%, or On Demand 90%.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "newsTrading": {
         "value": null,
@@ -1074,12 +1132,39 @@
           }
         ]
       },
-      "platforms": {
+      "dailyLossUsd": {
         "value": null,
         "summary": null,
         "byProduct": null,
         "evidence": []
-      }
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "cTrader",
+          "Match-Trader"
+        ],
+        "summary": "MT5, cTrader, Match-Trader",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace",
+            "quote": "FundingPips supports three platforms: MT5, cTrader, and Match-Trader.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "lossLimitUnit": "pct",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -1475,6 +1560,18 @@
           }
         ]
       },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
       "platforms": {
         "value": [
           "TradeLocker",
@@ -1518,7 +1615,8 @@
             "productSlug": null
           }
         ]
-      }
+      },
+      "lossLimitUnit": "pct"
     }
   },
   {
@@ -1651,6 +1749,22 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
             "productSlug": "alpha-swing"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+            "quote": "static",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-three"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "high-water mark",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-direct"
           }
         ]
       },
@@ -1701,6 +1815,22 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
             "productSlug": "alpha-pro-10-bi-weekly"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+            "quote": "5%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-swing"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+            "quote": "4%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-three"
           }
         ]
       },
@@ -1751,6 +1881,22 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
             "productSlug": "alpha-pro-10-bi-weekly"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+            "quote": "10%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-swing"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+            "quote": "6%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-three"
           }
         ]
       },
@@ -1857,12 +2003,72 @@
         ]
       },
       "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "alpha-one": "restricted",
+          "alpha-pro-6": "restricted",
+          "alpha-pro-6-on-demand": "restricted",
+          "alpha-pro-8-bi-weekly": "restricted",
+          "alpha-pro-8-on-demand": "restricted",
+          "alpha-pro-10-bi-weekly": "restricted",
+          "alpha-pro-10-on-demand": "restricted",
+          "alpha-swing": "restricted",
+          "alpha-three": "restricted",
+          "alpha-direct": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+            "quote": "On our Qualified Analyst Pro / One / Three / Direct accounts, you are NOT permitted to execute any new trades or close existing trades on the targeted instruments (as listed in the table) within the window of 5 minutes before and 5 minutes after the release",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+            "quote": "Alpha Swing Plan: Trading during major news events is allowed. However, if a trade is initiated within 2 minutes before or up to 2 minutes after a news release (a 4-minute window), its duration must exceed 2 minutes for the trade to be valid.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": "Product-specific: allowed on Alpha One (10%, on-demand), Alpha Swing (on-demand), Alpha Three (availability unverified); restricted on Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand); not allowed on Alpha Direct",
+        "byProduct": {
+          "alpha-one": true,
+          "alpha-pro-6": "restricted",
+          "alpha-pro-6-on-demand": "restricted",
+          "alpha-pro-8-bi-weekly": "restricted",
+          "alpha-pro-8-on-demand": "restricted",
+          "alpha-pro-10-bi-weekly": "restricted",
+          "alpha-pro-10-on-demand": "restricted",
+          "alpha-swing": true,
+          "alpha-three": true,
+          "alpha-direct": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
+            "quote": "Alpha Pro Plan: Phase 1 & 2: Holding trades over the weekend is allowed. Qualified Analyst Account: Holding trades over the weekend is not allowed. ... Alpha Swing / One / Three plans: Holding trades over the weekend is allowed at all stages. Alpha Direct Plan: Holding trades over the weekend is not allowed.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "dailyLossUsd": {
         "value": null,
         "summary": null,
         "byProduct": null,
         "evidence": []
       },
-      "weekendHolding": {
+      "maxLossUsd": {
         "value": null,
         "summary": null,
         "byProduct": null,
@@ -1893,7 +2099,9 @@
             "productSlug": null
           }
         ]
-      }
+      },
+      "lossLimitUnit": "pct",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -1976,9 +2184,38 @@
       "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
       "drawdownType": {
         "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "summary": "Product-specific: trailing on BrightFunded 1-Step; static on BrightFunded 2-Step Bright, BrightFunded 2-Step Classic",
+        "byProduct": {
+          "bright-funded-1-step": "trailing",
+          "bright-funded-2-step-bright": "static",
+          "bright-funded-2-step-classic": "static"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+            "quote": "Maximum Drawdown 6% Trailing (dynamic)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+            "quote": "Maximum Drawdown 8% Static",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+            "quote": "Maximum Drawdown 10% Static",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "dailyLossPct": {
         "value": null,
@@ -2052,9 +2289,22 @@
       },
       "consistencyPct": {
         "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "summary": "none",
+        "byProduct": {
+          "bright-funded-1-step": null,
+          "bright-funded-2-step-bright": null,
+          "bright-funded-2-step-classic": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule",
+            "quote": "At BrightFunded, we do not currently enforce a consistency rule.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "profitSplitPct": {
         "value": 80,
@@ -2164,6 +2414,18 @@
           }
         ]
       },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
       "platforms": {
         "value": [
           "MT5",
@@ -2182,7 +2444,9 @@
             "productSlug": null
           }
         ]
-      }
+      },
+      "lossLimitUnit": "pct",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -2302,6 +2566,14 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
             "productSlug": "instant-plus-3-daily-5-max-drawdown"
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 5% from record: {\"price\":155,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-plus-5-daily-10-max-drawdown"
           }
         ]
       },
@@ -2348,14 +2620,46 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
             "productSlug": "instant-plus-3-daily-5-max-drawdown"
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 10% from record: {\"price\":155,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-plus-5-daily-10-max-drawdown"
           }
         ]
       },
       "consistencyPct": {
         "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "summary": "Product-specific: Inconsistency Score (best day ÷ total profit; no published % threshold) on Instant Classic; none on Instant Lite and Instant Plus",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": null,
+          "instant-classic-5-daily-10-max-drawdown": null,
+          "instant-lite": null,
+          "instant-lite-5-daily-10-max-drawdown": null,
+          "instant-plus-3-daily-5-max-drawdown": null,
+          "instant-plus-5-daily-10-max-drawdown": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.ofpfunding.com/account-models/",
+            "quote": "INSTANT LITE ... Consistency Rule: NO ... INSTANT CLASSIC ... Consistency Rule: YES ... INSTANT PLUS ... Consistency Rule: No",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
+            "quote": "Calculation Consistency Score = (Best Trading Day Profit ÷ Total Profit) × 100 ... If too much of your profit comes from a single day or trade, your account may be flagged as inconsistent.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "profitSplitPct": {
         "value": 80,
@@ -2410,10 +2714,26 @@
         ]
       },
       "newsTrading": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": "restricted",
+          "instant-classic-5-daily-10-max-drawdown": "restricted",
+          "instant-lite": "restricted",
+          "instant-lite-5-daily-10-max-drawdown": "restricted",
+          "instant-plus-3-daily-5-max-drawdown": "restricted",
+          "instant-plus-5-daily-10-max-drawdown": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/",
+            "quote": "You must avoid trading from 2 minutes before until 2 minutes after the release of any high-risk volatility news.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "weekendHolding": {
         "value": null,
@@ -2421,23 +2741,37 @@
         "byProduct": null,
         "evidence": []
       },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
       "platforms": {
         "value": [
-          "OFP Platform"
+          "OFP Platform (Sirix)"
         ],
-        "summary": "OFP Platform (not confirmed on the official page read: MT5)",
+        "summary": "OFP Platform (Sirix)",
         "byProduct": null,
         "evidence": [
           {
-            "sourceUrl": "https://ofpfunding.com/",
-            "quote": "d the guide Demo Trading With Institutional Conditions Lowest spreads worldwide OFP Platform Forex Index Metals Oil Crypto Watch their stories and learn how they did it. Fu",
+            "sourceUrl": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+            "quote": "All our accounts use OFP platform (Sirix) which is integrated with TradingView features.",
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
           }
         ]
-      }
+      },
+      "lossLimitUnit": "pct",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -2569,6 +2903,14 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
             "productSlug": "predictions-1-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "One-Step Elite uses Static Drawdown with a 5% max drawdown [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "predictions-elite-1-step"
           }
         ]
       },
@@ -2618,6 +2960,22 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
             "productSlug": "instant"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "2% Daily Drawdown - highest between balance and equity at 00:00 UTC [https://maventrading.com/faqs, Mini > What are the drawdown rules?]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "mini"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "No. The evaluation has no daily drawdown limit on the evaluation phase. [https://maventrading.com/faqs] - null because none exists in the evaluation.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "buy-now-pay-later"
           }
         ]
       },
@@ -2667,6 +3025,22 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
             "productSlug": "instant"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "3% Trailing Max Drawdown ... Note: The drawdown does not reset - it's active throughout the challenge. [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "mini"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "The 10% maximum drawdown is calculated statically from your starting balance - it does not trail. [https://maventrading.com/faqs] (evaluation phase)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "buy-now-pay-later"
           }
         ]
       },
@@ -2716,6 +3090,22 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
             "productSlug": "instant"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Yes - there's a 15% consistency rule based on your highest trade. ... 'largest winning trade / total profit'. This must be less than 15% to get a payout. [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "mini"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "20% consistency score required before each withdrawal ... Before requesting a withdrawal, your largest winning day must not exceed 20% of your total profits. [https://maventrading.com/faqs] (funded stage only)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "buy-now-pay-later"
           }
         ]
       },
@@ -2765,6 +3155,22 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
             "productSlug": "omo-2-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "The profit split is 70%. Once you reach the funded stage, you withdraw 70% of the profits you make. [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "predictions-1-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "The profit split is 70%. [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "predictions-elite-1-step"
           }
         ]
       },
@@ -2814,6 +3220,14 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
             "productSlug": "buy-now-pay-later"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Pricing card: 'Payout frequency / Funded: 10 business days'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "omo-2-step"
           }
         ]
       },
@@ -2863,6 +3277,22 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
             "productSlug": "buy-now-pay-later"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "RESTRICTED overall: news trading is fully permitted in Phase 1 and Phase 2, but funded-stage profit from any one news event is capped at 0.50% of account balance. [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "omo-2-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "there is no news trading restriction specific to the Prediction Markets challenge [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "predictions-1-step"
           }
         ]
       },
@@ -2899,12 +3329,38 @@
           }
         ]
       },
-      "platforms": {
+      "dailyLossUsd": {
         "value": null,
         "summary": null,
         "byProduct": null,
         "evidence": []
-      }
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "Match-Trader"
+        ],
+        "summary": "MT5, Match-Trader",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Which Platforms can I use for simulated trading at Maven? Maven Trading offers MT5 and Match Trader",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "lossLimitUnit": "pct",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -3051,6 +3507,14 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
             "productSlug": "instant-funding-standard"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/crypto/",
+            "quote": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-how-does-trailing-drawdown-work-for-crypto-account/: 'The Max Trailing Drawdown is fixed at 6% of your starting balance, and it moves (or \"trails\") your High Water Mark ... until 6% profit made.'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "crypto-standard-1-step"
           }
         ]
       },
@@ -3101,6 +3565,22 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
             "productSlug": "three-phase"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/instant-funding/",
+            "quote": "\"Daily Loss Limit\": \"8%\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "instant-funding-standard"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/instant-funding/",
+            "quote": "\"Daily Loss Limit\": \"3%\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "instant-funding-lite"
           }
         ]
       },
@@ -3151,6 +3631,22 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
             "productSlug": "two-phase-pro"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
+            "quote": "\"Max Drawdown\": \"5%\" - \"When you open the account, your Max Drawdown is set at 5% of your starting balance. This will be static for the life of the account.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "three-phase"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/instant-funding/",
+            "quote": "\"Max Trailing Drawdown\": \"8%\" - \"The Max Trailing Drawdown is fixed at 8% of your starting balance, and it moves (or “trails”) your High Water Mark (“HWM”) until 8% profit made.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "instant-funding-standard"
           }
         ]
       },
@@ -3201,6 +3697,14 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
             "productSlug": "crypto-standard-1-step"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/crypto/",
+            "quote": "'Consistency Rule': '25%'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "crypto-instant-funding"
           }
         ]
       },
@@ -3251,6 +3755,22 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
             "productSlug": "three-phase"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/crypto/",
+            "quote": "'Profit Split': '80% bi-weekly or 100% monthly'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "crypto-standard-1-step"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/crypto/",
+            "quote": "'Profit Split': '80% bi-weekly'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "crypto-instant-funding"
           }
         ]
       },
@@ -3301,6 +3821,22 @@
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
             "productSlug": "three-phase"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/instant-funding/",
+            "quote": "\"any subsequent payout requests will also be on a bi-weekly basis, every 14 days\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "instant-funding-standard"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+            "quote": "\"then any subsequent every 14 days, bi-weekly basis\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "lightning-challenge"
           }
         ]
       },
@@ -3404,6 +3940,18 @@
           }
         ]
       },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
       "platforms": {
         "value": [
           "MT4",
@@ -3447,7 +3995,8 @@
             "productSlug": null
           }
         ]
-      }
+      },
+      "lossLimitUnit": "pct"
     }
   },
   {
@@ -3504,9 +4053,32 @@
       "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
       "drawdownType": {
         "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "summary": "Product-specific: static on Evaluation (Standard 2-Phase), Ascend Evaluation; trailing on Accelerated (1-Phase), Break Challenge; not stated on Instant",
+        "byProduct": {
+          "evaluation": "static",
+          "ascend": "static",
+          "accelerated": "trailing",
+          "instant": null,
+          "break": "trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "For the 2-Phase Evaluation, the daily maximum loss is 5%, and the maximum overall loss is fixed at 10% of the initial account balance. For the 1-Phase Evaluation, the daily maximum loss is 4%, and the trailing drawdown rule applies instead of a fixed overall loss limit.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "The Trailing Loss Limit applies during both the Break Evaluation and the Break Final Stage.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "dailyLossPct": {
         "value": null,
@@ -3584,9 +4156,24 @@
       },
       "consistencyPct": {
         "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "summary": "Product-specific: 40% on Break Challenge (Final Stage, checked at payout request); none on Evaluation, Ascend, Accelerated, Instant",
+        "byProduct": {
+          "evaluation": null,
+          "ascend": null,
+          "accelerated": null,
+          "instant": null,
+          "break": 40
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "The Consistency Rule applies only to Break Final Stage accounts. No single trading day may account for more than 40% of the total profits generated on the account.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "profitSplitPct": {
         "value": null,
@@ -3627,17 +4214,84 @@
       },
       "payoutFrequency": {
         "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "summary": "Product-specific: after 15 traded days or every 30 calendar days on Evaluation and Accelerated (7 traded days with Weekly add-on); on demand on Break; on reaching the Phase 2 target on Ascend; at 10% profit (Withdrawal & Upgrade) on Instant",
+        "byProduct": {
+          "evaluation": null,
+          "ascend": null,
+          "accelerated": null,
+          "instant": null,
+          "break": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "You can request a scholarship reward after trading for at least 15 days, or alternatively, every 30 calendar days ... If you have the Weekly Payouts add-on, you can request a scholarship reward every 7 traded days",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Break accounts offer payouts on demand once the trader has successfully passed the Evaluation phase, paid the applicable Activation Fee, and moved to the Final Stage",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: allowed on Evaluation (Standard 2-Phase), Accelerated (1-Phase), Instant, Break Challenge; restricted on Ascend Evaluation",
+        "byProduct": {
+          "evaluation": true,
+          "ascend": "restricted",
+          "accelerated": true,
+          "instant": true,
+          "break": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Can I trade news? Yes. News trading is allowed.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "In the Ascend Evaluation, you cannot open new trades or increase your risk during high-impact news events or market openings. This restriction applies from 2 minutes before until 2 minutes after the event.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Yes. Traders are allowed to keep positions open overnight and over the weekend, regardless of the account type or instrument.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "dailyLossUsd": {
         "value": null,
         "summary": null,
         "byProduct": null,
         "evidence": []
       },
-      "weekendHolding": {
+      "maxLossUsd": {
         "value": null,
         "summary": null,
         "byProduct": null,
@@ -3645,39 +4299,25 @@
       },
       "platforms": {
         "value": [
-          "MT5",
           "Match-Trader",
+          "MT5",
           "Bybit"
         ],
-        "summary": "MT5, Match-Trader, Bybit",
+        "summary": "Match-Trader, MT5, Bybit",
         "byProduct": null,
         "evidence": [
           {
-            "sourceUrl": "https://cryptofundtrader.com/",
-            "quote": "Blog CFT x Bybit Choose your challenge Free tournaments Match - Trader Platform MT5 Web Terminal BYBIT Platform Contact us Cookies “KYC Audit” Privacy Policy Compe",
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Crypto Fund Trader currently offers access to Match-Trader, MetaTrader 5, and Bybit.",
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://cryptofundtrader.com/",
-            "quote": "eat. EVALUATION - ONE TIME FEE - $ 58.00 PLATFORM Choose an option MetaTrader 5 Match-Trader (Works in US) BYBIT Clear $5.000 Evaluation quantity Add to cart $ 110.00 PLATF",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://cryptofundtrader.com/",
-            "quote": "ns Refund Policy Proof of Scholarship Affiliate Partner Theory Tools Blog CFT x Bybit Choose your challenge Free tournaments Match - Trader Platform MT5 Web Terminal",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
           }
         ]
-      }
+      },
+      "lossLimitUnit": "pct",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -3852,34 +4492,125 @@
         ]
       },
       "newsTrading": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
-      },
-      "weekendHolding": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
-      },
-      "platforms": {
-        "value": [
-          "TopstepX"
-        ],
-        "summary": "TopstepX",
-        "byProduct": null,
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "trading-combine-standard-path": "restricted",
+          "trading-combine-no-activation-fee-path": "restricted"
+        },
         "evidence": [
           {
-            "sourceUrl": "https://www.topstep.com/",
-            "quote": "Funded Trading Prop Firm How It Works Topstep Octagon Instant Payouts Brokerage TopstepX Blog Support Trader Support Help Center Status Page Discord Login Sign Up Sign",
+            "sourceUrl": "https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep",
+            "quote": "Trading Maximum Position Size into Major News Events. Purposefully trading your full Maximum Position Size directly into a scheduled major news event.",
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
           }
         ]
-      }
+      },
+      "weekendHolding": {
+        "value": false,
+        "summary": "not allowed",
+        "byProduct": {
+          "trading-combine-standard-path": false,
+          "trading-combine-no-activation-fee-path": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade",
+            "quote": "All positions must be closed by 3:10 PM CT every weekday. You can resume trading at 5:00 PM CT. No swing trading.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": "None in the Trading Combine (single rule: Maximum Loss Limit)",
+        "byProduct": {
+          "trading-combine-standard-path": null,
+          "trading-combine-no-activation-fee-path": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+            "quote": "It's a simulated account with one rule and two objectives.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "value": {
+          "50000": 2000,
+          "100000": 3000,
+          "150000": 4500
+        },
+        "summary": "$2,000 (50K) / $3,000 (100K) / $4,500 (150K)",
+        "byProduct": {
+          "trading-combine-standard-path": {
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "trading-combine-no-activation-fee-path": {
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+            "quote": "Account Size Maximum Loss Limit $50K $2,000 $100K $3,000 $150K $4,500",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+            "quote": "The MLL is a trailing limit. It rises as your end-of-day balance grows, but never moves down.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+            "quote": "$50K $2,000; $100K $3,000; $150K $4,500",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-06",
+            "captureFile": "content/data/challenges/_captures/topstep-2026-10-06.json",
+            "productSlug": "trading-combine-standard-path"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "TopstepX",
+          "Quantower"
+        ],
+        "summary": "TopstepX, Quantower",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284179-quantower-connection-instructions",
+            "quote": "Connect using the Topstep Dashboard by selecting TopstepX as your platform. ... Quantower via TopstepX is available for the Trading Combine® and Express Funded Account® (XFA) only.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "lossLimitUnit": "usd",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -4029,10 +4760,41 @@
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
       "drawdownType": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "value": "eod-trailing",
+        "summary": "eod-trailing",
+        "byProduct": {
+          "rapid": "eod-trailing",
+          "rapid-eod": "eod-trailing",
+          "flex": "eod-trailing",
+          "pro": "eod-trailing",
+          "builder": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "| Max Loss (EOD) | $1,000 | $2,000 | $3,000 | $4,500 | ... | Drawdown Type | EOD | EOD | EOD | EOD |",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Pro uses end-of-day trailing drawdown in both eval and sim funded.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "| Drawdown Model | EOD Trailing | EOD Trailing | EOD Trailing | EOD Trailing |",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "dailyLossPct": {
         "value": null,
@@ -4048,51 +4810,288 @@
       },
       "consistencyPct": {
         "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
-      },
-      "profitSplitPct": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
-      },
-      "payoutFrequency": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
-      },
-      "newsTrading": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
-      },
-      "weekendHolding": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
-      },
-      "platforms": {
-        "value": [
-          "Tradovate"
-        ],
-        "summary": "Tradovate (not confirmed on the official page read: NinjaTrader, TradingView)",
-        "byProduct": null,
+        "summary": "Product-specific: 50% on Rapid, Flex, Pro; 30% on Rapid EOD; not stated on Builder",
+        "byProduct": {
+          "rapid": 50,
+          "rapid-eod": 30,
+          "flex": 50,
+          "pro": 50,
+          "builder": null
+        },
         "evidence": [
           {
-            "sourceUrl": "https://myfundedfutures.com/",
-            "quote": "ra hoops. CB Casey Bennett Pro plan Trade on your favorite platforms. QUANTOWER tradovate Get MFFU updates worth opening. Receive product updates, education and insights",
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "| Consistency | 50% (Eval Only) | 50% (Eval Only) | 50% (Eval Only) | 50% (Eval Only) |",
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "There's a 50% consistency rule in evaluation only",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Each payout is between $500 and $2,000, with a 50% consistency rule applied at the payout stage.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
           }
         ]
-      }
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 90% on Rapid, Rapid EOD; 80% on Flex, Pro, Builder",
+        "byProduct": {
+          "rapid": 90,
+          "rapid-eod": 90,
+          "flex": 80,
+          "pro": 80,
+          "builder": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "You keep 90% of every payout. MFFU keeps 10%.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "| Profit Split | 80/20 | 80/20 | 80/20 |",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "| Profit Split | 80/20 | 80/20 | 80/20 | 80/20 |",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: on-demand on Rapid, Rapid EOD, Flex, Builder; bi-weekly on Pro",
+        "byProduct": {
+          "rapid": "on-demand",
+          "rapid-eod": "on-demand",
+          "flex": "on-demand",
+          "pro": "bi-weekly",
+          "builder": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Payout cadence Daily",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Pro starts at $50K, goes up to $150K, pays on a 14-day cycle with a $100,000 cap",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Payout cadence Every 48 hours",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: restricted on Rapid, Rapid EOD, Flex, Pro; allowed on Builder",
+        "byProduct": {
+          "rapid": "restricted",
+          "rapid-eod": "restricted",
+          "flex": "restricted",
+          "pro": "restricted",
+          "builder": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy",
+            "quote": "Restricted Accounts: Trading on T1 News events is prohibited for the following: Rapid Sim Funded, Pro Sim Funded. Unrestricted Accounts: Trading on T1 News events is permitted for the following: All evaluations, Builder Plans",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": false,
+        "summary": "not allowed (stated for Rapid: all positions closed before the daily session close; not stated on the Pro/Builder pages)",
+        "byProduct": {
+          "rapid": false,
+          "rapid-eod": false,
+          "flex": false,
+          "pro": false,
+          "builder": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Can I hold positions overnight on Rapid? No. Rapid is intended for intraday futures trading. All positions must be closed before the daily session close. Holding overnight will breach the account.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": "Product-specific: none on Rapid and Pro; soft-pause $600 (25K) / $1,000 (50K) / $1,750 (100K) / $2,500 (150K) on Builder; Rapid EOD and Flex (legacy) not re-confirmed",
+        "byProduct": {
+          "rapid": null,
+          "rapid-eod": null,
+          "flex": null,
+          "pro": null,
+          "builder": {
+            "25000": 600,
+            "50000": 1000,
+            "100000": 1750,
+            "150000": 2500
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "| Daily Loss Limit | None | None | None | None |",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "| Daily Loss Limit | None | None | None |",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "| Daily Loss Limit | $600 - soft pause | $1,000 - soft pause | $1,750 - soft pause | $2,500 - soft pause |",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Daily Loss Limit $600 - soft pause $1,000 - soft pause $1,750 - soft pause $2,500 - soft pause",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": "Product-specific: $1,000 (25K) / $2,000 (50K) / $3,000 (100K) / $4,500 (150K) on Rapid; $1,000 (25K) / $2,000 (50K) on Rapid EOD, Flex, Builder; $2,000 (50K) / $3,000 (100K) / $4,500 (150K) on Pro",
+        "byProduct": {
+          "rapid": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "rapid-eod": {
+            "25000": 1000,
+            "50000": 2000
+          },
+          "flex": {
+            "25000": 1000,
+            "50000": 2000
+          },
+          "pro": {
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "builder": {
+            "25000": 1000,
+            "50000": 2000
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "| Max Loss (EOD) | $1,000 | $2,000 | $3,000 | $4,500 |",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "| Max Loss (EOD) | $2,000 | $3,000 | $4,500 |",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "| Max Loss (EOD Trailing) | $1,000 | $2,000 ($1,500 with add-on) | $3,000 | $4,500 |",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "NinjaTrader",
+          "Hyperprop",
+          "Tradovate",
+          "TradingView",
+          "Quantower",
+          "Volumetrica",
+          "DeepChart/DeepDom",
+          "ATAS"
+        ],
+        "summary": "NinjaTrader, Hyperprop, Tradovate, TradingView, Quantower, Volumetrica, DeepChart/DeepDom, ATAS",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu",
+            "quote": "Platform Choices - NinjaTrader ... - Hyperprop ... - Tradovate ... - TradingView ... - Quantower ... - Volumetrica ... - DeepChart/DeepDom ... - ATAS",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "lossLimitUnit": "usd",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -4467,23 +5466,38 @@
           }
         ]
       },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
       "platforms": {
         "value": [
-          "MT5"
+          "MT5",
+          "Match-Trader"
         ],
-        "summary": "MT5 (not confirmed on the official page read: cTrader)",
+        "summary": "MT5, Match-Trader",
         "byProduct": null,
         "evidence": [
           {
-            "sourceUrl": "https://citytradersimperium.com/",
-            "quote": "ommunity Blog Market News Symbols Live Feed Economic Calendar Trading Platforms MetaTrader 5 Match Trader Calculators Challenge Drawdown Calculator Margin Calculator Swap C",
+            "sourceUrl": "https://citytradersimperium.com/match-trader-platform/",
+            "quote": "it is one of the two platforms available on a City Traders Imperium account. ... What is the difference between Match Trader and MetaTrader 5?",
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
           }
         ]
-      }
+      },
+      "lossLimitUnit": "pct",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -4623,43 +5637,129 @@
         ]
       },
       "newsTrading": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
-      },
-      "weekendHolding": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
-      },
-      "platforms": {
-        "value": [
-          "NinjaTrader",
-          "Tradovate"
-        ],
-        "summary": "NinjaTrader, Tradovate (not confirmed on the official page read: TradingView, Quantower)",
-        "byProduct": null,
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "the-test": "restricted"
+        },
         "evidence": [
           {
-            "sourceUrl": "https://takeprofittrader.com/",
-            "quote": "herefore only use regulated brokers and CME approved data providers (Tradovate, NinjaTrader, and Rithmic) to place all trades. This means that all customers across all pha",
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15171769361053-PRO-Account-Rules",
+            "quote": "All PRO Accounts must be out of all open positions and have no open orders one minute before, during and one minute after any prohibited news event.",
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://takeprofittrader.com/",
-            "quote": "usly, and therefore only use regulated brokers and CME approved data providers (Tradovate, NinjaTrader, and Rithmic) to place all trades. This means that all customers a",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
           }
         ]
-      }
+      },
+      "weekendHolding": {
+        "value": false,
+        "summary": "not allowed",
+        "byProduct": {
+          "the-test": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
+            "quote": "Most products traded on CME Group exchanges (CME, NYMEX, COMEX, CBOT) are permitted, but positions may not be held from one session to the next.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "value": {
+          "25000": 500,
+          "50000": 1100,
+          "75000": 1600,
+          "100000": 2200,
+          "150000": 3300
+        },
+        "summary": "$500 (25K) / $1,100 (50K) / $1,600 (75K) / $2,200 (100K) / $3,300 (150K)",
+        "byProduct": {
+          "the-test": {
+            "25000": 500,
+            "50000": 1100,
+            "75000": 1600,
+            "100000": 2200,
+            "150000": 3300
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/accounts/api/subscriptions",
+            "quote": "{\"name\":\"$ 25k\",...,\"dailyLossLimit\":500,...},{\"name\":\"$ 50k\",...,\"dailyLossLimit\":1100},{\"name\":\"$ 75k\",...,\"dailyLossLimit\":1600},{\"name\":\"$ 100k\",...,\"dailyLossLimit\":2200},{\"name\":\"$ 150k\",...,\"dailyLossLimit\":3300}",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "value": {
+          "25000": 1500,
+          "50000": 2000,
+          "75000": 2500,
+          "100000": 3000,
+          "150000": 4500
+        },
+        "summary": "$1,500 (25K) / $2,000 (50K) / $2,500 (75K) / $3,000 (100K) / $4,500 (150K)",
+        "byProduct": {
+          "the-test": {
+            "25000": 1500,
+            "50000": 2000,
+            "75000": 2500,
+            "100000": 3000,
+            "150000": 4500
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/accounts/api/subscriptions",
+            "quote": "{\"name\":\"$ 25k\",...,\"eodTrailingDrawdown\":1500},{\"name\":\"$ 50k\",...,\"eodTrailingDrawdown\":2000},{\"name\":\"$ 75k\",...,\"eodTrailingDrawdown\":2500},{\"name\":\"$ 100k\",...,\"eodTrailingDrawdown\":3000},{\"name\":\"$ 150k\",...,\"eodTrailingDrawdown\":4500}",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "TradingView",
+          "NinjaTrader",
+          "Tradovate",
+          "Bookmap",
+          "MultiCharts",
+          "MotiveWave",
+          "Trade Navigator",
+          "R|Trader",
+          "VolFix",
+          "ATAS",
+          "Investor R/T",
+          "Quantower",
+          "Finamark",
+          "Jigsaw Trader"
+        ],
+        "summary": "TradingView, NinjaTrader, Tradovate, Bookmap, MultiCharts, MotiveWave, Trade Navigator, R|Trader, VolFix, ATAS, Investor R/T, Quantower, Finamark, Jigsaw Trader",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15173017163549-Choosing-Your-Platform",
+            "quote": "TradingView ... NinjaTrader ... Tradovate ... Bookmap ... MultiCharts ... MotiveWave ... Trade Navigator ... R|Trader ... VolFix ... ATAS ... Investor R/T ... Quantower ... Finamark ... Jigsaw Trader",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "lossLimitUnit": "usd",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -4908,40 +6008,170 @@
         ]
       },
       "payoutFrequency": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
-      },
-      "newsTrading": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
-      },
-      "weekendHolding": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
-      },
-      "platforms": {
-        "value": [
-          "Tradovate"
-        ],
-        "summary": "Tradovate (not confirmed on the official page read: TradeDayX, Quantower, NinjaTrader)",
-        "byProduct": null,
+        "value": "on-demand",
+        "summary": "on-demand",
+        "byProduct": {
+          "quick-pay-intraday": "on-demand",
+          "quick-pay-end-of-day": "on-demand",
+          "fast-pass-end-of-day": "on-demand"
+        },
         "evidence": [
           {
-            "sourceUrl": "https://www.tradeday.com/",
-            "quote": "payouts True Day-One Payouts - No buffer Pass in 3 days Fastest route to funded Tradovate / Rithmic Intraday End of Day Thank you! Your submission has been received! Oop",
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "You can request your first payout after just one day of trading, and you can withdraw at any time as long as your account balance is positive.",
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "The trader must complete a minimum of 5 individual profitable trading days (days do not need to be consecutive)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
           }
         ]
-      }
+      },
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "quick-pay-intraday": "restricted",
+          "quick-pay-end-of-day": "restricted",
+          "fast-pass-end-of-day": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000081072-can-i-trade-news-or-data-releases-",
+            "quote": "TradeDay will auto-liquidate all open positions 2 minutes before TradeDay's tier 1 economic data releases, and open markets back up to trade 2 minutes after these releases.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": false,
+        "summary": "not allowed",
+        "byProduct": {
+          "quick-pay-intraday": false,
+          "quick-pay-end-of-day": false,
+          "fast-pass-end-of-day": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000018874-what-is-the-permitted-trading-times-guideline-",
+            "quote": "Exit all positions 10 minutes before the close. No holding positions when the market closes.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": "None (single rule: trailing maximum drawdown)",
+        "byProduct": {
+          "quick-pay-intraday": null,
+          "quick-pay-end-of-day": null,
+          "fast-pass-end-of-day": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.com/how-it-works",
+            "quote": "ONE RULE.ONE WAY TO FAIL Maximum Drawdown Don’t exceed the maximum drawdown.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "value": {
+          "25000": 1000,
+          "50000": 2000,
+          "100000": 3000,
+          "150000": 4500
+        },
+        "summary": "$1,000 (25K) / $2,000 (50K) / $3,000 (100K) / $4,500 (150K)",
+        "byProduct": {
+          "quick-pay-intraday": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "quick-pay-end-of-day": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "fast-pass-end-of-day": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "| Trailing max drawdown | $1,000 | $2,000 | $3,000 | $4,500 |",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000304248-what-are-the-differences-between-each-account-size-",
+            "quote": "Fast Pass Evaluations ... Maximum Drawdown | $1,000 | $2,000 | $3,000 | $4,500",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "Tradovate",
+          "NinjaTrader",
+          "TradingView",
+          "Jigsaw",
+          "R|Trader Pro",
+          "Quantower",
+          "ATAS",
+          "MotiveWave",
+          "Bookmap",
+          "Sierra Chart",
+          "EdgeProX",
+          "Finamark",
+          "VolFix",
+          "WealthCharts",
+          "MultiCharts",
+          "Overcharts"
+        ],
+        "summary": "Tradovate, NinjaTrader, TradingView, Jigsaw, R|Trader Pro, Quantower, ATAS, MotiveWave, Bookmap, Sierra Chart, EdgeProX, Finamark, VolFix, WealthCharts, MultiCharts, Overcharts",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008813-which-trading-platforms-does-tradeday-use-",
+            "quote": "CQG Platforms - Tradovate - NinjaTrader - TradingView & Jigsaw ... Rithmic Platforms ... R|Trader Pro - Quantower - Rithmic - ATAS - Motivewave - BookMap - Jigsaw - Rithmic - Sierra Chart - EdgeProX - Finamark - Volfix - WealthCharts - Multicharts - Overcharts",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "lossLimitUnit": "usd",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -5257,29 +6487,227 @@
         ]
       },
       "payoutFrequency": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "value": "on-demand",
+        "summary": "on-demand",
+        "byProduct": {
+          "lucidpro": "on-demand",
+          "lucidflex": "on-demand",
+          "luciddirect": "on-demand",
+          "luciddaily-dll-on-intraday": "on-demand",
+          "luciddaily-dll-on-eod": "on-demand",
+          "luciddaily-dll-off-intraday": "on-demand",
+          "luciddaily-dll-off-eod": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+            "quote": "There is no fixed payout window, you may request a payout any day after meeting all eligibility criteria.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts",
+            "quote": "Traders must earn at least the minimum required profit on 5 separate days during the payout cycle.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts",
+            "quote": "There is no fixed payout window, you may request a payout any day after meeting all eligibility criteria.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "newsTrading": {
         "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "summary": "Product-specific: allowed on LucidPro, LucidFlex, LucidDirect; restricted on LucidDaily - DLL On / Intraday, LucidDaily - DLL On / EOD, LucidDaily - DLL Off / Intraday, LucidDaily - DLL Off / EOD",
+        "byProduct": {
+          "lucidpro": true,
+          "lucidflex": true,
+          "luciddirect": true,
+          "luciddaily-dll-on-intraday": "restricted",
+          "luciddaily-dll-on-eod": "restricted",
+          "luciddaily-dll-off-intraday": "restricted",
+          "luciddaily-dll-off-eod": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/11404728-other-activities",
+            "quote": "Not allowed on Daily - Trading red folder news on the LucidDaily is a hard breach - Allowed on Flex, Pro and Direct",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "weekendHolding": {
-        "value": null,
-        "summary": null,
+        "value": false,
+        "summary": "not allowed (all positions closed by 4:45 PM EST each weekday)",
         "byProduct": null,
-        "evidence": []
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times",
+            "quote": "All positions must be closed by 4:45 PM EST, Monday through Friday",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": "Product-specific: $1,200 (50K) / $1,800 (100K) / $2,700 (150K) on LucidPro; not stated on LucidFlex, LucidDaily - DLL Off / Intraday, LucidDaily - DLL Off / EOD; $1,200 (50K) / $2,100 (100K) / $3,000 (150K) on LucidDirect; $600 (25K) / $1,200 (50K) / $1,800 (100K) / $2,700 (150K) on LucidDaily - DLL On / Intraday, LucidDaily - DLL On / EOD",
+        "byProduct": {
+          "lucidpro": {
+            "50000": 1200,
+            "100000": 1800,
+            "150000": 2700
+          },
+          "lucidflex": null,
+          "luciddirect": {
+            "50000": 1200,
+            "100000": 2100,
+            "150000": 3000
+          },
+          "luciddaily-dll-on-intraday": {
+            "25000": 600,
+            "50000": 1200,
+            "100000": 1800,
+            "150000": 2700
+          },
+          "luciddaily-dll-on-eod": {
+            "25000": 600,
+            "50000": 1200,
+            "100000": 1800,
+            "150000": 2700
+          },
+          "luciddaily-dll-off-intraday": null,
+          "luciddaily-dll-off-eod": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890185-luciddirect-daily-loss-limit",
+            "quote": "Account Size Fixed DLL Initial Trail Balance $25,000 None None $50,000 $1,200 $52,100 $100,000 $2,100 $103,600 $150,000 $3,000 $155,100",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/16085900-luciddaily-daily-loss-limit",
+            "quote": "If you chose DLL ON then you will have a fixed DLL on both your LucidDaily evaluation and funded accounts ... $25,000 $600 $50,000 $1,200 $100,000 $1,800 $150,000 $2,700",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": "Product-specific: $1,000 (25K) / $2,000 (50K) / $3,000 (100K) / $4,500 (150K) on LucidPro, LucidFlex, LucidDaily - DLL On / Intraday, LucidDaily - DLL On / EOD, LucidDaily - DLL Off / Intraday, LucidDaily - DLL Off / EOD; $1,000 (25K) / $2,000 (50K) / $3,500 (100K) / $5,000 (150K) on LucidDirect",
+        "byProduct": {
+          "lucidpro": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "lucidflex": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "luciddirect": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3500,
+            "150000": 5000
+          },
+          "luciddaily-dll-on-intraday": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "luciddaily-dll-on-eod": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "luciddaily-dll-off-intraday": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "luciddaily-dll-off-eod": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown",
+            "quote": "Account Size MLL Amount ... $25,000 $1,000 ... $50,000 $2,000 ... $100,000 $3,000 ... $150,000 $4,500",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown",
+            "quote": "Account Size MLL Amount ... $25,000 $1,000 ... $50,000 $2,000 ... $100,000 $3,000 ... $150,000 $4,500",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "platforms": {
-        "value": null,
-        "summary": null,
+        "value": [
+          "NinjaTrader",
+          "Tradovate",
+          "TradingView",
+          "Quantower",
+          "Tradesea",
+          "MotiveWave",
+          "Sierra Chart",
+          "Jigsaw",
+          "Bookmap",
+          "ATAS",
+          "R|Trader Pro",
+          "MultiCharts"
+        ],
+        "summary": "NinjaTrader, Tradovate, TradingView, Quantower, Tradesea, MotiveWave, Sierra Chart, Jigsaw, Bookmap, ATAS, R|Trader Pro, MultiCharts",
         "byProduct": null,
-        "evidence": []
-      }
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/11404614-lucid-trading-supported-platforms",
+            "quote": "CQG supported platforms: NinjaTrader Tradovate TradingView Rithmic supported platforms: Quantower (Lucid Partner) Tradesea MotiveWave Sierra Chart Jigsaw Bookmap ATAS R|Trader Pro (official Rithmic platform) MultiCharts",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "lossLimitUnit": "usd",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -5398,10 +6826,40 @@
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/tradeify-2026-10-14.json",
       "drawdownType": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "value": "eod-trailing",
+        "summary": "eod-trailing",
+        "byProduct": {
+          "growth-evaluation": "eod-trailing",
+          "select-flex": "eod-trailing",
+          "select-daily": "eod-trailing",
+          "lightning-funded": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+            "quote": "The GROWTH™ evaluation uses an End of Day Trailing Max Drawdown, which is based on the account balance at the end of the trading day.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+            "quote": "End of Day Drawdown: Your drawdown is calculated at session close, so intraday swings do not move the limit.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+            "quote": "Lightning Funded Accounts use an End of Day Trailing Max Drawdown, which is calculated and based on the account balance at the end of the trading day.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "dailyLossPct": {
         "value": null,
@@ -5417,21 +6875,71 @@
       },
       "consistencyPct": {
         "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "summary": "Product-specific: 35% on Growth Evaluation; 40% on Select Evaluation → Flex, Select Evaluation → Daily; 20% on Lightning Funded",
+        "byProduct": {
+          "growth-evaluation": 35,
+          "select-flex": 40,
+          "select-daily": 40,
+          "lightning-funded": 20
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+            "quote": "Growth Evaluation — ... 35% consistency rule. Select Evaluation — ... 40% consistency rule during evaluation only ... Lightning Funded — ... Progressive consistency rule (20% → 25% → 30%).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "profitSplitPct": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "value": 90,
+        "summary": "90%",
+        "byProduct": {
+          "growth-evaluation": 90,
+          "select-flex": 90,
+          "select-daily": 90,
+          "lightning-funded": 90
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+            "quote": "Sim Funded accounts (Growth, Select, Lightning): 90% to trader / 10% to Tradeify",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "payoutFrequency": {
-        "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "value": "on-demand",
+        "summary": "Product-specific: every 5 winning days on Select Flex; daily eligibility on Select Daily; on request once consistency and profit objective are met on Lightning Funded; Growth not re-confirmed",
+        "byProduct": {
+          "growth-evaluation": "on-demand",
+          "select-flex": "on-demand",
+          "select-daily": "on-demand",
+          "lightning-funded": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+            "quote": "Payout Frequency: Every 5 winning days ... Payout Frequency: Daily eligibility",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+            "quote": "Lightning Funded traders can now instantly request payouts directly from the dashboard once the consistency rule and profit objective are met.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "newsTrading": {
         "value": true,
@@ -5447,6 +6955,14 @@
             "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
             "quote": "We do not have any rules against or guidelines around trading news events.",
             "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+            "quote": "We do not have any rules against or guidelines around trading news events.",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-14",
             "captureFile": "content/data/challenges/_captures/tradeify-2026-10-14.json",
             "productSlug": "growth-evaluation"
@@ -5454,56 +6970,155 @@
         ]
       },
       "weekendHolding": {
-        "value": null,
-        "summary": null,
+        "value": false,
+        "summary": "not allowed",
         "byProduct": null,
-        "evidence": []
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
+            "quote": "Q: Can I hold positions over the weekend? A: No. All positions must be closed before Friday's market close (4:45 PM ET).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": "Product-specific: soft-breach $600 (25K) / $1,250 (50K) / $2,500 (100K) / $3,750 (150K) on Growth Evaluation; none during Select evaluation (Select Daily funded: $500 / $1,000 / $1,250 / $1,750); none (25K) / $1,250 (50K) / $2,500 (100K) / $3,000 (150K) on Lightning Funded",
+        "byProduct": {
+          "growth-evaluation": {
+            "25000": 600,
+            "50000": 1250,
+            "100000": 2500,
+            "150000": 3750
+          },
+          "select-flex": null,
+          "select-daily": null,
+          "lightning-funded": {
+            "50000": 1250,
+            "100000": 2500,
+            "150000": 3000
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+            "quote": "GROWTH™ evaluation DOES have a Daily Loss Limit (soft breach): $600 (25K), $1,250 (50K), $2,500 (100K), $3,750 (150K).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+            "quote": "SELECT Evaluation does NOT have a daily loss limit during the evaluation phase.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+            "quote": "$25k None None $1,000 ... $50k None $1,250 $2,000 ... $100k $2,500 $4,000 ... $150k $3,000 $5,250",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+            "quote": "Daily Loss Limit: Yes ($500 / $1,000 / $1,250 / $1,750)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": "Product-specific: $1,000 (25K) / $2,000 (50K) / $3,500 (100K) / $5,000 (150K) on Growth Evaluation; $1,000 (25K) / $2,000 (50K) / $3,000 (100K) / $4,500 (150K) on Select Evaluation → Flex, Select Evaluation → Daily; $1,000 (25K) / $2,000 (50K) / $4,000 (100K) / $5,250 (150K) on Lightning Funded",
+        "byProduct": {
+          "growth-evaluation": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3500,
+            "150000": 5000
+          },
+          "select-flex": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "select-daily": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "lightning-funded": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 4000,
+            "150000": 5250
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+            "quote": "Account Size Profit Target Daily Loss Limit (Soft Breach) Trailing Max Drawdown ... $25k $1,500 $600 $1,000 ... $50k $3,000 $1,250 $2,000 ... $100k $6,000 $2,500 $3,500 ... $150k $9,000 $3,750 $5,000",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+            "quote": "25K ... Maximum Drawdown: $1,000 (End of Day) ... 50K ... $2,000 ... 100K ... $3,000 ... 150K ... $4,500 (End of Day)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+            "quote": "$25k None None $1,000 ... $50k None $1,250 $2,000 ... $100k $2,500 $4,000 ... $150k $3,000 $5,250",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "platforms": {
         "value": [
           "Tradovate",
           "NinjaTrader",
-          "Rithmic",
+          "TradingView",
           "Tradesea",
+          "Quantower",
+          "Sierra Chart",
+          "R|Trader",
           "WealthCharts"
         ],
-        "summary": "Tradovate, NinjaTrader, Rithmic, Tradesea, WealthCharts (not confirmed on the official page read: TradingView, Quantower, Sierra Chart, R|Trader)",
+        "summary": "Tradovate, NinjaTrader, TradingView, Tradesea, Quantower, Sierra Chart, R|Trader, WealthCharts",
         "byProduct": null,
         "evidence": [
           {
-            "sourceUrl": "https://tradeify.co/",
-            "quote": "youts • Flexible funded rules Lightning Instant Instant funding • 5 day payouts Tradovate WealthCharts Rithmic / Tradesea Thank you! Your submission has been received! O",
+            "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+            "quote": "At checkout, you select one of three brokers: Tradovate, Rithmic, or WealthCharts. ... Tradovate gives access to NinjaTrader and TradingView. Rithmic gives access to Tradesea, Quantower, Sierra Chart, and R|Trader. WealthCharts is its own broker and platform",
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://tradeify.co/",
-            "quote": "ge LLC d/b/a Slay Markets is a CFTC-registered introducing broker guaranteed by NinjaTrader Clearing, LLC and an NFA Member. Futures trading involves substantial risk and",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://tradeify.co/",
-            "quote": "rules Lightning Instant Instant funding • 5 day payouts Tradovate WealthCharts Rithmic / Tradesea Thank you! Your submission has been received! Oops! Something went w",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://tradeify.co/",
-            "quote": "htning Instant Instant funding • 5 day payouts Tradovate WealthCharts Rithmic / Tradesea Thank you! Your submission has been received! Oops! Something went wrong while",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
           }
         ]
-      }
+      },
+      "lossLimitUnit": "usd",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   }
 ]
