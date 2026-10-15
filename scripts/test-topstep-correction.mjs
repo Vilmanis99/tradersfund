@@ -51,7 +51,7 @@ for (const product of refreshed.products) {
   assert(product.fieldEvidence.consistencyRulePct.quote.includes('55%'))
 }
 const firm = getAllFirms().find(firm => firm.name === 'Topstep')
-assert.deepEqual(firm.platforms, ['TopstepX'])
+assert.deepEqual(firm.platforms, ['TopstepX', 'Quantower'])
 assert.equal(firm.minTradingDays, null)
 assert.equal(firm.lastUpdated, '2026-07-27', 'Narrow capture does not refresh all aggregate metadata')
 assert.equal(firm.trustpilotCapturedAt, '2026-10-15')
