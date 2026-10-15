@@ -230,7 +230,7 @@ type: "post"
 
 <p>Instant Funding Standard makes the first payout eligible after 14 days and subsequent payouts every 14 days. Instant Funding Lite requires 5 trading days and 10 total days before its first payout, while Lightning makes the first payout eligible after 7 days and then every 14 days; Lite’s 10-day cycle remains blank only because the current enum has no 10-day value.</p>
 
-<p>Trustpilot showed 4.3/5 from 6,120 reviews when the aggregate record was captured on 2026-07-27. That is community context, not proof that a particular Indian account, withdrawal rail, or strategy will pass compliance; Traders Fund Hub therefore does not award FXIFY a verified-payout badge.</p>
+<p>Trustpilot showed 4.3/5 from 6,442 reviews on 2026-10-15. That is community context, not proof that a particular Indian account, withdrawal rail, or strategy will pass compliance; Traders Fund Hub therefore does not award FXIFY a verified-payout badge.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
@@ -265,7 +265,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>Is FXIFY legit in 2026?</strong></h3>
-<p>FXIFY is an operating firm founded in 2022, but “legit” is not a payout guarantee. Its 4.3/5 Trustpilot aggregate from 6,120 reviews was captured on 2026-07-27, while Traders Fund Hub’s stricter verified-payout badge remains false.</p>
+<p>FXIFY is an operating firm founded in 2022, but “legit” is not a payout guarantee. Its 4.3/5 Trustpilot aggregate from 6,442 reviews was checked on 2026-10-15, while Traders Fund Hub’s stricter verified-payout badge remains false.</p>
 
 <h3 class="wp-block-heading"><strong>Which FXIFY product is cheapest to break even on?</strong></h3>
 <p>Among products with a verified 80% base split, the $39 Three Phase 5K tier has the lowest generated break-even profit at $49. Instant Lite starts lower at $19, but its base split is not published, so an exact break-even figure would be invented.</p>

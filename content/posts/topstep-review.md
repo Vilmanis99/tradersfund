@@ -27,7 +27,7 @@ type: "post"
     <li>The Combine's best-day target is 55%, rechecked on 2026-10-06; the published minimum-day descriptions conflict. We leave the minimum unverified, not zero.</li>
     <li>90/10 split, on-demand payouts, $125 minimum, 50% of account balance per request.</li>
     <li>Topstep reports that 16.8% of Combines initiated in 2025 were completed. This historical cohort is not a forecast of your results.</li>
-    <li>Trustpilot 3.6 from 14,478 reviews was captured on 2026-07-27; it has not been rechecked in this update.</li>
+    <li>Trustpilot showed 3.7 from 14,945 reviews on 2026-10-15.</li>
   </ul>
 </div>
 
@@ -46,7 +46,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On demand, $125 minimum, 50% of balance per request</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platform</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">TopstepX — confirmed in the official platform guide, checked 2026-09-08. Do not assume third-party execution compatibility.</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Instruments</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Futures only — CME, COMEX, NYMEX, CBOT</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Trustpilot</strong></td><td style="padding: 8px 12px; border-bottom: none;"><a href="https://www.trustpilot.com/review/topstep.com">3.6 from 14,478 reviews</a> (verified 2026-07-27)</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Trustpilot</strong></td><td style="padding: 8px 12px; border-bottom: none;"><a href="https://www.trustpilot.com/review/topstep.com">3.7 from 14,945 reviews</a> (verified 2026-10-15)</td></tr>
   </tbody>
 </table>
 
@@ -173,7 +173,7 @@ type: "post"
 
 <p><strong>For Russian-speaking traders abroad.</strong> Language is not an eligibility category. The eligibility policy checked on 2026-09-08 lists Russia as ineligible but allows citizens of ineligible countries to submit proof of permanent residency in an eligible country plus a local bank statement for Trust-team review. That is a possible review route, not guaranteed access. Residence or trading in an ineligible country remains disallowed. Confirm your citizenship, permanent residence and payment method before buying; Wise availability in the three listed countries does not itself make a person eligible.</p>
 
-<p><strong>Dated community signal.</strong> Our <a href="https://www.trustpilot.com/review/topstep.com">Trustpilot capture</a> recorded 3.6 from 14,478 reviews on 2026-07-27. It is older than the product check and has not been refreshed here. Read recent complaints and the firm's responses separately; a review score is neither verified payout evidence nor a guarantee that a request will be approved.</p>
+<p><strong>Dated community signal.</strong> Our <a href="https://www.trustpilot.com/review/topstep.com">Trustpilot capture</a> recorded 3.7 from 14,945 reviews on 2026-10-15 (breakdown below). Read recent complaints and the firm's responses separately; a review score is neither verified payout evidence nor a guarantee that a request will be approved.</p>
 
 <h3 class="wp-block-heading"><strong>Topstep on Trustpilot (checked 2026-10-15)</strong></h3>
 <p>On 15 October 2026 Topstep's <a href="https://www.trustpilot.com/review/topstep.com">Trustpilot profile</a> showed a 3.7 TrustScore from 14,945 reviews, up from the 3.6 from 14,478 in our 27 July capture. The split is polarised, not average:</p>
@@ -212,7 +212,7 @@ type: "post"
   <li><strong>The fee is a subscription that rebills until you pass or cancel.</strong> A $49 headline at $50K is $196 by month four, and there is no published figure for how many rebills the median passer takes.</li>
   <li><strong>The path choice is irreversible</strong> — "Paths cannot be changed after purchase" — and it is worth $103 at month one or $35 a month by month four at $50K, decided before you have traded.</li>
   <li><strong>The loss limit counts unrealised P&amp;L intraday.</strong> A $50K account showing $2,100 of open loss is breached without a single closed trade.</li>
-  <li><strong>The Trustpilot capture is dated 2026-07-27:</strong> 3.6 from 14,478 reviews, not a current ranking or verified payout record.</li>
+  <li><strong>Trustpilot is only 3.7 from 14,945 reviews</strong> (2026-10-15), with 19% 1-star; it is not a verified payout record.</li>
   <li><strong>Back2Funded costs $599–$829 before eligible discounts and tax.</strong> It is limited to eligible XFAs lost before a first payout, with at most two reactivations and a 30-calendar-day decision window.</li>
   <li><strong>Both the Combine and the funded account are simulated.</strong> Only the Live Funded Account trades real capital, and 0.71% of Express Funded traders reached it in 2025.</li>
   <li><strong>Futures only.</strong> "Topstep traders are prohibited from trading Stocks, Options, Forex, Spot Cryptocurrency, and CFDs."</li>

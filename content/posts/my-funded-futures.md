@@ -53,7 +53,7 @@ sourceUrls:
     <tr><td><strong>Activation fee</strong></td><td>$0 on the current plan pages</td></tr>
     <tr><td><strong>Asset class</strong></td><td>Futures; MFFU provides simulated evaluation and funded stages</td></tr>
     <tr><td><strong>Russia eligibility</strong></td><td>Restricted for new purchases according to the current country list</td></tr>
-    <tr><td><strong>Community snapshot</strong></td><td>Trustpilot 4.9/5 from 20,392 reviews captured 27 July 2026; no verified-payout badge</td></tr>
+    <tr><td><strong>Community snapshot</strong></td><td>Trustpilot 4.9/5 from 22,408 reviews checked 15 October 2026; no verified-payout badge</td></tr>
   </tbody>
 </table>
 
@@ -124,7 +124,7 @@ sourceUrls:
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 <p>Rapid and Rapid EOD advertise daily payout opportunities after their buffers are met. Builder describes a 48-hour cycle after 2 qualifying days, while Pro starts at 14 calendar days from the first Sim Funded trade plus its buffer; Flex legacy accounts use five qualifying winning days.</p>
 <p>MFFU's payout rails in the firm record are ACH, bank wire and crypto. Current pages specify $500 minimums for Rapid and Rapid EOD, $250/$500 minimums for Builder by size, and $1,000 for Pro; the exact payment rail, fees and KYC route depend on the account and country.</p>
-<p>The Trustpilot snapshot captured 4.9/5 from 20,392 reviews on 2026-07-27, and the firm record does not carry a verified-payout badge. That is community evidence, not proof that a Russian resident can purchase, pass or withdraw.</p>
+<p>The Trustpilot snapshot showed 4.9/5 from 22,408 reviews on 2026-10-15, and the firm record does not carry a verified-payout badge. That is community evidence, not proof that a Russian resident can purchase, pass or withdraw.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 <ul class="wp-block-list">
