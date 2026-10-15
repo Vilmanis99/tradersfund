@@ -318,10 +318,11 @@ export function websiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${SITE}/#website`,
     name: 'Traders Fund Hub',
     url: SITE,
-    inLanguage: 'en',
-    publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: SITE },
+    inLanguage: ['en', 'ru'],
+    publisher: { '@id': `${SITE}/#organization` },
   }
 }
 
