@@ -1,3 +1,4 @@
+import { firmSlug } from '@/lib/firmSlug'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import HeaderBrand from './HeaderBrand'
 import HeaderNav from './HeaderNav'
@@ -12,10 +13,7 @@ function computeFreshnessLabel(): string {
   const firms = getAllFirms()
   const challenges = getAllChallenges()
   const freshFirmCount = firms.filter(firm => {
-    const slug = firm.name.toLowerCase()
-      .replace(/&/g, 'and')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '')
+    const slug = firmSlug(firm.name.replace(/&/g, 'and'))
     const products = challenges.filter(challenge => challenge.firmSlug === slug)
     return products.length > 0 && products.every(challenge => isChallengeFresh(challenge))
   }).length

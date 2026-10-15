@@ -46,7 +46,6 @@
     }
   ],
   "unresolved": [
-    { "firmSlug": "apex-trader-funding", "sourceUrl": "https://apextraderfunding.com/", "notes": "Official site and help center returned HTTP 403; browser also blocked access. Keep the initials fallback until a real asset is verified." },
-    { "firmSlug": "the-funded-trader", "sourceUrl": "https://www.thefundedtraderprogram.com/", "notes": "Official site and dashboard returned HTTP 402; help center returned HTTP 403. Keep the initials fallback until a real asset is verified." }
+    { "firmSlug": "apex-trader-funding", "sourceUrl": "https://apextraderfunding.com/", "notes": "Official site and help center returned HTTP 403; browser also blocked access. Keep the initials fallback until a real asset is verified." }
   ]
 }

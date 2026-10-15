@@ -1,3 +1,5 @@
+import { firmSlug } from './firmSlug.ts'
+export { firmSlug }
 import type { Firm } from './firms.ts'
 import { getAllFirms, getAllChallenges, getChallengesByFirm, isChallengeFresh } from './firms.ts'
 
@@ -6,9 +8,6 @@ export const COMPARISON_EDITORIAL_DATE = '2026-09-08'
 /* ── Slug helpers ─────────────────────────────────────────────── */
 
 /** Same slug rule as `/go/[firm]` and `FirmCtaCard`. */
-export function firmSlug(name: string): string {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-}
 
 /** Always-alphabetical canonical pair slug. */
 export function canonicalMatchupSlug(slugA: string, slugB: string): string {

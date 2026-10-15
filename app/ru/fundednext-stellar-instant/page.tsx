@@ -529,7 +529,7 @@ export default function RussianFundedNextInstantPage() {
               {brightFunded?.affiliateUrl ? (
                 <article className="ru-card" data-russian-fundednext-instant-alternative="bright-funded">
                   <h3>BrightFunded: альтернатива с челленджем</h3>
-                  <p>У Bright Funded есть оценочный этап: это другой формат, а не аналог счёта Instant. В обзоре приведены цены в евро и отдельные условия программ. Правила просадки, сброса и выплат FundedNext к Bright Funded не относятся.</p>
+                  <p>У BrightFunded есть оценочный этап: это другой формат, а не аналог счёта Instant. В обзоре приведены цены в евро и отдельные условия программ. Правила просадки, сброса и выплат FundedNext к BrightFunded не относятся.</p>
                   <div className="ru-actions">
                     <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
                     <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-fundednext-instant-alternative-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded</RuGoLink>
@@ -537,7 +537,7 @@ export default function RussianFundedNextInstantPage() {
                 </article>
               ) : null}
             </div>
-            <p className="ru-source-line">FundedNext и Bright Funded — партнёры сайта: покупка по отмеченным ссылкам может принести нам комиссию. Это не делает их условия одинаковыми и не подтверждает доступность по стране.</p>
+            <p className="ru-source-line">FundedNext и BrightFunded — партнёры сайта: покупка по отмеченным ссылкам может принести нам комиссию. Это не делает их условия одинаковыми и не подтверждает доступность по стране.</p>
             <div className="ru-actions">
               <Link href={instantFinderHref} className="btn-outline">Сравнить программы без челленджа</Link>
               <Link href="/ru/prop-firmy-bez-chelendzha" className="btn-outline">Чем отличаются Instant и Zero</Link>

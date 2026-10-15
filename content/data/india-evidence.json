@@ -287,7 +287,7 @@
   },
   {
     "firmSlug": "bright-funded",
-    "firmName": "Bright Funded",
+    "firmName": "BrightFunded",
     "capturedAt": "2026-10-01",
     "restrictedJurisdictions": [
       "Cuba",
@@ -396,6 +396,24 @@
       "Ghana"
     ],
     "restrictionListComplete": true,
+    "productEligibility": {
+      "mode": "limited",
+      "includedProductSlugs": [
+        "one-phase",
+        "two-phase-classic",
+        "two-phase-standard",
+        "two-phase-pro",
+        "three-phase",
+        "instant-funding-standard",
+        "instant-funding-lite",
+        "lightning-challenge"
+      ],
+      "accountSizeCapsUsd": {},
+      "summary": "Scoped to the 8 FOREX products that this India screen was built on. The 2 CRYPTO products added 2026-10-14 are excluded until India checkout, KYC and payout for crypto accounts are separately reviewed.",
+      "sourceUrls": [
+        "https://fxify.com/faqs/all-faqs/crypto-accounts/which-accounts-can-i-trade-crypto-on/"
+      ]
+    },
     "payoutRails": [
       "rise"
     ],

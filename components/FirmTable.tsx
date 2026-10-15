@@ -1,4 +1,5 @@
 'use client'
+import { firmSlug } from '@/lib/firmSlug'
 import { useState, useMemo, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
@@ -21,8 +22,6 @@ const ALL = 'All'
 type PhaseFilter = DirectoryState['phase']
 type DrawdownFilter = DirectoryState['drawdown']
 
-const firmSlug = (name: string) =>
-  name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 const PHASE_OPTIONS = DIRECTORY_PHASES
 const DRAWDOWN_OPTIONS = DIRECTORY_DRAWDOWNS

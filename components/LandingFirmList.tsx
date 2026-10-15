@@ -1,11 +1,10 @@
+import { firmSlug } from '@/lib/firmSlug'
 import Link from 'next/link'
 import FirmLogo from './FirmLogo'
 import { Star, Handshake, Tag, ExternalLink, ArrowRight, ShieldCheck } from 'lucide-react'
 import type { LandingFirm } from '@/lib/landings'
 import TrustpilotRating from '@/components/TrustpilotRating'
 
-const firmSlug = (name: string) =>
-  name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 interface Props {
   ranked: LandingFirm[]
