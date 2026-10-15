@@ -206,8 +206,9 @@ export default function RussianBestPropFirmsPage() {
       return { firm, slug, products }
     })
     .filter(item => item.products.length > 0 && item.products.every(product => isChallengeFresh(product)))
-    // Firms open to Russia (russiaStatus available, e.g. BrightFunded) first, then by score.
-    .sort((a, b) => Number(russiaStatusFor(b.slug) === 'available') - Number(russiaStatusFor(a.slug) === 'available')
+    // BrightFunded (universal firm) first, then other firms open to Russia, then by score.
+    .sort((a, b) => Number(b.slug === 'bright-funded') - Number(a.slug === 'bright-funded')
+      || Number(russiaStatusFor(b.slug) === 'available') - Number(russiaStatusFor(a.slug) === 'available')
       || b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
 
   const fundingPipsAccessCurrent = isChallengeFresh({ sourceCapturedAt: fundingPipsAccessEvidence.sourceCapturedAt })
