@@ -78,6 +78,11 @@ export interface Firm {
 
   // ── Availability ──
   countriesRestricted?: string[]
+  /** Official source for countriesRestricted. */
+  countriesRestrictedSourceUrl?: string | null
+  /** Official source + verbatim quote backing russiaStatus. */
+  russiaSourceUrl?: string | null
+  russiaSourceQuote?: string | null
 
   // ── Corporate identity (optional; null = not confirmed from an official source) ──
   /** Contracting/operating legal entity as named on the firm's own site. */
