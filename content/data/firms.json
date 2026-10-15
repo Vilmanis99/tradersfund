@@ -11,10 +11,10 @@
     ],
     "maxAllocation": "$2,000,000",
     "platforms": [
-      "MT4",
       "MT5",
-      "cTrader",
-      "DXTrade"
+      "MT4",
+      "TradingView",
+      "cTrader"
     ],
     "score": 9.2,
     "logo": "/images/wp/2025/04/FTMO-icon-light.png",
@@ -354,6 +354,14 @@
           {
             "sourceUrl": "https://ftmo.com/en/trading-platforms/",
             "quote": "FTMO MetaTrader 5 ... FTMO MetaTrader 4 ... TradingView ... FTMO cTrader",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/trading-platforms/",
+            "quote": "Execute your FTMO simulated trades directly on TradingView via the OANDA Broker Profile.",
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
@@ -2287,8 +2295,7 @@
     ],
     "maxAllocation": "$300,000",
     "platforms": [
-      "MT5",
-      "OFP Platform"
+      "OFP Platform (Sirix)"
     ],
     "score": 7.5,
     "logo": "/images/wp/2025/06/OFP-Funding-Logo-No-BG-e1748882625405.png",
@@ -2594,6 +2601,14 @@
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+            "quote": "Web Platform (Mobile & PC) Access directly from your browser: https://my.ofpfunding.net/",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -2613,8 +2628,7 @@
     "maxAllocation": "$1,000,000",
     "platforms": [
       "MT5",
-      "cTrader",
-      "Match-Trade"
+      "Match-Trader"
     ],
     "score": 7.6,
     "logo": "/images/wp/2025/06/Maven-prop-firm-logo-white-e1749993312719.png",
@@ -3429,8 +3443,8 @@
     ],
     "maxAllocation": "$200,000",
     "platforms": [
-      "MT5",
       "Match-Trader",
+      "MT5",
       "Bybit"
     ],
     "score": 7.4,
@@ -3748,7 +3762,8 @@
     ],
     "maxAllocation": "$500,000",
     "platforms": [
-      "TopstepX"
+      "TopstepX",
+      "Quantower"
     ],
     "platformEvidence": {
       "sourceUrl": "https://help.topstep.com/en/articles/14434175-topstepx",
@@ -3816,12 +3831,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": 3.6,
-    "trustpilotCount": 14478,
+    "trustpilotScore": 3.7,
+    "trustpilotCount": 14945,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-10-14",
     "trustpilotUrl": "https://www.trustpilot.com/review/topstep.com",
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "rules": {
@@ -4042,8 +4057,13 @@
     "maxAllocation": "$600,000",
     "platforms": [
       "NinjaTrader",
+      "Hyperprop",
       "Tradovate",
-      "TradingView"
+      "TradingView",
+      "Quantower",
+      "Volumetrica",
+      "DeepChart/DeepDom",
+      "ATAS"
     ],
     "score": 8.2,
     "logo": "/images/wp/2025/07/My-Funded-Futures-Logo-1.png",
@@ -4527,7 +4547,7 @@
     "maxAllocation": "$2,000,000",
     "platforms": [
       "MT5",
-      "cTrader"
+      "Match-Trader"
     ],
     "score": 7.9,
     "logo": "/images/firms/city-traders-imperium.png",
@@ -4864,6 +4884,14 @@
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/match-trader-platform/",
+            "quote": "Available everywhere we operate, including the USA, where MT5 accounts are not offered.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -4879,10 +4907,20 @@
     ],
     "maxAllocation": "$150,000",
     "platforms": [
-      "NinjaTrader",
       "TradingView",
+      "NinjaTrader",
       "Tradovate",
-      "Quantower"
+      "Bookmap",
+      "MultiCharts",
+      "MotiveWave",
+      "Trade Navigator",
+      "R|Trader",
+      "VolFix",
+      "ATAS",
+      "Investor R/T",
+      "Quantower",
+      "Finamark",
+      "Jigsaw Trader"
     ],
     "score": 8.3,
     "logo": "/images/firms/take-profit-trader.svg",
@@ -5150,10 +5188,22 @@
     ],
     "maxAllocation": "$150,000 per account",
     "platforms": [
-      "TradeDayX",
-      "Quantower",
+      "Tradovate",
       "NinjaTrader",
-      "Tradovate"
+      "TradingView",
+      "Jigsaw",
+      "R|Trader Pro",
+      "Quantower",
+      "ATAS",
+      "MotiveWave",
+      "Bookmap",
+      "Sierra Chart",
+      "EdgeProX",
+      "Finamark",
+      "VolFix",
+      "WealthCharts",
+      "MultiCharts",
+      "Overcharts"
     ],
     "score": 8.6,
     "logo": "/images/firms/tradeday.png",
@@ -5600,9 +5650,9 @@
       "NinjaTrader",
       "Tradovate",
       "TradingView",
-      "MotiveWave",
       "Quantower",
       "Tradesea",
+      "MotiveWave",
       "Sierra Chart",
       "Jigsaw",
       "Bookmap",
@@ -6070,7 +6120,6 @@
       "Tradovate",
       "NinjaTrader",
       "TradingView",
-      "Rithmic",
       "Tradesea",
       "Quantower",
       "Sierra Chart",

@@ -116,6 +116,8 @@ for (const firm of firms) {
   const hasUsd = rules.dailyLossUsd.summary || rules.maxLossUsd.summary
   rules.lossLimitUnit = rules.maxLossPct.summary || rules.dailyLossPct.summary ? (hasUsd ? 'mixed' : 'pct') : hasUsd ? 'usd' : null
   if (fresh && freshData[slug]) rules.freshReadFile = fresh.file
+  // Top-level firm.platforms is derived from the evidence-backed rules field so both places agree.
+  if (Array.isArray(rules.platforms.value) && rules.platforms.value.length) firm.platforms = [...rules.platforms.value]
   firm.rules = rules
 }
 fs.writeFileSync(firmsPath, JSON.stringify(firms, null, 2) + '\n')
