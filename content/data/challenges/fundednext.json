@@ -7,32 +7,32 @@
     "accountSizes": [
       {
         "sizeUsd": 6000,
-        "priceUsd": 49.99,
+        "priceUsd": 59.99,
         "refundable": true
       },
       {
         "sizeUsd": 15000,
-        "priceUsd": 109.99,
+        "priceUsd": 119.99,
         "refundable": true
       },
       {
         "sizeUsd": 25000,
-        "priceUsd": 189.99,
+        "priceUsd": 199.99,
         "refundable": true
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": 269.99,
+        "priceUsd": 299.99,
         "refundable": true
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": 529.99,
+        "priceUsd": 549.99,
         "refundable": true
       },
       {
         "sizeUsd": 200000,
-        "priceUsd": 1049.99,
+        "priceUsd": 1099.99,
         "refundable": true
       }
     ],
@@ -76,32 +76,32 @@
     "accountSizes": [
       {
         "sizeUsd": 6000,
-        "priceUsd": 55.99,
+        "priceUsd": 65.99,
         "refundable": true
       },
       {
         "sizeUsd": 15000,
-        "priceUsd": 119.99,
+        "priceUsd": 129.99,
         "refundable": true
       },
       {
         "sizeUsd": 25000,
-        "priceUsd": 199.99,
+        "priceUsd": 219.99,
         "refundable": true
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": 309.99,
+        "priceUsd": 329.99,
         "refundable": true
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": 549.99,
+        "priceUsd": 569.99,
         "refundable": true
       },
       {
         "sizeUsd": 200000,
-        "priceUsd": 1049.99,
+        "priceUsd": 1099.99,
         "refundable": true
       }
     ],
@@ -199,7 +199,7 @@
       "Standard global USD list prices; promotions and optional add-ons are excluded.",
       "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
-      "First reward after 10 days, then every 10 days (plan data 2026-10-15); fee refund at 3rd reward.",
+      "Global page (2026-10-15): 2 minimum trading days per phase on standard plans (the 90% on-demand option stays at 5), first reward after 10 days; subsequent cycle shown as both 10 days and bi-weekly, so payoutFrequency is null.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-10-15.json"
     ]
   },
