@@ -185,6 +185,10 @@ export interface Firm {
    * the suppression, never a blank.
    */
   trustpilotRatingSuppressed?: boolean
+  /** Trustpilot's banner text on a suppressed profile, quoted verbatim. When
+   *  suppressed, trustpilotCount is null: the hidden profile shows only a
+   *  partial count that may not be the full review total, so it is not stored. */
+  trustpilotSuppressedReason?: string
   /** ISO date the Trustpilot figures above were last verified. */
   trustpilotCapturedAt?: string
   verifiedPayoutBadge?: boolean

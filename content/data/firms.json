@@ -120,11 +120,11 @@
       "platform": null
     },
     "trustpilotScore": 4.8,
-    "trustpilotCount": 47019,
+    "trustpilotCount": 54501,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-09-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/ftmo.com",
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "legalEntity": "FTMO Evaluation Global s.r.o.",
     "headquarters": "Prague, Czech Republic",
@@ -439,11 +439,11 @@
       "platform": null
     },
     "trustpilotScore": 4.5,
-    "trustpilotCount": 74352,
+    "trustpilotCount": 81664,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-09-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/fundednext.com",
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "available",
     "legalEntity": "FundedNext Ltd",
     "headquarters": "Wan Chai, Hong Kong",
@@ -762,11 +762,11 @@
       "platform": null
     },
     "trustpilotScore": 4.5,
-    "trustpilotCount": 63734,
+    "trustpilotCount": 70514,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-09-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/fundingpips.com",
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "unclear",
     "legalEntity": "FundingPips Corp",
     "headquarters": "Dubai, United Arab Emirates",
@@ -1158,7 +1158,7 @@
     "lastUpdated": "2026-09-14",
     "trustpilotUrl": "https://www.trustpilot.com/review/e8markets.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "legalEntity": "E8 Funding LLC",
     "headquarters": "Dallas, Texas, United States",
@@ -1452,7 +1452,8 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
-    }
+    },
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines."
   },
   {
     "name": "Alpha Capital",
@@ -1520,12 +1521,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": 4.7,
-    "trustpilotCount": 21119,
+    "trustpilotScore": null,
+    "trustpilotCount": null,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-10-06",
     "trustpilotUrl": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "legalEntity": "Alpha Capital Group Limited",
     "headquarters": "Harpenden, England, United Kingdom",
@@ -1937,7 +1938,9 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
-    }
+    },
+    "trustpilotRatingSuppressed": true,
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines."
   },
   {
     "name": "BrightFunded",
@@ -1999,7 +2002,7 @@
     "lastUpdated": "2026-09-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/brightfunded.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-10-01",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "available",
     "legalEntity": "BrightFunded Ltd",
     "headquarters": "Suite 5, Place Creole Building, Rodney Bay, Gros-Islet, Saint Lucia",
@@ -2282,7 +2285,8 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
-    }
+    },
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines."
   },
   {
     "name": "OFP Funding",
@@ -2329,7 +2333,7 @@
     "lastUpdated": "2026-07-27",
     "trustpilotUrl": "https://www.trustpilot.com/review/ofpfunding.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "unverified",
     "affiliateStatus": "none",
     "rules": {
@@ -2614,7 +2618,8 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
-    }
+    },
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines."
   },
   {
     "name": "Maven",
@@ -2683,12 +2688,12 @@
       "platform": null
     },
     "trustpilotScore": null,
-    "trustpilotCount": 5151,
+    "trustpilotCount": null,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-08-11",
     "trustpilotUrl": "https://www.trustpilot.com/review/maventrading.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "discountCode": "OMO",
@@ -3026,7 +3031,8 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
-    }
+    },
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines."
   },
   {
     "name": "FXIFY",
@@ -3109,11 +3115,11 @@
       "platform": null
     },
     "trustpilotScore": 4.3,
-    "trustpilotCount": 6120,
+    "trustpilotCount": 6442,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-10-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/fxify.com",
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "legalEntity": null,
     "headquarters": null,
@@ -3474,12 +3480,12 @@
       "platform": null
     },
     "trustpilotScore": null,
-    "trustpilotCount": 1140,
+    "trustpilotCount": null,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-07-27",
     "trustpilotUrl": "https://www.trustpilot.com/review/cryptofundtrader.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "available",
     "affiliateStatus": "none",
     "rules": {
@@ -3752,7 +3758,8 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
-    }
+    },
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines."
   },
   {
     "name": "Topstep",
@@ -4184,11 +4191,11 @@
       "platform": null
     },
     "trustpilotScore": 4.9,
-    "trustpilotCount": 20392,
+    "trustpilotCount": 22408,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-10-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/myfundedfutures.com",
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "regionalDiscountCode": "CLUB",
@@ -4582,11 +4589,11 @@
       "platform": null
     },
     "trustpilotScore": 4.2,
-    "trustpilotCount": 1633,
+    "trustpilotCount": 1631,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-10-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "legalEntity": "City Traders Imperium Limited",
     "headquarters": "San José, Costa Rica",
@@ -4949,12 +4956,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": 4.3,
-    "trustpilotCount": 10087,
+    "trustpilotScore": 4.4,
+    "trustpilotCount": 10902,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-07-27",
     "trustpilotUrl": "https://www.trustpilot.com/review/takeprofittrader.com",
-    "trustpilotCapturedAt": "2026-07-27",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "unverified",
     "affiliateStatus": "none",
     "regionalDiscountCode": "NOFEE40",
@@ -5313,12 +5320,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": 4.6,
-    "trustpilotCount": 1402,
+    "trustpilotScore": 4.5,
+    "trustpilotCount": 1447,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-10-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeday.com",
-    "trustpilotCapturedAt": "2026-07-28",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "regionalDiscountCode": "TDNEW",
@@ -5631,11 +5638,11 @@
       "platform": null
     },
     "trustpilotScore": 4.2,
-    "trustpilotCount": 20358,
+    "trustpilotCount": 21334,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-09-14",
     "trustpilotUrl": "https://www.trustpilot.com/review/apextraderfunding.com",
-    "trustpilotCapturedAt": "2026-07-28",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "affiliateStatus": "none"
   },
@@ -5769,12 +5776,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": 4.6,
-    "trustpilotCount": 4871,
+    "trustpilotScore": 4.4,
+    "trustpilotCount": 7032,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-08-11",
     "trustpilotUrl": "https://www.trustpilot.com/review/lucidtrading.com",
-    "trustpilotCapturedAt": "2026-07-28",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "rules": {
@@ -6212,12 +6219,12 @@
       "payouts": null,
       "platform": null
     },
-    "trustpilotScore": 4.6,
-    "trustpilotCount": 3734,
+    "trustpilotScore": 4.5,
+    "trustpilotCount": 5369,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-08-11",
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeify.co",
-    "trustpilotCapturedAt": "2026-07-28",
+    "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "rules": {
