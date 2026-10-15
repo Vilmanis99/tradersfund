@@ -1,3 +1,4 @@
+import { firmSlug } from '@/lib/firmSlug'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllFirms, getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
@@ -14,9 +15,9 @@ const SLUG = 'prop-firm-discount-codes'
 // Rebuild daily so an expired code drops within a day without a redeploy.
 export const revalidate = 86400
 
-const TITLE = 'Prop Firm Discount Codes & Offers (2026)'
+const TITLE = 'Prop Firm Discount Codes & Promo Codes (2026)'
 const DESCRIPTION =
-  'Current prop firm discount codes and conditional offers with first-party sources and checked dates. Stale offers automatically disappear after 30 days.'
+  'Verified prop firm discount codes, promo codes and coupons with first-party sources and checked dates. Expired or unchecked offers drop off after 30 days.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
 }
 
 function slugify(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  return firmSlug(name)
 }
 
 function marketsOf(assets: string[]): string[] {
@@ -145,10 +146,10 @@ export default function Page() {
             lineHeight: 1.1,
           }}
         >
-          Prop Firm Discount Codes & Offers
+          Prop Firm Discount Codes, Promo Codes & Coupons
         </h1>
         <p style={{ color: 'var(--text)', fontSize: '1.05rem', lineHeight: 1.6, maxWidth: '64ch', margin: '0 0 0.5rem' }}>
-          This page separates typeable checkout codes, automatic discounts, and coupons earned
+          Looking for a prop firm discount code, promo code or coupon? This page separates typeable checkout codes, automatic discounts, and coupons earned
           after a condition. Every active offer links to the firm&apos;s own terms and carries a checked
           date; after 30 days without a recheck, it disappears.
         </p>

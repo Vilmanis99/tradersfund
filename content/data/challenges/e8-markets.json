@@ -67,7 +67,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-14",
     "notes": [
       "This row captures the default configuration shown on the public configurator: 6% dynamic drawdown, 9% profit target, 4% daily drawdown and 80% payout. E8 One can be configured to 4-14% drawdown, a corresponding 6-21% target, and 80/90/100% payout; unrendered configuration prices are not inferred.",
       "Unresolved first-party preset conflict: the configurator and product page default are 6% max / 9% target / 4% daily, while the E8 One help article calls 4% max / 6% target / 3% daily the preset. The rendered checkout configuration is used here.",
@@ -76,7 +76,82 @@
       "Leverage: Forex 1:30, indices 1:15, metals 1:15 and crypto 1:1.",
       "The 2026-09-14 product page still renders the 6% dynamic / 4% daily / 9% target default against the help-centre article's 4% dynamic / 3% daily / 6% target preset; this unresolved first-party conflict is retained.",
       "The current Accepted Countries article now says India and Kenya may purchase E8 One up to $200,000; country eligibility follows verification documents.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-09-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json"
+    ]
+  },
+  {
+    "firmSlug": "e8-markets",
+    "productName": "E8 One (Perpetuals)",
+    "productSlug": "e8-one-perpetuals",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 48,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 88,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 188,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 288,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 488,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 798,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 1598,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 500000,
+        "priceUsd": 1998,
+        "refundable": false
+      }
+    ],
+    "profitTargets": {
+      "phase1": 9
+    },
+    "dailyLossPct": 4,
+    "maxLossPct": 6,
+    "drawdownType": "trailing",
+    "minTradingDays": 0,
+    "maxTradingDays": null,
+    "consistencyRulePct": 40,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 3,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": null,
+      "weekend": true,
+      "overnight": true,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "crypto",
+    "sourceUrl": "https://e8markets.com/e8-one",
+    "sourceCapturedAt": "2026-10-14",
+    "notes": [
+      "Captured 2026-10-14 from the official configurator's Perpetual market tab (embedded data key e8one_perp, platform TERMINAL = E8's Hyperliquid perpetuals terminal). Underlyings include crypto (BTC) and non-crypto perps (gold, oil, Nasdaq, Nvidia).",
+      "News, EA and copy-trading rules are left null: the published rule text is not stated separately for the Perpetual market. Crypto-specific leverage and payout rails for Perpetual accounts were not separately verified.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json"
     ]
   },
   {
@@ -87,42 +162,42 @@
     "accountSizes": [
       {
         "sizeUsd": 5000,
-        "priceUsd": 38,
+        "priceUsd": 32,
         "refundable": false
       },
       {
         "sizeUsd": 10000,
-        "priceUsd": 88,
+        "priceUsd": 68,
         "refundable": false
       },
       {
         "sizeUsd": 25000,
-        "priceUsd": 198,
+        "priceUsd": 148,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": 298,
+        "priceUsd": 228,
         "refundable": false
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": 568,
+        "priceUsd": 488,
         "refundable": false
       },
       {
         "sizeUsd": 200000,
-        "priceUsd": 1198,
+        "priceUsd": 998,
         "refundable": false
       },
       {
         "sizeUsd": 400000,
-        "priceUsd": 2398,
+        "priceUsd": 2098,
         "refundable": false
       },
       {
         "sizeUsd": 500000,
-        "priceUsd": 2998,
+        "priceUsd": 2598,
         "refundable": false
       }
     ],
@@ -146,10 +221,12 @@
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
-    "sourceUrl": "https://e8pro.e8markets.com/best-simfi-funded-program-e8pro",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceUrl": "https://e8markets.com/e8-pro",
+    "sourceCapturedAt": "2026-10-14",
     "notes": [
-      "Material first-party pricing conflict: the dedicated current E8PRO v2 page lists $38/$88/$198/$298/$568/$1,198/$2,398/$2,998 at 80% payout, while the help-centre base-price table still lists $32/$68/$148/$228/$488/$998/$2,098/$2,598. The dedicated E8PRO v2 page is used because it is the current product-specific purchase page and its checkout links carry the current E8PRO v2 configuration.",
+      "PRICE CHANGE 2026-10-14: the official https://e8markets.com/e8-pro page now lists $32/$68/$148/$228/$488/$998/$2,098/$2,598 (previously $38/$88/$198/$298/$568/$1,198/$2,398/$2,998 on the e8pro.e8markets.com v2 page, which now returns HTTP 402). This matches the help-centre base-price table, resolving the prior pricing conflict.",
+      "Live rules on e8-pro: '8% Static drawdown Calculated from the initial balance. Never trails.', 'Daily Drawdown 2.5% of initial balance', '2% Daily profit cap', 'Consistency rule There is none', 'Payout frequency Request daily with 1% minimum profit', 'Payout Choose 80% or 100% at purchase'.",
+      "Active October promo shown site-wide: 'E8 Winter ARC · until 25th OCT Up to 50% off, in October Use code: E8ARC'; product cards show 30% OFF with code E8. Not projected into priceUsd.",
       "Current product-specific pages describe E8 Pro as fixed: 8% target, 8% static drawdown, 2.5% daily drawdown, 80% default payout, no consistency rule. The older custom-account article still lists 6/8/10% drawdown and 80/90/100% payout options; this conflict is not reconciled and no unrendered variant price is inferred.",
       "A 2% daily profit cap applies in both Challenge and Performance; excess profit is not counted toward target or payout performance.",
       "Daily payout exactness: one request per day after rollover, with at least 1% of initial balance in profit. payoutFirstDays remains null because E8 publishes no first-wait day count.",
@@ -158,7 +235,82 @@
       "Leverage: Forex 1:30, crypto 1:2 on the current E8PRO v2 page, indices 1:15, metals 1:15 and energies 1:15.",
       "The current E8 Pro help article is dated July 30, 2026 and retains the fixed 8% target, 8% static drawdown, 2.5% daily drawdown, 2% daily profit cap and no consistency rule; its base-price table still conflicts with the product-specific E8PRO v2 prices used here.",
       "The current Accepted Countries article now says India and Kenya may purchase E8 Pro in all listed sizes; country eligibility follows verification documents.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-09-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json"
+    ]
+  },
+  {
+    "firmSlug": "e8-markets",
+    "productName": "E8 Pro (Perpetuals)",
+    "productSlug": "e8-pro-perpetuals",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 32,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 68,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 148,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 228,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 488,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 998,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 2098,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 500000,
+        "priceUsd": 2598,
+        "refundable": false
+      }
+    ],
+    "profitTargets": {
+      "phase1": 8
+    },
+    "dailyLossPct": 2.5,
+    "maxLossPct": 8,
+    "drawdownType": "static",
+    "minTradingDays": 0,
+    "maxTradingDays": null,
+    "consistencyRulePct": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": null,
+    "payoutFrequency": "on-demand",
+    "rules": {
+      "news": null,
+      "weekend": true,
+      "overnight": true,
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "crypto",
+    "sourceUrl": "https://e8markets.com/e8-pro",
+    "sourceCapturedAt": "2026-10-14",
+    "notes": [
+      "Captured 2026-10-14 from the official configurator's Perpetual market tab (embedded data key e8pro_v2_perp, platform TERMINAL = E8's Hyperliquid perpetuals terminal). Underlyings include crypto (BTC) and non-crypto perps (gold, oil, Nasdaq, Nvidia).",
+      "News, EA and copy-trading rules are left null: the published rule text is not stated separately for the Perpetual market. Crypto-specific leverage and payout rails for Perpetual accounts were not separately verified.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json"
     ]
   },
   {
@@ -213,7 +365,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://e8markets.com/e8-signature",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-14",
     "notes": [
       "The current E8 Signature product page and custom-account table show undiscounted one-time prices of $120/$160/$280/$450 for $25K/$50K/$100K/$150K; displayed code prices are promotional and are not stored as list prices.",
       "Tier-specific EOD drawdown is now represented as maxLossUsd: $1,000 on $25K, $2,000 on $50K, $3,000 on $100K and $4,500 on $150K. A single maxLossPct would be false because those equal 4%, 4%, 3% and 3%.",
@@ -224,7 +376,7 @@
       "Leverage: Forex 1:30, indices 1:15 and metals 1:15.",
       "The current E8 Signature product page and updated custom-account table show undiscounted base prices of $120/$160/$280/$450 for $25K/$50K/$100K/$150K; the displayed 25% code prices are promotional and are not stored as list prices.",
       "The current Accepted Countries article now says India and Kenya may purchase E8 Signature in all listed sizes; country eligibility follows verification documents.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-09-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json"
     ]
   }
 ]

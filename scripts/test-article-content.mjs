@@ -85,7 +85,7 @@ try {
     assert.equal((html.match(/class="article-table-scroll"/g) ?? []).length, tables(post.content).length)
     if (slug === 'fundednext-review') assert(html.includes('/go/fundednext?from=review-cta') && html.includes('sponsored nofollow noopener'), 'partner attribution and disclosure remain in the actual review')
   }
-  const staleReviewHtml = renderToStaticMarkup(await BlogPage({ params: Promise.resolve({ slug: 'the-funded-trader-review' }) }))
+  const staleReviewHtml = renderToStaticMarkup(await BlogPage({ params: Promise.resolve({ slug: 'ofp-funding-review' }) }))
   assert(staleReviewHtml.includes('data-review-source-status="recapture-required"'), 'stale firm review shows a source recheck warning')
   const freshReviewHtml = renderToStaticMarkup(await BlogPage({ params: Promise.resolve({ slug: 'fundednext-review' }) }))
   assert(!freshReviewHtml.includes('data-review-source-status="recapture-required"'), 'fresh partner review does not show a stale warning')

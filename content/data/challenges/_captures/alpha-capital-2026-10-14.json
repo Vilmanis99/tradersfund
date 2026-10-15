@@ -1,0 +1,1832 @@
+{
+  "firmSlug": "alpha-capital",
+  "officialDomain": "https://alphacapitalgroup.uk",
+  "capturedAt": "2026-10-14",
+  "reviewStatus": "ready",
+  "releaseBlockers": [],
+  "pagesRead": [
+    "https://alphacapitalgroup.uk/",
+    "https://alphacapitalgroup.uk/product",
+    "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+    "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+    "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
+    "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+    "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+    "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+    "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+    "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+    "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+    "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+    "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+    "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+    "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+    "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+    "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
+    "https://help.alphacapitalgroup.uk/en/articles/6934210-what-are-the-daily-risk-limits-and-how-do-they-work"
+  ],
+  "accessNotes": "RECAPTURE 2026-10-14: Re-fetched all first-party pages in pagesRead. 228 of 254 stored evidence quotes found verbatim on their cited live page; the remaining 26 are multi-column pricing-table cells (Alpha Pro bi-weekly/on-demand) whose values were instead confirmed against the live https://alphacapitalgroup.uk/product embedded product data (all Alpha One/Pro/Swing/Direct sizes and prices identical). Alpha Three is still absent from /product and its prices remain sourced only from the 2026 cost blog post (quotes still live); availability stays unverified. No price, rule or payout changes found. | Prior capture alpha-capital-2026-10-06.json notes carried forward where not superseded: First-party published-price and rule recapture. Ten tracked configurations separate Pro targets and payout schedules. The live read-only selector confirmed One 10% and Pro 6%/8% on-demand fee ladders, Pro 6% bi-weekly 5K at $30, and Direct fees; no personal information, agreement acceptance, order or payment was submitted. One 10% Bi-Weekly was disabled, agreeing with its on-demand help page. Three retains September 14 due to unresolved purchase availability. Source conflicts are recorded explicitly, rather than averaged or treated as confirmed availability.",
+  "sourceConflicts": [
+    {
+      "id": "alpha-one-variant-price-mapping",
+      "productSlugs": [
+        "alpha-one"
+      ],
+      "sources": [
+        {
+          "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+          "quote": "those variants are not currently offered at checkout"
+        },
+        {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "Alpha One 6% | Alpha One 10% | Alpha One 12%",
+          "observation": "All three were selectable as account types in the live DOM; only One 10% is captured as a purchase configuration."
+        }
+      ]
+    },
+    {
+      "id": "alpha-three-purchase-availability-conflict",
+      "productSlugs": [
+        "alpha-three"
+      ],
+      "sources": [
+        {
+          "sourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+          "quote": "Alpha Three 10K | $10,000 | $67"
+        },
+        {
+          "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
+          "quote": "Alpha Three is not currently offered for new purchases at checkout."
+        },
+        {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "observation": "Live step choices were Direct, 1 Step and 2 Step; no Three/3 Step choice was present."
+        }
+      ]
+    },
+    {
+      "id": "alpha-capital-25k-pro-price-conflict",
+      "productSlugs": [
+        "alpha-pro-6",
+        "alpha-pro-6-on-demand",
+        "alpha-pro-8-bi-weekly",
+        "alpha-pro-8-on-demand",
+        "alpha-pro-10-bi-weekly",
+        "alpha-pro-10-on-demand"
+      ],
+      "sources": [
+        {
+          "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+          "quote": "$25,000 | $127 / $117 | $197 / $177 | $197 / $177"
+        },
+        {
+          "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
+          "quote": "Alpha Pro 25K (2-step): $197"
+        }
+      ],
+      "resolution": "The generic old quote can match Pro 8%/10% bi-weekly, but not Pro 6%. Keep a watch on the unqualified quote; exact target and schedule must be selected."
+    }
+  ],
+  "globalEvidence": {
+    "maxAllocationUsd": {
+      "value": 400000,
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+      "quote": "$400,000"
+    },
+    "founded": {
+      "value": "2021",
+      "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
+      "quote": "Founded in November 2021"
+    }
+  },
+  "products": [
+    {
+      "firmSlug": "alpha-capital",
+      "productName": "Alpha One (10%, on-demand)",
+      "productSlug": "alpha-one",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 47,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$5,000 | $47"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 87,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$10,000 | $87"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 187,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$25,000 | $187"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 277,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$50,000 | $277"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 477,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$100,000 | $477"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 947,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$200,000 | $947"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 6,
+      "drawdownType": "trailing",
+      "minTradingDays": 1,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+      "sourceCapturedAt": "2026-10-14",
+      "notes": [
+        "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
+        "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
+        "News: follow the product-specific help rule. Pro/One/Three/Direct restrict execution in the five minutes before and after relevant high-impact news; Swing requires trades opened in its two-minute window to last longer than two minutes.",
+        "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
+        "On-demand evaluation routes require 2% gross profit and a 40% best-day share; Direct instead requires a retained 3% buffer plus 1% additional profit and a 15% best-day share. No fixed first-payout day is verified. https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+        "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
+        "The live selector showed One 6% and 12% choices, whereas the September 21 pricing article says they are unavailable for new purchases. This record covers only the explicitly selected 10% variant. A source-conflict watch records the other variants; no availability conclusion is inferred.",
+        "The live One 10% checkout showed On Demand and a disabled Bi-Weekly control. The 6% trailing limit follows maximum account balance and locks at the initial balance after 6% growth; it does not trail equity forever."
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+          "quote": "1-step evaluation"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+          "quote": "4%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+          "quote": "6%"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+          "quote": "high-water mark"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "80% standard"
+        },
+        "activationFeeUsd": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "no activation fees"
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+          "quote": "on-demand"
+        },
+        "rules.ea": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+          "quote": "risk management and trade assistance tools"
+        },
+        "rules.copyTrading": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+          "quote": "proof of ownership"
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+          "quote": "10%"
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+          "quote": "1"
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+          "quote": "40%"
+        }
+      }
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "productName": "Alpha Pro (6%, bi-weekly)",
+      "productSlug": "alpha-pro-6",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 30,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$5,000 | $30"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 55,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$10,000 | $55"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 127,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$25,000 | $127"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 227,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$50,000 | $227"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 427,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$100,000 | $427"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 847,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$200,000 | $847"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": 6
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+      "sourceCapturedAt": "2026-10-14",
+      "notes": [
+        "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
+        "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
+        "News: follow the product-specific help rule. Pro/One/Three/Direct restrict execution in the five minutes before and after relevant high-impact news; Swing requires trades opened in its two-minute window to last longer than two minutes.",
+        "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
+        "Bi-weekly: first request after 14 calendar days and five qualifying trading days, with $100 gross minimum. The 40% best-day rule is documented for on-demand; bi-weekly consistency remains unverified, not an absence claim. https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+        "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim."
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "2-step evaluation"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "3%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "6%"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "static"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "80% standard"
+        },
+        "activationFeeUsd": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "no activation fees"
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+          "quote": "every 14 days"
+        },
+        "rules.ea": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+          "quote": "risk management and trade assistance tools"
+        },
+        "rules.copyTrading": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+          "quote": "proof of ownership"
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "6%"
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "6%"
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "3"
+        },
+        "payoutFirstDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+          "quote": "starting 14 days after your initial trade"
+        }
+      }
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "productName": "Alpha Pro (6%, on-demand)",
+      "productSlug": "alpha-pro-6-on-demand",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 27,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$5,000 | $27"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 47,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$10,000 | $47"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 117,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$25,000 | $117"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 217,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$50,000 | $217"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 397,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$100,000 | $397"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 797,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$200,000 | $797"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6,
+        "phase2": 6
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+      "sourceCapturedAt": "2026-10-14",
+      "notes": [
+        "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
+        "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
+        "News: follow the product-specific help rule. Pro/One/Three/Direct restrict execution in the five minutes before and after relevant high-impact news; Swing requires trades opened in its two-minute window to last longer than two minutes.",
+        "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
+        "On-demand evaluation routes require 2% gross profit and a 40% best-day share; Direct instead requires a retained 3% buffer plus 1% additional profit and a 15% best-day share. No fixed first-payout day is verified. https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+        "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim."
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "2-step evaluation"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "3%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "6%"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "static"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "80% standard"
+        },
+        "activationFeeUsd": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "no activation fees"
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+          "quote": "on-demand"
+        },
+        "rules.ea": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+          "quote": "risk management and trade assistance tools"
+        },
+        "rules.copyTrading": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+          "quote": "proof of ownership"
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "6%"
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "6%"
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+          "quote": "3"
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+          "quote": "40%"
+        }
+      }
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "productName": "Alpha Pro (8%, bi-weekly)",
+      "productSlug": "alpha-pro-8-bi-weekly",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 40,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$5,000 | $40"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 67,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$10,000 | $67"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 197,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$25,000 | $197"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 327,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$50,000 | $327"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 577,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$100,000 | $577"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1097,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$200,000 | $1,097"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 8,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+      "sourceCapturedAt": "2026-10-14",
+      "notes": [
+        "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
+        "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
+        "News: follow the product-specific help rule. Pro/One/Three/Direct restrict execution in the five minutes before and after relevant high-impact news; Swing requires trades opened in its two-minute window to last longer than two minutes.",
+        "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
+        "Bi-weekly: first request after 14 calendar days and five qualifying trading days, with $100 gross minimum. The 40% best-day rule is documented for on-demand; bi-weekly consistency remains unverified, not an absence claim. https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+        "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim."
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "2-step evaluation"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "4%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "8%"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "static"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "80% standard"
+        },
+        "activationFeeUsd": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "no activation fees"
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+          "quote": "every 14 days"
+        },
+        "rules.ea": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+          "quote": "risk management and trade assistance tools"
+        },
+        "rules.copyTrading": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+          "quote": "proof of ownership"
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "8%"
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "5%"
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "3"
+        },
+        "payoutFirstDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+          "quote": "starting 14 days after your initial trade"
+        }
+      }
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "productName": "Alpha Pro (8%, on-demand)",
+      "productSlug": "alpha-pro-8-on-demand",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 37,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$5,000 | $37"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 57,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$10,000 | $57"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 177,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$25,000 | $177"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 297,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$50,000 | $297"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 527,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$100,000 | $527"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 997,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$200,000 | $997"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 8,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+      "sourceCapturedAt": "2026-10-14",
+      "notes": [
+        "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
+        "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
+        "News: follow the product-specific help rule. Pro/One/Three/Direct restrict execution in the five minutes before and after relevant high-impact news; Swing requires trades opened in its two-minute window to last longer than two minutes.",
+        "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
+        "On-demand evaluation routes require 2% gross profit and a 40% best-day share; Direct instead requires a retained 3% buffer plus 1% additional profit and a 15% best-day share. No fixed first-payout day is verified. https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+        "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim."
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "2-step evaluation"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "4%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "8%"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "static"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "80% standard"
+        },
+        "activationFeeUsd": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "no activation fees"
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+          "quote": "on-demand"
+        },
+        "rules.ea": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+          "quote": "risk management and trade assistance tools"
+        },
+        "rules.copyTrading": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+          "quote": "proof of ownership"
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "8%"
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "5%"
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "3"
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+          "quote": "40%"
+        }
+      }
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "productName": "Alpha Pro (10%, bi-weekly)",
+      "productSlug": "alpha-pro-10-bi-weekly",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 37,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$5,000 | $37"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 87,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$10,000 | $87"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 197,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$25,000 | $197"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 297,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$50,000 | $297"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 497,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$100,000 | $497"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 997,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$200,000 | $997"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+      "sourceCapturedAt": "2026-10-14",
+      "notes": [
+        "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
+        "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
+        "News: follow the product-specific help rule. Pro/One/Three/Direct restrict execution in the five minutes before and after relevant high-impact news; Swing requires trades opened in its two-minute window to last longer than two minutes.",
+        "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
+        "Bi-weekly: first request after 14 calendar days and five qualifying trading days, with $100 gross minimum. The 40% best-day rule is documented for on-demand; bi-weekly consistency remains unverified, not an absence claim. https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+        "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim."
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "2-step evaluation"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "5%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "10%"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "static"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "80% standard"
+        },
+        "activationFeeUsd": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "no activation fees"
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+          "quote": "every 14 days"
+        },
+        "rules.ea": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+          "quote": "risk management and trade assistance tools"
+        },
+        "rules.copyTrading": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+          "quote": "proof of ownership"
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "10%"
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "5%"
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "3"
+        },
+        "payoutFirstDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+          "quote": "starting 14 days after your initial trade"
+        }
+      }
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "productName": "Alpha Pro (10%, on-demand)",
+      "productSlug": "alpha-pro-10-on-demand",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 33,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$5,000 | $33"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 77,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$10,000 | $77"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 177,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$25,000 | $177"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 267,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$50,000 | $267"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 447,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$100,000 | $447"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 897,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$200,000 | $897"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+      "sourceCapturedAt": "2026-10-14",
+      "notes": [
+        "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
+        "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
+        "News: follow the product-specific help rule. Pro/One/Three/Direct restrict execution in the five minutes before and after relevant high-impact news; Swing requires trades opened in its two-minute window to last longer than two minutes.",
+        "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
+        "On-demand evaluation routes require 2% gross profit and a 40% best-day share; Direct instead requires a retained 3% buffer plus 1% additional profit and a 15% best-day share. No fixed first-payout day is verified. https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+        "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim."
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "2-step evaluation"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "5%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "10%"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "static"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "80% standard"
+        },
+        "activationFeeUsd": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "no activation fees"
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+          "quote": "on-demand"
+        },
+        "rules.ea": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+          "quote": "risk management and trade assistance tools"
+        },
+        "rules.copyTrading": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+          "quote": "proof of ownership"
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "10%"
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "5%"
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+          "quote": "3"
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+          "quote": "40%"
+        }
+      }
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "productName": "Alpha Swing (on-demand)",
+      "productSlug": "alpha-swing",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 70,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$5,000 | $70"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 147,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$10,000 | $147"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 247,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$25,000 | $247"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 357,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$50,000 | $357"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 577,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$100,000 | $577"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1097,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$200,000 | $1,097"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+      "sourceCapturedAt": "2026-10-14",
+      "notes": [
+        "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
+        "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
+        "News: follow the product-specific help rule. Pro/One/Three/Direct restrict execution in the five minutes before and after relevant high-impact news; Swing requires trades opened in its two-minute window to last longer than two minutes.",
+        "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
+        "On-demand evaluation routes require 2% gross profit and a 40% best-day share; Direct instead requires a retained 3% buffer plus 1% additional profit and a 15% best-day share. No fixed first-payout day is verified. https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+        "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim."
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+          "quote": "2-step evaluation"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+          "quote": "5%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+          "quote": "10%"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+          "quote": "static"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "80% standard"
+        },
+        "activationFeeUsd": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "no activation fees"
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+          "quote": "on-demand"
+        },
+        "rules.ea": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+          "quote": "risk management and trade assistance tools"
+        },
+        "rules.copyTrading": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+          "quote": "proof of ownership"
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+          "quote": "10%"
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+          "quote": "5%"
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+          "quote": "3"
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+          "quote": "40%"
+        }
+      }
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "productName": "Alpha Three (availability unverified)",
+      "productSlug": "alpha-three",
+      "phases": 3,
+      "accountSizes": [
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 67,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+            "quote": "$10,000 | $67"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 157,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+            "quote": "$25,000 | $157"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 247,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+            "quote": "$50,000 | $247"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 397,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+            "quote": "$100,000 | $397"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 697,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+            "quote": "$200,000 | $697"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 4,
+        "phase3": 4
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 3,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+      "sourceCapturedAt": "2026-10-14",
+      "notes": [
+        "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026. Discounts, swap-free and optional 90% split add-ons are excluded.",
+        "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
+        "News: follow the product-specific help rule. Pro/One/Three/Direct restrict execution in the five minutes before and after relevant high-impact news; Swing requires trades opened in its two-minute window to last longer than two minutes.",
+        "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
+        "Bi-weekly: first request after 14 calendar days and five qualifying trading days, with $100 gross minimum. The 40% best-day rule is documented for on-demand; bi-weekly consistency remains unverified, not an absence claim. https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+        "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
+        "Mixed-scope correction: published prices and rules were read again on October 6, but current purchase availability remains unsettled. The cost article still lists fees, while the firm review calls Three unavailable and the live product selector has no three-step choice. Preserve the September 14 product date and prior archive; do not describe this as a current purchase offer."
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+      "pricingModel": "one-off",
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+          "quote": "3-step evaluation"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+          "quote": "4%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+          "quote": "6%"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+          "quote": "static"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "80% standard"
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+          "quote": "every 14 days"
+        },
+        "rules.ea": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+          "quote": "risk management and trade assistance tools"
+        },
+        "rules.copyTrading": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+          "quote": "proof of ownership"
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+          "quote": "8%"
+        },
+        "profitTargets.phase2": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+          "quote": "4%"
+        },
+        "profitTargets.phase3": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+          "quote": "4%"
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+          "quote": "3"
+        },
+        "payoutFirstDays": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+          "quote": "starting 14 days after your initial trade"
+        }
+      }
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "productName": "Alpha Direct",
+      "productSlug": "alpha-direct",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": 30,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$2,500 | $30"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 67,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$5,000 | $67"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 97,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$10,000 | $97"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 197,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$25,000 | $197"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 257,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$50,000 | $257"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 457,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$100,000 | $457"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 897,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+            "quote": "$200,000 | $897"
+          },
+          "refundEvidence": {
+            "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+            "quote": "All sales are final and no refund will be issued."
+          }
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": 3,
+      "maxLossPct": 5,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 15,
+      "profitSplitPct": 90,
+      "payoutFirstDays": null,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": false,
+        "overnight": null,
+        "ea": false,
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+      "sourceCapturedAt": "2026-10-14",
+      "notes": [
+        "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
+        "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
+        "News: follow the product-specific help rule. Pro/One/Three/Direct restrict execution in the five minutes before and after relevant high-impact news; Swing requires trades opened in its two-minute window to last longer than two minutes.",
+        "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
+        "On-demand evaluation routes require 2% gross profit and a 40% best-day share; Direct instead requires a retained 3% buffer plus 1% additional profit and a 15% best-day share. No fixed first-payout day is verified. https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+        "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
+        "Direct Max Risk Rule: 1% maximum open drawdown per asset. Losing positions on the same asset combine; profitable positions do not offset losses. Same-direction reopening within ten minutes combines losses. The retained 3% payout buffer is separate from fee-recovery profit."
+      ],
+      "priceSourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "pricingModel": "one-off",
+      "activationFeeUsd": 0,
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+          "quote": "no evaluation to pass"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+          "quote": "3%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+          "quote": "5%"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+          "quote": "high-water mark"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+          "quote": "90% profit split"
+        },
+        "activationFeeUsd": {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "quote": "no activation fees"
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+          "quote": "on-demand"
+        },
+        "rules.ea": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+          "quote": "Expert Advisors (EAs) are disabled"
+        },
+        "rules.copyTrading": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+          "quote": "proof of ownership"
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+          "quote": "15%"
+        }
+      }
+    }
+  ],
+  "editorialReview": {
+    "reviewedAt": "2026-10-06",
+    "result": "Reviewed the 26 material changes against the explicitly labelled published pricing tables and product-specific help. No existing priced tier is removed or nulled. Five new Pro configurations are separate records rather than overwriting a payout choice. Bi-weekly consistency is unverified rather than inheriting the on-demand 40% rule. Three keeps its older capture date and no no-activation inference. Current source conflicts must remain visible in the public ledger and review.",
+    "limitations": "This is a first-party published terms capture, not a completed checkout transaction, verified availability for every displayed variant, or independent payout evidence."
+  }
+}

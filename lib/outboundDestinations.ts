@@ -1,3 +1,4 @@
+import { firmSlug } from './firmSlug.ts'
 export type OutboundRelationship = 'affiliate' | 'official'
 
 export interface OutboundFirmConfig {
@@ -23,7 +24,7 @@ export const REVIEWED_OUTBOUND_DESTINATIONS: Record<
 }
 
 export function outboundSlug(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  return firmSlug(name)
 }
 
 export function buildOutboundRelationships(firms: readonly OutboundFirmConfig[]) {
