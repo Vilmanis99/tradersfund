@@ -131,7 +131,8 @@
     "country": "Czech Republic",
     "regulation": null,
     "corporateSourceUrl": "https://ftmo.com/en/imprint/",
-    "corporateCapturedAt": "2026-10-14"
+    "corporateCapturedAt": "2026-10-14",
+    "affiliateStatus": "none"
   },
   {
     "name": "FundedNext",
@@ -211,7 +212,12 @@
     "regulation": null,
     "corporateSourceUrl": "https://fundednext.com/company",
     "corporateCapturedAt": "2026-10-14",
-    "corporateNote": "Hong Kong office belongs to sister company FundedNext Limited (operates fundednext.com); the contracting entity FundedNext Ltd is registered in Comoros."
+    "corporateNote": "Hong Kong office belongs to sister company FundedNext Limited (operates fundednext.com); the contracting entity FundedNext Ltd is registered in Comoros.",
+    "affiliateStatus": "active",
+    "discountCode": "STRTN",
+    "discountCodeSourceUrl": "https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer",
+    "discountCodeCapturedAt": "2026-10-15",
+    "discountCodeNote": "Global: Stellar 2-Step 6K, 1-Step 6K, Lite 5K and Instant 2K only (up to 33% off); max 5 uses; no end date."
   },
   {
     "name": "FundingPips",
@@ -273,7 +279,12 @@
     "country": "Comoros",
     "regulation": "International Brokerage and Clearing House License, Ibc Regulation Act 2014 (License No. Bfx2024004); the firm states it does not conduct brokerage services",
     "corporateSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
-    "corporateCapturedAt": "2026-10-14"
+    "corporateCapturedAt": "2026-10-14",
+    "affiliateStatus": "active",
+    "discountCode": "HELLO",
+    "discountCodeSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+    "discountCodeCapturedAt": "2026-10-15",
+    "discountCodeNote": "20% off first purchase; excludes $100K accounts."
   },
   {
     "name": "E8 Markets",
@@ -367,7 +378,8 @@
     "country": "United States",
     "regulation": null,
     "corporateSourceUrl": "https://e8markets.com/",
-    "corporateCapturedAt": "2026-10-14"
+    "corporateCapturedAt": "2026-10-14",
+    "affiliateStatus": "none"
   },
   {
     "name": "Alpha Capital",
@@ -447,7 +459,8 @@
     "country": "United Kingdom",
     "regulation": null,
     "corporateSourceUrl": "https://alphacapitalgroup.uk/",
-    "corporateCapturedAt": "2026-10-14"
+    "corporateCapturedAt": "2026-10-14",
+    "affiliateStatus": "none"
   },
   {
     "name": "BrightFunded",
@@ -517,7 +530,13 @@
     "regulation": null,
     "corporateSourceUrl": "https://brightfunded.com/",
     "corporateCapturedAt": "2026-10-14",
-    "corporateNote": "Physical address of BrightFunded Ltd. Bright Global FZCO (Dubai Silicon Oasis, UAE) is a separate affiliate."
+    "corporateNote": "Physical address of BrightFunded Ltd. Bright Global FZCO (Dubai Silicon Oasis, UAE) is a separate affiliate.",
+    "affiliateStatus": "active",
+    "discountCode": "DOUBLE25",
+    "discountCodeSourceUrl": "https://brightfunded.com/",
+    "discountCodeCapturedAt": "2026-10-15",
+    "discountCodeNote": "Double Up Offer: 25% off + 15% Evaluation Profit Reward + free account upon payout.",
+    "discountPct": 25
   },
   {
     "name": "OFP Funding",
@@ -566,7 +585,8 @@
     "trustpilotUrl": "https://www.trustpilot.com/review/ofpfunding.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "unverified"
+    "russiaStatus": "unverified",
+    "affiliateStatus": "none"
   },
   {
     "name": "Maven",
@@ -642,7 +662,12 @@
     "trustpilotUrl": "https://www.trustpilot.com/review/maventrading.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "restricted"
+    "russiaStatus": "restricted",
+    "affiliateStatus": "none",
+    "discountCode": "OMO",
+    "discountCodeSourceUrl": "https://maventrading.com/",
+    "discountCodeCapturedAt": "2026-10-15",
+    "discountCodeNote": "Omo 2-Step challenges only (40% off from $10K; flat $ off on $2K/$5K)."
   },
   {
     "name": "FXIFY",
@@ -736,7 +761,8 @@
     "country": null,
     "regulation": null,
     "corporateSourceUrl": null,
-    "corporateCapturedAt": null
+    "corporateCapturedAt": null,
+    "affiliateStatus": "none"
   },
   {
     "name": "Crypto Fund Trader",
@@ -785,7 +811,8 @@
     "trustpilotUrl": "https://www.trustpilot.com/review/cryptofundtrader.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "available"
+    "russiaStatus": "available",
+    "affiliateStatus": "none"
   },
   {
     "name": "Topstep",
@@ -869,7 +896,8 @@
     "lastUpdated": "2026-10-14",
     "trustpilotUrl": "https://www.trustpilot.com/review/topstep.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "restricted"
+    "russiaStatus": "restricted",
+    "affiliateStatus": "none"
   },
   {
     "name": "My Funded Futures",
@@ -1007,7 +1035,13 @@
     "lastUpdated": "2026-10-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/myfundedfutures.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "restricted"
+    "russiaStatus": "restricted",
+    "affiliateStatus": "none",
+    "discountCode": "CLUB",
+    "discountCodeSourceUrl": "https://myfundedfutures.com/",
+    "discountCodeCapturedAt": "2026-10-15",
+    "discountCodeNote": "\"Save 40% On Any Plan With Code CLUB.\"",
+    "discountPct": 40
   },
   {
     "name": "City Traders Imperium",
@@ -1070,7 +1104,8 @@
     "corporateCapturedAt": "2026-10-14",
     "russiaSourceUrl": "https://citytradersimperium.com/",
     "russiaSourceQuote": "CTI does not offer services to residents of North Korea, Iran, Syria, Cuba, or Russia, or to anyone under international sanctions.",
-    "countriesRestrictedSourceUrl": "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf"
+    "countriesRestrictedSourceUrl": "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf",
+    "affiliateStatus": "none"
   },
   {
     "name": "Take Profit Trader",
@@ -1118,7 +1153,13 @@
     "lastUpdated": "2026-07-27",
     "trustpilotUrl": "https://www.trustpilot.com/review/takeprofittrader.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "unverified"
+    "russiaStatus": "unverified",
+    "affiliateStatus": "none",
+    "discountCode": "NOFEE40",
+    "discountCodeSourceUrl": "https://www.takeprofittrader.com/",
+    "discountCodeCapturedAt": "2026-10-15",
+    "discountCodeNote": "\"Get 40% Off For Life + Never Pay An Activation Fee\" with code NOFEE40.",
+    "discountPct": 40
   },
   {
     "name": "TradeDay",
@@ -1247,7 +1288,12 @@
     "lastUpdated": "2026-10-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeday.com",
     "trustpilotCapturedAt": "2026-07-28",
-    "russiaStatus": "restricted"
+    "russiaStatus": "restricted",
+    "affiliateStatus": "none",
+    "discountCode": "TDNEW",
+    "discountCodeSourceUrl": "https://www.tradeday.com/",
+    "discountCodeCapturedAt": "2026-10-15",
+    "discountCodeNote": "Homepage banner \"USE CODE TDNEW\"; discount amount not stated."
   },
   {
     "name": "Apex Trader Funding",
@@ -1288,7 +1334,8 @@
     "lastUpdated": "2026-09-14",
     "trustpilotUrl": "https://www.trustpilot.com/review/apextraderfunding.com",
     "trustpilotCapturedAt": "2026-07-28",
-    "russiaStatus": "restricted"
+    "russiaStatus": "restricted",
+    "affiliateStatus": "none"
   },
   {
     "name": "Lucid Trading",
@@ -1426,7 +1473,8 @@
     "lastUpdated": "2026-08-11",
     "trustpilotUrl": "https://www.trustpilot.com/review/lucidtrading.com",
     "trustpilotCapturedAt": "2026-07-28",
-    "russiaStatus": "restricted"
+    "russiaStatus": "restricted",
+    "affiliateStatus": "none"
   },
   {
     "name": "Tradeify",
@@ -1538,6 +1586,7 @@
     "lastUpdated": "2026-08-11",
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeify.co",
     "trustpilotCapturedAt": "2026-07-28",
-    "russiaStatus": "restricted"
+    "russiaStatus": "restricted",
+    "affiliateStatus": "none"
   }
 ]
