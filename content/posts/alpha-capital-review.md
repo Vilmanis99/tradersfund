@@ -1,12 +1,12 @@
 ---
 title: "Alpha Capital Review 2026: Pro Fees by Target and Payout Schedule"
-seoTitle: "Alpha Capital Review 2026: Fees, Rules & Payouts"
+seoTitle: "Alpha Capital Review 2026: Fees, EA Rules & Payouts"
 slug: "alpha-capital-review"
 date: "2025-07-23 09:44:31"
 modified: "2026-10-06"
 author: "Tara Mohseni"
 excerpt: "Pro 6% starts at $27 on-demand or $30 bi-weekly. Compare Alpha Capital's 10 captured configurations, payout gates, and unresolved availability conflicts."
-seoDescription: "Alpha Capital review: 60 published fees across 10 configurations, Pro payout choices, static and trailing loss rules, and unresolved purchase availability."
+seoDescription: "Alpha Capital review: does it allow EAs? Only pre-approved assist EAs on MT5. Plus 60 fees across 10 configurations, Pro payout choices and loss rules."
 categories: ["Prop Firms"]
 tags: ["Alpha Capital", "Prop Firm"]
 type: "post"
@@ -278,7 +278,7 @@ type: "post"
 <p><strong>Bi-weekly Pro starts with a 14-day clock.</strong> Its help page allows requests every 14 days from the initial Qualified-account trade and requires 5 qualifying trading days for the first request. The minimum is $100 gross, yielding $80 at the base split. The named cycle is distinct from the 3 minimum trading days in each evaluation phase; satisfying the latter does not satisfy the former.</p>
 <p><strong>On-demand does not mean immediate payment.</strong> Pro, One and Swing must reach 2% gross profit and comply with the 40% best-day rule. No fixed first-payout day is verified for those captured configurations. One 10%’s observed checkout disabled Bi-Weekly and offered On Demand, resolving the older generic-heading ambiguity for that selected variant. The <a href="/prop-firm-challenge-changes#alpha-one-payout-schedule-conflict">dated schedule recheck</a> records that observation.</p>
 <p><strong>Direct’s 3% buffer stays in the account.</strong> Its own $100K example requires $3,000 buffer plus at least $1,000 additional profit, reaching $4,000 total. The best day must be $600 or less to meet 15%. Withdrawing the $1,000 above the buffer pays $900 at the 90% split; the $3,000 remains. This published example explains why no-evaluation access is different from unrestricted withdrawals.</p>
-<p>Trustpilot showed 4.7/5 from 21,119 reviews in the aggregate record captured on July 27, 2026. That date is not refreshed by this product recapture. The rating is community context rather than proof that a specific account will pass KYC or receive a reward, and the independently verified payout badge remains false. Confirm the payout rail, processing terms and eligibility for the purchased configuration before relying on a calendar date.</p>
+<p>Trustpilot no longer shows an Alpha Capital rating: on 15 October 2026 the <a href="https://www.trustpilot.com/review/alphacapitalgroup.uk">profile</a> displayed "This company's rating is unavailable due to a breach of our guidelines", with a note that Trustpilot had removed a number of fake reviews. The 4.7 score from our July capture is withdrawn. Individual reviews are still community context rather than proof that a specific account will pass KYC or receive a reward, and the independently verified payout badge remains false. Confirm the payout rail, processing terms and eligibility for the purchased configuration before relying on a calendar date.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 <ul class="wp-block-list">
@@ -313,6 +313,8 @@ type: "post"
 <p>Pro 6% on-demand at $27 for a $5,000 account is the lowest evaluation fee in this capture. Pro 6% bi-weekly is $30 at the same size. Direct also starts at $30, but its $2,500 instant-qualified account has no evaluation and carries different funded-stage rules.</p>
 <h3 class="wp-block-heading"><strong>Why does Alpha Pro have two prices for the same account size?</strong></h3>
 <p>The payout schedule changes the base fee. Pro 6% $25K is $127 bi-weekly or $117 on-demand; Pro 8% and 10% are $197 or $177 respectively. The schedule choice is separate from the optional 90% split add-on, so compare the same target, size, schedule and base split.</p>
+<h3 class="wp-block-heading"><strong>Does Alpha Capital allow EAs?</strong></h3>
+<p>Only partly. On MT5, trade-assistance and risk-management EAs need pre-approval, and fully automated execution is prohibited. Direct EAs are disabled, and the help centre excludes EA functionality on cTrader, DXtrade, TradeLocker and swap-free accounts. Copying your own verified master account can be permitted; copying other traders or groups is prohibited.</p>
 <h3 class="wp-block-heading"><strong>Is Alpha Capital’s challenge fee refundable?</strong></h3>
 <p>The published all-sales-final policy does not promise a fee refund after passing or receiving a reward. All 60 captured tiers are recorded as non-refundable; budget another purchase as another fee rather than assuming a returned deposit.</p>
 <h3 class="wp-block-heading"><strong>Does the 40% consistency rule apply during the evaluation?</strong></h3>

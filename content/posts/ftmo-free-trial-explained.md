@@ -1,12 +1,12 @@
 ---
 title: "FTMO Free Trial 2026: 1-Step vs 2-Step Rules"
-seoTitle: "FTMO Free Trial 2026: Rules & 14-Day Test Plan"
+seoTitle: "FTMO Free Trial 2026: Is It Free? Rules, Limits & Test"
 slug: "ftmo-free-trial-explained"
 date: "2025-09-30 14:19:47"
 modified: "2026-09-14"
 author: "Edris Derakhshi"
 excerpt: "The FTMO Free Trial lasts 14 days, grants no funded account, and now has separate 1-Step and 2-Step rules. Compare both before paying."
-seoDescription: "FTMO Free Trial guide comparing current 1-Step and 2-Step rules, 14-day limits, drawdown math, paid challenges, and FundedNext's trial."
+seoDescription: "Is the FTMO Free Trial free? Yes: €0, 14 days, a 5% target and no funded account. Compare 1-Step vs 2-Step trial rules and the FundedNext free trial."
 categories: ["Prop Firms"]
 tags: ["FTMO", "Free Trial", "Prop Firm Challenge"]
 type: "post"
@@ -22,6 +22,8 @@ type: "post"
   <p style="margin-top: 0;"><strong>Test before paying.</strong> FTMO permits 1 active Free Trial at a time and lets the trader delete it and start another. The outbound FTMO link is non-affiliate.</p>
   <p style="margin-bottom: 0;"><a href="/go/ftmo">Open FTMO’s Free Trial</a> or read the <a href="/blog/ftmo-review">current FTMO review</a> before choosing a paid 1-Step or 2-Step account.</p>
 </div>
+
+<p><strong>Short answer.</strong> Yes, the FTMO Free Trial is free: it costs €0, needs no card payment and runs for 14 days with a 5% profit target. It is practice only. Passing it does not give you an FTMO Account or skip any step of a paid challenge. Among free trial prop firms, this guide compares the two documented options, FTMO and FundedNext, in the section below.</p>
 
 <h2>FTMO Free Trial quick facts</h2>
 

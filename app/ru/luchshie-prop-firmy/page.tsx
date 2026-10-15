@@ -14,6 +14,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { goLinkRel } from '@/lib/russiaAvailability'
 
 const PATH = '/ru/luchshie-prop-firmy'
@@ -205,7 +206,10 @@ export default function RussianBestPropFirmsPage() {
       return { firm, slug, products }
     })
     .filter(item => item.products.length > 0 && item.products.every(product => isChallengeFresh(product)))
-    .sort((a, b) => b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
+    // BrightFunded (universal firm) first, then other firms open to Russia, then by score.
+    .sort((a, b) => Number(b.slug === 'bright-funded') - Number(a.slug === 'bright-funded')
+      || Number(russiaStatusFor(b.slug) === 'available') - Number(russiaStatusFor(a.slug) === 'available')
+      || b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
 
   const fundingPipsAccessCurrent = isChallengeFresh({ sourceCapturedAt: fundingPipsAccessEvidence.sourceCapturedAt })
   const brightCountryCurrent = [brightEvidence.sources.countries, brightEvidence.sources.countryTerms]

@@ -187,7 +187,7 @@ type: "post"
 
 <p>Two ceilings bind harder than the cadence. Withdrawals are capped at <strong>$10,000 per rolling 30 days per trader</strong>, which caps a $100K funded account's realistic monthly draw regardless of performance, and OMO caps the first payout at 6% of balance and the second at 8%. Payments via Rise carry a $20 withdrawal fee. Maven charges no swap on any account and $4 round-turn commission on forex, $6 on precious metals and energy, $0 on indices and commodities.</p>
 
-<p>Trustpilot had suppressed Maven's aggregate rating when captured on 2026-07-27, although the profile still displayed 5,151 reviews; that count is not a usable score or proof of payout reliability. What is on the record from Maven's own FAQ is that the funded stage is a simulated demo environment and that a failed account can be repurchased at a fixed buyback price — $200 at $2K, $400 at $5K, $750 at $10K, $1,400 at $20K, $3,500 at $50K and $6,000 at $100K. Those buyback figures are 6–16× the original challenge fee.</p>
+<p>Trustpilot still suppresses Maven's aggregate rating: on 2026-10-15 the profile displayed "This company's rating is unavailable due to a breach of our guidelines" and said fake reviews had been removed. There is no usable score, and the review count is not proof of payout reliability. What is on the record from Maven's own FAQ is that the funded stage is a simulated demo environment and that a failed account can be repurchased at a fixed buyback price — $200 at $2K, $400 at $5K, $750 at $10K, $1,400 at $20K, $3,500 at $50K and $6,000 at $100K. Those buyback figures are 6–16× the original challenge fee.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
@@ -212,7 +212,7 @@ type: "post"
   <li><strong>The 3-Step pairs a 2% daily cap with a 3% total cap</strong>: two near-limit days end the account, and you still must clear 3% three separate times.</li>
   <li><strong>Maven's own pages contradict each other</strong> on Prediction Markets max drawdown — pricing cards say 5%/8%, the FAQ says 3% trailing and 5% static.</li>
   <li><strong>OMO's first breach permanently cuts the split to 50%</strong> under the M2 Account Saver mechanic.</li>
-<li><strong>Funded accounts are simulated</strong> by Maven's own description; Trustpilot suppressed the aggregate rating while still displaying 5,151 reviews on 2026-07-27.</li>
+<li><strong>Funded accounts are simulated</strong> by Maven's own description; Trustpilot still suppresses the aggregate rating for a guidelines breach (checked 2026-10-15).</li>
   <li><strong>Advertised prices are coupon prices</strong> — <code>ETERNAL</code> at 10% and <code>OMO</code> at 40% were live at capture, so quoted figures elsewhere may not be the list price you pay later.</li>
 </ul>
 

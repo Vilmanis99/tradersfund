@@ -1,12 +1,12 @@
 ---
 title: "My Funded Futures Review 2026: Rapid vs Rapid EOD vs Builder vs Pro"
-seoTitle: "My Funded Futures Review 2026: Current Plans & Payouts"
+seoTitle: "My Funded Futures Review 2026: MFF Funded Account Rules"
 slug: "my-funded-futures"
 date: "2025-07-15 10:00:00"
 modified: "2026-09-14 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "MFFU now separates one-time Rapid, Rapid EOD, Builder and Pro plans from legacy Flex accounts; compare the rule gates before you pay."
-seoDescription: "My Funded Futures review of Rapid, Rapid EOD, Builder and Pro one-time plans, legacy Flex terms, drawdown rules, payout buffers and Russia eligibility."
+seoDescription: "My Funded Futures (MFF) review: funded account rules on Rapid, Rapid EOD, Builder and Pro, funded drawdown, payout buffers and minimums."
 categories: ["Prop Firms"]
 tags: ["My Funded Futures", "Futures Prop Firm"]
 type: "post"
@@ -53,7 +53,7 @@ sourceUrls:
     <tr><td><strong>Activation fee</strong></td><td>$0 on the current plan pages</td></tr>
     <tr><td><strong>Asset class</strong></td><td>Futures; MFFU provides simulated evaluation and funded stages</td></tr>
     <tr><td><strong>Russia eligibility</strong></td><td>Restricted for new purchases according to the current country list</td></tr>
-    <tr><td><strong>Community snapshot</strong></td><td>Trustpilot 4.9/5 from 20,392 reviews captured 27 July 2026; no verified-payout badge</td></tr>
+    <tr><td><strong>Community snapshot</strong></td><td>Trustpilot 4.9/5 from 22,408 reviews checked 15 October 2026; no verified-payout badge</td></tr>
   </tbody>
 </table>
 
@@ -94,6 +94,20 @@ sourceUrls:
 <p>Across the current plan pages, overnight positions are not permitted. News permissions are stage-specific: evaluation news is generally allowed on Rapid EOD, Builder and Pro, while Tier 1 news is restricted or prohibited once the account is Sim Funded; EA and copy-trading permissions remain conditional, so obtain written plan-specific confirmation before automating.</p>
 <p>The <a href="/blog/balance-based-drawdown-vs-equity-based-drawdown">drawdown guide</a> explains why Rapid's funded intraday trail and Rapid EOD's funded EOD trail are different risk surfaces. The <a href="/blog/what-is-prop-firm-consistency-rule">consistency guide</a> shows the 50% and 30% calculations with examples.</p>
 
+<h3 class="wp-block-heading"><strong>How an MFF funded account works</strong></h3>
+<p>An MFF funded account (MFFU calls it Sim Funded) is the simulated stage after the evaluation, and each current plan treats it differently. The table below sets out what a funded trader actually faces on each plan, using the 14 September first-party pages.</p>
+
+<table data-mff-funded-account="2026-09-14" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">My Funded Futures funded account rules by plan, captured 14 September 2026</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Plan</th><th style="padding: 8px 12px; text-align: left;">Funded drawdown</th><th style="padding: 8px 12px; text-align: left;">First payout</th><th style="padding: 8px 12px; text-align: left;">Minimum request</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Rapid</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Real-time trailing drawdown, plus a size-specific payout buffer</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Daily requests once the buffer is met</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$500</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Rapid EOD</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">End-of-day drawdown stays on when funded</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Daily requests once the buffer is met</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$500</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Builder</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">50% funded consistency; $1,000/$2,000 payout cap</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">48-hour cycle after 2 qualifying days; 5 simulated payout cycles before a live transition review</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$250 or $500 by size</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Pro</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No funded consistency rule; $100,000 maximum per cycle</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">14 calendar days from the first Sim Funded trade, plus buffer</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,000</td></tr>
+  </tbody>
+</table>
+
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 <p>These tables are generated from <a href="/true-cost-of-prop-firm-challenges"><code>computeTrueCost()</code></a>. A dash means the current first-party capture did not provide a price, so no break-even number is manufactured. Flex's rows are labelled legacy because its $95 and $153 figures are recurring historical terms.</p>
 
@@ -110,7 +124,7 @@ sourceUrls:
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 <p>Rapid and Rapid EOD advertise daily payout opportunities after their buffers are met. Builder describes a 48-hour cycle after 2 qualifying days, while Pro starts at 14 calendar days from the first Sim Funded trade plus its buffer; Flex legacy accounts use five qualifying winning days.</p>
 <p>MFFU's payout rails in the firm record are ACH, bank wire and crypto. Current pages specify $500 minimums for Rapid and Rapid EOD, $250/$500 minimums for Builder by size, and $1,000 for Pro; the exact payment rail, fees and KYC route depend on the account and country.</p>
-<p>The Trustpilot snapshot captured 4.9/5 from 20,392 reviews on 2026-07-27, and the firm record does not carry a verified-payout badge. That is community evidence, not proof that a Russian resident can purchase, pass or withdraw.</p>
+<p>The Trustpilot snapshot showed 4.9/5 from 22,408 reviews on 2026-10-15, and the firm record does not carry a verified-payout badge. That is community evidence, not proof that a Russian resident can purchase, pass or withdraw.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 <ul class="wp-block-list">

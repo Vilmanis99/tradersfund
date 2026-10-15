@@ -1,0 +1,42 @@
+name: IndexNow after production deploy
+
+# Vercel's GitHub integration posts a deployment_status event when a deployment
+# finishes. This job runs only for successful Production deployments and pings
+# api.indexnow.org (Bing, Yandex, ...) with the URLs changed by that deploy.
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'all = whole sitemap; otherwise a base commit SHA'
+        default: all
+
+permissions:
+  contents: read
+
+jobs:
+  indexnow:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          fetch-depth: 50
+          ref: ${{ github.event.deployment.sha || github.sha }}
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+      - name: Submit to IndexNow
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ inputs.mode }}" = "all" ]; then node scripts/indexnow-submit.mjs --all
+            else node scripts/indexnow-submit.mjs --changed "${{ inputs.mode }}"; fi
+          else
+            node scripts/indexnow-submit.mjs --changed "$(git rev-parse HEAD~1)"
+          fi

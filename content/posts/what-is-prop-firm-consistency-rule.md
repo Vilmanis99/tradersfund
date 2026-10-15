@@ -1,12 +1,12 @@
 ---
 title: "What Is the Prop Firm Consistency Rule? Formulas and Examples (2026)"
-seoTitle: "What Is a Prop Firm Consistency Rule? Examples (2026)"
+seoTitle: "Consistency Rule Calculator & Examples: Prop Firms (2026)"
 slug: "what-is-prop-firm-consistency-rule"
 date: "2024-11-22 17:13:02"
 modified: "2026-10-06 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "A prop-firm consistency rule can compare the best day with total profit, positive-day profit, or a target. Learn the formulas, stages, and consequences."
-seoDescription: "What is the consistency rule in a prop firm? See the formulas, current 15%-55% product examples, and how to calculate the extra profit after a big best day."
+seoDescription: "Consistency rule calculator: required profit = best day / limit. Lookup table for 15%-50% limits, worked examples, formulas and current prop firm rules."
 categories: ["Prop Firms"]
 tags: ["prop firm consistency rule", "prop firm rules", "risk management"]
 type: "post"
@@ -100,6 +100,19 @@ type: "post"
 <p>The reusable formula is <code>required applicable profit = best-day profit / decimal limit</code>. Then calculate <code>additional profit = max(0, required applicable profit - current applicable profit)</code>. If a later day exceeds $1,200, the numerator changes and the calculation must be run again.</p>
 
 <p>Topstep's Combine consequence differs from a payout eligibility check. On the captured $100K Standard Path, the initial Profit Target is $6,000 and its current 55% recommendation is $3,300. A $3,500 best day exceeds that recommendation and raises the required target; it is not an automatic account failure. Extra profits in that same session also enlarge the best day, so they cannot resolve the excess.</p>
+
+<p><strong>Quick calculator table.</strong> For a best-day / total-profit rule, the minimum applicable profit total you need is the best day divided by the limit. Find your best day in the left column and your firm's limit across the top. Subtract your current total to get the extra profit you still need.</p>
+
+<table data-consistency-lookup="best-day-share" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Consistency rule calculator: minimum total profit by best day and limit</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Best day</th><th style="padding: 8px 12px; text-align: left;">15% limit</th><th style="padding: 8px 12px; text-align: left;">20% limit</th><th style="padding: 8px 12px; text-align: left;">30% limit</th><th style="padding: 8px 12px; text-align: left;">40% limit</th><th style="padding: 8px 12px; text-align: left;">50% limit</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$500</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$3,333</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,500</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,667</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,250</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,000</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$6,667</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$3,333</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,500</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,000</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$13,333</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$6,667</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$4,000</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$3,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$20,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$15,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$7,500</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$6,000</td></tr>
+  </tbody>
+</table>
 
 <div data-consistency-choice="fundednext" style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
   <strong style="color: #fff;">Comparing a captured no-consistency-rule option?</strong> FundedNext Stellar Instant's official FAQ capture says there is no consistency rule. The current $10K tier costs $299.99, starts at a 70% Reward Share, is non-refundable, and uses a 6% trailing maximum loss, so removing 1 gate does not make the product low-risk. Read the <a href="/blog/fundednext-review">FundedNext review</a>, then <a href="/go/fundednext">check FundedNext's live Stellar Instant terms</a> only if the trailing-loss and payout rules fit the strategy. We may earn a commission; the partnership does not change the displayed terms or editorial score.
