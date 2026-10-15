@@ -132,7 +132,246 @@
     "regulation": null,
     "corporateSourceUrl": "https://ftmo.com/en/imprint/",
     "corporateCapturedAt": "2026-10-14",
-    "affiliateStatus": "none"
+    "affiliateStatus": "none",
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: static on FTMO Challenge: 2-Step; eod-trailing on FTMO Challenge: 1-Step",
+        "byProduct": {
+          "ftmo-challenge-2-step": "static",
+          "ftmo-challenge-1-step": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+            "quote": "Official comparison describes the 2-Step Max Loss as static.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-2-step"
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+            "quote": "FTMO describes the 1-Step Max Loss as end-of-day trailing.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-1-step"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on FTMO Challenge: 2-Step; 3% on FTMO Challenge: 1-Step",
+        "byProduct": {
+          "ftmo-challenge-2-step": 5,
+          "ftmo-challenge-1-step": 3
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+            "quote": "Official objectives list a 5% Max Daily Loss.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-2-step"
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+            "quote": "Official objectives list a 3% Max Daily Loss.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-1-step"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": 10,
+        "summary": "10%",
+        "byProduct": {
+          "ftmo-challenge-2-step": 10,
+          "ftmo-challenge-1-step": 10
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+            "quote": "Official objectives list a 10% Max Loss.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-2-step"
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+            "quote": "Official objectives list a 10% Max Loss.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-1-step"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: not stated on FTMO Challenge: 2-Step; 50% on FTMO Challenge: 1-Step",
+        "byProduct": {
+          "ftmo-challenge-2-step": null,
+          "ftmo-challenge-1-step": 50
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+            "quote": "Official objectives list a 50% Best Day Rule.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-1-step"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on FTMO Challenge: 2-Step; 90% on FTMO Challenge: 1-Step",
+        "byProduct": {
+          "ftmo-challenge-2-step": 80,
+          "ftmo-challenge-1-step": 90
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+            "quote": "FTMO's withdrawal FAQ states 80% for 2-Step, increasing to 90% under Scaling Plan or Premium conditions.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-2-step"
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+            "quote": "Official objectives list 90% rewards.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-1-step"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": "on-demand",
+        "summary": "on-demand",
+        "byProduct": {
+          "ftmo-challenge-2-step": "on-demand",
+          "ftmo-challenge-1-step": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+            "quote": "FTMO describes Rewards as requestable on demand after the minimum period.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-2-step"
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+            "quote": "FTMO describes Rewards as requestable on demand after the minimum period.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-1-step"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "ftmo-challenge-2-step": "restricted",
+          "ftmo-challenge-1-step": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+            "quote": "FTMO says selected-news restrictions apply to Standard FTMO Accounts, not the Evaluation Process.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-2-step"
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+            "quote": "FTMO says selected-news restrictions apply to Standard FTMO Accounts, not the Evaluation Process.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-1-step"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "ftmo-challenge-2-step": "restricted",
+          "ftmo-challenge-1-step": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+            "quote": "FTMO says overnight and weekend restrictions apply to Standard FTMO Accounts, not the Evaluation Process.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-2-step"
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+            "quote": "FTMO says overnight and weekend restrictions apply to Standard FTMO Accounts, not the Evaluation Process.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+            "productSlug": "ftmo-challenge-1-step"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT4",
+          "MT5",
+          "cTrader"
+        ],
+        "summary": "MT4, MT5, cTrader (not confirmed on the official page read: DXTrade)",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/trading-platforms/",
+            "quote": "ies served FTMO MetaTrader 5 FTMO MetaTrader 5 (MT5) is the modern evolution of MT4, built for traders who want more power, more precision, and more room to scale.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/trading-platforms/",
+            "quote": "orldwide $650M+ Paid in rewards 10 years Trusted for 140+ Countries served FTMO MetaTrader 5 FTMO MetaTrader 5 (MT5) is the modern evolution of MT4, built for traders who w",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/trading-platforms/",
+            "quote": "ailable for: Web Browser Windows MacOS iOS Android Linux Debian Linux Snap FTMO cTrader FTMO cTrader is a modern, professional-grade platform built for both discretion",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "FundedNext",
@@ -217,7 +456,313 @@
     "discountCode": "STRTN",
     "discountCodeSourceUrl": "https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer",
     "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "Global: Stellar 2-Step 6K, 1-Step 6K, Lite 5K and Instant 2K only (up to 33% off); max 5 uses; no end date."
+    "discountCodeNote": "Global: Stellar 2-Step 6K, 1-Step 6K, Lite 5K and Instant 2K only (up to 33% off); max 5 uses; no end date.",
+    "rules": {
+      "capturedAt": "2026-10-15",
+      "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: static on Stellar 2-Step, Stellar 1-Step, Stellar Lite; trailing on Stellar Instant",
+        "byProduct": {
+          "stellar-2-step": "static",
+          "stellar-1-step": "static",
+          "stellar-lite": "static",
+          "stellar-instant": "trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "Current product page: Static drawdown.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-2-step"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "Current product page: Static drawdown.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-1-step"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "Current product page: Static drawdown.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-lite"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "Current product page: trailing drawdown.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-instant"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on Stellar 2-Step; 3% on Stellar 1-Step; 4% on Stellar Lite; not stated on Stellar Instant",
+        "byProduct": {
+          "stellar-2-step": 5,
+          "stellar-1-step": 3,
+          "stellar-lite": 4,
+          "stellar-instant": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "Current product page: 5% Daily Loss Limit.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-2-step"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "Current product page: 3% Daily Loss Limit.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-1-step"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "Current product page: 4% Daily Loss Limit.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-lite"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 10% on Stellar 2-Step; 6% on Stellar 1-Step, Stellar Instant; 8% on Stellar Lite",
+        "byProduct": {
+          "stellar-2-step": 10,
+          "stellar-1-step": 6,
+          "stellar-lite": 8,
+          "stellar-instant": 6
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "Current product page: 10% Maximum Loss Limit.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-2-step"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "Current product page: 6% Maximum Loss Limit.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-1-step"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "Current product page: 8% Maximum Loss Limit.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-lite"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "Current product page: 6% trailing Maximum Loss Limit.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-instant"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on Stellar 2-Step, Stellar 1-Step, Stellar Lite; 70% on Stellar Instant",
+        "byProduct": {
+          "stellar-2-step": 80,
+          "stellar-1-step": 80,
+          "stellar-lite": 80,
+          "stellar-instant": 70
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "Current Reward Share article: new Stellar accounts start at 80%; add-ons can increase the share.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-2-step"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "Current Reward Share article: new Stellar accounts start at 80%; add-ons can increase the share.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-1-step"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "Current Reward Share article: new Stellar accounts start at 80%; add-ons can increase the share.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-lite"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "Current product page: 70% from Day 1, increasing to 80% from Tier 3.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-instant"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: bi-weekly on Stellar 2-Step; weekly on Stellar 1-Step; not stated on Stellar Lite; on-demand on Stellar Instant",
+        "byProduct": {
+          "stellar-2-step": "bi-weekly",
+          "stellar-1-step": "weekly",
+          "stellar-lite": null,
+          "stellar-instant": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "Conflict on the global page: the Funded & Reward Rules card says \"Subsequent Withdrawal10 Days\" while the comparison table says Lite \"Subsequent Rewards Bi-weekly\" (and the page FAQ schema still says 21 days / bi-weekly). Left null.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-lite"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "stellar-2-step": "restricted",
+          "stellar-1-step": "restricted",
+          "stellar-lite": "restricted",
+          "stellar-instant": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "Current product page allows news trading, while funded-stage news profit treatment is limited; retained as restricted in the comparison schema.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-2-step"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "Current product page allows news trading, while funded-stage news profit treatment is limited; retained as restricted in the comparison schema.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-1-step"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "Current product page allows news trading, while funded-stage news profit treatment is limited; retained as restricted in the comparison schema.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-lite"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "Current product page allows news trading but limits the counted profit; retained as restricted in the comparison schema.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-instant"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "stellar-2-step": true,
+          "stellar-1-step": true,
+          "stellar-lite": true,
+          "stellar-instant": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "Current product page: weekend holding allowed.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-2-step"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "Current product page: weekend holding allowed.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-1-step"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "Current product page: weekend holding allowed.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-lite"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "Current product page: weekend holding allowed.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+            "productSlug": "stellar-instant"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT4",
+          "MT5",
+          "cTrader",
+          "Match-Trader"
+        ],
+        "summary": "MT4, MT5, cTrader, Match-Trader",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
+            "quote": "FundedNext offers access to the industry's most common trading platforms — MetaTrader 4 (MT4), MetaTrader 5 (MT5), Match-Trader, cTrader , and also supports TradingView for analysis purposes.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "FundingPips",
@@ -284,7 +829,258 @@
     "discountCode": "HELLO",
     "discountCodeSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
     "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "20% off first purchase; excludes $100K accounts."
+    "discountCodeNote": "20% off first purchase; excludes $100K accounts.",
+    "rules": {
+      "capturedAt": "2026-10-15",
+      "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: static on 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard; trailing on FundingPips Zero",
+        "byProduct": {
+          "1-step-flex": "static",
+          "2-step-flex": "static",
+          "2-step-pro": "static",
+          "2-step-standard": "static",
+          "zero": "trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "Official page: the loss limit trails highest equity and locks at breakeven after 5% profit.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "zero"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 3% on 1 Step Flex, 2 Step Pro, FundingPips Zero; 4% on 2 Step Flex; 5% on 2 Step Standard",
+        "byProduct": {
+          "1-step-flex": 3,
+          "2-step-flex": 4,
+          "2-step-pro": 3,
+          "2-step-standard": 5,
+          "zero": 3
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "Official page: daily loss is configuration-dependent at 2% or 3%; 3% retained for the base captured route.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "1-step-flex"
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Official page: 4% daily loss.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "2-step-flex"
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+            "quote": "Official page: 3% daily loss.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "2-step-pro"
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Official page: 3% or 5% depending on configuration; 5% retained for the stored route.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "2-step-standard"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 12% on 1 Step Flex, 2 Step Flex; 6% on 2 Step Pro; 10% on 2 Step Standard; 5% on FundingPips Zero",
+        "byProduct": {
+          "1-step-flex": 12,
+          "2-step-flex": 12,
+          "2-step-pro": 6,
+          "2-step-standard": 10,
+          "zero": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "Official page: 12% static maximum loss.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "1-step-flex"
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Official page: 12% static maximum loss.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "2-step-flex"
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+            "quote": "Official page: 6% static maximum loss.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "2-step-pro"
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Official page: 10% static maximum loss.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "2-step-standard"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: not stated on 1 Step Flex, 2 Step Flex, 2 Step Pro; 35% on 2 Step Standard; 15% on FundingPips Zero",
+        "byProduct": {
+          "1-step-flex": null,
+          "2-step-flex": null,
+          "2-step-pro": null,
+          "2-step-standard": 35,
+          "zero": 15
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Official reward routes include a 35% consistency condition for On Demand and Monthly paths.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "2-step-standard"
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "Official page: 15% consistency score maximum.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "zero"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on 1 Step Flex, 2 Step Pro; not stated on 2 Step Flex, 2 Step Standard; 95% on FundingPips Zero",
+        "byProduct": {
+          "1-step-flex": 80,
+          "2-step-flex": null,
+          "2-step-pro": 80,
+          "2-step-standard": null,
+          "zero": 95
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "Official page: 80% bi-weekly reward.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "1-step-flex"
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "Official page: 95% bi-weekly split.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "zero"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: restricted on 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard; not allowed on FundingPips Zero",
+        "byProduct": {
+          "1-step-flex": "restricted",
+          "2-step-flex": "restricted",
+          "2-step-pro": "restricted",
+          "2-step-standard": "restricted",
+          "zero": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "Official page: evaluation news trading is allowed, but Master restricted-window profits may be deducted; retained as restricted.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "1-step-flex"
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "Official page: news-window trading is prohibited.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "zero"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": "Product-specific: restricted on 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard; not allowed on FundingPips Zero",
+        "byProduct": {
+          "1-step-flex": "restricted",
+          "2-step-flex": "restricted",
+          "2-step-pro": "restricted",
+          "2-step-standard": "restricted",
+          "zero": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "Official page: evaluation holding is allowed; Master holding requires the Swing add-on.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "1-step-flex"
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Official page: evaluation holding is allowed; Master holding requires the Swing add-on.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "2-step-flex"
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "Official page: weekend holding is prohibited.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+            "productSlug": "zero"
+          }
+        ]
+      },
+      "platforms": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      }
+    }
   },
   {
     "name": "E8 Markets",
@@ -379,7 +1175,351 @@
     "regulation": null,
     "corporateSourceUrl": "https://e8markets.com/",
     "corporateCapturedAt": "2026-10-14",
-    "affiliateStatus": "none"
+    "affiliateStatus": "none",
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on E8 One (Forex), E8 One (Perpetuals); static on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); eod-trailing on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": "trailing",
+          "e8-one-perpetuals": "trailing",
+          "e8-pro": "static",
+          "e8-pro-perpetuals": "static",
+          "e8-signature": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "Dynamic Drawdown rises only on closed profits and locks at starting balance.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-one"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "Static from initial balance; it does not trail, and after the first payout it locks at the initial balance.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-pro"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-signature",
+            "quote": "The EOD Dynamic drawdown follows highest end-of-day balance, updates once per day at market close and locks at initial balance.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-signature"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 4% on E8 One (Forex), E8 One (Perpetuals); 2.5% on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); not stated on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": 4,
+          "e8-one-perpetuals": 4,
+          "e8-pro": 2.5,
+          "e8-pro-perpetuals": 2.5,
+          "e8-signature": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "At the default 6% max drawdown, the configurator prints $4,000 daily drawdown on $100K; E8 describes daily drawdown as 66% of the selected drawdown.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-one"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "The current E8PRO v2 page prints a 2.5% daily drawdown, calculated from initial balance.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-pro"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-signature",
+            "quote": "There is no challenge-stage daily loss limit. Performance has a 2% soft daily pause, not a hard breach, so the hard-loss field remains null.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-signature"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 6% on E8 One (Forex), E8 One (Perpetuals); 8% on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); not stated on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": 6,
+          "e8-one-perpetuals": 6,
+          "e8-pro": 8,
+          "e8-pro-perpetuals": 8,
+          "e8-signature": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "The default cards print 6% Max and $6,000 on $100K.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-one"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "The current E8PRO v2 page prints an 8% static drawdown for every tier.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-pro"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-signature",
+            "quote": "No single product-wide percentage exists: the tier amounts equal 4%, 4%, 3% and 3%, so maxLossPct remains null and maxLossUsd is stored per tier.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-signature"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 40% on E8 One (Forex), E8 One (Perpetuals); not stated on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); 35% on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": 40,
+          "e8-one-perpetuals": 40,
+          "e8-pro": null,
+          "e8-pro-perpetuals": null,
+          "e8-signature": 35
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "No challenge consistency rule; the Performance stage has a 40% best-day rule.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-one"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "The current E8PRO v2 and main product pages both state there is no consistency rule.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-pro"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-signature",
+            "quote": "Performance has a 35% best-day rule.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-signature"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": 80,
+        "summary": "80%",
+        "byProduct": {
+          "e8-one": 80,
+          "e8-one-perpetuals": 80,
+          "e8-pro": 80,
+          "e8-pro-perpetuals": 80,
+          "e8-signature": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "The default price cards use 80%; checkout choices are 80%, 90% or 100%.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-one"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "80% is the default; 100% is an optional 20% price uplift.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-pro"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-signature",
+            "quote": "Signature pays 80%.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-signature"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": "on-demand",
+        "summary": "on-demand",
+        "byProduct": {
+          "e8-one": "on-demand",
+          "e8-one-perpetuals": "on-demand",
+          "e8-pro": "on-demand",
+          "e8-pro-perpetuals": "on-demand",
+          "e8-signature": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "Subsequent payouts are on demand, as soon as three days.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-one"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "One payout request per day after rollover; the schema has no daily enum, so on-demand is retained and the exact cadence is stated in notes.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-pro"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-signature",
+            "quote": "On-demand, with five profitable days between later payouts; the first payout is exempt from that five-day condition.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-signature"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: restricted on E8 One (Forex); not stated on E8 One (Perpetuals), E8 Pro (Perpetuals); allowed on E8 Pro (E8PRO v2, Forex), E8 Signature Forex",
+        "byProduct": {
+          "e8-one": "restricted",
+          "e8-one-perpetuals": null,
+          "e8-pro": true,
+          "e8-pro-perpetuals": null,
+          "e8-signature": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "Challenge news trading is unrestricted; Performance trading on targeted instruments is prohibited from five minutes before through five minutes after high-impact releases.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-one"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "News trading is unrestricted in Challenge and Performance stages.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-pro"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-signature",
+            "quote": "News trading is unrestricted in Challenge and Performance stages.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-signature"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": "Product-specific: allowed on E8 One (Forex), E8 One (Perpetuals), E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); not allowed on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": true,
+          "e8-one-perpetuals": true,
+          "e8-pro": true,
+          "e8-pro-perpetuals": true,
+          "e8-signature": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "The product overview table says weekend holding is allowed for E8 One.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-one"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "Weekend holding is allowed.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-pro"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-signature",
+            "quote": "The official product comparison table says Signature weekend holding is not allowed.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+            "productSlug": "e8-signature"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "TradeLocker",
+          "Match-Trader",
+          "cTrader",
+          "MT5"
+        ],
+        "summary": "TradeLocker, Match-Trader, cTrader, MT5",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/",
+            "quote": "rmMatch $216,000+ Largest payout reward Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal Account configurator Configure Your Account in",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://e8markets.com/",
+            "quote": "rgest payout reward Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal Account configurator Configure Your Account in Seconds Classic Mark",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://e8markets.com/",
+            "quote": ",000+ Largest payout reward Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal Account configurator Configure Your Account in Seconds",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://e8markets.com/",
+            "quote": "f 5 on PropFirmMatch $216,000+ Largest payout reward Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal Account configurator Configure Your",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "Alpha Capital",
@@ -460,7 +1600,301 @@
     "regulation": null,
     "corporateSourceUrl": "https://alphacapitalgroup.uk/",
     "corporateCapturedAt": "2026-10-14",
-    "affiliateStatus": "none"
+    "affiliateStatus": "none",
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on Alpha One (10%, on-demand), Alpha Direct; static on Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand), Alpha Three (availability unverified)",
+        "byProduct": {
+          "alpha-one": "trailing",
+          "alpha-pro-6": "static",
+          "alpha-pro-6-on-demand": "static",
+          "alpha-pro-8-bi-weekly": "static",
+          "alpha-pro-8-on-demand": "static",
+          "alpha-pro-10-bi-weekly": "static",
+          "alpha-pro-10-on-demand": "static",
+          "alpha-swing": "static",
+          "alpha-three": "static",
+          "alpha-direct": "trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+            "quote": "high-water mark",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-one"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+            "quote": "static",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-pro-6"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+            "quote": "static",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-pro-8-bi-weekly"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+            "quote": "static",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-swing"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 4% on Alpha One (10%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Three (availability unverified); 3% on Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Direct; 5% on Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand)",
+        "byProduct": {
+          "alpha-one": 4,
+          "alpha-pro-6": 3,
+          "alpha-pro-6-on-demand": 3,
+          "alpha-pro-8-bi-weekly": 4,
+          "alpha-pro-8-on-demand": 4,
+          "alpha-pro-10-bi-weekly": 5,
+          "alpha-pro-10-on-demand": 5,
+          "alpha-swing": 5,
+          "alpha-three": 4,
+          "alpha-direct": 3
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+            "quote": "4%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-one"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+            "quote": "3%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-pro-6"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+            "quote": "4%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-pro-8-bi-weekly"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+            "quote": "5%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-pro-10-bi-weekly"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 6% on Alpha One (10%, on-demand), Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Three (availability unverified); 8% on Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand); 10% on Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand); 5% on Alpha Direct",
+        "byProduct": {
+          "alpha-one": 6,
+          "alpha-pro-6": 6,
+          "alpha-pro-6-on-demand": 6,
+          "alpha-pro-8-bi-weekly": 8,
+          "alpha-pro-8-on-demand": 8,
+          "alpha-pro-10-bi-weekly": 10,
+          "alpha-pro-10-on-demand": 10,
+          "alpha-swing": 10,
+          "alpha-three": 6,
+          "alpha-direct": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+            "quote": "6%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-one"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+            "quote": "6%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-pro-6"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+            "quote": "8%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-pro-8-bi-weekly"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+            "quote": "10%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-pro-10-bi-weekly"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 40% on Alpha One (10%, on-demand), Alpha Pro (6%, on-demand), Alpha Pro (8%, on-demand), Alpha Pro (10%, on-demand), Alpha Swing (on-demand); not stated on Alpha Pro (6%, bi-weekly), Alpha Pro (8%, bi-weekly), Alpha Pro (10%, bi-weekly), Alpha Three (availability unverified); 15% on Alpha Direct",
+        "byProduct": {
+          "alpha-one": 40,
+          "alpha-pro-6": null,
+          "alpha-pro-6-on-demand": 40,
+          "alpha-pro-8-bi-weekly": null,
+          "alpha-pro-8-on-demand": 40,
+          "alpha-pro-10-bi-weekly": null,
+          "alpha-pro-10-on-demand": 40,
+          "alpha-swing": 40,
+          "alpha-three": null,
+          "alpha-direct": 15
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+            "quote": "40%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-one"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+            "quote": "15%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-direct"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on Alpha One (10%, on-demand), Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand), Alpha Three (availability unverified); 90% on Alpha Direct",
+        "byProduct": {
+          "alpha-one": 80,
+          "alpha-pro-6": 80,
+          "alpha-pro-6-on-demand": 80,
+          "alpha-pro-8-bi-weekly": 80,
+          "alpha-pro-8-on-demand": 80,
+          "alpha-pro-10-bi-weekly": 80,
+          "alpha-pro-10-on-demand": 80,
+          "alpha-swing": 80,
+          "alpha-three": 80,
+          "alpha-direct": 90
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://alphacapitalgroup.uk/product",
+            "quote": "80% standard",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-one"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "90% profit split",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-direct"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: on-demand on Alpha One (10%, on-demand), Alpha Pro (6%, on-demand), Alpha Pro (8%, on-demand), Alpha Pro (10%, on-demand), Alpha Swing (on-demand), Alpha Direct; bi-weekly on Alpha Pro (6%, bi-weekly), Alpha Pro (8%, bi-weekly), Alpha Pro (10%, bi-weekly), Alpha Three (availability unverified)",
+        "byProduct": {
+          "alpha-one": "on-demand",
+          "alpha-pro-6": "bi-weekly",
+          "alpha-pro-6-on-demand": "on-demand",
+          "alpha-pro-8-bi-weekly": "bi-weekly",
+          "alpha-pro-8-on-demand": "on-demand",
+          "alpha-pro-10-bi-weekly": "bi-weekly",
+          "alpha-pro-10-on-demand": "on-demand",
+          "alpha-swing": "on-demand",
+          "alpha-three": "bi-weekly",
+          "alpha-direct": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+            "quote": "on-demand",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-one"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+            "quote": "every 14 days",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "productSlug": "alpha-pro-6"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "cTrader"
+        ],
+        "summary": "MT5, cTrader",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://alphacapitalgroup.uk/",
+            "quote": "Summary Discount Code Apply Step Step 1 Account Alpha One Size $5,000 Platform MT5 Total due One-time payment $0.00 By confirming the order: I declare that I have",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://alphacapitalgroup.uk/",
+            "quote": "Desktop, web, and mobile access Built for serious traders Learn More Learn More cTrader Clean professional interface Fast order execution Advanced charting features De",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "BrightFunded",
@@ -536,7 +1970,220 @@
     "discountCodeSourceUrl": "https://brightfunded.com/",
     "discountCodeCapturedAt": "2026-10-15",
     "discountCodeNote": "Double Up Offer: 25% off + 15% Evaluation Profit Reward + free account upon payout.",
-    "discountPct": 25
+    "discountPct": 25,
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+      "drawdownType": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 3% on BrightFunded 1-Step; 4% on BrightFunded 2-Step Bright; 5% on BrightFunded 2-Step Classic",
+        "byProduct": {
+          "bright-funded-1-step": 3,
+          "bright-funded-2-step-bright": 4,
+          "bright-funded-2-step-classic": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://brightfunded.com/1-step",
+            "quote": "Current BrightFunded rules list 3% daily drawdown.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-1-step"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/2-step-bright",
+            "quote": "Current BrightFunded rules list 4% daily drawdown for 2-Step Bright.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-2-step-bright"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/2-step-classic",
+            "quote": "Current BrightFunded rules list 5% daily drawdown for 2-Step Classic.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-2-step-classic"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 6% on BrightFunded 1-Step; 8% on BrightFunded 2-Step Bright; 10% on BrightFunded 2-Step Classic",
+        "byProduct": {
+          "bright-funded-1-step": 6,
+          "bright-funded-2-step-bright": 8,
+          "bright-funded-2-step-classic": 10
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://brightfunded.com/1-step",
+            "quote": "Current BrightFunded rules list 6% trailing maximum drawdown.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-1-step"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/2-step-bright",
+            "quote": "Current BrightFunded rules list 8% static maximum drawdown for 2-Step Bright.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-2-step-bright"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/2-step-classic",
+            "quote": "Current BrightFunded rules list 10% static maximum drawdown for 2-Step Classic.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-2-step-classic"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "profitSplitPct": {
+        "value": 80,
+        "summary": "80%",
+        "byProduct": {
+          "bright-funded-1-step": 80,
+          "bright-funded-2-step-bright": 80,
+          "bright-funded-2-step-classic": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+            "quote": "The Profit Split is 80/20 by default and can be scaled up to 100/0 with our Scaling Plan or to 90% instantly with our add-on.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-1-step"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": "bi-weekly",
+        "summary": "bi-weekly",
+        "byProduct": {
+          "bright-funded-1-step": "bi-weekly",
+          "bright-funded-2-step-bright": "bi-weekly",
+          "bright-funded-2-step-classic": "bi-weekly"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+            "quote": "After your first Reward Split, you can request a Reward Split bi-weekly (14 days).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-1-step"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "bright-funded-1-step": "restricted",
+          "bright-funded-2-step-bright": "restricted",
+          "bright-funded-2-step-classic": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://brightfunded.com/1-step",
+            "quote": "Current 1-Step plan page lists a 5-minute news restriction.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-1-step"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/2-step-bright",
+            "quote": "Current 2-Step Bright plan page lists a 5-minute news restriction.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-2-step-bright"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/2-step-classic",
+            "quote": "Current 2-Step Classic plan page lists a 5-minute news restriction.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-2-step-classic"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "bright-funded-1-step": true,
+          "bright-funded-2-step-bright": true,
+          "bright-funded-2-step-classic": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://brightfunded.com/1-step",
+            "quote": "Current Help Center allows holding positions over weekends.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-1-step"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/2-step-bright",
+            "quote": "Current Help Center allows holding positions over weekends.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-2-step-bright"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/2-step-classic",
+            "quote": "Current Help Center allows holding positions over weekends.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+            "productSlug": "bright-funded-2-step-classic"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "DXTrade",
+          "cTrader"
+        ],
+        "summary": "MT5, DXTrade, cTrader",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
+            "quote": "At BrightFunded, we have three platforms designed to provide the best experience for our users: DXTrade, cTrader and MT5.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "OFP Funding",
@@ -586,7 +2233,212 @@
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-07-27",
     "russiaStatus": "unverified",
-    "affiliateStatus": "none"
+    "affiliateStatus": "none",
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+      "drawdownType": {
+        "value": "static",
+        "summary": "static",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": "static",
+          "instant-classic-5-daily-10-max-drawdown": "static",
+          "instant-lite": "static",
+          "instant-lite-5-daily-10-max-drawdown": "static",
+          "instant-plus-3-daily-5-max-drawdown": "static",
+          "instant-plus-5-daily-10-max-drawdown": "static"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "\"This is a 'hard' limit based on your initial balance\" / \"This limit never changes during the challenge\" (https://ofpfunding.com/trading-rules). Help centre adds: \"The rule is calculated against your highest balance at the start of the period or after your last Reward\" (https://help.ofpfunding.com/what-is-the-maximum-drawdown-and-how-can-i-avoid-hitting-it/) - i.e. static within a payout cycle, rebased after each approved reward.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-classic-3-daily-6-max-drawdown"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 3% on Instant Classic (3% daily / 6% max drawdown), Instant Lite (3% daily / 5% max), Instant Plus (3% daily / 5% max drawdown); 5% on Instant Classic (5% daily / 10% max drawdown), Instant Lite (5% daily / 10% max), Instant Plus (5% daily / 10% max drawdown)",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": 3,
+          "instant-classic-5-daily-10-max-drawdown": 5,
+          "instant-lite": 3,
+          "instant-lite-5-daily-10-max-drawdown": 5,
+          "instant-plus-3-daily-5-max-drawdown": 3,
+          "instant-plus-5-daily-10-max-drawdown": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 3% from record: {\"price\":35,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-classic-3-daily-6-max-drawdown"
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 5% from record: {\"price\":45,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-classic-5-daily-10-max-drawdown"
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 3% from record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}] (https://ofpfunding.com/trading-rules)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-lite"
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 3% from record: {\"price\":125,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-plus-3-daily-5-max-drawdown"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 6% on Instant Classic (3% daily / 6% max drawdown); 10% on Instant Classic (5% daily / 10% max drawdown), Instant Lite (5% daily / 10% max), Instant Plus (5% daily / 10% max drawdown); 5% on Instant Lite (3% daily / 5% max), Instant Plus (3% daily / 5% max drawdown)",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": 6,
+          "instant-classic-5-daily-10-max-drawdown": 10,
+          "instant-lite": 5,
+          "instant-lite-5-daily-10-max-drawdown": 10,
+          "instant-plus-3-daily-5-max-drawdown": 5,
+          "instant-plus-5-daily-10-max-drawdown": 10
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 6% from record: {\"price\":35,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-classic-3-daily-6-max-drawdown"
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 10% from record: {\"price\":45,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-classic-5-daily-10-max-drawdown"
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 5% from record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}] (https://ofpfunding.com/trading-rules)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-lite"
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 5% from record: {\"price\":125,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-plus-3-daily-5-max-drawdown"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "profitSplitPct": {
+        "value": 80,
+        "summary": "80%",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": 80,
+          "instant-classic-5-daily-10-max-drawdown": 80,
+          "instant-lite": 80,
+          "instant-lite-5-daily-10-max-drawdown": 80,
+          "instant-plus-3-daily-5-max-drawdown": 80,
+          "instant-plus-5-daily-10-max-drawdown": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Pricing widget selector: \"Select Profit Split  80%  100%\". 80% is the base price tier recorded in priceUsd; the 100% tier costs ~20% more (per-size 100% prices are given in each accountSizes evidence string). Homepage: \"Up to 100% profit split\".",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-classic-3-daily-6-max-drawdown"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: bi-weekly on Instant Classic (3% daily / 6% max drawdown), Instant Classic (5% daily / 10% max drawdown), Instant Plus (3% daily / 5% max drawdown), Instant Plus (5% daily / 10% max drawdown); monthly on Instant Lite (3% daily / 5% max), Instant Lite (5% daily / 10% max)",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": "bi-weekly",
+          "instant-classic-5-daily-10-max-drawdown": "bi-weekly",
+          "instant-lite": "monthly",
+          "instant-lite-5-daily-10-max-drawdown": "monthly",
+          "instant-plus-3-daily-5-max-drawdown": "bi-weekly",
+          "instant-plus-5-daily-10-max-drawdown": "bi-weekly"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Following the initial reward, subsequent reward requests may be submitted after each additional 14-day period, with the calculation period resetting after every approved reward, as long as the trading criteria continue to be met.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-classic-3-daily-6-max-drawdown"
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Once the reward has been approved or the 30-day validity period has expired (whichever occurs first), the Instant Lite account will be considered concluded, and no further reward requests shall be permitted.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "productSlug": "instant-lite"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "platforms": {
+        "value": [
+          "OFP Platform"
+        ],
+        "summary": "OFP Platform (not confirmed on the official page read: MT5)",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/",
+            "quote": "d the guide Demo Trading With Institutional Conditions Lowest spreads worldwide OFP Platform Forex Index Metals Oil Crypto Watch their stories and learn how they did it. Fu",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "Maven",
@@ -667,7 +2519,393 @@
     "discountCode": "OMO",
     "discountCodeSourceUrl": "https://maventrading.com/",
     "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "Omo 2-Step challenges only (40% off from $10K; flat $ off on $2K/$5K)."
+    "discountCodeNote": "Omo 2-Step challenges only (40% off from $10K; flat $ off on $2K/$5K).",
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on Standard 1-Step, Instant, Mini, Prediction Markets One-Step Essential; static on Standard 2-Step, Standard 3-Step, Buy Now, Pay Later, OMO 2-Step, Prediction Markets One-Step Elite",
+        "byProduct": {
+          "standard-1-step": "trailing",
+          "standard-2-step": "static",
+          "standard-3-step": "static",
+          "instant": "trailing",
+          "mini": "trailing",
+          "buy-now-pay-later": "static",
+          "omo-2-step": "static",
+          "predictions-1-step": "trailing",
+          "predictions-elite-1-step": "static"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Pricing card tooltip on Max loss: 'Trailing drawdown. The max % loss allowed from your highest equity at any point'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-1-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Pricing card tooltip on Max loss: 'Static drawdown. The max % loss allowed from your starting balance.'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-2-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Pricing card tooltip on Max loss: 'Trailing drawdown. The max % loss allowed from your highest equity at any point.'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "mini"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "One-Step Essential uses Trailing Drawdown with a 3% max drawdown [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "predictions-1-step"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 3% on Standard 1-Step; 4% on Standard 2-Step, OMO 2-Step; 2% on Standard 3-Step, Instant, Mini; not stated on Buy Now, Pay Later, Prediction Markets One-Step Essential, Prediction Markets One-Step Elite",
+        "byProduct": {
+          "standard-1-step": 3,
+          "standard-2-step": 4,
+          "standard-3-step": 2,
+          "instant": 2,
+          "mini": 2,
+          "buy-now-pay-later": null,
+          "omo-2-step": 4,
+          "predictions-1-step": null,
+          "predictions-elite-1-step": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "One Step Challenge / Daily Drawdown: 3% (based on the higher of your equity/balance at 00:00 UTC) [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-1-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Two Step Challenge / Daily Drawdown: 4% (Based on the higher of your equity/balance at 00:00 UTC) [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-2-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Three Step Challenge / Daily Drawdown: 2% (based on the higher of your equity/balance at 00:00 UTC) [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-3-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Instant Challenge / Daily Drawdown: 2% (based on the higher of your equity/balance at 00:00 UTC) [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "instant"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on Standard 1-Step; 8% on Standard 2-Step, OMO 2-Step; 3% on Standard 3-Step, Instant, Mini; 10% on Buy Now, Pay Later; not stated on Prediction Markets One-Step Essential, Prediction Markets One-Step Elite",
+        "byProduct": {
+          "standard-1-step": 5,
+          "standard-2-step": 8,
+          "standard-3-step": 3,
+          "instant": 3,
+          "mini": 3,
+          "buy-now-pay-later": 10,
+          "omo-2-step": 8,
+          "predictions-1-step": null,
+          "predictions-elite-1-step": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "One Step Challenge / Max Drawdown: 5% (trailing off your highest watermark of equity) [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-1-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Two Step Challenge / Max Drawdown: 8% (Static) [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-2-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Three Step Challenge / Max Drawdown: 3% (Static) [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-3-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Instant Challenge / Max Drawdown: 3% (Trailing) [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "instant"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: not stated on Standard 1-Step, Standard 2-Step, Standard 3-Step, OMO 2-Step, Prediction Markets One-Step Essential, Prediction Markets One-Step Elite; 20% on Instant, Buy Now, Pay Later; 15% on Mini",
+        "byProduct": {
+          "standard-1-step": null,
+          "standard-2-step": null,
+          "standard-3-step": null,
+          "instant": 20,
+          "mini": 15,
+          "buy-now-pay-later": 20,
+          "omo-2-step": null,
+          "predictions-1-step": null,
+          "predictions-elite-1-step": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Consistency score: No (tooltip: 'Not applicable for one step')",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-1-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Consistency score: No (tooltip: 'There is NO consistency score on two-step')",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-2-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Consistency score: No (tooltip text on the 3-step card reads 'There is NO consistency score on two-step')",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-3-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "You can only withdraw from your instant account when your consistency score is 20% or below. This is calculated by (your biggest winning day / total profit) * 100%. [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "instant"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on Standard 1-Step, Standard 2-Step, Standard 3-Step, Instant, Buy Now, Pay Later, OMO 2-Step; 70% on Mini, Prediction Markets One-Step Essential, Prediction Markets One-Step Elite",
+        "byProduct": {
+          "standard-1-step": 80,
+          "standard-2-step": 80,
+          "standard-3-step": 80,
+          "instant": 80,
+          "mini": 70,
+          "buy-now-pay-later": 80,
+          "omo-2-step": 80,
+          "predictions-1-step": 70,
+          "predictions-elite-1-step": 70
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "The profit split is 80% across instant, one step, two step and three step. [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-1-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "The payout split is 70%. [https://maventrading.com/faqs] (pricing card also shows 'Profit split 70%')",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "mini"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Profit split remains 80% [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "buy-now-pay-later"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Pricing card: 'Profit split 80%'. Note FAQ: M2 Account Saver first breach 'your profit split is permanently reduced to 50% for the remainder of the account'.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "omo-2-step"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: bi-weekly on Standard 1-Step, Standard 2-Step, Standard 3-Step, OMO 2-Step, Prediction Markets One-Step Essential, Prediction Markets One-Step Elite; not stated on Instant; on-demand on Mini, Buy Now, Pay Later",
+        "byProduct": {
+          "standard-1-step": "bi-weekly",
+          "standard-2-step": "bi-weekly",
+          "standard-3-step": "bi-weekly",
+          "instant": null,
+          "mini": "on-demand",
+          "buy-now-pay-later": "on-demand",
+          "omo-2-step": "bi-weekly",
+          "predictions-1-step": "bi-weekly",
+          "predictions-elite-1-step": "bi-weekly"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Payout frequency / Funded: 10 business days (pricing card)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-1-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "CONFLICT: /pricing says 'When Requirements are met'; /faqs says withdrawals can be requested every 10 business days after the first trade; /terms-and-conditions specifically says Maven Instant payouts are available every 10 business days. Cadence is left null rather than choosing one publication. [https://maventrading.com/pricing; https://maventrading.com/faqs; https://maventrading.com/terms-and-conditions]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "instant"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Pricing card: 'Payout frequency / Funded: 24 hours'. FAQ: 'Only one - it's a single payout model. After your first withdrawal, your account will be closed.'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "mini"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Pricing card: 'Payout frequency / Funded: Instant'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "buy-now-pay-later"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: restricted on Standard 1-Step, Standard 2-Step, Standard 3-Step, Mini, OMO 2-Step; allowed on Instant, Buy Now, Pay Later, Prediction Markets One-Step Essential, Prediction Markets One-Step Elite",
+        "byProduct": {
+          "standard-1-step": "restricted",
+          "standard-2-step": "restricted",
+          "standard-3-step": "restricted",
+          "instant": true,
+          "mini": "restricted",
+          "buy-now-pay-later": true,
+          "omo-2-step": "restricted",
+          "predictions-1-step": true,
+          "predictions-elite-1-step": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "RESTRICTED: Traders cannot open or close trades in the 2-minute window before or after a Red Folder release; positions opened earlier may be held. [https://maventrading.com/faqs; https://maventrading.com/terms-and-conditions]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-1-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "The News rule does not apply to our instant accounts. ... News trading for instant funding does not apply. [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "instant"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "RESTRICTED: Maven's general rule prohibits opening or closing in the 2-minute window before or after Red Folder news. The FAQ expressly exempts Instant and separately overrides Omo, Prediction Markets, and Buy Now Pay Later, but publishes no Mini exception. [https://maventrading.com/faqs; https://maventrading.com/terms-and-conditions]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "mini"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Yes. News trading is fully permitted during the evaluation with no restrictions. ... News trading remains allowed [funded] [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "buy-now-pay-later"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "standard-1-step": true,
+          "standard-2-step": true,
+          "standard-3-step": true,
+          "instant": true,
+          "mini": true,
+          "buy-now-pay-later": true,
+          "omo-2-step": true,
+          "predictions-1-step": true,
+          "predictions-elite-1-step": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Weekend holdings are permitted for all account types. [https://maventrading.com/faqs]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-1-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "Weekend holdings are permitted for all account types. [https://maventrading.com/faqs; https://maventrading.com/terms-and-conditions]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+            "productSlug": "standard-3-step"
+          }
+        ]
+      },
+      "platforms": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      }
+    }
   },
   {
     "name": "FXIFY",
@@ -762,7 +3000,455 @@
     "regulation": null,
     "corporateSourceUrl": null,
     "corporateCapturedAt": null,
-    "affiliateStatus": "none"
+    "affiliateStatus": "none",
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on One Phase, Two Phase Standard, Instant Funding Standard, Instant Funding Lite, Lightning Challenge, Crypto Standard (1 Step), Crypto Instant Funding; static on Two Phase Classic, Two Phase Pro, Three Phase",
+        "byProduct": {
+          "one-phase": "trailing",
+          "two-phase-classic": "static",
+          "two-phase-standard": "trailing",
+          "two-phase-pro": "static",
+          "three-phase": "static",
+          "instant-funding-standard": "trailing",
+          "instant-funding-lite": "trailing",
+          "lightning-challenge": "trailing",
+          "crypto-standard-1-step": "trailing",
+          "crypto-instant-funding": "trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "\"Drawdown Type\" = \"Trailing\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "one-phase"
+          },
+          {
+            "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
+            "quote": "\"Drawdown type\" = \"Static\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "two-phase-pro"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
+            "quote": "\"Drawdown Type\" = \"Static\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "three-phase"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/instant-funding/",
+            "quote": "\"Drawdown Type\" = \"Trailing\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "instant-funding-standard"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 3% on One Phase, Instant Funding Lite, Lightning Challenge, Crypto Standard (1 Step), Crypto Instant Funding; 4% on Two Phase Classic, Two Phase Standard, Two Phase Pro; 5% on Three Phase; 8% on Instant Funding Standard",
+        "byProduct": {
+          "one-phase": 3,
+          "two-phase-classic": 4,
+          "two-phase-standard": 4,
+          "two-phase-pro": 4,
+          "three-phase": 5,
+          "instant-funding-standard": 8,
+          "instant-funding-lite": 3,
+          "lightning-challenge": 3,
+          "crypto-standard-1-step": 3,
+          "crypto-instant-funding": 3
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "\"Daily Loss Limit\": \"3%\" - \"Daily Loss Limit is calculated based on the previous day’s end of day (5PM EST) balance.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "one-phase"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/two-phase/",
+            "quote": "\"Daily Loss Limit\": \"4%\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "two-phase-classic"
+          },
+          {
+            "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
+            "quote": "\"Daily Loss Limit\": \"4%\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "two-phase-pro"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
+            "quote": "\"Daily Loss Limit\": \"5%\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "three-phase"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 6% on One Phase, Crypto Standard (1 Step), Crypto Instant Funding; 10% on Two Phase Classic, Two Phase Standard; 8% on Two Phase Pro, Instant Funding Standard; 5% on Three Phase; 4% on Instant Funding Lite, Lightning Challenge",
+        "byProduct": {
+          "one-phase": 6,
+          "two-phase-classic": 10,
+          "two-phase-standard": 10,
+          "two-phase-pro": 8,
+          "three-phase": 5,
+          "instant-funding-standard": 8,
+          "instant-funding-lite": 4,
+          "lightning-challenge": 4,
+          "crypto-standard-1-step": 6,
+          "crypto-instant-funding": 6
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "\"Max Trailing Drawdown\": \"6%\" - \"Trailing drawdown - 6% trails your closed trading balance until you reach 6% profits in your account.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "one-phase"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/two-phase/",
+            "quote": "\"Max Static Drawdown\": \"10%\" - \"When you open the account, your Max Drawdown is set at 10% of your starting balance. This will be static for the life of the account.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "two-phase-classic"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/two-phase/",
+            "quote": "\"Max Trailing Drawdown\": \"10%\" - \"Trailing drawdown - 10% trails your closed trading balance until you reach 10% profits in your account.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "two-phase-standard"
+          },
+          {
+            "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
+            "quote": "\"Maximum loss limit\" = \"8%\" across every account size",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "two-phase-pro"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: not stated on One Phase, Two Phase Standard, Two Phase Pro, Three Phase, Instant Funding Standard, Crypto Standard (1 Step); 25% on Two Phase Classic, Crypto Instant Funding; 20% on Instant Funding Lite; 30% on Lightning Challenge",
+        "byProduct": {
+          "one-phase": null,
+          "two-phase-classic": 25,
+          "two-phase-standard": null,
+          "two-phase-pro": null,
+          "three-phase": null,
+          "instant-funding-standard": null,
+          "instant-funding-lite": 20,
+          "lightning-challenge": 30,
+          "crypto-standard-1-step": null,
+          "crypto-instant-funding": 25
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/programs/two-phase/",
+            "quote": "\"Consistency Rule\": [\"N/A\", \"N/A\", \"25%\"]",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "two-phase-classic"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/instant-funding/",
+            "quote": "\"Consistency\": \"20%\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "instant-funding-lite"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+            "quote": "\"Consistency Rule\" = \"30%\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "lightning-challenge"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/crypto/",
+            "quote": "'Consistency Rule': '25% (funded only)' - evaluation has none, so null",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "crypto-standard-1-step"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on One Phase, Two Phase Classic, Two Phase Standard, Two Phase Pro, Three Phase, Crypto Standard (1 Step), Crypto Instant Funding; not stated on Instant Funding Standard, Instant Funding Lite, Lightning Challenge",
+        "byProduct": {
+          "one-phase": 80,
+          "two-phase-classic": 80,
+          "two-phase-standard": 80,
+          "two-phase-pro": 80,
+          "three-phase": 80,
+          "instant-funding-standard": null,
+          "instant-funding-lite": null,
+          "lightning-challenge": null,
+          "crypto-standard-1-step": 80,
+          "crypto-instant-funding": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "one-phase"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/two-phase/",
+            "quote": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "two-phase-classic"
+          },
+          {
+            "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
+            "quote": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "two-phase-pro"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
+            "quote": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "three-phase"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: monthly on One Phase, Two Phase Classic, Two Phase Standard, Three Phase; not stated on Two Phase Pro, Instant Funding Lite; bi-weekly on Instant Funding Standard, Lightning Challenge, Crypto Standard (1 Step), Crypto Instant Funding",
+        "byProduct": {
+          "one-phase": "monthly",
+          "two-phase-classic": "monthly",
+          "two-phase-standard": "monthly",
+          "two-phase-pro": null,
+          "three-phase": "monthly",
+          "instant-funding-standard": "bi-weekly",
+          "instant-funding-lite": null,
+          "lightning-challenge": "bi-weekly",
+          "crypto-standard-1-step": "bi-weekly",
+          "crypto-instant-funding": "bi-weekly"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "one-phase"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/two-phase/",
+            "quote": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "two-phase-classic"
+          },
+          {
+            "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
+            "quote": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "two-phase-pro"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
+            "quote": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "three-phase"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: allowed on One Phase, Two Phase Classic, Two Phase Standard, Two Phase Pro, Three Phase; not allowed on Instant Funding Standard, Instant Funding Lite, Lightning Challenge; restricted on Crypto Standard (1 Step), Crypto Instant Funding",
+        "byProduct": {
+          "one-phase": true,
+          "two-phase-classic": true,
+          "two-phase-standard": true,
+          "two-phase-pro": true,
+          "three-phase": true,
+          "instant-funding-standard": false,
+          "instant-funding-lite": false,
+          "lightning-challenge": false,
+          "crypto-standard-1-step": "restricted",
+          "crypto-instant-funding": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "\"Trade Through News\" = \"Yes\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "one-phase"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/instant-funding/",
+            "quote": "\"Trade Through News\" = \"No\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "instant-funding-standard"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+            "quote": "\"Trade Through News\" = \"No\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "lightning-challenge"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/crypto/",
+            "quote": "https://fxify.com/programs/crypto/ table: 'News Trading': 'No 5min before/after'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "crypto-standard-1-step"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": "Product-specific: allowed on One Phase, Two Phase Classic, Two Phase Standard, Two Phase Pro, Three Phase, Lightning Challenge, Crypto Standard (1 Step), Crypto Instant Funding; not allowed on Instant Funding Standard, Instant Funding Lite",
+        "byProduct": {
+          "one-phase": true,
+          "two-phase-classic": true,
+          "two-phase-standard": true,
+          "two-phase-pro": true,
+          "three-phase": true,
+          "instant-funding-standard": false,
+          "instant-funding-lite": false,
+          "lightning-challenge": true,
+          "crypto-standard-1-step": true,
+          "crypto-instant-funding": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "\"Hold Over Weekend\" = \"Yes\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "one-phase"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/instant-funding/",
+            "quote": "\"Hold Over Weekend\" = \"No\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "instant-funding-standard"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+            "quote": "\"Hold Over Weekend\" = \"Yes\"",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "lightning-challenge"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/crypto/",
+            "quote": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-can-i-hold-positions-over-the-weekend-with-a-crypto-account/: 'Yes, with a Crypto account, you can hold positions over the weekend.'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+            "productSlug": "crypto-standard-1-step"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT4",
+          "MT5",
+          "DXTrade",
+          "TradingView"
+        ],
+        "summary": "MT4, MT5, DXTrade, TradingView",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/",
+            "quote": "rs Good offers, publicity, and following of the customers. Is easy yo acivte in MT4 & 5. Omer Misgərli, 4 days ago I am very satisfied with fxify support I am very",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://fxify.com/",
+            "quote": "out Over 150+ Symbols To Trade Exclusive Discounts For Our Traders TradingView, MetaTrader 5 & DXTrade Up to $400,000 starting capital First Payout On Demand Instant Fundin",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://fxify.com/",
+            "quote": "ymbols To Trade Exclusive Discounts For Our Traders TradingView, MetaTrader 5 & DXTrade Up to $400,000 starting capital First Payout On Demand Instant Funding Unlimite",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://fxify.com/",
+            "quote": "unts at Checkout Over 150+ Symbols To Trade Exclusive Discounts For Our Traders TradingView, MetaTrader 5 & DXTrade Up to $400,000 starting capital First Payout On Demand",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "Crypto Fund Trader",
@@ -812,7 +3498,187 @@
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-07-27",
     "russiaStatus": "available",
-    "affiliateStatus": "none"
+    "affiliateStatus": "none",
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
+      "drawdownType": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on Evaluation (Standard 2-Phase), Ascend Evaluation; 4% on Accelerated (1-Phase), Instant; not stated on Break Challenge",
+        "byProduct": {
+          "evaluation": 5,
+          "ascend": 5,
+          "accelerated": 4,
+          "instant": 4,
+          "break": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "5%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
+            "productSlug": "evaluation"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "4%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
+            "productSlug": "accelerated"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "4%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
+            "productSlug": "instant"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 10% on Evaluation (Standard 2-Phase), Ascend Evaluation; 6% on Accelerated (1-Phase), Instant; not stated on Break Challenge",
+        "byProduct": {
+          "evaluation": 10,
+          "ascend": 10,
+          "accelerated": 6,
+          "instant": 6,
+          "break": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "10%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
+            "productSlug": "evaluation"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "6%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
+            "productSlug": "accelerated"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "6%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
+            "productSlug": "instant"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on Evaluation (Standard 2-Phase), Accelerated (1-Phase), Break Challenge; not stated on Ascend Evaluation; 50% on Instant",
+        "byProduct": {
+          "evaluation": 80,
+          "ascend": null,
+          "accelerated": 80,
+          "instant": 50,
+          "break": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "80%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
+            "productSlug": "evaluation"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "50%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
+            "productSlug": "instant"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+            "quote": "80%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
+            "productSlug": "break"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "Match-Trader",
+          "Bybit"
+        ],
+        "summary": "MT5, Match-Trader, Bybit",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Blog CFT x Bybit Choose your challenge Free tournaments Match - Trader Platform MT5 Web Terminal BYBIT Platform Contact us Cookies “KYC Audit” Privacy Policy Compe",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "eat. EVALUATION - ONE TIME FEE - $ 58.00 PLATFORM Choose an option MetaTrader 5 Match-Trader (Works in US) BYBIT Clear $5.000 Evaluation quantity Add to cart $ 110.00 PLATF",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "ns Refund Policy Proof of Scholarship Affiliate Partner Theory Tools Blog CFT x Bybit Choose your challenge Free tournaments Match - Trader Platform MT5 Web Terminal",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "Topstep",
@@ -897,7 +3763,124 @@
     "trustpilotUrl": "https://www.trustpilot.com/review/topstep.com",
     "trustpilotCapturedAt": "2026-07-27",
     "russiaStatus": "restricted",
-    "affiliateStatus": "none"
+    "affiliateStatus": "none",
+    "rules": {
+      "capturedAt": "2026-10-06",
+      "captureFile": "content/data/challenges/_captures/topstep-2026-10-06.json",
+      "drawdownType": {
+        "value": "eod-trailing",
+        "summary": "eod-trailing",
+        "byProduct": {
+          "trading-combine-standard-path": "eod-trailing",
+          "trading-combine-no-activation-fee-path": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+            "quote": "end-of-day balance",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-06",
+            "captureFile": "content/data/challenges/_captures/topstep-2026-10-06.json",
+            "productSlug": "trading-combine-standard-path"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "consistencyPct": {
+        "value": 55,
+        "summary": "55%",
+        "byProduct": {
+          "trading-combine-standard-path": 55,
+          "trading-combine-no-activation-fee-path": 55
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+            "quote": "Trading Combine — Consistency Target (55%)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-06",
+            "captureFile": "content/data/challenges/_captures/topstep-2026-10-06.json",
+            "productSlug": "trading-combine-standard-path"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": 90,
+        "summary": "90%",
+        "byProduct": {
+          "trading-combine-standard-path": 90,
+          "trading-combine-no-activation-fee-path": 90
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+            "quote": "90/10",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-06",
+            "captureFile": "content/data/challenges/_captures/topstep-2026-10-06.json",
+            "productSlug": "trading-combine-standard-path"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": "on-demand",
+        "summary": "on-demand",
+        "byProduct": {
+          "trading-combine-standard-path": "on-demand",
+          "trading-combine-no-activation-fee-path": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+            "quote": "CME market hours",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-06",
+            "captureFile": "content/data/challenges/_captures/topstep-2026-10-06.json",
+            "productSlug": "trading-combine-standard-path"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "platforms": {
+        "value": [
+          "TopstepX"
+        ],
+        "summary": "TopstepX",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://www.topstep.com/",
+            "quote": "Funded Trading Prop Firm How It Works Topstep Octagon Instant Payouts Brokerage TopstepX Blog Support Trader Support Help Center Status Page Discord Login Sign Up Sign",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "My Funded Futures",
@@ -1041,7 +4024,76 @@
     "discountCodeSourceUrl": "https://myfundedfutures.com/",
     "discountCodeCapturedAt": "2026-10-15",
     "discountCodeNote": "\"Save 40% On Any Plan With Code CLUB.\"",
-    "discountPct": 40
+    "discountPct": 40,
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
+      "drawdownType": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "platforms": {
+        "value": [
+          "Tradovate"
+        ],
+        "summary": "Tradovate (not confirmed on the official page read: NinjaTrader, TradingView)",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/",
+            "quote": "ra hoops. CB Casey Bennett Pro plan Trade on your favorite platforms. QUANTOWER tradovate Get MFFU updates worth opening. Receive product updates, education and insights",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "City Traders Imperium",
@@ -1105,7 +4157,334 @@
     "russiaSourceUrl": "https://citytradersimperium.com/",
     "russiaSourceQuote": "CTI does not offer services to residents of North Korea, Iran, Syria, Cuba, or Russia, or to anyone under international sanctions.",
     "countriesRestrictedSourceUrl": "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf",
-    "affiliateStatus": "none"
+    "affiliateStatus": "none",
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on 1-Step Challenge; static on 2-Step Challenge, Instant Funding, Direct Funding",
+        "byProduct": {
+          "1-step-challenge": "trailing",
+          "2-step-challenge": "static",
+          "instant-funding": "static",
+          "direct-funding": "static"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Your drawdown floor is set by your high watermark, the highest balance your account has reached, minus a fixed 5% of your starting balance.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "1-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "Max Drawdown: 10% Static",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "2-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "6% static from initial balance ... balance based drawdown",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "instant-funding"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "6% Static",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "direct-funding"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: not stated on 1-Step Challenge, Instant Funding, Direct Funding; 5% on 2-Step Challenge",
+        "byProduct": {
+          "1-step-challenge": null,
+          "2-step-challenge": 5,
+          "instant-funding": null,
+          "direct-funding": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Max Daily Drawdown - None (recorded as null: no daily loss limit published)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "1-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "Max Daily Drawdown: 5% of start-of-day balance",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "2-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "Daily Drawdown: None (recorded as null: no daily loss limit published)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "instant-funding"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Daily Drawdown: None (recorded as null: no daily loss limit published)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "direct-funding"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on 1-Step Challenge; 10% on 2-Step Challenge; 6% on Instant Funding, Direct Funding",
+        "byProduct": {
+          "1-step-challenge": 5,
+          "2-step-challenge": 10,
+          "instant-funding": 6,
+          "direct-funding": 6
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Max Drawdown: 5% Trailing",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "1-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "Max Static Drawdown: 10% of the initial balance",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "2-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "Max Drawdown: 6% static from initial balance",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "instant-funding"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Max Drawdown: 6% static from initial balance",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "direct-funding"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on 1-Step Challenge, 2-Step Challenge; 50% on Instant Funding; 70% on Direct Funding",
+        "byProduct": {
+          "1-step-challenge": 80,
+          "2-step-challenge": 80,
+          "instant-funding": 50,
+          "direct-funding": 70
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "80% to 100%",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "1-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "80% to 100%",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "2-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "Starting profit share: 50%",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "instant-funding"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "70% from your first trade",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "direct-funding"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: weekly on 1-Step Challenge, 2-Step Challenge; not stated on Instant Funding; monthly on Direct Funding",
+        "byProduct": {
+          "1-step-challenge": "weekly",
+          "2-step-challenge": "weekly",
+          "instant-funding": null,
+          "direct-funding": "monthly"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Weekly payouts",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "1-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "Weekly payouts",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "2-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Starts monthly, advances to weekly (Bronze), then on demand (Silver+)",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "direct-funding"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "1-step-challenge": true,
+          "2-step-challenge": true,
+          "instant-funding": true,
+          "direct-funding": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "News Trading: Allowed",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "1-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "News Trading: Allowed",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "2-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "News Trading: Allowed",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "instant-funding"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "News Trading: Allowed",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "direct-funding"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "1-step-challenge": true,
+          "2-step-challenge": true,
+          "instant-funding": true,
+          "direct-funding": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Weekend Holding: Allowed",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "1-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "Weekend Holding: Allowed",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "2-step-challenge"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "Weekend Holding: Allowed",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "instant-funding"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Weekend Holds: Allowed",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+            "productSlug": "direct-funding"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT5"
+        ],
+        "summary": "MT5 (not confirmed on the official page read: cTrader)",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/",
+            "quote": "ommunity Blog Market News Symbols Live Feed Economic Calendar Trading Platforms MetaTrader 5 Match Trader Calculators Challenge Drawdown Calculator Margin Calculator Swap C",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "Take Profit Trader",
@@ -1159,7 +4538,129 @@
     "discountCodeSourceUrl": "https://www.takeprofittrader.com/",
     "discountCodeCapturedAt": "2026-10-15",
     "discountCodeNote": "\"Get 40% Off For Life + Never Pay An Activation Fee\" with code NOFEE40.",
-    "discountPct": 40
+    "discountPct": 40,
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
+      "drawdownType": {
+        "value": "eod-trailing",
+        "summary": "eod-trailing",
+        "byProduct": {
+          "the-test": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "'The drawdown is End Of Day on test accounts, meaning it updates at the end of the trading day (5PM EST). On the PRO accounts, the drawdown is intraday ... In PRO+, the drawdown is End Of Day, the same as in the test.'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
+            "productSlug": "the-test"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "consistencyPct": {
+        "value": 50,
+        "summary": "50%",
+        "byProduct": {
+          "the-test": 50
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "'no single trading day may exceed 50% of your total net profits. This is based on your net P/L.'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
+            "productSlug": "the-test"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": 80,
+        "summary": "80%",
+        "byProduct": {
+          "the-test": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "'Profit split — Test: None | PRO: 80/20 | PRO+: 90/10' (homepage journey table); tooltip: 'In the PRO accounts you keep 80% of your profits above the buffer and 90% in PRO+ accounts.'",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
+            "productSlug": "the-test"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": "on-demand",
+        "summary": "on-demand",
+        "byProduct": {
+          "the-test": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "Official 2026-07-20 payout update: account-to-wallet withdrawal processing is automated in approximately 1–5 seconds; the wallet-to-bank leg varies by payout method. Official FAQ: day-one and daily withdrawals above the buffer, with no minimum profitable days or maximum withdrawal amount.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
+            "productSlug": "the-test"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "platforms": {
+        "value": [
+          "NinjaTrader",
+          "Tradovate"
+        ],
+        "summary": "NinjaTrader, Tradovate (not confirmed on the official page read: TradingView, Quantower)",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "herefore only use regulated brokers and CME approved data providers (Tradovate, NinjaTrader, and Rithmic) to place all trades. This means that all customers across all pha",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "usly, and therefore only use regulated brokers and CME approved data providers (Tradovate, NinjaTrader, and Rithmic) to place all trades. This means that all customers a",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "TradeDay",
@@ -1293,7 +4794,155 @@
     "discountCode": "TDNEW",
     "discountCodeSourceUrl": "https://www.tradeday.com/",
     "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "Homepage banner \"USE CODE TDNEW\"; discount amount not stated."
+    "discountCodeNote": "Homepage banner \"USE CODE TDNEW\"; discount amount not stated.",
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on Quick Pay - Intraday; eod-trailing on Quick Pay - End of Day, Fast Pass - End of Day",
+        "byProduct": {
+          "quick-pay-intraday": "trailing",
+          "quick-pay-end-of-day": "eod-trailing",
+          "fast-pass-end-of-day": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://www.tradeday.com/",
+            "quote": "Homepage and drawdown article: intraday trailing from unrealized equity highs.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
+            "productSlug": "quick-pay-intraday"
+          },
+          {
+            "sourceUrl": "https://www.tradeday.com/",
+            "quote": "Homepage: evaluation drawdown calculated End of Day.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
+            "productSlug": "quick-pay-end-of-day"
+          },
+          {
+            "sourceUrl": "https://www.tradeday.com/",
+            "quote": "Homepage and Fast Pass article: EOD trailing evaluation drawdown.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
+            "productSlug": "fast-pass-end-of-day"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 30% on Quick Pay - Intraday, Quick Pay - End of Day; 45% on Fast Pass - End of Day",
+        "byProduct": {
+          "quick-pay-intraday": 30,
+          "quick-pay-end-of-day": 30,
+          "fast-pass-end-of-day": 45
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://www.tradeday.com/",
+            "quote": "Homepage and Quick Pay article: no day may exceed 30% of total evaluation profits.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
+            "productSlug": "quick-pay-intraday"
+          },
+          {
+            "sourceUrl": "https://www.tradeday.com/",
+            "quote": "Homepage and Quick Pay article: 30% evaluation consistency.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
+            "productSlug": "quick-pay-end-of-day"
+          },
+          {
+            "sourceUrl": "https://www.tradeday.com/",
+            "quote": "Homepage and Fast Pass article: 45% during evaluation; post-2026-07-26 funded payouts also use 45% gross-profit consistency.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
+            "productSlug": "fast-pass-end-of-day"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 50% on Quick Pay - Intraday, Quick Pay - End of Day; 80% on Fast Pass - End of Day",
+        "byProduct": {
+          "quick-pay-intraday": 50,
+          "quick-pay-end-of-day": 50,
+          "fast-pass-end-of-day": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://www.tradeday.com/",
+            "quote": "Quick Pay payout policy: initial/current-profit-below-$4,000 split is 50/50.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
+            "productSlug": "quick-pay-intraday"
+          },
+          {
+            "sourceUrl": "https://www.tradeday.com/",
+            "quote": "Fast Pass payout policy: 80/20 Funded Sim.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
+            "productSlug": "fast-pass-end-of-day"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "platforms": {
+        "value": [
+          "Tradovate"
+        ],
+        "summary": "Tradovate (not confirmed on the official page read: TradeDayX, Quantower, NinjaTrader)",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://www.tradeday.com/",
+            "quote": "payouts True Day-One Payouts - No buffer Pass in 3 days Fastest route to funded Tradovate / Rithmic Intraday End of Day Thank you! Your submission has been received! Oop",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   },
   {
     "name": "Apex Trader Funding",
@@ -1474,7 +5123,164 @@
     "trustpilotUrl": "https://www.trustpilot.com/review/lucidtrading.com",
     "trustpilotCapturedAt": "2026-07-28",
     "russiaStatus": "restricted",
-    "affiliateStatus": "none"
+    "affiliateStatus": "none",
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: eod-trailing on LucidPro, LucidFlex, LucidDirect, LucidDaily - DLL On / EOD, LucidDaily - DLL Off / EOD; trailing on LucidDaily - DLL On / Intraday, LucidDaily - DLL Off / Intraday",
+        "byProduct": {
+          "lucidpro": "eod-trailing",
+          "lucidflex": "eod-trailing",
+          "luciddirect": "eod-trailing",
+          "luciddaily-dll-on-intraday": "trailing",
+          "luciddaily-dll-on-eod": "eod-trailing",
+          "luciddaily-dll-off-intraday": "trailing",
+          "luciddaily-dll-off-eod": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+            "quote": "Customization and Drawdown define Intraday evaluation drawdown; every funded Daily account is Intraday.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
+            "productSlug": "luciddaily-dll-on-intraday"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 40% on LucidPro; 50% on LucidFlex, LucidDaily - DLL On / Intraday, LucidDaily - DLL On / EOD, LucidDaily - DLL Off / Intraday, LucidDaily - DLL Off / EOD; 20% on LucidDirect",
+        "byProduct": {
+          "lucidpro": 40,
+          "lucidflex": 50,
+          "luciddirect": 20,
+          "luciddaily-dll-on-intraday": 50,
+          "luciddaily-dll-on-eod": 50,
+          "luciddaily-dll-off-intraday": 50,
+          "luciddaily-dll-off-eod": 50
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://www.lucidtrading.com/",
+            "quote": "LucidPro Payouts sets 40% in each funded payout cycle.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
+            "productSlug": "lucidpro"
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account",
+            "quote": "LucidFlex Evaluation publishes 50% evaluation consistency; funded Flex has no consistency.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
+            "productSlug": "lucidflex"
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890148-luciddirect-funded-account",
+            "quote": "LucidDirect Payout Objectives sets 20% for every payout cycle.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
+            "productSlug": "luciddirect"
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+            "quote": "50% applies in evaluation; funded Daily has no consistency.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
+            "productSlug": "luciddaily-dll-on-intraday"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": 90,
+        "summary": "90%",
+        "byProduct": {
+          "lucidpro": 90,
+          "lucidflex": 90,
+          "luciddirect": 90,
+          "luciddaily-dll-on-intraday": 90,
+          "luciddaily-dll-on-eod": 90,
+          "luciddaily-dll-off-intraday": 90,
+          "luciddaily-dll-off-eod": 90
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://www.lucidtrading.com/",
+            "quote": "LucidPro Payouts states 90% trader / 10% Lucid.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
+            "productSlug": "lucidpro"
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account",
+            "quote": "LucidFlex Payouts states 90% trader / 10% Lucid.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
+            "productSlug": "lucidflex"
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890148-luciddirect-funded-account",
+            "quote": "LucidDirect Payout Objectives states 90% trader / 10% Lucid.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
+            "productSlug": "luciddirect"
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+            "quote": "LucidDaily Payouts states 90% trader / 10% Lucid.",
+            "quoteKind": "capture-note",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
+            "productSlug": "luciddaily-dll-on-intraday"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "platforms": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      }
+    }
   },
   {
     "name": "Tradeify",
@@ -1587,6 +5393,117 @@
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeify.co",
     "trustpilotCapturedAt": "2026-07-28",
     "russiaStatus": "restricted",
-    "affiliateStatus": "none"
+    "affiliateStatus": "none",
+    "rules": {
+      "capturedAt": "2026-10-14",
+      "captureFile": "content/data/challenges/_captures/tradeify-2026-10-14.json",
+      "drawdownType": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "newsTrading": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "growth-evaluation": true,
+          "select-flex": true,
+          "select-daily": true,
+          "lightning-funded": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+            "quote": "We do not have any rules against or guidelines around trading news events.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-14",
+            "captureFile": "content/data/challenges/_captures/tradeify-2026-10-14.json",
+            "productSlug": "growth-evaluation"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "platforms": {
+        "value": [
+          "Tradovate",
+          "NinjaTrader",
+          "Rithmic",
+          "Tradesea",
+          "WealthCharts"
+        ],
+        "summary": "Tradovate, NinjaTrader, Rithmic, Tradesea, WealthCharts (not confirmed on the official page read: TradingView, Quantower, Sierra Chart, R|Trader)",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeify.co/",
+            "quote": "youts • Flexible funded rules Lightning Instant Instant funding • 5 day payouts Tradovate WealthCharts Rithmic / Tradesea Thank you! Your submission has been received! O",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://tradeify.co/",
+            "quote": "ge LLC d/b/a Slay Markets is a CFTC-registered introducing broker guaranteed by NinjaTrader Clearing, LLC and an NFA Member. Futures trading involves substantial risk and",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://tradeify.co/",
+            "quote": "rules Lightning Instant Instant funding • 5 day payouts Tradovate WealthCharts Rithmic / Tradesea Thank you! Your submission has been received! Oops! Something went w",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://tradeify.co/",
+            "quote": "htning Instant Instant funding • 5 day payouts Tradovate WealthCharts Rithmic / Tradesea Thank you! Your submission has been received! Oops! Something went wrong while",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": null,
+            "productSlug": null
+          }
+        ]
+      }
+    }
   }
 ]
