@@ -145,20 +145,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
-            "quote": "Official comparison describes the 2-Step Max Loss as static.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-2-step"
+            "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+            "quote": "[2-Step] The Maximum Loss rule establishes a static limit (the Maximum Loss Limit) below which your account equity ... cannot drop.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
-            "quote": "FTMO describes the 1-Step Max Loss as end-of-day trailing.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-1-step"
+            "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+            "quote": "[1-Step] The Maximum Loss rule establishes an end-of-day trailing limit (the Maximum Loss Limit) below which your account equity ... cannot drop.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -171,20 +171,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
-            "quote": "Official objectives list a 5% Max Daily Loss.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-2-step"
+            "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+            "quote": "[2-Step] the Maximum Daily Loss Amount, which is 5% of the Initial Simulated Capital.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
-            "quote": "Official objectives list a 3% Max Daily Loss.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-1-step"
+            "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+            "quote": "[1-Step] the** Maximum Daily Loss Amount**, which is 3% of the Initial Simulated Capital.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -198,19 +198,19 @@
         "evidence": [
           {
             "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
-            "quote": "Official objectives list a 10% Max Loss.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-2-step"
+            "quote": "Max Loss 10%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
-            "quote": "Official objectives list a 10% Max Loss.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-1-step"
+            "quote": "10% Max Loss to manage risk",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -223,12 +223,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
-            "quote": "Official objectives list a 50% Best Day Rule.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-1-step"
+            "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+            "quote": "To pass the FTMO Challenge: 1-Step or to be eligible for a Reward on an FTMO Account, the Consistency rule requires that your Best Day does not represent more than 50% of your total profit.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+            "quote": "Consistency Applicable to accounts initiated from orders created on or after 12 Oct 2026, or any accounts merged on or after this date",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -241,46 +249,39 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
-            "quote": "FTMO's withdrawal FAQ states 80% for 2-Step, increasing to 90% under Scaling Plan or Premium conditions.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-2-step"
+            "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+            "quote": "FTMO Account initiated from the 1-Step FTMO Challenge and FTMO Instant Account: You receive a Reward according to 90% of the simulated profit.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
-            "quote": "Official objectives list 90% rewards.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-1-step"
+            "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+            "quote": "FTMO Account initiated from the 2-Step FTMO Challenge: By default, you receive a Reward according to 80% of the simulated profit.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
       "payoutFrequency": {
-        "value": "on-demand",
-        "summary": "on-demand",
+        "value": null,
+        "summary": "Reward claim on the 14th or any following day after the first trade on the account (not same-day on-demand)",
+        "note": "Previous capture said on-demand; the official FAQ states a 14-day minimum from the first trade.",
         "byProduct": {
-          "ftmo-challenge-2-step": "on-demand",
-          "ftmo-challenge-1-step": "on-demand"
+          "ftmo-challenge-2-step": null,
+          "ftmo-challenge-1-step": null
         },
         "evidence": [
           {
-            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
-            "quote": "FTMO describes Rewards as requestable on demand after the minimum period.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-2-step"
-          },
-          {
-            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
-            "quote": "FTMO describes Rewards as requestable on demand after the minimum period.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-1-step"
+            "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+            "quote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -294,19 +295,19 @@
         "evidence": [
           {
             "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
-            "quote": "FTMO says selected-news restrictions apply to Standard FTMO Accounts, not the Evaluation Process.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-2-step"
+            "quote": "Restrictions for trading during selected news releases apply only to the Standard account type. The Swing account type have no restrictions on trading during news releases.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
-            "quote": "FTMO says selected-news restrictions apply to Standard FTMO Accounts, not the Evaluation Process.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-1-step"
+            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+            "quote": "For Standard accounts, these restrictions apply only once you start trading on an FTMO Account. They do not apply during the Evaluation Process.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -320,19 +321,11 @@
         "evidence": [
           {
             "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
-            "quote": "FTMO says overnight and weekend restrictions apply to Standard FTMO Accounts, not the Evaluation Process.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-2-step"
-          },
-          {
-            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
-            "quote": "FTMO says overnight and weekend restrictions apply to Standard FTMO Accounts, not the Evaluation Process.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
-            "productSlug": "ftmo-challenge-1-step"
+            "quote": "Overnight and weekend position restrictions apply only to the Standard account type. The Swing account type does not have any restrictions on holding positions overnight or over the weekend.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -470,36 +463,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
-            "quote": "Current product page: Static drawdown.",
-            "quoteKind": "capture-note",
+            "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+            "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-2-step"
-          },
-          {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
-            "quote": "Current product page: Static drawdown.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-1-step"
-          },
-          {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
-            "quote": "Current product page: Static drawdown.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-lite"
-          },
-          {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
-            "quote": "Current product page: trailing drawdown.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-instant"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -514,28 +483,36 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
-            "quote": "Current product page: 5% Daily Loss Limit.",
-            "quoteKind": "capture-note",
+            "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+            "quote": "Stellar 1-Step: 3% of initial balance",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-2-step"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
-            "quote": "Current product page: 3% Daily Loss Limit.",
-            "quoteKind": "capture-note",
+            "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+            "quote": "Stellar 2-Step: 5% of initial balance",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-1-step"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
-            "quote": "Current product page: 4% Daily Loss Limit.",
-            "quoteKind": "capture-note",
+            "quote": "4% Daily Loss limit.",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-lite"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "No daily loss limit.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -550,36 +527,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
-            "quote": "Current product page: 10% Maximum Loss Limit.",
-            "quoteKind": "capture-note",
+            "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+            "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-2-step"
-          },
-          {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
-            "quote": "Current product page: 6% Maximum Loss Limit.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-1-step"
-          },
-          {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
-            "quote": "Current product page: 8% Maximum Loss Limit.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-lite"
-          },
-          {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
-            "quote": "Current product page: 6% trailing Maximum Loss Limit.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-instant"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -614,6 +567,7 @@
       "profitSplitPct": {
         "value": null,
         "summary": "Product-specific: 80% on Stellar 2-Step, Stellar 1-Step, Stellar Lite; 70% on Stellar Instant",
+        "note": "Challenge data stores 80% (base) for 2-Step/1-Step/Lite; official product pages advertise \"up to 95%\". Base split not re-quoted.",
         "byProduct": {
           "stellar-2-step": 80,
           "stellar-1-step": 80,
@@ -623,35 +577,19 @@
         "evidence": [
           {
             "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
-            "quote": "Current Reward Share article: new Stellar accounts start at 80%; add-ons can increase the share.",
-            "quoteKind": "capture-note",
+            "quote": "Pass, get a FundedNext Account and keep up to 95% of your performance reward.",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-2-step"
-          },
-          {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
-            "quote": "Current Reward Share article: new Stellar accounts start at 80%; add-ons can increase the share.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-1-step"
-          },
-          {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
-            "quote": "Current Reward Share article: new Stellar accounts start at 80%; add-ons can increase the share.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-lite"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
-            "quote": "Current product page: 70% from Day 1, increasing to 80% from Tier 3.",
-            "quoteKind": "capture-note",
+            "quote": "70% performance reward from Day 1, increasing to 80% from Tier 3 onwards",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-instant"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -666,12 +604,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
-            "quote": "Conflict on the global page: the Funded & Reward Rules card says \"Subsequent Withdrawal10 Days\" while the comparison table says Lite \"Subsequent Rewards Bi-weekly\" (and the page FAQ schema still says 21 days / bi-weekly). Left null.",
-            "quoteKind": "capture-note",
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "Pass, get a FundedNext Account and keep up to 95% of your performance reward, paid every 5 business days.",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-lite"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "On-demand reward at 5% or on the usual 14-day cycle",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -686,36 +632,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
-            "quote": "Current product page allows news trading, while funded-stage news profit treatment is limited; retained as restricted in the comparison schema.",
-            "quoteKind": "capture-note",
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "FundedNext allows traders to trade during news events in both the Challenge Phase and the FundedNext Account .",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-2-step"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
-            "quote": "Current product page allows news trading, while funded-stage news profit treatment is limited; retained as restricted in the comparison schema.",
-            "quoteKind": "capture-note",
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Time Window : Trades executed 5 minutes before and 5 minutes after a listed high-impact news event (a total 10-minute window ) will be subject to the News Reward Share Rule .",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-1-step"
-          },
-          {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
-            "quote": "Current product page allows news trading, while funded-stage news profit treatment is limited; retained as restricted in the comparison schema.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-lite"
-          },
-          {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
-            "quote": "Current product page allows news trading but limits the counted profit; retained as restricted in the comparison schema.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-instant"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -730,36 +660,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
-            "quote": "Current product page: weekend holding allowed.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-2-step"
-          },
-          {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
-            "quote": "Current product page: weekend holding allowed.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-1-step"
-          },
-          {
             "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
-            "quote": "Current product page: weekend holding allowed.",
-            "quoteKind": "capture-note",
+            "quote": "Weekend holding allowed during the Challenge phase and FundedNext Account",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-lite"
-          },
-          {
-            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
-            "quote": "Current product page: weekend holding allowed.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
-            "productSlug": "stellar-instant"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -880,12 +786,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
-            "quote": "Official page: the loss limit trails highest equity and locks at breakeven after 5% profit.",
-            "quoteKind": "capture-note",
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Max Loss Limit: 12% . This is a static floor; it never moves.",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "zero"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "The Trailing Loss Limit moves up when equity reaches a new high.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -902,35 +816,27 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
-            "quote": "Official page: daily loss is configuration-dependent at 2% or 3%; 3% retained for the base captured route.",
-            "quoteKind": "capture-note",
+            "quote": "The 3% Daily Loss Limit uses the balance or equity at the start of the day, whichever is higher, and resets at 00:00 Platform Time.",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "1-step-flex"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
-            "quote": "Official page: 4% daily loss.",
-            "quoteKind": "capture-note",
+            "quote": "Daily Loss Limit: 4% .",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "2-step-flex"
-          },
-          {
-            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
-            "quote": "Official page: 3% daily loss.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "2-step-pro"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-            "quote": "Official page: 3% or 5% depending on configuration; 5% retained for the stored route.",
-            "quoteKind": "capture-note",
+            "quote": "Daily Loss Limit 3% or 5% .",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "2-step-standard"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -947,43 +853,27 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
-            "quote": "Official page: 12% static maximum loss.",
-            "quoteKind": "capture-note",
+            "quote": "The 12% Max Loss Limit sits 12% below the starting balance and does not reset.",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "1-step-flex"
-          },
-          {
-            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
-            "quote": "Official page: 12% static maximum loss.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "2-step-flex"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
-            "quote": "Official page: 6% static maximum loss.",
-            "quoteKind": "capture-note",
+            "quote": "Max Loss Limit: 6% .",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "2-step-pro"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-            "quote": "Official page: 10% static maximum loss.",
-            "quoteKind": "capture-note",
+            "quote": "Max Loss Limit: 10% .",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "2-step-standard"
-          },
-          {
-            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
-            "quote": "Official page: 5% trailing maximum loss.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "zero"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1000,19 +890,27 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-            "quote": "Official reward routes include a 35% consistency condition for On Demand and Monthly paths.",
-            "quoteKind": "capture-note",
+            "quote": "Request any time with 35% consistency score & min 2% profit.",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "2-step-standard"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "There is no Consistency Score on either Bi-Weekly split.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
-            "quote": "Official page: 15% consistency score maximum.",
-            "quoteKind": "capture-note",
+            "quote": "Consistency Score 15% or below .",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "zero"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1028,20 +926,28 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
-            "quote": "Official page: 80% bi-weekly reward.",
-            "quoteKind": "capture-note",
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Get an 80% split with 1 minimum trading day, or 95% on 3 profitable days.",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "1-step-flex"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
-            "quote": "Official page: 95% bi-weekly split.",
-            "quoteKind": "capture-note",
+            "quote": "95% profit split .",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "zero"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "80% Bi-Weekly reward .",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1078,20 +984,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
-            "quote": "Official page: evaluation news trading is allowed, but Master restricted-window profits may be deducted; retained as restricted.",
-            "quoteKind": "capture-note",
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Purposely trading news in both evaluation phase and master phase is prohibited and will lead to account closure.",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "1-step-flex"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
-            "quote": "Official page: news-window trading is prohibited.",
-            "quoteKind": "capture-note",
+            "quote": "News Trading: Prohibited on all instruments .",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "zero"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1108,27 +1014,19 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
-            "quote": "Official page: evaluation holding is allowed; Master holding requires the Swing add-on.",
-            "quoteKind": "capture-note",
+            "quote": "Overnight and weekend holding on Master Accounts can be enabled at the time of purchase through an Add-on.",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "1-step-flex"
-          },
-          {
-            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
-            "quote": "Official page: evaluation holding is allowed; Master holding requires the Swing add-on.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "2-step-flex"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
-            "quote": "Official page: weekend holding is prohibited.",
-            "quoteKind": "capture-note",
+            "quote": "Leaving any position open into the weekend is an immediate account termination, regardless of instrument.",
+            "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
-            "productSlug": "zero"
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1276,28 +1174,20 @@
         },
         "evidence": [
           {
+            "sourceUrl": "https://e8markets.com/best-simfi-funded-program-e8pro",
+            "quote": "An 8% static drawdown that never trails, an 8% profit target, and payouts you can request every single day.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-            "quote": "Dynamic Drawdown rises only on closed profits and locks at starting balance.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-one"
-          },
-          {
-            "sourceUrl": "https://e8markets.com/e8-pro",
-            "quote": "Static from initial balance; it does not trail, and after the first payout it locks at the initial balance.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-pro"
-          },
-          {
-            "sourceUrl": "https://e8markets.com/e8-signature",
-            "quote": "The EOD Dynamic drawdown follows highest end-of-day balance, updates once per day at market close and locks at initial balance.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-signature"
+            "quote": "E8 One · Account · $100K ... Dynamic Drawdown $6,000",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1314,27 +1204,19 @@
         "evidence": [
           {
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-            "quote": "At the default 6% max drawdown, the configurator prints $4,000 daily drawdown on $100K; E8 describes daily drawdown as 66% of the selected drawdown.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-one"
+            "quote": "E8 One · Account · $100K ... Daily drawdown $4,000",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://e8markets.com/e8-pro",
-            "quote": "The current E8PRO v2 page prints a 2.5% daily drawdown, calculated from initial balance.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-pro"
-          },
-          {
-            "sourceUrl": "https://e8markets.com/e8-signature",
-            "quote": "There is no challenge-stage daily loss limit. Performance has a 2% soft daily pause, not a hard breach, so the hard-loss field remains null.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-signature"
+            "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+            "quote": "2.5% Daily Drawdown – Your account must not lose more than 2.5% of your",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1351,27 +1233,19 @@
         "evidence": [
           {
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-            "quote": "The default cards print 6% Max and $6,000 on $100K.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-one"
+            "quote": "E8 One · Account · $100K ... Dynamic Drawdown $6,000",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://e8markets.com/e8-pro",
-            "quote": "The current E8PRO v2 page prints an 8% static drawdown for every tier.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-pro"
-          },
-          {
-            "sourceUrl": "https://e8markets.com/e8-signature",
-            "quote": "No single product-wide percentage exists: the tier amounts equal 4%, 4%, 3% and 3%, so maxLossPct remains null and maxLossUsd is stored per tier.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-signature"
+            "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+            "quote": "8% Static drawdown – A fixed loss limit based on your initial balance",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1388,27 +1262,19 @@
         "evidence": [
           {
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-            "quote": "No challenge consistency rule; the Performance stage has a 40% best-day rule.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-one"
+            "quote": "E8 One · Account · $100K ... Consistency rule 40%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://e8markets.com/e8-pro",
-            "quote": "The current E8PRO v2 and main product pages both state there is no consistency rule.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-pro"
-          },
-          {
-            "sourceUrl": "https://e8markets.com/e8-signature",
-            "quote": "Performance has a 35% best-day rule.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-signature"
+            "sourceUrl": "https://e8markets.com/best-simfi-funded-program-e8pro",
+            "quote": "Consistency ruleThere is none — trade freely.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1425,27 +1291,19 @@
         "evidence": [
           {
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-            "quote": "The default price cards use 80%; checkout choices are 80%, 90% or 100%.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-one"
+            "quote": "E8 One · Account · $100K ... Payout 80%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://e8markets.com/e8-pro",
-            "quote": "80% is the default; 100% is an optional 20% price uplift.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-pro"
-          },
-          {
-            "sourceUrl": "https://e8markets.com/e8-signature",
-            "quote": "Signature pays 80%.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-signature"
+            "sourceUrl": "https://e8markets.com/best-simfi-funded-program-e8pro",
+            "quote": "PayoutChoose 80% or 100% at purchase — permanent.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1461,28 +1319,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-            "quote": "Subsequent payouts are on demand, as soon as three days.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-one"
-          },
-          {
-            "sourceUrl": "https://e8markets.com/e8-pro",
-            "quote": "One payout request per day after rollover; the schema has no daily enum, so on-demand is retained and the exact cadence is stated in notes.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-pro"
-          },
-          {
-            "sourceUrl": "https://e8markets.com/e8-signature",
-            "quote": "On-demand, with five profitable days between later payouts; the first payout is exempt from that five-day condition.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-signature"
+            "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+            "quote": "Payout frequency: You can request every day!",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1498,28 +1340,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-            "quote": "Challenge news trading is unrestricted; Performance trading on targeted instruments is prohibited from five minutes before through five minutes after high-impact releases.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-one"
+            "sourceUrl": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+            "quote": "You can trade news on E8 Signature and E8 Pro without any restrictions (This includes SimFi™ challenge account (phase-1) and SimFi™ performance Account)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://e8markets.com/e8-pro",
-            "quote": "News trading is unrestricted in Challenge and Performance stages.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-pro"
-          },
-          {
-            "sourceUrl": "https://e8markets.com/e8-signature",
-            "quote": "News trading is unrestricted in Challenge and Performance stages.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-signature"
+            "sourceUrl": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+            "quote": "In the SimFI™ Performance account, trading is strictly prohibited during high-impact news events.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1535,28 +1369,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-            "quote": "The product overview table says weekend holding is allowed for E8 One.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-one"
+            "sourceUrl": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+            "quote": "E8 One, E8 Pro: Weekend Holding and Crypto trading are allowed on all stages.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://e8markets.com/e8-pro",
-            "quote": "Weekend holding is allowed.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-pro"
-          },
-          {
-            "sourceUrl": "https://e8markets.com/e8-signature",
-            "quote": "The official product comparison table says Signature weekend holding is not allowed.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
-            "productSlug": "e8-signature"
+            "sourceUrl": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+            "quote": "On E8 Signature, all positions are automatically closed at 23:00 server time, and trading resumes at 00:15 server time.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -1616,7 +1442,8 @@
           }
         ]
       },
-      "lossLimitUnit": "pct"
+      "lossLimitUnit": "pct",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -2873,44 +2700,28 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Pricing card tooltip on Max loss: 'Trailing drawdown. The max % loss allowed from your highest equity at any point'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-1-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Pricing card tooltip on Max loss: 'Static drawdown. The max % loss allowed from your starting balance.'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-2-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Pricing card tooltip on Max loss: 'Trailing drawdown. The max % loss allowed from your highest equity at any point.'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "mini"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "One-Step Essential uses Trailing Drawdown with a 3% max drawdown [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "predictions-1-step"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "One-Step Elite uses Static Drawdown with a 5% max drawdown [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "predictions-elite-1-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 3 Step Challenge and Simulated Funded Account use the same loss limits: 2% daily loss and 3% static maximum drawdown.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -2930,52 +2741,28 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "One Step Challenge / Daily Drawdown: 3% (based on the higher of your equity/balance at 00:00 UTC) [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-1-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Two Step Challenge / Daily Drawdown: 4% (Based on the higher of your equity/balance at 00:00 UTC) [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-2-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Three Step Challenge / Daily Drawdown: 2% (based on the higher of your equity/balance at 00:00 UTC) [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-3-step"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Instant Challenge / Daily Drawdown: 2% (based on the higher of your equity/balance at 00:00 UTC) [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "instant"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "2% Daily Drawdown - highest between balance and equity at 00:00 UTC [https://maventrading.com/faqs, Mini > What are the drawdown rules?]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "mini"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "No. The evaluation has no daily drawdown limit on the evaluation phase. [https://maventrading.com/faqs] - null because none exists in the evaluation.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "buy-now-pay-later"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Instant Funding has two loss limits: Daily Loss Limit: 2% (Equity-Based)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -2995,52 +2782,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "One Step Challenge / Max Drawdown: 5% (trailing off your highest watermark of equity) [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-1-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Two Step Challenge / Max Drawdown: 8% (Static) [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-2-step"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Three Step Challenge / Max Drawdown: 3% (Static) [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-3-step"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Instant Challenge / Max Drawdown: 3% (Trailing) [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "instant"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "3% Trailing Max Drawdown ... Note: The drawdown does not reset - it's active throughout the challenge. [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "mini"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "The 10% maximum drawdown is calculated statically from your starting balance - it does not trail. [https://maventrading.com/faqs] (evaluation phase)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "buy-now-pay-later"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Challenge has only one limit during the Evaluation Phase: Maximum Drawdown: 10% (Static)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3060,52 +2815,28 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Consistency score: No (tooltip: 'Not applicable for one step')",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-1-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "There is no Consistency Score requirement for the Standard 2 Step Challenge or Simulated Funded Account.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Consistency score: No (tooltip: 'There is NO consistency score on two-step')",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-2-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "In Instant Funding Account , a 20% Consistency Score is required",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Consistency score: No (tooltip text on the 3-step card reads 'There is NO consistency score on two-step')",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-3-step"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "You can only withdraw from your instant account when your consistency score is 20% or below. This is calculated by (your biggest winning day / total profit) * 100%. [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "instant"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Yes - there's a 15% consistency rule based on your highest trade. ... 'largest winning trade / total profit'. This must be less than 15% to get a payout. [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "mini"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "20% consistency score required before each withdrawal ... Before requesting a withdrawal, your largest winning day must not exceed 20% of your total profits. [https://maventrading.com/faqs] (funded stage only)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "buy-now-pay-later"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "In the Instant Mini Funding Account, a 15% Consistency Score is required",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3125,52 +2856,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "The profit split is 80% across instant, one step, two step and three step. [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-1-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The standard reward split is 80%.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "The payout split is 70%. [https://maventrading.com/faqs] (pricing card also shows 'Profit split 70%')",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "mini"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Profit split remains 80% [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "buy-now-pay-later"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Pricing card: 'Profit split 80%'. Note FAQ: M2 Account Saver first breach 'your profit split is permanently reduced to 50% for the remainder of the account'.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "omo-2-step"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "The profit split is 70%. Once you reach the funded stage, you withdraw 70% of the profits you make. [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "predictions-1-step"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "The profit split is 70%. [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "predictions-elite-1-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The profit split is 70%.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3190,44 +2889,28 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Payout frequency / Funded: 10 business days (pricing card)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-1-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Your first payout is available 10 business days after your first trade on the Simulated Funded Account.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "CONFLICT: /pricing says 'When Requirements are met'; /faqs says withdrawals can be requested every 10 business days after the first trade; /terms-and-conditions specifically says Maven Instant payouts are available every 10 business days. Cadence is left null rather than choosing one publication. [https://maventrading.com/pricing; https://maventrading.com/faqs; https://maventrading.com/terms-and-conditions]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "instant"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Payouts for Instant Funding Accounts are available on demand .",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Pricing card: 'Payout frequency / Funded: 24 hours'. FAQ: 'Only one - it's a single payout model. After your first withdrawal, your account will be closed.'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "mini"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Pricing card: 'Payout frequency / Funded: Instant'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "buy-now-pay-later"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Pricing card: 'Payout frequency / Funded: 10 business days'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "omo-2-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Buy Now Pay Later Simulated Funded Accounts have no fixed payout waiting period",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3247,52 +2930,28 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "RESTRICTED: Traders cannot open or close trades in the 2-minute window before or after a Red Folder release; positions opened earlier may be held. [https://maventrading.com/faqs; https://maventrading.com/terms-and-conditions]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-1-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Standard 1 Step Do not open or close trades on affected instruments from 2 minutes before until 2 minutes after an applicable Red Folder release.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "The News rule does not apply to our instant accounts. ... News trading for instant funding does not apply. [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "instant"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "2 Step OMO Yes, but profit from any single news event is capped at 0.50% of your account balance .",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "RESTRICTED: Maven's general rule prohibits opening or closing in the 2-minute window before or after Red Folder news. The FAQ expressly exempts Instant and separately overrides Omo, Prediction Markets, and Buy Now Pay Later, but publishes no Mini exception. [https://maventrading.com/faqs; https://maventrading.com/terms-and-conditions]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "mini"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Yes. News trading is fully permitted during the evaluation with no restrictions. ... News trading remains allowed [funded] [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "buy-now-pay-later"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "RESTRICTED overall: news trading is fully permitted in Phase 1 and Phase 2, but funded-stage profit from any one news event is capped at 0.50% of account balance. [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "omo-2-step"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "there is no news trading restriction specific to the Prediction Markets challenge [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "predictions-1-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Buy Now Pay Later Yes, without restriction Instant Funding Yes, without restriction Instant Mini Yes, without restriction",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3312,20 +2971,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Weekend holdings are permitted for all account types. [https://maventrading.com/faqs]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-1-step"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "Weekend holdings are permitted for all account types. [https://maventrading.com/faqs; https://maventrading.com/terms-and-conditions]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
-            "productSlug": "standard-3-step"
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "You may trade and hold positions overnight or over the weekend.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3477,44 +3128,28 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fxify.com/programs/one-phase/",
-            "quote": "\"Drawdown Type\" = \"Trailing\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "one-phase"
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "1 Phase Account: ... Max total Drawdown – 6% Trailing (Based on High water mark)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
-            "quote": "\"Drawdown type\" = \"Static\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "two-phase-pro"
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Phase 2 – 5% Daily drawdown – 4% (Based on previous day balance) Max total Drawdown – 10% Trailing",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
-            "quote": "\"Drawdown Type\" = \"Static\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "three-phase"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/instant-funding/",
-            "quote": "\"Drawdown Type\" = \"Trailing\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "instant-funding-standard"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/crypto/",
-            "quote": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-how-does-trailing-drawdown-work-for-crypto-account/: 'The Max Trailing Drawdown is fixed at 6% of your starting balance, and it moves (or \"trails\") your High Water Mark ... until 6% profit made.'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "crypto-standard-1-step"
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Daily drawdown – 5% (Based on previous day balance) Max total Drawdown – 5% Static (Based on initial balance)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3535,52 +3170,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fxify.com/programs/one-phase/",
-            "quote": "\"Daily Loss Limit\": \"3%\" - \"Daily Loss Limit is calculated based on the previous day’s end of day (5PM EST) balance.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "one-phase"
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "1 Phase Account: Profit Target – Phase 1 – 10% Daily drawdown – 3% (Based on previous day balance)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://fxify.com/programs/two-phase/",
-            "quote": "\"Daily Loss Limit\": \"4%\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "two-phase-classic"
-          },
-          {
-            "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
-            "quote": "\"Daily Loss Limit\": \"4%\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "two-phase-pro"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
-            "quote": "\"Daily Loss Limit\": \"5%\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "three-phase"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/instant-funding/",
-            "quote": "\"Daily Loss Limit\": \"8%\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "instant-funding-standard"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/instant-funding/",
-            "quote": "\"Daily Loss Limit\": \"3%\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "instant-funding-lite"
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Phase 2 – 5% Daily drawdown – 4% (Based on previous day balance)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3601,52 +3204,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fxify.com/programs/one-phase/",
-            "quote": "\"Max Trailing Drawdown\": \"6%\" - \"Trailing drawdown - 6% trails your closed trading balance until you reach 6% profits in your account.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "one-phase"
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Max total Drawdown – 6% Trailing (Based on High water mark)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://fxify.com/programs/two-phase/",
-            "quote": "\"Max Static Drawdown\": \"10%\" - \"When you open the account, your Max Drawdown is set at 10% of your starting balance. This will be static for the life of the account.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "two-phase-classic"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/two-phase/",
-            "quote": "\"Max Trailing Drawdown\": \"10%\" - \"Trailing drawdown - 10% trails your closed trading balance until you reach 10% profits in your account.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "two-phase-standard"
-          },
-          {
-            "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
-            "quote": "\"Maximum loss limit\" = \"8%\" across every account size",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "two-phase-pro"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
-            "quote": "\"Max Drawdown\": \"5%\" - \"When you open the account, your Max Drawdown is set at 5% of your starting balance. This will be static for the life of the account.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "three-phase"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/instant-funding/",
-            "quote": "\"Max Trailing Drawdown\": \"8%\" - \"The Max Trailing Drawdown is fixed at 8% of your starting balance, and it moves (or “trails”) your High Water Mark (“HWM”) until 8% profit made.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "instant-funding-standard"
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Max total Drawdown – 10% Trailing",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3667,44 +3238,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fxify.com/programs/two-phase/",
-            "quote": "\"Consistency Rule\": [\"N/A\", \"N/A\", \"25%\"]",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "two-phase-classic"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/instant-funding/",
-            "quote": "\"Consistency\": \"20%\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "instant-funding-lite"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
-            "quote": "\"Consistency Rule\" = \"30%\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "lightning-challenge"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/crypto/",
-            "quote": "'Consistency Rule': '25% (funded only)' - evaluation has none, so null",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "crypto-standard-1-step"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/crypto/",
-            "quote": "'Consistency Rule': '25%'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "crypto-instant-funding"
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+            "quote": "No Consistency Rule: Your strategy can evolve; we do not enforce rigid lot-size consistency.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3725,52 +3264,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fxify.com/programs/one-phase/",
-            "quote": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "one-phase"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/two-phase/",
-            "quote": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "two-phase-classic"
-          },
-          {
-            "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
-            "quote": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "two-phase-pro"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
-            "quote": "\"Performance split\" = \"up to 90%\" - description: \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split in favour of the trader.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "three-phase"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/crypto/",
-            "quote": "'Profit Split': '80% bi-weekly or 100% monthly'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "crypto-standard-1-step"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/crypto/",
-            "quote": "'Profit Split': '80% bi-weekly'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "crypto-instant-funding"
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+            "quote": "Profit Split 80% default , upgradable to 90% .",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3792,51 +3291,19 @@
         "evidence": [
           {
             "sourceUrl": "https://fxify.com/programs/one-phase/",
-            "quote": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "one-phase"
+            "quote": "For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://fxify.com/programs/two-phase/",
-            "quote": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "two-phase-classic"
-          },
-          {
-            "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
-            "quote": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "two-phase-pro"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
-            "quote": "\"For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed. Minimum amount is 50 USD. 5 Minimum trading days.\" / \"Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "three-phase"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/instant-funding/",
-            "quote": "\"any subsequent payout requests will also be on a bi-weekly basis, every 14 days\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "instant-funding-standard"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
-            "quote": "\"then any subsequent every 14 days, bi-weekly basis\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "lightning-challenge"
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3857,36 +3324,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fxify.com/programs/one-phase/",
-            "quote": "\"Trade Through News\" = \"Yes\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "one-phase"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/instant-funding/",
-            "quote": "\"Trade Through News\" = \"No\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "instant-funding-standard"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
-            "quote": "\"Trade Through News\" = \"No\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "lightning-challenge"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/crypto/",
-            "quote": "https://fxify.com/programs/crypto/ table: 'News Trading': 'No 5min before/after'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "crypto-standard-1-step"
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/can-i-trade-the-news/",
+            "quote": "Yes, you are able to trade new events on 1,2 and 3-Phase accounts.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3907,36 +3350,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://fxify.com/programs/one-phase/",
-            "quote": "\"Hold Over Weekend\" = \"Yes\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "one-phase"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/instant-funding/",
-            "quote": "\"Hold Over Weekend\" = \"No\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "instant-funding-standard"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
-            "quote": "\"Hold Over Weekend\" = \"Yes\"",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "lightning-challenge"
-          },
-          {
-            "sourceUrl": "https://fxify.com/programs/crypto/",
-            "quote": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-can-i-hold-positions-over-the-weekend-with-a-crypto-account/: 'Yes, with a Crypto account, you can hold positions over the weekend.'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
-            "productSlug": "crypto-standard-1-step"
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/do-i-need-to-close-positions-over-the-weekend/",
+            "quote": "No, on the 1,2 and 3 Phase accounts you do not need to close your positions over the weekend.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -3996,7 +3415,8 @@
           }
         ]
       },
-      "lossLimitUnit": "pct"
+      "lossLimitUnit": "pct",
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
   },
   {
@@ -5172,35 +4592,27 @@
         "evidence": [
           {
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
-            "quote": "Your drawdown floor is set by your high watermark, the highest balance your account has reached, minus a fixed 5% of your starting balance.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "1-step-challenge"
+            "quote": "Max Trailing Drawdown 5% of the starting balance Drawdown Type Balance Based Max Daily Drawdown None",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
-            "quote": "Max Drawdown: 10% Static",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "2-step-challenge"
+            "quote": "The 2-Step uses a static drawdown of 10% of your initial balance, plus a daily drawdown of 5% of your initial balance, deducted from each day’s starting balance.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/instant-funding/",
-            "quote": "6% static from initial balance ... balance based drawdown",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "instant-funding"
-          },
-          {
-            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
-            "quote": "6% Static",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "direct-funding"
+            "quote": "Your 6% drawdown is static, with no daily limit and no trailing floor chasing your gains.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -5215,36 +4627,28 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
-            "quote": "Max Daily Drawdown - None (recorded as null: no daily loss limit published)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "1-step-challenge"
-          },
-          {
             "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
-            "quote": "Max Daily Drawdown: 5% of start-of-day balance",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "2-step-challenge"
+            "quote": "The 2-Step uses a static drawdown of 10% of your initial balance, plus a daily drawdown of 5% of your initial balance, deducted from each day’s starting balance.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
-            "quote": "Daily Drawdown: None (recorded as null: no daily loss limit published)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "instant-funding"
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Max Daily Drawdown None",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/direct-funding/",
-            "quote": "Daily Drawdown: None (recorded as null: no daily loss limit published)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "direct-funding"
+            "quote": "Both programs share the same 6% static drawdown with no daily drawdown limit",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -5260,43 +4664,57 @@
         "evidence": [
           {
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
-            "quote": "Max Drawdown: 5% Trailing",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "1-step-challenge"
+            "quote": "Max Trailing Drawdown 5% of the starting balance",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
-            "quote": "Max Static Drawdown: 10% of the initial balance",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "2-step-challenge"
-          },
-          {
-            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
-            "quote": "Max Drawdown: 6% static from initial balance",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "instant-funding"
+            "quote": "The 2-Step uses a static drawdown of 10% of your initial balance",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/direct-funding/",
-            "quote": "Max Drawdown: 6% static from initial balance",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "direct-funding"
+            "quote": "Both programs share the same 6% static drawdown with no daily drawdown limit",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
       "consistencyPct": {
         "value": null,
-        "summary": null,
-        "byProduct": null,
-        "evidence": []
+        "summary": "None on 2-Step Challenge and Direct Funding; not stated on 1-Step Challenge or Instant Funding product pages",
+        "byProduct": {
+          "1-step-challenge": null,
+          "2-step-challenge": null,
+          "instant-funding": null,
+          "direct-funding": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step Challenge has no hidden consistency requirements, with clear target and drawdown objectives.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Direct Funding has no consistency rule.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          }
+        ]
       },
       "profitSplitPct": {
         "value": null,
@@ -5310,35 +4728,27 @@
         "evidence": [
           {
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
-            "quote": "80% to 100%",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "1-step-challenge"
-          },
-          {
-            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
-            "quote": "80% to 100%",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "2-step-challenge"
+            "quote": "Pass the challenge, get funded, and keep 80% of your rewards from your first payout.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/instant-funding/",
-            "quote": "Starting profit share: 50%",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "instant-funding"
+            "quote": "earn a 50% profit share from your very first trade.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/direct-funding/",
-            "quote": "70% from your first trade",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "direct-funding"
+            "quote": "earn a 70% profit share from your first trade, and scale to $4,000,000.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -5354,27 +4764,19 @@
         "evidence": [
           {
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
-            "quote": "Weekly payouts",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "1-step-challenge"
+            "quote": "Request your 1st payout in as little as 7 days.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
-            "quote": "Weekly payouts",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "2-step-challenge"
-          },
-          {
-            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
-            "quote": "Starts monthly, advances to weekly (Bronze), then on demand (Silver+)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "direct-funding"
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -5390,35 +4792,19 @@
         "evidence": [
           {
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
-            "quote": "News Trading: Allowed",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "1-step-challenge"
+            "quote": "No restrictions on news, Expert Advisors, Martingale, overnight holds, or weekend holds.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
-            "quote": "News Trading: Allowed",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "2-step-challenge"
-          },
-          {
-            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
-            "quote": "News Trading: Allowed",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "instant-funding"
-          },
-          {
-            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
-            "quote": "News Trading: Allowed",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "direct-funding"
+            "quote": "News trading, weekend holding, and overnight holding are all allowed on the 2-Step Challenge",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -5434,35 +4820,19 @@
         "evidence": [
           {
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
-            "quote": "Weekend Holding: Allowed",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "1-step-challenge"
+            "quote": "No restrictions on news, Expert Advisors, Martingale, overnight holds, or weekend holds.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
-            "quote": "Weekend Holding: Allowed",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "2-step-challenge"
-          },
-          {
-            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
-            "quote": "Weekend Holding: Allowed",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "instant-funding"
-          },
-          {
-            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
-            "quote": "Weekend Holds: Allowed",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-            "productSlug": "direct-funding"
+            "quote": "News trading, weekend holding, and overnight holding are all allowed on the 2-Step Challenge",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -5564,12 +4934,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://takeprofittrader.com/",
-            "quote": "'The drawdown is End Of Day on test accounts, meaning it updates at the end of the trading day (5PM EST). On the PRO accounts, the drawdown is intraday ... In PRO+, the drawdown is End Of Day, the same as in the test.'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
-            "productSlug": "the-test"
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170265979165-Rule-3-Do-Not-Hit-End-Of-Day-EOD-Maximum-Trailing-Drawdown",
+            "quote": "The drawdown is called “trailing” because the minimum account balance follows your highest end-of-day balance upward.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -5593,12 +4963,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://takeprofittrader.com/",
-            "quote": "'no single trading day may exceed 50% of your total net profits. This is based on your net P/L.'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
-            "productSlug": "the-test"
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-5-Be-Consistent",
+            "quote": "Profit Consistency (Percentage of Profits Rule) To prevent the evaluation from being treated like a lottery ticket, your best trading day must be below 50% of your total net profits .",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -5611,11 +4981,19 @@
         "evidence": [
           {
             "sourceUrl": "https://takeprofittrader.com/",
-            "quote": "'Profit split — Test: None | PRO: 80/20 | PRO+: 90/10' (homepage journey table); tooltip: 'In the PRO accounts you keep 80% of your profits above the buffer and 90% in PRO+ accounts.'",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
-            "productSlug": "the-test"
+            "quote": "Profit split Profit split None 80/20 90/10",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "You keep 80%.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -5628,11 +5006,11 @@
         "evidence": [
           {
             "sourceUrl": "https://takeprofittrader.com/",
-            "quote": "Official 2026-07-20 payout update: account-to-wallet withdrawal processing is automated in approximately 1–5 seconds; the wallet-to-bank leg varies by payout method. Official FAQ: day-one and daily withdrawals above the buffer, with no minimum profitable days or maximum withdrawal amount.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
-            "productSlug": "the-test"
+            "quote": "From there you move to a PRO account and become eligible for day-one and daily payouts.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -5908,28 +5286,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://www.tradeday.com/",
-            "quote": "Homepage and drawdown article: intraday trailing from unrealized equity highs.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
-            "productSlug": "quick-pay-intraday"
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "The Evaluation Quick Pay comes in four account sizes, and each is available with either an Intraday or End of Day trailing drawdown",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://www.tradeday.com/",
-            "quote": "Homepage: evaluation drawdown calculated End of Day.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
-            "productSlug": "quick-pay-end-of-day"
-          },
-          {
-            "sourceUrl": "https://www.tradeday.com/",
-            "quote": "Homepage and Fast Pass article: EOD trailing evaluation drawdown.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
-            "productSlug": "fast-pass-end-of-day"
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "The Trailing Maximum Drawdown (TMD) for all Funded Sim Quick Pay accounts are calculated intraday.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -5955,28 +5325,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://www.tradeday.com/",
-            "quote": "Homepage and Quick Pay article: no day may exceed 30% of total evaluation profits.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
-            "productSlug": "quick-pay-intraday"
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "Third, stay consistent: no single day can account for more than 30% of your total profits.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://www.tradeday.com/",
-            "quote": "Homepage and Quick Pay article: 30% evaluation consistency.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
-            "productSlug": "quick-pay-end-of-day"
-          },
-          {
-            "sourceUrl": "https://www.tradeday.com/",
-            "quote": "Homepage and Fast Pass article: 45% during evaluation; post-2026-07-26 funded payouts also use 45% gross-profit consistency.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
-            "productSlug": "fast-pass-end-of-day"
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "For accounts opened on and after July 26 2026, accounts must satisfy the consistency objective: no single day can make up more than 45% of your total gross profits",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -5990,20 +5352,28 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://www.tradeday.com/",
-            "quote": "Quick Pay payout policy: initial/current-profit-below-$4,000 split is 50/50.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
-            "productSlug": "quick-pay-intraday"
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "Below the $4,000 current profit level, payouts are split 50/50.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://www.tradeday.com/",
-            "quote": "Fast Pass payout policy: 80/20 Funded Sim.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
-            "productSlug": "fast-pass-end-of-day"
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "Above $4,000, the split improves to 80/20 in your favour",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "There will be an 80/20 profit split.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -6371,12 +5741,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
-            "quote": "Customization and Drawdown define Intraday evaluation drawdown; every funded Daily account is Intraday.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-            "productSlug": "luciddaily-dll-on-intraday"
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown",
+            "quote": "LucidPro evaluation and funded accounts use an End-of-Day Drawdown (EOD Drawdown) system to calculate the Max Loss Limit (MLL).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown",
+            "quote": "LucidFlex evaluation and funded accounts use an End-of-Day Drawdown (EOD Drawdown) system to calculate the Max Loss Limit (MLL).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -6406,36 +5784,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://www.lucidtrading.com/",
-            "quote": "LucidPro Payouts sets 40% in each funded payout cycle.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-            "productSlug": "lucidpro"
-          },
-          {
-            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account",
-            "quote": "LucidFlex Evaluation publishes 50% evaluation consistency; funded Flex has no consistency.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-            "productSlug": "lucidflex"
-          },
-          {
-            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890148-luciddirect-funded-account",
-            "quote": "LucidDirect Payout Objectives sets 20% for every payout cycle.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-            "productSlug": "luciddirect"
-          },
-          {
-            "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
-            "quote": "50% applies in evaluation; funded Daily has no consistency.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-            "productSlug": "luciddaily-dll-on-intraday"
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+            "quote": "Consistency Percentage Your largest single-day profit must be no more than 40% of your total profit during the payout cycle.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -6453,36 +5807,28 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://www.lucidtrading.com/",
-            "quote": "LucidPro Payouts states 90% trader / 10% Lucid.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-            "productSlug": "lucidpro"
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+            "quote": "Profit Split Structure All funded account payouts are split 90% to the trader and 10% to Lucid Trading.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account",
-            "quote": "LucidFlex Payouts states 90% trader / 10% Lucid.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-            "productSlug": "lucidflex"
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts",
+            "quote": "Profit Split Structure All LucidFlex funded account payouts are split 90% to the trader and 10% to Lucid Trading.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890148-luciddirect-funded-account",
-            "quote": "LucidDirect Payout Objectives states 90% trader / 10% Lucid.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-            "productSlug": "luciddirect"
-          },
-          {
-            "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
-            "quote": "LucidDaily Payouts states 90% trader / 10% Lucid.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-            "productSlug": "luciddaily-dll-on-intraday"
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts",
+            "quote": "Profit Split Structure All LucidDaily funded account payouts are split 90% to the trader and 10% to Lucid Trading.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
           }
         ]
       },
@@ -6876,6 +6222,7 @@
       "consistencyPct": {
         "value": null,
         "summary": "Product-specific: 35% on Growth Evaluation; 40% on Select Evaluation → Flex, Select Evaluation → Daily; 20% on Lightning Funded",
+        "note": "Official help articles contradict each other for Growth: the Growth article says there is no consistency rule, the pricing reference says 35%. The conservative 35% is kept. Sources: https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts and https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
         "byProduct": {
           "growth-evaluation": 35,
           "select-flex": 40,
@@ -6886,6 +6233,14 @@
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
             "quote": "Growth Evaluation — ... 35% consistency rule. Select Evaluation — ... 40% consistency rule during evaluation only ... Lightning Funded — ... Progressive consistency rule (20% → 25% → 30%).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-15",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+            "quote": "A: No. GROWTH™ evaluation does NOT have a consistency requirement.",
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",

@@ -94,10 +94,11 @@ for (const firm of firms) {
     const known = vals.filter(v => v !== null)
     if (ov?.summary && evidence.length) {
       const uni = known.length > 0 && vals.every(v => JSON.stringify(v) === JSON.stringify(vals[0]))
-      rules[field] = { value: 'value' in ov ? ov.value : uni ? vals[0] : null, summary: ov.summary, byProduct: Object.keys(byProduct).length && ov.byProduct !== null ? byProduct : null, evidence: evidence.slice(0, 6) }
+      rules[field] = { value: 'value' in ov ? ov.value : uni ? vals[0] : null, summary: ov.summary, ...(ov.note ? { note: ov.note } : {}), byProduct: Object.keys(byProduct).length && ov.byProduct !== null ? byProduct : null, evidence: evidence.slice(0, 6) }
       continue
     }
     if (!evidence.length || !known.length) { rules[field] = { value: null, summary: null, byProduct: null, evidence: [] }; continue }
+    const note = ov?.note
     const uniform = vals.every(v => JSON.stringify(v) === JSON.stringify(vals[0]))
     let summary
     if (uniform) summary = fmt(vals[0])
@@ -106,7 +107,7 @@ for (const firm of firms) {
       for (const p of products) { const v = byProduct[p.productSlug]; const g = v === null ? 'not stated' : fmt(v); groups.set(g, [...(groups.get(g) ?? []), p.productName]) }
       summary = 'Product-specific: ' + [...groups].map(([g, names]) => `${g} on ${names.join(', ')}`).join('; ')
     }
-    rules[field] = { value: uniform ? vals[0] : null, summary, byProduct, evidence: evidence.slice(0, 6) }
+    rules[field] = { value: uniform ? vals[0] : null, summary, ...(note ? { note } : {}), byProduct, evidence: evidence.slice(0, 6) }
   }
   const pov = freshData[slug]?.platforms
   rules.platforms = pov

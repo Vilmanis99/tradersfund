@@ -23,6 +23,8 @@ export interface FirmRuleField<T> {
   /** Display text: the uniform value or 'Product-specific: …'; null when unconfirmed. */
   summary: string | null
   byProduct: Record<string, T | null> | null
+  /** Data-quality note, e.g. official sources that contradict each other. */
+  note?: string
   evidence: RuleEvidence[]
 }
 /** USD amount keyed by account size in USD, e.g. { "50000": 2000 }. */
