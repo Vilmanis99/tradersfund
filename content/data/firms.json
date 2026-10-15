@@ -1045,7 +1045,8 @@
       "Syria",
       "North Korea",
       "Cuba",
-      "Iran"
+      "Iran",
+      "Russia"
     ],
     "ratings": {
       "conditions": null,
@@ -1059,7 +1060,7 @@
     "lastUpdated": "2026-10-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "unverified",
+    "russiaStatus": "restricted",
     "legalEntity": "City Traders Imperium Limited",
     "headquarters": "San José, Costa Rica",
     "country": "Comoros",
