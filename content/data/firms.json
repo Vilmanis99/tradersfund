@@ -1037,11 +1037,12 @@
     "trustpilotCapturedAt": "2026-07-27",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
-    "discountCode": "CLUB",
+    "regionalDiscountCode": "CLUB",
+    "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://myfundedfutures.com/",
     "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "\"Save 40% On Any Plan With Code CLUB.\"",
-    "discountPct": 40
+    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. \"Save 40% On Any Plan With Code CLUB.\"",
+    "regionalDiscountPct": 40
   },
   {
     "name": "City Traders Imperium",
@@ -1155,11 +1156,12 @@
     "trustpilotCapturedAt": "2026-07-27",
     "russiaStatus": "unverified",
     "affiliateStatus": "none",
-    "discountCode": "NOFEE40",
+    "regionalDiscountCode": "NOFEE40",
+    "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://www.takeprofittrader.com/",
     "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "\"Get 40% Off For Life + Never Pay An Activation Fee\" with code NOFEE40.",
-    "discountPct": 40
+    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. \"Get 40% Off For Life + Never Pay An Activation Fee\" with code NOFEE40.",
+    "regionalDiscountPct": 40
   },
   {
     "name": "TradeDay",
@@ -1290,10 +1292,11 @@
     "trustpilotCapturedAt": "2026-07-28",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
-    "discountCode": "TDNEW",
+    "regionalDiscountCode": "TDNEW",
+    "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://www.tradeday.com/",
     "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "Homepage banner \"USE CODE TDNEW\"; discount amount not stated."
+    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. Homepage banner \"USE CODE TDNEW\"; discount amount not stated."
   },
   {
     "name": "Apex Trader Funding",

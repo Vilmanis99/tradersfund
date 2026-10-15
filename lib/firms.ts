@@ -58,6 +58,13 @@ export interface Firm {
   /** Scope/limits of the public code (eligible products, exclusions). */
   discountCodeNote?: string
   /**
+   * A code seen only from one region (e.g. a US IP). Kept out of `discountCode`
+   * so no global or RU surface renders it as a universal code.
+   */
+  regionalDiscountCode?: string
+  regionalDiscountPct?: number
+  discountCodeRegion?: 'us-only-unconfirmed'
+  /**
    * Personal partner code that can preserve TFH attribution when a tracked
    * browser session is lost. This is deliberately separate from
    * `discountCode` and time-limited public deals: it must never replace a
