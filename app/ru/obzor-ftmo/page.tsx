@@ -108,7 +108,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Traders Fund Hub получает комиссию от FTMO?',
-    a: 'Нет. В этой статье ссылка FTMO ведёт на официальный сайт без партнёрского вознаграждения. FundedNext и Bright Funded показаны отдельно как коммерческие партнёры; регистрация через их помеченные ссылки может принести Traders Fund Hub комиссию.',
+    a: 'Нет. В этой статье ссылка FTMO ведёт на официальный сайт без партнёрского вознаграждения. FundedNext и BrightFunded показаны отдельно как коммерческие партнёры; регистрация через их помеченные ссылки может принести Traders Fund Hub комиссию.',
   },
 ]
 
@@ -214,7 +214,7 @@ export default function RussianFtmoReviewPage() {
                 <li><a href="#risk">Просадка и Best Day</a></li>
                 <li><a href="#payout">Возврат взноса и выплаты</a></li>
                 <li><a href="#fit">Кому подходит FTMO</a></li>
-                <li><a href="#alternatives">FundedNext и Bright Funded</a></li>
+                <li><a href="#alternatives">FundedNext и BrightFunded</a></li>
                 <li><a href="#checklist">Проверка перед оплатой</a></li>
                 <li><a href="#faq">Частые вопросы</a></li>
               </ol>
@@ -442,14 +442,14 @@ export default function RussianFtmoReviewPage() {
           <div className="ru-shell ru-content" id="alternatives" data-russian-ftmo-global-funnel="fundednext-bright-funded">
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ftmo-alternatives">
               <strong>Коммерческое раскрытие.</strong>{' '}
-              FTMO не является нашим партнёром. FundedNext и Bright Funded являются партнёрами: если подходящий читатель зарегистрируется
+              FTMO не является нашим партнёром. FundedNext и BrightFunded являются партнёрами: если подходящий читатель зарегистрируется
               через помеченную ссылку, Traders Fund Hub может получить комиссию. Это не доказывает доступность страны и не меняет продуктовые числа.
             </div>
             <h2>Если FTMO не подходит: FundedNext и BrightFunded</h2>
             <p>
               Альтернатива должна решать конкретную проблему FTMO, а не просто вести на другой логотип. Для русскоязычного жителя разрешённой страны
               сначала сравниваются валюта взноса, тип просадки, число фаз и выплата; для резидента России отдельно проверяются правила страны каждой фирмы.
-              FundedNext сохраняет конфликт официальных формулировок по России, а отсутствие России в опубликованном списке Bright Funded не заменяет KYC.
+              FundedNext сохраняет конфликт официальных формулировок по России, а отсутствие России в опубликованном списке BrightFunded не заменяет KYC.
             </p>
             <div className="ru-grid">
               {partnerAlternatives.map(item => {

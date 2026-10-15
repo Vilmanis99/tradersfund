@@ -1,3 +1,4 @@
+import { firmSlug } from '@/lib/firmSlug'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { LucideIcon } from 'lucide-react'
@@ -29,10 +30,10 @@ const PATH = '/prop-firm-challenge-changes'
 // These counts are a build-time consistency check for the social-card copy.
 // Keep them aligned with the current dated watch ledger so a new verified
 // change cannot strand the whole site on an older deployment.
-const SOCIAL_CARD_ENTRY_COUNT = 35
-const SOCIAL_CARD_FIRM_COUNT = 16
+const SOCIAL_CARD_ENTRY_COUNT = 34
+const SOCIAL_CARD_FIRM_COUNT = 15
 const SOCIAL_CARD_VERIFIED_COUNT = 18
-const SOCIAL_CARD_WATCH_COUNT = 17
+const SOCIAL_CARD_WATCH_COUNT = 16
 
 const TITLE = 'Prop Firm Challenge Changes & Rule Updates (2026)'
 const DESCRIPTION =
@@ -66,9 +67,6 @@ function dateLabel(value: string) {
   })
 }
 
-function firmSlug(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-}
 
 function affectedComparisonUrl(firm: string, productSlugs: string[]) {
   const path = '/prop-firm-challenges'

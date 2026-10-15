@@ -1,3 +1,4 @@
+import { firmSlug } from './firmSlug.ts'
 import fs from 'fs'
 import path from 'path'
 
@@ -56,7 +57,7 @@ export interface Deal {
 const DEALS_PATH = path.join(process.cwd(), 'content/data/deals.json')
 
 function slugify(name: string): string {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  return firmSlug(name)
 }
 
 function isIsoCalendarDate(value: string): boolean {

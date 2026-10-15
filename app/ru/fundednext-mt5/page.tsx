@@ -115,7 +115,7 @@ const faqs: RussianFaqItem[] = [
 
 export default function RussianFundedNextMt5Page() {
   const products = getChallengesByFirm('fundednext').filter(product => isChallengeFresh(product))
-  const brightFirm = getAllFirms().find(candidate => candidate.name === 'Bright Funded')
+  const brightFirm = getAllFirms().find(candidate => candidate.name === 'BrightFunded')
   const currentDeal = isChallengeFresh({ sourceCapturedAt: mt5Evidence.freeTrial.sourceCapturedAt }) ? getDealsByFirm('fundednext')
     .find(deal => deal.mechanism === 'earned-coupon' && deal.pct != null)
     : undefined
@@ -509,7 +509,7 @@ export default function RussianFundedNextMt5Page() {
               {brightFirm?.affiliateUrl && brightFirm.platforms.includes('MT5') ? (
                 <article className="ru-card" data-russian-fundednext-mt5-alternative="bright-funded">
                   <h3>BrightFunded: отдельная альтернатива для проверки</h3>
-                  <p>В нашем профиле Bright Funded указан MT5, но это не подтверждение для любого счёта и страны. Цены выражены в евро; серверы, советники и проверка личности регулируются собственными условиями фирмы.</p>
+                  <p>В нашем профиле BrightFunded указан MT5, но это не подтверждение для любого счёта и страны. Цены выражены в евро; серверы, советники и проверка личности регулируются собственными условиями фирмы.</p>
                   <div className="ru-actions">
                     <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
                     <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-fundednext-mt5-alternative-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded</RuGoLink>

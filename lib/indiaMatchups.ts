@@ -25,12 +25,12 @@ export interface IndiaMatchupConfig {
 export const INDIA_MATCHUPS: Record<string, IndiaMatchupConfig> = {
   'fundingpips-vs-bright-funded': {
     slug: 'fundingpips-vs-bright-funded',
-    title: 'FundingPips vs Bright Funded',
+    title: 'FundingPips vs BrightFunded',
     firmSlugs: ['fundingpips', 'bright-funded'],
     expectedProductCount: 8,
-    metaTitle: 'FundingPips vs Bright Funded India (2026)',
+    metaTitle: 'FundingPips vs BrightFunded India (2026)',
     metaDescription:
-      'Compare FundingPips and Bright Funded for India: RBI screening, KYC, payout rails, challenge costs, drawdown and source-dated product rules.',
+      'Compare FundingPips and BrightFunded for India: RBI screening, KYC, payout rails, challenge costs, drawdown and source-dated product rules.',
     heroDescription:
       'Compare country access, RBI screening, KYC, payout rails and exact challenge rules without turning 2 different firms into a single unsupported winner.',
     hubQuestion:
@@ -61,18 +61,18 @@ export const INDIA_MATCHUPS: Record<string, IndiaMatchupConfig> = {
   },
   'bright-funded-vs-fxify': {
     slug: 'bright-funded-vs-fxify',
-    title: 'Bright Funded vs FXIFY',
+    title: 'BrightFunded vs FXIFY',
     firmSlugs: ['bright-funded', 'fxify'],
     expectedProductCount: 11,
-    metaTitle: 'Bright Funded vs FXIFY India (2026)',
+    metaTitle: 'BrightFunded vs FXIFY India (2026)',
     metaDescription:
-      'Compare Bright Funded and FXIFY for India: RBI screening, KYC, payout rails, EUR versus USD costs and 11 source-dated product-rule records.',
+      'Compare BrightFunded and FXIFY for India: RBI screening, KYC, payout rails, EUR versus USD costs and 11 source-dated product-rule records.',
     heroDescription:
       'Compare a smaller EUR-priced lineup with Bank and Crypto payout evidence against a wider USD-priced lineup using Rise, without converting currencies or filling evidence gaps.',
     hubQuestion:
       'Bank and Crypto rails or more products with wider EA coverage?',
     hubSummary:
-      'Compare 3 Bright Funded paths with 8 FXIFY paths across payout evidence, KYC, pricing currency, EA rules and published request timing.',
+      'Compare 3 BrightFunded paths with 8 FXIFY paths across payout evidence, KYC, pricing currency, EA rules and published request timing.',
     decisionTags: ['Bank + Crypto vs Rise', '3 products vs 8', 'EUR vs USD'],
     representativeProducts: ['bright-funded-1-step', 'two-phase-classic'],
     defaultPriority: 'evidence',

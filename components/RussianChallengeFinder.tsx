@@ -18,7 +18,7 @@ import { RuGoLink } from '@/components/RuGoLink'
 const UNKNOWN = 'Нет подтверждённых данных'
 const firmLabel = (row: GlobalChallengeRow) => row.firm.slug === 'bright-funded' ? 'BrightFunded' : row.firm.name
 const productLabel = (row: GlobalChallengeRow) => row.firm.slug === 'bright-funded'
-  ? row.product.name.replace(/^Bright Funded\b/, 'BrightFunded')
+  ? row.product.name.replace(/^BrightFunded\b/, 'BrightFunded')
   : row.product.name
 type BrightCountrySources = {
   helpUrl: string
@@ -94,7 +94,7 @@ function ProgrammeCaveat({ row }: { row: GlobalChallengeRow }) {
     {product.phases > 0 && (product.fundedDailyLossPct != null || product.fundedMaxLossPct != null || product.fundedDrawdownType != null) && <p>После оценки условия могут отличаться: дневной лимит {percent(product.fundedDailyLossPct)}, общий {percent(product.fundedMaxLossPct)}, расчёт — {drawdownLabel(product.fundedDrawdownType)}. Пустое поле означает отсутствие отдельного подтверждения, а не отсутствие лимита.</p>}
     {product.changeSignals.length > 0 && <p>Есть замечания к источникам или изменения правил. Проверьте их в подробном обзоре до покупки.</p>}
     {row.firm.slug === 'fundednext' && <p><Link href="/ru/fundednext-mt5#ea-rules">Ограничения FundedNext по размеру счёта для советников →</Link></p>}
-    {row.firm.slug === 'bright-funded' && <p>Справочник Bright Funded противоречиво описывает двухнедельные выплаты и платную опцию. Не считайте сокращённый цикл частью базовой цены без подтверждения фирмы.</p>}
+    {row.firm.slug === 'bright-funded' && <p>Справочник BrightFunded противоречиво описывает двухнедельные выплаты и платную опцию. Не считайте сокращённый цикл частью базовой цены без подтверждения фирмы.</p>}
   </div>
 }
 

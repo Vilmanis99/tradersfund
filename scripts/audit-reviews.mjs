@@ -86,6 +86,20 @@ import {
 } from '../lib/tradingToolReviews.ts'
 import { diffChallengeProducts } from './challenge-diff.mjs'
 
+/**
+ * Shared homepage components take markers and links as props, so accept the
+ * prop/object form of a JSX attribute: href="/x" -> href: '/x', and
+ * data-a="b" -> 'data-a': 'b'. Rendered-HTML checks still see the attribute.
+ */
+function sourceHasToken(source, token) {
+  if (source.includes(token)) return true
+  const attr = token.match(/^([a-z][a-z-]*)="([^"]*)"$/)
+  if (attr) return source.includes(`${attr[1]}: '${attr[2]}'`) || source.includes(`'${attr[1]}': '${attr[2]}'`)
+  const expr = token.match(/^([a-z][a-z-]*)=\{([^}]*)\}$/)
+  if (expr) return source.includes(`'${expr[1]}': ${expr[2]}`)
+  return false
+}
+
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const POSTS = path.join(ROOT, 'content/posts')
 const CHALLENGES = path.join(ROOT, 'content/data/challenges')
@@ -315,7 +329,6 @@ const REVIEW_TO_FIRM = {
   'my-funded-futures': 'my-funded-futures',
   'ofp-funding-review': 'ofp-funding',
   'take-profit-trader-review': 'take-profit-trader',
-  'the-funded-trader-review': 'the-funded-trader',
   'topstep-review': 'topstep',
   'tradeday-review': 'tradeday',
   'tradeify-review': 'tradeify',
@@ -852,7 +865,7 @@ function checkFirmAggregates() {
   const firmsPath = path.join(ROOT, 'content/data/firms.json')
   if (!fs.existsSync(firmsPath)) return 0
   const firms = JSON.parse(fs.readFileSync(firmsPath, 'utf-8'))
-  const slugify = n => n.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  const slugify = n => n.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
 
   const FIELDS = [
     ['drawdownType', c => c.drawdownType],
@@ -936,7 +949,7 @@ function checkFirmCoverage() {
   const searchDescriptions = new Map()
   const firms = JSON.parse(fs.readFileSync(firmsPath, 'utf-8'))
   const slugify = name =>
-    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
 
   for (const firm of firms) {
     const firmSlug = slugify(firm.name)
@@ -1079,7 +1092,7 @@ function checkTrustAndCommercialSurface() {
     ['bright-funded', 'https://brightfunded.com/a/nIfOFrQBTUK-00O1dIjiSQ'],
   ])
   const slugify = name =>
-    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
   const officialRoot = hostname => {
     const parts = hostname.toLowerCase().replace(/^www\./, '').split('.').filter(Boolean)
     const suffix = parts.slice(-2).join('.')
@@ -1268,7 +1281,7 @@ function checkFirmAlternativeNeutrality() {
   const firms = JSON.parse(
     fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'),
   )
-  const slugify = name => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  const slugify = name => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
   const currentFirms = firms.filter(firm => !isSourceHoldFirm(slugify(firm.name)))
   const selectedNames = (current, candidates) =>
     rankCurrentFirmAlternatives(current, candidates).map(firm => firm.name)
@@ -1851,7 +1864,7 @@ function checkGlobalChallengeSurface() {
   const rows = []
   const firms = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf-8'))
   const firmSlugs = new Set(firms.map(firm =>
-    firm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')))
+    firm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */))
   const challengeByFirm = new Map()
 
   for (const firmSlug of firmSlugs) {
@@ -2440,7 +2453,7 @@ function checkIndiaEvidence() {
   const firmsPath = path.join(ROOT, 'content/data/firms.json')
   const firms = JSON.parse(fs.readFileSync(firmsPath, 'utf-8'))
   const slugify = name =>
-    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
   const firmsBySlug = new Map(firms.map(firm => [slugify(firm.name), firm]))
   const requiredFields = ['country', 'checkout', 'kyc', 'payout', 'fees', 'currency']
   const statuses = new Set(['verified', 'partial', 'unknown'])
@@ -3451,7 +3464,7 @@ function checkIndiaChallengeSurface() {
       : ''
     if (
       !socialAlt
-      || !/FundingPips vs (Bright Funded|FXIFY)|Bright Funded vs FXIFY/.test(socialAlt)
+      || !/FundingPips vs (Bright ?Funded|FXIFY)|Bright ?Funded vs FXIFY/.test(socialAlt)
     ) {
       rows.push(`${routePath} social card alt text is missing the matchup`)
     }
@@ -4347,7 +4360,7 @@ function checkTrueCostPillar() {
   // inline model from returning; the reusable calculator's checks stay above.
   const homepage = fs.readFileSync(HOMEPAGE_FILE, 'utf-8')
   if (!homepage.includes("href: '/true-cost-of-prop-firm-challenges'")
-    || !homepage.includes('data-english-home-guides="selected-three"')) {
+    || !sourceHasToken(homepage, 'data-english-home-guides="selected-three"')) {
     rows.push('focused homepage must retain discovery of the audited true-cost guide')
   }
   if (/computeTrueCost|demoCost|truecost-stats/.test(homepage)) {
@@ -5610,10 +5623,10 @@ function checkConsistencyGuide() {
     ].join(' ')
   }
 
-  if (data.title !== 'Prop Firm Consistency Rule: Formulas and Examples (2026)') {
+  if (data.title !== 'What Is the Prop Firm Consistency Rule? Formulas and Examples (2026)') {
     rows.push('title must preserve consistency-rule, formula, examples, and current-year intent')
   }
-  if (data.seoTitle !== 'Prop Firm Consistency Rule: Examples (2026)') {
+  if (data.seoTitle !== 'What Is a Prop Firm Consistency Rule? Examples (2026)') {
     rows.push('seoTitle must preserve the primary search intent and current year')
   }
   if (typeof data.seoTitle !== 'string' || data.seoTitle.length > 60) {
@@ -6186,7 +6199,7 @@ function checkUkLandingCluster() {
       'What should match before checkout and KYC?',
       'How should USD and EUR fees be compared in GBP?',
       'Does the policy cover every product and platform forever?',
-      "lastReviewed: '2026-08-17'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`UK landing is missing "${fragment}"`)
@@ -6203,14 +6216,14 @@ function checkUkLandingCluster() {
         rows.push(`UK landing restored aggregate or unsupported logic: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('UK landing must keep exactly 4 decision-guide questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 8) {
+      rows.push('UK landing must keep exactly 8 decision-guide questions')
     }
   }
 
-  const expectedTitle = 'Best Prop Firms for UK Traders (2026): 8 Checked'
+  const expectedTitle = 'Best Prop Firms UK 2026: 8 Prop Trading Firms Checked'
   const expectedDescription =
-    'Compare 8 prop firms with current first-party UK-access policies across 39 product paths, plus FCA checks, fees, rules, reviews, and dated sources.'
+    'Compare 8 prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.'
   if (expectedTitle.length > 54) rows.push('UK meta title leaves no room for the root suffix')
   if (expectedDescription.length < 120 || expectedDescription.length > 160) {
     rows.push('UK meta description must be between 120 and 160 characters')
@@ -6317,7 +6330,7 @@ function checkUsLandingConsolidation() {
   ])
   const read = file => fs.existsSync(file) ? fs.readFileSync(file, 'utf-8') : ''
   const slugify = name =>
-    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
 
   let capture = null
   if (!fs.existsSync(US_ACCESS_EVIDENCE_FILE)) {
@@ -6453,13 +6466,13 @@ function checkUsLandingConsolidation() {
     rows.push('best-prop-firms-in-us landing config is missing')
   } else {
     const expectedDescription =
-      `Compare ${expected.size} policy-checked prop firms for U.S. traders across ${expectedProductCount} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`
+      `Best prop firms for US traders in 2026: ${expected.size} prop trading firms open to USA residents across ${expectedProductCount} exact futures and CFD products, with CFTC/NFA checks.`
     if (expectedDescription.length < 120 || expectedDescription.length > 160) {
       rows.push('U.S. landing meta description must be between 120 and 160 characters')
     }
     const requiredFragments = [
-      'h1: `Best Prop Firms for U.S. Traders (2026): ${CURRENT_US_FIRM_COUNT} Policy-Checked`',
-      'metaTitle: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Checked`',
+      'h1: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Prop Trading Firms in the USA`',
+      'metaTitle: `Best Prop Firms USA 2026: ${CURRENT_US_FIRM_COUNT} Prop Trading Firms Checked`',
       'CURRENT_US_PRODUCT_COUNT} exact futures and CFD products',
       'US_ACCESS_EVIDENCE_BY_SLUG.get(slug)',
       'usProductsForEvidence(evidence)',
@@ -6488,8 +6501,8 @@ function checkUsLandingConsolidation() {
         rows.push(`U.S. landing restored unsafe eligibility logic: "${staleClaim}"`)
       }
     }
-    if ((landingBlock.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('U.S. landing must keep exactly 4 decision-guide questions')
+    if ((landingBlock.match(/title:\s*'/g) ?? []).length !== 7) {
+      rows.push('U.S. landing must keep exactly 7 decision-guide questions')
     }
   }
   for (const fragment of [
@@ -6677,8 +6690,8 @@ function checkSwingFeatureCluster() {
       'isChallengeFresh(challenge)',
       'challenge.rules.overnight === true',
       'challenge.rules.weekend === true',
-      'h1: `Best Prop Firms for Swing Trading (2026): ${CURRENT_SWING_FIRM_COUNT} Verified`',
-      'metaTitle: `Best Swing Trading Prop Firms (2026): ${CURRENT_SWING_FIRM_COUNT} Verified`',
+      'h1: `Best Prop Firms for Swing Trading (2026): ${CURRENT_SWING_FIRM_COUNT} Allow Overnight and Weekend Holds`',
+      'metaTitle: `Best Prop Firms for Swing Trading 2026: ${CURRENT_SWING_FIRM_COUNT} Compared`',
       'snapshotProductCount: CURRENT_SWING_PRODUCT_COUNT',
       'const qualifying = swingCompatibleProducts(firm)',
       "trailingMetricLabel: 'Product fit'",
@@ -6688,7 +6701,7 @@ function checkSwingFeatureCluster() {
       'label: `${joinNatural(source.productNames)} rule source`',
       'at least 1 product captured within 30 days sets both overnight and weekend holding to allowed on that same product',
       'affiliate status, coupon size, the ${CURRENT_SWING_PRODUCT_COUNT}-product coverage count, and drawdown type add 0 points',
-      "lastReviewed: '2026-08-17'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`swing landing is missing "${fragment}"`)
@@ -6704,8 +6717,8 @@ function checkSwingFeatureCluster() {
         rows.push(`swing landing restored unsupported logic: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('swing landing must keep exactly 4 product-level decision questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 6) {
+      rows.push('swing landing must keep exactly 6 product-level decision questions')
     }
   }
 
@@ -6817,8 +6830,8 @@ function checkFuturesLandingCluster() {
       'const CURRENT_FUTURES_FIRM_COUNT = CURRENT_FUTURES_SNAPSHOT.length',
       'const CURRENT_FUTURES_PRODUCT_COUNT = CURRENT_FUTURES_SNAPSHOT.reduce',
       "isChallengeFresh(challenge) && challenge.assetClass === 'futures'",
-      'h1: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Verified`',
-      'metaTitle: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Verified`',
+      'h1: `Best Futures Prop Firms (2026): ${CURRENT_FUTURES_FIRM_COUNT} Futures Prop Firms Ranked`',
+      'metaTitle: `Best Futures Prop Firms 2026: ${CURRENT_FUTURES_FIRM_COUNT} Ranked and Compared`',
       'snapshotProductCount: CURRENT_FUTURES_PRODUCT_COUNT',
       'const products = freshFuturesProducts(firm)',
       'pricingModelLabel(product.pricingModel)',
@@ -6830,7 +6843,7 @@ function checkFuturesLandingCluster() {
       'Does drawdown trail intraday or at session end?',
       'Is the funded stage simulated or live?',
       'Which entity is actually regulated?',
-      "lastReviewed: '2026-08-17'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`futures landing is missing "${fragment}"`)
@@ -6846,8 +6859,8 @@ function checkFuturesLandingCluster() {
         rows.push(`futures landing restored unsupported logic: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('futures landing must keep exactly 4 product-level decision questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 6) {
+      rows.push('futures landing must keep exactly 6 product-level decision questions')
     }
   }
 
@@ -7139,7 +7152,7 @@ function checkCryptoLandingCluster() {
       'Does weekend or 24/7 access actually apply?',
       'What do leverage, commission, consistency, and payout rules do?',
       'evidenceGaps: CRYPTO_MARKET_WATCH.map',
-      "lastReviewed: '2026-08-27'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`crypto landing is missing "${fragment}"`)
@@ -7155,13 +7168,13 @@ function checkCryptoLandingCluster() {
         rows.push(`crypto landing restored aggregate or payment-based logic: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('crypto landing must keep exactly 4 product-level decision questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 8) {
+      rows.push('crypto landing must keep exactly 8 product-level decision questions')
     }
   }
 
   const expectedDescription =
-    `Compare ${ranked.length} crypto prop firms across ${mappedProducts.size} mapped products using current rules, market-specific evidence, source dates, and reviews.`
+    `Best crypto prop firms for 2026: ${ranked.length} crypto prop trading firms compared on BTC/ETH access, leverage, commission, entry price and payout rules.`
   if (expectedDescription.length < 120 || expectedDescription.length > 160) {
     rows.push('crypto landing meta description must be between 120 and 160 characters')
   }
@@ -7410,7 +7423,7 @@ function checkCheapestLandingCluster() {
       'Does the number include activation or pay-later charges?',
       'What does a monthly minimum mean?',
       'Why can the smallest fee still be expensive?',
-      "lastReviewed: '2026-08-17'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`cheapest landing is missing "${fragment}"`)
@@ -7425,8 +7438,8 @@ function checkCheapestLandingCluster() {
         rows.push(`cheapest landing restored incomplete or rounded pricing: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('cheapest landing must keep exactly 4 cost-basis decision questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 7) {
+      rows.push('cheapest landing must keep exactly 7 cost-basis decision questions')
     }
   }
 
@@ -7481,7 +7494,7 @@ function checkCheapestLandingCluster() {
     'USD-denominated products',
     'EUR-denominated products',
     'Maven Standard 3-Step',
-    'Bright Funded 2-Step Bright',
+    'BrightFunded 2-Step Bright',
   ]) {
     if (!crawler.includes(fragment)) {
       rows.push(`release crawl is missing cheapest-ranking safeguard: "${fragment}"`)
@@ -7636,7 +7649,7 @@ function checkDiscountHub() {
 
   const title = page.match(/const TITLE = '([^']+)'/)?.[1] ?? ''
   const description = page.match(/const DESCRIPTION =\s*\n\s*'([^']+)'/)?.[1] ?? ''
-  if (title !== 'Prop Firm Discount Codes & Offers (2026)') {
+  if (title !== 'Prop Firm Discount Codes & Promo Codes (2026)') {
     rows.push('discount hub title must preserve intent without duplicating the root TFH suffix')
   }
   if (description.length < 120 || description.length > 160) {
@@ -7756,8 +7769,8 @@ function checkInstantFundingCluster() {
       'const CURRENT_INSTANT_FIRM_COUNT = CURRENT_INSTANT_SNAPSHOT.length',
       'const CURRENT_INSTANT_PRODUCT_COUNT = CURRENT_INSTANT_SNAPSHOT.reduce',
       'isChallengeFresh(challenge) && challenge.phases === 0',
-      'h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Verified`',
-      'metaTitle: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Verified`',
+      'h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Firms With No Evaluation`',
+      'metaTitle: `Best Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} Compared`',
       'snapshotProductCount: CURRENT_INSTANT_PRODUCT_COUNT',
       'const products = freshInstantProducts(firm)',
       'products.flatMap(product => product.accountSizes.flatMap',
@@ -7771,7 +7784,7 @@ function checkInstantFundingCluster() {
       'How does the maximum-loss line move?',
       'How much loss room repays the one-time fee?',
       'What unlocks the first payout?',
-      "lastReviewed: '2026-08-17'",
+      "lastReviewed: '2026-10-14'",
     ]) {
       if (!landings.includes(fragment) && !block.includes(fragment)) {
         rows.push(`instant-funding landing is missing "${fragment}"`)
@@ -7787,8 +7800,8 @@ function checkInstantFundingCluster() {
         rows.push(`instant-funding landing restored first-product logic: "${staleClaim}"`)
       }
     }
-    if ((block.match(/title:\s*'/g) ?? []).length !== 4) {
-      rows.push('instant-funding landing must keep exactly 4 product-level decision questions')
+    if ((block.match(/title:\s*'/g) ?? []).length !== 7) {
+      rows.push('instant-funding landing must keep exactly 7 product-level decision questions')
     }
   }
 
@@ -7927,7 +7940,7 @@ function checkInstantFundingCluster() {
     'expectedInstantFirms',
     'expectedInstantProductCount',
     'challenge.phases === 0',
-    'expectedInstantFirms.length} instant-funding prop firms across ${expectedInstantProductCount} phase-0 products',
+    'expectedInstantFirms.length} firms and ${expectedInstantProductCount} no-evaluation accounts compared',
     'Products ${products.length}',
     'href="/go/fundednext?from=best-instant-funding-prop-firms"',
     'missing contextual instant-funding backlink',
@@ -9615,7 +9628,7 @@ function checkScalingPlanGuide() {
     }
   }
 
-  if (data.seoTitle !== 'Prop Firm Scaling Plans Explained (2026)') {
+  if (data.seoTitle !== 'Prop Firm Scaling Plan Explained: What to Compare (2026)') {
     rows.push('seoTitle must preserve scaling-plan intent and current year')
   }
   if (
@@ -12152,7 +12165,9 @@ function checkRussianAcquisitionPilot() {
       '<h1>',
       'RussianFaq',
     ]) {
-      if (!source.includes(token)) rows.push(`${route}: Russian page is missing ${token}`)
+      // The /ru home renders its single H1 through the shared HeroBlock component.
+      const present = source.includes(token) || (token === '<h1>' && route === '/ru' && source.includes('<HeroBlock'))
+      if (!present) rows.push(`${route}: Russian page is missing ${token}`)
     }
     for (const unsafe of [
       'FundedNext доступен в России',
@@ -12209,7 +12224,7 @@ function checkRussianAcquisitionPilot() {
     'rel="sponsored nofollow noopener"',
     'data-russian-home-guides="selected-three"',
   ]) {
-    if (!russianHub.includes(token)) rows.push('Russian home reader path is missing ' + token)
+    if (!sourceHasToken(russianHub, token)) rows.push('Russian home reader path is missing ' + token)
   }
 
   const forexPage = fs.existsSync(russianRouteFiles.get('/ru/forex-prop-firmy'))
@@ -13276,7 +13291,7 @@ function checkRussianAcquisitionPilot() {
       '/go/bright-funded?from=ru-bright-funded-review-summary',
       'data-russian-bright-reviews="suppressed-not-zero"',
       'firm?.trustpilotRatingSuppressed',
-      'Почему у Bright Funded нет средней оценки Trustpilot?',
+      'Почему у BrightFunded нет средней оценки Trustpilot?',
       'href="/ru/otzyvy-prop-firm#review-checklist"',
       "data-russian-bright-country-access={countrySourcesCurrent ? 'published-list' : 'historical-list'}",
       "data-russian-bright-country-source-status={countrySourcesCurrent ? 'dated' : 'recapture-required'}",

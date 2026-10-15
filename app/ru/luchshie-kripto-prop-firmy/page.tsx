@@ -110,7 +110,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Почему выплата в USDC не делает фирму крипто-проп-компанией?',
-    a: 'Потому что способ получения денег не определяет торговый инструмент. В проверенной справке Bright Funded указан перевод в USDC по сети ERC-20. Здесь фирма рассматривается отдельно как вариант выплаты в криптовалюте: подтверждённой связки её программ с криптоинструментами для этого рейтинга пока нет.',
+    a: 'Потому что способ получения денег не определяет торговый инструмент. В проверенной справке BrightFunded указан перевод в USDC по сети ERC-20. Здесь фирма рассматривается отдельно как вариант выплаты в криптовалюте: подтверждённой связки её программ с криптоинструментами для этого рейтинга пока нет.',
   },
   {
     q: 'Можно ли держать криптопозиции на выходных?',
@@ -160,7 +160,7 @@ export default function RussianCryptoPropFirmsPage() {
       { label: `цены и правила ${evidence.firmName}`, capturedAt: products.length === evidence.productSlugs.length
         ? products.map(product => product.sourceCapturedAt).sort()[0] ?? '' : '' },
     ]),
-    { label: 'способы выплаты Bright Funded', capturedAt: payoutEvidence.sourceCapturedAt },
+    { label: 'способы выплаты BrightFunded', capturedAt: payoutEvidence.sourceCapturedAt },
   ]
   const hasFreshEvidence = mapped.length > 0 && snapshots.length === mapped.length && freshEvidence(payoutEvidence)
   const productCount = snapshots.reduce((total, snapshot) => total + snapshot.products.length, 0)
@@ -225,7 +225,7 @@ export default function RussianCryptoPropFirmsPage() {
             <div className="ru-notice ru-disclosure ru-review-top-disclosure" data-russian-affiliate-disclosure="crypto-ranking">
               <strong>Партнёрские ссылки.</strong> Мы можем получить комиссию при переходе к партнёру.
               Она даёт <strong>0 баллов</strong> в сравнении и не подтверждает условия программы.
-              Коммерческий статус указан возле каждой фирмы; Bright Funded рассматривается отдельно от крипторейтинга.
+              Коммерческий статус указан возле каждой фирмы; BrightFunded рассматривается отдельно от крипторейтинга.
             </div>
             <nav className="toc ru-review-toc" aria-label="Содержание рейтинга крипто-проп-фирм">
               <div className="toc-title">Содержание</div>
@@ -368,10 +368,10 @@ export default function RussianCryptoPropFirmsPage() {
         <section className="ru-section" id="payout-boundary">
           <div className="ru-shell ru-content" data-russian-crypto-payout-boundary="bright-funded-not-ranked">
             <h2>Торговля криптовалютой и выплата в USDC — разные маршруты</h2>
-            <p>Для Bright Funded мы отдельно проверили способы вознаграждения, а не торговлю криптоинструментами. В справке перечислены USDC по сети ERC-20 и банковский перевод в EUR. Пока точная связка программы и криптоинструмента не подтверждена, этот способ перевода не даёт фирме место в таблице криптопрограмм.</p>
+            <p>Для BrightFunded мы отдельно проверили способы вознаграждения, а не торговлю криптоинструментами. В справке перечислены USDC по сети ERC-20 и банковский перевод в EUR. Пока точная связка программы и криптоинструмента не подтверждена, этот способ перевода не даёт фирме место в таблице криптопрограмм.</p>
             <p className="ru-source-line" data-russian-crypto-payout-status={freshEvidence(payoutEvidence) ? 'dated' : 'recapture-required'}>Источник по способам выплаты: {payoutEvidence.sourceCapturedAt || 'дата не подтверждена'}. {!freshEvidence(payoutEvidence) && 'Проверка устарела или дата недостоверна: описание выше является датированным разбором, а не подтверждением действующих способов перевода.'}</p>
             <div className="ru-notice ru-disclosure">
-              <strong>Партнёрская ссылка.</strong> Переход ниже может принести нам комиссию. Это не добавляет Bright Funded в крипторейтинг и не подтверждает возможность получить USDC в каждой стране. До оплаты проверьте доступность метода для своих документов и места проживания.
+              <strong>Партнёрская ссылка.</strong> Переход ниже может принести нам комиссию. Это не добавляет BrightFunded в крипторейтинг и не подтверждает возможность получить USDC в каждой стране. До оплаты проверьте доступность метода для своих документов и места проживания.
             </div>
             <div className="ru-actions">
               <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
@@ -478,7 +478,7 @@ export default function RussianCryptoPropFirmsPage() {
                 <a href={evidence.sourceUrl} target="_blank" rel="nofollow noopener">{evidence.firmName}: справка об инструментах</a> — {evidence.sourceCapturedAt || 'дата не подтверждена'}.
                 {' '}Проверки программ: {[...new Set(products.map(product => product.sourceCapturedAt || 'дата не подтверждена'))].sort().join(', ') || 'записи отсутствуют'}.
               </li>)}
-              <li><a href={payoutEvidence.sourceUrl} target="_blank" rel="nofollow noopener">Bright Funded: способы выплаты</a> — {payoutEvidence.sourceCapturedAt || 'дата не подтверждена'}. Доступность конкретного метода для читателя не подтверждена.</li>
+              <li><a href={payoutEvidence.sourceUrl} target="_blank" rel="nofollow noopener">BrightFunded: способы выплаты</a> — {payoutEvidence.sourceCapturedAt || 'дата не подтверждена'}. Доступность конкретного метода для читателя не подтверждена.</li>
               <li>CFT: <a href="https://cryptofundtrader.com/faq/" target="_blank" rel="nofollow noopener">FAQ</a> и <a href="https://cryptofundtrader.com/terms-and-conditions/" target="_blank" rel="nofollow noopener">условия программ</a>. Основания исправления от 8 сентября разобраны выше; полные проверки Ascend и Break остаются незавершёнными.</li>
             </ul>
           </div>
