@@ -1,0 +1,1690 @@
+{
+  "capturedAt": "2026-10-15",
+  "accessNotes": "Fresh official reads for firm-level rules fields. Fetched 2026-10-15 via WebFetch (non-US egress) from global/official help-centre and plan pages, except: help.ofpfunding.com consistency article and fundingpips Zendesk article read via the public article API/curl (rules content is not geo-varied). Quotes are verbatim; '...' marks omitted text between quoted fragments. Apex Trader Funding not read (geo-blocked). Second round (same date, 2026-10-15 ~10:00-11:30 EEST): FTMO, E8, Maven, FXIFY, FundingPips, FundedNext, CTI, TPT, TradeDay, Lucid official pages/help centres read via curl from the box and WebFetch; quotes may be joined with '...' where table cells were flattened. Optional 'note' fields flag conflicts between official sources.",
+  "pagesRead": [
+    "https://citytradersimperium.com/1-step-challenge/",
+    "https://citytradersimperium.com/2-step-challenge/",
+    "https://citytradersimperium.com/direct-funding/",
+    "https://citytradersimperium.com/instant-funding/",
+    "https://citytradersimperium.com/match-trader-platform/",
+    "https://cryptofundtrader.com/faq/",
+    "https://e8markets.com/best-simfi-funded-program-e8pro",
+    "https://e8markets.com/compare-simfi-funded-accounts",
+    "https://ftmo.com/en/1-step-challenge/",
+    "https://ftmo.com/en/2-step-challenge/",
+    "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+    "https://ftmo.com/en/trading-objectives/",
+    "https://ftmo.com/en/trading-platforms/",
+    "https://fundednext.com/cfds/stellar-1-step",
+    "https://fundednext.com/cfds/stellar-2-step",
+    "https://fundednext.com/cfds/stellar-instant",
+    "https://fundednext.com/cfds/stellar-lite",
+    "https://fundednext.com/general-rules/cfds/trading-objectives",
+    "https://fxify.com/faqs/all-faqs/can-i-trade-the-news/",
+    "https://fxify.com/faqs/all-faqs/do-i-need-to-close-positions-over-the-weekend/",
+    "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+    "https://fxify.com/programs/one-phase/",
+    "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
+    "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+    "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule",
+    "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+    "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+    "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+    "https://help.e8markets.com/en/articles/15274219-e8-pro",
+    "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+    "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+    "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+    "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
+    "https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards",
+    "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+    "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+    "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+    "https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace",
+    "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy",
+    "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu",
+    "https://help.ofpfunding.com/account-models/",
+    "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/",
+    "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+    "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
+    "https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep",
+    "https://help.topstep.com/en/articles/8284179-quantower-connection-instructions",
+    "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+    "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+    "https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade",
+    "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+    "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
+    "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+    "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+    "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+    "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+    "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+    "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+    "https://maventrading.com/faqs",
+    "https://myfundedfutures.com/plans/builder",
+    "https://myfundedfutures.com/plans/pro",
+    "https://myfundedfutures.com/plans/rapid",
+    "https://support.lucidtrading.com/en/articles/11404614-lucid-trading-supported-platforms",
+    "https://support.lucidtrading.com/en/articles/11404728-other-activities",
+    "https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times",
+    "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+    "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown",
+    "https://support.lucidtrading.com/en/articles/12890185-luciddirect-daily-loss-limit",
+    "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts",
+    "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown",
+    "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts",
+    "https://support.lucidtrading.com/en/articles/16085900-luciddaily-daily-loss-limit",
+    "https://takeprofittrader.com/",
+    "https://takeprofittrader.com/accounts/api/subscriptions",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170265979165-Rule-3-Do-Not-Hit-End-Of-Day-EOD-Maximum-Trailing-Drawdown",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-5-Be-Consistent",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15171769361053-PRO-Account-Rules",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15173017163549-Choosing-Your-Platform",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
+    "https://tradeday.com/how-it-works",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008813-which-trading-platforms-does-tradeday-use-",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000018874-what-is-the-permitted-trading-times-guideline-",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000081072-can-i-trade-news-or-data-releases-",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000304248-what-are-the-differences-between-each-account-size-",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-"
+  ],
+  "firms": {
+    "topstep": {
+      "maxLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+            "quote": "Account Size Maximum Loss Limit $50K $2,000 $100K $3,000 $150K $4,500"
+          },
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+            "quote": "The MLL is a trailing limit. It rises as your end-of-day balance grows, but never moves down."
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+            "quote": "It's a simulated account with one rule and two objectives."
+          }
+        ],
+        "summary": "None in the Trading Combine (single rule: Maximum Loss Limit)"
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep",
+            "quote": "Trading Maximum Position Size into Major News Events. Purposefully trading your full Maximum Position Size directly into a scheduled major news event."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade",
+            "quote": "All positions must be closed by 3:10 PM CT every weekday. You can resume trading at 5:00 PM CT. No swing trading."
+          }
+        ]
+      },
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284179-quantower-connection-instructions",
+            "quote": "Connect using the Topstep Dashboard by selecting TopstepX as your platform. ... Quantower via TopstepX is available for the Trading Combine® and Express Funded Account® (XFA) only."
+          }
+        ],
+        "value": [
+          "TopstepX",
+          "Quantower"
+        ]
+      }
+    },
+    "take-profit-trader": {
+      "dailyLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/accounts/api/subscriptions",
+            "quote": "{\"name\":\"$ 25k\",...,\"dailyLossLimit\":500,...},{\"name\":\"$ 50k\",...,\"dailyLossLimit\":1100},{\"name\":\"$ 75k\",...,\"dailyLossLimit\":1600},{\"name\":\"$ 100k\",...,\"dailyLossLimit\":2200},{\"name\":\"$ 150k\",...,\"dailyLossLimit\":3300}"
+          }
+        ],
+        "value": {
+          "25000": 500,
+          "50000": 1100,
+          "75000": 1600,
+          "100000": 2200,
+          "150000": 3300
+        }
+      },
+      "maxLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/accounts/api/subscriptions",
+            "quote": "{\"name\":\"$ 25k\",...,\"eodTrailingDrawdown\":1500},{\"name\":\"$ 50k\",...,\"eodTrailingDrawdown\":2000},{\"name\":\"$ 75k\",...,\"eodTrailingDrawdown\":2500},{\"name\":\"$ 100k\",...,\"eodTrailingDrawdown\":3000},{\"name\":\"$ 150k\",...,\"eodTrailingDrawdown\":4500}"
+          }
+        ],
+        "value": {
+          "25000": 1500,
+          "50000": 2000,
+          "75000": 2500,
+          "100000": 3000,
+          "150000": 4500
+        }
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15171769361053-PRO-Account-Rules",
+            "quote": "All PRO Accounts must be out of all open positions and have no open orders one minute before, during and one minute after any prohibited news event."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
+            "quote": "Most products traded on CME Group exchanges (CME, NYMEX, COMEX, CBOT) are permitted, but positions may not be held from one session to the next."
+          }
+        ],
+        "value": false
+      },
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15173017163549-Choosing-Your-Platform",
+            "quote": "TradingView ... NinjaTrader ... Tradovate ... Bookmap ... MultiCharts ... MotiveWave ... Trade Navigator ... R|Trader ... VolFix ... ATAS ... Investor R/T ... Quantower ... Finamark ... Jigsaw Trader"
+          }
+        ],
+        "value": [
+          "TradingView",
+          "NinjaTrader",
+          "Tradovate",
+          "Bookmap",
+          "MultiCharts",
+          "MotiveWave",
+          "Trade Navigator",
+          "R|Trader",
+          "VolFix",
+          "ATAS",
+          "Investor R/T",
+          "Quantower",
+          "Finamark",
+          "Jigsaw Trader"
+        ]
+      },
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170265979165-Rule-3-Do-Not-Hit-End-Of-Day-EOD-Maximum-Trailing-Drawdown",
+            "quote": "The drawdown is called “trailing” because the minimum account balance follows your highest end-of-day balance upward."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-5-Be-Consistent",
+            "quote": "Profit Consistency (Percentage of Profits Rule) To prevent the evaluation from being treated like a lottery ticket, your best trading day must be below 50% of your total net profits ."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "Profit split Profit split None 80/20 90/10"
+          },
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "You keep 80%."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "From there you move to a PRO account and become eligible for day-one and daily payouts."
+          }
+        ]
+      }
+    },
+    "tradeday": {
+      "maxLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "| Trailing max drawdown | $1,000 | $2,000 | $3,000 | $4,500 |"
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000304248-what-are-the-differences-between-each-account-size-",
+            "quote": "Fast Pass Evaluations ... Maximum Drawdown | $1,000 | $2,000 | $3,000 | $4,500"
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.com/how-it-works",
+            "quote": "ONE RULE.ONE WAY TO FAIL Maximum Drawdown Don’t exceed the maximum drawdown."
+          }
+        ],
+        "summary": "None (single rule: trailing maximum drawdown)"
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "You can request your first payout after just one day of trading, and you can withdraw at any time as long as your account balance is positive."
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "The trader must complete a minimum of 5 individual profitable trading days (days do not need to be consecutive)"
+          }
+        ]
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000081072-can-i-trade-news-or-data-releases-",
+            "quote": "TradeDay will auto-liquidate all open positions 2 minutes before TradeDay's tier 1 economic data releases, and open markets back up to trade 2 minutes after these releases."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000018874-what-is-the-permitted-trading-times-guideline-",
+            "quote": "Exit all positions 10 minutes before the close. No holding positions when the market closes."
+          }
+        ]
+      },
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008813-which-trading-platforms-does-tradeday-use-",
+            "quote": "CQG Platforms - Tradovate - NinjaTrader - TradingView & Jigsaw ... Rithmic Platforms ... R|Trader Pro - Quantower - Rithmic - ATAS - Motivewave - BookMap - Jigsaw - Rithmic - Sierra Chart - EdgeProX - Finamark - Volfix - WealthCharts - Multicharts - Overcharts"
+          }
+        ],
+        "value": [
+          "Tradovate",
+          "NinjaTrader",
+          "TradingView",
+          "Jigsaw",
+          "R|Trader Pro",
+          "Quantower",
+          "ATAS",
+          "MotiveWave",
+          "Bookmap",
+          "Sierra Chart",
+          "EdgeProX",
+          "Finamark",
+          "VolFix",
+          "WealthCharts",
+          "MultiCharts",
+          "Overcharts"
+        ]
+      },
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "The Evaluation Quick Pay comes in four account sizes, and each is available with either an Intraday or End of Day trailing drawdown"
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "The Trailing Maximum Drawdown (TMD) for all Funded Sim Quick Pay accounts are calculated intraday."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "Third, stay consistent: no single day can account for more than 30% of your total profits."
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "For accounts opened on and after July 26 2026, accounts must satisfy the consistency objective: no single day can make up more than 45% of your total gross profits"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "Below the $4,000 current profit level, payouts are split 50/50."
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "Above $4,000, the split improves to 80/20 in your favour"
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "There will be an 80/20 profit split."
+          }
+        ]
+      }
+    },
+    "lucid-trading": {
+      "maxLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown",
+            "quote": "Account Size MLL Amount ... $25,000 $1,000 ... $50,000 $2,000 ... $100,000 $3,000 ... $150,000 $4,500"
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown",
+            "quote": "Account Size MLL Amount ... $25,000 $1,000 ... $50,000 $2,000 ... $100,000 $3,000 ... $150,000 $4,500"
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890185-luciddirect-daily-loss-limit",
+            "quote": "Account Size Fixed DLL Initial Trail Balance $25,000 None None $50,000 $1,200 $52,100 $100,000 $2,100 $103,600 $150,000 $3,000 $155,100"
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/16085900-luciddaily-daily-loss-limit",
+            "quote": "If you chose DLL ON then you will have a fixed DLL on both your LucidDaily evaluation and funded accounts ... $25,000 $600 $50,000 $1,200 $100,000 $1,800 $150,000 $2,700"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+            "quote": "There is no fixed payout window, you may request a payout any day after meeting all eligibility criteria."
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts",
+            "quote": "Traders must earn at least the minimum required profit on 5 separate days during the payout cycle."
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts",
+            "quote": "There is no fixed payout window, you may request a payout any day after meeting all eligibility criteria."
+          }
+        ]
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/11404728-other-activities",
+            "quote": "Not allowed on Daily - Trading red folder news on the LucidDaily is a hard breach - Allowed on Flex, Pro and Direct"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times",
+            "quote": "All positions must be closed by 4:45 PM EST, Monday through Friday"
+          }
+        ],
+        "value": false,
+        "byProduct": null,
+        "summary": "not allowed (all positions closed by 4:45 PM EST each weekday)"
+      },
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/11404614-lucid-trading-supported-platforms",
+            "quote": "CQG supported platforms: NinjaTrader Tradovate TradingView Rithmic supported platforms: Quantower (Lucid Partner) Tradesea MotiveWave Sierra Chart Jigsaw Bookmap ATAS R|Trader Pro (official Rithmic platform) MultiCharts"
+          }
+        ],
+        "value": [
+          "NinjaTrader",
+          "Tradovate",
+          "TradingView",
+          "Quantower",
+          "Tradesea",
+          "MotiveWave",
+          "Sierra Chart",
+          "Jigsaw",
+          "Bookmap",
+          "ATAS",
+          "R|Trader Pro",
+          "MultiCharts"
+        ]
+      },
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown",
+            "quote": "LucidPro evaluation and funded accounts use an End-of-Day Drawdown (EOD Drawdown) system to calculate the Max Loss Limit (MLL)."
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown",
+            "quote": "LucidFlex evaluation and funded accounts use an End-of-Day Drawdown (EOD Drawdown) system to calculate the Max Loss Limit (MLL)."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+            "quote": "Consistency Percentage Your largest single-day profit must be no more than 40% of your total profit during the payout cycle."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+            "quote": "Profit Split Structure All funded account payouts are split 90% to the trader and 10% to Lucid Trading."
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts",
+            "quote": "Profit Split Structure All LucidFlex funded account payouts are split 90% to the trader and 10% to Lucid Trading."
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts",
+            "quote": "Profit Split Structure All LucidDaily funded account payouts are split 90% to the trader and 10% to Lucid Trading."
+          }
+        ]
+      }
+    },
+    "my-funded-futures": {
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "| Max Loss (EOD) | $1,000 | $2,000 | $3,000 | $4,500 | ... | Drawdown Type | EOD | EOD | EOD | EOD |"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Pro uses end-of-day trailing drawdown in both eval and sim funded."
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "| Drawdown Model | EOD Trailing | EOD Trailing | EOD Trailing | EOD Trailing |"
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "| Max Loss (EOD) | $1,000 | $2,000 | $3,000 | $4,500 |"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "| Max Loss (EOD) | $2,000 | $3,000 | $4,500 |"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "| Max Loss (EOD Trailing) | $1,000 | $2,000 ($1,500 with add-on) | $3,000 | $4,500 |"
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "| Daily Loss Limit | None | None | None | None |"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "| Daily Loss Limit | None | None | None |"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "| Daily Loss Limit | $600 - soft pause | $1,000 - soft pause | $1,750 - soft pause | $2,500 - soft pause |"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Daily Loss Limit $600 - soft pause $1,000 - soft pause $1,750 - soft pause $2,500 - soft pause"
+          }
+        ],
+        "byProduct": {
+          "rapid": null,
+          "rapid-eod": null,
+          "flex": null,
+          "pro": null,
+          "builder": {
+            "25000": 600,
+            "50000": 1000,
+            "100000": 1750,
+            "150000": 2500
+          }
+        },
+        "summary": "Product-specific: none on Rapid and Pro; soft-pause $600 (25K) / $1,000 (50K) / $1,750 (100K) / $2,500 (150K) on Builder; Rapid EOD and Flex (legacy) not re-confirmed"
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "| Consistency | 50% (Eval Only) | 50% (Eval Only) | 50% (Eval Only) | 50% (Eval Only) |"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "There's a 50% consistency rule in evaluation only"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Each payout is between $500 and $2,000, with a 50% consistency rule applied at the payout stage."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "You keep 90% of every payout. MFFU keeps 10%."
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "| Profit Split | 80/20 | 80/20 | 80/20 |"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "| Profit Split | 80/20 | 80/20 | 80/20 | 80/20 |"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Payout cadence Daily"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Pro starts at $50K, goes up to $150K, pays on a 14-day cycle with a $100,000 cap"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Payout cadence Every 48 hours"
+          }
+        ]
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy",
+            "quote": "Restricted Accounts: Trading on T1 News events is prohibited for the following: Rapid Sim Funded, Pro Sim Funded. Unrestricted Accounts: Trading on T1 News events is permitted for the following: All evaluations, Builder Plans"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Can I hold positions overnight on Rapid? No. Rapid is intended for intraday futures trading. All positions must be closed before the daily session close. Holding overnight will breach the account."
+          }
+        ],
+        "value": false,
+        "summary": "not allowed (stated for Rapid: all positions closed before the daily session close; not stated on the Pro/Builder pages)"
+      },
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu",
+            "quote": "Platform Choices - NinjaTrader ... - Hyperprop ... - Tradovate ... - TradingView ... - Quantower ... - Volumetrica ... - DeepChart/DeepDom ... - ATAS"
+          }
+        ],
+        "value": [
+          "NinjaTrader",
+          "Hyperprop",
+          "Tradovate",
+          "TradingView",
+          "Quantower",
+          "Volumetrica",
+          "DeepChart/DeepDom",
+          "ATAS"
+        ]
+      }
+    },
+    "tradeify": {
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+            "quote": "The GROWTH™ evaluation uses an End of Day Trailing Max Drawdown, which is based on the account balance at the end of the trading day."
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+            "quote": "End of Day Drawdown: Your drawdown is calculated at session close, so intraday swings do not move the limit."
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+            "quote": "Lightning Funded Accounts use an End of Day Trailing Max Drawdown, which is calculated and based on the account balance at the end of the trading day."
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+            "quote": "Account Size Profit Target Daily Loss Limit (Soft Breach) Trailing Max Drawdown ... $25k $1,500 $600 $1,000 ... $50k $3,000 $1,250 $2,000 ... $100k $6,000 $2,500 $3,500 ... $150k $9,000 $3,750 $5,000"
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+            "quote": "25K ... Maximum Drawdown: $1,000 (End of Day) ... 50K ... $2,000 ... 100K ... $3,000 ... 150K ... $4,500 (End of Day)"
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+            "quote": "$25k None None $1,000 ... $50k None $1,250 $2,000 ... $100k $2,500 $4,000 ... $150k $3,000 $5,250"
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+            "quote": "GROWTH™ evaluation DOES have a Daily Loss Limit (soft breach): $600 (25K), $1,250 (50K), $2,500 (100K), $3,750 (150K)."
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+            "quote": "SELECT Evaluation does NOT have a daily loss limit during the evaluation phase."
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+            "quote": "$25k None None $1,000 ... $50k None $1,250 $2,000 ... $100k $2,500 $4,000 ... $150k $3,000 $5,250"
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+            "quote": "Daily Loss Limit: Yes ($500 / $1,000 / $1,250 / $1,750)"
+          }
+        ],
+        "summary": "Product-specific: soft-breach $600 (25K) / $1,250 (50K) / $2,500 (100K) / $3,750 (150K) on Growth Evaluation; none during Select evaluation (Select Daily funded: $500 / $1,000 / $1,250 / $1,750); none (25K) / $1,250 (50K) / $2,500 (100K) / $3,000 (150K) on Lightning Funded"
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+            "quote": "Growth Evaluation — ... 35% consistency rule. Select Evaluation — ... 40% consistency rule during evaluation only ... Lightning Funded — ... Progressive consistency rule (20% → 25% → 30%)."
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+            "quote": "A: No. GROWTH™ evaluation does NOT have a consistency requirement."
+          }
+        ],
+        "note": "Official help articles contradict each other for Growth: the Growth article says there is no consistency rule, the pricing reference says 35%. The conservative 35% is kept. Sources: https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts and https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference"
+      },
+      "profitSplitPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+            "quote": "Sim Funded accounts (Growth, Select, Lightning): 90% to trader / 10% to Tradeify"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+            "quote": "Payout Frequency: Every 5 winning days ... Payout Frequency: Daily eligibility"
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+            "quote": "Lightning Funded traders can now instantly request payouts directly from the dashboard once the consistency rule and profit objective are met."
+          }
+        ],
+        "summary": "Product-specific: every 5 winning days on Select Flex; daily eligibility on Select Daily; on request once consistency and profit objective are met on Lightning Funded; Growth not re-confirmed"
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
+            "quote": "Q: Can I hold positions over the weekend? A: No. All positions must be closed before Friday's market close (4:45 PM ET)."
+          }
+        ],
+        "value": false,
+        "byProduct": null,
+        "summary": "not allowed"
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+            "quote": "We do not have any rules against or guidelines around trading news events."
+          }
+        ]
+      },
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+            "quote": "At checkout, you select one of three brokers: Tradovate, Rithmic, or WealthCharts. ... Tradovate gives access to NinjaTrader and TradingView. Rithmic gives access to Tradesea, Quantower, Sierra Chart, and R|Trader. WealthCharts is its own broker and platform"
+          }
+        ],
+        "value": [
+          "Tradovate",
+          "NinjaTrader",
+          "TradingView",
+          "Tradesea",
+          "Quantower",
+          "Sierra Chart",
+          "R|Trader",
+          "WealthCharts"
+        ]
+      }
+    },
+    "crypto-fund-trader": {
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "For the 2-Phase Evaluation, the daily maximum loss is 5%, and the maximum overall loss is fixed at 10% of the initial account balance. For the 1-Phase Evaluation, the daily maximum loss is 4%, and the trailing drawdown rule applies instead of a fixed overall loss limit."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "The Trailing Loss Limit applies during both the Break Evaluation and the Break Final Stage."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "The Consistency Rule applies only to Break Final Stage accounts. No single trading day may account for more than 40% of the total profits generated on the account."
+          }
+        ],
+        "byProduct": {
+          "evaluation": null,
+          "ascend": null,
+          "accelerated": null,
+          "instant": null,
+          "break": 40
+        },
+        "summary": "Product-specific: 40% on Break Challenge (Final Stage, checked at payout request); none on Evaluation, Ascend, Accelerated, Instant"
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "You can request a scholarship reward after trading for at least 15 days, or alternatively, every 30 calendar days ... If you have the Weekly Payouts add-on, you can request a scholarship reward every 7 traded days"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Break accounts offer payouts on demand once the trader has successfully passed the Evaluation phase, paid the applicable Activation Fee, and moved to the Final Stage"
+          }
+        ],
+        "summary": "Product-specific: after 15 traded days or every 30 calendar days on Evaluation and Accelerated (7 traded days with Weekly add-on); on demand on Break; on reaching the Phase 2 target on Ascend; at 10% profit (Withdrawal & Upgrade) on Instant"
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Can I trade news? Yes. News trading is allowed."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "In the Ascend Evaluation, you cannot open new trades or increase your risk during high-impact news events or market openings. This restriction applies from 2 minutes before until 2 minutes after the event."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Yes. Traders are allowed to keep positions open overnight and over the weekend, regardless of the account type or instrument."
+          }
+        ],
+        "value": true,
+        "byProduct": null,
+        "summary": "allowed"
+      },
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Crypto Fund Trader currently offers access to Match-Trader, MetaTrader 5, and Bybit."
+          }
+        ],
+        "value": [
+          "Match-Trader",
+          "MT5",
+          "Bybit"
+        ]
+      }
+    },
+    "alpha-capital": {
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+            "quote": "On our Qualified Analyst Pro / One / Three / Direct accounts, you are NOT permitted to execute any new trades or close existing trades on the targeted instruments (as listed in the table) within the window of 5 minutes before and 5 minutes after the release"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+            "quote": "Alpha Swing Plan: Trading during major news events is allowed. However, if a trade is initiated within 2 minutes before or up to 2 minutes after a news release (a 4-minute window), its duration must exceed 2 minutes for the trade to be valid."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
+            "quote": "Alpha Pro Plan: Phase 1 & 2: Holding trades over the weekend is allowed. Qualified Analyst Account: Holding trades over the weekend is not allowed. ... Alpha Swing / One / Three plans: Holding trades over the weekend is allowed at all stages. Alpha Direct Plan: Holding trades over the weekend is not allowed."
+          }
+        ]
+      }
+    },
+    "ofp-funding": {
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/",
+            "quote": "You must avoid trading from 2 minutes before until 2 minutes after the release of any high-risk volatility news."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.ofpfunding.com/account-models/",
+            "quote": "INSTANT LITE ... Consistency Rule: NO ... INSTANT CLASSIC ... Consistency Rule: YES ... INSTANT PLUS ... Consistency Rule: No"
+          },
+          {
+            "sourceUrl": "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
+            "quote": "Calculation Consistency Score = (Best Trading Day Profit ÷ Total Profit) × 100 ... If too much of your profit comes from a single day or trade, your account may be flagged as inconsistent."
+          }
+        ],
+        "summary": "Product-specific: Inconsistency Score (best day ÷ total profit; no published % threshold) on Instant Classic; none on Instant Lite and Instant Plus"
+      },
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+            "quote": "All our accounts use OFP platform (Sirix) which is integrated with TradingView features."
+          }
+        ],
+        "value": [
+          "OFP Platform (Sirix)"
+        ]
+      }
+    },
+    "ftmo": {
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/trading-platforms/",
+            "quote": "FTMO MetaTrader 5 ... FTMO MetaTrader 4 ... TradingView ... FTMO cTrader"
+          }
+        ],
+        "value": [
+          "MT5",
+          "MT4",
+          "TradingView",
+          "cTrader"
+        ]
+      },
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+            "quote": "[2-Step] The Maximum Loss rule establishes a static limit (the Maximum Loss Limit) below which your account equity ... cannot drop."
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+            "quote": "[1-Step] The Maximum Loss rule establishes an end-of-day trailing limit (the Maximum Loss Limit) below which your account equity ... cannot drop."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+            "quote": "[2-Step] the Maximum Daily Loss Amount, which is 5% of the Initial Simulated Capital."
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+            "quote": "[1-Step] the** Maximum Daily Loss Amount**, which is 3% of the Initial Simulated Capital."
+          }
+        ]
+      },
+      "maxLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+            "quote": "Max Loss 10%"
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+            "quote": "10% Max Loss to manage risk"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+            "quote": "To pass the FTMO Challenge: 1-Step or to be eligible for a Reward on an FTMO Account, the Consistency rule requires that your Best Day does not represent more than 50% of your total profit."
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+            "quote": "Consistency Applicable to accounts initiated from orders created on or after 12 Oct 2026, or any accounts merged on or after this date"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+            "quote": "FTMO Account initiated from the 1-Step FTMO Challenge and FTMO Instant Account: You receive a Reward according to 90% of the simulated profit."
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+            "quote": "FTMO Account initiated from the 2-Step FTMO Challenge: By default, you receive a Reward according to 80% of the simulated profit."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+            "quote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account."
+          }
+        ],
+        "summary": "Reward claim on the 14th or any following day after the first trade on the account (not same-day on-demand)",
+        "value": null,
+        "note": "Previous capture said on-demand; the official FAQ states a 14-day minimum from the first trade."
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+            "quote": "Restrictions for trading during selected news releases apply only to the Standard account type. The Swing account type have no restrictions on trading during news releases."
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+            "quote": "For Standard accounts, these restrictions apply only once you start trading on an FTMO Account. They do not apply during the Evaluation Process."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+            "quote": "Overnight and weekend position restrictions apply only to the Standard account type. The Swing account type does not have any restrictions on holding positions overnight or over the weekend."
+          }
+        ]
+      }
+    },
+    "fundingpips": {
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace",
+            "quote": "FundingPips supports three platforms: MT5, cTrader, and Match-Trader."
+          }
+        ],
+        "value": [
+          "MT5",
+          "cTrader",
+          "Match-Trader"
+        ]
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Flexible reward cycles : Weekly 60%, Bi-Weekly 80%, Monthly 100%, or On Demand 90%."
+          }
+        ],
+        "summary": "Product-specific: bi-weekly on 1 Step Flex, 2 Step Flex, FundingPips Zero; weekly on 2 Step Pro; trader-selected (weekly, bi-weekly, monthly or on-demand) on 2 Step Standard"
+      },
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Max Loss Limit: 12% . This is a static floor; it never moves."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "The Trailing Loss Limit moves up when equity reaches a new high."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "The 3% Daily Loss Limit uses the balance or equity at the start of the day, whichever is higher, and resets at 00:00 Platform Time."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Daily Loss Limit: 4% ."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Daily Loss Limit 3% or 5% ."
+          }
+        ]
+      },
+      "maxLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "The 12% Max Loss Limit sits 12% below the starting balance and does not reset."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+            "quote": "Max Loss Limit: 6% ."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Max Loss Limit: 10% ."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Request any time with 35% consistency score & min 2% profit."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "There is no Consistency Score on either Bi-Weekly split."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "Consistency Score 15% or below ."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Get an 80% split with 1 minimum trading day, or 95% on 3 profitable days."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "95% profit split ."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "80% Bi-Weekly reward ."
+          }
+        ]
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Purposely trading news in both evaluation phase and master phase is prohibited and will lead to account closure."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "News Trading: Prohibited on all instruments ."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "Overnight and weekend holding on Master Accounts can be enabled at the time of purchase through an Add-on."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "Leaving any position open into the weekend is an immediate account termination, regardless of instrument."
+          }
+        ]
+      }
+    },
+    "maven": {
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Which Platforms can I use for simulated trading at Maven? Maven Trading offers MT5 and Match Trader"
+          }
+        ],
+        "value": [
+          "MT5",
+          "Match-Trader"
+        ]
+      },
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 3 Step Challenge and Simulated Funded Account use the same loss limits: 2% daily loss and 3% static maximum drawdown."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Instant Funding has two loss limits: Daily Loss Limit: 2% (Equity-Based)"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Challenge has only one limit during the Evaluation Phase: Maximum Drawdown: 10% (Static)"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "There is no Consistency Score requirement for the Standard 2 Step Challenge or Simulated Funded Account."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "In Instant Funding Account , a 20% Consistency Score is required"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "In the Instant Mini Funding Account, a 15% Consistency Score is required"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The standard reward split is 80%."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The profit split is 70%."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Your first payout is available 10 business days after your first trade on the Simulated Funded Account."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Payouts for Instant Funding Accounts are available on demand ."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Buy Now Pay Later Simulated Funded Accounts have no fixed payout waiting period"
+          }
+        ]
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Standard 1 Step Do not open or close trades on affected instruments from 2 minutes before until 2 minutes after an applicable Red Folder release."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "2 Step OMO Yes, but profit from any single news event is capped at 0.50% of your account balance ."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Buy Now Pay Later Yes, without restriction Instant Funding Yes, without restriction Instant Mini Yes, without restriction"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "You may trade and hold positions overnight or over the weekend."
+          }
+        ]
+      }
+    },
+    "fundednext": {
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards",
+            "quote": "For traders using the Stellar 2-Step or Stellar Lite Account, the On-Demand Performance Reward is now a built-in payout option ... You must have maintained the 40% consistency rule across your trades."
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
+            "quote": "There are no consistency rules in the Stellar Instant Account"
+          }
+        ],
+        "summary": "Product-specific: 40% best-day rule only when the On-Demand Performance Reward option is chosen on Stellar 2-Step and Stellar Lite; none on Stellar Instant; Stellar 1-Step not re-confirmed"
+      },
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+            "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+            "quote": "Stellar 1-Step: 3% of initial balance"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+            "quote": "Stellar 2-Step: 5% of initial balance"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "4% Daily Loss limit."
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "No daily loss limit."
+          }
+        ]
+      },
+      "maxLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+            "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "Pass, get a FundedNext Account and keep up to 95% of your performance reward."
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "70% performance reward from Day 1, increasing to 80% from Tier 3 onwards"
+          }
+        ],
+        "note": "Challenge data stores 80% (base) for 2-Step/1-Step/Lite; official product pages advertise \"up to 95%\". Base split not re-quoted."
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "Pass, get a FundedNext Account and keep up to 95% of your performance reward, paid every 5 business days."
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "On-demand reward at 5% or on the usual 14-day cycle"
+          }
+        ]
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "FundedNext allows traders to trade during news events in both the Challenge Phase and the FundedNext Account ."
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Time Window : Trades executed 5 minutes before and 5 minutes after a listed high-impact news event (a total 10-minute window ) will be subject to the News Reward Share Rule ."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "Weekend holding allowed during the Challenge phase and FundedNext Account"
+          }
+        ]
+      }
+    },
+    "bright-funded": {
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule",
+            "quote": "At BrightFunded, we do not currently enforce a consistency rule."
+          }
+        ],
+        "summary": "none"
+      },
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+            "quote": "Maximum Drawdown 6% Trailing (dynamic)"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+            "quote": "Maximum Drawdown 8% Static"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+            "quote": "Maximum Drawdown 10% Static"
+          }
+        ]
+      }
+    },
+    "city-traders-imperium": {
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/match-trader-platform/",
+            "quote": "it is one of the two platforms available on a City Traders Imperium account. ... What is the difference between Match Trader and MetaTrader 5?"
+          }
+        ],
+        "value": [
+          "MT5",
+          "Match-Trader"
+        ]
+      },
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Max Trailing Drawdown 5% of the starting balance Drawdown Type Balance Based Max Daily Drawdown None"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step uses a static drawdown of 10% of your initial balance, plus a daily drawdown of 5% of your initial balance, deducted from each day’s starting balance."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "Your 6% drawdown is static, with no daily limit and no trailing floor chasing your gains."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step uses a static drawdown of 10% of your initial balance, plus a daily drawdown of 5% of your initial balance, deducted from each day’s starting balance."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Max Daily Drawdown None"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Both programs share the same 6% static drawdown with no daily drawdown limit"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Max Trailing Drawdown 5% of the starting balance"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step uses a static drawdown of 10% of your initial balance"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Both programs share the same 6% static drawdown with no daily drawdown limit"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step Challenge has no hidden consistency requirements, with clear target and drawdown objectives."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Direct Funding has no consistency rule."
+          }
+        ],
+        "summary": "None on 2-Step Challenge and Direct Funding; not stated on 1-Step Challenge or Instant Funding product pages"
+      },
+      "profitSplitPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Pass the challenge, get funded, and keep 80% of your rewards from your first payout."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "earn a 50% profit share from your very first trade."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "earn a 70% profit share from your first trade, and scale to $4,000,000."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Request your 1st payout in as little as 7 days."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder."
+          }
+        ]
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "No restrictions on news, Expert Advisors, Martingale, overnight holds, or weekend holds."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "News trading, weekend holding, and overnight holding are all allowed on the 2-Step Challenge"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "No restrictions on news, Expert Advisors, Martingale, overnight holds, or weekend holds."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "News trading, weekend holding, and overnight holding are all allowed on the 2-Step Challenge"
+          }
+        ]
+      }
+    },
+    "e8-markets": {
+      "dailyLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Daily drawdown $4,000"
+          },
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+            "quote": "2.5% Daily Drawdown – Your account must not lose more than 2.5% of your"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Dynamic Drawdown $6,000"
+          },
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+            "quote": "8% Static drawdown – A fixed loss limit based on your initial balance"
+          }
+        ]
+      },
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/best-simfi-funded-program-e8pro",
+            "quote": "An 8% static drawdown that never trails, an 8% profit target, and payouts you can request every single day."
+          },
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Dynamic Drawdown $6,000"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Consistency rule 40%"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/best-simfi-funded-program-e8pro",
+            "quote": "Consistency ruleThere is none — trade freely."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Payout 80%"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/best-simfi-funded-program-e8pro",
+            "quote": "PayoutChoose 80% or 100% at purchase — permanent."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+            "quote": "Payout frequency: You can request every day!"
+          }
+        ]
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+            "quote": "You can trade news on E8 Signature and E8 Pro without any restrictions (This includes SimFi™ challenge account (phase-1) and SimFi™ performance Account)"
+          },
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+            "quote": "In the SimFI™ Performance account, trading is strictly prohibited during high-impact news events."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+            "quote": "E8 One, E8 Pro: Weekend Holding and Crypto trading are allowed on all stages."
+          },
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+            "quote": "On E8 Signature, all positions are automatically closed at 23:00 server time, and trading resumes at 00:15 server time."
+          }
+        ]
+      }
+    },
+    "fxify": {
+      "drawdownType": {
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "1 Phase Account: ... Max total Drawdown – 6% Trailing (Based on High water mark)"
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Phase 2 – 5% Daily drawdown – 4% (Based on previous day balance) Max total Drawdown – 10% Trailing"
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Daily drawdown – 5% (Based on previous day balance) Max total Drawdown – 5% Static (Based on initial balance)"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "1 Phase Account: Profit Target – Phase 1 – 10% Daily drawdown – 3% (Based on previous day balance)"
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Phase 2 – 5% Daily drawdown – 4% (Based on previous day balance)"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Max total Drawdown – 6% Trailing (Based on High water mark)"
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Max total Drawdown – 10% Trailing"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+            "quote": "No Consistency Rule: Your strategy can evolve; we do not enforce rigid lot-size consistency."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "evidence": [
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+            "quote": "Profit Split 80% default , upgradable to 90% ."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed."
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased."
+          }
+        ]
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/can-i-trade-the-news/",
+            "quote": "Yes, you are able to trade new events on 1,2 and 3-Phase accounts."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/do-i-need-to-close-positions-over-the-weekend/",
+            "quote": "No, on the 1,2 and 3 Phase accounts you do not need to close your positions over the weekend."
+          }
+        ]
+      }
+    }
+  }
+}
