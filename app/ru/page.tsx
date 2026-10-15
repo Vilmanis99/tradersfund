@@ -17,7 +17,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, faqPageSchema, jsonLd, organizationSchema } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified, russianPublishedHref } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
@@ -95,7 +95,7 @@ export default function RussianHomePage() {
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
     dateModified: russianRouteDateModified(PATH),
-    isPartOf: { '@type': 'WebSite', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
+    isPartOf: { '@type': 'WebSite', '@id': 'https://tradersfundhub.com/#website', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
 
   const tableRows = getHomeComparisonRows('ru')
@@ -105,6 +105,7 @@ export default function RussianHomePage() {
 
   return (
     <div className="th-home ru-home ru-home--product-led" data-russian-home-layout="focused">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(organizationSchema()) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(pageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
