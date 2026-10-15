@@ -1,0 +1,404 @@
+{
+  "firmSlug": "fundednext",
+  "officialDomain": "https://fundednext.com",
+  "capturedAt": "2026-10-15",
+  "pagesRead": [
+    "https://fundednext.com/cfds",
+    "https://fundednext.com/cfds/stellar-2-step",
+    "https://fundednext.com/cfds/stellar-1-step",
+    "https://fundednext.com/cfds/stellar-lite",
+    "https://fundednext.com/cfds/stellar-instant",
+    "https://help.fundednext.com/en/articles/8020768-how-much-is-the-reward-share-in-fundednext",
+    "https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards"
+  ],
+  "accessNotes": "RECAPTURE 2026-10-15: Prices read from the plan records embedded in fundednext.com/cfds pages (same server data powers all four product pages). Where a record has originalPrice (the promo-coded smallest tier, code STRTN), the originalPrice is stored as the list price. Changes: stellar-2-step 6K: 59.99→49.99; stellar-2-step 15K: 119.99→109.99; stellar-2-step 25K: 199.99→189.99; stellar-2-step 50K: 299.99→269.99; stellar-2-step 100K: 549.99→529.99; stellar-2-step 200K: 1099.99→1049.99; stellar-1-step 6K: 65.99→55.99; stellar-1-step 15K: 129.99→119.99; stellar-1-step 25K: 219.99→199.99; stellar-1-step 50K: 329.99→309.99; stellar-1-step 100K: 569.99→549.99; stellar-1-step 200K: 1099.99→1049.99; Stellar Lite min trading days 5→2 and first/subsequent reward 21/14→10/10 days. Rechecked FundedNext's current first-party CFD product pages and Help Center on 2026-09-29. USD figures are standard list prices before promotions and optional add-ons. Current pages retain the existing product lineup and base values; add-on reward paths and funded-stage news treatment remain described in notes.",
+  "products": [
+    {
+      "productName": "Stellar 2-Step",
+      "productSlug": "stellar-2-step",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 6000,
+          "priceUsd": 49.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "\"planName\":\"Stellar 2-Step $6K\",\"plan_id\":63,\"accountSize\":\"6K\",\"numericAccountSize\":6000,\"popular\":\"Exclusive\",\"promoCode\":\"STRTN\",\"discountedPrice\":\"$$39.99\",\"originalPrice\":\"$$49.99\","
+          }
+        },
+        {
+          "sizeUsd": 15000,
+          "priceUsd": 109.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "\"planName\":\"Stellar 2-Step $15K\",\"plan_id\":64,\"accountSize\":\"15K\",\"numericAccountSize\":15000,\"discountedPrice\":\"$$109.99\","
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 189.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "\"planName\":\"Stellar 2-Step $25K\",\"plan_id\":65,\"accountSize\":\"25K\",\"numericAccountSize\":25000,\"discountedPrice\":\"$$189.99\","
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 269.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "\"planName\":\"Stellar 2-Step $50K\",\"plan_id\":66,\"accountSize\":\"50K\",\"numericAccountSize\":50000,\"discountedPrice\":\"$$269.99\","
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 529.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "\"planName\":\"Stellar 2-Step $100K\",\"plan_id\":67,\"accountSize\":\"100K\",\"numericAccountSize\":100000,\"discountedPrice\":\"$$529.99\","
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1049.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "\"planName\":\"Stellar 2-Step $200K\",\"plan_id\":68,\"accountSize\":\"200K\",\"numericAccountSize\":200000,\"discountedPrice\":\"$$1,049.99\","
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 21,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+      "fieldEvidence": {
+        "profitTargets": "Current product page: 8% Phase 1 and 5% Phase 2.",
+        "dailyLossPct": "Current product page: 5% Daily Loss Limit.",
+        "maxLossPct": "Current product page: 10% Maximum Loss Limit.",
+        "drawdownType": "Current product page: Static drawdown.",
+        "minTradingDays": "Current product page: 5 minimum trading days per phase.",
+        "profitSplitPct": "Current Reward Share article: new Stellar accounts start at 80%; add-ons can increase the share.",
+        "payoutFirstDays": "Current product page: first reward after 21 days, then every 14 days.",
+        "rules.news": "Current product page allows news trading, while funded-stage news profit treatment is limited; retained as restricted in the comparison schema.",
+        "rules.weekend": "Current product page: weekend holding allowed.",
+        "rules.ea": "Current product page: EAs/VPS available with add-ons; retained as restricted in the comparison schema.",
+        "rules.copyTrading": "FundedNext's current account rules retain same-owner-only copying conditions."
+      },
+      "notes": [
+        "Standard global USD list prices; promotions, platform fees and optional add-ons are excluded.",
+        "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
+        "The standard first reward window is 21 days, followed by 14-day cycles; compliance review still applies.",
+        "Current pages allow news trading but limit the funded-stage profit treatment; the comparison keeps this as a restricted rule.",
+        "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase."
+      ]
+    },
+    {
+      "productName": "Stellar 1-Step",
+      "productSlug": "stellar-1-step",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 6000,
+          "priceUsd": 55.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "\"planName\":\"Stellar 1-Step $6K\",\"plan_id\":69,\"accountSize\":\"6K\",\"numericAccountSize\":6000,\"popular\":\"Exclusive\",\"promoCode\":\"STRTN\",\"discountedPrice\":\"$$49.99\",\"originalPrice\":\"$$55.99\","
+          }
+        },
+        {
+          "sizeUsd": 15000,
+          "priceUsd": 119.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "\"planName\":\"Stellar 1-Step $15K\",\"plan_id\":70,\"accountSize\":\"15K\",\"numericAccountSize\":15000,\"discountedPrice\":\"$$119.99\","
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 199.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "\"planName\":\"Stellar 1-Step $25K\",\"plan_id\":71,\"accountSize\":\"25K\",\"numericAccountSize\":25000,\"discountedPrice\":\"$$199.99\","
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 309.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "\"planName\":\"Stellar 1-Step $50K\",\"plan_id\":72,\"accountSize\":\"50K\",\"numericAccountSize\":50000,\"discountedPrice\":\"$$309.99\","
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 549.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "\"planName\":\"Stellar 1-Step $100K\",\"plan_id\":73,\"accountSize\":\"100K\",\"numericAccountSize\":100000,\"discountedPrice\":\"$$549.99\","
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1049.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "\"planName\":\"Stellar 1-Step $200K\",\"plan_id\":74,\"accountSize\":\"200K\",\"numericAccountSize\":200000,\"discountedPrice\":\"$$1,049.99\","
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+      "fieldEvidence": {
+        "profitTargets": "Current product page: 10% profit target.",
+        "dailyLossPct": "Current product page: 3% Daily Loss Limit.",
+        "maxLossPct": "Current product page: 6% Maximum Loss Limit.",
+        "drawdownType": "Current product page: Static drawdown.",
+        "minTradingDays": "Current product page: 2 minimum trading days.",
+        "profitSplitPct": "Current Reward Share article: new Stellar accounts start at 80%; add-ons can increase the share.",
+        "payoutFirstDays": "Current product page: first reward after 5 business days and every 5 business days thereafter.",
+        "rules.news": "Current product page allows news trading, while funded-stage news profit treatment is limited; retained as restricted in the comparison schema.",
+        "rules.weekend": "Current product page: weekend holding allowed.",
+        "rules.ea": "Current product page: EAs/VPS available with add-ons; retained as restricted in the comparison schema.",
+        "rules.copyTrading": "FundedNext's current account rules retain same-owner-only copying conditions."
+      },
+      "notes": [
+        "Standard global USD list prices; promotions and optional add-ons are excluded.",
+        "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
+        "The first standard reward cycle is 5 business days; the fee refund is tied to the third reward for new accounts.",
+        "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase."
+      ]
+    },
+    {
+      "productName": "Stellar Lite",
+      "productSlug": "stellar-lite",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 32.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "\"planName\":\"Stellar Lite $5K\",\"plan_id\":75,\"accountSize\":\"5K\",\"numericAccountSize\":5000,\"popular\":\"Exclusive\",\"promoCode\":\"STRTN\",\"discountedPrice\":\"$$29.99\",\"originalPrice\":\"$$32.99\","
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 59.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "\"planName\":\"Stellar Lite $10K\",\"plan_id\":76,\"accountSize\":\"10K\",\"numericAccountSize\":10000,\"discountedPrice\":\"$$59.99\","
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 139.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "\"planName\":\"Stellar Lite $25K\",\"plan_id\":77,\"accountSize\":\"25K\",\"numericAccountSize\":25000,\"discountedPrice\":\"$$139.99\","
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 229.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "\"planName\":\"Stellar Lite $50K\",\"plan_id\":78,\"accountSize\":\"50K\",\"numericAccountSize\":50000,\"discountedPrice\":\"$$229.99\","
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 399.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "\"planName\":\"Stellar Lite $100K\",\"plan_id\":79,\"accountSize\":\"100K\",\"numericAccountSize\":100000,\"discountedPrice\":\"$$399.99\",\"popular\":\"Popular\","
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 798.99,
+          "refundable": true,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "\"planName\":\"Stellar Lite $200K\",\"plan_id\":80,\"accountSize\":\"200K\",\"numericAccountSize\":200000,\"discountedPrice\":\"$$798.99\","
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 4
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 8,
+      "drawdownType": "static",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 10,
+      "payoutFrequency": null,
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+      "fieldEvidence": {
+        "profitTargets": "Current product page: 8% Phase 1 and 4% Phase 2.",
+        "dailyLossPct": "Current product page: 4% Daily Loss Limit.",
+        "maxLossPct": "Current product page: 8% Maximum Loss Limit.",
+        "drawdownType": "Current product page: Static drawdown.",
+        "minTradingDays": "Current plan data (all sizes): \"Minimum Trading Days\",\"value\":2.",
+        "profitSplitPct": "Current Reward Share article: new Stellar accounts start at 80%; add-ons can increase the share.",
+        "payoutFirstDays": "Current plan data (all sizes): \"First Withdrawal\",\"value\":10 and \"Subsequent Withdrawal\",\"value\":10 (10-day cycle; no matching payoutFrequency enum, left null).",
+        "rules.news": "Current product page allows news trading, while funded-stage news profit treatment is limited; retained as restricted in the comparison schema.",
+        "rules.weekend": "Current product page: weekend holding allowed.",
+        "rules.ea": "Current product page: EAs/VPS available with add-ons; retained as restricted in the comparison schema.",
+        "rules.copyTrading": "FundedNext's current account rules retain same-owner-only copying conditions."
+      },
+      "notes": [
+        "Standard global USD list prices; promotions and optional add-ons are excluded.",
+        "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
+        "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
+        "First reward after 10 days, then every 10 days (plan data 2026-10-15); fee refund at 3rd reward."
+      ]
+    },
+    {
+      "productName": "Stellar Instant",
+      "productSlug": "stellar-instant",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 2000,
+          "priceUsd": 59.99,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "\"planName\":\"Stellar Instant $2K\",\"plan_id\":85,\"accountSize\":\"2K\",\"numericAccountSize\":2000,\"popular\":\"Exclusive\",\"promoCode\":\"STRTN\",\"discountedPrice\":\"$$49.99\",\"originalPrice\":\"$$59.99\","
+          }
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 149.99,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "\"planName\":\"Stellar Instant $5K\",\"plan_id\":86,\"accountSize\":\"5K\",\"numericAccountSize\":5000,\"discountedPrice\":\"$$149.99\","
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 299.99,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "\"planName\":\"Stellar Instant $10K\",\"plan_id\":87,\"accountSize\":\"10K\",\"numericAccountSize\":10000,\"discountedPrice\":\"$$299.99\","
+          }
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 599.99,
+          "refundable": false,
+          "evidence": {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "\"planName\":\"Stellar Instant $20K\",\"plan_id\":88,\"accountSize\":\"20K\",\"numericAccountSize\":20000,\"discountedPrice\":\"$$599.99\","
+          }
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": 6,
+      "drawdownType": "trailing",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 70,
+      "payoutFirstDays": 0,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+      "fieldEvidence": {
+        "maxLossPct": "Current product page: 6% trailing Maximum Loss Limit.",
+        "drawdownType": "Current product page: trailing drawdown.",
+        "minTradingDays": "Current product page: no Challenge and no minimum trading days.",
+        "profitSplitPct": "Current product page: 70% from Day 1, increasing to 80% from Tier 3.",
+        "payoutFirstDays": "Current product page: on-demand at 5% growth or the usual 14-day cycle.",
+        "rules.news": "Current product page allows news trading but limits the counted profit; retained as restricted in the comparison schema.",
+        "rules.weekend": "Current product page: weekend holding allowed.",
+        "rules.overnight": "Current product page: overnight holding allowed with the same account rules.",
+        "rules.ea": "Current product page: EAs/VPS available with add-ons; retained as restricted in the comparison schema.",
+        "rules.copyTrading": "FundedNext's current account rules retain same-owner-only copying conditions."
+      },
+      "notes": [
+        "Standard global USD list prices; promotions, swap-free pricing and optional add-ons are excluded.",
+        "Stellar Instant has no evaluation phase and no refundable fee.",
+        "The starting Reward Share is 70%; current product guidance raises it to 80% from tier 3.",
+        "On-demand eligibility requires 5% growth; the normal alternative is a 14-day cycle.",
+        "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase."
+      ]
+    }
+  ]
+}
