@@ -3605,7 +3605,7 @@ a.bento-tile:hover,
   color: var(--text);
 }
 .footer-bottom-disclaimer {
-  color: var(--muted);
+  color: var(--text);
   font-size: 0.75rem;
   margin: 0;
   max-width: 560px;

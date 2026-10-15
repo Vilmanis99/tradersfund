@@ -48,6 +48,7 @@ export function getHomeComparisonRows(locale: 'en' | 'ru', now = new Date()): Co
       payoutFrequency: row.product.payoutFrequency,
       checkedOn: row.product.capturedAt,
       goHref: firm?.affiliateUrl ? `/go/${row.firm.slug}` : null,
+      officialUrl: firm?.affiliateUrl ? null : firm?.officialUrl ?? null,
       russiaStatus: locale === 'ru' ? russiaStatusFor(row.firm.slug) : null,
     })
   }

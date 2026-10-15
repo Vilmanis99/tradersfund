@@ -1,3 +1,4 @@
+import { firmSlug } from '@/lib/firmSlug'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllFirms, getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
 }
 
 function slugify(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  return firmSlug(name)
 }
 
 function marketsOf(assets: string[]): string[] {

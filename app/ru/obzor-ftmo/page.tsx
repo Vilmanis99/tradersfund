@@ -29,8 +29,8 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/obzor-ftmo'
-const TITLE = 'FTMO: обзор 2026, цены, правила и доступ для русскоязычных'
-const DESCRIPTION = 'Обзор FTMO на русском: 1-Step и 2-Step, 10 цен в EUR, статическая и EOD-trailing просадка, возврат fee, выплаты и ограничение для Российской Федерации.'
+const TITLE = 'FTMO проп: обзор 2026, цены, правила и доступ для русскоязычных'
+const DESCRIPTION = 'FTMO — проп-компания: обзор на русском, 1-Step и 2-Step, 10 цен в EUR, статическая и EOD-trailing просадка, возврат fee, выплаты и ограничение для Российской Федерации.'
 
 const OFFICIAL_URL = 'https://ftmo.com/'
 const COMPARISON_URL = 'https://ftmo.com/en/comparison-table/'
@@ -108,7 +108,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Traders Fund Hub получает комиссию от FTMO?',
-    a: 'Нет. В этой статье ссылка FTMO ведёт на официальный сайт без партнёрского вознаграждения. FundedNext и Bright Funded показаны отдельно как коммерческие партнёры; регистрация через их помеченные ссылки может принести Traders Fund Hub комиссию.',
+    a: 'Нет. В этой статье ссылка FTMO ведёт на официальный сайт без партнёрского вознаграждения. FundedNext и BrightFunded показаны отдельно как коммерческие партнёры; регистрация через их помеченные ссылки может принести Traders Fund Hub комиссию.',
   },
 ]
 
@@ -214,7 +214,7 @@ export default function RussianFtmoReviewPage() {
                 <li><a href="#risk">Просадка и Best Day</a></li>
                 <li><a href="#payout">Возврат взноса и выплаты</a></li>
                 <li><a href="#fit">Кому подходит FTMO</a></li>
-                <li><a href="#alternatives">FundedNext и Bright Funded</a></li>
+                <li><a href="#alternatives">FundedNext и BrightFunded</a></li>
                 <li><a href="#checklist">Проверка перед оплатой</a></li>
                 <li><a href="#faq">Частые вопросы</a></li>
               </ol>
@@ -281,6 +281,24 @@ export default function RussianFtmoReviewPage() {
               Перед вводом карты проверьте 3 элемента: адрес начинается с ftmo.com, продукт называется FTMO Challenge: 1-Step или 2-Step,
               а цена и валюта совпадают с выбранной страницей оплаты. Для США FTMO публикует отдельный переход на ftmo.oanda.com; цифры глобальной версии нельзя
               автоматически переносить на другую сущность или региональный storefront.
+            </p>
+          </div>
+        </section>
+
+        <section className="ru-section">
+          <div className="ru-shell ru-content" id="ftmo-prop" data-russian-ftmo-brand="prop-company">
+            <h2>FTMO проп: что это за проп-компания</h2>
+            <p>
+              FTMO — проп-компания, основанная в 2015 году. По нашему профилю фирмы: торговля форексом, криптовалютой, индексами, сырьём и
+              акциями на MT4, MT5, cTrader и DXTrade; максимальный капитал с учётом масштабирования — до $2 000 000; выплаты банковским
+              переводом, через Skrill или в криптовалюте. На Trustpilot — 4,8 при 47 019 отзывах (по данным на 27.07.2026).
+            </p>
+            <h3>Проп-трейдинг с FTMO: для кого он доступен</h3>
+            <p>
+              Модель FTMO — классический проп-трейдинг через челлендж: вы оплачиваете оценку (1-Step или 2-Step), проходите её и получаете
+              долю вознаграждения. Но для резидентов России, Беларуси, Казахстана и ряда стран Центральной Азии FTMO недоступна — Russian
+              Federation есть в официальном списке ограничений. Подробно — <Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян</Link>; что такое
+              проп-трейдинг в целом — в статье <Link href="/ru/chto-takoe-prop-firma">что такое проп-фирма</Link>.
             </p>
           </div>
         </section>
@@ -424,14 +442,14 @@ export default function RussianFtmoReviewPage() {
           <div className="ru-shell ru-content" id="alternatives" data-russian-ftmo-global-funnel="fundednext-bright-funded">
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ftmo-alternatives">
               <strong>Коммерческое раскрытие.</strong>{' '}
-              FTMO не является нашим партнёром. FundedNext и Bright Funded являются партнёрами: если подходящий читатель зарегистрируется
+              FTMO не является нашим партнёром. FundedNext и BrightFunded являются партнёрами: если подходящий читатель зарегистрируется
               через помеченную ссылку, Traders Fund Hub может получить комиссию. Это не доказывает доступность страны и не меняет продуктовые числа.
             </div>
             <h2>Если FTMO не подходит: FundedNext и BrightFunded</h2>
             <p>
               Альтернатива должна решать конкретную проблему FTMO, а не просто вести на другой логотип. Для русскоязычного жителя разрешённой страны
               сначала сравниваются валюта взноса, тип просадки, число фаз и выплата; для резидента России отдельно проверяются правила страны каждой фирмы.
-              FundedNext сохраняет конфликт официальных формулировок по России, а отсутствие России в опубликованном списке Bright Funded не заменяет KYC.
+              FundedNext сохраняет конфликт официальных формулировок по России, а отсутствие России в опубликованном списке BrightFunded не заменяет KYC.
             </p>
             <div className="ru-grid">
               {partnerAlternatives.map(item => {

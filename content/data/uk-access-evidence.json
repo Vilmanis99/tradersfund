@@ -70,7 +70,7 @@
     },
     {
       "firmSlug": "bright-funded",
-      "firmName": "Bright Funded",
+      "firmName": "BrightFunded",
       "accessStatus": "policy-supported",
       "productSlugs": ["bright-funded-1-step", "bright-funded-2-step-bright", "bright-funded-2-step-classic"],
       "sourceUrl": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded",

@@ -27,6 +27,7 @@ import {
   russianRouteDateModified,
 } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { goLinkRel } from '@/lib/russiaAvailability'
 
 const PATH = '/ru/luchshie-kripto-prop-firmy'
 const TITLE = 'Крипто-проп-фирмы 2026: цены, инструменты и правила'
@@ -44,6 +45,9 @@ export const metadata: Metadata = {
     'крипто проп фирма',
     'крипто проп компания',
     'проп трейдинг компании криптовалют',
+    'проп компании криптовалюты',
+    'проп компании для трейдеров криптовалют',
+    'проп компании крипта',
   ],
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
   openGraph: { title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
@@ -106,7 +110,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Почему выплата в USDC не делает фирму крипто-проп-компанией?',
-    a: 'Потому что способ получения денег не определяет торговый инструмент. В проверенной справке Bright Funded указан перевод в USDC по сети ERC-20. Здесь фирма рассматривается отдельно как вариант выплаты в криптовалюте: подтверждённой связки её программ с криптоинструментами для этого рейтинга пока нет.',
+    a: 'Потому что способ получения денег не определяет торговый инструмент. В проверенной справке BrightFunded указан перевод в USDC по сети ERC-20. Здесь фирма рассматривается отдельно как вариант выплаты в криптовалюте: подтверждённой связки её программ с криптоинструментами для этого рейтинга пока нет.',
   },
   {
     q: 'Можно ли держать криптопозиции на выходных?',
@@ -156,7 +160,7 @@ export default function RussianCryptoPropFirmsPage() {
       { label: `цены и правила ${evidence.firmName}`, capturedAt: products.length === evidence.productSlugs.length
         ? products.map(product => product.sourceCapturedAt).sort()[0] ?? '' : '' },
     ]),
-    { label: 'способы выплаты Bright Funded', capturedAt: payoutEvidence.sourceCapturedAt },
+    { label: 'способы выплаты BrightFunded', capturedAt: payoutEvidence.sourceCapturedAt },
   ]
   const hasFreshEvidence = mapped.length > 0 && snapshots.length === mapped.length && freshEvidence(payoutEvidence)
   const productCount = snapshots.reduce((total, snapshot) => total + snapshot.products.length, 0)
@@ -221,7 +225,7 @@ export default function RussianCryptoPropFirmsPage() {
             <div className="ru-notice ru-disclosure ru-review-top-disclosure" data-russian-affiliate-disclosure="crypto-ranking">
               <strong>Партнёрские ссылки.</strong> Мы можем получить комиссию при переходе к партнёру.
               Она даёт <strong>0 баллов</strong> в сравнении и не подтверждает условия программы.
-              Коммерческий статус указан возле каждой фирмы; Bright Funded рассматривается отдельно от крипторейтинга.
+              Коммерческий статус указан возле каждой фирмы; BrightFunded рассматривается отдельно от крипторейтинга.
             </div>
             <nav className="toc ru-review-toc" aria-label="Содержание рейтинга крипто-проп-фирм">
               <div className="toc-title">Содержание</div>
@@ -364,10 +368,10 @@ export default function RussianCryptoPropFirmsPage() {
         <section className="ru-section" id="payout-boundary">
           <div className="ru-shell ru-content" data-russian-crypto-payout-boundary="bright-funded-not-ranked">
             <h2>Торговля криптовалютой и выплата в USDC — разные маршруты</h2>
-            <p>Для Bright Funded мы отдельно проверили способы вознаграждения, а не торговлю криптоинструментами. В справке перечислены USDC по сети ERC-20 и банковский перевод в EUR. Пока точная связка программы и криптоинструмента не подтверждена, этот способ перевода не даёт фирме место в таблице криптопрограмм.</p>
+            <p>Для BrightFunded мы отдельно проверили способы вознаграждения, а не торговлю криптоинструментами. В справке перечислены USDC по сети ERC-20 и банковский перевод в EUR. Пока точная связка программы и криптоинструмента не подтверждена, этот способ перевода не даёт фирме место в таблице криптопрограмм.</p>
             <p className="ru-source-line" data-russian-crypto-payout-status={freshEvidence(payoutEvidence) ? 'dated' : 'recapture-required'}>Источник по способам выплаты: {payoutEvidence.sourceCapturedAt || 'дата не подтверждена'}. {!freshEvidence(payoutEvidence) && 'Проверка устарела или дата недостоверна: описание выше является датированным разбором, а не подтверждением действующих способов перевода.'}</p>
             <div className="ru-notice ru-disclosure">
-              <strong>Партнёрская ссылка.</strong> Переход ниже может принести нам комиссию. Это не добавляет Bright Funded в крипторейтинг и не подтверждает возможность получить USDC в каждой стране. До оплаты проверьте доступность метода для своих документов и места проживания.
+              <strong>Партнёрская ссылка.</strong> Переход ниже может принести нам комиссию. Это не добавляет BrightFunded в крипторейтинг и не подтверждает возможность получить USDC в каждой стране. До оплаты проверьте доступность метода для своих документов и места проживания.
             </div>
             <div className="ru-actions">
               <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
@@ -416,6 +420,36 @@ export default function RussianCryptoPropFirmsPage() {
           </div>
         </section>
 
+        <section className="ru-section" id="dostup-iz-rossii">
+          <div className="ru-shell ru-content" data-russian-crypto-russia-access="2026-10-14">
+            <h2>Проп-компании криптовалюты: что доступно трейдерам из России</h2>
+            <p>
+              Этот блок — не рейтинг, а ответ на вопрос «куда можно зайти из РФ». На 14.10.2026 криптоинструменты есть в профилях
+              FundedNext, Crypto Fund Trader, FundingPips, FTMO, E8 Markets и ряда других фирм, но Россию из них не ограничивают только
+              FundedNext (CFD) и Crypto Fund Trader (на Match-Trader). Ещё один вариант вне нашего рейтинга — Upscale: ограничений по
+              странам не заявлено, KYC нет, выплаты в USDT на собственный кошелёк.
+            </p>
+            <h3>Проп-компании для трейдеров криптовалют: что проверить</h3>
+            <ul>
+              <li><strong>Платформа.</strong> У Crypto Fund Trader на Match-Trader ограничений по странам нет, а MT5 закрыт только для резидентов США (по данным на 14.10.2026).</li>
+              <li><strong>Цена входа.</strong> Crypto Fund Trader Evaluation на $10 000 — $110, на $100 000 — $660 (по данным на 08.09.2026).</li>
+              <li><strong>Доля.</strong> 80% в оценочных программах Crypto Fund Trader, но 50% в Instant — подробнее в блоке выше.</li>
+              <li><strong>Выплата.</strong> Crypto Fund Trader платит в USDT (ERC20/TRC20), BTC, ETH или банковским переводом; FundedNext — в USDT и USDC.</li>
+            </ul>
+            <h3>Крипта в проп-трейдинге: оплата из России</h3>
+            <p>
+              Crypto Fund Trader принимает карту, PayPal, Apple Pay, Google Pay и криптовалюту (<a href="https://cryptofundtrader.com/faq/" target="_blank" rel="nofollow noopener noreferrer">FAQ CFT</a>,
+              по данным на 14.10.2026). Работают ли карты, выпущенные в России, фирма не сообщает; криптовалюта — способ, который от карты не зависит. Полная таблица доступа — на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для россиян</Link>.
+            </p>
+            <div className="ru-actions">
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-crypto-russia-access-1" rel={goLinkRel('fundednext')} className="btn-primary">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+              <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-crypto-russia-access-2" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+              <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-crypto-russia-access-3" rel={goLinkRel('fundingpips')} className="btn-outline">FundingPips</RuGoLink>
+              <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-crypto-russia-access-4" rel={goLinkRel('ftmo')} className="btn-outline">FTMO</RuGoLink>
+            </div>
+          </div>
+        </section>
+
         <section className="ru-section" id="alternatives">
           <div className="ru-shell ru-content">
             <h2>Следующий шаг для русскоязычного криптотрейдера</h2>
@@ -444,7 +478,7 @@ export default function RussianCryptoPropFirmsPage() {
                 <a href={evidence.sourceUrl} target="_blank" rel="nofollow noopener">{evidence.firmName}: справка об инструментах</a> — {evidence.sourceCapturedAt || 'дата не подтверждена'}.
                 {' '}Проверки программ: {[...new Set(products.map(product => product.sourceCapturedAt || 'дата не подтверждена'))].sort().join(', ') || 'записи отсутствуют'}.
               </li>)}
-              <li><a href={payoutEvidence.sourceUrl} target="_blank" rel="nofollow noopener">Bright Funded: способы выплаты</a> — {payoutEvidence.sourceCapturedAt || 'дата не подтверждена'}. Доступность конкретного метода для читателя не подтверждена.</li>
+              <li><a href={payoutEvidence.sourceUrl} target="_blank" rel="nofollow noopener">BrightFunded: способы выплаты</a> — {payoutEvidence.sourceCapturedAt || 'дата не подтверждена'}. Доступность конкретного метода для читателя не подтверждена.</li>
               <li>CFT: <a href="https://cryptofundtrader.com/faq/" target="_blank" rel="nofollow noopener">FAQ</a> и <a href="https://cryptofundtrader.com/terms-and-conditions/" target="_blank" rel="nofollow noopener">условия программ</a>. Основания исправления от 8 сентября разобраны выше; полные проверки Ascend и Break остаются незавершёнными.</li>
             </ul>
           </div>

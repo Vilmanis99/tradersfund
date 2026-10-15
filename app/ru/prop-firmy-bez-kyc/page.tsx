@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Существуют ли глобальные проп-фирмы полностью без KYC?',
-    a: 'Ни одна из 3 проверенных партнёрских политик не подтверждает полностью бездокументный путь. FundedNext, Bright Funded и FundingPips требуют KYC перед доступом к соответствующему профинансированному или мастер-этапу; отдельный платёжный провайдер также может провести свою проверку.',
+    a: 'Ни одна из 3 проверенных партнёрских политик не подтверждает полностью бездокументный путь. FundedNext, BrightFunded и FundingPips требуют KYC перед доступом к соответствующему профинансированному или мастер-этапу; отдельный платёжный провайдер также может провести свою проверку.',
   },
   {
     q: 'Когда FundedNext запрашивает KYC?',
@@ -64,7 +64,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Можно ли обойти KYC выплатой в криптовалюте?',
-    a: 'Нет. Криптовалюта или USDC описывают маршрут выплаты, но не отменяют идентификацию фирмы или провайдера. FundingPips отдельно описывает подключение Rise с совпадающим email, государственным удостоверением личности и селфи; Bright Funded использует SumSub до договора профинансированного аккаунта.',
+    a: 'Нет. Криптовалюта или USDC описывают маршрут выплаты, но не отменяют идентификацию фирмы или провайдера. FundingPips отдельно описывает подключение Rise с совпадающим email, государственным удостоверением личности и селфи; BrightFunded использует SumSub до договора профинансированного аккаунта.',
   },
   {
     q: 'Подходит ли эта страница гражданину России, живущему за рубежом?',
@@ -76,7 +76,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какой документ лучше подготовить до покупки?',
-    a: 'Подготовьте действующий документ с фотографией и подтверждение текущего адреса на своё имя. FundedNext может запросить utility bill или bank statement не старше 3 месяцев; Bright Funded указывает proof of identity и proof of address, причём набор зависит от страны.',
+    a: 'Подготовьте действующий документ с фотографией и подтверждение текущего адреса на своё имя. FundedNext может запросить utility bill или bank statement не старше 3 месяцев; BrightFunded указывает proof of identity и proof of address, причём набор зависит от страны.',
   },
 ]
 
@@ -206,7 +206,7 @@ export default function RussianNoKycPage() {
           <p className="ru-lead">
             Сопоставили {partnerCards.length} партнёрские KYC-процедуры по {sourceCount} официальным страницам: когда фирма запрашивает документ,
             кто сверяет адрес, сколько длится проверка и почему криптовыплата не отменяет проверку личности.
-            Основные глобальные маршруты — FundedNext и Bright Funded; FundingPips показан как дополнительный вариант.
+            Основные глобальные маршруты — FundedNext и BrightFunded; FundingPips показан как дополнительный вариант.
           </p>
           <div className="ru-stats" aria-label="Охват KYC-проверки">
             <div className="ru-stat"><strong>{partnerCards.length}</strong><span>KYC-процесса без опубликованных исключений</span></div>
@@ -215,7 +215,7 @@ export default function RussianNoKycPage() {
             <div className="ru-stat"><strong>{priceCount}</strong><span>опубликованных цен</span></div>
           </div>
           <div className="ru-actions">
-            <Link href="#main-partners" className="btn-primary btn-glow">FundedNext и Bright Funded <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="#main-partners" className="btn-primary btn-glow">FundedNext и BrightFunded <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="#kyc-matrix" className="btn-outline">Сравнить KYC</Link>
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-outline">Проверить страну</Link>
           </div>
@@ -239,7 +239,7 @@ export default function RussianNoKycPage() {
           <div className="ru-shell ru-content">
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="kyc-guide">
               <strong>Партнёрское раскрытие и порядок.</strong>{' '}
-              FundedNext и Bright Funded выделены как 2 главных коммерческих маршрута, потому что переход может принести нам комиссию.
+              FundedNext и BrightFunded выделены как 2 главных коммерческих маршрута, потому что переход может принести нам комиссию.
               FundingPips показан ниже как дополнительный партнёр. Это не рейтинг «без KYC»: все 3 опубликованные процедуры требуют проверку.
             </div>
             <nav className="ru-review-toc" aria-label="Содержание KYC-руководства">
@@ -247,7 +247,7 @@ export default function RussianNoKycPage() {
               <ol>
                 <li><a href="#four-gates">4 точки проверки</a></li>
                 <li><a href="#kyc-matrix">Сравнение 3 фирм</a></li>
-                <li><a href="#main-partners">FundedNext и Bright Funded</a></li>
+                <li><a href="#main-partners">FundedNext и BrightFunded</a></li>
                 <li><a href="#documents">Документы</a></li>
                 <li><a href="#payout-provider">Фирма и платёжный провайдер</a></li>
                 <li><a href="#diaspora">Русскоязычные за рубежом</a></li>
@@ -281,7 +281,7 @@ export default function RussianNoKycPage() {
               <article className="ru-card">
                 <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
                 <h3>3. Договор и проверка безопасности</h3>
-                <p className="ru-muted">Bright Funded сначала использует SumSub, затем команда рисков проводит проверку безопасности. Договор появляется только после этих шагов.</p>
+                <p className="ru-muted">BrightFunded сначала использует SumSub, затем команда рисков проводит проверку безопасности. Договор появляется только после этих шагов.</p>
               </article>
               <article className="ru-card">
                 <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
@@ -351,7 +351,7 @@ export default function RussianNoKycPage() {
                     <p>
                       {isFundedNext
                         ? `У FundedNext ${card.products.length} свежие модели и ${card.priceCount} опубликованные цены. KYC начинается после успешного челленджа; инструкция перечисляет 3 основных документа и типичный срок около 48 часов.`
-                        : `У Bright Funded ${card.products.length} свежие программы и ${card.priceCount} EUR-цен. SumSub проверяет личность и адрес, затем команда рисков выполняет проверку безопасности за 1–2 рабочих дня.`}
+                        : `У BrightFunded ${card.products.length} свежие программы и ${card.priceCount} EUR-цен. SumSub проверяет личность и адрес, затем команда рисков выполняет проверку безопасности за 1–2 рабочих дня.`}
                     </p>
                     <ul className="ru-facts">
                       <li><CheckCircle2 size={14} aria-hidden="true" /> {copy.trigger}</li>
@@ -365,7 +365,7 @@ export default function RussianNoKycPage() {
                       </p>
                     ) : (
                       <p className="ru-source-line">
-                        <a href={BRIGHT_REWARD_URL} target="_blank" rel="noopener noreferrer">Bright Funded описывает USDC ERC-20</a> как способ выплаты;
+                        <a href={BRIGHT_REWARD_URL} target="_blank" rel="noopener noreferrer">BrightFunded описывает USDC ERC-20</a> как способ выплаты;
                         это не отменяет SumSub до договора профинансированного аккаунта.
                       </p>
                     )}
@@ -388,11 +388,11 @@ export default function RussianNoKycPage() {
             <p>
               <strong>Документ личности.</strong> FundedNext перечисляет государственное удостоверение личности с указанием гражданства,
               паспорт и вид на жительство; водительские права принимаются только для опубликованного списка стран.
-              Bright Funded называет государственное удостоверение личности, а FundingPips — удостоверение, водительские права, постоянный вид на жительство или паспорт.
+              BrightFunded называет государственное удостоверение личности, а FundingPips — удостоверение, водительские права, постоянный вид на жительство или паспорт.
             </p>
             <p>
               <strong>Подтверждение адреса.</strong> FundedNext может запросить счёт за коммунальные услуги или банковскую выписку, выпущенные в предыдущие 3 месяца.
-              Bright Funded указывает подтверждение адреса через SumSub и предупреждает, что набор документов зависит от страны резидентства.
+              BrightFunded указывает подтверждение адреса через SumSub и предупреждает, что набор документов зависит от страны резидентства.
               FundingPips включает подтверждение адреса в настройку мастер-счёта; адрес должен описывать реальный профиль, а не удобную страну оплаты.
             </p>
             <p>
@@ -416,7 +416,7 @@ export default function RussianNoKycPage() {
               Поэтому вопрос «можно ли вывести в криптовалюте?» не равен вопросу «можно ли пройти KYC?».
             </p>
             <p>
-              У Bright Funded USDC ERC-20 и перевод EUR на банк являются опубликованными способами выплаты, а KYC проводит SumSub до договора.
+              У BrightFunded USDC ERC-20 и перевод EUR на банк являются опубликованными способами выплаты, а KYC проводит SumSub до договора.
               У FundingPips Rise добавляет подключение с тем же email, удостоверением личности и селфи. У FundedNext отдельная официальная страница ограничивает банковские выплаты
               для ряда стран, включая Россию; это ещё одна причина проверять конкретный маршрут выплаты до покупки.
             </p>

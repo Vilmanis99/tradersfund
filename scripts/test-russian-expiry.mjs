@@ -63,7 +63,7 @@ try {
   assert.equal(isChallengeFresh({ sourceCapturedAt: '2026-02-29' }, new RealDate('2026-03-01T12:00:00Z')), false, 'an invalid leap day cannot qualify as recent source evidence')
   assert.equal(isChallengeFresh({ sourceCapturedAt: '2026-09-30' }, new RealDate('2026-10-01T12:00:00Z')), true, 'a real recent challenge capture remains eligible')
   assert.equal(isChallengeFresh({ sourceCapturedAt: '2026-10-02' }, new RealDate('2026-10-01T12:00:00Z')), false, 'a future challenge capture remains ineligible')
-  const brightFirm = getAllFirms().find(firm => firm.name === 'Bright Funded')
+  const brightFirm = getAllFirms().find(firm => firm.name === 'BrightFunded')
   assert(brightFirm?.affiliateUrl, 'Bright Funded affiliate destination is configured')
   const [brightTrustpilotCapture] = JSON.parse(fs.readFileSync(path.join(root, 'content/data/trustpilot-captures/2026-10-01/trustpilot-batch1.json'), 'utf8'))
   assert.equal(brightFirm.trustpilotCapturedAt, brightTrustpilotCapture.capturedAt, 'Bright Trustpilot date matches its preserved observation')
@@ -103,7 +103,12 @@ try {
   assert.equal(isDealCurrent({ verifiedOn: '2026-09-30', expiresOn: '2026-10-01' }, new RealDate('2026-10-02T12:00:00Z')), false, 'a code expires after its stated end day')
   const deals = JSON.parse(fs.readFileSync(path.join(root, 'content/data/deals.json'), 'utf8'))
   const archivedDeals = JSON.parse(fs.readFileSync(path.join(root, 'content/data/deals-archive.json'), 'utf8'))
-  assert.equal(deals.length, 0, 'unreverified offers are retired from the active catalog')
+  // Batch 1 (2026-10-14): HELLO (FundingPips) and STRTN (FundedNext) are active; each needs a code, check date and source.
+  assert.deepEqual(deals.map(deal => [deal.firmSlug, deal.code]), [['fundingpips', 'HELLO'], ['fundednext', 'STRTN']], 'active catalog holds the batch 1 codes only')
+  for (const deal of deals) {
+    assert(/^\d{4}-\d{2}-\d{2}$/.test(deal.verifiedOn), `${deal.code}: dated check`)
+    assert(deal.sourceUrl && deal.sourceLabel, `${deal.code}: stated source`)
+  }
   assert.equal(archivedDeals.offers.length, 5, 'all five historical offers remain recoverable')
   assert.deepEqual(archivedDeals.offers.filter(deal => deal.firmSlug === 'bright-funded').map(deal => deal.code).sort(), ['SUMMER15', 'SUMMER25', 'SUMMER30'], 'old Bright codes remain archival, not current')
   const brightOfferObservation = require(path.join(root, 'content/data/russian-bright-offer-observation.json'))
@@ -120,7 +125,7 @@ try {
     assert(offer.sourceQuotes.some(quote => quote.includes(offer.code)))
     assert(offer.sourceQuotes.some(quote => quote.includes(offer.productName) && quote.includes(String(offer.advertisedDiscountPct))))
   }
-  const latestDealCheck = archivedDeals.offers.map(deal => deal.verifiedOn).sort().at(-1)
+  const latestDealCheck = [...archivedDeals.offers, ...deals].map(deal => deal.verifiedOn).sort().at(-1)
   assert(latestDealCheck, 'historical offer expiry fixture has a verified date')
   // Week 1 monthly promo hub (2026-10-14): status badges per firm, no codes for firms closed to Russia.
   {
@@ -129,7 +134,9 @@ try {
     assert.match(offersModule.metadata.title.absolute, /^Промокоды проп-фирм — /, 'monthly promo hub title names the month')
     assert(offersHtml.includes('id="kody"'), 'promo hub keeps the #kody deep-link target used by the Bright review')
     assert(offersHtml.includes('ru-badge ru-badge--open') && offersHtml.includes('ru-badge ru-badge--closed'), 'promo hub shows Russia availability badges')
-    assert(!/href="\/go\/(ftmo|the5ers|e8-markets|fxify|maven|alpha-capital|lucid-trading|apex-trader-funding|tradeify|fundingpips|topstep)[?"]/.test(offersHtml), 'promo hub has no sign-up links for firms closed or unclear for Russia')
+    // PR #6 rule: every firm keeps its CTA; restricted/unclear firms carry a Russia-access badge instead.
+    assert(offersHtml.includes('data-russia-status="unclear" data-russia-firm="fundingpips"'), 'promo hub FundingPips CTA carries the unclear Russia-access badge')
+    assert(offersHtml.includes('HELLO') && offersHtml.includes('STRTN'), 'promo hub shows the batch 1 codes')
     assert(!offersHtml.includes('SUMMER30') && !offersHtml.includes('SUMMER25') && !offersHtml.includes('SUMMER15'), 'expired Bright codes are not advertised')
     const EnglishOffers = require(path.join(root, 'app/prop-firm-discount-codes/page.tsx')).default
     const originalClock = clock
@@ -565,7 +572,7 @@ try {
   const brightAccessSchemaAnswer = cryptoSchemas(brightReference).find(item => item['@type'] === 'FAQPage').mainEntity
     .find(item => item.name === brightAccessQuestion)?.acceptedAnswer?.text
   assert.equal(brightAccessSchemaAnswer, brightAccessAnswer, 'Bright FAQ structured data repeats the visible country-conflict answer')
-  const brightTrustpilotFaq = cryptoSchemas(brightReference).find(item => item['@type'] === 'FAQPage').mainEntity.some(item => item.name === 'Почему у Bright Funded нет средней оценки Trustpilot?')
+  const brightTrustpilotFaq = cryptoSchemas(brightReference).find(item => item['@type'] === 'FAQPage').mainEntity.some(item => item.name === 'Почему у BrightFunded нет средней оценки Trustpilot?')
   assert.equal(brightTrustpilotFaq, isChallengeFresh({ sourceCapturedAt: brightFirm.trustpilotCapturedAt }), 'Trustpilot FAQ schema follows its own captured date, independently of the country Terms recheck')
   assert.doesNotMatch(BrightModule.metadata.description, /18 цен|3 программы/)
   assert.equal(BrightModule.metadata.openGraph.description, 'Отзывы о Bright Funded и обзор на русском: 3 программы, 18 цен в EUR, просадка, выплаты, Trustpilot и проверка ограничений по стране.', 'existing sharing copy stays pending separate approval')
@@ -835,7 +842,7 @@ try {
   assert.equal(FundedReviewModule.metadata.openGraph.description, 'Отзывы о FundedNext и обзор на русском: 4 модели Stellar, 22 цены, просадка, выплаты, Free Trial и проверка ограничений по стране.', 'sharing copy is preserved pending approval')
   const FundingPipsReviewModule = require(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'))
   const fundingPipsReviewReference = renderToStaticMarkup(React.createElement(FundingPipsReviewModule.default))
-  assert(fundingPipsReviewReference.includes('<h1>FundingPips: обзор 2026 — цены, правила и выплаты</h1>'), 'FundingPips review H1 does not promise a fixed product or price count')
+  assert(fundingPipsReviewReference.includes('<h1>FundingPips: отзывы и обзор 2026 — цены, правила, доступ из России</h1>'), 'FundingPips review H1 does not promise a fixed product or price count')
   // FundingPips keeps its CTA on /ru pages with an "unclear" Russia-access badge (russiaStatus in firms.json).
   const fundingPipsSummaryAffiliate = 'href="/go/fundingpips?from=ru-fundingpips-review-summary"'
   assert(fundingPipsReviewReference.includes(fundingPipsSummaryAffiliate), 'FundingPips review keeps its sign-up CTA')
@@ -1287,7 +1294,7 @@ try {
         if (slug === 'chto-takoe-prop-firma') {
           const count = getAllChallenges().filter(product => ['fundednext', 'bright-funded'].includes(product.firmSlug) && isChallengeFresh(product)).length
           assert(html.includes(`data-russian-prop-definition-products="${count}"`))
-          assert(html.includes(`${count} актуальных продуктов FundedNext и Bright Funded`), 'table caption follows the fresh product count')
+          assert(html.includes(`${count} актуальных продуктов FundedNext и BrightFunded`), 'table caption follows the fresh product count')
           assert(!html.includes('undefined') && !html.includes('Семь актуальных продуктов'), 'expired products cannot leave an undefined phase range or a seven-product caption')
           if (count === 0) assert(html.includes('Нет программ с актуальной проверкой за 30 дней.'), 'empty definition table explains the source expiry')
         }
@@ -1296,7 +1303,7 @@ try {
           if (html.includes('data-russian-reviews-product-evidence="0"')) assert(html.includes('Нет программ с актуальной проверкой за 30 дней.'), 'empty reviews table explains the source expiry')
         }
         if (slug === 'obzor-fundingpips') {
-          assert(html.includes('<h1>FundingPips: обзор 2026 — цены, правила и выплаты</h1>'), 'FundingPips review headline remains count-free across source expiry')
+          assert(html.includes('<h1>FundingPips: отзывы и обзор 2026 — цены, правила, доступ из России</h1>'), 'FundingPips review headline remains count-free across source expiry')
           assert(!html.includes('сравнение 4 продуктов FundedNext с 5 моделями FundingPips'), 'FundingPips comparison handoff does not promise expired products')
           if (html.includes('data-russian-product-count="0"')) assert(!cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), 'expired product prices cannot retain FundingPips FAQ schema')
         }
@@ -1329,7 +1336,7 @@ try {
           }
           if (valid && isChallengeFresh({ sourceCapturedAt: brightFirm.trustpilotCapturedAt })) {
             const faq = cryptoSchemas(html).find(item => item['@type'] === 'FAQPage')
-            assert(faq?.mainEntity.some(item => item.name === 'Почему у Bright Funded нет средней оценки Trustpilot?'), 'fresh suppressed rating remains a qualified Russian FAQ, not a fabricated score')
+            assert(faq?.mainEntity.some(item => item.name === 'Почему у BrightFunded нет средней оценки Trustpilot?'), 'fresh suppressed rating remains a qualified Russian FAQ, not a fabricated score')
           }
           const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
           assert(visible.includes('на официальном сайте — BrightFunded'), 'the Russian review names the exact first-party BrightFunded spelling')
@@ -1560,7 +1567,7 @@ try {
           for (const anchor of ['top-5', 'partner-matrix', 'polnyy-reyting', 'podbor']) assert.equal((html.match(new RegExp(`id="${anchor}"`, 'g')) ?? []).length, 1, `preserve exactly one ${anchor} anchor`)
           const allProducts = getAllChallenges()
           const expectedFirms = getAllFirms().filter(firm => {
-            const firmSlug = firm.name.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+            const firmSlug = firm.name.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
             const scoped = allProducts.filter(product => product.firmSlug === firmSlug)
             return scoped.length > 0 && scoped.every(product => isChallengeFresh(product))
           })
@@ -1593,7 +1600,7 @@ try {
             }
             if (!brightCountryCurrent) assert(card.includes('Страновые источники требуют повторной проверки'), 'expired Bright country evidence cannot imply current access in the finder')
           }
-          if (expectedFirms.some(firm => firm.name === 'Bright Funded')) {
+          if (expectedFirms.some(firm => firm.name === 'BrightFunded')) {
             assert.match(html, /<a\b[^>]*href="\/ru\/obzor-bright-funded"[^>]*>BrightFunded<\/a>/, 'fresh ranking table uses the official Bright brand spelling')
             const brightRow = getRussianFinderRows().find(row => row.firm.slug === 'bright-funded')
             assert(brightRow, 'current Bright firm has a comparison-finder row')
@@ -1729,7 +1736,7 @@ try {
           for (const id of ['produkty', 'plecho', 'sources', 'faq']) assert.equal((html.match(new RegExp(`id="${id}"`, 'g')) ?? []).length, 1)
           for (const firm of forexEvidence.firms) for (const url of firm.sourceUrls) assert(html.includes(url), 'all forex primary sources remain visible')
           for (const url of fundedNextAccessEvidence.sourceUrls) assert(html.includes(`href="${url}"`), 'forex country warning links each conflicting FundedNext source')
-          assert(html.includes(`href="${brightEvidence.sources.countries.sourceUrl}"`) && visible.includes(`Bright Funded: справка ${brightEvidence.sources.countries.sourceCapturedAt}, условия ${brightEvidence.sources.countryTerms.sourceCapturedAt}`), 'forex country warning cites both dated Bright Funded restriction sources')
+          assert(html.includes(`href="${brightEvidence.sources.countries.sourceUrl}"`) && visible.includes(`BrightFunded: справка ${brightEvidence.sources.countries.sourceCapturedAt}, условия ${brightEvidence.sources.countryTerms.sourceCapturedAt}`), 'forex country warning cites both dated Bright Funded restriction sources')
           assert(visible.includes(`Общий снимок рынка от ${marketEvidence.capturedAt} не обновлён`), 'scoped country checks do not refresh broad Russian-market research')
           assert(html.includes('data-russian-forex-correction="stellar-1-step-leverage"') && visible.includes('исправление нашей записи'), 'correction is transparent and not presented as a new policy-change date')
         }

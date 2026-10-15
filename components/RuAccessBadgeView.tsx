@@ -4,8 +4,8 @@ import type { RussiaStatus } from '@/lib/russiaAvailability'
 export const RU_ACCESS_BADGE: Record<RussiaStatus, { modifier: 'open' | 'closed' | 'unclear'; label: string }> = {
   available: { modifier: 'open', label: 'Открыта для РФ' },
   restricted: { modifier: 'closed', label: 'Недоступно для РФ' },
-  unclear: { modifier: 'unclear', label: 'Доступ для РФ не ясен' },
-  unverified: { modifier: 'unclear', label: 'Доступ для РФ не проверен' },
+  unclear: { modifier: 'unclear', label: 'РФ: неясно' },
+  unverified: { modifier: 'unclear', label: 'РФ: не проверено' },
 }
 
 /** Presentational Russia-access badge. Takes a resolved status so client components need no firm data. */
