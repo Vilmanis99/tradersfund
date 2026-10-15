@@ -31,7 +31,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>Quick facts</strong></h2>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
-  <caption class="hidden-caption">FTMO product terms verified 2026-09-29; Trustpilot verified 2026-07-27</caption>
+  <caption class="hidden-caption">FTMO product terms verified 2026-09-29; Trustpilot verified 2026-10-15</caption>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Founded</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2015 (11 years operating)</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Headquarters</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Prague, Czech Republic</td></tr>
@@ -44,7 +44,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Leverage</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Up to 1:100 (Standard) · up to 1:30 (Swing)</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT4, MT5, cTrader, DXTrade</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Instruments</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Forex, Indices, Commodities, Crypto, Stocks</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Trustpilot</strong></td><td style="padding: 8px 12px; border-bottom: none;">4.8 from 47,019 reviews (<a href="https://www.trustpilot.com/review/ftmo.com">verified 2026-07-27</a>)</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Trustpilot</strong></td><td style="padding: 8px 12px; border-bottom: none;">4.8 from 54,501 reviews (<a href="https://www.trustpilot.com/review/ftmo.com">verified 2026-10-15</a>)</td></tr>
   </tbody>
 </table>
 
@@ -185,7 +185,7 @@ type: "post"
 
 <p><strong>Processing.</strong> After you submit the request, FTMO reviews the account and notifies you within 1–2 business days, and "the Reward is typically sent within 1–2 business days after the invoice is approved" — so roughly 2–4 business days end to end when nothing is queried. Payout methods are bank wire, Skrill and crypto; we did not capture per-method fee schedules on 2026-09-29, so budget for your own receiving-bank charges rather than a figure we can't source.</p>
 
-<p><strong>Two product-specific catches.</strong> On the 1-Step, "Rewards cannot be left on the account to grow the balance", and the 50% Best Day rule is applied at withdrawal as well as at passing — a lopsided winning day can block a reward request, not just a pass. On the 2-Step, the refunded fee arrives with that first reward withdrawal, so a trader who passes and then never withdraws never sees it. As a third-party sentiment check, FTMO holds 4.8 from 47,019 reviews on Trustpilot (<a href="https://www.trustpilot.com/review/ftmo.com">verified 2026-07-27</a>).</p>
+<p><strong>Two product-specific catches.</strong> On the 1-Step, "Rewards cannot be left on the account to grow the balance", and the 50% Best Day rule is applied at withdrawal as well as at passing — a lopsided winning day can block a reward request, not just a pass. On the 2-Step, the refunded fee arrives with that first reward withdrawal, so a trader who passes and then never withdraws never sees it. As a third-party sentiment check, FTMO holds 4.8 from 54,501 reviews on Trustpilot (<a href="https://www.trustpilot.com/review/ftmo.com">verified 2026-10-15</a>).</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
@@ -196,7 +196,7 @@ type: "post"
   <li><strong>No Best Day rule on the 2-Step.</strong> The 50% consistency constraint is switched off on that product, so a single outsized winning day cannot block a pass or a withdrawal the way it can on the 1-Step.</li>
   <li><strong>News trading is unrestricted during evaluation</strong> on both account types, and remains unrestricted on funded Swing accounts. The ±2-minute window applies only to funded Standard accounts.</li>
   <li><strong>No time limit on either product.</strong> The trading period is listed as unlimited for the 2-Step and the 1-Step, so a slow month costs you nothing but time — there is no expiry to trade against.</li>
-  <li><strong>11 years of continuous operation</strong> since 2015, with a 4.8 Trustpilot score across 47,019 reviews as of 2026-07-27. A sample of 47,019 is large enough that the aggregate moves slowly, which makes it harder to manipulate in either direction.</li>
+  <li><strong>11 years of continuous operation</strong> since 2015, with a 4.8 Trustpilot score across 54,501 reviews as of 2026-10-15. A sample of 54,501 is large enough that the aggregate moves slowly, which makes it harder to manipulate in either direction.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Cons</strong></h2>

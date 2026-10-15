@@ -29,7 +29,7 @@ type: "post"
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Profit split</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">90% to the trader on all 7 documented paths</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Account range</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">$25,000 to $150,000; maximum 5 funded accounts per household</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Payout rails</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">WorkMarket bank transfer or PayPal internationally; BTC, ETH, LTC, USDT and USDC for international traders</td></tr>
-    <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Trustpilot snapshot</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">4.6/5 from 4,871 reviews on 2026-07-28; 7% were 1-star</td></tr>
+    <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Trustpilot snapshot</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">4.4/5 from 7,032 reviews on 2026-10-15; 10% were 1-star</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left;">India status</th><td style="padding: 9px 12px;">India is absent from the current restriction list, but Indian checkout, KYC and payout receipt remain independently unverified</td></tr>
   </tbody>
 </table>
@@ -117,7 +117,7 @@ type: "post"
 
 <p><strong>The published minimum is $500.</strong> International traders can use WorkMarket for bank transfer or PayPal, or crypto through BTC, ETH, LTC, USDT or USDC. Lucid says approved funds are disbursed within 2 business days and WorkMarket can arrive from the next business day, but it does not publish one fixed India-specific WorkMarket, PayPal, crypto-network or INR-conversion fee.</p>
 
-<p><strong>The public evidence is mixed and unusually active.</strong> <a href="https://www.trustpilot.com/review/lucidtrading.com">Trustpilot showed 4.6/5 from 4,871 reviews</a> on 2026-07-28, with 89% 5-star and 7% 1-star. The same-day page contained several India-tagged 1-star complaints about support, account decisions and company conduct alongside verified 5-star payout reports; those are reader allegations and testimonials, not independently adjudicated facts. Lucid's own homepage reported $400 million paid and a 15-minute average payout, both firm-reported figures rather than audited statements.</p>
+<p><strong>The public evidence is mixed and unusually active.</strong> <a href="https://www.trustpilot.com/review/lucidtrading.com">Trustpilot showed 4.4/5 from 7,032 reviews</a> on 2026-10-15, down from 4.6 on 2026-07-28, with 86% 5-star and 10% 1-star. Our July capture contained several India-tagged 1-star complaints about support, account decisions and company conduct alongside verified 5-star payout reports; those are reader allegations and testimonials, not independently adjudicated facts. Lucid's own homepage reported $400 million paid and a 15-minute average payout, both firm-reported figures rather than audited statements.</p>
 
 <!-- SECTION 7 - Pros and cons -->
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
@@ -140,7 +140,7 @@ type: "post"
   <li>Pro, Flex and Direct positions close by 4:45 PM ET; the current hours rule does not say whether any of the 4 Daily configurations can hold overnight or through weekends.</li>
 <li>LucidDaily's product-specific funded rule applies a 1-minute-before to 1-minute-after hard-breach window to U.S. high-impact USD releases, while a broader general page creates an unresolved scope conflict.</li>
   <li>The refund rule becomes strict after 1 trade, while an unused-account refund remains discretionary.</li>
-  <li>The 2026-07-28 Trustpilot snapshot showed 7% 1-star reviews and a same-day cluster of India-tagged complaints requiring extra verification.</li>
+  <li>Trustpilot fell to 4.4 with 10% 1-star reviews by 2026-10-15; the July snapshot showed a cluster of India-tagged complaints requiring extra verification.</li>
 </ul>
 
 <!-- SECTION 8 - Who should pick or avoid -->
