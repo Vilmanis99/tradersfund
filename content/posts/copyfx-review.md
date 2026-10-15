@@ -1,12 +1,12 @@
 ---
-title: "CopyFX Review: New Name, Fees & Copy Risks"
-seoTitle: "CopyFX Review: New Name, Fees & Copy Risks"
+title: "CopyFX Review: What Happened, Fees & Copy Risks"
+seoTitle: "CopyFX Review: What Happened, Fees & Copy Risks"
 slug: "copyfx-review"
 date: "2025-07-15 19:03:38"
 modified: "2026-08-18 12:00:00"
 author: "Tara Mohseni"
 excerpt: "A source-checked review of CopyFX's rebrand to Copy Trading Service, current fees, copy modes, platform limits, regulation, and test risks."
-seoDescription: "CopyFX review covering its Copy Trading Service rebrand, current fees, copy modes, platform limits, investor risks, regulation, and a staged test plan."
+seoDescription: "What is CopyFX now? RoboForex renamed it Copy Trading Service in Nov 2025. Review of fees (5%-50% performance fee), minimums, copy modes and risks."
 categories: ["Copy Trading", "Trading Tools"]
 tags: ["CopyFX", "RoboForex", "copy trading", "social trading", "risk management"]
 type: "post"
@@ -46,6 +46,21 @@ sourceUrls:
     <li><strong>Availability is restricted:</strong> the named broker entity is RoboForex Ltd under Belize FSC registration/licence 9759600, and the site says it does not target EU, EEA, or UK clients.</li>
   </ol>
 </div>
+
+<h2>CopyFX at a glance</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">CopyFX key facts from RoboForex pages captured 18 August 2026</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Question</th><th style="padding: 8px 12px; text-align: left;">Answer</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">What is CopyFX?</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">RoboForex's copy-trading service. On 6 November 2025 it was renamed <strong>Copy Trading Service</strong>.</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Platforms</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT4, MT5 and R StocksTrader share one strategy rating; copying across platforms is not supported</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Investor minimum</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Set by each Trader per strategy; the old universal $10 claim is not current</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Trader minimum</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100 deposit into the appropriate real account before sharing a strategy</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Main cost</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Performance Fee set by the Trader: the Trader page hero shows 0%-50%, the FAQ and help say 5%-50%</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Service fee</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">RoboForex advertises no additional service usage fee; broker trading costs still apply</td></tr>
+  </tbody>
+</table>
 
 <h2>What happened to CopyFX?</h2>
 
