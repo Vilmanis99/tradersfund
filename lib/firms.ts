@@ -36,6 +36,11 @@ export interface Firm {
   reviewUrl: string
   /** Firm-owned public website used when no affiliate partnership is configured. */
   officialUrl: string
+  /**
+   * Partnership state. Only 'active' when affiliateUrl is Karlis's own,
+   * working referral link; /go/<slug> routes through affiliateUrl.
+   */
+  affiliateStatus?: 'active' | 'none' | 'applied'
   /** External affiliate partner URL — empty string if not yet partnered. */
   affiliateUrl?: string
   /**
@@ -46,6 +51,12 @@ export interface Firm {
   discountCode?: string
   /** Discount as an integer % off the challenge fee (e.g. 10 for 10%). */
   discountPct?: number
+  /** Official page showing `discountCode` as a current public code. */
+  discountCodeSourceUrl?: string
+  /** ISO date `discountCode` was last seen valid on the official source. */
+  discountCodeCapturedAt?: string
+  /** Scope/limits of the public code (eligible products, exclusions). */
+  discountCodeNote?: string
   /**
    * Personal partner code that can preserve TFH attribution when a tracked
    * browser session is lost. This is deliberately separate from
