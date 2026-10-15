@@ -715,7 +715,8 @@
       "Russia",
       "Belarus",
       "Kenya",
-      "Ghana"
+      "Ghana",
+      "Haiti"
     ],
     "ratings": {
       "conditions": null,
@@ -726,7 +727,7 @@
     "trustpilotScore": 4.3,
     "trustpilotCount": 6120,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-09-15",
+    "lastUpdated": "2026-10-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/fxify.com",
     "trustpilotCapturedAt": "2026-07-27",
     "russiaStatus": "restricted",
@@ -912,13 +913,13 @@
       "Belarus",
       "Bosnia & Herzegovina",
       "Botswana",
+      "Burkina Faso",
       "Bulgaria",
       "Burma (Myanmar)",
       "Burundi",
       "Cambodia",
       "Cameroon",
       "Central African Republic",
-      "China",
       "Congo",
       "Côte D'Ivoire",
       "Crimea",
@@ -927,6 +928,7 @@
       "Democratic Republic of Congo",
       "Ecuador",
       "Ethiopia",
+      "France Metro (FX) Corsica & non-mainland islands only",
       "Ghana",
       "Gibraltar",
       "Guyana",
@@ -938,8 +940,10 @@
       "Iraq",
       "Jamaica",
       "Jordan",
+      "Kazakhstan",
       "Kenya",
       "Kosovo",
+      "Kyrgyzstan",
       "Laos",
       "Lebanon",
       "Liberia",
@@ -964,8 +968,8 @@
       "Philippines",
       "Qatar",
       "Romania",
-      "Rwanda",
       "Russia",
+      "Rwanda",
       "Senegal",
       "Serbia",
       "Slovenia",
@@ -999,10 +1003,10 @@
     "trustpilotScore": 4.9,
     "trustpilotCount": 20392,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-09-14",
+    "lastUpdated": "2026-10-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/myfundedfutures.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "unverified"
+    "russiaStatus": "restricted"
   },
   {
     "name": "City Traders Imperium",
@@ -1038,11 +1042,10 @@
     "weekendAllowed": null,
     "copyTradingAllowed": null,
     "countriesRestricted": [
-      "North Korea",
-      "Iran",
       "Syria",
+      "North Korea",
       "Cuba",
-      "Russia"
+      "Iran"
     ],
     "ratings": {
       "conditions": null,
@@ -1053,7 +1056,7 @@
     "trustpilotScore": 4.2,
     "trustpilotCount": 1633,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-07-28",
+    "lastUpdated": "2026-10-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
     "trustpilotCapturedAt": "2026-07-27",
     "russiaStatus": "unverified",
@@ -1236,10 +1239,10 @@
     "trustpilotScore": 4.6,
     "trustpilotCount": 1402,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-08-11",
+    "lastUpdated": "2026-10-15",
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeday.com",
     "trustpilotCapturedAt": "2026-07-28",
-    "russiaStatus": "unverified"
+    "russiaStatus": "restricted"
   },
   {
     "name": "Apex Trader Funding",
