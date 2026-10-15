@@ -1,12 +1,12 @@
 ---
 title: "Topstep Review 2026: A Monthly Subscription With Two Locked Pricing Paths"
-seoTitle: "Topstep Review 2026: Pricing, Rules & Payouts"
+seoTitle: "Topstep Review 2026: Trustpilot, Pricing & Payouts"
 slug: "topstep-review"
 date: "2025-08-01 14:52:15"
 modified: "2026-10-06"
 author: "Tara Mohseni"
 excerpt: "Topstep's evaluation rebills every month and you choose a pricing path you cannot change. We work out which path wins, at how many months, and why."
-seoDescription: "Topstep review 2026: Trading Combine pricing on two locked monthly paths, activation fees, drawdown rules, Express Funded payouts and which path costs less."
+seoDescription: "Topstep review 2026: Trustpilot 3.7 from 14,945 reviews (Oct 15), Trading Combine pricing on two locked paths, drawdown rules and Express Funded payouts."
 categories: ["Prop Firms"]
 tags: ["Topstep", "Prop Firm"]
 type: "post"
@@ -174,6 +174,24 @@ type: "post"
 <p><strong>For Russian-speaking traders abroad.</strong> Language is not an eligibility category. The eligibility policy checked on 2026-09-08 lists Russia as ineligible but allows citizens of ineligible countries to submit proof of permanent residency in an eligible country plus a local bank statement for Trust-team review. That is a possible review route, not guaranteed access. Residence or trading in an ineligible country remains disallowed. Confirm your citizenship, permanent residence and payment method before buying; Wise availability in the three listed countries does not itself make a person eligible.</p>
 
 <p><strong>Dated community signal.</strong> Our <a href="https://www.trustpilot.com/review/topstep.com">Trustpilot capture</a> recorded 3.6 from 14,478 reviews on 2026-07-27. It is older than the product check and has not been refreshed here. Read recent complaints and the firm's responses separately; a review score is neither verified payout evidence nor a guarantee that a request will be approved.</p>
+
+<h3 class="wp-block-heading"><strong>Topstep on Trustpilot (checked 2026-10-15)</strong></h3>
+<p>On 15 October 2026 Topstep's <a href="https://www.trustpilot.com/review/topstep.com">Trustpilot profile</a> showed a 3.7 TrustScore from 14,945 reviews, up from the 3.6 from 14,478 in our 27 July capture. The split is polarised, not average:</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Topstep Trustpilot profile, checked 15 October 2026</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Signal</th><th style="padding: 8px 12px; text-align: left;">Value</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">TrustScore</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3.7 ("Average") from 14,945 reviews</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Reviews in the last 12 months</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3,551</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5-star / 1-star share</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">70% / 19% (4-star 6%, 3-star 3%, 2-star 2%)</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Replies to negative reviews</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%, typically within 2 weeks</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Profile status</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Claimed, on a paid Trustpilot subscription; Topstep invites customers to review</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Recurring topics</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Trustpilot lists payment, customer service, refund and price among top mentions</td></tr>
+  </tbody>
+</table>
+
+<p>Recent five-star reviews mostly praise fast payouts and support. The one-star reviews mostly describe account closures and rule changes, and Trustpilot says it does not fact-check them. Read these as complaint themes to check against the rules above, not as verified payout records.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
