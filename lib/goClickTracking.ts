@@ -16,7 +16,7 @@ import { campaignLocale } from '@/lib/analyticsTaxonomy'
  */
 export type GoClickKind = 'affiliate' | 'official' | 'source'
 
-const SITE_ORIGIN = 'https://www.tradersfundhub.com'
+const SITE_ORIGIN = 'https://tradersfundhub.com'
 
 /** Same-site referer path only (no query/hash); null for external or missing referers. */
 export function sourcePathFromReferer(referer: string | null, requestUrl: string, requestHost?: string | null): string | null {
@@ -36,14 +36,20 @@ export function goClickLanguage(placement: string, sourcePath: string | null): '
   return campaignLocale(placement)
 }
 
+/** Placement label for analytics: max 64 chars of [a-z0-9-_|]; anything else is dropped. */
+export function sanitizePlacement(value: string | null | undefined): string {
+  const cleaned = (value ?? '').toLowerCase().replace(/[^a-z0-9\-_|]/g, '').slice(0, 64)
+  return cleaned || 'unknown'
+}
+
 export function buildGoClickEvent(req: Request, firm: string, kind: GoClickKind, placement: string) {
   const sourcePath = sourcePathFromReferer(req.headers.get('referer'), req.url, req.headers.get('host'))
   return {
     firm,
     kind,
-    placement,
+    placement: sanitizePlacement(placement),
     source_path: sourcePath ?? 'unknown',
-    lang: goClickLanguage(placement, sourcePath),
+    lang: goClickLanguage(sanitizePlacement(placement), sourcePath),
   }
 }
 
