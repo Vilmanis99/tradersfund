@@ -1,12 +1,12 @@
 ---
 title: "Prop Firm Scaling Plans Explained: What to Verify (2026)"
-seoTitle: "Prop Firm Scaling Plans Explained (2026)"
+seoTitle: "Prop Firm Scaling Plan Explained: What to Compare (2026)"
 slug: "prop-firm-scaling-plan"
 date: "2025-09-15 10:46:50"
 modified: "2026-09-29 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Learn how prop-firm scaling changes allocation and profit share, which milestones matter, and why an advertised ceiling is not a day-one account."
-seoDescription: "Learn how prop-firm scaling plans work, which milestones and loss rules to verify, and how current allocation fields differ from starting product terms."
+seoDescription: "What is a prop firm scaling plan? How scaling works, how to compare plans to find the best one, and which milestones, splits and loss rules to verify first."
 categories: ["Prop Firms"]
 tags: ["prop firm scaling", "funded account rules", "risk management"]
 type: "post"

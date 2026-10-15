@@ -1,3 +1,4 @@
+import { firmSlug } from '@/lib/firmSlug'
 import { MetadataRoute } from 'next'
 import { getAllPosts, getAllPages, getAllCategories, getPostsByCategory } from '@/lib/mdx'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
@@ -35,7 +36,7 @@ const BASE_URL = 'https://tradersfundhub.com'
 const HOME_EDITORIAL_DATE = '2026-09-14'
 
 function slugify(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  return firmSlug(name)
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {

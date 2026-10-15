@@ -111,7 +111,7 @@ function formatLoss(product: Challenge) {
 }
 
 function productFirm(product: Challenge) {
-  return product.firmSlug === 'fundednext' ? 'FundedNext' : 'Bright Funded'
+  return product.firmSlug === 'fundednext' ? 'FundedNext' : 'BrightFunded'
 }
 
 export default function RussianWhatIsPropFirmPage() {
@@ -284,16 +284,16 @@ export default function RussianWhatIsPropFirmPage() {
         <div className="ru-shell ru-content">
           <h2>Два главных партнёра: сравнение программ вместо 2 логотипов</h2>
           <p>
-            FundedNext и Bright Funded — наши 2 основных коммерческих маршрута, но партнёрство не превращает их
+            FundedNext и BrightFunded — наши 2 основных коммерческих маршрута, но партнёрство не превращает их
             в универсальные варианты. {products.length > 0 ? <>
-              Текущая выборка содержит {fundedNextProducts.length} продукта FundedNext и {brightProducts.length} продукта Bright Funded,
+              Текущая выборка содержит {fundedNextProducts.length} продукта FundedNext и {brightProducts.length} продукта BrightFunded,
               {pricedTierCount} ценовых уровней и диапазон от {phaseRange.at(0)} до {phaseRange.at(-1)} фаз.
               Каждая строка ниже ведёт на первичную страницу продукта и показывает дату захвата.
             </> : 'Сейчас нет программ с актуальной проверкой за 30 дней; перепроверьте первичные условия перед покупкой.'}
           </p>
           <div className="ru-table-wrap" data-russian-prop-definition-products={products.length}>
             <table className="ru-table">
-              <caption className="sr-only">{products.length} актуальных продуктов FundedNext и Bright Funded</caption>
+              <caption className="sr-only">{products.length} актуальных продуктов FundedNext и BrightFunded</caption>
             <thead><tr><th>Фирма и продукт</th><th>Цена</th><th>Оценка</th><th>Просадка</th><th>Базовая доля</th><th>Источник</th></tr></thead>
               <tbody>
                 {products.length === 0 && <tr><td colSpan={6}>Нет программ с актуальной проверкой за 30 дней.</td></tr>}
@@ -311,12 +311,12 @@ export default function RussianWhatIsPropFirmPage() {
             </table>
           </div>
           <p className="ru-source-line">
-            Источников в таблице: {sourceCount}. Цены приведены в собственной валюте фирмы: USD для FundedNext и EUR для Bright Funded;
+            Источников в таблице: {sourceCount}. Цены приведены в собственной валюте фирмы: USD для FundedNext и EUR для BrightFunded;
             временные промоакции и самостоятельный пересчёт в RUB не включены.
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="prop-definition">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            Переходы на FundedNext и Bright Funded могут принести Traders Fund Hub комиссию.
+            Переходы на FundedNext и BrightFunded могут принести Traders Fund Hub комиссию.
             Коммерческая связь не меняет {products.length} строк, {pricedTierCount} цен, даты источников или предупреждение о доступе страны.
           </div>
           <div className="ru-grid">
@@ -361,9 +361,9 @@ export default function RussianWhatIsPropFirmPage() {
             <a href={FUNDEDNEXT_KYC_URL} target="_blank" rel="nofollow noopener"> Проверить источник FundedNext</a>.
           </p>
           <p>
-            Bright Funded описывает другой маршрут: после финальной фазы используется SumSub KYC, затем проверка службы безопасности,
+            BrightFunded описывает другой маршрут: после финальной фазы используется SumSub KYC, затем проверка службы безопасности,
             который обычно занимает 1–2 рабочих дня и может занимать до 4 рабочих дней в пиковый период.
-            <a href={BRIGHT_KYC_URL} target="_blank" rel="nofollow noopener"> Проверить источник Bright Funded</a>.
+            <a href={BRIGHT_KYC_URL} target="_blank" rel="nofollow noopener"> Проверить источник BrightFunded</a>.
             Разные последовательности нельзя объединять в обещание «KYC пройдёт за один день».
           </p>
           <p>
@@ -396,7 +396,7 @@ export default function RussianWhatIsPropFirmPage() {
             <strong>Практическая развилка из 2 вопросов.</strong>{' '}
             Нужна местная биржа и договор с локальным оператором — откройте
             <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"> 6 проверяемых примеров</Link>.
-            Нужен глобальный розничный CFD-продукт — сравните FundedNext и Bright Funded,
+            Нужен глобальный розничный CFD-продукт — сравните FundedNext и BrightFunded,
             затем заново проверьте страну, KYC и платёжный канал.
           </div>
           <div className="ru-actions">

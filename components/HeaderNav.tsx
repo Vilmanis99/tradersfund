@@ -210,7 +210,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
           hrefLang={isRussian ? 'en' : 'ru'}
           lang={isRussian ? 'en' : 'ru'}
           className="nav-link"
-          aria-label={isRussian ? 'Открыть английскую версию' : 'Открыть русскую версию'}
+          aria-label={isRussian ? 'EN — open the English version' : 'RU — открыть русскую версию'}
         >
           <Languages size={14} aria-hidden="true" />
           {isRussian ? 'EN' : 'RU'}
@@ -241,7 +241,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
         >
           <div className="mobile-overlay__inner">
             <div className="mobile-overlay__head">
-              <Link href={isRussian ? '/ru' : '/'}>{isRussian ? 'Главная' : 'Home'}</Link>
+              <Link href={isRussian ? '/ru' : '/'} className="mobile-overlay__brand">Traders Fund Hub</Link>
               <button type="button" className="mobile-overlay__close" onClick={() => setMobileOpen(false)}>
                 {isRussian ? 'Закрыть' : 'Close'} <X size={20} aria-hidden="true" />
               </button>
@@ -287,7 +287,7 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
                   href={languageHref}
                   hrefLang={isRussian ? 'en' : 'ru'}
                   lang={isRussian ? 'en' : 'ru'}
-                  aria-label={isRussian ? 'Открыть английскую версию' : 'Открыть русскую версию'}
+                  aria-label={isRussian ? 'EN — open the English version' : 'RU — открыть русскую версию'}
                   className="mobile-overlay__social"
                 >
                   <Languages size={18} aria-hidden="true" /> {isRussian ? 'EN' : 'RU'}

@@ -53,7 +53,7 @@
     },
     {
       "firmSlug": "bright-funded",
-      "firmName": "Bright Funded",
+      "firmName": "BrightFunded",
       "sourceCapturedAt": "2026-09-08",
       "sourceUrls": [
         "https://help.brightfunded.com/en/articles/9268749-what-trading-assets-instruments-offers-brightfunded",
@@ -65,7 +65,7 @@
       "forexPairCategories": ["major", "minor", "exotic"],
       "platforms": ["DXTrade", "cTrader", "MT5"],
       "forexLeverage": [
-        { "products": ["Bright Funded 1-Step", "Bright Funded 2-Step Bright", "Bright Funded 2-Step Classic"], "ratio": 100 }
+        { "products": ["BrightFunded 1-Step", "BrightFunded 2-Step Bright", "BrightFunded 2-Step Classic"], "ratio": 100 }
       ],
       "platformRestrictions": [
         {

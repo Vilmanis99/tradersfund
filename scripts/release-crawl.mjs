@@ -1235,7 +1235,7 @@ const russianExpectations = new Map([
       'data-russian-bright-alternatives="failure-point-routing"',
       'data-russian-bright-comparison-products=',
       'data-russian-bright-comparison-prices=',
-      'С чем сравнить Bright Funded',
+      'С чем сравнить BrightFunded',
       '/ru/vyplaty-prop-firm',
       '/ru/prop-firmy-bez-kyc',
       '/authors/edris-derakhshi',
@@ -2919,7 +2919,7 @@ if (ukLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Compare ${expectedUkFirms.length} prop firms with current first-party UK-access policies across ${expectedUkProductCount} product paths, plus FCA checks, fees, rules, reviews, and dated sources.`
+    `Compare ${expectedUkFirms.length} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`
   const renderedDescription = decodeHtml(firstMatch(
     ukLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -2932,8 +2932,8 @@ if (ukLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Prop Firms for UK Traders (2026): ${expectedUkFirms.length} Checked | TFH`,
-    `Best Prop Firms for UK Traders (2026): ${expectedUkFirms.length} Policy-Checked`,
+    `Best Prop Firms UK 2026: ${expectedUkFirms.length} Prop Trading Firms Checked | TFH`,
+    `Best Prop Firms UK (2026): ${expectedUkFirms.length} Prop Trading Firms That Accept UK Traders`,
     `${expectedUkFirms.length} policy-checked firms across ${expectedUkProductCount} mapped products`,
     'Policy-supported UK access is not an FCA status.',
     'What UK traders should verify',
@@ -3068,7 +3068,7 @@ if (usLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Compare ${expectedUsFirms.length} policy-checked prop firms for U.S. traders across ${expectedUsProductCount} exact futures and CFD products, with platform limits, CFTC/NFA checks, reviews, and sources.`
+    `Best prop firms for US traders in 2026: ${expectedUsFirms.length} prop trading firms open to USA residents across ${expectedUsProductCount} exact futures and CFD products, with CFTC/NFA checks.`
   const renderedDescription = decodeHtml(firstMatch(
     usLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3081,8 +3081,8 @@ if (usLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Prop Firms for US Traders (2026): ${expectedUsFirms.length} Checked | TFH`,
-    `Best Prop Firms for U.S. Traders (2026): ${expectedUsFirms.length} Policy-Checked`,
+    `Best Prop Firms USA 2026: ${expectedUsFirms.length} Prop Trading Firms Checked | TFH`,
+    `Best Prop Firms for US Traders (2026): ${expectedUsFirms.length} Prop Trading Firms in the USA`,
     `${expectedUsFirms.length} policy-checked firms across ${expectedUsProductCount} mapped products`,
     'U.S. access is not a regulatory badge.',
     'What U.S. traders should verify',
@@ -3211,7 +3211,7 @@ if (swingLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Compare ${expectedSwingFirms.length} swing-trading prop firms across ${expectedSwingProductCount} exact products with verified overnight and weekend holding, drawdown rules, dated sources, and reviews.`
+    `Best prop firms for swing traders: ${expectedSwingFirms.length} swing-trading prop firms across ${expectedSwingProductCount} exact products with verified overnight and weekend holding.`
   const renderedDescription = decodeHtml(firstMatch(
     swingLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3224,8 +3224,8 @@ if (swingLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Swing Trading Prop Firms (2026): ${expectedSwingFirms.length} Verified | TFH`,
-    `Best Prop Firms for Swing Trading (2026): ${expectedSwingFirms.length} Verified`,
+    `Best Prop Firms for Swing Trading 2026: ${expectedSwingFirms.length} Compared | TFH`,
+    `Best Prop Firms for Swing Trading (2026): ${expectedSwingFirms.length} Allow Overnight and Weekend Holds`,
     `${expectedSwingFirms.length} verified firms across ${expectedSwingProductCount} swing-qualified products`,
     'What swing traders should verify',
     'Do both permissions belong to the same product?',
@@ -3352,7 +3352,7 @@ if (futuresLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Compare ${expectedFuturesFirms.length} futures prop firms across ${expectedFuturesProductCount} current products with fees, billing, drawdown, payout rules, platforms, reviews, and dated first-party sources.`
+    `Best futures prop firms 2026: ${expectedFuturesFirms.length} futures prop firms ranked across ${expectedFuturesProductCount} products on fees, billing, drawdown, payout rules and platforms.`
   const renderedDescription = decodeHtml(firstMatch(
     futuresLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3364,8 +3364,8 @@ if (futuresLandingProbe.status !== 200) {
     errors.push(`${futuresLandingPath}: meta description does not match the ${expectedFuturesFirms.length}-firm/${expectedFuturesProductCount}-product snapshot`)
   }
   for (const required of [
-    `Best Futures Prop Firms (2026): ${expectedFuturesFirms.length} Verified | TFH`,
-    `Best Futures Prop Firms (2026): ${expectedFuturesFirms.length} Verified`,
+    `Best Futures Prop Firms 2026: ${expectedFuturesFirms.length} Ranked and Compared | TFH`,
+    `Best Futures Prop Firms (2026): ${expectedFuturesFirms.length} Futures Prop Firms Ranked`,
     `${expectedFuturesFirms.length} verified firms across ${expectedFuturesProductCount} current futures products`,
     `Compare ${expectedFuturesProductCount} current futures products`,
     'What futures traders should verify',
@@ -3617,7 +3617,7 @@ if (cryptoLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Crypto Prop Firms (2026): ${expectedCryptoFirms.length} Verified | TFH`,
+    `Best Crypto Prop Firms 2026: ${expectedCryptoFirms.length} Firms Compared | TFH`,
     `${expectedCryptoFirms.length} evidence-backed firms across ${expectedCryptoProductCount} mapped products`,
     `Not ranked yet: ${cryptoMarketEvidence.watch.length} evidence gaps`,
     'What crypto traders should verify',
@@ -3765,8 +3765,8 @@ if (cheapestLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    'Cheapest Prop Firm Challenges (2026) — By Currency | TFH',
-    'Cheapest Prop Firm Challenges (2026): USD & EUR',
+    'Cheapest Prop Firms 2026: Challenge Fees Compared | TFH',
+    'Cheapest Prop Firms (2026): Prop Firm Fees Compared in USD & EUR',
     'USD-denominated products',
     'EUR-denominated products',
     'What price-first buyers should verify',
@@ -3775,7 +3775,7 @@ if (cheapestLandingProbe.status !== 200) {
     'What does a monthly minimum mean?',
     'Why can the smallest fee still be expensive?',
     'Maven Standard 3-Step',
-    'Bright Funded 2-Step Bright',
+    'BrightFunded 2-Step Bright',
   ]) {
     if (!cheapestText.includes(required)) {
       errors.push(`${cheapestLandingPath}: missing ${required}`)
@@ -3865,12 +3865,12 @@ if (discountHubProbe.status !== 200) {
     }
   }
 
-  if (discountTitle !== 'Prop Firm Discount Codes & Offers (2026) | TFH') {
+  if (discountTitle !== 'Prop Firm Discount Codes & Promo Codes (2026) | TFH') {
     errors.push(`${discountHubPath}: title suffix is missing or duplicated: ${discountTitle}`)
   }
 
   for (const required of [
-    'Prop Firm Discount Codes & Offers (2026)',
+    'Prop Firm Discount Codes & Promo Codes (2026)',
     'Current verified offers',
     'Earned coupon',
     ...(expectedFundedNextCoupon ? [
@@ -3993,7 +3993,7 @@ if (instantLandingProbe.status !== 200) {
   }
 
   const expectedDescription =
-    `Compare ${expectedInstantFirms.length} instant-funding prop firms across ${expectedInstantProductCount} phase-0 products with entry costs, drawdown, starting splits, payout gates, reviews, and dated sources.`
+    `Best instant funding prop firms in 2026: ${expectedInstantFirms.length} firms and ${expectedInstantProductCount} no-evaluation accounts compared on cost, drawdown, profit split and payout rules.`
   const renderedDescription = decodeHtml(firstMatch(
     instantLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -4006,8 +4006,8 @@ if (instantLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Instant Funding Prop Firms (2026): ${expectedInstantFirms.length} Verified | TFH`,
-    `Best Instant Funding Prop Firms (2026): ${expectedInstantFirms.length} Verified`,
+    `Best Instant Funding Prop Firms 2026: ${expectedInstantFirms.length} Compared | TFH`,
+    `Best Instant Funding Prop Firms (2026): ${expectedInstantFirms.length} Firms With No Evaluation`,
     `${expectedInstantFirms.length} verified firms across ${expectedInstantProductCount} phase-0 products`,
     'What instant-funding buyers should verify',
     'Does phase 0 mean the account trades live capital?',
@@ -5028,7 +5028,7 @@ if (indiaMatchupHubProbe.status === 200) {
 for (const matchup of [
   {
     slug: 'fundingpips-vs-bright-funded',
-    title: 'FundingPips vs Bright Funded',
+    title: 'FundingPips vs BrightFunded',
     products: 8,
     campaign: 'fundingpips-bright-funded',
     partners: ['fundingpips', 'bright-funded'],
@@ -5044,7 +5044,7 @@ for (const matchup of [
   },
   {
     slug: 'bright-funded-vs-fxify',
-    title: 'Bright Funded vs FXIFY',
+    title: 'BrightFunded vs FXIFY',
     products: 11,
     campaign: 'bright-funded-fxify',
     partners: ['bright-funded'],

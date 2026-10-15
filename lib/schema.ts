@@ -1,3 +1,4 @@
+import { firmSlug } from './firmSlug.ts'
 import { getChallengesByFirm, isChallengeFresh } from './firms'
 import type { Firm } from './firms'
 import type { PostMeta } from './mdx'
@@ -23,7 +24,7 @@ export function authorSchema(name: string) {
 }
 
 function slugify(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  return firmSlug(name)
 }
 
 /**

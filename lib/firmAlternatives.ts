@@ -1,3 +1,4 @@
+import { firmSlug } from './firmSlug.ts'
 import { getChallengesByFirm, isChallengeFresh } from './firms.ts'
 
 /**
@@ -12,7 +13,7 @@ export interface AlternativeCandidate {
 }
 
 function candidateSlug(name: string): string {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  return firmSlug(name)
 }
 
 function normalizedValues(values: readonly string[] = []) {

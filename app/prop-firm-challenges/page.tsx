@@ -1,3 +1,4 @@
+import { firmSlug } from '@/lib/firmSlug'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { LucideIcon } from 'lucide-react'
@@ -74,7 +75,7 @@ function watchColor(kind: ChallengeWatchKind) {
 
 export default function Page() {
   const firms = getAllFirms()
-  const firmBySlug = new Map(firms.map(firm => [firm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''), firm]))
+  const firmBySlug = new Map(firms.map(firm => [firmSlug(firm.name), firm]))
   const challenges = getAllChallenges()
   const watchEntries = getChallengeWatchEntries()
   const rows = buildChallengeComparisonRows(challenges, firms, watchEntries)

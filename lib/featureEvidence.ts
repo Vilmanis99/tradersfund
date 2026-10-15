@@ -1,3 +1,5 @@
+import { firmSlug } from './firmSlug.ts'
+export { firmSlug }
 /**
  * Product-level qualification for `/prop-firms/<feature>` pages.
  *
@@ -236,9 +238,6 @@ const LEVEL_RANK: Record<FirmLevel, number> = {
   unverified: 4,
 }
 
-export function firmSlug(name: string): string {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-}
 
 export function buildFeatureEvidence(slug: string): FeatureEvidence {
   const spec = FEATURE_TESTS[slug]

@@ -1,8 +1,16 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from '@/components/SafeLink'
-import { ArrowRight, BookOpenCheck, Globe2, Scale, Zap } from 'lucide-react'
-import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
+import { ArrowRight, Globe2 } from 'lucide-react'
+import type { RussianFaqItem } from '@/components/RussianFaq'
+import HeroBlock from '@/components/home/HeroBlock'
+import TrustBar from '@/components/home/TrustBar'
+import ComparisonTable from '@/components/home/ComparisonTable'
+import FeaturedOfferCard from '@/components/home/FeaturedOfferCard'
+import DisclosureNote from '@/components/home/DisclosureNote'
+import Guides from '@/components/home/Guides'
+import HomeFaq from '@/components/home/HomeFaq'
+import { getHomeComparisonRows, getHomeCounters, getVerifiedCode } from '@/components/home/homeData'
+import { RuAccessBadge } from '@/components/RuGoLink'
 import RussianFinderEntry from '@/components/RussianFinderEntry'
 import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
@@ -12,9 +20,20 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified, russianPublishedHref } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 
 const PATH = '/ru'
 export const revalidate = 3600
+
+// Basics links switch on as each new RU page's route is registered (lib/localizedRoutes.ts).
+const RU_HOME_BASICS = [
+  { href: '/ru/prop-trejding', title: 'Что такое проп-трейдинг', text: 'Как работает торговля на капитале фирмы.' },
+  { href: '/ru/funded-account', title: 'Funded account', text: 'Что такое финансируемый счёт и как его получить.' },
+  { href: '/ru/prop-kompanii-v-rossii', title: 'Проп-компании в России', text: 'Какие фирмы работают с РФ и как платят.' },
+  { href: '/ru/prop-kompanii-otzyvy', title: 'Отзывы о проп-компаниях', text: 'Красные флаги и доказательства выплат.' },
+  { href: '/ru/obzor-the5ers', title: 'Обзор The5ers', text: 'Условия и доступ для трейдеров из РФ.' },
+  { href: '/ru/luchshie-prop-firmy', title: 'Рейтинг проп-компаний', text: 'Сравнение условий и доступ из России.' },
+]
 const TITLE = 'Проп-фирмы для русскоязычных трейдеров: цены и правила'
 const DESCRIPTION = 'Сравнение глобальных проп-фирм для русскоязычных трейдеров в разных странах: цены, просадки, выплаты, KYC и правила из первичных источников.'
 
@@ -45,16 +64,6 @@ const featuredPartnerRoutes = [
   { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded', heroHref: '/go/bright-funded?from=ru-home-hero-bright-funded' },
   { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext', heroHref: '/go/fundednext?from=ru-home-hero-fundednext' },
 ] as const
-
-// Basics links switch on as each new RU page's route is registered (lib/localizedRoutes.ts).
-const RU_HOME_BASICS = [
-  { href: '/ru/prop-trejding', title: 'Что такое проп-трейдинг', text: 'Как работает торговля на капитале фирмы.' },
-  { href: '/ru/funded-account', title: 'Funded account', text: 'Что такое финансируемый счёт и как его получить.' },
-  { href: '/ru/prop-kompanii-v-rossii', title: 'Проп-компании в России', text: 'Какие фирмы работают с РФ и как платят.' },
-  { href: '/ru/prop-kompanii-otzyvy', title: 'Отзывы о проп-компаниях', text: 'Красные флаги и доказательства выплат.' },
-  { href: '/ru/obzor-the5ers', title: 'Обзор The5ers', text: 'Условия и доступ для трейдеров из РФ.' },
-  { href: '/ru/luchshie-prop-firmy', title: 'Рейтинг проп-компаний', text: 'Сравнение условий и доступ из России.' },
-]
 
 export default function RussianHomePage() {
   const firms = getAllFirms()
@@ -89,136 +98,63 @@ export default function RussianHomePage() {
     isPartOf: { '@type': 'WebSite', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
 
+  const tableRows = getHomeComparisonRows('ru')
+  const counters = getHomeCounters()
+  const watchCount = getChallengeWatchEntries().length
+  const money = (row: (typeof tableRows)[number]) => new Intl.NumberFormat('ru-RU', { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
+
   return (
-    <div className="ru-home ru-home--product-led" data-russian-home-layout="focused">
+    <div className="th-home ru-home ru-home--product-led" data-russian-home-layout="focused">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(pageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
 
-      <section className="ru-hero ru-home-hero">
-        <div className="ru-shell">
-          <div className="ru-home-intro">
+      <HeroBlock
+        id="ru-home-heading"
+        eyebrow={<><Globe2 size={14} aria-hidden="true" /> Для русскоязычных трейдеров по всему миру</>}
+        title="Проп-фирмы и проп-компании 2026: сравнение условий"
+        lead="Стоимость участия, допустимый убыток и правила выплат. У каждой цифры есть дата источника, а отметка показывает, открыта ли фирма для резидентов РФ."
+        actions={[{ href: '#ru-home-compare', label: 'Сравнить фирмы' }, { href: '/ru/promokody-prop-firm', label: 'Промокоды', variant: 'secondary' }]}
+        counters={[
+          { value: String(counters.firms), label: 'фирм в базе' },
+          { value: String(counters.freshProducts), label: 'программ с актуальными источниками' },
+          { value: String(watchCount), label: 'датированных заметок о правилах' },
+          { value: counters.latestCheck ?? '—', label: 'последняя проверка' },
+        ]}
+        aside={
+          <div className="home-finder-panel">
+            <span className="ru-home-partner-hero-label">Ваш короткий список начинается здесь</span>
+            <h2>Сравните программы</h2>
+            <RussianFinderEntry rows={getRussianFinderRows()} />
+            <p className="home-finder-note">Размер счёта — не цена покупки. Доступность страны нужно проверить отдельно.</p>
+          </div>
+        }
+      />
+
+      <TrustBar
+        label="Почему этому сравнению можно доверять"
+        data={{ 'data-russian-country-boundary': 'language-not-access' }}
+        items={[
+          { label: 'Методика оценки (на английском)', href: '/methodology', hrefLang: 'en' },
+          { label: 'У каждой цифры есть дата проверки' },
+          { label: 'Место в таблице не продаётся' },
+          { label: 'Русский язык ≠ доступ из РФ: Проверить страну и KYC', href: '/ru/dlya-russkoyazychnykh-treyderov', data: { 'data-russian-home-diaspora-entry': 'trust' } },
+        ]}
+      />
+
+      <section className="th-section" id="ru-home-compare" aria-labelledby="ru-home-compare-heading" data-russian-home-comparison="cheapest-per-firm">
+        <div className="th-wrap">
+          <div className="th-section__head">
             <div>
-              <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Для русскоязычных трейдеров по всему миру</div>
-              <h1>Проп-фирмы и проп-компании 2026: сравнение условий</h1>
-              <p className="ru-lead">Стоимость участия, допустимый убыток и правила выплат. Выберите параметры счёта и начните с программ, у которых есть датированные источники.</p>
-              <Link href="/ru/luchshie-prop-firmy" className="ru-card-link">Посмотреть все фирмы <ArrowRight size={16} aria-hidden="true" /></Link>
+              <h2 id="ru-home-compare-heading">Сравнение программ</h2>
+              <p>Счёт $50 000 · самая дешёвая программа фирмы с актуальным источником · сначала фирмы, открытые для РФ. Валюты не пересчитываем.</p>
             </div>
-            <div className="home-finder-panel">
-              <span className="ru-home-partner-hero-label">Ваш короткий список начинается здесь</span>
-              <h2>Сравните программы</h2>
-              <RussianFinderEntry rows={getRussianFinderRows()} />
-              <p className="home-finder-note">Размер счёта — не цена покупки. Доступность страны нужно проверить отдельно.</p>
-            </div>
+            <Link href="/ru/luchshie-prop-firmy" className="th-link">Посмотреть все фирмы <ArrowRight size={14} aria-hidden="true" /></Link>
           </div>
-
-          <div className="ru-home-partner-hero" data-russian-home-hero-partners="fundednext-bright-funded">
-            <p className="ru-source-line ru-home-partner-hero-disclosure" data-russian-affiliate-disclosure="home-primary-partners">FundedNext и BrightFunded — наши партнёры: переход на сайт фирмы может принести нам комиссию. Это не добавляет баллы в рейтинге и не означает, что программа подходит каждому.</p>
-            {featuredPartnerCards.map(item => (
-              <article
-                className={`ru-home-partner-hero-card${item.slug === 'fundednext' ? ' ru-home-partner-hero-card--fundednext' : ' ru-home-partner-hero-card--bright'}`}
-                key={item.slug}
-                data-russian-home-hero-partner={item.slug}
-              >
-                <div className="ru-home-partner-hero-brand">
-                  {item.firm?.logo ? <span className="ru-home-partner-hero-logo" aria-hidden="true"><Image src={item.firm.logo} alt="" width={56} height={56} /></span> : null}
-                  <div><span className="ru-home-partner-hero-label">Партнёр сайта</span><h2>{item.name}</h2></div>
-                </div>
-                <p>{item.fresh
-                  ? item.slug === 'fundednext'
-                    ? 'Программы с оплатой в USD: с оценочными этапами или без челленджа — Stellar Instant. В обзоре разбираем различия в просадке и выплатах.'
-                    : 'Программы с оплатой в EUR и одним или двумя оценочными этапами. В обзоре разбираем лимиты убытка и ожидание первой выплаты.'
-                  : 'Условия программ требуют повторной проверки. В обзоре объясняем модель работы и вопросы, которые стоит задать фирме перед оплатой.'}</p>
-                <p className="ru-home-partner-country-note" data-russian-partner-country-warning={item.slug} data-russian-partner-country-source-status={item.countryFresh ? 'dated' : 'recapture-required'} data-russian-home-bright-country-conflict={item.slug === 'bright-funded' ? 'help-six-terms-five' : undefined}>
-                  {item.slug === 'fundednext'
-                    ? item.countryFresh
-                      ? `Доступность для резидентов России не подтверждена: официальные страницы, проверенные ${item.countryCapturedAt}, противоречат друг другу.`
-                      : `Страновые условия требуют новой проверки. В источниках от ${item.countryCapturedAt} были противоречия для резидентов России; это не подтверждает доступ сегодня.`
-                    : <>
-                      <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="nofollow noopener">Справка BrightFunded</a> от {item.countryCapturedAt} включает Пакистан;{' '}
-                      <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {item.brightTermsCapturedAt} его не называют.{' '}
-                      {item.countryFresh
-                        ? 'Россия не названа в обоих списках, но это не подтверждает доступ вашего профиля. Уточните до оплаты.'
-                        : 'Страновые условия требуют повторной проверки; отсутствие России в старых списках не подтверждает доступ сегодня.'}
-                    </>}
-                </p>
-                <div className="ru-home-partner-hero-actions">
-                  <Link href={item.reviewHref} className="btn-outline">{`Читать обзор ${item.name}`}</Link>
-                  <RuGoLink firm={item.slug} href={item.heroHref} rel="sponsored nofollow noopener" className="ru-home-partner-hero-review">{`Проверить условия ${item.name} ↗`}</RuGoLink>
-                </div>
-                <p className="ru-source-line ru-home-checked">{item.captureDate ? `Источники проверены: ${item.captureDate}` : 'Обновление источников ожидается'}</p>
-              </article>
-            ))}
-          </div>
-          <Link href="/ru/fundednext-vs-bright-funded" className="ru-home-comparison-link">FundedNext или BrightFunded: сравнить отличия <ArrowRight size={15} aria-hidden="true" /></Link>
-        </div>
-      </section>
-
-      <div className="ru-section ru-home-category-section" role="navigation" aria-label="Навигация по разделам" data-russian-home-category-rail="decision-first">
-        <div className="ru-shell">
-          <div className="ru-category-rail">
-            <span className="ru-category-rail__label">Выберите задачу</span>
-            <nav className="ru-category-rail__links" aria-label="Быстрые переходы">
-              <Link href="/ru/luchshie-prop-firmy">Сравнить фирмы <ArrowRight size={14} aria-hidden="true" /></Link>
-              <Link href="/ru/obzor-fundednext">Обзор FundedNext <ArrowRight size={14} aria-hidden="true" /></Link>
-              <Link href="/ru/vyplaty-prop-firm">Проверить выплаты <ArrowRight size={14} aria-hidden="true" /></Link>
-              <Link href="/ru/dlya-russkoyazychnykh-treyderov">Для трейдеров по всему миру <ArrowRight size={14} aria-hidden="true" /></Link>
-              <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские компании <ArrowRight size={14} aria-hidden="true" /></Link>
-            </nav>
-          </div>
-        </div>
-      </div>
-
-      <section className="ru-section" data-russian-home-next-step="reader-decision">
-        <div className="ru-shell" data-russian-home-navigation="task-first">
-          <h2>С чего начать</h2>
-          <div className="ru-grid">
-            <article className="ru-card">
-              <Scale size={22} aria-hidden="true" />
-              <h3>Сравнить фирмы</h3>
-              <p className="ru-muted">Цены, правила и редакционные оценки — чтобы составить свой короткий список.</p>
-              <Link className="ru-card-link" href="/ru/luchshie-prop-firmy">Открыть рейтинг →</Link>
-            </article>
-            <article className="ru-card">
-              <Zap size={22} aria-hidden="true" />
-              <h3>Начать без челленджа</h3>
-              <p className="ru-muted">Разберитесь, чем отсутствие оценки отличается от отсутствия ограничений.</p>
-              <Link className="ru-card-link" href="/ru/prop-firmy-bez-chelendzha">Сравнить счета без челленджа →</Link>
-            </article>
-            <article className="ru-card" data-russian-home-definition-entry="prop-kompanii-eto">
-              <BookOpenCheck size={22} aria-hidden="true" />
-              <h3>Понять, как это работает</h3>
-              <p className="ru-muted">За что платит трейдер, как проходит оценка и при каких условиях можно получить прибыль.</p>
-              <Link className="ru-card-link" href="/ru/chto-takoe-prop-firma">Начать с основ →</Link>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="ru-section ru-home-trust">
-        <div className="ru-shell ru-home-trust-grid">
-          <div>
-            <h2>Что стоит за сравнением</h2>
-            <p className="ru-muted">Сверяем цены и правила с сайтами самих фирм, указываем даты проверки и отмечаем противоречия. Не выдаём рекламный максимум за условия каждой программы.</p>
-            <Link href="/methodology" hrefLang="en" className="ru-card-link">Методика оценки — на английском →</Link>
-          </div>
-          <div data-russian-country-boundary="language-not-access">
-            <h3>Сначала проверьте свою страну</h3>
-            <p className="ru-muted">Русский язык не означает доступность в России. До оплаты уточните требования к гражданству, проживанию и документам, а также способы оплаты и выплаты.</p>
-            <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="ru-card-link" data-russian-home-diaspora-entry="trust">Проверить страну и KYC →</Link>
-            <p className="ru-source-line">Нужна местная биржевая торговля? <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские проп-компании разобраны отдельно.</Link></p>
-          </div>
-        </div>
-      </section>
-
-      <section className="ru-section">
-        <div className="ru-shell" data-russian-home-guides="selected-three">
-          <h2>Перед покупкой программы</h2>
-          <div className="ru-home-guide-list">
-            <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm"><span><strong>Как пройти оценку, не нарушив правила</strong><span>Цель по прибыли, просадка и этапы челленджа.</span></span><ArrowRight size={20} aria-hidden="true" /></Link>
-            <Link href="/ru/vyplaty-prop-firm"><span><strong>Когда и как можно получить выплату</strong><span>Сроки, способы перевода и проверка документов.</span></span><ArrowRight size={20} aria-hidden="true" /></Link>
-            <Link href="/ru/promokody-prop-firm"><span><strong>Как проверить скидку перед оплатой</strong><span>Условия предложений и итоговая цена участия.</span></span><ArrowRight size={20} aria-hidden="true" /></Link>
-          </div>
+          <ComparisonTable rows={tableRows} locale="ru" placement="ru-home-comparison" />
+          <DisclosureNote summary={<>Часть ссылок партнёрские. Порядок — не реклама. Размер счёта — не цена. Доступность для РФ проверяйте перед оплатой.</>}>
+            <p>Отметка доступа основана на поле russiaStatus и проверке условий фирм; она не заменяет проверку вашего гражданства, резидентства и способа оплаты. Нужна местная биржевая торговля? <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские проп-компании разобраны отдельно.</Link></p>
+          </DisclosureNote>
         </div>
       </section>
 
@@ -233,9 +169,85 @@ export default function RussianHomePage() {
         </div>
       </section>
 
-      <section className="ru-section">
-        <div className="ru-shell ru-content"><h2>Частые вопросы</h2><RussianFaq items={faqs} /></div>
+      <section className="th-section th-section--alt" aria-labelledby="ru-home-partners-heading">
+        <div className="th-wrap" data-russian-home-hero-partners="fundednext-bright-funded">
+          <div className="th-section__head">
+            <div>
+              <h2 id="ru-home-partners-heading">Партнёры сайта</h2>
+              <p className="ru-home-partner-hero-disclosure" data-russian-affiliate-disclosure="home-primary-partners">FundedNext и BrightFunded — наши партнёры: переход на сайт фирмы может принести нам комиссию. Это не добавляет баллы в рейтинге и не означает, что программа подходит каждому.</p>
+            </div>
+            <Link href="/ru/fundednext-vs-bright-funded" className="th-link ru-home-comparison-link">FundedNext или BrightFunded: сравнить отличия <ArrowRight size={14} aria-hidden="true" /></Link>
+          </div>
+          <div className="th-offers">
+            {featuredPartnerCards.map(item => {
+              const cheapest = tableRows.find(row => row.firmSlug === item.slug)
+              return (
+                <FeaturedOfferCard
+                  key={item.slug}
+                  locale="ru"
+                  firmSlug={item.slug}
+                  firmName={item.name}
+                  logo={item.firm?.logo}
+                  score={item.firm?.score}
+                  badge={<RuAccessBadge firm={item.slug} />}
+                  title={<h3>{item.name}</h3>}
+                  placement="ru-home-hero"
+                  logoClassName="ru-home-partner-hero-logo"
+                  code={getVerifiedCode(item.slug)}
+                  data={{ 'data-russian-home-hero-partner': item.slug }}
+                  facts={[
+                    ...(cheapest ? [{ label: 'Взнос от ($50k)', value: money(cheapest) }] : []),
+                    ...(item.firm?.maxAllocation ? [{ label: 'Макс. капитал', value: item.firm.maxAllocation.split(/[;(]| per /)[0].trim() }] : []),
+                  ]}
+                  primary={<RuGoLink firm={item.slug} href={item.heroHref} rel="sponsored nofollow noopener" target="_blank" prefetch={false} className="th-btn th-btn--amber ru-home-partner-hero-review">{`Проверить условия ${item.name} ↗`}</RuGoLink>}
+                  secondary={<Link href={item.reviewHref} className="th-btn th-btn--ghost">{`Читать обзор ${item.name}`}</Link>}
+                >
+                  <p>{item.fresh
+                    ? item.slug === 'fundednext'
+                      ? 'Программы с оплатой в USD: с оценочными этапами или без челленджа — Stellar Instant. В обзоре разбираем различия в просадке и выплатах.'
+                      : 'Программы с оплатой в EUR и одним или двумя оценочными этапами. В обзоре разбираем лимиты убытка и ожидание первой выплаты.'
+                    : 'Условия программ требуют повторной проверки. В обзоре объясняем модель работы и вопросы, которые стоит задать фирме перед оплатой.'}</p>
+                  <p className="ru-home-partner-country-note" data-russian-partner-country-warning={item.slug} data-russian-partner-country-source-status={item.countryFresh ? 'dated' : 'recapture-required'} data-russian-home-bright-country-conflict={item.slug === 'bright-funded' ? 'help-six-terms-five' : undefined}>
+                    {item.slug === 'fundednext'
+                      ? item.countryFresh
+                        ? `Доступность для резидентов России не подтверждена: официальные страницы, проверенные ${item.countryCapturedAt}, противоречат друг другу.`
+                        : `Страновые условия требуют новой проверки. В источниках от ${item.countryCapturedAt} были противоречия для резидентов России; это не подтверждает доступ сегодня.`
+                      : <>
+                        <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="nofollow noopener">Справка BrightFunded</a> от {item.countryCapturedAt} включает Пакистан;{' '}
+                        <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {item.brightTermsCapturedAt} его не называют.{' '}
+                        {item.countryFresh
+                          ? 'Россия не названа в обоих списках, но это не подтверждает доступ вашего профиля. Уточните до оплаты.'
+                          : 'Страновые условия требуют повторной проверки; отсутствие России в старых списках не подтверждает доступ сегодня.'}
+                      </>}
+                  </p>
+                  <p className="ru-source-line ru-home-checked">{item.captureDate ? `Источники проверены: ${item.captureDate}` : 'Обновление источников ожидается'}</p>
+                </FeaturedOfferCard>
+              )
+            })}
+          </div>
+        </div>
       </section>
+
+      <div data-russian-home-next-step="reader-decision">
+        <Guides
+          id="ru-home-guides-heading"
+          title="С чего начать"
+          data={{ 'data-russian-home-navigation': 'task-first' }}
+          items={[
+            { href: '/ru/luchshie-prop-firmy', label: 'Рейтинг', title: 'Сравнить фирмы', description: 'Цены, правила и редакционные оценки — чтобы составить свой короткий список.' },
+            { href: '/ru/prop-firmy-bez-chelendzha', label: 'Без оценки', title: 'Начать без челленджа', description: 'Разберитесь, чем отсутствие оценки отличается от отсутствия ограничений.' },
+            { href: '/ru/chto-takoe-prop-firma', label: 'Основы', title: 'Понять, как это работает', description: 'За что платит трейдер, как проходит оценка и когда можно получить прибыль.', data: { 'data-russian-home-definition-entry': 'prop-kompanii-eto' } },
+          ]}
+          linksData={{ 'data-russian-home-guides': 'selected-three' }}
+          links={[
+            { href: '/ru/kak-rabotayut-chellendzhi-prop-firm', title: 'Как пройти оценку, не нарушив правила', description: 'Цель по прибыли, просадка и этапы челленджа.' },
+            { href: '/ru/vyplaty-prop-firm', title: 'Когда и как можно получить выплату', description: 'Сроки, способы перевода и проверка документов.' },
+            { href: '/ru/promokody-prop-firm', title: 'Как проверить скидку перед оплатой', description: 'Условия предложений и итоговая цена участия.' },
+          ]}
+        />
+      </div>
+
+      <HomeFaq id="ru-home-faq-heading" title="Частые вопросы" items={faqs} />
     </div>
   )
 }

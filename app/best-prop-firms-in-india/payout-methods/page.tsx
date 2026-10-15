@@ -1,3 +1,4 @@
+import { firmSlug } from '@/lib/firmSlug'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -119,7 +120,7 @@ export default function Page() {
   const excluded = INDIA_EVIDENCE.filter(entry => entry.rbiAlert.status === 'named')
   const firmsBySlug = new Map(
     getAllFirms().map(firm => [
-      firm.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+      firmSlug(firm.name),
       firm,
     ]),
   )

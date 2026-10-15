@@ -735,41 +735,6 @@
     ]
   },
   {
-    "id": "the-funded-trader-current-lineup-conflict-2026-09-14",
-    "firmSlug": "the-funded-trader",
-    "firmName": "The Funded Trader",
-    "productSlugs": [
-      "knight",
-      "knight-pro",
-      "classic-1-step",
-      "royal",
-      "royal-pro",
-      "classic-2-step",
-      "dragon"
-    ],
-    "kind": "source-conflict",
-    "status": "watch",
-    "observedAt": "2026-09-14",
-    "lastCheckedAt": "2026-09-16",
-    "sourceConflictEvidenceRefs": [
-      {
-        "file": "the-funded-trader-lineup-conflict-evidence.json",
-        "section": "currentHomepage"
-      },
-      {
-        "file": "the-funded-trader-lineup-conflict-evidence.json",
-        "section": "challengeConfigurator"
-      }
-    ],
-    "title": "The Funded Trader's current lineup and package pricing do not map cleanly to the older tier capture",
-    "summary": "The firm's first-party homepage and configurator currently return a Deployment Paused page in a direct browser check. Cached package-level allocation and price snippets remain historical context, not a named-programme tier map, so the older product ladder remains unresolved.",
-    "traderImpact": "Do not present The Funded Trader as available to a Russian resident. Keep the last structured price capture dated 27 July 2026 and verify the selected programme, platform, add-ons, country eligibility and checkout total directly before paying.",
-    "sourceUrls": [
-      "https://www.thefundedtraderprogram.com/",
-      "https://www.thefundedtraderprogram.com/?p=36045"
-    ]
-  },
-  {
     "id": "alpha-capital-pricing-refresh-2026-10-06",
     "firmSlug": "alpha-capital",
     "firmName": "Alpha Capital",
