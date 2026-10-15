@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
+import { RuRelatedLinks } from '@/components/RuPendingLink'
 import {
   ArrowRight,
   BadgeDollarSign,
@@ -455,6 +456,7 @@ export default function RussianWhatIsPropFirmPage() {
 
       <section className="ru-section" id="faq">
         <div className="ru-shell ru-content">
+          <RuRelatedLinks marker="what-is-prop-firm" items={[{ href: '/ru/prop-trejding', label: 'что такое проп-трейдинг' }, { href: '/ru/funded-account', label: 'funded account' }, { href: '/ru/prop-kompanii-v-rossii', label: 'проп-компании в России' }, { href: '/ru/prop-kompanii-otzyvy', label: 'отзывы о проп-компаниях' }, { href: '/ru/obzor-the5ers', label: 'обзор The5ers' }]} />
           <h2>Частые вопросы</h2>
           <RussianFaq items={faqs} />
           <div className="ru-notice">

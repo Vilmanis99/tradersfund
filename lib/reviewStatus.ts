@@ -6,14 +6,10 @@
  * but are excluded from the sitemap, current comparison discovery and
  * alternative cards until a complete source recapture clears the hold.
  */
-export const SOURCE_HOLD_REVIEW_SLUGS = new Set([
-  'ofp-funding-review',
-  'the-funded-trader-review',
+export const SOURCE_HOLD_REVIEW_SLUGS = new Set<string>([
 ])
 
-export const SOURCE_HOLD_FIRM_SLUGS = new Set([
-  'ofp-funding',
-  'the-funded-trader',
+export const SOURCE_HOLD_FIRM_SLUGS = new Set<string>([
 ])
 
 export function isSourceHoldReview(slug: string): boolean {

@@ -27,6 +27,7 @@ import {
   russianRouteDateModified,
 } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { goLinkRel } from '@/lib/russiaAvailability'
 
 const PATH = '/ru/luchshie-kripto-prop-firmy'
 const TITLE = 'Крипто-проп-фирмы 2026: цены, инструменты и правила'
@@ -44,6 +45,9 @@ export const metadata: Metadata = {
     'крипто проп фирма',
     'крипто проп компания',
     'проп трейдинг компании криптовалют',
+    'проп компании криптовалюты',
+    'проп компании для трейдеров криптовалют',
+    'проп компании крипта',
   ],
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
   openGraph: { title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
@@ -412,6 +416,36 @@ export default function RussianCryptoPropFirmsPage() {
                 <Link href="/blog/crypto-fund-trader-review" hrefLang="en" className="btn-outline">Полный обзор CFT — на английском</Link>
                 <Link href="/prop-firm-challenge-changes?products=crypto-fund-trader%3Ainstant%2Ccrypto-fund-trader%3Aascend%2Ccrypto-fund-trader%3Abreak#change-ledger" hrefLang="en" className="ru-card-link">Источники исправлений — на английском →</Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="ru-section" id="dostup-iz-rossii">
+          <div className="ru-shell ru-content" data-russian-crypto-russia-access="2026-10-14">
+            <h2>Проп-компании криптовалюты: что доступно трейдерам из России</h2>
+            <p>
+              Этот блок — не рейтинг, а ответ на вопрос «куда можно зайти из РФ». На 14.10.2026 криптоинструменты есть в профилях
+              FundedNext, Crypto Fund Trader, FundingPips, FTMO, E8 Markets и ряда других фирм, но Россию из них не ограничивают только
+              FundedNext (CFD) и Crypto Fund Trader (на Match-Trader). Ещё один вариант вне нашего рейтинга — Upscale: ограничений по
+              странам не заявлено, KYC нет, выплаты в USDT на собственный кошелёк.
+            </p>
+            <h3>Проп-компании для трейдеров криптовалют: что проверить</h3>
+            <ul>
+              <li><strong>Платформа.</strong> У Crypto Fund Trader на Match-Trader ограничений по странам нет, а MT5 закрыт только для резидентов США (по данным на 14.10.2026).</li>
+              <li><strong>Цена входа.</strong> Crypto Fund Trader Evaluation на $10 000 — $110, на $100 000 — $660 (по данным на 08.09.2026).</li>
+              <li><strong>Доля.</strong> 80% в оценочных программах Crypto Fund Trader, но 50% в Instant — подробнее в блоке выше.</li>
+              <li><strong>Выплата.</strong> Crypto Fund Trader платит в USDT (ERC20/TRC20), BTC, ETH или банковским переводом; FundedNext — в USDT и USDC.</li>
+            </ul>
+            <h3>Крипта в проп-трейдинге: оплата из России</h3>
+            <p>
+              Crypto Fund Trader принимает карту, PayPal, Apple Pay, Google Pay и криптовалюту (<a href="https://cryptofundtrader.com/faq/" target="_blank" rel="nofollow noopener noreferrer">FAQ CFT</a>,
+              по данным на 14.10.2026). Работают ли карты, выпущенные в России, фирма не сообщает; криптовалюта — способ, который от карты не зависит. Полная таблица доступа — на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для россиян</Link>.
+            </p>
+            <div className="ru-actions">
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-crypto-russia-access-1" rel={goLinkRel('fundednext')} className="btn-primary">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+              <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-crypto-russia-access-2" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+              <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-crypto-russia-access-3" rel={goLinkRel('fundingpips')} className="btn-outline">FundingPips</RuGoLink>
+              <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-crypto-russia-access-4" rel={goLinkRel('ftmo')} className="btn-outline">FTMO</RuGoLink>
             </div>
           </div>
         </section>

@@ -18,7 +18,8 @@ export default function CopyableCodePill({
   analyticsOfferType,
 }: {
   code: string
-  pct: number
+  /** Omit when the offer has no single percentage (e.g. "up to 33%"). */
+  pct?: number
   locale?: 'en' | 'ru'
   analyticsFirm?: string
   analyticsPlacement?: string
@@ -26,8 +27,8 @@ export default function CopyableCodePill({
 }) {
   const { copied, failed, copy } = useCopyCode(code)
   const labels = locale === 'ru'
-    ? { copy: `Скопировать код скидки ${code}`, copied: 'Скопировано', offer: `${pct}% скидка — код ${code}` }
-    : { copy: `Copy discount code ${code}`, copied: 'Copied!', offer: `${pct}% off — code ${code}` }
+    ? { copy: `Скопировать код скидки ${code}`, copied: 'Скопировано', offer: pct ? `${pct}% скидка — код ${code}` : `Код ${code}` }
+    : { copy: `Copy discount code ${code}`, copied: 'Copied!', offer: pct ? `${pct}% off — code ${code}` : `Code ${code}` }
 
   const handleCopy = async () => {
     if (await copy()) {
@@ -38,7 +39,7 @@ export default function CopyableCodePill({
           firm: analyticsFirm,
           placement: analyticsPlacement,
           offer_type: analyticsOfferType,
-          discount_pct: pct,
+          discount_pct: pct ?? null,
         })
       }
     }

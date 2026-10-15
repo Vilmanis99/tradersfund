@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import Link from '@/components/SafeLink'
+import RuPendingLink from '@/components/RuPendingLink'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianPartnerReview from '@/components/RussianPartnerReview'
 import { challengeTierEconomics, getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
@@ -8,8 +10,11 @@ import accessEvidence from '@/content/data/russian-fundingpips-access-evidence.j
 
 const PATH = '/ru/obzor-fundingpips'
 export const revalidate = 3600
-const TITLE = 'FundingPips: обзор 2026, цены, правила и выплаты'
-const DESCRIPTION = 'Обзор FundingPips на русском: продукты и цены в USD, варианты сплита, просадка, выплаты и проверка страны перед регистрацией.'
+const TITLE = 'FundingPips: отзывы, обзор 2026 и доступ из России'
+const DESCRIPTION = 'FundingPips (Funding Pips): отзывы трейдеров, цены и правила 2026, промокод и статус доступа из России. Проверено 14.10.2026.'
+const RU_CHECKED = '14.10.2026'
+const TRUSTPILOT_URL = 'https://www.trustpilot.com/review/fundingpips.com'
+const TERMS_URL = 'https://fundingpips.com/terms-and-conditions'
 const REWARD_METHODS_URL = 'https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods'
 const REWARD_METHODS_CAPTURED_AT = '2026-09-30'
 const GET_STARTED_URL = accessEvidence.sourceUrl
@@ -53,6 +58,42 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
 
   return (
     <>
+      <section className="ru-section" id="dostup-iz-rossii">
+        <div className="ru-shell ru-content" data-russian-fundingpips-russia="unclear">
+          <h2>Доступна ли FundingPips из России</h2>
+          <p><span className="ru-badge ru-badge--unclear">Доступ для РФ не ясен · проверено {RU_CHECKED}</span></p>
+          <p>
+            Россия в списках FundingPips прямо не названа. Но <a href={TERMS_URL} target="_blank" rel="nofollow noopener noreferrer">условия</a> исключают
+            резидентов стран из санкционных списков FATF и ЕС/ООН, а также Вьетнама и ОАЭ; <a href={GET_STARTED_URL} target="_blank" rel="nofollow noopener noreferrer">справка</a>{' '}
+            от {accessEvidence.sourceCapturedAt} добавляет Иран. Попадает ли под эту формулировку резидент России — из текста не следует. Кроме того, выплата через
+            Rise требует KYC, а Pay to Card и банковский перевод работают только в перечисленных регионах.
+          </p>
+          <p>
+            {'Кнопка FundingPips на странице помечена бейджем «Доступ для РФ не ясен»: если вы резидент России, до оплаты получите письменный ответ поддержки. '}
+            Фирмы, которые на{' '}
+            {RU_CHECKED} Россию не ограничивают: FundedNext (CFD), BrightFunded, Crypto Fund Trader — таблица на странице{' '}
+            <Link href="/ru/dlya-russkoyazychnykh-treyderov">«Проп-фирмы для россиян»</Link>. VPN и неверные данные не решают проблему, а создают новую на этапе KYC.
+          </p>
+        </div>
+      </section>
+
+      <section className="ru-section" id="otzyvy">
+        <div className="ru-shell ru-content" data-russian-fundingpips-reviews="trustpilot">
+          <h2>FundingPips: отзывы трейдеров</h2>
+          <p>
+            На <a href={TRUSTPILOT_URL} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> у FundingPips оценка 4,5 при 63 734 отзывах
+            (по данным на 27.07.2026). Высокая оценка при таком объёме говорит о массовой аудитории, но не о том, что
+            ваша выплата пройдёт: отзывы не проверяют KYC и страну автора.
+          </p>
+          <p>
+            Как читать отзывы о FundingPips: ищите дату (правила выплат менялись 15 и 26 августа 2026 года), название продукта — Zero,
+            Pro, Flex и Standard живут по разным правилам — и названное правило, из-за которого отказали. Жалоба «не выплатили» без
+            даты и продукта мало что значит.
+            Методика — на странице <Link href="/ru/otzyvy-prop-firm">отзывы о проп-фирмах</Link>. Мастер-счёт FundingPips — пример того, что называют <RuPendingLink href="/ru/funded-account">funded account</RuPendingLink>; основы — в разделе <RuPendingLink href="/ru/prop-trejding">проп-трейдинг</RuPendingLink>.
+          </p>
+        </div>
+      </section>
+
       <section className="ru-section" id="reward-routes">
         <div className="ru-shell" data-russian-fundingpips-deep-dive="reward-routes">
           <div className="ru-content">
@@ -158,6 +199,49 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
         </div>
       </section>
 
+      <section className="ru-section" id="pravila">
+        <div className="ru-shell ru-content" data-russian-fundingpips-rules="verified">
+          <h2>Правила FundingPips</h2>
+          <p>Цели и лимиты по продуктам (данные проверены 29.09.2026):</p>
+          <div className="ru-table-wrap">
+            <table className="ru-table" data-russian-fundingpips-rules-table="products">
+              <caption className="hidden-caption">Правила FundingPips по продуктам</caption>
+              <thead><tr><th>Продукт</th><th>Цель</th><th>Дневной лимит</th><th>Максимальный убыток</th></tr></thead>
+              <tbody>
+                <tr><td>1 Step Flex</td><td>12%</td><td>3%</td><td>12%, статический</td></tr>
+                <tr><td>2 Step Flex</td><td>10% и 8%</td><td>4%</td><td>12%, статический</td></tr>
+                <tr><td>2 Step Pro</td><td>6% и 6%</td><td>3%</td><td>6%, статический</td></tr>
+                <tr><td>2 Step Standard</td><td>8% и 5%</td><td>5%</td><td>10%, статический</td></tr>
+                <tr><td>FundingPips Zero</td><td>без оценки</td><td>3%</td><td>5%, плавающий; открытый риск не более 1%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul>
+            <li><strong>Правило стабильности:</strong> от 15% до 35% в зависимости от продукта; у части программ есть минимум прибыльных дней (у Zero — 7 дней).</li>
+            <li><strong>Новости:</strong> торговля ограничена; у Zero окно новостей запрещено.</li>
+            <li><strong>Перенос позиций:</strong> через ночь в будни разрешён; на этапе оценки 2 Step Standard перенос через выходные разрешён, а на мастер-счёте требует опции Swing; у Zero удержание через выходные — серьёзное нарушение.</li>
+            <li><strong>Советники (EA) и копирование сделок:</strong> ограничены. Точные условия смотрите в правилах выбранного продукта.</li>
+            <li><strong>Минимальные дни:</strong> 2 Step Flex — {twoStepFlex?.minTradingDays ?? '—'} день на фазу (маршрут 80%), 2 Step Pro — {pro?.minTradingDays ?? '—'} дня на фазу.</li>
+            <li><strong>Масштабирование:</strong> план масштабирования есть; условия зависят от продукта.</li>
+            <li><strong>Платформы:</strong> MT5, cTrader, Match-Trader; MT5 недоступен в США и Канаде.</li>
+          </ul>
+        </div>
+      </section>
+
+
+
+      <section className="ru-section" id="promokod">
+        <div className="ru-shell ru-content" data-russian-fundingpips-promo="pending">
+          <h2>Промокод FundingPips</h2>
+          <p>
+            <strong>Промокод FundingPips: HELLO</strong> — скидка 20% на первую покупку. Не действует на счёт $100K; дата окончания не
+            опубликована. Источник — Prop Firm Tracker, проверено {RU_CHECKED}. Пример: если счёт стоит $100, с кодом вы заплатите $80.
+            Все проверенные коды — в разделе <Link href="/ru/promokody-prop-firm">промокоды проп-фирм</Link>.
+          </p>
+          <p>Если код у вас уже есть, сверьте итоговую сумму до подтверждения платежа: счета FundingPips номинированы в USD, и при оплате в другой валюте добавится конвертация банка.</p>
+        </div>
+      </section>
+
       <section className="ru-section" id="fit">
         <div className="ru-shell ru-content" data-russian-fundingpips-deep-dive="fit">
           <h2>Кому FundingPips подходит, а кому лучше сравнить другую фирму</h2>
@@ -189,7 +273,7 @@ export default function RussianFundingPipsReviewPage() {
     <RussianPartnerReview
       path={PATH}
       title={TITLE}
-      headline="FundingPips: обзор 2026 — цены, правила и выплаты"
+      headline="FundingPips: отзывы и обзор 2026 — цены, правила, доступ из России"
       description={DESCRIPTION}
       firmName="FundingPips"
       firmSlug="fundingpips"
@@ -223,11 +307,15 @@ export default function RussianFundingPipsReviewPage() {
         ],
       }}
       analysisTocItems={[
+        { href: '#dostup-iz-rossii', label: 'Доступ из России' },
+        { href: '#otzyvy', label: 'Отзывы о FundingPips' },
         { href: '#reward-routes', label: 'Циклы выплат и 100%' },
         { href: '#payout-methods', label: 'Карта, криптовалюта, Rise и банк' },
         { href: '#strategy', label: 'Платформы и торговые правила' },
         { href: '#true-cost', label: 'Полная стоимость 17 уровней' },
         { href: '#pros-cons', label: 'Плюсы и ограничения' },
+        { href: '#pravila', label: 'Правила FundingPips' },
+        { href: '#promokod', label: 'Промокод FundingPips' },
         { href: '#fit', label: 'Кому подходит FundingPips' },
       ]}
       relatedLinks={[
@@ -264,6 +352,14 @@ export default function RussianFundingPipsReviewPage() {
           a: accessCurrent
             ? `Доступ нужно подтвердить для конкретного трейдера. По справке FundingPips от ${accessEvidence.sourceCapturedAt} ограничены резиденты Ирана, Вьетнама, ОАЭ и юрисдикций из применимых списков FATF и санкционных списков ЕС/ООН. Это не подтверждает оплату, KYC и выплату для резидента России. Получите письменный ответ поддержки до оплаты; не обходите ограничения через VPN или неверные данные.`
             : `Страновая справка FundingPips от ${accessEvidence.sourceCapturedAt} требует повторной проверки. Прежний список ограничений не подтверждает регистрацию, оплату, KYC или выплату резиденту России сегодня. Получите письменный ответ поддержки до оплаты; не обходите ограничения через VPN или неверные данные.`,
+        },
+        {
+          q: 'Есть ли рабочий промокод FundingPips?',
+          a: 'Да: HELLO даёт 20% на первую покупку, кроме счёта $100K; дата окончания не опубликована (Prop Firm Tracker, проверено 14.10.2026). Доступ для РФ при этом не ясен.',
+        },
+        {
+          q: 'Какие отзывы о FundingPips?',
+          a: 'На Trustpilot — 4,5 при 63 734 отзывах (снимок от 27.07.2026). Читайте отзывы с датой и названием продукта: правила выплат менялись в августе 2026 года.',
         },
         {
           q: 'Какие способы выплаты есть у FundingPips?',

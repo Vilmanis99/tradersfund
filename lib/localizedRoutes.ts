@@ -70,13 +70,13 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/ftmo-dlya-rossiyan': '2026-10-14',
   '/ru/fundednext-vs-fundingpips': '2026-09-14',
   '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-08-28',
-  '/ru/luchshie-kripto-prop-firmy': '2026-09-08',
-  '/ru/luchshie-prop-firmy': '2026-10-01',
+  '/ru/luchshie-kripto-prop-firmy': '2026-10-14',
+  '/ru/luchshie-prop-firmy': '2026-10-14',
   '/ru/obzor-bright-funded': '2026-10-01',
   '/ru/obzor-eratrade': '2026-10-01',
-  '/ru/obzor-ftmo': '2026-09-08',
-  '/ru/obzor-fundednext': '2026-10-01',
-  '/ru/obzor-fundingpips': '2026-09-08',
+  '/ru/obzor-ftmo': '2026-10-14',
+  '/ru/obzor-fundednext': '2026-10-14',
+  '/ru/obzor-fundingpips': '2026-10-14',
   '/ru/obzor-kascapital': '2026-10-01',
   '/ru/obzor-proplive': '2026-10-01',
   '/ru/obzor-teamtraders': '2026-10-01',
@@ -87,6 +87,11 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/prop-firmy-s-ctrader': '2026-10-01',
   '/ru/vyplaty-prop-firm': '2026-10-01',
 } as const satisfies Record<RussianRoutePath, string>
+
+/** Internal href for a Russian route only once it is registered above; null for unreleased pages. */
+export function russianPublishedHref(href: string): string | null {
+  return isRussianRoutePath(href.split('#')[0]) ? href : null
+}
 
 export function isRussianRoutePath(pathname: string): pathname is RussianRoutePath {
   return Object.prototype.hasOwnProperty.call(RUSSIAN_ROUTE_EDITORIAL_DATES, pathname)
