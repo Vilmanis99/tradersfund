@@ -2320,7 +2320,16 @@
     "overnightAllowed": null,
     "weekendAllowed": null,
     "copyTradingAllowed": false,
-    "countriesRestricted": [],
+    "countriesRestricted": [
+      "Russia",
+      "Iran",
+      "Iraq",
+      "North Korea",
+      "Syria",
+      "Afghanistan",
+      "Yemen",
+      "Somalia"
+    ],
     "ratings": {
       "conditions": null,
       "support": null,
@@ -2334,7 +2343,7 @@
     "trustpilotUrl": "https://www.trustpilot.com/review/ofpfunding.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-10-15",
-    "russiaStatus": "unverified",
+    "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "rules": {
       "capturedAt": "2026-10-14",
@@ -5312,7 +5321,9 @@
       "Venezuela",
       "Vietnam",
       "Yemen",
-      "Zimbabwe"
+      "Zimbabwe",
+      "Palestine",
+      "Turkey"
     ],
     "ratings": {
       "conditions": null,
@@ -5768,7 +5779,8 @@
       "Vietnam",
       "Venezuela",
       "Yemen",
-      "Zimbabwe"
+      "Zimbabwe",
+      "Tajikistan"
     ],
     "ratings": {
       "conditions": null,
@@ -6211,7 +6223,14 @@
       "Venezuela",
       "Vietnam",
       "Yemen",
-      "Zimbabwe"
+      "Zimbabwe",
+      "Antarctica",
+      "Azerbaijan",
+      "Kazakhstan",
+      "Kyrgyzstan",
+      "Macao",
+      "Palestine",
+      "Tajikistan"
     ],
     "ratings": {
       "conditions": null,
