@@ -6,7 +6,7 @@
     "code": "HELLO",
     "pct": 20,
     "amountLabel": "20% off",
-    "scope": "First purchase; not valid on the $100K account",
+    "scope": "First purchase only; excludes $100K accounts",
     "verifiedOn": "2026-10-15",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
     "sourceLabel": "FundingPips Help Center: Get Started (checked 2026-10-15)",
@@ -24,6 +24,22 @@
     "sourceUrl": "https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer",
     "sourceLabel": "FundedNext Help Center: Stellar October Returns Offer (checked 2026-10-15)",
     "ctaLabel": "Use code STRTN",
-    "note": "Live from 12 Oct 2026, 1:00 PM GMT+6; no set end date. Up to 33% off globally (up to 20% in the USA) on Stellar Lite 5K, 2-Step 6K, 1-Step 6K and Instant 2K. Max 5 redemptions per user; not valid on resets."
+    "note": "Live from 12 Oct 2026, 1:00 PM GMT+6; no set end date. Up to 33% off globally (up to 20% in the USA) on Stellar Lite 5K, 2-Step 6K, 1-Step 6K and Instant 2K. Max 5 redemptions per user; not valid on resets.",
+    "pct": 33
+  },
+  {
+    "firmSlug": "bright-funded",
+    "status": "partner",
+    "mechanism": "checkout-code",
+    "code": "DOUBLE25",
+    "pct": 25,
+    "amountLabel": "25% off",
+    "scope": "Evaluations; homepage plan table marks every 2-Step size -25% (1-Step not confirmed)",
+    "verifiedOn": "2026-10-16",
+    "sourceUrl": "https://brightfunded.com/",
+    "sourceLabel": "BrightFunded homepage: Double Up Offer (checked 2026-10-16)",
+    "expiresOn": null,
+    "ctaLabel": "Use code DOUBLE25",
+    "note": "Advertised on the homepage only; checkout NOT verified (account login required). Double Up Offer: 25% off + 15% Evaluation Profit Reward + free account upon payout. No end date or terms shown. Base 2-Step prices before code (EUR): 5K 47, 10K 87, 25K 187, 50K 277, 100K 477, 200K 947."
   }
 ]

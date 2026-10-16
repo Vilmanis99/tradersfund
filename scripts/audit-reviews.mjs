@@ -7590,7 +7590,9 @@ function checkDiscountHub() {
     }
   }
 
-  const fundedNextDeal = deals.find(deal => deal.firmSlug === 'fundednext')
+  // Only the earned Free Trial coupon must mirror free-trials.json; a separate
+  // public FundedNext checkout code (e.g. STRTN) is audited by the generic rules above.
+  const fundedNextDeal = deals.find(deal => deal.firmSlug === 'fundednext' && deal.mechanism === 'earned-coupon')
   const fundedNextTrial = freeTrials.find(trial => trial.firmSlug === 'fundednext')
   if (fundedNextDeal) {
     const coupon = fundedNextTrial?.completionCoupon

@@ -72,6 +72,8 @@ export interface Firm {
   maxAllocation: string
   platforms: string[]
   /** A platform-only check; never refreshes prices, firm terms or individual eligibility. */
+  /** Official evidence for the `assets` list (e.g. a newly added asset class). */
+  assetsEvidence?: { sourceUrl: string; sourceCapturedAt: string; sourceQuote: string; notes?: string }
   platformEvidence?: {
     sourceUrl: string
     sourceCapturedAt: string

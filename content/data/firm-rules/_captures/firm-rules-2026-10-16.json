@@ -1,0 +1,31 @@
+{
+  "capturedAt": "2026-10-16",
+  "accessNotes": "BrightFunded payout re-read 2026-10-16 via WebFetch (non-US egress): help article dated March 18, 2026 and brightfunded.com homepage.",
+  "pagesRead": [
+    "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+    "https://brightfunded.com/"
+  ],
+  "firms": {
+    "bright-funded": {
+      "payoutFrequency": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+            "quote": "You can request your first Reward Split after 30 days after you place your first trade on your Funded Account. After your first Reward Split, you can request a Reward Split bi-weekly (14 days)."
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+            "quote": "You can select the following add-ons at the checkout for fastest and bigger payouts: ⚡️ Bi-weeky add-on (Payouts every 14 days) ⚡️ Weekly add-on (Payouts every 7 days)"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/",
+            "quote": "24-Hour, Guaranteed Payouts, Weekly Payouts, Available"
+          }
+        ],
+        "value": null,
+        "summary": "First Reward Split 30 days after the first funded trade, then every 14 days; 7-day (weekly) cycle via paid add-on",
+        "note": "The official payout article contradicts itself: it says that after the first Reward Split you can request bi-weekly (14 days) by default, yet also sells a 'Bi-weeky add-on (Payouts every 14 days)' alongside the weekly add-on. It is unclear whether 14-day payouts are standard or require the add-on. The homepage advertises 'Weekly Payouts Available' (add-on)."
+      }
+    }
+  }
+}

@@ -43,12 +43,23 @@ for (const f of fs.readdirSync(path.join(ROOT, 'content/data/challenges/_capture
 }
 
 const rulesCapDir = path.join(ROOT, 'content/data/firm-rules/_captures')
-let fresh = null
+// All fresh firm-rules captures (<=30 days) are merged oldest→newest; a newer file
+// replaces a field for a firm. Each field remembers which file/date it came from.
+const freshFiles = []
 for (const f of fs.existsSync(rulesCapDir) ? fs.readdirSync(rulesCapDir) : []) {
   const m = f.match(/^firm-rules-(\d{4}-\d{2}-\d{2})\.json$/); if (!m || age(m[1]) > MAX_AGE) continue
-  if (!fresh || m[1] > fresh.date) fresh = { date: m[1], file: `content/data/firm-rules/_captures/${f}` }
+  freshFiles.push({ date: m[1], file: `content/data/firm-rules/_captures/${f}` })
 }
-const freshData = fresh ? JSON.parse(fs.readFileSync(path.join(ROOT, fresh.file), 'utf8')).firms : {}
+freshFiles.sort((a, b) => a.date.localeCompare(b.date))
+const freshData = {}
+for (const ff of freshFiles) {
+  const firmsIn = JSON.parse(fs.readFileSync(path.join(ROOT, ff.file), 'utf8')).firms
+  for (const [slug, fields] of Object.entries(firmsIn)) {
+    freshData[slug] ??= {}
+    for (const [field, ov] of Object.entries(fields)) freshData[slug][field] = { ...ov, _src: ff }
+  }
+}
+
 
 const firmsPath = path.join(ROOT, 'content/data/firms.json')
 const firms = JSON.parse(fs.readFileSync(firmsPath, 'utf8'))
@@ -83,7 +94,7 @@ for (const firm of firms) {
     }
     const ov = freshData[slug]?.[field]
     if (ov) {
-      const fe = ov.evidence.map(e => ({ sourceUrl: e.sourceUrl, quote: e.quote, quoteKind: 'verbatim', capturedAt: fresh.date, captureFile: fresh.file, productSlug: null }))
+      const fe = ov.evidence.map(e => ({ sourceUrl: e.sourceUrl, quote: e.quote, quoteKind: 'verbatim', capturedAt: ov._src.date, captureFile: ov._src.file, productSlug: null }))
       // fresh verbatim reads replace older paraphrased capture notes for this field
       const keep = evidence.filter(e => e.quoteKind === 'verbatim')
       evidence.splice(0, evidence.length, ...fe, ...keep)
@@ -111,11 +122,11 @@ for (const firm of firms) {
   }
   const pov = freshData[slug]?.platforms
   rules.platforms = pov
-    ? { value: pov.value, summary: pov.value.join(', '), byProduct: null, evidence: pov.evidence.map(e => ({ sourceUrl: e.sourceUrl, quote: e.quote, quoteKind: 'verbatim', capturedAt: fresh.date, captureFile: fresh.file, productSlug: null })) }
+    ? { value: pov.value, summary: pov.value.join(', '), byProduct: null, evidence: pov.evidence.map(e => ({ sourceUrl: e.sourceUrl, quote: e.quote, quoteKind: 'verbatim', capturedAt: pov._src.date, captureFile: pov._src.file, productSlug: null })) }
     : prevPlatforms ?? { value: null, summary: null, byProduct: null, evidence: [] }
   const hasUsd = rules.dailyLossUsd.summary || rules.maxLossUsd.summary
   rules.lossLimitUnit = rules.maxLossPct.summary || rules.dailyLossPct.summary ? (hasUsd ? 'mixed' : 'pct') : hasUsd ? 'usd' : null
-  if (fresh && freshData[slug]) rules.freshReadFile = fresh.file
+  if (freshData[slug]) rules.freshReadFile = Object.values(freshData[slug]).map(o => o._src.file).sort().at(-1)
   // Top-level firm.platforms is derived from the evidence-backed rules field so both places agree.
   if (Array.isArray(rules.platforms.value) && rules.platforms.value.length) firm.platforms = [...rules.platforms.value]
   firm.rules = rules
