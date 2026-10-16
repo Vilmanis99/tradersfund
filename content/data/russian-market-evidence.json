@@ -593,11 +593,11 @@
       ],
       "additionalChecks": [
         "Accepted documents vary by the trader's country of residence.",
-        "After KYC approval, the Bright Funded Risk Team performs a Security Check."
+        "After KYC approval, the BrightFunded Risk Team performs a Security Check."
       ],
       "timing": [
         "The Security Check normally takes 1–2 business days from Monday to Friday.",
-        "Bright Funded publishes a peak-period maximum of 4 business days."
+        "BrightFunded publishes a peak-period maximum of 4 business days."
       ],
       "postKyc": [
         "The trader contract is sent automatically after the Security Check is approved.",
@@ -752,15 +752,15 @@
       "requestSteps": [
         "Close all open trades and pending orders.",
         "Wait until the published pay day or later.",
-        "Submit the request from the Payout Section of the Bright Funded dashboard."
+        "Submit the request from the Payout Section of the BrightFunded dashboard."
       ],
       "processing": [
         "The first standard Reward Split is available 30 days after the first funded-account trade.",
         "The reward article says another request is possible 14 days after the first Reward Split, but also lists a 14-day bi-weekly add-on; the base follow-up cycle is unresolved for a specific order.",
-        "Bright Funded publishes a maximum of 1 day for finance-team processing after the request."
+        "BrightFunded publishes a maximum of 1 day for finance-team processing after the request."
       ],
       "fees": [
-        "Bright Funded says it does not charge an additional payout fee.",
+        "BrightFunded says it does not charge an additional payout fee.",
         "Third-party network, bank, provider and currency-conversion fees can still apply; the help article says some cases range from USD 5 to USD 50 and may rarely exceed that range."
       ],
       "countryBoundary": [
