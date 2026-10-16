@@ -1,0 +1,37 @@
+{
+  "firm": "OFP Funding",
+  "firmSlug": "ofp-funding",
+  "captureType": "restricted-countries",
+  "capturedAt": "2026-10-16T09:20:20+03:00",
+  "timezone": "Europe/Riga",
+  "method": "WebFetch (non-US egress) for the help article; curl from the box for the Terms (static legal text)",
+  "sources": [
+    {
+      "sourceUrl": "https://help.ofpfunding.com/country-restrictions/",
+      "pageLastUpdate": "08.05.2026 (as shown on page)",
+      "quote": "We cannot provide services to, or accept registrations from, individuals who are nationals of, currently residing in, or legal entities established in the following countries: Afghanistan, Iran, Iraq, North Korea, Russia, Somalia, Syria, Yemen",
+      "quoteNote": "List items rendered as bullets on the page; joined with commas here."
+    },
+    {
+      "sourceUrl": "https://ofpfunding.com/terms-and-conditions",
+      "quote": "\"Restricted Jurisdictions\" means Russia, Iran, Iraq, North Corea, Syria, Afghanistan, Yemen, Somalia, and any other country from time to time where local laws or regulations may result in a significant risk of civil, regulatory or criminal exposure.",
+      "quoteNote": "'North Corea' is the firm's own spelling."
+    }
+  ],
+  "countriesRestricted": [
+    "Russia",
+    "Iran",
+    "Iraq",
+    "North Korea",
+    "Syria",
+    "Afghanistan",
+    "Yemen",
+    "Somalia"
+  ],
+  "matchesFirmsJson": true,
+  "russia": {
+    "status": "restricted",
+    "sourceUrl": "https://help.ofpfunding.com/country-restrictions/",
+    "quote": "We cannot provide services to, or accept registrations from, individuals who are nationals of, currently residing in, or legal entities established in the following countries: ... Russia"
+  }
+}
