@@ -2628,7 +2628,10 @@
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines."
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
+    "countriesRestrictedSourceUrl": "https://help.ofpfunding.com/country-restrictions/",
+    "russiaSourceUrl": "https://help.ofpfunding.com/country-restrictions/",
+    "russiaSourceQuote": "We cannot provide services to, or accept registrations from, individuals who are nationals of, currently residing in, or legal entities established in the following countries: ... Russia"
   },
   {
     "name": "Maven",
