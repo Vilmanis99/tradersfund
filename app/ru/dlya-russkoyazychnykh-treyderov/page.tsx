@@ -5,6 +5,7 @@ import { ArrowRight, Globe2, ShieldCheck, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { goLinkRel } from '@/lib/russiaAvailability'
 import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/dlya-russkoyazychnykh-treyderov'
@@ -253,9 +254,20 @@ export default function RussiaAvailabilityPage() {
                 </RuGoLink>
               </div>
             </article>
+            <article className="ru-card" data-russia-unclear="fundingpips">
+              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>FundingPips</h3>
+              <p className="ru-muted">Россия прямо не названа: в официальном списке ограничений — Иран, Вьетнам и ОАЭ, но фирма исключает страны из санкционных списков FATF и ЕС/ООН. Доступ для РФ не ясен — до оплаты запросите письменное подтверждение у поддержки. Выплаты — карта, USDT/USDC ERC-20, Rise (требует KYC), банк.</p>
+              <div className="ru-actions">
+                <Link href="/ru/obzor-fundingpips" className="btn-outline">Обзор</Link>
+                <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel={goLinkRel('fundingpips')} className="btn-primary">
+                  Проверить FundingPips <ArrowRight size={14} aria-hidden="true" />
+                </RuGoLink>
+              </div>
+            </article>
           </div>
           <p className="ru-source-line">
-            FundingPips: кнопки нет, пока поддержка письменно не подтвердит, что принимает резидентов РФ. Topstep прямо исключает резидентов России.
+            Topstep прямо исключает резидентов России.
           </p>
         </div>
       </section>

@@ -850,6 +850,7 @@ const russianExpectations = new Map([
       'id="rossiyskie"',
       '/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards',
       '/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards',
+      '/go/fundingpips?from=ru-dlya-russkoyazychnykh-treyderov-cards',
       '/ru/obzor-eratrade',
       '/ru/obzor-proplive',
       '/ru/obzor-kascapital',
@@ -1908,6 +1909,7 @@ for (const [path, href] of [
   ['/ru/luchshie-kripto-prop-firmy', '/go/bright-funded?from=ru-crypto-ranking-payout-alternative'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards'],
+  ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundingpips?from=ru-dlya-russkoyazychnykh-treyderov-cards'],
   ['/ru/fundednext-vs-bright-funded', '/go/fundednext?from=ru-fn-vs-bright-fundednext'],
   ['/ru/fundednext-vs-bright-funded', '/go/bright-funded?from=ru-fn-vs-bright-bright-funded'],
   ['/ru/fundednext-vs-bright-funded', '/go/fundednext?from=ru-fn-vs-bright-instant'],
@@ -3439,12 +3441,12 @@ if (mffReviewProbe.status !== 200) {
     mffReviewProbe.html,
     /<h1\b[^>]*>([\s\S]*?)<\/h1>/i,
   ))
-  if (mffTitle !== 'My Funded Futures Review 2026: Current Plans & Payouts') {
+  if (mffTitle !== 'My Funded Futures Review 2026: MFF Funded Account Rules') {
     errors.push(`${mffReviewPath}: search title does not use the decision-specific metadata`)
   }
   if (mffDescription !== (
-    'My Funded Futures review of Rapid, Rapid EOD, Builder and Pro one-time plans, legacy Flex terms, '
-    + 'drawdown rules, payout buffers and Russia eligibility.'
+    'My Funded Futures (MFF) review: funded account rules on Rapid, Rapid EOD, Builder and Pro, '
+    + 'funded drawdown, payout buffers and minimums.'
   )) {
     errors.push(`${mffReviewPath}: search description does not use the decision-specific metadata`)
   }

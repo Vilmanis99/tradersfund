@@ -29,7 +29,7 @@ export interface DealCardData {
   verifiedOn: string
   sourceUrl: string
   sourceLabel: string
-  expiresOn?: string
+  expiresOn?: string | null
   ctaLabel: string
   note?: string
 }

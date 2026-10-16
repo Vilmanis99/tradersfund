@@ -47,7 +47,7 @@ export interface Deal {
   /** Short source name rendered beside the checked date. */
   sourceLabel: string
   /** ISO date the offer ends. Strictly-past = dropped by getAllDeals(). */
-  expiresOn?: string
+  expiresOn?: string | null
   /** Honest action label for the outbound button, such as "Start the Free Trial". */
   ctaLabel: string
   /** Short house-voice caveat (e.g. "First order only — doesn't stack with add-ons"). */

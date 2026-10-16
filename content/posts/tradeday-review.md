@@ -42,7 +42,7 @@ sourceUrls:
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Consistency rule</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">30% on Quick Pay evaluation; 45% on Fast Pass evaluation and on Fast Pass Funded Sim accounts opened on or after 2026-07-26</td></tr>
 <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Profit split</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Quick Pay: 50/50 below $4,000 current profit; full 80/20 only when a request leaves more than $4,000, with crossing requests blended; Fast Pass: 80%; Funded Live: 90%</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">First payout</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Quick Pay day 1; Fast Pass after 5 profitable days; $250 minimum request</td></tr>
-    <tr><td style="padding: 8px 12px; font-weight: 700;">Trustpilot</td><td style="padding: 8px 12px;">4.6 / 5 from 1,402 reviews, captured 2026-07-28</td></tr>
+    <tr><td style="padding: 8px 12px; font-weight: 700;">Trustpilot</td><td style="padding: 8px 12px;">4.5 / 5 from 1,447 reviews, checked 2026-10-15</td></tr>
   </tbody>
 </table>
 
@@ -141,7 +141,7 @@ sourceUrls:
 
 <p><strong>Rise handles the published payout rails.</strong> TradeDay lists bank wire and crypto through Rise, with a $15 international-wire fee, $2.50 plus gas on L1 crypto and no stated fee on L2 crypto. An Indian bank or wallet receipt and INR settlement have not been independently tested, so those rails describe the published process rather than proven delivery in India.</p>
 
-<p><strong>The available public evidence is mixed but measurable.</strong> TradeDay reports more than $10 million in cumulative payouts by December 2025 and publishes a 36% evaluation-program pass rate for January–June 2026. Its <a href="https://www.trustpilot.com/review/tradeday.com">Trustpilot profile</a> showed 4.6/5 from 1,402 reviews on 2026-07-28. Those are firm-reported and third-party aggregate signals, not proof that a specific withdrawal will be approved under the trading-rules review.</p>
+<p><strong>The available public evidence is mixed but measurable.</strong> TradeDay reports more than $10 million in cumulative payouts by December 2025 and publishes a 36% evaluation-program pass rate for January–June 2026. Its <a href="https://www.trustpilot.com/review/tradeday.com">Trustpilot profile</a> showed 4.5/5 from 1,447 reviews on 2026-10-15. Those are firm-reported and third-party aggregate signals, not proof that a specific withdrawal will be approved under the trading-rules review.</p>
 
 <!-- SECTION 7 — Pros / Cons -->
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>

@@ -178,7 +178,7 @@ type: "post"
 
 <p><strong>Processing claim.</strong> FundedNext says approved requests are processed within 24 hours, but that is the firm-side step rather than guaranteed bank settlement. KYC must show Approved before any Performance Reward; the 90-day renewal rule can disable payout requests even while trading remains available.</p>
 
-<p><strong>Independent signal.</strong> FundedNext showed 4.5 from 74,352 Trustpilot reviews in our 2026-07-27 capture. That volume is useful for issue discovery, but a star average cannot verify an individual account’s compliance review, news adjustment, or payout approval.</p>
+<p><strong>Independent signal.</strong> FundedNext showed 4.5 from 81,664 Trustpilot reviews on 2026-10-15. That volume is useful for issue discovery, but a star average cannot verify an individual account’s compliance review, news adjustment, or payout approval.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 

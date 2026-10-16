@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { isIndiaCampaign } from '@/lib/affiliateCampaign'
 import { campaignLocale } from '@/lib/analyticsTaxonomy'
+import { trackGoClick } from '@/lib/goClickTracking'
 import { getAllFirms, getChallengesByFirm } from '@/lib/firms'
 import { challengeSourceDestination } from '@/lib/challengeSources'
 import { INDIA_EVIDENCE_BY_SLUG } from '@/lib/india'
@@ -122,6 +123,7 @@ export async function GET(
       } })
     }
     console.info(JSON.stringify({ event: 'source_click', firm: target, placement: from, source_product: sourceProduct }))
+    trackGoClick(req, target, 'source', from)
     const response = redirectWithoutIndexing(destination, 302)
     response.headers.set('Cache-Control', 'no-store')
     return response
@@ -133,9 +135,11 @@ export async function GET(
     if (partner) {
       if (partner.affiliateUrl) {
         recordAffiliateClick(target, from)
+        trackGoClick(req, target, 'affiliate', from)
         return redirectWithoutIndexing(decorateAffiliateAttribution(partner.affiliateUrl, from), 302)
       }
       recordOfficialClick(target, from)
+      trackGoClick(req, target, 'official', from)
       return redirectWithoutIndexing(partner.officialUrl, 302)
     }
     return redirectWithoutIndexing(new URL('/prop-firms', req.url), 307)
@@ -159,11 +163,13 @@ export async function GET(
   if (match.affiliateUrl) {
     const dest = decorateAffiliateAttribution(match.affiliateUrl, from)
     recordAffiliateClick(target, from)
+    trackGoClick(req, target, 'affiliate', from)
     // 302 (temporary) because affiliate URLs can change; we don't want
     // intermediaries caching the redirect.
     return redirectWithoutIndexing(dest, 302)
   }
 
   recordOfficialClick(target, from)
+  trackGoClick(req, target, 'official', from)
   return redirectWithoutIndexing(match.officialUrl, 302)
 }

@@ -15,7 +15,7 @@
   "capturedAt": "2026-08-27",
   "products": [
     {
-      "productName": "Bright Funded 1-Step",
+      "productName": "BrightFunded 1-Step",
       "productSlug": "bright-funded-1-step",
       "phases": 1,
       "accountSizes": [
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "productName": "Bright Funded 2-Step Bright",
+      "productName": "BrightFunded 2-Step Bright",
       "productSlug": "bright-funded-2-step-bright",
       "phases": 2,
       "accountSizes": [
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "productName": "Bright Funded 2-Step Classic",
+      "productName": "BrightFunded 2-Step Classic",
       "productSlug": "bright-funded-2-step-classic",
       "phases": 2,
       "accountSizes": [

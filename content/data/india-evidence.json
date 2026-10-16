@@ -305,7 +305,7 @@
     "rbiAlert": {
       "status": "not-found",
       "sourceListUpdatedAt": "2025-11-19",
-      "summary": "Bright Funded was not found in the RBI Alert List dated 2025-11-19. RBI explicitly says absence from the list must not be treated as authorisation.",
+      "summary": "BrightFunded was not found in the RBI Alert List dated 2025-11-19. RBI explicitly says absence from the list must not be treated as authorisation.",
       "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235"
     },
     "country": {
@@ -318,7 +318,7 @@
     },
     "checkout": {
       "status": "partial",
-      "summary": "Bright Funded documents card purchases and warns that processors may reject a cardholder-name mismatch; Indian-card acceptance is not independently tested.",
+      "summary": "BrightFunded documents card purchases and warns that processors may reject a cardholder-name mismatch; Indian-card acceptance is not independently tested.",
       "sourceUrls": [
         "https://help.brightfunded.com/en/articles/12000749-the-most-frequently-asked-general-questions"
       ]
@@ -340,7 +340,7 @@
     },
     "fees": {
       "status": "verified",
-      "summary": "Bright Funded says it adds no payout fee, but third-party network, bank, or FX charges can be $5–$50 in some cases.",
+      "summary": "BrightFunded says it adds no payout fee, but third-party network, bank, or FX charges can be $5–$50 in some cases.",
       "sourceUrls": [
         "https://help.brightfunded.com/en/articles/9241684-do-i-need-to-pay-charges-with-the-payouts"
       ]
@@ -695,24 +695,25 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from CTI's current 5-jurisdiction restriction statement; sanctions and local-law screening remain conditional, and an older terms PDF omits Russia from its shorter list.",
+      "summary": "India is absent from CTI's current 5-jurisdiction restriction statement; sanctions and local-law screening remain conditional, and the current terms PDF (§6.5.1) omits Russia from its shorter list, while the homepage FAQ includes it.",
       "sourceUrls": [
         "https://citytradersimperium.com/2-step-challenge/",
-        "https://citytradersimperium.com/wp-content/uploads/2025/09/CTI-FZCO-City-Traders-Imperium-Terms-Conditions.pdf"
+        "https://citytradersimperium.com/",
+        "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf"
       ]
     },
     "checkout": {
       "status": "partial",
       "summary": "CTI's terms document bank-transfer invoicing and payment-provider transaction charges, but the methods presented to an Indian checkout are not independently tested.",
       "sourceUrls": [
-        "https://citytradersimperium.com/wp-content/uploads/2025/09/CTI-FZCO-City-Traders-Imperium-Terms-Conditions.pdf"
+        "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf"
       ]
     },
     "kyc": {
       "status": "verified",
       "summary": "SumSub KYC requests a government ID with at least 3 months remaining, proof of address issued within 3 months, and a live photo or video selfie.",
       "sourceUrls": [
-        "https://citytradersimperium.com/wp-content/uploads/2025/04/City-Traders-Imperium-Terms-and-Conditions.pdf"
+        "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf"
       ]
     },
     "payout": {

@@ -51,10 +51,15 @@ for (const product of refreshed.products) {
   assert(product.fieldEvidence.consistencyRulePct.quote.includes('55%'))
 }
 const firm = getAllFirms().find(firm => firm.name === 'Topstep')
-assert.deepEqual(firm.platforms, ['TopstepX'])
+assert.deepEqual(firm.platforms, ['TopstepX', 'Quantower'])
 assert.equal(firm.minTradingDays, null)
-assert.equal(firm.lastUpdated, '2026-07-27', 'Narrow capture does not refresh all aggregate metadata')
-assert.equal(firm.trustpilotCapturedAt, '2026-07-27')
+// The narrow 2026-10-06 consistency capture must not refresh aggregate metadata;
+// later full refreshes may. Trustpilot carries its own, independent capture date.
+assert.match(firm.lastUpdated, /^\d{4}-\d{2}-\d{2}$/)
+assert.notEqual(firm.lastUpdated, refreshed.capturedAt ?? '2026-10-06', 'Narrow capture does not refresh all aggregate metadata')
+assert.match(firm.trustpilotCapturedAt, /^\d{4}-\d{2}-\d{2}$/)
+assert(firm.trustpilotCapturedAt >= '2026-10-15', 'Trustpilot figure is from the 2026-10-15 recapture or later')
+assert.equal(typeof firm.trustpilotScore, 'number')
 const review = read('content/posts/topstep-review.md')
 const generated = spawnSync(process.execPath, ['scripts/gen-truecost.mjs', 'topstep'], { encoding: 'utf8' })
 assert.equal(generated.status, 0, generated.stderr)
@@ -63,7 +68,8 @@ assert.equal(tables.length, 2)
 for (const table of tables) assert(review.includes(table), 'Review uses exact generated computeTrueCost tables')
 for (const text of ['China, Canada and UK only', 'Approval and transfer are separate', 'not guaranteed access', '1–3 business days', '5–10 business days', 'at most two reactivations', '2026-05-29']) assert(review.includes(text), text)
 for (const text of ['does not publish a settlement duration', 'We record 2 because', 'NinjaTrader, Quantower, TradingView', 'any R we printed would be our arithmetic']) assert(!review.includes(text), text)
-assert.equal((review.match(/<h3 class="wp-block-heading">/g) ?? []).length, 7, 'Reviews v2 FAQ count')
+// 7 FAQs + the 'Topstep on Trustpilot (checked …)' answer added in 68ca03d
+assert.equal((review.match(/<h3 class="wp-block-heading">/g) ?? []).length, 8, 'Reviews v2 FAQ count')
 assert(!/href="https?:\/\/(?:www\.|help\.)?topstep\.com/.test(review), 'Firm links remain /go routed')
 const downstream = [
   'content/pages/how-prop-firm-challenges-work.md',

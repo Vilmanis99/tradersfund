@@ -29,7 +29,7 @@ type: "post"
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Profit split</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">90% on simulated funded payouts; 80% on Elite Live</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Maximum active funding</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">5 simulated funded accounts, with $150,000 available per account</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Published payout rails</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">Rise bank or crypto withdrawal, with Plane as an alternative provider</td></tr>
-    <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Trustpilot snapshot</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">4.6/5 from 3,734 reviews on 2026-07-28; 8% were 1-star</td></tr>
+    <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Trustpilot snapshot</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">4.5/5 from 5,369 reviews on 2026-10-15; 84% were 5-star</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left;">India status</th><td style="padding: 9px 12px;">Passes the dated country/RBI gate; completed Indian checkout, KYC and payout proof remain unverified</td></tr>
   </tbody>
 </table>
@@ -149,7 +149,7 @@ type: "post"
 
 <p><strong>Tradeify publishes 24-48 hours for approved processing.</strong> Rise provides bank transfers, crypto tokens and region-dependent local currencies, while Plane is an alternative provider. Rise says bank withdrawal normally takes 1-3 business days and crypto takes hours to 1 day; no fixed India-specific bank, crypto-network, intermediary or INR conversion total is published.</p>
 
-<p><strong>Community evidence is positive but not unanimous.</strong> <a href="https://www.trustpilot.com/review/tradeify.co">Trustpilot showed 4.6/5 from 3,734 reviews</a> on 2026-07-28, with 87% 5-star and 8% 1-star. Recent Reddit users alleged delayed Rise transfers and unexplained compliance restrictions, while other verified Trustpilot users reported completed payouts; each post is a user account, not an independently adjudicated payout audit. Tradeify's homepage separately claimed more than $250 million in verified payouts, which remains a firm-reported figure.</p>
+<p><strong>Community evidence is positive but not unanimous.</strong> <a href="https://www.trustpilot.com/review/tradeify.co">Trustpilot showed 4.5/5 from 5,369 reviews</a> on 2026-10-15, with 84% 5-star. Recent Reddit users alleged delayed Rise transfers and unexplained compliance restrictions, while other verified Trustpilot users reported completed payouts; each post is a user account, not an independently adjudicated payout audit. Tradeify's homepage separately claimed more than $250 million in verified payouts, which remains a firm-reported figure.</p>
 
 <!-- SECTION 7 - Pros and cons -->
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
@@ -174,7 +174,7 @@ type: "post"
   <li>Every position must close by 4:45 PM ET, excluding overnight and weekend futures strategies.</li>
   <li>The microscalping rule requires both more than 50% of trades and more than 50% of profit from holds longer than 10 seconds.</li>
   <li>A personal bot can require source ownership proof, exclusive Tradeify use and a live activation video.</li>
-  <li>Trustpilot's 2026-07-28 snapshot contained 8% 1-star reviews, and recent users alleged compliance and Rise delays.</li>
+  <li>Trustpilot slipped from 4.6 (2026-07-28) to 4.5 (2026-10-15), and recent users alleged compliance and Rise delays.</li>
   <li>No completed Indian checkout, KYC or payout receipt has been independently verified despite the India marketing pages.</li>
 </ul>
 

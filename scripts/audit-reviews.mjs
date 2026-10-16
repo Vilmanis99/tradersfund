@@ -5626,7 +5626,7 @@ function checkConsistencyGuide() {
   if (data.title !== 'What Is the Prop Firm Consistency Rule? Formulas and Examples (2026)') {
     rows.push('title must preserve consistency-rule, formula, examples, and current-year intent')
   }
-  if (data.seoTitle !== 'What Is a Prop Firm Consistency Rule? Examples (2026)') {
+  if (data.seoTitle !== 'Consistency Rule Calculator & Examples: Prop Firms (2026)') {
     rows.push('seoTitle must preserve the primary search intent and current year')
   }
   if (typeof data.seoTitle !== 'string' || data.seoTitle.length > 60) {
@@ -6917,9 +6917,9 @@ function checkFuturesLandingCluster() {
 
   const mffFile = read(path.join(POSTS, 'my-funded-futures.md'))
   const { data: mff, content: mffContent } = matter(mffFile)
-  const expectedMffSeoTitle = 'My Funded Futures Review 2026: Current Plans & Payouts'
+  const expectedMffSeoTitle = 'My Funded Futures Review 2026: MFF Funded Account Rules'
   const expectedMffDescription =
-    'My Funded Futures review of Rapid, Rapid EOD, Builder and Pro one-time plans, legacy Flex terms, drawdown rules, payout buffers and Russia eligibility.'
+    'My Funded Futures (MFF) review: funded account rules on Rapid, Rapid EOD, Builder and Pro, funded drawdown, payout buffers and minimums.'
   if (
     mff.seoTitle !== expectedMffSeoTitle
     || mff.seoDescription !== expectedMffDescription
@@ -7590,7 +7590,9 @@ function checkDiscountHub() {
     }
   }
 
-  const fundedNextDeal = deals.find(deal => deal.firmSlug === 'fundednext')
+  // Only the earned Free Trial coupon must mirror free-trials.json; a separate
+  // public FundedNext checkout code (e.g. STRTN) is audited by the generic rules above.
+  const fundedNextDeal = deals.find(deal => deal.firmSlug === 'fundednext' && deal.mechanism === 'earned-coupon')
   const fundedNextTrial = freeTrials.find(trial => trial.firmSlug === 'fundednext')
   if (fundedNextDeal) {
     const coupon = fundedNextTrial?.completionCoupon
@@ -8138,7 +8140,7 @@ function checkFtmoFreeTrialGuide() {
   if (data.title !== 'FTMO Free Trial 2026: 1-Step vs 2-Step Rules') {
     rows.push('title must preserve FTMO Free Trial, year, and both product intents')
   }
-  if (data.seoTitle !== 'FTMO Free Trial 2026: Rules & 14-Day Test Plan') {
+  if (data.seoTitle !== 'FTMO Free Trial 2026: Is It Free? Rules, Limits & Test') {
     rows.push('seoTitle no longer states rules and the 14-day test intent')
   }
   if (
@@ -10610,7 +10612,7 @@ function checkTradingToolReviewCluster() {
   if (!zuluTrade) {
     rows.push('ZuluTrade review is missing from the tool-review cluster')
   } else {
-    const expectedTitle = 'ZuluTrade Review: Fees, Copying & Key Risks'
+    const expectedTitle = 'ZuluTrade Review: Demo Test, Fees & Key Risks'
     if (
       zuluTrade.title !== expectedTitle
       || zuluTrade.seoTitle !== expectedTitle
@@ -10722,7 +10724,7 @@ function checkTradingToolReviewCluster() {
   if (!copyFx) {
     rows.push('CopyFX review is missing from the tool-review cluster')
   } else {
-    const expectedTitle = 'CopyFX Review: New Name, Fees & Copy Risks'
+    const expectedTitle = 'CopyFX Review: What Happened, Fees & Copy Risks'
     if (
       copyFx.title !== expectedTitle
       || copyFx.seoTitle !== expectedTitle

@@ -145,7 +145,7 @@ type: "post"
 
 <h2>Is FundingPips Zero legit?</h2>
 
-<p>The evidence supports narrower claims than “legit” or “scam.” FundingPips publishes current Zero prices and rules on its own pages. The site’s structured Trustpilot record showed 4.5/5 from 63,734 reviews on 2026-07-27. That aggregate is a third-party sentiment signal; it does not prove that a particular strategy complies with the agreement or that a particular reward will be approved.</p>
+<p>The evidence supports narrower claims than “legit” or “scam.” FundingPips publishes current Zero prices and rules on its own pages. The site’s structured Trustpilot record showed 4.5/5 from 70,514 reviews on 2026-10-15. That aggregate is a third-party sentiment signal; it does not prove that a particular strategy complies with the agreement or that a particular reward will be approved.</p>
 
 <p>The previous version claimed that “most traders fail,” that successful payouts were confirmed, and that approval normally took 24–48 hours without a traceable product source. Those statements are removed. Purchase decisions should use the current agreement, saved checkout and rule-page copies, KYC requirements, and a complete cash ledger rather than an anecdote or rating.</p>
 
