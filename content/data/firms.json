@@ -552,7 +552,16 @@
     "overnightAllowed": null,
     "weekendAllowed": null,
     "copyTradingAllowed": false,
-    "countriesRestricted": [],
+    "countriesRestricted": [
+      "Russia",
+      "Iran",
+      "Iraq",
+      "North Korea",
+      "Syria",
+      "Afghanistan",
+      "Yemen",
+      "Somalia"
+    ],
     "ratings": {
       "conditions": null,
       "support": null,
@@ -566,7 +575,7 @@
     "trustpilotUrl": "https://www.trustpilot.com/review/ofpfunding.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "unverified"
+    "russiaStatus": "restricted"
   },
   {
     "name": "Maven",
@@ -715,7 +724,8 @@
       "Russia",
       "Belarus",
       "Kenya",
-      "Ghana"
+      "Ghana",
+      "Haiti"
     ],
     "ratings": {
       "conditions": null,
@@ -913,6 +923,7 @@
       "Bosnia & Herzegovina",
       "Botswana",
       "Bulgaria",
+      "Burkina Faso",
       "Burma (Myanmar)",
       "Burundi",
       "Cambodia",
@@ -920,13 +931,14 @@
       "Central African Republic",
       "China",
       "Congo",
-      "Côte D'Ivoire",
       "Crimea",
       "Croatia",
       "Cuba",
+      "Côte D'Ivoire",
       "Democratic Republic of Congo",
       "Ecuador",
       "Ethiopia",
+      "France Metro (FX) — Corsica & non-mainland islands only",
       "Ghana",
       "Gibraltar",
       "Guyana",
@@ -938,8 +950,10 @@
       "Iraq",
       "Jamaica",
       "Jordan",
+      "Kazakhstan",
       "Kenya",
       "Kosovo",
+      "Kyrgyzstan",
       "Laos",
       "Lebanon",
       "Liberia",
@@ -964,8 +978,8 @@
       "Philippines",
       "Qatar",
       "Romania",
-      "Rwanda",
       "Russia",
+      "Rwanda",
       "Senegal",
       "Serbia",
       "Slovenia",
@@ -1002,7 +1016,7 @@
     "lastUpdated": "2026-09-14",
     "trustpilotUrl": "https://www.trustpilot.com/review/myfundedfutures.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "unverified"
+    "russiaStatus": "restricted"
   },
   {
     "name": "City Traders Imperium",
@@ -1056,7 +1070,7 @@
     "lastUpdated": "2026-07-28",
     "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
     "trustpilotCapturedAt": "2026-07-27",
-    "russiaStatus": "unverified",
+    "russiaStatus": "restricted",
     "legalEntity": "City Traders Imperium Limited",
     "headquarters": "San José, Costa Rica",
     "country": "Comoros",
@@ -1225,7 +1239,9 @@
       "Venezuela",
       "Vietnam",
       "Yemen",
-      "Zimbabwe"
+      "Zimbabwe",
+      "Palestine",
+      "Turkey"
     ],
     "ratings": {
       "conditions": null,
@@ -1239,7 +1255,7 @@
     "lastUpdated": "2026-08-11",
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeday.com",
     "trustpilotCapturedAt": "2026-07-28",
-    "russiaStatus": "unverified"
+    "russiaStatus": "restricted"
   },
   {
     "name": "Apex Trader Funding",
@@ -1404,7 +1420,8 @@
       "Vietnam",
       "Venezuela",
       "Yemen",
-      "Zimbabwe"
+      "Zimbabwe",
+      "Tajikistan"
     ],
     "ratings": {
       "conditions": null,
@@ -1516,7 +1533,14 @@
       "Venezuela",
       "Vietnam",
       "Yemen",
-      "Zimbabwe"
+      "Zimbabwe",
+      "Antarctica",
+      "Azerbaijan",
+      "Kazakhstan",
+      "Kyrgyzstan",
+      "Macao",
+      "Palestine",
+      "Tajikistan"
     ],
     "ratings": {
       "conditions": null,

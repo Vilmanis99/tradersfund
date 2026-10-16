@@ -180,12 +180,12 @@
     "dailyLossPct": 4,
     "maxLossPct": 8,
     "drawdownType": "static",
-    "minTradingDays": 5,
+    "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
-    "payoutFirstDays": 21,
-    "payoutFrequency": "bi-weekly",
+    "payoutFirstDays": 10,
+    "payoutFrequency": null,
     "rules": {
       "news": "restricted",
       "weekend": true,
@@ -195,13 +195,13 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
-    "sourceCapturedAt": "2026-09-29",
+    "sourceCapturedAt": "2026-10-16",
     "notes": [
       "Standard global USD list prices; promotions and optional add-ons are excluded.",
       "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
-      "The standard first reward window is 21 days, followed by 14-day cycles; the fee refund is tied to the third reward for new accounts.",
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-09-29.json"
+      "Global page (2026-10-16): Minimum Trading Days 2 each phase for standard plans (on-demand 90% stays at 5); First Withdrawal 10 Days; Subsequent shown as both 10 Days and Bi-weekly — payoutFrequency left null.",
+      "Capture provenance deferred; field changes quoted from https://fundednext.com/cfds/stellar-lite"
     ]
   },
   {
