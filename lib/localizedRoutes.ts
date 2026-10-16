@@ -19,6 +19,7 @@ export const LOCALIZED_ROUTE_PAIRS = [
 
 export const RUSSIAN_ONLY_ROUTES = [
   '/ru/dlya-russkoyazychnykh-treyderov',
+  '/ru/prop-trejding',
   '/ru/forex-prop-firmy',
   '/ru/prop-firmy-s-ctrader',
   '/ru/fundednext-mt5',
@@ -81,6 +82,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/obzor-proplive': '2026-10-01',
   '/ru/obzor-teamtraders': '2026-10-01',
   '/ru/otzyvy-prop-firm': '2026-10-01',
+  '/ru/prop-trejding': '2026-10-14',
   '/ru/promokody-prop-firm': '2026-10-14',
   '/ru/prop-firmy-bez-chelendzha': '2026-10-01',
   '/ru/prop-firmy-bez-kyc': '2026-10-01',
