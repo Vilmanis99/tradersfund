@@ -1,128 +1,816 @@
 {
   "firmSlug": "crypto-fund-trader",
-  "captureType": "daily-recheck",
+  "captureType": "full-recapture (merged with same-day daily-recheck log)",
   "capturedAt": "2026-10-19",
-  "capturedAtTimestamp": "2026-10-19T10:03:17+03:00",
+  "capturedAtTimestamp": "2026-10-19T11:35:00+03:00",
   "timezone": "Europe/Riga",
   "previousCapture": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
-  "egress": "Box egress is a US IP. Global (non-US) prices were checked against the firm's Global/region-independent price data as described in method; US-only codes are not promoted.",
-  "method": "curl of WooCommerce Store API + headless Chrome of terms",
-  "priceSource": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
-  "pricesMatchStored": true,
-  "storedPricesChecked": [
-    {
-      "productSlug": "evaluation",
-      "prices": {
-        "5000": 58,
-        "10000": 110,
-        "25000": 240,
-        "50000": 389,
-        "100000": 660,
-        "200000": 1250
-      }
-    },
-    {
-      "productSlug": "ascend",
-      "prices": {
-        "5000": 39,
-        "10000": 78,
-        "25000": 195,
-        "50000": 390,
-        "100000": 780,
-        "200000": 1560
-      }
-    },
-    {
-      "productSlug": "accelerated",
-      "prices": {
-        "5000": 40,
-        "10000": 80,
-        "25000": 219,
-        "50000": 369,
-        "100000": 619,
-        "200000": 1199
-      }
-    },
-    {
-      "productSlug": "instant",
-      "prices": {
-        "2500": 125,
-        "5000": 240,
-        "10000": 475
-      }
-    },
-    {
-      "productSlug": "break",
-      "prices": {
-        "25000": 70,
-        "50000": 140,
-        "100000": 200
-      }
-    }
-  ],
-  "priceQuotes": [
-    "$5.000 Evaluation 58 | $10.000 110 | $25.000 240 | $50.000 389 | $100.000 660 | $200.000 1250 (USD)",
-    "$5.000 Accelerated 40 | 80 | 219 | 369 | 619 | 1199",
-    "$2.500 Instant Evaluation 125 | $5.000 240 | $10.000 475",
-    "$25.000 Break Evaluation 70 | $50.000 140 | $100.000 200",
-    "5.6.5 ‘Ascend’ Evaluation: 39 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 5,000 USD ... 1560 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 200,000 USD"
-  ],
-  "quoteRecheck": {
-    "storedEvidenceStrings": 62,
-    "foundVerbatimInLiveText": 40,
-    "notFoundVerbatim": 22,
-    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
-  },
-  "changes": [],
-  "observations": [
-    {
-      "item": "Store API also lists \"Tradeando – Free $10.000 Evaluation\" at $0 (partner promo; not a general free trial; not modelled)",
-      "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products"
-    }
-  ],
-  "notes": [
-    "All prices unchanged vs 2026-10-14."
-  ],
+  "requestedBy": "RU SEO Lead brief /workspace/ru-seo/briefs/new-obzor-crypto-fund-trader.md (section 8)",
+  "egress": "Box egress is a US IP. CFT shows one USD price ladder (Terms 5.3: fees are denominated in dollars); no regional price switch observed. MT5 is the only platform CFT says is unavailable to US residents.",
+  "method": "curl of first-party HTML pages, the public WooCommerce Store API (products and an empty guest cart for gateway ids), and a headless-Chrome render of the Trustpilot profile. No account, checkout, payment or KYC was attempted.",
+  "reviewStatus": "ready",
   "pagesRead": [
+    "https://cryptofundtrader.com/",
+    "https://cryptofundtrader.com/faq/",
+    "https://cryptofundtrader.com/terms-and-conditions/",
+    "https://cryptofundtrader.com/break-challenge/",
+    "https://cryptofundtrader.com/get-started/",
+    "https://cryptofundtrader.com/refund-policy/",
+    "https://cryptofundtrader.com/last-updates-faq/",
+    "https://cryptofundtrader.com/wp-json/wc/store/v1/products?per_page=100",
+    "https://cryptofundtrader.com/wp-json/wc/store/v1/products/{162450,162484,162490,162495,162500,162504,373833,373838,373842}",
+    "https://cryptofundtrader.com/wp-json/wc/store/v1/cart",
+    "https://www.trustpilot.com/review/cryptofundtrader.com"
+  ],
+  "changesVsPrevious": [
     {
-      "url": "https://cryptofundtrader.com/",
-      "httpStatus": 200,
-      "fetchedAt": "2026-10-19T07:03:10.508Z"
+      "field": "firms.json maxAllocation",
+      "from": "$200,000",
+      "to": "$300,000",
+      "evidence": {
+        "sourceUrl": "https://cryptofundtrader.com/faq/",
+        "quote": "The maximum simulated funded allocation per user is $300,000. This means that the total starting balance of all active final stage accounts under the same user must not exceed $300,000."
+      },
+      "note": "The previous value was the largest single tier. The FAQ now states a per-user cap; Ascend, Instant and Break accounts are outside it. The largest single account is still $200,000."
     },
     {
-      "url": "https://cryptofundtrader.com/shop/",
-      "httpStatus": 200,
-      "fetchedAt": "2026-10-19T07:03:11.029Z"
+      "field": "Trustpilot review count (capture only)",
+      "from": "1,140 (2026-07-27)",
+      "to": "1,102 (2026-10-19)",
+      "evidence": {
+        "sourceUrl": "https://www.trustpilot.com/review/cryptofundtrader.com",
+        "quote": "This company’s rating is unavailable due to a breach of our guidelines. ... We’ve removed a number of fake reviews for this company. ... All reviews (1,102)"
+      },
+      "note": "Rating still suppressed; per lib/firms.ts trustpilotCount stays null on a suppressed profile."
     },
     {
-      "url": "https://cryptofundtrader.com/faq/",
-      "httpStatus": 200,
-      "fetchedAt": "2026-10-19T07:03:16.497Z"
-    },
-    {
-      "url": "https://cryptofundtrader.com/refund-policy/",
-      "httpStatus": 200,
-      "fetchedAt": "2026-10-19T07:03:16.673Z"
-    },
-    {
-      "url": "https://cryptofundtrader.com/terms-and-conditions/",
-      "httpStatus": 200,
-      "fetchedAt": "2026-10-19T07:03:16.709Z"
-    },
-    {
-      "url": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
-      "httpStatus": 200,
-      "fetchedAt": "2026-10-19T07:03:16.862Z"
-    },
-    {
-      "url": "https://cryptofundtrader.com/break-challenge/",
-      "httpStatus": 200,
-      "fetchedAt": "2026-10-19T07:03:17.319Z"
-    },
-    {
-      "url": "https://cryptofundtrader.com/last-updates-faq/",
-      "httpStatus": 200,
-      "fetchedAt": "2026-10-19T07:03:17.848Z"
+      "field": "payment methods (capture only)",
+      "from": "card + crypto (11 coins) per get-started",
+      "to": "FAQ now names credit card, PayPal, Apple Pay, Google Pay and crypto",
+      "evidence": {
+        "sourceUrl": "https://cryptofundtrader.com/faq/",
+        "quote": "We accept payments by credit card, PayPal, Apple Pay, Google Pay, and cryptocurrency through our available payment gateways. Crypto payments are currently supported in multiple cryptocurrencies."
+      }
     }
-  ]
+  ],
+  "noChange": [
+    "All 24 priced tiers (Evaluation 58/110/240/389/660/1,250; Accelerated 40/80/219/369/619/1,199; Instant 125/240/475; Break 70/140/200 + activation 138/198/328; Ascend terms ladder 39/78/195/390/780/1,560)",
+    "2-Phase 8%/5% targets, 5% daily, 10% fixed overall",
+    "1-Phase 10% target, 4% daily, 6% trailing",
+    "Instant 4%/6%, 10% withdraw-and-upgrade, 50% first-level split",
+    "Break tier targets, trailing loss, 40% consistency, on-demand payouts",
+    "80% base split",
+    "15 traded days OR 30 calendar days reward rule; 7 traded days with Weekly add-on",
+    "payout methods",
+    "news/weekend/overnight permissions",
+    "platform list",
+    "operator entity"
+  ],
+  "russia": {
+    "status": "available",
+    "basis": "Not named in any restriction. Access is platform-dependent.",
+    "evidence": [
+      {
+        "sourceUrl": "https://cryptofundtrader.com/faq/",
+        "quote": "Country availability may depend on the trading platform selected. Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States. Bybit: Crypto Fund Trader does not apply additional country restrictions for traders who choose to use Bybit. However, traders must use their own personal Bybit account and are fully responsible for complying with Bybit’s Terms of Service, jurisdictional restrictions, and any rules that may apply in their country of residence."
+      },
+      {
+        "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+        "quote": "7.3. Country Restrictions and Platform Availability Platform access is subject to regional regulations and platform-specific compliance requirements: Match-Trader: No country restrictions. MetaTrader 5: Access to this platform is not available to users residing in the United States."
+      },
+      {
+        "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+        "quote": "16.2. If you access the Site from anywhere in the world, you will be responsible for compliance with all local laws. You agree that you will not use our Content accessed through cryptofundtrader.com in any country or in any manner prohibited by applicable laws, restrictions, or regulations.",
+        "note": "The only general jurisdiction clause found; no sanctions list or named country (Russia, Belarus, Ukraine, Kazakhstan) appears on the FAQ, Terms, get-started, refund-policy or last-updates pages read on 2026-10-19."
+      },
+      {
+        "sourceUrl": "https://cryptofundtrader.com/",
+        "quote": "Neither SWISS RLCRATES AG nor RLCRATES, S.L. (the company that provides services with MT5) operate in countries where crypto or CFD’s activity is not allowed."
+      }
+    ],
+    "unverified": "No sanctions clause found, so Russia/CIS eligibility rests on the absence of a restriction, not on a positive statement. Bybit's own terms (not read) decide the Bybit route. Card acceptance for Russian-issued cards (incl. Mir) is not stated anywhere."
+  },
+  "payments": {
+    "faq": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "We accept payments by credit card, PayPal, Apple Pay, Google Pay, and cryptocurrency through our available payment gateways."
+    },
+    "getStarted": {
+      "sourceUrl": "https://cryptofundtrader.com/get-started/",
+      "quote": "We have payment gateways for credit cards and cryptocurrencies, where we accept 11 different ones."
+    },
+    "terms": {
+      "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+      "quote": "5.5 You can pay the fees for our “Training Process” using a payment card or cryptocurrencies. Payment will be made immediately."
+    },
+    "gatewayIds": {
+      "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/cart",
+      "quote": "\"payment_methods\":[\"zen_payment\",\"confirmo\",\"ppcp-gateway\"]",
+      "note": "Gateway ids returned by the public guest-cart endpoint (empty cart, nothing purchased). They correspond to ZEN (zen.com), Confirmo (crypto) and the WooCommerce PayPal Payments plugin; the mapping of id to processor is our reading of the plugin ids, not a CFT statement."
+    },
+    "unverified": [
+      "Card networks (Visa/Mastercard etc.) are not named on any page read",
+      "The list of the 11 cryptocurrencies is not published on the pages read",
+      "No statement on Russian-issued cards"
+    ]
+  },
+  "payouts": {
+    "general": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "You can request a scholarship reward after trading for at least 15 days, or alternatively, every 30 calendar days, as long as no program rules have been violated. ... If you have the Weekly Payouts add-on, you can request a scholarship reward every 7 traded days"
+    },
+    "methods": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "Payment methods: Directly via bank transfer in EUR or USD . Transfer directly to crypto wallet in these available currencies: USDT (ERC20) USDT (TRC20) Bitcoin (BTC) Ethereum (ETH)"
+    },
+    "kyc": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "Yes. Before any scholarship reward can be processed, your KYC must be completed and approved. ... To complete KYC, you must sign the required contract and pass the verification process."
+    },
+    "processing": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "Our average processing time for scholarship reward payments is approximately 8 hours. However, our team may take up to 48 business hours to review the request, verify the information, and send the payment."
+    },
+    "ascend": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "If you have an Ascend account, you can request a scholarship reward once you complete the Phase 2 profit target. No additional profit percentage is required."
+    },
+    "instant": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "If you have an Instant Account, you can request a Withdrawal & Upgrade once your account reaches 10% simulated profit. There is no minimum trading days requirement for this option."
+    },
+    "break": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "Break accounts offer payouts on demand once the trader has successfully passed the Evaluation phase, paid the applicable Activation Fee, and moved to the Final Stage, provided that no program rules have been violated."
+    }
+  },
+  "rules": {
+    "twoPhase": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "For the 2-Phase Evaluation, the daily maximum loss is 5%, and the maximum overall loss is fixed at 10% of the initial account balance."
+    },
+    "onePhase": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "For the 1-Phase Evaluation, the daily maximum loss is 4%, and the trailing drawdown rule applies instead of a fixed overall loss limit. ... For 1-Phase evaluations only, the trailing drawdown is set at 6% of the initial account balance and moves upward as your account reaches new highs."
+    },
+    "minDays": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "There is no minimum number of trading days required for evaluations. No waiting periods."
+    },
+    "timeLimit": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "there is no maximum time limit to complete the evaluation"
+    },
+    "news": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "Can I trade news? Yes. News trading is allowed."
+    },
+    "ascendNews": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "In the Ascend Evaluation, you cannot open new trades or increase your risk during high-impact news events or market openings. This restriction applies from 2 minutes before until 2 minutes after the event."
+    },
+    "weekend": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "Yes. Traders are allowed to keep positions open overnight and over the weekend, regardless of the account type or instrument."
+    },
+    "ea": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "PROHIBITED EA TYPES High-Frequency Trading High-frequency trading is not allowed. ... Tick scalping is prohibited whether performed manually or through an Expert Advisor, bot, script, or automated system. ... Arbitrage strategies are not allowed.",
+      "note": "EA kept 'restricted': named EA types are banned, others are not stated as banned."
+    },
+    "profitCap": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "The maximum simulated profit allowed per day and/or per trade is $10,000."
+    },
+    "reverseTrading": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "Opposite trades across different accounts are not allowed. Hedging between two or more accounts controlled by the same user is not allowed"
+    },
+    "breakConsistency": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "The Consistency Rule applies only to Break Final Stage accounts. No single trading day may account for more than 40% of the total profits generated on the account."
+    },
+    "instantSplit": {
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "quote": "Scale up to $1,280,000 Level $2,500 $5,000 $10,000 ... Profit Split 50% 60% 70% 80% 90% 90% 90% 90% 90% 90%"
+    },
+    "breakPage": {
+      "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+      "quote": "Phase 1 Profit Target: $1,250 Trailing drawdown $1,000 Min days traded 0 Consistency Rule NO Leverage 1:100 Live Stage Profit Split: 80% ... Payouts on-demand Yes Pay only when you pass $138"
+    },
+    "platforms": {
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "quote": "Crypto Fund Trader currently offers access to Match-Trader, MetaTrader 5, and Bybit."
+    }
+  },
+  "corporate": {
+    "legalEntity": "SWISS RLCRATES AG (CHE-162.567.204)",
+    "address": "Bahnhofstrasse 21, 6300, Zug, Switzerland",
+    "mt5Entity": "RLCRATES, S.L.",
+    "evidence": {
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "quote": "Bahnhofstrasse 21, 6300, Zug, Switzerland SWISS RLCRATES AG (CHE-162.567.204) ... SWISS RLCRATES AG acts as a payment/marketing agent for RLCRATES SL. SWISS RLCRATES AG is not authorized or licensed in Switzerland and does not offer any trading services with MT5 neither conducts any regulated activities."
+    },
+    "offices": {
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "quote": "Zug Switzerland office Pamplona Spain office Dubai United Arab Emirates office"
+    }
+  },
+  "trustpilot": {
+    "capturedAt": "2026-10-19",
+    "url": "https://www.trustpilot.com/review/cryptofundtrader.com",
+    "ratingSuppressed": true,
+    "banner": "This company’s rating is unavailable due to a breach of our guidelines.",
+    "secondBanner": "We’ve removed a number of fake reviews for this company.",
+    "reviewCountShown": 1102,
+    "reviewsLast12Months": 195,
+    "note": "Count recorded here only; firms.json keeps trustpilotCount null while suppressed."
+  },
+  "conflicts": [
+    {
+      "topic": "Ascend availability/price",
+      "detail": "Terms 5.6.5: $39-$1,560. Homepage embeds Ascend store items 162495/162500/162504/162450/162484/162490 at $45/$90/$225/$450/$899/$1,798, all is_purchasable=false in the Store API. Data keeps the Terms ladder; availability unconfirmed."
+    },
+    {
+      "topic": "Break homepage vs dedicated page",
+      "detail": "Homepage Break tab: 'Min days traded 1' (Phase 1) and buttons $70/$139/$199 (store items 373833/373838/373842, is_purchasable=false). Dedicated page and purchasable store items: min days 0, $70/$140/$200."
+    },
+    {
+      "topic": "3-Phase evaluation",
+      "detail": "Terms 5.6.3 lists Three Phases fees 30/59/145/255/399/798 USD for 5K-200K and the FAQ has a 3 PHASES EVALUATION section (5% daily, 5% fixed overall, first reward after 5 traded days), but no 3-Phase product exists in the public Store API or on the homepage selector. Not added."
+    },
+    {
+      "topic": "Payment method wording",
+      "detail": "FAQ names PayPal/Apple Pay/Google Pay; get-started and Terms 5.5 mention only card and crypto. Guest-cart gateway ids include a PayPal gateway, which supports the FAQ."
+    },
+    {
+      "topic": "Ascend/Instant leverage vs homepage",
+      "detail": "Homepage says 'We provide leverage of 1:100 to all instruments', but FAQ gives Instant and Ascend 1:30 FX / 1:20 indices / 1:5 crypto and stocks."
+    }
+  ],
+  "products": [
+    {
+      "firmSlug": "crypto-fund-trader",
+      "productName": "Evaluation (Standard 2-Phase)",
+      "productSlug": "evaluation",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 58,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":13646,\"name\":\"$5.000 Evaluation\" ... \"price\":\"5800\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 13646 on 2026-10-19; 58 USD."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 110,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":10415,\"name\":\"$10.000 Evaluation\" ... \"price\":\"11000\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 10415 on 2026-10-19; 110 USD."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 240,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":10426,\"name\":\"$25.000 Evaluation\" ... \"price\":\"24000\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 10426 on 2026-10-19; 240 USD."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 389,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":11081,\"name\":\"$50.000 Evaluation\" ... \"price\":\"38900\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 11081 on 2026-10-19; 389 USD."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 660,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":11086,\"name\":\"$100.000 Evaluation\" ... \"price\":\"66000\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 11086 on 2026-10-19; 660 USD."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1250,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":11091,\"name\":\"$200.000 Evaluation\" ... \"price\":\"125000\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 11091 on 2026-10-19; 1250 USD."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "maxTradingDaysUnlimited": true,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": null
+      },
+      "pricingModel": "one-off",
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "sourceCapturedAt": "2026-10-19"
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "productName": "Ascend Evaluation",
+      "productSlug": "ascend",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 39,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "5.6.5 'Ascend' Evaluation: ... 39 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 5,000 USD",
+            "interpretation": "Terms fee ladder; no purchasable Ascend store item found on 2026-10-19."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 78,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "5.6.5 'Ascend' Evaluation: ... 78 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 10,000 USD",
+            "interpretation": "Terms fee ladder; no purchasable Ascend store item found on 2026-10-19."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 195,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "5.6.5 'Ascend' Evaluation: ... 195 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 25,000 USD",
+            "interpretation": "Terms fee ladder; no purchasable Ascend store item found on 2026-10-19."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 390,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "5.6.5 'Ascend' Evaluation: ... 390 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 50,000 USD",
+            "interpretation": "Terms fee ladder; no purchasable Ascend store item found on 2026-10-19."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 780,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "5.6.5 'Ascend' Evaluation: ... 780 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 100,000 USD",
+            "interpretation": "Terms fee ladder; no purchasable Ascend store item found on 2026-10-19."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1560,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "5.6.5 'Ascend' Evaluation: ... 1560 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 200,000 USD",
+            "interpretation": "Terms fee ladder; no purchasable Ascend store item found on 2026-10-19."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": null,
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": false
+      },
+      "pricingModel": "one-off",
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+      "sourceCapturedAt": "2026-10-19"
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "productName": "Accelerated (1-Phase)",
+      "productSlug": "accelerated",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 40,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":13651,\"name\":\"$5.000 Accelerated\" ... \"price\":\"4000\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 13651 on 2026-10-19; 40 USD."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 80,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":13662,\"name\":\"$10.000 Accelerated\" ... \"price\":\"8000\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 13662 on 2026-10-19; 80 USD."
+          }
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 219,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":13665,\"name\":\"$25.000 Accelerated\" ... \"price\":\"21900\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 13665 on 2026-10-19; 219 USD."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 369,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":13668,\"name\":\"$50.000 Accelerated\" ... \"price\":\"36900\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 13668 on 2026-10-19; 369 USD."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 619,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":13672,\"name\":\"$100.000 Accelerated\" ... \"price\":\"61900\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 13672 on 2026-10-19; 619 USD."
+          }
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1199,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":13675,\"name\":\"$200.000 Accelerated\" ... \"price\":\"119900\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 13675 on 2026-10-19; 1199 USD."
+          }
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 6,
+      "drawdownType": "trailing",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "maxTradingDaysUnlimited": true,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": null
+      },
+      "pricingModel": "one-off",
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "sourceCapturedAt": "2026-10-19"
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "productName": "Instant",
+      "productSlug": "instant",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 2500,
+          "priceUsd": 125,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":107397,\"name\":\"$2.500 Instant Evaluation\" ... \"price\":\"12500\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 107397 on 2026-10-19; 125 USD."
+          }
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 240,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":107402,\"name\":\"$5.000 Instant Evaluation\" ... \"price\":\"24000\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 107402 on 2026-10-19; 240 USD."
+          }
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 475,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":107406,\"name\":\"$10.000 Instant Evaluation\" ... \"price\":\"47500\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 107406 on 2026-10-19; 475 USD."
+          }
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": 4,
+      "maxLossPct": 6,
+      "drawdownType": null,
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "maxTradingDaysUnlimited": true,
+      "consistencyRulePct": null,
+      "profitSplitPct": 50,
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": null
+      },
+      "pricingModel": "one-off",
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "sourceCapturedAt": "2026-10-19"
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "productName": "Break Challenge",
+      "productSlug": "break",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 70,
+          "activationFeeUsd": 138,
+          "maxLossUsd": 1000,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":357765,\"name\":\"$25.000 Break Evaluation\" ... \"price\":\"7000\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 357765 on 2026-10-19; 70 USD."
+          },
+          "activationEvidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":370819,\"name\":\"$25.000 Break Activation Fee\" ... \"price\":\"13800\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 370819 on 2026-10-19; 138 USD."
+          }
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 140,
+          "activationFeeUsd": 198,
+          "maxLossUsd": 2000,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":357770,\"name\":\"$50.000 Break Evaluation\" ... \"price\":\"14000\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 357770 on 2026-10-19; 140 USD."
+          },
+          "activationEvidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":370826,\"name\":\"$50.000 Break Activation Fee\" ... \"price\":\"19800\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 370826 on 2026-10-19; 198 USD."
+          }
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 200,
+          "activationFeeUsd": 328,
+          "maxLossUsd": 3000,
+          "refundable": null,
+          "evidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":357774,\"name\":\"$100.000 Break Evaluation\" ... \"price\":\"20000\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 357774 on 2026-10-19; 200 USD."
+          },
+          "activationEvidence": {
+            "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+            "quote": "\"id\":370828,\"name\":\"$100.000 Break Activation Fee\" ... \"price\":\"32800\" (currency USD, minor unit 2)",
+            "interpretation": "Live store product 370828 on 2026-10-19; 328 USD."
+          }
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "trailing",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": 40,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 0,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": true,
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "pricingModel": "one-off",
+      "assetClass": "crypto",
+      "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+      "sourceCapturedAt": "2026-10-19"
+    }
+  ],
+  "dailyRecheck": {
+    "captureType": "daily-recheck",
+    "capturedAtTimestamp": "2026-10-19T10:03:17+03:00",
+    "egress": "Box egress is a US IP. Global (non-US) prices were checked against the firm's Global/region-independent price data as described in method; US-only codes are not promoted.",
+    "method": "curl of WooCommerce Store API + headless Chrome of terms",
+    "priceSource": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+    "pricesMatchStored": true,
+    "storedPricesChecked": [
+      {
+        "productSlug": "evaluation",
+        "prices": {
+          "5000": 58,
+          "10000": 110,
+          "25000": 240,
+          "50000": 389,
+          "100000": 660,
+          "200000": 1250
+        }
+      },
+      {
+        "productSlug": "ascend",
+        "prices": {
+          "5000": 39,
+          "10000": 78,
+          "25000": 195,
+          "50000": 390,
+          "100000": 780,
+          "200000": 1560
+        }
+      },
+      {
+        "productSlug": "accelerated",
+        "prices": {
+          "5000": 40,
+          "10000": 80,
+          "25000": 219,
+          "50000": 369,
+          "100000": 619,
+          "200000": 1199
+        }
+      },
+      {
+        "productSlug": "instant",
+        "prices": {
+          "2500": 125,
+          "5000": 240,
+          "10000": 475
+        }
+      },
+      {
+        "productSlug": "break",
+        "prices": {
+          "25000": 70,
+          "50000": 140,
+          "100000": 200
+        }
+      }
+    ],
+    "priceQuotes": [
+      "$5.000 Evaluation 58 | $10.000 110 | $25.000 240 | $50.000 389 | $100.000 660 | $200.000 1250 (USD)",
+      "$5.000 Accelerated 40 | 80 | 219 | 369 | 619 | 1199",
+      "$2.500 Instant Evaluation 125 | $5.000 240 | $10.000 475",
+      "$25.000 Break Evaluation 70 | $50.000 140 | $100.000 200",
+      "5.6.5 ‘Ascend’ Evaluation: 39 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 5,000 USD ... 1560 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 200,000 USD"
+    ],
+    "quoteRecheck": {
+      "storedEvidenceStrings": 62,
+      "foundVerbatimInLiveText": 40,
+      "notFoundVerbatim": 22,
+      "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
+    },
+    "changes": [],
+    "observations": [
+      {
+        "item": "Store API also lists \"Tradeando – Free $10.000 Evaluation\" at $0 (partner promo; not a general free trial; not modelled)",
+        "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products"
+      }
+    ],
+    "notes": [
+      "All prices unchanged vs 2026-10-14."
+    ],
+    "pagesRead": [
+      {
+        "url": "https://cryptofundtrader.com/",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-19T07:03:10.508Z"
+      },
+      {
+        "url": "https://cryptofundtrader.com/shop/",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-19T07:03:11.029Z"
+      },
+      {
+        "url": "https://cryptofundtrader.com/faq/",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-19T07:03:16.497Z"
+      },
+      {
+        "url": "https://cryptofundtrader.com/refund-policy/",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-19T07:03:16.673Z"
+      },
+      {
+        "url": "https://cryptofundtrader.com/terms-and-conditions/",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-19T07:03:16.709Z"
+      },
+      {
+        "url": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-19T07:03:16.862Z"
+      },
+      {
+        "url": "https://cryptofundtrader.com/break-challenge/",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-19T07:03:17.319Z"
+      },
+      {
+        "url": "https://cryptofundtrader.com/last-updates-faq/",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-19T07:03:17.848Z"
+      }
+    ]
+  },
+  "reconciliation": {
+    "note": "Two captures of Crypto Fund Trader were made on 2026-10-19: the daily recheck merged to main in #30 (10:03 Europe/Riga, kept verbatim under dailyRecheck) and this full brief recapture by Prop Firm Tracker. Merged into one file because both used the same path.",
+    "agreements": [
+      "All stored prices for the five products match the store API / Terms in both captures (evaluation 58-1250, accelerated 40-1199, instant 125-475, break 70-200, ascend 39-1560 per Terms 5.6.5).",
+      "sourceCapturedAt 2026-10-19 for all five products; firms.json lastUpdated 2026-10-19."
+    ],
+    "disagreements": [
+      {
+        "field": "changes vs 2026-10-14",
+        "dailyRecheck": "\"changes\": [] (\"All prices unchanged vs 2026-10-14\")",
+        "fullRecapture": "prices unchanged, but non-price changes found: maxAllocation $300,000 per FAQ (firms.json had $200,000), Trustpilot count 1,102 (was 1,140, rating still suppressed), FAQ payment list now names PayPal, Apple Pay and Google Pay",
+        "resolution": "Kept the full recapture: the daily recheck only compared prices, so its empty change list does not contradict the non-price findings. Each finding has a verbatim quote under changesVsPrevious."
+      },
+      {
+        "field": "Ascend prices",
+        "dailyRecheck": "ascend 39/78/195/390/780/1560 counted as matching (source: Terms 5.6.5 quote)",
+        "fullRecapture": "Terms 5.6.5 still say 39-1560, but the homepage embeds Ascend store items at 45/90/225/450/899/1798 and the store API reports all six as is_purchasable=false",
+        "resolution": "Stored prices stay at the Terms ladder (both captures agree on the Terms text); the purchasability caveat from the full recapture is added to the Ascend notes."
+      }
+    ],
+    "carriedOver": "The daily recheck observation about the $0 \"Tradeando – Free $10.000 Evaluation\" partner product is kept under dailyRecheck.observations; it was not re-verified in the full recapture and is not modelled."
+  }
 }
