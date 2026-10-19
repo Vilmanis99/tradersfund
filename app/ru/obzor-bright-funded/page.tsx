@@ -34,6 +34,9 @@ const REWARD_URL = 'https://help.brightfunded.com/en/articles/9268736-how-does-m
 const NEWS_URL = 'https://help.brightfunded.com/en/articles/9241694-can-i-trade-news'
 const REFUND_URL = 'https://help.brightfunded.com/en/articles/9460023-can-i-get-a-refund-for-my-brightfunded-challenge'
 const COUNTRIES_URL = 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded'
+/** The help article shows 'September 15, 2026' as its update date (read 2026-10-19); the Terms show no version date. */
+const COUNTRIES_ARTICLE_UPDATED = '15.09.2026'
+const ruDate = (iso: string) => /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso.split('-').reverse().join('.') : iso
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -328,11 +331,21 @@ export default function RussianBrightFundedReviewPage() {
             </div>
             <div className="ru-notice" data-russian-bright-country-conflict="help-six-terms-five">
               <strong>{countrySourcesCurrent ? 'Два официальных списка расходятся.' : 'В датированном снимке два официальных списка расходились.'}</strong>{' '}
-              {countrySourcesCurrent ? 'По проверке' : 'В записи'} от {brightEvidence.sources.countries.sourceCapturedAt || 'неуказанной даты'}{' '}
-              <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="noopener noreferrer">справка</a> включала Пакистан, а{' '}
-              <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="noopener noreferrer">условия BrightFunded</a> от {brightEvidence.sources.countryTerms.sourceCapturedAt || 'неуказанной даты'} называли пять стран без Пакистана.{' '}
+              {countrySourcesCurrent ? (
+                <>
+                  По данным на {ruDate(brightEvidence.sources.countries.sourceCapturedAt)}{' '}
+                  <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="noopener noreferrer">справка</a> (статья обновлена {COUNTRIES_ARTICLE_UPDATED}) называет шесть стран: Кубу, Иран, Северную Корею, Сирию, Вьетнам и Пакистан. По данным на {ruDate(brightEvidence.sources.countryTerms.sourceCapturedAt)}{' '}
+                  <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="noopener noreferrer">условия BrightFunded</a> (п. 2, дата редакции не указана) называют пять стран без Пакистана и оставляют за фирмой право ограничивать доступ в других странах. Поэтому для новой регистрации ориентируйтесь на более строгий список справки.{' '}
+                </>
+              ) : (
+                <>
+                  В записи от {brightEvidence.sources.countries.sourceCapturedAt || 'неуказанной даты'}{' '}
+                  <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="noopener noreferrer">справка</a> включала Пакистан, а{' '}
+                  <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="noopener noreferrer">условия BrightFunded</a> от {brightEvidence.sources.countryTerms.sourceCapturedAt || 'неуказанной даты'} называли пять стран без Пакистана.{' '}
+                </>
+              )}
               {countrySourcesCurrent
-                ? 'Россия не названа ни там, ни там, но условия допускают дополнительные ограничения и учитывают фактическое местонахождение. До оплаты получите ответ поддержки для своего профиля; это расхождение не подтверждает доступ.'
+                ? 'Россия не названа ни там, ни там, но условия учитывают и фактическое местонахождение. До оплаты получите ответ поддержки для своего профиля; это расхождение не подтверждает доступ.'
                 : 'Списки требуют повторной проверки; прежнее отсутствие России в них не подтверждает доступ сегодня. До оплаты получите ответ поддержки для своего профиля.'}
             </div>
             <p>Для русскоязычного трейдера в ЕС, Великобритании, Казахстане, ОАЭ, Израиле, Северной Америке или другой стране важен фактический профиль, а не язык. Перед оплатой уточните ограничения по гражданству, месту проживания и фактическому местонахождению, используйте собственные данные и подтвердите способ получения выплаты. Отсутствие страны в списке не гарантирует, что банк, санкционная проверка или KYC одобрит конкретного трейдера.</p>
