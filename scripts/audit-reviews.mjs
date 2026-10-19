@@ -9009,7 +9009,7 @@ function checkPassingServicesGuide() {
     )
     if (
       tier.refundable !== false ||
-      !fundedNextInstant.notes.some(note => note.includes('requires 5% account growth'))
+      !fundedNextInstant.notes.some(note => /requires 5% account growth/i.test(note))
     ) {
       rows.push('FundedNext Instant alternative lost its refund or payout-gate support')
     }
@@ -9417,7 +9417,9 @@ function checkWhatIsPropFirmGuide() {
     if (
       tier.refundable !== true ||
       !fundedNextTwoStep.notes.some(note =>
-        note.includes('refundable with the first approved Performance Reward'),
+        // Official 2026-10-19 wording is "Challenge fee refunded with your 1st reward";
+        // older captures said "refundable with the first approved Performance Reward".
+        /refundable with the first approved Performance Reward|refunded with your 1st reward/i.test(note),
       )
     ) {
       rows.push('FundedNext 2-Step first-reward refund lost its capture support')
@@ -9445,7 +9447,7 @@ function checkWhatIsPropFirmGuide() {
     if (
       tier.refundable !== false ||
       fundedNextInstant.dailyLossPct !== null ||
-      !fundedNextInstant.notes.some(note => note.includes('requires 5% account growth'))
+      !fundedNextInstant.notes.some(note => /requires 5% account growth/i.test(note))
     ) {
       rows.push('FundedNext Instant refund, daily-loss, or payout-gate support drifted')
     }
