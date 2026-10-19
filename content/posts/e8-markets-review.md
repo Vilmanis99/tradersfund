@@ -25,7 +25,7 @@ modified: "2026-10-19 12:00:00"
     <li>The fee is <em>not</em> refunded with the first payout. E8's refund policy states plainly that it does "not provide bonuses by refunding the fee with the first payout share."</li>
     <li>E8 Pro carries no consistency rule. E8 One applies a 40% best-day rule and E8 Signature a 35% best-day rule.</li>
     <li>Trustpilot has suppressed E8 Markets' aggregate rating: "This company's rating is unavailable due to a breach of our guidelines" (verified 2026-10-15).</li>
-    <li>E8 One's target is 1.5x and its daily limit 0.66x the drawdown you choose. The priced default is a 6% drawdown with a 9% target and 4% daily limit; the 6% / 3% / 4% set in E8's help article is the 4% drawdown option.</li>
+    <li>E8 One's target and daily limit follow the drawdown you choose: 4% → 6% target / 3% daily, 6% → 9% / 4%, 8% → 12% / 5.3%, 10% → 15% / 6.6%, 14% → 21% / 9.2%. The priced default is the 6% drawdown with a 9% target and 4% daily limit; the 6% / 3% / 4% set in E8's help article is the 4% drawdown option.</li>
   </ul>
 </div>
 
@@ -49,7 +49,7 @@ modified: "2026-10-19 12:00:00"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>E8 sells three single-phase CFD products. The table uses E8 One's rendered default of 6% drawdown and 80% split, the current E8 Pro page at a fixed 8% static drawdown and 80% split, and E8 Signature at its published 80% split. E8 One lets you pick a 4%, 6%, 8%, 10% or 14% drawdown, and its configurator sets the target at 1.5x and the daily limit at 0.66x that drawdown; prices for the non-default setups were not readable, so no unrendered value is inferred. An older E8 custom-account article also lists E8 Pro variants; the current product-specific pages instead describe one 8% target / 8% drawdown / 2.5% daily configuration, which is the record used here.</p>
+<p>E8 sells three single-phase CFD products. The table uses E8 One's rendered default of 6% drawdown and 80% split, the current E8 Pro page at a fixed 8% static drawdown and 80% split, and E8 Signature at its published 80% split. E8 One lets you pick a 4%, 6%, 8%, 10% or 14% drawdown, and its configurator sets the target at 1.5x that drawdown and the daily limit at roughly two-thirds of it (3% at the 4% option, 4% at the 6% default, up to 9.2% at 14%); prices for the non-default setups were not readable, so no unrendered value is inferred. An older E8 custom-account article also lists E8 Pro variants; the current product-specific pages instead describe one 8% target / 8% drawdown / 2.5% daily configuration, which is the record used here.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
   <caption class="hidden-caption">E8 Markets challenge lineup and pricing</caption>
@@ -88,7 +88,7 @@ modified: "2026-10-19 12:00:00"
 
 <p><strong>E8 One — 6% trailing drawdown.</strong> E8 calls it Dynamic Drawdown: it "moves only when you close a profit" and "becomes static once you reach the starting balance amount." On a $100K account that is $6,000 of total room and a $4,000 daily limit, both hard breaches. Close $3,000 of profit and the floor climbs from $94,000 to $97,000, so the trailing mechanic tightens exactly as your account grows — until closed profit reaches 6% of starting balance, at which point the floor locks at $100,000.</p>
 
-<p><strong>E8 One's numbers move with the drawdown you pick.</strong> On E8's configurator the profit target is 1.5x and the daily limit 0.66x the dynamic drawdown you choose (4%, 6%, 8%, 10% or 14%). The priced default is the 6% setup, shown on $100K as a $9,000 target, $6,000 dynamic drawdown and $4,000 daily drawdown, and this review uses that 9% / 4% / 6% configuration throughout. The help-centre article's "6% Profit Target… 3% Daily Drawdown… 4% Dynamic Drawdown" is the 4% drawdown option, not a competing default. Strict 0.66x of 4% would be 2.64%, so check the daily figure your configurator and order confirmation show before you place a trade.</p>
+<p><strong>E8 One's numbers move with the drawdown you pick.</strong> On E8's configurator the profit target is 1.5x the dynamic drawdown you choose (4%, 6%, 8%, 10% or 14%), and the daily limit follows E8's custom-account table: 3%, 4%, 5.3%, 6.6% and 9.2% respectively. The priced default is the 6% setup, shown on $100K as a $9,000 target, $6,000 dynamic drawdown and $4,000 daily drawdown, and this review uses that 9% / 4% / 6% configuration throughout. The help-centre article's "6% Profit Target… 3% Daily Drawdown… 4% Dynamic Drawdown" is the 4% drawdown option, not a competing default. Check the target and daily figure your order confirmation shows before you place a trade.</p>
 
 <p><strong>E8 Pro — 8% static drawdown.</strong> "A fixed loss limit based on your initial balance. It never moves, except when a first payout is processed." On a $100K account that is a hard $92,000 floor for the whole evaluation, plus a 2.5% ($2,500) daily loss limit. The offsetting constraint is a <strong>2% daily profit cap</strong> in both stages: on a $100K account, a $5,000 day still counts only $2,000 toward the 8% target, so the fastest legal path to an $8,000 target is four qualifying days.</p>
 
@@ -185,7 +185,7 @@ modified: "2026-10-19 12:00:00"
   <li><strong>E8 Pro's 2% daily profit cap</strong> means a $5,000 day on a $100K account counts only $2,000 toward the 8% target — at least four qualifying days to pass.</li>
   <li><strong>E8 Signature bans overnight and weekend holding</strong> and force-closes at 23:00 server time, ruling out swing strategies entirely on that product.</li>
   <li><strong>E8 Signature caps early payouts</strong> at $1,000–$3,250 depending on tier and withholds a buffer equal to the EOD drawdown before any request.</li>
-  <li><strong>E8 One quotes are incomplete without the drawdown setting.</strong> Its target is 1.5x and its daily limit 0.66x the drawdown you pick, so a 9% target only applies to the 6% default.</li>
+  <li><strong>E8 One quotes are incomplete without the drawdown setting.</strong> Its target is 1.5x the drawdown you pick and its daily limit moves with it (3% at 4%, 4% at 6%, up to 9.2% at 14%), so the 9% target and 4% daily limit only apply to the 6% default.</li>
   <li><strong>E8 One's alternate configurations are not transparently priced.</strong> Its 4%–14% drawdown and 80/90/100% choices reprice outside the readable cards, so only the rendered 6% / 80% default is captured.</li>
   <li><strong>Platform access depends on region and account type.</strong> E8 lists TradeLocker, Match-Trader, cTrader and MT5, but US clients are limited to TradeLocker or Match-Trader and cTrader adds $10 when the base price is below $100.</li>
   <li><strong>Indian and Kenyan profiles face a $200,000 cap on E8 One.</strong> E8 Pro and E8 Signature remain available there at all published sizes, subject to document-based verification.</li>
