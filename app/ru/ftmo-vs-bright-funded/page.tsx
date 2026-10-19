@@ -73,8 +73,8 @@ const faqs: RussianFaqItem[] = [
     a: 'Если вашей страны нет в списке ограничений FTMO, выбор становится вопросом правил, а не доступа. FTMO даёт TradingView и более ранний первый запрос выплаты, BrightFunded — дешевле на $100K, без правила лучшего дня и с разрешённым удержанием позиций на выходных. Проверьте свой профиль на сайте каждой фирмы перед оплатой.',
   },
   {
-    q: 'Почему на странице нет кнопки регистрации в FTMO?',
-    a: 'FTMO ограничивает Россию, а у сайта нет партнёрской программы FTMO. Мы показываем FTMO как ориентир для сравнения правил; ссылка ведёт на русский обзор и разбор ограничений, а не на оформление покупки.',
+    q: 'Зачем на странице кнопка FTMO, если Россия ограничена?',
+    a: 'Кнопка FTMO нужна русскоязычным трейдерам в странах, которых нет в списке ограничений FTMO. Резидентам России, Беларуси, Казахстана и других стран из списка она не подходит. Ссылка ведёт на официальный сайт FTMO и не партнёрская: у сайта нет партнёрской программы FTMO.',
   },
 ]
 
@@ -278,8 +278,8 @@ export default function RussianFtmoVsBrightFundedPage() {
         <div className="ru-shell">
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ftmo-vs-bright">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            Ссылки на BrightFunded партнёрские: после регистрации мы можем получить комиссию. У сайта нет партнёрской
-            программы FTMO, и на этой странице нет кнопки покупки FTMO. Комиссия не меняет цифры в таблице и не
+            Ссылки на BrightFunded, FundedNext и FundingPips партнёрские: после регистрации мы можем получить комиссию.
+            Ссылка на FTMO — обычная, без партнёрской программы. Комиссия не меняет цифры в таблице и не
             подтверждает, что фирма доступна именно вашему профилю.
           </div>
           <div className="ru-grid">
@@ -292,8 +292,13 @@ export default function RussianFtmoVsBrightFundedPage() {
             <article className="ru-card" data-russian-comparison-firm="ftmo">
               <ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>FTMO <RuAccessBadge firm="ftmo" /></h3>
-              <p className="ru-muted">Программ с актуальной проверкой: {ftmo.length}. 4.8 на Trustpilot по 54 501 отзыву, TradingView в списке платформ, первый запрос выплаты с 14-го дня. Только информация: регистрацию не предлагаем.</p>
+              <p className="ru-muted">Программ с актуальной проверкой: {ftmo.length}. 4.8 на Trustpilot по 54 501 отзыву, TradingView в списке платформ, первый запрос выплаты с 14-го дня. Резидентов России FTMO не принимает: кнопка — только для тех, чьей страны нет в списке ограничений.</p>
               <Link href="/ru/obzor-ftmo" className="ru-card-link">Русский обзор FTMO →</Link>
+              <div className="ru-actions" data-russian-comparison-ftmo-cta="secondary-restricted">
+                <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-ftmo-vs-bright-ftmo-card" rel={goLinkRel('ftmo')} className="btn-outline">
+                  Сайт FTMO (не для резидентов РФ) <ArrowRight size={14} aria-hidden="true" />
+                </RuGoLink>
+              </div>
             </article>
           </div>
         </div>
@@ -406,14 +411,29 @@ export default function RussianFtmoVsBrightFundedPage() {
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-ftmo-vs-bright-verdict" rel={goLinkRel('bright-funded')} className="btn-primary btn-glow">
               Открыть BrightFunded 2-Step Classic <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
-            <Link href="/ru/obzor-ftmo" className="btn-outline">Обзор FTMO (без регистрации)</Link>
+            <Link href="/ru/obzor-ftmo" className="btn-outline">Обзор FTMO</Link>
           </div>
+          <p className="ru-source-line" data-russian-comparison-ftmo-cta="verdict-secondary">
+            Живёте в стране, которой нет в списке ограничений FTMO?{' '}
+            <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-ftmo-vs-bright-ftmo-verdict" rel={goLinkRel('ftmo')}>
+              Проверить FTMO на официальном сайте
+            </RuGoLink>{' '}
+            — резидентов России FTMO не принимает.
+          </p>
           <p className="ru-source-line">
             Другие пары: <Link href="/ru/fundednext-vs-bright-funded">FundedNext или BrightFunded</Link> ·{' '}
             <Link href="/ru/fundednext-vs-fundingpips">FundedNext или FundingPips</Link> ·{' '}
             <Link href="/ru/luchshie-prop-firmy">рейтинг проп-фирм</Link> ·{' '}
             <Link href="/ru/promokody-prop-firm">промокоды</Link>.
           </p>
+          <div className="ru-actions" data-russian-comparison-other-firms="fundednext-fundingpips">
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ftmo-vs-bright-fundednext" rel={goLinkRel('fundednext')} className="btn-outline">
+              Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
+            </RuGoLink>
+            <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-ftmo-vs-bright-fundingpips" rel={goLinkRel('fundingpips')} className="btn-outline">
+              Проверить FundingPips <ArrowRight size={14} aria-hidden="true" />
+            </RuGoLink>
+          </div>
         </div>
       </section>
 
