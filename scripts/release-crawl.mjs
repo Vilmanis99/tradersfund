@@ -1199,7 +1199,11 @@ const russianExpectations = new Map([
       'по данным на 14.10.2026',
       'Bybit — по правилам Bybit',
       'data-russian-cft-price-conflict="2026-10-06"',
-      '$899 у Ascend и $199 у Break',
+      '$45 / $90 / $225 / $450 / $899 / $1 798',
+      'data-russian-cft-cheapest="accelerated-5k"',
+      'data-russian-cft-ascend-conflict="2026-10-19"',
+      'по данным на 19.10.2026',
+      '1 102',
     ],
   }],
   ['/ru/obzor-fundingpips', {

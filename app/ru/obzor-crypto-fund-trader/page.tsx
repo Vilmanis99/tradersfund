@@ -33,10 +33,15 @@ export const metadata: Metadata = {
  */
 const ACCESS_CHECKED = '2026-10-14'
 const RULES_CHECKED = '2026-10-15'
-const TRUSTPILOT_CHECKED = '2026-10-15'
-/** Open first-party conflict: challenge-watch cft-ascend-break-price-disagreement-2026-10-06 (homepage vs terms). */
+const TRUSTPILOT_CHECKED = '2026-10-19'
+/** Prop Firm Tracker verdicts 2026-10-19 (/workspace/ru-data/2026-10-19-hashhedge-cft.md, capture crypto-fund-trader-2026-10-19.json). */
+const TRACKER_CHECKED = '2026-10-19'
+const CHEAPEST_BUYABLE = { name: 'Accelerated (1-Phase) $5K', priceUsd: 40 }
+/** Open first-party conflicts: challenge-watch cft-ascend-break-price-disagreement-2026-10-06 and Tracker 2026-10-19 rows 6a/6b. */
 const PRICE_CONFLICT_CHECKED = '2026-10-06'
-const PRICE_CONFLICT_NOTE = `На ${PRICE_CONFLICT_CHECKED.split('-').reverse().join('.')} главная страница CFT показывала для счетов $100K другие цены — $899 у Ascend и $199 у Break, поэтому итоговую цену проверьте в корзине перед оплатой.`
+const ASCEND_CONFLICT_NOTE = 'По данным на 19.10.2026 официальные страницы расходятся: в условиях (п. 5.6.5) Ascend стоит $39–$1 560, главная страница показывает $45 / $90 / $225 / $450 / $899 / $1 798, а в магазине все шесть позиций Ascend помечены как недоступные к покупке.'
+const BREAK_CONFLICT_NOTE = 'По данным на 19.10.2026 позиции Break в магазине доступны к покупке по ценам условий, хотя на странице Break всё ещё стоит надпись «sold out»; 06.10.2026 главная страница показывала $199 за Break $100K.'
+const PRICE_CONFLICT_NOTE = `${ASCEND_CONFLICT_NOTE} ${BREAK_CONFLICT_NOTE} Итоговую цену и доступность проверьте в корзине перед оплатой.`
 
 const SOURCES = {
   faq: 'https://cryptofundtrader.com/faq/',
@@ -46,6 +51,7 @@ const SOURCES = {
   breakChallenge: 'https://cryptofundtrader.com/break-challenge/',
   refund: 'https://cryptofundtrader.com/refund-policy/',
   home: 'https://cryptofundtrader.com/',
+  shop: 'https://cryptofundtrader.com/shop/',
   trustpilot: 'https://www.trustpilot.com/review/cryptofundtrader.com',
 } as const
 
@@ -62,7 +68,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Сколько стоит челлендж CFT?',
-    a: `${asOf(ACCESS_CHECKED)} самый дешёвый вход — Ascend на $5,000 за $39. Двухэтапная Evaluation стоит от $58 ($5K) до $1,250 ($200K), одноэтапная Accelerated — от $40 до $1,199, Instant без оценки — от $125 до $475, Break — от $70 до $200 плюс обязательный сбор за активацию после прохождения. ${PRICE_CONFLICT_NOTE} Цены указаны в долларах США; при оплате в другой валюте курс задаёт платёжный провайдер.`,
+    a: `${asOf(TRACKER_CHECKED)} самый дешёвый доступный к покупке вариант — Accelerated на $5,000 за $40. Ascend по условиям стоит от $39, но в магазине на 19.10.2026 не продаётся. Двухэтапная Evaluation стоит от $58 ($5K) до $1,250 ($200K), одноэтапная Accelerated — от $40 до $1,199, Instant без оценки — от $125 до $475, Break — от $70 до $200 плюс обязательный сбор за активацию после прохождения. ${PRICE_CONFLICT_NOTE} Цены указаны в долларах США; при оплате в другой валюте курс задаёт платёжный провайдер.`,
   },
   {
     q: 'Какой сплит прибыли у Crypto Fund Trader?',
@@ -122,8 +128,6 @@ export default function RussianCryptoFundTraderReviewPage() {
   const captureDates = all.map(product => product.sourceCapturedAt).filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date)).sort()
   const earliestCapture = captureDates[0] ?? ACCESS_CHECKED
   const dateModified = russianRouteDateModified(PATH)
-  const allPrices = fresh.flatMap(product => product.accountSizes.map(tier => tier.priceUsd)).filter((value): value is number => value != null && value > 0)
-  const minPrice = allPrices.length ? Math.min(...allPrices) : null
 
   const tier = (product: Challenge | undefined, size: number) => product?.accountSizes.find(item => item.sizeUsd === size)
   const eval100 = tier(evaluation, 100000)
@@ -180,7 +184,7 @@ export default function RussianCryptoFundTraderReviewPage() {
           <p className="ru-lead">
             Пять программ, три платформы и ни одной страны в списке запретов для Match-Trader. Crypto Fund Trader (CFT) —
             одна из немногих проп-фирм, где у трейдера из России вопрос «пустят ли» решается на уровне платформы, а не
-            гаданием. Но дешёвый вход за {usd(minPrice)} и сбор за активацию у Break, доля 50% у Instant и скрытый рейтинг на
+            гаданием. Но вход от {usd(CHEAPEST_BUYABLE.priceUsd)} и сбор за активацию у Break, доля 50% у Instant и скрытый рейтинг на
             Trustpilot — это то, что стоит знать до оплаты.
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
@@ -189,7 +193,7 @@ export default function RussianCryptoFundTraderReviewPage() {
           </div>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{fresh.length}</strong><span>программ со свежими данными</span></div>
-            <div className="ru-stat"><strong>{usd(minPrice)}</strong><span>минимальный взнос</span></div>
+            <div className="ru-stat" data-russian-cft-cheapest="accelerated-5k"><strong>{usd(CHEAPEST_BUYABLE.priceUsd)}</strong><span>самый дешёвый доступный вход ({CHEAPEST_BUYABLE.name}, {ruDate(TRACKER_CHECKED)})</span></div>
             <div className="ru-stat"><strong>3</strong><span>платформы: Match-Trader, MT5, Bybit</span></div>
             <div className="ru-stat"><strong>{firm?.score != null ? `${firm.score.toFixed(1)}/10` : '—'}</strong><span>редакционный балл</span></div>
           </div>
@@ -233,11 +237,11 @@ export default function RussianCryptoFundTraderReviewPage() {
               без минимума торговых дней. За $100K — {usd(eval100?.priceUsd)}.
             </p>
             <p>
-              Ascend за {usd(tier(ascend, 5000)?.priceUsd)} заканчивается фиксированной
-              стипендией, а не счётом с процентом. Break стоит {usd(break25?.priceUsd)} за $25K, но после прохождения нужно доплатить
+              Ascend по условиям стоит от {usd(tier(ascend, 5000)?.priceUsd)}, заканчивается фиксированной стипендией и на
+              {' '}{ruDate(TRACKER_CHECKED)} в магазине не продаётся. Break стоит {usd(break25?.priceUsd)} за $25K, но после прохождения нужно доплатить
               {' '}{usd(break25?.activationFeeUsd)} за активацию. Instant начинается с доли {percent(instant?.profitSplitPct)}, а не 80%.
-              {' '}<span data-russian-cft-price-conflict="verdict">{PRICE_CONFLICT_NOTE}</span>
-              Рейтинг на Trustpilot скрыт площадкой, независимой проверки выплат нет.
+              {' '}<span data-russian-cft-price-conflict="verdict">Цены Ascend и Break на официальных страницах расходятся — сверьте их в корзине.</span>
+              {' '}Независимой проверки выплат нет.
             </p>
             <p>
               Если вы торгуете форекс и индексы, а крипта вторична, сначала сравните BrightFunded и FundedNext CFD — ссылки в блоке
@@ -277,15 +281,16 @@ export default function RussianCryptoFundTraderReviewPage() {
               </table>
             </div>
             <p>
-              Чего мы не нашли: отдельного пункта о санкционных списках и любого упоминания России, СНГ, карт «Мир» или карт
+              Чего мы не нашли ({asOf(TRACKER_CHECKED)}): отдельного пункта о санкционных списках — в условиях есть только общий
+              запрет использовать сервис там, где это запрещено законом (п. 16.2), — и любого упоминания России, СНГ, карт «Мир» или карт
               российских банков. Отсутствие пункта — не разрешение. Проверка личности (KYC) и подписанный договор обязательны перед
               выплатой, и фирма вправе отказать на этом этапе. Не используйте чужие документы или VPN, чтобы обойти правила
               платформы.
             </p>
             <h3>Оплата челленджа из России</h3>
             <p>
-              В FAQ перечислены: банковская карта, PayPal, Apple Pay, Google Pay и криптовалюта через платёжные шлюзы. В условиях
-              (п. 5.5) — оплата картой или криптовалютой; цены указаны в долларах США, а при оплате в другой валюте курс
+              {asOf(TRACKER_CHECKED)} в FAQ перечислены: банковская карта, PayPal, Apple Pay, Google Pay и криптовалюта. На странице
+              Get Started и в условиях (п. 5.5) по-прежнему названы только карта и криптовалюта; цены указаны в долларах США, а при оплате в другой валюте курс
               устанавливает платёжный провайдер (п. 5.3). Какие именно монеты принимает касса, какие сети карт и какие платёжные
               провайдеры работают — фирма не уточняет, поэтому мы этого не пишем.
             </p>
@@ -339,9 +344,9 @@ export default function RussianCryptoFundTraderReviewPage() {
             <h3>Ascend</h3>
             <p>
               Те же цели {targetsText(ascend)} и лимиты {drawdownText(ascend)}, но другой финал: по достижении цели второго этапа CFT
-              выплачивает фиксированную стипендию, и следующего финансируемого счёта нет. Это самый дешёвый вход — от
-              {' '}{usd(tier(ascend, 5000)?.priceUsd)} за $5K до {usd(tier(ascend, 200000)?.priceUsd)} за $200K, цены зафиксированы в п. 5.6.5 условий.
-              {' '}{PRICE_CONFLICT_NOTE}
+              выплачивает фиксированную стипендию, и следующего финансируемого счёта нет. По условиям — от
+              {' '}{usd(tier(ascend, 5000)?.priceUsd)} за $5K до {usd(tier(ascend, 200000)?.priceUsd)} за $200K (п. 5.6.5), но это не самый дешёвый вариант для покупки.
+              {' '}<span data-russian-cft-ascend-conflict={TRACKER_CHECKED}>{ASCEND_CONFLICT_NOTE}</span> Самый дешёвый доступный к покупке вход — {CHEAPEST_BUYABLE.name} за {usd(CHEAPEST_BUYABLE.priceUsd)}.
               Новости в Ascend ограничены, копирование сделок запрещено. Суммы стипендии мы в этой версии не приводим — сверьте их в
               условиях перед покупкой.
             </p>
@@ -367,7 +372,7 @@ export default function RussianCryptoFundTraderReviewPage() {
               нужно заплатить сбор за активацию: $138, $198 и $328 соответственно, срок оплаты в кабинете — 30 дней. Итого на
               $25K — {usd(break25Total)}, а не {usd(break25?.priceUsd)}. Цели в долларах: $1,250, $3,000 и $6,000. Дневного лимита нет,
               подвижная граница — {usd(break25?.maxLossUsd)}, $2,000 и $3,000. На финальной стадии действует правило: один день
-              не больше {percent(breakChallenge?.consistencyRulePct)} всей прибыли; выплаты — по запросу. {PRICE_CONFLICT_NOTE}
+              не больше {percent(breakChallenge?.consistencyRulePct)} всей прибыли; выплаты — по запросу. Минимум торговых дней — 0 по странице Break; на главной для первой фазы указан 1 день ({ruDate(TRACKER_CHECKED)}). {BREAK_CONFLICT_NOTE} Итоговую цену проверьте в корзине.
             </p>
             <p className="ru-source-line">Источники: <a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a> (п. 5.6.5, п. 8), <a href={SOURCES.breakChallenge} target="_blank" rel="nofollow noopener noreferrer">Break Challenge</a>, <a href={SOURCES.home} target="_blank" rel="nofollow noopener noreferrer">главная страница</a> — {asOf(earliestCapture)}. Как устроены этапы оценки в целом — в <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm">гиде по челленджам</Link>.</p>
           </div>
@@ -379,7 +384,7 @@ export default function RussianCryptoFundTraderReviewPage() {
             <ul className="wp-block-list">
               <li><strong>Новости разрешены</strong> во всех программах, кроме Ascend: там нельзя открывать сделки и наращивать риск за 2 минуты до и 2 минуты после важных новостей и открытия рынков.</li>
               <li><strong>Ночь и выходные</strong> — удержание позиций разрешено. Для крипты, которая торгуется круглосуточно, это не мелочь.</li>
-              <li><strong>Минимум торговых дней</strong> — нет ни в одной из пяти программ. Срок оценки в наших данных не зафиксирован.</li>
+              <li><strong>Минимум торговых дней</strong> — 0 в Evaluation, Ascend, Accelerated и Instant; у Break 0 по странице программы, но главная для первой фазы указывает 1 день ({ruDate(TRACKER_CHECKED)}). Срок оценки в наших данных не зафиксирован.</li>
               <li><strong>Правило лучшего дня</strong> — только у Break на финальной стадии: {percent(breakChallenge?.consistencyRulePct)}. В остальных программах его нет.</li>
               <li><strong>Советники (EA)</strong> — разрешены с ограничениями; конкретные запреты перечислены в условиях, построчно мы их не разбирали.</li>
               <li><strong>Копирование сделок</strong> — запрещено в Ascend и ограничено в Break.</li>
@@ -435,7 +440,8 @@ export default function RussianCryptoFundTraderReviewPage() {
             <h2>Отзывы о Crypto Fund Trader</h2>
             <p>
               {asOf(TRUSTPILOT_CHECKED)} Trustpilot не показывает рейтинг Crypto Fund Trader: на странице компании написано, что рейтинг
-              недоступен из-за нарушения правил площадки. Видно только число отзывов — около 1 100, и оно может быть неполным.
+              недоступен из-за нарушения правил площадки. Видно число отзывов — 1 102. Там же Trustpilot сообщает, что удалил часть
+              отзывов о компании как поддельные; кто их оставил, площадка не указывает.
               Поэтому оценку мы не печатаем: средний балл без объяснения, что именно нарушено, ничего не говорит о выплатах.
             </p>
             <p>
@@ -466,10 +472,10 @@ export default function RussianCryptoFundTraderReviewPage() {
                 <h3>Плюсы</h3>
                 <ul>
                   <li><strong>Match-Trader без ограничений по странам</strong> — Россия и СНГ не отсекаются на входе.</li>
-                  <li><strong>Нет минимума торговых дней</strong> — во всех пяти программах.</li>
+                  <li><strong>0 минимальных торговых дней</strong> — в четырёх программах; у Break данные страниц расходятся (0 или 1).</li>
                   <li><strong>Новости, ночь и выходные</strong> разрешены (кроме новостей в Ascend).</li>
                   <li><strong>Вывод в USDT, BTC, ETH</strong> или банком в EUR/USD.</li>
-                  <li><strong>Вход от {usd(minPrice)}</strong> и цены, опубликованные в условиях.</li>
+                  <li><strong>Вход от {usd(CHEAPEST_BUYABLE.priceUsd)}</strong> — Accelerated $5K ({ruDate(TRACKER_CHECKED)}).</li>
                 </ul>
               </article>
               <article className="ru-card">
@@ -526,6 +532,7 @@ export default function RussianCryptoFundTraderReviewPage() {
               <li><a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a>: цены Ascend и Break, сбор за активацию, оплата — {asOf(ACCESS_CHECKED)}.</li>
               <li><a href={SOURCES.fundedAccount} target="_blank" rel="nofollow noopener noreferrer">Funded Account</a>: оператор SWISS RLCRATES AG (Цуг), способы выплаты — {asOf(ACCESS_CHECKED)}.</li>
               <li><a href={SOURCES.trustpilot} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> — {asOf(TRUSTPILOT_CHECKED)}.</li>
+              <li><a href={SOURCES.shop} target="_blank" rel="nofollow noopener noreferrer">Магазин CFT</a>, <a href={SOURCES.home} target="_blank" rel="nofollow noopener noreferrer">главная страница</a>, <a href={SOURCES.breakChallenge} target="_blank" rel="nofollow noopener noreferrer">Break Challenge</a>, FAQ и условия: доступность Ascend и Break к покупке, расхождения цен, способы оплаты, санкционный пункт — {asOf(TRACKER_CHECKED)}.</li>
             </ul>
             <p>Мы не открывали кассу, не регистрировали аккаунт и не получали выплату от CFT. Полный обзор на английском: <Link href="/blog/crypto-fund-trader-review" hrefLang="en">Crypto Fund Trader review</Link>.</p>
             <div className="ru-notice" data-russian-risk-disclaimer="crypto-fund-trader-review">
