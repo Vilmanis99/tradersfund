@@ -85,7 +85,8 @@
     "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
   },
   "changes": [
-    "E8 One notes and challenge-watch e8-one-default-parameter-conflict marked resolved (status verified, lastCheckedAt 2026-10-19) per resolution below; no value change."
+    "E8 One notes and challenge-watch e8-one-default-parameter-conflict marked resolved (status verified, lastCheckedAt 2026-10-19) per resolution below; no value change.",
+    "E8 One resolution note corrected with per-option values; E8 Pro \"still conflicts\" note replaced (help table matches); watch e8-pro-current-page-vs-help-prices summary refreshed, lastCheckedAt 2026-10-19 (status stays watch: drawdown/payout option conflict remains)."
   ],
   "freeTrial": {
     "sourceUrl": "https://help.e8markets.com/en/articles/5514275-can-i-try-e8-markets-for-free",
@@ -103,9 +104,12 @@
       "\"evaluation\":{\"profitTargetFrom\":{\"from\":\"drawdown\",\"multiplier\":1.5},\"drawdown\":6,\"dailyDrawdownFrom\":{\"from\":\"drawdown\",\"multiplier\":0.66}}",
       "\"settings\":{\"drawdowns\":[4,6,8,10,14]",
       "Profit Target $9,000 Dynamic Drawdown $6,000 Daily drawdown $4,000 (default $100K configuration)",
-      "Help article https://help.e8markets.com/en/articles/11775980-e8-one (lastUpdatedDate 2026-09-23): \"6% Profit Target ... 3% Daily Drawdown ... 4% Dynamic Drawdown\""
+      "Help article https://help.e8markets.com/en/articles/11775980-e8-one (lastUpdatedDate 2026-09-23): \"6% Profit Target ... 3% Daily Drawdown ... 4% Dynamic Drawdown\"",
+      "Configurator bundle https://e8markets.com/_nuxt/DQyMxEnI.js (fetched 2026-10-19 ~11:08 EEST): \"k=_=>Math.round(_*10)/10\" ... \"i=y=>y===4?.75:g\" ... \"dailyLossMin:k(d*i(d)),dailyLossMax:k(n*i(n))\"",
+      "https://help.e8markets.com/en/articles/8880316-what-is-the-custom-account (lastUpdatedDate 2026-10-08): \"Dynamic drawdown: 4%, 6%, 8%, 10%, 14%\" / \"Daily drawdown:  3%, 4%, 5.3%, 6.6%,  9.2% (only adjusted based on Dynamic Drawdown parameter).\" / \"6%, 9%, 12%, 15%, 21%\""
     ],
-    "conclusion": "E8 One is configurable: target = 1.5x and daily = 0.66x the chosen drawdown (4/6/8/10/14%). The priced default is 6% drawdown -> 9% target / 4% daily / 6% max, which is what challenges/e8-markets.json stores. The help article describes the 4% drawdown option (6% target; it rounds daily to 3%). Stored values kept; the configurator is the authoritative source for the priced default."
+    "conclusion": "E8 One is configurable. Per-option values (drawdown -> target / daily): 4 -> 6 / 3; 6 -> 9 / 4; 8 -> 12 / 5.3; 10 -> 15 / 6.6; 14 -> 21 / 9.2. Configurator code: daily multiplier 0.66 except 0.75 at the 4% option (i=y=>y===4?.75:g), rounded to 0.1 (k=_=>Math.round(_*10)/10). Priced default 6% -> 9% / 4% / 6% (stored). Help article 11775980 describes the 4% option.",
+    "correction": "Earlier today the note implied 0.66x for every option (2.64% at 4%); the configurator uses 0.75x at 4% (= 3%), matching the help article."
   },
   "notes": [
     "All prices unchanged vs 2026-10-14. Refund policy (updated 2026-10-15) still says no fee refund with first payout; unused phase-1 refund within 30 days; no crypto refunds."
@@ -221,5 +225,13 @@
       "httpStatus": 200,
       "fetchedAt": "2026-10-19T07:02:40.952Z"
     }
-  ]
+  ],
+  "e8ProHelpPriceTable": {
+    "checkedAt": "2026-10-19",
+    "sourceUrl": "https://help.e8markets.com/en/articles/8880316-what-is-the-custom-account",
+    "lastUpdatedDate": "2026-10-08",
+    "quote": "E8 Pro: Account balance $5,000 $10,000 $25,000 $50,000 $100,000 $200,000 $400,000 $500,000 Pre-set pricing $32 $68 $148 $228 $488 $998 $2098 $2598",
+    "matchesStored": true,
+    "note": "help article 15274219-e8-pro-forex (lastUpdatedDate 2026-09-23) has no price table. A live re-render of e8markets.com/e8-one at ~11:05 EEST hit a \"SECURE VERIFICATION\" human check, so the per-option values come from the configurator JS bundle plus the help table, not a rendered click-through."
+  }
 }

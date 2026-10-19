@@ -476,16 +476,15 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-08-11",
-    "lastCheckedAt": "2026-09-14",
+    "lastCheckedAt": "2026-10-19",
     "title": "E8 Pro pages disagree on prices and configurable terms",
-    "summary": "The current E8PRO v2 page lists $38 to $2,998 and fixed 8% target, 8% static drawdown and 2.5% daily-cap terms, with an 80% default or paid 100% add-on. Current help still shows the older $32 to $2,598 ladder, while an older custom-account article also lists 6%, 8% or 10% drawdown and a 90% payout variant.",
-    "traderImpact": "The comparison follows the current product-specific v2 page and does not infer variant prices. Confirm the size, drawdown, payout option, platform surcharge and final total in checkout.",
+    "summary": "Prices now agree: the e8markets.com/e8-pro page and the help-centre base price table (custom-account article, updated 2026-10-08) both list $32 to $2,598 for $5K-$500K, with fixed 8% target, 8% static drawdown and 2.5% daily drawdown at an 80% default payout. Still open: the same custom-account article also lists 6%, 8% or 10% static drawdown and 80% / 90% / 100% payout options for E8 Pro, which the fixed product page does not offer.",
+    "traderImpact": "The comparison uses the fixed 8% / 8% / 2.5% configuration at the listed prices and does not infer variant prices. Confirm the size, payout option, platform surcharge and final total in checkout.",
     "sourceUrls": [
-      "https://e8pro.e8markets.com/best-simfi-funded-program-e8pro",
       "https://e8markets.com/e8-pro",
       "https://help.e8markets.com/en/articles/15274219-e8-pro-forex",
-      "https://help.e8markets.com/en/articles/13106558-all-product-overviews-e8-one-vs-e8-zero-vs-e8-pro-vs-e8-signature",
-      "https://help.e8markets.com/en/articles/8880316-what-is-the-custom-account"
+      "https://help.e8markets.com/en/articles/8880316-what-is-the-custom-account",
+      "https://help.e8markets.com/en/articles/13106558-all-product-overviews-e8-one-vs-e8-zero-vs-e8-pro-vs-e8-signature"
     ]
   },
   {
@@ -500,12 +499,13 @@
     "observedAt": "2026-08-11",
     "lastCheckedAt": "2026-10-19",
     "title": "E8 One default target and drawdown confirmed",
-    "summary": "Resolved 2026-10-19: E8 One target and daily limit scale with the chosen dynamic drawdown (target 1.5x, daily 0.66x; drawdown options 4/6/8/10/14%). The priced configurator default is 6% drawdown, giving a 9% target and 4% daily limit (\"Profit Target $9,000 Dynamic Drawdown $6,000 Daily drawdown $4,000\" on $100K). The help article's 6% target / 3% daily / 4% dynamic figures are the 4% drawdown option, not a conflicting default.",
+    "summary": "Resolved 2026-10-19: E8 One target and daily limit follow the chosen dynamic drawdown: 4% -> 6% target / 3% daily, 6% -> 9% / 4%, 8% -> 12% / 5.3%, 10% -> 15% / 6.6%, 14% -> 21% / 9.2% (configurator and E8 custom-account help table). The priced default is 6% drawdown with a 9% target and 4% daily limit. The E8 One help article's 6% / 3% / 4% figures are the 4% drawdown option, not a conflicting default.",
     "traderImpact": "Comparisons use the 9% / 4% / 6% default that the listed prices buy. Choosing a different drawdown changes the target and daily limit (and possibly the price), so check the selected configuration in the order confirmation; Indian and Kenyan profiles are additionally capped at the $200K E8 One tier.",
     "sourceUrls": [
       "https://e8markets.com/e8-one",
       "https://e8markets.com/compare-simfi-funded-accounts",
-      "https://help.e8markets.com/en/articles/11775980-e8-one"
+      "https://help.e8markets.com/en/articles/11775980-e8-one",
+      "https://help.e8markets.com/en/articles/8880316-what-is-the-custom-account"
     ]
   },
   {
