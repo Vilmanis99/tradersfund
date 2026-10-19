@@ -23,7 +23,7 @@ type: "post"
     <li>FundingPips publishes 27 USD fees in its first-party comparison table; only the disputed $2.5K Pro and Standard rows remain unpriced.</li>
     <li>Static maximum-loss limits range from 6% to 12% on the 4 evaluation products; FundingPips Zero instead uses a 5% trailing limit.</li>
     <li>The shorter captured cycles pay 80% on 1 Step Flex, 80% on 2 Step Pro, and 95% on Zero; eligible 1 Step Flex, 2 Step Flex, 2 Step Pro, and Standard accounts also publish 100% monthly routes with added conditions.</li>
-    <li>New 2 Step Flex accounts require 1 minimum day on the 80% route, while new 2 Step Pro accounts require 2 days per phase from 26 August 2026.</li>
+    <li>New 2 Step Flex accounts require 1 minimum day on the 80% route, while new and reset 2 Step Pro accounts bought on or after 26 August 2026 have 0 minimum trading days per phase.</li>
     <li>FundingPips is not on our India shortlist because the captured country, checkout, KYC, and payout evidence still does not prove an end-to-end Indian purchase and withdrawal.</li>
   </ul>
 </div>
@@ -92,7 +92,7 @@ type: "post"
 
 <p><strong>2 Step Flex:</strong> the targets are 10% and 8% against a 4% daily and 12% static maximum loss. New 80% accounts require 1 minimum trading day per phase; the 95% route requires 3 profitable days of at least 0.5%. Eligible Master Accounts can instead use a 100% monthly cycle with 35% consistency, 7 profitable days at 0.5%, and a 1% Striking System trigger.</p>
 
-<p><strong>2 Step Pro:</strong> both phases target 6%, the daily cap is 3%, and the static maximum loss is 6%. New and reset accounts from 26 August require 2 minimum trading days per phase. The 80% weekly route remains available, while an eligible 100% monthly route adds 35% consistency, 7 profitable days at 0.5%, and a 1% Striking System trigger.</p>
+<p><strong>2 Step Pro:</strong> both phases target 6%, the daily cap is 3%, and the static maximum loss is 6%. New and reset accounts from 26 August have 0 minimum trading days per phase (older accounts keep 1, per FundingPips' 2 Step Pro article checked 2026-10-19). The 80% weekly route remains available, while an eligible 100% monthly route adds 35% consistency, 7 profitable days at 0.5%, and a 1% Striking System trigger.</p>
 
 <p><strong>2 Step Standard:</strong> targets are 8% then 5%, with a 5% daily and 10% static maximum loss plus 3 minimum trading days. Its 35% consistency rule applies to the 90% on-demand and 100% monthly routes; the monthly route also requires 7 profitable days at 0.5% and changes the Striking System trigger to 1%.</p>
 
@@ -181,7 +181,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should pick FundingPips</strong></h2>
 
-<p>A rule-first CFD trader should compare the verified $29 fee on a $5K 2 Step Pro—with 6% and 6% targets, 6% static maximum loss, 2 minimum days per phase, and an 80% weekly route—against the $32 2 Step Flex fee, wider 12% loss room, and 80%, 95%, or 100% route conditions.</p>
+<p>A rule-first CFD trader should compare the verified $29 fee on a $5K 2 Step Pro—with 6% and 6% targets, 6% static maximum loss, 0 minimum days per phase, and an 80% weekly route—against the $32 2 Step Flex fee, wider 12% loss room, and 80%, 95%, or 100% route conditions.</p>
 
 <p>Before paying for 2 Step Standard or 2 Step Pro, either model can be rehearsed on FundingPips’ free MT5 trial, which runs both phases for 14 calendar days each but cannot run alongside any other FundingPips account; our <a href="/blog/prop-firm-free-trial">prop firm free trial comparison</a> lists its limits next to FTMO, FundedNext and Alpha Capital (checked 2026-10-19).</p>
 
