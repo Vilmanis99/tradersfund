@@ -496,15 +496,15 @@
       "e8-one"
     ],
     "kind": "source-conflict",
-    "status": "watch",
+    "status": "verified",
     "observedAt": "2026-08-11",
-    "lastCheckedAt": "2026-09-14",
-    "title": "E8 One pages disagree on the default target and drawdown",
-    "summary": "The rendered configurator and product page default to a 9% target, 4% daily drawdown and 6% trailing maximum drawdown, while E8's help article calls 6% target, 3% daily and 4% dynamic drawdown the preset. The comparison follows the rendered configuration attached to the captured prices.",
-    "traderImpact": "Verify the selected target, daily limit and maximum drawdown in the order confirmation before trading; Indian and Kenyan profiles are additionally capped at the $200K E8 One tier.",
+    "lastCheckedAt": "2026-10-19",
+    "title": "E8 One default target and drawdown confirmed",
+    "summary": "Resolved 2026-10-19: E8 One target and daily limit scale with the chosen dynamic drawdown (target 1.5x, daily 0.66x; drawdown options 4/6/8/10/14%). The priced configurator default is 6% drawdown, giving a 9% target and 4% daily limit (\"Profit Target $9,000 Dynamic Drawdown $6,000 Daily drawdown $4,000\" on $100K). The help article's 6% target / 3% daily / 4% dynamic figures are the 4% drawdown option, not a conflicting default.",
+    "traderImpact": "Comparisons use the 9% / 4% / 6% default that the listed prices buy. Choosing a different drawdown changes the target and daily limit (and possibly the price), so check the selected configuration in the order confirmation; Indian and Kenyan profiles are additionally capped at the $200K E8 One tier.",
     "sourceUrls": [
-      "https://e8markets.com/compare-simfi-funded-accounts",
       "https://e8markets.com/e8-one",
+      "https://e8markets.com/compare-simfi-funded-accounts",
       "https://help.e8markets.com/en/articles/11775980-e8-one"
     ]
   },

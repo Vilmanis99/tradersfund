@@ -32,8 +32,8 @@ const PATH = '/prop-firm-challenge-changes'
 // change cannot strand the whole site on an older deployment.
 const SOCIAL_CARD_ENTRY_COUNT = 34
 const SOCIAL_CARD_FIRM_COUNT = 15
-const SOCIAL_CARD_VERIFIED_COUNT = 18
-const SOCIAL_CARD_WATCH_COUNT = 16
+const SOCIAL_CARD_VERIFIED_COUNT = 19
+const SOCIAL_CARD_WATCH_COUNT = 15
 
 const TITLE = 'Prop Firm Challenge Changes & Rule Updates (2026)'
 const DESCRIPTION =

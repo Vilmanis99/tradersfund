@@ -128,6 +128,11 @@ const CHALLENGE_CHANGES_SOCIAL_ALT_FILE = path.join(
   'app/prop-firm-challenge-changes/opengraph-image.alt.txt',
 )
 const CHALLENGE_WATCH_FILE = path.join(ROOT, 'content/data/challenge-watch.json')
+// OFP Funding's official lineup shrank on 2026-10-14 (recapture of the ofpfunding.com
+// __NUXT_DATA__ plan payload and /trading-rules tabs): only Instant Lite, Instant Classic
+// and Instant Plus remain, each in two drawdown variants = 6 products. One Phase, Two
+// Phase, Instant Pro and Instant Prime are no longer sold. Rechecked 2026-10-19.
+const OFP_EXPECTED_PRODUCTS = 6
 const INDIA_EVIDENCE_FILE = path.join(ROOT, 'content/data/india-evidence.json')
 const INDIA_RBI_CAPTURE_FILE = path.join(ROOT, 'content/data/india-rbi-alert-capture.json')
 const INDIA_EVIDENCE_CAPTURES_DIR = path.join(
@@ -3598,8 +3603,8 @@ function checkIndiaChallengeChangesSurface() {
       'SOCIAL_CARD_ENTRY_COUNT = 19',
       'SOCIAL_CARD_FIRM_COUNT = 7',
       'SOCIAL_CARD_PRODUCT_COUNT = 35',
-      'SOCIAL_CARD_VERIFIED_COUNT = 8',
-      'SOCIAL_CARD_WATCH_COUNT = 11',
+      'SOCIAL_CARD_VERIFIED_COUNT = 9',
+      'SOCIAL_CARD_WATCH_COUNT = 10',
       'Refresh the India challenge-changes social card',
       'Affiliate status contributes 0 points',
       'ChallengeChangeFeed entries={entries}',
@@ -8949,7 +8954,7 @@ function checkPassingServicesGuide() {
     'utf-8',
   )
   if (
-    ofp.length !== 9 ||
+    ofp.length !== OFP_EXPECTED_PRODUCTS ||
     ofpProhibited.length !== ofp.length ||
     ofpDates.size !== 1 ||
     !ofpCapture.includes('Violation Consequence: Immediate account closure')
@@ -9234,7 +9239,7 @@ function checkCopyTradingGuide() {
       [...ofpDates][0],
     ],
   )
-  if (ofp.length !== 9 || ofpProhibited.length !== ofp.length || ofpDates.size !== 1) {
+  if (ofp.length !== OFP_EXPECTED_PRODUCTS || ofpProhibited.length !== ofp.length || ofpDates.size !== 1) {
     rows.push('OFP Funding product count, prohibition, or capture date drifted')
   }
 

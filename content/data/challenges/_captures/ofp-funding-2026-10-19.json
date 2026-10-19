@@ -183,5 +183,15 @@
       "httpStatus": 200,
       "fetchedAt": "2026-10-19T07:02:58.576Z"
     }
-  ]
+  ],
+  "lineupRecheck": {
+    "checkedAt": "2026-10-19T10:37:12+03:00",
+    "sources": [
+      "https://ofpfunding.com/",
+      "https://ofpfunding.com/trading-rules"
+    ],
+    "result": "6 products: Instant Lite, Instant Classic, Instant Plus, each with two drawdown variants (Lite 3/5 and 5/10; Classic 3/6 and 5/10; Plus 3/5 and 5/10), each sold at 80% and 100% split. No One Phase, Two Phase or Instant Pro plan records in the __NUXT_DATA__ pricing payload; \"Instant Prime\" appears only in CMS rich text, not in pricing or rule tabs.",
+    "quote": "Instant Lite Instant Classic Instant Plus 1. Discipline and Consistency 2. Trading Rules",
+    "auditFix": "scripts/audit-reviews.mjs expected 9 products (July 2026 lineup); changed to OFP_EXPECTED_PRODUCTS = 6."
+  }
 }

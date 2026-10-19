@@ -85,7 +85,9 @@
     "notFoundVerbatim": 21,
     "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
   },
-  "changes": [],
+  "changes": [
+    "Notes only: LucidPro note updated from the August $135-$370 ladder to $123/$192/$307/$410; LucidFlex and LucidDirect \"PRICE NOT VERIFIED\" notes replaced with the verified product-picker prices (priceUsd values were already current)."
+  ],
   "notes": [
     "Displayed one-time fee = productPrices + addonFees for Pro (108+15=123 ...) and Flex (79+10=89, 136+10=146, 258+35=293, 372+35=407); Direct 329/515/700/836. All match the 2026-10-14 values. LucidDaily prices still not public.",
     "The Lucid review body still quotes the August LucidPro fees ($135/$185/$285/$370) and \"24 unpriced tiers\" — see report; post not edited here."

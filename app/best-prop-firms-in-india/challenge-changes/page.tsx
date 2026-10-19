@@ -27,8 +27,8 @@ const PATH = '/best-prop-firms-in-india/challenge-changes'
 const SOCIAL_CARD_ENTRY_COUNT = 19
 const SOCIAL_CARD_FIRM_COUNT = 7
 const SOCIAL_CARD_PRODUCT_COUNT = 35
-const SOCIAL_CARD_VERIFIED_COUNT = 8
-const SOCIAL_CARD_WATCH_COUNT = 11
+const SOCIAL_CARD_VERIFIED_COUNT = 9
+const SOCIAL_CARD_WATCH_COUNT = 10
 
 export const metadata: Metadata = {
   title: { absolute: 'Prop Firm Challenge Changes India (2026)' },
