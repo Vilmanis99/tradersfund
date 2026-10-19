@@ -12783,7 +12783,7 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(russianRouteFiles.get('/ru/fundednext-vs-bright-funded'), 'utf8')
     : ''
   for (const token of [
-    "const TITLE = 'FundedNext или BrightFunded: сравнение 2026'",
+    "const TITLE = 'FundedNext или BrightFunded: сравнение 2026 и доступ из РФ'",
     "const SOCIAL_TITLE = 'FundedNext или Bright Funded: сравнение 2026'",
     'FundedNext или BrightFunded: что выбрать в 2026 году',
     'data-russian-primary-comparison="fundednext-bright-funded"',

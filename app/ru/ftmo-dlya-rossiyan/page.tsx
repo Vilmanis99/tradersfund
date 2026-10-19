@@ -13,8 +13,8 @@ const CHECKED = '14.10.2026'
 const FTMO_SOURCE = 'https://ftmo.com/en/faq/who-can-join-ftmo/'
 const FTMO_AFFILIATE_SOURCE = 'https://ftmo.com/en/faq/are-there-country-restrictions-for-affiliates-and-referred-clients/'
 export const revalidate = 86400
-const TITLE = 'FTMO для россиян: можно ли пройти челлендж из РФ и чем заменить'
-const DESCRIPTION = 'FTMO работает в России? Нет: Россия в официальном списке ограниченных стран FTMO. Полный список (Беларусь, Казахстан, Центральная Азия), риски обхода и альтернативы для трейдеров из РФ.'
+const TITLE = 'FTMO для россиян 2026: работает ли в РФ и чем заменить'
+const DESCRIPTION = 'FTMO в России не работает: РФ в официальном списке ограниченных стран FTMO. Какие страны СНГ закрыты, риски обхода через VPN и альтернативы для трейдеров из РФ.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -92,7 +92,7 @@ export default function FtmoForRussiansPage() {
       <section className="ru-hero">
         <div className="ru-shell" data-ftmo-russia="restricted">
           <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <span className="ru-badge ru-badge--closed">Недоступно для РФ · проверено {CHECKED}</span></div>
-          <h1>FTMO для россиян: можно ли пройти челлендж из РФ и чем заменить</h1>
+          <h1>FTMO для россиян: работает ли FTMO в России и чем его заменить</h1>
           <p className="ru-lead">
             Короткий ответ — нельзя. «Russian Federation» стоит в официальном списке FTMO рядом с Беларусью, Казахстаном
             и ещё четырьмя странами Центральной Азии. Ниже — что именно написано в правилах, что будет, если попробовать
