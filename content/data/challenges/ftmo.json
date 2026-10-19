@@ -58,9 +58,10 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/ftmo-2026-10-19.json"
     ]
   },
   {
@@ -121,9 +122,10 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/ftmo-2026-10-19.json"
     ]
   }
 ]

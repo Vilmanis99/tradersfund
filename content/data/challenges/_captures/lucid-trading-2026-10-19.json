@@ -1,0 +1,240 @@
+{
+  "firmSlug": "lucid-trading",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T10:04:08+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/lucid-trading-2026-10-14.json",
+  "egress": "Box egress is a US IP. Global (non-US) prices were checked against the firm's Global/region-independent price data as described in method; US-only codes are not promoted.",
+  "method": "Headless Chrome render of https://www.lucidtrading.com/ (curl gets 403) — product picker config productPrices + addonFees",
+  "priceSource": "https://www.lucidtrading.com/ productPicker config",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "lucidpro",
+      "prices": {
+        "25000": 123,
+        "50000": 192,
+        "100000": 307,
+        "150000": 410
+      }
+    },
+    {
+      "productSlug": "lucidflex",
+      "prices": {
+        "25000": 89,
+        "50000": 146,
+        "100000": 293,
+        "150000": 407
+      }
+    },
+    {
+      "productSlug": "luciddirect",
+      "prices": {
+        "25000": 329,
+        "50000": 515,
+        "100000": 700,
+        "150000": 836
+      }
+    },
+    {
+      "productSlug": "luciddaily-dll-on-intraday",
+      "prices": {
+        "25000": null,
+        "50000": null,
+        "100000": null,
+        "150000": null
+      }
+    },
+    {
+      "productSlug": "luciddaily-dll-on-eod",
+      "prices": {
+        "25000": null,
+        "50000": null,
+        "100000": null,
+        "150000": null
+      }
+    },
+    {
+      "productSlug": "luciddaily-dll-off-intraday",
+      "prices": {
+        "25000": null,
+        "50000": null,
+        "100000": null,
+        "150000": null
+      }
+    },
+    {
+      "productSlug": "luciddaily-dll-off-eod",
+      "prices": {
+        "25000": null,
+        "50000": null,
+        "100000": null,
+        "150000": null
+      }
+    }
+  ],
+  "priceQuotes": [
+    "LucidPro: ONE TIME FEE $123 $90.60 | $192 $140.40 | $307 $225.40 | $410 $300.50 (W/ COUPON AT CHECKOUT, code VAULT)",
+    "\"productPrices\":{\"56539\":\"108\",\"1661\":\"172\",\"1663\":\"272\",\"1657\":\"365\", ... \"204751\":\"79\",\"204746\":\"136\",\"204747\":\"258\",\"204745\":\"372\", ... \"56555\":\"329\",\"6961\":\"515\",\"1501896\":\"700\",\"6959\":\"836\"} with \"addonFees\":{\"56539\":15,\"1661\":20,\"1663\":35,\"1657\":45, ... \"204751\":10,\"204746\":10,\"204747\":35,\"204745\":35}",
+    "\"global\":{\"couponCode\":\"VAULT\"}"
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 34,
+    "foundVerbatimInLiveText": 13,
+    "notFoundVerbatim": 21,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
+  },
+  "changes": [],
+  "notes": [
+    "Displayed one-time fee = productPrices + addonFees for Pro (108+15=123 ...) and Flex (79+10=89, 136+10=146, 258+35=293, 372+35=407); Direct 329/515/700/836. All match the 2026-10-14 values. LucidDaily prices still not public.",
+    "The Lucid review body still quotes the August LucidPro fees ($135/$185/$285/$370) and \"24 unpriced tiers\" — see report; post not edited here."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://support.lucidtrading.com/en/articles/11404628-accepted-payments-methods",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:45.409Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:45.421Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/11404636-restricted-countries",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:45.437Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/11404620-simulated-account-fees",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:45.592Z"
+    },
+    {
+      "url": "https://lucidtrading.com/terms-of-use/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:45.629Z"
+    },
+    {
+      "url": "https://www.lucidtrading.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:46.305Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12890325-payout-methods",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:51.922Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:51.978Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:51.978Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12890069-lucidpro-funded-account",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:52.004Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12890029-lucidpro-evaluation-account",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:52.005Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/11404728-other-activities",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:52.043Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:57.520Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:57.534Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:57.542Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12890148-luciddirect-funded-account",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:57.561Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:57.574Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12945795-lucidflex-funded-account",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:57.600Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:03.048Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/15997244-luciddaily-funded-account",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:03.086Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:03.089Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12890192-luciddirect-drawdown",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:03.107Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12890164-luciddirect-payout-objectives",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:03.112Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12890185-luciddirect-daily-loss-limit",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:03.129Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/15998425-luciddaily-drawdown",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:08.620Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/11404614-lucid-trading-supported-platforms",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:08.621Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/15998336-luciddaily-consistency",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:08.680Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:08.688Z"
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/16085900-luciddaily-daily-loss-limit",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:08.770Z"
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "firmSlug": "ofp-funding",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T10:02:58+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+  "egress": "Box egress is a US IP. Global (non-US) prices were checked against the firm's Global/region-independent price data as described in method; US-only codes are not promoted.",
+  "method": "curl of Nuxt __NUXT_DATA__ on https://ofpfunding.com/ (pricing records)",
+  "priceSource": "https://ofpfunding.com/ __NUXT_DATA__ records (accountType/dailyDrawdown/maxDrawdown/profitSplit/payoutDays/price)",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "instant-classic-3-daily-6-max-drawdown",
+      "prices": {
+        "5000": 35,
+        "10000": 55,
+        "25000": 90,
+        "50000": 175,
+        "100000": 335,
+        "200000": 665,
+        "300000": 1000
+      }
+    },
+    {
+      "productSlug": "instant-classic-5-daily-10-max-drawdown",
+      "prices": {
+        "5000": 45,
+        "10000": 70,
+        "25000": 110,
+        "50000": 220,
+        "100000": 420,
+        "200000": 830,
+        "300000": 1250
+      }
+    },
+    {
+      "productSlug": "instant-lite",
+      "prices": {
+        "10000": 35,
+        "25000": 75,
+        "50000": 150,
+        "100000": 200,
+        "200000": 390,
+        "300000": 590
+      }
+    },
+    {
+      "productSlug": "instant-lite-5-daily-10-max-drawdown",
+      "prices": {
+        "10000": 50,
+        "25000": 95,
+        "50000": 190,
+        "100000": 250,
+        "200000": 490,
+        "300000": 740
+      }
+    },
+    {
+      "productSlug": "instant-plus-3-daily-5-max-drawdown",
+      "prices": {
+        "5000": 70,
+        "10000": 110,
+        "25000": 180,
+        "50000": 350,
+        "100000": 670,
+        "200000": 1330,
+        "300000": 2000
+      }
+    },
+    {
+      "productSlug": "instant-plus-5-daily-10-max-drawdown",
+      "prices": {
+        "5000": 90,
+        "10000": 140,
+        "25000": 220,
+        "50000": 440,
+        "100000": 840,
+        "200000": 1660,
+        "300000": 2500
+      }
+    }
+  ],
+  "priceQuotes": [
+    "Classic 3/6 ps80: 5k:35 10k:55 25k:90 50k:175 100k:335 200k:665 300k:1000",
+    "Classic 5/10 ps80: 5k:45 10k:70 25k:110 50k:220 100k:420 200k:830 300k:1250",
+    "Instant Lite 3/5 ps80: 10k:35 25k:75 50k:150 100k:200 200k:390 300k:590; 5/10: 10k:50 25k:95 50k:190 100k:250 200k:490 300k:740",
+    "Instant Plus 3/5 ps80: 5k:70 10k:110 25k:180 50k:350 100k:670 200k:1330 300k:2000; 5/10: 5k:90 10k:140 25k:220 50k:440 100k:840 200k:1660 300k:2500"
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 61,
+    "foundVerbatimInLiveText": 9,
+    "notFoundVerbatim": 52,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
+  },
+  "changes": [],
+  "notes": [
+    "All 40 tiers unchanged. https://ofpfunding.com/pricing-plans/ now 301-redirects to /#pricing and help article what-is-the-inconsistency-score... returns 404 (consistency evidence carried forward from 2026-10-14). Weekend holding still has no first-party source (gap)."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://ofpfunding.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:41.452Z"
+    },
+    {
+      "url": "https://ofpfunding.com/pricing-plans/ (301 -> https://ofpfunding.com/#pricing)",
+      "httpStatus": 404,
+      "fetchedAt": "2026-10-19T07:02:46.812Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/what-are-the-trading-rules-every-ofp-trader-must-follow/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:47.061Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/what-is-the-maximum-drawdown-and-how-can-i-avoid-hitting-it/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:47.062Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/trading-rules-risk-management/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:47.062Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:47.096Z"
+    },
+    {
+      "url": "https://ofpfunding.com/trading-rules",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:47.373Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/what-is-the-inconsistency-score-and-how-does-it-affect-my-account/",
+      "httpStatus": 404,
+      "fetchedAt": "2026-10-19T07:02:52.704Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/payouts-profit-split/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:52.818Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/do-you-have-a-maximum-risk-rule/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:52.819Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/account-models/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:52.879Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/how-does-the-payout-process-work-at-ofp-funding/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:52.896Z"
+    },
+    {
+      "url": "https://ofpfunding.com/#pricing",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:52.989Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:58.547Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/country-restrictions/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:58.548Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:58.576Z"
+    },
+    {
+      "url": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:58.576Z"
+    }
+  ]
+}

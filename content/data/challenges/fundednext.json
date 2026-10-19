@@ -58,14 +58,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
-    "sourceCapturedAt": "2026-10-15",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
       "Standard global USD list prices; promotions, platform fees and optional add-ons are excluded.",
       "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
       "The standard first reward window is 21 days, followed by 14-day cycles; compliance review still applies.",
       "Current pages allow news trading but limit the funded-stage profit treatment; the comparison keeps this as a restricted rule.",
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-10-15.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-10-15.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundednext-2026-10-19.json"
     ]
   },
   {
@@ -126,13 +127,14 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
-    "sourceCapturedAt": "2026-10-15",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
       "Standard global USD list prices; promotions and optional add-ons are excluded.",
       "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
       "The first standard reward cycle is 5 business days; the fee refund is tied to the third reward for new accounts.",
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-10-15.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-10-15.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundednext-2026-10-19.json"
     ]
   },
   {
@@ -194,13 +196,14 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
-    "sourceCapturedAt": "2026-10-15",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
       "Standard global USD list prices; promotions and optional add-ons are excluded.",
       "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
       "Global page (2026-10-15): 2 minimum trading days per phase on standard plans (the 90% on-demand option stays at 5), first reward after 10 days; subsequent cycle shown as both 10 days and bi-weekly, so payoutFrequency is null.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-10-15.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-10-15.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundednext-2026-10-19.json"
     ]
   },
   {
@@ -249,14 +252,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
-    "sourceCapturedAt": "2026-10-15",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
       "Standard global USD list prices; promotions, swap-free pricing and optional add-ons are excluded.",
       "Stellar Instant has no evaluation phase and no refundable fee.",
       "The starting Reward Share is 70%; current product guidance raises it to 80% from tier 3.",
       "On-demand eligibility requires 5% growth; the normal alternative is a 14-day cycle.",
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-10-15.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-10-15.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundednext-2026-10-19.json"
     ]
   }
 ]
