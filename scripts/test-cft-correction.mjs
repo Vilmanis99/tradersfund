@@ -7,25 +7,25 @@ import { getChallengesByFirm, getAllFirms, isChallengeFresh, computeTrueCost, mi
 const products = getChallengesByFirm('crypto-fund-trader')
 const bySlug = Object.fromEntries(products.map(product => [product.productSlug, product]))
 assert.equal(products.length, 5, 'Retain unresolved programmes instead of deleting them')
-const date = new Date('2026-09-08T12:00:00Z')
+const date = new Date('2026-10-14T12:00:00Z')
 const freshAtCorrection = products.filter(product => isChallengeFresh(product, date))
-assert.deepEqual(freshAtCorrection.map(product => product.productSlug), ['evaluation', 'accelerated', 'instant'])
-assert.equal(freshAtCorrection.reduce((total, product) => total + product.accountSizes.filter(tier => tier.priceUsd > 0).length, 0), 15)
+assert.deepEqual(freshAtCorrection.map(product => product.productSlug), ['evaluation', 'ascend', 'accelerated', 'instant', 'break'])
+assert.equal(freshAtCorrection.reduce((total, product) => total + product.accountSizes.filter(tier => tier.priceUsd > 0).length, 0), 24)
 assert.equal(products.reduce((total, product) => total + product.accountSizes.filter(tier => tier.priceUsd > 0).length, 0), 24)
 for (const slug of ['evaluation', 'accelerated', 'instant']) {
   const product = bySlug[slug]
-  assert.equal(product.sourceCapturedAt, '2026-09-08')
+  assert.equal(product.sourceCapturedAt, '2026-10-14')
   assert.equal(product.payoutFirstDays, null, 'Conditional trading/calendar/profit thresholds are not unconditional calendar-day payouts')
   assert.equal(product.payoutFrequency, null)
   assert.equal(product.minTradingDays, 0)
   assert.equal(product.maxTradingDaysUnlimited, true)
-  assert.equal(isChallengeFresh(product, new Date('2026-10-09T00:00:00Z')), false)
+  assert.equal(isChallengeFresh(product, new Date('2026-11-14T00:00:00Z')), false)
 }
 assert.equal(bySlug.instant.profitSplitPct, 50)
 assert.equal(bySlug.instant.drawdownType, null, 'Do not invent the Instant floor basis')
 assert.equal(bySlug.ascend.profitSplitPct, null, 'Fixed award cannot become an 80% continuing account')
 for (const slug of ['ascend', 'break']) {
-  assert.equal(bySlug[slug].sourceCapturedAt, '2026-09-14')
+  assert.equal(bySlug[slug].sourceCapturedAt, '2026-10-14')
 }
 assert.deepEqual(bySlug.ascend.accountSizes.map(tier => tier.priceUsd), [39, 78, 195, 390, 780, 1560])
 assert.deepEqual(bySlug.break.accountSizes.map(tier => tier.priceUsd), [70, 140, 200])
