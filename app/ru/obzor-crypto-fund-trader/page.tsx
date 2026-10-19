@@ -34,6 +34,9 @@ export const metadata: Metadata = {
 const ACCESS_CHECKED = '2026-10-14'
 const RULES_CHECKED = '2026-10-15'
 const TRUSTPILOT_CHECKED = '2026-10-15'
+/** Open first-party conflict: challenge-watch cft-ascend-break-price-disagreement-2026-10-06 (homepage vs terms). */
+const PRICE_CONFLICT_CHECKED = '2026-10-06'
+const PRICE_CONFLICT_NOTE = `На ${PRICE_CONFLICT_CHECKED.split('-').reverse().join('.')} главная страница CFT показывала для счетов $100K другие цены — $899 у Ascend и $199 у Break, поэтому итоговую цену проверьте в корзине перед оплатой.`
 
 const SOURCES = {
   faq: 'https://cryptofundtrader.com/faq/',
@@ -59,7 +62,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Сколько стоит челлендж CFT?',
-    a: `${asOf(ACCESS_CHECKED)} самый дешёвый вход — Ascend на $5,000 за $39. Двухэтапная Evaluation стоит от $58 ($5K) до $1,250 ($200K), одноэтапная Accelerated — от $40 до $1,199, Instant без оценки — от $125 до $475, Break — от $70 до $200 плюс обязательный сбор за активацию после прохождения. Цены указаны в долларах США; при оплате в другой валюте курс задаёт платёжный провайдер.`,
+    a: `${asOf(ACCESS_CHECKED)} самый дешёвый вход — Ascend на $5,000 за $39. Двухэтапная Evaluation стоит от $58 ($5K) до $1,250 ($200K), одноэтапная Accelerated — от $40 до $1,199, Instant без оценки — от $125 до $475, Break — от $70 до $200 плюс обязательный сбор за активацию после прохождения. ${PRICE_CONFLICT_NOTE} Цены указаны в долларах США; при оплате в другой валюте курс задаёт платёжный провайдер.`,
   },
   {
     q: 'Какой сплит прибыли у Crypto Fund Trader?',
@@ -230,9 +233,10 @@ export default function RussianCryptoFundTraderReviewPage() {
               без минимума торговых дней. За $100K — {usd(eval100?.priceUsd)}.
             </p>
             <p>
-              Не берите CFT вслепую ради самой низкой цены. Ascend за {usd(tier(ascend, 5000)?.priceUsd)} заканчивается фиксированной
+              Ascend за {usd(tier(ascend, 5000)?.priceUsd)} заканчивается фиксированной
               стипендией, а не счётом с процентом. Break стоит {usd(break25?.priceUsd)} за $25K, но после прохождения нужно доплатить
               {' '}{usd(break25?.activationFeeUsd)} за активацию. Instant начинается с доли {percent(instant?.profitSplitPct)}, а не 80%.
+              {' '}<span data-russian-cft-price-conflict="verdict">{PRICE_CONFLICT_NOTE}</span>
               Рейтинг на Trustpilot скрыт площадкой, независимой проверки выплат нет.
             </p>
             <p>
@@ -318,6 +322,7 @@ export default function RussianCryptoFundTraderReviewPage() {
                 </tbody>
               </table>
             </div>
+            <p className="ru-muted" data-russian-cft-price-conflict={PRICE_CONFLICT_CHECKED}>Цены Ascend и Break в таблице — {asOf(earliestCapture)} (условия и магазин). {PRICE_CONFLICT_NOTE}</p>
             <div className="ru-actions" data-russian-cft-cta="programs">
               {cta('ru-review-crypto-fund-trader-programs', 'Выбрать программу на сайте CFT', false)}
             </div>
@@ -336,6 +341,7 @@ export default function RussianCryptoFundTraderReviewPage() {
               Те же цели {targetsText(ascend)} и лимиты {drawdownText(ascend)}, но другой финал: по достижении цели второго этапа CFT
               выплачивает фиксированную стипендию, и следующего финансируемого счёта нет. Это самый дешёвый вход — от
               {' '}{usd(tier(ascend, 5000)?.priceUsd)} за $5K до {usd(tier(ascend, 200000)?.priceUsd)} за $200K, цены зафиксированы в п. 5.6.5 условий.
+              {' '}{PRICE_CONFLICT_NOTE}
               Новости в Ascend ограничены, копирование сделок запрещено. Суммы стипендии мы в этой версии не приводим — сверьте их в
               условиях перед покупкой.
             </p>
@@ -361,8 +367,7 @@ export default function RussianCryptoFundTraderReviewPage() {
               нужно заплатить сбор за активацию: $138, $198 и $328 соответственно, срок оплаты в кабинете — 30 дней. Итого на
               $25K — {usd(break25Total)}, а не {usd(break25?.priceUsd)}. Цели в долларах: $1,250, $3,000 и $6,000. Дневного лимита нет,
               подвижная граница — {usd(break25?.maxLossUsd)}, $2,000 и $3,000. На финальной стадии действует правило: один день
-              не больше {percent(breakChallenge?.consistencyRulePct)} всей прибыли; выплаты — по запросу. У $100K на странице программы
-              в одном блоке стояла пометка «sold out» — проверьте доступность размера перед оплатой.
+              не больше {percent(breakChallenge?.consistencyRulePct)} всей прибыли; выплаты — по запросу. {PRICE_CONFLICT_NOTE}
             </p>
             <p className="ru-source-line">Источники: <a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a> (п. 5.6.5, п. 8), <a href={SOURCES.breakChallenge} target="_blank" rel="nofollow noopener noreferrer">Break Challenge</a>, <a href={SOURCES.home} target="_blank" rel="nofollow noopener noreferrer">главная страница</a> — {asOf(earliestCapture)}. Как устроены этапы оценки в целом — в <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm">гиде по челленджам</Link>.</p>
           </div>
