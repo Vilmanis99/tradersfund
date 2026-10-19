@@ -7,6 +7,7 @@ import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel } from '@/lib/russiaAvailability'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/prop-trejding'
 const UPDATED = '14.10.2026'
@@ -77,12 +78,11 @@ export default function RussianPropTradingPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-prop-trading="guide">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Проп-трейдинг</div>
           <div className="ru-eyebrow"><Briefcase size={14} aria-hidden="true" /> Обновлено {UPDATED}</div>
           <h1>Проп-трейдинг: торговля на капитал компании</h1>
           <p className="ru-lead">

@@ -21,6 +21,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/prop-firmy-bez-kyc'
 const TITLE = 'KYC в проп-фирмах 2026: FundedNext и BrightFunded'
@@ -185,7 +186,7 @@ export default function RussianNoKycPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(list) }} />
       {hasFreshResearch && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
@@ -195,7 +196,6 @@ export default function RussianNoKycPage() {
           data-russian-kyc-guide="long-form-source-gated"
           data-russian-kyc-partner-count={partnerCards.length}
         >
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / KYC в проп-фирмах</div>
           <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <RussianEvidenceFreshnessNotice evidence={[
             { label: 'страновые и локальные условия', capturedAt: marketEvidence.capturedAt },
