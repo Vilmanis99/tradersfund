@@ -106,7 +106,7 @@
     "kind": "rule-change",
     "status": "verified",
     "observedAt": "2026-09-08",
-    "lastCheckedAt": "2026-09-08",
+    "lastCheckedAt": "2026-10-19",
     "title": "Correction: CFT reward shares and payout timing depend on the programme",
     "summary": "The three selected Instant starting tiers show a 50% reward share, while the 1-Phase and 2-Phase programmes show 80%. General reward requests require 15 traded days or 30 calendar days. Instant's no-minimum-days withdrawal/upgrade path requires 10% simulated profit; it is not unconditional immediate payment.",
     "traderImpact": "This corrects TFH's blanket 80% and bi-weekly descriptions, not a proven September policy change. The regenerated Instant fee-recovery model uses the 50% starting share. Numeric payout timing is left unverified where the calendar field cannot express the conditions; no actual customer payout was independently verified.",

@@ -3490,7 +3490,7 @@
       "Forex",
       "Indices"
     ],
-    "maxAllocation": "$200,000",
+    "maxAllocation": "$300,000",
     "platforms": [
       "Match-Trader",
       "MT5",
@@ -3525,10 +3525,10 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-07-27",
+    "lastUpdated": "2026-10-19",
     "trustpilotUrl": "https://www.trustpilot.com/review/cryptofundtrader.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-19",
     "russiaStatus": "available",
     "affiliateStatus": "none",
     "rules": {
@@ -3802,7 +3802,17 @@
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines."
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
+    "countriesRestrictedSourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+    "russiaSourceUrl": "https://cryptofundtrader.com/faq/",
+    "russiaSourceQuote": "Country availability may depend on the trading platform selected. Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States.",
+    "legalEntity": "SWISS RLCRATES AG",
+    "headquarters": "Zug, Switzerland",
+    "country": "Switzerland",
+    "regulation": null,
+    "corporateNote": "SWISS RLCRATES AG (CHE-162.567.204) states it is a payment/marketing agent for RLCRATES, S.L., which provides the MT5 service; the footer says it is not authorized or licensed in Switzerland. Offices listed: Zug, Pamplona, Dubai.",
+    "corporateSourceUrl": "https://cryptofundtrader.com/",
+    "corporateCapturedAt": "2026-10-19"
   },
   {
     "name": "Topstep",
