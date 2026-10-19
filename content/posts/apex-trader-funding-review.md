@@ -34,7 +34,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Consistency</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">None in evaluation; 50% when requesting a PA payout</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Profit split</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">100% of approved Sim Funded payout requests</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">First payout</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">After 5 qualifying trading days; $500 minimum request</td></tr>
-    <tr><td style="padding: 8px 12px; font-weight: 700;">Trustpilot</td><td style="padding: 8px 12px;">4.2 / 5 from 20,358 reviews, captured 2026-07-28</td></tr>
+    <tr><td style="padding: 8px 12px; font-weight: 700;">Trustpilot</td><td style="padding: 8px 12px;">4.2 / 5 from 21,334 reviews, checked 2026-10-15</td></tr>
   </tbody>
 </table>
 
@@ -108,7 +108,7 @@ type: "post"
 
 <p><strong>Each PA has a 6-payout lifecycle.</strong> First-request caps are $1,000 / $1,500 / $2,000 / $2,500 across $25K / $50K / $100K / $150K; later caps rise by payout number. After the 6th approved payout, the Performance Account closes and a trader must qualify through another evaluation for a new PA.</p>
 
-<p><strong>Third-party sentiment is positive but not payout proof.</strong> The <a href="https://www.trustpilot.com/review/apextraderfunding.com">Trustpilot profile</a> showed 4.2/5 from 20,358 reviews on 2026-07-28. That aggregate includes support, platform and purchase experiences, so the 5-day rules, 50% consistency test and balance threshold remain the evidence that matters for an individual request.</p>
+<p><strong>Third-party sentiment is positive but not payout proof.</strong> The <a href="https://www.trustpilot.com/review/apextraderfunding.com">Trustpilot profile</a> showed 4.2/5 from 21,334 reviews on 2026-10-15. That aggregate includes support, platform and purchase experiences, so the 5-day rules, 50% consistency test and balance threshold remain the evidence that matters for an individual request.</p>
 
 <!-- SECTION 7 - Pros / Cons -->
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>

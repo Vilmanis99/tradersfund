@@ -71,7 +71,7 @@
     },
     {
       "slug": "bright-funded",
-      "name": "Bright Funded",
+      "name": "BrightFunded",
       "generalProductRu": "Challenge-регистрация",
       "restrictedJurisdictions": [
         "Cuba",
@@ -95,11 +95,11 @@
       },
       "sources": [
         {
-          "labelRu": "Bright Funded: опубликованный список стран",
+          "labelRu": "BrightFunded: опубликованный список стран",
           "url": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded"
         },
         {
-          "labelRu": "Bright Funded: Terms and Conditions, раздел 2",
+          "labelRu": "BrightFunded: Terms and Conditions, раздел 2",
           "url": "https://brightfunded.com/terms-and-conditions"
         }
       ]

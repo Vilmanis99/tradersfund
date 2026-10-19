@@ -155,7 +155,7 @@ type: "post"
 
 <p>The first-party India capture covers country restrictions, checkout methods, KYC, and payout caveats, but it does not prove that an Indian buyer can complete both purchase and withdrawal. Do not assume every aggregate payout method will appear after verification.</p>
 
-<p>Trustpilot showed 4.5/5 from 63,734 reviews on 2026-07-27, but the site’s verified-payout badge remains false. A large review aggregate is community evidence; it is not proof that one strategy, KYC profile, or payout request will clear the firm’s rules.</p>
+<p>Trustpilot showed 4.5/5 from 70,514 reviews on 2026-10-15, but the site’s verified-payout badge remains false. A large review aggregate is community evidence; it is not proof that one strategy, KYC profile, or payout request will clear the firm’s rules.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 

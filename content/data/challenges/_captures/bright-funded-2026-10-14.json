@@ -17,7 +17,7 @@
   "accessNotes": "RECAPTURE 2026-10-14: Re-fetched all plan pages and Help Center articles. EUR list prices unchanged on all three plan pages (25% promo prices also shown, not stored). Evaluation rules table unchanged. Payout article (dated March 18, 2026) re-read verbatim; payout fields now carry official quotes. The 30-day first payout vs bi-weekly add-on wording conflict remains. Rechecked BrightFunded's current first-party plan pages and Help Center on 2026-09-29. EUR list prices are retained; anniversary and checkout add-ons are not stored as base prices. The payout article still distinguishes standard 30-day first eligibility from a bi-weekly add-on, so that conflict remains noted.",
   "products": [
     {
-      "productName": "Bright Funded 1-Step",
+      "productName": "BrightFunded 1-Step",
       "productSlug": "bright-funded-1-step",
       "phases": 1,
       "accountSizes": [
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "productName": "Bright Funded 2-Step Bright",
+      "productName": "BrightFunded 2-Step Bright",
       "productSlug": "bright-funded-2-step-bright",
       "phases": 2,
       "accountSizes": [
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "productName": "Bright Funded 2-Step Classic",
+      "productName": "BrightFunded 2-Step Classic",
       "productSlug": "bright-funded-2-step-classic",
       "phases": 2,
       "accountSizes": [

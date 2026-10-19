@@ -52,13 +52,13 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
-    "sourceCapturedAt": "2026-09-29",
+    "sourceCapturedAt": "2026-10-15",
     "notes": [
       "The stored 80% split and 14-day cycle represent the current Bi-Weekly route; a Monthly 100% route has additional eligibility conditions.",
       "The current page shows a 2% or 3% daily-loss configuration; this record retains 3% for the captured base route and does not imply both configurations are identical.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Refundability remains unresolved because the official refund wording does not clearly name current 1 Step Flex.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-09-29.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json"
     ]
   },
   {
@@ -115,13 +115,13 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
-    "sourceCapturedAt": "2026-09-29",
+    "sourceCapturedAt": "2026-10-15",
     "notes": [
       "Current first-party page changed the evaluation target to 10% then 8%; the older 10% then 6% value is retired.",
       "Reward choice is conditional: 80% with 1 minimum trading day or 95% with 3 profitable days; the schema keeps split null because there is no single universal percentage.",
       "New and reset accounts require the current minimum-day conditions; older accounts may retain legacy terms.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-09-29.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json"
     ]
   },
   {
@@ -188,14 +188,14 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
-    "sourceCapturedAt": "2026-09-29",
+    "sourceCapturedAt": "2026-10-15",
     "notes": [
       "Weekly 80% is the stored shorter route; eligible Master Accounts may choose Monthly 100% with extra conditions.",
       "Minimum reward request is 1% of Master Account size, including FundingPips' split, under the current 2 Step Pro page.",
       "The current page shows zero minimum trading days for the base evaluation, while new and reset accounts require 2 per phase; 2 is retained for the current purchase context.",
       "The $2.5K availability conflict remains unresolved and priceUsd stays null.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-09-29.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json"
     ]
   },
   {
@@ -257,14 +257,14 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-    "sourceCapturedAt": "2026-09-29",
+    "sourceCapturedAt": "2026-10-15",
     "notes": [
       "No single split or frequency: current first-party page lists Weekly 60%, Bi-Weekly 80%, Monthly 100%, or On Demand 90% with separate conditions.",
       "The 35% consistency score applies to On Demand and Monthly routes, not every evaluation path.",
       "The current 8%-target Standard replaces the former 10%-target product.",
       "The $2.5K availability conflict remains unresolved and priceUsd stays null.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-09-29.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json"
     ]
   },
   {
@@ -323,12 +323,12 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
-    "sourceCapturedAt": "2026-09-29",
+    "sourceCapturedAt": "2026-10-15",
     "notes": [
       "The 5% max loss trails peak equity and locks at starting balance after equity first reaches 5% profit.",
       "At least 7 profitable days of 0.25% or more are required in every rolling 30-day period; this is not a minimum trading-day field.",
       "News-window and weekend holding violations are hard breaches; the account is simulated and begins directly at Master.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-09-29.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json"
     ]
   }
 ]

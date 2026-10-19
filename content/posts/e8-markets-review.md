@@ -24,7 +24,7 @@ modified: "2026-09-14 12:00:00"
     <li>Cheapest entry is E8 Pro at $38 for a $5K account; the largest captured tier is $500K at $2,998 on E8 Pro and $1,998 on E8 One.</li>
     <li>The fee is <em>not</em> refunded with the first payout. E8's refund policy states plainly that it does "not provide bonuses by refunding the fee with the first payout share."</li>
     <li>E8 Pro carries no consistency rule. E8 One applies a 40% best-day rule and E8 Signature a 35% best-day rule.</li>
-    <li>Trustpilot has suppressed E8 Markets' aggregate rating: "This company's rating is unavailable due to a breach of our guidelines" (verified 2026-07-27).</li>
+    <li>Trustpilot has suppressed E8 Markets' aggregate rating: "This company's rating is unavailable due to a breach of our guidelines" (verified 2026-10-15).</li>
     <li>Official E8 pages conflict on both E8 One parameters and E8 Pro prices; the current product-specific purchase pages drive the table below.</li>
   </ul>
 </div>
@@ -43,7 +43,7 @@ modified: "2026-09-14 12:00:00"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Fee refund</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No — not returned with the first payout</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Leverage</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Product-specific: forex 1:30; indices/metals 1:15; crypto 1:1 on E8 One and 1:2 on E8 Pro</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">TradeLocker, Match-Trader, cTrader and MT5, subject to region and account type</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Trustpilot</strong></td><td style="padding: 8px 12px; border-bottom: none;">Aggregate rating suppressed by <a href="https://www.trustpilot.com/review/e8markets.com">Trustpilot</a> as of 2026-07-27</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Trustpilot</strong></td><td style="padding: 8px 12px; border-bottom: none;">Aggregate rating suppressed by <a href="https://www.trustpilot.com/review/e8markets.com">Trustpilot</a> as of 2026-10-15</td></tr>
   </tbody>
 </table>
 
@@ -162,7 +162,7 @@ modified: "2026-09-14 12:00:00"
 
 <p><strong>E8 Signature carries payout caps and a buffer that the other two do not.</strong> The published cap table runs $1,000 ($25K), $1,250 ($50K), $2,250 ($100K) and $3,250 ($150K) on the first and second payouts, rising to $1,500, $3,250, $4,250 and $5,250 from the fifth payout onward. On top of that you must leave a non-requestable buffer equal to your EOD drawdown, and clear 5 profitable days between payouts after the first, where a profitable day means realised closed PnL of 0.3% or more.</p>
 
-<p><strong>Community signal is currently unavailable.</strong> Trustpilot has suppressed E8 Markets' aggregate rating; the <a href="https://www.trustpilot.com/review/e8markets.com">company's Trustpilot profile</a> displays "This company's rating is unavailable due to a breach of our guidelines" instead of a score (verified 2026-07-27). That notice is Trustpilot's statement about review-platform guidelines, not a finding about payouts, and it removes the single data point most traders use to sanity-check a firm. Until it is restored, there is no aggregate third-party score to weigh against the rule surface documented above.</p>
+<p><strong>Community signal is currently unavailable.</strong> Trustpilot has suppressed E8 Markets' aggregate rating; the <a href="https://www.trustpilot.com/review/e8markets.com">company's Trustpilot profile</a> displays "This company's rating is unavailable due to a breach of our guidelines" instead of a score (verified 2026-10-15). That notice is Trustpilot's statement about review-platform guidelines, not a finding about payouts, and it removes the single data point most traders use to sanity-check a firm. Until it is restored, there is no aggregate third-party score to weigh against the rule surface documented above.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
@@ -180,7 +180,7 @@ modified: "2026-09-14 12:00:00"
 
 <ul class="wp-block-list">
   <li><strong>The fee is not refunded with the first payout.</strong> Refunds require phase 1, zero trading activity, purchase within 30 days, and are never available on crypto payments.</li>
-  <li><strong>Trustpilot has suppressed the aggregate rating</strong> — "This company's rating is unavailable due to a breach of our guidelines" (verified 2026-07-27), removing the usual third-party check.</li>
+  <li><strong>Trustpilot has suppressed the aggregate rating</strong> — "This company's rating is unavailable due to a breach of our guidelines" (verified 2026-10-15), removing the usual third-party check.</li>
   <li><strong>Two official E8 pages give different E8 One parameters</strong> — the help centre's 6% target / 3% daily / 4% dynamic against the pricing page's 9% / 4% / 6%.</li>
   <li><strong>E8 Pro's 2% daily profit cap</strong> means a $5,000 day on a $100K account counts only $2,000 toward the 8% target — at least four qualifying days to pass.</li>
   <li><strong>E8 Signature bans overnight and weekend holding</strong> and force-closes at 23:00 server time, ruling out swing strategies entirely on that product.</li>
@@ -197,7 +197,7 @@ modified: "2026-09-14 12:00:00"
 
 <h2 class="wp-block-heading"><strong>Who should avoid E8 Markets</strong></h2>
 
-<p>Avoid E8 Signature if your swing or position setup must survive the 23:00 close or a weekend, because that product forbids both overnight and weekend holds. Avoid the firm altogether if you require a third-party aggregate before paying: E8's Trustpilot rating remains suppressed as of 2026-07-27. Traders who want the fee back with the first payout should also look elsewhere, since E8 explicitly does not return it. Indian or Kenyan traders seeking E8 One above $200,000 cannot use that product under the current accepted-country rule, and anyone who needs settled source data should wait while the E8 One parameter conflict and E8 Pro price conflict remain unresolved.</p>
+<p>Avoid E8 Signature if your swing or position setup must survive the 23:00 close or a weekend, because that product forbids both overnight and weekend holds. Avoid the firm altogether if you require a third-party aggregate before paying: E8's Trustpilot rating remains suppressed as of 2026-10-15. Traders who want the fee back with the first payout should also look elsewhere, since E8 explicitly does not return it. Indian or Kenyan traders seeking E8 One above $200,000 cannot use that product under the current accepted-country rule, and anyone who needs settled source data should wait while the E8 One parameter conflict and E8 Pro price conflict remain unresolved.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
@@ -211,7 +211,7 @@ modified: "2026-09-14 12:00:00"
 <p>Three days from the start of trading in the Performance stage on E8 One and E8 Signature. E8 Pro allows daily requests with a minimum profit of 1% of initial balance, but E8 publishes no explicit first-payout day count for it.</p>
 
 <h3 class="wp-block-heading"><strong>Why is E8 Markets' Trustpilot rating missing?</strong></h3>
-<p>Trustpilot displays "This company's rating is unavailable due to a breach of our guidelines" on E8's profile, verified 2026-07-27. Trustpilot does not publish the specific reason on the profile page; the notice concerns its review-platform guidelines.</p>
+<p>Trustpilot displays "This company's rating is unavailable due to a breach of our guidelines" on E8's profile, verified 2026-10-15. Its only stated reason is that Trustpilot has "removed a number of fake reviews for this company"; the notice concerns review-platform guidelines, not payouts.</p>
 
 <h3 class="wp-block-heading"><strong>Is there a consistency rule at E8 Markets?</strong></h3>
 <p>It depends on the product. E8 Pro has none, E8 One applies a 40% best-day rule on the Performance account, and E8 Signature applies a 35% best-day rule — meaning no single day may exceed that share of total generated profit.</p>

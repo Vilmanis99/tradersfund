@@ -84,7 +84,7 @@
       },
       "automation": {
         "status": "requires-firm-confirmation",
-        "firmRule": "Bright Funded permits EAs generally and explicitly says API and automated trading are unsupported on DXTrade, but the captured article does not state whether cBots are supported on cTrader.",
+        "firmRule": "BrightFunded permits EAs generally and explicitly says API and automated trading are unsupported on DXTrade, but the captured article does not state whether cBots are supported on cTrader.",
         "unresolved": true
       },
       "countryRestrictions": [
@@ -98,7 +98,7 @@
       "devices": ["web", "Windows", "Mac", "Android", "iOS"],
       "loginFlow": [
         "Select cTrader only after the checkout confirms it for the profile.",
-        "Use the Bright Funded cTrader web or branded mobile application.",
+        "Use the BrightFunded cTrader web or branded mobile application.",
         "Confirm the cTrader ID and account credentials supplied for the purchased account."
       ],
       "notes": [
@@ -111,7 +111,7 @@
   "editorialBoundaries": [
     "The page compares two primary commercial partners and is not a complete directory of every cTrader prop firm.",
     "No Russian Federation access promise is made from the Russian language of the page.",
-    "Unpublished Bright Funded cTrader fees, tier limits and cBot compatibility remain unknown until confirmed by the firm.",
+    "Unpublished BrightFunded cTrader fees, tier limits and cBot compatibility remain unknown until confirmed by the firm.",
     "Temporary promotions are excluded from platform-cost examples."
   ]
 }

@@ -14,9 +14,9 @@ import type { Firm } from './firms'
  *                 stale or invented. Never render it as a blank or a dash.
  *   uncaptured  → we have not captured the figure yet. Honest absence.
  *
- * Suppressed firms often still have a public review *count* (Maven 5,151;
- * Crypto Fund Trader 1,140) — surface it, because "1,140 reviews, no
- * published score" is a sharper fact than "no data".
+ * Suppressed profiles show only a partial review count that may not be the
+ * full total, so since the 2026-10-15 capture we store `trustpilotCount: null`
+ * for them (with `trustpilotSuppressedReason`) rather than a misleading total.
  *
  * NOTE: these figures must never be emitted as schema.org AggregateRating
  * or Review markup. Marking up a third party's aggregate as our own is a
