@@ -3,7 +3,7 @@ title: "FTMO Free Trial 2026: 1-Step vs 2-Step Rules"
 seoTitle: "FTMO Free Trial 2026: Is It Free? Rules, Limits & Test"
 slug: "ftmo-free-trial-explained"
 date: "2025-09-30 14:19:47"
-modified: "2026-09-14"
+modified: "2026-10-19"
 author: "Edris Derakhshi"
 excerpt: "The FTMO Free Trial lasts 14 days, grants no funded account, and now has separate 1-Step and 2-Step rules. Compare both before paying."
 seoDescription: "Is the FTMO Free Trial free? Yes: €0, 14 days, a 5% target and no funded account. Compare 1-Step vs 2-Step trial rules and the FundedNext free trial."
@@ -16,7 +16,7 @@ type: "post"
 
 <p>The FTMO Free Trial is a 14-day practice account, not an evaluation phase: passing it produces no FTMO Account and removes no step from a paid challenge. Use the 2-Step trial to test a 5% daily and 10% static loss structure; use the 1-Step trial to test a 3% daily limit, 10% end-of-day trailing loss, and 50% Best Day rule.</p>
 
-<p>Start with FTMO when the purpose is to compare its 2 current challenge rule sets across MT4, MT5, cTrader, or TradingView. Compare FundedNext when a single 14-day trial, 3 minimum days, MT5, and a completion-linked 5% coupon are more useful; its trial prohibits EAs and does not reproduce every paid FundedNext product.</p>
+<p>Start with FTMO when the purpose is to compare its 2 current challenge rule sets (plus a newer Instant Account trial) on MT4, MT5, or cTrader; FTMO now says TradingView is not supported for a Free Trial. Compare FundedNext when a single 14-day trial, 3 minimum days, MT5, and a completion-linked 5% coupon are more useful; its trial prohibits EAs and does not reproduce every paid FundedNext product.</p>
 
 <div data-free-trial-cta="top" style="background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin: 20px 0;">
   <p style="margin-top: 0;"><strong>Test before paying.</strong> FTMO permits 1 active Free Trial at a time and lets the trader delete it and start another. The outbound FTMO link is non-affiliate.</p>
@@ -28,20 +28,20 @@ type: "post"
 <h2>FTMO Free Trial quick facts</h2>
 
 <table data-free-trial-summary="ftmo" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
-  <caption class="hidden-caption">FTMO Free Trial facts captured on 2026-09-14</caption>
+  <caption class="hidden-caption">FTMO Free Trial facts rechecked on 2026-10-19</caption>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Price</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€0; no card payment</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Duration</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">14 days</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Trial choices</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1-Step or 2-Step rule set; each trial has 1 phase</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit target</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% on either trial</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Concurrent trials</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1 active Free Trial per client</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Trial choices</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1-Step or 2-Step rule set, or an Instant Account trial with no target; each trial has 1 phase</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit target</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% on the 1-Step or 2-Step trial</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Concurrent trials</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1 active Free Trial per client; unlimited trials one after another</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Maximum account size</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$200,000 in simulated capital</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT4, MT5, cTrader, and TradingView</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT4, MT5, and cTrader (TradingView not supported on the trial)</td></tr>
     <tr><td style="padding: 8px 12px;"><strong>Funding after passing</strong></td><td style="padding: 8px 12px;">No; a paid challenge still starts from Phase 1</td></tr>
   </tbody>
 </table>
 
-<p>The facts above were captured on 2026-09-14 from FTMO’s Free Trial landing page and its named Free Trial FAQ. The official FAQ says the trial is an abridged practice experience, allows 1 active account at a time, and does not create eligibility for an FTMO Account.</p>
+<p>The facts above were rechecked on 2026-10-19 against FTMO’s Free Trial landing page and its named Free Trial FAQ. The official FAQ says the trial is an abridged practice experience, allows 1 active account at a time, and does not create eligibility for an FTMO Account. Two changes since our 2026-09-14 capture: the landing page now lists TradingView as unsupported for a Free Trial, and any trial closes if you place no trade in its first 7 days. FTMO also added an Instant Account trial (no target, 3% daily loss, 10% intraday trailing maximum loss, 30% consistency); this guide keeps its focus on the 1-Step and 2-Step trials. For every firm that currently offers a free trial or free challenge, see <a href="/blog/prop-firm-free-trial">prop firms with a free trial</a>.</p>
 
 <h2>FTMO 1-Step vs 2-Step Free Trial rules</h2>
 
@@ -111,7 +111,7 @@ type: "post"
 <h2>FTMO Free Trial vs FundedNext Free Trial</h2>
 
 <table data-free-trial-comparison="ftmo-fundednext" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
-  <caption class="hidden-caption">FTMO and FundedNext Free Trial comparison captured on 2026-09-14</caption>
+  <caption class="hidden-caption">FTMO and FundedNext Free Trial comparison rechecked on 2026-10-19</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 10px; text-align: left;">Field</th><th style="padding: 8px 10px; text-align: left;">FTMO 1-Step trial</th><th style="padding: 8px 10px; text-align: left;">FTMO 2-Step trial</th><th style="padding: 8px 10px; text-align: left;">FundedNext trial</th></tr></thead>
   <tbody>
     <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Duration</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days from first trade</td></tr>
@@ -166,4 +166,4 @@ type: "post"
 
 <h3>Is FundedNext’s Free Trial the same as FTMO’s?</h3>
 
-<p>No. FundedNext uses 1 rule set with a 5% target, 3 minimum days, 5% daily loss, 10% maximum loss, a 30-position cap, and no EAs. FTMO offers separate 1-Step and 2-Step trial formulas and 4 platform choices.</p>
+<p>No. FundedNext uses 1 rule set with a 5% target, 3 minimum days, 5% daily loss, 10% maximum loss, a 30-position cap, and no EAs. FTMO offers separate 1-Step, 2-Step and Instant trial formulas and 3 platform choices (MT4, MT5, cTrader).</p>

@@ -1,12 +1,12 @@
 ---
-title: "FTMO Review 2026: Euro-Priced, 80% on the 2-Step, 90% on the 1-Step"
-seoTitle: "FTMO Review 2026: 1-Step vs 2-Step Fees & Splits"
+title: "FTMO Review 2026: Challenge Fees, Rules and 80–90% Splits"
+seoTitle: "FTMO Review 2026: Challenge Fees from €79, Rules & Splits"
 slug: "ftmo-review"
 date: "2024-08-30 10:30:24"
 modified: "2026-10-06"
 author: "Edris Derakhshi"
 excerpt: "FTMO publishes per-tier pricing — in euros, not dollars. €89–€1,080 for the refundable 2-Step at 80%, €79–€999 for the non-refundable 1-Step at 90%."
-seoDescription: "FTMO review comparing euro pricing, refundable 2-Step fees, non-refundable 1-Step fees, 80%–90% splits, drawdown rules, and true cost."
+seoDescription: "FTMO challenge review 2026: €79–€1,080 fees in euros, 1-Step 90% vs 2-Step 80% splits, 3% vs 5% daily loss, trailing vs static drawdown and true cost."
 categories: ["Prop Firms"]
 tags: ["FTMO", "Prop Firm"]
 type: "post"
@@ -106,7 +106,7 @@ type: "post"
 
 <p><strong>Account ladders vary by currency.</strong> The same fee array applies across all seven denominations, but the balances differ: USD tops out at $200,000, GBP at £140,000, EUR and CHF at 160,000, CAD at $240,000, AUD at $260,000 and CZK at 4,000,000. If you price by balance-per-euro rather than by headline tier, the currency you pick changes the answer.</p>
 
-<p><strong>Scaling.</strong> FTMO's current Scaling Plan page publishes a 25% account-balance increase every 4 months, up to $2,000,000 across all FTMO Accounts. The four gates captured on 2026-09-29 are at least 4 months since the start or last scale-up, at least 10% net simulated profit above the starting balance in the prior 4 months, at least 2 processed Rewards in that period, and a positive balance at scale-up. The scaled 90% Reward applies to 2-Step only; 1-Step already starts at 90%. FTMO also offers a Free Trial; its separate 1-Step and 2-Step practice rules are checked in the <a href="/blog/ftmo-free-trial-explained">current FTMO Free Trial guide</a> rather than mixed into this paid-product table.</p>
+<p><strong>Scaling.</strong> FTMO's current Scaling Plan page publishes a 25% account-balance increase every 4 months, up to $2,000,000 across all FTMO Accounts. The four gates captured on 2026-09-29 are at least 4 months since the start or last scale-up, at least 10% net simulated profit above the starting balance in the prior 4 months, at least 2 processed Rewards in that period, and a positive balance at scale-up. The scaled 90% Reward applies to 2-Step only; 1-Step already starts at 90%. FTMO also offers a Free Trial; its separate 1-Step and 2-Step practice rules are checked in the <a href="/blog/ftmo-free-trial-explained">current FTMO Free Trial guide</a> rather than mixed into this paid-product table; how it compares with the FundedNext, FundingPips, Alpha Capital and E8 trials is in our <a href="/blog/prop-firm-free-trial">prop firm free trial comparison</a>.</p>
 
 <p><strong>FundedNext comparison.</strong> The <a href="/compare/ftmo-vs-fundednext">product-level FTMO vs FundedNext comparison</a> keeps FTMO’s EUR fees separate from FundedNext’s USD fees and contrasts these 2 FTMO paths with 4 FundedNext products using the 2026-09-29 FTMO capture.</p>
 

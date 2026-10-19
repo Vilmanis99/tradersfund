@@ -10399,7 +10399,7 @@ function checkTradingToolReviewCluster() {
   if (!fxReplay) {
     rows.push('FX Replay review is missing from the tool-review cluster')
   } else {
-    const expectedTitle = 'FX Replay Review: Pricing, Features & Limits'
+    const expectedTitle = 'FX Replay Review: Plans, Prop-Firm Simulator & Refunds'
     if (
       fxReplay.title !== expectedTitle
       || fxReplay.seoTitle !== expectedTitle
