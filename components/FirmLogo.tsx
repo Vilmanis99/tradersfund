@@ -8,7 +8,7 @@ export default function FirmLogo({ name, src, size = 40 }: { name: string; src?:
   const [failedSrc, setFailedSrc] = useState<string | null>(null)
   const showImage = Boolean(src && failedSrc !== src)
   const initials = /^[A-Z0-9]{2,5}$/.test(name) ? name : name.replace(/([a-z])([A-Z])/g, '$1 $2').split(/\s+/).map(word => word[0]).join('').slice(0, 3).toUpperCase()
-  const needsDarkSurface = showImage && /FTMO-icon-light|FundedNext-Logo|Icon-White|logo-white|lucid-trading\.png/i.test(src || '')
+  const needsDarkSurface = showImage && /FTMO-icon-light|FundedNext-Logo|Icon-White|logo-white|lucid-trading\.png|hash-hedge\.png/i.test(src || '')
 
   return (
     <span

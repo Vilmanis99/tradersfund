@@ -347,7 +347,7 @@
     },
     {
       "topic": "Funded capital maximum",
-      "detail": "Homepage and guide: up to $200,000; Commercial Terms footer: 'up to $150,000'; affiliate page: '$5,000 to $150,000'. Data uses $200,000 (current price list)."
+      "detail": "Homepage and guide: up to $200,000; Commercial Terms footer: 'up to $150,000'; affiliate page: '$5,000 to $150,000'. firms-pending maxAllocation left null until one figure is published (largest tier on sale is $200K)."
     },
     {
       "topic": "USDT only vs USDT or USDC",
@@ -357,5 +357,13 @@
       "topic": "crypto.ru price table",
       "detail": "Brief's crypto.ru table (5K $79 ... 150K $1,093) is outdated: $79 for 5K matches the current Two-stage price, but there is no $150K tier now; 200K Two-stage is $1,393."
     }
-  ]
+  ],
+  "logo": {
+    "path": "public/images/firms/hash-hedge.png",
+    "sourceUrl": "https://static.tildacdn.com/tild3661-3038-4664-a164-363137633261/Vector.svg",
+    "sourcePage": "https://hashhedge.com/",
+    "sourceElement": "<link rel=\"icon\" type=\"image/svg+xml\" sizes=\"any\" href=\"https://static.tildacdn.com/tild3661-3038-4664-a164-363137633261/Vector.svg\">",
+    "note": "Official favicon SVG (identical bytes for the light and dark favicon variants; fill #FFDD2D, transparent). Rendered unmodified to a 192x192 RGBA PNG to match other /images/firms logos. The site's 192x192 PNG icon link actually serves a 96x91 image, so the SVG was used.",
+    "capturedAt": "2026-10-19"
+  }
 }
