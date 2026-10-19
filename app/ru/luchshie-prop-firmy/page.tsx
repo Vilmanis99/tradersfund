@@ -443,7 +443,7 @@ export default function RussianBestPropFirmsPage() {
             </table>
           </div>
           <p className="ru-source-line" data-russian-ranking-promos="2026-10-14">
-            Промокоды, проверено 14.10.2026: <strong>STRTN</strong> — до 33% на четыре младших счёта FundedNext Stellar (с 12.10.2026);{' '}
+            Промокоды, проверено 14.10.2026: <strong>STRTN</strong> — до 33% (в США — до 20%) на четыре младших счёта FundedNext Stellar (с 12.10.2026);{' '}
             <strong>HELLO</strong> — 20% на первую покупку FundingPips, кроме счёта $100K. Все коды — на странице{' '}
             <Link href="/ru/promokody-prop-firm">промокоды проп-фирм</Link>.
           </p>

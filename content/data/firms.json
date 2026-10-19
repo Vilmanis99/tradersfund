@@ -456,7 +456,7 @@
     "discountCode": "STRTN",
     "discountCodeSourceUrl": "https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer",
     "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "Global: Stellar 2-Step 6K, 1-Step 6K, Lite 5K and Instant 2K only (up to 33% off); max 5 uses; no end date.",
+    "discountCodeNote": "Global: Stellar 2-Step 6K, 1-Step 6K, Lite 5K and Instant 2K only (up to 33% off; up to 20% in the USA); max 5 uses; no end date.",
     "rules": {
       "capturedAt": "2026-10-15",
       "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
