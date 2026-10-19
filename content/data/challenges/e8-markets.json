@@ -70,12 +70,11 @@
     "sourceCapturedAt": "2026-10-19",
     "notes": [
       "This row captures the default configuration shown on the public configurator: 6% dynamic drawdown, 9% profit target, 4% daily drawdown and 80% payout. E8 One can be configured to 4-14% drawdown, a corresponding 6-21% target, and 80/90/100% payout; unrendered configuration prices are not inferred.",
-      "Unresolved first-party preset conflict: the configurator and product page default are 6% max / 9% target / 4% daily, while the E8 One help article calls 4% max / 6% target / 3% daily the preset. The rendered checkout configuration is used here.",
       "Performance payout minimum: net payout share must exceed 50% of the daily drawdown. The general payout floor is $100.",
       "Platforms: TradeLocker, MatchTrader, cTrader and MT5 depending on region/account type; US clients may use only TradeLocker or MatchTrader; cTrader adds $10 when the base account price is under $100.",
       "Leverage: Forex 1:30, indices 1:15, metals 1:15 and crypto 1:1.",
-      "The 2026-09-14 product page still renders the 6% dynamic / 4% daily / 9% target default against the help-centre article's 4% dynamic / 3% daily / 6% target preset; this unresolved first-party conflict is retained.",
       "The current Accepted Countries article now says India and Kenya may purchase E8 One up to $200,000; country eligibility follows verification documents.",
+      "Resolved 2026-10-19: E8 One is configurable. The live configurator on https://e8markets.com/e8-one sets target = 1.5x and daily = 0.66x the chosen dynamic drawdown (\"profitTargetFrom\":{\"from\":\"drawdown\",\"multiplier\":1.5},\"drawdown\":6, drawdowns [4,6,8,10,14]); its priced default is the 6% drawdown setup (\"Profit Target $9,000 Dynamic Drawdown $6,000 Daily drawdown $4,000\" on $100K), so 9% / 4% / 6% is stored. The help article https://help.e8markets.com/en/articles/11775980-e8-one (updated 2026-09-23) describes the 4% drawdown option (6% target / 3% daily / 4% dynamic), not a different default. Recheck log: content/data/challenges/_captures/e8-markets-2026-10-19.json",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json",
       "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/e8-markets-2026-10-19.json"
     ]

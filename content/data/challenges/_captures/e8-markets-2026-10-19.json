@@ -84,7 +84,9 @@
     "notFoundVerbatim": 44,
     "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
   },
-  "changes": [],
+  "changes": [
+    "E8 One notes and challenge-watch e8-one-default-parameter-conflict marked resolved (status verified, lastCheckedAt 2026-10-19) per resolution below; no value change."
+  ],
   "freeTrial": {
     "sourceUrl": "https://help.e8markets.com/en/articles/5514275-can-i-try-e8-markets-for-free",
     "quotes": [

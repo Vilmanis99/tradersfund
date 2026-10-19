@@ -150,5 +150,23 @@
       "httpStatus": 200,
       "fetchedAt": "2026-10-19T07:02:05.232Z"
     }
+  ],
+  "verbatimNoteQuotes": [
+    {
+      "productSlug": "stellar-instant",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+      "quote": "You can request your first reward on-demand once you reach 5% growth, or bi-weekly when your account is at ≥1% growth.",
+      "alsoOn": {
+        "url": "https://fundednext.com/cfds",
+        "quote": "Stellar Instant traders can request Performance Rewards on-demand once the account reaches 5% growth, or bi-weekly."
+      }
+    },
+    {
+      "productSlug": "stellar-2-step",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+      "quote": "Challenge fee refunded with your 1st reward, the fastest fee refund across all Challenges",
+      "tableQuote": "Refundable Fee | With 1st Reward",
+      "note": "Page wraps numbers in Unicode isolate marks (U+2066/U+2069) and has a double space before \"the fastest\"; removed in the stored quote. The page says \"1st reward\", not \"first approved Performance Reward\"."
+    }
   ]
 }
