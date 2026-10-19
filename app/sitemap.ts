@@ -316,6 +316,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/ru/obzor-fundednext', russianOldestChallengeLastModified('fundednext')],
     ['/ru/obzor-fundingpips', russianChallengeLastModified('fundingpips')],
     ['/ru/obzor-bright-funded', russianOldestChallengeLastModified('bright-funded')],
+    ['/ru/obzor-crypto-fund-trader', russianOldestChallengeLastModified('crypto-fund-trader')],
     ['/ru/obzor-ftmo', russianFtmoLastModified],
     ['/ru/promokody-prop-firm', russianDealsLastModified],
     ['/ru/fundednext-vs-bright-funded', russianPrimaryComparisonLastModified],

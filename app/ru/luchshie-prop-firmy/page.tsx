@@ -453,7 +453,7 @@ export default function RussianBestPropFirmsPage() {
       <section className="ru-section" id="bystryy-otvet">
         <div className="ru-shell ru-content">
           <h2>Лучшие проп-фирмы 2026: топ-3 для трейдеров из России и СНГ</h2>
-          <p><strong>Топ-3 для трейдеров из России:</strong> <Link href="/ru/obzor-bright-funded">BrightFunded</Link>, <Link href="/ru/obzor-fundednext">FundedNext (CFD)</Link> и Crypto Fund Trader — на 14.10.2026 они не ограничивают Россию.</p>
+          <p><strong>Топ-3 для трейдеров из России:</strong> <Link href="/ru/obzor-bright-funded">BrightFunded</Link>, <Link href="/ru/obzor-fundednext">FundedNext (CFD)</Link> и <Link href="/ru/obzor-crypto-fund-trader">Crypto Fund Trader</Link> — на 14.10.2026 они не ограничивают Россию.</p>
           <p><strong>Выбирайте программу по правилам, которые сможете соблюдать.</strong> Для начала определите рынок и бюджет. Затем сравните допустимый убыток, ограничения вашей стратегии и срок первой выплаты. Подтвердите гражданство, страну проживания и документы для проверки личности (KYC) до оплаты.</p>
           <p>Для сравнения глобальных программ начните с <Link href="/ru/fundednext-vs-bright-funded">FundedNext и BrightFunded</Link>: у них различаются валюты взноса, этапы оценки и условия просадки. {stellarInstantCurrent
             ? <>Если нужен счёт без оценочного этапа, изучите <Link href="/ru/fundednext-stellar-instant">Stellar Instant</Link> и его ограничения.</>

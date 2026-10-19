@@ -413,6 +413,7 @@ export default function RussianCryptoPropFirmsPage() {
               <p>Ascend завершается фиксированным вознаграждением после оценки, а не обычным счётом с постоянной долей прибыли. У Ascend и Break расходятся опубликованные цены; страница Break также показывает отсутствие в продаже. Поэтому их цены входа не подтверждены, а даты полной проверки остаются 27 июля. Это не вывод о закрытии программ и не подтверждение регистрации из какой-либо страны.</p>
               <p className="ru-source-line">Это датированное исправление нашего материала, не установленная дата изменения правил фирмы. Официальные источники и нерешённые вопросы перечислены в журнале; перед оплатой проверьте условия заново.</p>
               <div className="ru-actions">
+                <Link href="/ru/obzor-crypto-fund-trader" className="btn-outline">Обзор Crypto Fund Trader на русском</Link>
                 <Link href="/blog/crypto-fund-trader-review" hrefLang="en" className="btn-outline">Полный обзор CFT — на английском</Link>
                 <Link href="/prop-firm-challenge-changes?products=crypto-fund-trader%3Ainstant%2Ccrypto-fund-trader%3Aascend%2Ccrypto-fund-trader%3Abreak#change-ledger" hrefLang="en" className="ru-card-link">Источники исправлений — на английском →</Link>
               </div>

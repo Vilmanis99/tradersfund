@@ -1178,6 +1178,28 @@ const russianExpectations = new Map([
       'data-russian-affiliate-disclosure="fundednext"',
     ],
   }],
+  ['/ru/obzor-crypto-fund-trader', {
+    title: 'Crypto Fund Trader: обзор 2026, отзывы и доступ из России',
+    h1: 'Crypto Fund Trader (CFT): обзор и отзывы 2026',
+    markers: [
+      'data-russian-review="crypto-fund-trader"',
+      'data-russian-cft-verdict="summary"',
+      'data-russian-cft-access="match-trader-no-restrictions"',
+      'data-russian-cft-access-table="platforms"',
+      'data-russian-cft-product-count="5"',
+      'data-russian-cft-trustpilot="suppressed"',
+      'data-russian-cft-alternatives="bright-funded-first"',
+      'data-russian-cft-cta="summary"',
+      'data-russian-cft-cta="programs"',
+      'data-russian-cft-cta="final"',
+      'data-russian-affiliate-disclosure="crypto-fund-trader-review"',
+      'data-russian-risk-disclaimer="crypto-fund-trader-review"',
+      'href="/go/crypto-fund-trader?from=ru-review-crypto-fund-trader"',
+      'data-russia-status="available" data-russia-firm="crypto-fund-trader"',
+      'по данным на 14.10.2026',
+      'Bybit — по правилам Bybit',
+    ],
+  }],
   ['/ru/obzor-fundingpips', {
     title: 'FundingPips: отзывы, обзор 2026 и доступ из России',
     h1: 'FundingPips: отзывы и обзор 2026 — цены, правила, доступ из России',
@@ -1766,7 +1788,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'obzor-crypto-fund-trader']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
 if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
   errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}`)
