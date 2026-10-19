@@ -5,6 +5,7 @@ import { ArrowRight, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
@@ -77,12 +78,11 @@ export default function RussianFundedAccountPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-funded-account="guide">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Funded account</div>
           <div className="ru-eyebrow"><WalletCards size={14} aria-hidden="true" /> Обновлено {UPDATED}</div>
           <h1>Funded account (фандед аккаунт): что это и как получить</h1>
           <p className="ru-lead">
