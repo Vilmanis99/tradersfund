@@ -923,6 +923,24 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-comparison-bright-funded',
     ],
   }],
+  ['/ru/ftmo-vs-bright-funded', {
+    title: 'FTMO или BrightFunded: альтернатива FTMO для россиян',
+    h1: 'FTMO или BrightFunded: альтернатива FTMO для россиян',
+    markers: [
+      'data-russian-partner-comparison="ftmo-bright-funded"',
+      'data-russian-affiliate-disclosure="ftmo-vs-bright"',
+      'data-russian-risk-disclaimer="ftmo-vs-bright"',
+      'data-russian-comparison-verdict="ftmo-bright-funded"',
+      'data-russian-comparison-field="russia"',
+      'data-russian-comparison-field="payments"',
+      'data-russia-status="restricted" data-russia-firm="ftmo"',
+      '/go/bright-funded?from=ru-ftmo-vs-bright-hero',
+      '/go/bright-funded?from=ru-ftmo-vs-bright-verdict',
+      'https://ftmo.com/en/faq/who-can-join-ftmo/',
+      'https://help.brightfunded.com/en/articles/9286623-can-i-pay-for-my-challenge-with-crypto',
+      '/ru/ftmo-dlya-rossiyan',
+    ],
+  }],
   ['/ru/promokody-prop-firm', {
     title: 'Промокоды проп-фирм — октябрь 2026: FundedNext, Upscale, BrightFunded',
     h1: 'Промокоды проп-фирм — октябрь 2026',
@@ -1766,7 +1784,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
 if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
   errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}`)
@@ -1928,6 +1946,8 @@ for (const [path, href] of [
   ['/ru/prop-firmy-bez-chelendzha', '/go/fundednext?from=ru-instant-fundednext'],
   ['/ru/prop-firmy-bez-chelendzha', '/go/bright-funded?from=ru-instant-bright-alternative'],
   ['/ru/fundednext-vs-fundingpips', '/go/bright-funded?from=ru-comparison-bright-funded'],
+  ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-hero'],
+  ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-verdict'],
   ['/ru/obzor-proplive', '/go/fundednext?from=ru-proplive-global-fundednext'],
   ['/ru/obzor-proplive', '/go/bright-funded?from=ru-proplive-global-bright-funded'],
   ['/ru/obzor-eratrade', '/go/fundednext?from=ru-eratrade-global-fundednext'],

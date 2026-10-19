@@ -478,7 +478,8 @@ export default function RussianFtmoReviewPage() {
               })}
             </div>
             <div className="ru-actions">
-              <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary"><Scale size={15} aria-hidden="true" /> Сравнить FundedNext и BrightFunded</Link>
+              <Link href="/ru/ftmo-vs-bright-funded" className="btn-primary"><Scale size={15} aria-hidden="true" /> Сравнить FTMO и BrightFunded</Link>
+              <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline"><Scale size={15} aria-hidden="true" /> Сравнить FundedNext и BrightFunded</Link>
               <Link href="/ru/promokody-prop-firm" className="btn-outline">Проверить действующие предложения</Link>
             </div>
           </div>
