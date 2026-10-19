@@ -1,0 +1,186 @@
+{
+  "firmSlug": "maven",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T10:03:10+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/maven-2026-10-14.json",
+  "egress": "Box egress is a US IP. Global (non-US) prices were checked against the firm's Global/region-independent price data as described in method; US-only codes are not promoted.",
+  "method": "Headless Chrome render of /pricing, /faqs, /terms-and-conditions and plan pages",
+  "priceSource": "https://maventrading.com/pricing",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "standard-1-step",
+      "prices": {
+        "2000": 15,
+        "5000": 19,
+        "10000": 37,
+        "20000": 68,
+        "50000": 170,
+        "100000": 380
+      }
+    },
+    {
+      "productSlug": "standard-2-step",
+      "prices": {
+        "2000": 19,
+        "5000": 22,
+        "10000": 44,
+        "20000": 88,
+        "50000": 220,
+        "100000": 440
+      }
+    },
+    {
+      "productSlug": "standard-3-step",
+      "prices": {
+        "2000": 13,
+        "5000": 17,
+        "10000": 38,
+        "20000": 76,
+        "50000": 190,
+        "100000": 299
+      }
+    },
+    {
+      "productSlug": "instant",
+      "prices": {
+        "2000": 15,
+        "5000": 19,
+        "10000": 37,
+        "20000": 68,
+        "50000": 170,
+        "100000": 380
+      }
+    },
+    {
+      "productSlug": "mini",
+      "prices": {
+        "2000": 17,
+        "5000": 22,
+        "10000": 44,
+        "20000": 88,
+        "50000": 220,
+        "100000": 440
+      }
+    },
+    {
+      "productSlug": "buy-now-pay-later",
+      "prices": {
+        "2000": 5,
+        "5000": 5,
+        "10000": 5,
+        "20000": 5,
+        "50000": 5,
+        "100000": 5
+      }
+    },
+    {
+      "productSlug": "omo-2-step",
+      "prices": {
+        "2000": 19,
+        "5000": 32,
+        "10000": 62,
+        "20000": 122,
+        "50000": 238,
+        "100000": 472
+      }
+    },
+    {
+      "productSlug": "predictions-1-step",
+      "prices": {
+        "5000": 44,
+        "10000": 84,
+        "20000": 154,
+        "50000": 359,
+        "100000": 599
+      }
+    },
+    {
+      "productSlug": "predictions-elite-1-step",
+      "prices": {
+        "5000": 74,
+        "10000": 139,
+        "20000": 259,
+        "50000": 599,
+        "100000": 999
+      }
+    }
+  ],
+  "priceQuotes": [
+    "Standard 1-Step $2k account $14 * $15 *Price with coupon. Refundable on the third withdrawal"
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 70,
+    "foundVerbatimInLiveText": 65,
+    "notFoundVerbatim": 5,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
+  },
+  "changes": [],
+  "notes": [
+    "65 of 70 stored evidence quotes found verbatim; the other 5 (news windows, Instant 20% consistency, platforms) found with whitespace/format differences only — values unchanged."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://maventrading.com/pricing",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:58.606Z"
+    },
+    {
+      "url": "https://maventrading.com/faqs",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:58.710Z"
+    },
+    {
+      "url": "https://maventrading.com/challenges/mini",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:04.250Z"
+    },
+    {
+      "url": "https://maventrading.com/terms-and-conditions",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:04.312Z"
+    },
+    {
+      "url": "https://maventrading.com/challenges/1-step",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:04.313Z"
+    },
+    {
+      "url": "https://maventrading.com/challenges/2-step",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:04.382Z"
+    },
+    {
+      "url": "https://maventrading.com/challenges/instant",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:04.437Z"
+    },
+    {
+      "url": "https://maventrading.com/challenges/3-step",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:04.441Z"
+    },
+    {
+      "url": "https://maventrading.com/omo-2-step",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:09.831Z"
+    },
+    {
+      "url": "https://maventrading.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:09.913Z"
+    },
+    {
+      "url": "https://maventrading.com/prediction-markets",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:09.984Z"
+    },
+    {
+      "url": "https://maventrading.com/buy-now-pay-later",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:10.075Z"
+    }
+  ]
+}

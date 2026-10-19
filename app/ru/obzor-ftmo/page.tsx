@@ -27,6 +27,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-ftmo'
 const TITLE = 'FTMO проп: обзор 2026, цены, правила и доступ для русскоязычных'
@@ -172,12 +173,11 @@ export default function RussianFtmoReviewPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-ftmo-review="search-to-decision">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / FTMO</div>
           <RussianDataFreshnessNotice firmSlugs={['ftmo']} />
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Условия проверены {latestCapture}</div>
           <h1>FTMO: обзор 2026 — 2 программы и 10 цен</h1>

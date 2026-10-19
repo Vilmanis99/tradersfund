@@ -1,0 +1,128 @@
+{
+  "firmSlug": "crypto-fund-trader",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T10:03:17+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
+  "egress": "Box egress is a US IP. Global (non-US) prices were checked against the firm's Global/region-independent price data as described in method; US-only codes are not promoted.",
+  "method": "curl of WooCommerce Store API + headless Chrome of terms",
+  "priceSource": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "evaluation",
+      "prices": {
+        "5000": 58,
+        "10000": 110,
+        "25000": 240,
+        "50000": 389,
+        "100000": 660,
+        "200000": 1250
+      }
+    },
+    {
+      "productSlug": "ascend",
+      "prices": {
+        "5000": 39,
+        "10000": 78,
+        "25000": 195,
+        "50000": 390,
+        "100000": 780,
+        "200000": 1560
+      }
+    },
+    {
+      "productSlug": "accelerated",
+      "prices": {
+        "5000": 40,
+        "10000": 80,
+        "25000": 219,
+        "50000": 369,
+        "100000": 619,
+        "200000": 1199
+      }
+    },
+    {
+      "productSlug": "instant",
+      "prices": {
+        "2500": 125,
+        "5000": 240,
+        "10000": 475
+      }
+    },
+    {
+      "productSlug": "break",
+      "prices": {
+        "25000": 70,
+        "50000": 140,
+        "100000": 200
+      }
+    }
+  ],
+  "priceQuotes": [
+    "$5.000 Evaluation 58 | $10.000 110 | $25.000 240 | $50.000 389 | $100.000 660 | $200.000 1250 (USD)",
+    "$5.000 Accelerated 40 | 80 | 219 | 369 | 619 | 1199",
+    "$2.500 Instant Evaluation 125 | $5.000 240 | $10.000 475",
+    "$25.000 Break Evaluation 70 | $50.000 140 | $100.000 200",
+    "5.6.5 ‘Ascend’ Evaluation: 39 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 5,000 USD ... 1560 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 200,000 USD"
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 62,
+    "foundVerbatimInLiveText": 40,
+    "notFoundVerbatim": 22,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
+  },
+  "changes": [],
+  "observations": [
+    {
+      "item": "Store API also lists \"Tradeando – Free $10.000 Evaluation\" at $0 (partner promo; not a general free trial; not modelled)",
+      "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/products"
+    }
+  ],
+  "notes": [
+    "All prices unchanged vs 2026-10-14."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://cryptofundtrader.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:10.508Z"
+    },
+    {
+      "url": "https://cryptofundtrader.com/shop/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:11.029Z"
+    },
+    {
+      "url": "https://cryptofundtrader.com/faq/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:16.497Z"
+    },
+    {
+      "url": "https://cryptofundtrader.com/refund-policy/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:16.673Z"
+    },
+    {
+      "url": "https://cryptofundtrader.com/terms-and-conditions/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:16.709Z"
+    },
+    {
+      "url": "https://cryptofundtrader.com/wp-json/wc/store/v1/products",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:16.862Z"
+    },
+    {
+      "url": "https://cryptofundtrader.com/break-challenge/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:17.319Z"
+    },
+    {
+      "url": "https://cryptofundtrader.com/last-updates-faq/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:17.848Z"
+    }
+  ]
+}

@@ -28,6 +28,7 @@ import {
 } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel } from '@/lib/russiaAvailability'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/luchshie-kripto-prop-firmy'
 const TITLE = 'Крипто-проп-фирмы 2026: цены, инструменты и правила'
@@ -188,13 +189,12 @@ export default function RussianCryptoPropFirmsPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {snapshots.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(list) }} />}
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-crypto-hero="search-and-product-evidence">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / Крипто</div>
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> От криптоинструмента к условиям счёта</div>
           <h1>{TITLE}</h1>
           <p className="ru-lead">

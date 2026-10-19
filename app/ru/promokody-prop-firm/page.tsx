@@ -8,6 +8,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel } from '@/lib/russiaAvailability'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 export const revalidate = 86400
 
@@ -46,9 +47,9 @@ type HubFirm = {
 // Только фирмы, открытые для РФ на 14.10.2026 (ru-availability.csv). Коды подтягиваются из content/data/deals.json;
 // пока там нет проверенного кода, карточка показывает плейсхолдер «код ожидается».
 const hubFirms: HubFirm[] = [
+  { slug: 'bright-funded', name: 'BrightFunded', review: '/ru/obzor-bright-funded', russiaNote: 'Россия не в списке ограничений; исключены лица из санкционных списков.' },
   { slug: 'fundednext', name: 'FundedNext (CFD)', review: '/ru/obzor-fundednext', russiaNote: 'Россия не в списке ограничений CFD; FundedNext Futures Россию ограничивает.' },
   { slug: 'upscale', name: 'Upscale', review: null, russiaNote: 'Ограничений по странам не заявлено, KYC нет, выплаты в USDT.', external: 'https://upscale.trade/ru/' },
-  { slug: 'bright-funded', name: 'BrightFunded', review: '/ru/obzor-bright-funded', russiaNote: 'Россия не в списке ограничений; исключены лица из санкционных списков.' },
   { slug: 'fundingpips', name: 'FundingPips', review: '/ru/obzor-fundingpips', russiaNote: 'Доступ для РФ не ясен (проверено 14.10.2026).' },
   { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', review: '/blog/crypto-fund-trader-review', russiaNote: 'На Match-Trader ограничений по странам нет. Оплата: карта, PayPal, Apple/Google Pay, криптовалюта (по данным на 14.10.2026).' },
 ]
@@ -102,12 +103,11 @@ export default function RussianPromoHubPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-promo-hub={CHECKED_ISO}>
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Промокоды проп-фирм</div>
           <div className="ru-eyebrow"><CalendarCheck size={14} aria-hidden="true" /> Выпуск: {MONTH_LABEL} · проверено {CHECKED}</div>
           <h1>Промокоды проп-фирм — {MONTH_LABEL}</h1>
           <p className="ru-lead">
@@ -141,7 +141,7 @@ export default function RussianPromoHubPage() {
                   <p className="ru-muted">{firm.russiaNote}</p>
                   {deal ? (
                     <>
-                      {deal.code ? <CopyableCodePill code={deal.code} pct={deal.pct} locale="ru" analyticsFirm={firm.slug} /> : <p><strong>Скидка применяется по ссылке, код вводить не нужно.</strong></p>}
+                      {deal.code ? <CopyableCodePill code={deal.code} pct={deal.pctIsUpTo ? undefined : deal.pct} locale="ru" analyticsFirm={firm.slug} /> : <p><strong>Скидка применяется по ссылке, код вводить не нужно.</strong></p>}
                       <p><strong>{deal.amountLabel}</strong>{deal.scope ? ` · ${deal.scope}` : ''}</p>
                       <p className="ru-source-line">
                         Проверено {deal.verifiedOn}{deal.expiresOn ? ` · действует до ${deal.expiresOn}` : ''} ·{' '}

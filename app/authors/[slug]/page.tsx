@@ -9,6 +9,9 @@ import BlogCard from '@/components/BlogCard'
 
 interface Props { params: Promise<{ slug: string }> }
 
+// Every author is prerendered; an unknown slug is a 404.
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   return AUTHORS.map(a => ({ slug: a.slug }))
 }

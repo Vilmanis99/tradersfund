@@ -66,7 +66,14 @@ try {
   const brightFirm = getAllFirms().find(firm => firm.name === 'BrightFunded')
   assert(brightFirm?.affiliateUrl, 'Bright Funded affiliate destination is configured')
   const [brightTrustpilotCapture] = JSON.parse(fs.readFileSync(path.join(root, 'content/data/trustpilot-captures/2026-10-01/trustpilot-batch1.json'), 'utf8'))
-  assert.equal(brightFirm.trustpilotCapturedAt, brightTrustpilotCapture.capturedAt, 'Bright Trustpilot date matches its preserved observation')
+  // The 2026-10-01 batch is the preserved first-party observation of the
+  // suppressed profile; later rechecks may move the date forward but never back.
+  assert.match(brightFirm.trustpilotCapturedAt ?? '', /^\d{4}-\d{2}-\d{2}$/, 'Bright Trustpilot date is an ISO date')
+  assert(
+    brightFirm.trustpilotCapturedAt >= brightTrustpilotCapture.capturedAt,
+    `Bright Trustpilot date ${brightFirm.trustpilotCapturedAt} is not older than its preserved observation ${brightTrustpilotCapture.capturedAt}`,
+  )
+  assert(brightFirm.trustpilotRatingSuppressed, 'Bright Trustpilot aggregate stays suppressed')
   assert.equal(brightFirm.trustpilotUrl, brightTrustpilotCapture.trustpilotUrl, 'Bright Trustpilot source URL matches its preserved observation')
   assert.match(brightTrustpilotCapture.evidence, /rating is unavailable.*breach.*guidelines/i, 'suppressed aggregate has first-party platform evidence')
   assert.match(

@@ -8,6 +8,7 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/kak-rabotayut-chellendzhi-prop-firm'
 const TITLE = 'Челлендж проп-фирмы: 5 этапов и правила (2026)'
@@ -87,12 +88,11 @@ export default function RussianChallengeLifecyclePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
 
       <section className="ru-hero">
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Как работают челленджи</div>
           <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <div className="ru-eyebrow"><Flag size={14} aria-hidden="true" /> Пять этапов решения</div>
           <h1>Как работает челлендж проп-фирмы: от оплаты до выплаты</h1>

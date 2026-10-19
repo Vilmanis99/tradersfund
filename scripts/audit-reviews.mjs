@@ -128,6 +128,11 @@ const CHALLENGE_CHANGES_SOCIAL_ALT_FILE = path.join(
   'app/prop-firm-challenge-changes/opengraph-image.alt.txt',
 )
 const CHALLENGE_WATCH_FILE = path.join(ROOT, 'content/data/challenge-watch.json')
+// OFP Funding's official lineup shrank on 2026-10-14 (recapture of the ofpfunding.com
+// __NUXT_DATA__ plan payload and /trading-rules tabs): only Instant Lite, Instant Classic
+// and Instant Plus remain, each in two drawdown variants = 6 products. One Phase, Two
+// Phase, Instant Pro and Instant Prime are no longer sold. Rechecked 2026-10-19.
+const OFP_EXPECTED_PRODUCTS = 6
 const INDIA_EVIDENCE_FILE = path.join(ROOT, 'content/data/india-evidence.json')
 const INDIA_RBI_CAPTURE_FILE = path.join(ROOT, 'content/data/india-rbi-alert-capture.json')
 const INDIA_EVIDENCE_CAPTURES_DIR = path.join(
@@ -3598,8 +3603,8 @@ function checkIndiaChallengeChangesSurface() {
       'SOCIAL_CARD_ENTRY_COUNT = 19',
       'SOCIAL_CARD_FIRM_COUNT = 7',
       'SOCIAL_CARD_PRODUCT_COUNT = 35',
-      'SOCIAL_CARD_VERIFIED_COUNT = 8',
-      'SOCIAL_CARD_WATCH_COUNT = 11',
+      'SOCIAL_CARD_VERIFIED_COUNT = 9',
+      'SOCIAL_CARD_WATCH_COUNT = 10',
       'Refresh the India challenge-changes social card',
       'Affiliate status contributes 0 points',
       'ChallengeChangeFeed entries={entries}',
@@ -8949,7 +8954,7 @@ function checkPassingServicesGuide() {
     'utf-8',
   )
   if (
-    ofp.length !== 9 ||
+    ofp.length !== OFP_EXPECTED_PRODUCTS ||
     ofpProhibited.length !== ofp.length ||
     ofpDates.size !== 1 ||
     !ofpCapture.includes('Violation Consequence: Immediate account closure')
@@ -9004,7 +9009,7 @@ function checkPassingServicesGuide() {
     )
     if (
       tier.refundable !== false ||
-      !fundedNextInstant.notes.some(note => note.includes('requires 5% account growth'))
+      !fundedNextInstant.notes.some(note => /requires 5% account growth/i.test(note))
     ) {
       rows.push('FundedNext Instant alternative lost its refund or payout-gate support')
     }
@@ -9234,7 +9239,7 @@ function checkCopyTradingGuide() {
       [...ofpDates][0],
     ],
   )
-  if (ofp.length !== 9 || ofpProhibited.length !== ofp.length || ofpDates.size !== 1) {
+  if (ofp.length !== OFP_EXPECTED_PRODUCTS || ofpProhibited.length !== ofp.length || ofpDates.size !== 1) {
     rows.push('OFP Funding product count, prohibition, or capture date drifted')
   }
 
@@ -9412,7 +9417,9 @@ function checkWhatIsPropFirmGuide() {
     if (
       tier.refundable !== true ||
       !fundedNextTwoStep.notes.some(note =>
-        note.includes('refundable with the first approved Performance Reward'),
+        // Official 2026-10-19 wording is "Challenge fee refunded with your 1st reward";
+        // older captures said "refundable with the first approved Performance Reward".
+        /refundable with the first approved Performance Reward|refunded with your 1st reward/i.test(note),
       )
     ) {
       rows.push('FundedNext 2-Step first-reward refund lost its capture support')
@@ -9440,7 +9447,7 @@ function checkWhatIsPropFirmGuide() {
     if (
       tier.refundable !== false ||
       fundedNextInstant.dailyLossPct !== null ||
-      !fundedNextInstant.notes.some(note => note.includes('requires 5% account growth'))
+      !fundedNextInstant.notes.some(note => /requires 5% account growth/i.test(note))
     ) {
       rows.push('FundedNext Instant refund, daily-loss, or payout-gate support drifted')
     }
@@ -10399,7 +10406,7 @@ function checkTradingToolReviewCluster() {
   if (!fxReplay) {
     rows.push('FX Replay review is missing from the tool-review cluster')
   } else {
-    const expectedTitle = 'FX Replay Review: Pricing, Features & Limits'
+    const expectedTitle = 'FX Replay Review: Plans, Prop-Firm Simulator & Refunds'
     if (
       fxReplay.title !== expectedTitle
       || fxReplay.seoTitle !== expectedTitle

@@ -16,6 +16,7 @@ import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access
 import { RuGoLink } from '@/components/RuGoLink'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { goLinkRel } from '@/lib/russiaAvailability'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/luchshie-prop-firmy'
 // Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
@@ -308,14 +309,13 @@ export default function RussianBestPropFirmsPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(pageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(list) }} />
       {faqCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Рейтинг</div>
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Для русскоязычных трейдеров в разных странах</div>
           <h1>Проп-компании: рейтинг 2026</h1>
           <p className="ru-source-line" data-russian-ranking-updated={UPDATED_ISO}><strong>Обновлено {UPDATED}</strong> · статус доступа из России проверен {UPDATED}</p>
@@ -443,7 +443,7 @@ export default function RussianBestPropFirmsPage() {
             </table>
           </div>
           <p className="ru-source-line" data-russian-ranking-promos="2026-10-14">
-            Промокоды, проверено 14.10.2026: <strong>STRTN</strong> — до 33% на четыре младших счёта FundedNext Stellar (с 12.10.2026);{' '}
+            Промокоды, проверено 14.10.2026: <strong>STRTN</strong> — до 33% (в США — до 20%) на четыре младших счёта FundedNext Stellar (с 12.10.2026);{' '}
             <strong>HELLO</strong> — 20% на первую покупку FundingPips, кроме счёта $100K. Все коды — на странице{' '}
             <Link href="/ru/promokody-prop-firm">промокоды проп-фирм</Link>.
           </p>

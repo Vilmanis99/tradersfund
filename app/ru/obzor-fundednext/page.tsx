@@ -18,6 +18,7 @@ import reviewEvidence from '@/content/data/russian-fundednext-review-evidence.js
 import instantEvidence from '@/content/data/russian-fundednext-instant-evidence.json'
 import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-fundednext'
 const TITLE = 'FundedNext проп: отзывы и обзор 2026, цены и правила'
@@ -227,12 +228,11 @@ export default function RussianFundedNextReviewPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / FundedNext</div>
           <RussianDataFreshnessNotice firmSlugs={['fundednext']} />
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {latestProductCapture ?? 'не подтверждена'}</div>

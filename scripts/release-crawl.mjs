@@ -932,8 +932,8 @@ const russianExpectations = new Map([
       'data-russian-risk-disclaimer="promo-hub"',
       'ru-badge ru-badge--open',
       'ru-badge ru-badge--closed',
-      '/go/fundednext?from=ru-promokody-prop-firm-card-1',
-      '/go/bright-funded?from=ru-promokody-prop-firm-card-3',
+      '/go/bright-funded?from=ru-promokody-prop-firm-card-1',
+      '/go/fundednext?from=ru-promokody-prop-firm-card-2',
     ],
   }],
   // Batch 1/2 new pages: expectations apply only once app/ru/<slug>/page.tsx exists.
@@ -4909,7 +4909,7 @@ if (globalChangeProbe.status !== 200) {
     ...(fundingPipsCurrentWatchTitle ? [fundingPipsCurrentWatchTitle] : []),
     ...alphaCurrentWatchTitles,
     'E8 Pro pages disagree on prices and configurable terms',
-    'E8 One pages disagree on the default target and drawdown',
+    'E8 One default target and drawdown confirmed',
   ]) {
     if (!globalChangeText.includes(required)) {
       errors.push(`${globalChangePath}: missing ${required}`)
@@ -4942,13 +4942,13 @@ if (indiaChangeProbe.status !== 200) {
     '19 India-screened updates',
     '7 eligible firms affected',
     '35 products',
-    '11 open watches',
+    '10 open watches',
     'Showing 19 of 19 dated updates.',
     ...(fundingPipsCurrentWatchTitle ? [fundingPipsCurrentWatchTitle] : []),
     'Tradeify list prices and homepage promotions can diverge',
     'FundingPips separates the current Standard path from legacy 10% resets',
     ...alphaCurrentWatchTitles,
-    'E8 One pages disagree on the default target and drawdown',
+    'E8 One default target and drawdown confirmed',
     'Affected products',
     'Affiliate status contributes 0 points',
   ]) {

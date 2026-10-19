@@ -11,6 +11,7 @@ import forexEvidence from '@/content/data/russian-forex-evidence.json'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightCountryEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/forex-prop-firmy'
 const TITLE = 'Форекс проп-фирмы: плечо, цены и правила программ'
@@ -159,12 +160,11 @@ export default function RussianForexPropFirmsPage() {
   return (
     <article className="ru-review-article" data-russian-forex-article="instrument-to-product" data-russian-search-intent="prop-forex">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqItems)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Форекс проп-фирмы</div>
           <div className="ru-eyebrow"><ChartCandlestick size={14} aria-hidden="true" /> От валютной пары к условиям программы</div>
           <h1>Форекс проп-фирмы: цены, плечо и правила для русскоязычных трейдеров</h1>
           <p className="ru-lead">

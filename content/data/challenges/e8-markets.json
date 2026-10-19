@@ -67,16 +67,16 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
       "This row captures the default configuration shown on the public configurator: 6% dynamic drawdown, 9% profit target, 4% daily drawdown and 80% payout. E8 One can be configured to 4-14% drawdown, a corresponding 6-21% target, and 80/90/100% payout; unrendered configuration prices are not inferred.",
-      "Unresolved first-party preset conflict: the configurator and product page default are 6% max / 9% target / 4% daily, while the E8 One help article calls 4% max / 6% target / 3% daily the preset. The rendered checkout configuration is used here.",
       "Performance payout minimum: net payout share must exceed 50% of the daily drawdown. The general payout floor is $100.",
       "Platforms: TradeLocker, MatchTrader, cTrader and MT5 depending on region/account type; US clients may use only TradeLocker or MatchTrader; cTrader adds $10 when the base account price is under $100.",
       "Leverage: Forex 1:30, indices 1:15, metals 1:15 and crypto 1:1.",
-      "The 2026-09-14 product page still renders the 6% dynamic / 4% daily / 9% target default against the help-centre article's 4% dynamic / 3% daily / 6% target preset; this unresolved first-party conflict is retained.",
       "The current Accepted Countries article now says India and Kenya may purchase E8 One up to $200,000; country eligibility follows verification documents.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json"
+      "Resolved 2026-10-19: E8 One is configurable; the dynamic drawdown choice sets the target and daily limit. Per-option values (drawdown -> target / daily): 4% -> 6% / 3%; 6% -> 9% / 4%; 8% -> 12% / 5.3%; 10% -> 15% / 6.6%; 14% -> 21% / 9.2%. Sources: the https://e8markets.com/e8-one configurator code (target = drawdown x 1.5; daily = drawdown x 0.66, except x 0.75 at 4%, rounded to 0.1) and https://help.e8markets.com/en/articles/8880316-what-is-the-custom-account (updated 2026-10-08): \"Daily drawdown:  3%, 4%, 5.3%, 6.6%,  9.2% (only adjusted based on Dynamic Drawdown parameter).\" / \"6%, 9%, 12%, 15%, 21%\". The priced default is 6% drawdown (\"Profit Target $9,000 Dynamic Drawdown $6,000 Daily drawdown $4,000\" on $100K; \"Pre-set pricing for E8 One is a standard configuration at checkout, with an 80% payout, 6% Dynamic Drawdown, and 4% Daily Drawdown\"), so 9% / 4% / 6% is stored. The help article https://help.e8markets.com/en/articles/11775980-e8-one (updated 2026-09-23) shows the 4% option (6% / 3% / 4%). Recheck log: content/data/challenges/_captures/e8-markets-2026-10-19.json",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/e8-markets-2026-10-19.json"
     ]
   },
   {
@@ -147,11 +147,12 @@
     },
     "assetClass": "crypto",
     "sourceUrl": "https://e8markets.com/e8-one",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
       "Captured 2026-10-14 from the official configurator's Perpetual market tab (embedded data key e8one_perp, platform TERMINAL = E8's Hyperliquid perpetuals terminal). Underlyings include crypto (BTC) and non-crypto perps (gold, oil, Nasdaq, Nvidia).",
       "News, EA and copy-trading rules are left null: the published rule text is not stated separately for the Perpetual market. Crypto-specific leverage and payout rails for Perpetual accounts were not separately verified.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/e8-markets-2026-10-19.json"
     ]
   },
   {
@@ -222,7 +223,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://e8markets.com/e8-pro",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
       "PRICE CHANGE 2026-10-14: the official https://e8markets.com/e8-pro page now lists $32/$68/$148/$228/$488/$998/$2,098/$2,598 (previously $38/$88/$198/$298/$568/$1,198/$2,398/$2,998 on the e8pro.e8markets.com v2 page, which now returns HTTP 402). This matches the help-centre base-price table, resolving the prior pricing conflict.",
       "Live rules on e8-pro: '8% Static drawdown Calculated from the initial balance. Never trails.', 'Daily Drawdown 2.5% of initial balance', '2% Daily profit cap', 'Consistency rule There is none', 'Payout frequency Request daily with 1% minimum profit', 'Payout Choose 80% or 100% at purchase'.",
@@ -233,9 +234,10 @@
       "Each request first makes 50% of total profits requestable; the chosen 80% or 100% payout applies to that requestable half, and the rest remains as drawdown buffer.",
       "Platforms: TradeLocker, MatchTrader, cTrader and MT5 depending on region/account type; US clients may use only TradeLocker or MatchTrader; cTrader adds $10 when the base account price is under $100.",
       "Leverage: Forex 1:30, crypto 1:2 on the current E8PRO v2 page, indices 1:15, metals 1:15 and energies 1:15.",
-      "The current E8 Pro help article is dated July 30, 2026 and retains the fixed 8% target, 8% static drawdown, 2.5% daily drawdown, 2% daily profit cap and no consistency rule; its base-price table still conflicts with the product-specific E8PRO v2 prices used here.",
+      "Resolved 2026-10-19: the help-centre base price table now matches the stored E8 Pro prices. https://help.e8markets.com/en/articles/8880316-what-is-the-custom-account (updated 2026-10-08) lists E8 Pro pre-set pricing $32 / $68 / $148 / $228 / $488 / $998 / $2098 / $2598 for $5K-$500K (\"Pre-set pricing for E8 Pro is a standard configuration at checkout, with an 80% payout, 8% Static Drawdown, and 2.5% Daily Drawdown, with no discount applied.\"). The E8 Pro help article https://help.e8markets.com/en/articles/15274219-e8-pro-forex (updated 2026-09-23) has no price table and keeps the fixed 8% target, 8% static drawdown, 2.5% daily drawdown, 2% daily profit cap and no consistency rule.",
       "The current Accepted Countries article now says India and Kenya may purchase E8 Pro in all listed sizes; country eligibility follows verification documents.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/e8-markets-2026-10-19.json"
     ]
   },
   {
@@ -306,11 +308,12 @@
     },
     "assetClass": "crypto",
     "sourceUrl": "https://e8markets.com/e8-pro",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
       "Captured 2026-10-14 from the official configurator's Perpetual market tab (embedded data key e8pro_v2_perp, platform TERMINAL = E8's Hyperliquid perpetuals terminal). Underlyings include crypto (BTC) and non-crypto perps (gold, oil, Nasdaq, Nvidia).",
       "News, EA and copy-trading rules are left null: the published rule text is not stated separately for the Perpetual market. Crypto-specific leverage and payout rails for Perpetual accounts were not separately verified.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/e8-markets-2026-10-19.json"
     ]
   },
   {
@@ -365,7 +368,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://e8markets.com/e8-signature",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
       "The current E8 Signature product page and custom-account table show undiscounted one-time prices of $120/$160/$280/$450 for $25K/$50K/$100K/$150K; displayed code prices are promotional and are not stored as list prices.",
       "Tier-specific EOD drawdown is now represented as maxLossUsd: $1,000 on $25K, $2,000 on $50K, $3,000 on $100K and $4,500 on $150K. A single maxLossPct would be false because those equal 4%, 4%, 3% and 3%.",
@@ -376,7 +379,8 @@
       "Leverage: Forex 1:30, indices 1:15 and metals 1:15.",
       "The current E8 Signature product page and updated custom-account table show undiscounted base prices of $120/$160/$280/$450 for $25K/$50K/$100K/$150K; the displayed 25% code prices are promotional and are not stored as list prices.",
       "The current Accepted Countries article now says India and Kenya may purchase E8 Signature in all listed sizes; country eligibility follows verification documents.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/e8-markets-2026-10-19.json"
     ]
   }
 ]

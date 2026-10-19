@@ -1,4 +1,5 @@
 'use client'
+import { promotableDiscount } from '@/lib/discountDisplay'
 import { firmSlug } from '@/lib/firmSlug'
 import { useState, useMemo, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
@@ -501,14 +502,14 @@ export default function FirmTable({
                     <FirmLogo name={firm.name} src={firm.logo} size={36} />
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                       <span style={{ color: 'var(--text)', fontWeight: 600 }}>{firm.name}</span>
-                      {(isPartner || (firm.discountCode && firm.discountPct)) && (
+                      {(isPartner || promotableDiscount(firm)) && (
                         <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
                           {isPartner && (
                             <span className="partner-pill" title="We have an affiliate partnership with this firm.">
                               <Handshake size={9} /> Partner
                             </span>
                           )}
-                          {firm.discountCode && firm.discountPct && (
+                          {promotableDiscount(firm) && (
                             <span className="discount-pill" title={`Use code ${firm.discountCode} for ${firm.discountPct}% off.`}>
                               <Tag size={9} /> {firm.discountPct}% off
                             </span>

@@ -10,6 +10,7 @@ import { challengeCurrency, challengeTierEconomics, minimumCostToFundedUsd, getC
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/fundednext-vs-fundingpips'
 const TITLE = 'FundedNext или FundingPips: сравнение 2026'
@@ -191,7 +192,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {completeEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
@@ -200,7 +201,6 @@ export default function RussianFundedNextVsFundingPipsPage() {
           data-russian-partner-comparison="fundednext-fundingpips"
           data-russian-comparison-editorial-date={articleDateModified}
         >
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / Сравнение</div>
           <RussianDataFreshnessNotice firmSlugs={['fundednext', 'fundingpips']} />
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Продукт против продукта</div>
           <h1>FundedNext или FundingPips: сравнение для русскоязычных трейдеров</h1>

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getAllFirms, getAllChallenges, isChallengeFresh } from '@/lib/firms'
-import { organizationSchema, websiteSchema, jsonLd } from '@/lib/schema'
+import { jsonLd } from '@/lib/schema'
 import NewsletterForm from '@/components/NewsletterForm'
 import EnglishFinderEntry from '@/components/EnglishFinderEntry'
 import { buildChallengeComparisonRows } from '@/lib/challengeComparisonData'
@@ -95,8 +95,6 @@ export default function Home() {
 
   return (
     <div className="th-home home--product-led home--focused" data-english-home-layout="focused">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(organizationSchema()) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(websiteSchema()) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
 
       <HeroBlock

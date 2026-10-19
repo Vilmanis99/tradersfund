@@ -48,6 +48,7 @@ function load(file) {
       if (specifier === '@/lib/firmSlug') return load('lib/firmSlug.ts')
       if (specifier === '@/lib/firmPlatforms') return load('lib/firmPlatforms.ts')
       if (specifier === '@/lib/firmDirectory') return load('lib/firmDirectory.ts')
+      if (specifier === '@/lib/discountDisplay') return load('lib/discountDisplay.ts')
       return require(specifier)
     },
   }, { filename: file })

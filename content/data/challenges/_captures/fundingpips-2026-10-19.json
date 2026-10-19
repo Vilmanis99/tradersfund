@@ -1,0 +1,151 @@
+{
+  "firmSlug": "fundingpips",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T10:02:19+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+  "egress": "Box egress is a US IP. Global (non-US) prices were checked against the firm's Global/region-independent price data as described in method; US-only codes are not promoted.",
+  "method": "Headless Chrome render of Help Center model articles and the Compare Account Models article (price maps in page source) + WebSearch-indexed Free Trial article",
+  "priceSource": "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models (embedded price maps)",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "1-step-flex",
+      "prices": {
+        "5000": 59,
+        "10000": 99,
+        "25000": 210,
+        "50000": 322,
+        "100000": 566
+      }
+    },
+    {
+      "productSlug": "2-step-flex",
+      "prices": {
+        "5000": 32,
+        "10000": 59,
+        "25000": 159,
+        "50000": 269,
+        "100000": 555
+      }
+    },
+    {
+      "productSlug": "2-step-pro",
+      "prices": {
+        "2500": null,
+        "5000": 29,
+        "10000": 55,
+        "25000": 134,
+        "50000": 224,
+        "100000": 422,
+        "200000": 844
+      }
+    },
+    {
+      "productSlug": "2-step-standard",
+      "prices": {
+        "2500": null,
+        "5000": 36,
+        "10000": 66,
+        "25000": 177,
+        "50000": 299,
+        "100000": 544
+      }
+    },
+    {
+      "productSlug": "zero",
+      "prices": {
+        "5000": 60,
+        "10000": 88,
+        "25000": 188,
+        "50000": 244,
+        "100000": 444,
+        "200000": 888
+      }
+    }
+  ],
+  "priceQuotes": [
+    "'1step': {5:59,10:99,25:210,50:322,100:566,200:null}",
+    "'2flex': {5:32,10:59,25:159,50:269,100:555,200:null}",
+    "'2pro':  {5:29,10:55,25:134,50:224,100:422,200:844}",
+    "'2std8': {5:36,10:66,25:177,50:299,100:544,200:null}",
+    "'zero':  {5:60,10:88,25:188,50:244,100:444,200:888}"
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 26,
+    "foundVerbatimInLiveText": 22,
+    "notFoundVerbatim": 4,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
+  },
+  "changes": [
+    {
+      "field": "challenges/fundingpips.json 2-step-pro.minTradingDays",
+      "before": 2,
+      "after": 0,
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+      "quotes": [
+        "Phase 1 Achieve a 6% profit target during Phase 1. Zero minimum trading day to pass. Adhere to all trading rules and risk limits. Existing Phase 1 accounts and accounts purchased before 26 August 2026 will retain the 1 minimum trading day requirement. Reset and new accounts will require 0 minimum trading days.",
+        "Phase 2 Achieve a 6% profit target during Phase 2. Zero minimum trading day to pass."
+      ],
+      "why": "The 15 Oct value 2 had no current source: the official page says 0 for new/reset accounts and 1 for legacy accounts (never 2)."
+    }
+  ],
+  "freeTrial": {
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/45363484760209-Free-Trial",
+    "quotes": [
+      "The Free Trial gives you a live MT5 trading environment that mirrors the 2 Step Standard or 2 Step Pro model, at no cost.",
+      "14-day per-phase time limit: Each phase expires 14 calendar days after activation.",
+      "Only one trial account is allowed per user.",
+      "MT5 only. Server: FundingPips-Trial.",
+      "The $200K size is available on the 2 Step Pro Trial only."
+    ],
+    "note": "Candidate for the EN free-trial article; not in free-trials.json (audit allows exactly FTMO + FundedNext). The trial mirrors 2 Step Pro rules, which now require 0 minimum trading days, so the trial page saying 0 is consistent."
+  },
+  "notes": [
+    "All other rule quotes re-found (wording drift only): 2-Step Flex 12% static floor and 1 min day (80%) / 3 profitable days (95%); 2-Step Standard 3 days; 1-Step Flex none; 35% consistency for on-demand.",
+    "2std10 map (2-Step Standard with 10% target: 34/63/168/285/520) is still published but the 10% target is \"No Longer Offered, effective 24 July 2026\" per the 2-Step Standard article; not modelled."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:05.250Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:11.337Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:11.508Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:11.560Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:11.638Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:11.711Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:11.717Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:19.906Z"
+    }
+  ]
+}

@@ -57,9 +57,10 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/maven-2026-10-19.json"
     ]
   },
   {
@@ -121,9 +122,10 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/maven-2026-10-19.json"
     ]
   },
   {
@@ -186,9 +188,10 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/maven-2026-10-19.json"
     ]
   },
   {
@@ -247,9 +250,10 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/maven-2026-10-19.json"
     ]
   },
   {
@@ -308,9 +312,10 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/maven-2026-10-19.json"
     ]
   },
   {
@@ -381,9 +386,10 @@
     "pricingModel": "split-payment",
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/maven-2026-10-19.json"
     ]
   },
   {
@@ -445,9 +451,10 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/maven-2026-10-19.json"
     ]
   },
   {
@@ -503,9 +510,10 @@
     },
     "assetClass": "prediction-markets",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/maven-2026-10-19.json"
     ]
   },
   {
@@ -561,9 +569,10 @@
     },
     "assetClass": "prediction-markets",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/maven-2026-10-19.json"
     ]
   }
 ]

@@ -7,6 +7,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/dlya-russkoyazychnykh-treyderov'
 const CHECKED = '14.10.2026'
@@ -53,7 +54,7 @@ const rows: Row[] = [
   { firm: 'FundingPips', russia: 'Неясно: Россия прямо не названа, но исключены страны из санкционных списков FATF и ЕС/ООН', belarus: 'Неясно', kazakhstan: 'Не названа', payout: 'Карта, USDT/USDC ERC-20, Rise (Rise требует KYC), банк', status: 'unclear', source: 'https://fundingpips.com/terms-and-conditions', review: '/ru/obzor-fundingpips' },
   { firm: 'Topstep', russia: 'Ограничена: Россия в списке «Countries Ineligible to Trade»; решает страна проживания', belarus: 'Ограничена', kazakhstan: 'Не названа', payout: 'Не проверено', status: 'closed', source: 'https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep' },
   { firm: 'FTMO', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Ограничена', payout: 'Не проверено', status: 'closed', source: 'https://ftmo.com/en/faq/who-can-join-ftmo/', review: '/ru/ftmo-dlya-rossiyan' },
-  { firm: 'The5ers', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://the5ers.com/faq/' },
+  { firm: 'The5ers', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://the5ers.com/terms-and-conditions/' },
   { firm: 'E8 Markets', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не проверено', payout: 'Не проверено', status: 'closed', source: 'https://help.e8markets.com/en/articles/5514278-accepted-countries' },
   { firm: 'FXIFY', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не проверено', payout: 'Не проверено', status: 'closed', source: 'https://fxify.com/faqs/all-faqs/what-countries-are-accepted/' },
   { firm: 'Maven', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://maventrading.com/faq' },
@@ -128,12 +129,11 @@ export default function RussiaAvailabilityPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-russia-availability-hub="2026-10">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Проп-фирмы для россиян</div>
           <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Статус для РФ · проверено {CHECKED}</div>
           <h1>Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ</h1>
           <p className="ru-lead">

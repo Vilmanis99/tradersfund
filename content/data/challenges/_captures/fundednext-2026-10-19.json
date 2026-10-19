@@ -1,0 +1,172 @@
+{
+  "firmSlug": "fundednext",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T10:02:05+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+  "egress": "Box egress is a US IP. Global (non-US) prices were checked against the firm's Global/region-independent price data as described in method; US-only codes are not promoted.",
+  "method": "WebFetch (non-US egress) for global price check of /cfds/stellar-2-step; headless Chrome (US IP) for the other product pages — list prices matched the global page; discounted figures are the STRTN code",
+  "priceSource": "https://fundednext.com/cfds/stellar-2-step (non-US), schema.org Offer data",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "stellar-2-step",
+      "prices": {
+        "6000": 59.99,
+        "15000": 119.99,
+        "25000": 199.99,
+        "50000": 299.99,
+        "100000": 549.99,
+        "200000": 1099.99
+      }
+    },
+    {
+      "productSlug": "stellar-1-step",
+      "prices": {
+        "6000": 65.99,
+        "15000": 129.99,
+        "25000": 219.99,
+        "50000": 329.99,
+        "100000": 569.99,
+        "200000": 1099.99
+      }
+    },
+    {
+      "productSlug": "stellar-lite",
+      "prices": {
+        "5000": 32.99,
+        "10000": 59.99,
+        "25000": 139.99,
+        "50000": 229.99,
+        "100000": 399.99,
+        "200000": 798.99
+      }
+    },
+    {
+      "productSlug": "stellar-instant",
+      "prices": {
+        "2000": 59.99,
+        "5000": 149.99,
+        "10000": 299.99,
+        "20000": 599.99
+      }
+    }
+  ],
+  "priceQuotes": [
+    "{\"@type\":\"Offer\",\"name\":\"Stellar 2-Step $6K Account\",\"price\":\"59.99\",\"priceCurrency\":\"USD\"} ... $15K 119.99 ... $25K 199.99 ... $50K 299.99 ... $100K 549.99 ... $200K 1099.99",
+    "Stellar 2-Step $6K $39.99 $59.99 SAVE UP TO 33% WITH CODE STRTN",
+    "| First Reward Eligibility | 21 days | ⁦5⁩ business days | 10 Days | On-demand at ⁦5%⁩ growth, or bi-weekly at ≥⁦1%⁩ growth |"
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 39,
+    "foundVerbatimInLiveText": 29,
+    "notFoundVerbatim": 10,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
+  },
+  "changes": [],
+  "freeTrial": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/8902893-fundednext-free-trial-rules",
+    "quotes": [
+      "Traders are required to trade for a minimum of 3 days within the 14-day trial period.",
+      "Account balance options range from $6,000 to $200,000",
+      "Usage of EAs is not permissible in the Free Trial Accounts.",
+      "The maximum number of open positions is 30 at a time.",
+      "5% discount on all CFD plans only. The code will be valid for 14 days. Offer is not applicable for resets."
+    ],
+    "result": "unchanged (article dated April 8, 2026)"
+  },
+  "notes": [
+    "Product pages were redesigned (wording changed) but every stored value matched; Stellar Lite comparison row now says subsequent rewards \"Bi-weekly\" while the product card says \"First Withdrawal 10 Days\"; payoutFrequency for Lite stays null (unresolved, unchanged)."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://fundednext.com/cfds/stellar-1-step",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:52.116Z"
+    },
+    {
+      "url": "https://fundednext.com/cfds/stellar-2-step",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:52.224Z"
+    },
+    {
+      "url": "https://fundednext.com/cfds",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:52.244Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:58.435Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/8020768-how-much-is-the-reward-share-in-fundednext",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:58.521Z"
+    },
+    {
+      "url": "https://fundednext.com/general-rules/cfds/trading-objectives",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:58.569Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:58.585Z"
+    },
+    {
+      "url": "https://fundednext.com/cfds/stellar-lite",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:58.962Z"
+    },
+    {
+      "url": "https://fundednext.com/cfds/stellar-instant",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:59.220Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:04.763Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/8902893-fundednext-free-trial-rules",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:04.787Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:04.795Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:04.890Z"
+    },
+    {
+      "url": "https://fundednext.com/company",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:05.232Z"
+    }
+  ],
+  "verbatimNoteQuotes": [
+    {
+      "productSlug": "stellar-instant",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+      "quote": "You can request your first reward on-demand once you reach 5% growth, or bi-weekly when your account is at ≥1% growth.",
+      "alsoOn": {
+        "url": "https://fundednext.com/cfds",
+        "quote": "Stellar Instant traders can request Performance Rewards on-demand once the account reaches 5% growth, or bi-weekly."
+      }
+    },
+    {
+      "productSlug": "stellar-2-step",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+      "quote": "Challenge fee refunded with your 1st reward, the fastest fee refund across all Challenges",
+      "tableQuote": "Refundable Fee | With 1st Reward",
+      "note": "Page wraps numbers in Unicode isolate marks (U+2066/U+2069) and has a double space before \"the fastest\"; removed in the stored quote. The page says \"1st reward\", not \"first approved Performance Reward\"."
+    }
+  ]
+}
