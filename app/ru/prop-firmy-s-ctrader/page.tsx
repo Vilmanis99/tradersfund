@@ -21,8 +21,8 @@ import cTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/prop-firmy-s-ctrader'
-const TITLE = 'Проп-фирмы с cTrader 2026: ограничения и цены'
-const DESCRIPTION = 'Сравнение FundedNext и BrightFunded для cTrader: лимиты счёта, комиссия платформы, cBot, страны, устройства и проверка перед оплатой.'
+const TITLE = 'Проп-фирмы с cTrader 2026: цены, лимиты и правила cBot'
+const DESCRIPTION = 'Проп-фирмы с cTrader: сравнение FundedNext и BrightFunded — лимиты счёта, комиссия платформы, правила cBot, страны, устройства и проверка условий перед оплатой.'
 const SOCIAL_DESCRIPTION = 'Сравнение FundedNext и Bright Funded для cTrader: лимиты счёта, комиссия платформы, cBot, страны, устройства и проверка перед оплатой.'
 
 export const revalidate = 86400

@@ -21,8 +21,8 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/obzor-bright-funded'
-const TITLE = 'BrightFunded: обзор 2026, цены, правила и выплаты'
-const DESCRIPTION = 'BrightFunded: обзор на русском — цены в EUR, статическая и трейлинг-просадка, выплаты, Trustpilot и проверка доступа по стране.'
+const TITLE = 'BrightFunded: отзывы и обзор 2026 — цены, правила, выплаты'
+const DESCRIPTION = 'BrightFunded: обзор на русском — отзывы и Trustpilot, цены в EUR, статическая и трейлинг-просадка, выплаты и проверка доступа из России и других стран.'
 // Sharing copy stays unchanged pending the separately requested approval.
 const SOCIAL_TITLE = 'Bright Funded: обзор 2026, цены, правила и выплаты'
 const SOCIAL_DESCRIPTION = 'Отзывы о Bright Funded и обзор на русском: 3 программы, 18 цен в EUR, просадка, выплаты, Trustpilot и проверка ограничений по стране.'

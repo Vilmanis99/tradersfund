@@ -21,7 +21,7 @@ const PATH = '/ru/luchshie-prop-firmy'
 // Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
 export const revalidate = 3600
 const TITLE = 'Проп-компании 2026: рейтинг лучших для трейдеров из РФ'
-const DESCRIPTION = 'Рейтинг проп-компаний 2026: 24 фирмы с отметкой доступа из России, ценами, просадкой и выплатами. BrightFunded, FundedNext, Crypto Fund Trader и другие. Обновлено 14.10.2026.'
+const DESCRIPTION = 'Рейтинг проп-компаний 2026: 24 фирмы с отметкой доступа из России, ценами, просадкой и выплатами. BrightFunded, FundedNext, Crypto Fund Trader и другие.'
 const UPDATED = '14.10.2026'
 const UPDATED_ISO = '2026-10-14'
 

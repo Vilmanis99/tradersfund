@@ -22,8 +22,8 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/prop-firmy-bez-chelendzha'
-const TITLE = 'Проп-фирмы без челленджа 2026: FundedNext Instant'
-const DESCRIPTION = 'Сравнение программ без челленджа: FundedNext Stellar Instant, FundingPips Zero и другие модели с датами источников — цены, просадка, выплаты и KYC.'
+const TITLE = 'Проп-фирмы без челленджа 2026: мгновенное финансирование'
+const DESCRIPTION = 'Проп-фирмы без челленджа и мгновенное финансирование: FundedNext Instant, FundingPips Zero и другие модели с датами источников — цены, просадка, выплаты.'
 const FUNDEDNEXT_REWARD_URL = 'https://help.fundednext.com/en/articles/11641693-what-is-the-eligibility-criteria-for-my-performance-reward-in-the-stellar-instant-account'
 const FUNDEDNEXT_SCALE_URL = 'https://help.fundednext.com/en/articles/11641516-is-there-a-scale-up-plan-for-stellar-instant-accounts'
 const FUNDEDNEXT_NEWS_URL = 'https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts'
@@ -255,7 +255,7 @@ export default function RussianInstantPropFirmsPage() {
         >
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / Без челленджа</div>
           <div className="ru-eyebrow"><Zap size={14} aria-hidden="true" /> 0 оценочных этапов — правила остаются</div>
-          <h1>Проп-фирмы без челленджа: FundedNext Instant и FundingPips Zero</h1>
+          <h1>Проп-фирмы без челленджа: мгновенное финансирование FundedNext и FundingPips</h1>
           <p className="ru-lead">
             Сравнили {products.length} свежих продуктов без оценки у {instantFirmCount} глобальных фирм.
             {partnerPairCurrent

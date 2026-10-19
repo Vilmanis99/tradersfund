@@ -839,7 +839,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/dlya-russkoyazychnykh-treyderov', {
-    title: 'Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ (проверено 10.2026)',
+    title: 'Проп-фирмы для россиян 2026: кто принимает трейдеров из РФ',
     h1: 'Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ',
     markers: [
       'data-russia-availability-hub="2026-10"',
@@ -858,7 +858,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/fundednext-vs-bright-funded', {
-    title: 'FundedNext или BrightFunded: сравнение 2026',
+    title: 'FundedNext или BrightFunded: сравнение 2026 и доступ из РФ',
     h1: 'FundedNext или BrightFunded: что выбрать в 2026 году',
     markers: [
       'Что лучше: FundedNext или BrightFunded?',
@@ -895,7 +895,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/fundednext-vs-fundingpips', {
-    title: 'FundedNext или FundingPips: сравнение 2026',
+    title: 'FundedNext или FundingPips: сравнение 2026 и доступ из РФ',
     h1: 'FundedNext или FundingPips: сравнение для русскоязычных трейдеров',
     markers: [
       'data-russian-partner-comparison="fundednext-fundingpips"',
@@ -924,7 +924,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/promokody-prop-firm', {
-    title: 'Промокоды проп-фирм — октябрь 2026: FundedNext, Upscale, BrightFunded',
+    title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded, FundedNext',
     h1: 'Промокоды проп-фирм — октябрь 2026',
     markers: [
       'id="kody"',
@@ -960,8 +960,8 @@ const russianExpectations = new Map([
     }],
   ].filter(([route]) => existsSync(new URL(`../app${route}/page.tsx`, import.meta.url))),
   ['/ru/ftmo-dlya-rossiyan', {
-    title: 'FTMO для россиян: можно ли пройти челлендж из РФ и чем заменить',
-    h1: 'FTMO для россиян: можно ли пройти челлендж из РФ и чем заменить',
+    title: 'FTMO для россиян 2026: работает ли в РФ и чем заменить',
+    h1: 'FTMO для россиян: работает ли FTMO в России и чем его заменить',
     markers: [
       'data-ftmo-russia="restricted"',
       'data-ftmo-restricted="cis"',
@@ -973,8 +973,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/prop-firmy-bez-chelendzha', {
-    title: 'Проп-фирмы без челленджа 2026: FundedNext Instant',
-    h1: 'Проп-фирмы без челленджа: FundedNext Instant и FundingPips Zero',
+    title: 'Проп-фирмы без челленджа 2026: мгновенное финансирование',
+    h1: 'Проп-фирмы без челленджа: мгновенное финансирование FundedNext и FundingPips',
     markers: [
       'data-russian-instant-ranking="long-form-phase-zero"',
       'data-russian-instant-product-count="12"',
@@ -1038,8 +1038,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/prop-firmy-bez-kyc', {
-    title: 'KYC в проп-фирмах 2026: FundedNext и BrightFunded',
-    h1: 'KYC в проп-фирмах: FundedNext, BrightFunded и проверка документов',
+    title: 'Проп-фирмы без KYC: есть ли они и когда нужна верификация',
+    h1: 'Проп-фирмы без KYC: когда FundedNext и BrightFunded проверяют документы',
     markers: [
       'data-russian-kyc-guide="long-form-source-gated"',
       'data-russian-kyc-partner-count=',
@@ -1129,8 +1129,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-ftmo', {
-    title: 'FTMO проп: обзор 2026, цены, правила и доступ для русскоязычных',
-    h1: 'FTMO: обзор 2026 — 2 программы и 10 цен',
+    title: 'FTMO проп: обзор 2026 — цены, правила и доступ из России',
+    h1: 'FTMO проп: обзор 2026 — программы, цены и правила',
     markers: [
       'data-russian-ftmo-review="search-to-decision"',
       'data-russian-ftmo-article="long-form-source-first"',
@@ -1205,8 +1205,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-bright-funded', {
-    title: 'BrightFunded: обзор 2026, цены, правила и выплаты',
-    h1: 'BrightFunded: обзор 2026, цены, правила и выплаты',
+    title: 'BrightFunded: отзывы и обзор 2026 — цены, правила, выплаты',
+    h1: 'BrightFunded: отзывы и обзор 2026 — цены, правила, выплаты',
     descriptionStartsWith: 'BrightFunded: обзор на русском',
     markers: [
       'data-russian-partner-review="bright-funded"',
@@ -1292,7 +1292,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/prop-firmy-s-ctrader', {
-    title: 'Проп-фирмы с cTrader 2026: ограничения и цены',
+    title: 'Проп-фирмы с cTrader 2026: цены, лимиты и правила cBot',
     h1: 'Проп-фирмы с cTrader: FundedNext или BrightFunded',
     markers: [
       'data-russian-ctrader-article="platform-to-firm-rule"',

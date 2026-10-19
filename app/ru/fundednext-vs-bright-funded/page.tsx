@@ -37,8 +37,8 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 
 const PATH = '/ru/fundednext-vs-bright-funded'
-const TITLE = 'FundedNext или BrightFunded: сравнение 2026'
-const DESCRIPTION = 'FundedNext или BrightFunded: сравнение программ, взносов в USD и EUR, просадки, условий запроса выплат, платформ и проверки личности.'
+const TITLE = 'FundedNext или BrightFunded: сравнение 2026 и доступ из РФ'
+const DESCRIPTION = 'FundedNext или BrightFunded: сравнение программ, взносов в USD и EUR, просадки, условий выплат, платформ, KYC и проверка доступа для трейдеров из России.'
 const SOCIAL_TITLE = 'FundedNext или Bright Funded: сравнение 2026'
 const SOCIAL_DESCRIPTION = 'Сравнение FundedNext и Bright Funded по 7 продуктам и 40 ценам: USD или EUR, этапы, просадка, true cost, выплаты, KYC и выбор для трейдера.'
 
