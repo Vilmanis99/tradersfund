@@ -24,7 +24,7 @@ type: "post"
     <li>2-Step list prices: €1,080 / €540 / €345 / €250 / €89 for the $200K / $100K / $50K / $25K / $10K accounts. 1-Step: €999 / €499 / €319 / €199 / €79.</li>
     <li>Drawdown differs by product. The 2-Step max loss is static at 10% of the initial balance. The 1-Step uses an end-of-day trailing limit that "can only increase, but never decrease."</li>
     <li>The Best Day (consistency) rule — no single day above 50% of your Positive Days' Profit — applies to the <strong>1-Step only</strong>. It is explicitly switched off on the 2-Step.</li>
-    <li>First reward can be claimed on the 14th day or any day after your first placed trade, then on demand.</li>
+    <li>First reward can be claimed on the 14th day or any following day after your first placed trade; FTMO publishes no fixed cadence after that first claim.</li>
   </ul>
 </div>
 
@@ -181,9 +181,9 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p><strong>First reward: day 14.</strong> FTMO's rule is "You can request a Reward claim in the Account MetriX on the 14th or any following day after the first placed trade on the specific account. All open positions and pending orders must be closed." The clock starts at your first trade, not at account activation, and after that first claim the cycle is on demand rather than a fixed calendar. Both products use the same day-14 mechanism.</p>
+<p><strong>First reward: day 14.</strong> FTMO's rule is "You can request a Reward claim in the Account MetriX on the 14th or any following day after the first placed trade on the specific account. All open positions and pending orders must be closed." The clock starts at your first trade, not at account activation. FTMO's withdrawal FAQ (rechecked 2026-10-19) publishes only that first-claim rule, not a stated cadence for later claims. Both products use the same day-14 mechanism.</p>
 
-<p><strong>Processing.</strong> After you submit the request, FTMO reviews the account and notifies you within 1–2 business days, and "the Reward is typically sent within 1–2 business days after the invoice is approved" — so roughly 2–4 business days end to end when nothing is queried. Payout methods are bank wire, Skrill and crypto; we did not capture per-method fee schedules on 2026-09-29, so budget for your own receiving-bank charges rather than a figure we can't source.</p>
+<p><strong>Processing.</strong> After you submit the request, FTMO reviews the account and notifies you within 1–2 business days, and "the Reward is typically sent within 1–2 business days after the invoice is approved" — so roughly 2–4 business days end to end when nothing is queried. Payout methods are bank wire, instant transfer via Visa Direct / Mastercard Send (up to $20,000), Skrill (up to $3,000) and crypto, per FTMO's withdrawal FAQ rechecked on 2026-10-19. FTMO says it charges no extra commission on Reward withdrawals, but sets a minimum closed profit of $20 for bank wire and Visa Direct / Mastercard Send and $50 for crypto; budget for your own receiving-bank charges.</p>
 
 <p><strong>Two product-specific catches.</strong> On the 1-Step, "Rewards cannot be left on the account to grow the balance", and the 50% Best Day rule is applied at withdrawal as well as at passing — a lopsided winning day can block a reward request, not just a pass. On the 2-Step, the refunded fee arrives with that first reward withdrawal, so a trader who passes and then never withdraws never sees it. As a third-party sentiment check, FTMO holds 4.8 from 54,501 reviews on Trustpilot (<a href="https://www.trustpilot.com/review/ftmo.com">verified 2026-10-15</a>).</p>
 
