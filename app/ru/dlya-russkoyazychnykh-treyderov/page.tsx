@@ -338,6 +338,7 @@ export default function RussiaAvailabilityPage() {
           <h2>Что читать дальше</h2>
           <ul>
             <li><Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян: почему недоступно и чем заменить</Link></li>
+            <li><Link href="/ru/ftmo-vs-bright-funded">FTMO или BrightFunded: сравнение правил, цен и оплаты</Link></li>
             <li><Link href="/ru/luchshie-prop-firmy">Рейтинг проп-фирм</Link></li>
             <li><Link href="/ru/vyplaty-prop-firm">Выплаты проп-фирм: USDT, USDC, Rise</Link></li>
             <li><Link href="/ru/promokody-prop-firm">Промокоды проп-фирм</Link></li>
