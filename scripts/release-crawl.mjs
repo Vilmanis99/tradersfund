@@ -927,6 +927,7 @@ const russianExpectations = new Map([
     title: 'FTMO или BrightFunded: альтернатива FTMO для россиян',
     h1: 'FTMO или BrightFunded: альтернатива FTMO для россиян',
     markers: [
+      'data-russian-bright-country-conflict="help-six-terms-five"',
       'data-russian-partner-comparison="ftmo-bright-funded"',
       'data-russian-affiliate-disclosure="ftmo-vs-bright"',
       'data-russian-risk-disclaimer="ftmo-vs-bright"',

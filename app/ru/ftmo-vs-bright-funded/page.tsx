@@ -28,6 +28,8 @@ export const metadata: Metadata = {
 
 /** Dated facts from Prop Firm Tracker files (/workspace/ru-data/2026-10-14-*.md) and firms.json rule evidence. */
 const TRACKER_CAPTURE = '2026-10-14'
+/** BrightFunded country sources re-read 2026-10-19: help article (updated 15.09.2026) lists 6 incl. Pakistan; Terms §2 list 5 without Pakistan and reserve further restrictions. */
+const BRIGHT_COUNTRIES_CHECKED = '2026-10-19'
 const RULES_CAPTURE = '2026-10-15'
 const TRUSTPILOT_CAPTURE = '2026-10-15'
 /** /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md (ftmo.com global pages, not FTMO US). */
@@ -43,6 +45,7 @@ const SOURCES = {
   ftmoCryptoWithdrawals: 'https://ftmo.com/en/crypto-withdrawals/',
   brightPayouts: 'https://help.brightfunded.com/en/articles/9241681-how-can-i-get-paid',
   brightCountries: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
+  brightTerms: 'https://brightfunded.com/terms-and-conditions',
   brightCrypto: 'https://help.brightfunded.com/en/articles/9286623-can-i-pay-for-my-challenge-with-crypto',
   brightCards: 'https://help.brightfunded.com/en/articles/12000749-the-most-frequently-asked-general-questions',
   brightReward: 'https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account',
@@ -62,7 +65,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'BrightFunded работает с Россией?',
-    a: `${asOf(TRACKER_CAPTURE)} России нет в списке ограничений BrightFunded: справка называет Кубу, Иран, Северную Корею, Пакистан, Сирию и Вьетнам. Отсутствие страны в списке — не персональное одобрение: гражданство, адрес, KYC и способ выплаты всё равно проверяются по вашему профилю.`,
+    a: `${asOf(BRIGHT_COUNTRIES_CHECKED)} России нет ни в одном списке ограничений BrightFunded. Справка (обновлена 15.09.2026) называет шесть стран: Кубу, Иран, Северную Корею, Сирию, Вьетнам и Пакистан. Условия (п. 2) называют пять, без Пакистана, но оставляют за фирмой право ограничивать и другие страны, поэтому для новой регистрации действует более строгий список справки. Отсутствие страны в списке — не персональное одобрение: гражданство, адрес, KYC и способ выплаты всё равно проверяются по вашему профилю.`,
   },
   {
     q: 'Чем оплатить челлендж BrightFunded из России?',
@@ -147,15 +150,15 @@ export default function RussianFtmoVsBrightFundedPage() {
   const rows: Array<{ id: string; field: string; bright: ReactNode; ftmo: ReactNode; date: string; source: string; source2?: string }> = [
     {
       id: 'russia', field: 'Доступ из России',
-      bright: <>Россия не в списке ограничений (запрещены Куба, Иран, КНДР, Пакистан, Сирия, Вьетнам) <RuAccessBadge firm="bright-funded" /></>,
+      bright: <>Россия не в списке ограничений. Справка: Куба, Иран, КНДР, Сирия, Вьетнам и Пакистан (6); условия: те же без Пакистана (5); {asOf(BRIGHT_COUNTRIES_CHECKED)} <RuAccessBadge firm="bright-funded" /></>,
       ftmo: <>Россия в списке ограниченных стран <RuAccessBadge firm="ftmo" /></>,
       date: TRACKER_CAPTURE, source: SOURCES.ftmoCountries,
     },
     {
       id: 'cis', field: 'Другие страны СНГ',
-      bright: 'Беларусь, Казахстан, Узбекистан и др. в списке ограничений не названы',
+      bright: 'Беларусь, Казахстан, Узбекистан и др. не названы ни в справке, ни в условиях',
       ftmo: 'Ограничены Беларусь, Казахстан, Кыргызстан, Узбекистан, Таджикистан, Туркменистан и часть регионов Украины',
-      date: TRACKER_CAPTURE, source: SOURCES.brightCountries,
+      date: BRIGHT_COUNTRIES_CHECKED, source: SOURCES.brightCountries, source2: SOURCES.brightTerms,
     },
     {
       id: 'price', field: 'Взнос за счёт $100K',
@@ -267,8 +270,8 @@ export default function RussianFtmoVsBrightFundedPage() {
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Правила против правил</div>
           <h1>{H1}</h1>
           <p className="ru-lead">
-            Семь стран СНГ, включая Россию, стоят в списке ограничений FTMO. У BrightFunded в таком списке шесть
-            стран, и ни одной из СНГ. Для трейдера из России выбор решён ещё до сравнения цен. Для русскоязычного
+            Семь стран СНГ, включая Россию, стоят в списке ограничений FTMO. У BrightFunded в таком списке пять или шесть
+            стран — справка и условия расходятся по Пакистану, — и ни одной из СНГ. Для трейдера из России выбор решён ещё до сравнения цен. Для русскоязычного
             трейдера в Берлине, Тбилиси или Хайфе — нет: там всё решают просадка, сплит и срок первой выплаты.
           </p>
           <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Редакционная проверка: {ruDate(dateModified)}. У каждой строки таблицы — своя дата источника.</p>
@@ -338,7 +341,7 @@ export default function RussianFtmoVsBrightFundedPage() {
               </tbody>
             </table>
           </div>
-          <p className="ru-source-line">Цены и параметры программ — из датированных записей по каждой программе (самая ранняя — {ruDate(earliestCapture)}). Доступ по странам и сплит FTMO — проверка {ruDate(TRACKER_CAPTURE)}; способы оплаты, вывода и график выплат обеих фирм — {ruDate(PAYMENTS_CAPTURE)}, по официальным страницам ftmo.com и справке BrightFunded.</p>
+          <p className="ru-source-line">Цены и параметры программ — из датированных записей по каждой программе (самая ранняя — {ruDate(earliestCapture)}). Доступ по странам и сплит FTMO — проверка {ruDate(TRACKER_CAPTURE)}; списки стран BrightFunded — {ruDate(BRIGHT_COUNTRIES_CHECKED)}; способы оплаты, вывода и график выплат обеих фирм — {ruDate(PAYMENTS_CAPTURE)}, по официальным страницам ftmo.com и справке BrightFunded.</p>
         </div>
       </section>
 
@@ -462,7 +465,7 @@ export default function RussianFtmoVsBrightFundedPage() {
             <li><a href={SOURCES.ftmoReward} target="_blank" rel="noopener noreferrer">FTMO: доля и запрос вознаграждения</a> — {asOf(TRACKER_CAPTURE)}.</li>
             <li><a href={SOURCES.ftmoObjectives} target="_blank" rel="noopener noreferrer">FTMO: торговые цели, просадка и правило лучшего дня</a> — {asOf(RULES_CAPTURE)}.</li>
             <li><a href={SOURCES.ftmoPlatforms} target="_blank" rel="noopener noreferrer">FTMO: платформы</a> — {asOf(RULES_CAPTURE)}.</li>
-            <li><a href={SOURCES.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограниченные страны</a> — {asOf(TRACKER_CAPTURE)}.</li>
+            <li data-russian-bright-country-conflict="help-six-terms-five"><a href={SOURCES.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограниченные страны (справка, обновлена 15.09.2026; шесть стран с Пакистаном)</a> и <a href={SOURCES.brightTerms} target="_blank" rel="noopener noreferrer">условия, п. 2 (пять стран без Пакистана)</a> — {asOf(BRIGHT_COUNTRIES_CHECKED)}.</li>
             <li><a href={SOURCES.brightCrypto} target="_blank" rel="noopener noreferrer">BrightFunded: оплата криптовалютой</a> и <a href={SOURCES.brightCards} target="_blank" rel="noopener noreferrer">оплата картой</a> — {asOf(PAYMENTS_CAPTURE)}.</li>
             <li><a href={SOURCES.ftmoPayments} target="_blank" rel="noopener noreferrer">FTMO: способы оплаты челленджа</a>, <a href={SOURCES.ftmoReward} target="_blank" rel="noopener noreferrer">вывод вознаграждения</a> и <a href={SOURCES.ftmoCryptoWithdrawals} target="_blank" rel="noopener noreferrer">вывод в криптовалюте</a> — {asOf(PAYMENTS_CAPTURE)}.</li>
             <li><a href={SOURCES.brightReward} target="_blank" rel="noopener noreferrer">BrightFunded: сплит и график выплат</a> и <a href={SOURCES.brightPayouts} target="_blank" rel="noopener noreferrer">способы выплаты</a> — {asOf(PAYMENTS_CAPTURE)}.</li>
