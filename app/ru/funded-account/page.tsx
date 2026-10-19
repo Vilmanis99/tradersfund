@@ -26,10 +26,10 @@ export const metadata: Metadata = {
 
 // content/data/challenges, проверено 29.09.2026 (Crypto Fund Trader — 08.09.2026).
 const sizeRows = [
-  { firm: 'BrightFunded', product: '2-Step Classic', sizes: '$5K–$200K', from: '€49 за $5K', top: '€997 за $200K', checked: '29.09.2026' },
-  { firm: 'FundedNext', product: 'Stellar Lite', sizes: '$5K–$200K', from: '$32.99 за $5K', top: '$798.99 за $200K', checked: '29.09.2026' },
-  { firm: 'Crypto Fund Trader', product: 'Evaluation', sizes: '$5K–$200K', from: '$58 за $5K', top: '$1 250 за $200K', checked: '08.09.2026' },
-  { firm: 'FundingPips', product: '2 Step Pro', sizes: '$5K–$200K', from: '$29 за $5K', top: '$844 за $200K', checked: '29.09.2026' },
+  { firm: 'BrightFunded', product: '2-Step Classic', sizes: '$5K–$200K', from: '€49 за $5K', top: '€997 за $200K', checked: '14.10.2026' },
+  { firm: 'FundedNext', product: 'Stellar Lite', sizes: '$5K–$200K', from: '$32.99 за $5K', top: '$798.99 за $200K', checked: '15.10.2026' },
+  { firm: 'Crypto Fund Trader', product: 'Evaluation', sizes: '$5K–$200K', from: '$58 за $5K', top: '$1 250 за $200K', checked: '14.10.2026' },
+  { firm: 'FundingPips', product: '2 Step Pro', sizes: '$5K–$200K', from: '$29 за $5K', top: '$844 за $200K', checked: '15.10.2026' },
 ]
 
 const payouts = [
@@ -276,7 +276,7 @@ export default function RussianFundedAccountPage() {
             <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-funded-account-russia-3" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
           </div>
           <div className="ru-actions" data-ru-cta-mode="all-firms-secondary">
-            {[['fundingpips', 'FundingPips'], ['ftmo', 'FTMO'], ['topstep', 'Topstep'], ['e8-markets', 'E8 Markets']].map(([slug, name], i) => (
+            {[['fundingpips', 'FundingPips'], ['ftmo', 'FTMO'], ['topstep', 'Topstep'], ['e8-markets', 'E8 Markets'], ['fxify', 'FXIFY'], ['maven', 'Maven'], ['alpha-capital', 'Alpha Capital'], ['apex-trader-funding', 'Apex'], ['lucid-trading', 'Lucid'], ['tradeify', 'Tradeify']].map(([slug, name], i) => (
               <RuGoLink key={slug} firm={slug} href={`/go/${slug}?from=ru-funded-account-other-${i + 1}`} rel={goLinkRel(slug)} className="btn-outline">{name}</RuGoLink>
             ))}
           </div>
