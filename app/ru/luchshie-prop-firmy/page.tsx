@@ -35,6 +35,7 @@ const RU_ACCESS_LABEL: Record<RuAccessRow['status'], string> = {
 // Фирмы вне firms.json: статус из ru-availability.csv (проверка 2026-10-14).
 const RU_ACCESS_EXTRA: RuAccessRow[] = [
   { name: 'Upscale', status: 'available', note: 'Ограничений по странам не заявлено, KYC нет, выплаты в USDT' },
+  { name: 'Hash Hedge', status: 'available', review: '/ru/obzor-hash-hedge', note: 'Россия не названа в списке ограничений (условия от 08.10.2026); оплата только криптовалютой; Prop Firm Tracker, проверено 19.10.2026' },
   { name: 'The5ers', status: 'restricted', note: 'Россия и Беларусь в списке «Forbidden Territories»' },
   { name: 'Funded Trading Plus', status: 'restricted', note: 'Prop Firm Tracker, проверено 14.10.2026' },
   { name: 'Goat Funded Trader', status: 'restricted', note: 'Prop Firm Tracker, проверено 14.10.2026' },

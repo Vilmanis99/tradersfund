@@ -269,6 +269,10 @@ export default function RussiaAvailabilityPage() {
           <p className="ru-source-line">
             Topstep прямо исключает резидентов России.
           </p>
+          <p className="ru-source-line" data-russian-hh-mention="2026-10-19">
+            Вне этих четырёх: в условиях Hash Hedge от 08.10.2026 Россия не названа в списке ограничений, оплата только криптовалютой —{' '}
+            <Link href="/ru/obzor-hash-hedge">обзор Hash Hedge</Link> (по данным на 19.10.2026).
+          </p>
         </div>
       </section>
 

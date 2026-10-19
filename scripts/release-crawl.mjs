@@ -1178,6 +1178,31 @@ const russianExpectations = new Map([
       'data-russian-affiliate-disclosure="fundednext"',
     ],
   }],
+  ['/ru/obzor-hash-hedge', {
+    title: 'Hash Hedge: отзывы и обзор крипто-проп-компании 2026',
+    h1: 'Hash Hedge: обзор и отзывы 2026',
+    markers: [
+      'data-russian-review="hash-hedge"',
+      'data-russian-hh-verdict="summary"',
+      'data-russian-hh-access="not-in-restricted-list"',
+      'Россия не в списке ограничений',
+      'data-russian-hh-product-count="3"',
+      'data-russian-hh-drawdown-basis="unconfirmed"',
+      'data-russian-hh-guarantee="official"',
+      'data-russian-hh-payment="crypto-only"',
+      'data-russian-hh-alternatives="bright-funded-first"',
+      'data-russian-hh-cta="summary"',
+      'data-russian-hh-cta="programs"',
+      'data-russian-hh-cta="final"',
+      'data-russian-hh-official="non-affiliate"',
+      'data-russia-status="available" data-russia-firm="hash-hedge"',
+      'data-russian-affiliate-disclosure="hash-hedge-review"',
+      'data-russian-risk-disclaimer="hash-hedge-review"',
+      'Empower Academy Ltd',
+      'FinSmart Solution Ltd',
+      'по данным на 19.10.2026',
+    ],
+  }],
   ['/ru/obzor-fundingpips', {
     title: 'FundingPips: отзывы, обзор 2026 и доступ из России',
     h1: 'FundingPips: отзывы и обзор 2026 — цены, правила, доступ из России',
@@ -1766,7 +1791,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'obzor-hash-hedge']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
 if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
   errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}`)
