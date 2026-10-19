@@ -1,12 +1,12 @@
 ---
-title: "FX Replay Review: Pricing, Features & Limits"
-seoTitle: "FX Replay Review: Pricing, Features & Limits"
+title: "FX Replay Review: Plans, Prop-Firm Simulator & Refunds"
+seoTitle: "FX Replay Review: Plans, Prop-Firm Simulator & Refunds"
 slug: "fx-replay-review"
 date: "2025-05-11 15:55:29"
 modified: "2026-08-18 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "A source-checked review of FX Replay pricing, plan limits, replay tools, analytics, prop-firm simulation, billing terms, and testing risks."
-seoDescription: "FX Replay review with current pricing, plan limits, backtesting tools, prop-firm simulator details, refund terms, and a practical test plan."
+seoDescription: "FX Replay review for prop-firm traders: what each plan includes, how the prop-firm simulator works, billing and refund terms, and a test plan before you pay."
 categories: ["Trading Tools"]
 tags: ["backtesting software", "strategy testing", "trading journal", "prop firm simulator"]
 type: "post"

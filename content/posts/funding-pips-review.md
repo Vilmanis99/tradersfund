@@ -183,6 +183,8 @@ type: "post"
 
 <p>A rule-first CFD trader should compare the verified $29 fee on a $5K 2 Step Pro—with 6% and 6% targets, 6% static maximum loss, 2 minimum days per phase, and an 80% weekly route—against the $32 2 Step Flex fee, wider 12% loss room, and 80%, 95%, or 100% route conditions.</p>
 
+<p>Before paying for 2 Step Standard or 2 Step Pro, either model can be rehearsed on FundingPips’ free MT5 trial, which runs both phases for 14 calendar days each but cannot run alongside any other FundingPips account; our <a href="/blog/prop-firm-free-trial">prop firm free trial comparison</a> lists its limits next to FTMO, FundedNext and Alpha Capital (checked 2026-10-19).</p>
+
 <h2 class="wp-block-heading"><strong>Who should avoid FundingPips</strong></h2>
 
 <p>A trader who needs a verified $2.5K entry tier should avoid FundingPips because both retained $2.5K rows remain unresolved. An Indian trader who needs a proven local checkout-to-payout route should use our <a href="/best-prop-firms-in-india">India shortlist</a>, which includes only firms that clear those evidence gates.</p>
