@@ -29,7 +29,7 @@
         "Minimum trading days match the real 2 Step Pro model (0 per phase)."
       ],
       "conflicts": [
-        "The trial article says the paid 2 Step Pro has 0 minimum trading days per phase; content/data/challenges/fundingpips.json (2-step-pro, captured 2026-10-15 from the 2-Step Pro Model article) records minTradingDays 2. Flagged to Prop Firm Tracker; the article cites both."
+        "Resolved 2026-10-19: the trial article's 0 minimum trading days matches Prop Firm Tracker's 2026-10-19 recheck of the 2-Step Pro Model article (\"Reset and new accounts will require 0 minimum trading days.\"; accounts purchased before 26 August 2026 keep 1). No open conflict."
       ]
     },
     {
@@ -78,7 +78,7 @@
         "Right now, there is no option to test Futures challenges with a free trial."
       ],
       "conflicts": [
-        "E8's E8 One help article (https://help.e8markets.com/en/articles/11775980-e8-one) describes a preset 6% target, 3% daily and 4% dynamic drawdown, customisable at checkout; content/data/challenges/e8-markets.json (e8-one, captured 2026-10-14 from the compare page) records 9% / 4% / 6%. The article therefore states no numeric E8 trial rules."
+        "Reconciled 2026-10-19: content/data/challenges/e8-markets.json (e8-one, rechecked 2026-10-19) keeps the configurator default 9% target / 4% daily / 6% dynamic drawdown; the help article's 6% / 3% / 4% preset is the 4% drawdown configuration selectable at checkout. The article quotes the default and names the 4% option."
       ]
     },
     {

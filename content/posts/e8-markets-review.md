@@ -25,7 +25,7 @@ modified: "2026-09-14 12:00:00"
     <li>The fee is <em>not</em> refunded with the first payout. E8's refund policy states plainly that it does "not provide bonuses by refunding the fee with the first payout share."</li>
     <li>E8 Pro carries no consistency rule. E8 One applies a 40% best-day rule and E8 Signature a 35% best-day rule.</li>
     <li>Trustpilot has suppressed E8 Markets' aggregate rating: "This company's rating is unavailable due to a breach of our guidelines" (verified 2026-10-15).</li>
-    <li>Official E8 pages conflict on both E8 One parameters and E8 Pro prices; the current product-specific purchase pages drive the table below.</li>
+    <li>E8 One defaults to 9% / 4% / 6%; the 6% / 3% / 4% set in E8's help article is its 4% drawdown option. Official E8 pages still conflict on E8 Pro prices, so the current product-specific purchase pages drive the table below.</li>
   </ul>
 </div>
 
@@ -88,7 +88,7 @@ modified: "2026-09-14 12:00:00"
 
 <p><strong>E8 One — 6% trailing drawdown.</strong> E8 calls it Dynamic Drawdown: it "moves only when you close a profit" and "becomes static once you reach the starting balance amount." On a $100K account that is $6,000 of total room and a $4,000 daily limit, both hard breaches. Close $3,000 of profit and the floor climbs from $94,000 to $97,000, so the trailing mechanic tightens exactly as your account grows — until closed profit reaches 6% of starting balance, at which point the floor locks at $100,000.</p>
 
-<p><strong>Unresolved conflict on E8 One's parameters.</strong> Two official E8 pages disagree. The help-centre article for E8 One describes the preset as "6% Profit Target… 3% Daily Drawdown… 4% Dynamic Drawdown," while the pricing page renders its default configuration as a 9% target, 4% daily drawdown and 6% max drawdown — the numbers used throughout this review, because they are the ones attached to the prices we captured. We have not reconciled the two; check which parameter set your order confirmation shows before you place a trade.</p>
+<p><strong>Why two E8 pages show different E8 One numbers.</strong> The help-centre article for E8 One describes a preset of "6% Profit Target… 3% Daily Drawdown… 4% Dynamic Drawdown," while the pricing page renders the default configuration as a 9% target, 4% daily drawdown and 6% max drawdown. The configurator lets you pick a 4%–14% drawdown with a matching 6%–21% target, so the 6% / 3% / 4% set is the 4% drawdown option, not a competing default. This review uses 9% / 4% / 6% throughout because those are the numbers attached to the prices we captured; check that your order confirmation shows the configuration you chose before you place a trade.</p>
 
 <p><strong>E8 Pro — 8% static drawdown.</strong> "A fixed loss limit based on your initial balance. It never moves, except when a first payout is processed." On a $100K account that is a hard $92,000 floor for the whole evaluation, plus a 2.5% ($2,500) daily loss limit. The offsetting constraint is a <strong>2% daily profit cap</strong> in both stages: on a $100K account, a $5,000 day still counts only $2,000 toward the 8% target, so the fastest legal path to an $8,000 target is four qualifying days.</p>
 
