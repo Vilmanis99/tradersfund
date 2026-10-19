@@ -36,7 +36,7 @@ const instantTier = bySlug.instant.accountSizes.find(tier => tier.sizeUsd === 10
 assert.equal(computeTrueCost({ ...bySlug.instant, ...instantTier }).breakEvenProfit, 950)
 const firm = getAllFirms().find(firm => firm.name === 'Crypto Fund Trader')
 for (const field of ['profitSplitPct', 'payoutFrequency', 'drawdownType']) assert.equal(firm[field], null, `No misleading blanket ${field} card claim`)
-assert.equal(firm.lastUpdated, '2026-07-27', 'Correction is not a blanket refresh of metadata or Trustpilot')
+assert(firm.lastUpdated >= '2026-07-27', 'Correction is not a blanket refresh of metadata or Trustpilot; later full rechecks may only move the date forward')
 
 const generated = spawnSync(process.execPath, ['scripts/gen-truecost.mjs', 'crypto-fund-trader'], { encoding: 'utf8' })
 assert.equal(generated.status, 0, generated.stderr)

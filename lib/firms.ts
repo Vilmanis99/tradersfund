@@ -71,6 +71,15 @@ export interface Firm {
   assets: string[]
   maxAllocation: string
   platforms: string[]
+  /**
+   * Platforms offered on the firm's free trial/demo, when they differ from the
+   * paid `platforms` list (e.g. FTMO: TradingView on paid accounts, not on the
+   * Free Trial). Omitted when no first-party trial platform list was captured.
+   */
+  freeTrialPlatforms?: string[] | null
+  freeTrialPlatformsSourceUrl?: string
+  freeTrialPlatformsQuote?: string
+  freeTrialPlatformsCapturedAt?: string
   /** A platform-only check; never refreshes prices, firm terms or individual eligibility. */
   /** Official evidence for the `assets` list (e.g. a newly added asset class). */
   assetsEvidence?: { sourceUrl: string; sourceCapturedAt: string; sourceQuote: string; notes?: string }
@@ -138,6 +147,14 @@ export interface Firm {
   profitSplitPct?: number | null
   payoutFrequency?: PayoutFrequency | null
   payoutMethods?: string[]
+  /** Official page and verbatim quote backing `payoutMethods`. */
+  payoutMethodsSourceUrl?: string
+  payoutMethodsQuote?: string
+  payoutMethodsCapturedAt?: string
+  /** Why `payoutFrequency` is null or scoped (e.g. only the first-payout wait is published). */
+  payoutFrequencyNote?: string
+  payoutFrequencySourceUrl?: string
+  payoutFrequencyQuote?: string
   drawdownType?: DrawdownType | null
   minTradingDays?: number | null
   consistencyRule?: string | null

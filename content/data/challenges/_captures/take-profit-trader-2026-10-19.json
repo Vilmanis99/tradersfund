@@ -1,0 +1,130 @@
+{
+  "firmSlug": "take-profit-trader",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T10:03:39+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
+  "egress": "Box egress is a US IP. Global (non-US) prices were checked against the firm's Global/region-independent price data as described in method; US-only codes are not promoted.",
+  "method": "curl of https://takeprofittrader.com/accounts/api/subscriptions",
+  "priceSource": "https://takeprofittrader.com/accounts/api/subscriptions",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "the-test",
+      "prices": {
+        "25000": 150,
+        "50000": 170,
+        "75000": 245,
+        "100000": 330,
+        "150000": 360
+      }
+    }
+  ],
+  "priceQuotes": [
+    "{\"id\":2,\"name\":\"$ 25k\",\"price\":150,\"discountPrice\":null,\"balance\":25000,\"profitTarget\":1500,\"maxPositionSize\":3,\"dailyLossLimit\":500,\"weeklyMaxLoss\":600,\"eodTrailingDrawdown\":1500,\"marketType\":0}",
+    "$ 50k price 170 DLL 1100 EOD 2000 | $ 75k 245 / 1600 / 2500 | $ 100k 330 / 2200 / 3000 | $ 150k 360 / 3300 / 4500"
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 15,
+    "foundVerbatimInLiveText": 8,
+    "notFoundVerbatim": 7,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
+  },
+  "changes": [],
+  "notes": [
+    "Prices, daily loss limits and EOD trailing drawdowns unchanged. NOFEE40 stays regional (us-only-unconfirmed); not re-observed today."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://takeprofittrader.com/accounts/api/subscriptions",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:23.148Z"
+    },
+    {
+      "url": "https://takeprofittrader.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:23.785Z"
+    },
+    {
+      "url": "https://try.takeprofittrader.com/TPT-FAQs-nf40-4-0725",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:23.791Z"
+    },
+    {
+      "url": "https://takeprofittrader.com/blog/3-day-evals",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:25.499Z"
+    },
+    {
+      "url": "https://takeprofittrader.com/blog/what-is-drawdown-in-trading",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:25.701Z"
+    },
+    {
+      "url": "https://takeprofittrader.com/blog/speed-of-payouts",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:26.937Z"
+    },
+    {
+      "url": "https://takeprofittrader.com/accounts/api/subscriptions/products",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:32.223Z"
+    },
+    {
+      "url": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:33.138Z"
+    },
+    {
+      "url": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15172219527581-PRO-Account-Profit-Split-Withdrawal-Rules",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:33.177Z"
+    },
+    {
+      "url": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431176505245-Trade-Copier-Policy",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:33.205Z"
+    },
+    {
+      "url": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15171929948829-Advantages-of-PRO",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:33.205Z"
+    },
+    {
+      "url": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-6-Be-Consistent",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:33.248Z"
+    },
+    {
+      "url": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-5-Be-Consistent",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:38.719Z"
+    },
+    {
+      "url": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15171769361053-PRO-Account-Rules",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:38.759Z"
+    },
+    {
+      "url": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/29660646764445-NOFEE40-PROMO-FAQS",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:38.810Z"
+    },
+    {
+      "url": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15173017163549-Choosing-Your-Platform",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:39.013Z"
+    },
+    {
+      "url": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170265979165-Rule-3-Do-Not-Hit-End-Of-Day-EOD-Maximum-Trailing-Drawdown",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:39.098Z"
+    },
+    {
+      "url": "https://www.takeprofittrader.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:03:39.128Z"
+    }
+  ]
+}

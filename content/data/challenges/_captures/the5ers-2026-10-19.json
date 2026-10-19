@@ -1,0 +1,182 @@
+{
+  "firmSlug": "the5ers",
+  "captureType": "new-firm-capture",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T10:14:12+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": null,
+  "egress": "Box egress is a US IP. Only official first-party pages were read. The5ers lists one USD price ladder on its program pages (no regional switcher observed).",
+  "method": "Headless Chrome render of the5ers.com program pages; tab tables extracted from rendered DOM",
+  "russia": {
+    "status": "restricted",
+    "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+    "quote": "“Forbidden Territory” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen.",
+    "secondQuote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”).",
+    "note": "Definitions clause lists 31 territories incl. Bosnia and Herzegovina; the notice paragraph lists 30 (omits Bosnia). Both include Russia. Operator: FIVE PERCENT ONLINE LTD, England and Wales company 12553363."
+  },
+  "products": [
+    {
+      "productName": "High Stakes (New)",
+      "sourceUrl": "https://the5ers.com/high-stakes/",
+      "phases": 2,
+      "targets": {
+        "step1": 10,
+        "step2": 5
+      },
+      "dailyLossPct": "5 (4 at 50K/100K)",
+      "maxLossPct": "10 (8 at 50K/100K)",
+      "minProfitableDays": 3,
+      "timeLimit": "Unlimited",
+      "pricesUsd": {
+        "2500": 19,
+        "5000": 35,
+        "10000": 69,
+        "25000": 176,
+        "50000": 249,
+        "100000": 405
+      },
+      "quotes": [
+        "Cost | $22/$19",
+        "Cost | $39/$35",
+        "Cost | $78/$69",
+        "Cost | $195/$176",
+        "Cost | $279/$249",
+        "Cost | $455/$405",
+        "Profit Target | 8%/10% || 5%/ || 10% For Scaling",
+        "Minimum Profitable Days | 3",
+        "Maximum Daily Loss | 4%",
+        "Maximum Loss | 8%",
+        "Max Trading Period | Unlimited"
+      ],
+      "note": "Each tab shows Classic/New columns (Classic 8% step 1 at $22/39/78/195/279/455; New 10% step 1 at $19/35/69/176/249/405). New is the default active toggle."
+    },
+    {
+      "productName": "High Stakes (Classic)",
+      "sourceUrl": "https://the5ers.com/high-stakes/",
+      "phases": 2,
+      "targets": {
+        "step1": 8,
+        "step2": 5
+      },
+      "pricesUsd": {
+        "2500": 22,
+        "5000": 39,
+        "10000": 78,
+        "25000": 195,
+        "50000": 279,
+        "100000": 455
+      }
+    },
+    {
+      "productName": "Pro Growth",
+      "sourceUrl": "https://the5ers.com/hyper-growth/",
+      "phases": 1,
+      "target": 10,
+      "stopOutPct": 6,
+      "dailyPausePct": 3,
+      "leverage": "1:30",
+      "minProfitableDays": 3,
+      "pricesUsd": {
+        "5000": 52,
+        "10000": 98,
+        "20000": 189,
+        "50000": 329
+      },
+      "quotes": [
+        "One Time Fee | $260/$52",
+        "One Time Fee | $450/$98",
+        "One Time Fee | $850/$189",
+        "One Time Fee | /$329",
+        "Evaluation Target | 10%",
+        "Stop Out Level | 6%",
+        "Daily Pause | 3%/3%",
+        "Time Limit | Unlimited"
+      ]
+    },
+    {
+      "productName": "Hyper Growth",
+      "sourceUrl": "https://the5ers.com/hyper-growth/",
+      "phases": 1,
+      "target": 10,
+      "stopOutPct": 6,
+      "dailyPausePct": 3,
+      "pricesUsd": {
+        "5000": 260,
+        "10000": 450,
+        "20000": 850
+      }
+    },
+    {
+      "productName": "Bootcamp",
+      "sourceUrl": "https://the5ers.com/bootcamp/",
+      "phases": 3,
+      "targets": "6% each step; funded 5%",
+      "maxLossPct": "5 (funded 4, daily pause 3)",
+      "pricesUsd": {
+        "20000": "22 + 50 on funding",
+        "100000": "95 + 205 on funding",
+        "250000": "225 + 350 on funding"
+      },
+      "quotes": [
+        "Cost | $22/ || –/ || –/ || $50/",
+        "Cost | $95/ || –/ || –/ || $205/",
+        "Cost | $225/ || –/ || –/ || $350/"
+      ]
+    }
+  ],
+  "rules": {
+    "weekend": {
+      "sourceUrl": "https://the5ers.com/hyper-growth/",
+      "quote": "Holding open trades over the weekend is allowed.",
+      "highStakesQuote": "Overnight and weekend actions are allowed"
+    },
+    "news": {
+      "sourceUrl": "https://the5ers.com/high-stakes/",
+      "quote": "Performing moves 2 minutes before or after high-impact news events is not allowed.",
+      "growthQuote": "News trading is allowed. (except for bracket strategies around news or others mentioned on our T&C)"
+    },
+    "eas": {
+      "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+      "quotes": [
+        "Expert advisors which scalp during the rollover-night to take advantage of the price feed;",
+        "Expert advisors from a third party where other traders have the same trades open;",
+        "Using an expert advisors from a provider where the trader does not own the source code;"
+      ],
+      "interpretation": "EAs permitted subject to listed prohibited EA uses (restricted)"
+    },
+    "copyTrading": {
+      "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+      "quote": "Trade coordination or copy trading with other traders or accounts;"
+    },
+    "payoutFrequency": {
+      "sourceUrl": "https://the5ers.com/high-stakes/",
+      "quote": "First payout 14 days after receiving a funded account, and every 2 weeks after that."
+    },
+    "consistency": {
+      "value": null,
+      "note": "No consistency rule found on program pages read today"
+    },
+    "drawdown": {
+      "note": "High Stakes: static max loss % of initial balance per table; Growth/Bootcamp: stop-out level. Static assumed only as table-stated, not verified against a definition page."
+    },
+    "platform": {
+      "quote": "Platform: Mt5 Hedge."
+    }
+  },
+  "deadSources": [
+    "https://the5ers.com/faq/ (404)",
+    "https://help.the5ers.com/what-payout-methods-are-available/ (404)",
+    "https://help.the5ers.com/payout-policy-and-hub-credit-in-the-high-stakes-program/ (404)"
+  ],
+  "promotions": [
+    "Homepage banner: \"$100K For $149\" (Summer plan) - not checkout-verified, not merged"
+  ],
+  "affiliateStatus": "none",
+  "pagesRead": [
+    "https://the5ers.com/",
+    "https://the5ers.com/high-stakes/",
+    "https://the5ers.com/hyper-growth/",
+    "https://the5ers.com/bootcamp/",
+    "https://the5ers.com/terms-and-conditions/"
+  ]
+}
