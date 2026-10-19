@@ -72,6 +72,7 @@ export default function Page() {
       mechanism: deal.mechanism,
       code: deal.code,
       pct: deal.pct,
+      pctIsUpTo: deal.pctIsUpTo,
       amountLabel: deal.amountLabel,
       scope: deal.scope,
       verifiedOn: deal.verifiedOn,
