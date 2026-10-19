@@ -38,7 +38,8 @@
     "test:comparison-expiry": "node scripts/test-comparison-expiry.mjs",
     "check:finder-release": "node scripts/check-russian-finder-release.mjs",
     "check:home-release": "node scripts/check-english-home.mjs",
-    "check:light-release": "node scripts/check-light-release.mjs"
+    "check:light-release": "node scripts/check-light-release.mjs",
+    "check:duplicates": "node scripts/check-duplicates.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
