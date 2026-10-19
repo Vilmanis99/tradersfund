@@ -36,9 +36,9 @@ const restricted = [
 ]
 
 const alternatives = [
+  { slug: 'bright-funded', name: 'BrightFunded', russia: 'Не в списке ограничений', kyc: 'Исключает лиц из санкционных списков', payout: 'USDC (ERC-20), банк в EUR', review: '/ru/obzor-bright-funded' },
   { slug: 'upscale', name: 'Upscale', russia: 'Ограничений по странам не заявлено', kyc: 'Нет KYC', payout: 'USDT на свой кошелёк', review: null },
   { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', russia: 'Принимает на Match-Trader', kyc: 'Не проверено', payout: 'USDT ERC20/TRC20, BTC, ETH, банк', review: '/blog/crypto-fund-trader-review' },
-  { slug: 'bright-funded', name: 'BrightFunded', russia: 'Не в списке ограничений', kyc: 'Исключает лиц из санкционных списков', payout: 'USDC (ERC-20), банк в EUR', review: '/ru/obzor-bright-funded' },
   { slug: 'fundednext', name: 'FundedNext CFD', russia: 'Не в списке ограничений CFD', kyc: 'VPN или ложные данные — закрытие аккаунта', payout: 'USDT, USDC, RiseWorks, банк, карта', review: '/ru/obzor-fundednext' },
 ] as const
 
