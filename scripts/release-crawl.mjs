@@ -1201,6 +1201,7 @@ const russianExpectations = new Map([
       'data-russian-cft-price-conflict="2026-10-06"',
       '$45 / $90 / $225 / $450 / $899 / $1 798',
       'data-russian-cft-cheapest="accelerated-5k"',
+      'data-russian-cft-max-allocation="300000"',
       'data-russian-cft-ascend-conflict="2026-10-19"',
       'по данным на 19.10.2026',
       '1 102',

@@ -328,6 +328,7 @@ export default function RussianCryptoFundTraderReviewPage() {
               </table>
             </div>
             <p className="ru-muted" data-russian-cft-price-conflict={PRICE_CONFLICT_CHECKED}>Цены Ascend и Break в таблице — {asOf(earliestCapture)} (условия и магазин). {PRICE_CONFLICT_NOTE}</p>
+            <p className="ru-source-line" data-russian-cft-max-allocation="300000">Максимальный капитал: до $300 000 (по данным на 19.10.2026) — суммарный стартовый баланс всех активных финальных счетов одного трейдера; счета Ascend, Instant и Break в лимит не входят. Источник: <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ CFT</a>.</p>
             <div className="ru-actions" data-russian-cft-cta="programs">
               {cta('ru-review-crypto-fund-trader-programs', 'Выбрать программу на сайте CFT', false)}
             </div>
