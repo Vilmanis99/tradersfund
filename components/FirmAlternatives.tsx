@@ -1,3 +1,4 @@
+import { promotableDiscount } from '@/lib/discountDisplay'
 import Link from 'next/link'
 import { ArrowRight, ArrowUpRight, Handshake, Tag, Star } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
@@ -105,7 +106,7 @@ export default function FirmAlternatives({
                   <span>· {evidence.sourceCount} first-party {evidence.sourceCount === 1 ? 'source' : 'sources'}</span>
                   <span>· checked {formatCaptureDate(evidence.latestCapture)}</span>
                 </div>
-                {firm.discountCode && firm.discountPct && (
+                {promotableDiscount(firm) && (
                   <div style={{ marginTop: 6 }}>
                     <span className="discount-pill">
                       <Tag size={9} /> {firm.discountPct}% off · code {firm.discountCode}

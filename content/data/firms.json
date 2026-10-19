@@ -2013,6 +2013,7 @@
     "corporateNote": "Physical address of BrightFunded Ltd (Saint Lucia, reg. 2025-00358), which offers the CFD services. Bright Global FZCO (Building A1, Dubai Digital Park, Dubai Silicon Oasis, UAE) is a separate affiliate that the homepage labels 'Dubai HQ' / 'Dubai Headquarter' and lists in the footer address; futures services are offered by affiliate BrightFunded LLC (Wyoming; Austin, TX business address).",
     "affiliateStatus": "active",
     "discountCode": "DOUBLE25",
+    "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://brightfunded.com/",
     "discountCodeCapturedAt": "2026-10-16",
     "discountCodeNote": "Homepage observation only (2026-10-16): Double Up Offer: 25% off + 15% Evaluation Profit Reward + free account upon payout. No end date or terms shown; plan table marks every 2-Step size -25% (base EUR 5K 47, 10K 87, 25K 187, 50K 277, 100K 477, 200K 947); 1-Step not confirmed. Checkout NOT verified (account login required), so it is kept out of deals.json.",

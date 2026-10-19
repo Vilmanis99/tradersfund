@@ -108,6 +108,12 @@ export interface Firm {
   /** Scope/limits of the public code (eligible products, exclusions). */
   discountCodeNote?: string
   /**
+   * false = code seen on the firm's site but the discount was not confirmed at
+   * checkout. Such codes are never promoted as "N% off · code" (see
+   * lib/discountDisplay.ts); where shown, they are labelled unverified.
+   */
+  discountCodeCheckoutVerified?: boolean
+  /**
    * A code seen only from one region (e.g. a US IP). Kept out of `discountCode`
    * so no global or RU surface renders it as a universal code.
    */

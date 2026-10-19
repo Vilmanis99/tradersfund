@@ -28,6 +28,7 @@ import { extractArticleFaq, prepareArticleContent } from '@/lib/articleContent'
 import { getAuthorByName } from '@/lib/authors'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import ReviewProductSummary, { PRODUCT_SUMMARY_REVIEWS } from '@/components/ReviewProductSummary'
+import { promotableDiscount } from '@/lib/discountDisplay'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -253,8 +254,8 @@ export default async function BlogPostPage({ params }: Props) {
           score={matchedFirm.score}
           affiliateUrl={matchedFirm.affiliateUrl}
           affiliateSlug={firmSlug(matchedFirm.name)}
-          discountCode={matchedFirm.discountCode}
-          discountPct={matchedFirm.discountPct}
+          discountCode={promotableDiscount(matchedFirm)?.code}
+          discountPct={promotableDiscount(matchedFirm)?.pct}
         />
       )}
     </div>
