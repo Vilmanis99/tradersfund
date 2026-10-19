@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
-// content/data/challenges, проверено 29.09.2026 (Crypto Fund Trader — 08.09.2026).
+// content/data/challenges, проверено 14–15.10.2026.
 const sizeRows = [
   { firm: 'BrightFunded', product: '2-Step Classic', sizes: '$5K–$200K', from: '€49 за $5K', top: '€997 за $200K', checked: '14.10.2026' },
   { firm: 'FundedNext', product: 'Stellar Lite', sizes: '$5K–$200K', from: '$32.99 за $5K', top: '$798.99 за $200K', checked: '15.10.2026' },
@@ -49,7 +49,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Можно ли получить funded account без челленджа?',
-    a: 'Да, через instant funding: например, FundedNext Stellar Instant (от $59.99 за $2 000 на 29.09.2026) или FundingPips Zero. Взнос платится всё равно, а KYC и договор никто не отменяет.',
+    a: 'Да, через instant funding: например, FundedNext Stellar Instant (от $59.99 за $2 000 на 15.10.2026) или FundingPips Zero. Взнос платится всё равно, а KYC и договор никто не отменяет.',
   },
   {
     q: 'Где получить финансируемый аккаунт из России?',
@@ -115,13 +115,13 @@ export default function RussianFundedAccountPage() {
           <h3>Через челлендж</h3>
           <p>
             Классический путь: одна или две фазы оценки с целью по прибыли и лимитами убытка. Например, у BrightFunded 2-Step Classic цели
-            10% и 5%, у FundedNext Stellar Lite — 8% и 4% (данные на 29.09.2026). После прохождения — проверка. У FundingPips это четыре
+            10% и 5%, у FundedNext Stellar Lite — 8% и 4% (данные на 15.10.2026). После прохождения — проверка. У FundingPips это четыре
             шага: KYC, внутренняя проверка, соглашение с клиентом и подключение; два внутренних этапа могут занять до 2 рабочих дней каждый.
           </p>
           <h3>Instant funding — без оценки</h3>
           <p>
             Модели вроде <Link href="/ru/fundednext-stellar-instant">FundedNext Stellar Instant</Link> и FundingPips Zero выдают счёт сразу,
-            но дороже: Stellar Instant на $10 000 стоит $299.99, а Stellar Lite с оценкой — $59.99 (29.09.2026). Ловушка — в правилах:
+            но дороже: Stellar Instant на $10 000 стоит $299.99, а Stellar Lite с оценкой — $59.99 (15.10.2026). Ловушка — в правилах:
             у Stellar Instant трейлинговая просадка 6% и доля 70%, у Zero — плавающий лимит 5% и минимум прибыльных дней. Сравнение —
             на странице <Link href="/ru/prop-firmy-bez-chelendzha">проп-фирмы без челленджа</Link>.
           </p>
