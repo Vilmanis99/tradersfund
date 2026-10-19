@@ -109,7 +109,7 @@
     "lastCheckedAt": "2026-10-19",
     "title": "Correction: CFT reward shares and payout timing depend on the programme",
     "summary": "The three selected Instant starting tiers show a 50% reward share, while the 1-Phase and 2-Phase programmes show 80%. General reward requests require 15 traded days or 30 calendar days. Instant's no-minimum-days withdrawal/upgrade path requires 10% simulated profit; it is not unconditional immediate payment.",
-    "traderImpact": "This corrects TFH's blanket 80% and bi-weekly descriptions, not a proven September policy change. The regenerated Instant fee-recovery model uses the 50% starting share. Numeric payout timing is left unverified where the calendar field cannot express the conditions; no actual customer payout was independently verified.",
+    "traderImpact": "This corrects TFH's blanket 80% and bi-weekly descriptions, not a proven September policy change. The regenerated Instant fee-recovery model uses the 50% starting share. Numeric payout timing is left unverified where the calendar field cannot express the conditions; no actual customer payout was independently verified. Rechecked 2026-10-14: the product capture re-confirmed the 50% starting share on all three Instant tiers, and the FAQ read on 2026-10-15 still states 15 traded days or 30 calendar days for general reward requests. The 80% figures for the 1-Phase and 2-Phase programmes were carried forward from the earlier capture, not re-read field by field. The correction stands; no new policy change was observed.",
     "sourceUrls": [
       "https://cryptofundtrader.com/",
       "https://cryptofundtrader.com/faq/"
@@ -126,10 +126,10 @@
     "kind": "price-watch",
     "status": "verified",
     "observedAt": "2026-09-08",
-    "lastCheckedAt": "2026-09-14",
+    "lastCheckedAt": "2026-10-14",
     "title": "CFT Ascend and Break fee ladders were resolved from current terms",
     "summary": "The current Terms and Conditions list Ascend at $39 / $78 / $195 / $390 / $780 / $1,560 for $5K through $200K, and Break at $70 / $140 / $200 for $25K / $50K / $100K. Break activation fees remain $138 / $198 / $328. The shop lists Break products, while the dedicated page confirms the current rule set.",
-    "traderImpact": "CFT's Ascend and Break tiers can now appear in fresh price comparisons, but Ascend pays fixed scholarships rather than an ongoing percentage split and Break requires activation after review. Verify the selected tier and final checkout availability, especially where a page block still says sold out.",
+    "traderImpact": "CFT's Ascend and Break tiers can now appear in fresh price comparisons, but Ascend pays fixed scholarships rather than an ongoing percentage split and Break requires activation after review. Verify the selected tier and final checkout availability, especially where a page block still says sold out. Rechecked 2026-10-14: all three Break prices and activation fees match the live store, and the Ascend ladder is unchanged in section 5.6.5 of the Terms and Conditions (Ascend is not sold as a separate store product). The separate homepage-versus-terms disagreement observed on 2026-10-06 remains tracked in its own watch entry.",
     "sourceUrls": [
       "https://cryptofundtrader.com/",
       "https://cryptofundtrader.com/terms-and-conditions/",
