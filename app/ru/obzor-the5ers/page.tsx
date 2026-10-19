@@ -10,7 +10,9 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 
 const PATH = '/ru/obzor-the5ers'
 const CHECKED = '14.10.2026'
-const SOURCE = 'https://the5ers.com/faq/'
+const SOURCE = 'https://the5ers.com/terms-and-conditions/'
+/** Russia clause, payout cadence and card/Hub Credit terms re-checked on live the5ers.com pages (challenges/_captures/the5ers-2026-10-19.json). */
+const RECHECKED = '19.10.2026'
 export const revalidate = 86400
 const TITLE = 'The5ers: обзор 2026 — программы, правила, доступ из России'
 const DESCRIPTION = 'The5ers проп-фирма: программы High Stakes, Hyper/Pro Growth и Bootcamp, цели, просадка, доля прибыли и выплаты по данным на 14.10.2026. Россия и Беларусь — в списке ограничений; альтернативы для РФ.'
@@ -40,7 +42,7 @@ const alternatives = [
 const faqs: RussianFaqItem[] = [
   {
     q: 'The5ers работает с Россией?',
-    a: `Нет. На ${CHECKED} Россия входит в список «Forbidden Territories» на официальной странице FAQ The5ers. Ограничение касается резидентов и граждан.`,
+    a: `Нет. На ${RECHECKED} Россия входит в список «Forbidden Territories» в официальных условиях The5ers (Terms and Conditions). Ограничение касается резидентов и граждан.`,
   },
   {
     q: 'Какая доля прибыли у The5ers?',
@@ -90,7 +92,7 @@ export default function RussianThe5ersPage() {
             Territories» фирмы, причём ограничение распространяется и на резидентов, и на граждан. Ниже — что именно написано, кого это
             касается и какие проп-фирмы открыты для РФ.
           </p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Источник: <a href={SOURCE} target="_blank" rel="nofollow noopener noreferrer">FAQ The5ers</a>, открыт {CHECKED}.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Источник: <a href={SOURCE} target="_blank" rel="nofollow noopener noreferrer">условия The5ers (Terms and Conditions)</a>, открыты {RECHECKED}.</p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="the5ers">
             <strong>Партнёрское раскрытие.</strong> По кнопкам альтернатив мы можем получить комиссию. Ссылка на официальный сайт The5ers — обычная, не партнёрская.
           </div>
@@ -135,9 +137,8 @@ export default function RussianThe5ersPage() {
             <li><strong>Минимум:</strong> 3 прибыльных дня с результатом не меньше 0,5%. Ограничения по времени нет.</li>
             <li><strong>Плечо:</strong> 1:100.</li>
             <li><strong>Доля прибыли:</strong> 80%, затем 85% при капитале $175 000, 90% при $250 000 и 100% плюс ежемесячная зарплата при $350 000. Масштабирование — до $500 000.</li>
-            <li><strong>Hub Credit:</strong> 10% и 20% после этапов и возврат 70% взноса вместе с первой выплатой.</li>
           </ul>
-          <p className="ru-source-line">Источники: <a href="https://the5ers.com/high-stakes/" target="_blank" rel="nofollow noopener noreferrer">High Stakes</a>, <a href="https://help.the5ers.com/payout-policy-and-hub-credit-in-the-high-stakes-program/" target="_blank" rel="nofollow noopener noreferrer">правила выплат и Hub Credit</a> — по данным на {CHECKED}.</p>
+          <p className="ru-source-line">Источники: <a href="https://the5ers.com/high-stakes/" target="_blank" rel="nofollow noopener noreferrer">High Stakes</a> — по данным на {CHECKED}.</p>
 
           <h3>Hyper Growth и Pro Growth (1 этап)</h3>
           <ul>
@@ -164,15 +165,16 @@ export default function RussianThe5ersPage() {
 
           <h3>Выплаты The5ers</h3>
           <p>
-            Выплаты — раз в две недели; первая — через 14 дней после получения финансирования. Варианты: Rise, криптовалюта или банковский
-            перевод с комиссией 3,5% либо Hub Credit без комиссии. Для трейдеров из России это неактуально: доступ закрыт на этапе регистрации.
+            В High Stakes первая выплата — через 14 дней после получения финансируемого счёта, затем раз в две недели. Способы
+            получения выплаты мы на действующих страницах The5ers не нашли, поэтому их не приводим. Для трейдеров из России это
+            неактуально: доступ закрыт на этапе регистрации.
           </p>
           <p>
-            Об оплате: карта должна быть оформлена на имя владельца аккаунта — за оплату чужой картой аккаунт отключают, а платёж
-            возвращают (<a href="https://help.the5ers.com/payment-compliance/" target="_blank" rel="nofollow noopener noreferrer">правило оплаты</a>, по данным на {CHECKED}).
-            Невыводимые Hub Credits, действующие 3 месяца, можно использовать при оплате (<a href="https://help.the5ers.com/what-is-hub-credits/" target="_blank" rel="nofollow noopener noreferrer">Hub Credits</a>).
+            Об оплате: по условиям The5ers взнос можно оплатить картой, банковским переводом или другими способами, которые
+            предлагает сайт; при оплате картой платить должен её владелец. Hub Credits, которые начисляет фирма, можно использовать
+            для оплаты услуг в Hub (<a href="https://the5ers.com/terms-and-conditions/" target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a>, по данным на {RECHECKED}).
           </p>
-          <p className="ru-source-line">Источник: <a href="https://help.the5ers.com/what-payout-methods-are-available/" target="_blank" rel="nofollow noopener noreferrer">способы выплат</a> — по данным на {CHECKED}.</p>
+          <p className="ru-source-line">Источник: <a href="https://the5ers.com/high-stakes/" target="_blank" rel="nofollow noopener noreferrer">High Stakes</a> (график выплат) — по данным на {RECHECKED}.</p>
         </div>
       </section>
 
