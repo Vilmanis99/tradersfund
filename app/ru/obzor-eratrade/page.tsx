@@ -9,6 +9,7 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-eratrade'
 export const revalidate = 3600
@@ -102,12 +103,11 @@ export default function RussianEraTradeReviewPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {faqSourcesCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="era-trade" data-russian-local-review-status="verification-only">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские компании</Link> / Era Trade</div>
           <RussianEvidenceFreshnessNotice evidence={[
             { label: 'общий снимок рынка', capturedAt: marketEvidence.capturedAt },
             { label: 'заявления Era Trade на главной', capturedAt: localSignalCapturedAt },

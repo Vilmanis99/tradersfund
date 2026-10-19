@@ -26,6 +26,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/vyplaty-prop-firm'
 const TITLE = 'Выплаты проп-фирм 2026: FundedNext и BrightFunded'
@@ -228,7 +229,7 @@ export default function RussianPayoutsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshResearch && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
@@ -238,7 +239,6 @@ export default function RussianPayoutsPage() {
           data-russian-payout-partner-count={cards.length}
           data-russian-payout-featured-partners="fundednext-bright-funded"
         >
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Выплаты проп-фирм</div>
           <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <RussianEvidenceFreshnessNotice evidence={[
             { label: 'исследование способов выплаты и KYC', capturedAt: marketEvidence.capturedAt },

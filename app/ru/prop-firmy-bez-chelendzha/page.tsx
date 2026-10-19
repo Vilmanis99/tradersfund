@@ -20,6 +20,7 @@ import { getLanguageAlternates, RUSSIAN_ROUTE_EDITORIAL_DATES } from '@/lib/loca
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/prop-firmy-bez-chelendzha'
 const TITLE = 'Проп-фирмы без челленджа 2026: FundedNext Instant'
@@ -243,7 +244,7 @@ export default function RussianInstantPropFirmsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {faq ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} /> : null}
 
       <section className="ru-hero">
@@ -253,7 +254,6 @@ export default function RussianInstantPropFirmsPage() {
           data-russian-instant-product-count={products.length}
           data-russian-instant-firm-count={instantFirmCount}
         >
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / Без челленджа</div>
           <div className="ru-eyebrow"><Zap size={14} aria-hidden="true" /> 0 оценочных этапов — правила остаются</div>
           <h1>Проп-фирмы без челленджа: FundedNext Instant и FundingPips Zero</h1>
           <p className="ru-lead">

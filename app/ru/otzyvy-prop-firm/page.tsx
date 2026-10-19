@@ -31,6 +31,7 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/otzyvy-prop-firm'
 const TITLE = 'Отзывы о проп-фирмах 2026: как проверить выплаты'
@@ -220,13 +221,12 @@ export default function RussianPropFirmReviewsPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemListSchema(featuredCards.map(card => ({ ...card.firm, name: card.name, reviewUrl: card.reviewHref })), TITLE)) }} />
       {hasFreshResearch && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-reviews-guide="long-form-source-gated">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Отзывы о проп-фирмах</div>
           <RussianEvidenceFreshnessNotice evidence={[{ label: 'рынок и доступность', capturedAt: marketEvidence.capturedAt }, ...featuredProducts.map(product => ({ label: `${product.firmSlug}: ${product.productName}`, capturedAt: product.sourceCapturedAt }))]} />
           <div className="ru-eyebrow"><FileSearch size={14} aria-hidden="true" /> Проверка кейса до регистрации</div>
           <h1>Отзывы о проп-фирмах: проверка выплат, правил и KYC</h1>

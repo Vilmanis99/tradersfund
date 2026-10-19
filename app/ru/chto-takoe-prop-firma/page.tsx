@@ -18,6 +18,7 @@ import { getAllChallenges, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/chto-takoe-prop-firma'
 const TITLE = 'Что такое проп-фирма: как это работает в 2026 году'
@@ -158,12 +159,11 @@ export default function RussianWhatIsPropFirmPage() {
   return (
     <article data-russian-prop-definition="three-models-not-one-label" data-russian-search-intent="prop-kompanii-eto">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
 
       <section className="ru-hero">
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Что такое проп-фирма</div>
           <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <div className="ru-eyebrow"><CircleHelp size={14} aria-hidden="true" /> Термин без рекламных сокращений</div>
           <h1>Что такое проп-фирма и как она работает</h1>

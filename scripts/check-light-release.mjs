@@ -1,7 +1,7 @@
 /** Release-wide light stylesheet coverage. Browser QA is still required for layout,
  * computed styles, gradient/image contrast and interactive states. No analytics calls. */
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { localPreviewUrl } from './local-preview-url.mjs'
 
 const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8')
@@ -32,7 +32,10 @@ for (const file of ['components/GlobalChallengeComparison.tsx', 'components/Indi
   const component = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8')
   assert.doesNotMatch(component, /return ['"]#(?:6ee7b7|93c5fd|fcd34d|fca5a5)['"]/i, `${file}: rule helpers use accessible theme colours`)
 }
-assert(readFileSync(new URL('../app/loading.tsx', import.meta.url), 'utf8').includes('min(300px, 100%)'), 'Loading cards also fit narrow phones')
+// app/loading.tsx was removed (2026-10-19): a root Suspense fallback moved every
+// prerendered page body to the end of the HTML (LCP render delay) and turned
+// notFound() on unknown slugs into HTTP 200. Keep it out.
+assert(!existsSync(new URL('../app/loading.tsx', import.meta.url)), 'No root loading fallback: page HTML streams in order and unknown slugs return 404')
 
 const base = new URL(localPreviewUrl(process.argv[2]))
 async function get(pathname) {

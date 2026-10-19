@@ -6,6 +6,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/ftmo-dlya-rossiyan'
 const CHECKED = '14.10.2026'
@@ -85,12 +86,11 @@ export default function FtmoForRussiansPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-ftmo-russia="restricted">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / FTMO для россиян</div>
           <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <span className="ru-badge ru-badge--closed">Недоступно для РФ · проверено {CHECKED}</span></div>
           <h1>FTMO для россиян: можно ли пройти челлендж из РФ и чем заменить</h1>
           <p className="ru-lead">

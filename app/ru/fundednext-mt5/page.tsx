@@ -23,6 +23,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/fundednext-mt5'
 const TITLE = 'FundedNext MT5: скачать, войти и проверить правила EA'
@@ -174,7 +175,7 @@ export default function RussianFundedNextMt5Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <article
@@ -185,7 +186,6 @@ export default function RussianFundedNextMt5Page() {
       >
         <section className="ru-hero">
           <div className="ru-shell">
-            <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/obzor-fundednext">FundedNext</Link> / MT5</div>
             <div className="ru-eyebrow"><MonitorCog size={14} aria-hidden="true" /> Установка, вход и условия автоматизации</div>
             <h1>FundedNext MT5: как скачать, войти и проверить правила EA</h1>
             <p className="ru-review-meta">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Текст обновлён <time dateTime={russianRouteDateModified(PATH)}>{russianRouteDateModified(PATH)}</time></p>

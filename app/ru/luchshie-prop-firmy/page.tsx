@@ -16,6 +16,7 @@ import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access
 import { RuGoLink } from '@/components/RuGoLink'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { goLinkRel } from '@/lib/russiaAvailability'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/luchshie-prop-firmy'
 // Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
@@ -308,14 +309,13 @@ export default function RussianBestPropFirmsPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(pageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(list) }} />
       {faqCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Рейтинг</div>
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Для русскоязычных трейдеров в разных странах</div>
           <h1>Проп-компании: рейтинг 2026</h1>
           <p className="ru-source-line" data-russian-ranking-updated={UPDATED_ISO}><strong>Обновлено {UPDATED}</strong> · статус доступа из России проверен {UPDATED}</p>

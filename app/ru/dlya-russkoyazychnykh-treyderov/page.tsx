@@ -7,6 +7,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/dlya-russkoyazychnykh-treyderov'
 const CHECKED = '14.10.2026'
@@ -128,12 +129,11 @@ export default function RussiaAvailabilityPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-russia-availability-hub="2026-10">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Проп-фирмы для россиян</div>
           <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Статус для РФ · проверено {CHECKED}</div>
           <h1>Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ</h1>
           <p className="ru-lead">

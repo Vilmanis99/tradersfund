@@ -29,12 +29,15 @@ import { getAuthorByName } from '@/lib/authors'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import ReviewProductSummary, { PRODUCT_SUMMARY_REVIEWS } from '@/components/ReviewProductSummary'
 import { promotableDiscount } from '@/lib/discountDisplay'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 interface Props { params: Promise<{ slug: string }> }
 
 // Re-check the firm-product age gate hourly so the reader warning appears
 // after a deployment even when no new article build is triggered.
 export const revalidate = 3600
+// Every post is prerendered from content/posts; an unknown slug is a 404.
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   return getAllPosts().map(p => ({ slug: p.slug }))
@@ -117,7 +120,7 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(postLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbsLd) }} />
+      <Breadcrumbs ld={crumbsLd} />
       {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqLd) }} />}
 
       {/* ═══════════════════════════════ ARTICLE HERO ═══════════════════════════════ */}

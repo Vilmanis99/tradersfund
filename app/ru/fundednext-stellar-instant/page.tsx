@@ -29,6 +29,7 @@ import { getRussianInstantFinderHref } from '@/lib/challengeComparisonData'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/fundednext-stellar-instant'
 const TITLE = 'FundedNext Stellar Instant: правила и выплаты (2026)'
@@ -180,7 +181,7 @@ export default function RussianFundedNextInstantPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
@@ -190,7 +191,6 @@ export default function RussianFundedNextInstantPage() {
           data-russian-product-intent="fundednext-stellar-instant-rules"
           data-russian-country-boundary="instant-profile-not-language"
         >
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/obzor-fundednext">FundedNext</Link> / Stellar Instant</div>
           <div className="ru-eyebrow"><Zap size={14} aria-hidden="true" /> Разбор программы без оценочного этапа</div>
           <h1>FundedNext Stellar Instant: просадка, стоимость и условия выплаты</h1>
           <p className="ru-lead">

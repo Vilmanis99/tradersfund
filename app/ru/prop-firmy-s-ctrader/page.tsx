@@ -19,6 +19,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import cTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/prop-firmy-s-ctrader'
 const TITLE = 'Проп-фирмы с cTrader 2026: ограничения и цены'
@@ -151,13 +152,12 @@ export default function RussianCTraderPropFirmsPage() {
   return (
     <article className="ru-review-article" data-russian-ctrader-article="platform-to-firm-rule" data-russian-platform-intent="ctrader-prop-firms">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }} />
 
       <section className="ru-hero">
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Проп-фирмы с cTrader</div>
           <div className="ru-eyebrow"><MonitorCog size={14} aria-hidden="true" /> Платформа ≠ разрешение фирмы</div>
           <h1>Проп-фирмы с cTrader: FundedNext или BrightFunded</h1>
           <p className="ru-lead">
