@@ -923,6 +923,29 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-comparison-bright-funded',
     ],
   }],
+  ['/ru/ftmo-vs-bright-funded', {
+    title: 'FTMO или BrightFunded: альтернатива FTMO для россиян',
+    h1: 'FTMO или BrightFunded: альтернатива FTMO для россиян',
+    markers: [
+      'data-russian-partner-comparison="ftmo-bright-funded"',
+      'data-russian-affiliate-disclosure="ftmo-vs-bright"',
+      'data-russian-risk-disclaimer="ftmo-vs-bright"',
+      'data-russian-comparison-verdict="ftmo-bright-funded"',
+      'data-russian-comparison-field="russia"',
+      'data-russian-comparison-field="payments"',
+      'data-russia-status="restricted" data-russia-firm="ftmo"',
+      '/go/bright-funded?from=ru-ftmo-vs-bright-hero',
+      '/go/bright-funded?from=ru-ftmo-vs-bright-verdict',
+      '/go/ftmo?from=ru-ftmo-vs-bright-ftmo-card',
+      '/go/ftmo?from=ru-ftmo-vs-bright-ftmo-verdict',
+      '/go/fundednext?from=ru-ftmo-vs-bright-fundednext',
+      '/go/fundingpips?from=ru-ftmo-vs-bright-fundingpips',
+      'data-russian-comparison-ftmo-cta="secondary-restricted"',
+      'https://ftmo.com/en/faq/who-can-join-ftmo/',
+      'https://help.brightfunded.com/en/articles/9286623-can-i-pay-for-my-challenge-with-crypto',
+      '/ru/ftmo-dlya-rossiyan',
+    ],
+  }],
   ['/ru/promokody-prop-firm', {
     title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded, FundedNext',
     h1: 'Промокоды проп-фирм — октябрь 2026',
@@ -1766,7 +1789,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
 if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
   errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}`)
@@ -1871,6 +1894,19 @@ const russianFtmoPage = pages.find(page =>
     errors.push('/ru/obzor-ftmo: FTMO CTA is missing its closed Russia-access badge')
   }
 }
+{
+  const comparisonHtml = pages.find(page => new URL(page.productionUrl).pathname === '/ru/ftmo-vs-bright-funded')?.html ?? ''
+  const comparisonTags = [...comparisonHtml.matchAll(/<a\b[^>]*>/gi)].map(match => match[0])
+  const ftmoTags = comparisonTags.filter(tag => tag.includes('/go/ftmo?from=ru-ftmo-vs-bright-'))
+  if (ftmoTags.length !== 2 || ftmoTags.some(tag => tag.includes('sponsored') || !tag.includes('rel="nofollow noopener"'))) {
+    errors.push('/ru/ftmo-vs-bright-funded: FTMO official CTAs are missing or falsely labelled as sponsored')
+  }
+  const firstBright = comparisonHtml.indexOf('/go/bright-funded?from=ru-ftmo-vs-bright-hero')
+  const firstFtmo = comparisonHtml.indexOf('/go/ftmo?from=ru-ftmo-vs-bright-')
+  if (firstBright < 0 || firstFtmo < 0 || firstBright > firstFtmo) {
+    errors.push('/ru/ftmo-vs-bright-funded: BrightFunded CTA must render before any FTMO CTA')
+  }
+}
 // Every /go/ CTA on /ru pages carries a Russia-access badge matching firms.json russiaStatus.
 {
   const statusBySlug = new Map(firmRecords.map(firm => [outboundSlug(firm.name), firm.russiaStatus ?? 'unverified']))
@@ -1928,6 +1964,10 @@ for (const [path, href] of [
   ['/ru/prop-firmy-bez-chelendzha', '/go/fundednext?from=ru-instant-fundednext'],
   ['/ru/prop-firmy-bez-chelendzha', '/go/bright-funded?from=ru-instant-bright-alternative'],
   ['/ru/fundednext-vs-fundingpips', '/go/bright-funded?from=ru-comparison-bright-funded'],
+  ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-hero'],
+  ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-verdict'],
+  ['/ru/ftmo-vs-bright-funded', '/go/fundednext?from=ru-ftmo-vs-bright-fundednext'],
+  ['/ru/ftmo-vs-bright-funded', '/go/fundingpips?from=ru-ftmo-vs-bright-fundingpips'],
   ['/ru/obzor-proplive', '/go/fundednext?from=ru-proplive-global-fundednext'],
   ['/ru/obzor-proplive', '/go/bright-funded?from=ru-proplive-global-bright-funded'],
   ['/ru/obzor-eratrade', '/go/fundednext?from=ru-eratrade-global-fundednext'],
