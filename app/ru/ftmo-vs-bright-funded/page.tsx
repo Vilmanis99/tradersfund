@@ -29,8 +29,9 @@ export const metadata: Metadata = {
 /** Dated facts from Prop Firm Tracker files (/workspace/ru-data/2026-10-14-*.md) and firms.json rule evidence. */
 const TRACKER_CAPTURE = '2026-10-14'
 const RULES_CAPTURE = '2026-10-15'
-const PAYOUT_CAPTURE = '2026-10-16'
 const TRUSTPILOT_CAPTURE = '2026-10-15'
+/** /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md (ftmo.com global pages, not FTMO US). */
+const PAYMENTS_CAPTURE = '2026-10-19'
 
 const SOURCES = {
   ftmoCountries: 'https://ftmo.com/en/faq/who-can-join-ftmo/',
@@ -38,6 +39,9 @@ const SOURCES = {
   ftmoObjectives: 'https://ftmo.com/en/trading-objectives/',
   ftmoPlatforms: 'https://ftmo.com/en/trading-platforms/',
   ftmoTwoStep: 'https://ftmo.com/en/2-step-challenge/',
+  ftmoPayments: 'https://ftmo.com/en/faq/what-payment-methods-are-available/',
+  ftmoCryptoWithdrawals: 'https://ftmo.com/en/crypto-withdrawals/',
+  brightPayouts: 'https://help.brightfunded.com/en/articles/9241681-how-can-i-get-paid',
   brightCountries: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
   brightCrypto: 'https://help.brightfunded.com/en/articles/9286623-can-i-pay-for-my-challenge-with-crypto',
   brightCards: 'https://help.brightfunded.com/en/articles/12000749-the-most-frequently-asked-general-questions',
@@ -62,7 +66,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Чем оплатить челлендж BrightFunded из России?',
-    a: `${asOf(TRACKER_CAPTURE)} BrightFunded принимает криптовалюту: BTC (сети Bitcoin и Lightning), USDT (TRC20), USDC (ERC-20), ETH (ERC-20), LTC, TRX и SOL. Оплата картой тоже подтверждена, но о картах «Мир» и картах российских банков фирма официально ничего не пишет, поэтому на них не рассчитывайте заранее.`,
+    a: `${asOf(PAYMENTS_CAPTURE)} BrightFunded принимает криптовалюту: BTC (сети Bitcoin и Lightning), USDT (TRC20), USDC (ERC-20), ETH (ERC-20), LTC, TRX и SOL. Оплата банковской картой тоже подтверждена (платёжные системы фирма не называет), но о картах «Мир» и картах российских банков фирма официально ничего не пишет, поэтому на них не рассчитывайте заранее.`,
   },
   {
     q: 'У кого выше доля прибыли: FTMO или BrightFunded?',
@@ -140,7 +144,7 @@ export default function RussianFtmoVsBrightFundedPage() {
   const bfBrightDailyLine = bfBright?.dailyLossPct != null ? (100000 * bfBright.dailyLossPct) / 100 : null
   const usd = (value: number | null) => value == null ? 'не подтверждено' : `$${value.toLocaleString('en-US')}`
 
-  const rows: Array<{ id: string; field: string; bright: ReactNode; ftmo: ReactNode; date: string; source: string }> = [
+  const rows: Array<{ id: string; field: string; bright: ReactNode; ftmo: ReactNode; date: string; source: string; source2?: string }> = [
     {
       id: 'russia', field: 'Доступ из России',
       bright: <>Россия не в списке ограничений (запрещены Куба, Иран, КНДР, Пакистан, Сирия, Вьетнам) <RuAccessBadge firm="bright-funded" /></>,
@@ -179,9 +183,9 @@ export default function RussianFtmoVsBrightFundedPage() {
     },
     {
       id: 'payout', field: 'Первая выплата и частота',
-      bright: 'Первый запрос — через 30 дней после первой сделки на счёте, затем раз в 14 дней; еженедельно — платное дополнение (справка противоречит себе, см. ниже)',
-      ftmo: 'Запрос вознаграждения — на 14-й день или позже после первой сделки на счёте',
-      date: PAYOUT_CAPTURE, source: SOURCES.brightReward,
+      bright: 'Первая выплата — через 30 дней после первой сделки на счёте. Дальше, судя по справке и списку дополнений, раз в 14 дней по умолчанию, а еженедельно — платное дополнение. Справка противоречит себе: там же 14-дневный цикл назван дополнением',
+      ftmo: 'Первую выплату можно запросить на 14-й день после первой сделки; график последующих выплат FTMO публично не уточняет',
+      date: PAYMENTS_CAPTURE, source: SOURCES.brightReward, source2: SOURCES.ftmoReward,
     },
     {
       id: 'platforms', field: 'Платформы',
@@ -191,9 +195,15 @@ export default function RussianFtmoVsBrightFundedPage() {
     },
     {
       id: 'payments', field: 'Оплата челленджа',
-      bright: 'Крипта: BTC (Bitcoin, Lightning), USDT TRC20, USDC ERC-20, ETH ERC-20, LTC, TRX, SOL; карта. Карты «Мир» и российских банков официально не упоминаются',
-      ftmo: 'Не проверяли: для резидентов РФ неактуально, страна ограничена',
-      date: TRACKER_CAPTURE, source: SOURCES.brightCrypto,
+      bright: 'Крипта: BTC (сети Bitcoin и Lightning), USDT TRC20, USDC ERC-20, ETH ERC-20, LTC, TRX, SOL; банковская карта (платёжные системы фирма не называет). Карты «Мир» и российских банков официально не упоминаются',
+      ftmo: 'Без комиссии: карты Visa, Mastercard, Diners Club, Discover, Apple Pay, Google Pay, Revolut Pay. С комиссией 3%: PayPal, Skrill, крипта. Банковский перевод — только в EUR или CZK. «Мир» и карты российских банков не упоминаются',
+      date: PAYMENTS_CAPTURE, source: SOURCES.brightCrypto, source2: SOURCES.ftmoPayments,
+    },
+    {
+      id: 'withdrawals', field: 'Способы получения выплаты',
+      bright: 'USDC (ERC-20) или банковский перевод в евро',
+      ftmo: 'Банковский перевод, Visa Direct / Mastercard Send (до $20,000), Skrill (до $3,000), крипта (BTC, ETH, LTC, USDC ERC-20, USDT TRC20). PayPal и Rise в списке нет',
+      date: PAYMENTS_CAPTURE, source: SOURCES.brightPayouts, source2: SOURCES.ftmoReward,
     },
     {
       id: 'days', field: 'Минимум торговых дней',
@@ -306,7 +316,7 @@ export default function RussianFtmoVsBrightFundedPage() {
 
       <section className="ru-section" id="tablica">
         <div className="ru-shell">
-          <h2>FTMO и BrightFunded: 13 различий в одной таблице</h2>
+          <h2>FTMO и BrightFunded: {rows.length} различий в одной таблице</h2>
           <p className="ru-muted">BrightFunded стоит первым, потому что открыт для России; FTMO — ориентир для сравнения. «Не подтверждено» не значит «нет ограничения». Цены — базовые, без акций: итог на странице оплаты может отличаться.</p>
           {!complete && <p className="ru-notice" data-russian-comparison-evidence-status="recapture-required">Часть данных старше 30 дней или отсутствует. Такие ячейки помечены, а числовые выводы ниже нужно перепроверить на сайте фирмы.</p>}
           <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Сравнение FTMO и BrightFunded">
@@ -319,13 +329,16 @@ export default function RussianFtmoVsBrightFundedPage() {
                     <td><strong>{row.field}</strong></td>
                     <td>{row.bright}</td>
                     <td>{row.ftmo}</td>
-                    <td><a href={row.source} target="_blank" rel="noopener noreferrer">{asOf(row.date)}</a></td>
+                    <td>
+                      <a href={row.source} target="_blank" rel="noopener noreferrer">{asOf(row.date)}</a>
+                      {row.source2 ? <>{' · '}<a href={row.source2} target="_blank" rel="noopener noreferrer">второй источник</a></> : null}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="ru-source-line">Цены и параметры программ — из датированных записей по каждой программе (самая ранняя — {ruDate(earliestCapture)}). Доступ по странам, сплит FTMO и способы оплаты BrightFunded — проверка {ruDate(TRACKER_CAPTURE)} по официальным справкам.</p>
+          <p className="ru-source-line">Цены и параметры программ — из датированных записей по каждой программе (самая ранняя — {ruDate(earliestCapture)}). Доступ по странам и сплит FTMO — проверка {ruDate(TRACKER_CAPTURE)}; способы оплаты, вывода и график выплат обеих фирм — {ruDate(PAYMENTS_CAPTURE)}, по официальным страницам ftmo.com и справке BrightFunded.</p>
         </div>
       </section>
 
@@ -358,10 +371,11 @@ export default function RussianFtmoVsBrightFundedPage() {
             без конвертации валют: счёт номинирован в долларах, а взнос — в евро.
           </p>
           <p>
-            Срок важнее процента. У FTMO заявку можно подать на 14-й день после первой сделки на профинансированном счёте.
-            У BrightFunded — через 30 дней, затем раз в 14 дней. В справке BrightFunded {asOf(PAYOUT_CAPTURE)} одновременно
-            сказано, что 14-дневный цикл идёт по умолчанию, и что он продаётся как дополнение. Уточните в поддержке до оплаты,
-            если быстрый вывод для вас критичен.
+            Срок важнее процента. У FTMO первую заявку можно подать на 14-й день после первой сделки на профинансированном
+            счёте; как часто можно просить дальше, FTMO публично не уточняет. У BrightFunded первая выплата — через 30 дней,
+            дальше, судя по справке и списку дополнений на сайте, раз в 14 дней по умолчанию, а еженедельно — за доплату.
+            Но справка BrightFunded {asOf(PAYMENTS_CAPTURE)} противоречит себе: там же 14-дневный цикл назван платным дополнением.
+            Уточните в поддержке до оплаты, если быстрый вывод для вас критичен.
           </p>
         </div>
       </section>
@@ -449,12 +463,13 @@ export default function RussianFtmoVsBrightFundedPage() {
             <li><a href={SOURCES.ftmoObjectives} target="_blank" rel="noopener noreferrer">FTMO: торговые цели, просадка и правило лучшего дня</a> — {asOf(RULES_CAPTURE)}.</li>
             <li><a href={SOURCES.ftmoPlatforms} target="_blank" rel="noopener noreferrer">FTMO: платформы</a> — {asOf(RULES_CAPTURE)}.</li>
             <li><a href={SOURCES.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограниченные страны</a> — {asOf(TRACKER_CAPTURE)}.</li>
-            <li><a href={SOURCES.brightCrypto} target="_blank" rel="noopener noreferrer">BrightFunded: оплата криптовалютой</a> и <a href={SOURCES.brightCards} target="_blank" rel="noopener noreferrer">оплата картой</a> — {asOf(TRACKER_CAPTURE)}.</li>
-            <li><a href={SOURCES.brightReward} target="_blank" rel="noopener noreferrer">BrightFunded: сплит и график выплат</a> — {asOf(PAYOUT_CAPTURE)}.</li>
+            <li><a href={SOURCES.brightCrypto} target="_blank" rel="noopener noreferrer">BrightFunded: оплата криптовалютой</a> и <a href={SOURCES.brightCards} target="_blank" rel="noopener noreferrer">оплата картой</a> — {asOf(PAYMENTS_CAPTURE)}.</li>
+            <li><a href={SOURCES.ftmoPayments} target="_blank" rel="noopener noreferrer">FTMO: способы оплаты челленджа</a>, <a href={SOURCES.ftmoReward} target="_blank" rel="noopener noreferrer">вывод вознаграждения</a> и <a href={SOURCES.ftmoCryptoWithdrawals} target="_blank" rel="noopener noreferrer">вывод в криптовалюте</a> — {asOf(PAYMENTS_CAPTURE)}.</li>
+            <li><a href={SOURCES.brightReward} target="_blank" rel="noopener noreferrer">BrightFunded: сплит и график выплат</a> и <a href={SOURCES.brightPayouts} target="_blank" rel="noopener noreferrer">способы выплаты</a> — {asOf(PAYMENTS_CAPTURE)}.</li>
             <li><a href={SOURCES.brightPlatforms} target="_blank" rel="noopener noreferrer">BrightFunded: платформы</a> и <a href={SOURCES.brightConsistency} target="_blank" rel="noopener noreferrer">правило последовательности</a> — {asOf(RULES_CAPTURE)}.</li>
             <li><a href={SOURCES.trustpilotFtmo} target="_blank" rel="noopener noreferrer">Trustpilot FTMO</a> и <a href={SOURCES.trustpilotBright} target="_blank" rel="noopener noreferrer">Trustpilot BrightFunded</a> — {asOf(TRUSTPILOT_CAPTURE)}.</li>
           </ul>
-          <p>Мы не проверяли способы оплаты и вывода у FTMO, личное получение выплаты по каждому сценарию и работу карт российских банков. Если фирма меняет правила, сравнение нужно повторить перед оплатой.</p>
+          <p>Кассу обеих фирм мы не открывали (нужен вход в аккаунт): список способов оплаты на странице оплаты может зависеть от страны. Мы не проверяли личное получение выплаты по каждому сценарию и работу карт российских банков. Если фирма меняет правила, сравнение нужно повторить перед оплатой.</p>
           <div className="ru-notice" data-russian-risk-disclaimer="ftmo-vs-bright">
             <strong>Риск.</strong> Торговля с кредитным плечом связана с высоким риском. Большинство участников не проходит
             оценку, а взнос возвращается только по условиям конкретной программы. Счёт после оценки — симулированный:
