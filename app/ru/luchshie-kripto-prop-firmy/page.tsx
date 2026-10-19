@@ -432,7 +432,7 @@ export default function RussianCryptoPropFirmsPage() {
             <h3>Проп-компании для трейдеров криптовалют: что проверить</h3>
             <ul>
               <li><strong>Платформа.</strong> У Crypto Fund Trader на Match-Trader ограничений по странам нет, а MT5 закрыт только для резидентов США (по данным на 14.10.2026).</li>
-              <li><strong>Цена входа.</strong> Crypto Fund Trader Evaluation на $10 000 — $110, на $100 000 — $660 (по данным на 08.09.2026).</li>
+              <li><strong>Цена входа.</strong> Crypto Fund Trader Evaluation на $10 000 — $110, на $100 000 — $660 (по данным на 14.10.2026).</li>
               <li><strong>Доля.</strong> 80% в оценочных программах Crypto Fund Trader, но 50% в Instant — подробнее в блоке выше.</li>
               <li><strong>Выплата.</strong> Crypto Fund Trader платит в USDT (ERC20/TRC20), BTC, ETH или банковским переводом; FundedNext — в USDT и USDC.</li>
             </ul>
