@@ -1694,7 +1694,7 @@ try {
           assert(!html.includes('data-russian-crypto-firm="crypto-fund-trader"'), 'A price correction does not automatically qualify CFT for crypto ranking')
           assert(html.includes('/blog/crypto-fund-trader-review'), 'Russian reader can reach the complete existing review')
           assert(html.includes('products=crypto-fund-trader%3Ainstant%2Ccrypto-fund-trader%3Aascend%2Ccrypto-fund-trader%3Abreak#change-ledger'), 'Watch handoff uses the supported product-focus parameter')
-          assert(html.includes('даты полной проверки остаются 27 июля'), 'Conflict date does not replace the older full-product dates')
+          assert(html.includes('Цены Ascend и Break по данным на 14.10.2026'), 'Resolved Ascend and Break prices carry the dated 14.10 capture')
         }
         if (slug === 'forex-prop-firmy') {
           const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
