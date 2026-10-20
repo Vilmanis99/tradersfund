@@ -948,7 +948,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/promokody-prop-firm', {
-    title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded, FundedNext',
+    title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded для РФ',
     h1: 'Промокоды проп-фирм — октябрь 2026',
     markers: [
       'id="kody"',
@@ -1317,7 +1317,7 @@ const russianExpectations = new Map([
   }],
   ['/ru/prop-firmy-s-ctrader', {
     title: 'Проп-фирмы с cTrader 2026: цены, лимиты и правила cBot',
-    h1: 'Проп-фирмы с cTrader: FundedNext или BrightFunded',
+    h1: 'Проп-фирмы с cTrader: BrightFunded и FundedNext (не для РФ)',
     markers: [
       'data-russian-ctrader-article="platform-to-firm-rule"',
       'data-russian-platform-intent="ctrader-prop-firms"',

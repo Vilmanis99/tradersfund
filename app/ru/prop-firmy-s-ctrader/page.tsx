@@ -24,8 +24,8 @@ import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/prop-firmy-s-ctrader'
 const TITLE = 'Проп-фирмы с cTrader 2026: цены, лимиты и правила cBot'
-const DESCRIPTION = 'Проп-фирмы с cTrader: сравнение FundedNext и BrightFunded — лимиты счёта, комиссия платформы, правила cBot, страны, устройства и проверка условий перед оплатой.'
-const SOCIAL_DESCRIPTION = 'Сравнение FundedNext и Bright Funded для cTrader: лимиты счёта, комиссия платформы, cBot, страны, устройства и проверка перед оплатой.'
+const DESCRIPTION = 'Проп-фирмы с cTrader: BrightFunded и FundedNext (не для резидентов РФ) — лимиты счёта, комиссия платформы, правила cBot, страны и проверка перед оплатой.'
+const SOCIAL_DESCRIPTION = 'Сравнение BrightFunded и FundedNext (не для РФ) для cTrader: лимиты счёта, комиссия платформы, cBot, страны, устройства и проверка перед оплатой.'
 
 export const revalidate = 86400
 
@@ -160,7 +160,7 @@ export default function RussianCTraderPropFirmsPage() {
       <section className="ru-hero">
         <div className="ru-shell">
           <div className="ru-eyebrow"><MonitorCog size={14} aria-hidden="true" /> Платформа ≠ разрешение фирмы</div>
-          <h1>Проп-фирмы с cTrader: FundedNext или BrightFunded</h1>
+          <h1>Проп-фирмы с cTrader: BrightFunded и FundedNext (не для РФ)</h1>
           <p className="ru-lead">
             Сравниваем 2 глобальные проп-фирмы не по логотипу cTrader, а по ограничениям покупки:
             размер счёта, дополнительная комиссия, cBot, страна профиля, устройства и вход в аккаунт.

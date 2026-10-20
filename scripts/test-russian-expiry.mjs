@@ -398,7 +398,7 @@ try {
   const cryptoCards = html => [...html.matchAll(/data-russian-crypto-firm="([^"]+)"/g)].map(match => match[1]).sort()
   const cryptoSchemas = html => [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]))
   const cTraderReference = renderToStaticMarkup(React.createElement(CTraderPage))
-  assert(cTraderReference.includes('<h1>Проп-фирмы с cTrader: FundedNext или BrightFunded</h1>'), 'cTrader H1 uses the exact brand')
+  assert(cTraderReference.includes('<h1>Проп-фирмы с cTrader: BrightFunded и FundedNext (не для РФ)</h1>'), 'cTrader H1 uses the exact brand')
   assert.equal(cryptoSchemas(cTraderReference).find(item => item['@type'] === 'ItemList')?.itemListElement?.[1]?.name, 'BrightFunded', 'cTrader ItemList uses the official brand')
   const cryptoSlugs = cryptoEvidence.ranked.map(evidence => evidence.firmSlug).sort()
   const originalCryptoEvidence = JSON.stringify(cryptoEvidence)

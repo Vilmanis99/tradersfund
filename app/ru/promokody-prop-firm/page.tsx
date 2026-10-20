@@ -18,7 +18,7 @@ const PATH = '/ru/promokody-prop-firm'
 const MONTH_LABEL = 'октябрь 2026'
 const CHECKED = '14.10.2026'
 const CHECKED_ISO = '2026-10-14'
-const TITLE = 'Промокоды проп-фирм — октябрь 2026: BrightFunded, FundedNext'
+const TITLE = 'Промокоды проп-фирм — октябрь 2026: BrightFunded для РФ'
 const DESCRIPTION = 'Промокоды проп-фирм на октябрь 2026: BrightFunded, Upscale и Crypto Fund Trader для России, FundedNext — для других стран. Дата проверки и почему нет FTMO.'
 
 export const metadata: Metadata = {
