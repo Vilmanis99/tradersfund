@@ -24,7 +24,7 @@ type: "post"
   <tbody>
     <tr data-fundednext-product-fit="stellar-2-step"><td style="padding: 8px 9px;"><strong>Stellar 2-Step</strong></td><td style="padding: 8px 9px;">10% static room matters more than completing 2 phases</td><td style="padding: 8px 9px;">$59.99 for $6K</td><td style="padding: 8px 9px;">5% daily / 10% static max</td><td style="padding: 8px 9px;">21 days / first approved reward</td></tr>
     <tr data-fundednext-product-fit="stellar-1-step"><td style="padding: 8px 9px;"><strong>Stellar 1-Step</strong></td><td style="padding: 8px 9px;">1 phase and a 5-business-day cycle matter more than 6% max room</td><td style="padding: 8px 9px;">$65.99 for $6K</td><td style="padding: 8px 9px;">3% daily / 6% static max</td><td style="padding: 8px 9px;">5 business days / third approved reward</td></tr>
-    <tr data-fundednext-product-fit="stellar-lite"><td style="padding: 8px 9px;"><strong>Stellar Lite</strong></td><td style="padding: 8px 9px;">The $32.99 entry matters more than an 8% max-loss cap</td><td style="padding: 8px 9px;">$32.99 for $5K</td><td style="padding: 8px 9px;">4% daily / 8% static max</td><td style="padding: 8px 9px;">21 days / third approved reward</td></tr>
+    <tr data-fundednext-product-fit="stellar-lite"><td style="padding: 8px 9px;"><strong>Stellar Lite</strong></td><td style="padding: 8px 9px;">The $32.99 entry matters more than an 8% max-loss cap</td><td style="padding: 8px 9px;">$32.99 for $5K</td><td style="padding: 8px 9px;">4% daily / 8% static max</td><td style="padding: 8px 9px;">10 business days / third approved reward (accounts bought or reset before 12 Oct 2026: 21 days, then every 14)</td></tr>
     <tr data-fundednext-product-fit="stellar-instant"><td style="padding: 8px 9px;"><strong>Stellar Instant</strong></td><td style="padding: 8px 9px;">0-phase access matters more than a 6% trailing floor</td><td style="padding: 8px 9px;">$59.99 for $2K</td><td style="padding: 8px 9px;">No daily cap / 6% trailing max</td><td style="padding: 8px 9px;">On demand after 5% growth / no refund</td></tr>
   </tbody>
 </table>
@@ -96,7 +96,7 @@ type: "post"
 
 <p><strong>Stellar 1-Step.</strong> The shortcut requires a 10% target over at least 2 trading days. Its 3% daily loss and 6% static maximum loss are substantially tighter: a $100K account breaches at $94,000 overall or after $3,000 of daily loss, even though the fee is $569.99 versus $549.99 for the 2-Step.</p>
 
-<p><strong>Stellar Lite.</strong> Lite uses 8% and 4% targets, 5 days per phase, a 4% daily limit, and an 8% static maximum-loss floor. On $100K, that means $4,000 daily room and an absolute $92,000 floor; the $399.99 fee is $150 below the equivalent 2-Step fee.</p>
+<p><strong>Stellar Lite.</strong> Lite uses 8% and 4% targets, 2 minimum trading days per phase on standard plans (5 on the 90% on-demand option), a 4% daily limit, and an 8% static maximum-loss floor. On $100K, that means $4,000 daily room and an absolute $92,000 floor; the $399.99 fee is $150 below the equivalent 2-Step fee.</p>
 
 <p><strong>Stellar Instant.</strong> There is no evaluation target, daily-loss cap, minimum-day rule, or consistency percentage. The trade-off is a 6% real-time trailing maximum loss: a $10K account starts with a $9,400 floor, a $200 profit lifts it to $9,600, and a $600 peak locks it at $10,000. The floor never moves down and does not reset after a payout; the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> compares that captured absence with 15%–50% product rules.</p>
 
