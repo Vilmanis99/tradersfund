@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { consistencyFields, consistencyRulePhrase, scopedConsistencyRules } from '@/lib/consistencyScope'
+import { consistencyFields, consistencyRulesPhrase, scopedConsistencyRules } from '@/lib/consistencyScope'
 import { ExternalLink } from 'lucide-react'
 import { firmSlug } from '@/lib/firmSlug'
 import { minimumCostToFundedUsd, type Challenge, type Firm } from '@/lib/firms'
@@ -146,10 +146,10 @@ export function buildPickLines(a: Side, b: Side) {
 
     // Consistency: only when this side has an evaluation explicitly recorded
     // without a rule and every evaluation on the other side has a scoped rule.
-    const ruleFree = myEvals.find(product => product.consistencyRuleApplies === false)
+    const ruleFree = myEvals.find(product => product.consistencyRuleApplies === false && !scopedConsistencyRules(product).length)
     const theirRules = theirEvals.map(product => ({ product, rules: scopedConsistencyRules(product) }))
     if (ruleFree && theirRules.length && theirRules.every(entry => entry.rules.length)) {
-      const shown = theirRules.slice(0, 2).map(entry => `${shortName(them.firm, entry.product)}: ${entry.rules.map(consistencyRulePhrase).join(', ')}`)
+      const shown = theirRules.slice(0, 2).map(entry => `${shortName(them.firm, entry.product)}: ${consistencyRulesPhrase(entry.rules, 60)}`)
       add(key, `you'd rather avoid a consistency rule: ${displayName(me.firm, ruleFree)} records none; ${shown.join('; ')}${theirRules.length > 2 ? '; and others' : ''}`, [`${ruleFree.productSlug}.consistencyRuleApplies`, ...theirRules.flatMap(entry => consistencyFields(entry.product))])
     }
 

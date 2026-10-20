@@ -31,10 +31,24 @@ export function scopedConsistencyRules(product: ConsistencyFields): ConsistencyR
   return []
 }
 
-/** "50% consistency rule during evaluation" or "35% consistency rule on On-Demand payouts". */
+/**
+ * "50% consistency rule during evaluation" or "35% consistency rule on
+ * On-Demand payouts". appliesTo is used only when it names a payout route or
+ * cycle and is short; stage labels ("Evaluation", "Trading Combine") read
+ * better as the scope phrase.
+ */
 export function consistencyRulePhrase(rule: ConsistencyRule) {
-  const appliesTo = rule.appliesTo?.trim()
-  return appliesTo ? `${rule.percent}% consistency rule on ${appliesTo}` : `${rule.percent}% consistency rule ${SCOPE_PHRASE[rule.scope]}`
+  let appliesTo = rule.appliesTo?.trim()
+  if (appliesTo && /^(Each|Every|All)\b/.test(appliesTo)) appliesTo = appliesTo[0].toLowerCase() + appliesTo.slice(1)
+  return appliesTo && /payout|cycle|request/i.test(appliesTo) && appliesTo.length <= 40
+    ? `${rule.percent}% consistency rule on ${appliesTo}`
+    : `${rule.percent}% consistency rule ${SCOPE_PHRASE[rule.scope]}`
+}
+
+/** Several rules joined; past maxLength only the first is named. */
+export function consistencyRulesPhrase(rules: ConsistencyRule[], maxLength = 90) {
+  const all = rules.map(consistencyRulePhrase).join(' and a ')
+  return all.length <= maxLength || rules.length === 1 ? all : `${consistencyRulePhrase(rules[0])}, plus other stage rules`
 }
 
 /** Field names behind a product's scoped rules, for the copy-drafts source list. */
@@ -59,8 +73,11 @@ export function consistencyFieldProblems(product: Record<string, unknown>, where
       if (r.appliesTo !== undefined && (typeof r.appliesTo !== 'string' || !r.appliesTo.trim())) problems.push(`${where}: consistencyRules[${index}].appliesTo must be a non-empty string when present`)
       if (typeof r.sourceUrl !== 'string' || !/^https?:\/\//.test(r.sourceUrl)) problems.push(`${where}: consistencyRules[${index}].sourceUrl must be an http(s) URL`)
     })
-    if (product.consistencyRuleApplies === false && Array.isArray(product.consistencyRules) && product.consistencyRules.length) {
-      problems.push(`${where}: no consistency rule cannot also list consistencyRules`)
+    // consistencyRuleApplies describes the captured (evaluation) stage, so false
+    // may sit next to a funded-stage rule (e.g. MFF Builder's payout rule).
+    if (product.consistencyRuleApplies === false && Array.isArray(product.consistencyRules)
+      && product.consistencyRules.some((rule: unknown) => ['evaluation', 'both'].includes((rule as { scope?: string })?.scope ?? ''))) {
+      problems.push(`${where}: no evaluation consistency rule cannot also list an evaluation-stage consistencyRule`)
     }
   }
   return problems

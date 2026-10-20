@@ -206,8 +206,8 @@ function projectProduct(firmSlug, p, capturedAt, problems) {
       if (rule?.appliesTo !== undefined && (typeof rule.appliesTo !== 'string' || !rule.appliesTo.trim())) problems.push(`${where}: consistencyRules[${index}].appliesTo must be a non-empty string when present`)
       if (typeof rule?.sourceUrl !== 'string' || !/^https?:\/\//.test(rule.sourceUrl)) problems.push(`${where}: consistencyRules[${index}].sourceUrl must be an http(s) URL`)
     })
-    if (p.consistencyRuleApplies === false && Array.isArray(p.consistencyRules) && p.consistencyRules.length) {
-      problems.push(`${where}: no consistency rule cannot also list consistencyRules`)
+    if (p.consistencyRuleApplies === false && Array.isArray(p.consistencyRules) && p.consistencyRules.some(rule => ['evaluation', 'both'].includes(rule?.scope))) {
+      problems.push(`${where}: no evaluation consistency rule cannot also list an evaluation-stage consistencyRule`)
     }
   }
   const consistency = num(p.consistencyRulePct)

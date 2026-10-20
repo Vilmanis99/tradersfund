@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { consistencyFields, consistencyRulePhrase, scopedConsistencyRules } from '@/lib/consistencyScope'
+import { consistencyFields, consistencyRulesPhrase, scopedConsistencyRules } from '@/lib/consistencyScope'
 import { ExternalLink } from 'lucide-react'
 import FirmLogo from './FirmLogo'
 import TrustpilotRating from './TrustpilotRating'
@@ -132,7 +132,7 @@ export function buildFitLines(firm: Firm, products: Challenge[]) {
   // consistencyScope); an unscoped percentage misleads, so it stays silent.
   const scoped = products.map(product => ({ product, rules: scopedConsistencyRules(product) })).find(entry => entry.rules.length)
   const consistencyLine: SourcedLine | null = scoped
-    ? { text: `Traders who dislike consistency rules: ${shortName(firm, scoped.product)} has a ${scoped.rules.map(consistencyRulePhrase).join(' and a ')}`, fields: consistencyFields(scoped.product) }
+    ? { text: `Traders who dislike consistency rules: ${shortName(firm, scoped.product)} has a ${consistencyRulesPhrase(scoped.rules)}`, fields: consistencyFields(scoped.product) }
     : null
   const nonRefundable = products.find(product => product.accountSizes.length > 0 && product.accountSizes.every(size => size.refundable === false))
   if (nonRefundable) {

@@ -52,7 +52,8 @@ assert.deepEqual(scope.consistencyFieldProblems({ ...base, consistencyScope: 'ev
 assert.match(scope.consistencyFieldProblems({ ...base, consistencyScope: 'payout' }).join(), /consistencyScope must be one of/)
 assert.match(scope.consistencyFieldProblems({ ...base, consistencyRules: [{ percent: 0, scope: 'funded', sourceUrl: 'https://x.test' }] }).join(), /percent must be above 0/)
 assert.match(scope.consistencyFieldProblems({ ...base, consistencyRules: [{ percent: 35, scope: 'funded' }] }).join(), /sourceUrl must be an http/)
-assert.match(scope.consistencyFieldProblems({ ...base, consistencyRuleApplies: false, consistencyRules: [{ percent: 35, scope: 'funded', sourceUrl: 'https://x.test' }] }).join(), /cannot also list/)
+assert.match(scope.consistencyFieldProblems({ ...base, consistencyRuleApplies: false, consistencyRules: [{ percent: 35, scope: 'evaluation', sourceUrl: 'https://x.test' }] }).join(), /cannot also list/)
+assert.deepEqual(scope.consistencyFieldProblems({ ...base, consistencyRulePct: null, consistencyRuleApplies: false, consistencyRules: [{ percent: 50, scope: 'funded', appliesTo: 'Sim Funded payouts', sourceUrl: 'https://x.test' }] }), [], 'no evaluation rule can sit next to a funded payout rule')
 
 // 3. Wording and precedence.
 assert.equal(scope.consistencyRulePhrase({ percent: 50, scope: 'evaluation', sourceUrl: 'https://x.test' }), '50% consistency rule during evaluation')
