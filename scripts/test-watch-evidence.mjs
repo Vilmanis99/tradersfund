@@ -8,7 +8,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const readEvidence = file => JSON.parse(fs.readFileSync(path.join(root, 'content/data', file), 'utf8'))
 const entries = readEvidence('challenge-watch.json')
 const ruleEntries = entries.filter(entry => entry.ruleEvidenceRefs)
-assert.equal(ruleEntries.length, 3)
+assert.equal(ruleEntries.length, 6)
 for (const entry of ruleEntries) {
   const products = readEvidence(`challenges/${entry.firmSlug}.json`).filter(product => entry.productSlugs.includes(product.productSlug))
   assert(products.length > 0)
