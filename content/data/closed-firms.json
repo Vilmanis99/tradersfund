@@ -1,6 +1,6 @@
 {
   "_note": "Source: /workspace/tradersfundhub/research/closed-firms-evidence.md (captured 2026-10-20). Only firms that file recommends are listed. status, dateLabel, quote and each reported[] item carry sourceType: 'primary' (firm, regulator or court) or 'secondary' (trade press only; must set reportedBy). Secondary items render as 'Reported by <source>' with a link, never as fact. Keep 'published' false until editorial sign-off; while false the page is noindex and left out of the sitemap.",
-  "published": false,
+  "published": true,
   "capturedAt": "2026-10-20",
   "firms": [
     {
