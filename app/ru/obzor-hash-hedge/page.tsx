@@ -422,7 +422,7 @@ export default function RussianHashHedgeReviewPage() {
               <article className="ru-card" data-russian-hh-alternative="fundednext">
                 <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
                 <h3>FundedNext (CFD)</h3>
-                <p className="ru-muted">Только CFD-направление: FundedNext Futures Россию ограничивает. Выплаты в USDT и USDC.</p>
+                <p className="ru-muted">CFD-программы Stellar. Выплаты в USDT и USDC; доступ для РФ — по бейджу рядом с кнопкой.</p>
                 <div className="ru-actions">
                   <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор</Link>
                   <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-hash-hedge-alternative-fundednext" rel={goLinkRel('fundednext')} className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
