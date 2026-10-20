@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import RuRelatedBlock from '@/components/RuRelatedBlock'
+import { RuComparePickVerdict } from '@/components/RuVerdict'
 import { fundedNextOneStepPayoutLabel, fundedNextPayoutSource, isFundedNextPayoutSourceFresh } from '@/lib/fundedNextPayout'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
@@ -267,7 +268,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
       <Breadcrumbs ld={crumbs} locale="ru" />
       {completeEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div
           className="ru-shell"
           data-russian-primary-comparison="fundednext-bright-funded"
@@ -320,6 +321,8 @@ export default function FundedNextVsBrightFundedRussianPage() {
           </div>
         </div>
       </section>
+
+      <RuComparePickVerdict route={PATH} campaign="fn-vs-bright" />
 
       <article className="ru-review-article" data-russian-primary-comparison-article="product-before-brand">
         <section className="ru-section" id="verdict">

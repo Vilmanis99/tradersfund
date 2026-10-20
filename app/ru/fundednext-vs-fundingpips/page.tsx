@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import RuRelatedBlock from '@/components/RuRelatedBlock'
+import { RuComparePickVerdict } from '@/components/RuVerdict'
 import { fundedNextOneStepPayoutLabel, isFundedNextPayoutSourceFresh } from '@/lib/fundedNextPayout'
 import { minimumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
@@ -197,7 +198,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
       <Breadcrumbs ld={crumbs} locale="ru" />
       {completeEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div
           className="ru-shell"
           data-russian-partner-comparison="fundednext-fundingpips"
@@ -227,6 +228,8 @@ export default function RussianFundedNextVsFundingPipsPage() {
           </div>
         </div>
       </section>
+
+      <RuComparePickVerdict route={PATH} campaign="fn-vs-fp" />
 
       <section className="ru-section">
         <div className="ru-shell">

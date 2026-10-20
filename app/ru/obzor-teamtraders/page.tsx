@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import RuRelatedBlock from '@/components/RuRelatedBlock'
+import { RuReviewVerdictBox } from '@/components/RuVerdict'
 import Link from '@/components/SafeLink'
 import {
   AlertTriangle,
@@ -196,6 +197,8 @@ export default function RussianTeamTradersReviewPage() {
           </nav>
         </div>
       </section>
+
+        <RuReviewVerdictBox route={PATH} campaign="teamtraders-review" sourcesHref="#istochniki" />
 
       <div data-russian-teamtraders-evidence-status={hasFreshEvidence ? 'dated' : 'recapture-required'}>
       <section className="ru-section">

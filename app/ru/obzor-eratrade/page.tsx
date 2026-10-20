@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import RuRelatedBlock from '@/components/RuRelatedBlock'
+import { RuReviewVerdictBox } from '@/components/RuVerdict'
 import Link from '@/components/SafeLink'
 import { ArrowRight, Building2, FileCheck2, Globe2, Scale, ShieldCheck, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -132,6 +133,8 @@ export default function RussianEraTradeReviewPage() {
           </div>
         </div>
       </section>
+
+      <RuReviewVerdictBox route={PATH} campaign="eratrade-review" sourcesHref="#facts" />
 
       <section className="ru-section" id="facts">
         <div className="ru-shell">
