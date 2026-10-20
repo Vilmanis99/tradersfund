@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuAllReviews from '@/components/RuAllReviews'
 import Link from '@/components/SafeLink'
 import { ArrowRight, BadgePercent, CalendarCheck, ShieldAlert } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -215,6 +216,8 @@ export default function RussianPromoHubPage() {
           </div>
         </div>
       </section>
+
+      <RuAllReviews marker="promokody" />
 
       <section className="ru-section">
         <div className="ru-shell ru-content">

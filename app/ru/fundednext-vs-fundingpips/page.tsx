@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { fundedNextOneStepPayoutLabel, isFundedNextPayoutSourceFresh } from '@/lib/fundedNextPayout'
 import { minimumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
@@ -472,6 +473,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
           <RussianFaq items={faqs} />
         </div>
       </section>
+      <RuRelatedBlock path={PATH} />
     </>
   )
 }

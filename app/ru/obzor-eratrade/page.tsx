@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import Link from '@/components/SafeLink'
 import { ArrowRight, Building2, FileCheck2, Globe2, Scale, ShieldCheck, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -222,6 +223,7 @@ export default function RussianEraTradeReviewPage() {
       <section className="ru-section" data-russian-local-faq-status={faqSourcesCurrent ? 'dated' : 'recapture-required'}>
         <div className="ru-shell ru-content"><h2>Частые вопросы</h2>{!faqSourcesCurrent && <p className="ru-muted">Источники ответов включают общий снимок рынка от {marketEvidence.capturedAt} и отдельные проверки Era Trade. Как минимум один источник требует повторной проверки; ответы ниже — датированный разбор, а не подтверждение действующих правил или выплаты.</p>}<RussianFaq items={faqs} /></div>
       </section>
+      <RuRelatedBlock path={PATH} />
     </>
   )
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import Link from '@/components/SafeLink'
 import { ArrowRight, Building2, FileCheck2, Globe2, Scale, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -272,6 +273,7 @@ export default function RussianPropLiveReviewPage() {
           <RussianFaq items={faqs} />
         </div>
       </section>
+      <RuRelatedBlock path={PATH} />
     </>
   )
 }

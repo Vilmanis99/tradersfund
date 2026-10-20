@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { minimumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
@@ -515,6 +516,7 @@ export default function RussianFtmoReviewPage() {
             <RussianFaq items={faqs} />
           </div>
         </section>
+        <RuRelatedBlock path={PATH} />
       </article>
     </>
   )

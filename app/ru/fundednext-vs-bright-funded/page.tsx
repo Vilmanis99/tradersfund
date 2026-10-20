@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { fundedNextOneStepPayoutLabel, fundedNextPayoutSource, isFundedNextPayoutSourceFresh } from '@/lib/fundedNextPayout'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
@@ -629,6 +630,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             <RussianFaq items={pageFaqs} />
           </div>
         </section>
+        <RuRelatedBlock path={PATH} />
       </article>
     </>
   )

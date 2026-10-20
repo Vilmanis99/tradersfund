@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
@@ -574,6 +575,7 @@ export default function RussianBrightFundedReviewPage() {
             <RussianFaq items={pageFaqs} />
           </div>
         </section>
+        <RuRelatedBlock path={PATH} />
       </article>
     </>
   )
