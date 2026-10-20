@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { russiaStatusFor, type RussiaStatus } from '@/lib/russiaAvailability'
 import { RU_ACCESS_BADGE } from '@/components/RuAccessBadgeView'
+import { getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
 
 /**
  * RU Phase 2 verdict copy (content/data/ru-verdicts/<route slug>.json, rules in
@@ -53,6 +54,35 @@ function openAlternative(alternatives: string[] | undefined, exclude: string[]) 
   return (alternatives ?? []).find(name => !exclude.includes(name) && russiaStatusFor(name) === 'available') ?? null
 }
 
+
+/**
+ * Data guards for figures RU Writer quotes as prose. A sentence that contains
+ * `contains` renders only while `holds()` is true for the current data;
+ * otherwise that sentence is dropped, so no hard-coded number ships against
+ * contradicting data. (bright-funded-vs-crypto-fund-trader: the 100K range
+ * "$619–660" and the product list hold only while Ascend is not on sale,
+ * Tracker data/article-slots-2026-10-20 @ 1dc16ef.)
+ */
+const RU_COPY_GUARDS: Array<{ route: string; contains: string; holds: () => boolean }> = [
+  {
+    route: '/ru/bright-funded-vs-crypto-fund-trader',
+    contains: '$619–660',
+    holds: () => {
+      const prices = getChallengesByFirm('crypto-fund-trader')
+        .filter(product => isChallengeFresh(product) && !/break/i.test(product.productName))
+        .map(product => product.accountSizes.find(tier => tier.sizeUsd === 100000)?.priceUsd)
+        .filter((value): value is number => value != null)
+      return prices.length > 0 && Math.min(...prices) === 619 && Math.max(...prices) === 660
+    },
+  },
+]
+
+function guarded(route: string, text: string) {
+  const guards = RU_COPY_GUARDS.filter(guard => guard.route === route && text.includes(guard.contains) && !guard.holds())
+  if (!guards.length) return text
+  return text.split(/(?<=[.!?])\s+(?=[A-ZА-ЯЁ])/).filter(sentence => !guards.some(guard => sentence.includes(guard.contains))).join(' ')
+}
+
 export type RuReviewVerdict = {
   firm: string; status: RussiaStatus; dataAsOf: string; verdict: string; best: string[]; avoid: string[]
 }
@@ -94,5 +124,5 @@ export function getRuCompareVerdict(route: string, now = new Date()): RuCompareV
     const alt = entry.russiaPick.neitherOpen.altText ? openAlternative(entry.russiaPick.alternatives, [entry.a, entry.b]) : null
     if (alt) note = `${note} ${fill(entry.russiaPick.neitherOpen.altText!, { ...values, openAlternative: alt })}`
   }
-  return { a: entry.a, b: entry.b, statusA, statusB, dataAsOf: entry.dataAsOf, verdict: entry.verdict, picks: { a: picks.a.slice(0, MAX_ITEMS), b: picks.b.slice(0, MAX_ITEMS) }, note }
+  return { a: entry.a, b: entry.b, statusA, statusB, dataAsOf: entry.dataAsOf, verdict: guarded(route, entry.verdict), picks: { a: picks.a.filter(line => guarded(route, line) === line).slice(0, MAX_ITEMS), b: picks.b.filter(line => guarded(route, line) === line).slice(0, MAX_ITEMS) }, note }
 }
