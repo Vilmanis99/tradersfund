@@ -8,7 +8,8 @@
     "content/data/firms.json (data/article-slots-2026-10-20 @1dc16ef: assets, maxAllocation, platforms; Russia copy only via russiaStatus, CFT pages name no restriction for RU — Terms/FAQ «Match-Trader: no country restrictions»; Russian cards, KYC and bank payouts unverified, not mentioned)",
     "content/data/challenges/bright-funded.json (2026-10-20, origin/daily/2026-10-20b)",
     "content/data/challenges/crypto-fund-trader.json (data/article-slots-2026-10-20 @1dc16ef: 2-Phase, 1-Phase, Instant 2026-10-20; Break 2026-10-19, conflict watch $199 vs $200 open; Ascend not purchasable 2026-10-20)",
-    "/workspace/tradersfundhub/evidence/article-slots-2026-10-20/cft (home 'Break LAST DAY', Break page 'LIMITED TIME ONLY', store-hidden-items, refund policy; 20.10.2026)"
+    "/workspace/tradersfundhub/evidence/article-slots-2026-10-20/cft (home 'Break LAST DAY', Break page 'LIMITED TIME ONLY', store-hidden-items, refund policy; 20.10.2026)",
+    "https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded (официальная справка BrightFunded «Which Crypto Instruments can you trade at BrightFunded?», дата статьи 25.05.2026, «over 48 cryptocurrency pairs», проверено 20.10.2026)"
   ],
   "verdict": "BrightFunded продаёт три CFD-оценки с возвратным взносом и долей 80%, Crypto Fund Trader — двух- и одноэтапную оценку, Instant и Break, а в списке её активов есть криптовалюта; за счёт 100K BrightFunded берёт €477–497, CFT — $619–660, валюты разные, поэтому цены мы не ранжируем (по данным на 20.10.2026). Break продаётся как предложение на ограниченное время: за 100K — $200 плюс $328 за активацию, при этом на главной указано $199, а в условиях и магазине — $200 (по данным на 19.10.2026).",
   "picks": {
@@ -18,7 +19,6 @@
       "вы торгуете на DXTrade или cTrader: их указывает BrightFunded, но не CFT"
     ],
     "b": [
-      "вы торгуете криптовалютой: она есть в списке активов CFT, у BrightFunded — форекс, индексы и сырьё",
       "вам не нужен минимум торговых дней: в 2-Phase и 1-Phase у CFT его нет, у BrightFunded — 5 дней",
       "вам нужны выплаты по запросу: в Break они по запросу на финансируемом этапе с правилом стабильности 40%, без дневного лимита и с трейлинговой просадкой $3 000 на 100K, но Break предлагается ограниченное время",
       "вы хотите начать без оценки: CFT Instant — до $10 000 за $475, доля от 50%; у BrightFunded такой модели нет"
