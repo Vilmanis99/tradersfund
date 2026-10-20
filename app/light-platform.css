@@ -647,6 +647,8 @@ html .ru-content .ru-section h3 { font-size: 1.25rem; line-height: 1.4; font-wei
 
 @media (max-width: 640px) {
   html .prose, html .ru-content { font-size: 1rem; }
+  /* Narrow (≤3 column) tables stay tables; long tokens wrap instead of forcing a sideways scroll. */
+  html .prose .article-table:is([data-cols="1"], [data-cols="2"], [data-cols="3"]) :is(th, td):not(.num) { overflow-wrap: anywhere; }
   /* RU: tables with 4+ columns keep a readable scroll width. */
   html .ru-table:has(tr > :nth-child(4)) { min-width: 560px; }
   html .ru-table:has(tr > :nth-child(5)) { min-width: 720px; }
