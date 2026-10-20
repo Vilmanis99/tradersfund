@@ -227,6 +227,24 @@ export default function ComparePickVerdict({ a, b, checkedAt, campaign, override
       {wip && <span className="review-verdict__wip">Preview, work in progress</span>}
       <h2 id="compare-pick-title" className="compare-pick__title">{a.firm.name} vs {b.firm.name}: which to pick</h2>
       {checkedAt && <p className="compare-pick__checked">Built from product captures checked {checkedAt}</p>}
+      {/* Mobile only: the column buttons sit below the first screen at 390px. Same /go links, rel and labels. */}
+      <div className="compare-pick__quick" data-pick-quick>
+        {([a, b]).map(side => (
+          <div key={side.firm.name} className="compare-pick__quick-item">
+            <Link
+              href={`/go/${firmSlug(side.firm.name)}?from=compare-${campaign}`}
+              prefetch={false}
+              rel={side.firm.affiliateUrl ? 'sponsored nofollow noopener' : 'nofollow noopener'}
+              target="_blank"
+              className="btn-primary"
+              data-pick-quick-cta={firmSlug(side.firm.name)}
+            >
+              Visit {side.firm.name} <ExternalLink size={12} aria-hidden="true" />
+            </Link>
+            <span>{side.firm.affiliateUrl ? 'Partner link' : 'Official site'}</span>
+          </div>
+        ))}
+      </div>
       <div className="compare-pick__cols">
         {(['a', 'b'] as const).map(key => {
           const side = key === 'a' ? a : b

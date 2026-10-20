@@ -790,3 +790,16 @@ html .p1-rail__more { font-size: 0.85rem; text-align: center; color: var(--accen
 /* Phase 1 rollout: writer pick lines run to ~140 characters; wrap inside the cards at 360/390. */
 html .compare-pick__cols > * { min-width: 0; }
 html .compare-pick__col li { overflow-wrap: break-word; hyphens: manual; }
+
+/* Mobile pick CTAs: compact pair under the pick heading; desktop keeps the column buttons only. */
+html .compare-pick__quick { display: none; }
+@media (max-width: 640px) {
+  html .compare-pick__quick { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 12px; }
+  html .compare-pick__quick-item { display: flex; flex-direction: column; align-items: stretch; gap: 3px; min-width: 0; }
+  html .compare-pick__quick .btn-primary { min-height: 40px; padding: 0.4rem 0.5rem; font-size: 0.85rem; justify-content: center; text-align: center; overflow-wrap: anywhere; }
+  html .compare-pick__quick-item span { font-size: 0.75rem; color: var(--muted); text-align: center; }
+}
+@media (max-width: 640px) {
+  html .compare-pick__quick { align-items: stretch; }
+  html .compare-pick__quick .btn-primary { flex: 1 1 auto; line-height: 1.2; }
+}

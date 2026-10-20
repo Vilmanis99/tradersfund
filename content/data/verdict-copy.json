@@ -63,7 +63,7 @@
     },
     "fundednext-review": {
       "bestFor": [
-        "Weekly payouts on a 1-step: Stellar 1-Step pays every 5 business days",
+        "Weekly payouts on a 1-step: Stellar 1-Step pays weekly, first reward after 5 business days",
         "Getting your fee back: Stellar 2-Step, 1-Step and Lite are refundable"
       ],
       "notFor": [
@@ -191,7 +191,7 @@
         "you trade on cTrader: Alpha Capital supports it; City Traders Imperium doesn't list it"
       ],
       "pickB": [
-        "you want an early first payout: CTI's 1-Step and 2-Step pay weekly from day 7 (Alpha Capital: day 14)",
+        "you want an early first payout: CTI's 1-Step and 2-Step pay weekly from day 7 (Alpha bi-weekly plans: day 14)",
         "you trade the news: City Traders Imperium allows it on every product; Alpha Capital restricts it everywhere",
         "you run EAs: City Traders Imperium allows them on CTI 1-Step only; Alpha Capital restricts them everywhere"
       ]
@@ -213,7 +213,7 @@
         "you want to skip the evaluation: Alpha Capital sells funded accounts with no evaluation; E8 Markets doesn't"
       ],
       "pickB": [
-        "you want an early first payout: E8 One allows on-demand requests from day 3 (Alpha Capital: day 14)",
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (Alpha bi-weekly plans: day 14)",
         "you want a lower $100K fee: E8 Signature lists $280; Alpha Capital's lowest is $397",
         "you trade crypto: E8 Markets lists 2 crypto products; Alpha Capital lists none"
       ]
@@ -234,7 +234,7 @@
         "you plan to scale: Alpha Capital lists a $400,000 maximum allocation; FundedNext lists $300,000"
       ],
       "pickB": [
-        "you want an early first payout: Stellar 1-Step pays every 5 business days (Alpha Capital: day 14)",
+        "you want an early first payout: Stellar 1-Step pays weekly, with the first reward after 5 business days (Alpha bi-weekly plans: day 14)",
         "you want the fee back: 3 of 4 FundedNext products are refundable; no Alpha Capital fee is",
         "you trade on MT4: FundedNext supports it; Alpha Capital doesn't list it"
       ]
@@ -246,7 +246,7 @@
         "you want a lower one-phase target: Alpha One on-demand asks 10%; FundingPips' lowest is 12%"
       ],
       "pickB": [
-        "you want an early first payout: FundingPips 2 Step Pro pays weekly from day 7 (Alpha Capital: day 14)",
+        "you want an early first payout: FundingPips 2 Step Pro pays weekly from day 7 (Alpha bi-weekly plans: day 14)",
         "you want more loss room: FundingPips 1 Step Flex allows a 12% static max loss; Alpha Capital evaluations cap at 10%",
         "you want no minimum trading days: FundingPips 1 Step Flex lists 0 (new and reset accounts); Alpha Capital evaluations need 1+"
       ]
@@ -256,7 +256,7 @@
         "you trade on cTrader: Alpha Capital supports it; FXIFY doesn't list it"
       ],
       "pickB": [
-        "you want an early first payout: FXIFY Lightning pays from day 7, then every 14 days (Alpha Capital: day 14)",
+        "you want an early first payout: FXIFY Lightning pays from day 7, then every 14 days (Alpha bi-weekly plans: day 14)",
         "you want the fee back: 6 of 10 FXIFY products are refundable; no Alpha Capital fee is",
         "you trade crypto: FXIFY lists 2 crypto products; Alpha Capital lists none"
       ]
@@ -268,7 +268,7 @@
         "you trade forex/CFD rather than futures: every Lucid Trading product is futures"
       ],
       "pickB": [
-        "you want an early first payout: LucidDaily pays on demand from day 1 (Alpha Capital: day 14)",
+        "you want an early first payout: LucidDaily pays on demand from day 1 (Alpha bi-weekly plans: day 14)",
         "you trade futures: every Lucid Trading product is a futures evaluation; Alpha Capital lists none",
         "you want a higher starting split: LucidPro pays 90%; Alpha Capital's evaluations top out at 80%"
       ]
@@ -292,7 +292,7 @@
         "you trade forex/CFD rather than futures: every My Funded Futures product is futures"
       ],
       "pickB": [
-        "you want an early first payout: MFF Builder allows a request from day 2 (Alpha Capital: day 14)",
+        "you want an early first payout: MFF Builder allows a request from day 2 (Alpha bi-weekly plans: day 14)",
         "you trade futures: every My Funded Futures product is a futures evaluation; Alpha Capital lists none",
         "you want a higher starting split: MFF Rapid pays 90%; Alpha Capital's evaluations top out at 80%"
       ]
@@ -314,7 +314,7 @@
         "you want a static loss floor: Alpha Pro 6% bi-weekly's 6% max loss is static; every Take Profit Trader product trails"
       ],
       "pickB": [
-        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (Alpha Capital: day 14)",
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (Alpha bi-weekly plans: day 14)",
         "you trade futures: every Take Profit Trader product is a futures evaluation; Alpha Capital lists none",
         "you trade on TradingView: Take Profit Trader supports it; Alpha Capital doesn't list it"
       ]
@@ -338,7 +338,7 @@
         "you want a static loss floor: Alpha Pro 6% bi-weekly's 6% max loss is static; every TradeDay product trails"
       ],
       "pickB": [
-        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (Alpha Capital: day 14)",
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (Alpha bi-weekly plans: day 14)",
         "you trade futures: every TradeDay product is a futures evaluation; Alpha Capital lists none",
         "you trade on TradingView: TradeDay supports it; Alpha Capital doesn't list it"
       ]
@@ -350,7 +350,7 @@
         "you want a static loss floor: Alpha Pro 6% bi-weekly's 6% max loss is static; every Tradeify product trails"
       ],
       "pickB": [
-        "you want an early first payout: Tradeify Select Daily pays from day 1 (Alpha Capital: day 14)",
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (Alpha bi-weekly plans: day 14)",
         "you trade futures: every Tradeify product is a futures evaluation; Alpha Capital lists none",
         "you want a higher starting split: Tradeify Growth Evaluation pays 90%; Alpha Capital's evaluations top out at 80%"
       ]
@@ -405,7 +405,7 @@
         "you plan to scale: BrightFunded lists a $400,000 maximum allocation; FundedNext lists $300,000"
       ],
       "pickB": [
-        "you want an early first payout: Stellar 1-Step pays every 5 business days (BrightFunded: day 30)",
+        "you want an early first payout: Stellar 1-Step pays weekly, with the first reward after 5 business days (BrightFunded: day 30)",
         "you want to skip the evaluation: FundedNext sells funded accounts with no evaluation; BrightFunded doesn't",
         "you trade on MT4: FundedNext supports it; BrightFunded doesn't list it"
       ]
@@ -546,7 +546,7 @@
         "operating history matters to you: City Traders Imperium was founded in 2018, E8 Markets in 2021"
       ],
       "pickB": [
-        "you want an early first payout: E8 One allows on-demand requests from day 3 (CTI: day 7)",
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (CTI challenges: day 7)",
         "you want a lower $100K fee: E8 Signature lists $280; City Traders Imperium's lowest is $449",
         "you trade crypto: E8 Markets lists 2 crypto products; City Traders Imperium lists none"
       ]
@@ -605,14 +605,14 @@
         "you trade on MT5: City Traders Imperium supports it; Lucid Trading doesn't list it"
       ],
       "pickB": [
-        "you want an early first payout: LucidDaily pays on demand from day 1 (CTI: day 7)",
+        "you want an early first payout: LucidDaily pays on demand from day 1 (CTI challenges: day 7)",
         "you trade futures: every Lucid Trading product is a futures evaluation; City Traders Imperium lists none",
         "you want a higher starting split: LucidPro pays 90%; City Traders Imperium's evaluations top out at 80%"
       ]
     },
     "city-traders-imperium-vs-maven": {
       "pickA": [
-        "you want an early first payout: CTI's 1-Step and 2-Step pay weekly from day 7 (Maven: day 10)",
+        "you want an early first payout: CTI's 1-Step and 2-Step pay weekly from day 7 (Maven Standard: day 10)",
         "you run EAs: City Traders Imperium allows them on CTI 1-Step only; Maven bars them everywhere",
         "you plan to scale: City Traders Imperium lists a $2,000,000 maximum allocation; Maven lists $1,000,000"
       ],
@@ -628,7 +628,7 @@
         "you trade forex/CFD rather than futures: every My Funded Futures product is futures"
       ],
       "pickB": [
-        "you want an early first payout: MFF Builder allows a request from day 2 (CTI: day 7)",
+        "you want an early first payout: MFF Builder allows a request from day 2 (CTI challenges: day 7)",
         "you trade futures: every My Funded Futures product is a futures evaluation; City Traders Imperium lists none",
         "you want a higher starting split: MFF Rapid pays 90%; City Traders Imperium's evaluations top out at 80%"
       ]
@@ -650,7 +650,7 @@
         "you trade forex/CFD rather than futures: every Take Profit Trader product is futures"
       ],
       "pickB": [
-        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (CTI: day 7)",
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (CTI challenges: day 7)",
         "you trade futures: every Take Profit Trader product is a futures evaluation; City Traders Imperium lists none",
         "you want a bigger account: Take Profit Trader goes up to $150,000; City Traders Imperium tops out at $100,000"
       ]
@@ -674,7 +674,7 @@
         "you trade forex/CFD rather than futures: every TradeDay product is futures"
       ],
       "pickB": [
-        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (CTI: day 7)",
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (CTI challenges: day 7)",
         "you trade futures: every TradeDay product is a futures evaluation; City Traders Imperium lists none",
         "you want a bigger account: TradeDay goes up to $150,000; City Traders Imperium tops out at $100,000"
       ]
@@ -686,7 +686,7 @@
         "you trade forex/CFD rather than futures: every Tradeify product is futures"
       ],
       "pickB": [
-        "you want an early first payout: Tradeify Select Daily pays from day 1 (CTI: day 7)",
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (CTI challenges: day 7)",
         "you trade futures: every Tradeify product is a futures evaluation; City Traders Imperium lists none",
         "you want a higher starting split: Tradeify Growth Evaluation pays 90%; City Traders Imperium's evaluations top out at 80%"
       ]
@@ -854,7 +854,7 @@
     },
     "e8-markets-vs-fundednext": {
       "pickA": [
-        "you want an early first payout: E8 One allows on-demand requests from day 3 (FundedNext: 5 business days)",
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (FundedNext: first reward after 5 business days)",
         "you want a lower $100K fee: E8 Signature lists $280; FundedNext's lowest is $399.99",
         "you trade crypto: E8 Markets lists 2 crypto products; FundedNext lists none"
       ],
@@ -877,7 +877,7 @@
     },
     "e8-markets-vs-fxify": {
       "pickA": [
-        "you want an early first payout: E8 One allows on-demand requests from day 3 (FXIFY: day 7)",
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (FXIFY Lightning: day 7)",
         "you want a lower $100K fee: E8 Signature lists $280; FXIFY's lowest is $399",
         "you want a bigger account: E8 Markets goes up to $500,000; FXIFY tops out at $400,000"
       ],
@@ -901,7 +901,7 @@
     },
     "e8-markets-vs-maven": {
       "pickA": [
-        "you want an early first payout: E8 One allows on-demand requests from day 3 (Maven: day 10)",
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (Maven Standard: day 10)",
         "you want a lower $100K fee: E8 Signature lists $280; Maven's lowest is $299",
         "you trade crypto: E8 Markets lists 2 crypto products; Maven lists none"
       ],
@@ -989,7 +989,7 @@
         "you plan to scale: FTMO lists a $2,000,000 maximum allocation; FundedNext lists $300,000"
       ],
       "pickB": [
-        "you want an early first payout: Stellar 1-Step pays every 5 business days (FTMO: day 14)",
+        "you want an early first payout: Stellar 1-Step pays weekly, with the first reward after 5 business days (FTMO: day 14)",
         "you hold overnight or over weekends: FundedNext allows both everywhere; FTMO restricts both",
         "you want to skip the evaluation: FundedNext sells funded accounts with no evaluation; FTMO doesn't"
       ]
@@ -1141,14 +1141,14 @@
         "you want a static loss floor: Stellar 2-Step's 10% max loss is static; every Lucid Trading product trails"
       ],
       "pickB": [
-        "you want an early first payout: LucidDaily pays on demand from day 1 (FundedNext: 5 business days)",
+        "you want an early first payout: LucidDaily pays on demand from day 1 (FundedNext: first reward after 5 business days)",
         "you trade futures: every Lucid Trading product is a futures evaluation; FundedNext lists none",
         "you want a higher starting split: LucidPro pays 90%; FundedNext's evaluations top out at 80%"
       ]
     },
     "fundednext-vs-maven": {
       "pickA": [
-        "you want an early first payout: Stellar 1-Step pays every 5 business days (Maven: day 10)",
+        "you want an early first payout: Stellar 1-Step pays weekly, with the first reward after 5 business days (Maven Standard: day 10)",
         "you run EAs: FundedNext allows them with limits on every product; Maven bars them everywhere",
         "you want a bigger account: FundedNext goes up to $200,000; Maven tops out at $100,000"
       ],
@@ -1165,14 +1165,14 @@
         "you want a static loss floor: Stellar 2-Step's 10% max loss is static; every My Funded Futures product trails"
       ],
       "pickB": [
-        "you want an early first payout: MFF Builder allows a request from day 2 (FundedNext: 5 business days)",
+        "you want an early first payout: MFF Builder allows a request from day 2 (FundedNext: first reward after 5 business days)",
         "you trade futures: every My Funded Futures product is a futures evaluation; FundedNext lists none",
         "you want a higher starting split: MFF Rapid pays 90%; FundedNext's evaluations top out at 80%"
       ]
     },
     "fundednext-vs-ofp-funding": {
       "pickA": [
-        "you want an early first payout: Stellar 1-Step pays every 5 business days (OFP: day 14)",
+        "you want an early first payout: Stellar 1-Step pays weekly, with the first reward after 5 business days (OFP: day 14)",
         "you trade on MT5: FundedNext supports it; OFP Funding doesn't list it"
       ],
       "pickB": [
@@ -1186,7 +1186,7 @@
         "you want the fee back: 3 of 4 FundedNext products are refundable; no Take Profit Trader fee is"
       ],
       "pickB": [
-        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (FundedNext: 5 business days)",
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (FundedNext: first reward after 5 business days)",
         "you trade futures: every Take Profit Trader product is a futures evaluation; FundedNext lists none",
         "you trade on TradingView: Take Profit Trader supports it; FundedNext doesn't list it"
       ]
@@ -1210,7 +1210,7 @@
         "you want the fee back: 3 of 4 FundedNext products are refundable; no TradeDay fee is"
       ],
       "pickB": [
-        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (FundedNext: 5 business days)",
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (FundedNext: first reward after 5 business days)",
         "you trade futures: every TradeDay product is a futures evaluation; FundedNext lists none",
         "you trade on TradingView: TradeDay supports it; FundedNext doesn't list it"
       ]
@@ -1222,7 +1222,7 @@
         "you want the fee back: 3 of 4 FundedNext products are refundable; no Tradeify fee is"
       ],
       "pickB": [
-        "you want an early first payout: Tradeify Select Daily pays from day 1 (FundedNext: 5 business days)",
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (FundedNext: first reward after 5 business days)",
         "you trade futures: every Tradeify product is a futures evaluation; FundedNext lists none",
         "you want a higher starting split: Tradeify Growth Evaluation pays 90%; FundedNext's evaluations top out at 80%"
       ]
@@ -1252,7 +1252,7 @@
     },
     "fundingpips-vs-maven": {
       "pickA": [
-        "you want an early first payout: FundingPips 2 Step Pro pays weekly from day 7 (Maven: day 10)",
+        "you want an early first payout: FundingPips 2 Step Pro pays weekly from day 7 (Maven Standard: day 10)",
         "you run EAs: FundingPips allows them with limits on every product; Maven bars them everywhere",
         "you want a bigger account: FundingPips goes up to $200,000; Maven tops out at $100,000"
       ],
@@ -1339,14 +1339,14 @@
         "you want a static loss floor: FXIFY Two Phase Classic's 10% max loss is static; every Lucid Trading product trails"
       ],
       "pickB": [
-        "you want an early first payout: LucidDaily pays on demand from day 1 (FXIFY: day 7)",
+        "you want an early first payout: LucidDaily pays on demand from day 1 (FXIFY Lightning: day 7)",
         "you trade futures: every Lucid Trading product is a futures evaluation; FXIFY lists none",
         "you want a lower $100K fee: LucidFlex lists $293; FXIFY's lowest is $399"
       ]
     },
     "fxify-vs-maven": {
       "pickA": [
-        "you want an early first payout: FXIFY Lightning pays from day 7, then every 14 days (Maven: day 10)",
+        "you want an early first payout: FXIFY Lightning pays from day 7, then every 14 days (Maven Standard: day 10)",
         "you trade crypto: FXIFY lists 2 crypto products; Maven lists none",
         "you run EAs: FXIFY allows them on 5 of its 10 products; Maven bars them everywhere"
       ],
@@ -1363,7 +1363,7 @@
         "you want a static loss floor: FXIFY Two Phase Classic's 10% max loss is static; every My Funded Futures product trails"
       ],
       "pickB": [
-        "you want an early first payout: MFF Builder allows a request from day 2 (FXIFY: day 7)",
+        "you want an early first payout: MFF Builder allows a request from day 2 (FXIFY Lightning: day 7)",
         "you trade futures: every My Funded Futures product is a futures evaluation; FXIFY lists none",
         "you trade on NinjaTrader: My Funded Futures supports it; FXIFY doesn't list it"
       ]
@@ -1383,7 +1383,7 @@
         "you want the fee back: 6 of 10 FXIFY products are refundable; no Take Profit Trader fee is"
       ],
       "pickB": [
-        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (FXIFY: day 7)",
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (FXIFY Lightning: day 7)",
         "you trade futures: every Take Profit Trader product is a futures evaluation; FXIFY lists none",
         "you trade on NinjaTrader: Take Profit Trader supports it; FXIFY doesn't list it"
       ]
@@ -1407,7 +1407,7 @@
         "you want the fee back: 6 of 10 FXIFY products are refundable; no TradeDay fee is"
       ],
       "pickB": [
-        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (FXIFY: day 7)",
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (FXIFY Lightning: day 7)",
         "you trade futures: every TradeDay product is a futures evaluation; FXIFY lists none",
         "you trade on NinjaTrader: TradeDay supports it; FXIFY doesn't list it"
       ]
@@ -1419,14 +1419,14 @@
         "you want the fee back: 6 of 10 FXIFY products are refundable; no Tradeify fee is"
       ],
       "pickB": [
-        "you want an early first payout: Tradeify Select Daily pays from day 1 (FXIFY: day 7)",
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (FXIFY Lightning: day 7)",
         "you trade futures: every Tradeify product is a futures evaluation; FXIFY lists none",
         "you want a lower $100K fee: Tradeify Growth Evaluation lists $255; FXIFY's lowest is $399"
       ]
     },
     "lucid-trading-vs-maven": {
       "pickA": [
-        "you want an early first payout: LucidDaily pays on demand from day 1 (Maven: day 10)",
+        "you want an early first payout: LucidDaily pays on demand from day 1 (Maven Standard: day 10)",
         "you trade futures: every Lucid Trading product is a futures evaluation; Maven lists none",
         "you want a higher starting split: LucidPro pays 90%; Maven's evaluations top out at 80%"
       ],
@@ -1504,7 +1504,7 @@
         "you trade forex/CFD or prediction markets rather than futures: every My Funded Futures product is futures"
       ],
       "pickB": [
-        "you want an early first payout: MFF Builder allows a request from day 2 (Maven: day 10)",
+        "you want an early first payout: MFF Builder allows a request from day 2 (Maven Standard: day 10)",
         "you trade futures: every My Funded Futures product is a futures evaluation; Maven lists none",
         "you want a higher starting split: MFF Rapid pays 90%; Maven's evaluations top out at 80%"
       ]
@@ -1527,7 +1527,7 @@
         "you want a static loss floor: Maven Standard 2-Step's 8% max loss is static; every Take Profit Trader product trails"
       ],
       "pickB": [
-        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (Maven: day 10)",
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (Maven Standard: day 10)",
         "you trade futures: every Take Profit Trader product is a futures evaluation; Maven lists none",
         "you want a bigger account: Take Profit Trader goes up to $150,000; Maven tops out at $100,000"
       ]
@@ -1551,7 +1551,7 @@
         "you want the fee back: 8 of 9 Maven products are refundable; no TradeDay fee is"
       ],
       "pickB": [
-        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (Maven: day 10)",
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (Maven Standard: day 10)",
         "you trade futures: every TradeDay product is a futures evaluation; Maven lists none",
         "you run EAs: TradeDay allows them with limits on every product; Maven bars them everywhere"
       ]
@@ -1563,7 +1563,7 @@
         "you want the fee back: 8 of 9 Maven products are refundable; no Tradeify fee is"
       ],
       "pickB": [
-        "you want an early first payout: Tradeify Select Daily pays from day 1 (Maven: day 10)",
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (Maven Standard: day 10)",
         "you trade futures: every Tradeify product is a futures evaluation; Maven lists none",
         "you want a higher starting split: Tradeify Growth Evaluation pays 90%; Maven's evaluations top out at 80%"
       ]
