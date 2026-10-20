@@ -46,5 +46,20 @@ the same rule as `isChallengeFresh`.
 
 ## Comparison files (`"type": "comparison"`)
 
-Added in the comparisons batch: `a`/`b` firm names (BrightFunded is always `a` when it is in the pair),
-`verdict`, `picks.a` / `picks.b` («Выбирайте {firm}, если…», 2–4 each) and a status-driven `russiaPick`.
+| field | meaning |
+|---|---|
+| `route`, `dataAsOf`, `sources`, `verdict` | as for reviews; the verdict never names a Russia status |
+| `a`, `b` | firm names as in firms.json; BrightFunded is always `a` when it is in the pair |
+| `picks.a` / `picks.b` | «Выбирайте {a}, если…» / «Выбирайте {b}, если…» (2–4 each; same strings as `ComparePickVerdict` `picks`) |
+| `russiaPick` | status-driven Russia line, below |
+
+`russiaPick` rendering, with `sa = russiaStatusFor(a)`, `sb = russiaStatusFor(b)`:
+
+- exactly one side is `available`: add `oneOpen.text` as the **first** bullet of that side's picks
+  (`{open}`/`{other}` = names, `{openBadge}`/`{otherBadge}` = `RU_ACCESS_BADGE[...]`.label), then cap at 4;
+- neither is `available`: show `neitherOpen.text` as a note under both columns (`{a}`, `{b}`, `{aBadge}`, `{bBadge}`,
+  `{altBadge}` = `RU_ACCESS_BADGE.available.label`), plus `altText` when the first firm in `alternatives` with status
+  `available` exists (`{openAlternative}`); otherwise drop `altText`;
+- both are `available` (`bothOpen: null`): no Russia line.
+
+No fallback or override exists here either; the statuses come only from firms.json on the shipping branch.
