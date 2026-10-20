@@ -1101,24 +1101,70 @@ try {
   }
   const { russiaStatusFor } = require(path.join(root, 'lib/russiaAvailability.ts'))
   const { RU_ACCESS_BADGE } = require(path.join(root, 'components/RuAccessBadgeView.tsx'))
-  const assertRussiaCtaBadgesAndOrder = (html, label) => {
+  /**
+   * Standing rule (RuGoLink, 2026-10-14): every firm keeps its sign-up CTA with a
+   * Russia-access badge. For each /go/ CTA whose firms.json russiaStatus is not
+   * 'available': (a) the RuAccessBadgeView badge for that status follows it, with
+   * the label from RU_ACCESS_BADGE; (b) when ranking applies, its first CTA is not
+   * placed above any Russia-open firm. Returns issues instead of throwing so the
+   * all-pages sweep can report every page at once.
+   */
+  const russiaCtaIssues = (html, { ranking = true } = {}) => {
     const ctas = [...html.matchAll(/<a\b[^>]*href="\/go\/([a-z0-9-]+)[?"][^>]*>[\s\S]*?<\/a>/g)]
-      .map(match => ({ firm: match[1], status: russiaStatusFor(match[1]), end: match.index + match[0].length, start: match.index }))
-    assert(ctas.length > 0, `${label}: renders sign-up CTAs`)
+      .map(match => ({ firm: match[1], status: russiaStatusFor(match[1]), end: match.index + match[0].length, start: match.index, column: match[0].includes('data-russia-badge="column"') }))
+    const issues = []
     for (const cta of ctas.filter(item => item.status !== 'available')) {
       const badge = RU_ACCESS_BADGE[cta.status]
       const after = html.slice(cta.end, cta.end + 400).match(/^\s*<span class="ru-access"><span class="ru-badge ru-badge--([a-z]+)" data-russia-status="([a-z]+)" data-russia-firm="([a-z0-9-]+)">([^<]+)<\/span>/)
-      assert(after, `${label}: ${cta.firm} CTA (${cta.status}) is followed by its Russia-access badge`)
-      assert.deepEqual(after.slice(1, 5), [badge.modifier, cta.status, cta.firm, badge.label], `${label}: ${cta.firm} badge reads ${badge.label} from firms.json russiaStatus`)
+      if (!after) issues.push(`${cta.firm} (${cta.status}): CTA has no Russia-access badge right after it${cta.column ? ' (hideBadge, status column instead)' : ''}`)
+      else if (JSON.stringify(after.slice(1, 5)) !== JSON.stringify([badge.modifier, cta.status, cta.firm, badge.label])) issues.push(`${cta.firm} (${cta.status}): badge reads "${after[4]}" (${after[2]}), expected "${badge.label}"`)
     }
     const firstCta = new Map()
     for (const cta of ctas) if (!firstCta.has(cta.firm)) firstCta.set(cta.firm, cta)
-    const openPositions = [...firstCta.values()].filter(cta => cta.status === 'available').map(cta => cta.start)
-    for (const cta of [...firstCta.values()].filter(item => item.status !== 'available')) {
-      assert(openPositions.every(position => position < cta.start), `${label}: ${cta.firm} (${cta.status}) is not ranked above a Russia-open firm`)
+    if (ranking && firstCta.size > 1) {
+      const open = [...firstCta.values()].filter(cta => cta.status === 'available')
+      for (const cta of [...firstCta.values()].filter(item => item.status !== 'available')) {
+        const below = open.filter(item => item.start > cta.start).map(item => item.firm)
+        if (below.length) issues.push(`${cta.firm} (${cta.status}): placed above Russia-open ${below.join(', ')}`)
+      }
     }
-    return ctas
+    return { ctas, firms: [...firstCta.keys()], issues: [...new Set(issues)] }
   }
+  const assertRussiaCtaBadgesAndOrder = (html, label) => {
+    const result = russiaCtaIssues(html)
+    assert(result.ctas.length > 0, `${label}: renders sign-up CTAs`)
+    assert.deepEqual(result.issues, [], `${label}: Russia-access badges and ranking`)
+    return result.ctas
+  }
+  const russiaCtaSweep = new Map()
+  // Pages that fail the widened all-/ru sweep on 2026-10-20, recorded so the branch
+  // stays green while the page fixes land on 2026-10-21. Not a waiver: any issue not
+  // listed here fails the suite, and resolved entries are reported so the list shrinks.
+  // Reviews (/ru/obzor-*) get the badge check (a) only; other pages also get ranking (b).
+  const RUSSIA_CTA_PENDING_2026_10_21 = new Set([
+    '/ru :: fundingpips (unclear): CTA has no Russia-access badge right after it',
+    '/ru/ftmo-vs-bright-funded :: ftmo (restricted): placed above Russia-open fundednext',
+    '/ru/fundednext-vs-fundingpips :: fundingpips (unclear): placed above Russia-open bright-funded',
+    '/ru/kak-rabotayut-chellendzhi-prop-firm :: fundingpips (unclear): placed above Russia-open bright-funded',
+    '/ru/luchshie-kripto-prop-firmy :: fundingpips (unclear): placed above Russia-open bright-funded, crypto-fund-trader',
+    '/ru/luchshie-prop-firmy :: fundingpips (unclear): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: take-profit-trader (unverified): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: alpha-capital (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: apex-trader-funding (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: city-traders-imperium (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: e8-markets (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: ftmo (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: fxify (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: lucid-trading (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: maven (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: my-funded-futures (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: ofp-funding (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: topstep (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: tradeday (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/luchshie-prop-firmy :: tradeify (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
+    '/ru/promokody-prop-firm :: fundingpips (unclear): placed above Russia-open crypto-fund-trader',
+    '/ru/prop-firmy-bez-chelendzha :: fundingpips (unclear): placed above Russia-open bright-funded',
+  ])
   const { russianDiasporaEvidence } = require(path.join(root, 'lib/russianDiasporaEvidence.ts'))
   // Week 1 rewrite (2026-10-14): diaspora page merges the former local-firms directory (#rossiyskie).
   {
@@ -1259,6 +1305,15 @@ try {
         }
         const html = renderToStaticMarkup(React.createElement(Page))
         assert.equal((html.match(/<h1\b/g) ?? []).length, 1, 'one H1 survives expiry')
+        {
+          const route = slug ? `/ru/${slug}` : '/ru'
+          const sweep = russiaCtaIssues(html, { ranking: !slug.startsWith('obzor-') })
+          const entry = russiaCtaSweep.get(route) ?? { ctaDates: 0, firms: new Set(), issues: new Map() }
+          if (sweep.ctas.length) entry.ctaDates++
+          for (const firm of sweep.firms) entry.firms.add(firm)
+          for (const issue of sweep.issues) entry.issues.set(issue, [...(entry.issues.get(issue) ?? []), date])
+          russiaCtaSweep.set(route, entry)
+        }
         for (const match of html.matchAll(/<(h[1-6]|th)\b[^>]*>([\s\S]*?)<\/\1>/g)) {
           const label = match[2].replace(/<[^>]+>/g, ' ')
           assert(!label.includes('Bright Funded'), `${slug || 'ru home'}: headings and table labels use the one-word BrightFunded brand`)
@@ -1864,6 +1919,16 @@ try {
     clock = savedClock
   }
   assert.deepEqual(errors, [])
+  {
+    const found = new Set([...russiaCtaSweep].flatMap(([route, entry]) => [...entry.issues.keys()].map(issue => `${route} :: ${issue}`)))
+    const unexpected = [...found].filter(item => !RUSSIA_CTA_PENDING_2026_10_21.has(item))
+    assert.deepEqual(unexpected, [], 'no new Russia-access badge or ranking issue on any /ru page')
+    const resolved = [...RUSSIA_CTA_PENDING_2026_10_21].filter(item => !found.has(item))
+    if (resolved.length) console.log(`Russia CTA sweep: ${resolved.length} pending item(s) now pass; remove them from RUSSIA_CTA_PENDING_2026_10_21:\n  ${resolved.join('\n  ')}`)
+    const covered = [...russiaCtaSweep.values()].filter(entry => entry.ctaDates > 0).length
+    assert.equal(covered, pages.length, 'every /ru page in the sweep renders firm CTAs on at least one date')
+    console.log(`Russia CTA sweep: ${covered} /ru pages with firm CTAs checked; ${found.size} known issue(s) pending for 2026-10-21.`)
+  }
   console.log(`Russian expiry rendering passed: ${pages.length} pages plus the English homepage × ${dates.length} dates, covering source day-30/day-31 boundaries.`)
 } finally {
   globalThis.Date = RealDate
