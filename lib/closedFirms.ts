@@ -1,25 +1,43 @@
 import data from '../content/data/closed-firms.json'
 
 export type ClosedFirmSection = 'closed' | 'offline'
+export type SourceType = 'primary' | 'secondary'
+
+/** One claim on the page. Secondary claims must name who reported them. */
+export interface SourcedClaim {
+  text: string
+  sourceType: SourceType
+  reportedBy?: { name: string; url: string }
+}
 
 export interface ClosedFirm {
   slug: string
   name: string
   section: ClosedFirmSection
-  status: string
-  dateLabel: string
+  /** ISO date, used for ordering only. */
   date: string
-  quote: string
-  quoteBasis: 'primary' | 'secondary'
-  quoteVia?: string
+  status: SourcedClaim
+  dateLabel: SourcedClaim
+  quote: SourcedClaim
   /** Overrides the default quote label, e.g. for a server response rather than a statement. */
   quoteLabel?: string
+  /** Extra facts that only trade press supports. */
+  reported: SourcedClaim[]
   primarySource: string
   archivedSource?: string
   note?: string
 }
 
 const FIRMS = data.firms as ClosedFirm[]
+
+// A secondary claim without a named, linked source would read as fact.
+for (const firm of FIRMS) {
+  for (const claim of [firm.status, firm.dateLabel, firm.quote, ...firm.reported]) {
+    if (claim.sourceType === 'secondary' && !(claim.reportedBy?.name && claim.reportedBy.url)) {
+      throw new Error(`closed-firms.json: ${firm.slug} has a secondary claim without reportedBy`)
+    }
+  }
+}
 
 /** While false the page stays noindex and out of the sitemap. */
 export const CLOSED_FIRMS_PUBLISHED = data.published === true

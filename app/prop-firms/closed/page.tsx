@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Fragment } from 'react'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import {
   CLOSED_FIRMS_CAPTURED_AT,
   CLOSED_FIRMS_PUBLISHED,
   getClosedFirms,
   type ClosedFirm,
+  type SourcedClaim,
 } from '@/lib/closedFirms'
 
 const PATH = '/prop-firms/closed'
@@ -27,22 +29,41 @@ function hostOf(url: string) {
   try { return new URL(url).hostname.replace(/^www\./, '') } catch { return url }
 }
 
+function ReportedBy({ claim }: { claim: SourcedClaim }) {
+  if (claim.sourceType !== 'secondary' || !claim.reportedBy) return null
+  return (
+    <span data-reported-by={claim.reportedBy.name}>
+      Reported by <a href={claim.reportedBy.url} rel="nofollow noopener" target="_blank">{claim.reportedBy.name}</a>:{' '}
+    </span>
+  )
+}
+
+function Claim({ claim, quoted = false }: { claim: SourcedClaim; quoted?: boolean }) {
+  return (
+    <span data-source-type={claim.sourceType}>
+      <ReportedBy claim={claim} />
+      {quoted ? <q>{claim.text}</q> : claim.text}
+    </span>
+  )
+}
+
 function FirmEntry({ firm }: { firm: ClosedFirm }) {
   return (
     <article id={firm.slug} className="tf-correction" data-closed-firm={firm.slug} data-section={firm.section}>
       <h3>{firm.name}</h3>
       <dl>
         <dt>Status</dt>
-        <dd>{firm.status}</dd>
+        <dd><Claim claim={firm.status} /></dd>
         <dt>Date</dt>
-        <dd><time dateTime={firm.date}>{firm.dateLabel}</time></dd>
-        <dt>{firm.quoteLabel ?? (firm.quoteBasis === 'primary' ? 'What the firm said' : 'Reported wording')}</dt>
-        <dd>
-          <q>{firm.quote}</q>
-          {firm.quoteBasis === 'secondary' && firm.quoteVia && (
-            <> (quoted by <a href={firm.quoteVia} rel="nofollow noopener" target="_blank">{hostOf(firm.quoteVia)}</a>; not from the firm’s own page)</>
-          )}
-        </dd>
+        <dd><time dateTime={firm.date}><Claim claim={firm.dateLabel} /></time></dd>
+        <dt>{firm.quoteLabel ?? (firm.quote.sourceType === 'primary' ? 'What the firm said' : 'Reported wording')}</dt>
+        <dd><Claim claim={firm.quote} quoted /></dd>
+        {firm.reported.map(claim => (
+          <Fragment key={claim.text}>
+            <dt>Other history</dt>
+            <dd><Claim claim={claim} /></dd>
+          </Fragment>
+        ))}
         <dt>Source</dt>
         <dd>
           <a href={firm.primarySource} rel="nofollow noopener" target="_blank">{hostOf(firm.primarySource)}</a>
@@ -75,8 +96,8 @@ export default function ClosedFirmsPage() {
       <section className="home-section" style={{ paddingTop: '2rem' }}>
         <div className="tf-trust" data-trust-page="closed-firms" data-closed-count={closed.length} data-offline-count={offline.length}>
           <p>
-            A firm is listed as closed only when it, a regulator or a court says so. Where we only have a trade-press report, the entry says so.
-            Firms that have been in trouble but are trading or relaunching are not on this list.
+            We list a firm as closed when the firm itself, a regulator or a court says so. Where the only source is a trade-press report,
+            the entry says &ldquo;Reported by&rdquo; and links to that report. Firms that have been in trouble but are trading or relaunching are not on this list.
           </p>
           <h2>Closed</h2>
           {closed.map(firm => <FirmEntry key={firm.slug} firm={firm} />)}
