@@ -803,7 +803,7 @@ const fundedNextInstantSourceUrl = getChallengesByFirm('fundednext')
 
 const russianExpectations = new Map([
   ['/ru', {
-    title: 'Проп-фирмы для русскоязычных трейдеров: цены и правила',
+    title: 'Проп-фирмы 2026: условия и цены для русскоязычных трейдеров',
     h1: 'Проп-фирмы и проп-компании 2026: сравнение условий',
     markers: [
       'data-russian-home-layout="focused"',
@@ -957,7 +957,7 @@ const russianExpectations = new Map([
       'ru-badge ru-badge--open',
       'ru-badge ru-badge--closed',
       '/go/bright-funded?from=ru-promokody-prop-firm-card-1',
-      '/go/fundednext?from=ru-promokody-prop-firm-card-2',
+      '/go/fundednext?from=ru-promokody-prop-firm-card-5',
     ],
   }],
   // Batch 1/2 new pages: expectations apply only once app/ru/<slug>/page.tsx exists.
@@ -1196,14 +1196,14 @@ const russianExpectations = new Map([
         '/go/fundednext?from=ru-fundednext-review-free-trial',
       ] : []),
       '/ru/fundednext-stellar-instant',
-      'data-fundednext-russia-access="conflicting"',
+      'data-fundednext-russia-access="restricted"',
       'data-fundednext-russian-products="',
       'data-fundednext-russian-truecost="true"',
       'data-russian-affiliate-disclosure="fundednext"',
     ],
   }],
   ['/ru/obzor-fundingpips', {
-    title: 'FundingPips: отзывы, обзор 2026 и доступ из России',
+    title: 'FundingPips (Funding Pips): отзывы, обзор 2026, доступ из РФ',
     h1: 'FundingPips: отзывы и обзор 2026 — цены, правила, доступ из России',
     markers: [
       'data-russian-partner-review="fundingpips"',
@@ -1451,6 +1451,20 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-challenge-guide-bright-funded',
     ],
   }],
+  ['/ru/kak-my-zarabatyvaem', {
+    title: 'Как мы зарабатываем: партнёрские ссылки и партнёры',
+    h1: 'Как мы зарабатываем',
+    markers: [
+      'data-trust-page="ru-how-we-make-money"',
+      'data-partnership-policy',
+      'data-affiliate-partners=',
+      'data-ru-disclosure-updated=',
+      'href="/how-we-make-money"',
+      'href="/corrections"',
+      'href="/disclaimers"',
+      'href="/contact"',
+    ],
+  }],
   ['/ru/obzor-proplive', {
     title: 'PropLive: обзор русской проп-компании (2026)',
     h1: 'PropLive: обзор 2026 — Мосбиржа, выплаты и условия',
@@ -1468,7 +1482,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-eratrade', {
-    title: 'Era Trade: обзор условий и выплат (2026)',
+    title: 'Era Trade: обзор 2026 — правила челленджа, сплит и выплаты',
     h1: 'Era Trade: обзор 2026 — правила, сплит и выплаты',
     markers: [
       'data-russian-local-review="era-trade"',
@@ -1484,7 +1498,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-kascapital', {
-    title: 'KasCapital: обзор условий и выплат (2026)',
+    title: 'KasCapital: обзор 2026 — выплаты, плечо и условия компании',
     h1: 'KasCapital: обзор 2026 — капитал, выплаты и правила',
     markers: [
       'data-russian-local-review="kascapital"',
@@ -1790,7 +1804,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
 if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
   errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}`)
