@@ -335,8 +335,8 @@ export default function RussianBestPropFirmsPage() {
             <Link href="#podbor" className="btn-primary" data-russian-funnel-intent="ranking-finder">Подобрать программу <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="#polnyy-reyting" className="btn-outline">Редакционный рейтинг</Link>
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-luchshie-prop-firmy-hero-1" rel={goLinkRel('bright-funded')} className="btn-primary btn-glow">BrightFunded <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-luchshie-prop-firmy-hero-2" rel={goLinkRel('fundednext')} className="btn-outline">FundedNext <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
             <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-luchshie-prop-firmy-hero-3" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-luchshie-prop-firmy-hero-2" rel={goLinkRel('fundednext')} className="btn-outline">FundedNext <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
             <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор BrightFunded</Link>
             <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор FundedNext</Link>
           </div>

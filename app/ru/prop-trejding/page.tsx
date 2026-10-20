@@ -367,8 +367,8 @@ export default function RussianPropTradingPage() {
           <RuFundedNextAccessCaveat />
           <div className="ru-actions">
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-prop-trejding-start-1" rel={goLinkRel('bright-funded')} className="btn-primary">BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-trejding-start-2" rel={goLinkRel('fundednext')} className="btn-outline">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
             <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-prop-trejding-start-3" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-trejding-start-2" rel={goLinkRel('fundednext')} className="btn-outline">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
             <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Рейтинг проп-компаний</Link>
           </div>
           <div className="ru-actions" data-ru-cta-mode="all-firms-secondary">

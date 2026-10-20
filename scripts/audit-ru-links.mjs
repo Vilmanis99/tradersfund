@@ -19,7 +19,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { RUSSIAN_ROUTE_EDITORIAL_DATES } from '../lib/localizedRoutes.ts'
+import { RU_CLOSED_FIRMS_PATH, RUSSIAN_ROUTE_EDITORIAL_DATES } from '../lib/localizedRoutes.ts'
 import { RU_RELATED_MAX, ruReviewFirmFor } from '../lib/ruRelatedLinks.ts'
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -32,7 +32,10 @@ const report = args.includes('--report')
 const HUBS = ['/ru', '/ru/promokody-prop-firm', '/ru/otzyvy-prop-firm']
 const MIN_INBOUND = 3
 
-const routes = Object.keys(RUSSIAN_ROUTE_EDITORIAL_DATES).sort()
+// /ru/zakrytye-prop-firmy is gated by content/data/closed-firms.json (lib/closedFirms.ts), not by
+// RUSSIAN_ROUTE_EDITORIAL_DATES; while published it is a live route and gets the same checks.
+const closedFirmsPublished = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.json'), 'utf8')).published === true
+const routes = [...Object.keys(RUSSIAN_ROUTE_EDITORIAL_DATES), ...(closedFirmsPublished ? [RU_CLOSED_FIRMS_PATH] : [])].sort()
 const registered = new Set(routes)
 
 async function load(route) {

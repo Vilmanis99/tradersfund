@@ -453,11 +453,11 @@ export default function RussianFtmoVsBrightFundedPage() {
             <Link href="/ru/promokody-prop-firm">промокоды</Link>.
           </p>
           <div className="ru-actions" data-russian-comparison-other-firms="fundednext-fundingpips">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ftmo-vs-bright-fundednext" rel={goLinkRel('fundednext')} className="btn-outline">
-              Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
-            </RuGoLink>
             <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-ftmo-vs-bright-fundingpips" rel={goLinkRel('fundingpips')} className="btn-outline">
               Проверить FundingPips <ArrowRight size={14} aria-hidden="true" />
+            </RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ftmo-vs-bright-fundednext" rel={goLinkRel('fundednext')} className="btn-outline">
+              Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
             </RuGoLink>
           </div>
         </div>
