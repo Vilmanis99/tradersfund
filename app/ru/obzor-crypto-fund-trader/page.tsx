@@ -244,8 +244,8 @@ export default function RussianCryptoFundTraderReviewPage() {
               {' '}Независимой проверки выплат нет.
             </p>
             <p>
-              Если вы торгуете форекс и индексы, а крипта вторична, сначала сравните BrightFunded и FundedNext CFD — ссылки в блоке
-              альтернатив. Если крипта основная, начните с Evaluation на небольшом счёте и прочитайте условия перед оплатой.
+              Если вы торгуете форекс и индексы, а крипта вторична, сначала сравните фирмы из блока
+              альтернатив и их бейджи доступа для РФ. Если крипта основная, начните с Evaluation на небольшом счёте и прочитайте условия перед оплатой.
             </p>
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="crypto-fund-trader-review">
               <strong>Раскрытие.</strong> Ссылка на Crypto Fund Trader на этой странице обычная: партнёрской программы с CFT у сайта
@@ -497,7 +497,7 @@ export default function RussianCryptoFundTraderReviewPage() {
         <section className="ru-section" id="alternatives">
           <div className="ru-shell ru-content" data-russian-cft-alternatives="bright-funded-first">
             <h2>Альтернативы Crypto Fund Trader</h2>
-            <p>Если вам важнее форекс и индексы, чем крипта, или нужна оплата в евро, сравните две фирмы, которые {asOf(ACCESS_CHECKED)} не включают Россию в свои списки ограничений.</p>
+            <p>Если вам важнее форекс и индексы, чем крипта, или нужна оплата в евро, сравните BrightFunded и FundedNext. Доступ для РФ у каждой фирмы показан бейджем рядом с кнопкой — он берётся из нашей последней проверки.</p>
             <div className="ru-grid">
               <article className="ru-card" data-russian-cft-alternative="bright-funded">
                 <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
@@ -511,7 +511,7 @@ export default function RussianCryptoFundTraderReviewPage() {
               <article className="ru-card" data-russian-cft-alternative="fundednext">
                 <Bitcoin size={22} color="var(--accent-light)" aria-hidden="true" />
                 <h3>FundedNext (CFD)</h3>
-                <p className="ru-muted">Только CFD-направление: FundedNext Futures Россию ограничивает. Выплаты в USDT и USDC.</p>
+                <p className="ru-muted">CFD-программы Stellar. Выплаты в USDT и USDC; доступ для РФ — по бейджу рядом с кнопкой.</p>
                 <div className="ru-actions">
                   <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор</Link>
                   <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-cft-alternative-fundednext" rel={goLinkRel('fundednext')} className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
