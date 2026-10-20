@@ -11778,8 +11778,8 @@ function checkRussianAcquisitionPilot() {
         rows.push('FTMO Russian Federation restriction evidence is incomplete')
       }
       if (
-        firmAccess.get('fundednext')?.status !== 'conflicting'
-        || firmAccess.get('fundednext')?.sourceUrls?.length !== 4
+        firmAccess.get('fundednext')?.status !== 'restricted'
+        || firmAccess.get('fundednext')?.sourceUrls?.length !== 6
         || !validScopedCapture(firmAccess.get('fundednext')?.sourceCapturedAt)
         || !hasScopedObservations(firmAccess.get('fundednext'))
         || !firmAccess.get('fundednext')?.notes?.some(note => note.includes('card-transfer restrictions'))

@@ -1,0 +1,394 @@
+{
+  "firmSlug": "crypto-fund-trader",
+  "captureType": "targeted-recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T11:30:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/crypto-fund-trader-2026-10-19.json",
+  "egress": "Box egress is a US IP; WooCommerce Store API is not region-specific.",
+  "question": "EN Writer: Ascend still has prices but is not purchasable (per 2026-10-19 recapture).",
+  "method": "curl https://cryptofundtrader.com/wp-json/wc/store/v1/products/{162450,162484,162490,162495,162500,162504}",
+  "storeApi": [
+    {
+      "id": 162495,
+      "name": "$5.000 Ascend Evaluation",
+      "is_purchasable": false,
+      "price": "4500"
+    },
+    {
+      "id": 162500,
+      "name": "$10.000 Ascend Evaluation",
+      "is_purchasable": false,
+      "price": "9000"
+    },
+    {
+      "id": 162504,
+      "name": "$25.000 Ascend Evaluation",
+      "is_purchasable": false,
+      "price": "22500"
+    },
+    {
+      "id": 162450,
+      "name": "$50.000 Ascend Evaluation",
+      "is_purchasable": false,
+      "price": "45000"
+    },
+    {
+      "id": 162484,
+      "name": "$100.000 Ascend Evaluation",
+      "is_purchasable": false,
+      "price": "89900"
+    },
+    {
+      "id": 162490,
+      "name": "$200.000 Ascend Evaluation",
+      "is_purchasable": false,
+      "price": "179800"
+    }
+  ],
+  "changes": [
+    "challenges/crypto-fund-trader.json ascend accountSizes[].priceUsd 39/78/195/390/780/1560 -> null (not purchasable; Terms ladder kept in notes). sourceCapturedAt stays 2026-10-19 (only availability rechecked)."
+  ],
+  "articleSlotRecapture": {
+    "captureType": "full-recapture (article slot: RU review /ru/obzor-crypto-fund-trader)",
+    "capturedAt": "2026-10-20",
+    "capturedAtTimestamp": "2026-10-20T12:32:24+03:00",
+    "timezone": "Europe/Riga",
+    "requestedBy": "Executive Assistant (article slots CFT/Alpha/The5ers) + RU SEO Lead brief /workspace/ru-seo/briefs/new-obzor-crypto-fund-trader.md section 8",
+    "egress": "Box egress is a US IP (ipinfo.io: US). CFT shows one USD price ladder (Terms 5.6 fees in USD; Store API currency USD); no regional price switch observed, so the US view is the global list price. No VPN/proxy used.",
+    "method": "curl --compressed of first-party HTML (text extracted), public WooCommerce Store API product list (per_page=100, 2 pages, 45 items) and single-item endpoints for the hidden Ascend/homepage-Break items, empty guest cart for gateway ids; headless Chrome for Trustpilot; curl of Bybit help article. No account, checkout, payment or KYC attempted. Raw files: /workspace/tradersfundhub/evidence/article-slots-2026-10-20/cft/",
+    "pagesRead": [
+      "https://cryptofundtrader.com/",
+      "https://cryptofundtrader.com/faq/",
+      "https://cryptofundtrader.com/terms-and-conditions/",
+      "https://cryptofundtrader.com/break-challenge/",
+      "https://cryptofundtrader.com/get-started/",
+      "https://cryptofundtrader.com/refund-policy/",
+      "https://cryptofundtrader.com/last-updates-faq/",
+      "https://cryptofundtrader.com/wp-json/wc/store/v1/products?per_page=100",
+      "https://cryptofundtrader.com/wp-json/wc/store/v1/products/{162450,162484,162490,162495,162500,162504,373833,373838,373842}",
+      "https://cryptofundtrader.com/wp-json/wc/store/v1/cart",
+      "https://www.trustpilot.com/review/cryptofundtrader.com",
+      "https://www.bybit.com/en/help-center/article/Service-Restricted-Countries"
+    ],
+    "quoteRecheck": "All 32 rule, payout, payment, country and corporate quotes stored in crypto-fund-trader-2026-10-19.json were found verbatim in today's page text (scripted check). The six Terms 5.6.5 Ascend quotes differ only by a curly apostrophe (‘Ascend’). FAQ sentence set identical to the 2026-10-19 FAQ read.",
+    "prices": {
+      "evaluation": [
+        {
+          "storeId": 13646,
+          "name": "$5.000 Evaluation",
+          "priceUsd": 58,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 10415,
+          "name": "$10.000 Evaluation",
+          "priceUsd": 110,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 10426,
+          "name": "$25.000 Evaluation",
+          "priceUsd": 240,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 11081,
+          "name": "$50.000 Evaluation",
+          "priceUsd": 389,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 11086,
+          "name": "$100.000 Evaluation",
+          "priceUsd": 660,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 11091,
+          "name": "$200.000 Evaluation",
+          "priceUsd": 1250,
+          "isPurchasable": true
+        }
+      ],
+      "accelerated": [
+        {
+          "storeId": 13651,
+          "name": "$5.000 Accelerated",
+          "priceUsd": 40,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 13662,
+          "name": "$10.000 Accelerated",
+          "priceUsd": 80,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 13665,
+          "name": "$25.000 Accelerated",
+          "priceUsd": 219,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 13668,
+          "name": "$50.000 Accelerated",
+          "priceUsd": 369,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 13672,
+          "name": "$100.000 Accelerated",
+          "priceUsd": 619,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 13675,
+          "name": "$200.000 Accelerated",
+          "priceUsd": 1199,
+          "isPurchasable": true
+        }
+      ],
+      "instant": [
+        {
+          "storeId": 107397,
+          "name": "$2.500 Instant Evaluation",
+          "priceUsd": 125,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 107402,
+          "name": "$5.000 Instant Evaluation",
+          "priceUsd": 240,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 107406,
+          "name": "$10.000 Instant Evaluation",
+          "priceUsd": 475,
+          "isPurchasable": true
+        }
+      ],
+      "break": [
+        {
+          "storeId": 357765,
+          "name": "$25.000 Break Evaluation",
+          "priceUsd": 70,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 357770,
+          "name": "$50.000 Break Evaluation",
+          "priceUsd": 140,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 357774,
+          "name": "$100.000 Break Evaluation",
+          "priceUsd": 200,
+          "isPurchasable": true
+        }
+      ],
+      "breakActivation": [
+        {
+          "storeId": 370819,
+          "name": "$25.000 Break Activation Fee",
+          "priceUsd": 138,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 370826,
+          "name": "$50.000 Break Activation Fee",
+          "priceUsd": 198,
+          "isPurchasable": true
+        },
+        {
+          "storeId": 370828,
+          "name": "$100.000 Break Activation Fee",
+          "priceUsd": 328,
+          "isPurchasable": true
+        }
+      ]
+    },
+    "pricesUnchanged": "Evaluation 58/110/240/389/660/1250; Accelerated 40/80/219/369/619/1199; Instant 125/240/475; Break 70/140/200 + activation 138/198/328 (all purchasable). Ascend: not in the purchasable list; single-item endpoints 162495/162500/162504/162450/162484/162490 return is_purchasable=false (store prices 45/90/225/450/899/1798), Terms 5.6.5 ladder 39/78/195/390/780/1560 unchanged; prices stay null as set by rollout e1ea100. Homepage Break items 373833/373838/373842 (70/139/199) is_purchasable=false.",
+    "keyFacts100k": {
+      "evaluation": {
+        "priceUsd": 660,
+        "targets": "8% / 5%",
+        "dailyLossPct": 5,
+        "maxLossPct": 10,
+        "drawdown": "static",
+        "split": 80,
+        "firstPayout": "request after 15 traded days or every 30 calendar days (7 traded days with Weekly add-on)",
+        "consistency": "none (FAQ: applies only to Break Final Stage)",
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "For the 2-Phase Evaluation, the daily maximum loss is 5%, and the maximum overall loss is fixed at 10% of the initial account balance."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Phase 1 8% Profit target Maximum daily loss 5% Maximum overall loss 10% Minimum days traded 0 Maximum days traded Indefinite"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Live Stage 80% Profit Split Maximum daily loss 5% Maximum overall loss 10%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "660 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 100,000 USD"
+          }
+        ]
+      },
+      "accelerated": {
+        "priceUsd": 619,
+        "targets": "10%",
+        "dailyLossPct": 4,
+        "maxLossPct": 6,
+        "drawdown": "trailing",
+        "split": 80,
+        "firstPayout": "same general rule as evaluation",
+        "consistency": "none",
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "For the 1-Phase Evaluation, the daily maximum loss is 4%, and the trailing drawdown rule applies instead of a fixed overall loss limit."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Phase 1 10% Profit target Maximum daily loss 4% Maximum trailing loss 6%"
+          }
+        ]
+      },
+      "break": {
+        "priceUsd": 200,
+        "activationFeeUsd": 328,
+        "totalToFundedUsd": 528,
+        "target": "$6,000 (Phase 1)",
+        "dailyLoss": "none",
+        "maxLoss": "$3,000 trailing",
+        "split": 80,
+        "firstPayout": "on demand in the Final Stage",
+        "consistency": "40% best day, funded (Final Stage) only, checked at payout",
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+            "quote": "Phase 1 Profit Target: $6,000 Trailing drawdown $3,000 Min days traded 0 Consistency Rule NO Leverage 1:100 Live Stage Profit Split: 80% Trailing drawdown $3,000 Min days traded 0 Consistency Rule 40%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+            "quote": "On a BREAK funded account, the consistency rule is a 40% limit on how much of your total profits can come from a single trading day."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+            "quote": "No Daily Loss Limit"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "328 USD as the Activation Fee for the Crypto Fund Trader Break Evaluation with an initial demo capital of 100,000 USD"
+          }
+        ]
+      },
+      "ascend": {
+        "priceUsd": null,
+        "note": "not purchasable (Store API); fixed scholarship 4,200 USD at 100K per notes"
+      },
+      "instant": {
+        "note": "largest tier $10K ($475); no $100K"
+      },
+      "platforms": {
+        "value": [
+          "Match-Trader",
+          "MT5",
+          "Bybit"
+        ],
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Crypto Fund Trader currently offers access to Match-Trader, MetaTrader 5, and Bybit."
+          }
+        ]
+      }
+    },
+    "payouts": {
+      "methods": {
+        "sourceUrl": "https://cryptofundtrader.com/faq/",
+        "quote": "Payment methods: Directly via bank transfer in EUR or USD . Transfer directly to crypto wallet in these available currencies: USDT (ERC20) USDT (TRC20) Bitcoin (BTC) Ethereum (ETH)"
+      },
+      "timing": {
+        "sourceUrl": "https://cryptofundtrader.com/faq/",
+        "quote": "You can request a scholarship reward after trading for at least 15 days, or alternatively, every 30 calendar days, as long as no program rules have been violated."
+      },
+      "processing": {
+        "sourceUrl": "https://cryptofundtrader.com/faq/",
+        "quote": "Our average processing time for scholarship reward payments is approximately 8 hours."
+      },
+      "kyc": {
+        "sourceUrl": "https://cryptofundtrader.com/faq/",
+        "quote": "To complete KYC, you must sign the required contract and pass the verification process."
+      }
+    },
+    "payments": {
+      "faq": {
+        "sourceUrl": "https://cryptofundtrader.com/faq/",
+        "quote": "We accept payments by credit card, PayPal, Apple Pay, Google Pay, and cryptocurrency through our available payment gateways."
+      },
+      "getStarted": {
+        "sourceUrl": "https://cryptofundtrader.com/get-started/",
+        "quote": "We have payment gateways for credit cards and cryptocurrencies, where we accept 11 different ones."
+      },
+      "gatewayIds": {
+        "sourceUrl": "https://cryptofundtrader.com/wp-json/wc/store/v1/cart",
+        "quote": "\"payment_methods\":[\"zen_payment\",\"confirmo\",\"ppcp-gateway\"]"
+      },
+      "unverified": [
+        "Card networks not named",
+        "The 11 cryptocurrencies are not listed on any page read",
+        "No statement on Russian-issued cards (incl. Mir)"
+      ]
+    },
+    "countryAccess": {
+      "summary": "No named country restriction on CFT pages for Match-Trader; MT5 excludes US residents only; Bybit route defers to Bybit's own terms. Russia, Belarus, Ukraine and Kazakhstan are not named anywhere on the CFT pages read (scripted search for russia/belarus/ukrain/kazakh/sanction/ofac/citizen returned no hits).",
+      "faq": {
+        "sourceUrl": "https://cryptofundtrader.com/faq/",
+        "quote": "Country availability may depend on the trading platform selected. Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States."
+      },
+      "terms73": {
+        "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+        "quote": "7.3. Country Restrictions and Platform Availability Platform access is subject to regional regulations and platform-specific compliance requirements: Match-Trader: No country restrictions. MetaTrader 5: Access to this platform is not available to users residing in the United States."
+      },
+      "bybitFaq": {
+        "sourceUrl": "https://cryptofundtrader.com/faq/",
+        "quote": "Crypto Fund Trader does not apply any additional country restrictions to users who choose to complete their evaluation through Bybit. However, all traders must use their own personal Bybit account and are fully responsible for complying with Bybit’s Terms of Service, jurisdictional restrictions"
+      },
+      "footer": {
+        "sourceUrl": "https://cryptofundtrader.com/",
+        "quote": "Neither SWISS RLCRATES AG nor RLCRATES, S.L. (the company that provides services with MT5) operate in countries where crypto or CFD’s activity is not allowed."
+      },
+      "bybitThirdParty": {
+        "sourceUrl": "https://www.bybit.com/en/help-center/article/Service-Restricted-Countries",
+        "pageLastUpdated": "2026-10-16 03:56:21",
+        "quote": "Bybit does not offer services or products to Users in a few excluded jurisdictions including the United States, the Chinese Mainland, Hong Kong, Singapore, Canada, North Korea, Cuba, Iran, Uzbekistan, the Crimea region of Ukraine (including Sevastopol) and the non-government controlled areas of the Donetsk, Luhansk, Kherson and Zaporizhzhia regions of Ukraine",
+        "note": "Third-party (Bybit) page, relevant only to the Bybit route. Russia, Belarus and Kazakhstan are not in this excluded list; Crimea/Sevastopol and the non-government-controlled Donetsk, Luhansk, Kherson and Zaporizhzhia areas are."
+      }
+    },
+    "trustpilot": {
+      "url": "https://www.trustpilot.com/review/cryptofundtrader.com",
+      "ratingSuppressed": true,
+      "quote": "This company’s rating is unavailable due to a breach of our guidelines . ... We’ve removed a number of fake reviews for this company. All reviews ( 1,104 ) 196 reviews in the last 12 months",
+      "reviewCountShown": 1104,
+      "note": "Count recorded here only; firms.json trustpilotCount stays null while suppressed."
+    },
+    "corporate": {
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "quote": "Bahnhofstrasse 21, 6300, Zug, Switzerland SWISS RLCRATES AG (CHE-162.567.204)",
+      "note": "Unchanged."
+    },
+    "promoCode": "No promo/discount code seen on the homepage, FAQ or Break page from the US IP. Nothing added to firms.json or deals.json.",
+    "changesVsPrevious": [
+      "Data: Break consistencyScope=funded + consistencyRules (Break page quote); consistencyRuleApplies=false on Evaluation, Accelerated and Instant (FAQ: \"applies only to Break Final Stage accounts\"); sourceCapturedAt 2026-10-19 -> 2026-10-20 on Evaluation, Accelerated and Instant only (Break and Ascend stay 2026-10-19 under the unresolved cft-ascend-break-price-disagreement watch; Ascend lines left to the rollout branch); challenge-watch crypto-fund-trader-reward-model-correction lastCheckedAt -> 2026-10-20; firms.json lastUpdated/trustpilotCapturedAt/corporateCapturedAt 2026-10-20 + payoutMethods source fields.",
+      "Site: homepage Break tab now labelled \"Break LAST DAY\" (offer may end).",
+      "Trustpilot shown count 1,102 -> 1,104 (still suppressed)."
+    ]
+  }
+}

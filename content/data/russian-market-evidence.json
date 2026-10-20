@@ -465,13 +465,15 @@
     },
     {
       "firmSlug": "fundednext",
-      "status": "conflicting",
+      "status": "restricted",
       "sourceCapturedAt": "2026-10-01",
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
         "https://fundednext.com/company",
         "https://helpfutures.fundednext.com/en/articles/14274473-are-any-countries-restricted-on-fundednext-futures",
-        "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits"
+        "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+        "https://fundednext.com/",
+        "https://fundednext.com/api_docs/terms-of-service"
       ],
       "sourceObservations": [
         {
@@ -498,13 +500,167 @@
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
           "sourceCapturedAt": "2026-10-01",
           "quote": "Lao People's Democratic Republic | Russian Federation | Zambia"
+        },
+        {
+          "sourceUrl": "https://fundednext.com/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Jurisdictional Restrictions: The FundedNext Entities do not offer services to residents of the following jurisdictions: North Korea (DPRK), Myanmar, Belarus, Iran, and Russia, including countries on the FATF high-risk and EU/UN sanctions lists, and Vietnam."
+        },
+        {
+          "sourceUrl": "https://fundednext.com/api_docs/terms-of-service",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "5.3. Without prejudice to other restrictions set forth in these Terms, for CFD Services, at the time of publication of these Terms, the Provider does not make the Services available to residents and citizens of the following countries/territories: Bangladesh, Myanmar, Belarus, North Korea, Syria, Grenada, Chad, Malaysia, Belize, Antigua and Barbuda, Cape Verde, Tuvalu, Vietnam, Bouvet Island, Burundi, Cook Islands, Eritrea, Comoros, Sri Lanka and Fiji (\"Restricted Countries – CFDs\")."
         }
       ],
       "notes": [
         "The CFD restriction article does not list Russia, while the company disclosure says FundedNext Ltd does not serve Russian residents.",
         "FundedNext Futures explicitly restricts Russian Federation account purchases.",
         "FundedNext lists Russia for bank-transfer restrictions and Russian Federation for card-transfer restrictions on performance rewards.",
-        "Until the first-party conflict is resolved at checkout and by support, the site must not describe FundedNext as available to Russian residents."
+        "Until the first-party conflict is resolved at checkout and by support, the site must not describe FundedNext as available to Russian residents.",
+        "2026-10-20: status set to restricted to match firms.json (commit 41f3c05). Basis: the site-wide fundednext.com footer (also on the Terms of Service page) says the FundedNext Entities do not offer services to residents of Russia; ToS 5.3 (CFD list) omits Russia and the footer is treated as operative. The four 2026-10-01 observations keep their own dates."
+      ]
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "status": "available",
+      "sourceCapturedAt": "2026-10-20",
+      "sourceUrls": [
+        "https://cryptofundtrader.com/faq/",
+        "https://cryptofundtrader.com/terms-and-conditions/",
+        "https://cryptofundtrader.com/",
+        "https://www.bybit.com/en/help-center/article/Service-Restricted-Countries"
+      ],
+      "sourceObservations": [
+        {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States."
+        },
+        {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "7.3. Country Restrictions and Platform Availability Platform access is subject to regional regulations and platform-specific compliance requirements: Match-Trader: No country restrictions. MetaTrader 5: Access to this platform is not available to users residing in the United States."
+        },
+        {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Crypto Fund Trader does not apply any additional country restrictions to users who choose to complete their evaluation through Bybit."
+        },
+        {
+          "sourceUrl": "https://cryptofundtrader.com/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Neither SWISS RLCRATES AG nor RLCRATES, S.L. (the company that provides services with MT5) operate in countries where crypto or CFD’s activity is not allowed."
+        },
+        {
+          "sourceUrl": "https://www.bybit.com/en/help-center/article/Service-Restricted-Countries",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "the Crimea region of Ukraine (including Sevastopol) and the non-government controlled areas of the Donetsk, Luhansk, Kherson and Zaporizhzhia regions of Ukraine"
+        }
+      ],
+      "countries": {
+        "russia": {
+          "status": "not-named",
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States.",
+          "note": "Russia is not named on any CFT page read (FAQ, Terms, get-started, refund policy, last-updates FAQ, homepage). Available rests on the absence of a restriction, not on a positive statement. Bybit's excluded list (third party, page updated 2026-10-16) does not name Russia."
+        },
+        "belarus": {
+          "status": "not-named",
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States.",
+          "note": "Belarus not named by CFT; not in Bybit's excluded list."
+        },
+        "ukraine": {
+          "status": "product-specific",
+          "sourceUrl": "https://www.bybit.com/en/help-center/article/Service-Restricted-Countries",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "the Crimea region of Ukraine (including Sevastopol) and the non-government controlled areas of the Donetsk, Luhansk, Kherson and Zaporizhzhia regions of Ukraine",
+          "note": "CFT names no Ukrainian restriction on Match-Trader/MT5. The Bybit route is subject to Bybit's exclusion of Crimea/Sevastopol and the non-government-controlled Donetsk, Luhansk, Kherson and Zaporizhzhia areas (third-party page)."
+        },
+        "kazakhstan": {
+          "status": "not-named",
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Match-Trader: No country restrictions. MetaTrader 5: Access to this platform is not available to users residing in the United States.",
+          "note": "Kazakhstan not named by CFT; not in Bybit's excluded list."
+        }
+      },
+      "notes": [
+        "2026-10-20 article-slot capture: content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json (articleSlotRecapture). Matches firms.json russiaStatus 'available'.",
+        "Unverified: Russian-issued cards (incl. Mir) at checkout; KYC outcome for Russian/Belarusian documents; payout to Russian banks. Bank transfer is EUR/USD; crypto payouts USDT (ERC20/TRC20), BTC, ETH."
+      ]
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "status": "restricted",
+      "sourceCapturedAt": "2026-10-20",
+      "sourceUrls": [
+        "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+        "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account",
+        "https://alphacapitalgroup.uk/product"
+      ],
+      "sourceObservations": [
+        {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Please note that Alpha Capital Group does not provide services to persons who are nationals of, or residents in, the following countries: Afghanistan Belarus ... Russia ..."
+        },
+        {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Sanctioned areas of Ukraine* Republic of Congo * Currently: Donetsk Luhansk Crimea Kherson Zaporizhzhia"
+        },
+        {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "If a trader is from a restricted country but is living in a non-restricted country and holds a government-issued document from that non-restricted country, they can be onboarded."
+        },
+        {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "If a trader is from a restricted country and living in a restricted country, they cannot be onboarded, even if they hold a passport from another country."
+        },
+        {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Italy Japan Jordan Kazakhstan Kenya",
+          "note": "Rendered checkout country dropdown (US-IP box, headless Chrome). Russia and Belarus are absent from the dropdown; Kazakhstan and Ukraine are present."
+        }
+      ],
+      "countries": {
+        "russia": {
+          "status": "restricted",
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Please note that Alpha Capital Group does not provide services to persons who are nationals of, or residents in, the following countries: ... Sudan Russia Republic of South Sudan ...",
+          "note": "Nationals or residents. Russia is not selectable at checkout. KYC article: a Russian national living in a non-restricted country with that country's government document can be onboarded; a resident of a restricted country cannot, even with another passport."
+        },
+        "belarus": {
+          "status": "restricted",
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Please note that Alpha Capital Group does not provide services to persons who are nationals of, or residents in, the following countries: Afghanistan Belarus Burundi ...",
+          "note": "Same nationals-or-residents rule as Russia; Belarus is not selectable at checkout."
+        },
+        "ukraine": {
+          "status": "product-specific",
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Sanctioned areas of Ukraine* Republic of Congo * Currently: Donetsk Luhansk Crimea Kherson Zaporizhzhia",
+          "note": "Only the sanctioned areas (Donetsk, Luhansk, Crimea, Kherson, Zaporizhzhia) are restricted; Ukraine itself is selectable at checkout (Uganda Ukraine United Arab Emirates)."
+        },
+        "kazakhstan": {
+          "status": "not-named",
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Italy Japan Jordan Kazakhstan Kenya",
+          "note": "Kazakhstan is not on the help-centre list and is selectable at checkout."
+        }
+      },
+      "notes": [
+        "Help article dated July 6, 2026 (countries) and July 23, 2026 (KYC), both read 2026-10-20. Capture: content/data/challenges/_captures/alpha-capital-2026-10-20.json (articleSlotRecapture). Matches firms.json russiaStatus 'restricted'."
       ]
     }
   ],
