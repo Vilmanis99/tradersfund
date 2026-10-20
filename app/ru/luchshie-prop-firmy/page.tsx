@@ -20,6 +20,19 @@ import { goLinkRel } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
+// Trace 2026-10-20: BrightFunded entry price reads from challenges/bright-funded.json (cheapest fresh $5K tier and its capture date).
+function brightFundedFiveKFrom() {
+  const tiers = getAllChallenges()
+    .filter(product => product.firmSlug === 'bright-funded' && isChallengeFresh(product))
+    .flatMap(product => product.accountSizes
+      .filter(tier => tier.sizeUsd === 5000 && tier.priceEur != null && tier.priceEur > 0)
+      .map(tier => ({ price: tier.priceEur as number, date: product.sourceCapturedAt })))
+    .sort((a, b) => a.price - b.price)
+  const cheapest = tiers[0]
+  return cheapest ? { price: cheapest.price, date: cheapest.date.split('-').reverse().join('.') } : null
+}
+const brightFundedFrom = brightFundedFiveKFrom()
+
 const PATH = '/ru/luchshie-prop-firmy'
 // Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
 export const revalidate = 3600
@@ -550,7 +563,7 @@ export default function RussianBestPropFirmsPage() {
             BrightFunded и FundedNext не называют Италию и Испанию в своих списках ограничений, а на официальных страницах Crypto Fund Trader
             мы не нашли ограничений ни для ЕС, ни для России: на Match-Trader ограничений по странам нет, MT5 закрыт только для резидентов США
             (по данным на 14.10.2026); BrightFunded к тому же
-            указывает цены в евро (от €49 за $5K, данные на 29.09.2026) и платит банковским переводом в EUR. Перед оплатой сверьте адрес и
+            указывает цены в евро{brightFundedFrom ? ` (от €${brightFundedFrom.price} за $5K, данные на ${brightFundedFrom.date})` : ''} и платит банковским переводом в EUR. Перед оплатой сверьте адрес и
             документ: они должны совпадать с данными профиля. Подробно о разных странах — <RuPendingLink href="/ru/prop-trejding#drugie-strany">проп-трейдинг из других стран</RuPendingLink>.
           </p>
         </div>

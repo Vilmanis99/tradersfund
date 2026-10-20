@@ -79,6 +79,34 @@ function targetLabel(product: Challenge) {
   return values.length ? `${values.join('% / ')}%` : 'не опубликована'
 }
 
+// Trace 2026-10-20: FAQ prices, platforms, payout methods and Trustpilot read from challenges/ftmo.json and firms.json.
+const ruIsoDate = (iso?: string | null) => iso ? iso.split('-').reverse().join('.') : null
+function ftmoPriceFaqAnswer() {
+  const fresh = getChallengesByFirm('ftmo').filter(product => isChallengeFresh(product))
+  const range = (slug: string) => {
+    const product = fresh.find(item => item.productSlug === slug)
+    const tiers = (product?.accountSizes ?? []).filter(tier => tier.priceEur != null && tier.priceEur > 0)
+    if (!product || !tiers.length) return null
+    const prices = tiers.map(tier => tier.priceEur as number)
+    const sizes = tiers.map(tier => tier.sizeUsd)
+    return { text: `${eur(Math.min(...prices))}–${eur(Math.max(...prices))}`, minSize: Math.min(...sizes), maxSize: Math.max(...sizes), date: product.sourceCapturedAt }
+  }
+  const two = range('ftmo-challenge-2-step')
+  const one = range('ftmo-challenge-1-step')
+  if (!two || !one) return 'Актуальные цены FTMO в наших свежих данных сейчас не подтверждены; проверьте их на официальном сайте. Размер счёта указан в USD, а взнос — в EUR.'
+  const date = ruIsoDate([two.date, one.date].sort()[0])
+  const sizes = `от ${usdAccount(Math.min(two.minSize, one.minSize))} до ${usdAccount(Math.max(two.maxSize, one.maxSize))}`
+  return `По данным на ${date} 2-Step стоит ${two.text}, а 1-Step — ${one.text} для счетов ${sizes}. Размер счёта указан в USD, а взнос — в EUR. В обзоре сохранены исходные валюты без пересчёта по временному курсу.`
+}
+const FTMO_PAYOUT_LABELS: Record<string, string> = {
+  'Bank wire': 'банковским переводом',
+  'Visa Direct / Mastercard Send': 'мгновенным переводом на карту через Visa Direct / Mastercard Send',
+  Skrill: 'через Skrill',
+  Crypto: 'в криптовалюте',
+}
+const listRu = (items: string[]) => items.length <= 1 ? items.join('') : `${items.slice(0, -1).join(', ')} или ${items[items.length - 1]}`
+const listRuAnd = (items: string[]) => items.length <= 1 ? items.join('') : `${items.slice(0, -1).join(', ')} и ${items[items.length - 1]}`
+
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какой официальный сайт FTMO?',
@@ -94,7 +122,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Сколько стоит FTMO Challenge?',
-    a: 'По данным от 28 августа 2026 года 2-Step стоит €89–€1,080, а 1-Step — €79–€999 для счетов от $10K до $200K. Размер счёта указан в USD, а взнос — в EUR. В обзоре сохранены исходные валюты без пересчёта по временному курсу.',
+    a: ftmoPriceFaqAnswer(),
   },
   {
     q: 'Чем FTMO 1-Step отличается от 2-Step?',
@@ -117,6 +145,15 @@ const faqs: RussianFaqItem[] = [
 export default function RussianFtmoReviewPage() {
   const firms = getAllFirms()
   const firm = firms.find(candidate => candidate.name === 'FTMO')
+  const ftmoPayoutMethods = (firm?.payoutMethods ?? []).map(method => FTMO_PAYOUT_LABELS[method]).filter((label): label is string => Boolean(label))
+  const ftmoTrustpilot = firm && firm.trustpilotScore != null && firm.trustpilotCount != null && firm.trustpilotCapturedAt
+    && isChallengeFresh({ sourceCapturedAt: firm.trustpilotCapturedAt })
+    ? {
+      score: firm.trustpilotScore.toLocaleString('ru-RU', { minimumFractionDigits: 1, maximumFractionDigits: 1 }),
+      count: firm.trustpilotCount.toLocaleString('ru-RU'),
+      date: ruIsoDate(firm.trustpilotCapturedAt),
+    }
+    : null
   const products = getChallengesByFirm('ftmo')
   const freshProducts = products.filter(product => isChallengeFresh(product))
   const twoStep = freshProducts.find(product => product.productSlug === 'ftmo-challenge-2-step')
@@ -291,8 +328,8 @@ export default function RussianFtmoReviewPage() {
             <h2>FTMO проп: что это за проп-компания</h2>
             <p>
               FTMO — проп-компания, основанная в 2015 году. По нашему профилю фирмы: торговля форексом, криптовалютой, индексами, сырьём и
-              акциями на MT4, MT5, cTrader и DXTrade; максимальный капитал с учётом масштабирования — до $2 000 000; выплаты банковским
-              переводом, через Skrill или в криптовалюте. На Trustpilot — 4,8 при 47 019 отзывах (по данным на 27.07.2026).
+              акциями на {listRuAnd(firm?.platforms ?? [])}; максимальный капитал с учётом масштабирования — до $2 000 000{ftmoPayoutMethods.length ? <>; выплаты {listRu(ftmoPayoutMethods)}{firm?.payoutMethodsCapturedAt ? ` (по данным на ${ruIsoDate(firm.payoutMethodsCapturedAt)})` : ''}</> : null}.
+              {ftmoTrustpilot ? <> На Trustpilot — {ftmoTrustpilot.score} при {ftmoTrustpilot.count} отзывах (по данным на {ftmoTrustpilot.date}).</> : null}
             </p>
             <h3>Проп-трейдинг с FTMO: для кого он доступен</h3>
             <p>
