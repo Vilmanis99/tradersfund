@@ -73,7 +73,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Есть ли у Traders Fund Hub партнёрская ссылка TeamTraders?',
-    a: 'Нет. На проверенных 28 августа 2026 года главной странице, FAQ и оферте не найдена обычная публичная программа для контент-партнёров. Ссылки на FundedNext и BrightFunded ниже относятся к отдельным глобальным фирмам и могут принести Traders Fund Hub комиссию.',
+    a: 'Нет. На проверенных 28 августа 2026 года главной странице, FAQ и оферте не найдена обычная публичная программа для контент-партнёров. Ссылки на BrightFunded и FundedNext ниже относятся к отдельным глобальным фирмам и могут принести Traders Fund Hub комиссию.',
   },
 ]
 
@@ -116,6 +116,8 @@ export default function RussianTeamTradersReviewPage() {
     ).length, 0)
     return { ...route, firm, products, priceCount }
   }).filter(item => item.firm?.affiliateUrl)
+    // Russia-open firms first (firms.json russiaStatus); the array order breaks ties, so BrightFunded leads.
+    .sort((x, y) => Number(y.firm?.russiaStatus === 'available') - Number(x.firm?.russiaStatus === 'available'))
 
   const crumbs = breadcrumbSchema([
     { name: 'Traders Fund Hub', url: '/' },
@@ -202,7 +204,7 @@ export default function RussianTeamTradersReviewPage() {
             <strong>Русский язык не делает эту модель глобальной.</strong>{' '}
             TeamTraders описывает локальную инфраструктуру Московской биржи, CScalp и Финам. Русскоязычному трейдеру
             за пределами России нужно отдельно подтвердить договорную допустимость, документы, платежи, доступ к терминалу
-            и порядок выплаты; резиденту России нельзя переносить правила TeamTraders на FundedNext или BrightFunded.
+            и порядок выплаты; резиденту России нельзя переносить правила TeamTraders на BrightFunded или FundedNext.
           </div>
           <h2>Короткий вывод: это внутридневная модель Мосбиржи, а не CFD-челлендж</h2>
           <div className="ru-grid" data-russian-teamtraders-verdict="model-first">
@@ -385,7 +387,7 @@ export default function RussianTeamTradersReviewPage() {
           </div>
           <p>
             Ссылки на источники ведут прямо на сайт TeamTraders. В следующем разделе отдельно обозначены
-            FundedNext и BrightFunded, переходы к которым могут принести нам комиссию. Партнёрство с этими фирмами
+            BrightFunded и FundedNext, переходы к которым могут принести нам комиссию. Партнёрство с этими фирмами
             не подтверждает качество или условия TeamTraders.
           </p>
         </div>
@@ -396,14 +398,14 @@ export default function RussianTeamTradersReviewPage() {
       <section className="ru-section" id="global-options">
         <div className="ru-shell" data-russian-local-global-funnel="teamtraders">
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="teamtraders-global-options">
-            <strong>FundedNext и BrightFunded — отдельные глобальные партнёры.</strong>{' '}
+            <strong>BrightFunded и FundedNext — отдельные глобальные партнёры; доступ для РФ у каждого показан бейджем рядом с кнопкой.</strong>{' '}
             Мы можем получить комиссию при покупке по партнёрской ссылке. Это не меняет условия сравнения.
             Русский язык не подтверждает доступ: проверьте гражданство, страну проживания, проверку личности (KYC),
             платформу и способ получения денег. Не обходите ограничения через VPN или неверные данные.
           </div>
           <h2>Когда вместо TeamTraders сравнивать глобальную проп-фирму</h2>
           <p className="ru-muted">
-            В описании TeamTraders речь о Мосбирже и ручной внутридневной торговле. Программы FundedNext и BrightFunded
+            В описании TeamTraders речь о Мосбирже и ручной внутридневной торговле. Программы BrightFunded и FundedNext
             с симулированными CFD — другая модель, а не заменяемый тариф на том же рынке. Сопоставляйте их отдельно,
             если вам нужны такие инструменты и фирма разрешает участие с вашим гражданством и местом проживания.
           </p>
@@ -435,7 +437,7 @@ export default function RussianTeamTradersReviewPage() {
             ))}
           </div>
           <p><Link href={finderHref} className="ru-card-link" data-russian-teamtraders-finder="global-cfd-only">{finderHref.endsWith('#podbor') ? 'Открыть подбор глобальных программ с датами проверки →' : 'Открыть две глобальные двухэтапные программы на одинаковый размер счёта →'}</Link> Это сравнение CFD-программ, не тарифов TeamTraders и не разрешение участвовать из любой страны.</p>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> <Link href="/ru/fundednext-vs-bright-funded">Сравнить программы FundedNext и BrightFunded</Link> · <Link href="/ru/dlya-russkoyazychnykh-treyderov">проверка профиля русскоязычного трейдера</Link>.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> <Link href="/ru/fundednext-vs-bright-funded">Сравнить программы BrightFunded и FundedNext</Link> · <Link href="/ru/dlya-russkoyazychnykh-treyderov">проверка профиля русскоязычного трейдера</Link>.</p>
         </div>
       </section>
 
@@ -447,7 +449,7 @@ export default function RussianTeamTradersReviewPage() {
             <li><strong>Затем проверьте техническую совместимость:</strong> если договор вам подходит, уточните доступ к демо-счёту, CScalp, Privod Bondar 2.0 и нужному инструменту Мосбиржи. Бесплатный доступ не означает отсутствие договорных обязательств.</li>
             <li><strong>Сопоставьте стратегию с отбором:</strong> в разборе от {evidence.capturedAt} указаны две цели по 6%, минимум 10 торговых дней и лимиты 2%/4%. Исторический результат не гарантирует прохождения.</li>
             <li><strong>Уточните выплату письменно:</strong> отделите долю на финансируемом демо-счёте от доли на реальном и выясните метод, минимальную сумму, комиссии и сроки зачисления.</li>
-            <li><strong>Проверьте собственный профиль:</strong> разрешение TeamTraders не переносится на FundedNext или BrightFunded; рынок, договор и проверка личности у них другие.</li>
+            <li><strong>Проверьте собственный профиль:</strong> разрешение TeamTraders не переносится на BrightFunded или FundedNext; рынок, договор и проверка личности у них другие.</li>
           </ol>
           <p>
             Этот разбор не присваивает оценку «надёжно» или «ненадёжно». У нас нет проверенной истории выплат

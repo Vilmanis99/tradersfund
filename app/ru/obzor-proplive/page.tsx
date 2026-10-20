@@ -82,6 +82,8 @@ export default function RussianPropLiveReviewPage() {
     const products = freshChallenges.filter(product => product.firmSlug === route.slug)
     return { ...route, firm, products }
   }).filter(item => item.firm?.affiliateUrl)
+    // Russia-open firms first (firms.json russiaStatus); the array order breaks ties, so BrightFunded leads.
+    .sort((x, y) => Number(y.firm?.russiaStatus === 'available') - Number(x.firm?.russiaStatus === 'available'))
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -241,7 +243,7 @@ export default function RussianPropLiveReviewPage() {
       <section className="ru-section">
         <div className="ru-shell" data-russian-local-global-funnel="proplive">
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="proplive-global-options">
-            <strong>FundedNext и BrightFunded — два основных глобальных маршрута.</strong>{' '}
+            <strong>BrightFunded и FundedNext — два глобальных партнёра сайта; доступ для РФ у каждого показан бейджем рядом с кнопкой.</strong>{' '}
             Если вам нужен сопоставимый онлайн-продукт, ниже находятся два коммерчески выделенных партнёра с отдельными русскими обзорами, а не первые места общего рейтинга.
             Это переход к онлайн-сравнению, а не перенос условий PropLive: рынок, брокер, KYC и выплаты нужно сверить отдельно.
             Комиссия возможна после регистрации, но не меняет локальные выводы или порядок сравнения.

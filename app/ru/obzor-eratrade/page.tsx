@@ -82,6 +82,8 @@ export default function RussianEraTradeReviewPage() {
     const products = freshChallenges.filter(product => product.firmSlug === route.slug)
     return { ...route, firm, products }
   }).filter(item => item.firm?.affiliateUrl)
+    // Russia-open firms first (firms.json russiaStatus); the array order breaks ties, so BrightFunded leads.
+    .sort((x, y) => Number(y.firm?.russiaStatus === 'available') - Number(x.firm?.russiaStatus === 'available'))
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -202,7 +204,7 @@ export default function RussianEraTradeReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell" data-russian-local-global-funnel="era-trade">
-          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="eratrade-global-options"><strong>FundedNext и BrightFunded — два основных глобальных маршрута.</strong> Они коммерчески выделены для отдельного онлайн-сравнения, а не объявлены победителями над Era Trade. Дата захвата определяет, можно ли цитировать продуктовые цифры; при просрочке откройте текущую страницу оплаты. Партнёрская комиссия возможна после регистрации, но не меняет порядок проверки страны, KYC и правил.</div>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="eratrade-global-options"><strong>BrightFunded и FundedNext — два глобальных партнёра сайта; доступ для РФ у каждого показан бейджем рядом с кнопкой.</strong> Они коммерчески выделены для отдельного онлайн-сравнения, а не объявлены победителями над Era Trade. Дата захвата определяет, можно ли цитировать продуктовые цифры; при просрочке откройте текущую страницу оплаты. Партнёрская комиссия возможна после регистрации, но не меняет порядок проверки страны, KYC и правил.</div>
           <h2>Глобальные альтернативы для русскоязычных трейдеров</h2>
           <div className="ru-grid">
             {globalCards.map(item => (
