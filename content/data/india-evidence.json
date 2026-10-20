@@ -952,7 +952,7 @@
   {
     "firmSlug": "tradeday",
     "firmName": "TradeDay",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-20",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Albania",
@@ -1012,6 +1012,7 @@
       "Pakistan",
       "Panama",
       "Papua New Guinea",
+      "Palestine",
       "Philippines",
       "Puerto Rico",
       "Romania",
@@ -1028,6 +1029,7 @@
       "Tanzania",
       "Trinidad and Tobago",
       "Tunisia",
+      "Turkey",
       "Uganda",
       "Ukraine",
       "US Virgin Islands",
@@ -1050,7 +1052,7 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from TradeDay's current 81-name outright prohibition list; the restriction test applies to citizenship, residence, and prolonged predominant trading location. Germany and Canada outside Ontario are separately limited to Funded Sim rather than blanket-banned.",
+      "summary": "India is absent from TradeDay's current 83-name outright prohibition list (Palestine and Turkey were added after the 2026-09-14 capture; page modified 1 October); the restriction test applies to citizenship, residence, and prolonged predominant trading location. Germany and Canada outside Ontario are separately limited to Funded Sim rather than blanket-banned.",
       "sourceUrls": [
         "https://tradeday.freshdesk.com/en/support/solutions/articles/103000123294-prohibited-countries",
         "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008683-can-anyone-join-tradeday-"
@@ -1086,7 +1088,7 @@
     },
     "currency": {
       "status": "partial",
-      "summary": "TradeDay's 9 unique product-size combinations across 18 platform cards display dollar-denominated monthly fees from $59 to $225, but the Indian checkout's settlement currency, INR conversion and card-issuer charges remain untested.",
+      "summary": "TradeDay's homepage shows dollar-denominated promotional monthly fees on 2026-10-20 (default Daily Payouts / Intraday cards $45 / $59 / $108 / $162 against $100 / $131 / $240 / $360 list; hero says 'up to 55% OFF', pricing header 'Up to 60% off!'); the stored product captures dated 2026-10-14 run $45–$265 across 12 product-size combinations. The Indian checkout's settlement currency, INR conversion and card-issuer charges remain untested.",
       "sourceUrls": [
         "https://www.tradeday.com/"
       ]
