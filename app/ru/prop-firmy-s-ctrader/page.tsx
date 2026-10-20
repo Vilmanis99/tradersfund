@@ -19,6 +19,8 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import cTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какие проп-фирмы с cTrader сравниваются на странице?',
-    a: 'Подробно сравниваются 2 основных партнёра Traders Fund Hub: FundedNext и BrightFunded. Это партнёрская подборка, а не полный каталог всех фирм с cTrader. Решение зависит от размера счёта, комиссии, автоматизации, страны и правил конкретной программы.',
+    a: 'Подробно сравниваются 2 основных партнёра Traders Fund Hub: BrightFunded и FundedNext (FundedNext резидентам России недоступна). Это партнёрская подборка, а не полный каталог всех фирм с cTrader. Решение зависит от размера счёта, комиссии, автоматизации, страны и правил конкретной программы.',
   },
   {
     q: 'Можно ли использовать cBot в FundedNext?',
@@ -59,7 +61,7 @@ const faqs: RussianFaqItem[] = [
     a: 'Нет. Русский язык не определяет доступ. Фирма может отдельно проверять гражданство, резидентство, фактический адрес, IP, личность, способ оплаты и получения выплаты. Для профилей из США cTrader недоступен для новых покупок FundedNext и недоступен в BrightFunded.',
   },
   {
-    q: 'Что дешевле: FundedNext или BrightFunded на cTrader?',
+    q: 'Что дешевле: BrightFunded или FundedNext на cTrader?',
     a: 'Универсального ответа нет. FundedNext публикует цену программы в долларах плюс стандартную комиссию платформы $25. BrightFunded публикует базовые цены в евро, но проверенная платформенная справка не указывает отдельную комиссию cTrader. Суммы в разных валютах нужно сравнивать с учётом курса и комиссии платежа в день оплаты.',
   },
 ]
@@ -145,8 +147,8 @@ export default function RussianCTraderPropFirmsPage() {
     name: 'Проп-фирмы с cTrader для проверки',
     numberOfItems: 2,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'FundedNext', url: 'https://tradersfundhub.com/ru/obzor-fundednext' },
-      { '@type': 'ListItem', position: 2, name: 'BrightFunded', url: 'https://tradersfundhub.com/ru/obzor-bright-funded' },
+      { '@type': 'ListItem', position: 1, name: 'BrightFunded', url: 'https://tradersfundhub.com/ru/obzor-bright-funded' },
+      { '@type': 'ListItem', position: 2, name: 'FundedNext', url: 'https://tradersfundhub.com/ru/obzor-fundednext' },
     ],
   }
 
@@ -164,7 +166,7 @@ export default function RussianCTraderPropFirmsPage() {
           <p className="ru-lead">
             Сравниваем 2 глобальные проп-фирмы не по логотипу cTrader, а по ограничениям покупки:
             размер счёта, дополнительная комиссия, cBot, страна профиля, устройства и вход в аккаунт.
-            Главная развилка — ручная торговля в FundedNext или отдельное подтверждение автоматизации в BrightFunded.
+            Резидентам России подходит BrightFunded (с отдельным подтверждением автоматизации); ручной маршрут FundedNext — только для трейдеров из других стран.
           </p>
           <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Обновлено {russianRouteDateModified(PATH, cTraderEvidence.capturedAt)}.</p>
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
@@ -213,14 +215,15 @@ export default function RussianCTraderPropFirmsPage() {
           <div className="ru-table-wrap" data-russian-ctrader-matrix="two-primary-partners">
             <table className="ru-table">
               <caption>Правила платформы по проверке от {cTraderEvidence.capturedAt}; доступность для вашего профиля требует отдельного подтверждения.</caption>
-              <thead><tr><th>Поле</th><th>FundedNext</th><th>BrightFunded</th></tr></thead>
+              <thead><tr><th>Поле</th><th>BrightFunded</th><th>FundedNext</th></tr></thead>
               <tbody>
-                <tr><td><strong>Статус cTrader</strong></td><td>Доступен с лимитами продукта и профиля</td><td>Доступен с ограничениями профиля</td></tr>
-                <tr><td><strong>Размер счёта</strong></td><td>Оценочная программа до $50 000</td><td>Не опубликован в проверенной справке</td></tr>
-                <tr><td><strong>Доплата</strong></td><td>$25; стандартно не возвращается, в справке есть исключение для клиентов из США</td><td>Не опубликована в проверенной справке</td></tr>
-                <tr><td><strong>cBot / автоматизация</strong></td><td>Запрещены; только вручную</td><td>Нужно письменное подтверждение для cTrader</td></tr>
-                <tr><td><strong>Профиль США</strong></td><td>Новые cTrader-покупки недоступны с 31.03.2026</td><td>Недоступен гражданам, резидентам или проживающим в США</td></tr>
-                <tr><td><strong>Устройства</strong></td><td>Приложение для компьютера, браузер и телефон</td><td>Браузер, Windows, Mac, Android и iOS</td></tr>
+                <tr data-russian-ctrader-russia-row="fundednext-restricted"><td><strong>Резиденты России</strong></td><td><RuAccessBadgeView firm="bright-funded" status={russiaStatusFor('bright-funded')} hint={false} /> Проверьте свой профиль до оплаты</td><td><RuAccessBadgeView firm="fundednext" status={russiaStatusFor('fundednext')} hint={false} /> Подвал fundednext.com, по данным на 20.10.2026</td></tr>
+                <tr><td><strong>Статус cTrader</strong></td><td>Доступен с ограничениями профиля</td><td>Доступен с лимитами продукта и профиля</td></tr>
+                <tr><td><strong>Размер счёта</strong></td><td>Не опубликован в проверенной справке</td><td>Оценочная программа до $50 000</td></tr>
+                <tr><td><strong>Доплата</strong></td><td>Не опубликована в проверенной справке</td><td>$25; стандартно не возвращается, в справке есть исключение для клиентов из США</td></tr>
+                <tr><td><strong>cBot / автоматизация</strong></td><td>Нужно письменное подтверждение для cTrader</td><td>Запрещены; только вручную</td></tr>
+                <tr><td><strong>Профиль США</strong></td><td>Недоступен гражданам, резидентам или проживающим в США</td><td>Новые cTrader-покупки недоступны с 31.03.2026</td></tr>
+                <tr><td><strong>Устройства</strong></td><td>Браузер, Windows, Mac, Android и iOS</td><td>Приложение для компьютера, браузер и телефон</td></tr>
               </tbody>
             </table>
           </div>
@@ -298,10 +301,10 @@ export default function RussianCTraderPropFirmsPage() {
 
       <section className="ru-section" data-russian-ctrader-featured-partners="fundednext-bright-funded">
         <div className="ru-shell ru-content">
-          <h2>FundedNext и BrightFunded: продукт до партнёрской ссылки</h2>
+          <h2>BrightFunded и FundedNext: продукт до партнёрской ссылки</h2>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ctrader-shortlist">
             <strong>Почему обе фирмы показаны заметно.</strong>{' '}
-            FundedNext и BrightFunded — наши основные глобальные партнёры. Комиссия возможна по обоим маршрутам,
+            BrightFunded и FundedNext — наши основные глобальные партнёры; FundedNext резидентам России недоступна. Комиссия возможна по обоим маршрутам,
             но неизвестная комиссия BrightFunded и запрет автоматизации FundedNext не скрываются за партнёрской рекомендацией.
           </div>
           <div className="ru-grid">
@@ -325,7 +328,7 @@ export default function RussianCTraderPropFirmsPage() {
               </div>
             </article>
             <article className="ru-card" data-russian-ctrader-featured-partner="fundednext">
-              <div className="ru-card-head"><h3>FundedNext cTrader</h3><span className="ru-score">Ручная торговля</span></div>
+              <div className="ru-card-head"><h3>FundedNext cTrader</h3>{russiaStatusFor('fundednext') === 'restricted' ? <RuAccessBadgeView firm="fundednext" status="restricted" hint={false} /> : <span className="ru-score">Ручная торговля</span>}</div>
               <ul className="ru-facts">
                 <li><ShieldCheck size={14} aria-hidden="true" /> Оценочный счёт до $50 000</li>
                 <li><WalletCards size={14} aria-hidden="true" /> $25 сверх базовой цены</li>
@@ -333,6 +336,7 @@ export default function RussianCTraderPropFirmsPage() {
                 <li><Laptop size={14} aria-hidden="true" /> Компьютер, браузер и телефон</li>
               </ul>
               <p className="ru-muted">
+                {russiaStatusFor('fundednext') === 'restricted' ? <><strong>Резидентам России недоступна.</strong> Карточка — для русскоязычных трейдеров из других стран.{' '}</> : null}
                 Проверяйте этот вариант, только если ручная торговля соответствует стратегии. Наличие cTrader Algo в самой платформе
                 не создаёт исключение из правила FundedNext и не превращает запрещённый cBot в разрешённый инструмент.
               </p>
@@ -475,7 +479,7 @@ export default function RussianCTraderPropFirmsPage() {
             <strong>Финальный маршрут.</strong>{' '}
             Для BrightFunded сначала подтвердите cBot, размер счёта и итоговую цену, затем используйте
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-ctrader-verdict-bright-funded" rel="sponsored nofollow noopener"> BrightFunded</RuGoLink>.
-            Для ручной торговли в cTrader проверьте действующие ограничения и комиссию
+            Трейдерам из других стран (не резидентам России) для ручной торговли в cTrader — проверьте действующие ограничения и комиссию
             <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-verdict-fundednext" rel="sponsored nofollow noopener"> FundedNext</RuGoLink>.
             Мы можем получить комиссию; ни один переход не является обещанием доступа или выплаты.
           </div>

@@ -21,6 +21,9 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/prop-firmy-bez-kyc'
@@ -137,7 +140,8 @@ export default function RussianNoKycPage() {
       priceCount: publishedPriceCount(products),
     }
   }).filter(item => item.firm?.affiliateUrl && item.evidence)
-  const featuredCards = partnerCards.filter(item => item.featured)
+  // Russia-open firms first (BrightFunded), restricted (FundedNext) last.
+  const featuredCards = partnerCards.filter(item => item.featured).sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)])
   const secondaryCard = partnerCards.find(item => !item.featured)
   const sourceCount = new Set(marketEvidence.kycEvidence.flatMap(item => item.sourceUrls)).size
   const productCount = partnerCards.reduce((sum, item) => sum + item.products.length, 0)
@@ -206,7 +210,7 @@ export default function RussianNoKycPage() {
           <p className="ru-lead">
             Сопоставили {partnerCards.length} партнёрские KYC-процедуры по {sourceCount} официальным страницам: когда фирма запрашивает документ,
             кто сверяет адрес, сколько длится проверка и почему криптовыплата не отменяет проверку личности.
-            Основные глобальные маршруты — FundedNext и BrightFunded; FundingPips показан как дополнительный вариант.
+            Основной глобальный маршрут для резидентов России — BrightFunded; FundedNext резидентам РФ недоступна и показана для трейдеров из других стран, FundingPips — дополнительный вариант.
           </p>
           <div className="ru-stats" aria-label="Охват KYC-проверки">
             <div className="ru-stat"><strong>{partnerCards.length}</strong><span>KYC-процесса без опубликованных исключений</span></div>
@@ -215,7 +219,7 @@ export default function RussianNoKycPage() {
             <div className="ru-stat"><strong>{priceCount}</strong><span>опубликованных цен</span></div>
           </div>
           <div className="ru-actions">
-            <Link href="#main-partners" className="btn-primary btn-glow">FundedNext и BrightFunded <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="#main-partners" className="btn-primary btn-glow">BrightFunded и FundedNext <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="#kyc-matrix" className="btn-outline">Сравнить KYC</Link>
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-outline">Проверить страну</Link>
           </div>
@@ -239,7 +243,7 @@ export default function RussianNoKycPage() {
           <div className="ru-shell ru-content">
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="kyc-guide">
               <strong>Партнёрское раскрытие и порядок.</strong>{' '}
-              FundedNext и BrightFunded выделены как 2 главных коммерческих маршрута, потому что переход может принести нам комиссию.
+              BrightFunded и FundedNext выделены как 2 главных коммерческих маршрута, потому что переход может принести нам комиссию; FundedNext резидентам России недоступна.
               FundingPips показан ниже как дополнительный партнёр. Это не рейтинг «без KYC»: все 3 опубликованные процедуры требуют проверку.
             </div>
             <nav className="ru-review-toc" aria-label="Содержание KYC-руководства">
@@ -247,7 +251,7 @@ export default function RussianNoKycPage() {
               <ol>
                 <li><a href="#four-gates">4 точки проверки</a></li>
                 <li><a href="#kyc-matrix">Сравнение 3 фирм</a></li>
-                <li><a href="#main-partners">FundedNext и BrightFunded</a></li>
+                <li><a href="#main-partners">BrightFunded и FundedNext</a></li>
                 <li><a href="#documents">Документы</a></li>
                 <li><a href="#payout-provider">Фирма и платёжный провайдер</a></li>
                 <li><a href="#diaspora">Русскоязычные за рубежом</a></li>
@@ -333,7 +337,7 @@ export default function RussianNoKycPage() {
 
         <section className="ru-section" id="main-partners">
           <div className="ru-shell" data-russian-kyc-featured-partners="fundednext-bright-funded">
-            <h2>Два основных маршрута: FundedNext и BrightFunded</h2>
+            <h2>Два основных маршрута: BrightFunded и FundedNext (не для РФ)</h2>
             <p className="ru-muted">
               Выбор между ними начинается не с логотипа, а с 3 вопросов: какой документ доступен,
               совпадает ли страна профиля с политикой фирмы и сколько времени остаётся между оценкой и первым действием на профинансированном счёте.
@@ -346,7 +350,7 @@ export default function RussianNoKycPage() {
                   <article className="ru-card" key={card.slug} data-russian-kyc-featured-partner={card.slug}>
                     <div className="ru-card-head">
                       <h3>{card.name}</h3>
-                      <span className="ru-score">Главный партнёр</span>
+                      {russiaStatusFor(card.slug) === 'restricted' ? <RuAccessBadgeView firm={card.slug} status="restricted" hint={false} /> : <span className="ru-score">Главный партнёр</span>}
                     </div>
                     <p>
                       {isFundedNext
@@ -371,7 +375,7 @@ export default function RussianNoKycPage() {
                     )}
                     <div className="ru-actions">
                       <Link href={card.reviewHref} className="btn-outline">Русский обзор</Link>
-                      <RuGoLink firm={card.slug} href={`/go/${card.slug}?from=ru-kyc-${card.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
+                      <RuGoLink firm={card.slug} href={`/go/${card.slug}?from=ru-kyc-${card.slug}`} rel="sponsored nofollow noopener" className={russiaStatusFor(card.slug) === 'restricted' ? 'btn-outline' : 'btn-primary'}>
                         Проверить {card.name} <ArrowRight size={14} aria-hidden="true" />
                       </RuGoLink>
                     </div>

@@ -18,6 +18,9 @@ import { getAllChallenges, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
@@ -120,6 +123,8 @@ export default function RussianWhatIsPropFirmPage() {
   const products = getAllChallenges()
     .filter(product => isChallengeFresh(product))
     .filter(product => product.firmSlug === 'fundednext' || product.firmSlug === 'bright-funded')
+    // Russia-open firm (BrightFunded) first, restricted (FundedNext) last.
+    .sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.firmSlug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.firmSlug)])
   const fundedNextProducts = products.filter(product => product.firmSlug === 'fundednext')
   const brightProducts = products.filter(product => product.firmSlug === 'bright-funded')
   const pricedTierCount = products.reduce((total, product) => total + product.accountSizes.filter(tier =>
@@ -182,7 +187,7 @@ export default function RussianWhatIsPropFirmPage() {
           </div>
           <div className="ru-actions">
             <Link href="#tri-modeli" className="btn-primary btn-glow">Понять 3 модели <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить FundedNext и BrightFunded</Link>
+            <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить BrightFunded и FundedNext</Link>
           </div>
         </div>
       </section>
@@ -285,9 +290,9 @@ export default function RussianWhatIsPropFirmPage() {
         <div className="ru-shell ru-content">
           <h2>Два главных партнёра: сравнение программ вместо 2 логотипов</h2>
           <p>
-            FundedNext и BrightFunded — наши 2 основных коммерческих маршрута, но партнёрство не превращает их
-            в универсальные варианты. {products.length > 0 ? <>
-              Текущая выборка содержит {fundedNextProducts.length} продукта FundedNext и {brightProducts.length} продукта BrightFunded,
+            BrightFunded и FundedNext — наши 2 основных коммерческих маршрута, но партнёрство не превращает их
+            в универсальные варианты; FundedNext резидентам России недоступна. {products.length > 0 ? <>
+              Текущая выборка содержит {brightProducts.length} продукта BrightFunded и {fundedNextProducts.length} продукта FundedNext,
               {pricedTierCount} ценовых уровней и диапазон от {phaseRange.at(0)} до {phaseRange.at(-1)} фаз.
               Каждая строка ниже ведёт на первичную страницу продукта и показывает дату захвата.
             </> : 'Сейчас нет программ с актуальной проверкой за 30 дней; перепроверьте первичные условия перед покупкой.'}
@@ -312,12 +317,12 @@ export default function RussianWhatIsPropFirmPage() {
             </table>
           </div>
           <p className="ru-source-line">
-            Источников в таблице: {sourceCount}. Цены приведены в собственной валюте фирмы: USD для FundedNext и EUR для BrightFunded;
+            Источников в таблице: {sourceCount}. Цены приведены в собственной валюте фирмы: EUR для BrightFunded и USD для FundedNext;
             временные промоакции и самостоятельный пересчёт в RUB не включены.
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="prop-definition">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            Переходы на FundedNext и BrightFunded могут принести Traders Fund Hub комиссию.
+            Переходы на BrightFunded и FundedNext могут принести Traders Fund Hub комиссию.
             Коммерческая связь не меняет {products.length} строк, {pricedTierCount} цен, даты источников или предупреждение о доступе страны.
           </div>
           <div className="ru-grid">
@@ -335,7 +340,7 @@ export default function RussianWhatIsPropFirmPage() {
               </div>
             </article>
             <article className="ru-card">
-              <div className="ru-card-head"><h3>FundedNext</h3><span className="ru-score">{fundedNextProducts.length} продукта</span></div>
+              <div className="ru-card-head"><h3>FundedNext</h3>{russiaStatusFor('fundednext') === 'restricted' ? <RuAccessBadgeView firm="fundednext" status="restricted" hint={false} /> : <span className="ru-score">{fundedNextProducts.length} продукта</span>}</div>
               <p className="ru-muted">
                 Stellar 2-Step, 1-Step, Lite и Instant различаются числом фаз, условием возврата взноса,
                 максимальной просадкой и первой датой выплаты. Резидентам России FundedNext недоступна
@@ -398,7 +403,7 @@ export default function RussianWhatIsPropFirmPage() {
             <strong>Практическая развилка из 2 вопросов.</strong>{' '}
             Нужна местная биржа и договор с локальным оператором — откройте
             <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"> 6 проверяемых примеров</Link>.
-            Нужен глобальный розничный CFD-продукт — сравните FundedNext и BrightFunded,
+            Нужен глобальный розничный CFD-продукт — резидентам России начинать с BrightFunded (FundedNext им недоступна), трейдерам из других стран — сравнить BrightFunded и FundedNext,
             затем заново проверьте страну, KYC и платёжный канал.
           </div>
           <div className="ru-actions">
@@ -450,8 +455,8 @@ export default function RussianWhatIsPropFirmPage() {
             Финальный источник — страница оплаты и договор в день покупки.
           </p>
           <div className="ru-actions">
-            <Link href="/ru/obzor-fundednext" className="btn-primary">Начать с FundedNext <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор BrightFunded</Link>
+            <Link href="/ru/obzor-bright-funded" className="btn-primary">Начать с BrightFunded <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор FundedNext (не для РФ)</Link>
           </div>
         </div>
       </section>

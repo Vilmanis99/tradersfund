@@ -1104,7 +1104,7 @@ const russianExpectations = new Map([
       'data-russian-ranking-primary-partners="fundednext-bright-funded"',
       'data-russian-ranking-primary-partner="fundednext"',
       'data-russian-ranking-primary-partner="bright-funded"',
-      'FundedNext или BrightFunded: с чего начать сравнение',
+      'BrightFunded или FundedNext: с чего начать сравнение',
       'Проверить BrightFunded',
       'data-russian-affiliate-disclosure="ranking-primary-partners"',
       'data-russian-funnel-intent="ranking-finder"',
