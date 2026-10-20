@@ -31,6 +31,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import RuFundedNextRussiaRedirect from '@/components/RuFundedNextRussiaRedirect'
 
 const PATH = '/ru/fundednext-stellar-instant'
 const TITLE = 'FundedNext Stellar Instant: правила и выплаты (2026)'
@@ -194,6 +195,7 @@ export default function RussianFundedNextInstantPage() {
         >
           <div className="ru-eyebrow"><Zap size={14} aria-hidden="true" /> Разбор программы без оценочного этапа</div>
           <h1>FundedNext Stellar Instant: просадка, стоимость и условия выплаты</h1>
+          <RuFundedNextRussiaRedirect alternativeHref={brightFunded?.affiliateUrl ? '#bright-funded-alternative' : undefined} />
           <p className="ru-lead">
             Не нужно проходить челлендж, но оплаченный счёт остаётся симулированным и подчиняется правилам риска.
             Разбираем, как растёт граница допустимого убытка, когда можно запросить вознаграждение и почему вывод всей прибыли способен нарушить условия счёта.
@@ -529,8 +531,8 @@ export default function RussianFundedNextInstantPage() {
                 </div>
               </article>
               {brightFunded?.affiliateUrl ? (
-                <article className="ru-card" data-russian-fundednext-instant-alternative="bright-funded">
-                  <h3>BrightFunded: альтернатива с челленджем</h3>
+                <article className="ru-card" id="bright-funded-alternative" data-russian-fundednext-instant-alternative="bright-funded">
+                  <h3>BrightFunded: альтернатива с челленджем (для резидентов России)</h3>
                   <p>У BrightFunded есть оценочный этап: это другой формат, а не аналог счёта Instant. В обзоре приведены цены в евро и отдельные условия программ. Правила просадки, сброса и выплат FundedNext к BrightFunded не относятся.</p>
                   <div className="ru-actions">
                     <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
@@ -539,7 +541,7 @@ export default function RussianFundedNextInstantPage() {
                 </article>
               ) : null}
             </div>
-            <p className="ru-source-line">FundedNext и BrightFunded — партнёры сайта: покупка по отмеченным ссылкам может принести нам комиссию. Это не делает их условия одинаковыми и не подтверждает доступность по стране.</p>
+            <p className="ru-source-line">BrightFunded и FundedNext — партнёры сайта: покупка по отмеченным ссылкам может принести нам комиссию. Это не делает их условия одинаковыми и не подтверждает доступность по стране.</p>
             <div className="ru-actions">
               <Link href={instantFinderHref} className="btn-outline">Сравнить программы без челленджа</Link>
               <Link href="/ru/prop-firmy-bez-chelendzha" className="btn-outline">Чем отличаются Instant и Zero</Link>

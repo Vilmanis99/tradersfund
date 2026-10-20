@@ -410,8 +410,8 @@ try {
   const cryptoCards = html => [...html.matchAll(/data-russian-crypto-firm="([^"]+)"/g)].map(match => match[1]).sort()
   const cryptoSchemas = html => [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]))
   const cTraderReference = renderToStaticMarkup(React.createElement(CTraderPage))
-  assert(cTraderReference.includes('<h1>Проп-фирмы с cTrader: FundedNext или BrightFunded</h1>'), 'cTrader H1 uses the exact brand')
-  assert.equal(cryptoSchemas(cTraderReference).find(item => item['@type'] === 'ItemList')?.itemListElement?.[1]?.name, 'BrightFunded', 'cTrader ItemList uses the official brand')
+  assert(cTraderReference.includes('<h1>Проп-фирмы с cTrader: BrightFunded и FundedNext (не для РФ)</h1>'), 'cTrader H1 uses the exact brand')
+  assert.equal(cryptoSchemas(cTraderReference).find(item => item['@type'] === 'ItemList')?.itemListElement?.[0]?.name, 'BrightFunded', 'cTrader ItemList uses the official brand and lists the Russia-open firm first')
   const cryptoSlugs = cryptoEvidence.ranked.map(evidence => evidence.firmSlug).sort()
   const originalCryptoEvidence = JSON.stringify(cryptoEvidence)
   const originalByFirm = firmsModule.getChallengesByFirm
@@ -784,10 +784,10 @@ try {
   assert(RussianPayoutPage, 'Russian payout guide remains part of the expiry fixture')
   const payoutGuideMetadata = require(path.join(root, 'app/ru/vyplaty-prop-firm/page.tsx')).metadata
   const payoutGuideReference = renderToStaticMarkup(React.createElement(RussianPayoutPage))
-  assert.equal(payoutGuideMetadata.title.absolute, 'Выплаты проп-фирм 2026: FundedNext и BrightFunded', 'payout search title uses the verified one-word brand')
-  assert(payoutGuideMetadata.description.includes('FundedNext, BrightFunded и FundingPips'), 'payout search description matches the brand query')
+  assert.equal(payoutGuideMetadata.title.absolute, 'Выплаты проп-фирм 2026: как вывести прибыль — сроки и KYC', 'payout search title targets the withdrawal query')
+  assert(payoutGuideMetadata.description.includes('BrightFunded, FundingPips и FundedNext'), 'payout search description uses the one-word brands, BrightFunded first')
   assert.equal(payoutGuideMetadata.openGraph.title, 'Выплаты проп-фирм 2026: FundedNext и Bright Funded', 'payout sharing title remains unchanged')
-  assert(payoutGuideReference.includes('<h1>Выплаты проп-фирм: FundedNext, BrightFunded и вывод прибыли</h1>'), 'payout H1 matches the brand query')
+  assert(payoutGuideReference.includes('<h1>Выплаты проп-фирм: BrightFunded, FundedNext и вывод прибыли</h1>'), 'payout H1 matches the brand query, BrightFunded first')
   assert.equal(cryptoSchemas(payoutGuideReference).find(item => item['@type'] === 'Article')?.headline, payoutGuideMetadata.title.absolute, 'payout Article headline matches the search title')
   assert(cryptoSchemas(payoutGuideReference).find(item => item['@type'] === 'ItemList')?.itemListElement?.some(item => item.item.name === 'BrightFunded'), 'payout ItemList uses the official brand')
   assert(payoutGuideReference.includes('Russian Federation') || payoutGuideReference.includes('Российской Федерации'), 'payout guide names the distinct Russian card boundary')
@@ -1461,8 +1461,8 @@ try {
           const decision = html.split('data-russian-teamtraders-decision="rules-before-reviews"')[1].split('</section>')[0]
           assert(decision.indexOf('Сначала запросите применимую оферту') < decision.indexOf('Затем проверьте техническую совместимость'), 'applicable contract request precedes account registration, even free')
           assert(html.includes('У нас нет проверенной истории выплат'))
-          assert(html.includes(getRussianReviewFinderHref('fundednext').replace(/&/g, '&amp;')), 'local model hands off to a separately labelled global comparison')
-          assert.equal(html.includes('Открыть две глобальные двухэтапные программы'), !getRussianReviewFinderHref('fundednext').endsWith('#podbor'), 'expired preset does not promise two available programmes')
+          assert(html.includes(getRussianReviewFinderHref('bright-funded').replace(/&/g, '&amp;')), 'local model hands off to a separately labelled global comparison')
+          assert.equal(html.includes('Открыть две глобальные двухэтапные программы'), !getRussianReviewFinderHref('bright-funded').endsWith('#podbor'), 'expired preset does not promise two available programmes')
           for (const firmSlug of ['fundednext', 'bright-funded']) {
             const hasFreshProducts = products.some(product => product.firmSlug === firmSlug && isChallengeFresh(product))
             assert.equal(html.includes(`data-russian-teamtraders-partner-products="${firmSlug}"`), hasFreshProducts)

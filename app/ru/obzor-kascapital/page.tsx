@@ -11,6 +11,9 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-kascapital'
@@ -76,8 +79,8 @@ export default function RussianKasCapitalReviewPage() {
     const products = freshChallenges.filter(product => product.firmSlug === route.slug)
     return { ...route, firm, products }
   }).filter(item => item.firm?.affiliateUrl)
-    // Russia-open firms first (firms.json russiaStatus); the array order breaks ties, so BrightFunded leads.
-    .sort((x, y) => Number(y.firm?.russiaStatus === 'available') - Number(x.firm?.russiaStatus === 'available'))
+    // Russia-open firms first (BrightFunded), restricted (FundedNext) last; stable for equal status.
+    .sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)])
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -208,18 +211,19 @@ export default function RussianKasCapitalReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell" data-russian-local-global-funnel="kascapital">
-          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="kascapital-global-options"><strong>BrightFunded и FundedNext — два глобальных партнёра сайта; доступ для РФ у каждого показан бейджем рядом с кнопкой.</strong> Это коммерчески выделенная пара для отдельного сравнения, а не оценка KasCapital в глобальном рейтинге. Рублёвая локальная модель и CFD-челлендж не взаимозаменяемы; перед оплатой откройте действующие правила выбранной фирмы. Комиссия возможна после регистрации, но страну, KYC и выплаты нужно проверять на сайте выбранной фирмы.</div>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="kascapital-global-options"><strong>BrightFunded — основной глобальный маршрут для резидентов России; FundedNext резидентам РФ недоступна и показана только для трейдеров из других стран.</strong> Это коммерчески выделенная пара для отдельного сравнения, а не оценка KasCapital в глобальном рейтинге. Рублёвая локальная модель и CFD-челлендж не взаимозаменяемы; перед оплатой откройте действующие правила выбранной фирмы. Комиссия возможна после регистрации, но страну, KYC и выплаты нужно проверять на сайте выбранной фирмы.</div>
           <h2>Глобальные альтернативы для русскоязычных трейдеров</h2>
           <div className="ru-grid">
             {globalCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-local-global-partner={item.slug}>
-                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Главный партнёр</span></div>
+                <div className="ru-card-head"><h3>{item.name}</h3>{russiaStatusFor(item.slug) === 'restricted' ? <RuAccessBadgeView firm={item.slug} status="restricted" hint={false} /> : <span className="ru-score">Главный партнёр</span>}</div>
+                {russiaStatusFor(item.slug) === 'restricted' && <p className="ru-source-line" data-russian-restricted-partner-note={item.slug}><strong>Резидентам России недоступна.</strong> Карточка — для русскоязычных трейдеров из других стран.</p>}
                 <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; сопоставьте конкретный продукт, KYC, первую выплату и метод вывода.</p>
-                <div className="ru-actions"><Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link><RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-kascapital-global-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></RuGoLink></div>
+                <div className="ru-actions"><Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link><RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-kascapital-global-${item.slug}`} rel="sponsored nofollow noopener" className={russiaStatusFor(item.slug) === 'restricted' ? 'btn-outline' : 'btn-primary'}>Проверить условия <ArrowRight size={14} aria-hidden="true" /></RuGoLink></div>
               </article>
             ))}
           </div>
-          <p className="ru-source-line">Другие локальные исследования: <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">шесть российских моделей</Link>; глобальное сравнение: <Link href="/ru/fundednext-vs-bright-funded">FundedNext против BrightFunded</Link>; отдельные локальные обзоры: <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-teamtraders">TeamTraders</Link>.</p>
+          <p className="ru-source-line">Другие локальные исследования: <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">шесть российских моделей</Link>; глобальное сравнение: <Link href="/ru/fundednext-vs-bright-funded">BrightFunded и FundedNext</Link> (FundedNext недоступна для РФ); отдельные локальные обзоры: <Link href="/ru/obzor-eratrade">Era Trade</Link> и <Link href="/ru/obzor-teamtraders">TeamTraders</Link>.</p>
         </div>
       </section>
 

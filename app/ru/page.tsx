@@ -22,6 +22,8 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified, russianPublishedHref } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 
 const PATH = '/ru'
@@ -87,6 +89,8 @@ export default function RussianHomePage() {
       && (brightTermsCapturedAt === null || isChallengeFresh({ sourceCapturedAt: brightTermsCapturedAt }))
     return { ...route, firm, fresh, captureDate, countryCapturedAt, brightTermsCapturedAt, countryFresh }
   }).filter(item => item.firm?.affiliateUrl)
+    // Russia-open firms first (BrightFunded), restricted (FundedNext) last.
+    .sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)])
 
   const crumbs = breadcrumbSchema([{ name: 'Traders Fund Hub', url: '/' }, { name: 'Русская версия' }])
   const pageSchema = {
@@ -181,7 +185,7 @@ export default function RussianHomePage() {
           <div className="th-section__head">
             <div>
               <h2 id="ru-home-partners-heading">Партнёры сайта</h2>
-              <p className="ru-home-partner-hero-disclosure" data-russian-affiliate-disclosure="home-primary-partners">FundedNext и BrightFunded — наши партнёры: переход на сайт фирмы может принести нам комиссию. Это не добавляет баллы в рейтинге и не означает, что программа подходит каждому.</p>
+              <p className="ru-home-partner-hero-disclosure" data-russian-affiliate-disclosure="home-primary-partners">BrightFunded и FundedNext — наши партнёры: переход на сайт фирмы может принести нам комиссию. FundedNext резидентам России недоступна, её карточка — для трейдеров из других стран. Это не добавляет баллы в рейтинге и не означает, что программа подходит каждому.</p>
             </div>
             <Link href="/ru/fundednext-vs-bright-funded" className="th-link ru-home-comparison-link">FundedNext или BrightFunded: сравнить отличия <ArrowRight size={14} aria-hidden="true" /></Link>
           </div>
@@ -211,7 +215,7 @@ export default function RussianHomePage() {
                 >
                   <p>{item.fresh
                     ? item.slug === 'fundednext'
-                      ? 'Программы с оплатой в USD: с оценочными этапами или без челленджа — Stellar Instant. В обзоре разбираем различия в просадке и выплатах.'
+                      ? 'Для трейдеров вне России: программы с оплатой в USD, с оценочными этапами или без челленджа — Stellar Instant. В обзоре разбираем различия в просадке и выплатах.'
                       : 'Программы с оплатой в EUR и одним или двумя оценочными этапами. В обзоре разбираем лимиты убытка и ожидание первой выплаты.'
                     : 'Условия программ требуют повторной проверки. В обзоре объясняем модель работы и вопросы, которые стоит задать фирме перед оплатой.'}</p>
                   <p className="ru-home-partner-country-note" data-russian-partner-country-warning={item.slug} data-russian-partner-country-source-status={item.countryFresh ? 'dated' : 'recapture-required'} data-russian-home-bright-country-conflict={item.slug === 'bright-funded' ? 'help-six-terms-five' : undefined}>

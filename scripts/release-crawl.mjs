@@ -948,7 +948,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/promokody-prop-firm', {
-    title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded, FundedNext',
+    title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded для РФ',
     h1: 'Промокоды проп-фирм — октябрь 2026',
     markers: [
       'id="kody"',
@@ -1029,8 +1029,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/vyplaty-prop-firm', {
-    title: 'Выплаты проп-фирм 2026: FundedNext и BrightFunded',
-    h1: 'Выплаты проп-фирм: FundedNext, BrightFunded и вывод прибыли',
+    title: 'Выплаты проп-фирм 2026: как вывести прибыль — сроки и KYC',
+    h1: 'Выплаты проп-фирм: BrightFunded, FundedNext и вывод прибыли',
     markers: [
       'data-russian-payout-guide="long-form-source-gated"',
       'data-russian-payout-partner-count="3"',
@@ -1104,7 +1104,7 @@ const russianExpectations = new Map([
       'data-russian-ranking-primary-partners="fundednext-bright-funded"',
       'data-russian-ranking-primary-partner="fundednext"',
       'data-russian-ranking-primary-partner="bright-funded"',
-      'FundedNext или BrightFunded: с чего начать сравнение',
+      'BrightFunded или FundedNext: с чего начать сравнение',
       'Проверить BrightFunded',
       'data-russian-affiliate-disclosure="ranking-primary-partners"',
       'data-russian-funnel-intent="ranking-finder"',
@@ -1134,8 +1134,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/luchshie-kripto-prop-firmy', {
-    title: 'Крипто-проп-фирмы 2026: цены, инструменты и правила',
-    h1: 'Крипто-проп-фирмы 2026: цены, инструменты и правила',
+    title: 'Крипто проп-компании 2026: проп-трейдинг криптовалют',
+    h1: 'Крипто проп-компании 2026: проп-трейдинг криптовалют',
     markers: [
       'data-russian-crypto-article="long-form"',
       'data-russian-crypto-hero="search-and-product-evidence"',
@@ -1181,8 +1181,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-fundednext', {
-    title: 'FundedNext проп: отзывы и обзор 2026, цены и правила',
-    h1: 'FundedNext проп: отзывы и обзор 2026, цены и правила',
+    title: 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила',
+    h1: 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила',
     markers: [
       'data-russian-fundednext-article="long-form"',
       'data-russian-fundednext-editorial-shell="review-parity"',
@@ -1267,7 +1267,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/chto-takoe-prop-firma', {
-    title: 'Что такое проп-фирма: как это работает в 2026 году',
+    title: 'Что такое проп-фирма (проп-компания) и как она работает',
     h1: 'Что такое проп-фирма и как она работает',
     markers: [
       'data-russian-prop-definition="three-models-not-one-label"',
@@ -1285,7 +1285,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/forex-prop-firmy', {
-    title: 'Форекс проп-фирмы: плечо, цены и правила программ',
+    title: 'Форекс проп-фирмы и проп-компании 2026: плечо, цены, правила',
     h1: 'Форекс проп-фирмы: цены, плечо и правила для русскоязычных трейдеров',
     markers: [
       'data-russian-forex-article="instrument-to-product"',
@@ -1317,7 +1317,7 @@ const russianExpectations = new Map([
   }],
   ['/ru/prop-firmy-s-ctrader', {
     title: 'Проп-фирмы с cTrader 2026: цены, лимиты и правила cBot',
-    h1: 'Проп-фирмы с cTrader: FundedNext или BrightFunded',
+    h1: 'Проп-фирмы с cTrader: BrightFunded и FundedNext (не для РФ)',
     markers: [
       'data-russian-ctrader-article="platform-to-firm-rule"',
       'data-russian-platform-intent="ctrader-prop-firms"',

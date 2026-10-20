@@ -26,12 +26,15 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/vyplaty-prop-firm'
-const TITLE = 'Выплаты проп-фирм 2026: FundedNext и BrightFunded'
-const DESCRIPTION = 'Как вывести прибыль из FundedNext, BrightFunded и FundingPips: первая заявка, USDT/USDC, банк, сроки обработки, комиссии, KYC и ограничения страны.'
+const TITLE = 'Выплаты проп-фирм 2026: как вывести прибыль — сроки и KYC'
+const DESCRIPTION = 'Как вывести прибыль из BrightFunded, FundingPips и FundedNext: первая заявка, USDT/USDC, банк, сроки, комиссии, KYC и ограничения для резидентов РФ.'
 const SOCIAL_TITLE = 'Выплаты проп-фирм 2026: FundedNext и Bright Funded'
 const SOCIAL_DESCRIPTION = 'Как вывести прибыль из FundedNext, Bright Funded и FundingPips: первая заявка, USDT/USDC, банк, сроки обработки, комиссии, KYC и ограничения страны.'
 const fundedNextPayoutEvidence = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundednext')
@@ -75,7 +78,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Подходит ли криптовыплата резиденту России?',
-    a: 'Само наличие USDT или USDC не доказывает доступ. FundedNext исключает банковский перевод для России и выплату на карту для Российской Федерации; официальные формулировки о доступе российских резидентов также противоречат друг другу. Проверять нужно гражданство, резидентство, адрес, KYC и провайдера выплаты — без VPN и неверных данных.',
+    a: 'Само наличие USDT или USDC не доказывает доступ. FundedNext резидентам России недоступна (подвал fundednext.com, по данным на 20.10.2026), а её банковский перевод и выплата на карту для России ограничены отдельно. Резидентам России мы рекомендуем BrightFunded. Проверять нужно гражданство, резидентство, адрес, KYC и провайдера выплаты — без VPN и неверных данных.',
   },
   {
     q: 'Чем FundingPips отличается по выплатам?',
@@ -174,7 +177,8 @@ export default function RussianPayoutsPage() {
     const evidence = evidenceBySlug.get(route.slug)
     return { ...route, firm, products, evidence }
   }).filter(card => card.firm?.affiliateUrl && card.evidence)
-  const featuredCards = cards.filter(card => card.featured)
+  // Russia-open firms first (BrightFunded), restricted (FundedNext) last.
+  const featuredCards = cards.filter(card => card.featured).sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)])
   const productCount = cards.reduce((sum, card) => sum + card.products.length, 0)
   const priceCount = cards.reduce((sum, card) => sum + pricedTierCount(card.products), 0)
   const sourceCount = new Set(cards.flatMap(card => card.evidence?.sourceUrls ?? [])).size
@@ -246,10 +250,10 @@ export default function RussianPayoutsPage() {
             ...cards.map(card => ({ label: `выплаты ${card.name}`, capturedAt: card.evidence?.sourceCapturedAt ?? '' })),
           ]} />
           <div className="ru-eyebrow"><WalletCards size={14} aria-hidden="true" /> 4 этапа от прибыли до зачисления</div>
-          <h1>Выплаты проп-фирм: FundedNext, BrightFunded и вывод прибыли</h1>
+          <h1>Выплаты проп-фирм: BrightFunded, FundedNext и вывод прибыли</h1>
           <p className="ru-lead">
             Сравнили {cards.length} процесса выплаты по {sourceCount} первичным страницам и {productCount} свежим продуктам.
-            FundedNext и BrightFunded — два главных маршрута; FundingPips оставлен как вторичная альтернатива.
+            Для резидентов России главный маршрут — BrightFunded; FundedNext резидентам РФ недоступна и показана для трейдеров из других стран, FundingPips — вторичная альтернатива.
             Срок первой заявки, обработка фирмой и зачисление на кошелёк или банковский счёт показаны отдельно.
           </p>
           <div className="ru-stats" aria-label="Охват payout-исследования">
@@ -266,7 +270,7 @@ export default function RussianPayoutsPage() {
           </div>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="payout-ranking">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            Мы можем получить комиссию после перехода через /go/ и регистрации. FundedNext и BrightFunded выделены
+            Мы можем получить комиссию после перехода через /go/ и регистрации. BrightFunded и FundedNext выделены
             коммерчески, но цифры взяты из первичных источников, а FundingPips сохранён как реальная третья альтернатива.
             Комиссия не меняет цену пользователя и не превращает метод выплаты в гарантию доступности.
           </div>
@@ -303,7 +307,7 @@ export default function RussianPayoutsPage() {
                 <tbody>
                   {cards.map(card => (
                     <tr key={card.slug} data-russian-payout-evidence={card.slug}>
-                      <td><strong>{card.name}</strong>{card.featured ? <><br /><span className="ru-score">Главный партнёр</span></> : <><br />Вторичная альтернатива</>}</td>
+                      <td><strong>{card.name}</strong>{card.featured ? <><br />{russiaStatusFor(card.slug) === 'restricted' ? <RuAccessBadgeView firm={card.slug} status="restricted" hint={false} /> : <span className="ru-score">Главный партнёр</span>}</> : <><br />Вторичная альтернатива</>}</td>
                       <td>{methodSummary(card.slug)}</td>
                       <td>{processingSummary(card.slug)}</td>
                       <td>{feeSummary(card.slug)}</td>
@@ -321,7 +325,7 @@ export default function RussianPayoutsPage() {
 
         <section className="ru-section" data-russian-payout-featured-partners="fundednext-bright-funded">
           <div className="ru-shell">
-            <h2>FundedNext и BrightFunded — два главных варианта</h2>
+            <h2>BrightFunded и FundedNext: два партнёрских маршрута (FundedNext — не для РФ)</h2>
             <p className="ru-muted">
               Эти карточки ведут к глобальным фирмам, где Traders Fund Hub может получить партнёрскую комиссию.
               Выделение объяснено, а не скрыто: сначала русский обзор и ограничения, затем официальная страница оплаты.
@@ -331,10 +335,10 @@ export default function RussianPayoutsPage() {
                 const isFundedNext = card.slug === 'fundednext'
                 return (
                   <article className="ru-card" key={card.slug} data-russian-payout-featured-partner={card.slug}>
-                    <div className="ru-card-head"><h3>{card.name}</h3><span className="ru-score">Главный партнёр</span></div>
+                    <div className="ru-card-head"><h3>{card.name}</h3>{russiaStatusFor(card.slug) === 'restricted' ? <RuAccessBadgeView firm={card.slug} status="restricted" hint={false} /> : <span className="ru-score">Главный партнёр</span>}</div>
                     <p className="ru-muted">
                       {isFundedNext
-                        ? 'Выбор для трейдера, которому важны USDT ERC20/TRC20, USDC ERC20, RiseWorks или выплата на карту, сохранённую при оплате. У программ разные условия первой выплаты; карта и другие маршруты зависят от профиля.'
+                        ? 'Резидентам России недоступна. Для трейдера из другой страны, которому важны USDT ERC20/TRC20, USDC ERC20, RiseWorks или выплата на карту, сохранённую при оплате. У программ разные условия первой выплаты; карта и другие маршруты зависят от профиля.'
                         : 'Выбор для трейдера, которому достаточно USDC ERC-20 или банковского перевода в EUR. Три продукта с оценочным этапом используют стандартную первую дату 30 дней.'}
                     </p>
                     <ul className="ru-facts">
@@ -345,12 +349,12 @@ export default function RussianPayoutsPage() {
                     </ul>
                     <p className="ru-source-line">
                       {isFundedNext
-                        ? 'Банковский перевод и выплата на карту недоступны для России по спискам FundedNext; криптометод не устраняет отдельное противоречие по доступу.'
+                        ? 'FundedNext не обслуживает резидентов России (подвал fundednext.com, по данным на 20.10.2026); криптометод этого не меняет. Резидентам России — BrightFunded.'
                         : 'USDC ERC-20 не отменяет SumSub KYC, проверку службы безопасности и поддержку кошелька в стране трейдера.'}
                     </p>
                     <div className="ru-actions">
                       <Link href={card.reviewHref} className="btn-outline">Русский обзор</Link>
-                      <RuGoLink firm={card.slug} href={`/go/${card.slug}?from=ru-payouts-card-${card.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
+                      <RuGoLink firm={card.slug} href={`/go/${card.slug}?from=ru-payouts-card-${card.slug}`} rel="sponsored nofollow noopener" className={russiaStatusFor(card.slug) === 'restricted' ? 'btn-outline' : 'btn-primary'}>
                         Проверить {card.name} <ArrowRight size={14} aria-hidden="true" />
                       </RuGoLink>
                     </div>
@@ -466,7 +470,7 @@ export default function RussianPayoutsPage() {
             <div className="ru-grid">
               <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент ЕС с EUR-счётом</h3><p className="ru-muted">Банковский перевод BrightFunded в EUR может уменьшить лишнюю валютную конвертацию, если KYC и банк поддерживают отправителя. Сравните банковскую комиссию с USDC ERC-20.</p></article>
               <article className="ru-card"><Bitcoin size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент страны с разрешённым криптомаршрутом</h3><p className="ru-muted">FundedNext даёт USDT в 2 сетях и USDC ERC20, но кошелёк, правило передачи данных и местная отчётность остаются обязанностью получателя.</p></article>
-              <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">Криптовалюта не отменяет ограничение по стране. FundedNext резидентам России недоступна (подвал fundednext.com, по данным на 20.10.2026), а банковский перевод и выплата на карту прямо ограничены для России.</p></article>
+              <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">Криптовалюта не отменяет ограничение по стране. FundedNext резидентам России недоступна (подвал fundednext.com, по данным на 20.10.2026), а банковский перевод и выплата на карту прямо ограничены для России. Начните с BrightFunded.</p></article>
               <article className="ru-card"><ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Переезд или второе гражданство</h3><p className="ru-muted">Показывайте текущие документы и адрес, сообщайте фирме об изменении профиля и не выбирайте страну только ради оформления покупки. Решение KYC индивидуально.</p></article>
             </div>
             <div className="ru-actions">
@@ -510,7 +514,7 @@ export default function RussianPayoutsPage() {
             <p>
               Мы пишем о локальных фирмах как об информационном мосте для читателя, который ищет «проп-компанию» на русском.
               Если публичной партнёрской программы нет, карточка не получает искусственный призыв к действию. Коммерческий маршрут остаётся
-              прозрачным: подходящий международный пользователь сравнивает FundedNext и BrightFunded, а локальную модель
+              прозрачным: резидент России начинает с BrightFunded, пользователь из другой страны сравнивает BrightFunded и FundedNext, а локальную модель
               выбирает только после проверки российского договора, рынка и юридического лица.
             </p>
             <div className="ru-actions">
@@ -548,13 +552,13 @@ export default function RussianPayoutsPage() {
             </ol>
             <div className="ru-notice">
               <CheckCircle2 size={16} aria-hidden="true" />{' '}
-              <strong>Если профиль подходит:</strong> откройте русский обзор FundedNext или BrightFunded, сравните конкретный
+              <strong>Если профиль подходит:</strong> откройте русский обзор BrightFunded (резидентам России) или FundedNext (только вне России), сравните конкретный
               продукт, затем переходите на официальную страницу оплаты через отмеченную партнёрскую ссылку.
             </div>
             <div className="ru-actions">
-              <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Сравнить FundedNext и BrightFunded</Link>
-              <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор FundedNext</Link>
+              <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary">Сравнить BrightFunded и FundedNext</Link>
               <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор BrightFunded</Link>
+              <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор FundedNext (не для РФ)</Link>
               <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Полный русский рейтинг</Link>
             </div>
           </div>

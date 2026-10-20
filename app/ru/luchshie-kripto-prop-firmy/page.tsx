@@ -33,8 +33,8 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/luchshie-kripto-prop-firmy'
-const TITLE = 'Крипто-проп-фирмы 2026: цены, инструменты и правила'
-const DESCRIPTION = 'Проп-трейдинг криптовалют: сравнение программ по датированным источникам, комиссии, плечо, просадка, выплаты и проверка доступа из своей страны.'
+const TITLE = 'Крипто проп-компании 2026: проп-трейдинг криптовалют'
+const DESCRIPTION = 'Проп-компании и проп-трейдинг криптовалют: сравнение крипто-проп фирм по датированным источникам — комиссии, плечо, просадка, выплаты и доступ из России.'
 // Preserve existing sharing-preview text until the separate sharing update is approved.
 const SOCIAL_TITLE = 'Крипто-проп-фирмы 2026: 3 проверенных варианта'
 const SOCIAL_DESCRIPTION = 'Проп трейдинг криптовалют: сравниваем 3 крипто-проп фирмы и 12 подтверждённых продуктов по цене, просадке, плечу, KYC и выплатам.'

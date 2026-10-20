@@ -11,6 +11,9 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-proplive'
@@ -84,8 +87,8 @@ export default function RussianPropLiveReviewPage() {
     const products = freshChallenges.filter(product => product.firmSlug === route.slug)
     return { ...route, firm, products }
   }).filter(item => item.firm?.affiliateUrl)
-    // Russia-open firms first (firms.json russiaStatus); the array order breaks ties, so BrightFunded leads.
-    .sort((x, y) => Number(y.firm?.russiaStatus === 'available') - Number(x.firm?.russiaStatus === 'available'))
+    // Russia-open firms first (BrightFunded), restricted (FundedNext) last; stable for equal status.
+    .sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)])
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -247,7 +250,7 @@ export default function RussianPropLiveReviewPage() {
       <section className="ru-section">
         <div className="ru-shell" data-russian-local-global-funnel="proplive">
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="proplive-global-options">
-            <strong>BrightFunded и FundedNext — два глобальных партнёра сайта; доступ для РФ у каждого показан бейджем рядом с кнопкой.</strong>{' '}
+            <strong>BrightFunded — основной глобальный маршрут для резидентов России; FundedNext резидентам РФ недоступна и показана только для трейдеров из других стран.</strong>{' '}
             Если вам нужен сопоставимый онлайн-продукт, ниже находятся два коммерчески выделенных партнёра с отдельными русскими обзорами, а не первые места общего рейтинга.
             Это переход к онлайн-сравнению, а не перенос условий PropLive: рынок, брокер, KYC и выплаты нужно сверить отдельно.
             Комиссия возможна после регистрации, но не меняет локальные выводы или порядок сравнения.
@@ -256,16 +259,17 @@ export default function RussianPropLiveReviewPage() {
           <div className="ru-grid">
             {globalCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-local-global-partner={item.slug}>
-                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Главный партнёр</span></div>
+                <div className="ru-card-head"><h3>{item.name}</h3>{russiaStatusFor(item.slug) === 'restricted' ? <RuAccessBadgeView firm={item.slug} status="restricted" hint={false} /> : <span className="ru-score">Главный партнёр</span>}</div>
+                {russiaStatusFor(item.slug) === 'restricted' && <p className="ru-source-line" data-russian-restricted-partner-note={item.slug}><strong>Резидентам России недоступна.</strong> Карточка — для русскоязычных трейдеров из других стран.</p>}
                 <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; сравните CFD-модель с рынком PropLive и отдельно проверьте страну, KYC и вывод.</p>
                 <div className="ru-actions">
                   <Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link>
-                  <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-proplive-global-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+                  <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-proplive-global-${item.slug}`} rel="sponsored nofollow noopener" className={russiaStatusFor(item.slug) === 'restricted' ? 'btn-outline' : 'btn-primary'}>Проверить условия <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
                 </div>
               </article>
             ))}
           </div>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Локальные примеры: <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">все шесть исследовательских карточек</Link>; глобальное решение: <Link href="/ru/fundednext-vs-bright-funded">сравнение программ FundedNext и BrightFunded</Link>. Отдельные локальные обзоры: <Link href="/ru/obzor-eratrade">Era Trade</Link>, <Link href="/ru/obzor-teamtraders">TeamTraders</Link>.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Локальные примеры: <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">все шесть исследовательских карточек</Link>; глобальное сравнение: <Link href="/ru/fundednext-vs-bright-funded">программы BrightFunded и FundedNext</Link> (FundedNext недоступна для РФ). Отдельные локальные обзоры: <Link href="/ru/obzor-eratrade">Era Trade</Link>, <Link href="/ru/obzor-teamtraders">TeamTraders</Link>.</p>
         </div>
       </section>
 
