@@ -1,0 +1,352 @@
+[
+  {
+    "firmSlug": "the5ers",
+    "productName": "High Stakes (New)",
+    "productSlug": "high-stakes-new",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 2500,
+        "priceUsd": 19,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 35,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 69,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 176,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 249,
+        "refundable": null,
+        "dailyLossUsd": 2000,
+        "maxLossUsd": 4000
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 405,
+        "refundable": null,
+        "dailyLossUsd": 4000,
+        "maxLossUsd": 8000
+      }
+    ],
+    "pricingModel": "one-off",
+    "profitTargets": {
+      "phase1": 10,
+      "phase2": 5
+    },
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": null,
+    "minTradingDays": 3,
+    "maxTradingDays": null,
+    "maxTradingDaysUnlimited": true,
+    "consistencyRulePct": null,
+    "consistencyRuleApplies": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://the5ers.com/high-stakes/",
+    "sourceCapturedAt": "2026-10-19",
+    "notes": [
+      "Default 'New' toggle on the High Stakes page: 10% step 1 target, 5% step 2.",
+      "Daily/max loss is 5%/10% on the $2.5K-$25K tabs and 4%/8% on the $50K and $100K tabs; the 50K/100K tiers carry dollar caps computed from those published percentages (4% and 8% of the account size).",
+      "Minimum is 3 profitable days per step; a profitable day is closed profit of at least 0.5% of the initial balance, so minTradingDays stores 3 as a floor, not a trading-day count.",
+      "Step 1 earns a fixed reward ($2/$5/$10/$15/$25/$40 by tier); the Pro Trader split starts at 80% and scales to 100% with the scaling plan.",
+      "The plan table shows 'Refund' at the Pro Trader stage, but the Terms say the evaluation fee is non-refundable once trading starts; refundable stays null until the refund condition is confirmed.",
+      "News: trades 2 minutes before or after high-impact news are not allowed. Weekend and overnight holding allowed (indices carry a high weekend swap). Leverage 1:100. Platform MT5.",
+      "Drawdown basis (static vs balance-based) is not defined on the program page or Terms read on 2026-10-19; drawdownType left null.",
+      "No consistency rule found on the program page read on 2026-10-19; not confirmed absent.",
+      "First payout 14 days after receiving a funded account, then every 2 weeks.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/the5ers-2026-10-19.json"
+    ]
+  },
+  {
+    "firmSlug": "the5ers",
+    "productName": "High Stakes (Classic)",
+    "productSlug": "high-stakes-classic",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 2500,
+        "priceUsd": 22,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 39,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 78,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 195,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 279,
+        "refundable": null,
+        "dailyLossUsd": 2000,
+        "maxLossUsd": 4000
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 455,
+        "refundable": null,
+        "dailyLossUsd": 4000,
+        "maxLossUsd": 8000
+      }
+    ],
+    "pricingModel": "one-off",
+    "profitTargets": {
+      "phase1": 8,
+      "phase2": 5
+    },
+    "dailyLossPct": 5,
+    "maxLossPct": 10,
+    "drawdownType": null,
+    "minTradingDays": 3,
+    "maxTradingDays": null,
+    "maxTradingDaysUnlimited": true,
+    "consistencyRulePct": null,
+    "consistencyRuleApplies": null,
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://the5ers.com/high-stakes/",
+    "sourceCapturedAt": "2026-10-19",
+    "notes": [
+      "'Classic' toggle on the High Stakes page: 8% step 1 target, 5% step 2.",
+      "Daily/max loss is 5%/10% on the $2.5K-$25K tabs and 4%/8% on the $50K and $100K tabs; the 50K/100K tiers carry dollar caps computed from those published percentages (4% and 8% of the account size).",
+      "Minimum is 3 profitable days per step; a profitable day is closed profit of at least 0.5% of the initial balance, so minTradingDays stores 3 as a floor, not a trading-day count.",
+      "Step 1 earns a fixed reward ($2/$5/$10/$15/$25/$40 by tier); the Pro Trader split starts at 80% and scales to 100% with the scaling plan.",
+      "The plan table shows 'Refund' at the Pro Trader stage, but the Terms say the evaluation fee is non-refundable once trading starts; refundable stays null until the refund condition is confirmed.",
+      "News: trades 2 minutes before or after high-impact news are not allowed. Weekend and overnight holding allowed (indices carry a high weekend swap). Leverage 1:100. Platform MT5.",
+      "Drawdown basis (static vs balance-based) is not defined on the program page or Terms read on 2026-10-19; drawdownType left null.",
+      "No consistency rule found on the program page read on 2026-10-19; not confirmed absent.",
+      "First payout 14 days after receiving a funded account, then every 2 weeks.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/the5ers-2026-10-19.json"
+    ]
+  },
+  {
+    "firmSlug": "the5ers",
+    "productName": "Pro Growth",
+    "productSlug": "pro-growth",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 52,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 98,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 189,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 329,
+        "refundable": null
+      }
+    ],
+    "pricingModel": "one-off",
+    "profitTargets": {
+      "phase1": 10
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 6,
+    "drawdownType": null,
+    "minTradingDays": 3,
+    "maxTradingDays": null,
+    "maxTradingDaysUnlimited": true,
+    "consistencyRulePct": null,
+    "consistencyRuleApplies": null,
+    "profitSplitPct": null,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://the5ers.com/hyper-growth/",
+    "sourceCapturedAt": "2026-10-19",
+    "notes": [
+      "Pro Growth is the default toggle on the Growth page; its table lists 3 minimum profitable days and bonuses from $15 by tier.",
+      "Stop-out level 6% and a 3% daily limit (labelled 'Daily Pause' in the page data and 'Daily Loss' in the rendered table); the page header also says 'No daily stop-loss', so the 3% is stored as the daily limit with this caveat.",
+      "Profit split is published only as 'Up to 100%'; the scaling table starts at 75%/25% but the page does not make clear which Growth variant it belongs to, so profitSplitPct stays null.",
+      "News trading allowed except bracket strategies around news and practices listed in the Terms. Weekend holding allowed (indices carry a high swap). Leverage 1:30. Platform MT5.",
+      "Maximum combined evaluation capital per trader: $40,000.",
+      "Drawdown basis (static vs balance-based) not defined on the page read on 2026-10-19; drawdownType left null.",
+      "Refundability not stated on the program page; the Terms say evaluation fees are non-refundable once trading starts.",
+      "First payout 14 days after the account is activated, then every 14 days.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/the5ers-2026-10-19.json"
+    ]
+  },
+  {
+    "firmSlug": "the5ers",
+    "productName": "Hyper Growth",
+    "productSlug": "hyper-growth",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 5000,
+        "priceUsd": 260,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": 450,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 850,
+        "refundable": null
+      }
+    ],
+    "pricingModel": "one-off",
+    "profitTargets": {
+      "phase1": 10
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 6,
+    "drawdownType": null,
+    "minTradingDays": 0,
+    "maxTradingDays": null,
+    "maxTradingDaysUnlimited": true,
+    "consistencyRulePct": null,
+    "consistencyRuleApplies": null,
+    "profitSplitPct": null,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://the5ers.com/hyper-growth/",
+    "sourceCapturedAt": "2026-10-19",
+    "notes": [
+      "Hyper Growth has no $50K tier on the page; it doubles the Pro account on every 10% target.",
+      "The table shows no minimum profitable days and the guidelines say 'No minimum trades or days requirements for completing level 1'; stored as 0.",
+      "Stop-out level 6% and a 3% daily limit (labelled 'Daily Pause' in the page data and 'Daily Loss' in the rendered table); the page header also says 'No daily stop-loss', so the 3% is stored as the daily limit with this caveat.",
+      "Profit split is published only as 'Up to 100%'; the scaling table starts at 75%/25% but the page does not make clear which Growth variant it belongs to, so profitSplitPct stays null.",
+      "News trading allowed except bracket strategies around news and practices listed in the Terms. Weekend holding allowed (indices carry a high swap). Leverage 1:30. Platform MT5.",
+      "Maximum combined evaluation capital per trader: $40,000.",
+      "Drawdown basis (static vs balance-based) not defined on the page read on 2026-10-19; drawdownType left null.",
+      "Refundability not stated on the program page; the Terms say evaluation fees are non-refundable once trading starts.",
+      "First payout 14 days after the account is activated, then every 14 days.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/the5ers-2026-10-19.json"
+    ]
+  },
+  {
+    "firmSlug": "the5ers",
+    "productName": "Bootcamp",
+    "productSlug": "bootcamp",
+    "phases": 3,
+    "accountSizes": [
+      {
+        "sizeUsd": 20000,
+        "priceUsd": 22,
+        "activationFeeUsd": 50,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 95,
+        "activationFeeUsd": 205,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 250000,
+        "priceUsd": 225,
+        "activationFeeUsd": 350,
+        "refundable": null
+      }
+    ],
+    "pricingModel": "one-off",
+    "profitTargets": {
+      "phase1": 6,
+      "phase2": 6,
+      "phase3": 6
+    },
+    "dailyLossPct": null,
+    "maxLossPct": 5,
+    "drawdownType": null,
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "maxTradingDaysUnlimited": true,
+    "consistencyRulePct": null,
+    "consistencyRuleApplies": null,
+    "profitSplitPct": null,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": false
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://the5ers.com/bootcamp/",
+    "sourceCapturedAt": "2026-10-19",
+    "notes": [
+      "Fee mapping: a low entry fee at checkout ($22 / $95 / $225) plus a fee due on funding ($50 / $205 / $350) for the $20K / $100K / $250K plans; the second amount is stored as the tier's activationFeeUsd.",
+      "Evaluation steps start below the plan size: $20K plan runs $5K/$10K/$15K, $100K plan $25K/$50K/$75K, $250K plan $100K/$150K/$200K; sizeUsd is the funded Pro balance named on the tab.",
+      "Each evaluation step: 6% target, 5% max loss, no daily limit. Funded stage: 5% target, 4% max loss, 3% daily pause.",
+      "Profit share published only as 'Up to 100%' for the funded stage; profitSplitPct stays null.",
+      "Minimum trading or profitable days not stated in the Bootcamp table; minTradingDays left null.",
+      "Weekend and overnight holding allowed (indices may incur weekend fees). Leverage 1:30. Each active account must use a different strategy.",
+      "Drawdown basis not defined on the page read on 2026-10-19; drawdownType left null.",
+      "First payout can be requested 14 days after receiving a funded account, then every 2 weeks.",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/the5ers-2026-10-19.json"
+    ],
+    "fundedDailyLossPct": 3,
+    "fundedMaxLossPct": 4
+  }
+]
