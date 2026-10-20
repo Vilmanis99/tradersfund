@@ -162,6 +162,8 @@ type: "post"
 
 <p>Our India ranking now applies the following order. First, any firm named on the RBI Alert List is excluded from the India recommendation list and India affiliate placements. Second, an unlisted firm must have dated first-party evidence that India is not in its published country restrictions. Third, every displayed product must have a source capture no older than 30 days. Fourth, at least one international payout rail must be published. The same gates run before a product can enter our <a href="/best-prop-firms-in-india/challenge-comparison">India challenge-rules comparison</a>.</p>
 
+<p>The5ers shows how the gates work in practice. India is not among the 31 forbidden territories in its Terms (checked 2026-10-19), which satisfies the second gate. But its payout help pages returned 404 that day and no payout rail is captured, so it fails the fourth. The <a href="/blog/the5ers-review">The5ers review</a> separates what is verified from what isn't.</p>
+
 <p>Passing those gates does not mean “RBI approved” or “legal for everyone.” It means the firm has survived a conservative editorial screen and is suitable for further due diligence. Our evidence matrix keeps “country accepted,” “RBI status,” “checkout tested,” “KYC documented,” and “payout tested” as separate claims because combining them into one green badge would mislead Indian traders.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>

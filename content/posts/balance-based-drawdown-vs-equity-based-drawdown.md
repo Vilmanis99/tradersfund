@@ -48,6 +48,8 @@ type: "post"
 
 <p>The words “balance based” do not answer all 4 questions. FTMO 1-Step is the clearest counterexample: its maximum loss is described as balance-based and end-of-day trailing. The limit can increase but not decrease, and the captured rule resets it after a reward withdrawal.</p>
 
+<p>Some firms answer none of the 4 questions in writing. The5ers' High Stakes table gives its maximum loss as a percentage of the initial balance: 10% on the $2.5K–$25K tiers and 8% on $50K and $100K. But the program pages and Terms we read on 2026-10-19 don't say whether the line is checked against balance or equity. The <a href="/blog/the5ers-review">The5ers review</a> lists what to ask before you buy.</p>
+
 <h2>Current product examples</h2>
 
 <p>The table uses structured product records and underlying firm captures checked through 2026-08-28. Prices identify the exact $100K or $10K tier; the focus is the loss calculation, not which firm is universally easier.</p>
