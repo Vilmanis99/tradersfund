@@ -7,6 +7,7 @@ import { RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/ftmo-dlya-rossiyan'
 const CHECKED = '14.10.2026'
@@ -40,7 +41,6 @@ const alternatives = [
   { slug: 'bright-funded', name: 'BrightFunded', russia: 'Не в списке ограничений', kyc: 'Исключает лиц из санкционных списков', payout: 'USDC (ERC-20), банк в EUR', review: '/ru/obzor-bright-funded' },
   { slug: 'upscale', name: 'Upscale', russia: 'Ограничений по странам не заявлено', kyc: 'Нет KYC', payout: 'USDT на свой кошелёк', review: null },
   { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', russia: 'Принимает на Match-Trader', kyc: 'Не проверено', payout: 'USDT ERC20/TRC20, BTC, ETH, банк', review: '/blog/crypto-fund-trader-review' },
-  { slug: 'fundednext', name: 'FundedNext CFD', russia: 'Не в списке ограничений CFD', kyc: 'VPN или ложные данные — закрытие аккаунта', payout: 'USDT, USDC, RiseWorks, банк, карта', review: '/ru/obzor-fundednext' },
 ] as const
 
 const faqs: RussianFaqItem[] = [
@@ -58,7 +58,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Чем заменить FTMO трейдеру из России?',
-    a: 'На дату проверки Россию не ограничивают Upscale, Crypto Fund Trader (Match-Trader), BrightFunded и FundedNext в CFD-направлении. Условия у них разные — сравните правила по ссылкам на обзоры.',
+    a: 'На дату проверки Россию не ограничивают Upscale, Crypto Fund Trader (Match-Trader), BrightFunded; FundedNext с 20.10.2026 резидентам России недоступна (подвал её сайта). Условия у них разные — сравните правила по ссылкам на обзоры.',
   },
   {
     q: 'Почему на этой странице нет ссылки на регистрацию в FTMO?',
@@ -152,8 +152,8 @@ export default function FtmoForRussiansPage() {
         <div className="ru-shell ru-content">
           <h2>Альтернативы FTMO для трейдеров из России</h2>
           <p>
-            Четыре фирмы на {CHECKED} не ограничивают Россию. Они не копии FTMO: у Upscale и Crypto Fund Trader упор на
-            крипту, у BrightFunded и FundedNext CFD — на форекс и индексы. Сравнивайте правила, а не логотипы.
+            Три фирмы на {CHECKED} не ограничивают Россию. Они не копии FTMO: у Upscale и Crypto Fund Trader упор на
+            крипту, у BrightFunded — на форекс и индексы. Сравнивайте правила, а не логотипы.
           </p>
           <div className="ru-table-wrap">
             <table className="ru-table" data-ftmo-alternatives="russia">
@@ -182,9 +182,9 @@ export default function FtmoForRussiansPage() {
             </table>
           </div>
           <p>
-            Ловушка у FundedNext: CFD-направление Россию не ограничивает, а FundedNext Futures — ограничивает. Выбирайте
-            именно CFD-челлендж. Crypto Fund Trader принимает и криптовалюту — этот способ не зависит от карты (по данным на 14.10.2026).
+            Crypto Fund Trader принимает и криптовалюту — этот способ не зависит от карты (по данным на 14.10.2026).
           </p>
+          <RuFundedNextAccessCaveat />
           <p>
             Пошаговое сравнение правил FTMO с ближайшей по механике альтернативой — в разборе{' '}
             <Link href="/ru/ftmo-vs-bright-funded">«FTMO или BrightFunded»</Link>: цена, просадка, сплит, срок выплаты и оплата криптой.

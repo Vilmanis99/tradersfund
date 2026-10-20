@@ -1,0 +1,52 @@
+{
+  "firmSlug": "crypto-fund-trader",
+  "captureType": "targeted-recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T11:30:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/crypto-fund-trader-2026-10-19.json",
+  "egress": "Box egress is a US IP; WooCommerce Store API is not region-specific.",
+  "question": "EN Writer: Ascend still has prices but is not purchasable (per 2026-10-19 recapture).",
+  "method": "curl https://cryptofundtrader.com/wp-json/wc/store/v1/products/{162450,162484,162490,162495,162500,162504}",
+  "storeApi": [
+    {
+      "id": 162495,
+      "name": "$5.000 Ascend Evaluation",
+      "is_purchasable": false,
+      "price": "4500"
+    },
+    {
+      "id": 162500,
+      "name": "$10.000 Ascend Evaluation",
+      "is_purchasable": false,
+      "price": "9000"
+    },
+    {
+      "id": 162504,
+      "name": "$25.000 Ascend Evaluation",
+      "is_purchasable": false,
+      "price": "22500"
+    },
+    {
+      "id": 162450,
+      "name": "$50.000 Ascend Evaluation",
+      "is_purchasable": false,
+      "price": "45000"
+    },
+    {
+      "id": 162484,
+      "name": "$100.000 Ascend Evaluation",
+      "is_purchasable": false,
+      "price": "89900"
+    },
+    {
+      "id": 162490,
+      "name": "$200.000 Ascend Evaluation",
+      "is_purchasable": false,
+      "price": "179800"
+    }
+  ],
+  "changes": [
+    "challenges/crypto-fund-trader.json ascend accountSizes[].priceUsd 39/78/195/390/780/1560 -> null (not purchasable; Terms ladder kept in notes). sourceCapturedAt stays 2026-10-19 (only availability rechecked)."
+  ]
+}

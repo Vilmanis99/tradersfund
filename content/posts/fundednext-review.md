@@ -3,7 +3,7 @@ title: "FundedNext Review 2026: 22 Prices, 4 Rule Sets, and the India Checkout T
 seoTitle: "FundedNext Review 2026: Fees, Rules & Payouts"
 slug: "fundednext-review"
 date: "2024-09-02 15:16:05"
-modified: "2026-10-06"
+modified: "2026-10-20"
 author: "Edris Derakhshi"
 excerpt: "FundedNext starts new accounts at an 80% split, not 95%. Compare all 22 global prices, payout cycles, news rules, and India payment checks."
 seoDescription: "FundedNext review with 22 current prices, an 80% base split, and Stellar Lite, 1-Step, 2-Step and Instant rules, payouts, platforms and India access."
@@ -24,7 +24,7 @@ type: "post"
   <tbody>
     <tr data-fundednext-product-fit="stellar-2-step"><td style="padding: 8px 9px;"><strong>Stellar 2-Step</strong></td><td style="padding: 8px 9px;">10% static room matters more than completing 2 phases</td><td style="padding: 8px 9px;">$59.99 for $6K</td><td style="padding: 8px 9px;">5% daily / 10% static max</td><td style="padding: 8px 9px;">21 days / first approved reward</td></tr>
     <tr data-fundednext-product-fit="stellar-1-step"><td style="padding: 8px 9px;"><strong>Stellar 1-Step</strong></td><td style="padding: 8px 9px;">1 phase and a 5-business-day cycle matter more than 6% max room</td><td style="padding: 8px 9px;">$65.99 for $6K</td><td style="padding: 8px 9px;">3% daily / 6% static max</td><td style="padding: 8px 9px;">5 business days / third approved reward</td></tr>
-    <tr data-fundednext-product-fit="stellar-lite"><td style="padding: 8px 9px;"><strong>Stellar Lite</strong></td><td style="padding: 8px 9px;">The $32.99 entry matters more than an 8% max-loss cap</td><td style="padding: 8px 9px;">$32.99 for $5K</td><td style="padding: 8px 9px;">4% daily / 8% static max</td><td style="padding: 8px 9px;">21 days / third approved reward</td></tr>
+    <tr data-fundednext-product-fit="stellar-lite"><td style="padding: 8px 9px;"><strong>Stellar Lite</strong></td><td style="padding: 8px 9px;">The $32.99 entry matters more than an 8% max-loss cap</td><td style="padding: 8px 9px;">$32.99 for $5K</td><td style="padding: 8px 9px;">4% daily / 8% static max</td><td style="padding: 8px 9px;">10 business days / third approved reward (accounts bought or reset before 12 Oct 2026: 21 days, then every 14)</td></tr>
     <tr data-fundednext-product-fit="stellar-instant"><td style="padding: 8px 9px;"><strong>Stellar Instant</strong></td><td style="padding: 8px 9px;">0-phase access matters more than a 6% trailing floor</td><td style="padding: 8px 9px;">$59.99 for $2K</td><td style="padding: 8px 9px;">No daily cap / 6% trailing max</td><td style="padding: 8px 9px;">On demand after 5% growth / no refund</td></tr>
   </tbody>
 </table>
@@ -96,7 +96,7 @@ type: "post"
 
 <p><strong>Stellar 1-Step.</strong> The shortcut requires a 10% target over at least 2 trading days. Its 3% daily loss and 6% static maximum loss are substantially tighter: a $100K account breaches at $94,000 overall or after $3,000 of daily loss, even though the fee is $569.99 versus $549.99 for the 2-Step.</p>
 
-<p><strong>Stellar Lite.</strong> Lite uses 8% and 4% targets, 5 days per phase, a 4% daily limit, and an 8% static maximum-loss floor. On $100K, that means $4,000 daily room and an absolute $92,000 floor; the $399.99 fee is $150 below the equivalent 2-Step fee.</p>
+<p><strong>Stellar Lite.</strong> Lite uses 8% and 4% targets, 2 minimum trading days per phase on standard plans (5 on the 90% on-demand option), a 4% daily limit, and an 8% static maximum-loss floor. On $100K, that means $4,000 daily room and an absolute $92,000 floor; the $399.99 fee is $150 below the equivalent 2-Step fee.</p>
 
 <p><strong>Stellar Instant.</strong> There is no evaluation target, daily-loss cap, minimum-day rule, or consistency percentage. The trade-off is a 6% real-time trailing maximum loss: a $10K account starts with a $9,400 floor, a $200 profit lifts it to $9,600, and a $600 peak locks it at $10,000. The floor never moves down and does not reset after a payout; the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> compares that captured absence with 15%–50% product rules.</p>
 
@@ -170,7 +170,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p><strong>Cycle timing differs by product.</strong> Stellar 1-Step uses 5-business-day reward cycles. Stellar 2-Step and Lite allow the first standard request after 21 days and later requests every 14 days. Stellar Instant can request on demand after 5% growth at an end-of-day check, or after 14 days when growth is at least 1% but below 5%. FundedNext's Stellar Instant page, rechecked on 2026-10-19, says: "You can request your first reward on-demand once you reach 5% growth, or bi-weekly when your account is at ≥1% growth."</p>
+<p><strong>Cycle timing differs by product.</strong> Stellar 1-Step uses 5-business-day reward cycles, the only standard weekly cycle in FundedNext's CFD lineup. Stellar 2-Step allows the first standard request after 21 days and later requests every 14 days. Stellar Lite accounts bought or reset on or after 12 Oct 2026 get the first reward after 10 business days and then every 10 business days; older Lite accounts keep 21 days, then every 14 (FundedNext help center, checked 2026-10-20). Stellar 2-Step and Lite buyers can instead pick the On-Demand payout option at checkout: a request needs 2% growth and a best day no larger than 40% of total profit, checked only when you request, and pays 90% (95% with the Lifetime Reward add-on). On $100K with $5,000 of profit, that means no single day above $2,000 (help article 15586820, checked 2026-10-20). Stellar Instant can request on demand after 5% growth at an end-of-day check, or after 14 days when growth is at least 1% but below 5%. FundedNext's Stellar Instant page, rechecked on 2026-10-19, says: "You can request your first reward on-demand once you reach 5% growth, or bi-weekly when your account is at ≥1% growth."</p>
 
 <p><strong>Refund timing differs too.</strong> Stellar 2-Step’s registration fee can be requested with the first approved Performance Reward; its product page, rechecked on 2026-10-19, says "Challenge fee refunded with your 1st reward". New Stellar 1-Step and Lite purchases wait until the third approved reward. Stellar Instant’s $59.99–$599.99 purchase is non-refundable because there is no evaluation pass milestone.</p>
 
@@ -229,7 +229,7 @@ type: "post"
 <p>Stellar 2-Step can request it with the first approved payout; new 1-Step and Lite purchases wait until the third. Stellar Instant has no refundable fee.</p>
 
 <h3 class="wp-block-heading"><strong>When can I request my first FundedNext payout?</strong></h3>
-<p>Stellar 1-Step uses a 5-business-day reward cycle; Stellar 2-Step and Lite allow the first standard request after 21 days. Stellar Instant’s on-demand route requires 5% growth and an end-of-day check, with a separate 14-day route for growth of at least 1% but below 5%. Eligibility and approval are separate from transfer time, and KYC must be Approved before a request.</p>
+<p>Stellar 1-Step uses a 5-business-day reward cycle; Stellar 2-Step allows the first standard request after 21 days, and Stellar Lite after 10 business days on accounts bought or reset from 12 Oct 2026 (21 days on older accounts). Stellar Instant’s on-demand route requires 5% growth and an end-of-day check, with a separate 14-day route for growth of at least 1% but below 5%. Eligibility and approval are separate from transfer time, and KYC must be Approved before a request.</p>
 
 <h3 class="wp-block-heading"><strong>Can traders in India use FundedNext?</strong></h3>
 <p>India was not among FundedNext’s 20 restricted CFD countries in the 2026-07-27 country check. That dated access evidence is separate from regulatory approval, payment availability and KYC: the cardholder and account names must match, and Local Payment requires dashboard support for the country. Use the <a href="/best-prop-firms-in-india">India comparison’s current country and payment checks</a> before purchasing.</p>

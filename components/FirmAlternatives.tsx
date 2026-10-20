@@ -60,6 +60,9 @@ export default function FirmAlternatives({
       <p style={{ color: 'var(--muted)', fontSize: '0.82rem', margin: '-0.35rem 0 1rem' }}>
         Selected by asset and platform overlap, not partnership. Product counts use current
         first-party captures; open the exact matchup before choosing a product.
+        {ranked.some(firm => Boolean(firm.affiliateUrl)) && (
+          <span data-alternatives-commission-note> Firms marked Partner may pay us a commission if you sign up through their link.</span>
+        )}
       </p>
       <div
         style={{

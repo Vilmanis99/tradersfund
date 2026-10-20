@@ -1,0 +1,180 @@
+{
+  "firmSlug": "bright-funded",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T08:21:08+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/bright-funded-2026-10-19.json",
+  "egress": "Box egress is a US IP. Prices were compared against region-independent first-party price data where the firm publishes it (named in method); codes seen only from the US IP are recorded as regional, never as universal deals.",
+  "method": "Headless Chrome render of the three plan pages (EUR plan cards)",
+  "priceSource": "https://brightfunded.com/1-step, /2-step-bright, /2-step-classic plan cards",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "bright-funded-1-step",
+      "prices": {
+        "5000": "EUR 49",
+        "10000": "EUR 97",
+        "25000": "EUR 197",
+        "50000": "EUR 297",
+        "100000": "EUR 497",
+        "200000": "EUR 997"
+      }
+    },
+    {
+      "productSlug": "bright-funded-2-step-bright",
+      "prices": {
+        "5000": "EUR 47",
+        "10000": "EUR 87",
+        "25000": "EUR 187",
+        "50000": "EUR 277",
+        "100000": "EUR 477",
+        "200000": "EUR 947"
+      }
+    },
+    {
+      "productSlug": "bright-funded-2-step-classic",
+      "prices": {
+        "5000": "EUR 49",
+        "10000": "EUR 97",
+        "25000": "EUR 197",
+        "50000": "EUR 297",
+        "100000": "EUR 497",
+        "200000": "EUR 997"
+      }
+    }
+  ],
+  "priceQuotes": [
+    "1-Step: $5KAccount-25% Off€49€36.75PriceStart Now ... Max. Daily Loss3%Max. Total Loss6%Min. Trading Days5 DaysPayout RatioUp to90%News Trading5-min Restriction",
+    "2-Step Bright: $5KAccount-25% Off€47€35.25 ... Max. Daily Loss4%Max. Total Loss8% ... Profit Target8%Phase 15%Phase 2",
+    "2-Step Classic: $5KAccount-25% Off€49€36.75 ... Max. Daily Loss5%Max. Total Loss10% ... Profit Target10%Phase 15%Phase 2",
+    "List tiers EUR 49/97/197/297/497/997 (1-Step, Classic) and EUR 47/87/187/277/477/947 (Bright)"
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 24,
+    "foundVerbatimInLiveText": 13,
+    "notFoundVerbatim": 11,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
+  },
+  "changes": [],
+  "notes": [
+    "List prices and plan-card rules unchanged since 2026-10-14."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://brightfunded.com/1-step",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:49.258Z"
+    },
+    {
+      "url": "https://brightfunded.com/2-step-bright",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:49.530Z"
+    },
+    {
+      "url": "https://brightfunded.com/2-step-classic",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:55.105Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/9460023-can-i-get-a-refund-for-my-brightfunded-challenge",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:55.341Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:55.356Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/9241709-is-copy-trading-allowed",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:55.374Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:55.432Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/9268323-is-it-allowed-to-hold-positions-over-the-weekend",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:55.436Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/9241699-can-i-use-ea",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:01.074Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/9268424-do-i-need-to-close-my-positions-overnight",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:01.104Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:01.145Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:01.173Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:01.174Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:01.213Z"
+    },
+    {
+      "url": "https://brightfunded.com/futures-waitlist",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:06.969Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:07.120Z"
+    },
+    {
+      "url": "https://brightfunded.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:08.125Z"
+    }
+  ],
+  "rulesRecheck": {
+    "checkedAtTimestamp": "2026-10-20T12:20+03:00",
+    "requestedBy": "Prop Firm Tracker (BrightFunded is the top RU pick; rules evidence was dated 2026-09-30)",
+    "method": "headless Chrome, US-IP box; official brightfunded.com and help.brightfunded.com pages",
+    "previousDates": {
+      "platforms": "2026-09-30",
+      "rules": "2026-09-30",
+      "reward": "2026-09-30",
+      "news": "2026-09-30",
+      "refund": "2026-09-30",
+      "countries": "2026-10-19",
+      "countryTerms": "2026-10-19"
+    },
+    "result": "All stored rule values unchanged. russian-bright-funded-evidence.json sources (platforms, rules, reward, news, refund, countries, countryTerms) and firms.json platformEvidence redated to 2026-10-20. Affiliate link and CTA fields untouched.",
+    "quotes": {
+      "rules (https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process, dated May 20, 2026)": "Min. Trading Days 5 per stage 5 per stage 5 Daily Drawdown 4% 5% 3% Max. Drawdown 8% (Static) 10% (Static) 6% (Trailing) Phase 1 Profit Target 8% 10% 10% Phase 2 Profit Target 5% 5% —",
+      "payout cadence (https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account, dated March 18, 2026)": "You can request your first Reward Split after 30 days after you place your first trade on your Funded Account. After your first Reward Split, you can request a Reward Split bi-weekly (14 days). ... ADD-ONS: ... Bi-weeky add-on (Payouts every 14 days) ⚡️ Weekly add-on (Payouts every 7 days)",
+      "payout methods (same article)": "Available Payout Methods: Crypto (USDC – ERC-20 Network) Bank Transfer Currency by Payment Method: Bank transfers are processed in Euros (€) Crypto payments are processed in USDC (ERC-20)",
+      "profit split (same article)": "The Profit Split is 80/20 by default and can be scaled up to 100/0 with our Scaling Plan or to 90% instantly with our add-on.",
+      "consistency (https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule, dated October 14, 2025)": "At BrightFunded, we do not currently enforce a consistency rule.",
+      "refund (https://help.brightfunded.com/en/articles/9460023-can-i-get-a-refund-for-my-brightfunded-challenge, dated October 14, 2025)": "Yes, you can receive a refund for your BrightFunded Challenge if you haven't made any trades on the account yet. ... Refund eligibility requires that the account was purchased within the last 30 days (counted from the purchase date).",
+      "news (https://help.brightfunded.com/en/articles/9241694-can-i-trade-news, dated July 2, 2026)": "Trading within a 10-minute window surrounding significant news releases—defined as 5 minutes before and 5 minutes after the event—is prohibited. ... this is a soft breach",
+      "platforms (https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer)": "we have three platforms designed to provide the best experience for our users: DXTrade, cTrader and MT5. ... If you are citizen, resident, or live in the US or UAE, MT5 will not be available for you",
+      "countries (https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded, dated September 15, 2026)": "Restricted Country List Cuba Iran North Korea Syria Vietnam Pakistan Important: Traders from Pakistan who already have an active account may continue trading.",
+      "countryTerms (https://brightfunded.com/terms-and-conditions)": "Cuba, Iran, North Korea, Syria, and Vietnam.",
+      "global prices (product pages, EUR, $5K card in static render)": "1-Step: €49 €34.30 (-30% RALLY30); 2-Step Bright: €47 €35.25 (-25% RALLY25); 2-Step Classic: €49 €41.65 (-15% RALLY15) - list prices equal stored priceEur; full ladders were recaptured in this morning's 2026-10-20 daily check."
+    },
+    "openQuestion14Day": "Still unresolved: the reward article makes 14-day payouts the default after the first (30-day) payout, yet lists a 'Bi-weeky add-on (Payouts every 14 days)'. Stored payoutFrequency stays 'bi-weekly' with payoutFirstDays 30; the add-on line suggests the base cycle might be longer. Needs a written answer from BrightFunded support.",
+    "russiaAccess": "Russia is not named in either list (help 6 countries, Terms 5). Absence is not approval; status in firms.json is unchanged."
+  }
+}

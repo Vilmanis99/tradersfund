@@ -58,10 +58,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-14.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/ftmo-2026-10-19.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-20.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ftmo-2026-10-20.json",
+      "Payout frequency (2026-10-20): 'on-demand' with payoutFirstDays 14. promo.ftmo.com/m26b-practice-trading-without-risk/: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\"; ftmo.com FAQ: \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\" firms.json uses the same label; see _captures/ftmo-2026-10-20.json ruWriterCheck."
     ]
   },
   {
@@ -122,10 +123,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-14.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/ftmo-2026-10-19.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-20.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ftmo-2026-10-20.json",
+      "Payout frequency (2026-10-20): 'on-demand' with payoutFirstDays 14. promo.ftmo.com/m26b-practice-trading-without-risk/: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\"; ftmo.com FAQ: \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\" firms.json uses the same label; see _captures/ftmo-2026-10-20.json ruWriterCheck."
     ]
   }
 ]

@@ -19,6 +19,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/chto-takoe-prop-firma'
 const TITLE = 'Что такое проп-фирма: как это работает в 2026 году'
@@ -321,20 +322,6 @@ export default function RussianWhatIsPropFirmPage() {
           </div>
           <div className="ru-grid">
             <article className="ru-card">
-              <div className="ru-card-head"><h3>FundedNext</h3><span className="ru-score">{fundedNextProducts.length} продукта</span></div>
-              <p className="ru-muted">
-                Stellar 2-Step, 1-Step, Lite и Instant различаются числом фаз, условием возврата взноса,
-                максимальной просадкой и первой датой выплаты. Для резидентов России официальные страницы содержат конфликт,
-            поэтому страница оплаты и поддержка проверяются до оплаты.
-              </p>
-              <div className="ru-actions">
-                <Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-definition-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
-              </div>
-            </article>
-            <article className="ru-card">
               <div className="ru-card-head"><h3>BrightFunded</h3><span className="ru-score">{brightProducts.length} продукта</span></div>
               <p className="ru-muted">
                 1-Step, 2-Step Bright и 2-Step Classic используют EUR-цены, но дают разные дневной/общий лимиты убытка и цели.
@@ -346,6 +333,21 @@ export default function RussianWhatIsPropFirmPage() {
                   Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
                 </RuGoLink>
               </div>
+            </article>
+            <article className="ru-card">
+              <div className="ru-card-head"><h3>FundedNext</h3><span className="ru-score">{fundedNextProducts.length} продукта</span></div>
+              <p className="ru-muted">
+                Stellar 2-Step, 1-Step, Lite и Instant различаются числом фаз, условием возврата взноса,
+                максимальной просадкой и первой датой выплаты. Резидентам России FundedNext недоступна
+            (подвал fundednext.com, по данным на 20.10.2026); в других странах страница оплаты и поддержка проверяются до оплаты.
+              </p>
+              <div className="ru-actions">
+                <Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link>
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-definition-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
+                  Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
+                </RuGoLink>
+              </div>
+              <RuFundedNextAccessCaveat />
             </article>
           </div>
         </div>

@@ -36,7 +36,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/otzyvy-prop-firm'
 const TITLE = 'Отзывы о проп-фирмах 2026: как проверить выплаты'
-const DESCRIPTION = 'Отзывы о проп-фирмах на русском: как проверить выплаты, блокировки, KYC и правила; сравнение FundedNext и BrightFunded с датами источников.'
+const DESCRIPTION = 'Отзывы о проп-фирмах на русском: как проверить выплаты, блокировки счёта, KYC и правила до оплаты. Сравнение BrightFunded и FundedNext с датами источников.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -90,8 +90,8 @@ const faqs: RussianFaqItem[] = [
 ]
 
 const featuredRoutes = [
-  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
   { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
 ] as const
 
 const secondaryRoute = {
@@ -288,7 +288,7 @@ export default function RussianPropFirmReviewsPage() {
             <div className="ru-notice" data-russian-country-boundary="reviews-not-access">
               <strong><AlertTriangle size={16} aria-hidden="true" /> Русский отзыв не доказывает доступность страны.</strong>{' '}
               Русскоязычный трейдер в Казахстане, Германии, Израиле, Грузии или России проходит разные проверки резидентства, гражданства, KYC и платежа.
-              У FundedNext есть {fundedNextAccess?.sourceUrls.length ?? 4} конфликтующих первичных маршрута по российским резидентам, поэтому до оплаты нужен письменный ответ поддержки; VPN и неверные данные использовать нельзя.
+              FundedNext резидентам России недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026); VPN и неверные данные использовать нельзя.
             </div>
           </div>
         </section>
