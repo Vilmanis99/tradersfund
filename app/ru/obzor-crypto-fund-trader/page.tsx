@@ -9,6 +9,7 @@ import { getAllFirms, getChallengesByFirm, isChallengeFresh, minimumCostToFunded
 import { firmSlug } from '@/lib/firmSlug'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import cftCapture from '@/content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json'
 
 const PATH = '/ru/obzor-crypto-fund-trader'
 const TITLE = 'Crypto Fund Trader: обзор 2026, отзывы и доступ из России'
@@ -27,27 +28,28 @@ export const metadata: Metadata = {
 }
 
 /**
- * Dated facts: Prop Firm Tracker /workspace/ru-data/2026-10-14-cryptofundtrader.md (access, checkout, payouts),
- * firms.json rule evidence (FAQ read 2026-10-15), challenges/crypto-fund-trader.json (capture 2026-10-14),
- * /workspace/ru-data/2026-10-15-trustpilot.md. All CFT URLs below returned 200 on 2026-10-19.
+ * Dated facts: Prop Firm Tracker full recapture 2026-10-20 (crypto-fund-trader-2026-10-20.json, articleSlotRecapture;
+ * raw pages in /workspace/tradersfundhub/evidence/article-slots-2026-10-20/cft/). It rechecked the store, homepage, FAQ,
+ * Terms, Break page, Get Started, refund policy and Trustpilot, and found every stored rule/payout/country quote verbatim.
  */
-const ACCESS_CHECKED = '2026-10-14'
-const RULES_CHECKED = '2026-10-15'
-const TRUSTPILOT_CHECKED = '2026-10-19'
-/** Prop Firm Tracker verdicts 2026-10-19 (/workspace/ru-data/2026-10-19-hashhedge-cft.md, capture crypto-fund-trader-2026-10-19.json). */
-const TRACKER_CHECKED = '2026-10-19'
+const CHECKED = cftCapture.articleSlotRecapture.capturedAt
+const ACCESS_CHECKED = CHECKED
+const RULES_CHECKED = CHECKED
+const TRUSTPILOT_CHECKED = CHECKED
+const TRACKER_CHECKED = CHECKED
+const TRUSTPILOT_COUNT = cftCapture.articleSlotRecapture.trustpilot.reviewCountShown
 const CHEAPEST_BUYABLE = { name: 'Accelerated (1-Phase) $5K', priceUsd: 40 }
-/** Open first-party conflicts: challenge-watch cft-ascend-break-price-disagreement-2026-10-06 and Tracker 2026-10-19 rows 6a/6b. */
-const PRICE_CONFLICT_CHECKED = '2026-10-06'
-const ASCEND_CONFLICT_NOTE = 'По данным на 19.10.2026 официальные страницы расходятся: в условиях (п. 5.6.5) Ascend стоит $39–$1 560, главная страница показывает $45 / $90 / $225 / $450 / $899 / $1 798, а в магазине все шесть позиций Ascend помечены как недоступные к покупке.'
-const BREAK_CONFLICT_NOTE = 'По данным на 19.10.2026 позиции Break в магазине доступны к покупке по ценам условий, хотя на странице Break всё ещё стоит надпись «sold out»; 06.10.2026 главная страница показывала $199 за Break $100K.'
+/** Open first-party conflicts rechecked 2026-10-20: homepage Break $100K $199 (not purchasable) vs Terms 5.6.6 / store $200; Break min days 0 (Break page) vs 1 (homepage). */
+const PRICE_CONFLICT_CHECKED = CHECKED
+const ASCEND_CONFLICT_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} все шесть позиций Ascend в магазине CFT помечены как недоступные к покупке, поэтому цены Ascend мы не приводим.`
+const BREAK_CONFLICT_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} цена Break $100K расходится: на главной странице — $199, в условиях (п. 5.6.6) и в магазине — $200. Позиции главной страницы ($70 / $139 / $199) в магазине недоступны к покупке.`
+const BREAK_OFFER_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} CFT продвигает Break как ограниченное по времени предложение («Limited time only» на странице Break, вкладка «Break LAST DAY» на главной), поэтому программу могут снять с продажи.`
 const PRICE_CONFLICT_NOTE = `${ASCEND_CONFLICT_NOTE} ${BREAK_CONFLICT_NOTE} Итоговую цену и доступность проверьте в корзине перед оплатой.`
 
 const SOURCES = {
   faq: 'https://cryptofundtrader.com/faq/',
   getStarted: 'https://cryptofundtrader.com/get-started/',
   terms: 'https://cryptofundtrader.com/terms-and-conditions/',
-  fundedAccount: 'https://cryptofundtrader.com/funded-account/',
   breakChallenge: 'https://cryptofundtrader.com/break-challenge/',
   refund: 'https://cryptofundtrader.com/refund-policy/',
   home: 'https://cryptofundtrader.com/',
@@ -64,19 +66,19 @@ const percent = (value: number | null | undefined) => (value == null || !Number.
 const faqs: RussianFaqItem[] = [
   {
     q: 'Работает ли Crypto Fund Trader с трейдерами из России?',
-    a: `${asOf(ACCESS_CHECKED)} в FAQ Crypto Fund Trader для Match-Trader указано: «ограничений по странам сейчас нет». MetaTrader 5 закрыт только для резидентов США. Россия на официальных страницах не упоминается ни в одном списке. Проверка личности (KYC) и подписание договора обязательны для всех.`,
+    a: `${asOf(ACCESS_CHECKED)} на страницах CFT ограничения для России не названы. В условиях (п. 7.3) сказано: «Match-Trader: No country restrictions» — ограничений по странам нет; MetaTrader 5 недоступен только резидентам США. Оплату российскими картами, KYC с российскими документами и выплаты на счета российских банков мы не проверяли. Проверка личности (KYC) и подписание договора обязательны для всех.`,
   },
   {
     q: 'Сколько стоит челлендж CFT?',
-    a: `${asOf(TRACKER_CHECKED)} самый дешёвый доступный к покупке вариант — Accelerated на $5,000 за $40. Ascend по условиям стоит от $39, но в магазине на 19.10.2026 не продаётся. Двухэтапная Evaluation стоит от $58 ($5K) до $1,250 ($200K), одноэтапная Accelerated — от $40 до $1,199, Instant без оценки — от $125 до $475, Break — от $70 до $200 плюс обязательный сбор за активацию после прохождения. ${PRICE_CONFLICT_NOTE} Цены указаны в долларах США; при оплате в другой валюте курс задаёт платёжный провайдер.`,
+    a: `${asOf(TRACKER_CHECKED)} самый дешёвый доступный к покупке вариант — Accelerated на $5,000 за $40. Двухэтапная Evaluation стоит от $58 ($5K) до $1,250 ($200K), за $100K — $660; одноэтапная Accelerated — от $40 до $1,199, за $100K — $619; Instant без оценки — от $125 до $475 (самый крупный счёт $10K); Break — от $70 до $200 плюс обязательный сбор за активацию после прохождения: на $100K это $200 + $328 = $528. Ascend в магазине не продаётся. ${BREAK_CONFLICT_NOTE} Цены указаны в долларах США; при оплате в другой валюте курс задаёт платёжный провайдер.`,
   },
   {
     q: 'Какой сплит прибыли у Crypto Fund Trader?',
-    a: 'В Evaluation, Accelerated и Break базовая доля трейдера — 80%. В Instant стартовая доля 50%, следующие уровни масштабирования — 60%, 70%, 80% и 90%. Ascend работает иначе: после второго этапа фирма выплачивает фиксированную стипендию, а не процент от прибыли.',
+    a: `${asOf(CHECKED)}: в Evaluation, Accelerated и Break базовая доля трейдера — 80%. В Instant стартовая доля 50%, следующие уровни масштабирования — 60%, 70%, 80% и 90%. Ascend работает иначе: после второго этапа фирма выплачивает фиксированную стипендию, а не процент от прибыли.`,
   },
   {
     q: 'Как выводить прибыль из CFT?',
-    a: `${asOf(ACCESS_CHECKED)}: банковским переводом в EUR или USD либо в криптовалюте — USDT (ERC20), USDT (TRC20), BTC или ETH. Перед первой выплатой нужны проверка личности и подписанный договор. В Evaluation и Accelerated запрос возможен после 15 торговых дней или раз в 30 календарных дней, с дополнением Weekly — каждые 7 торговых дней.`,
+    a: `${asOf(ACCESS_CHECKED)}: банковским переводом в EUR или USD либо в криптовалюте — USDT (ERC20), USDT (TRC20), BTC или ETH. Перед первой выплатой нужны проверка личности и подписанный договор. В Evaluation и Accelerated запрос возможен после 15 торговых дней или раз в 30 календарных дней, с дополнением Weekly — каждые 7 торговых дней. В Break выплаты — по запросу на финальной стадии.`,
   },
   {
     q: 'Можно ли торговать на новостях и в выходные?',
@@ -84,7 +86,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Crypto Fund Trader — развод?',
-    a: 'Фактов о мошенничестве у нас нет, но и независимой проверки выплат тоже нет. Что известно: оператор — SWISS RLCRATES AG (Цуг, Швейцария), условия и цены опубликованы, торговля идёт на демо-счёте. Trustpilot скрыл рейтинг компании из-за нарушения правил площадки. Перед оплатой прочитайте условия и начните с небольшого счёта.',
+    a: `Фактов о мошенничестве у нас нет, но и независимой проверки выплат тоже нет. Что известно ${asOf(CHECKED)}: оператор — SWISS RLCRATES AG (Цуг, Швейцария), условия и цены опубликованы, торговля идёт на демо-счёте. Trustpilot скрыл рейтинг компании из-за нарушения правил площадки. Перед оплатой прочитайте условия и начните с небольшого счёта.`,
   },
 ]
 
@@ -126,17 +128,19 @@ export default function RussianCryptoFundTraderReviewPage() {
   const firm = getAllFirms().find(item => firmSlug(item.name) === 'crypto-fund-trader')
   const status = russiaStatusFor('crypto-fund-trader')
   const captureDates = all.map(product => product.sourceCapturedAt).filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date)).sort()
-  const earliestCapture = captureDates[0] ?? ACCESS_CHECKED
+  // The 2026-10-20 recapture covers every programme (prices, availability, rules); stored rows may still carry 2026-10-19.
+  const earliestCapture = captureDates[0] && captureDates[0] > CHECKED ? captureDates[0] : CHECKED
+  const shownDate = (product: Challenge) => (product.sourceCapturedAt > CHECKED ? product.sourceCapturedAt : CHECKED)
   const dateModified = russianRouteDateModified(PATH)
 
   const tier = (product: Challenge | undefined, size: number) => product?.accountSizes.find(item => item.sizeUsd === size)
   const eval100 = tier(evaluation, 100000)
   const acc100 = tier(accelerated, 100000)
-  const break25 = tier(breakChallenge, 25000)
   const evalDailyLine = evaluation?.dailyLossPct != null ? (100000 * evaluation.dailyLossPct) / 100 : null
   const evalFloor = evaluation?.maxLossPct != null ? 100000 - (100000 * evaluation.maxLossPct) / 100 : null
   const evalBreakEven = eval100?.priceUsd != null && evaluation?.profitSplitPct ? eval100.priceUsd / (evaluation.profitSplitPct / 100) : null
-  const break25Total = breakChallenge && break25 ? minimumCostToFundedUsd(breakChallenge, break25) : null
+  const break100 = tier(breakChallenge, 100000)
+  const break100Total = breakChallenge && break100 ? minimumCostToFundedUsd(breakChallenge, break100) : null
   const accTrail = accelerated?.maxLossPct != null ? (100000 * accelerated.maxLossPct) / 100 : null
 
   const programs: Array<{ key: string; name: string; product: Challenge | undefined; note: string }> = [
@@ -144,7 +148,7 @@ export default function RussianCryptoFundTraderReviewPage() {
     { key: 'ascend', name: 'Ascend', product: ascend, note: 'фиксированная стипендия после второго этапа' },
     { key: 'accelerated', name: 'Accelerated (1-Phase)', product: accelerated, note: 'один этап, подвижная граница' },
     { key: 'instant', name: 'Instant', product: instant, note: 'без оценки, старт с доли 50%' },
-    { key: 'break', name: 'Break Challenge', product: breakChallenge, note: 'дешёвый вход + сбор за активацию' },
+    { key: 'break', name: 'Break Challenge', product: breakChallenge, note: 'дешёвый вход + сбор за активацию; ограниченное предложение' },
   ]
 
   const crumbs = breadcrumbSchema([
@@ -179,13 +183,12 @@ export default function RussianCryptoFundTraderReviewPage() {
         <div className="ru-shell"><RussianDataFreshnessNotice firmSlugs={['crypto-fund-trader']} /></div>
         <div className="ru-shell" data-russian-review="crypto-fund-trader" data-russia-status-crypto-fund-trader={status}>
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / Обзор Crypto Fund Trader</div>
-          <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Программы проверены {ruDate(earliestCapture)} · доступ {ruDate(ACCESS_CHECKED)} · правила {ruDate(RULES_CHECKED)}</div>
+          <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Программы, доступ и правила проверены {ruDate(earliestCapture)}</div>
           <h1>{H1}</h1>
           <p className="ru-lead">
-            Пять программ, несколько платформ и ни одной страны в списке запретов для Match-Trader. Crypto Fund Trader (CFT) —
-            одна из немногих проп-фирм, где у трейдера из России вопрос «пустят ли» решается на уровне платформы, а не
-            гаданием. Но вход от {usd(CHEAPEST_BUYABLE.priceUsd)} и сбор за активацию у Break, доля 50% у Instant и скрытый рейтинг на
-            Trustpilot — это то, что стоит знать до оплаты.
+            Пять программ, две платформы — Match-Trader и MT5 — и ни одной страны в списке ограничений для Match-Trader.
+            Россию страницы Crypto Fund Trader (CFT) не называют ни в одном ограничении. Но вход от {usd(CHEAPEST_BUYABLE.priceUsd)},
+            сбор за активацию у Break, доля 50% у Instant и скрытый рейтинг на Trustpilot — это то, что стоит знать до оплаты.
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
             <span>Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link></span>
@@ -194,7 +197,7 @@ export default function RussianCryptoFundTraderReviewPage() {
           <div className="ru-stats">
             <div className="ru-stat"><strong>{fresh.length}</strong><span>программ со свежими данными</span></div>
             <div className="ru-stat" data-russian-cft-cheapest="accelerated-5k"><strong>{usd(CHEAPEST_BUYABLE.priceUsd)}</strong><span>самый дешёвый доступный вход ({CHEAPEST_BUYABLE.name}, {ruDate(TRACKER_CHECKED)})</span></div>
-            <div className="ru-stat"><strong>Match-Trader</strong><span>платформа без ограничений по странам (FAQ CFT)</span></div>
+            <div className="ru-stat"><strong>Match-Trader</strong><span>платформа без ограничений по странам (п. 7.3 условий CFT)</span></div>
             <div className="ru-stat"><strong>{firm?.score != null ? `${firm.score.toFixed(1)}/10` : '—'}</strong><span>редакционный балл</span></div>
           </div>
         </div>
@@ -228,19 +231,18 @@ export default function RussianCryptoFundTraderReviewPage() {
             <h2>Коротко: кому подходит Crypto Fund Trader</h2>
             <div className="ru-notice" data-russian-cft-access="match-trader-no-restrictions">
               <strong>Доступ из России:</strong> <RuAccessBadge firm="crypto-fund-trader" />{' '}
-              {asOf(ACCESS_CHECKED)} для Match-Trader CFT пишет «ограничений по странам сейчас нет», MT5 закрыт только для резидентов
-              США, Россия на официальных страницах не упоминается.
+              {asOf(ACCESS_CHECKED)} страницы CFT не называют ограничений для России. Условия (п. 7.3): «Match-Trader: No country
+              restrictions»; MT5 недоступен только резидентам США.
             </div>
             <p>
-              CFT стоит рассматривать, если вы торгуете криптовалютой и вам нужна фирма, которая не отсекает Россию и СНГ на входе.
+              CFT стоит рассматривать, если вы торгуете криптовалютой и вам нужна фирма, в правилах которой Россия не названа среди ограничений.
               Двухэтапная Evaluation здесь честная классика: цели {targetsText(evaluation)}, лимиты {drawdownText(evaluation)},
-              без минимума торговых дней. За $100K — {usd(eval100?.priceUsd)}.
+              доля {percent(evaluation?.profitSplitPct)}, без минимума торговых дней и без правила лучшего дня. За $100K — {usd(eval100?.priceUsd)}.
             </p>
             <p>
-              Ascend по условиям стоит от {usd(tier(ascend, 5000)?.priceUsd)}, заканчивается фиксированной стипендией и на
-              {' '}{ruDate(TRACKER_CHECKED)} в магазине не продаётся. Break стоит {usd(break25?.priceUsd)} за $25K, но после прохождения нужно доплатить
-              {' '}{usd(break25?.activationFeeUsd)} за активацию. Instant начинается с доли {percent(instant?.profitSplitPct)}, а не 80%.
-              {' '}<span data-russian-cft-price-conflict="verdict">Цены Ascend и Break на официальных страницах расходятся — сверьте их в корзине.</span>
+              Ascend заканчивается фиксированной стипендией и {asOf(TRACKER_CHECKED)} в магазине не продаётся. Break стоит {usd(break100?.priceUsd)} за $100K, но после прохождения нужно доплатить
+              {' '}{usd(break100?.activationFeeUsd)} за активацию — всего {usd(break100Total)}; к тому же это ограниченное по времени предложение. Instant начинается с доли {percent(instant?.profitSplitPct)}, а не 80%.
+              {' '}<span data-russian-cft-price-conflict="verdict">Цена Break $100K на главной и в условиях расходится — сверьте её в корзине.</span>
               {' '}Независимой проверки выплат нет.
             </p>
             <p>
@@ -256,7 +258,7 @@ export default function RussianCryptoFundTraderReviewPage() {
               {cta('ru-review-crypto-fund-trader', 'Открыть Crypto Fund Trader')}
               <Link href="/ru/luchshie-kripto-prop-firmy" className="btn-outline">Сравнить крипто-проп фирмы</Link>
             </div>
-            <p className="ru-source-line">Доступ через Match-Trader. Источник: <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ CFT</a>, {asOf(ACCESS_CHECKED)}.</p>
+            <p className="ru-source-line">Доступ через Match-Trader. Источник: <a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">условия CFT, п. 7.3</a>, {asOf(ACCESS_CHECKED)}.</p>
           </div>
         </section>
 
@@ -265,27 +267,28 @@ export default function RussianCryptoFundTraderReviewPage() {
             <h2>Доступ из России, Беларуси, Казахстана и Украины</h2>
             <p>
               У CFT правила доступа зависят от платформы, а не только от страны. Ниже — то, что фирма
-              пишет в <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ</a> и на странице{' '}
-              <a href={SOURCES.getStarted} target="_blank" rel="nofollow noopener noreferrer">Get Started</a> ({asOf(ACCESS_CHECKED)}).
+              пишет в <a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">условиях (п. 7.3)</a> и в{' '}
+              <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ</a> ({asOf(ACCESS_CHECKED)}).
             </p>
             <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Доступ к платформам CFT по странам">
               <table className="ru-table">
                 <caption className="sr-only">Ограничения Crypto Fund Trader по платформам</caption>
                 <thead><tr><th>Платформа</th><th>Что пишет CFT</th><th>Россия, Беларусь, Казахстан, Украина</th></tr></thead>
                 <tbody>
-                  <tr><td><strong>Match-Trader</strong></td><td>«Ограничений по странам сейчас нет»</td><td>Не ограничены</td></tr>
+                  <tr><td><strong>Match-Trader</strong></td><td>«No country restrictions» — ограничений по странам нет</td><td>Не названы в ограничениях</td></tr>
                   <tr><td><strong>MetaTrader 5</strong></td><td>Недоступен резидентам США; другие страны не названы</td><td>Не названы в ограничениях</td></tr>
                 </tbody>
               </table>
             </div>
             <p>
-              Чего мы не нашли ({asOf(TRACKER_CHECKED)}): отдельного пункта о санкционных списках — в условиях есть только общий
-              запрет использовать сервис там, где это запрещено законом (п. 16.2), — и любого упоминания России, СНГ, карт «Мир» или карт
-              российских банков. Отсутствие пункта — не разрешение. Проверка личности (KYC) и подписанный договор обязательны перед
-              выплатой, и фирма вправе отказать на этом этапе. Не используйте чужие документы или VPN, чтобы обойти правила
-              платформы.
+              Чего мы не нашли ({asOf(TRACKER_CHECKED)}): отдельного пункта о санкционных списках и любого упоминания России,
+              Беларуси, Украины или Казахстана; в условиях есть только общее правило о соблюдении местных законов (п. 16.2).
+              Отсутствие пункта — не разрешение. Оплату российскими картами, KYC с российскими документами и выплаты на счета
+              российских банков мы не проверяли, поэтому ничего о них не утверждаем. Проверка личности (KYC) и подписанный договор
+              обязательны перед выплатой, и фирма вправе отказать на этом этапе. Не используйте чужие документы или VPN, чтобы
+              обойти правила платформы.
             </p>
-            <h3>Оплата челленджа из России</h3>
+            <h3>Оплата челленджа</h3>
             <p>
               {asOf(TRACKER_CHECKED)} в FAQ перечислены: банковская карта, PayPal, Apple Pay, Google Pay и криптовалюта. На странице
               Get Started и в условиях (п. 5.5) по-прежнему названы только карта и криптовалюта; цены указаны в долларах США, а при оплате в другой валюте курс
@@ -293,11 +296,9 @@ export default function RussianCryptoFundTraderReviewPage() {
               провайдеры работают — фирма не уточняет, поэтому мы этого не пишем.
             </p>
             <p>
-              Для читателя из России практический вывод простой: криптовалюта — единственный официально указанный способ, который
-              не зависит от карты. Работает ли он в вашем случае и пройдёт ли карта российского банка — не подтверждено. Сравнение
-              способов вывода у разных фирм — в разделе <Link href="/ru/vyplaty-prop-firm">выплаты проп-фирм</Link>.
+              Сравнение способов оплаты и вывода у разных фирм — в разделе <Link href="/ru/vyplaty-prop-firm">выплаты проп-фирм</Link>.
             </p>
-            <p className="ru-source-line">Источники: <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ</a>, <a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a> — {asOf(ACCESS_CHECKED)}.</p>
+            <p className="ru-source-line">Источники: <a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a> (п. 5.3, 5.5, 7.3, 16.2), <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ</a>, <a href={SOURCES.getStarted} target="_blank" rel="nofollow noopener noreferrer">Get Started</a> — {asOf(ACCESS_CHECKED)}.</p>
           </div>
         </section>
 
@@ -315,18 +316,18 @@ export default function RussianCryptoFundTraderReviewPage() {
                     <tr key={key} data-russian-cft-product={key}>
                       <td><strong>{name}</strong><br /><span className="ru-muted">{note}</span></td>
                       <td>{sizesText(product)}</td>
-                      <td>{priceRange(product)}</td>
+                      <td>{key === 'ascend' ? 'не продаётся' : priceRange(product)}</td>
                       <td>{targetsText(product)}</td>
                       <td>{drawdownText(product)}</td>
                       <td>{key === 'ascend' ? 'фиксированная стипендия' : percent(product?.profitSplitPct)}</td>
-                      <td>{product ? <a href={product.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">{asOf(product.sourceCapturedAt)}</a> : 'требует проверки'}</td>
+                      <td>{product ? <a href={product.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">{asOf(shownDate(product))}</a> : 'требует проверки'}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <p className="ru-muted" data-russian-cft-price-conflict={PRICE_CONFLICT_CHECKED}>Цены Ascend и Break в таблице — {asOf(earliestCapture)} (условия и магазин). {PRICE_CONFLICT_NOTE}</p>
-            <p className="ru-source-line" data-russian-cft-max-allocation="300000">Максимальный капитал: до $300 000 (по данным на 19.10.2026) — суммарный стартовый баланс всех активных финальных счетов одного трейдера; счета Ascend, Instant и Break в лимит не входят. Источник: <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ CFT</a>.</p>
+            <p className="ru-muted" data-russian-cft-price-conflict={PRICE_CONFLICT_CHECKED}>Цены в таблице — {asOf(earliestCapture)} (условия и магазин). {PRICE_CONFLICT_NOTE}</p>
+            <p className="ru-source-line" data-russian-cft-max-allocation="300000">Максимальный капитал: до $300 000 ({asOf(CHECKED)}) — суммарный стартовый баланс всех активных финальных счетов одного трейдера; счета Ascend, Instant и Break в лимит не входят. Источник: <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ CFT</a>.</p>
             <div className="ru-actions" data-russian-cft-cta="programs">
               {cta('ru-review-crypto-fund-trader-programs', 'Выбрать программу на сайте CFT', false)}
             </div>
@@ -336,15 +337,15 @@ export default function RussianCryptoFundTraderReviewPage() {
             <p>
               Цели {targetsText(evaluation)}, дневной лимит {percent(evaluation?.dailyLossPct)} и общий {percent(evaluation?.maxLossPct)} от
               начального баланса — граница статическая. На счёте $100K это {usd(evalDailyLine)} убытка за день и пол на уровне
-              {' '}{usd(evalFloor)}, который не поднимается вслед за прибылью. Минимума торговых дней нет; срок оценки в наших данных не зафиксирован — проверьте его в условиях.
+              {' '}{usd(evalFloor)}, который не поднимается вслед за прибылью. Минимума торговых дней нет, правила лучшего дня тоже нет; срок оценки в наших данных не зафиксирован — проверьте его в условиях.
+              Первую выплату можно запросить после 15 торговых дней или через 30 календарных дней; с дополнением Weekly — после 7 торговых дней.
               Взнос {usd(eval100?.priceUsd)} окупается примерно с {usd(evalBreakEven)} прибыли при доле {percent(evaluation?.profitSplitPct)} —
               это расчёт без учёта возврата взноса: возврат после прохождения мы не нашли.
             </p>
             <h3>Ascend</h3>
             <p>
               Те же цели {targetsText(ascend)} и лимиты {drawdownText(ascend)}, но другой финал: по достижении цели второго этапа CFT
-              выплачивает фиксированную стипендию, и следующего финансируемого счёта нет. По условиям — от
-              {' '}{usd(tier(ascend, 5000)?.priceUsd)} за $5K до {usd(tier(ascend, 200000)?.priceUsd)} за $200K (п. 5.6.5), но это не самый дешёвый вариант для покупки.
+              выплачивает фиксированную стипендию, и следующего финансируемого счёта нет.
               {' '}<span data-russian-cft-ascend-conflict={TRACKER_CHECKED}>{ASCEND_CONFLICT_NOTE}</span> Самый дешёвый доступный к покупке вход — {CHEAPEST_BUYABLE.name} за {usd(CHEAPEST_BUYABLE.priceUsd)}.
               Новости в Ascend ограничены, копирование сделок запрещено. Суммы стипендии мы в этой версии не приводим — сверьте их в
               условиях перед покупкой.
@@ -359,7 +360,7 @@ export default function RussianCryptoFundTraderReviewPage() {
             </p>
             <h3>Instant</h3>
             <p>
-              Без оценки: счета $2,500, $5,000 и $10,000 за {priceRange(instant)}. Лимиты {percent(instant?.dailyLossPct)} в день и
+              Без оценки: счета $2,500, $5,000 и $10,000 (самый крупный — $10K за {usd(tier(instant, 10000)?.priceUsd)}), всего {priceRange(instant)}. Лимиты {percent(instant?.dailyLossPct)} в день и
               {' '}{percent(instant?.maxLossPct)} общий; как именно считается общая граница, в данных не установлено. Стартовая доля —
               {' '}{percent(instant?.profitSplitPct)}, дальше уровни 60%, 70%, 80% и 90% по мере масштабирования. Запрос без минимума дней
               возможен после 10% прибыли через Withdrawal &amp; Upgrade. Обзор моделей без оценки —
@@ -369,11 +370,18 @@ export default function RussianCryptoFundTraderReviewPage() {
             <p>
               Самая обманчивая цена в линейке. Взнос {priceRange(breakChallenge)} за $25K–$100K, но после прохождения и проверки
               нужно заплатить сбор за активацию: $138, $198 и $328 соответственно, срок оплаты в кабинете — 30 дней. Итого на
-              $25K — {usd(break25Total)}, а не {usd(break25?.priceUsd)}. Цели в долларах: $1,250, $3,000 и $6,000. Дневного лимита нет,
-              подвижная граница — {usd(break25?.maxLossUsd)}, $2,000 и $3,000. На финальной стадии действует правило: один день
-              не больше {percent(breakChallenge?.consistencyRulePct)} всей прибыли; выплаты — по запросу. Минимум торговых дней — 0 по странице Break; на главной для первой фазы указан 1 день ({ruDate(TRACKER_CHECKED)}). {BREAK_CONFLICT_NOTE} Итоговую цену проверьте в корзине.
+              $100K — {usd(break100?.priceUsd)} + {usd(break100?.activationFeeUsd)} = {usd(break100Total)}, а не {usd(break100?.priceUsd)}. Цель первой фазы на $100K — $6,000
+              (на $25K и $50K — $1,250 и $3,000). Дневного лимита нет, подвижная граница на $100K — $3,000. Правило лучшего дня
+              {' '}{percent(breakChallenge?.consistencyRulePct)} действует только на финансируемой (финальной) стадии и проверяется при запросе
+              выплаты; выплаты — по запросу.
             </p>
-            <p className="ru-source-line">Источники: <a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a> (п. 5.6.5, п. 8), <a href={SOURCES.breakChallenge} target="_blank" rel="nofollow noopener noreferrer">Break Challenge</a>, <a href={SOURCES.home} target="_blank" rel="nofollow noopener noreferrer">главная страница</a> — {asOf(earliestCapture)}. Как устроены этапы оценки в целом — в <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm">гиде по челленджам</Link>.</p>
+            <p data-russian-cft-break-offer={CHECKED}>
+              <span data-russian-cft-break-limited="true">{BREAK_OFFER_NOTE}</span>{' '}
+              {BREAK_CONFLICT_NOTE}{' '}
+              <span data-russian-cft-break-min-days="conflict">Минимум торговых дней тоже расходится: на странице Break — 0, на главной для первой фазы — 1 день.</span>{' '}
+              Итоговую цену проверьте в корзине.
+            </p>
+            <p className="ru-source-line">Источники: <a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a> (п. 5.6, п. 8), <a href={SOURCES.breakChallenge} target="_blank" rel="nofollow noopener noreferrer">Break Challenge</a>, <a href={SOURCES.home} target="_blank" rel="nofollow noopener noreferrer">главная страница</a> — {asOf(earliestCapture)}. Как устроены этапы оценки в целом — в <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm">гиде по челленджам</Link>.</p>
           </div>
         </section>
 
@@ -383,11 +391,11 @@ export default function RussianCryptoFundTraderReviewPage() {
             <ul className="wp-block-list">
               <li><strong>Новости разрешены</strong> во всех программах, кроме Ascend: там нельзя открывать сделки и наращивать риск за 2 минуты до и 2 минуты после важных новостей и открытия рынков.</li>
               <li><strong>Ночь и выходные</strong> — удержание позиций разрешено. Для крипты, которая торгуется круглосуточно, это не мелочь.</li>
-              <li><strong>Минимум торговых дней</strong> — 0 в Evaluation, Ascend, Accelerated и Instant; у Break 0 по странице программы, но главная для первой фазы указывает 1 день ({ruDate(TRACKER_CHECKED)}). Срок оценки в наших данных не зафиксирован.</li>
-              <li><strong>Правило лучшего дня</strong> — только у Break на финальной стадии: {percent(breakChallenge?.consistencyRulePct)}. В остальных программах его нет.</li>
+              <li><strong>Минимум торговых дней</strong> — 0 в Evaluation, Ascend, Accelerated и Instant; у Break 0 по странице программы, но главная для первой фазы указывает 1 день ({asOf(TRACKER_CHECKED)}). Срок оценки в наших данных не зафиксирован.</li>
+              <li><strong>Правило лучшего дня</strong> — только у Break на финансируемой (финальной) стадии: {percent(breakChallenge?.consistencyRulePct)}. В остальных программах его нет.</li>
               <li><strong>Советники (EA)</strong> — разрешены с ограничениями; конкретные запреты перечислены в условиях, построчно мы их не разбирали.</li>
-              <li><strong>Копирование сделок</strong> — запрещено в Ascend и ограничено в Break.</li>
-              <li><strong>Возврат взноса</strong> — по политике возврата деньги можно вернуть в течение 14 дней, если вы ещё не начали торговать. Возврата после прохождения мы не нашли.</li>
+              <li><strong>Копирование сделок</strong> — запрещено в Ascend; в Break — только между своими счетами Break на этапе оценки, на финальной стадии запрещено.</li>
+              <li><strong>Возврат взноса</strong> — по политике возврата деньги можно вернуть в течение 14 дней, если вы ещё не открыли ни одной позиции. Возврата после прохождения мы не нашли.</li>
             </ul>
             <p className="ru-source-line">Источники: <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ</a> — {asOf(RULES_CHECKED)}; <a href={SOURCES.refund} target="_blank" rel="nofollow noopener noreferrer">Refund Policy</a> — {asOf(earliestCapture)}.</p>
           </div>
@@ -415,10 +423,11 @@ export default function RussianCryptoFundTraderReviewPage() {
             </div>
             <p>
               Способы получения: банковский перевод в EUR или USD либо криптовалюта — USDT (ERC20), USDT (TRC20), BTC или ETH
-              ({asOf(ACCESS_CHECKED)}). Перед выплатой — проверка личности и подписанный договор. Независимо подтвердить, что
+              ({asOf(ACCESS_CHECKED)}). Среднее время обработки выплаты фирма указывает около 8 часов, проверка заявки — до 48 рабочих часов.
+              Перед выплатой — проверка личности и подписанный договор. Независимо подтвердить, что
               выплаты приходят в срок, мы не можем: собственных выплат по CFT у нас нет.
             </p>
-            <p className="ru-source-line">Источники: <a href={SOURCES.fundedAccount} target="_blank" rel="nofollow noopener noreferrer">Funded Account</a>, <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ</a> — {asOf(RULES_CHECKED)}.</p>
+            <p className="ru-source-line">Источники: <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ</a>, <a href={SOURCES.breakChallenge} target="_blank" rel="nofollow noopener noreferrer">Break Challenge</a> — {asOf(RULES_CHECKED)}.</p>
           </div>
         </section>
 
@@ -426,9 +435,8 @@ export default function RussianCryptoFundTraderReviewPage() {
           <div className="ru-shell ru-content">
             <h2>Платформы: Match-Trader и MT5</h2>
             <p>
-              {asOf(RULES_CHECKED)} среди платформ CFT — Match-Trader и MetaTrader 5. Для трейдера из России и СНГ
-              ключевая — Match-Trader: только по ней фирма прямо пишет, что ограничений по странам нет. MT5 закрыт для резидентов
-              США.
+              {asOf(RULES_CHECKED)} оценку можно проходить на Match-Trader или MetaTrader 5. Ключевая платформа — Match-Trader:
+              только по ней условия прямо говорят, что ограничений по странам нет (п. 7.3). MT5 закрыт для резидентов США.
             </p>
           </div>
         </section>
@@ -438,7 +446,7 @@ export default function RussianCryptoFundTraderReviewPage() {
             <h2>Отзывы о Crypto Fund Trader</h2>
             <p>
               {asOf(TRUSTPILOT_CHECKED)} Trustpilot не показывает рейтинг Crypto Fund Trader: на странице компании написано, что рейтинг
-              недоступен из-за нарушения правил площадки. Видно число отзывов — 1 102. Там же Trustpilot сообщает, что удалил часть
+              недоступен из-за нарушения правил площадки. Видно число отзывов — {String(TRUSTPILOT_COUNT).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}. Там же Trustpilot сообщает, что удалил часть
               отзывов о компании как поддельные; кто их оставил, площадка не указывает.
               Поэтому оценку мы не печатаем: средний балл без объяснения, что именно нарушено, ничего не говорит о выплатах.
             </p>
@@ -455,8 +463,8 @@ export default function RussianCryptoFundTraderReviewPage() {
           <div className="ru-shell ru-content">
             <h2>Промокод Crypto Fund Trader</h2>
             <p>
-              Проверенного промокода Crypto Fund Trader у нас нет, и придумывать его мы не будем. Если код появится, он будет на
-              странице <Link href="/ru/promokody-prop-firm">промокодов проп-фирм</Link> с датой проверки на кассе.
+              Промокода Crypto Fund Trader нет: {asOf(CHECKED)} ни на главной, ни в FAQ, ни на странице Break код или скидка не
+              указаны, и придумывать его мы не будем. Если код появится, он будет на странице <Link href="/ru/promokody-prop-firm">промокодов проп-фирм</Link> с датой проверки на кассе.
             </p>
           </div>
         </section>
@@ -469,18 +477,18 @@ export default function RussianCryptoFundTraderReviewPage() {
                 <CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" />
                 <h3>Плюсы</h3>
                 <ul>
-                  <li><strong>Match-Trader без ограничений по странам</strong> — Россия и СНГ не отсекаются на входе.</li>
+                  <li><strong>Match-Trader без ограничений по странам</strong> — Россия в ограничениях CFT не названа (п. 7.3).</li>
                   <li><strong>0 минимальных торговых дней</strong> — в четырёх программах; у Break данные страниц расходятся (0 или 1).</li>
                   <li><strong>Новости, ночь и выходные</strong> разрешены (кроме новостей в Ascend).</li>
                   <li><strong>Вывод в USDT, BTC, ETH</strong> или банком в EUR/USD.</li>
-                  <li><strong>Вход от {usd(CHEAPEST_BUYABLE.priceUsd)}</strong> — Accelerated $5K ({ruDate(TRACKER_CHECKED)}).</li>
+                  <li><strong>Вход от {usd(CHEAPEST_BUYABLE.priceUsd)}</strong> — Accelerated $5K ({asOf(TRACKER_CHECKED)}).</li>
                 </ul>
               </article>
               <article className="ru-card">
                 <AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" />
                 <h3>Минусы</h3>
                 <ul>
-                  <li><strong>Break: сбор за активацию</strong> от $138 после прохождения.</li>
+                  <li><strong>Break: сбор за активацию</strong> от $138 после прохождения ($528 всего на $100K), и предложение ограничено по времени.</li>
                   <li><strong>Instant: доля 50%</strong> на старте.</li>
                   <li><strong>Ascend: стипендия вместо счёта</strong> — не путайте с обычной оценкой.</li>
                   <li><strong>Рейтинг Trustpilot скрыт</strong> площадкой.</li>
@@ -515,13 +523,14 @@ export default function RussianCryptoFundTraderReviewPage() {
             <h2>Источники и дата проверки</h2>
             <ul>
               {all.map(product => (
-                <li key={product.productSlug}><a href={product.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">{product.productName}</a> — {isChallengeFresh(product) ? asOf(product.sourceCapturedAt) : `проверка ${product.sourceCapturedAt} устарела`}.</li>
+                <li key={product.productSlug}><a href={product.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">{product.productName}</a> — {isChallengeFresh(product) ? asOf(shownDate(product)) : `проверка ${product.sourceCapturedAt} устарела`}.</li>
               ))}
-              <li><a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ</a> и <a href={SOURCES.getStarted} target="_blank" rel="nofollow noopener noreferrer">Get Started</a>: страны, платформы, оплата — {asOf(ACCESS_CHECKED)}; правила и выплаты — {asOf(RULES_CHECKED)}.</li>
-              <li><a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a>: цены Ascend и Break, сбор за активацию, оплата — {asOf(ACCESS_CHECKED)}.</li>
-              <li><a href={SOURCES.fundedAccount} target="_blank" rel="nofollow noopener noreferrer">Funded Account</a>: оператор SWISS RLCRATES AG (Цуг), способы выплаты — {asOf(ACCESS_CHECKED)}.</li>
+              <li><a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ</a> и <a href={SOURCES.getStarted} target="_blank" rel="nofollow noopener noreferrer">Get Started</a>: платформы, оплата, правила и выплаты — {asOf(ACCESS_CHECKED)}.</li>
+              <li><a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a>: цены (п. 5.6), сбор за активацию Break, оплата, ограничения по странам (п. 7.3) — {asOf(ACCESS_CHECKED)}.</li>
+              <li><a href={SOURCES.home} target="_blank" rel="nofollow noopener noreferrer">Главная страница</a>: оператор SWISS RLCRATES AG (Цуг), цена Break на главной, минимум дней Break — {asOf(CHECKED)}.</li>
+              <li><a href={SOURCES.refund} target="_blank" rel="nofollow noopener noreferrer">Refund Policy</a> — {asOf(CHECKED)}.</li>
               <li><a href={SOURCES.trustpilot} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> — {asOf(TRUSTPILOT_CHECKED)}.</li>
-              <li><a href={SOURCES.shop} target="_blank" rel="nofollow noopener noreferrer">Магазин CFT</a>, <a href={SOURCES.home} target="_blank" rel="nofollow noopener noreferrer">главная страница</a>, <a href={SOURCES.breakChallenge} target="_blank" rel="nofollow noopener noreferrer">Break Challenge</a>, FAQ и условия: доступность Ascend и Break к покупке, расхождения цен, способы оплаты, санкционный пункт — {asOf(TRACKER_CHECKED)}.</li>
+              <li><a href={SOURCES.shop} target="_blank" rel="nofollow noopener noreferrer">Магазин CFT</a> и <a href={SOURCES.breakChallenge} target="_blank" rel="nofollow noopener noreferrer">Break Challenge</a>: доступность Ascend и Break к покупке, ограниченное предложение Break — {asOf(TRACKER_CHECKED)}.</li>
             </ul>
             <p>Мы не открывали кассу, не регистрировали аккаунт и не получали выплату от CFT. Полный обзор на английском: <Link href="/blog/crypto-fund-trader-review" hrefLang="en">Crypto Fund Trader review</Link>.</p>
             <div className="ru-notice" data-russian-risk-disclaimer="crypto-fund-trader-review">
