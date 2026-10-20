@@ -10,7 +10,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import { minimumTradingDaysLabel } from '@/lib/challengeRuleLabels'
 import { challengeCurrency, challengeTierEconomics, minimumCostToFundedUsd, getAllFirms, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { goLinkRel } from '@/lib/russiaAvailability'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/fundingpips-vs-bright-funded'
@@ -20,6 +20,7 @@ const DESCRIPTION = 'FundingPips или BrightFunded: сравнение 1-Step,
 // Official pages re-read by the RU Writer on this date: FundingPips Get Started (countries, checkout, HELLO, refund),
 // BrightFunded help country list + Terms §2, payout methods, news rule, platforms.
 const CHECKED = '20.10.2026'
+// Prop Firm Tracker, content/data/challenges/_captures/fundingpips-2026-10-20.json → refundTerms (help centre 4th-reward refund vs Terms «ALL PAYMENTS ARE FINAL»).
 // Prop Firm Tracker, /workspace/ru-data/2026-10-20-fundingpips-checkout-rules.md + branch data/daily-check-2026-10-20 (FundingPips reward routes, checkout, EA/copy, Prime).
 const TRACKER_FP = '20.10.2026'
 // Prop Firm Tracker, /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md (BrightFunded checkout and payout cycle).
@@ -40,6 +41,8 @@ const SRC = {
   fpConduct: 'https://help.fundingpips.com/hc/en-us/articles/34505029138449-Trading-Conduct-and-Security-Standards',
   fpPrime: 'https://help.fundingpips.com/hc/en-us/articles/34447308895889',
   fpPro: 'https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model',
+  fpRewardMethods: 'https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods',
+  fpTerms: 'https://fundingpips.com/terms-and-conditions',
 }
 
 export const revalidate = 3600
@@ -244,7 +247,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
   ]
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
-    { name: 'Рейтинг проп-фирм', url: '/ru/luchshie-prop-firmy' },
+    { name: 'Рейтинг проп-компаний', url: '/ru/luchshie-prop-firmy' },
     { name: 'FundingPips или BrightFunded' },
   ])
   const faq = faqPageSchema(faqs)
@@ -256,7 +259,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
     dateModified: articleDateModified,
-    author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
+    author: authorSchema('Traders Fund Hub'),
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
 
@@ -272,7 +275,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Сравнение · доступ проверен {CHECKED}</div>
           <h1>FundingPips или BrightFunded: что выбрать в 2026 году</h1>
           <p className="ru-lead">
-            FundingPips знают многие, но для резидента России первый вопрос — не цена, а доступ. BrightFunded Россию в своих
+            FundingPips (Funding Pips, «Фандинг Пипс») знают многие, но для резидента России первый вопрос — не цена, а доступ. BrightFunded Россию в своих
             ограничениях не называет. У FundingPips статус неясен. Ниже — доступ по странам, программы, просадка, взносы в EUR
             и USD, доля вознаграждения и выплаты.
           </p>
@@ -284,7 +287,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
               <li>Живёте в Дубае или другом эмирате — FundingPips вам недоступна, хотя сама зарегистрирована в Дубае.</li>
             </ul>
           </div>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Редакционная проверка: {articleDateModified}. Даты источников указаны у каждого факта.</p>
+          <p className="ru-source-line">Автор: редакция Traders Fund Hub · Редакционная проверка: {articleDateModified}. Даты источников указаны у каждого факта.</p>
           <div className="ru-actions" data-russian-comparison-cta="bright-funded-first">
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-comparison-fundingpips-bright-funded" rel={goLinkRel('bright-funded')} className="btn-primary btn-glow">
               Перейти в BrightFunded <ArrowRight size={15} aria-hidden="true" />
@@ -364,7 +367,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
           </div>
           <p className="ru-source-line">
             Источники: <a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">справка BrightFunded</a>; <a href={SRC.brightTerms} target="_blank" rel="noopener noreferrer">условия BrightFunded</a>; <a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips Get Started</a>.
-            Подробнее — в <Link href="/ru/obzor-fundingpips">обзоре FundingPips</Link> и на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">для русскоязычных трейдеров</Link>.
+            Подробнее — в разделе <Link href="/ru/obzor-fundingpips#dostup-iz-rossii">доступ к FundingPips из России</Link> обзора и на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">для русскоязычных трейдеров</Link>.
           </p>
         </div>
       </section>
@@ -420,8 +423,14 @@ export default function RussianFundingPipsVsBrightFundedPage() {
               <p>
                 После оценки у 2 Step Standard нет единой доли: еженедельно 60%, раз в две недели 80% или по запросу 100%, причём для
                 выплаты по запросу действует правило стабильности 35%. Прежних маршрутов «ежемесячно 100%» и «по запросу 90%» больше нет (по данным на 20.10.2026).
-                Взнос за 2 Step Standard FundingPips возвращает на четвёртом вознаграждении (по данным на {CHECKED}).
               </p>
+              <p data-russian-fundingpips-refund-conflict="help-vs-terms">
+                <strong>Возврат взноса: источники FundingPips расходятся.</strong> По справке FundingPips (Get Started и Reward Methods) взнос за 2 Step Standard
+                возвращается с четвёртым вознаграждением на мастер-счёте; на 1 Step Flex, 2 Step Flex, 2 Step Pro и Zero это не распространяется.
+                В общих условиях этого пункта нет: там сказано «ALL PAYMENTS ARE FINAL», а регистрационный взнос назван невозвратным, кроме случаев,
+                когда возврат требует закон (по данным Prop Firm Tracker на {TRACKER_FP}). Не рассчитывайте на возврат, пока поддержка не подтвердит его письменно.
+              </p>
+              <p className="ru-source-line">Возврат взноса: <a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">справка Get Started</a>; <a href={SRC.fpRewardMethods} target="_blank" rel="noopener noreferrer">справка Reward Methods</a>; <a href={SRC.fpTerms} target="_blank" rel="noopener noreferrer">условия FundingPips</a> (все — {TRACKER_FP}).</p>
               <p className="ru-source-line">Источники: <a href={bfClassic.sourceUrl} target="_blank" rel="noopener noreferrer">2-Step Classic</a> ({ruDate(bfClassic.sourceCapturedAt)}); <a href={fpStandard.sourceUrl} target="_blank" rel="noopener noreferrer">2 Step Standard</a> ({ruDate(fpStandard.sourceCapturedAt)}).</p>
             </article> : <article><h3>2-Step Classic или 2 Step Standard</h3>{missingPair}</article>}
 
@@ -578,13 +587,13 @@ export default function RussianFundingPipsVsBrightFundedPage() {
               <CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Crypto Fund Trader <RuAccessBadge firm="crypto-fund-trader" /></h3>
               <p className="ru-muted">Только через Match-Trader: там ограничений по странам нет; MT5 недоступен резидентам США (по данным на {TRACKER_CFT_ACCESS}).</p>
-              <p className="ru-source-line"><RuPendingLink href="/ru/obzor-crypto-fund-trader">Обзор Crypto Fund Trader</RuPendingLink></p>
+              <p className="ru-source-line"><RuPendingLink href="/ru/obzor-crypto-fund-trader">Обзор Crypto Fund Trader</RuPendingLink> · <Link href="/ru/luchshie-kripto-prop-firmy">крипто проп компании</Link></p>
               <div className="ru-actions">
                 <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-fundingpips-vs-bright-alt-cft" rel={goLinkRel('crypto-fund-trader')} className="btn-outline">Перейти в Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               </div>
             </article>
           </div>
-          <p className="ru-muted" data-russian-alternative-excluded="fundednext">FundedNext в этот список не входит: резидентам РФ она недоступна — в подвале fundednext.com сказано, что услуги резидентам России не оказываются, хотя список в условиях (п. 5.3, CFD) Россию не называет (по данным на {FN_ACCESS}).</p>
+          <p className="ru-muted" data-russian-alternative-excluded="fundednext">FundedNext в этот список не входит: резидентам РФ она недоступна — в подвале fundednext.com сказано, что услуги резидентам России не оказываются, хотя список в условиях (п. 5.3, CFD) Россию не называет (по данным на {FN_ACCESS}). Условия двух фирм рядом — в сравнении <Link href="/ru/fundednext-vs-fundingpips">FundedNext против FundingPips</Link>.</p>
           <p className="ru-source-line">Полный рейтинг с отметкой доступа — <Link href="/ru/luchshie-prop-firmy">лучшие проп-фирмы для трейдеров из РФ</Link>.</p>
         </div>
       </section>
@@ -592,9 +601,10 @@ export default function RussianFundingPipsVsBrightFundedPage() {
       <section className="ru-section">
         <div className="ru-shell ru-content ru-review-article" data-russian-comparison-decision="four-checks">
           <h2>Как выбрать за 4 проверки</h2>
+          <p>Если модель с оценкой и долей вознаграждения для вас новая, сначала прочитайте, <Link href="/ru/prop-trejding">что такое проп-трейдинг</Link>.</p>
           <ol>
             <li><strong>Страна.</strong> Найдите свою страну проживания и гражданство в обоих списках. Для FundingPips из России или Беларуси сначала получите письменный ответ поддержки.</li>
-            <li><strong>Тип продукта.</strong> Один этап, два этапа или без оценки (Zero есть только у FundingPips).</li>
+            <li><strong>Тип продукта.</strong> Один этап, два этапа или без оценки (Zero есть только у FundingPips). От этого зависит, сколько этапов до <Link href="/ru/funded-account">проп-счёта</Link>.</li>
             <li><strong>Лимиты убытка.</strong> Статический или подвижный лимит, дневной лимит и минимум дней — под вашу худшую серию сделок.</li>
             <li><strong>Полная стоимость.</strong> Взнос в своей валюте (EUR или USD), комиссия способа оплаты, повторная попытка и способ получения выплат.</li>
           </ol>
@@ -604,7 +614,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
       <section className="ru-section" id="sources">
         <div className="ru-shell ru-content ru-review-article">
           <h2>Источники и дата проверки</h2>
-          <p>Цены, цели, лимиты, доли и сроки выплат взяты из датированных записей по программам. Списки стран, способы оплаты FundingPips, код HELLO, способы выплаты и правило новостей BrightFunded перепроверены на официальных страницах {CHECKED}. Касса BrightFunded и противоречие по циклу выплат — из проверки Prop Firm Tracker от {TRACKER_BRIGHT}. Trustpilot — по данным на 15.10.2026.</p>
+          <p>Цены, цели, лимиты, доли и сроки выплат взяты из датированных записей по программам. Списки стран, способы оплаты FundingPips, код HELLO, способы выплаты и правило новостей BrightFunded перепроверены на официальных страницах {CHECKED}. Касса BrightFunded и противоречие по циклу выплат — из проверки Prop Firm Tracker от {TRACKER_BRIGHT}. Trustpilot — по данным на 15.10.2026; как отличить проверяемый отзыв от рекламы — в руководстве <Link href="/ru/otzyvy-prop-firm">отзывы о проп-фирмах</Link>.</p>
           <ul>
             {relevantProducts.map(product => <li key={`${product.firmSlug}:${product.productSlug}`}><a href={product.sourceUrl} target="_blank" rel="noopener noreferrer">{product.productName}: официальные условия</a> — {validCaptureDate(product.sourceCapturedAt) ? ruDate(product.sourceCapturedAt) : 'дата не подтверждена'}.</li>)}
             <li><a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограничения по странам (справка)</a> — {CHECKED}.</li>
