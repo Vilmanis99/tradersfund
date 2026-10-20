@@ -1,0 +1,43 @@
+{
+  "route": "/ru/fundingpips-vs-bright-funded",
+  "type": "comparison",
+  "a": "BrightFunded",
+  "b": "FundingPips",
+  "dataAsOf": "2026-10-19",
+  "sources": [
+    "content/data/firms.json",
+    "content/data/challenges/bright-funded.json (2026-10-20)",
+    "content/data/challenges/fundingpips.json (2026-10-20; Zero 2026-10-19)",
+    "branch content/ru-fundingpips-vs-bright-funded @84a2122 (reward routes per help centre 20.10.2026)"
+  ],
+  "verdict": "BrightFunded продаёт три CFD-оценки с возвратным взносом и базовой долей 80%, FundingPips — пять моделей, где доля зависит от маршрута выплаты, а взнос возвращается только в 2 Step Standard. За счёт 100K BrightFunded берёт €477–497, FundingPips — $422–566; валюты разные, поэтому цены мы не ранжируем (по данным на 19.10.2026).",
+  "picks": {
+    "a": [
+      "вы держите позиции на выходных: BrightFunded разрешает, FundingPips ограничивает во всех моделях",
+      "вы хотите вернуть взнос: у BrightFunded он возвратный во всех программах, у FundingPips — только в 2 Step Standard",
+      "вам нужна более низкая цель в одноэтапной оценке: BrightFunded 1-Step — 10%, FundingPips 1 Step Flex — 12%"
+    ],
+    "b": [
+      "вам нужны еженедельные выплаты: 2 Step Pro платит еженедельно с 7-го дня, BrightFunded — с 30-го дня раз в две недели",
+      "вам нужна выплата 100% по запросу: у всех моделей FundingPips, кроме Zero, есть маршрут On Demand 100% при правиле стабильности 35%",
+      "вы планируете крупный счёт: максимальная аллокация FundingPips — $2 000 000, BrightFunded — $400 000",
+      "вы торгуете на Match-Trader или криптовалютой: их указывает FundingPips, у BrightFunded — MT5, DXTrade, cTrader и без криптовалюты"
+    ]
+  },
+  "russiaPick": {
+    "statusFrom": "russiaStatus",
+    "firms": [
+      "BrightFunded",
+      "FundingPips"
+    ],
+    "alternatives": [],
+    "oneOpen": {
+      "text": "вы резидент РФ: у {open} статус «{openBadge}», у {other} — «{otherBadge}»"
+    },
+    "neitherOpen": {
+      "text": "Для резидента РФ ни у одной из двух фирм нет статуса «{altBadge}»: у {a} — «{aBadge}», у {b} — «{bBadge}».",
+      "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+    },
+    "bothOpen": null
+  }
+}
