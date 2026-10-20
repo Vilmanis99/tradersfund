@@ -1,0 +1,235 @@
+{
+  "firmSlug": "alpha-capital",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T08:21:08+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+  "egress": "Box egress is a US IP. Prices were compared against region-independent first-party price data where the firm publishes it (named in method); codes seen only from the US IP are recorded as regional, never as universal deals.",
+  "method": "Headless Chrome render of official product, pricing-resource and help pages",
+  "priceSource": "https://alphacapitalgroup.uk/ product and pricing pages (rendered text)",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "alpha-one",
+      "prices": {
+        "5000": 47,
+        "10000": 87,
+        "25000": 187,
+        "50000": 277,
+        "100000": 477,
+        "200000": 947
+      }
+    },
+    {
+      "productSlug": "alpha-pro-6",
+      "prices": {
+        "5000": 30,
+        "10000": 55,
+        "25000": 127,
+        "50000": 227,
+        "100000": 427,
+        "200000": 847
+      }
+    },
+    {
+      "productSlug": "alpha-pro-6-on-demand",
+      "prices": {
+        "5000": 27,
+        "10000": 47,
+        "25000": 117,
+        "50000": 217,
+        "100000": 397,
+        "200000": 797
+      }
+    },
+    {
+      "productSlug": "alpha-pro-8-bi-weekly",
+      "prices": {
+        "5000": 40,
+        "10000": 67,
+        "25000": 197,
+        "50000": 327,
+        "100000": 577,
+        "200000": 1097
+      }
+    },
+    {
+      "productSlug": "alpha-pro-8-on-demand",
+      "prices": {
+        "5000": 37,
+        "10000": 57,
+        "25000": 177,
+        "50000": 297,
+        "100000": 527,
+        "200000": 997
+      }
+    },
+    {
+      "productSlug": "alpha-pro-10-bi-weekly",
+      "prices": {
+        "5000": 37,
+        "10000": 87,
+        "25000": 197,
+        "50000": 297,
+        "100000": 497,
+        "200000": 997
+      }
+    },
+    {
+      "productSlug": "alpha-pro-10-on-demand",
+      "prices": {
+        "5000": 33,
+        "10000": 77,
+        "25000": 177,
+        "50000": 267,
+        "100000": 447,
+        "200000": 897
+      }
+    },
+    {
+      "productSlug": "alpha-swing",
+      "prices": {
+        "5000": 70,
+        "10000": 147,
+        "25000": 247,
+        "50000": 357,
+        "100000": 577,
+        "200000": 1097
+      }
+    },
+    {
+      "productSlug": "alpha-three",
+      "prices": {
+        "10000": 67,
+        "25000": 157,
+        "50000": 247,
+        "100000": 397,
+        "200000": 697
+      }
+    },
+    {
+      "productSlug": "alpha-direct",
+      "prices": {
+        "2500": 30,
+        "5000": 67,
+        "10000": 97,
+        "25000": 197,
+        "50000": 257,
+        "100000": 457,
+        "200000": 897
+      }
+    }
+  ],
+  "priceQuotes": [
+    "Every stored price was found in the live first-party page text (price-presence check across the pages listed in pagesRead); values unchanged."
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 87,
+    "foundVerbatimInLiveText": 34,
+    "notFoundVerbatim": 53,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
+  },
+  "changes": [],
+  "notes": [
+    "Price-presence check only; existing source-conflict watch entries unchanged.",
+    "firms.json lastUpdated aligned to this capture (was 2026-10-06)."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://alphacapitalgroup.uk/product",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:28.434Z"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:28.544Z"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:28.711Z"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:28.718Z"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:28.807Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:34.989Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:35.013Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:35.035Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:35.068Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:35.069Z"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:35.236Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:40.660Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:40.705Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:40.750Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:40.766Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:40.793Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:40.806Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/6934210-what-are-the-daily-risk-limits-and-how-do-they-work",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:46.262Z"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:46.282Z"
+    }
+  ]
+}
