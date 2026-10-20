@@ -1303,3 +1303,5 @@
 .ru-hero.ru-hero--p1 { padding-bottom: 0.75rem; }
 .ru-p1-article { padding-top: 0.75rem; }
 .ru-p1-verdict__line { margin-top: 0.6rem; }
+.ru-hero.ru-hero--p1 h1 { font-size: clamp(1.8rem, 3.6vw, 2.35rem); }
+.ru-p1-verdict__line { font-size: 1rem; }
