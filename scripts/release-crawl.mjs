@@ -894,6 +894,31 @@ const russianExpectations = new Map([
       'https://brightfunded.com/terms-and-conditions',
     ],
   }],
+  ['/ru/ftmo-vs-fundednext', {
+    title: 'FTMO или FundedNext: что выбрать трейдеру из России в 2026',
+    h1: 'FTMO или FundedNext: что выбрать в 2026 году',
+    markers: [
+      'data-russian-partner-comparison="ftmo-fundednext"',
+      'data-russian-access-answer="first-screen"',
+      'data-russian-access-table="ru-by-kz"',
+      'data-russian-comparison-key-fields="10"',
+      'data-russian-comparison-product-count="6"',
+      'data-russian-comparison-verdict="by-trader-type"',
+      'data-russian-comparison-pair="two-step"',
+      'data-russian-comparison-pair="one-step"',
+      'data-russian-comparison-pair="instant-only-fundednext"',
+      'data-russian-comparison-ftmo-cta="secondary-restricted"',
+      'data-russian-alternatives="bright-funded-first"',
+      'data-russian-country-boundary="comparison-not-access"',
+      'data-russian-affiliate-disclosure="comparison"',
+      'data-russian-risk-disclaimer="comparison"',
+      '/go/ftmo?from=ru-comparison-ftmo-fundednext',
+      'https://ftmo.com/en/faq/who-can-join-ftmo/',
+      'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds',
+      'https://helpfutures.fundednext.com/en/articles/17228971-are-any-countries-restricted-on-fundednext-futures',
+      'https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits',
+    ],
+  }],
   ['/ru/fundednext-vs-fundingpips', {
     title: 'FundedNext или FundingPips: сравнение 2026',
     h1: 'FundedNext или FundingPips: сравнение для русскоязычных трейдеров',
@@ -1766,7 +1791,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-fundednext']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
 if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
   errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}`)
@@ -1928,6 +1953,8 @@ for (const [path, href] of [
   ['/ru/prop-firmy-bez-chelendzha', '/go/fundednext?from=ru-instant-fundednext'],
   ['/ru/prop-firmy-bez-chelendzha', '/go/bright-funded?from=ru-instant-bright-alternative'],
   ['/ru/fundednext-vs-fundingpips', '/go/bright-funded?from=ru-comparison-bright-funded'],
+  ['/ru/ftmo-vs-fundednext', '/go/fundednext?from=ru-comparison-ftmo-fundednext'],
+  ['/ru/ftmo-vs-fundednext', '/go/bright-funded?from=ru-ftmo-vs-fundednext-alt-bright-funded'],
   ['/ru/obzor-proplive', '/go/fundednext?from=ru-proplive-global-fundednext'],
   ['/ru/obzor-proplive', '/go/bright-funded?from=ru-proplive-global-bright-funded'],
   ['/ru/obzor-eratrade', '/go/fundednext?from=ru-eratrade-global-fundednext'],
