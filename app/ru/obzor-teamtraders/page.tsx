@@ -35,6 +35,11 @@ const DESCRIPTION = 'Обзор TeamTraders: месячная стажировк
 const TEAMTRADERS_HOME = 'https://teamtraders.ru/'
 const TEAMTRADERS_FAQ = 'https://teamtraders.ru/faq'
 const TEAMTRADERS_PUBLIC_RULES = 'https://teamtraders.ru/rules'
+// Prop Firm Tracker recheck of /faq and the homepage (data/new-firms-2026-10-20 @4f9a20d, _captures/teamtraders-2026-10-20.json).
+// The scoped evidence file keeps its 2026-10-01 date until the six local signals are re-dated together.
+const TT_RECHECK = '20.10.2026'
+const TT_FUNDED_DEMO_SHARE_PCT = 50
+const TT_WEEKLY_WITHDRAWAL_CAP_PCT = 50
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -62,11 +67,11 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Сразу ли после отбора дают реальный счёт?',
-    a: 'Не обязательно. FAQ в разборе описывает промежуточный финансируемый демо-счёт с долей трейдера 70% и целью-пределом прибыли 10% от баланса. Обычный переход на реальный счёт указан после вывода этих 10%, хотя досрочный перевод возможен по решению компании.',
+    a: 'Не обязательно. FAQ описывает промежуточный финансируемый демо-счёт с долей трейдера 50% (по данным на 20.10.2026) и целью-пределом прибыли 10% от баланса. Обычный переход на реальный счёт указан после вывода этих 10%, хотя досрочный перевод возможен по решению компании.',
   },
   {
     q: 'Правда ли, что трейдер получает 95% прибыли?',
-    a: '95% относится к реальному счёту: компания описывает удержание 5% с каждого прибыльного дня. Для финансируемого демо-счёта указаны 70%. В сохранённой документации от 28 августа было 90% для реального счёта, но её адрес теперь возвращает 404; запросите действующие условия у поддержки до регистрации.',
+    a: '95% относится к реальному счёту: компания описывает удержание 5% с каждого прибыльного дня. Для финансируемого демо-счёта по данным на 20.10.2026 указаны 50%. В сохранённой документации от 28 августа было 90% для реального счёта, но её адрес теперь возвращает 404; запросите действующие условия у поддержки до регистрации.',
   },
   {
     q: 'Можно ли переносить позиции через ночь или использовать роботов?',
@@ -228,7 +233,7 @@ export default function RussianTeamTradersReviewPage() {
             <article className="ru-card">
               <Scale size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Главный риск чтения рекламы</h3>
-              <p className="ru-muted">Заголовок «95%» относится к реальному счёту. Для финансируемого демо-счёта в FAQ указаны 70% и предел прибыли 10%. Эти 2 стадии нельзя объединять в одну обещанную выплату.</p>
+              <p className="ru-muted">Заголовок «95%» относится к реальному счёту. Для финансируемого демо-счёта в FAQ указаны {TT_FUNDED_DEMO_SHARE_PCT}% и предел прибыли 10% (по данным на {TT_RECHECK}). Эти 2 стадии нельзя объединять в одну обещанную выплату.</p>
             </article>
           </div>
         </div>
@@ -273,7 +278,7 @@ export default function RussianTeamTradersReviewPage() {
             <li><strong>Бесплатный демо-счёт.</strong> По FAQ он позволяет проверить CScalp, подключение и стратегию; результат не засчитывается в отбор. До регистрации запросите применимый к проп-программе договор: прежний публичный адрес сейчас недоступен.</li>
             <li><strong>Оплаченный шаг 1.</strong> После активации начинается учёт результата: цель 6%, дневная граница 2%, общий максимум 4% и запрет на ночь.</li>
             <li><strong>Оплаченный шаг 2.</strong> Баланс этапа обновляется, а те же 6%/2%/4% применяются повторно; оба шага вместе должны включать минимум 10 торговых дней.</li>
-            <li><strong>Финансируемый демо-счёт.</strong> По FAQ в разборе это промежуточный этап с долей 70%, максимальной прибылью 10% и возможностью выводить доступную прибыль частями.</li>
+            <li><strong>Финансируемый демо-счёт.</strong> По FAQ это промежуточный этап с долей {TT_FUNDED_DEMO_SHARE_PCT}% (по данным на {TT_RECHECK}), максимальной прибылью 10% и возможностью выводить доступную прибыль частями.</li>
             <li><strong>Реальный счёт.</strong> Обычный переход указан после вывода 10% с финансируемого демо-счёта; только здесь опубликована доля 95%, отсутствие предела прибыли и бессрочная работа при соблюдении правил.</li>
           </ol>
           <p>
@@ -306,19 +311,19 @@ export default function RussianTeamTradersReviewPage() {
         </div>
       </section>
 
-      <section className="ru-section" id="vyplaty" data-russian-teamtraders-payouts="demo-70-real-95">
+      <section className="ru-section" id="vyplaty" data-russian-teamtraders-payouts="demo-50-real-95">
         <div className="ru-shell">
-          <h2>Выплаты: 70% на финансируемом демо-счёте и 95% на реальном</h2>
+          <h2>Выплаты: 50% на финансируемом демо-счёте и 95% на реальном</h2>
           <div className="ru-grid">
             <article className="ru-card">
               <Database size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Финансируемый демо-счёт</h3>
-              <p className="ru-muted">Доля трейдера — {evidence.fundedDemo.profitSharePct}%. Цель и максимальная прибыль этапа — {evidence.fundedDemo.profitTargetAndCapPct}% баланса; заявку можно подать на доступную прибыль, не дожидаясь всех 10%.</p>
+              <p className="ru-muted">Доля трейдера — {TT_FUNDED_DEMO_SHARE_PCT}% (по данным на {TT_RECHECK}). Цель и максимальная прибыль этапа — {evidence.fundedDemo.profitTargetAndCapPct}% баланса; заявку можно подать на доступную прибыль, не дожидаясь всех 10%.</p>
             </article>
             <article className="ru-card">
               <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Реальный счёт</h3>
-              <p className="ru-muted">Доля трейдера — {evidence.realAccount.profitSharePct}%, компании — {evidence.realAccount.companySharePct}% с каждого прибыльного дня. Заявки принимаются ежедневно; максимальный предел прибыли и фиксированный срок не опубликованы.</p>
+              <p className="ru-muted">Доля трейдера — {evidence.realAccount.profitSharePct}%, компании — {evidence.realAccount.companySharePct}% с каждого прибыльного дня. Максимальный предел прибыли и фиксированный срок не опубликованы; частоту вывода официальные страницы описывают по-разному (ниже).</p>
             </article>
             <article className="ru-card">
               <AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" />
@@ -327,8 +332,11 @@ export default function RussianTeamTradersReviewPage() {
             </article>
           </div>
           <p>
-            «Ежедневная выплата» означает частоту подачи и расчёта по опубликованной странице, а не гарантированный
-            банковский срок. Публичный FAQ не называет минимальную сумму, метод выплаты, комиссию платёжного маршрута или
+            <strong>Частота вывода: официальные страницы противоречат друг другу (по данным на {TT_RECHECK}).</strong>{' '}
+            На главной в условиях выплат указано «Заявка на вывод: Ежедневно» и «Лимит на вывод: Нет ограничений». В FAQ для
+            финансируемого демо- и реального счёта сказано, что заявку можно подавать еженедельно и не больше чем на{' '}
+            {TT_WEEKLY_WITHDRAWAL_CAP_PCT}% текущей доступной прибыли; остаток остаётся на счёте. Какое правило действует для вашего
+            счёта, уточните письменно до оплаты стажировки. Публичный FAQ не называет минимальную сумму, метод выплаты, комиссию платёжного маршрута или
             срок фактического зачисления, поэтому эти 4 поля нужно запросить до оплаты стажировки.
           </p>
           <p className="ru-source-line"><SourceLink href={TEAMTRADERS_HOME}>Главная об условиях выплат</SourceLink> · <SourceLink href={TEAMTRADERS_FAQ}>FAQ о демо- и реальном счёте</SourceLink>.</p>
@@ -370,7 +378,7 @@ export default function RussianTeamTradersReviewPage() {
             В подвале сайта сейчас доступна <SourceLink href={TEAMTRADERS_PUBLIC_RULES}>оферта редакции {evidence.legal.offerRevision}</SourceLink>
             {' '}от {evidence.legal.operatorName}, ОГРНИП {evidence.legal.ogrnip}, ИНН {evidence.legal.inn}.
             Её предмет — платное дистанционное обучение трейдингу на 60 дней; она не описывает явно платный проп-отбор,
-            финансируемый демо-счёт и доли 70%/95%. Подменять ею исчезнувшую оферту проп-программы нельзя.
+            финансируемый демо-счёт и доли на демо- и реальном счёте. Подменять ею исчезнувшую оферту проп-программы нельзя.
           </p>
           <div className="ru-notice" data-russian-teamtraders-checklist="eight-fields">
             <strong>Уточните 8 полей до регистрации:</strong> редакцию оферты, цену тарифа, срок оплаты, условия

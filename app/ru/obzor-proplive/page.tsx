@@ -24,7 +24,10 @@ const PROP_LIVE_HOME = 'https://www.proplive.ru/'
 const PROP_LIVE_ABOUT = 'https://proplive.ru/o-nas'
 const PROP_LIVE_REQUISITES = 'https://proplive.ru/rekvizity-kompanii'
 const PROP_LIVE_PARTNERS = 'https://www.proplive.ru/partnyoram'
-const PROP_LIVE_CONTRACT = 'https://static.proplive.ru/documents/document-17.pdf'
+// Prop Firm Tracker recheck (data/new-firms-2026-10-20 @4f9a20d, _captures/proplive-2026-10-20.json): hero counter 14 993;
+// the contract PDF cited before (static.proplive.ru/documents/document-17.pdf) returns 404, so it is no longer linked.
+const PROP_LIVE_RECHECK = '20.10.2026'
+const PROP_LIVE_TRADERS = 14993
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -57,7 +60,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какой договор подписывает трейдер PropLive?',
-    a: 'В опубликованном PDF это договор возмездного оказания услуг по разработке торговых стратегий. Вознаграждение определяется приложением «Стоимость услуг», расчёт опирается на данные ИТС, а оплата по умолчанию производится в рублях. Перед присоединением прочитайте сам договор и все приложения.',
+    a: 'Публичной действующей версии сейчас нет: PDF договора, который мы разбирали раньше (договор возмездного оказания услуг по разработке торговых стратегий с приложением «Стоимость услуг»), по данным на 20.10.2026 возвращает 404. Запросите у PropLive действующую редакцию договора, приложение со стоимостью услуг и регламент до регистрации.',
   },
   {
     q: 'Можно ли торговать из другой страны и на каком компьютере?',
@@ -134,7 +137,7 @@ export default function RussianPropLiveReviewPage() {
             <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Сравнить глобальные фирмы</Link>
           </div>
           <div className="ru-stats">
-            <div className="ru-stat"><strong>{Number(localSignal?.claims.traders).toLocaleString('ru-RU')}</strong><span>трейдеров по заявлению оператора</span></div>
+            <div className="ru-stat"><strong>{PROP_LIVE_TRADERS.toLocaleString('ru-RU')}</strong><span>трейдеров по заявлению оператора, по данным на {PROP_LIVE_RECHECK}</span></div>
             <div className="ru-stat"><strong>1 день</strong><span>заявленный срок вывода</span></div>
             <div className="ru-stat"><strong>MOEX</strong><span>рынок в опубликованной модели</span></div>
             <div className="ru-stat"><strong>{localSignalCapturedAt || 'нет даты'}</strong><span>проверка заявлений на главной</span></div>
@@ -157,12 +160,12 @@ export default function RussianPropLiveReviewPage() {
               <thead><tr><th>Пункт</th><th>Заявление оператора</th><th>Редакционный статус</th><th>Источник</th></tr></thead>
               <tbody>
                 <tr><td>Модель</td><td>Торговые аккаунты для Московской биржи через брокера Финам; оператор описывает себя как основного инвестора</td><td>Опубликовано оператором; не сравниваем с CFD-челленджем</td><td><SourceLink href={PROP_LIVE_ABOUT}>О компании</SourceLink></td></tr>
-                <tr><td>Трейдеры</td><td>{Number(localSignal?.claims.traders).toLocaleString('ru-RU')} в верхнем счётчике; ниже указано более 10 700</td><td>Внутреннее расхождение чисел, не независимый аудит</td><td><SourceLink href={PROP_LIVE_HOME}>Главная</SourceLink></td></tr>
+                <tr><td>Трейдеры</td><td>{PROP_LIVE_TRADERS.toLocaleString('ru-RU')} в верхнем счётчике (по данным на {PROP_LIVE_RECHECK}; на 01.10.2026 было 13 722); ниже указано более 10 700</td><td>Внутреннее расхождение чисел, не независимый аудит</td><td><SourceLink href={PROP_LIVE_HOME}>Главная</SourceLink></td></tr>
                 <tr><td>Старт</td><td>«Нисколько»: оператор заявляет небольшой капитал для раскачки и увеличение капитала при успешной торговле</td><td>Заявление оператора; цена, комиссия и размер капитала зависят от оформления</td><td><SourceLink href={PROP_LIVE_HOME}>FAQ на главной</SourceLink></td></tr>
                 <tr><td>Вывод</td><td>В течение 1 рабочего дня и в любой день недели</td><td>Заявленный срок; запросите действующий регламент</td><td><SourceLink href={PROP_LIVE_HOME}>FAQ оператора</SourceLink></td></tr>
                 <tr><td>Партнёры</td><td>До {affiliateSignal?.maximumPublishedCommissionPct}% PayOut — доля от прибыли учеников наставника или школы</td><td>Только по заявке; не обычная партнёрская ссылка издателя</td><td><SourceLink href={PROP_LIVE_PARTNERS}>Условия партнёров</SourceLink></td></tr>
                 <tr><td>Юрлицо</td><td>ООО «ЛАЙВ ИНВЕСТ»; реквизиты опубликованы отдельно</td><td>Проверьте, с кем заключается договор и кто принимает оплату</td><td><SourceLink href={PROP_LIVE_REQUISITES}>Реквизиты</SourceLink></td></tr>
-                <tr><td>Договор</td><td>Услуги по разработке торговых стратегий; вознаграждение — в приложении «Стоимость услуг», оплата по умолчанию в рублях</td><td>Нужно читать актуальную версию и все приложения до регистрации</td><td><SourceLink href={PROP_LIVE_CONTRACT}>PDF договора</SourceLink></td></tr>
+                <tr><td>Договор</td><td>Ранее опубликованный PDF договора по данным на {PROP_LIVE_RECHECK} недоступен (404); другой публичной версии на проверенных страницах нет</td><td>Запросите действующую редакцию и все приложения до регистрации</td><td>Нет действующей публичной ссылки</td></tr>
               </tbody>
             </table>
           </div>
@@ -202,12 +205,17 @@ export default function RussianPropLiveReviewPage() {
       <section className="ru-section">
         <div className="ru-shell ru-content">
           <h2>Договор: важнее рекламного счётчика</h2>
-          <div className="ru-grid">
-            <article className="ru-card"><FileCheck2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Приложение №4</h3><p className="ru-muted">Пункт 20 опубликованного договора отсылает расчёт вознаграждения к приложению «Стоимость услуг». Без этого приложения нельзя считать условия полностью раскрытыми.</p><SourceLink href={PROP_LIVE_CONTRACT}>Открыть договор</SourceLink></article>
-            <article className="ru-card"><Scale size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Данные ИТС</h3><p className="ru-muted">Пункты 21–28 связывают объём и стоимость услуг с данными ИТС и допускают корректировку оплаты при изменении экономической эффективности стратегии.</p><SourceLink href={PROP_LIVE_CONTRACT}>Пункты 21–28</SourceLink></article>
-            <article className="ru-card"><WalletCards size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Изменение условий</h3><p className="ru-muted">Пункт 18 описывает уведомление о несогласии в течение 3 календарных дней и прекращение договора через 5 календарных дней после получения уведомления компанией.</p><SourceLink href={PROP_LIVE_CONTRACT}>Пункт 18</SourceLink></article>
+          <div className="ru-notice" data-russian-proplive-contract="unavailable">
+            <strong>Публичный договор сейчас недоступен.</strong>{' '}
+            PDF договора, на который ссылался этот обзор, по данным на {PROP_LIVE_RECHECK} возвращает 404. На проверенных страницах
+            сайта (главная, «О компании», реквизиты, партнёрам, нерезидентам) другой версии договора нет. Поэтому пункты прежней
+            редакции мы больше не пересказываем.
           </div>
-          <p className="ru-source-line">Это разбор текста опубликованного договора, а не юридическое заключение. Сравните PDF с версией в личном кабинете: приложение, регламент и заявление о присоединении входят в договорный пакет.</p>
+          <p>
+            До регистрации попросите у PropLive действующий договор, приложение «Стоимость услуг», регламент и заявление
+            о присоединении. Без этих документов нельзя понять, как рассчитывается вознаграждение, когда меняется оплата и
+            как расторгнуть договор.
+          </p>
         </div>
       </section>
 
@@ -219,8 +227,7 @@ export default function RussianPropLiveReviewPage() {
             <article className="ru-card">
               <FileCheck2 size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Цена и обязательства</h3>
-              <p className="ru-muted">Сопоставьте рекламный старт без оплаты с пунктом 20 договора и приложением «Стоимость услуг». Попросите документ до регистрации: без него нельзя вывести итоговую сумму или понять, когда меняется оплата.</p>
-              <SourceLink href={PROP_LIVE_CONTRACT}>Пункт 20 и приложение</SourceLink>
+              <p className="ru-muted">Сопоставьте рекламный старт без оплаты с действующим договором и приложением «Стоимость услуг». Попросите документы до регистрации: публичный PDF по данным на {PROP_LIVE_RECHECK} недоступен, а без него нельзя вывести итоговую сумму или понять, когда меняется оплата.</p>
             </article>
             <article className="ru-card">
               <Scale size={22} color="var(--accent-light)" aria-hidden="true" />
