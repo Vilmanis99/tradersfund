@@ -111,7 +111,7 @@
     "fundedDrawdownType": "eod-trailing",
     "minTradingDays": 2,
     "maxTradingDays": null,
-    "consistencyRulePct": 50,
+    "consistencyRulePct": 40,
     "profitSplitPct": 90,
     "payoutFirstDays": 5,
     "payoutFrequency": "on-demand",
@@ -135,7 +135,8 @@
       "PAYOUT: 5 separate profitable days at $100 / $150 / $200 / $250, 90% trader split, $500 minimum, 50% of profit capped at $1,000 / $2,000 / $2,500 / $3,000, and no fixed window after eligibility.",
       "TRADING TIMES AND GENERAL RULES: 4:45 PM ET auto-close, no weekend/overnight holds, news and automation allowed, copy trading restricted to compliant non-coordinated use.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json"
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json",
+      "Consistency recheck 2026-10-20: the LucidFlex Evaluation Account article (support.lucidtrading.com/en/articles/12945790, \"Updated yesterday\") now lists \"Consistency % 40% (50% with add-on)\" for every size and \"Customize at checkout: Daily Loss Limit On or Off, and 40% or 50% consistency\", so consistencyRulePct moved from 50 to 40 (50 is a paid add-on). Price and the optional DLL were not rechecked here, so sourceCapturedAt is unchanged. Log: content/data/challenges/_captures/consistency-key-facts-2026-10-20.json"
     ]
   },
   {
