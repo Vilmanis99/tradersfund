@@ -67,7 +67,11 @@
     }
   ],
   "openConflict": "Subsequent cycle: help centre says every 10 business days; the product page shows both \"Subsequent Withdrawal 10 Days\" and \"Subsequent Rewards Bi-weekly\". payoutFrequency stays null.",
-  "changes": [],
+  "changes": [
+    "firms.json FundedNext consistencyRule: news-rule text (2026-05-20) -> 40% best-day On-Demand rule (article 15586820)",
+    "firms.json FundedNext payoutMethods: + Card, Confirmo, FNmarkets; + payoutMethodsSourceUrl/Quote/CapturedAt/Note (article 8020084, updated 2026-10-02)",
+    "firms.json FundedNext russiaStatus available -> restricted; russiaSourceUrl/Quote = fundednext.com footer (ToS 5.3 conflict and Futures restriction recorded here)"
+  ],
   "dailyRecheck": {
     "captureType": "daily-recheck",
     "capturedAtTimestamp": "2026-10-20T08:21:08+03:00",
@@ -219,5 +223,165 @@
         "fetchedAt": "2026-10-20T05:12:25.524Z"
       }
     ]
+  },
+  "ruWriterCheck": {
+    "capturedAtTimestamp": "2026-10-20T05:30:18Z",
+    "egress": "US IP (box); help-centre pages fetched with curl, publication dates from each article's JSON-LD dateModified or visible date",
+    "requestedBy": "RU Writer via Karlis, 2026-10-20",
+    "consistencyVsNews": {
+      "verdict": "firms.json consistencyRule previously described the news rule (dated 2026-05-20). Replaced with the 40% best-day rule; the news rule stays in newsTradingAllowed / rules.newsTrading.",
+      "consistency": {
+        "sourceUrl": "https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards",
+        "pageDate": "2026-09-09",
+        "quotes": [
+          "For traders using the Stellar 2-Step or Stellar Lite Account, the On-Demand Performance Reward is now a built-in payout option — no add-on purchase required.",
+          "You must have maintained the 40% consistency rule across your trades.",
+          "The 40% consistency rule means that your best trading day's profit should not exceed 40% of your total generated profit at the time of your request. It is important to note that this is not a daily profit cap; it is only evaluated when you submit an on-demand request."
+        ]
+      },
+      "noConsistencyInstant": {
+        "sourceUrl": "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
+        "quote": "There are no consistency rules in the Stellar Instant Account",
+        "capturedAt": "2026-10-15"
+      },
+      "news": {
+        "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+        "pageDate": "2026-09-08",
+        "quotes": [
+          "Trades executed 5 minutes before and 5 minutes after a listed high-impact news event (a total 10-minute window ) will be subject to the News Reward Share Rule .",
+          "40% of the profit from these profitable trade(s) will be counted toward the trader’s account balance.",
+          "The News Reward Share Rule applies only to Stellar 1-Step, Stellar 2-Step, and Stellar Lite FundedNext Accounts. Challenge Accounts are not subject to this rule."
+        ],
+        "openPoint": "rules.newsTrading.byProduct marks stellar-instant 'restricted', but the article lists only Stellar 1-Step, 2-Step and Lite FundedNext Accounts. Not changed here (firm-rules pipeline)."
+      }
+    },
+    "payoutMethods": {
+      "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+      "dateModified": "2026-10-02T10:26:38Z",
+      "quotes": [
+        "These options include USDT (ERC20, TRC20), USDC (ERC20), Confirmo, RiseWorks, Bank Transfer, Card and direct deposit to FNmarkets.",
+        "Card payout is available for traders who have at least one saved card on their account during the payment process.",
+        "Traders from Iran have the option to request their Performance Reward using TC Pay only."
+      ],
+      "bankTransferExclusions": {
+        "heading": "Bank Transfer Country Restrictions",
+        "quote": "Due to regulatory requirements, bank transfer is not available as a Performance Reward method for the following countries.",
+        "includesRussia": true
+      },
+      "cardExclusions": {
+        "heading": "Card Transfer Country Restrictions",
+        "quote": "Due to regulatory requirements, bank transfer is not available as a Performance Reward method for the following countries.",
+        "listIncludes": [
+          "Russian Federation",
+          "Belarus",
+          "Ukraine"
+        ],
+        "note": "The sentence under the card heading repeats the bank-transfer wording (apparent copy error on FundedNext's page); the list sits under the 'Card Transfer Country Restrictions' heading."
+      },
+      "notConfirmed": "Whether Confirmo, crypto or FNmarkets payouts are available to Russia-resident traders: the article publishes no country exclusions for those methods; not confirmed either way."
+    },
+    "riseRussia": {
+      "sourceUrl": "https://help.riseworks.io/en/articles/7198515-unsupported-countries-regions-and-states",
+      "dateModified": "2026-09-04T15:49:31Z",
+      "quotes": [
+        "Rise is currently unable to onboard users or process transactions from the following jurisdictions due to international compliance and sanctions requirements.",
+        "RU RUS Russian Federation (the)",
+        "Note: Individuals from these restricted countries can still be serviced if they reside outside the country and can provide valid documentation from the current country of residence."
+      ],
+      "corroboration": {
+        "sourceUrl": "https://www.riseworks.io/resources/supported-countries-and-currencies",
+        "quote": "Russian Federation (the) Restricted"
+      },
+      "verdict": "Russia residents cannot onboard to Rise; only non-residents of Russia with documents from their current country of residence."
+    },
+    "checkoutRussianCards": {
+      "verdict": "Not confirmed. No official FundedNext statement found on Mir or on Russian-issued Visa/Mastercard at checkout (help-centre searches for 'Mir', 'Russia' and 'Russian card' on 2026-10-20 returned no checkout article on this).",
+      "sources": [
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/13990618-how-to-complete-a-card-payment-at-fundednext-cfds",
+          "dateModified": "2026-03-08T13:25:13Z",
+          "quote": "On the \"Select a payment method\" screen, click the first box labeled \"International Cards.\" This option supports major providers like Visa, Mastercard, and American Express."
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/12008865-which-local-payment-methods-are-available-in-my-country-for-fundednext",
+          "dateModified": "2026-08-06T11:57:11Z",
+          "note": "Country list has no Russia entry and no Mir; 'Worldwide: Local Cards (Visa, Mastercard & AMEX)'."
+        },
+        {
+          "sourceUrl": "https://fundednext.com/api_docs/terms-of-service",
+          "lastUpdated": "5 May 2026",
+          "quote": "The User acknowledges that certain payment methods and functionalities may not be available for countries subject to such restrictions."
+        }
+      ]
+    },
+    "russiaAccessConflict": {
+      "note": "Found while checking items 3-4; russiaStatus NOT changed (needs an editor decision).",
+      "footer": {
+        "sourceUrl": "https://fundednext.com/",
+        "quote": "Jurisdictional Restrictions: The FundedNext Entities do not offer services to residents of the following jurisdictions: North Korea (DPRK), Myanmar, Belarus, Iran, and Russia, including countries on the FATF high-risk and EU/UN sanctions lists, and Vietnam.",
+        "alsoOn": "https://fundednext.com/api_docs/terms-of-service footer; present in 2026-10-19 page captures too"
+      },
+      "tosCfdList": {
+        "sourceUrl": "https://fundednext.com/api_docs/terms-of-service",
+        "clause": "5.3",
+        "quote": "for CFD Services, at the time of publication of these Terms, the Provider does not make the Services available to residents and citizens of the following countries/territories: Bangladesh, Myanmar, Belarus, North Korea, Syria, Grenada, Chad, Malaysia, Belize, Antigua and Barbuda, Cape Verde, Tuvalu, Vietnam, Bouvet Island, Burundi, Cook Islands, Eritrea, Comoros, Sri Lanka and Fiji (\"Restricted Countries – CFDs\")."
+      },
+      "verdict": "ToS 5.3 CFD list omits Russia, but the site-wide footer says FundedNext Entities do not offer services to residents of Russia; footer treated as operative (see decision).",
+      "futures": {
+        "sourceUrl": "https://helpfutures.fundednext.com/en/articles/17228971",
+        "dateModified": "2026-09-30T10:50:02Z",
+        "quote": "What are the restricted countries to purchase accounts with FundedNext Futures?",
+        "listIncludes": [
+          "Russian Federation"
+        ],
+        "tosClause": "5.4 (Restricted Countries – Futures) also names the Russian Federation"
+      },
+      "decision": {
+        "date": "2026-10-20",
+        "russiaStatus": "available -> restricted",
+        "reason": "Editor decision relayed via parent agent: the fundednext.com footer is treated as operative over ToS 5.3 (CFD list without Russia). Schema has no 'conflicting' value; 'restricted' is the most restrictive valid value.",
+        "russiaSourceUrl": "https://fundednext.com/"
+      }
+    },
+    "allocation": {
+      "cap300k": {
+        "sourceUrl": "https://help.fundednext.com/en/articles/8027523",
+        "pageDate": "2026-04-08",
+        "quotes": [
+          "maximum aggregate simulated capital of $300,000 within their FundedNext Accounts.",
+          "However, this limit is not applicable for purchasing Challenge Accounts.",
+          "Upon reaching the profit target, only three accounts will move to the FundedNext Phase as the maximum limit for having FundedNext Accounts is $300,000. The other two accounts will be paused.",
+          "For Stellar Lite Account, the maximum FundedNext Account allocation is $200,000."
+        ]
+      },
+      "ceiling4m": {
+        "sourceUrl": "https://help.fundednext.com/en/articles/13349186",
+        "pageDate": "2026-09-19",
+        "effective": "12 January 2026",
+        "quotes": [
+          "A 25% increase in your account size every qualifying cycle, scaling up to a massive $4 Million .",
+          "Successfully received 4 Performance Rewards .",
+          "Demonstrate a minimum of 4% growth within each qualifying Performance Reward cycle.",
+          "Maintain an active, disciplined presence for a minimum of 2 months ."
+        ]
+      },
+      "olderScaleUp": {
+        "sourceUrl": "https://help.fundednext.com/en/articles/8019659",
+        "pageDate": "2026-09-03",
+        "quote": "Traders who meet the eligibility criteria are eligible for a 40% increase in the account balance, up to a maximum of 4 million.",
+        "conflict": "40% every four months (older article) vs 25% per qualifying cycle (Pro article, effective 12 Jan 2026)."
+      },
+      "explanation": "$300K is the cap on simultaneously held funded (FundedNext-phase) simulated capital bought through challenges ($200K for Stellar Lite; $50K in 8 listed countries). $4M is the ceiling a single funded account can be grown to through the scale-up programme after qualifying cycles; it is not purchasable."
+    },
+    "futuresKazakhstan": {
+      "sourceUrl": "https://helpfutures.fundednext.com/en/articles/17228971",
+      "dateModified": "2026-09-30T10:50:02Z",
+      "quote": "Traders from the countries listed below are eligible to purchase accounts, trade, and receive performance rewards from simulated trading. Traders who achieve live eligibility but reside in one of the listed countries will be contacted directly by our Risk Desk, which will review the available options and explain the next steps.",
+      "listIncludes": [
+        "Kazakhstan"
+      ],
+      "alsoRussia": "Russian Federation is on the Futures purchase-restricted list on the same page.",
+      "verdict": "Kazakhstan: FundedNext Futures purchase, trading and simulated rewards allowed; at live eligibility the Risk Desk reviews options. Access data point only; no firms.json field exists for this."
+    }
   }
 }

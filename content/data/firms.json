@@ -21,7 +21,7 @@
     "reviewUrl": "/blog/ftmo-review",
     "officialUrl": "https://ftmo.com/",
     "profitSplitPct": 90,
-    "payoutFrequency": null,
+    "payoutFrequency": "on-demand",
     "payoutMethods": [
       "Bank wire",
       "Visa Direct / Mastercard Send",
@@ -268,12 +268,12 @@
         ]
       },
       "payoutFrequency": {
-        "value": null,
-        "summary": "Reward claim on the 14th or any following day after the first trade on the account (not same-day on-demand)",
-        "note": "Previous capture said on-demand; the official FAQ states a 14-day minimum from the first trade.",
+        "value": "on-demand",
+        "summary": "On demand after a minimum of 14 days from the first trade on the account",
+        "note": "Editor decision 2026-10-20: on-demand label backed by promo.ftmo.com; the FAQ gives the 14-day minimum.",
         "byProduct": {
-          "ftmo-challenge-2-step": null,
-          "ftmo-challenge-1-step": null
+          "ftmo-challenge-2-step": "on-demand",
+          "ftmo-challenge-1-step": "on-demand"
         },
         "evidence": [
           {
@@ -282,6 +282,22 @@
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://promo.ftmo.com/m26b-practice-trading-without-risk/",
+            "quote": "Rewards can be requested on demand after a minimum of 14 days from your first demo trade",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-20.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+            "quote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-20.json",
             "productSlug": null
           }
         ]
@@ -383,10 +399,10 @@
     "freeTrialPlatformsCapturedAt": "2026-10-19",
     "payoutMethodsSourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
     "payoutMethodsQuote": "Rewards can be paid out via bank wire transfer, instant transfer through Visa Direct / Mastercard Send (up to $20,000), Skrill (up to $3,000), or cryptocurrencies.",
-    "payoutMethodsCapturedAt": "2026-10-19",
-    "payoutFrequencyNote": "First Reward can be requested from day 14 after the first trade on the account; ftmo.com does not publish the cadence after the first Reward, so no on-demand/bi-weekly label is claimed.",
-    "payoutFrequencySourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
-    "payoutFrequencyQuote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account."
+    "payoutMethodsCapturedAt": "2026-10-20",
+    "payoutFrequencyNote": "On demand once 14 days have passed since the first trade (checked 2026-10-20). promo.ftmo.com: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\". ftmo.com FAQ (https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/): \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\"",
+    "payoutFrequencySourceUrl": "https://promo.ftmo.com/m26b-practice-trading-without-risk/",
+    "payoutFrequencyQuote": "Rewards can be requested on demand after a minimum of 14 days from your first demo trade"
   },
   {
     "name": "FundedNext",
@@ -414,11 +430,18 @@
     "payoutMethods": [
       "Bank wire",
       "Rise",
-      "Crypto"
+      "Crypto",
+      "Card",
+      "Confirmo",
+      "FNmarkets"
     ],
+    "payoutMethodsSourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+    "payoutMethodsQuote": "These options include USDT (ERC20, TRC20), USDC (ERC20), Confirmo, RiseWorks, Bank Transfer, Card and direct deposit to FNmarkets.",
+    "payoutMethodsCapturedAt": "2026-10-20",
+    "payoutMethodsNote": "Crypto = USDT (ERC20/TRC20) and USDC (ERC20). Card payout needs at least one card saved on the account from a purchase. Russia is on FundedNext's bank-transfer exclusion list and the Russian Federation and Belarus are on its card exclusion list (help article updated 2026-10-02). Rise lists the Russian Federation as a restricted country it cannot onboard (help.riseworks.io/en/articles/7198515). Iran: TC Pay only.",
     "drawdownType": "static",
     "minTradingDays": 0,
-    "consistencyRule": "40% profit-retention penalty on positions held during news-window releases (verified 2026-05-20)",
+    "consistencyRule": "Product-specific: 40% best-day rule (best day's profit may not exceed 40% of total profit, checked only when an On-Demand Performance Reward is requested) on Stellar 2-Step and Stellar Lite with the On-Demand payout option; none on Stellar Instant. The 40% news-window profit count is a separate news rule (see newsTradingAllowed / rules.newsTrading), not a consistency rule.",
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
     "eaAllowed": "restricted",
@@ -459,7 +482,9 @@
     "lastUpdated": "2026-10-19",
     "trustpilotUrl": "https://www.trustpilot.com/review/fundednext.com",
     "trustpilotCapturedAt": "2026-10-15",
-    "russiaStatus": "available",
+    "russiaStatus": "restricted",
+    "russiaSourceUrl": "https://fundednext.com/",
+    "russiaSourceQuote": "Jurisdictional Restrictions: The FundedNext Entities do not offer services to residents of the following jurisdictions: North Korea (DPRK), Myanmar, Belarus, Iran, and Russia, including countries on the FATF high-risk and EU/UN sanctions lists, and Vietnam.",
     "legalEntity": "FundedNext Ltd",
     "headquarters": "Wan Chai, Hong Kong",
     "country": "Comoros",
@@ -976,7 +1001,7 @@
       },
       "payoutFrequency": {
         "value": null,
-        "summary": "Product-specific: bi-weekly on 1 Step Flex, 2 Step Flex, FundingPips Zero; weekly on 2 Step Pro; trader-selected (weekly, bi-weekly or on-demand) on 2 Step Standard",
+        "summary": "Product-specific: bi-weekly on 1 Step Flex, 2 Step Flex, FundingPips Zero (1 Step Flex and 2 Step Flex also offer On Demand 100% with eligibility conditions); weekly on 2 Step Pro; trader-selected (weekly, bi-weekly or on-demand) on 2 Step Standard",
         "byProduct": {
           "1-step-flex": "bi-weekly",
           "2-step-flex": "bi-weekly",
@@ -992,6 +1017,14 @@
             "capturedAt": "2026-10-20",
             "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-20.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-20.json",
+            "productSlug": "2-step-flex"
           }
         ]
       },
@@ -3913,7 +3946,7 @@
     "trustpilotScore": 3.7,
     "trustpilotCount": 14945,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-14",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/topstep.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
