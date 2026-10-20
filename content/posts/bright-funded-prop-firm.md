@@ -169,7 +169,7 @@ type: "post"
 
 <p>An Indian swing trader who wants weekend holding, no consistency rule, and a low-cost test should start with the €47 $5K 2-Step Bright. Its 8% and 5% targets, static 8% maximum loss, and 5-day-per-phase rule are easier to model than the 1-Step’s moving floor; confirm the card, crypto, or EUR checkout route before purchase.</p>
 
-<p>A trader who wants to test the 1-Step’s 3% daily and 6% trailing limits before paying can claim BrightFunded’s Free $1K Challenge, a single 10% phase with 5 minimum days that leads to a $1,000 funded account at 80%; eligibility, the per-country daily cap, and how it compares with the FTMO, FundedNext and FundingPips trials are in our <a href="/blog/prop-firm-free-trial">prop firm free trial guide</a> (checked 2026-10-19).</p>
+<p>A trader who wants to test the 1-Step’s 3% daily and 6% trailing limits before paying can claim BrightFunded’s Free $1K Challenge, a single 10% phase with 5 minimum days that leads to a $1,000 funded account at 80%; eligibility, the per-country daily cap, and how it compares with the FTMO, FundedNext and FundingPips trials are in our <a href="/blog/prop-firm-free-trial">prop firm free trial guide</a> (checked 2026-10-19; FTMO rechecked 2026-10-20).</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid Bright Funded</strong></h2>
 

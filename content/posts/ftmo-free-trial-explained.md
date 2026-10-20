@@ -28,7 +28,7 @@ type: "post"
 <h2>FTMO Free Trial quick facts</h2>
 
 <table data-free-trial-summary="ftmo" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
-  <caption class="hidden-caption">FTMO Free Trial facts rechecked on 2026-10-19</caption>
+  <caption class="hidden-caption">FTMO Free Trial facts rechecked on 2026-10-20</caption>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Price</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€0; no card payment</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Duration</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">14 days</td></tr>
@@ -41,7 +41,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>The facts above were rechecked on 2026-10-19 against FTMO’s Free Trial landing page and its named Free Trial FAQ. The official FAQ says the trial is an abridged practice experience, allows 1 active account at a time, and does not create eligibility for an FTMO Account. Two changes since our 2026-09-14 capture: the trial platform list is now MT4, MT5 and cTrader only, and any trial closes if you place no trade in its first 7 days. FTMO also added an Instant Account trial (no target, 3% daily loss, 10% intraday trailing maximum loss, 30% consistency); this guide keeps its focus on the 1-Step and 2-Step trials. For every firm that currently offers a free trial or free challenge, see <a href="/blog/prop-firm-free-trial">prop firms with a free trial</a>.</p>
+<p>The facts above were rechecked on 2026-10-20 against FTMO’s Free Trial landing page and its named Free Trial FAQ. The official FAQ says the trial is an abridged practice experience, allows 1 active account at a time, and does not create eligibility for an FTMO Account. Two changes since our 2026-09-14 capture: the trial platform list is now MT4, MT5 and cTrader only, and any trial closes if you place no trade in its first 7 days. FTMO also added an Instant Account trial (no target, 3% daily loss, 10% intraday trailing maximum loss, 30% consistency); this guide keeps its focus on the 1-Step and 2-Step trials. For every firm that currently offers a free trial or free challenge, see <a href="/blog/prop-firm-free-trial">prop firms with a free trial</a>.</p>
 
 <h2>FTMO 1-Step vs 2-Step Free Trial rules</h2>
 
@@ -111,7 +111,7 @@ type: "post"
 <h2>FTMO Free Trial vs FundedNext Free Trial</h2>
 
 <table data-free-trial-comparison="ftmo-fundednext" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
-  <caption class="hidden-caption">FTMO and FundedNext Free Trial comparison rechecked on 2026-10-19</caption>
+  <caption class="hidden-caption">FTMO and FundedNext Free Trial comparison (FTMO rechecked on 2026-10-20, FundedNext on 2026-10-19)</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 10px; text-align: left;">Field</th><th style="padding: 8px 10px; text-align: left;">FTMO 1-Step trial</th><th style="padding: 8px 10px; text-align: left;">FTMO 2-Step trial</th><th style="padding: 8px 10px; text-align: left;">FundedNext trial</th></tr></thead>
   <tbody>
     <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Duration</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days from first trade</td></tr>
