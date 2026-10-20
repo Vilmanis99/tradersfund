@@ -14,6 +14,7 @@ import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { latestCorrectionDate } from '@/lib/corrections'
 import { HOW_WE_MAKE_MONEY_UPDATED } from '@/lib/trustPages'
 import { CLOSED_FIRMS_CAPTURED_AT, CLOSED_FIRMS_PUBLISHED } from '@/lib/closedFirms'
+import { RU_DISCLOSURE } from '@/lib/ruDisclosure'
 import { isSourceHoldReview, isSourceHoldFirm } from '@/lib/reviewStatus'
 import {
   LOCALIZED_ROUTE_PAIRS,
@@ -335,6 +336,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/ru/vyplaty-prop-firm', russianPayoutLastModified],
     ['/ru/prop-firmy-bez-kyc', russianKycLastModified],
     ['/ru/otzyvy-prop-firm', russianReviewsLastModified],
+    // RU Writer's own date in the copy file; never earlier than the editorial date.
+    ['/ru/kak-my-zarabatyvaem', new Date(`${RU_DISCLOSURE.updated ?? RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/kak-my-zarabatyvaem']}T00:00:00Z`)],
     // The instant guide's Article uses its editorial date; product rows show
     // their own captures separately. Evaluation-only rechecks must not redate it.
   ])

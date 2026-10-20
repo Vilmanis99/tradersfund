@@ -1,5 +1,5 @@
 {
-  "_note": "Copy for /ru/kak-my-zarabatyvaem, supplied by RU Writer. Until 'published' is true AND title, description, h1 and at least one section are filled in, the route returns 404 and the RU footer links to the EN /how-we-make-money. Flipping 'published' to true (with copy present) is the only switch needed. The partner list and the partnership policy sentence come from firms.json and lib/trustPages.ts, not from this file.",
+  "_note": "Copy for /ru/kak-my-zarabatyvaem, supplied by RU Writer. Until 'published' is true AND title, description, h1 and at least one section are filled in, the route returns 404 and the RU footer links to the EN /how-we-make-money. Flipping 'published' to true (with copy present) is the only switch needed. The partner list and the partnership policy sentence come from firms.json and lib/trustPages.ts, not from this file. Paragraphs may contain links written as [text](/path) or [text](https://...); anything else renders as plain text.",
   "published": true,
   "updated": "2026-10-20",
   "title": "Как мы зарабатываем: партнёрские ссылки и партнёры",
@@ -12,7 +12,7 @@
       "heading": "Откуда деньги",
       "paragraphs": [
         "Сайт зарабатывает на партнёрских комиссиях. Список выше берётся из нашей базы фирм при каждой сборке сайта: в нём только фирмы, у которых сейчас есть действующая партнёрская ссылка. Остальные фирмы, которые мы отслеживаем, нам не платят, и ссылки на них ведут на официальный сайт без кода отслеживания.",
-        "Полный список с оценками всех фирм и отметкой «платит нам или нет» опубликован на английской версии этой страницы (/how-we-make-money): там можно самому проверить, получают ли партнёры более высокие оценки."
+        "Полный список с оценками всех фирм и отметкой «платит нам или нет» опубликован на [английской версии этой страницы](/how-we-make-money): там можно самому проверить, получают ли партнёры более высокие оценки."
       ]
     },
     {
@@ -48,7 +48,7 @@
     {
       "heading": "Ошибки и вопросы",
       "paragraphs": [
-        "Все фактические исправления мы публикуем в журнале исправлений (/corrections, на английском). Юридические оговорки о рисках и партнёрских ссылках собраны на странице /disclaimers. Чтобы сообщить об ошибке или задать вопрос о партнёрстве, напишите нам через страницу /contact.",
+        "Все фактические исправления мы публикуем в [журнале исправлений](/corrections) (на английском). Юридические оговорки о рисках и партнёрских ссылках собраны на странице [«Дисклеймеры»](/disclaimers). Чтобы сообщить об ошибке или задать вопрос о партнёрстве, напишите нам через [страницу контактов](/contact).",
         "Трейдинг связан с высоким риском убытков. Материалы сайта не являются инвестиционной рекомендацией."
       ]
     }
