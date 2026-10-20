@@ -47,7 +47,7 @@
     "consistencyRulePct": null,
     "profitSplitPct": 80,
     "payoutFirstDays": 7,
-    "payoutFrequency": "weekly",
+    "payoutFrequency": null,
     "rules": {
       "news": true,
       "weekend": true,
@@ -64,7 +64,8 @@
       "consistencyRulePct left null - no consistency percentage is published on this page.",
       "Max funding for this program is published as $400K.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
+      "payoutFrequency weekly -> null (2026-10-20): https://citytradersimperium.com/1-step-challenge/ (checked 2026-10-20) says \"Request your 1st payout in as little as 7 days.\" and \"Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder.\"; the VIP ladder lists \"Bronze Trader ... Weekly payouts unlocked.\" and \"Silver Trader ... Anytime payouts unlocked.\" Weekly is a VIP Bronze unlock, and no baseline cycle after the first payout is published, so the field is null (same treatment as Instant Funding). payoutFirstDays 7 is unchanged."
     ]
   },
   {
@@ -116,7 +117,7 @@
     "consistencyRulePct": null,
     "profitSplitPct": 80,
     "payoutFirstDays": 7,
-    "payoutFrequency": "weekly",
+    "payoutFrequency": null,
     "rules": {
       "news": true,
       "weekend": true,
@@ -133,7 +134,8 @@
       "Martingale is published as 'Not Allowed' on this product (contrast with 1-Step, where it is allowed).",
       "Max funding for this program is published as $400K.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
+      "payoutFrequency weekly -> null (2026-10-20): https://citytradersimperium.com/2-step-challenge/ (checked 2026-10-20) says \"Request your 1st payout in as little as 7 days.\" and \"Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder.\"; the VIP ladder lists \"Bronze Trader ... Weekly payouts unlocked.\" and \"Silver Trader ... Anytime payouts unlocked.\" Weekly is a VIP Bronze unlock, and no baseline cycle after the first payout is published, so the field is null (same treatment as Instant Funding). payoutFirstDays 7 is unchanged."
     ]
   },
   {
@@ -244,7 +246,7 @@
     "consistencyRulePct": null,
     "profitSplitPct": 70,
     "payoutFirstDays": 5,
-    "payoutFrequency": "monthly",
+    "payoutFrequency": "on-demand",
     "rules": {
       "news": true,
       "weekend": true,
@@ -261,7 +263,8 @@
       "Profit split recorded as the published starting 70%; scales to 90% (Bronze) and up to 100% (Silver/Gold).",
       "Max funding published as $4M.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
+      "payoutFrequency monthly -> on-demand (2026-10-20): https://citytradersimperium.com/direct-funding/ (checked 2026-10-20): \"Payouts On Demand\" / \"Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.\" and FAQ: \"Direct Funding payouts are on demand from day 5.\" The 2026-10-14 capture quote (\"Starts monthly, advances to weekly (Bronze), then on demand (Silver+)\") is no longer on the page."
     ]
   }
 ]

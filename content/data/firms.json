@@ -28,8 +28,8 @@
       "Skrill",
       "Crypto"
     ],
-    "drawdownType": "static",
-    "minTradingDays": 4,
+    "drawdownType": null,
+    "minTradingDays": null,
     "consistencyRule": "Product-specific: 50% on FTMO Challenge: 1-Step; no consistency percentage on the remaining product.",
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
@@ -123,7 +123,7 @@
     "trustpilotScore": 4.8,
     "trustpilotCount": 54501,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/ftmo.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -440,7 +440,7 @@
     "payoutMethodsCapturedAt": "2026-10-20",
     "payoutMethodsNote": "Crypto = USDT (ERC20/TRC20) and USDC (ERC20). Card payout needs at least one card saved on the account from a purchase. Russia is on FundedNext's bank-transfer exclusion list and the Russian Federation and Belarus are on its card exclusion list (help article updated 2026-10-02). Rise lists the Russian Federation as a restricted country it cannot onboard (help.riseworks.io/en/articles/7198515). Iran: TC Pay only.",
     "drawdownType": "static",
-    "minTradingDays": 0,
+    "minTradingDays": 2,
     "consistencyRule": "Product-specific: 40% best-day rule (best day's profit may not exceed 40% of total profit, checked only when an On-Demand Performance Reward is requested) on Stellar 2-Step and Stellar Lite with the On-Demand payout option; none on Stellar Instant. The 40% news-window profit count is a separate news rule (see newsTradingAllowed / rules.newsTrading), not a consistency rule.",
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
@@ -1206,7 +1206,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/e8markets.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-10-15",
@@ -2015,7 +2015,7 @@
     ],
     "platformEvidence": {
       "sourceUrl": "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
-      "sourceCapturedAt": "2026-09-08",
+      "sourceCapturedAt": "2026-10-20",
       "sourceQuote": "DXTrade, cTrader and MT5",
       "notes": "Firm-wide platform list only. The source restricts MT5 for U.S./UAE citizenship, residency or location and cTrader for the U.S. profile. Confirm the specific programme, account size and country before payment. This check does not refresh prices or other firm terms."
     },
@@ -4678,7 +4678,10 @@
     "reviewUrl": "/blog/city-traders-imperium-review",
     "officialUrl": "https://citytradersimperium.com/",
     "profitSplitPct": 70,
-    "payoutFrequency": "monthly",
+    "payoutFrequency": null,
+    "payoutFrequencyNote": "Product-specific, so no firm-wide value (checked 2026-10-20): 1-Step and 2-Step publish a first payout \"in as little as 7 days\" with weekly payouts only unlocked at VIP Bronze; Direct Funding is on demand from day 5; Instant Funding publishes no baseline cycle. The earlier firm-level \"monthly\" matched no current product page.",
+    "payoutFrequencySourceUrl": "https://citytradersimperium.com/direct-funding/",
+    "payoutFrequencyQuote": "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.",
     "payoutMethods": [
       "Bank wire",
       "Crypto"
@@ -4899,12 +4902,12 @@
       },
       "payoutFrequency": {
         "value": null,
-        "summary": "Product-specific: weekly on 1-Step Challenge, 2-Step Challenge; not stated on Instant Funding; monthly on Direct Funding",
+        "summary": "Product-specific: not stated after the 7-day first payout on 1-Step Challenge and 2-Step Challenge (weekly is a VIP Bronze unlock); not stated on Instant Funding; on-demand on Direct Funding",
         "byProduct": {
-          "1-step-challenge": "weekly",
-          "2-step-challenge": "weekly",
+          "1-step-challenge": null,
+          "2-step-challenge": null,
           "instant-funding": null,
-          "direct-funding": "monthly"
+          "direct-funding": "on-demand"
         },
         "evidence": [
           {
@@ -4922,6 +4925,14 @@
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
+            "productSlug": "direct-funding"
           }
         ]
       },
@@ -6000,7 +6011,7 @@
     "trustpilotScore": 4.4,
     "trustpilotCount": 7032,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/lucidtrading.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -6450,7 +6461,7 @@
     "trustpilotScore": 4.5,
     "trustpilotCount": 5369,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeify.co",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",

@@ -146,5 +146,35 @@
       "httpStatus": 200,
       "fetchedAt": "2026-10-20T05:12:08.125Z"
     }
-  ]
+  ],
+  "rulesRecheck": {
+    "checkedAtTimestamp": "2026-10-20T12:20+03:00",
+    "requestedBy": "Prop Firm Tracker (BrightFunded is the top RU pick; rules evidence was dated 2026-09-30)",
+    "method": "headless Chrome, US-IP box; official brightfunded.com and help.brightfunded.com pages",
+    "previousDates": {
+      "platforms": "2026-09-30",
+      "rules": "2026-09-30",
+      "reward": "2026-09-30",
+      "news": "2026-09-30",
+      "refund": "2026-09-30",
+      "countries": "2026-10-19",
+      "countryTerms": "2026-10-19"
+    },
+    "result": "All stored rule values unchanged. russian-bright-funded-evidence.json sources (platforms, rules, reward, news, refund, countries, countryTerms) and firms.json platformEvidence redated to 2026-10-20. Affiliate link and CTA fields untouched.",
+    "quotes": {
+      "rules (https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process, dated May 20, 2026)": "Min. Trading Days 5 per stage 5 per stage 5 Daily Drawdown 4% 5% 3% Max. Drawdown 8% (Static) 10% (Static) 6% (Trailing) Phase 1 Profit Target 8% 10% 10% Phase 2 Profit Target 5% 5% —",
+      "payout cadence (https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account, dated March 18, 2026)": "You can request your first Reward Split after 30 days after you place your first trade on your Funded Account. After your first Reward Split, you can request a Reward Split bi-weekly (14 days). ... ADD-ONS: ... Bi-weeky add-on (Payouts every 14 days) ⚡️ Weekly add-on (Payouts every 7 days)",
+      "payout methods (same article)": "Available Payout Methods: Crypto (USDC – ERC-20 Network) Bank Transfer Currency by Payment Method: Bank transfers are processed in Euros (€) Crypto payments are processed in USDC (ERC-20)",
+      "profit split (same article)": "The Profit Split is 80/20 by default and can be scaled up to 100/0 with our Scaling Plan or to 90% instantly with our add-on.",
+      "consistency (https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule, dated October 14, 2025)": "At BrightFunded, we do not currently enforce a consistency rule.",
+      "refund (https://help.brightfunded.com/en/articles/9460023-can-i-get-a-refund-for-my-brightfunded-challenge, dated October 14, 2025)": "Yes, you can receive a refund for your BrightFunded Challenge if you haven't made any trades on the account yet. ... Refund eligibility requires that the account was purchased within the last 30 days (counted from the purchase date).",
+      "news (https://help.brightfunded.com/en/articles/9241694-can-i-trade-news, dated July 2, 2026)": "Trading within a 10-minute window surrounding significant news releases—defined as 5 minutes before and 5 minutes after the event—is prohibited. ... this is a soft breach",
+      "platforms (https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer)": "we have three platforms designed to provide the best experience for our users: DXTrade, cTrader and MT5. ... If you are citizen, resident, or live in the US or UAE, MT5 will not be available for you",
+      "countries (https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded, dated September 15, 2026)": "Restricted Country List Cuba Iran North Korea Syria Vietnam Pakistan Important: Traders from Pakistan who already have an active account may continue trading.",
+      "countryTerms (https://brightfunded.com/terms-and-conditions)": "Cuba, Iran, North Korea, Syria, and Vietnam.",
+      "global prices (product pages, EUR, $5K card in static render)": "1-Step: €49 €34.30 (-30% RALLY30); 2-Step Bright: €47 €35.25 (-25% RALLY25); 2-Step Classic: €49 €41.65 (-15% RALLY15) - list prices equal stored priceEur; full ladders were recaptured in this morning's 2026-10-20 daily check."
+    },
+    "openQuestion14Day": "Still unresolved: the reward article makes 14-day payouts the default after the first (30-day) payout, yet lists a 'Bi-weeky add-on (Payouts every 14 days)'. Stored payoutFrequency stays 'bi-weekly' with payoutFirstDays 30; the add-on line suggests the base cycle might be longer. Needs a written answer from BrightFunded support.",
+    "russiaAccess": "Russia is not named in either list (help 6 countries, Terms 5). Absence is not approval; status in firms.json is unchanged."
+  }
 }
