@@ -192,7 +192,7 @@ html .post-sidebar-link:hover { padding-left: 0; }
 .article-table-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; margin: 1.5rem 0; border: 1px solid var(--border); border-radius: 10px; }
 html .prose .article-table-scroll > table { display: table; overflow: visible; width: 100%; margin: 0 !important; }
 html .prose .article-table-scroll :is(table, th, td) { font-size: 1rem !important; line-height: 1.65; font-variant-numeric: tabular-nums; }
-html .prose .article-table-scroll :is(th, td) { min-width: 7rem; vertical-align: top; }
+html .prose .article-table-scroll :is(th, td) { vertical-align: top; }
 html .prose .article-table-scroll caption { text-align: left; padding: 0.8rem 1rem; color: var(--text); }
 html .prose h2 { font-size: clamp(1.4rem, 2.5vw, 1.7rem); line-height: 1.35; }
 html .prose h3 { line-height: 1.45; }
@@ -584,3 +584,77 @@ html input[aria-invalid="true"], html textarea[aria-invalid="true"] { border-col
 .review-product-summary-more summary { cursor: pointer; color: var(--accent); font-size: .9rem; font-weight: 650; padding: .6rem 0; }
 .review-product-summary-more > .review-product-summary-grid { margin-top: .65rem; }
 @media (max-width: 600px) { .review-product-summary-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* ── Article format Phase 0 (tradersfundhub design/article-format-spec.md) ──
+   §5 typography and measure, C4 tables, C7 callouts, RU body text.
+   Markup comes from lib/articleContent.ts; overflow state from
+   components/TableOverflowCue.tsx. No copy or structure changes. */
+
+/* §5 Typography: 17px desktop / 16px mobile, 1.65 line height, body never muted. */
+html .prose, html .ru-content { font-size: 1.0625rem; line-height: 1.65; }
+html .prose:not(.post-prose) { max-width: 720px; }
+html .prose :is(p, li) { color: var(--text); }
+/* 680px measure for prose; tables and callouts may use the 720px column. */
+html .prose > :is(p, ul, ol, h2, h3, h4, blockquote) { max-width: 680px; }
+html .prose > :is(.article-table, .article-callout) { max-width: 720px; }
+html .prose h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.75rem); line-height: 1.22; font-weight: 700; margin: 48px 0 12px; padding-top: 0; border-top: 0; }
+html .prose h3 { font-size: 1.25rem; line-height: 1.4; font-weight: 650; margin: 28px 0 8px; }
+html .prose > :is(.article-table, .article-callout, blockquote, figure) { margin-block: 24px; }
+
+/* C4 Tables */
+html .article-table { position: relative; margin: 24px 0; }
+html .article-table > .article-table-scroll { margin: 0; background: var(--bg2); }
+html .prose .article-table-scroll :is(table, th, td) { font-size: 0.9375rem !important; line-height: 1.5; }
+html .prose .article-table-scroll :is(th, td) { padding: 12px 14px; text-align: left; border: 0; border-bottom: 1px solid var(--border); }
+html .prose .article-table-scroll tr:last-child > :is(th, td) { border-bottom: 0; }
+html .prose .article-table-scroll :is(thead th, tr.row-shaded > *) { background: var(--bg3); font-size: 0.875rem !important; font-weight: 700; color: var(--text); }
+html .prose .article-table-scroll tbody th { font-weight: 600; }
+html .prose .article-table-scroll .cell-strong { font-weight: 700; }
+html .prose .article-table-scroll .num { text-align: right; white-space: nowrap; }
+/* Overflow cue: right-edge fade plus "Scroll →", only while the table really overflows. */
+html .article-table__hint { display: none; position: absolute; right: 2px; bottom: -1.45rem; font-size: 0.8125rem; line-height: 1.3; font-weight: 600; color: var(--muted); pointer-events: none; }
+html .article-table[data-overflowing="true"] .article-table__hint { display: block; }
+html .article-table[data-overflowing="true"]::after { content: ""; position: absolute; top: 1px; right: 1px; bottom: 1px; width: 40px; border-radius: 0 10px 10px 0; background: linear-gradient(to right, transparent, var(--bg2)); pointer-events: none; transition: opacity 0.15s; }
+html .article-table[data-at-end="true"]::after { opacity: 0; }
+html :is(.ru-table-wrap, .cm-scroll)[data-overflowing="true"]:not([data-at-end="true"]) { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent); }
+/* Sticky first column while a table scrolls sideways. */
+html .article-table[data-overflowing="true"] tr > :first-child { position: sticky; left: 0; z-index: 1; box-shadow: 1px 0 0 var(--border); }
+html .ru-table-wrap[data-overflowing="true"] .ru-table tr > :first-child { position: sticky; left: 0; z-index: 1; background: var(--bg2); box-shadow: 1px 0 0 var(--border); }
+html .ru-table-wrap[data-overflowing="true"] .ru-table thead tr > :first-child { background: var(--bg3); }
+/* RU tables: drop the forced 720px width; only wide tables keep a scroll width. */
+html .ru-table { min-width: 0; }
+html .ru-table :is(th, td) { font-variant-numeric: tabular-nums; }
+
+/* C7 Callouts: same text, typed by the bold lead. Amber is for warnings only. */
+html .prose .article-callout { margin: 24px 0; padding: 12px 16px; border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 8px; background: var(--bg3); font-size: 0.96875rem; line-height: 1.55; }
+html .prose .article-callout > p { margin: 0; max-width: none; }
+html .prose .article-callout--warning { border-color: color-mix(in srgb, var(--gold) 35%, var(--border)); border-left-color: var(--gold); background: color-mix(in srgb, var(--gold) 8%, var(--bg2)); }
+html .prose .article-callout--info { border-left-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, var(--bg2)); }
+html .prose .article-callout--example { border-left-color: var(--border); background: var(--bg2); }
+html .prose .article-callout--method { border-left-color: var(--muted); background: var(--bg2); }
+html .prose .article-callout--method > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; list-style-position: inside; }
+html .prose .article-callout--method[open] > summary { margin-bottom: 4px; }
+
+/* RU articles: body text is never muted; consistent heading weights and measure. */
+html .ru-content :is(p, ul, ol, blockquote) { max-width: 680px; }
+html .ru-content .ru-faq details p { color: var(--text); }
+html .ru-content .ru-section h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.75rem); line-height: 1.22; font-weight: 700; }
+html .ru-content .ru-section h3 { font-size: 1.25rem; line-height: 1.4; font-weight: 650; }
+
+@media (max-width: 640px) {
+  html .prose, html .ru-content { font-size: 1rem; }
+  /* RU: tables with 4+ columns keep a readable scroll width. */
+  html .ru-table:has(tr > :nth-child(4)) { min-width: 560px; }
+  /* Wide, labelled tables become stacked key/value cards (labels from the header row). */
+  html .article-table[data-layout="cards"] .article-table-scroll { overflow: visible; border: 0; border-radius: 0; background: transparent; }
+  html .article-table[data-layout="cards"]::after, html .article-table[data-layout="cards"] .article-table__hint { display: none; }
+  html .article-table[data-layout="cards"] :is(table, caption, tbody, tr, th, td) { display: block; width: 100%; }
+  html .article-table[data-layout="cards"] :is(thead, tr:not(:has(> [data-label]))) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  html .article-table[data-layout="cards"] caption { padding: 0 0 8px; }
+  html .article-table[data-layout="cards"] tr { margin: 0 0 12px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg2); }
+  html .prose .article-table[data-layout="cards"] tr > :is(th, td) { display: grid; grid-template-columns: minmax(6.5rem, 40%) minmax(0, 1fr); gap: 12px; padding: 9px 14px; background: transparent; text-align: left; white-space: normal; position: static; box-shadow: none; }
+  html .prose .article-table[data-layout="cards"] tr > [data-label]::before { content: attr(data-label); font-size: 0.8125rem; font-weight: 600; color: var(--muted); }
+  html .prose .article-table[data-layout="cards"] tr > :first-child { display: block; background: var(--bg3); font-weight: 700; }
+  html .prose .article-table[data-layout="cards"] tr > :first-child::before { content: none; }
+  html .prose .article-table[data-layout="cards"] tr > :last-child { border-bottom: 0; }
+}
