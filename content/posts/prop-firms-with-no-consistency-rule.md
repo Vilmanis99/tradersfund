@@ -12,7 +12,7 @@ tags: ["prop firm consistency rule", "no consistency rule prop firm", "prop firm
 type: "post"
 ---
 
-<p><strong>"No consistency rule" only counts when a firm publishes an explicit none, or when a product capture records null and first-party FAQ or review evidence supports the absence — a blank field alone is not a zero.</strong> This list separates products with a captured <code>consistencyRulePct</code> (15%–55%) from the strongest none/null candidates, then flags payout-stage traps such as Apex Performance Account 50% and Tradeify Growth's 35% funded gate. Captures cited below run from 2026-09-14 to 2026-10-14.</p>
+<p><strong>"No consistency rule" only counts when a firm publishes an explicit none, or when a product capture records null and first-party FAQ or review evidence supports the absence — a blank field alone is not a zero.</strong> This list separates products with a captured <code>consistencyRulePct</code> (15%–55%) from the strongest none/null candidates, then flags payout-stage traps such as Apex Performance Account 50% and Tradeify Growth's 35% funded gate. Captures cited below run from 2026-09-14 to 2026-10-20.</p>
 
 <div class="key-takeaways">
   <div class="title">Key Takeaways</div>
@@ -44,8 +44,8 @@ type: "post"
     <tr><td><a href="/blog/topstep-review">Topstep</a></td><td>Trading Combine — No Activation Fee Path</td><td>55%</td><td>2026-10-20</td></tr>
     <tr><td><a href="/blog/ftmo-review">FTMO</a></td><td>FTMO Challenge: 1-Step</td><td>50%</td><td>2026-10-14</td></tr>
     <tr><td>Lucid Trading</td><td>LucidDaily (all 4 DLL/EOD variants); LucidFlex</td><td>50%</td><td>2026-10-14</td></tr>
-    <tr><td><a href="/blog/my-funded-futures">My Funded Futures</a></td><td>Flex; Pro; Rapid</td><td>50%</td><td>2026-10-14</td></tr>
-    <tr><td>Take Profit Trader</td><td>The Test (Evaluation) — monthly subscription</td><td>50%</td><td>2026-10-14</td></tr>
+    <tr><td><a href="/blog/my-funded-futures">My Funded Futures</a></td><td>Flex; Pro; Rapid</td><td>50%</td><td>2026-10-20</td></tr>
+    <tr><td>Take Profit Trader</td><td>The Test (Evaluation) — monthly subscription</td><td>50%</td><td>2026-10-19</td></tr>
     <tr><td><a href="/blog/tradeday-review">TradeDay</a></td><td>Fast Pass — End of Day</td><td>45%</td><td>2026-10-14</td></tr>
     <tr><td><a href="/blog/alpha-capital-review">Alpha Capital</a></td><td>Alpha One / Pro / Swing on-demand routes</td><td>40%</td><td>2026-10-14</td></tr>
     <tr><td>Crypto Fund Trader</td><td>Break Challenge</td><td>40%</td><td>2026-10-14</td></tr>
@@ -55,11 +55,11 @@ type: "post"
     <tr><td><a href="/blog/e8-markets-review">E8 Markets</a></td><td>E8 Signature Forex</td><td>35%</td><td>2026-10-14</td></tr>
     <tr><td><a href="/blog/funding-pips-review">FundingPips</a></td><td>2 Step Standard</td><td>35%</td><td>2026-09-29</td></tr>
     <tr><td><a href="/blog/tradeify-review">Tradeify</a></td><td>Growth Evaluation</td><td>35% (funded payout gate; see caveats)</td><td>2026-10-14</td></tr>
-    <tr><td><a href="/blog/fxify-review">FXIFY</a></td><td>Lightning Challenge</td><td>30%</td><td>2026-10-14</td></tr>
-    <tr><td><a href="/blog/my-funded-futures">My Funded Futures</a></td><td>Rapid EOD</td><td>30%</td><td>2026-10-14</td></tr>
+    <tr><td><a href="/blog/fxify-review">FXIFY</a></td><td>Lightning Challenge</td><td>30%</td><td>2026-10-20</td></tr>
+    <tr><td><a href="/blog/my-funded-futures">My Funded Futures</a></td><td>Rapid EOD</td><td>30%</td><td>2026-10-20</td></tr>
     <tr><td><a href="/blog/tradeday-review">TradeDay</a></td><td>Quick Pay — End of Day; Quick Pay — Intraday</td><td>30%</td><td>2026-10-14</td></tr>
-    <tr><td><a href="/blog/fxify-review">FXIFY</a></td><td>Crypto Instant Funding; Two Phase Classic</td><td>25%</td><td>2026-10-14</td></tr>
-    <tr><td><a href="/blog/fxify-review">FXIFY</a></td><td>Instant Funding Lite</td><td>20%</td><td>2026-10-14</td></tr>
+    <tr><td><a href="/blog/fxify-review">FXIFY</a></td><td>Crypto Instant Funding; Two Phase Classic</td><td>25%</td><td>2026-10-20</td></tr>
+    <tr><td><a href="/blog/fxify-review">FXIFY</a></td><td>Instant Funding Lite</td><td>20%</td><td>2026-10-20</td></tr>
     <tr><td>Lucid Trading</td><td>LucidDirect</td><td>20%</td><td>2026-10-14</td></tr>
     <tr><td><a href="/blog/maven-prop-firm-review">Maven</a></td><td>Buy Now, Pay Later; Instant</td><td>20%</td><td>2026-10-14</td></tr>
     <tr><td><a href="/blog/tradeify-review">Tradeify</a></td><td>Lightning Funded</td><td>20% (first payout; progresses 25% → 30%)</td><td>2026-10-14</td></tr>

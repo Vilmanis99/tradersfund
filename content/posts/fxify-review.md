@@ -3,7 +3,7 @@ title: "FXIFY Review 2026: 8 Products, 54 Prices, and No Single Drawdown Rule"
 seoTitle: "FXIFY Review 2026: Fees, Plans & Drawdown Rules"
 slug: "fxify-review"
 date: "2025-08-26 09:25:39"
-modified: "2026-10-06"
+modified: "2026-10-20"
 author: "Tara Mohseni"
 excerpt: "Compare FXIFY's 8 CFD products by static or trailing drawdown, product-specific restrictions, and verified versus unverified base profit splits."
 seoDescription: "FXIFY review comparing 8 CFD products, 54 current prices, true cost, profit splits, and each plan's trailing, static, or product-specific drawdown."
@@ -19,7 +19,7 @@ type: "post"
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul>
-    <li>The 2026-09-15 checkout capture contains <strong>8 CFD products and 54 product-size prices</strong>, from $19 Instant Funding Lite to $4,249 Instant Funding Standard.</li>
+    <li>FXIFY lists <strong>8 CFD products and 54 product-size prices</strong> (rechecked 2026-10-20 against its program-page pricing data), from $19 Instant Funding Lite to $4,249 Instant Funding Standard.</li>
     <li>There is no firm-wide drawdown shortcut: captured products use 5%, 8%, or 10% static maximum loss, or 4%, 6%, 8%, or 10% trailing maximum loss.</li>
     <li>The 5 phase products publish an 80% base split; Instant Standard, Instant Lite, and Lightning publish only “up to 90%,” so their base split remains unverified.</li>
     <li>News, weekend, and EA permissions differ by product: the 5 phase products allow all 3, both Instant variants reject all 3, and Lightning allows weekends but rejects news and EAs.</li>
@@ -46,7 +46,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>The 2026-09-15 source capture found 54 undiscounted checkout prices across 8 CFD products. FXIFY's public program pages still show a generic $250/$5K card, so the official named checkout ladder is used for tier quotes and that presentation mismatch is called out rather than silently blended into the data. A blank base split means FXIFY did not publish an exact base percentage in the captured material; it does not mean the split is zero.</p>
+<p>The 54 undiscounted prices across 8 CFD products were first read from FXIFY's official checkout on 2026-09-15 and rechecked on 2026-10-20 against the pricing data embedded in its program pages; the only change since September is Instant Funding Lite $10K, now $89 (was $85). FXIFY's public program pages have also shown a generic $250/$5K card, so the official named ladder is used for tier quotes and that presentation mismatch is called out rather than silently blended into the data. A blank base split means FXIFY did not publish an exact base percentage in the captured material; it does not mean the split is zero.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
   <caption class="hidden-caption">FXIFY challenge products</caption>
@@ -109,7 +109,7 @@ type: "post"
     <tr><td>Instant Funding Standard</td><td>0</td><td>$100K</td><td>$4,249</td><td>—</td><td>8% / 8% trailing</td><td>—</td></tr>
     <tr><td>Instant Funding Lite</td><td>0</td><td>$2.5K</td><td>$19</td><td>—</td><td>3% / 4% trailing</td><td>—</td></tr>
     <tr><td>Instant Funding Lite</td><td>0</td><td>$5K</td><td>$44</td><td>—</td><td>3% / 4% trailing</td><td>—</td></tr>
-    <tr><td>Instant Funding Lite</td><td>0</td><td>$10K</td><td>$85</td><td>—</td><td>3% / 4% trailing</td><td>—</td></tr>
+    <tr><td>Instant Funding Lite</td><td>0</td><td>$10K</td><td>$89</td><td>—</td><td>3% / 4% trailing</td><td>—</td></tr>
     <tr><td>Instant Funding Lite</td><td>0</td><td>$25K</td><td>$169</td><td>—</td><td>3% / 4% trailing</td><td>—</td></tr>
     <tr><td>Instant Funding Lite</td><td>0</td><td>$50K</td><td>$289</td><td>—</td><td>3% / 4% trailing</td><td>—</td></tr>
     <tr><td>Lightning Challenge</td><td>1</td><td>$10K</td><td>$59</td><td>5%</td><td>3% / 4% trailing</td><td>—</td></tr>
@@ -119,7 +119,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Tier prices were checked in FXIFY's read-only official checkout on 2026-09-15, with rules checked against the public program pages and product-scoped FAQs. Confirm the final price, Indian card acceptance, KYC availability, add-ons, and any coupon on the routed <a href="/go/fxify">FXIFY checkout</a>; a temporary discount changes the fee but not the captured drawdown math. The older six-tier Instant Lite launch article and generic program-page card remain historical/presentation context, not current checkout quotes.</p>
+<p>Tier prices were checked in FXIFY's read-only official checkout on 2026-09-15 and rechecked unchanged (except Instant Lite $10K, now $89) against its program-page pricing data on 2026-10-20; rules were checked against the public program pages and product-scoped FAQs on 2026-09-15. Confirm the final price, Indian card acceptance, KYC availability, add-ons, and any coupon on the routed <a href="/go/fxify">FXIFY checkout</a>; a temporary discount changes the fee but not the captured drawdown math. The older six-tier Instant Lite launch article and generic program-page card remain historical/presentation context, not current checkout quotes.</p>
 
 <p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> keeps FXIFY Instant Standard and Instant Lite as 2 separate products because their 8% and 4% trailing maximum-loss caps, prices, and first-payout fields do not match.</p>
 
