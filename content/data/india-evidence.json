@@ -357,7 +357,7 @@
   {
     "firmSlug": "fxify",
     "firmName": "FXIFY",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-20",
     "restrictedJurisdictions": [
       "United States",
       "Zimbabwe",
@@ -434,7 +434,7 @@
       "status": "partial",
       "summary": "Terms permit payment card and other currently offered methods; a successful Indian-card transaction is not independently tested.",
       "sourceUrls": [
-        "https://fxify.com/terms-and-conditions"
+        "https://fxify.com/wp-content/uploads/2026/10/GENERAL-TERMS-AND-CONDITIONS-FXIFY-2026.pdf"
       ]
     },
     "kyc": {
@@ -464,7 +464,7 @@
       "status": "verified",
       "summary": "Challenge fees are based in USD; choosing another currency uses FXIFY's current conversion rate at checkout.",
       "sourceUrls": [
-        "https://fxify.com/terms-and-conditions"
+        "https://fxify.com/wp-content/uploads/2026/10/GENERAL-TERMS-AND-CONDITIONS-FXIFY-2026.pdf"
       ]
     },
     "unresolved": "No completed Indian card checkout, dual KYC approval, or Rise payout receipt has been independently verified."
