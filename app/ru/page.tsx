@@ -210,8 +210,8 @@ export default function RussianHomePage() {
                   <p className="ru-home-partner-country-note" data-russian-partner-country-warning={item.slug} data-russian-partner-country-source-status={item.countryFresh ? 'dated' : 'recapture-required'} data-russian-home-bright-country-conflict={item.slug === 'bright-funded' ? 'help-six-terms-five' : undefined}>
                     {item.slug === 'fundednext'
                       ? item.countryFresh
-                        ? `Доступность для резидентов России не подтверждена: официальные страницы, проверенные ${item.countryCapturedAt}, противоречат друг другу.`
-                        : `Страновые условия требуют новой проверки. В источниках от ${item.countryCapturedAt} были противоречия для резидентов России; это не подтверждает доступ сегодня.`
+                        ? `Недоступно для резидентов России: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026). Резидент РФ рискует отказом в обслуживании или выплате.`
+                        : `Недоступно для резидентов России (подвал fundednext.com, по данным на 20.10.2026); страновые условия требуют новой проверки.`
                       : <>
                         <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="nofollow noopener">Справка BrightFunded</a> от {item.countryCapturedAt} включает Пакистан;{' '}
                         <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {item.brightTermsCapturedAt} его не называют.{' '}

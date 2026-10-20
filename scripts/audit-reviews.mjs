@@ -13208,7 +13208,7 @@ function checkRussianAcquisitionPilot() {
     'firm.trustpilotCount.toLocaleString(\'ru-RU\')',
     'Что показывают отзывы о FundedNext на Trustpilot?',
     'href="/ru/otzyvy-prop-firm#review-checklist"',
-    'data-fundednext-russia-access="conflicting"',
+    'data-fundednext-russia-access="restricted"',
     'data-fundednext-russian-truecost="true"',
     'Содержание обзора',
     'id="verdict"',

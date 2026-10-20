@@ -21,6 +21,7 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/prop-firmy-bez-chelendzha'
 const TITLE = 'Проп-фирмы без челленджа 2026: мгновенное финансирование'
@@ -397,7 +398,7 @@ export default function RussianInstantPropFirmsPage() {
             <p>
               Торговля на новостях разрешена, но внутри окна 5 минут до и 5 минут после указанной важной новости засчитывается только 40% прибыли;
               перенос позиций через ночь и выходные разрешён со свопом, а копирование допускается только между собственными счетами Stellar Instant.
-              До оплаты нужно отдельно подтвердить KYC и страну; для резидентов России официальные страницы FundedNext дают конфликтующие сигналы.
+              До оплаты нужно отдельно подтвердить KYC и страну; резидентам России FundedNext недоступна (подвал fundednext.com, по данным на 20.10.2026).
             </p>
             <p className="ru-source-line">
               <a href={fundedNextCard.product!.sourceUrl} target="_blank" rel="noopener noreferrer">Официальная цена</a>{' · '}
@@ -413,10 +414,11 @@ export default function RussianInstantPropFirmsPage() {
             <div className="ru-actions">
               <Link href="/ru/fundednext-stellar-instant" className="btn-outline">Датированный разбор Stellar Instant</Link>
               <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
-              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-instant-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-instant-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
                 Проверить программы FundedNext <ArrowRight size={14} aria-hidden="true" />
               </RuGoLink>
             </div>
+            <RuFundedNextAccessCaveat />
           </div>
         </section>
 
@@ -530,7 +532,7 @@ export default function RussianInstantPropFirmsPage() {
             <div className="ru-grid">
               <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент ЕС</h3><p className="ru-muted">Проверяет вид на жительство, платёжный адрес, конвертацию EUR/USD, KYC и доступный способ выплаты в своей стране.</p></article>
               <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Казахстан, Грузия, Израиль, ОАЭ</h3><p className="ru-muted">Сверяет гражданство и резидентство отдельно; доступ одной страны не переносится на соседнюю или прежний адрес.</p></article>
-              <article className="ru-card"><ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">Не использует VPN или чужую карту. При конфликте официальных страниц не платит до письменного ответа по продукту и выплате.</p></article>
+              <article className="ru-card"><ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">Не использует VPN или чужую карту. Не платит фирмам, которые исключают Россию (например, FundedNext с 20.10.2026), и при неясном статусе ждёт письменного ответа по продукту и выплате.</p></article>
               <article className="ru-card"><ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Переезд или 2 гражданства</h3><p className="ru-muted">Обновляет документ, фактический адрес и налоговое резидентство до оплаты, не смешивая данные старого и нового профиля.</p></article>
             </div>
             <p>

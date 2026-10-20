@@ -9,6 +9,7 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 export const revalidate = 86400
 
@@ -18,7 +19,7 @@ const MONTH_LABEL = 'октябрь 2026'
 const CHECKED = '14.10.2026'
 const CHECKED_ISO = '2026-10-14'
 const TITLE = 'Промокоды проп-фирм — октябрь 2026: BrightFunded, FundedNext'
-const DESCRIPTION = 'Промокоды проп-фирм на октябрь 2026 для трейдеров из России: BrightFunded, FundedNext, Upscale и Crypto Fund Trader. Дата проверки кода и почему нет FTMO.'
+const DESCRIPTION = 'Промокоды проп-фирм на октябрь 2026: BrightFunded, Upscale и Crypto Fund Trader для России, FundedNext — для других стран. Дата проверки и почему нет FTMO.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -44,11 +45,11 @@ type HubFirm = {
   external?: string
 }
 
-// Только фирмы, открытые для РФ на 14.10.2026 (ru-availability.csv). Коды подтягиваются из content/data/deals.json;
+// Фирмы, открытые для РФ на 14.10.2026 (ru-availability.csv); FundedNext с 20.10.2026 — недоступна для РФ (подвал сайта; firms.json russiaStatus restricted). Коды подтягиваются из content/data/deals.json;
 // пока там нет проверенного кода, карточка показывает плейсхолдер «код ожидается».
 const hubFirms: HubFirm[] = [
   { slug: 'bright-funded', name: 'BrightFunded', review: '/ru/obzor-bright-funded', russiaNote: 'Россия не в списке ограничений; исключены лица из санкционных списков.' },
-  { slug: 'fundednext', name: 'FundedNext (CFD)', review: '/ru/obzor-fundednext', russiaNote: 'Россия не в списке ограничений CFD; FundedNext Futures Россию ограничивает.' },
+  { slug: 'fundednext', name: 'FundedNext (CFD)', review: '/ru/obzor-fundednext', russiaNote: FUNDEDNEXT_RU_ACCESS_NOTE },
   { slug: 'upscale', name: 'Upscale', review: null, russiaNote: 'Ограничений по странам не заявлено, KYC нет, выплаты в USDT.', external: 'https://upscale.trade/ru/' },
   { slug: 'fundingpips', name: 'FundingPips', review: '/ru/obzor-fundingpips', russiaNote: 'Доступ для РФ не ясен (проверено 14.10.2026).' },
   { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', review: '/blog/crypto-fund-trader-review', russiaNote: 'На Match-Trader ограничений по странам нет. Оплата: карта, PayPal, Apple/Google Pay, криптовалюта (по данным на 14.10.2026).' },
@@ -164,7 +165,7 @@ export default function RussianPromoHubPage() {
                         Открыть {firm.name} <ArrowRight size={14} aria-hidden="true" />
                       </a>
                     ) : (
-                      <RuGoLink firm={firm.slug} href={`/go/${firm.slug}?from=${from}`} rel={goLinkRel(firm.slug)} className="btn-primary">
+                      <RuGoLink firm={firm.slug} href={`/go/${firm.slug}?from=${from}`} rel={goLinkRel(firm.slug)} className={firm.slug === 'fundednext' ? 'btn-outline' : 'btn-primary'}>
                         Перейти в {firm.name} <ArrowRight size={14} aria-hidden="true" />
                       </RuGoLink>
                     )}
@@ -180,7 +181,7 @@ export default function RussianPromoHubPage() {
         <div className="ru-shell ru-content">
           <h2>Как применить промокод</h2>
           <ol>
-            <li><strong>Выберите продукт до кода.</strong> У FundedNext берите CFD-челлендж: направление Futures Россию ограничивает.</li>
+            <li><strong>Выберите продукт до кода.</strong> Резидентам России FundedNext недоступна (подвал сайта; Futures тоже ограничивает Россию, по данным на 20.10.2026); для других стран у FundedNext берите нужный CFD-челлендж.</li>
             <li><strong>Введите код на странице оплаты</strong> в поле купона — или перейдите по ссылке, если скидка применяется автоматически (это указано в карточке).</li>
             <li><strong>Сверьте итоговую сумму до подтверждения.</strong> Если цена не изменилась, код не сработал — не платите в расчёте на скидку.</li>
             <li><strong>Выбирайте способ оплаты, не зависящий от карты.</strong> У Crypto Fund Trader и Upscale в официальном списке есть криптовалюта; работают ли карты, выпущенные в России, фирмы официально не сообщают.</li>

@@ -1196,7 +1196,7 @@ const russianExpectations = new Map([
         '/go/fundednext?from=ru-fundednext-review-free-trial',
       ] : []),
       '/ru/fundednext-stellar-instant',
-      'data-fundednext-russia-access="conflicting"',
+      'data-fundednext-russia-access="restricted"',
       'data-fundednext-russian-products="',
       'data-fundednext-russian-truecost="true"',
       'data-russian-affiliate-disclosure="fundednext"',
