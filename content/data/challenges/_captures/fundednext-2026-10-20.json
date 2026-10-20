@@ -70,7 +70,8 @@
   "changes": [
     "firms.json FundedNext consistencyRule: news-rule text (2026-05-20) -> 40% best-day On-Demand rule (article 15586820)",
     "firms.json FundedNext payoutMethods: + Card, Confirmo, FNmarkets; + payoutMethodsSourceUrl/Quote/CapturedAt/Note (article 8020084, updated 2026-10-02)",
-    "firms.json FundedNext russiaStatus available -> restricted; russiaSourceUrl/Quote = fundednext.com footer (ToS 5.3 conflict and Futures restriction recorded here)"
+    "firms.json FundedNext russiaStatus available -> restricted; russiaSourceUrl/Quote = fundednext.com footer (ToS 5.3 conflict and Futures restriction recorded here)",
+    "challenges/fundednext.json stellar-lite payoutFrequency: null -> 'bi-weekly' (10 business days; see openConflictResolution)"
   ],
   "dailyRecheck": {
     "captureType": "daily-recheck",
@@ -383,5 +384,31 @@
       "alsoRussia": "Russian Federation is on the Futures purchase-restricted list on the same page.",
       "verdict": "Kazakhstan: FundedNext Futures purchase, trading and simulated rewards allowed; at live eligibility the Risk Desk reviews options. Access data point only; no firms.json field exists for this."
     }
+  },
+  "openConflictResolution": {
+    "resolvedAt": "2026-10-20",
+    "field": "challenges/fundednext.json stellar-lite payoutFrequency",
+    "from": null,
+    "to": "bi-weekly",
+    "reason": "Help centre fixes the Standard cycle at 10 business days (about two calendar weeks) and the product page comparison row says \"Subsequent Rewards Bi-weekly\"; 'bi-weekly' is the matching value in the weekly/bi-weekly/monthly/on-demand enum. Exact cadence kept in the product notes.",
+    "sources": [
+      {
+        "url": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
+        "dateModified": "2026-10-16T06:59:37Z",
+        "quotes": [
+          "First Performance Reward is available after 10 business days. Subsequent rewards are available every 10 business days. Reward share: 80%.",
+          "Important: Accounts purchased or reset on or after October 12, 2026 the trading cycle will be 10 business days.",
+          "Accounts purchased or reset before this date will continue to follow the previous rules: 5 minimum trading days per phase, first payout after 21 days, and subsequent payouts every 14 days."
+        ]
+      },
+      {
+        "url": "https://help.fundednext.com/en/articles/17253939-stellar-lite-account",
+        "dateModified": "2026-10-15T09:52:26Z",
+        "quotes": [
+          "First Cycle Duration | 10 business days from activation",
+          "Subsequent Cycles | 10 business days each"
+        ]
+      }
+    ]
   }
 }
