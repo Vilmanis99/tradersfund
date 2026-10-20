@@ -199,13 +199,13 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
       { category: 'Profit Split', winner: 'tie', reason: 'Both firms pay 90% on funded accounts, processed on-demand. Genuine parity on the headline number.' },
       { category: 'Payout Speed', winner: 'tie', reason: 'Both support on-demand payouts via ACH or bank wire; MFF additionally supports crypto. Day-to-day speed is effectively identical.' },
       { category: 'Track Record', winner: 'b', reason: 'Topstep has been operating since 2012 — the longest history in futures prop trading. MFF launched November 2023 and hasn’t had a full bear-market test yet.' },
-      { category: 'Max Allocation', winner: 'a', reason: 'MFF scales to $600K in total account size; Topstep caps at $500K. Real headroom for traders who consistently pass and stack accounts.' },
+      { category: 'Max Allocation', winner: 'a', reason: 'MFF scales to $600K in total account size; Topstep allows up to 5 active Express Funded Accounts, $150K max each. Real headroom for traders who consistently pass and stack accounts.' },
       { category: 'Platform Coverage', winner: 'a', reason: 'MFF supports NinjaTrader, Tradovate and TradingView; Topstep supports NinjaTrader, Quantower and TradingView. Tradovate access is the differentiator.' },
       { category: 'Trader Development', winner: 'b', reason: 'Topstep’s Trading Combine, consistency coaching and educational ecosystem are deeper and more established. Worth real money to traders still building discipline.' },
       { category: 'Fee Structure', winner: 'a', reason: 'MFF’s newer plan structure (Core, Scale, Pro) is more flexible on daily loss limits and total post-eval cost is lower for traders who pass on the first try.' },
     ],
     whenToPickA:
-      'Pick My Funded Futures if you’re an experienced futures trader who wants Tradovate access, a higher allocation ceiling ($600K vs $500K), and a more flexible plan structure. MFF’s newer plans are also more accommodating on daily loss limits than Topstep’s combine. The risk is that MFF is two years old — strong fundamentals, but untested through a real industry contraction.',
+      'Pick My Funded Futures if you’re an experienced futures trader who wants Tradovate access, a $600K allocation ceiling (Topstep: up to 5 active Express Funded Accounts, $150K max each), and a more flexible plan structure. MFF’s newer plans are also more accommodating on daily loss limits than Topstep’s combine. The risk is that MFF is two years old — strong fundamentals, but untested through a real industry contraction.',
     whenToPickB:
       'Pick Topstep if you’re newer to futures and want the most structured path to funded — the Trading Combine, consistency rule and TopstepX platform are explicitly designed to build habits, not just gate funding. Topstep is also the better choice if you want institutional-grade longevity: 14 years in business and a clear payout history.',
     faqs: [
@@ -348,7 +348,7 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
       { category: 'Holding Rules', winner: 'a', reason: 'FTMO allows overnight and weekend holding; Topstep forces all positions flat at session close — standard for futures, but a hard stop for swing traders.' },
       { category: 'US Access', winner: 'b', reason: 'Topstep accepts US-resident traders (CFTC-regulated futures path); FTMO does not accept US clients at all.' },
       { category: 'Track Record', winner: 'b', reason: 'Topstep has operated since 2012 — slightly longer than FTMO’s 2015 start, and the pioneer of the futures-prop model.' },
-      { category: 'Max Allocation', winner: 'a', reason: 'FTMO scales to $2M total allocation; Topstep caps at $500K. More headroom on the CFD side.' },
+      { category: 'Max Allocation', winner: 'a', reason: 'FTMO scales to $2M total allocation; Topstep allows up to 5 active Express Funded Accounts, $150K max each. More headroom on the CFD side.' },
     ],
     whenToPickA:
       'Pick FTMO if you trade forex, indices, crypto, commodities or stock CFDs, want forgiving static drawdown, or need to hold positions overnight or across the weekend. It’s the wrong firm only if you trade futures or live in the US — both of which point you to Topstep instead.',

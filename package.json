@@ -22,6 +22,7 @@
     "capture:preview": "node scripts/merge-capture.mjs",
     "test:capture-merge": "node scripts/test-capture-merge.mjs",
     "test:cft-correction": "node scripts/test-cft-correction.mjs",
+    "test:payout-days-unit": "node scripts/test-payout-days-unit.mjs",
     "test:topstep-correction": "node scripts/test-topstep-correction.mjs",
     "capture:freshness": "node scripts/challenge-freshness.mjs",
     "test:finder": "node scripts/test-challenge-finder.mjs",
