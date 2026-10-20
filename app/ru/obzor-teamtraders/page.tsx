@@ -22,6 +22,9 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import evidence from '@/content/data/russian-teamtraders-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-teamtraders'
@@ -73,7 +76,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Есть ли у Traders Fund Hub партнёрская ссылка TeamTraders?',
-    a: 'Нет. На проверенных 28 августа 2026 года главной странице, FAQ и оферте не найдена обычная публичная программа для контент-партнёров. Ссылки на FundedNext и BrightFunded ниже относятся к отдельным глобальным фирмам и могут принести Traders Fund Hub комиссию.',
+    a: 'Нет. На проверенных 28 августа 2026 года главной странице, FAQ и оферте не найдена обычная публичная программа для контент-партнёров. Ссылки на BrightFunded и FundedNext (последняя недоступна резидентам РФ) ниже относятся к отдельным глобальным фирмам и могут принести Traders Fund Hub комиссию.',
   },
 ]
 
@@ -106,7 +109,7 @@ export default function RussianTeamTradersReviewPage() {
   ]
   const hasFreshEvidence = evidence.sources.length > 0 && evidenceDates.every(item => isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
   const datedFaqs = faqs.map(item => ({ ...item, a: `По разбору источников от ${evidence.capturedAt}: ${item.a}` }))
-  const finderHref = getRussianReviewFinderHref('fundednext')
+  const finderHref = getRussianReviewFinderHref('bright-funded')
   const freshChallenges = getAllChallenges().filter(product => isChallengeFresh(product))
   const globalCards = globalRoutes.map(route => {
     const firm = getAllFirms().find(candidate => outboundSlug(candidate.name) === route.slug)
@@ -116,6 +119,8 @@ export default function RussianTeamTradersReviewPage() {
     ).length, 0)
     return { ...route, firm, products, priceCount }
   }).filter(item => item.firm?.affiliateUrl)
+    // Russia-open firms first (BrightFunded), restricted (FundedNext) last; stable for equal status.
+    .sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)])
 
   const crumbs = breadcrumbSchema([
     { name: 'Traders Fund Hub', url: '/' },
@@ -202,7 +207,7 @@ export default function RussianTeamTradersReviewPage() {
             <strong>Русский язык не делает эту модель глобальной.</strong>{' '}
             TeamTraders описывает локальную инфраструктуру Московской биржи, CScalp и Финам. Русскоязычному трейдеру
             за пределами России нужно отдельно подтвердить договорную допустимость, документы, платежи, доступ к терминалу
-            и порядок выплаты; резиденту России нельзя переносить правила TeamTraders на FundedNext или BrightFunded.
+            и порядок выплаты; резиденту России нельзя переносить правила TeamTraders на BrightFunded, а FundedNext резидентам РФ недоступна.
           </div>
           <h2>Короткий вывод: это внутридневная модель Мосбиржи, а не CFD-челлендж</h2>
           <div className="ru-grid" data-russian-teamtraders-verdict="model-first">
@@ -385,7 +390,7 @@ export default function RussianTeamTradersReviewPage() {
           </div>
           <p>
             Ссылки на источники ведут прямо на сайт TeamTraders. В следующем разделе отдельно обозначены
-            FundedNext и BrightFunded, переходы к которым могут принести нам комиссию. Партнёрство с этими фирмами
+            BrightFunded и FundedNext (недоступна резидентам РФ), переходы к которым могут принести нам комиссию. Партнёрство с этими фирмами
             не подтверждает качество или условия TeamTraders.
           </p>
         </div>
@@ -396,21 +401,22 @@ export default function RussianTeamTradersReviewPage() {
       <section className="ru-section" id="global-options">
         <div className="ru-shell" data-russian-local-global-funnel="teamtraders">
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="teamtraders-global-options">
-            <strong>FundedNext и BrightFunded — отдельные глобальные партнёры.</strong>{' '}
+            <strong>BrightFunded и FundedNext — отдельные глобальные партнёры; FundedNext резидентам России недоступна.</strong>{' '}
             Мы можем получить комиссию при покупке по партнёрской ссылке. Это не меняет условия сравнения.
             Русский язык не подтверждает доступ: проверьте гражданство, страну проживания, проверку личности (KYC),
             платформу и способ получения денег. Не обходите ограничения через VPN или неверные данные.
           </div>
           <h2>Когда вместо TeamTraders сравнивать глобальную проп-фирму</h2>
           <p className="ru-muted">
-            В описании TeamTraders речь о Мосбирже и ручной внутридневной торговле. Программы FundedNext и BrightFunded
+            В описании TeamTraders речь о Мосбирже и ручной внутридневной торговле. Программы BrightFunded и FundedNext
             с симулированными CFD — другая модель, а не заменяемый тариф на том же рынке. Сопоставляйте их отдельно,
-            если вам нужны такие инструменты и фирма разрешает участие с вашим гражданством и местом проживания.
+            если вам нужны такие инструменты и фирма разрешает участие с вашим гражданством и местом проживания. Резиденту России из этих двух подходит только BrightFunded: FundedNext россиян не обслуживает.
           </p>
           <div className="ru-grid">
             {globalCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-teamtraders-global-partner={item.slug}>
-                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Главный партнёр</span></div>
+                <div className="ru-card-head"><h3>{item.name}</h3>{russiaStatusFor(item.slug) === 'restricted' ? <RuAccessBadgeView firm={item.slug} status="restricted" hint={false} /> : <span className="ru-score">Главный партнёр</span>}</div>
+                {russiaStatusFor(item.slug) === 'restricted' && <p className="ru-source-line" data-russian-restricted-partner-note={item.slug}><strong>Резидентам России недоступна.</strong> Карточка — для русскоязычных трейдеров из других стран.</p>}
                 <p className="ru-muted">
                   Откройте обзор конкретной программы: число этапов, лимиты убытка и условия вознаграждения
                   нужно читать вместе. Торговля на Мосбирже через TeamTraders в это сравнение не входит.
@@ -426,7 +432,7 @@ export default function RussianTeamTradersReviewPage() {
                   <RuGoLink firm={item.slug}
                     href={`/go/${item.slug}?from=ru-teamtraders-global-${item.slug}`}
                     rel="sponsored nofollow noopener"
-                    className="btn-primary"
+                    className={russiaStatusFor(item.slug) === 'restricted' ? 'btn-outline' : 'btn-primary'}
                   >
                     Проверить {item.name} <ArrowRight size={14} aria-hidden="true" />
                   </RuGoLink>

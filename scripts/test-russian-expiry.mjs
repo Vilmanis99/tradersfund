@@ -1410,8 +1410,8 @@ try {
           const decision = html.split('data-russian-teamtraders-decision="rules-before-reviews"')[1].split('</section>')[0]
           assert(decision.indexOf('Сначала запросите применимую оферту') < decision.indexOf('Затем проверьте техническую совместимость'), 'applicable contract request precedes account registration, even free')
           assert(html.includes('У нас нет проверенной истории выплат'))
-          assert(html.includes(getRussianReviewFinderHref('fundednext').replace(/&/g, '&amp;')), 'local model hands off to a separately labelled global comparison')
-          assert.equal(html.includes('Открыть две глобальные двухэтапные программы'), !getRussianReviewFinderHref('fundednext').endsWith('#podbor'), 'expired preset does not promise two available programmes')
+          assert(html.includes(getRussianReviewFinderHref('bright-funded').replace(/&/g, '&amp;')), 'local model hands off to a separately labelled global comparison')
+          assert.equal(html.includes('Открыть две глобальные двухэтапные программы'), !getRussianReviewFinderHref('bright-funded').endsWith('#podbor'), 'expired preset does not promise two available programmes')
           for (const firmSlug of ['fundednext', 'bright-funded']) {
             const hasFreshProducts = products.some(product => product.firmSlug === firmSlug && isChallengeFresh(product))
             assert.equal(html.includes(`data-russian-teamtraders-partner-products="${firmSlug}"`), hasFreshProducts)

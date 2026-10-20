@@ -27,6 +27,9 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
@@ -110,7 +113,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Traders Fund Hub получает комиссию от FTMO?',
-    a: 'Нет. В этой статье ссылка FTMO ведёт на официальный сайт без партнёрского вознаграждения. FundedNext и BrightFunded показаны отдельно как коммерческие партнёры; регистрация через их помеченные ссылки может принести Traders Fund Hub комиссию.',
+    a: 'Нет. В этой статье ссылка FTMO ведёт на официальный сайт без партнёрского вознаграждения. BrightFunded и FundedNext (последняя недоступна резидентам РФ) показаны отдельно как коммерческие партнёры; регистрация через их помеченные ссылки может принести Traders Fund Hub комиссию.',
   },
 ]
 
@@ -140,6 +143,8 @@ export default function RussianFtmoReviewPage() {
       || (tier.priceEur != null && tier.priceEur > 0)).length, 0)
     return [{ slug, firm: partnerFirm, products: partnerProducts, priceCount }]
   })
+    // Russia-open firms first (BrightFunded), restricted (FundedNext) last.
+    .sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)])
   const account100k = (product: Challenge | undefined) =>
     product?.accountSizes.find(tier => tier.sizeUsd === 100000)
   const twoStep100k = account100k(twoStep)
@@ -215,7 +220,7 @@ export default function RussianFtmoReviewPage() {
                 <li><a href="#risk">Просадка и Best Day</a></li>
                 <li><a href="#payout">Возврат взноса и выплаты</a></li>
                 <li><a href="#fit">Кому подходит FTMO</a></li>
-                <li><a href="#alternatives">FundedNext и BrightFunded</a></li>
+                <li><a href="#alternatives">Альтернативы: BrightFunded</a></li>
                 <li><a href="#checklist">Проверка перед оплатой</a></li>
                 <li><a href="#faq">Частые вопросы</a></li>
               </ol>
@@ -443,10 +448,10 @@ export default function RussianFtmoReviewPage() {
           <div className="ru-shell ru-content" id="alternatives" data-russian-ftmo-global-funnel="fundednext-bright-funded">
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ftmo-alternatives">
               <strong>Коммерческое раскрытие.</strong>{' '}
-              FTMO не является нашим партнёром. FundedNext и BrightFunded являются партнёрами: если подходящий читатель зарегистрируется
+              FTMO не является нашим партнёром. BrightFunded и FundedNext являются партнёрами: если подходящий читатель зарегистрируется
               через помеченную ссылку, Traders Fund Hub может получить комиссию. Это не доказывает доступность страны и не меняет продуктовые числа.
             </div>
-            <h2>Если FTMO не подходит: FundedNext и BrightFunded</h2>
+            <h2>Если FTMO не подходит: BrightFunded (FundedNext для РФ недоступна)</h2>
             <p>
               Альтернатива должна решать конкретную проблему FTMO, а не просто вести на другой логотип. Для русскоязычного жителя разрешённой страны
               сначала сравниваются валюта взноса, тип просадки, число фаз и выплата; для резидента России отдельно проверяются правила страны каждой фирмы.
@@ -457,7 +462,7 @@ export default function RussianFtmoReviewPage() {
                 const reviewHref = item.slug === 'fundednext' ? '/ru/obzor-fundednext' : '/ru/obzor-bright-funded'
                 return (
                   <article className="ru-card" key={item.slug} data-russian-ftmo-alternative={item.slug}>
-                    <div className="ru-card-head"><h3>{item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name}</h3><span className="ru-score">Партнёр</span></div>
+                    <div className="ru-card-head"><h3>{item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name}</h3>{russiaStatusFor(item.slug) === 'restricted' ? <RuAccessBadgeView firm={item.slug} status="restricted" hint={false} /> : <span className="ru-score">Партнёр</span>}</div>
                     <ul className="ru-facts">
                       <li><Database size={14} aria-hidden="true" /> {item.products.length} свежих продуктов</li>
                       <li><BadgeDollarSign size={14} aria-hidden="true" /> {item.priceCount} опубликованных цен</li>
@@ -465,7 +470,7 @@ export default function RussianFtmoReviewPage() {
                     </ul>
                     <p>
                       {item.slug === 'fundednext'
-                        ? `${FUNDEDNEXT_RU_ACCESS_NOTE} Для других стран начните с выбора между Stellar 2-Step, 1-Step, Lite и Instant.`
+                        ? `${FUNDEDNEXT_RU_ACCESS_NOTE} Для трейдеров из других стран начните с выбора между Stellar 2-Step, 1-Step, Lite и Instant.`
                         : 'Начните с выбора между 1-Step, 2-Step Bright и 2-Step Classic; взнос публикуется в EUR, а базовую долю нельзя подменять платным или масштабируемым потолком.'}
                     </p>
                     <div className="ru-actions">
@@ -480,7 +485,7 @@ export default function RussianFtmoReviewPage() {
             </div>
             <div className="ru-actions">
               <Link href="/ru/ftmo-vs-bright-funded" className="btn-primary"><Scale size={15} aria-hidden="true" /> Сравнить FTMO и BrightFunded</Link>
-              <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline"><Scale size={15} aria-hidden="true" /> Сравнить FundedNext и BrightFunded</Link>
+              <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline"><Scale size={15} aria-hidden="true" /> Сравнить BrightFunded и FundedNext</Link>
               <Link href="/ru/promokody-prop-firm" className="btn-outline">Проверить действующие предложения</Link>
             </div>
           </div>
