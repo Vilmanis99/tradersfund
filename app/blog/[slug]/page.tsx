@@ -24,7 +24,7 @@ import TradingToolReviewCluster, {
 import { getTradingToolReviewLinks } from '@/lib/tradingToolReviews'
 import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
-import { articlePlainText, extractArticleFaq, prepareArticleContent } from '@/lib/articleContent'
+import { extractArticleFaq, firstVerdictSentence, prepareArticleContent } from '@/lib/articleContent'
 import { getAuthorByName } from '@/lib/authors'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import ReviewProductSummary, { PRODUCT_SUMMARY_REVIEWS } from '@/components/ReviewProductSummary'
@@ -32,6 +32,10 @@ import { promotableDiscount } from '@/lib/discountDisplay'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ReviewVerdictBox from '@/components/ReviewVerdictBox'
 import { comparisonHref } from '@/lib/relatedComparisons'
+import { getReviewCopy } from '@/lib/verdictCopy'
+import { rankFirmAlternatives } from '@/lib/firmAlternatives'
+import { canonicalMatchupSlug, getCurrentCanonicalPairs } from '@/lib/comparisons'
+import type { Firm } from '@/lib/firms'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -114,9 +118,13 @@ export default async function BlogPostPage({ params }: Props) {
     ? faqPageSchema(extractArticleFaq(post.content)) : null
   // Article format Phase 1 preview (design/article-format-spec.md §3.1–3.2):
   // VerdictBox first, sticky side contents, no generic sidebar. Scoped by slug.
-  const phase1Preview = PHASE1_PREVIEW_REVIEWS.has(slug) && Boolean(matchedFirm)
-  const verdictLine = phase1Preview ? firstVerdictSentence(post.content) : null
-  const compareFirm = phase1Preview ? firms.find(f => f.name === PHASE1_PREVIEW_REVIEWS.get(slug)) : undefined
+  // Article format Phase 1 (design/article-format-spec.md §3.1–3.2): every firm
+  // review opens with the VerdictBox and a sticky contents rail.
+  const phase1Preview = Boolean(matchedFirm)
+  const reviewCopy = getReviewCopy(slug)
+  const verdictLine = phase1Preview ? (reviewCopy.verdict === undefined ? firstVerdictSentence(post.content) : reviewCopy.verdict) : null
+  const freshFirmProducts = firmProducts.filter(product => isChallengeFresh(product))
+  const compareFirm = phase1Preview && matchedFirm ? pickCompareFirm(matchedFirm, firms) : undefined
   const postLd = postSchema(post, firms)
   const crumbsLd = breadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -190,13 +198,25 @@ export default async function BlogPostPage({ params }: Props) {
             )}
             {phase1Preview && matchedFirm ? (
               <>
+                {freshFirmProducts.length === 0 ? (
+                  // Stale-data guard: with no capture inside the 30-day window the box
+                  // (verdict sentence, fit lines, facts) is held back until Tracker
+                  // recaptures; the firm card shows score, Trustpilot and the CTA only.
+                  <>
+                    <AffiliateDisclosure firmName={matchedFirm.name} hasAffiliate={Boolean(matchedFirm.affiliateUrl)} />
+                    <FirmCtaCard firm={matchedFirm} productSpecific={hasProductSummary} />
+                  </>
+                ) : (
                 <ReviewVerdictBox
                   firm={matchedFirm}
-                  products={firmProducts}
+                  products={freshFirmProducts}
+                  bestForOverride={reviewCopy.bestFor}
+                  notForOverride={reviewCopy.notFor}
                   verdict={verdictLine}
                   compare={compareFirm ? { href: comparisonHref(matchedFirm, compareFirm), label: `Compare ${matchedFirm.name} vs ${compareFirm.name}` } : undefined}
                   sourcesHref="#captured-terms"
                 />
+                )}
                 <details className="p1-collapsible" id="captured-terms">
                   <summary>Captured product terms and sources</summary>
                   {hasProductSummary
@@ -265,6 +285,7 @@ export default async function BlogPostPage({ params }: Props) {
                   >
                     {matchedFirm.affiliateUrl ? `Visit ${matchedFirm.name}` : 'View official plans'}
                   </Link>
+                  <Link href="/prop-firm-challenges" className="p1-rail__more">Compare all programmes</Link>
                 </div>
               </div>
             </aside>
@@ -317,14 +338,15 @@ export default async function BlogPostPage({ params }: Props) {
   )
 }
 
-/** Reviews on the Phase 1 preview layout, mapped to the firm used for the "Compare with…" link. */
-const PHASE1_PREVIEW_REVIEWS = new Map<string, string>([['ftmo-review', 'FundedNext']])
-
-/** First sentence of the review's own "Verdict" section, unchanged. */
-function firstVerdictSentence(content: string) {
-  const match = content.match(/<h2\b[^>]*>\s*(?:<strong>)?\s*Verdict\s*(?:<\/strong>)?\s*<\/h2>\s*<p\b[^>]*>([\s\S]*?)<\/p>/i)
-  if (!match) return null
-  const text = articlePlainText(match[1])
-  const sentence = text.match(/^[\s\S]+?[.!?](?=\s+[A-Z]|$)/)
-  return (sentence ? sentence[0] : text).trim() || null
+/**
+ * "Compare with…" target: the most relevant alternative (asset and platform
+ * overlap, then score; commercial fields never enter the ranking) that has a
+ * current comparison page.
+ */
+function pickCompareFirm(firm: Firm, firms: Firm[]) {
+  const current = new Set(getCurrentCanonicalPairs().map(pair => pair.matchup))
+  const own = firmSlug(firm.name)
+  return rankFirmAlternatives(firm, firms, firms.length)
+    .find(candidate => current.has(canonicalMatchupSlug(own, firmSlug(candidate.name))))
 }
+

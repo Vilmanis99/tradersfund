@@ -25,7 +25,8 @@ import ChallengeMatchup from '@/components/ChallengeMatchup'
 import ComparisonHero from '@/components/ComparisonHero'
 import ComparisonTable from '@/components/ComparisonTable'
 import ComparisonVerdict from '@/components/ComparisonVerdict'
-import ComparePickVerdict from '@/components/ComparePickVerdict'
+import ComparePickVerdict, { comparePickAvailable } from '@/components/ComparePickVerdict'
+import { getCompareCopy } from '@/lib/verdictCopy'
 import FeatureFaq from '@/components/FeatureFaq'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import { TrustpilotPanel } from '@/components/TrustpilotRating'
@@ -129,8 +130,14 @@ export default async function ComparePage({ params }: Props) {
     { name: firmB.name, slug: firmSlug(firmB.name) },
   )
   const isFtmoFundedNext = canonical === 'ftmo-vs-fundednext'
-  // Article format Phase 1 preview (spec §3.3 C9): generated pick verdict first. Scoped by slug.
-  const phase1Preview = PHASE1_PREVIEW_COMPARES.has(canonical)
+  // Article format Phase 1 (spec §3.3 C9): generated pick verdict first on every comparison.
+  const pickSides = {
+    a: { firm: firmA, products: getChallengesByFirm(firmSlug(firmA.name)).filter(product => isChallengeFresh(product)) },
+    b: { firm: firmB, products: getChallengesByFirm(firmSlug(firmB.name)).filter(product => isChallengeFresh(product)) },
+  }
+  const compareCopy = getCompareCopy(canonical)
+  // Pages with nothing data-backed to pick from keep the original evidence block, expanded.
+  const phase1Preview = comparePickAvailable(pickSides.a, pickSides.b, compareCopy).any
   const matchupProse = describeMatchup(challengeMatchup)
   const currentProductCount = challengeMatchup.a.productCount + challengeMatchup.b.productCount
   const currentSourceCount = challengeMatchup.sources.length
@@ -225,8 +232,9 @@ export default async function ComparePage({ params }: Props) {
           {phase1Preview && (
             <ComparePickVerdict
               campaign={canonical}
-              a={{ firm: firmA, products: getChallengesByFirm(firmSlug(firmA.name)).filter(product => isChallengeFresh(product)) }}
-              b={{ firm: firmB, products: getChallengesByFirm(firmSlug(firmB.name)).filter(product => isChallengeFresh(product)) }}
+              a={pickSides.a}
+              b={pickSides.b}
+              override={compareCopy}
               checkedAt={comparisonCheckedAt ? formatCheckedDate(comparisonCheckedAt) : null}
             />
           )}
@@ -402,5 +410,3 @@ export default async function ComparePage({ params }: Props) {
   )
 }
 
-/** Comparisons on the Phase 1 preview layout. */
-const PHASE1_PREVIEW_COMPARES = new Set(['ftmo-vs-fundednext'])

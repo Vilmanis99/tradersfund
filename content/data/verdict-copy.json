@@ -1,0 +1,176 @@
+{
+  "_readme": "Single override file for generated verdict copy (design/article-format-spec.md C3, C9); shape documented in tradersfundhub/design/phase1-copy-drafts.md. reviews.<post slug>: verdict (string replaces the review's first Verdict sentence; null hides it), bestFor / notFor (arrays, max 2 shown). compares.<canonical matchup>: pickA / pickB (arrays, max 3 shown; A is the firm named first in the slug). A missing key uses the data-built lines. Overrides must not add figures that are not in firms.json or the challenge captures.",
+  "reviews": {
+    "alpha-capital-review": {
+      "bestFor": [
+        "Fixed floors: Alpha Pro max loss is static at 6%, 8% or 10%",
+        "Small budgets: Alpha Pro 6% on-demand starts at $27 for $5K"
+      ],
+      "notFor": [
+        "Big-day traders on on-demand plans: they carry a 40% consistency rule",
+        "Anyone wanting a fee refund: no Alpha Capital fee is refundable"
+      ]
+    },
+    "bright-funded-prop-firm": {
+      "bestFor": [
+        "Getting your fee back: every BrightFunded account size is refundable",
+        "Weekend holders: all 3 BrightFunded plans allow weekend and overnight"
+      ],
+      "notFor": [
+        "Traders who want paying fast: the first payout comes at day 30",
+        "Fixed-floor fans on 1-Step: its 6% max loss trails"
+      ]
+    },
+    "city-traders-imperium-review": {
+      "bestFor": [
+        "Quick first payouts: 1-Step and 2-Step pay from day 7, then weekly",
+        "News traders: all 4 CTI products allow news trading"
+      ],
+      "notFor": [
+        "Instant Funding buyers chasing a big split: it starts at 50%",
+        "Fixed-floor fans on 1-Step: its 5% max loss trails"
+      ]
+    },
+    "crypto-fund-trader-review": {
+      "bestFor": [
+        "No-rush traders: 2-Phase has no minimum days and no time limit",
+        "Crypto traders who want a fixed floor: 2-Phase max loss is static 10%"
+      ],
+      "notFor": [
+        "Instant buyers chasing a big split: Instant starts at 50%",
+        "Big-day traders on Break: it has a 40% consistency rule"
+      ]
+    },
+    "e8-markets-review": {
+      "bestFor": [
+        "Fast payouts: E8 One lets you request on demand from day 3",
+        "Big-day traders: E8 Pro has a static 8% floor and no consistency %"
+      ],
+      "notFor": [
+        "Traders who need daily room: E8 Pro caps daily loss at 2.5%",
+        "Anyone wanting a fee refund: no E8 Markets fee is refundable"
+      ]
+    },
+    "ftmo-review": {
+      "bestFor": [
+        "Traders who want a fixed floor: 2-Step max loss is a static 10%",
+        "Getting your fee back: every 2-Step account size is refundable"
+      ],
+      "notFor": [
+        "Traders who win in a few big days: 1-Step has a 50% consistency rule",
+        "1-Step buyers hoping for a refund: its €79–€999 fee isn't refundable"
+      ]
+    },
+    "fundednext-review": {
+      "bestFor": [
+        "Weekly payouts on a 1-step: Stellar 1-Step pays every 5 business days",
+        "Getting your fee back: Stellar 2-Step, 1-Step and Lite are refundable"
+      ],
+      "notFor": [
+        "Instant buyers wanting a refund: its $59.99–$599.99 fee isn't refunded",
+        "Fixed-floor fans on Instant: its 6% max loss trails"
+      ]
+    },
+    "funding-pips-review": {
+      "bestFor": [
+        "Weekly payouts: 2 Step Pro pays from day 7, then weekly at 80%",
+        "Fixed floors: all 4 FundingPips evaluations use a static max loss"
+      ],
+      "notFor": [
+        "Weekend holders: weekends are restricted, and not allowed on Zero",
+        "Big-day traders on Zero: it has a 15% consistency rule"
+      ]
+    },
+    "fxify-review": {
+      "bestFor": [
+        "EA and news traders: all 5 phase challenges allow both",
+        "Getting your fee back: phase challenges and Lightning are refundable"
+      ],
+      "notFor": [
+        "Instant Funding buyers wanting a refund: those fees are not refundable",
+        "Fixed-floor fans on One Phase: its 6% max loss trails"
+      ]
+    },
+    "lucid-trading-review": {
+      "bestFor": [
+        "Fast payouts: LucidDaily plans can pay on demand from day 1",
+        "Skipping activation fees: LucidPro, Flex and Daily list $0 activation"
+      ],
+      "notFor": [
+        "Swing traders: LucidPro, Flex and Direct bar overnight holding",
+        "Anyone wanting a fee refund: no Lucid Trading fee is refundable"
+      ]
+    },
+    "maven-prop-firm-review": {
+      "bestFor": [
+        "Tiny budgets: Standard 3-Step starts at $13 for a $2K account",
+        "Getting your fee back: Standard 1-, 2- and 3-Step fees are refundable"
+      ],
+      "notFor": [
+        "EA users: every Maven product bans expert advisors",
+        "Wide-stop traders: Standard 3-Step allows 2% daily and 3% max loss"
+      ]
+    },
+    "my-funded-futures": {
+      "bestFor": [
+        "Big-day traders: Builder has no consistency rule and pays from day 2",
+        "Skipping activation fees: every MFF plan lists $0 activation"
+      ],
+      "notFor": [
+        "Overnight holders: every MFF plan bars overnight positions",
+        "Anyone wanting a fee refund: no MFF fee is refundable"
+      ]
+    },
+    "ofp-funding-review": {
+      "bestFor": [
+        "No-wait starters: Instant Classic has no evaluation and 0 minimum days",
+        "Getting your fee back: every OFP account size is refundable"
+      ],
+      "notFor": [
+        "Copy traders: every OFP product prohibits copy trading",
+        "MT5 or cTrader users: OFP runs only on its own Sirix platform"
+      ]
+    },
+    "take-profit-trader-review": {
+      "bestFor": [
+        "Fast payouts: funded requests are on demand, with no minimum wait",
+        "Big-day traders who can pass: the 50% rule applies to the Test only"
+      ],
+      "notFor": [
+        "Algo traders: Take Profit Trader does not allow EAs",
+        "One-off buyers: The Test bills $150–$360 a month, plus $130 activation"
+      ]
+    },
+    "topstep-review": {
+      "bestFor": [
+        "A 90% split: both Trading Combine paths list a 90% profit split",
+        "Skipping activation fees: the No Activation Fee Path charges $0"
+      ],
+      "notFor": [
+        "Overnight or weekend holders: Topstep bars both on both Combine paths",
+        "Big-day traders: the Trading Combine has a 55% consistency target"
+      ]
+    },
+    "tradeday-review": {
+      "bestFor": [
+        "Fast payouts: Quick Pay plans can pay on demand from day 1",
+        "Skipping activation fees: every TradeDay plan lists $0 activation"
+      ],
+      "notFor": [
+        "Split-maximisers on Quick Pay: its profit split is 50%",
+        "Swing traders: every TradeDay plan bars overnight and weekend holds"
+      ]
+    },
+    "tradeify-review": {
+      "bestFor": [
+        "Skipping the evaluation: Lightning Funded has no evaluation phase",
+        "News traders: every Tradeify plan allows news trading"
+      ],
+      "notFor": [
+        "Swing traders: every Tradeify plan bars overnight and weekend holds",
+        "Anyone wanting a fee refund: no Tradeify fee is refundable"
+      ]
+    }
+  },
+  "compares": {}
+}

@@ -785,3 +785,4 @@ html .compare-pick__facts :is(th, td) { overflow-wrap: anywhere; }
 }
 html .compare-pick__facts tr > :first-child { width: 32%; }
 @media (max-width: 640px) { html .compare-pick__facts tr > :first-child { width: 30%; } }
+html .p1-rail__more { font-size: 0.85rem; text-align: center; color: var(--accent); }
