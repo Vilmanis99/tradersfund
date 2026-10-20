@@ -772,10 +772,10 @@ try {
   assert(RussianPayoutPage, 'Russian payout guide remains part of the expiry fixture')
   const payoutGuideMetadata = require(path.join(root, 'app/ru/vyplaty-prop-firm/page.tsx')).metadata
   const payoutGuideReference = renderToStaticMarkup(React.createElement(RussianPayoutPage))
-  assert.equal(payoutGuideMetadata.title.absolute, 'Выплаты проп-фирм 2026: FundedNext и BrightFunded', 'payout search title uses the verified one-word brand')
-  assert(payoutGuideMetadata.description.includes('FundedNext, BrightFunded и FundingPips'), 'payout search description matches the brand query')
+  assert.equal(payoutGuideMetadata.title.absolute, 'Выплаты проп-фирм 2026: как вывести прибыль — сроки и KYC', 'payout search title targets the withdrawal query')
+  assert(payoutGuideMetadata.description.includes('BrightFunded, FundingPips и FundedNext'), 'payout search description uses the one-word brands, BrightFunded first')
   assert.equal(payoutGuideMetadata.openGraph.title, 'Выплаты проп-фирм 2026: FundedNext и Bright Funded', 'payout sharing title remains unchanged')
-  assert(payoutGuideReference.includes('<h1>Выплаты проп-фирм: FundedNext, BrightFunded и вывод прибыли</h1>'), 'payout H1 matches the brand query')
+  assert(payoutGuideReference.includes('<h1>Выплаты проп-фирм: BrightFunded, FundedNext и вывод прибыли</h1>'), 'payout H1 matches the brand query, BrightFunded first')
   assert.equal(cryptoSchemas(payoutGuideReference).find(item => item['@type'] === 'Article')?.headline, payoutGuideMetadata.title.absolute, 'payout Article headline matches the search title')
   assert(cryptoSchemas(payoutGuideReference).find(item => item['@type'] === 'ItemList')?.itemListElement?.some(item => item.item.name === 'BrightFunded'), 'payout ItemList uses the official brand')
   assert(payoutGuideReference.includes('Russian Federation') || payoutGuideReference.includes('Российской Федерации'), 'payout guide names the distinct Russian card boundary')
