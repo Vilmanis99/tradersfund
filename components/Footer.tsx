@@ -177,7 +177,8 @@ export default function Footer({
             <li><Link href="/methodology" className="tf-foot__link">{t.method}</Link></li>
             <li><Link href="/privacy-policy" className="tf-foot__link">{t.privacy}</Link></li>
             <li><Link href="/disclaimers" className="tf-foot__link">{t.disclaimers}</Link></li>
-            {(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID) && (
+            {(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID
+              || (isRussian && process.env.NEXT_PUBLIC_YANDEX_METRICA_ID)) && (
               <li><AnalyticsPreferencesButton locale={isRussian ? 'ru' : 'en'} /></li>
             )}
           </ul>

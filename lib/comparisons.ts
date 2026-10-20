@@ -2,6 +2,7 @@ import { firmSlug } from './firmSlug.ts'
 export { firmSlug }
 import type { Firm } from './firms.ts'
 import { getAllFirms, getAllChallenges, getChallengesByFirm, isChallengeFresh } from './firms.ts'
+import { isSourceHoldFirm } from './reviewStatus.ts'
 
 export const COMPARISON_EDITORIAL_DATE = '2026-09-08'
 
@@ -49,6 +50,26 @@ export function getAllCanonicalPairs(): Array<{ matchup: string; firmA: Firm; fi
 export function getCurrentCanonicalPairs(now = new Date()) {
   const eligible = new Set(getAllChallenges().filter(product => isChallengeFresh(product, now)).map(product => product.firmSlug))
   return getAllCanonicalPairs().filter(pair => eligible.has(firmSlug(pair.firmA.name)) && eligible.has(firmSlug(pair.firmB.name)))
+}
+
+/**
+ * Search-engine indexing for /compare/<a>-vs-<b>.
+ *
+ * A pair is noindexed only while one of its firms is on source hold. Data
+ * freshness does not change indexing: pairs whose capture has aged out keep
+ * resolving and stay indexable (editorial decision 2026-10-20), so robots and
+ * the sitemap never churn with capture dates. The page's robots meta and the
+ * sitemap both read this one rule, so a sitemap URL is never noindex and an
+ * indexable pair is never missing from the sitemap.
+ */
+export function isComparePairIndexable(slugA: string, slugB: string): boolean {
+  return !isSourceHoldFirm(slugA) && !isSourceHoldFirm(slugB)
+}
+
+/** Every canonical pair that the sitemap lists (see isComparePairIndexable). */
+export function getIndexableCanonicalPairs() {
+  return getAllCanonicalPairs().filter(pair =>
+    isComparePairIndexable(firmSlug(pair.firmA.name), firmSlug(pair.firmB.name)))
 }
 
 /** Lookup a single firm by its slug. */

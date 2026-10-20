@@ -9,6 +9,7 @@ import {
   firmSlug,
   getAllCanonicalPairs,
   getOverlay,
+  isComparePairIndexable,
   parseMatchup,
 } from '@/lib/comparisons'
 import {
@@ -30,7 +31,6 @@ import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import { TrustpilotPanel } from '@/components/TrustpilotRating'
 import RelatedComparisons from '@/components/RelatedComparisons'
 import { getAllFirms } from '@/lib/firms'
-import { isSourceHoldFirm } from '@/lib/reviewStatus'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
@@ -92,7 +92,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/compare/${canonical}`,
       languages: getLanguageAlternates(`/compare/${canonical}`),
     },
-    ...(isSourceHoldFirm(parsed.a) || isSourceHoldFirm(parsed.b)
+    ...(!isComparePairIndexable(parsed.a, parsed.b)
       ? { robots: { index: false, follow: true } }
       : {}),
     openGraph: { title, description, url: `/compare/${canonical}`, type: 'article' },
