@@ -587,7 +587,7 @@ export default function RussianTopstepReviewPage() {
             <h2>Отзывы о Topstep</h2>
             {trustpilotFresh ? (
               <p>
-                На Trustpilot у Topstep {String(firm.trustpilotScore).replace('.', ',')} из 5 при {ruNumber(firm.trustpilotCount ?? 0)} отзывах
+                На Trustpilot у Topstep оценка {String(firm.trustpilotScore).replace('.', ',')} из 5, отзывов: {ruNumber(firm.trustpilotCount ?? 0)}
                 (по данным на {ruDate(firm.trustpilotCapturedAt)}). При таком числе отзывов одна волна жалоб или похвал мало меняет
                 среднюю оценку, поэтому читайте не цифру, а повторяющиеся темы.{' '}
                 {firm.trustpilotUrl && <a href={firm.trustpilotUrl} target="_blank" rel="noopener noreferrer">Профиль на Trustpilot</a>}.
