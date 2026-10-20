@@ -24,12 +24,14 @@ import TradingToolReviewCluster, {
 import { getTradingToolReviewLinks } from '@/lib/tradingToolReviews'
 import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
-import { extractArticleFaq, prepareArticleContent } from '@/lib/articleContent'
+import { articlePlainText, extractArticleFaq, prepareArticleContent } from '@/lib/articleContent'
 import { getAuthorByName } from '@/lib/authors'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import ReviewProductSummary, { PRODUCT_SUMMARY_REVIEWS } from '@/components/ReviewProductSummary'
 import { promotableDiscount } from '@/lib/discountDisplay'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import ReviewVerdictBox from '@/components/ReviewVerdictBox'
+import { comparisonHref } from '@/lib/relatedComparisons'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -110,6 +112,11 @@ export default async function BlogPostPage({ params }: Props) {
   const watchEntries = hasProductSummary ? getChallengeWatchEntries() : []
   const faqLd = hasProductSummary && firmProducts.length > 0 && staleFirmProducts.length === 0
     ? faqPageSchema(extractArticleFaq(post.content)) : null
+  // Article format Phase 1 preview (design/article-format-spec.md §3.1–3.2):
+  // VerdictBox first, sticky side contents, no generic sidebar. Scoped by slug.
+  const phase1Preview = PHASE1_PREVIEW_REVIEWS.has(slug) && Boolean(matchedFirm)
+  const verdictLine = phase1Preview ? firstVerdictSentence(post.content) : null
+  const compareFirm = phase1Preview ? firms.find(f => f.name === PHASE1_PREVIEW_REVIEWS.get(slug)) : undefined
   const postLd = postSchema(post, firms)
   const crumbsLd = breadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -124,7 +131,7 @@ export default async function BlogPostPage({ params }: Props) {
       {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqLd) }} />}
 
       {/* ═══════════════════════════════ ARTICLE HERO ═══════════════════════════════ */}
-      <section className="post-hero">
+      <section className={phase1Preview ? 'post-hero post-hero--p1' : 'post-hero'}>
         <div className="post-shell" style={{ position: 'relative', zIndex: 1 }}>
           <Link href="/blog" className="post-back">
             <ArrowLeft size={14} /> Back to all articles
@@ -171,7 +178,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* ═══════════════════════════════ BODY ═══════════════════════════════ */}
       <div className="post-shell post-body">
-        <div className="post-layout">
+        <div className={phase1Preview ? 'post-layout post-layout--p1' : 'post-layout'}>
           <article>
             {matchedFirm && staleFirmProducts.length > 0 && (
               <aside className="review-freshness-notice" data-review-source-status="recapture-required" aria-label="Review source freshness">
@@ -181,19 +188,44 @@ export default async function BlogPostPage({ params }: Props) {
                 {oldestFirmCapture && <span> Oldest capture: <time dateTime={oldestFirmCapture}>{oldestFirmCapture}</time>.</span>}
               </aside>
             )}
-            {matchedFirm && (
-              <AffiliateDisclosure
-                firmName={matchedFirm.name}
-                hasAffiliate={Boolean(matchedFirm.affiliateUrl)}
-              />
-            )}
-            {matchedFirm && <FirmCtaCard firm={matchedFirm} productSpecific={hasProductSummary} />}
-            {matchedFirm && (hasProductSummary
-              ? <ReviewProductSummary firm={matchedFirm} products={firmProducts} watchEntries={watchEntries} />
-              : <FirmStatPanel firm={matchedFirm} />)}
-            <TradingToolReviewStatus post={post} />
+            {phase1Preview && matchedFirm ? (
+              <>
+                <ReviewVerdictBox
+                  firm={matchedFirm}
+                  products={firmProducts}
+                  verdict={verdictLine}
+                  compare={compareFirm ? { href: comparisonHref(matchedFirm, compareFirm), label: `Compare ${matchedFirm.name} vs ${compareFirm.name}` } : undefined}
+                  sourcesHref="#captured-terms"
+                />
+                <details className="p1-collapsible" id="captured-terms">
+                  <summary>Captured product terms and sources</summary>
+                  {hasProductSummary
+                    ? <ReviewProductSummary firm={matchedFirm} products={firmProducts} watchEntries={watchEntries} />
+                    : <FirmStatPanel firm={matchedFirm} />}
+                </details>
+                <TradingToolReviewStatus post={post} />
+                <details className="p1-collapsible p1-toc-mobile">
+                  <summary>On this page</summary>
+                  <TableOfContents headings={prepared.headings} />
+                </details>
+              </>
+            ) : (
+              <>
+                {matchedFirm && (
+                  <AffiliateDisclosure
+                    firmName={matchedFirm.name}
+                    hasAffiliate={Boolean(matchedFirm.affiliateUrl)}
+                  />
+                )}
+                {matchedFirm && <FirmCtaCard firm={matchedFirm} productSpecific={hasProductSummary} />}
+                {matchedFirm && (hasProductSummary
+                  ? <ReviewProductSummary firm={matchedFirm} products={firmProducts} watchEntries={watchEntries} />
+                  : <FirmStatPanel firm={matchedFirm} />)}
+                <TradingToolReviewStatus post={post} />
 
-            <TableOfContents headings={prepared.headings} />
+                <TableOfContents headings={prepared.headings} />
+              </>
+            )}
 
             <div className="prose post-prose"
               dangerouslySetInnerHTML={{ __html: contentWithIds }} />
@@ -218,6 +250,25 @@ export default async function BlogPostPage({ params }: Props) {
             <RelatedPosts posts={related} />
           </article>
 
+          {phase1Preview && matchedFirm ? (
+            <aside className="post-aside p1-rail" aria-label="Contents and firm summary">
+              <div className="p1-rail__inner">
+                <TableOfContents headings={prepared.headings} />
+                <div className="p1-rail__firm">
+                  <div className="p1-rail__firm-row"><strong>{matchedFirm.name}</strong><b>{matchedFirm.score}</b></div>
+                  <Link
+                    href={`/go/${firmSlug(matchedFirm.name)}?from=review-cta`}
+                    prefetch={false}
+                    rel={matchedFirm.affiliateUrl ? 'sponsored nofollow noopener' : 'nofollow noopener'}
+                    target="_blank"
+                    className="btn-primary"
+                  >
+                    {matchedFirm.affiliateUrl ? `Visit ${matchedFirm.name}` : 'View official plans'}
+                  </Link>
+                </div>
+              </div>
+            </aside>
+          ) : (
           <aside className="post-aside">
             <div className="post-sidebar-card">
               <span className="bento-tile-eyebrow">
@@ -247,6 +298,7 @@ export default async function BlogPostPage({ params }: Props) {
               </ul>
             </div>
           </aside>
+          )}
         </div>
       </div>
 
@@ -263,4 +315,16 @@ export default async function BlogPostPage({ params }: Props) {
       )}
     </div>
   )
+}
+
+/** Reviews on the Phase 1 preview layout, mapped to the firm used for the "Compare with…" link. */
+const PHASE1_PREVIEW_REVIEWS = new Map<string, string>([['ftmo-review', 'FundedNext']])
+
+/** First sentence of the review's own "Verdict" section, unchanged. */
+function firstVerdictSentence(content: string) {
+  const match = content.match(/<h2\b[^>]*>\s*(?:<strong>)?\s*Verdict\s*(?:<\/strong>)?\s*<\/h2>\s*<p\b[^>]*>([\s\S]*?)<\/p>/i)
+  if (!match) return null
+  const text = articlePlainText(match[1])
+  const sentence = text.match(/^[\s\S]+?[.!?](?=\s+[A-Z]|$)/)
+  return (sentence ? sentence[0] : text).trim() || null
 }
