@@ -8,6 +8,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { getAllChallenges, isChallengeFresh } from '@/lib/firms'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/prop-trejding'
@@ -62,6 +63,20 @@ const faqs: RussianFaqItem[] = [
     a: 'Столько, сколько заработал на счёте, умноженное на долю: при прибыли $1 000 и доле 80% вы получите $800 до комиссий за вывод. Гарантированного дохода нет.',
   },
 ]
+
+const ruDate = (iso: string) => iso.split('-').reverse().join('.')
+
+/** Minimum trading days from content/data/challenges (product sourceCapturedAt, shown only within the 30-day window). */
+function minDaysExample() {
+  const all = getAllChallenges()
+  const pick = (firm: string, slug: string) => all.find(product => product.firmSlug === firm && product.productSlug === slug)
+  const parts = [
+    ['BrightFunded 2-Step Classic', pick('bright-funded', 'bright-funded-2-step-classic')],
+    ['FundedNext Stellar Lite (стандартный вариант)', pick('fundednext', 'stellar-lite')],
+  ].flatMap(([label, product]) => product && typeof product !== 'string' && isChallengeFresh(product) && Number.isInteger(product.minTradingDays)
+    ? [`${product.minTradingDays} у ${label} на каждом этапе (по данным на ${ruDate(product.sourceCapturedAt)})`] : [])
+  return parts.length ? `например, ${parts.join(', ')}.` : 'зависит от программы; число дней проверьте в условиях перед покупкой.'
+}
 
 export default function RussianPropTradingPage() {
   const crumbs = breadcrumbSchema([{ name: 'Русская версия', url: '/ru' }, { name: 'Проп-трейдинг' }])
@@ -248,7 +263,7 @@ export default function RussianPropTradingPage() {
             <li><strong>Максимальная (общая) просадка</strong> — предел убытка за всё время. Статическая считается от начального баланса, трейлинговая поднимается вслед за прибылью — и потому жёстче.</li>
             <li><strong>Сплит (profit split)</strong> — ваша доля прибыли. Базово 80% у программ в таблице выше; у FTMO 2-Step — 80% (90% через масштабирование), у FTMO 1-Step и Instant — 90% (по данным на 14.10.2026).</li>
             <li><strong>Цель по прибыли</strong> — сколько нужно заработать в фазе. У FundedNext Stellar Lite — 8% и 4%, у BrightFunded Classic — 10% и 5%.</li>
-            <li><strong>Минимальные торговые дни</strong> — например, 5 дней у BrightFunded Classic и FundedNext Stellar Lite.</li>
+            <li><strong>Минимальные торговые дни</strong> — {minDaysExample()}</li>
             <li><strong>Масштабирование</strong> — рост счёта после стабильных выплат. План есть у FundedNext, BrightFunded и FundingPips; условия у каждой фирмы свои.</li>
           </ul>
         </div>
