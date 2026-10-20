@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { fundedNextOneStepPayoutLabel } from '@/lib/fundedNextPayout'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
 import Link from '@/components/SafeLink'
+import { ruClosedFirmsHref } from '@/lib/closedFirms'
 import {
   AlertTriangle,
   ArrowRight,
@@ -529,6 +530,12 @@ export default function RussianPayoutsPage() {
               Сначала сравните прошедшее время с опубликованным окном обработки фирмы, затем отдельно проверьте банк, сеть или провайдера выплаты.
               Не публикуйте документы, seed-фразу кошелька, полный адрес или идентификационный номер в открытом отзыве.
             </p>
+            {ruClosedFirmsHref() && (
+              <p data-russian-closed-firms-inlink="payouts">
+                Если сайт фирмы перестал открываться, проверьте, нет ли её среди <Link href={ruClosedFirmsHref() as string}>проп-фирм, которые закрылись</Link>:
+                там по каждой указаны дата и источник.
+              </p>
+            )}
           </div>
         </section>
 

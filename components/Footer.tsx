@@ -7,6 +7,7 @@ import NewsletterForm from './NewsletterForm'
 import AnalyticsPreferencesButton from './AnalyticsPreferencesButton'
 import { PARTNERSHIP_POLICY } from '@/lib/trustPages'
 import { ruDisclosureHref } from '@/lib/ruDisclosure'
+import { ruClosedFirmsHref } from '@/lib/closedFirms'
 
 type FooterProps = {
   firmCount: number
@@ -63,6 +64,8 @@ export default function Footer({
       { label: 'Как оцениваем фирмы', href: '/methodology' },
       { label: 'Как мы зарабатываем', href: ruDisclosureHref() },
       { label: 'Исправления', href: '/corrections' },
+      // Shown only while content/data/closed-firms.json is published (same flag as the EN page).
+      ...(ruClosedFirmsHref() ? [{ label: 'Закрытые проп-фирмы', href: ruClosedFirmsHref() as string }] : []),
       { label: 'Авторы', href: '/authors' },
       { label: 'Контакты', href: '/contact' },
     ] },

@@ -45,6 +45,9 @@ function load(file) {
       if (specifier === 'next/navigation') return { usePathname: () => pathname }
       if (specifier === './navLinks') return load('components/navLinks.ts')
       if (specifier === '@/lib/localizedRoutes') return load('lib/localizedRoutes.ts')
+      if (specifier === '@/lib/closedFirms') return load('lib/closedFirms.ts')
+      if (specifier === './localizedRoutes') return load('lib/localizedRoutes.ts')
+      if (specifier.startsWith('../content/data/')) return require(`../${specifier.slice(3)}`)
       return require(specifier)
     },
   }, { filename: file })

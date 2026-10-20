@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { fundedNextOneStepPayoutLabel } from '@/lib/fundedNextPayout'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
 import Link from '@/components/SafeLink'
+import { ruClosedFirmsHref } from '@/lib/closedFirms'
 import { RuRelatedLinks } from '@/components/RuPendingLink'
 import {
   AlertTriangle,
@@ -390,6 +391,12 @@ export default function RussianPropFirmReviewsPage() {
               <li><span>3</span><div><strong>Отделите спор от повторяемого сигнала.</strong><p>Один анонимный пост — сигнал для проверки. Несколько кейсов с одним правилом и датой — причина искать официальное изменение или публичное наблюдение.</p></div></li>
               <li><span>4</span><div><strong>Не платите, пока конфликт не разрешён.</strong><p>Если договор и FAQ расходятся, сохраните письменный ответ поддержки. Устный ответ и VPN не исправляют контрактный или страновой запрет.</p></div></li>
             </ol>
+            {ruClosedFirmsHref() && (
+              <p data-russian-closed-firms-inlink="reviews">
+                Отдельный случай — фирма, которая закрылась. Такие фирмы с датой, заявлением и архивной копией источника собраны
+                в <Link href={ruClosedFirmsHref() as string}>списке закрытых проп-фирм</Link>.
+              </p>
+            )}
           </div>
         </section>
 

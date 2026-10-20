@@ -70,6 +70,7 @@ import {
   postBodyCampaign,
 } from '../lib/postOutboundLinks.ts'
 import { rankRelatedPosts, relatedPostScore } from '../lib/relatedPosts.ts'
+import { CLOSED_FIRMS_ROUTE_PAIR, RU_CLOSED_FIRMS_PATH } from '../lib/localizedRoutes.ts'
 import { russianPartnerMatcherDecision } from '../lib/russianPartnerMatcher.ts'
 import {
   getRussianDiasporaCountryRows,
@@ -2823,6 +2824,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/chto-takoe-prop-firma', 'russian_education'],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', 'russian_education'],
     ['/ru/otzyvy-prop-firm', 'russian_review'],
+    [RU_CLOSED_FIRMS_PATH, 'russian_education'],
   ])
   for (const [pathname, expected] of stageFixtures) {
     const actual = journeyStage(pathname)
@@ -11239,7 +11241,42 @@ function checkRussianAcquisitionPilot() {
   const indexNowPaths = getRussianIndexNowUrls('https://tradersfundhub.com')
     .map(url => new URL(url).pathname)
     .sort()
-  const expectedIndexNowPaths = [...russianRouteFiles.keys()].sort()
+  const closedFirmsJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.json'), 'utf8'))
+  const closedFirmsRuJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.ru.json'), 'utf8'))
+  const closedFirmsPublished = closedFirmsJson.published === true
+  // The RU closed-firms page is flag-gated (same flag as /prop-firms/closed), not an acquisition-pilot route.
+  const expectedIndexNowPaths = [...russianRouteFiles.keys(), ...(closedFirmsPublished ? [RU_CLOSED_FIRMS_PATH] : [])].sort()
+  {
+    const ruClosedFile = path.join(ROOT, `app${RU_CLOSED_FIRMS_PATH}/page.tsx`)
+    const ruClosedSource = fs.existsSync(ruClosedFile) ? fs.readFileSync(ruClosedFile, 'utf8') : ''
+    if (!ruClosedSource) rows.push(`${RU_CLOSED_FIRMS_PATH}: page folder must match RU_CLOSED_FIRMS_PATH in lib/localizedRoutes.ts`)
+    for (const token of [
+      'CLOSED_FIRMS_PUBLISHED ? undefined : { index: false',
+      'closedFirmsLanguageAlternates()',
+      "getClosedFirmViews('ru'",
+      '<ClosedFirmsList locale="ru"',
+      "inLanguage: 'ru'",
+    ]) {
+      if (ruClosedSource && !ruClosedSource.includes(token)) rows.push(`${RU_CLOSED_FIRMS_PATH}: missing ${token}`)
+    }
+    if (/\/go\/|RuGoLink/.test(ruClosedSource)) rows.push(`${RU_CLOSED_FIRMS_PATH}: closed firms must not carry sign-up CTAs`)
+    const title = ruClosedSource.match(/const TITLE = '([^']+)'/)?.[1] ?? ''
+    const description = ruClosedSource.match(/const DESCRIPTION = '([^']+)'/)?.[1] ?? ''
+    if (!title || title.length > 60) rows.push(`${RU_CLOSED_FIRMS_PATH}: Russian SEO title is missing or over 60 characters`)
+    if (description.length < 120 || description.length > 160) rows.push(`${RU_CLOSED_FIRMS_PATH}: Russian SEO description is ${description.length} characters, expected 120–160`)
+    const enSlugs = closedFirmsJson.firms.map(firm => firm.slug).sort()
+    const ruSlugs = Object.keys(closedFirmsRuJson.firms).sort()
+    if (JSON.stringify(enSlugs) !== JSON.stringify(ruSlugs)) {
+      rows.push(`closed-firms.ru.json slugs [${ruSlugs}] must match closed-firms.json [${enSlugs}] (section ids/anchors are shared)`)
+    }
+    if (CLOSED_FIRMS_ROUTE_PAIR.ru !== RU_CLOSED_FIRMS_PATH) rows.push('closed-firms route pair must use RU_CLOSED_FIRMS_PATH')
+    // Inlinks and the footer link must be gated by the same flag.
+    for (const file of ['app/ru/page.tsx', 'app/ru/otzyvy-prop-firm/page.tsx', 'app/ru/vyplaty-prop-firm/page.tsx', 'app/ru/chto-takoe-prop-firma/page.tsx', 'components/Footer.tsx']) {
+      const source = fs.readFileSync(path.join(ROOT, file), 'utf8')
+      if (!source.includes('ruClosedFirmsHref()')) rows.push(`${file}: RU closed-firms link must go through ruClosedFirmsHref()`)
+      if (source.includes(`'${RU_CLOSED_FIRMS_PATH}'`)) rows.push(`${file}: hard-coded ${RU_CLOSED_FIRMS_PATH} bypasses the publish flag`)
+    }
+  }
   if (JSON.stringify(indexNowPaths) !== JSON.stringify(expectedIndexNowPaths)) {
     rows.push('Russian IndexNow inventory disagrees with the route source inventory')
   }

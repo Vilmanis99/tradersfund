@@ -48,6 +48,18 @@ export const RUSSIAN_PLANNED_ROUTES = [
   '/ru/funded-account',
 ] as const
 
+/**
+ * RU version of /prop-firms/closed. The slug lives only in this constant (the page folder
+ * app/ru/zakrytye-prop-firmy must match it; a rename is this line plus `git mv` of that folder).
+ * Deliberately NOT in LOCALIZED_ROUTE_PAIRS / RUSSIAN_ONLY_ROUTES: the pair, sitemap entry,
+ * hreflang, footer link and inlinks are gated by CLOSED_FIRMS_PUBLISHED (content/data/closed-firms.json)
+ * through lib/closedFirms.ts, so the RU page stays noindex and unlinked exactly as long as the EN page.
+ */
+export const RU_CLOSED_FIRMS_PATH = '/ru/zakrytye-prop-firmy'
+export const CLOSED_FIRMS_ROUTE_PAIR = { en: '/prop-firms/closed', ru: RU_CLOSED_FIRMS_PATH } as const
+/** Editorial date of the RU closed-firms page (sitemap lastmod floor and Article dateModified). */
+export const RU_CLOSED_FIRMS_EDITORIAL_DATE = '2026-10-20'
+
 export type RussianPlannedRoutePath = (typeof RUSSIAN_PLANNED_ROUTES)[number]
 
 /** Editorial date per planned route; null until the writer publishes the page. */
