@@ -233,7 +233,7 @@ export default function RussianFundedAccountPage() {
           <ol>
             <li><strong>Принимает ли фирма мою страну?</strong> Проверьте по <Link href="/ru/dlya-russkoyazychnykh-treyderov">таблице доступа</Link>, а не по языку сайта.</li>
             <li><strong>Какая просадка — статическая или трейлинговая?</strong> Статическая считается от начального баланса и прощает больше.</li>
-            <li><strong>Сколько ждать первой выплаты?</strong> 21 день у FundedNext Stellar Lite, 30 дней у BrightFunded Classic.</li>
+            <li><strong>Сколько ждать первой выплаты?</strong> У FundedNext Stellar Lite — 10 рабочих дней для счетов, купленных или сброшенных с 12.10.2026, и 21 день для более ранних (<a href="https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward" target="_blank" rel="noopener noreferrer">справка FundedNext</a>, по данным на 20.10.2026); 30 дней у BrightFunded Classic.</li>
             <li><strong>Как я получу деньги?</strong> Если банковский перевод недоступен, нужен криптокошелёк: USDT или USDC в нужной сети.</li>
             <li><strong>Что меняется на счёте фирмы?</strong> Новостное окно у FundedNext, опция Swing для выходных у FundingPips.</li>
           </ol>

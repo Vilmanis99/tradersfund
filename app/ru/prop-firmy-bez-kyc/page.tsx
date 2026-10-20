@@ -360,8 +360,8 @@ export default function RussianNoKycPage() {
                     </ul>
                     {isFundedNext ? (
                       <p className="ru-source-line">
-                        Для резидентов России {fundedNextAccess?.sourceUrls.length ?? 0} официальные страницы дают конфликтующие сигналы.
-                        Поэтому кнопка означает «проверить», а не «доступ подтверждён».
+                        Резидентам России FundedNext недоступна: подвал fundednext.com исключает Россию, хотя список в условиях
+                        (п. 5.3, CFD) её не называет (по данным на 20.10.2026). Кнопка — для трейдеров из других стран.
                       </p>
                     ) : (
                       <p className="ru-source-line">

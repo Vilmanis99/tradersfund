@@ -325,8 +325,8 @@ export default function RussianWhatIsPropFirmPage() {
               <div className="ru-card-head"><h3>FundedNext</h3><span className="ru-score">{fundedNextProducts.length} продукта</span></div>
               <p className="ru-muted">
                 Stellar 2-Step, 1-Step, Lite и Instant различаются числом фаз, условием возврата взноса,
-                максимальной просадкой и первой датой выплаты. Для резидентов России официальные страницы содержат конфликт,
-            поэтому страница оплаты и поддержка проверяются до оплаты.
+                максимальной просадкой и первой датой выплаты. Резидентам России FundedNext недоступна
+            (подвал fundednext.com, по данным на 20.10.2026); в других странах страница оплаты и поддержка проверяются до оплаты.
               </p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link>

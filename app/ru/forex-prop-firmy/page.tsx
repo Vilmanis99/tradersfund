@@ -417,7 +417,7 @@ export default function RussianForexPropFirmsPage() {
             для своего профиля и программы. Русская версия сайта предназначена для русскоязычных
             трейдеров в разных странах; она не является обещанием доступности услуг из России.
           </p>
-          <p className="ru-source-line">По проверке от {fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt} официальные страницы FundedNext противоречат друг другу о доступе резидентов России.</p>
+          <p className="ru-source-line">Резидентам России FundedNext недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026).</p>
           <div className="ru-notice" data-russian-forex-country-conflict="help-six-terms-five" data-russian-forex-country-status={brightCountryCurrent ? 'dated' : 'recapture-required'}>
             <strong>{brightCountryCurrent ? 'Списки стран BrightFunded расходятся.' : 'В датированном снимке списки стран BrightFunded расходились.'}</strong>{' '}
             По записи от {brightCountry.sourceCapturedAt}{' '}

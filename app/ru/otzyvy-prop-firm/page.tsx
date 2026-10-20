@@ -287,7 +287,7 @@ export default function RussianPropFirmReviewsPage() {
             <div className="ru-notice" data-russian-country-boundary="reviews-not-access">
               <strong><AlertTriangle size={16} aria-hidden="true" /> Русский отзыв не доказывает доступность страны.</strong>{' '}
               Русскоязычный трейдер в Казахстане, Германии, Израиле, Грузии или России проходит разные проверки резидентства, гражданства, KYC и платежа.
-              У FundedNext есть {fundedNextAccess?.sourceUrls.length ?? 4} конфликтующих первичных маршрута по российским резидентам, поэтому до оплаты нужен письменный ответ поддержки; VPN и неверные данные использовать нельзя.
+              FundedNext резидентам России недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026); VPN и неверные данные использовать нельзя.
             </div>
           </div>
         </section>
