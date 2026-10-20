@@ -35,7 +35,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/otzyvy-prop-firm'
 const TITLE = 'Отзывы о проп-фирмах 2026: как проверить выплаты'
-const DESCRIPTION = 'Отзывы о проп-фирмах на русском: как проверить выплаты, блокировки, KYC и правила; сравнение FundedNext и BrightFunded с датами источников.'
+const DESCRIPTION = 'Отзывы о проп-фирмах на русском: как проверить выплаты, блокировки счёта, KYC и правила до оплаты. Сравнение BrightFunded и FundedNext с датами источников.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

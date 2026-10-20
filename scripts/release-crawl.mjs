@@ -803,7 +803,7 @@ const fundedNextInstantSourceUrl = getChallengesByFirm('fundednext')
 
 const russianExpectations = new Map([
   ['/ru', {
-    title: 'Проп-фирмы для русскоязычных трейдеров: цены и правила',
+    title: 'Проп-фирмы 2026: условия и цены для русскоязычных трейдеров',
     h1: 'Проп-фирмы и проп-компании 2026: сравнение условий',
     markers: [
       'data-russian-home-layout="focused"',
@@ -1203,7 +1203,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-fundingpips', {
-    title: 'FundingPips: отзывы, обзор 2026 и доступ из России',
+    title: 'FundingPips (Funding Pips): отзывы, обзор 2026, доступ из РФ',
     h1: 'FundingPips: отзывы и обзор 2026 — цены, правила, доступ из России',
     markers: [
       'data-russian-partner-review="fundingpips"',
@@ -1468,7 +1468,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-eratrade', {
-    title: 'Era Trade: обзор условий и выплат (2026)',
+    title: 'Era Trade: обзор 2026 — правила челленджа, сплит и выплаты',
     h1: 'Era Trade: обзор 2026 — правила, сплит и выплаты',
     markers: [
       'data-russian-local-review="era-trade"',
@@ -1484,7 +1484,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-kascapital', {
-    title: 'KasCapital: обзор условий и выплат (2026)',
+    title: 'KasCapital: обзор 2026 — выплаты, плечо и условия компании',
     h1: 'KasCapital: обзор 2026 — капитал, выплаты и правила',
     markers: [
       'data-russian-local-review="kascapital"',

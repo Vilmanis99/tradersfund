@@ -13,8 +13,8 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-kascapital'
 export const revalidate = 3600
-const TITLE = 'KasCapital: обзор условий и выплат (2026)'
-const DESCRIPTION = 'KasCapital на русском: заявленные 95% прибыли трейдеру, покупательная способность, понедельничные выплаты и проверка публичных условий.'
+const TITLE = 'KasCapital: обзор 2026 — выплаты, плечо и условия компании'
+const DESCRIPTION = 'KasCapital на русском: заявленные до 95% прибыли трейдеру, плечо до 100, выплаты по понедельникам от 10 000 ₽ и что проверить в договоре до регистрации.'
 const KAS_HOME = 'https://kascapital.io/'
 
 export const metadata: Metadata = {

@@ -10,8 +10,8 @@ import accessEvidence from '@/content/data/russian-fundingpips-access-evidence.j
 
 const PATH = '/ru/obzor-fundingpips'
 export const revalidate = 3600
-const TITLE = 'FundingPips: отзывы, обзор 2026 и доступ из России'
-const DESCRIPTION = 'FundingPips (Funding Pips): отзывы трейдеров, цены и правила 2026, промокод и статус доступа из России. Проверено 14.10.2026.'
+const TITLE = 'FundingPips (Funding Pips): отзывы, обзор 2026, доступ из РФ'
+const DESCRIPTION = 'FundingPips (Фандинг Пипс): отзывы и обзор 2026 — 1 Step, 2 Step и Zero, цены в USD, просадка, сплит и выплаты, промокод и статус доступа из России.'
 const RU_CHECKED = '14.10.2026'
 const TRUSTPILOT_URL = 'https://www.trustpilot.com/review/fundingpips.com'
 const TERMS_URL = 'https://fundingpips.com/terms-and-conditions'
