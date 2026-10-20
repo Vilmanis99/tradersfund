@@ -19,6 +19,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/chto-takoe-prop-firma'
 const TITLE = 'Что такое проп-фирма: как это работает в 2026 году'
@@ -329,10 +330,11 @@ export default function RussianWhatIsPropFirmPage() {
               </p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-definition-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-definition-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
                   Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
                 </RuGoLink>
               </div>
+              <RuFundedNextAccessCaveat />
             </article>
             <article className="ru-card">
               <div className="ru-card-head"><h3>BrightFunded</h3><span className="ru-score">{brightProducts.length} продукта</span></div>

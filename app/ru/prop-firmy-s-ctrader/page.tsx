@@ -20,6 +20,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import cTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/prop-firmy-s-ctrader'
 const TITLE = 'Проп-фирмы с cTrader 2026: цены, лимиты и правила cBot'
@@ -179,13 +180,14 @@ export default function RussianCTraderPropFirmsPage() {
             Подборка из 2 фирм не является полным каталогом и не отменяет проверку страны, личности и окончательных условий оплаты.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-hero-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-hero-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-ctrader-hero-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить BrightFunded
             </RuGoLink>
           </div>
+          <RuFundedNextAccessCaveat />
         </div>
       </section>
 
@@ -317,7 +319,7 @@ export default function RussianCTraderPropFirmsPage() {
               </p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
                   Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
                 </RuGoLink>
               </div>

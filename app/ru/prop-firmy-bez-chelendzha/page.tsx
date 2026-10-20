@@ -21,6 +21,7 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/prop-firmy-bez-chelendzha'
 const TITLE = 'Проп-фирмы без челленджа 2026: мгновенное финансирование'
@@ -413,10 +414,11 @@ export default function RussianInstantPropFirmsPage() {
             <div className="ru-actions">
               <Link href="/ru/fundednext-stellar-instant" className="btn-outline">Датированный разбор Stellar Instant</Link>
               <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
-              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-instant-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-instant-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
                 Проверить программы FundedNext <ArrowRight size={14} aria-hidden="true" />
               </RuGoLink>
             </div>
+            <RuFundedNextAccessCaveat />
           </div>
         </section>
 

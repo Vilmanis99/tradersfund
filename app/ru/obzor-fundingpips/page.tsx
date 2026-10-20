@@ -71,7 +71,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           <p>
             {'Кнопка FundingPips на странице помечена бейджем «Доступ для РФ не ясен»: если вы резидент России, до оплаты получите письменный ответ поддержки. '}
             Фирмы, которые на{' '}
-            {RU_CHECKED} Россию не ограничивают: FundedNext (CFD), BrightFunded, Crypto Fund Trader — таблица на странице{' '}
+            {RU_CHECKED} Россию не ограничивают: BrightFunded, Crypto Fund Trader (FundedNext с 20.10.2026 резидентам РФ недоступна) — таблица на странице{' '}
             <Link href="/ru/dlya-russkoyazychnykh-treyderov">«Проп-фирмы для россиян»</Link>. VPN и неверные данные не решают проблему, а создают новую на этапе KYC.
           </p>
         </div>

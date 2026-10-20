@@ -19,6 +19,7 @@ import instantEvidence from '@/content/data/russian-fundednext-instant-evidence.
 import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/obzor-fundednext'
 const TITLE = 'FundedNext проп: отзывы и обзор 2026, цены и правила'
@@ -115,7 +116,7 @@ function payoutLabel(product: Challenge) {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Доступен ли FundedNext резидентам России?',
-    a: 'Мы не можем подтвердить доступность. Официальная статья по CFD не включает Россию в список ограничений, но корпоративная страница FundedNext говорит, что компания не обслуживает резидентов России. Futures-продукты прямо запрещают покупку из России. До письменного подтверждения поддержки и успешной проверки профиля считать доступ доказанным нельзя.',
+    a: `${FUNDEDNEXT_RU_ACCESS_NOTE} Резидентам России мы рекомендуем BrightFunded.`,
   },
   {
     q: 'Какая программа FundedNext самая дешёвая?',
@@ -305,7 +306,7 @@ export default function RussianFundedNextReviewPage() {
                 <RuGoLink firm="fundednext"
                   href="/go/fundednext?from=ru-fundednext-review-summary"
                   rel="sponsored nofollow noopener"
-                  className="btn-primary btn-glow"
+                  className="btn-outline"
                 >
                   Открыть текущие планы <ArrowRight size={15} aria-hidden="true" />
                 </RuGoLink>
@@ -336,7 +337,7 @@ export default function RussianFundedNextReviewPage() {
                 <RuGoLink firm="fundednext"
                   href="/go/fundednext?from=ru-fundednext-review-free-trial"
                   rel="sponsored nofollow noopener"
-                  className="btn-primary"
+                  className="btn-outline"
                 >
                   Начать Free Trial FundedNext <ArrowRight size={15} aria-hidden="true" />
                 </RuGoLink>
@@ -450,10 +451,11 @@ export default function RussianFundedNextReviewPage() {
             Выплаты — банковским переводом, через Rise или в криптовалюте (USDT ERC20/TRC20, USDC).
           </p>
           <p>
-            Для трейдеров из России важна одна деталь: на 14.10.2026 Россия не названа в списке ограничений CFD-направления FundedNext,
-            а FundedNext Futures Россию ограничивает. Выбирайте CFD-программу и не используйте VPN — фирма называет ложные данные о
-            стране основанием для закрытия аккаунта. Сравнение с другими фирмами — <Link href="/ru/fundednext-vs-bright-funded">FundedNext или BrightFunded</Link>.
+            Для трейдеров из России главное — FundedNext резидентам РФ недоступна, и FundedNext Futures Россию тоже ограничивает. Не используйте VPN — фирма
+            называет ложные данные о стране основанием для закрытия аккаунта. Резидентам России мы рекомендуем BrightFunded — см.{' '}
+            <Link href="/ru/fundednext-vs-bright-funded">FundedNext или BrightFunded</Link>.
           </p>
+          <RuFundedNextAccessCaveat />
         </div>
       </section>
 
@@ -745,7 +747,7 @@ export default function RussianFundedNextReviewPage() {
               <RuGoLink firm="fundednext"
                 href="/go/fundednext?from=ru-fundednext-review-verdict"
                 rel="sponsored nofollow noopener"
-                className="btn-primary btn-glow"
+                className="btn-outline"
               >
                 Проверить страну и условия на FundedNext <ArrowRight size={15} aria-hidden="true" />
               </RuGoLink>

@@ -27,6 +27,7 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/vyplaty-prop-firm'
 const TITLE = 'Выплаты проп-фирм 2026: FundedNext и BrightFunded'
@@ -270,7 +271,7 @@ export default function RussianPayoutsPage() {
             Комиссия не меняет цену пользователя и не превращает метод выплаты в гарантию доступности.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-payouts-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-payouts-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-payouts-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
@@ -278,6 +279,7 @@ export default function RussianPayoutsPage() {
             </RuGoLink>
             <Link href="#sravnenie" className="btn-outline">Сначала сравнить выплаты</Link>
           </div>
+          <RuFundedNextAccessCaveat />
           <p className="ru-source-line">Самая ранняя проверка процесса выплат: {oldestPayoutCapture}; последняя проверка продуктовых данных: {latestCapture}. Условия проверяются повторно перед оплатой и запросом выплаты.</p>
         </div>
       </section>

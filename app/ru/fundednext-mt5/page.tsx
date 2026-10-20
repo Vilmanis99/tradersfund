@@ -24,6 +24,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/fundednext-mt5'
 const TITLE = 'FundedNext MT5: скачать, войти и проверить правила EA'
@@ -200,12 +201,13 @@ export default function RussianFundedNextMt5Page() {
               <div className="ru-stat"><strong>{sourceUrls.length}</strong><span>первичных страниц</span></div>
             </div>
             <div className="ru-actions" data-russian-affiliate-disclosure="fundednext-mt5-hero">
-              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-mt5-hero" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-mt5-hero" rel="sponsored nofollow noopener" className="btn-outline">
                 Проверить FundedNext MT5 <ArrowRight size={15} aria-hidden="true" />
               </RuGoLink>
               <a href="#login" className="btn-outline">Инструкция входа</a>
               <a href="#ea-rules" className="btn-outline">Правила EA</a>
             </div>
+            <RuFundedNextAccessCaveat />
             <p className="ru-source-line">Партнёрская ссылка может принести нам комиссию. Она не подтверждает доступность MT5, допуск по стране или разрешение конкретного советника.</p>
           </div>
         </section>
@@ -350,7 +352,7 @@ export default function RussianFundedNextMt5Page() {
               <Link href="/ru/fundednext-stellar-instant" className="btn-outline">Правила Stellar Instant</Link>
               <Link href="/ru/obzor-fundednext#products" className="btn-outline">Полный обзор программ</Link>
               <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Сравнить цены и правила программ</Link>
-              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-mt5-products" rel="sponsored nofollow noopener" className="btn-primary">
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-mt5-products" rel="sponsored nofollow noopener" className="btn-outline">
                 Проверить MT5 при оформлении <ArrowRight size={15} aria-hidden="true" />
               </RuGoLink>
             </div>
@@ -377,7 +379,7 @@ export default function RussianFundedNextMt5Page() {
               {currentDeal ? <> Предложение проверено {currentDeal.verifiedOn}.</> : null}
             </p>
             <div className="ru-actions">
-              {currentDeal ? <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-mt5-free-trial" rel="sponsored nofollow noopener" className="btn-primary">Начать Free Trial <ArrowRight size={15} aria-hidden="true" /></RuGoLink> : null}
+              {currentDeal ? <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-mt5-free-trial" rel="sponsored nofollow noopener" className="btn-outline">Начать Free Trial <ArrowRight size={15} aria-hidden="true" /></RuGoLink> : null}
               <Link href={currentDeal ? '/ru/promokody-prop-firm#fundednext-promokod' : '/ru/promokody-prop-firm'} className="btn-outline">
                 {currentDeal ? 'Как получить персональный купон' : 'Проверить текущие предложения'}
               </Link>
@@ -502,7 +504,7 @@ export default function RussianFundedNextMt5Page() {
                 <h3>FundedNext: проверьте условия своей программы</h3>
                 <p>Для покупки нужны три отдельных ответа: доступен ли ваш профиль, есть ли выбранная программа на MT5 и разрешён ли нужный способ торговли. Начните с обзора программ и официальных инструкций выше.</p>
                 <div className="ru-actions" data-russian-affiliate-disclosure="fundednext-mt5-verdict">
-                  <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-mt5-verdict" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
+                  <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-mt5-verdict" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
                   <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор</Link>
                 </div>
               </article>

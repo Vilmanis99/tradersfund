@@ -8,6 +8,7 @@ import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/funded-account'
 const UPDATED = '14.10.2026'
@@ -54,7 +55,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Где получить финансируемый аккаунт из России?',
-    a: `На ${UPDATED} Россию не ограничивают BrightFunded, FundedNext (только CFD) и Crypto Fund Trader (на Match-Trader). FTMO, Topstep, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Lucid и Tradeify Россию ограничивают; у FundingPips доступ для РФ не ясен.`,
+    a: `На ${UPDATED} Россию не ограничивают BrightFunded и Crypto Fund Trader (на Match-Trader); FundedNext резидентам России недоступна: так сказано в подвале её сайта, хотя список в условиях (п. 5.3, CFD) Россию не называет (по данным на 20.10.2026). FTMO, Topstep, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Lucid и Tradeify Россию ограничивают; у FundingPips доступ для РФ не ясен.`,
   },
   {
     q: 'Можно ли потерять funded account?',
@@ -267,14 +268,15 @@ export default function RussianFundedAccountPage() {
         <div className="ru-shell">
           <h2>Где получить funded account из России</h2>
           <p className="ru-muted">
-            На {UPDATED} Россию не ограничивают три фирмы ниже. У FundedNext выбирайте CFD-программу: направление Futures
-            Россию ограничивает. Полная таблица — <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для россиян</Link>.
+            На {UPDATED} Россию не ограничивают BrightFunded и Crypto Fund Trader. FundedNext резидентам России недоступна (см. ниже),
+            направление Futures Россию тоже ограничивает. Полная таблица — <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для россиян</Link>.
           </p>
           <div className="ru-actions">
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-funded-account-russia-1" rel={goLinkRel('bright-funded')} className="btn-primary">BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-funded-account-russia-2" rel={goLinkRel('fundednext')} className="btn-primary">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-funded-account-russia-2" rel={goLinkRel('fundednext')} className="btn-outline">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
             <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-funded-account-russia-3" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
           </div>
+          <RuFundedNextAccessCaveat />
           <div className="ru-actions" data-ru-cta-mode="all-firms-secondary">
             {[['fundingpips', 'FundingPips'], ['ftmo', 'FTMO'], ['topstep', 'Topstep'], ['e8-markets', 'E8 Markets'], ['fxify', 'FXIFY'], ['maven', 'Maven'], ['alpha-capital', 'Alpha Capital'], ['apex-trader-funding', 'Apex'], ['lucid-trading', 'Lucid'], ['tradeify', 'Tradeify']].map(([slug, name], i) => (
               <RuGoLink key={slug} firm={slug} href={`/go/${slug}?from=ru-funded-account-other-${i + 1}`} rel={goLinkRel(slug)} className="btn-outline">{name}</RuGoLink>

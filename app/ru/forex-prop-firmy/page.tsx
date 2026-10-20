@@ -12,6 +12,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightCountryEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/forex-prop-firmy'
 const TITLE = 'Форекс проп-фирмы: плечо, цены и правила программ'
@@ -273,8 +274,9 @@ export default function RussianForexPropFirmsPage() {
               <p className="ru-muted">Сравните оценочную программу с отдельной моделью Instant. Доступ к терминалу и разрешение на автоматизацию проверяются отдельно.</p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               </div>
+              <RuFundedNextAccessCaveat />
             </article>
             <article className="ru-card" data-russian-forex-featured-partner="bright-funded">
               <h3>BrightFunded</h3>
