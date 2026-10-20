@@ -11679,10 +11679,10 @@ function checkRussianAcquisitionPilot() {
         rows.push('Era Trade operator-claim fixtures are missing from Russian evidence')
       }
       if (
-        localSignals.get('PropLive')?.claims?.traders !== 13_722
+        localSignals.get('PropLive')?.claims?.traders !== 14_993
         || !localSignals.get('PropLive')?.notes?.some(note => note.includes('10,700'))
       ) {
-        rows.push('PropLive 13,722/10,700 first-party conflict is not preserved')
+        rows.push('PropLive 14,993/10,700 first-party conflict is not preserved')
       }
       if (
         localSignals.get('KasCapital')?.claims?.maximumProfitSharePct !== 95
