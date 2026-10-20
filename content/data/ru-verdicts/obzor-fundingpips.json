@@ -1,0 +1,52 @@
+{
+  "route": "/ru/obzor-fundingpips",
+  "type": "review",
+  "firm": "FundingPips",
+  "dataAsOf": "2026-10-20",
+  "sources": [
+    "content/data/firms.json#FundingPips",
+    "content/data/challenges/fundingpips.json (sourceCapturedAt 2026-10-20; Zero 2026-10-19)",
+    "app/ru/obzor-fundingpips reward routes per help centre 20.10.2026 (branch content/ru-fix-fundingpips-days-2026-10-20 @674bef3)",
+    "content/data/challenges/_captures/fundingpips-2026-10-20.json → refundTerms (Prop Firm Tracker, 20.10.2026: справка Get Started и Reward Methods vs Terms «ALL PAYMENTS ARE FINAL»)"
+  ],
+  "verdict": "FundingPips — пять моделей с разными правилами: 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard и Zero без оценки. Источники FundingPips о возврате взноса расходятся: по справке взнос за 2 Step Standard возвращается с четвёртым вознаграждением на мастер-счёте, а в условиях сказано «ALL PAYMENTS ARE FINAL»; доля зависит от модели и маршрута выплаты (по данным на 20.10.2026).",
+  "best": [
+    "вам нужны еженедельные выплаты на небольшом счёте: 2 Step Pro платит еженедельно, первый запрос — с 7-го дня, цели 6% + 6%",
+    "вы хотите крупный лимит: FundingPips указывает максимальную аллокацию $2 000 000",
+    "вы держите сделки через ночь: это разрешено во всех моделях"
+  ],
+  "avoid": [
+    "вы держите позиции на выходных: FundingPips ограничивает это во всех моделях",
+    "вы рассчитываете вернуть взнос: у 1 Step Flex, 2 Step Flex, 2 Step Pro и Zero он невозвратный",
+    "вы делаете прибыль в несколько крупных дней: правило стабильности — 35% в 2 Step Standard и 15% в Zero"
+  ],
+  "russiaAccess": {
+    "statusFrom": "russiaStatus",
+    "firm": "FundingPips",
+    "alternatives": [
+      "BrightFunded"
+    ],
+    "byStatus": {
+      "available": {
+        "list": "best",
+        "text": "вы резидент РФ: статус доступа {firm} — «{badge}» (по нашей последней проверке); страну, KYC и способ оплаты всё равно сверьте на официальном сайте до покупки"
+      },
+      "restricted": {
+        "list": "avoid",
+        "text": "вы резидент РФ: статус {firm} — «{badge}», регистрация и выплата под риском отказа.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+      },
+      "unclear": {
+        "list": "avoid",
+        "text": "вы резидент РФ и не готовы рисковать взносом: статус {firm} — «{badge}», официальные источники не дают однозначного ответа.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+      },
+      "unverified": {
+        "list": "avoid",
+        "text": "вы резидент РФ и хотите подтверждённый доступ: статус {firm} — «{badge}»; запросите у оператора письменное подтверждение до оплаты",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+      }
+    }
+  },
+  "firmInFirmsJson": true
+}

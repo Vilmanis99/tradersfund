@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
@@ -19,6 +20,7 @@ import { getDealsByFirm } from '@/lib/deals'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-bright-funded'
@@ -204,7 +206,7 @@ export default function RussianBrightFundedReviewPage() {
       <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div className="ru-shell"><RussianDataFreshnessNotice firmSlugs={['bright-funded']} /><RussianEvidenceFreshnessNotice evidence={evidenceSources.map(source => ({ label: source.labelRu, capturedAt: source.sourceCapturedAt }))} /></div>
         <div className="ru-shell" data-russian-partner-review="bright-funded">
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {latestCapture}</div>
@@ -214,19 +216,20 @@ export default function RussianBrightFundedReviewPage() {
             <span>Автор: Edris Derakhshi</span>
             <span>Обновлено: {lastModified}</span>
           </div>
-          <div className="ru-stats">
+        </div>
+      </section>
+
+      <article className="ru-review-article ru-p1-article" data-russian-bright-article="long-form">
+        <RuReviewVerdictBox route={PATH} campaign="bright-funded-review" sourcesHref="#sources" terms={<RuCapturedTerms><div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>программы со свежими данными</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>ценовых уровней</span></div>
             <div className="ru-stat"><strong>{minPrice == null ? 'Нет свежих цен' : `${eur(minPrice)}–${eur(maxPrice)}`}</strong><span>базовая стоимость участия</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
-          </div>
-        </div>
-      </section>
-
-      <article className="ru-review-article" data-russian-bright-article="long-form">
-        <section className="ru-section ru-review-toc-section">
+          </div></RuCapturedTerms>} />
+        <section className="ru-section ru-review-toc-section ru-p1-rail">
           <div className="ru-shell">
-            <nav className="toc ru-review-toc" aria-label="Содержание обзора BrightFunded">
+            <RuArticleToc>
+<nav className="toc ru-review-toc" aria-label="Содержание обзора BrightFunded">
               <div className="toc-title">Содержание обзора</div>
               <ol>
                 <li><a href="#verdict">Краткий вывод</a></li>
@@ -245,6 +248,7 @@ export default function RussianBrightFundedReviewPage() {
                 <li><a href="#faq">Частые вопросы</a></li>
               </ol>
             </nav>
+</RuArticleToc>
           </div>
         </section>
 
@@ -571,6 +575,7 @@ export default function RussianBrightFundedReviewPage() {
             <RussianFaq items={pageFaqs} />
           </div>
         </section>
+        <RuRelatedBlock path={PATH} />
       </article>
     </>
   )

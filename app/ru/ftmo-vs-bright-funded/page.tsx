@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
+import { RuComparePickVerdict } from '@/components/RuVerdict'
 import type { ReactNode } from 'react'
 import Link from '@/components/SafeLink'
 import { ArrowRight, Scale, ShieldAlert, ShieldCheck } from 'lucide-react'
@@ -260,7 +262,7 @@ export default function RussianFtmoVsBrightFundedPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       {complete && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div
           className="ru-shell"
           data-russian-partner-comparison="ftmo-bright-funded"
@@ -289,6 +291,8 @@ export default function RussianFtmoVsBrightFundedPage() {
           </div>
         </div>
       </section>
+
+      <RuComparePickVerdict route={PATH} campaign="ftmo-vs-bright" />
 
       <section className="ru-section">
         <div className="ru-shell">
@@ -491,6 +495,7 @@ export default function RussianFtmoVsBrightFundedPage() {
           <RussianFaq items={faqs} />
         </div>
       </section>
+      <RuRelatedBlock path={PATH} />
     </>
   )
 }

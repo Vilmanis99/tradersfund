@@ -10,6 +10,7 @@
     "audit": "node scripts/audit-reviews.mjs",
     "audit:geo": "node scripts/audit-geo.mjs",
     "audit:alternatives": "node scripts/audit-firm-alternatives.mjs",
+    "audit:ru-links": "node scripts/audit-ru-links.mjs",
     "crawl:release": "node scripts/release-crawl.mjs",
     "crawl:release:strict": "node scripts/release-crawl.mjs --strict-lengths",
     "preview:start": "node scripts/preview-server.mjs start",
@@ -41,7 +42,8 @@
     "check:home-release": "node scripts/check-english-home.mjs",
     "check:light-release": "node scripts/check-light-release.mjs",
     "check:duplicates": "node scripts/check-duplicates.mjs",
-    "test:russian-ranking-pin": "node scripts/test-russian-ranking-pin.mjs"
+    "test:russian-ranking-pin": "node scripts/test-russian-ranking-pin.mjs",
+    "test:ru-related-links": "node scripts/test-ru-related-links.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

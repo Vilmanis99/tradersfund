@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { minimumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
@@ -27,6 +28,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
@@ -177,7 +179,7 @@ export default function RussianFtmoReviewPage() {
       <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div className="ru-shell" data-russian-ftmo-review="search-to-decision">
           <RussianDataFreshnessNotice firmSlugs={['ftmo']} />
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Условия проверены {latestCapture}</div>
@@ -192,19 +194,20 @@ export default function RussianFtmoReviewPage() {
             <span>Обновлено: {russianRouteDateModified(PATH, latestCapture)}</span>
             <span>13 минут чтения</span>
           </div>
-          <div className="ru-stats">
+        </div>
+      </section>
+
+      <article className="ru-review-article ru-p1-article" data-russian-ftmo-article="long-form-source-first">
+        <RuReviewVerdictBox route={PATH} campaign="ftmo-review" sourcesHref="#official" terms={<RuCapturedTerms><div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>текущие программы</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>цен в исходной валюте</span></div>
             <div className="ru-stat"><strong>{eur(Math.min(...pricedTiers.map(item => item.price)))}</strong><span>минимальная цена</span></div>
             <div className="ru-stat"><strong>{firm?.affiliateUrl ? 'да' : 'нет'}</strong><span>партнёрская связь с FTMO</span></div>
-          </div>
-        </div>
-      </section>
-
-      <article className="ru-review-article" data-russian-ftmo-article="long-form-source-first">
-        <section className="ru-section ru-review-toc-section">
+          </div></RuCapturedTerms>} />
+        <section className="ru-section ru-review-toc-section ru-p1-rail">
           <div className="ru-shell">
-            <nav className="toc ru-review-toc" aria-label="Содержание обзора FTMO">
+            <RuArticleToc>
+<nav className="toc ru-review-toc" aria-label="Содержание обзора FTMO">
               <div className="toc-title">Содержание обзора</div>
               <ol>
                 <li><a href="#country">Страна и русскоязычная аудитория</a></li>
@@ -220,6 +223,7 @@ export default function RussianFtmoReviewPage() {
                 <li><a href="#faq">Частые вопросы</a></li>
               </ol>
             </nav>
+</RuArticleToc>
           </div>
         </section>
 
@@ -513,6 +517,7 @@ export default function RussianFtmoReviewPage() {
             <RussianFaq items={faqs} />
           </div>
         </section>
+        <RuRelatedBlock path={PATH} />
       </article>
     </>
   )

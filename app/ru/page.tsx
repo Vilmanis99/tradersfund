@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuAllReviews from '@/components/RuAllReviews'
 import Link from '@/components/SafeLink'
 import { ArrowRight, Globe2 } from 'lucide-react'
 import type { RussianFaqItem } from '@/components/RussianFaq'
@@ -246,6 +247,8 @@ export default function RussianHomePage() {
           ]}
         />
       </div>
+
+      <RuAllReviews marker="ru-home" sectionClassName="th-section ru-all-reviews-home" wrapClassName="th-wrap" />
 
       <HomeFaq id="ru-home-faq-heading" title="Частые вопросы" items={faqs} />
     </div>
