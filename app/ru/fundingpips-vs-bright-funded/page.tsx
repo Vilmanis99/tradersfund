@@ -25,6 +25,10 @@ const CHECKED = '20.10.2026'
 const TRACKER_FP = '20.10.2026'
 // Prop Firm Tracker, /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md (BrightFunded checkout and payout cycle).
 const TRACKER_BRIGHT = '19.10.2026'
+// Prop Firm Tracker recapture of FundingPips Reward Methods (article last edited 28.09.2026):
+// /workspace/tradersfundhub/evidence/fundingpips-reward-methods-2026-10-20.md; data branch data/fundingpips-reward-methods-2026-10-20.
+const FP_REWARD_METHODS = '20.10.2026'
+const FP_PAYOUT_COUNTRIES = 'Бельгия, Франция, Германия, Италия, Нидерланды, Испания, Бразилия, Колумбия, Мексика, Нигерия, ЮАР, Великобритания, Турция и Индонезия'
 const TRACKER_CFT_ACCESS = '14.10.2026'
 const FN_ACCESS = '20.10.2026'
 
@@ -242,7 +246,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
     { field: 'Минимум торговых дней', bf: bfRows.map(row => `${short(row.product)}: ${daysLabel(row.product)}`).join('; ') || '—', fp: fpRows.map(row => `${short(row.product)}: ${daysLabel(row.product)}`).join('; ') || '—' },
     { field: 'Доля вознаграждения', bf: '80% базово; 90% — платное дополнение; 100% — через масштабирование', fp: 'по модели: 1 Step Flex и 2 Step Pro — 80%; 2 Step Flex — 80% или 95%; 2 Step Standard — 60% или 80%; у всех, кроме Zero, — 100% по запросу при условиях; Zero — 95%' },
     { field: 'Первая выплата', bf: 'через 30 дн. после первой сделки на funded-счёте, затем раз в 14 дней (официальное противоречие, см. ниже)', fp: fpRows.map(row => `${short(row.product)}: ${payoutLabel(row.product)}`).join('; ') || '—' },
-    { field: 'Способы выплаты', bf: `банковский перевод (в EUR), USDC (ERC-20) (по данным на ${CHECKED})`, fp: 'в этой проверке не подтверждены — уточняйте у фирмы' },
+    { field: 'Способы выплаты', bf: `банковский перевод (в EUR), USDC (ERC-20) (по данным на ${CHECKED})`, fp: `карта (Visa/Mastercard; Pay to Card — только в 14 странах), USDT/USDC только в сети ERC-20, Rise, банковский перевод (только в тех же 14 странах); минимум 1% мастер-счёта, для Rise и банка — $500 (по данным на ${FP_REWARD_METHODS})` },
     { field: 'Trustpilot', bf: bfTrustpilot, fp: fpTrustpilot },
   ]
   const crumbs = breadcrumbSchema([
@@ -513,10 +517,20 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             <strong>FundingPips.</strong> Единой доли нет: 1 Step Flex — 80% раз в две недели; 2 Step Flex — 80% с одним торговым днём или 95% с тремя
             прибыльными днями; 2 Step Pro — 80% еженедельно; 2 Step Standard — 60% еженедельно или 80% раз в две недели; Zero — 95% раз в две недели.
             Кроме Zero, у каждой модели есть выплата 100% по запросу: нужны правило стабильности 35% и прибыльные дни (по данным на 20.10.2026). Масштабирование
-            до счёта Prime (на главной — «до $2M») — только по приглашению FundingPips, с долей 80% и своими лимитами (по данным на 20.10.2026). Способы выплаты
-            FundingPips мы в этой проверке не подтверждали.
+            до счёта Prime (на главной — «до $2M») — только по приглашению FundingPips, с долей 80% и своими лимитами (по данным на 20.10.2026).
           </p>
-          <p className="ru-source-line">Источники: <a href={SRC.brightReward} target="_blank" rel="noopener noreferrer">BrightFunded: reward split</a>; <a href={SRC.brightPayouts} target="_blank" rel="noopener noreferrer">BrightFunded: how can I get paid</a>. Сравнение выплат у других фирм — в разделе <Link href="/ru/vyplaty-prop-firm">выплаты проп-фирм</Link>.</p>
+          <p data-russian-fundingpips-payout-methods="reward-methods">
+            <strong>Способы выплаты FundingPips</strong> (по данным на {FP_REWARD_METHODS}): карта Visa/Mastercard (Pay to Card — только в отдельных странах),
+            криптовалюта USDT или USDC только в сети ERC-20, Rise и банковский перевод. Минимум — 1% размера мастер-счёта для карты и криптовалюты,
+            $500 для Rise и банковского перевода. Заявку обрабатывают 1–3 рабочих дня, ещё 1–2 рабочих дня деньги идут до кошелька или счёта;
+            обычная выплата на карту — как правило, 1–5 рабочих дней после одобрения. С крипто-выплат удерживаются комиссии сервиса и сети,
+            но размер комиссии не опубликован. Если Rise в вашей стране не поддерживается, выплата автоматически уходит в криптовалюту.
+          </p>
+          <p className="ru-notice" data-russian-fundingpips-payout-countries="pay-to-card-bank-14">
+            Pay to Card и банковский перевод FundingPips перечисляет только для 14 стран: {FP_PAYOUT_COUNTRIES}.
+            России, Беларуси, Украины и Казахстана в этом списке нет (по данным на {FP_REWARD_METHODS}).
+          </p>
+          <p className="ru-source-line">Источники: <a href={SRC.brightReward} target="_blank" rel="noopener noreferrer">BrightFunded: reward split</a>; <a href={SRC.brightPayouts} target="_blank" rel="noopener noreferrer">BrightFunded: how can I get paid</a>; <a href={SRC.fpRewardMethods} target="_blank" rel="noopener noreferrer">FundingPips: Reward Methods</a> ({FP_REWARD_METHODS}). Сравнение выплат у других фирм — в разделе <Link href="/ru/vyplaty-prop-firm">выплаты проп-фирм</Link>.</p>
         </div>
       </section>
 
@@ -620,6 +634,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             <li><a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограничения по странам (справка)</a> — {CHECKED}.</li>
             <li><a href={SRC.brightTerms} target="_blank" rel="noopener noreferrer">BrightFunded: условия, п. 2</a> — {CHECKED}.</li>
             <li><a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips: Get Started (страны, оплата, HELLO)</a> — {CHECKED}.</li>
+            <li><a href={SRC.fpRewardMethods} target="_blank" rel="noopener noreferrer">FundingPips: Reward Methods (способы, минимумы и сроки выплат, страны Pay to Card и банковского перевода)</a> — Prop Firm Tracker, {FP_REWARD_METHODS}.</li>
             <li><a href={SRC.fpStandard} target="_blank" rel="noopener noreferrer">FundingPips: 2 Step Standard (циклы выплат)</a>, <a href={SRC.fpConduct} target="_blank" rel="noopener noreferrer">правила советников и копирования</a> и <a href={SRC.fpPrime} target="_blank" rel="noopener noreferrer">счёт Prime</a> — Prop Firm Tracker, {TRACKER_FP}.</li>
           </ul>
           <p>Мы не тестировали регистрацию, KYC и оплату с российскими документами и картами. Если фирма меняет правила, сравнение нужно повторить перед оплатой.</p>
