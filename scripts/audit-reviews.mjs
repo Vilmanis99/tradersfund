@@ -12214,7 +12214,7 @@ function checkRussianAcquisitionPilot() {
     if (!reachableRussianRoutes.has(route)) rows.push(route + ': not reachable through Russian page links')
   }
   for (const token of [
-    "const TITLE = 'Проп-фирмы для русскоязычных трейдеров: цены и правила'",
+    "const TITLE = 'Проп-фирмы 2026: условия и цены для русскоязычных трейдеров'",
     'data-russian-home-layout="focused"',
     'data-russian-home-diaspora-entry="trust"',
     'href="/ru/dlya-russkoyazychnykh-treyderov"',
