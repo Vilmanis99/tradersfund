@@ -1,0 +1,72 @@
+{
+  "_note": "Public corrections log rendered at /corrections. Add an entry only for a real error in something TFH published, with the date the correction was recorded, the affected pages, the firm's own source and the commit that shipped the fix. Never add an entry for an ordinary price or rule change by a firm; those belong in challenge-watch.json.",
+  "entries": [
+    {
+      "id": "alpha-capital-direct-2500-price-2026-10-06",
+      "date": "2026-10-06",
+      "firmSlug": "alpha-capital",
+      "pages": [
+        { "path": "/blog/alpha-capital-review", "label": "Alpha Capital review" },
+        { "path": "/prop-firm-challenges", "label": "Global challenge comparison" }
+      ],
+      "wasWrong": "The Alpha Direct $2,500 account was listed at $20.",
+      "correction": "The October 6 recapture of Alpha Capital's own pricing pages lists Alpha Direct $2,500 at $30. The product row and every table built from it now use $30.",
+      "sources": [
+        "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+        "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update"
+      ],
+      "commit": "58f1e7b",
+      "watchId": "alpha-capital-pricing-refresh-2026-09-14"
+    },
+    {
+      "id": "topstep-payout-timing-and-rules-2026-09-08",
+      "date": "2026-09-08",
+      "firmSlug": "topstep",
+      "pages": [
+        { "path": "/blog/topstep-review", "label": "Topstep review" },
+        { "path": "/prop-firm-challenges", "label": "Global challenge comparison" }
+      ],
+      "wasWrong": "We described Topstep payouts as a single three-calendar-day transfer and gave the No Activation Fee path blanket automation permissions.",
+      "correction": "XFA payout requests need either three trading days with 40% consistency or five $150 winning days, and approval and transfer take extra time. Both pricing paths have conditional automation and copying rules. We also added the published dollar loss limit for each tier, and the fee-recovery tables now use those limits.",
+      "sources": [
+        "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+        "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
+        "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit"
+      ],
+      "commit": "96017ff",
+      "watchId": "topstep-request-timing-and-rule-correction-2026-09-08"
+    },
+    {
+      "id": "crypto-fund-trader-reward-share-2026-09-08",
+      "date": "2026-09-08",
+      "firmSlug": "crypto-fund-trader",
+      "pages": [
+        { "path": "/blog/crypto-fund-trader-review", "label": "Crypto Fund Trader review" },
+        { "path": "/prop-firm-challenges", "label": "Global challenge comparison" }
+      ],
+      "wasWrong": "We gave Crypto Fund Trader a blanket 80% reward share and bi-weekly payouts across all programmes.",
+      "correction": "The three selected Instant starting tiers show a 50% reward share, while the 1-Phase and 2-Phase programmes show 80%. General reward requests need 15 traded days or 30 calendar days. The Instant fee-recovery model was regenerated with the 50% share.",
+      "sources": [
+        "https://cryptofundtrader.com/",
+        "https://cryptofundtrader.com/faq/"
+      ],
+      "commit": "96017ff",
+      "watchId": "crypto-fund-trader-reward-model-correction-2026-09-08"
+    },
+    {
+      "id": "fundednext-stellar-1-step-leverage-2026-09-08",
+      "date": "2026-09-08",
+      "firmSlug": "fundednext",
+      "pages": [
+        { "path": "/ru/forex-prop-firmy", "label": "Форекс проп-фирмы (RU)" }
+      ],
+      "wasWrong": "Our August 28 Russian forex capture grouped FundedNext Stellar 1-Step with the 1:100 forex evaluations.",
+      "correction": "FundedNext's official leverage article shows 1:30 for Stellar 1-Step, in both the Challenge and the FundedNext Account.",
+      "sources": [
+        "https://help.fundednext.com/en/articles/8019669-what-is-the-leverage-of-the-trading-account"
+      ],
+      "commit": "96017ff",
+      "watchId": "fundednext-stellar-one-step-forex-leverage-correction-2026-09-08"
+    }
+  ]
+}

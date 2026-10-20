@@ -59,6 +59,8 @@ export default function Footer({
     { title: 'О сайте', links: [
       { label: 'О нас', href: '/about' },
       { label: 'Как оцениваем фирмы', href: '/methodology' },
+      { label: 'Как мы зарабатываем', href: '/how-we-make-money' },
+      { label: 'Исправления', href: '/corrections' },
       { label: 'Авторы', href: '/authors' },
       { label: 'Контакты', href: '/contact' },
     ] },
@@ -94,6 +96,8 @@ export default function Footer({
     { title: 'Company', links: [
       { label: 'About us', href: '/about' },
       { label: 'How we score firms', href: '/methodology' },
+      { label: 'How we make money', href: '/how-we-make-money' },
+      { label: 'Corrections', href: '/corrections' },
       { label: 'Authors', href: '/authors' },
       { label: 'Contact', href: '/contact' },
     ] },

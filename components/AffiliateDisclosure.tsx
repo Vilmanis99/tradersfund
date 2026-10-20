@@ -45,8 +45,8 @@ export default function AffiliateDisclosure({
           affiliate tracking. Our reviews remain independent.{' '}
         </>
       )}
-      <Link href="/disclaimers" style={{ color: 'var(--accent-light)', textDecoration: 'underline' }}>
-        Learn more
+      <Link href="/how-we-make-money" style={{ color: 'var(--accent-light)', textDecoration: 'underline' }}>
+        How we make money
       </Link>.
     </p>
   )
