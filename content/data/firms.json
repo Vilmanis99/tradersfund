@@ -3211,6 +3211,10 @@
       "Ghana",
       "Haiti"
     ],
+    "countriesRestrictedSourceUrl": "https://fxify.com/faqs/all-faqs/what-countries-are-accepted/",
+    "countriesRestrictedQuote": "The following countries are prohibited from trading with FXIFY™: Zimbabwe, Iran, Iraq, North Korea, Somalia, Vietnam, Belarus, Burundi, Central African Republic, Ivory Coast, Liberia, Libya, Sudan, Cuba, Syria, Afghanistan, Yemen, Palestine, Myanmar, Nicaragua, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Papua New Guinea, South Sudan, Vanuatu, Venezuela, Algeria, Russia, Kenya, Ghana, and Haiti. Please note that this list may change due to political situations and internal policies.",
+    "countriesRestrictedCapturedAt": "2026-10-20",
+    "countriesRestrictedNote": "Rechecked 2026-10-20 from a US IP. The list is the union of two current official FXIFY lists, and Haiti stays. (1) The FAQ \"What Countries are not accepted?\" (schema dateModified 2026-02-12, live 2026-10-20) names 35 countries including Haiti, but not the United States. (2) The site-wide footer, live on every fxify.com page incl. FAQs, Terms of Use (last updated March 2025) and the client agreement, reads \"Restricted Jurisdictions: We do not establish accounts to residents of certain jurisdictions including the United States, Zimbabwe, ... Russia, Belarus, Kenya and Ghana\". That is 35 entries including the United States, but not Haiti. The footer may be the US-region variant, because the site has USA/UK/EU/Canada/AU switches; not verified from a non-US IP. Haiti is also missing from the checkout country selector at https://trader.fxify.com/purchasechallenge (read 2026-10-20), along with every other FAQ-listed country, which supports the FAQ. FXIFY General Terms and Conditions (dated September 29, 2026), clause 1.4, defer to \"countries determined as such by the Provider and published on the Website\". History: Haiti was added 2026-10-17 per the FAQ; footer-only readers count 35 without it.",
     "ratings": {
       "conditions": null,
       "support": null,
