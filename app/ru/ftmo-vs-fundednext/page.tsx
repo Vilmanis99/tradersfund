@@ -41,6 +41,7 @@ const SRC = {
   fnPayments: 'https://help.fundednext.com/en/articles/8020089-what-are-the-available-payment-methods',
   fnCard: 'https://help.fundednext.com/en/articles/13990618-how-to-complete-a-card-payment-at-fundednext-cfds',
   fnWithdraw: 'https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits',
+  fnRewardSchedule: 'https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward',
   fnNews: 'https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext',
   fnPlatforms: 'https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext',
   fnTwoStep: 'https://fundednext.com/cfds/stellar-2-step',
@@ -152,7 +153,11 @@ function splitLabel(product: Challenge) {
   return validPrice(product.profitSplitPct) && product.profitSplitPct <= 100 ? percent(product.profitSplitPct) : 'не подтверждено'
 }
 
+/** Official help article re-read 2026-10-20 (Tracker data/daily-check-2026-10-20): the 10-business-day cycle applies to accounts bought or reset on/after 12 Oct 2026; older accounts keep 21 days first, then 14. */
+const STELLAR_LITE_PAYOUT = 'для счетов, купленных или сброшенных 12.10.2026 и позже, — первый запрос через 10 рабочих дней, далее каждые 10 рабочих дней; для более ранних счетов — через 21 день, далее каждые 14 дней (по данным на 20.10.2026)'
+
 function payoutLabel(product: Challenge) {
+  if (product.firmSlug === 'fundednext' && product.productSlug === 'stellar-lite' && product.payoutFirstDays === 10) return STELLAR_LITE_PAYOUT
   if (product.firmSlug === 'ftmo') {
     // Tracker 19.10.2026: first claim from day 14 after the first trade; later cadence is not public, so the stored "on-demand" is not shown.
     return product.payoutFirstDays === 14
@@ -237,7 +242,7 @@ export default function RussianFtmoVsFundedNextPage() {
     { field: 'Валюта и диапазон взноса', ftmo: ftmoRows.map(row => `${row.product.productName.replace('FTMO Challenge: ', '')}: ${row.price}`).join('; ') || '—', fn: fnRows.filter(row => row.product.phases > 0).map(row => `${row.product.productName.replace('Stellar ', '')}: ${row.price}`).join('; ') || '—' },
     { field: 'Размеры счёта', ftmo: ftmoTwo ? sizesLabel(ftmoTwo) : '—', fn: fnTwo ? `${sizesLabel(fnTwo)} (Lite: ${fnLite ? sizesLabel(fnLite) : '—'}; Instant: ${fnInstant ? sizesLabel(fnInstant) : '—'})` : '—' },
     { field: 'Доля вознаграждения', ftmo: `2-Step ${ftmoTwo ? splitLabel(ftmoTwo) : '—'} (90% через Scaling/Premium); 1-Step ${ftmoOne ? splitLabel(ftmoOne) : '—'}`, fn: `Stellar ${fnTwo ? splitLabel(fnTwo) : '—'} (дополнения до 95%); Instant ${fnInstant ? splitLabel(fnInstant) : '—'}` },
-    { field: 'Первая выплата', ftmo: 'с 14-го дня после первой сделки; дальнейший график публично не уточнён', fn: `2-Step: ${fnTwo?.payoutFirstDays ?? '—'} дн., далее 14-дневные циклы; 1-Step: ${fnOne?.payoutFirstDays ?? '—'} раб. дн.; Lite: ${fnLite?.payoutFirstDays ?? '—'} дн.; Instant: по запросу при росте 5%` },
+    { field: 'Первая выплата', ftmo: 'с 14-го дня после первой сделки; дальнейший график публично не уточнён', fn: `2-Step: ${fnTwo?.payoutFirstDays ?? '—'} дн., далее 14-дневные циклы; 1-Step: ${fnOne?.payoutFirstDays ?? '—'} раб. дн.; Lite: ${fnLite?.payoutFirstDays === 10 ? '10 раб. дн. для счетов, купленных или сброшенных с 12.10.2026 (у более ранних — 21 день)' : 'срок не подтверждён'}; Instant: по запросу при росте 5%` },
     { field: 'Trustpilot', ftmo: trustpilot(ftmoFirm), fn: trustpilot(fnFirm) },
   ]
   const crumbs = breadcrumbSchema([
@@ -480,7 +485,10 @@ export default function RussianFtmoVsFundedNextPage() {
             стартует с 70% (по данным на 19.10.2026). Способы вывода: USDT (ERC20, TRC20), USDC (ERC20), Confirmo, RiseWorks,
             банковский перевод, карта и зачисление на FNmarkets. Для России банковский перевод и выплата на карту недоступны —
             Россия есть в обоих списках исключений. Доступна ли россиянам RiseWorks, мы не подтверждали. Обработку заявки
-            FundedNext обещает в течение 24 часов (по данным на {CHECKED}).
+            FundedNext обещает в течение 24 часов (по данным на {CHECKED}). У Stellar Lite для счетов, купленных или сброшенных
+            12 октября 2026 года и позже, первая выплата доступна через 10 рабочих дней, следующие — каждые 10 рабочих дней; для
+            счетов, купленных или сброшенных раньше, действует прежнее правило: первая выплата через 21 день, далее каждые 14 дней
+            (по данным на 20.10.2026, <a href={SRC.fnRewardSchedule} target="_blank" rel="noopener noreferrer">справка FundedNext о графике выплат</a>).
           </p>
           <p className="ru-source-line">Источники: <a href={SRC.ftmoWithdraw} target="_blank" rel="noopener noreferrer">FTMO: How do I withdraw my reward</a>; <a href={SRC.fnWithdraw} target="_blank" rel="noopener noreferrer">FundedNext: How can I withdraw my profits</a>. Сравнение выплат у других фирм — в разделе <Link href="/ru/vyplaty-prop-firm">выплаты проп-фирм</Link>.</p>
         </div>
