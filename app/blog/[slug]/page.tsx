@@ -2,6 +2,7 @@ import { firmSlug } from '@/lib/firmSlug'
 import { getPostBySlug, getAllPostData, getAllPosts } from '@/lib/mdx'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { postSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { reviewFreshnessBlockers } from '@/lib/reviewFreshness'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -108,7 +109,7 @@ export default async function BlogPostPage({ params }: Props) {
   const oldestFirmCapture = firmProducts.map(product => product.sourceCapturedAt).sort()[0]
   const hasProductSummary = PRODUCT_SUMMARY_REVIEWS.has(slug)
   const watchEntries = hasProductSummary ? getChallengeWatchEntries() : []
-  const faqLd = hasProductSummary && firmProducts.length > 0 && staleFirmProducts.length === 0
+  const faqLd = hasProductSummary && firmProducts.length > 0 && reviewFreshnessBlockers(firmProducts).length === 0
     ? faqPageSchema(extractArticleFaq(post.content)) : null
   const postLd = postSchema(post, firms)
   const crumbsLd = breadcrumbSchema([

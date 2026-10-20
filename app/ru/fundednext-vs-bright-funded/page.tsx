@@ -35,6 +35,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
+import { isRussiaAccessEvidenceDocumented } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
@@ -220,7 +221,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
   const completeEvidence = relevantProducts.length > 0 && products.length === relevantProducts.length
     && [oneStepFn, oneStepBright, twoStepFn, liteFn, instantFn, twoStepBright, classicBright].every(Boolean)
     && ['fundednext', 'bright-funded'].every(slug => payoutEvidence.has(slug) && kycEvidence.has(slug))
-    && accessEvidence?.status === 'conflicting' && accessEvidence.sourceUrls.length === 4
+    && isRussiaAccessEvidenceDocumented('fundednext', accessEvidence)
     && products.every(product => pricedTiers(product).length > 0)
     && evidenceDates.every(source => freshCapture(source.capturedAt)) && isFundedNextPayoutSourceFresh()
   const sourceUrls = [...new Set([...relevantProducts.map(product => product.sourceUrl), fundedNextPayoutSource.sourceUrl, ...ruleSources.map(source => source.sourceUrl), ...[...payoutEvidence.values(), ...kycEvidence.values()].filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).flatMap(source => source.sourceUrls), ...(accessEvidence?.sourceUrls ?? [])])]
@@ -305,16 +306,16 @@ export default function FundedNextVsBrightFundedRussianPage() {
           </div>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="fundednext-bright-comparison">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            FundedNext и BrightFunded — два главных коммерческих партнёра русской версии. Мы можем получить комиссию после
+            BrightFunded и FundedNext — два главных коммерческих партнёра русской версии. Мы можем получить комиссию после
             покупки по партнёрской ссылке. Комиссия не меняет правила сравнения и не добавляет фирме баллы.
             Для обеих фирм доступны подробный обзор и ссылка на проверку условий.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fn-vs-bright-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
-              Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
-            </RuGoLink>
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-fn-vs-bright-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" />
+            </RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fn-vs-bright-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
+              Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
             <Link href="#verdict" className="btn-outline">Сначала увидеть различия</Link>
           </div>

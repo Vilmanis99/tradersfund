@@ -28,6 +28,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import { isProductSetFresh } from '@/lib/reviewFreshness'
 
 const PATH = '/ru/vyplaty-prop-firm'
 const TITLE = 'Выплаты проп-фирм 2026: FundedNext и BrightFunded'
@@ -183,7 +184,7 @@ export default function RussianPayoutsPage() {
   const oldestPayoutCapture = cards.flatMap(card => card.evidence ? [card.evidence.sourceCapturedAt] : []).sort()[0] ?? marketEvidence.capturedAt
   const hasFreshProducts = partnerRoutes.every(route => {
     const products = challenges.filter(product => product.firmSlug === route.slug)
-    return products.length > 0 && products.every(product => isChallengeFresh(product))
+    return isProductSetFresh(products)
   })
   const hasFreshResearch = cards.length === partnerRoutes.length && hasFreshProducts
     && isChallengeFresh({ sourceCapturedAt: marketEvidence.capturedAt })

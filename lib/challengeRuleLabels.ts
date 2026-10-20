@@ -35,3 +35,30 @@ export function consistencyRuleLabel(product: Consistency, locale: Locale = 'en'
   }
   return unknown(locale)
 }
+
+type PayoutWait = { payoutFirstDays: number | null; notes?: string[] }
+export type PayoutDayUnit = 'business' | 'calendar'
+
+/**
+ * Day unit of `payoutFirstDays`, read from the product's dated notes: a note
+ * naming "<n> business days" or "<n> calendar days" for the stored value.
+ * The schema has no unit field; null when the notes are silent or name both.
+ */
+export function payoutFirstDaysUnit(product: PayoutWait): PayoutDayUnit | null {
+  const days = product.payoutFirstDays
+  if (typeof days !== 'number' || !Number.isInteger(days) || days <= 0) return null
+  const says = (unit: PayoutDayUnit) => (product.notes ?? [])
+    .some(note => new RegExp(`(?<![\\d.])${days}[- ]${unit}[- ]days?\\b`, 'i').test(note))
+  const business = says('business')
+  const calendar = says('calendar')
+  if (business === calendar) return null
+  return business ? 'business' : 'calendar'
+}
+
+/** "10 business days" / "14 calendar days" / "7 days"; never a placeholder. */
+export function firstPayoutDaysLabel(product: PayoutWait): string {
+  const days = product.payoutFirstDays
+  if (typeof days !== 'number' || !Number.isInteger(days) || days < 0) return 'Not published'
+  const unit = payoutFirstDaysUnit(product)
+  return `${days} ${unit ? `${unit} ` : ''}${days === 1 ? 'day' : 'days'}`
+}

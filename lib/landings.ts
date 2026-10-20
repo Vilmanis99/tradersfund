@@ -21,6 +21,7 @@ import {
 import rawUsAccessEvidence from '@/content/data/us-access-evidence.json'
 import rawCryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'
 import rawUkAccessEvidence from '@/content/data/uk-access-evidence.json'
+import { isProductSetFresh } from './reviewFreshness.ts'
 
 /**
  * Long-tail landing pages — "best prop firms in UK", "cheapest", "best
@@ -709,7 +710,7 @@ export const LANDINGS: Landing[] = [
         const evidence = INDIA_EVIDENCE_BY_SLUG[slug]
         if (!evidence || !passesIndiaRegulatoryCountryGate(evidence)) return false
         const challenges = indiaEligibleChallenges(slug, evidence)
-        if (!challenges.length || !challenges.every(challenge => isChallengeFresh(challenge))) {
+        if (!isProductSetFresh(challenges)) {
           return false
         }
         return (firm.payoutMethods || []).some(method =>
