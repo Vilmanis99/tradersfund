@@ -7,7 +7,8 @@ import TrustBar from '@/components/home/TrustBar'
 import ComparisonTable from '@/components/home/ComparisonTable'
 import FeaturedOfferCard from '@/components/home/FeaturedOfferCard'
 import DisclosureNote from '@/components/home/DisclosureNote'
-import Guides from '@/components/home/Guides'
+import ChallengeExplainer from '@/components/home/ChallengeExplainer'
+import { getChallengeSectionFacts } from '@/components/home/challengeFacts'
 import HomeFaq from '@/components/home/HomeFaq'
 import { getHomeComparisonRows, getHomeCounters, getVerifiedCode } from '@/components/home/homeData'
 import { RuAccessBadge } from '@/components/RuGoLink'
@@ -101,6 +102,11 @@ export default function RussianHomePage() {
   const tableRows = getHomeComparisonRows('ru')
   const counters = getHomeCounters()
   const watchCount = getChallengeWatchEntries().length
+  const challengeFacts = getChallengeSectionFacts('ru')
+  // Prefer a pair with its own Russian page, then any pair with a page.
+  const pairKeys = Object.keys(challengeFacts.picker.pairHrefs)
+  const pickerInitial = ((pairKeys.find(key => challengeFacts.picker.pairHrefs[key].startsWith('/ru/')) ?? pairKeys[0])?.split('-vs-')
+    ?? challengeFacts.picker.firms.slice(0, 2).map(firm => firm.slug)) as [string, string]
   const money = (row: (typeof tableRows)[number]) => new Intl.NumberFormat('ru-RU', { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
 
   return (
@@ -229,21 +235,30 @@ export default function RussianHomePage() {
       </section>
 
       <div data-russian-home-next-step="reader-decision">
-        <Guides
+        <ChallengeExplainer
+          locale="ru"
           id="ru-home-guides-heading"
           title="С чего начать"
+          facts={challengeFacts}
           data={{ 'data-russian-home-navigation': 'task-first' }}
-          items={[
-            { href: '/ru/luchshie-prop-firmy', label: 'Рейтинг', title: 'Сравнить фирмы', description: 'Цены, правила и редакционные оценки — чтобы составить свой короткий список.' },
-            { href: '/ru/prop-firmy-bez-chelendzha', label: 'Без оценки', title: 'Начать без челленджа', description: 'Разберитесь, чем отсутствие оценки отличается от отсутствия ограничений.' },
-            { href: '/ru/chto-takoe-prop-firma', label: 'Основы', title: 'Понять, как это работает', description: 'За что платит трейдер, как проходит оценка и когда можно получить прибыль.', data: { 'data-russian-home-definition-entry': 'prop-kompanii-eto' } },
+          cards={[
+            { href: '/ru/chto-takoe-prop-firma', label: 'Основы', title: 'Как устроен челлендж', cta: 'Понять, как это работает', data: { 'data-russian-home-definition-entry': 'prop-kompanii-eto' } },
+            { href: '/ru/luchshie-prop-firmy', label: 'Стоимость', title: 'Взнос — только часть цены', cta: 'Сравнить взносы' },
+            { href: '/ru/kak-rabotayut-chellendzhi-prop-firm', label: 'Перед торговлей', title: 'План вокруг правил оценки', cta: 'Разобрать правила' },
           ]}
-          linksData={{ 'data-russian-home-guides': 'selected-three' }}
-          links={[
-            { href: '/ru/kak-rabotayut-chellendzhi-prop-firm', title: 'Как пройти оценку, не нарушив правила', description: 'Цель по прибыли, просадка и этапы челленджа.' },
-            { href: '/ru/vyplaty-prop-firm', title: 'Когда и как можно получить выплату', description: 'Сроки, способы перевода и проверка документов.' },
-            { href: '/ru/promokody-prop-firm', title: 'Как проверить скидку перед оплатой', description: 'Условия предложений и итоговая цена участия.' },
-          ]}
+          pickerFallbackHref="/ru/luchshie-prop-firmy"
+          pickerInitial={pickerInitial}
+          firmBadge={slug => <RuAccessBadge firm={slug} />}
+          country={{ lead: 'Из России?', label: 'Кто принимает трейдеров из РФ', href: '/ru/dlya-russkoyazychnykh-treyderov', data: { 'data-russian-home-country': 'russia' } }}
+          extra={{
+            label: 'Ещё по теме:',
+            data: { 'data-russian-home-guides': 'selected-three' },
+            links: [
+              { href: '/ru/prop-firmy-bez-chelendzha', title: 'Начать без челленджа' },
+              { href: '/ru/vyplaty-prop-firm', title: 'Когда и как получить выплату' },
+              { href: '/ru/promokody-prop-firm', title: 'Как проверить скидку' },
+            ],
+          }}
         />
       </div>
 
