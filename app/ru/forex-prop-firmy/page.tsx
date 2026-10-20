@@ -11,6 +11,7 @@ import forexEvidence from '@/content/data/russian-forex-evidence.json'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightCountryEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { isRussiaAccessEvidenceDocumented } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
@@ -137,7 +138,7 @@ export default function RussianForexPropFirmsPage() {
     { label: 'условия BrightFunded: ограничения по стране', capturedAt: brightTerms.sourceCapturedAt },
   ]
   const hasFreshEvidence = allProducts.length > 0 && products.length === allProducts.length
-    && fundedNextAccess?.status === 'restricted'
+    && isRussiaAccessEvidenceDocumented('fundednext', fundedNextAccess)
     && evidenceDates.every(item => isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
   const updatedAt = russianRouteDateModified(PATH, forexEvidence.capturedAt)
 

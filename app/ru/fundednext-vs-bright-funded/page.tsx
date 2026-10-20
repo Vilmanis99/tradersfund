@@ -35,6 +35,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
+import { isRussiaAccessEvidenceDocumented } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
@@ -220,7 +221,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
   const completeEvidence = relevantProducts.length > 0 && products.length === relevantProducts.length
     && [oneStepFn, oneStepBright, twoStepFn, liteFn, instantFn, twoStepBright, classicBright].every(Boolean)
     && ['fundednext', 'bright-funded'].every(slug => payoutEvidence.has(slug) && kycEvidence.has(slug))
-    && accessEvidence?.status === 'restricted' && accessEvidence.sourceUrls.length === 6
+    && isRussiaAccessEvidenceDocumented('fundednext', accessEvidence)
     && products.every(product => pricedTiers(product).length > 0)
     && evidenceDates.every(source => freshCapture(source.capturedAt)) && isFundedNextPayoutSourceFresh()
   const sourceUrls = [...new Set([...relevantProducts.map(product => product.sourceUrl), fundedNextPayoutSource.sourceUrl, ...ruleSources.map(source => source.sourceUrl), ...[...payoutEvidence.values(), ...kycEvidence.values()].filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).flatMap(source => source.sourceUrls), ...(accessEvidence?.sourceUrls ?? [])])]

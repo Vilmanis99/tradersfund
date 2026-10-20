@@ -38,20 +38,37 @@ export function russiaStatusFor(slugOrName: string): RussiaStatus {
   return EXTRA_RESTRICTED[key] ?? STATUS_BY_SLUG[key] ?? 'unverified'
 }
 
+/** One `firmAccess[]` record from content/data/russian-market-evidence.json. */
+export interface RussiaAccessEvidence {
+  status: string
+  sourceUrls: string[]
+  sourceObservations?: Array<{ sourceUrl: string; sourceCapturedAt?: string; quote?: string }>
+}
+
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
+
 /**
- * Dated Russia-access evidence (`firmAccess[].status` in
- * content/data/russian-market-evidence.json) that the /ru pages can stand
- * behind. 'restricted' must agree with the firm's `russiaStatus` (the badge
- * source); 'conflicting' is the pre-2026-10-20 FundedNext record, still
- * accepted because it never describes the firm as available. Anything else,
- * including 'available' or a missing record, is not a documented boundary.
+ * True when a firm's dated Russia-access record is one the /ru pages can stand
+ * behind: 'restricted' must agree with the firm's `russiaStatus` (the badge
+ * source); 'conflicting' (the pre-2026-10-20 FundedNext record) is accepted
+ * because it never describes the firm as available. Every listed source must
+ * be an https page with a dated, quoted observation, so adding a source keeps
+ * the gate open while an unquoted or missing source closes it. No source count
+ * is pinned.
  */
 export function isRussiaAccessEvidenceDocumented(
   slugOrName: string,
-  evidenceStatus: string | null | undefined,
+  evidence: RussiaAccessEvidence | null | undefined,
 ): boolean {
-  if (evidenceStatus === 'restricted') return russiaStatusFor(slugOrName) === 'restricted'
-  return evidenceStatus === 'conflicting'
+  if (!evidence) return false
+  const statusOk = evidence.status === 'restricted'
+    ? russiaStatusFor(slugOrName) === 'restricted'
+    : evidence.status === 'conflicting'
+  if (!statusOk || !Array.isArray(evidence.sourceUrls) || evidence.sourceUrls.length === 0) return false
+  const observations = evidence.sourceObservations ?? []
+  return evidence.sourceUrls.every(url => /^https:\/\/\S+$/.test(url) && observations.some(item =>
+    item.sourceUrl === url && typeof item.quote === 'string' && item.quote.trim().length > 0
+    && typeof item.sourceCapturedAt === 'string' && ISO_DATE.test(item.sourceCapturedAt)))
 }
 
 const AFFILIATE_SLUGS = new Set(
