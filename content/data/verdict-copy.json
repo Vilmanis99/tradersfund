@@ -23,7 +23,7 @@
     },
     "city-traders-imperium-review": {
       "bestFor": [
-        "Quick first payouts: 1-Step and 2-Step pay from day 7, then weekly",
+        "First payout in as little as 7 days; weekly unlocks at VIP Bronze",
         "News traders: all 4 CTI products allow news trading"
       ],
       "notFor": [
@@ -191,7 +191,7 @@
         "you trade on cTrader: Alpha Capital supports it; City Traders Imperium doesn't list it"
       ],
       "pickB": [
-        "you want an early first payout: CTI's 1-Step and 2-Step pay weekly from day 7 (Alpha bi-weekly plans: day 14)",
+        "you want an early first payout: CTI's 1-Step and 2-Step allow the first payout in as little as 7 days, and weekly payouts unlock at VIP Bronze (Alpha bi-weekly plans: day 14)",
         "you trade the news: City Traders Imperium allows it on every product; Alpha Capital restricts it everywhere",
         "you run EAs: City Traders Imperium allows them on CTI 1-Step only; Alpha Capital restricts them everywhere"
       ]
@@ -361,7 +361,7 @@
         "you trade on cTrader: BrightFunded supports it; City Traders Imperium doesn't list it"
       ],
       "pickB": [
-        "you want an early first payout: CTI's 1-Step and 2-Step pay weekly from day 7 (BrightFunded: day 30)",
+        "you want an early first payout: CTI's 1-Step and 2-Step allow the first payout in as little as 7 days, and weekly payouts unlock at VIP Bronze (BrightFunded: day 30)",
         "you trade the news: City Traders Imperium allows it on every product; BrightFunded restricts it everywhere",
         "you run EAs: City Traders Imperium allows them on CTI 1-Step only; BrightFunded restricts them everywhere"
       ]
@@ -553,7 +553,7 @@
     },
     "city-traders-imperium-vs-ftmo": {
       "pickA": [
-        "you want an early first payout: CTI's 1-Step and 2-Step pay weekly from day 7 (FTMO: day 14)",
+        "you want an early first payout: CTI's 1-Step and 2-Step allow the first payout in as little as 7 days, and weekly payouts unlock at VIP Bronze (FTMO: day 14)",
         "you hold overnight or over weekends: City Traders Imperium allows both everywhere; FTMO restricts both",
         "you trade the news: City Traders Imperium allows it on every product; FTMO restricts it everywhere"
       ],
@@ -634,7 +634,7 @@
     },
     "city-traders-imperium-vs-ofp-funding": {
       "pickA": [
-        "you want an early first payout: CTI's 1-Step and 2-Step pay weekly from day 7 (OFP: day 14)",
+        "you want an early first payout: CTI's 1-Step and 2-Step allow the first payout in as little as 7 days, and weekly payouts unlock at VIP Bronze (OFP: day 14)",
         "you trade the news: City Traders Imperium allows it on every product; OFP Funding restricts it everywhere",
         "you run EAs: City Traders Imperium allows them on CTI 1-Step only; OFP Funding restricts them everywhere"
       ],
