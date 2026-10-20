@@ -152,5 +152,128 @@
       }
     ],
     "note": "Format 'list | sale | [extra DLL-on saving | final] | W/ COUPON AT CHECKOUT'. 150K Intraday shows 'Select options above' in both DLL states (not offered). Daily Loss Limit is ON or OFF per order; the list price is the same."
+  },
+  "pickerRecheck": {
+    "checkedAtTimestamp": "2026-10-20T12:49+03:00",
+    "url": "https://www.lucidtrading.com/",
+    "method": "Headless Chrome from the box (US IP), a fresh page load per combination, LucidDaily tab, DOM click on the card's 'Drawdown In Eval' and 'Daily Loss Limit' toggles; all 16 combinations returned a price.",
+    "why": "The 11:55 run above timed out or crashed on 100K Intraday OFF, 150K EOD OFF and both 150K Intraday clicks, and its 'Select options above' rows for 150K Intraday are the picker's placeholder before both toggles are applied, not proof the size is unavailable.",
+    "clicks": [
+      {
+        "size": "25K",
+        "dd": "EOD",
+        "dll": "ON",
+        "price": "$118 | $90.10 | LIMITED TIME — SAVINGS TOTAL $25 | $65.10 | W/ COUPON AT CHECKOUT",
+        "reset": "$65"
+      },
+      {
+        "size": "25K",
+        "dd": "EOD",
+        "dll": "OFF",
+        "price": "$118 | $90.10 | W/ COUPON AT CHECKOUT",
+        "reset": "$90"
+      },
+      {
+        "size": "25K",
+        "dd": "Intraday",
+        "dll": "ON",
+        "price": "$104 | $80.30 | LIMITED TIME — SAVINGS TOTAL $25 | $55.30 | W/ COUPON AT CHECKOUT",
+        "reset": "$55"
+      },
+      {
+        "size": "25K",
+        "dd": "Intraday",
+        "dll": "OFF",
+        "price": "$104 | $80.30 | W/ COUPON AT CHECKOUT",
+        "reset": "$80"
+      },
+      {
+        "size": "50K",
+        "dd": "EOD",
+        "dll": "ON",
+        "price": "$166 | $125.20 | LIMITED TIME — SAVINGS TOTAL $30 | $95.20 | W/ COUPON AT CHECKOUT",
+        "reset": "$95"
+      },
+      {
+        "size": "50K",
+        "dd": "EOD",
+        "dll": "OFF",
+        "price": "$166 | $125.20 | W/ COUPON AT CHECKOUT",
+        "reset": "$125"
+      },
+      {
+        "size": "50K",
+        "dd": "Intraday",
+        "dll": "ON",
+        "price": "$138 | $105.60 | LIMITED TIME — SAVINGS TOTAL $30 | $75.60 | W/ COUPON AT CHECKOUT",
+        "reset": "$75"
+      },
+      {
+        "size": "50K",
+        "dd": "Intraday",
+        "dll": "OFF",
+        "price": "$138 | $105.60 | W/ COUPON AT CHECKOUT",
+        "reset": "$105"
+      },
+      {
+        "size": "100K",
+        "dd": "EOD",
+        "dll": "ON",
+        "price": "$267 | $200.40 | LIMITED TIME — SAVINGS TOTAL $45 | $155.40 | W/ COUPON AT CHECKOUT",
+        "reset": "$155"
+      },
+      {
+        "size": "100K",
+        "dd": "EOD",
+        "dll": "OFF",
+        "price": "$267 | $200.40 | W/ COUPON AT CHECKOUT",
+        "reset": "$200"
+      },
+      {
+        "size": "100K",
+        "dd": "Intraday",
+        "dll": "ON",
+        "price": "$224 | $170.30 | LIMITED TIME — SAVINGS TOTAL $45 | $125.30 | W/ COUPON AT CHECKOUT",
+        "reset": "$125"
+      },
+      {
+        "size": "100K",
+        "dd": "Intraday",
+        "dll": "OFF",
+        "price": "$224 | $170.30 | W/ COUPON AT CHECKOUT",
+        "reset": "$170"
+      },
+      {
+        "size": "150K",
+        "dd": "EOD",
+        "dll": "ON",
+        "price": "$375 | $280.50 | LIMITED TIME — SAVINGS TOTAL $60 | $220.50 | W/ COUPON AT CHECKOUT",
+        "reset": "$220"
+      },
+      {
+        "size": "150K",
+        "dd": "EOD",
+        "dll": "OFF",
+        "price": "$375 | $280.50 | W/ COUPON AT CHECKOUT",
+        "reset": "$280"
+      },
+      {
+        "size": "150K",
+        "dd": "Intraday",
+        "dll": "ON",
+        "price": "$313 | $235.60 | LIMITED TIME — SAVINGS TOTAL $55 | $180.60 | W/ COUPON AT CHECKOUT",
+        "reset": "$180"
+      },
+      {
+        "size": "150K",
+        "dd": "Intraday",
+        "dll": "OFF",
+        "price": "$313 | $235.60 | W/ COUPON AT CHECKOUT",
+        "reset": "$235"
+      }
+    ],
+    "result": "List prices (first figure) confirmed for every size: EOD 118/166/267/375, Intraday 104/138/224/313 for 25K/50K/100K/150K, identical with DLL ON and OFF. 150K Intraday IS offered at a $313 list price, so luciddaily-dll-on-intraday and luciddaily-dll-off-intraday 150K priceUsd null -> 313. 150K EOD DLL OFF confirmed at $375 (previously inferred).",
+    "quote150kIntraday": "Profit Target | $9,000 | Max Loss Limit | $4,500 | Drawdown In Eval | EOD | Intraday | Daily Loss Limit | ON | OFF | Consistency | 50% | Max Size | 10 Mini OR 100 Micros | ONE TIME PAYMENT | $313 | $235.60 | W/ COUPON AT CHECKOUT | Reset Fee | $235",
+    "notCheckoutVerified": true
   }
 }
