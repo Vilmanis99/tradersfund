@@ -85,7 +85,7 @@ export const FEATURES: Feature[] = [
       },
       {
         q: 'Which prop firm is best for algo traders?',
-        a: 'It depends on your platform and strategy frequency. FTMO and FundedNext are the most established EA-friendly options with broad platform support. For higher-frequency systems, look at cTrader-supporting firms (FundingPips, FXIFY).',
+        a: 'It depends on your platform and strategy frequency. Most firms we track allow EAs only with conditions, such as pre-approval or platform limits, so read each firm\'s EA rules before buying. For higher-frequency systems, confirm in writing that the firm permits your strategy on the platform you plan to use, such as cTrader or MT5.',
       },
       {
         q: 'Do I need to disclose my EA to the firm?',
