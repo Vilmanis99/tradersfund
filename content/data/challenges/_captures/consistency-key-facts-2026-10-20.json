@@ -135,9 +135,10 @@
     ]
   },
   "fromEarlierCapturesNotRecheckedToday": {
-    "crypto-fund-trader/break": "40% final-stage consistency; https://cryptofundtrader.com/break-challenge/ (content/data/challenges/_captures/crypto-fund-trader-2026-10-19.json). The page is JS-rendered; the 2026-10-20 curl did not expose the text.",
-    "my-funded-futures": "rapid 50% evaluation-only, pro 50% evaluation-only, rapid-eod 30% evaluation, builder 50% at Sim Funded payout (product notes, captures 2026-10-20 daily recheck / earlier full captures). flex: scope not stated in stored evidence, so no consistencyScope or consistencyRules were added.",
-    "tradeday": "Quick Pay 30% evaluation; Fast Pass 45% evaluation plus 45% on Funded Sim payouts for accounts opened on or after 2026-07-26 (content/data/challenges/_captures/tradeday-2026-10-14.json)."
+    "crypto-fund-trader/break": "Stored note: \"40% final-stage consistency\" (https://cryptofundtrader.com/break-challenge/, capture 2026-10-19). Break is a 1-phase product and \"final-stage\" does not say evaluation or funded, so no consistencyScope or consistencyRules were set (left empty rather than guessed). Today's curl of the JS-rendered page did not expose the text.",
+    "my-funded-futures": "Stored product notes, not rechecked today: rapid \"50% evaluation-only consistency rule\" (myfundedfutures.com/plans/rapid); pro \"50% evaluation-only consistency rule\" (/plans/pro); rapid-eod \"30% evaluation consistency\" (myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan); builder \"Sim Funded Builder applies a 50% consistency rule at payout\" (/plans/builder). flex: the stored evidence states no scope, so none was set.",
+    "tradeday": "Stored product notes, not rechecked today: Quick Pay \"30% evaluation consistency\" (freshdesk 103000405228); Fast Pass \"45% consistency applies to evaluation profit\" (103000405229), and \"accounts opened on or after 2026-07-26 must satisfy 45% consistency on gross profits for every payout\" (103000404096).",
+    "e8-markets/e8-one-perpetuals": "consistencyRulePct 40 is stored, but the E8 One help article (11775980) does not name the Perpetuals variant, so no scope was set."
   },
   "valueChanges": [
     {
@@ -148,5 +149,28 @@
       "after": 40,
       "sourceUrl": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account"
     }
-  ]
+  ],
+  "scopeLeftEmpty": [
+    "crypto-fund-trader/break",
+    "e8-markets/e8-one-perpetuals",
+    "my-funded-futures/flex"
+  ],
+  "devQuestionTradeifyGrowth": {
+    "answer": "funded only",
+    "quotes": [
+      {
+        "sourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule",
+        "quote": "Growth Sim Funded Accounts must follow a 35% Consistency Rule."
+      },
+      {
+        "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+        "quote": "A: No. GROWTH™ evaluation does NOT have a consistency requirement."
+      },
+      {
+        "sourceUrl": "https://help.tradeify.co/en/articles/11083796-growth-funded-account-payout-policy",
+        "quote": "Consistency Rule: Abide by the 35% Consistency Rule (see: What is the Consistency Rule?)"
+      }
+    ],
+    "caveat": "The Select evaluation article (12853921) adds \"Note: Growth Evaluation does NOT have a consistency rule at any stage.\" That line refers to the Growth evaluation; the Growth Funded payout policy and the consistency article both apply 35% to Growth Sim Funded payouts."
+  }
 }
