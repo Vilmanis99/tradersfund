@@ -38,9 +38,16 @@ function formatDate(iso: string) {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
 }
 
-function price(size: Challenge['accountSizes'][number] | undefined) {
+function price(size: Challenge['accountSizes'][number] | undefined, product?: Challenge) {
   if (!size) return null
-  if (size.priceUsd != null) return `$${size.priceUsd.toLocaleString('en-US')}`
+  const activation = size.activationFeeUsd ?? product?.activationFeeUsd ?? 0
+  const later = size.payLaterUsd ?? 0
+  const monthly = product?.pricingModel === 'monthly-subscription' ? '/month' : ''
+  if (size.priceUsd != null && (activation > 0 || later > 0)) {
+    const extras = [activation > 0 ? `$${activation.toLocaleString('en-US')} activation` : null, later > 0 ? `$${later.toLocaleString('en-US')} after passing` : null].filter(Boolean).join(' + ')
+    return `$${size.priceUsd.toLocaleString('en-US')}${monthly} + ${extras}`
+  }
+  if (size.priceUsd != null) return `$${size.priceUsd.toLocaleString('en-US')}${monthly}`
   if (size.priceEur != null) return `€${size.priceEur.toLocaleString('en-US')}`
   return null
 }
@@ -52,6 +59,23 @@ function perProduct(firm: Firm, products: Challenge[], value: (product: Challeng
   const distinct = new Set(rows.map(row => row.value))
   if (distinct.size === 1) return rows[0].value
   return rows.map(row => `${row.value} (${row.name})`).join(' · ')
+}
+
+/**
+ * Like perProduct, but products sharing a value are grouped and a product
+ * without a value is listed as "not captured" instead of hiding the row
+ * (shown only when at least one product has a value).
+ */
+function groupedPerProduct(firm: Firm, products: Challenge[], value: (product: Challenge) => string | null) {
+  const groups = new Map<string, string[]>()
+  for (const product of products) {
+    const key = value(product) ?? 'not captured'
+    groups.set(key, [...(groups.get(key) ?? []), shortName(firm, product)])
+  }
+  const known = [...groups.keys()].filter(key => key !== 'not captured')
+  if (!known.length) return null
+  if (groups.size === 1) return known[0]
+  return [...known, ...(groups.has('not captured') ? ['not captured'] : [])].map(key => `${key} (${groups.get(key)!.join(', ')})`).join(' · ')
 }
 
 function targets(product: Challenge) {
@@ -70,14 +94,14 @@ export function buildVerdictFacts(firm: Firm, products: Challenge[]) {
     add('Platforms', firm.platforms?.length ? firm.platforms.join(' · ') : null, ['firms.json platforms'])
     return facts
   }
-  add('Price at $100K', perProduct(firm, products, product => price(product.accountSizes.find(size => size.sizeUsd === 100000))), ['challenges accountSizes[sizeUsd=100000].priceUsd|priceEur'])
+  add('Price at $100K', perProduct(firm, products, product => price(product.accountSizes.find(size => size.sizeUsd === 100000), product)), ['challenges accountSizes[sizeUsd=100000].priceUsd|priceEur'])
   add('Profit target', perProduct(firm, products, targets), ['challenges profitTargets'])
   add('Daily / max loss', perProduct(firm, products, product =>
     product.dailyLossPct != null && product.maxLossPct != null
       ? `${product.dailyLossPct}% / ${product.maxLossPct}%${product.drawdownType ? ` ${DRAWDOWN_LABEL[product.drawdownType]}` : ''}`
       : null), ['challenges dailyLossPct', 'maxLossPct', 'drawdownType'])
   add('Profit split', perProduct(firm, products, product => product.profitSplitPct != null ? `${product.profitSplitPct}%` : null), ['challenges profitSplitPct'])
-  add('First payout', perProduct(firm, products, product => payoutWait(product)?.short ?? null), ['challenges payoutFirstDays', 'notes (business days)'])
+  add('First payout', groupedPerProduct(firm, products, product => payoutWait(product)?.short ?? null), ['challenges payoutFirstDays', 'notes (business days)'])
   add('Platforms', firm.platforms?.length ? firm.platforms.join(' · ') : null, ['firms.json platforms'])
   return facts
 }
