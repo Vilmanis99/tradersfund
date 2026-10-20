@@ -11,6 +11,10 @@ import { getAllDeals } from '@/lib/deals'
 import { INDIA_EVIDENCE } from '@/lib/india'
 import { INDIA_MATCHUPS, indiaMatchupPath } from '@/lib/indiaMatchups'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
+import { latestCorrectionDate } from '@/lib/corrections'
+import { HOW_WE_MAKE_MONEY_UPDATED } from '@/lib/trustPages'
+import { CLOSED_FIRMS_CAPTURED_AT, CLOSED_FIRMS_PUBLISHED } from '@/lib/closedFirms'
+import { RU_DISCLOSURE } from '@/lib/ruDisclosure'
 import { isSourceHoldReview, isSourceHoldFirm } from '@/lib/reviewStatus'
 import {
   LOCALIZED_ROUTE_PAIRS,
@@ -112,6 +116,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/prop-firms`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/compare`, lastModified: comparisonHubLastDate, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE_URL}/contact`, lastModified: new Date('2026-01-01'), changeFrequency: 'yearly', priority: 0.4 },
+    { url: `${BASE_URL}/how-we-make-money`, lastModified: new Date(`${HOW_WE_MAKE_MONEY_UPDATED}T00:00:00Z`), changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${BASE_URL}/corrections`, lastModified: new Date(`${latestCorrectionDate() ?? HOW_WE_MAKE_MONEY_UPDATED}T00:00:00Z`), changeFrequency: 'weekly', priority: 0.5 },
+    // /prop-firms/closed joins the sitemap only once content/data/closed-firms.json is published.
+    ...(CLOSED_FIRMS_PUBLISHED
+      ? [{ url: `${BASE_URL}/prop-firms/closed`, lastModified: new Date(`${CLOSED_FIRMS_CAPTURED_AT}T00:00:00Z`), changeFrequency: 'monthly' as const, priority: 0.5 }]
+      : []),
   ]
 
   const featureRoutes: MetadataRoute.Sitemap = FEATURES.map(f => {
@@ -323,10 +333,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       '/ru/fundednext-vs-fundingpips',
       russianOldestChallengeLastModified('fundednext', 'fundingpips'),
     ],
+    ['/ru/ftmo-vs-bright-funded', russianOldestChallengeLastModified('ftmo', 'bright-funded')],
     ['/ru/vyplaty-prop-firm', russianPayoutLastModified],
     ['/ru/prop-firmy-bez-kyc', russianKycLastModified],
     ['/ru/otzyvy-prop-firm', russianReviewsLastModified],
     ['/ru/fundingpips-vs-bright-funded', russianOldestChallengeLastModified('bright-funded', 'fundingpips')],
+    // RU Writer's own date in the copy file; never earlier than the editorial date.
+    ['/ru/kak-my-zarabatyvaem', new Date(`${RU_DISCLOSURE.updated ?? RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/kak-my-zarabatyvaem']}T00:00:00Z`)],
     // The instant guide's Article uses its editorial date; product rows show
     // their own captures separately. Evaluation-only rechecks must not redate it.
   ])

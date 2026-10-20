@@ -27,6 +27,7 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/vyplaty-prop-firm'
 const TITLE = 'Выплаты проп-фирм 2026: FundedNext и BrightFunded'
@@ -58,7 +59,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Когда можно запросить первую выплату FundedNext?',
-    a: 'Срок зависит от продукта и выбранной опции: Stellar 1-Step использует окно в 5 рабочих дней, а стандартный вариант Stellar 2-Step и Stellar Lite — первую дату через 21 день и затем цикл 14 дней. Для 2-Step и Lite также опубликованы отдельные 3-дневный и вариант по запросу с другими условиями. У Stellar Instant отдельные условия, требующие проверки перед покупкой.',
+    a: 'Срок зависит от продукта и выбранной опции: Stellar 1-Step использует окно в 5 рабочих дней, стандартный вариант Stellar 2-Step — первую дату через 21 день и затем цикл 14 дней, а Stellar Lite — первую дату через 10 рабочих дней для счетов, купленных или сброшенных с 12.10.2026, и через 21 день для более ранних (по данным на 20.10.2026). Для 2-Step и Lite также опубликованы отдельные 3-дневный и вариант по запросу с другими условиями. У Stellar Instant отдельные условия, требующие проверки перед покупкой.',
   },
   {
     q: 'Как BrightFunded выплачивает вознаграждение?',
@@ -88,18 +89,18 @@ const faqs: RussianFaqItem[] = [
 
 const partnerRoutes = [
   {
-    slug: 'fundednext',
-    name: 'FundedNext',
-    reviewHref: '/ru/obzor-fundednext',
-    featured: true,
-    fit: 'Нужен выбор между challenge и instant-моделью, а также USDT/USDC или RiseWorks.',
-  },
-  {
     slug: 'bright-funded',
     name: 'BrightFunded',
     reviewHref: '/ru/obzor-bright-funded',
     featured: true,
     fit: 'Нужен простой выбор между USDC ERC-20 и банковским переводом в EUR.',
+  },
+  {
+    slug: 'fundednext',
+    name: 'FundedNext',
+    reviewHref: '/ru/obzor-fundednext',
+    featured: true,
+    fit: 'Нужен выбор между challenge и instant-моделью, а также USDT/USDC или RiseWorks.',
   },
   {
     slug: 'fundingpips',
@@ -270,14 +271,15 @@ export default function RussianPayoutsPage() {
             Комиссия не меняет цену пользователя и не превращает метод выплаты в гарантию доступности.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-payouts-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
-              Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
-            </RuGoLink>
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-payouts-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-payouts-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
+              Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
+            </RuGoLink>
             <Link href="#sravnenie" className="btn-outline">Сначала сравнить выплаты</Link>
           </div>
+          <RuFundedNextAccessCaveat />
           <p className="ru-source-line">Самая ранняя проверка процесса выплат: {oldestPayoutCapture}; последняя проверка продуктовых данных: {latestCapture}. Условия проверяются повторно перед оплатой и запросом выплаты.</p>
         </div>
       </section>
@@ -464,7 +466,7 @@ export default function RussianPayoutsPage() {
             <div className="ru-grid">
               <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент ЕС с EUR-счётом</h3><p className="ru-muted">Банковский перевод BrightFunded в EUR может уменьшить лишнюю валютную конвертацию, если KYC и банк поддерживают отправителя. Сравните банковскую комиссию с USDC ERC-20.</p></article>
               <article className="ru-card"><Bitcoin size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент страны с разрешённым криптомаршрутом</h3><p className="ru-muted">FundedNext даёт USDT в 2 сетях и USDC ERC20, но кошелёк, правило передачи данных и местная отчётность остаются обязанностью получателя.</p></article>
-              <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">Криптовалюта не отменяет ограничение по стране. У FundedNext есть официальный конфликт формулировок, а банковский перевод и выплата на карту прямо ограничены для России.</p></article>
+              <article className="ru-card"><AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">Криптовалюта не отменяет ограничение по стране. FundedNext резидентам России недоступна (подвал fundednext.com, по данным на 20.10.2026), а банковский перевод и выплата на карту прямо ограничены для России.</p></article>
               <article className="ru-card"><ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Переезд или второе гражданство</h3><p className="ru-muted">Показывайте текущие документы и адрес, сообщайте фирме об изменении профиля и не выбирайте страну только ради оформления покупки. Решение KYC индивидуально.</p></article>
             </div>
             <div className="ru-actions">

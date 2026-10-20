@@ -89,6 +89,7 @@ export function createCampaignAttributionTracker() {
 const RUSSIAN_COMPARISON_PATHS = new Set([
   '/ru/fundednext-vs-bright-funded',
   '/ru/fundednext-vs-fundingpips',
+  '/ru/ftmo-vs-bright-funded',
   '/ru/prop-firmy-s-ctrader',
   '/ru/fundingpips-vs-bright-funded',
 ])

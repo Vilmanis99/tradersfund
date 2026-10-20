@@ -20,10 +20,11 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import cTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/prop-firmy-s-ctrader'
-const TITLE = 'Проп-фирмы с cTrader 2026: ограничения и цены'
-const DESCRIPTION = 'Сравнение FundedNext и BrightFunded для cTrader: лимиты счёта, комиссия платформы, cBot, страны, устройства и проверка перед оплатой.'
+const TITLE = 'Проп-фирмы с cTrader 2026: цены, лимиты и правила cBot'
+const DESCRIPTION = 'Проп-фирмы с cTrader: сравнение FundedNext и BrightFunded — лимиты счёта, комиссия платформы, правила cBot, страны, устройства и проверка условий перед оплатой.'
 const SOCIAL_DESCRIPTION = 'Сравнение FundedNext и Bright Funded для cTrader: лимиты счёта, комиссия платформы, cBot, страны, устройства и проверка перед оплатой.'
 
 export const revalidate = 86400
@@ -179,13 +180,14 @@ export default function RussianCTraderPropFirmsPage() {
             Подборка из 2 фирм не является полным каталогом и не отменяет проверку страны, личности и окончательных условий оплаты.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-hero-fundednext" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
-              Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
-            </RuGoLink>
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-ctrader-hero-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить BrightFunded
             </RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-hero-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
+              Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
+            </RuGoLink>
           </div>
+          <RuFundedNextAccessCaveat />
         </div>
       </section>
 
@@ -303,25 +305,6 @@ export default function RussianCTraderPropFirmsPage() {
             но неизвестная комиссия BrightFunded и запрет автоматизации FundedNext не скрываются за партнёрской рекомендацией.
           </div>
           <div className="ru-grid">
-            <article className="ru-card" data-russian-ctrader-featured-partner="fundednext">
-              <div className="ru-card-head"><h3>FundedNext cTrader</h3><span className="ru-score">Ручная торговля</span></div>
-              <ul className="ru-facts">
-                <li><ShieldCheck size={14} aria-hidden="true" /> Оценочный счёт до $50 000</li>
-                <li><WalletCards size={14} aria-hidden="true" /> $25 сверх базовой цены</li>
-                <li><Bot size={14} aria-hidden="true" /> cBot и алгоритмы запрещены</li>
-                <li><Laptop size={14} aria-hidden="true" /> Компьютер, браузер и телефон</li>
-              </ul>
-              <p className="ru-muted">
-                Проверяйте этот вариант, только если ручная торговля соответствует стратегии. Наличие cTrader Algo в самой платформе
-                не создаёт исключение из правила FundedNext и не превращает запрещённый cBot в разрешённый инструмент.
-              </p>
-              <div className="ru-actions">
-                <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
-              </div>
-            </article>
             <article className="ru-card" data-russian-ctrader-featured-partner="bright-funded">
               <div className="ru-card-head"><h3>BrightFunded cTrader</h3><span className="ru-score">Нужна проверка cBot</span></div>
               <ul className="ru-facts">
@@ -338,6 +321,25 @@ export default function RussianCTraderPropFirmsPage() {
                 <Link href="/ru/obzor-bright-funded" className="btn-outline">Полный обзор</Link>
                 <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-ctrader-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">
                   Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
+                </RuGoLink>
+              </div>
+            </article>
+            <article className="ru-card" data-russian-ctrader-featured-partner="fundednext">
+              <div className="ru-card-head"><h3>FundedNext cTrader</h3><span className="ru-score">Ручная торговля</span></div>
+              <ul className="ru-facts">
+                <li><ShieldCheck size={14} aria-hidden="true" /> Оценочный счёт до $50 000</li>
+                <li><WalletCards size={14} aria-hidden="true" /> $25 сверх базовой цены</li>
+                <li><Bot size={14} aria-hidden="true" /> cBot и алгоритмы запрещены</li>
+                <li><Laptop size={14} aria-hidden="true" /> Компьютер, браузер и телефон</li>
+              </ul>
+              <p className="ru-muted">
+                Проверяйте этот вариант, только если ручная торговля соответствует стратегии. Наличие cTrader Algo в самой платформе
+                не создаёт исключение из правила FundedNext и не превращает запрещённый cBot в разрешённый инструмент.
+              </p>
+              <div className="ru-actions">
+                <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор</Link>
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
+                  Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
                 </RuGoLink>
               </div>
             </article>
@@ -471,10 +473,10 @@ export default function RussianCTraderPropFirmsPage() {
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ctrader-verdict">
             <strong>Финальный маршрут.</strong>{' '}
-            Для ручной торговли в cTrader проверьте действующие ограничения и комиссию
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-verdict-fundednext" rel="sponsored nofollow noopener"> FundedNext</RuGoLink>.
             Для BrightFunded сначала подтвердите cBot, размер счёта и итоговую цену, затем используйте
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-ctrader-verdict-bright-funded" rel="sponsored nofollow noopener"> BrightFunded</RuGoLink>.
+            Для ручной торговли в cTrader проверьте действующие ограничения и комиссию
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ctrader-verdict-fundednext" rel="sponsored nofollow noopener"> FundedNext</RuGoLink>.
             Мы можем получить комиссию; ни один переход не является обещанием доступа или выплаты.
           </div>
           <p><Link href="/ru/luchshie-prop-firmy#podbor">Перейти к подбору программ по размеру счёта и этапам</Link>. Подборщик сравнивает условия программ, но не подтверждает доступность cTrader для выбранного профиля.</p>

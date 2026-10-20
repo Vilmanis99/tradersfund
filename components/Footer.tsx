@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation'
 import { TrendingUp } from 'lucide-react'
 import NewsletterForm from './NewsletterForm'
 import AnalyticsPreferencesButton from './AnalyticsPreferencesButton'
+import { PARTNERSHIP_POLICY } from '@/lib/trustPages'
+import { ruDisclosureHref } from '@/lib/ruDisclosure'
 
 type FooterProps = {
   firmCount: number
@@ -59,6 +61,8 @@ export default function Footer({
     { title: 'О сайте', links: [
       { label: 'О нас', href: '/about' },
       { label: 'Как оцениваем фирмы', href: '/methodology' },
+      { label: 'Как мы зарабатываем', href: ruDisclosureHref() },
+      { label: 'Исправления', href: '/corrections' },
       { label: 'Авторы', href: '/authors' },
       { label: 'Контакты', href: '/contact' },
     ] },
@@ -94,6 +98,9 @@ export default function Footer({
     { title: 'Company', links: [
       { label: 'About us', href: '/about' },
       { label: 'How we score firms', href: '/methodology' },
+      { label: 'How we make money', href: '/how-we-make-money' },
+      { label: 'Corrections', href: '/corrections' },
+      { label: 'Closed prop firms', href: '/prop-firms/closed' },
       { label: 'Authors', href: '/authors' },
       { label: 'Contact', href: '/contact' },
     ] },
@@ -102,7 +109,7 @@ export default function Footer({
   const t = isRussian ? {
     home: '/ru',
     tagline: `Сравнение ${firmCount} проп-фирм: цены, правила и выплаты с датой каждого источника.`,
-    independence: 'Редакция независима: партнёрство не влияет на оценки и порядок.',
+    independence: PARTNERSHIP_POLICY.ru,
     captureLabel: 'Последний срез продукта',
     products: `${pricedChallengeCount} программ с ценой`,
     disclaimer: 'Трейдинг связан с высоким риском убытка. Информация не является финансовой рекомендацией. Часть ссылок партнёрские.',
@@ -116,7 +123,7 @@ export default function Footer({
   } : {
     home: '/',
     tagline: `Compare ${firmCount} prop firms on fees, rules and payouts, with a date on every source.`,
-    independence: 'Editorially independent: partnerships never change scores or order.',
+    independence: PARTNERSHIP_POLICY.en,
     captureLabel: 'Latest product capture',
     products: `${pricedChallengeCount} priced programmes`,
     disclaimer: 'Trading involves significant risk of loss. Information only, not financial advice. Some links are affiliate links.',

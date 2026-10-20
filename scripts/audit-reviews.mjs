@@ -9212,7 +9212,7 @@ function checkCopyTradingGuide() {
     ],
   )
   if (
-    fxify.length !== 8 ||
+    fxify.length !== 10 ||
     fxifyDates.size < 1 ||
     !fxifyRestricted.every(challenge =>
       challenge.notes.some(note =>
@@ -9674,8 +9674,8 @@ function checkScalingPlanGuide() {
     {
       slug: 'fxify',
       name: 'FXIFY',
-      splitFragments: ['80%', '5 phase products', 'unstated on 3 products'],
-      countFragments: [[80, 5]],
+      splitFragments: ['80%', '7 products (5 phase, 2 crypto)', 'unstated on 3 products'],
+      countFragments: [[80, 7]],
       nullCount: 3,
     },
   ]
@@ -9868,6 +9868,7 @@ function checkFundedNextComparisonOverlay() {
     {
       slug: 'fundednext-vs-fundingpips',
       nextSlug: 'ftmo-vs-fxify',
+      reviewedAt: '2026-10-20',
       categoryCount: 7,
       faqCount: 5,
       expected: [
@@ -9879,7 +9880,7 @@ function checkFundedNextComparisonOverlay() {
         '5 days',
         '7 days',
         '12% static',
-        '100% monthly',
+        '100% on demand',
         '95% on Zero',
         'fourth reward',
       ],
@@ -9889,6 +9890,9 @@ function checkFundedNextComparisonOverlay() {
         'zero minimum trading days',
         'FundingPips imposes 5',
         'FundingPips treats news-window profit normally',
+        '85% on 1 Step Flex',
+        '3 products are non-refundable',
+        '100% monthly',
       ],
     },
     {
@@ -9931,8 +9935,8 @@ function checkFundedNextComparisonOverlay() {
       continue
     }
     if (
-      !block.includes("reviewedAt: '2026-08-14'") ||
-      !block.includes("challengeReviewedAt: '2026-08-14'")
+      !block.includes(`reviewedAt: '${spec.reviewedAt ?? '2026-08-14'}'`) ||
+      !block.includes(`challengeReviewedAt: '${spec.reviewedAt ?? '2026-08-14'}'`)
     ) {
       rows.push(`${spec.slug} review dates are not current`)
     }
@@ -12212,7 +12216,7 @@ function checkRussianAcquisitionPilot() {
     if (!reachableRussianRoutes.has(route)) rows.push(route + ': not reachable through Russian page links')
   }
   for (const token of [
-    "const TITLE = 'Проп-фирмы для русскоязычных трейдеров: цены и правила'",
+    "const TITLE = 'Проп-фирмы 2026: условия и цены для русскоязычных трейдеров'",
     'data-russian-home-layout="focused"',
     'data-russian-home-diaspora-entry="trust"',
     'href="/ru/dlya-russkoyazychnykh-treyderov"',
@@ -12785,7 +12789,7 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(russianRouteFiles.get('/ru/fundednext-vs-bright-funded'), 'utf8')
     : ''
   for (const token of [
-    "const TITLE = 'FundedNext или BrightFunded: сравнение 2026'",
+    "const TITLE = 'FundedNext или BrightFunded: сравнение 2026 и доступ из РФ'",
     "const SOCIAL_TITLE = 'FundedNext или Bright Funded: сравнение 2026'",
     'FundedNext или BrightFunded: что выбрать в 2026 году',
     'data-russian-primary-comparison="fundednext-bright-funded"',
@@ -13210,7 +13214,7 @@ function checkRussianAcquisitionPilot() {
     'firm.trustpilotCount.toLocaleString(\'ru-RU\')',
     'Что показывают отзывы о FundedNext на Trustpilot?',
     'href="/ru/otzyvy-prop-firm#review-checklist"',
-    'data-fundednext-russia-access="conflicting"',
+    'data-fundednext-russia-access="restricted"',
     'data-fundednext-russian-truecost="true"',
     'Содержание обзора',
     'id="verdict"',

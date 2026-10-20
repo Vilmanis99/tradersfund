@@ -3,7 +3,7 @@ title: "Prop Firms With a Free Trial (2026): 6 Offers Checked"
 seoTitle: "Prop Firm Free Trial 2026: 6 Firms, Limits & Rules"
 slug: "prop-firm-free-trial"
 date: "2026-10-19 12:00:00"
-modified: "2026-10-19 12:00:00"
+modified: "2026-10-20 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Six prop firms let you trade for free right now, and five of them will never pay you for it. Here are the limits, the gotchas and how each trial converts to a paid account."
 seoDescription: "Prop firm free trial list for 2026: FTMO, FundedNext, FundingPips, Alpha Capital, E8 and BrightFunded's free $1K challenge, with limits and how to convert."
@@ -62,7 +62,7 @@ type: "post"
 
 <p>FundingPips copies its paid 2 Step Standard and 2 Step Pro models "exactly", and it's the only trial here with a Phase 2. Standard means 8% then 5% targets, a 5% daily loss and a 10% maximum loss, on $5K–$100K. Pro means 6% in both phases, a 3% daily loss and a 6% maximum loss, on $5K–$200K. Each phase gets 14 calendar days from activation (weekends count), and the timer can't be paused or extended. Sign-up takes a name and an email, with no card and no ID.</p>
 
-<p><strong>The gotcha:</strong> the trial "can't run at the same time as a paid evaluation, Master, giveaway, or competition accounts". If you already hold a funded FundingPips account, you can't use the trial to test a second model alongside it. The trial's 0 minimum trading days per phase matches the paid model: FundingPips' 2-Step Pro article, rechecked on 2026-10-19, says 2 Step Pro has 0 minimum trading days for new and reset accounts, while accounts bought before 26 Aug 2026 keep 1 day.</p>
+<p><strong>The gotcha:</strong> the trial "can't run at the same time as a paid evaluation, Master, giveaway, or competition accounts". If you already hold a funded FundingPips account, you can't use the trial to test a second model alongside it. The trial's 0 minimum trading days per phase matches the paid model: FundingPips' 2-Step Pro article, rechecked on 2026-10-20, says 2 Step Pro has 0 minimum trading days for new and reset accounts, while accounts bought before 26 Aug 2026 keep 1 day.</p>
 
 <p><strong>Converting:</strong> FundingPips says the trial "cannot be converted into an evaluation account or a Master Account under any circumstances". Our capture prices the $100K 2 Step Standard at $544 and the $100K 2 Step Pro at $422. Details are in the <a href="/blog/funding-pips-review">FundingPips review</a>.</p>
 
@@ -112,4 +112,4 @@ type: "post"
 <p>Usually one at a time. FTMO and FundingPips allow unlimited trials in a row, E8 caps you at 2 every 28 days, and BrightFunded allows a single free account per phone number. FundingPips and BrightFunded also require you to have no other active account with them.</p>
 
 <h3 class="wp-block-heading"><strong>Does Topstep have a free trial?</strong></h3>
-<p>Topstep's Help Center describes a free 150K Practice Account, but it's only available with an active Trading Combine subscription, so you pay for the Combine first. For Topstep's paid rules, see our <a href="/blog/topstep-review">Topstep review</a>.</p>
+<p>Topstep's Help Center describes a free 150K Practice Account, but it's only available with an active Trading Combine subscription, so you pay for the Combine first. For Topstep's paid rules, see our <a href="/blog/topstep-review">Topstep review</a>. If payout speed matters more than a free start, compare the <a href="/blog/prop-firms-with-weekly-payouts">prop firms with weekly payouts</a>.</p>

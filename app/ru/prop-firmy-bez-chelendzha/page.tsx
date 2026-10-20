@@ -21,10 +21,11 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/prop-firmy-bez-chelendzha'
-const TITLE = 'Проп-фирмы без челленджа 2026: FundedNext Instant'
-const DESCRIPTION = 'Сравнение программ без челленджа: FundedNext Stellar Instant, FundingPips Zero и другие модели с датами источников — цены, просадка, выплаты и KYC.'
+const TITLE = 'Проп-фирмы без челленджа 2026: мгновенное финансирование'
+const DESCRIPTION = 'Проп-фирмы без челленджа и мгновенное финансирование: FundedNext Instant, FundingPips Zero и другие модели с датами источников — цены, просадка, выплаты.'
 const FUNDEDNEXT_REWARD_URL = 'https://help.fundednext.com/en/articles/11641693-what-is-the-eligibility-criteria-for-my-performance-reward-in-the-stellar-instant-account'
 const FUNDEDNEXT_SCALE_URL = 'https://help.fundednext.com/en/articles/11641516-is-there-a-scale-up-plan-for-stellar-instant-accounts'
 const FUNDEDNEXT_NEWS_URL = 'https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts'
@@ -255,7 +256,7 @@ export default function RussianInstantPropFirmsPage() {
           data-russian-instant-firm-count={instantFirmCount}
         >
           <div className="ru-eyebrow"><Zap size={14} aria-hidden="true" /> 0 оценочных этапов — правила остаются</div>
-          <h1>Проп-фирмы без челленджа: FundedNext Instant и FundingPips Zero</h1>
+          <h1>Проп-фирмы без челленджа: мгновенное финансирование FundedNext и FundingPips</h1>
           <p className="ru-lead">
             Сравнили {products.length} свежих продуктов без оценки у {instantFirmCount} глобальных фирм.
             {partnerPairCurrent
@@ -338,6 +339,42 @@ export default function RussianInstantPropFirmsPage() {
           </div>
         </section>
 
+        <section className="ru-section" id="bright-alternative">
+          <div className="ru-shell" data-russian-instant-bright={brightEvaluationOnly ? 'challenge-alternative-only' : brightPhaseZero.length > 0 ? 'phase-zero-listed' : 'recapture-required'}>
+            <h2>BrightFunded: проверка оценочного этапа</h2>
+            <div className="ru-notice">
+              {brightEvaluationOnly ? (
+                <><strong>Не включаем BrightFunded в таблицу фазы 0.</strong>{' '}
+                  Снимок от {brightOldestCapture}: оценочных программ — {brightProducts.length}; опубликованных EUR-цен — {brightPriceCount}. Ни у одной нет подтверждённой фазы 0.</>
+              ) : brightPhaseZero.length > 0 ? (
+                <><strong>Программы без оценки включены в таблицу ниже.</strong>{' '}
+                  По снимку от {brightOldestCapture} число таких программ — {brightPhaseZero.length}; остальные модели проверяйте отдельно.</>
+              ) : (
+                <><strong>Нужна повторная проверка BrightFunded.</strong>{' '}
+                  Последний продуктовый снимок от {brightOldestCapture ?? 'неизвестной даты'} не подтверждает текущую линейку, число программ или цены. Сверьте этапы на сайте фирмы до оплаты.</>
+              )}
+            </div>
+            {brightEvaluationOnly ? (
+              <p>
+                Проверенные программы требуют оценки. Сравните допустимую просадку, дату первой заявки на вознаграждение и KYC
+                в <Link href="/ru/obzor-bright-funded">обзоре BrightFunded</Link>, затем подтвердите условия выбранного заказа.
+              </p>
+            ) : null}
+            <p>
+              Переход к BrightFunded может принести нам комиссию. Партнёрский статус не подтверждает отсутствие оценки,
+              доступность продукта или право на покупку в вашей стране. Если отсутствие оценки обязательно, сверяйте только свежие строки таблицы выше.
+            </p>
+            <div className="ru-actions">
+              <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
+              {brightFirm?.affiliateUrl ? (
+                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-instant-bright-alternative" rel="sponsored nofollow noopener" className="btn-primary">
+                  Проверить программы BrightFunded <ArrowRight size={14} aria-hidden="true" />
+                </RuGoLink>
+              ) : null}
+            </div>
+          </div>
+        </section>
+
         <section className="ru-section" id="partner-instant">
           <div className="ru-shell" data-russian-instant-featured-partners="fundednext-fundingpips">
             <h2>FundedNext Instant или FundingPips Zero: прямое сравнение</h2>
@@ -376,50 +413,6 @@ export default function RussianInstantPropFirmsPage() {
           </div>
         </section>
 
-        <section className="ru-section" id="fundednext-instant">
-          <div className="ru-shell" data-russian-instant-partner="fundednext">
-            <div className="ru-card-head"><h2>FundedNext Stellar Instant: цена и правила</h2><span className="ru-score">Партнёрская программа</span></div>
-            {fundedNextCard && fundedNextRulesFresh ? <>
-            <div className="ru-grid">
-              <article className="ru-card">
-                <h3>Цена и размер</h3>
-                <p className="ru-muted">Проверенные базовые цены: {fundedNextCard.product!.accountSizes.map(tier => `${tier.sizeUsd == null ? 'размер не указан' : formatPrice(tier.sizeUsd, 'USD')} — ${tier.priceUsd == null ? 'не опубликована' : formatPrice(tier.priceUsd, 'USD')}`).join('; ')}. Взнос не возвращается; опция без свопов добавляет 10% и не включена в базовые суммы.</p>
-              </article>
-              <article className="ru-card">
-                <h3>Просадка и сплит</h3>
-                <p className="ru-muted">Максимальный убыток — 6% с плавающей границей. Стартовая доля вознаграждения равна 70% на уровнях 1–2 и повышается до 80% с уровня 3 по плану масштабирования.</p>
-              </article>
-              <article className="ru-card">
-                <h3>Когда доступна заявка по запросу</h3>
-                <p className="ru-muted">Право на заявку требует роста счёта на 5% и проверки по закрытию дня. При росте от 1% до менее 5% применяется 14-дневный цикл; «по запросу» не означает «без условий».</p>
-              </article>
-            </div>
-            <p>
-              Торговля на новостях разрешена, но внутри окна 5 минут до и 5 минут после указанной важной новости засчитывается только 40% прибыли;
-              перенос позиций через ночь и выходные разрешён со свопом, а копирование допускается только между собственными счетами Stellar Instant.
-              До оплаты нужно отдельно подтвердить KYC и страну; для резидентов России официальные страницы FundedNext дают конфликтующие сигналы.
-            </p>
-            <p className="ru-source-line">
-              <a href={fundedNextCard.product!.sourceUrl} target="_blank" rel="noopener noreferrer">Официальная цена</a>{' · '}
-              <a href={FUNDEDNEXT_REWARD_URL} target="_blank" rel="noopener noreferrer">Условия вознаграждения</a>{' · '}
-              <a href={FUNDEDNEXT_SCALE_URL} target="_blank" rel="noopener noreferrer">План масштабирования</a>{' · '}
-              <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">Правило новостной прибыли</a>
-            </p>
-            </> : <div className="ru-notice" data-russian-instant-fundednext-status="recapture-required">
-              {fundedNextCard
-                ? <>Ценовая запись Stellar Instant проверена {fundedNextCard.product!.sourceCapturedAt}; базовый диапазон — {priceRange(fundedNextCard.product!)}. Но отдельный снимок правил от {instantEvidence.capturedAt} устарел. Сверьте <a href={FUNDEDNEXT_REWARD_URL} target="_blank" rel="noopener noreferrer">условия выплаты</a>, <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">правило новостей</a> и доплаты до оплаты.</>
-                : <>Продуктовая запись Stellar Instant вышла за 30-дневное окно. Старые цены и условия нельзя считать текущими; откройте <Link href="/ru/fundednext-stellar-instant">датированный разбор</Link> и <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">официальное правило новостей</a>.</>}
-            </div>}
-            <div className="ru-actions">
-              <Link href="/ru/fundednext-stellar-instant" className="btn-outline">Датированный разбор Stellar Instant</Link>
-              <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
-              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-instant-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
-                Проверить программы FundedNext <ArrowRight size={14} aria-hidden="true" />
-              </RuGoLink>
-            </div>
-          </div>
-        </section>
-
         <section className="ru-section" id="fundingpips-zero">
           <div className="ru-shell" data-russian-instant-partner="fundingpips">
             <div className="ru-card-head"><h2>FundingPips Zero: цена и правила</h2><span className="ru-score">Партнёрская программа</span></div>
@@ -455,6 +448,51 @@ export default function RussianInstantPropFirmsPage() {
                 Проверить программы FundingPips <ArrowRight size={14} aria-hidden="true" />
               </RuGoLink>
             </div>
+          </div>
+        </section>
+
+        <section className="ru-section" id="fundednext-instant">
+          <div className="ru-shell" data-russian-instant-partner="fundednext">
+            <div className="ru-card-head"><h2>FundedNext Stellar Instant: цена и правила</h2><span className="ru-score">Партнёрская программа</span></div>
+            {fundedNextCard && fundedNextRulesFresh ? <>
+            <div className="ru-grid">
+              <article className="ru-card">
+                <h3>Цена и размер</h3>
+                <p className="ru-muted">Проверенные базовые цены: {fundedNextCard.product!.accountSizes.map(tier => `${tier.sizeUsd == null ? 'размер не указан' : formatPrice(tier.sizeUsd, 'USD')} — ${tier.priceUsd == null ? 'не опубликована' : formatPrice(tier.priceUsd, 'USD')}`).join('; ')}. Взнос не возвращается; опция без свопов добавляет 10% и не включена в базовые суммы.</p>
+              </article>
+              <article className="ru-card">
+                <h3>Просадка и сплит</h3>
+                <p className="ru-muted">Максимальный убыток — 6% с плавающей границей. Стартовая доля вознаграждения равна 70% на уровнях 1–2 и повышается до 80% с уровня 3 по плану масштабирования.</p>
+              </article>
+              <article className="ru-card">
+                <h3>Когда доступна заявка по запросу</h3>
+                <p className="ru-muted">Право на заявку требует роста счёта на 5% и проверки по закрытию дня. При росте от 1% до менее 5% применяется 14-дневный цикл; «по запросу» не означает «без условий».</p>
+              </article>
+            </div>
+            <p>
+              Торговля на новостях разрешена, но внутри окна 5 минут до и 5 минут после указанной важной новости засчитывается только 40% прибыли;
+              перенос позиций через ночь и выходные разрешён со свопом, а копирование допускается только между собственными счетами Stellar Instant.
+              До оплаты нужно отдельно подтвердить KYC и страну; резидентам России FundedNext недоступна (подвал fundednext.com, по данным на 20.10.2026).
+            </p>
+            <p className="ru-source-line">
+              <a href={fundedNextCard.product!.sourceUrl} target="_blank" rel="noopener noreferrer">Официальная цена</a>{' · '}
+              <a href={FUNDEDNEXT_REWARD_URL} target="_blank" rel="noopener noreferrer">Условия вознаграждения</a>{' · '}
+              <a href={FUNDEDNEXT_SCALE_URL} target="_blank" rel="noopener noreferrer">План масштабирования</a>{' · '}
+              <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">Правило новостной прибыли</a>
+            </p>
+            </> : <div className="ru-notice" data-russian-instant-fundednext-status="recapture-required">
+              {fundedNextCard
+                ? <>Ценовая запись Stellar Instant проверена {fundedNextCard.product!.sourceCapturedAt}; базовый диапазон — {priceRange(fundedNextCard.product!)}. Но отдельный снимок правил от {instantEvidence.capturedAt} устарел. Сверьте <a href={FUNDEDNEXT_REWARD_URL} target="_blank" rel="noopener noreferrer">условия выплаты</a>, <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">правило новостей</a> и доплаты до оплаты.</>
+                : <>Продуктовая запись Stellar Instant вышла за 30-дневное окно. Старые цены и условия нельзя считать текущими; откройте <Link href="/ru/fundednext-stellar-instant">датированный разбор</Link> и <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">официальное правило новостей</a>.</>}
+            </div>}
+            <div className="ru-actions">
+              <Link href="/ru/fundednext-stellar-instant" className="btn-outline">Датированный разбор Stellar Instant</Link>
+              <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-instant-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
+                Проверить программы FundedNext <ArrowRight size={14} aria-hidden="true" />
+              </RuGoLink>
+            </div>
+            <RuFundedNextAccessCaveat />
           </div>
         </section>
 
@@ -530,7 +568,7 @@ export default function RussianInstantPropFirmsPage() {
             <div className="ru-grid">
               <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент ЕС</h3><p className="ru-muted">Проверяет вид на жительство, платёжный адрес, конвертацию EUR/USD, KYC и доступный способ выплаты в своей стране.</p></article>
               <article className="ru-card"><Globe2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Казахстан, Грузия, Израиль, ОАЭ</h3><p className="ru-muted">Сверяет гражданство и резидентство отдельно; доступ одной страны не переносится на соседнюю или прежний адрес.</p></article>
-              <article className="ru-card"><ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">Не использует VPN или чужую карту. При конфликте официальных страниц не платит до письменного ответа по продукту и выплате.</p></article>
+              <article className="ru-card"><ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Резидент России</h3><p className="ru-muted">Не использует VPN или чужую карту. Не платит фирмам, которые исключают Россию (например, FundedNext с 20.10.2026), и при неясном статусе ждёт письменного ответа по продукту и выплате.</p></article>
               <article className="ru-card"><ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Переезд или 2 гражданства</h3><p className="ru-muted">Обновляет документ, фактический адрес и налоговое резидентство до оплаты, не смешивая данные старого и нового профиля.</p></article>
             </div>
             <p>
@@ -551,42 +589,6 @@ export default function RussianInstantPropFirmsPage() {
               До покупки всё равно зафиксируйте 5 полей: первоначальную цену, тип и размер просадки, правило распределения прибыли,
               условие первой заявки и возврат взноса. Если хотя бы одно поле относится к другому продукту, сравнение недействительно.
             </p>
-          </div>
-        </section>
-
-        <section className="ru-section" id="bright-alternative">
-          <div className="ru-shell" data-russian-instant-bright={brightEvaluationOnly ? 'challenge-alternative-only' : brightPhaseZero.length > 0 ? 'phase-zero-listed' : 'recapture-required'}>
-            <h2>BrightFunded: проверка оценочного этапа</h2>
-            <div className="ru-notice">
-              {brightEvaluationOnly ? (
-                <><strong>Не включаем BrightFunded в таблицу фазы 0.</strong>{' '}
-                  Снимок от {brightOldestCapture}: оценочных программ — {brightProducts.length}; опубликованных EUR-цен — {brightPriceCount}. Ни у одной нет подтверждённой фазы 0.</>
-              ) : brightPhaseZero.length > 0 ? (
-                <><strong>Программы без оценки включены в таблицу выше.</strong>{' '}
-                  По снимку от {brightOldestCapture} число таких программ — {brightPhaseZero.length}; остальные модели проверяйте отдельно.</>
-              ) : (
-                <><strong>Нужна повторная проверка BrightFunded.</strong>{' '}
-                  Последний продуктовый снимок от {brightOldestCapture ?? 'неизвестной даты'} не подтверждает текущую линейку, число программ или цены. Сверьте этапы на сайте фирмы до оплаты.</>
-              )}
-            </div>
-            {brightEvaluationOnly ? (
-              <p>
-                Проверенные программы требуют оценки. Сравните допустимую просадку, дату первой заявки на вознаграждение и KYC
-                в <Link href="/ru/obzor-bright-funded">обзоре BrightFunded</Link>, затем подтвердите условия выбранного заказа.
-              </p>
-            ) : null}
-            <p>
-              Переход к BrightFunded может принести нам комиссию. Партнёрский статус не подтверждает отсутствие оценки,
-              доступность продукта или право на покупку в вашей стране. Если отсутствие оценки обязательно, сверяйте только свежие строки таблицы выше.
-            </p>
-            <div className="ru-actions">
-              <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
-              {brightFirm?.affiliateUrl ? (
-                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-instant-bright-alternative" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить программы BrightFunded <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
-              ) : null}
-            </div>
           </div>
         </section>
 

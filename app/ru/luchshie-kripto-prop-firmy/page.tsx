@@ -27,8 +27,10 @@ import {
   russianRouteDateModified,
 } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
-import { goLinkRel } from '@/lib/russiaAvailability'
+import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/luchshie-kripto-prop-firmy'
 const TITLE = 'Крипто-проп-фирмы 2026: цены, инструменты и правила'
@@ -152,7 +154,9 @@ export default function RussianCryptoPropFirmsPage() {
   ).sort((a, b) => {
     const aKey = (a.evidence.marketModel === 'crypto-native' ? 100 : 0) + a.firm.score
     const bKey = (b.evidence.marketModel === 'crypto-native' ? 100 : 0) + b.firm.score
-    return bKey - aKey || a.firm.name.localeCompare(b.firm.name)
+    // Russia access first (open, then unclear, then restricted), as on the other /ru rankings.
+    return RUSSIA_STATUS_ORDER[russiaStatusFor(a.evidence.firmSlug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.evidence.firmSlug)]
+      || bKey - aKey || a.firm.name.localeCompare(b.firm.name)
   })
   const payoutEvidence = cryptoMarketEvidence.payoutAlternative
   const evidenceDates = [
@@ -410,8 +414,8 @@ export default function RussianCryptoPropFirmsPage() {
               <h3>Crypto Fund Trader: что исправили 8 сентября</h3>
               <p>Повторно проверили 15 базовых цен в трёх программах: Evaluation, Accelerated и Instant. Это не подтверждает доступность каждого криптоинструмента на каждой платформе. Пока связка «программа — платформа — рынок» не проверена отдельно, CFT остаётся вне этого крипторейтинга.</p>
               <p>В проверенных начальных вариантах Instant доля вознаграждения составляет 50%, а не 80% стандартных оценочных программ. Для общего порядка запроса указаны 15 торговых дней или 30 календарных дней; отдельный путь Instant без минимального числа дней требует 10% симулированной прибыли и запроса на выплату с переходом на следующий уровень. Это не обещание немедленного перевода денег.</p>
-              <p>Ascend завершается фиксированным вознаграждением после оценки, а не обычным счётом с постоянной долей прибыли. У Ascend и Break расходятся опубликованные цены; страница Break также показывает отсутствие в продаже. Поэтому их цены входа не подтверждены, а даты полной проверки остаются 27 июля. Это не вывод о закрытии программ и не подтверждение регистрации из какой-либо страны.</p>
-              <p className="ru-source-line">Это датированное исправление нашего материала, не установленная дата изменения правил фирмы. Официальные источники и нерешённые вопросы перечислены в журнале; перед оплатой проверьте условия заново.</p>
+              <p>Ascend завершается фиксированным вознаграждением после оценки, а не обычным счётом с постоянной долей прибыли. Цены Ascend и Break по данным на 14.10.2026: Ascend — $39 / $78 / $195 / $390 / $780 / $1 560 за счета $5K / $10K / $25K / $50K / $100K / $200K (п. 5.6.5 условий; в магазине Ascend отдельно не продаётся), Break — $70 / $140 / $200 за $25K / $50K / $100K плюс обязательный сбор за активацию $138 / $198 / $328 после прохождения. По данным на 19.10.2026 официальные страницы расходятся: главная показывает Ascend за $45 / $90 / $225 / $450 / $899 / $1 798, а в магазине все шесть позиций Ascend недоступны к покупке; позиции Break в магазине доступны, хотя на странице Break стоит надпись «sold out». Поэтому самый дешёвый доступный к покупке вход у CFT — Accelerated $5K за $40, а не Ascend за $39. Наличие размера и итоговую цену проверьте в корзине. Это не вывод о закрытии программ и не подтверждение регистрации из какой-либо страны.</p>
+              <p className="ru-source-line">Это датированное исправление нашего материала, не установленная дата изменения правил фирмы. Цены Ascend и Break — <a href="https://cryptofundtrader.com/terms-and-conditions/" target="_blank" rel="nofollow noopener noreferrer">условия CFT</a> и <a href="https://cryptofundtrader.com/shop/" target="_blank" rel="nofollow noopener noreferrer">магазин CFT</a>, по данным на 14.10.2026; расхождения и доступность к покупке — <a href="https://cryptofundtrader.com/" target="_blank" rel="nofollow noopener noreferrer">главная страница</a> и магазин, по данным на 19.10.2026. Официальные источники и нерешённые вопросы перечислены в журнале; перед оплатой проверьте условия заново.</p>
               <div className="ru-actions">
                 <Link href="/blog/crypto-fund-trader-review" hrefLang="en" className="btn-outline">Полный обзор CFT — на английском</Link>
                 <Link href="/prop-firm-challenge-changes?products=crypto-fund-trader%3Ainstant%2Ccrypto-fund-trader%3Aascend%2Ccrypto-fund-trader%3Abreak#change-ledger" hrefLang="en" className="ru-card-link">Источники исправлений — на английском →</Link>
@@ -425,28 +429,29 @@ export default function RussianCryptoPropFirmsPage() {
             <h2>Проп-компании криптовалюты: что доступно трейдерам из России</h2>
             <p>
               Этот блок — не рейтинг, а ответ на вопрос «куда можно зайти из РФ». На 14.10.2026 криптоинструменты есть в профилях
-              FundedNext, Crypto Fund Trader, FundingPips, FTMO, E8 Markets и ряда других фирм, но Россию из них не ограничивают только
-              FundedNext (CFD) и Crypto Fund Trader (на Match-Trader). Ещё один вариант вне нашего рейтинга — Upscale: ограничений по
+              FundedNext, Crypto Fund Trader, FundingPips, FTMO, E8 Markets и ряда других фирм, но Россию из них не ограничивает только
+              Crypto Fund Trader (на Match-Trader); FundedNext с 20.10.2026 резидентам РФ недоступна (подвал её сайта). Ещё один вариант вне нашего рейтинга — Upscale: ограничений по
               странам не заявлено, KYC нет, выплаты в USDT на собственный кошелёк.
             </p>
             <h3>Проп-компании для трейдеров криптовалют: что проверить</h3>
             <ul>
               <li><strong>Платформа.</strong> У Crypto Fund Trader на Match-Trader ограничений по странам нет, а MT5 закрыт только для резидентов США (по данным на 14.10.2026).</li>
-              <li><strong>Цена входа.</strong> Crypto Fund Trader Evaluation на $10 000 — $110, на $100 000 — $660 (по данным на 08.09.2026).</li>
+              <li><strong>Цена входа.</strong> Crypto Fund Trader Evaluation на $10 000 — $110, на $100 000 — $660 (по данным на 14.10.2026).</li>
               <li><strong>Доля.</strong> 80% в оценочных программах Crypto Fund Trader, но 50% в Instant — подробнее в блоке выше.</li>
               <li><strong>Выплата.</strong> Crypto Fund Trader платит в USDT (ERC20/TRC20), BTC, ETH или банковским переводом; FundedNext — в USDT и USDC.</li>
             </ul>
             <h3>Крипта в проп-трейдинге: оплата из России</h3>
             <p>
               Crypto Fund Trader принимает карту, PayPal, Apple Pay, Google Pay и криптовалюту (<a href="https://cryptofundtrader.com/faq/" target="_blank" rel="nofollow noopener noreferrer">FAQ CFT</a>,
-              по данным на 14.10.2026). Работают ли карты, выпущенные в России, фирма не сообщает; криптовалюта — способ, который от карты не зависит. Полная таблица доступа — на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для россиян</Link>.
+              по данным на 19.10.2026; на странице Get Started и в условиях названы только карта и криптовалюта). Работают ли карты, выпущенные в России, фирма не сообщает; криптовалюта — способ, который от карты не зависит. Полная таблица доступа — на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для россиян</Link>.
             </p>
             <div className="ru-actions">
-              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-crypto-russia-access-1" rel={goLinkRel('fundednext')} className="btn-primary">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-              <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-crypto-russia-access-2" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-              <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-crypto-russia-access-3" rel={goLinkRel('fundingpips')} className="btn-outline">FundingPips</RuGoLink>
+              <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-crypto-russia-access-1" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+              <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-crypto-russia-access-2" rel={goLinkRel('fundingpips')} className="btn-outline">FundingPips</RuGoLink>
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-crypto-russia-access-3" rel={goLinkRel('fundednext')} className="btn-outline">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-crypto-russia-access-4" rel={goLinkRel('ftmo')} className="btn-outline">FTMO</RuGoLink>
             </div>
+            <RuFundedNextAccessCaveat />
           </div>
         </section>
 
