@@ -1,0 +1,52 @@
+{
+  "firmSlug": "apex-trader-funding",
+  "captureType": "daily-recheck-access-only",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T08:21:25+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/apex-trader-funding-2026-10-19.json",
+  "egress": "Box egress is a US IP. Only official first-party pages were read.",
+  "accessDataPoints": [
+    {
+      "url": "https://support.apextraderfunding.com/hc/en-us",
+      "egressRegion": "US",
+      "httpStatus": null,
+      "result": "Error: page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://support.apextraderfunding.com/hc/en"
+    },
+    {
+      "url": "https://apextraderfunding.com/",
+      "egressRegion": "US",
+      "httpStatus": 200,
+      "result": "rendered"
+    },
+    {
+      "url": "https://apextraderfunding.com/pricing/",
+      "egressRegion": "US",
+      "httpStatus": 404,
+      "result": "not found"
+    },
+    {
+      "url": "https://apextraderfunding.com/terms-of-service/",
+      "egressRegion": "US",
+      "httpStatus": 404,
+      "result": "not found"
+    }
+  ],
+  "verificationStatus": "unverified",
+  "keepStale": true,
+  "unverifiedObservations": {
+    "_status": "UNVERIFIED - seen only from a US IP, not checkout-verified, not merged into challenge prices",
+    "sourceUrl": "https://apextraderfunding.com/",
+    "quotes": [
+      "90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW” COUPON \"SAVENOW\" Ends in: 2d 22h 45m 14s",
+      "\"title_code\":\"COUPON \\\"SAVENOW\\\"\",\"active\":true,\"expiration\":\"2026-10-22 23:59\"",
+      "ONE-TIME FEE. NO REBILL. EVAL ACTIVE FOR 30 DAYS. WILL EXPIRE AFTER 30 DAYS. NO RESETS. $167.00 $16.70 - (with Coupon Code)"
+    ]
+  },
+  "changes": [
+    "firms.json: discountCodeCapturedAt 2026-10-20 and discountCodeNote now records the promo expiration 2026-10-22 23:59 (US-IP observation only). No price, rule or lastUpdated change; challenge sourceCapturedAt NOT advanced."
+  ],
+  "notes": [
+    "Full US-IP pricing capture (labelled US-only per Code Reviewer) is scheduled as audit backlog D3 on Thu 22 Oct; not attempted today. /pricing/ and /terms-of-service/ return 404; help centre returns 403."
+  ]
+}

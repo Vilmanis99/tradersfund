@@ -52,14 +52,14 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "The stored 80% split and 14-day cycle represent the current Bi-Weekly route; a Monthly 100% route has additional eligibility conditions.",
+      "The stored 80% split and 14-day cycle represent the current Bi-Weekly route; the alternative is now On Demand 100% with eligibility conditions (35% consistency score plus 7 profitable days at 0.5%+), replacing the former Monthly 100% route (official 1 Step Flex page, 2026-10-20: \"80% Bi-Weekly or 100% On Demand reward\").",
       "The current page shows a 2% or 3% daily-loss configuration; this record retains 3% for the captured base route and does not imply both configurations are identical.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Refundability remains unresolved because the official refund wording does not clearly name current 1 Step Flex.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-19.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json"
     ]
   },
   {
@@ -123,7 +123,7 @@
       "New and reset accounts require the current minimum-day conditions; older accounts may retain legacy terms.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-19.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change to this product, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json"
     ]
   },
   {
@@ -190,15 +190,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "Weekly 80% is the stored shorter route; eligible Master Accounts may choose Monthly 100% with extra conditions.",
+      "Weekly 80% is the stored route; the alternative is now On Demand 100% with eligibility conditions, replacing the former Monthly 100% route (official Compare Account Models table, updated 2026-10-19: rewards \"Weekly 80%\", \"On Demand 100%\").",
       "Minimum reward request is 1% of Master Account size, including FundingPips' split, under the current 2 Step Pro page.",
       "Minimum trading days is 0 per phase for new and reset accounts (\"Reset and new accounts will require 0 minimum trading days.\"); existing Phase 1/2 accounts bought before 26 August 2026 keep 1.",
       "The $2.5K availability conflict remains unresolved and priceUsd stays null.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-19.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json"
     ]
   },
   {
@@ -260,15 +260,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "No single split or frequency: current first-party page lists Weekly 60%, Bi-Weekly 80%, Monthly 100%, or On Demand 90% with separate conditions.",
-      "The 35% consistency score applies to On Demand and Monthly routes, not every evaluation path.",
+      "No single split or frequency: the official 2 Step Standard page (2026-10-20) lists \"Flexible reward cycles: Weekly 60%, Bi-Weekly 80%, or On Demand 100%.\" The former Monthly 100% and On Demand 90% routes are no longer listed.",
+      "The 35% consistency score applies to the On Demand 100% route only (\"A 35% consistency score must be achieved\"), not to Weekly or Bi-Weekly rewards.",
       "The current 8%-target Standard replaces the former 10%-target product.",
       "The $2.5K availability conflict remains unresolved and priceUsd stays null.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-19.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json"
     ]
   },
   {
@@ -333,7 +333,7 @@
       "At least 7 profitable days of 0.25% or more are required in every rolling 30-day period; this is not a minimum trading-day field.",
       "News-window and weekend holding violations are hard breaches; the account is simulated and begins directly at Master.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-19.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change to this product, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json"
     ]
   }
 ]
