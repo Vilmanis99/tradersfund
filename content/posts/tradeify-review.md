@@ -3,7 +3,7 @@ title: "Tradeify Review 2026: Growth, Select or Lightning Funded?"
 seoTitle: "Tradeify Review 2026: Fees from $99, Rules & 90% Payouts"
 slug: "tradeify-review"
 date: "2026-07-28"
-modified: "2026-09-14 12:00:00"
+modified: "2026-10-20 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Tradeify publishes 16 priced futures product-size combinations with EOD drawdown and 90% simulated payouts, but each route has a different consistency gate."
 seoDescription: "Tradeify review 2026: 16 priced futures tiers from $99 to $796, Growth vs Select vs Lightning routes, EOD trailing drawdown, consistency gates and 90% split."
@@ -61,7 +61,7 @@ type: "post"
   </tbody>
 </table>
 </div>
-<p style="font-size: 0.82rem; color: var(--muted);">List prices and current rules were recaptured from Tradeify's first-party pages on 2026-09-14. Select appears twice because its single evaluation leads to a permanent Flex or Daily funded choice with different payout and risk rules. The homepage promotion is not applied to these base fees; confirm the product and final amount through <a href="/go/tradeify">Tradeify's current checkout path</a>. The Select $50K purchase remained $165, while its separately published reset fee was $109.</p>
+<p style="font-size: 0.82rem; color: var(--muted);">List prices were rechecked unchanged against Tradeify's own pricing reference on 2026-10-20; the rules were last recaptured from its first-party pages on 2026-09-14. Select appears twice because its single evaluation leads to a permanent Flex or Daily funded choice with different payout and risk rules. The homepage promotion is not applied to these base fees; confirm the product and final amount through <a href="/go/tradeify">Tradeify's current checkout path</a>. The Select $50K purchase remained $165, while its separately published reset fee was $109.</p>
 
 <p><strong>U.S. access.</strong> Tradeify’s Rules – Restricted Countries policy explicitly names the U.S. as an eligible example. Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links that dated first-party source and keeps eligibility separate from any CFTC or NFA registration claim.</p>
 
@@ -189,7 +189,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>How much does a Tradeify account cost?</strong></h3>
-<p>Growth list fees are $99, $145, $255 and $369; Select fees are $109, $165, $265 and $369; Lightning fees are $345, $492, $660 and $796 for $25K-$150K tiers. These are 2026-09-14 base purchase prices before temporary promotions; the separately published Select $50K reset fee was $109.</p>
+<p>Growth list fees are $99, $145, $255 and $369; Select fees are $109, $165, $265 and $369; Lightning fees are $345, $492, $660 and $796 for $25K-$150K tiers. These are base purchase prices before temporary promotions, rechecked on 2026-10-20; the separately published Select $50K reset fee was $109.</p>
 
 <h3 class="wp-block-heading"><strong>Does Tradeify charge monthly or activation fees?</strong></h3>
 <p>No. The current Pricing Reference describes all 3 account types as one-time purchases with 0 recurring subscription charges, and Growth or Select activates the simulated funded stage for $0.</p>

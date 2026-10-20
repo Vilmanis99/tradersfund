@@ -14,7 +14,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
 <p>Pick Alpha Capital if you compare Pro’s 3 targets and 2 payout schedules carefully.</p>
-<p>The 2026-10-06 recapture separates Pro 6%, 8% and 10% into bi-weekly and on-demand configurations. The lowest captured evaluation fee is $27 for Pro 6% on-demand at $5,000. This is a review of published simulated-account terms, rather than an independently verified account purchase or payout. The <a href="/best-prop-firms-in-uk">policy-checked UK comparison</a> separates country-policy evidence from assumptions about a UK address or authorisation.</p>
+<p>The 2026-10-06 recapture separates Pro 6%, 8% and 10% into bi-weekly and on-demand configurations. The lowest captured evaluation fee is $27 for Pro 6% on-demand at $5,000 (prices rechecked 2026-10-20). This is a review of published simulated-account terms, rather than an independently verified account purchase or payout. The <a href="/best-prop-firms-in-uk">policy-checked UK comparison</a> separates country-policy evidence from assumptions about a UK address or authorisation.</p>
 
 <div class="key-takeaways"><div class="title">Fast take</div><ul>
 <li><strong>Schedule changes the fee:</strong> Pro 6% $5K is $30 bi-weekly or $27 on-demand; Pro 8% $5K is $40 or $37; Pro 10% $5K is $37 or $33.</li>

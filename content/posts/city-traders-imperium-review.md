@@ -21,7 +21,7 @@ type: "post"
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul>
-    <li>4 products and 23 priced tiers were captured from CTI’s first-party pages on 2026-09-14.</li>
+    <li>4 products and 23 priced tiers were rechecked on CTI’s first-party pages on 2026-10-20.</li>
     <li>1-Step and 2-Step are evaluation paths; Instant Funding and Direct Funding both record 0 phases.</li>
     <li>Starting splits are 80% on both evaluations, 50% on Instant Funding, and 70% on Direct Funding.</li>
     <li>1-Step uses 5% trailing drawdown; the other 3 products use static 6% or 10% caps.</li>
@@ -61,7 +61,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>All 23 prices and rules were captured from CTI’s 4 product pages on 2026-09-14. Every tier’s refundable field remains null because the captured pages do not publish a product-specific fee-return promise; null is not treated as refundable. Recheck the selected tier through <a href="/go/city-traders-imperium">CTI’s live product pages</a> before paying.</p>
+<p>All 23 prices and rules were rechecked on CTI’s 4 product pages on 2026-10-20. Every tier’s refundable field remains null because the captured pages do not publish a product-specific fee-return promise; null is not treated as refundable. Recheck the selected tier through <a href="/go/city-traders-imperium">CTI’s live product pages</a> before paying.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 
@@ -69,7 +69,7 @@ type: "post"
 
 <p><strong>2-Step keeps the maximum-loss line static.</strong> Its 10% and 5% targets, 5% daily limit, 10% static maximum loss, and 3 minimum trading days apply across 6 priced tiers. The starting split is 80%, while the product notes treat 90%–100% as later VIP levels rather than the base share.</p>
 
-<p><strong>Both phase-0 paths remove the evaluation target, not the loss rule.</strong> Instant Funding and Direct Funding each use a 6% static maximum loss and a 5-day first-payout field. Instant starts at 50%; Direct starts at 70% and records a monthly payout frequency.</p>
+<p><strong>Both phase-0 paths remove the evaluation target, not the loss rule.</strong> Instant Funding and Direct Funding each use a 6% static maximum loss and a 5-day first-payout field. Instant starts at 50%; Direct starts at 70% and pays on demand from day 5.</p>
 
 <p><strong>Trading permissions are product-specific.</strong> All 4 records allow news, overnight, and weekend trading and therefore appear in the <a href="/best-swing-trading-prop-firms">product-level swing-trading comparison</a>. Third-party EAs are allowed on 1-Step, while 2-Step, Instant, and Direct restrict EA use to the trader’s personal system; copy-trading fields remain unverified.</p>
 
@@ -144,20 +144,20 @@ type: "post"
 
 <p>The structural reason is that both products charge a funded-account premium up front while halving or discounting the split. Skipping the evaluation is what you are buying, and at CTI that convenience costs between 10× and 17× on risk-adjusted terms. A trader who can pass a 1-Step at $100K pays $449 to reach an 80% split; reaching a comparable funded position through Direct Funding costs $3,999 at 70%.</p>
 
-<p>Pricing and rules above are current as of 2026-09-14, captured from CTI's own product pages. CTI does not publish a fee-refund promise anywhere on its site — its terms state fees are non-refundable except under its stated refund policy — so unlike most CFD firms you should not assume the entry fee comes back with your first payout.</p>
+<p>Pricing and rules above were rechecked on CTI's own product pages on 2026-10-20. CTI does not publish a fee-refund promise anywhere on its site — its terms state fees are non-refundable except under its stated refund policy — so unlike most CFD firms you should not assume the entry fee comes back with your first payout.</p>
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p><strong>Evaluation payouts are recorded at 7 days and weekly thereafter.</strong> Both 1-Step and 2-Step carry that structured timing. Direct Funding records a 5-day first-payout field and monthly frequency; Instant Funding records 5 days but leaves the baseline frequency null because weekly and anytime access are published only for later VIP levels. See how CTI compares with other <a href="/blog/prop-firms-with-weekly-payouts">prop firms with weekly payouts</a>.</p>
+<p><strong>Evaluation payouts start at 7 days, with no standard cycle after that.</strong> The 1-Step and 2-Step pages, checked 2026-10-20, say "Request your 1st payout in as little as 7 days." They publish weekly and anytime payouts only as VIP rewards: CTI's VIP ladder lists "Weekly payouts unlocked" at Bronze and "Anytime payouts unlocked" at Silver. Direct Funding is on demand: "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days." Instant Funding records 5 days but leaves the baseline frequency null for the same VIP reason as the evaluations. See how CTI compares with other <a href="/blog/prop-firms-with-weekly-payouts">prop firms with weekly payouts</a>.</p>
 
-<p><strong>Trustpilot is context, not payout proof.</strong> CTI displayed 4.2/5 from 1,633 reviews in the 2026-07-27 aggregate capture. TradersFundHub’s verified-payout badge remains false, so the third-party average cannot establish that a specific 5-day or 7-day request will be approved.</p>
+<p><strong>Trustpilot is context, not payout proof.</strong> CTI displayed 4.2/5 from 1,633 reviews in the 2026-10-20 Trustpilot capture. TradersFundHub’s verified-payout badge remains false, so the third-party average cannot establish that a specific 5-day or 7-day request will be approved.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
 <ul class="wp-block-list">
   <li><strong>23 published prices</strong> cover 4 products and account sizes from $2.5K to $100K on evaluations and up to $80K on phase-0 paths.</li>
   <li><strong>2-Step provides a 10% static maximum loss</strong>, twice the 1-Step product’s 5% trailing allowance.</li>
-  <li><strong>Both evaluation products start at an 80% split</strong> and record a 7-day first-payout field with weekly frequency.</li>
+  <li><strong>Both evaluation products start at an 80% split</strong> and allow a first payout after 7 days; weekly payouts unlock at VIP Bronze.</li>
   <li><strong>All 4 product records allow news, overnight, and weekend trading.</strong></li>
   <li><strong>1-Step permits third-party EAs</strong>, while the other 3 paths retain personal-EA permission.</li>
   <li><strong>MT5 and cTrader are both listed</strong> in the current aggregate platform record.</li>
@@ -169,14 +169,14 @@ type: "post"
   <li><strong>Instant Funding starts at a 50% split</strong>, requiring $158 gross profit to recover the $79 $2.5K fee against only $150 of maximum loss.</li>
   <li><strong>Direct Funding reaches a 1.19 R-multiple</strong> on its $20K, $40K, and $80K tiers under the generated True-Cost method.</li>
   <li><strong>All 23 refundable fields remain unverified</strong>, so no fee-return promise is included in the cost model.</li>
-  <li><strong>Instant Funding’s baseline payout frequency is unpublished</strong>; later VIP weekly or anytime labels do not prove the starting schedule.</li>
+  <li><strong>No baseline payout cycle is published for 1-Step, 2-Step or Instant Funding</strong>; weekly and anytime payouts are VIP Bronze and Silver unlocks, not the starting schedule.</li>
   <li><strong>Copy-trading permission is unverified</strong> on all 4 current products.</li>
   <li><strong>No MT4 or DXtrade appears</strong> in the 2-platform aggregate record.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Who should pick City Traders Imperium</strong></h2>
 
-<p>A trader who wants 10% static loss room should compare the $39–$549 2-Step tiers first; the path starts at an 80% split and records weekly payouts after a 7-day first gate. A trader who specifically needs 0 evaluation phases can compare both CTI phase-0 paths, but should price their 50%–70% splits and 6% loss caps against the wider <a href="/best-instant-funding-prop-firms">instant-funding product set</a>.</p>
+<p>A trader who wants 10% static loss room should compare the $39–$549 2-Step tiers first; the path starts at an 80% split and allows a first payout after 7 days, with weekly payouts unlocked at VIP Bronze. A trader who specifically needs 0 evaluation phases can compare both CTI phase-0 paths, but should price their 50%–70% splits and 6% loss caps against the wider <a href="/best-instant-funding-prop-firms">instant-funding product set</a>.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid City Traders Imperium</strong></h2>
 
@@ -185,7 +185,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>What evidence does this CTI review verify?</strong></h3>
-<p>The review verifies 4 product rule sets and 23 prices captured from CTI pages on 2026-09-14. The separate Trustpilot capture records 4.2/5 from 1,633 reviews, but the site has no verified-payout badge and does not treat that aggregate as proof of an individual payout.</p>
+<p>The review verifies 4 product rule sets and 23 prices rechecked on CTI pages on 2026-10-20. The separate Trustpilot capture records 4.2/5 from 1,633 reviews, but the site has no verified-payout badge and does not treat that aggregate as proof of an individual payout.</p>
 
 <h3 class="wp-block-heading"><strong>What starting profit split does CTI pay?</strong></h3>
 <p>The answer depends on the product: 1-Step and 2-Step start at 80%, Direct Funding starts at 70%, and Instant Funding starts at 50%. Later 90%–100% VIP figures are scaling levels, not the 4 captured starting shares.</p>
@@ -194,7 +194,7 @@ type: "post"
 <p>Yes. Instant Funding and Direct Funding both set phases to 0 and use a 6% static maximum loss. Instant has 6 tiers from $79 to $1,599 with a 50% starting split; Direct has 5 tiers from $229 to $3,999 with a 70% starting split.</p>
 
 <h3 class="wp-block-heading"><strong>When is the first CTI payout?</strong></h3>
-<p>The structured records show 7 days for 1-Step and 2-Step and 5 days for Instant and Direct. Evaluation frequency is weekly, Direct frequency is monthly, and Instant’s baseline frequency remains unverified.</p>
+<p>The structured records show 7 days for 1-Step and 2-Step and 5 days for Instant and Direct. After the first payout, CTI publishes no standard cycle for 1-Step, 2-Step or Instant: weekly payouts unlock at VIP Bronze and anytime payouts at Silver. Direct Funding pays on demand from day 5.</p>
 
 <h3 class="wp-block-heading"><strong>Does CTI refund the purchase fee?</strong></h3>
 <p>No product-specific refund conclusion is verified. All 23 captured account-size records set refundable to null, so this review excludes a fee return from every True-Cost table and tells the buyer to confirm the selected product before paying.</p>

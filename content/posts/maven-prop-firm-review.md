@@ -54,7 +54,7 @@ type: "post"
 <p>Maven's pricing page carried nine distinct products at capture, each sold across five or six account sizes — 52 priced tiers in total. The table below gives the price ladder endpoints and the rule surface for each product; the per-tier fees for the five products most traders will actually shortlist appear in the True-Cost section below.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
-  <caption class="hidden-caption">Maven product lineup, captured 2026-09-14</caption>
+  <caption class="hidden-caption">Maven product lineup, rechecked 2026-10-19</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product</th><th style="padding: 8px 12px; text-align: left;">Phases</th><th style="padding: 8px 12px; text-align: left;">Account sizes</th><th style="padding: 8px 12px; text-align: left;">List price</th><th style="padding: 8px 12px; text-align: left;">Profit target</th><th style="padding: 8px 12px; text-align: left;">Daily loss</th><th style="padding: 8px 12px; text-align: left;">Max loss</th><th style="padding: 8px 12px; text-align: left;">Split</th></tr></thead>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Standard 1-Step</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2K – $100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$15 – $380</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">8%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5% trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80%</td></tr>
@@ -73,7 +73,7 @@ type: "post"
 
 <p><strong>Minimum-cost context.</strong> The <a href="/cheapest-prop-firms">currency-separated price ranking</a> lists Maven Standard 3-Step at $13, not the $5 Buy Now, Pay Later checkout, because BNPL requires another $40 after passing the $2K tier and therefore has a $45 minimum known path to funded.</p>
 
-<p>The fee is refundable on your third withdrawal on every product except Mini, whose card omits the refund line and which pays out once before closing the account.</p>
+<p>The fee is refundable on your third withdrawal on every product except Mini. Maven's FAQ, checked 2026-10-20, leaves Mini off the list of programmes its refund policy covers, the Mini card shows no refund line, and Mini pays out once before closing the account, so a third withdrawal can't happen.</p>
 
 <p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> keeps Maven Instant and Mini as 2 products because their 80% versus 70% splits, $15 versus $17 entry floors, and 20% versus 15% payout consistency rules differ.</p>
 
@@ -183,7 +183,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p>On the 1-Step, 2-Step, 3-Step, OMO and both Prediction products, you can request a withdrawal <strong>every 10 business days</strong>, and Maven issues a full refund of the challenge fee on the third withdrawal. Passing an evaluation adds a 1–3 day account review before the funded stage opens. BNPL publishes day-0 access once its funded gates are met. Instant is unresolved: its pricing card says “when requirements are met,” while Maven's FAQ and Terms say every 10 business days, so we do not publish a cadence until the firm reconciles those 3 pages. Mini processes its single payout the day after the 24-hour trading window closes, then closes the account.</p>
+<p>On the 1-Step, 2-Step, 3-Step, OMO and both Prediction products, you can request a withdrawal <strong>every 10 business days</strong>, and Maven issues a full refund of the challenge fee on the third withdrawal. Passing an evaluation adds a 1–3 day account review before the funded stage opens. BNPL publishes day-0 access once its funded gates are met. Instant is unresolved: its product page says “when requirements are met,” and since October Maven's FAQ says Instant payouts “are available on demand” once you reach the 3% profit threshold and a Consistency Score of 20% or below, but the Terms still say every 10 business days (all checked 2026-10-20). We do not publish a cadence until the firm reconciles those pages. Mini processes its single payout the day after the 24-hour trading window closes, then closes the account.</p>
 
 <p>Two ceilings bind harder than the cadence. Withdrawals are capped at <strong>$10,000 per rolling 30 days per trader</strong>, which caps a $100K funded account's realistic monthly draw regardless of performance, and OMO caps the first payout at 6% of balance and the second at 8%. Payments via Rise carry a $20 withdrawal fee. Maven charges no swap on any account and $4 round-turn commission on forex, $6 on precious metals and energy, $0 on indices and commodities.</p>
 
