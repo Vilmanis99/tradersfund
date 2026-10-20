@@ -34,6 +34,7 @@
     "test:geo": "node scripts/test-geo.mjs",
     "gen:challenge-changes-card": "node scripts/gen-challenge-changes-card.mjs",
     "test:article-content": "node scripts/test-article-content.mjs",
+    "test:verdict-copy": "node scripts/test-verdict-copy-fxify.mjs",
     "test:watch-evidence": "node scripts/test-watch-evidence.mjs",
     "test:russian-expiry": "node scripts/test-russian-expiry.mjs",
     "test:comparison-expiry": "node scripts/test-comparison-expiry.mjs",

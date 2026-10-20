@@ -256,7 +256,7 @@
         "you trade on cTrader: Alpha Capital supports it; FXIFY doesn't list it"
       ],
       "pickB": [
-        "you want an early first payout: FXIFY Lightning pays from day 7, then every 14 days (Alpha bi-weekly plans: day 14)",
+        "you want an early first payout: FXIFY Lightning Challenge pays from day 7, then every 14 days (Alpha bi-weekly plans: day 14)",
         "you want the fee back: 6 of 10 FXIFY products are refundable; no Alpha Capital fee is",
         "you trade crypto: FXIFY lists 2 crypto products; Alpha Capital lists none"
       ]
@@ -427,7 +427,7 @@
         "you trade on cTrader: BrightFunded supports it; FXIFY doesn't list it"
       ],
       "pickB": [
-        "you want an early first payout: FXIFY Lightning pays from day 7, then every 14 days (BrightFunded: day 30)",
+        "you want an early first payout: FXIFY Lightning Challenge pays from day 7, then every 14 days (BrightFunded: day 30)",
         "you trade crypto: FXIFY lists 2 crypto products; BrightFunded lists none",
         "you trade the news: FXIFY allows it on 5 of its 10 products; BrightFunded restricts it everywhere"
       ]
@@ -875,7 +875,7 @@
     },
     "e8-markets-vs-fxify": {
       "pickA": [
-        "you want an early first payout: E8 One allows on-demand requests from day 3 (FXIFY Lightning: day 7)",
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (FXIFY Lightning Challenge: day 7)",
         "you want a lower $100K fee: E8 Signature lists $280; FXIFY's lowest is $399",
         "you want a bigger account: E8 Markets goes up to $500,000; FXIFY tops out at $400,000"
       ],
@@ -1009,7 +1009,7 @@
         "operating history matters to you: FTMO was founded in 2015, FXIFY in 2022"
       ],
       "pickB": [
-        "you want an early first payout: FXIFY Lightning pays from day 7, then every 14 days (FTMO: day 14)",
+        "you want an early first payout: FXIFY Lightning Challenge pays from day 7, then every 14 days (FTMO: day 14)",
         "you hold over weekends: FXIFY allows it on 8 of its 10 products; FTMO restricts it everywhere",
         "you trade crypto: FXIFY lists 2 crypto products; FTMO lists none"
       ]
@@ -1329,7 +1329,7 @@
         "you want a static loss floor: FXIFY Two Phase Classic's 10% max loss is static; every Lucid Trading product trails"
       ],
       "pickB": [
-        "you want an early first payout: LucidDaily pays on demand from day 1 (FXIFY Lightning: day 7)",
+        "you want an early first payout: LucidDaily pays on demand from day 1 (FXIFY Lightning Challenge: day 7)",
         "you trade futures: every Lucid Trading product is a futures evaluation; FXIFY lists none",
         "you want a lower $100K fee: LucidFlex lists $293; FXIFY's lowest is $399"
       ]
@@ -1352,14 +1352,14 @@
         "you want a static loss floor: FXIFY Two Phase Classic's 10% max loss is static; every My Funded Futures product trails"
       ],
       "pickB": [
-        "you want an early first payout: MFF Builder allows a request from day 2 (FXIFY Lightning: day 7)",
+        "you want an early first payout: MFF Builder allows a request from day 2 (FXIFY Lightning Challenge: day 7)",
         "you trade futures: every My Funded Futures product is a futures evaluation; FXIFY lists none",
         "you trade on NinjaTrader: My Funded Futures supports it; FXIFY doesn't list it"
       ]
     },
     "fxify-vs-ofp-funding": {
       "pickA": [
-        "you want an early first payout: FXIFY Lightning pays from day 7, then every 14 days (OFP: day 14)",
+        "you want an early first payout: FXIFY Lightning Challenge pays from day 7, then every 14 days (OFP: day 14)",
         "you trade crypto: FXIFY lists 2 crypto products; OFP Funding lists none",
         "you trade the news: FXIFY allows it on 5 of its 10 products; OFP Funding restricts it everywhere"
       ],
@@ -1372,7 +1372,7 @@
         "you want the fee back: 6 of 10 FXIFY products are refundable; no Take Profit Trader fee is"
       ],
       "pickB": [
-        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (FXIFY Lightning: day 7)",
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (FXIFY Lightning Challenge: day 7)",
         "you trade futures: every Take Profit Trader product is a futures evaluation; FXIFY lists none",
         "you trade on NinjaTrader: Take Profit Trader supports it; FXIFY doesn't list it"
       ]
@@ -1396,7 +1396,7 @@
         "you want the fee back: 6 of 10 FXIFY products are refundable; no TradeDay fee is"
       ],
       "pickB": [
-        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (FXIFY Lightning: day 7)",
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (FXIFY Lightning Challenge: day 7)",
         "you trade futures: every TradeDay product is a futures evaluation; FXIFY lists none",
         "you trade on NinjaTrader: TradeDay supports it; FXIFY doesn't list it"
       ]
@@ -1408,7 +1408,7 @@
         "you want the fee back: 6 of 10 FXIFY products are refundable; no Tradeify fee is"
       ],
       "pickB": [
-        "you want an early first payout: Tradeify Select Daily pays from day 1 (FXIFY Lightning: day 7)",
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (FXIFY Lightning Challenge: day 7)",
         "you trade futures: every Tradeify product is a futures evaluation; FXIFY lists none",
         "you want a lower $100K fee: Tradeify Growth Evaluation lists $255; FXIFY's lowest is $399"
       ]
