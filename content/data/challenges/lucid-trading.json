@@ -248,21 +248,21 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
+        "priceUsd": 104,
         "dailyLossUsd": 600,
         "maxLossUsd": 1000,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
+        "priceUsd": 138,
         "dailyLossUsd": 1200,
         "maxLossUsd": 2000,
         "refundable": false
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
+        "priceUsd": 224,
         "dailyLossUsd": 1800,
         "maxLossUsd": 3000,
         "refundable": false
@@ -308,15 +308,16 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "PRICE NOT VERIFIED: Lucid calls DLL On plus Intraday the cheapest LucidDaily configuration but publishes no stable dollar fees.",
       "RISK: DLL of $600 / $1,200 / $1,800 / $2,700 applies in evaluation and funded. Intraday trailing MLL of $1,000 / $2,000 / $3,000 / $4,500 applies in both stages.",
       "PAYOUT: 90% trader split, no funded consistency, requests on any eligible day, $500 minimum, MLL-plus-$100 buffer, and at least $1 positive profit since the prior request.",
       "NEWS: evaluation/general news is allowed, but funded Daily requires flat positions from 1 minute before through 1 minute after U.S. high-impact USD events; the product-wide value is restricted.",
       "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-20.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json",
+      "Prices added 2026-10-20 from the live https://www.lucidtrading.com/ product picker (LucidDaily tab, headless Chrome, US-IP box): crossed-out one-time list price per size for Intraday eval drawdown: 25K $104, 50K $138, 100K $224, 150K not offered ('Select options above'). The Daily Loss Limit ON/OFF toggle does not change the list price; it changes the limited-time saving and reset fee. Coupon prices (code VAULT, not checkout-verified) are not stored. Log: content/data/challenges/_captures/lucid-trading-2026-10-20.json"
     ]
   },
   {
@@ -327,28 +328,28 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
+        "priceUsd": 118,
         "dailyLossUsd": 600,
         "maxLossUsd": 1000,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
+        "priceUsd": 166,
         "dailyLossUsd": 1200,
         "maxLossUsd": 2000,
         "refundable": false
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
+        "priceUsd": 267,
         "dailyLossUsd": 1800,
         "maxLossUsd": 3000,
         "refundable": false
       },
       {
         "sizeUsd": 150000,
-        "priceUsd": null,
+        "priceUsd": 375,
         "dailyLossUsd": 2700,
         "maxLossUsd": 4500,
         "refundable": false
@@ -387,14 +388,15 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "PRICE NOT VERIFIED: Lucid calls DLL On plus EOD a mid-tier LucidDaily configuration but publishes no stable dollar fees.",
       "RISK: DLL of $600 / $1,200 / $1,800 / $2,700 applies in both stages. Evaluation MLL is EOD trailing; funded MLL switches to Intraday trailing, with $1,000 / $2,000 / $3,000 / $4,500 limits.",
       "PAYOUT and NEWS match the other LucidDaily variants: 90% split, daily eligible requests, $500 minimum, buffer and positive-profit gates, plus the funded U.S. high-impact USD news blackout.",
       "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-20.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json",
+      "Prices added 2026-10-20 from the live https://www.lucidtrading.com/ product picker (LucidDaily tab, headless Chrome, US-IP box): crossed-out one-time list price per size for EOD eval drawdown: 25K $118, 50K $166, 100K $267, 150K $375. The Daily Loss Limit ON/OFF toggle does not change the list price; it changes the limited-time saving and reset fee. Coupon prices (code VAULT, not checkout-verified) are not stored. Log: content/data/challenges/_captures/lucid-trading-2026-10-20.json"
     ]
   },
   {
@@ -405,19 +407,19 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
+        "priceUsd": 104,
         "maxLossUsd": 1000,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
+        "priceUsd": 138,
         "maxLossUsd": 2000,
         "refundable": false
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
+        "priceUsd": 224,
         "maxLossUsd": 3000,
         "refundable": false
       },
@@ -461,14 +463,15 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "PRICE NOT VERIFIED: Lucid calls DLL Off plus Intraday a mid-tier LucidDaily configuration but publishes no stable dollar fees.",
       "RISK: no DLL in evaluation or funded. Intraday trailing MLL of $1,000 / $2,000 / $3,000 / $4,500 applies in both stages.",
       "PAYOUT and NEWS match the other LucidDaily variants: 90% split, daily eligible requests, $500 minimum, buffer and positive-profit gates, plus the funded U.S. high-impact USD news blackout.",
       "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-20.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json",
+      "Prices added 2026-10-20 from the live https://www.lucidtrading.com/ product picker (LucidDaily tab, headless Chrome, US-IP box): crossed-out one-time list price per size for Intraday eval drawdown: 25K $104, 50K $138, 100K $224, 150K not offered ('Select options above'). The Daily Loss Limit ON/OFF toggle does not change the list price; it changes the limited-time saving and reset fee. Coupon prices (code VAULT, not checkout-verified) are not stored. Log: content/data/challenges/_captures/lucid-trading-2026-10-20.json"
     ]
   },
   {
@@ -479,25 +482,25 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
+        "priceUsd": 118,
         "maxLossUsd": 1000,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
+        "priceUsd": 166,
         "maxLossUsd": 2000,
         "refundable": false
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
+        "priceUsd": 267,
         "maxLossUsd": 3000,
         "refundable": false
       },
       {
         "sizeUsd": 150000,
-        "priceUsd": null,
+        "priceUsd": 375,
         "maxLossUsd": 4500,
         "refundable": false
       }
@@ -535,14 +538,15 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "PRICE NOT VERIFIED: Lucid calls DLL Off plus EOD the most expensive LucidDaily configuration but publishes no stable dollar fees.",
       "RISK: no DLL in evaluation or funded. Evaluation MLL is EOD trailing; funded MLL switches to Intraday trailing, with $1,000 / $2,000 / $3,000 / $4,500 limits.",
       "PAYOUT and NEWS match the other LucidDaily variants: 90% split, daily eligible requests, $500 minimum, buffer and positive-profit gates, plus the funded U.S. high-impact USD news blackout.",
       "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-14.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-20.json",
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json",
+      "Prices added 2026-10-20 from the live https://www.lucidtrading.com/ product picker (LucidDaily tab, headless Chrome, US-IP box): crossed-out one-time list price per size for EOD eval drawdown: 25K $118, 50K $166, 100K $267, 150K $375. The Daily Loss Limit ON/OFF toggle does not change the list price; it changes the limited-time saving and reset fee. Coupon prices (code VAULT, not checkout-verified) are not stored. Log: content/data/challenges/_captures/lucid-trading-2026-10-20.json"
     ]
   }
 ]

@@ -386,7 +386,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://e8markets.com/e8-signature",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "The current E8 Signature product page and custom-account table show undiscounted one-time prices of $120/$160/$280/$450 for $25K/$50K/$100K/$150K; displayed code prices are promotional and are not stored as list prices.",
       "Tier-specific EOD drawdown is now represented as maxLossUsd: $1,000 on $25K, $2,000 on $50K, $3,000 on $100K and $4,500 on $150K. A single maxLossPct would be false because those equal 4%, 4%, 3% and 3%.",
@@ -397,7 +397,7 @@
       "Leverage: Forex 1:30, indices 1:15 and metals 1:15.",
       "The current E8 Signature product page and updated custom-account table show undiscounted base prices of $120/$160/$280/$450 for $25K/$50K/$100K/$150K; the displayed 25% code prices are promotional and are not stored as list prices.",
       "The current Accepted Countries article now says India and Kenya may purchase E8 Signature in all listed sizes; country eligibility follows verification documents.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-14.json",
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-20.json",
       "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/e8-markets-2026-10-19.json"
     ]
   }
