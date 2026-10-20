@@ -140,13 +140,15 @@
     "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
   },
   "changes": [
-    "lightning-challenge and two-phase-classic accountSizes[].refundable true -> false (FXIFY blog 2026-09-14 fee-refund table/FAQ; Lightning FAQ still says 100% refund - conflict noted). one-phase, two-phase-standard, three-phase stay refundable; two-phase-pro unchanged (not covered by the blog)."
+    "lightning-challenge and two-phase-classic accountSizes[].refundable true -> false (FXIFY blog 2026-09-14 fee-refund table/FAQ; Lightning FAQ still says 100% refund - conflict noted). one-phase, two-phase-standard, three-phase stay refundable; two-phase-pro unchanged (not covered by the blog).",
+    "Refund conflict resolved 2026-10-20 (Terms > dated help article > product/checkout > FAQ > blog): lightning-challenge accountSizes[].refundable false -> true (help-centre article dated 2026-05-06 and Lightning FAQ say 100% refund with first payout; Terms silent; blog 2026-09-14 outranked). two-phase-classic stays false (now backed by the help-centre comparison and the static two-phase FAQ). two-phase-pro accountSizes[].refundable true -> false (help-centre article 2026-05-15 and Pro FAQ 2026-04-29 both say no refund)."
   ],
   "notes": [
     "All 64 stored prices match. Rules evidence re-read: 1-Phase article (intercom) still says \"Profit Split 80% default, upgradable to 90%.\" (stored quote differs only in spacing).",
     "https://fxify.com/terms-and-conditions returns 404 today; not used for any stored value.",
     "firms.json lastUpdated aligned to this capture (was 2026-10-15 from the Trustpilot refresh while products were captured 2026-10-14).",
-    "challenge-watch fxify-current-price-display-conflict-2026-09-14 refreshed from this capture: lastCheckedAt 2026-09-15 -> 2026-10-20; 54 tiers across its 8 products match; Instant Funding Lite tier 3 is $89 in stored data and live payload (entry text said $85). Rendered program-page cards not re-checked, so the entry stays open (status verified)."
+    "challenge-watch fxify-current-price-display-conflict-2026-09-14 refreshed from this capture: lastCheckedAt 2026-09-15 -> 2026-10-20; 54 tiers across its 8 products match; Instant Funding Lite tier 3 is $89 in stored data and live payload (entry text said $85). Rendered program-page cards not re-checked, so the entry stays open (status verified).",
+    "Refund resolution 2026-10-20 (pages read 13:30-14:00 Europe/Riga, US IP): refundRecheck above is the 12:05 record behind 96f6102 and is kept as history. The resolution with full sources is in sourceConflicts."
   ],
   "pagesRead": [
     {
@@ -349,5 +351,103 @@
         ]
       }
     ]
-  }
+  },
+  "sourceConflicts": [
+    {
+      "id": "fxify-lightning-fee-refund-conflict",
+      "productSlugs": [
+        "lightning-challenge"
+      ],
+      "sources": [
+        {
+          "sourceUrl": "https://fxify.com/wp-content/uploads/2026/10/GENERAL-TERMS-AND-CONDITIONS-FXIFY-2026.pdf",
+          "observation": "FXIFY General Terms and Conditions, footer-dated September 29, 2026 (PDF Last-Modified 2026-10-02). No product-specific fee reimbursement clause. Clause 2.6 covers cancellations and failed challenges only.",
+          "quote": "The Customer is not entitled to a refund of the fee, for example, if the Customer cancels the Customer’s Client Account or requests the cancellation by e-mail, if the Customer terminates the use of the Services or the contract (for example, fails to complete the FXIFY Challenge or the Verification), fails to meet the conditions of the FXIFY Challenge or the Verification, or violates these GTC."
+        },
+        {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+          "observation": "Help-centre article, schema dateModified 2026-05-06T02:17:01Z.",
+          "quote": "Refund 100% Fee Refund with 1st Payout"
+        },
+        {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+          "quote": "Fee Refund 100% refund of your evaluation fee with your first payout."
+        },
+        {
+          "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+          "observation": "Program page (dateModified 2025-03-25) has no refund line for Lightning. The shared program-card data lists \"Refundable Fee\" 100% only for the One, Two and Three Phase cards."
+        },
+        {
+          "sourceUrl": "https://trader.fxify.com/purchasechallenge",
+          "observation": "Checkout add-ons read 2026-10-20 (US IP): Increase Leverage, No Time Limit, Increase Profit Split, Bi-Weekly Payouts, Performance Protect, No Stop Loss. No refund add-on, so a paid add-on does not explain the conflict."
+        },
+        {
+          "sourceUrl": "https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-do-i-get-a-refund-alongside-my-first-withdrawal/",
+          "observation": "FAQ, schema dateModified 2025-03-18T17:14:38Z.",
+          "quote": "Yes, you will receive a 100% refund alongside your first withdrawal"
+        },
+        {
+          "sourceUrl": "https://fxify.com/blog/cheapest-path-funded-50k-fxify/",
+          "observation": "Blog, published/modified 2026-09-14. The body omits Classic from its exclusion sentence, but the FAQ section includes it.",
+          "quote": "Lightning Challenge | $249 | No | $249"
+        },
+        {
+          "sourceUrl": "https://fxify.com/blog/cheapest-path-funded-50k-fxify/",
+          "quote": "Lightning Challenge, Two Phase Classic, and Instant Funding do not use this structure."
+        }
+      ],
+      "resolution": "Refundable (true), checked 2026-10-20. The Terms are silent on payout-linked reimbursement, so the dated help-centre article (2026-05-06) prevails over the blog (2026-09-14). The Lightning FAQ agrees with the help article. No official announcement of a Lightning refund change was found (FXIFY blog, newsroom and FAQ sitemaps read 2026-10-20; the Lightning launch announcement of March 6, 2025 does not mention refunds). Keep this conflict open as a watch: if FXIFY updates the help article or Terms to match the blog, flip it back. Display the refund as paid with the first payout only."
+    },
+    {
+      "id": "fxify-two-phase-classic-fee-refund",
+      "productSlugs": [
+        "two-phase-classic"
+      ],
+      "sources": [
+        {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/12130186-2-phase-account-types",
+          "observation": "Help-centre comparison, dateModified 2026-05-07T07:56:55Z; columns Classic | Standard | PRO.",
+          "quote": "Refund No Refund Yes, alongside with the first Payout request No Refund"
+        },
+        {
+          "sourceUrl": "https://fxify.com/faqs/all-faqs/2-phase-static-accounts-do-i-get-a-refund-alongside-my-withdrawal/",
+          "observation": "FAQ, dateModified 2025-09-01.",
+          "quote": "No Refunds are not issued with withdrawals for the Static Two-Phase account type."
+        },
+        {
+          "sourceUrl": "https://fxify.com/blog/cheapest-path-funded-50k-fxify/",
+          "quote": "Two Phase Classic | $379 | No | $379"
+        },
+        {
+          "sourceUrl": "https://fxify.com/programs/two-phase/",
+          "observation": "Program page (dateModified 2025-03-25) has a generic sentence that does not separate Classic from Standard.",
+          "quote": "Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans."
+        }
+      ],
+      "resolution": "Not refundable (false), checked 2026-10-20. The dated help article and the product-scoped FAQ outrank the generic program-page sentence."
+    },
+    {
+      "id": "fxify-two-phase-pro-fee-refund",
+      "productSlugs": [
+        "two-phase-pro"
+      ],
+      "sources": [
+        {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+          "observation": "Help-centre article, dateModified 2026-05-15T02:22:13Z.",
+          "quote": "Refund No refund of fee"
+        },
+        {
+          "sourceUrl": "https://fxify.com/faqs/all-faqs/two-phase-pro/2-phase-pro-do-i-get-refund-alongside-my-withdrawal/",
+          "observation": "FAQ, dateModified 2026-04-29.",
+          "quote": "No, the 2 Phase Pro plan does not include a refund of your initial evaluation fee alongside your withdrawals."
+        },
+        {
+          "sourceUrl": "https://fxify.com/programs/two-phase/",
+          "quote": "Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans."
+        }
+      ],
+      "resolution": "Not refundable (false), checked 2026-10-20. Stored true was based only on the generic program-page sentence."
+    }
+  ]
 }
