@@ -66,7 +66,7 @@
     "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Current Rapid plan page says one-time payment with no renewals and $0 activation fee for new purchases.",
-      "The current page exposes the regular $209 price for the linked 50K checkout; the remaining size prices are rendered by the client-side selector and were not mapped to a stable first-party figure in this capture, so they remain null rather than reusing the 27 July subscription prices.",
+      "Current Rapid plan page sells one-time list prices of $145 / $209 / $356 / $463 for 25K / 50K / 100K / 150K. These are the regular, pre-coupon prices from the page's embedded plan data (\"priceCents\":14500 / 20900 / 35600 / 46300; the 25K/50K JSON-LD offers read \"145.00\" / \"209.00\"), first filled in the 2026-10-14 recapture (which replaced the old null placeholders) and found unchanged on the live page 2026-10-20. The embedded data also carries a CLUB coupon price (\"priceDiscountedCents\"), which is not stored.",
       "Evaluation uses EOD trailing drawdown; the Sim Funded stage uses intraday trailing drawdown and the floor locks at +$100 after the buffer is secured.",
       "The evaluation target is 6% (the official rules table gives $1,500 / $3,000 / $6,000 / $9,000 by size), with 2 minimum trading days and a 50% evaluation-only consistency rule.",
       "The funded stage has no daily loss limit or consistency rule, a 90/10 split, a $500 minimum payout, and a required buffer of $1,100 / $2,100 / $3,100 / $4,600 by size. The first request is not a fixed day count because the buffer must be cleared.",
@@ -252,7 +252,7 @@
     "sourceUrl": "https://myfundedfutures.com/plans/pro",
     "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "Current Pro plan page says one-time payment with no renewals, $0 activation fee, and a regular $265 price for the linked 50K checkout. The 100K and 150K selector prices are not exposed as stable first-party text in this capture and remain null.",
+      "Current Pro plan page says one-time payment with no renewals and $0 activation fee. Stored list prices of $265 / $401 / $557 for 50K / 100K / 150K come from the page's embedded plan data (\"priceCents\":26500 / 40100 / 55700, regular price before the CLUB coupon). They were first filled in the 2026-10-14 recapture and found unchanged on the live page 2026-10-20.",
       "Pro evaluation uses a 6% target, $2,000 / $3,000 / $4,500 EOD maximum loss by size, 2 minimum trading days, and a 50% evaluation-only consistency rule.",
       "Sim Funded Pro has no daily loss limit or funded consistency rule, a 14-day payout window from first trade plus the required buffer, $1,000 minimum payout, up to $100,000 per cycle, and an 80/20 split.",
       "Tier 1 news trading is allowed in evaluation but not allowed in Sim Funded; the current page also describes a 7-calendar-day inactivity rule.",
@@ -317,7 +317,7 @@
     "sourceUrl": "https://myfundedfutures.com/plans/builder",
     "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "Current Builder page says one-time payment with no renewals and $0 activation fee. Its visible starting figures are promotional and do not map unambiguously to the 25K and 50K base tiers, so both prices remain null rather than carrying forward the July subscription prices.",
+      "Current Builder page says one-time payment with no renewals and $0 activation fee. Stored list prices of $105 / $153 for 25K / 50K come from the page's embedded plan data (\"priceCents\":10500 / 15300, regular price before the CLUB coupon). They were first filled in the 2026-10-14 recapture and found unchanged on the live page 2026-10-20. The visible promotional starting figures are not used. The embedded data also lists 100K (\"priceCents\":28200) and 150K (\"priceCents\":39800) tiers, which are not stored yet because their rules were not captured.",
       "Builder evaluation targets are $1,500 on 25K and $3,000 on 50K (6%); maximum EOD trailing loss is $1,000 and $2,000 by size, with a $1,000 soft pause on 50K, 1 minimum trading day, and no evaluation consistency rule.",
       "Sim Funded Builder applies a 50% consistency rule at payout, requires 2 qualifying days per cycle, clears a $1,100 or $2,100 buffer, and caps payouts at $1,000 or $2,000. The cadence is every 48 hours, represented as on-demand because the schema has no 48-hour enum.",
       "After 5 approved simulated payouts, MFFU describes a live transition with daily payouts, an 80/20 split, and no live consistency rule; the live account has different limits.",
