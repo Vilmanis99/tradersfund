@@ -12,7 +12,7 @@ tags: ["prop firm weekly payouts", "weekly payout prop firms", "prop firm payout
 type: "post"
 ---
 
-<p><strong>Take a $100K FundingPips 2-Step Standard account and a $4,000 month. On the weekly reward cycle you keep $2,400. Wait two weeks instead and you keep $3,200; clear the on-demand conditions and you keep all $4,000.</strong> That $1,600 gap is the price of "weekly payouts" on that plan, and it's the pattern to watch on this list. Of the 18 firms in our database, only five offer a 7-day payout cycle on a forex or crypto account, and on three of those plans you pay for the speed with a lower split or a paid add-on. Every row below comes from our product captures dated 2026-10-14 to 2026-10-20, and we rechecked BrightFunded's payout article and FundingPips' reward-cycle pages on 2026-10-20.</p>
+<p><strong>Take a $100K FundingPips 2-Step Standard account and a $4,000 month. On the weekly reward cycle you keep $2,400. Wait two weeks instead and you keep $3,200; clear the on-demand conditions and you keep all $4,000.</strong> That $1,600 gap is the price of "weekly payouts" on that plan, and it's the pattern to watch on this list. Of the 18 firms in our database, only five offer a 7-day payout cycle on a forex or crypto account, and on three of them you pay for the speed with a lower split or a paid add-on. Every row below comes from our product captures dated 2026-10-14 to 2026-10-20, and we rechecked BrightFunded's payout article and FundingPips' reward-cycle pages on 2026-10-20.</p>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>
@@ -77,11 +77,11 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>BrightFunded: weekly is a checkout add-on</strong></h2>
 
-<p>BrightFunded's own payout article, which we reread on 2026-10-20, says the first Reward Split can be requested 30 days after your first funded trade and then "bi-weekly (14 days)." The same article lists two checkout add-ons: a "Bi-weeky add-on (Payouts every 14 days)" and a "Weekly add-on (Payouts every 7 days)." The homepage also advertises "Weekly Payouts, Available."</p>
+<p>BrightFunded's own payout article, which we reread on 2026-10-20, says the first Reward Split can be requested 30 days after your first funded trade and then "bi-weekly (14 days)." The same article lists two checkout add-ons: a "Bi-weeky [sic] add-on (Payouts every 14 days)" and a "Weekly add-on (Payouts every 7 days)." The homepage also advertises "Weekly Payouts, Available."</p>
 
 <p>Two things the article doesn't settle. It calls the 14-day cycle both the default and an add-on, and it doesn't say whether the Weekly add-on also shortens the 30-day wait for the first payout. Ask support or check the checkout screen before you rely on a 7-day first payout. What is clear: the split stays at 80% by default, 90% is a separate paid add-on, and you can reach 100% through the scaling plan. Payouts go out in USDC (ERC-20) or by bank transfer in euros.</p>
 
-<p>Why it's on our shortlist anyway: BrightFunded's 2-Step Bright is €477 for $100K, it has no consistency rule on any of its three plans, and it's one of the few firms on this list that our data marks as available to traders in Russia. If you want weekly payouts without a split cut, the Weekly add-on is the route.</p>
+<p>Why it still makes the shortlist: BrightFunded's 2-Step Bright is €477 for $100K, it has no consistency rule on any of its three plans, and it's one of the few firms on this list that our data marks as available to traders in Russia. If you want weekly payouts without a split cut, the Weekly add-on is the route.</p>
 
 <div data-affiliate-cta="bright-funded-weekly-payouts" style="background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin: 20px 0;">
   <p style="margin-top: 0;"><strong>Want weekly payouts and no consistency rule?</strong> Add BrightFunded's Weekly add-on at checkout, then confirm on the order screen what it does to your first payout date.</p>
@@ -128,7 +128,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>Which prop firms offer weekly payouts in 2026?</strong></h3>
-<p>FundedNext (Stellar 1-Step, every 5 business days), FundingPips (2-Step Pro at 80%, 2-Step Standard at 60%), City Traders Imperium (1-Step and 2-Step) pay weekly as standard. BrightFunded and Crypto Fund Trader offer weekly cycles as paid add-ons. All were checked between 2026-10-14 and 2026-10-20.</p>
+<p>FundedNext (Stellar 1-Step, every 5 business days), FundingPips (2-Step Pro at 80%, 2-Step Standard at 60%) and City Traders Imperium (1-Step and 2-Step) offer a weekly cycle without an add-on. BrightFunded and Crypto Fund Trader offer weekly cycles as paid add-ons. All were checked between 2026-10-14 and 2026-10-20.</p>
 
 <h3 class="wp-block-heading"><strong>Which prop firm pays out the fastest?</strong></h3>
 <p>On request timing, the daily and on-demand firms: Take Profit Trader's PRO accounts, TradeDay Quick Pay, Lucid, Tradeify Select Daily, MFF Rapid, E8 Markets and FTMO (on demand once 14 days have passed since your first trade). Faster requests usually come with stricter conditions or, at TradeDay Quick Pay, a 50% split.</p>

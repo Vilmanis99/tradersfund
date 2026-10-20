@@ -33,7 +33,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Bright Funded’s public rules name 3 plans and 18 account-size combinations. Our source capture is dated 2026-09-29; temporary campaign prices were excluded so a discount does not masquerade as the normal fee.</p>
+<p>Bright Funded’s public rules name 3 plans and 18 account-size combinations. Our source capture is dated 2026-09-29; temporary campaign prices were excluded so a discount does not masquerade as the normal fee. The current homepage promo code, and what we could and could not verify about it, is tracked in our <a href="/blog/brightfunded-discount-code">BrightFunded discount code guide</a>.</p>
 
 <p><strong>Minimum-cost context.</strong> The <a href="/cheapest-prop-firms">EUR-denominated price ranking</a> lists the €47 Bright Funded 2-Step Bright path independently from USD products; it does not insert a temporary FX rate to manufacture a cross-currency position.</p>
 
