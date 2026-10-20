@@ -11706,7 +11706,7 @@ function checkRussianAcquisitionPilot() {
         || localSignals.get('TeamTraders')?.claims?.minimumTradingSessions !== 10
         || localSignals.get('TeamTraders')?.claims?.dailyLossLimitPct !== 2
         || localSignals.get('TeamTraders')?.claims?.maximumLossPct !== 4
-        || localSignals.get('TeamTraders')?.claims?.fundedDemoProfitSharePct !== 70
+        || localSignals.get('TeamTraders')?.claims?.fundedDemoProfitSharePct !== 50
         || localSignals.get('TeamTraders')?.claims?.profitSharePct !== 95
         || localSignals.get('TeamTraders')?.claims?.maximumCapitalRub !== 2_000_000
         || localSignals.get('TeamTraders')?.sourceCapturedAt !== scopedTeamTradersEvidence?.capturedAt
@@ -11891,7 +11891,7 @@ function checkRussianAcquisitionPilot() {
         || teamTradersEvidence.evaluation?.minimumTradingDaysTotal !== 10
         || teamTradersEvidence.evaluation?.dailyLossPct !== 2
         || teamTradersEvidence.evaluation?.maximumLossPct !== 4
-        || teamTradersEvidence.fundedDemo?.profitSharePct !== 70
+        || teamTradersEvidence.fundedDemo?.profitSharePct !== 50
         || teamTradersEvidence.fundedDemo?.profitTargetAndCapPct !== 10
         || teamTradersEvidence.realAccount?.profitSharePct !== 95
         || teamTradersEvidence.realAccount?.dailyLossExcessPenaltyPct !== 20
