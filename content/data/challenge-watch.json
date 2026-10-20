@@ -154,10 +154,10 @@
     "kind": "rule-change",
     "status": "verified",
     "observedAt": "2026-09-08",
-    "lastCheckedAt": "2026-09-08",
+    "lastCheckedAt": "2026-10-20",
     "title": "FundedNext's EA article limits automation to accounts below $50,000",
     "summary": "The official EA article requires manual trading from $50,000 upward on MT4/MT5, including tools that adjust SL, TP or position size. Smaller accounts require the paid add-on and strategy checks; cTrader and Match-Trader are manual-only. September 8 is our observation date, not an established policy-change date.",
-    "traderImpact": "Buying an EA add-on is not universal permission to automate. Check the exact account size and programme. The article gives no effective date or existing-account exemption; the product price captures have not been refreshed.",
+    "traderImpact": "Buying an EA add-on is not universal permission to automate. Check the exact account size and programme. The article gives no effective date or existing-account exemption. Rule text rechecked unchanged on 2026-10-20; this rule recheck does not relabel the product price captures.",
     "sourceUrls": [
       "https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext"
     ]
@@ -182,7 +182,7 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-09-08",
-    "lastCheckedAt": "2026-09-08",
+    "lastCheckedAt": "2026-10-20",
     "title": "FundedNext's general and Instant EA articles differ in account-size detail",
     "summary": "The general EA article includes a manual-only account-size cutoff. The Stellar Instant EA article permits conditional automation but does not repeat that cutoff or explicitly grant an exemption.",
     "traderImpact": "Confirm how the general size rule applies before automating a scaled Instant account. An omitted limit in one article is not proof of an exception; retain the written answer for the exact programme and account size.",
@@ -207,7 +207,7 @@
     "kind": "rule-change",
     "status": "verified",
     "observedAt": "2026-09-08",
-    "lastCheckedAt": "2026-09-08",
+    "lastCheckedAt": "2026-10-20",
     "title": "Correction: Stellar 1-Step forex leverage is 1:30, not 1:100",
     "summary": "Our August 28 Russian forex capture incorrectly grouped Stellar 1-Step with the 1:100 evaluations. The official leverage article's image tables show 1:30 for Stellar 1-Step in both Challenge and FundedNext Accounts. September 8 records our correction, not a newly established policy-change date.",
     "traderImpact": "Do not size a Stellar 1-Step position using the 1:100 figure for Stellar 2-Step or Lite. Recheck required margin for the exact programme; leverage does not increase its loss limits. This rule check did not refresh product prices.",
