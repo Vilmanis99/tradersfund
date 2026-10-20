@@ -34,12 +34,22 @@ function shortName(firm: { name: string }, product: Challenge) {
   const escaped = firm.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   return product.productName.replace(new RegExp(`^${escaped}\\s*(?:Challenge:?\\s*)?`, 'i'), '').trim() || product.productName
 }
+/** 100K cost to funded: list price plus any mandatory activation or pay-later fee (as on EN). */
 function price100k(product: Challenge) {
   const size = product.accountSizes.find(tier => tier.sizeUsd === 100000)
-  if (size?.priceUsd != null) return { value: size.priceUsd, currency: 'USD' as const }
-  if (size?.priceEur != null) return { value: size.priceEur, currency: 'EUR' as const }
+  if (size?.priceUsd != null) {
+    const activation = size.activationFeeUsd ?? product.activationFeeUsd ?? 0
+    const later = size.payLaterUsd ?? 0
+    return { value: size.priceUsd + activation + later, currency: 'USD' as const, base: size.priceUsd, activation, later }
+  }
+  if (size?.priceEur != null) return { value: size.priceEur, currency: 'EUR' as const, base: size.priceEur, activation: 0, later: 0 }
   return null
 }
+function priceText(p: NonNullable<ReturnType<typeof price100k>>) {
+  const parts = [p.activation ? `${money(p.activation, p.currency)} активация` : null, p.later ? `${money(p.later, p.currency)} после прохождения` : null].filter(Boolean)
+  return parts.length ? `${money(p.value, p.currency)} (${money(p.base, p.currency)} + ${parts.join(' + ')})` : money(p.value, p.currency)
+}
+
 function perProduct(firm: Firm, products: Challenge[], value: (product: Challenge) => string | null) {
   const rows = products.map(product => ({ name: shortName(firm, product), value: value(product) }))
   if (!rows.length || rows.some(row => row.value == null)) return null
@@ -55,7 +65,7 @@ export function buildRuFacts(firm: Firm, products: Challenge[]) {
   const facts: Array<{ label: string; value: string }> = []
   const add = (label: string, value: string | null) => { if (value) facts.push({ label, value }) }
   if (products.length) {
-    add('Цена счёта 100K', perProduct(firm, products, product => { const p = price100k(product); return p ? money(p.value, p.currency) : null }))
+    add('Цена счёта 100K', perProduct(firm, products, product => { const p = price100k(product); return p ? priceText(p) : null }))
     add('Цель прибыли', perProduct(firm, products, product => {
       const t = product.profitTargets; if (!t) return null
       const steps = [t.phase1, t.phase2, t.phase3].filter((v): v is number => v != null)
@@ -157,9 +167,9 @@ export function RuArticleToc({ children }: { children: ReactNode }) {
 }
 
 function compareFacts(firm: Firm, products: Challenge[]) {
-  const prices = products.map(price100k).filter((p): p is { value: number; currency: 'USD' | 'EUR' } => p != null)
-  const currency = prices.length && prices.every(p => p.currency === prices[0].currency) ? prices[0].currency : null
-  const lowest = currency ? Math.min(...prices.map(p => p.value)) : null
+  const priced = products.map(product => ({ product, price: price100k(product) })).filter(row => row.price != null)
+  const currency = priced.length && priced.every(row => row.price!.currency === priced[0].price!.currency) ? priced[0].price!.currency : null
+  const cheapest = currency ? [...priced].sort((x, y) => x.price!.value - y.price!.value)[0] : null
   const splits = products.map(product => product.profitSplitPct).filter((v): v is number => v != null)
   const losses = products.map(product => product.maxLossPct).filter((v): v is number => v != null)
   const waits = products.filter(product => product.payoutFirstDays != null).sort((x, y) => x.payoutFirstDays! - y.payoutFirstDays!)
@@ -167,7 +177,7 @@ function compareFacts(firm: Firm, products: Challenge[]) {
   return {
     currency,
     rows: {
-      'Мин. цена 100K': lowest != null && currency ? money(lowest, currency) : null,
+      'Мин. цена 100K': cheapest ? `${priceText(cheapest.price!)}, ${shortName(firm, cheapest.product)}` : null,
       'Базовая доля': range(splits),
       'Макс. убыток': range(losses),
       'Самая ранняя выплата': waits[0] ? `${ruPayoutWait(waits[0])} (${shortName(firm, waits[0])})` : null,
