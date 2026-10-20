@@ -198,7 +198,7 @@ export default function RussianFundedNextReviewPage() {
     ...faqs,
     ...(firm?.trustpilotScore != null && firm.trustpilotCount != null ? [{
       q: 'Что показывают отзывы о FundedNext на Trustpilot?',
-      a: `При проверке от ${firm.trustpilotCapturedAt ?? 'неуказанной даты'} профиль показывал ${firm.trustpilotScore.toFixed(1)}/5 по ${firm.trustpilotCount.toLocaleString('ru-RU')} отзывам. Средняя оценка описывает публичную обратную связь на ту дату, но не подтверждает выплату, прохождение KYC, доступность страны или правило конкретной модели Stellar.`,
+      a: `При проверке от ${firm.trustpilotCapturedAt ?? 'неуказанной даты'} профиль показывал оценку ${firm.trustpilotScore.toFixed(1)}/5, отзывов: ${firm.trustpilotCount.toLocaleString('ru-RU')}. Средняя оценка описывает публичную обратную связь на ту дату, но не подтверждает выплату, прохождение KYC, доступность страны или правило конкретной модели Stellar.`,
     }] : []),
   ]
 
@@ -286,7 +286,7 @@ export default function RussianFundedNextReviewPage() {
                   </p>
                   {firm.trustpilotScore != null && firm.trustpilotCount != null ? (
                     <p className="ru-review-trustpilot">
-                      Trustpilot: {firm.trustpilotScore.toFixed(1)}/5 по {firm.trustpilotCount.toLocaleString('ru-RU')} отзывам,
+                      Trustpilot: {firm.trustpilotScore.toFixed(1)}/5, отзывов: {firm.trustpilotCount.toLocaleString('ru-RU')},
                       проверено {firm.trustpilotCapturedAt ?? 'дата не указана'}; рейтинг не доказывает выплату по конкретному счёту.
                       {firm.trustpilotUrl ? <> <a href={firm.trustpilotUrl} target="_blank" rel="noopener noreferrer">Проверить профиль</a>.</> : null}
                     </p>
@@ -408,17 +408,17 @@ export default function RussianFundedNextReviewPage() {
             className="ru-shell ru-content"
             data-russian-fundednext-reviews="aggregate-not-payout-proof"
           >
-            <h2 id="reviews">Отзывы о FundedNext: что означают {firm.trustpilotScore.toFixed(1)}/5 и {firm.trustpilotCount.toLocaleString('ru-RU')} оценок</h2>
+            <h2 id="reviews">Отзывы о FundedNext: что означают оценка {firm.trustpilotScore.toFixed(1)}/5 и число отзывов ({firm.trustpilotCount.toLocaleString('ru-RU')})</h2>
             {!hasFreshTrustpilot && <p className="ru-notice">Статус Trustpilot требует повторной проверки. Ниже сохранено наблюдение на указанную дату, а не текущая оценка профиля.</p>}
             <p>
               При проверке профиля Trustpilot от {firm.trustpilotCapturedAt ?? 'неуказанной даты'} средняя оценка FundedNext составляла
-              {' '}{firm.trustpilotScore.toFixed(1)}/5 по {firm.trustpilotCount.toLocaleString('ru-RU')} отзывам. Это сторонний снимок показанного
+              {' '}{firm.trustpilotScore.toFixed(1)}/5, отзывов: {firm.trustpilotCount.toLocaleString('ru-RU')}. Это сторонний снимок показанного
               агрегата, а не проверка {freshProducts.length} текущих моделей, отдельной выплаты или соблюдения правила конкретным аккаунтом.
             </p>
             <div className="ru-grid">
               <article className="ru-card">
                 <h3>Что показывает число отзывов</h3>
-                <p>{firm.trustpilotCount.toLocaleString('ru-RU')} записей показывают объём публичной обратной связи на дату проверки, но не долю трейдеров, которые купили челлендж, прошли оценку или получили выплату.</p>
+                <p>Число записей ({firm.trustpilotCount.toLocaleString('ru-RU')}) показывает объём публичной обратной связи на дату проверки, но не долю трейдеров, которые купили челлендж, прошли оценку или получили выплату.</p>
               </article>
               <article className="ru-card">
                 <h3>Какой продукт нужно назвать</h3>

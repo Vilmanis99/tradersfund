@@ -220,7 +220,7 @@ export default function RussianPartnerReview({
                   <p>{freshProducts.length} программ · {pricedTiers.length} подтверждённых цен · проверено {latestCapture}</p>
                   {firm.trustpilotScore != null && firm.trustpilotCount != null ? (
                     <p className="ru-review-trustpilot">
-                      Trustpilot: {firm.trustpilotScore.toFixed(1)}/5 по {firm.trustpilotCount.toLocaleString('ru-RU')} отзывам,
+                      Trustpilot: {firm.trustpilotScore.toFixed(1)}/5, отзывов: {firm.trustpilotCount.toLocaleString('ru-RU')},
                       проверено {firm.trustpilotCapturedAt ?? 'дата не указана'}; средняя оценка не доказывает выплату по конкретному счёту.
                       {firm.trustpilotUrl ? <> <a href={firm.trustpilotUrl} target="_blank" rel="noopener noreferrer">Проверить профиль</a>.</> : null}
                     </p>

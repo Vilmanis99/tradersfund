@@ -329,7 +329,7 @@ export default function RussianFtmoReviewPage() {
             <p>
               FTMO — проп-компания, основанная в 2015 году. По нашему профилю фирмы: торговля форексом, криптовалютой, индексами, сырьём и
               акциями на {listRuAnd(firm?.platforms ?? [])}; максимальный капитал с учётом масштабирования — до $2 000 000{ftmoPayoutMethods.length ? <>; выплаты {listRu(ftmoPayoutMethods)}{firm?.payoutMethodsCapturedAt ? ` (по данным на ${ruIsoDate(firm.payoutMethodsCapturedAt)})` : ''}</> : null}.
-              {ftmoTrustpilot ? <> На Trustpilot — {ftmoTrustpilot.score} при {ftmoTrustpilot.count} отзывах (по данным на {ftmoTrustpilot.date}).</> : null}
+              {ftmoTrustpilot ? <> На Trustpilot — оценка {ftmoTrustpilot.score}, отзывов: {ftmoTrustpilot.count} (по данным на {ftmoTrustpilot.date}).</> : null}
             </p>
             <h3>Проп-трейдинг с FTMO: для кого он доступен</h3>
             <p>

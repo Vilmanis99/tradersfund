@@ -138,7 +138,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           <h2>FundingPips: отзывы трейдеров</h2>
           {trustpilot ? (
             <p data-russian-fundingpips-trustpilot-date={trustpilot.date ?? ''}>
-              На <a href={TRUSTPILOT_URL} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> у FundingPips оценка {trustpilot.score} при {trustpilot.count} отзывах
+              На <a href={TRUSTPILOT_URL} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> у FundingPips оценка {trustpilot.score}, отзывов: {trustpilot.count}
               (по данным на {trustpilot.date}). Высокая оценка при таком объёме говорит о массовой аудитории, но не о том, что
               ваша выплата пройдёт: отзывы не проверяют KYC и страну автора.
             </p>
@@ -440,7 +440,7 @@ export default function RussianFundingPipsReviewPage() {
         },
         {
           q: 'Какие отзывы о FundingPips?',
-          a: `${trustpilot ? `На Trustpilot — ${trustpilot.score} при ${trustpilot.count} отзывах (по данным на ${trustpilot.date}). ` : 'Свежего снимка оценки Trustpilot у нас сейчас нет, поэтому цифры не приводим. '}Читайте отзывы с датой и названием продукта: правила выплат менялись в августе 2026 года.`,
+          a: `${trustpilot ? `На Trustpilot — оценка ${trustpilot.score}, отзывов: ${trustpilot.count} (по данным на ${trustpilot.date}). ` : 'Свежего снимка оценки Trustpilot у нас сейчас нет, поэтому цифры не приводим. '}Читайте отзывы с датой и названием продукта: правила выплат менялись в августе 2026 года.`,
         },
         {
           q: 'Какие способы выплаты есть у FundingPips?',
