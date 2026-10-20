@@ -16,7 +16,8 @@ import TrustBar from '@/components/home/TrustBar'
 import ComparisonTable from '@/components/home/ComparisonTable'
 import FeaturedOfferCard from '@/components/home/FeaturedOfferCard'
 import DisclosureNote from '@/components/home/DisclosureNote'
-import Guides from '@/components/home/Guides'
+import ChallengeExplainer, { type ExplainerCard } from '@/components/home/ChallengeExplainer'
+import { getChallengeSectionFacts } from '@/components/home/challengeFacts'
 import HomeFaq from '@/components/home/HomeFaq'
 import { getHomeComparisonRows, getHomeCounters, getVerifiedCode } from '@/components/home/homeData'
 
@@ -41,26 +42,32 @@ const primaryPartners = [
   { slug: 'bright-funded', href: '/go/bright-funded?from=home-partners' },
 ] as const
 
+// Card titles and destinations are unchanged; each card now carries a live,
+// dated fact from components/home/challengeFacts.ts instead of generic copy.
 const selectedGuides = [
   {
     href: '/how-prop-firm-challenges-work',
     label: 'Start here',
     title: 'How prop-firm challenges work',
-    description: 'Understand the evaluation, the funded stage, and what you are paying for.',
+    cta: 'Read the guide',
   },
   {
     href: '/true-cost-of-prop-firm-challenges',
     label: 'Understand the cost',
     title: 'The fee is only part of the comparison',
-    description: 'Separate checkout fees, recurring costs and fee-recovery assumptions.',
+    cta: 'Compare the true cost',
   },
   {
+    // TODO(drawdown-calculator): link the Week 1 drawdown calculator here once
+    // its route exists; until then the rules guide is the closest page.
     href: '/how-to-pass-a-prop-firm-challenge',
     label: 'Before trading',
     title: 'Build a plan around the challenge rules',
-    description: 'Check loss limits and trading restrictions before placing the first trade.',
+    cta: 'Read the rules guide',
   },
 ] as const
+
+const guideCard = (index: 0 | 1 | 2): ExplainerCard => ({ ...selectedGuides[index], data: { 'data-english-home-guide': 'selected' } })
 
 const faqs = [
   { q: 'What is a prop firm?', a: 'A company that sells access to a simulated evaluation. If you meet its profit target without breaking the loss limits, it may offer a funded stage and a share of the profit under its own contract.' },
@@ -76,6 +83,10 @@ export default function Home() {
   const rows = buildChallengeComparisonRows(challenges, firms, watchEntries)
   const tableRows = getHomeComparisonRows('en')
   const counters = getHomeCounters()
+  const challengeFacts = getChallengeSectionFacts('en')
+  const pickerFirms = challengeFacts.picker.firms.map(firm => firm.slug)
+  // Start on the first pair that has its own page; never invents a pairing.
+  const pickerInitial = (Object.keys(challengeFacts.picker.pairHrefs)[0]?.split('-vs-') ?? pickerFirms.slice(0, 2)) as [string, string]
   const partners = primaryPartners.flatMap(partner => {
     const firm = firms.find(candidate => outboundSlug(candidate.name) === partner.slug)
     if (!firm?.affiliateUrl) return []
@@ -187,17 +198,17 @@ export default function Home() {
         </section>
       )}
 
-      <Guides
+      <ChallengeExplainer
+        locale="en"
         id="home-guides-heading"
         title="Understand the challenge"
+        facts={challengeFacts}
         more={<Link href="/blog" className="th-link">All reviews and guides <ArrowRight size={14} aria-hidden="true" /></Link>}
         data={{ 'data-english-home-guides': 'selected-three' }}
-        items={selectedGuides.map(guide => ({ ...guide, data: { 'data-english-home-guide': 'selected' } }))}
-        links={[
-          { href: '/compare', title: 'Compare two firms', description: 'Read the differences between their programmes and rules.' },
-          { href: '/prop-firm-challenge-changes', title: 'Check recent rule notes', description: `${watchEntries.length} dated notes, including verified changes and source conflicts.` },
-          { href: '/best-prop-firms-in-india', title: 'Trading from India?', description: 'Start with the country-specific evidence screen.' },
-        ]}
+        cards={[guideCard(0), guideCard(1), guideCard(2)]}
+        pickerFallbackHref="/compare"
+        pickerInitial={pickerInitial}
+        country={{ lead: 'Trading from India?', label: 'Start with the India evidence screen', href: '/best-prop-firms-in-india', data: { 'data-english-home-country': 'india' } }}
       />
       {newsletterEnabled && (
         <div className="th-wrap"><div className="home-digest">
