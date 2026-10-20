@@ -135,7 +135,7 @@ type: "post"
 
 <p><strong>Time limits also vary.</strong> One Phase and Three Phase publish 5 minimum trading days, with Three Phase requiring 5 in each of its 3 stages. Two Phase Pro requires 3 profitable days per phase at 0.5% of initial balance, Instant Lite requires 5 trading days before its first payout can open after 10 calendar days, and Lightning requires 3 days inside a 5-day evaluation cap. Two Phase Classic and Standard remain blank because their shared page still conflicts between 4-day and 5-day values.</p>
 
-<p><strong>Refund treatment is not universal.</strong> The public material says the One Phase, Two Phase, and Three Phase fee can be reimbursed with the first payout, and the Lightning FAQ states a 100% refund with its first withdrawal. Both Instant variants publish “No” for refunds.</p>
+<p><strong>Refund treatment is not universal.</strong> The public material says the One Phase, Two Phase Standard, and Three Phase fee can be reimbursed with the first payout (Two Phase Classic and Two Phase Pro are not refundable), and the Lightning FAQ states a 100% refund with its first withdrawal. Both Instant variants publish “No” for refunds.</p>
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 
@@ -280,7 +280,7 @@ type: "post"
 <p>The 5 phase products allow both EAs and news trading in the 2026-09-15 capture. Instant Standard, Instant Lite, and Lightning reject EAs; the 2 Instant products and Lightning also reject news trading.</p>
 
 <h3 class="wp-block-heading"><strong>Is the FXIFY challenge fee refundable?</strong></h3>
-<p>The captured source says the One Phase, Two Phase, and Three Phase fees can be reimbursed with the first payout. Both Instant variants are non-refundable, while the Lightning FAQ states a 100% refund alongside its first withdrawal.</p>
+<p>The captured source says the One Phase, Two Phase Standard, and Three Phase fees can be reimbursed with the first payout; Two Phase Classic and Two Phase Pro are not refundable. Both Instant variants are non-refundable, while the Lightning FAQ states a 100% refund alongside its first withdrawal.</p>
 
 <h3 class="wp-block-heading"><strong>Which FXIFY products have static drawdown?</strong></h3>
 <p>Two Phase Classic publishes a 10% static maximum loss, Two Phase Pro publishes an 8% static maximum loss, and Three Phase publishes a 5% static maximum loss. One Phase, Two Phase Standard, both Instant variants, and Lightning use trailing limits in the 2026-09-15 capture. The <a href="/go/fxify?source=two-phase-pro">product-specific Pro announcement</a> confirms its static rule.</p>
