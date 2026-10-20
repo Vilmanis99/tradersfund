@@ -7,13 +7,14 @@
   "sources": [
     "content/data/firms.json",
     "content/data/challenges/fundednext.json (2026-10-19)",
-    "content/data/challenges/fundingpips.json (2026-10-20; Zero 2026-10-19)"
+    "content/data/challenges/fundingpips.json (2026-10-20; Zero 2026-10-19)",
+    "content/data/challenges/_captures/fundingpips-2026-10-20.json → refundTerms (Prop Firm Tracker, 20.10.2026: справка Get Started и Reward Methods vs Terms «ALL PAYMENTS ARE FINAL»)"
   ],
-  "verdict": "Обе фирмы продают несколько оценок и модель без оценки (Stellar Instant и FundingPips Zero), но в возврате взноса и торговле на выходных они противоположны. FundedNext возвращает взнос за все оценки Stellar и разрешает выходные, FundingPips возвращает его только в 2 Step Standard и ограничивает выходные во всех моделях (по данным на 19.10.2026).",
+  "verdict": "Обе фирмы продают несколько оценок и модель без оценки (Stellar Instant и FundingPips Zero), но в возврате взноса и торговле на выходных они заметно различаются. FundedNext возвращает взнос за все оценки Stellar и разрешает выходные, FundingPips ограничивает выходные во всех моделях (по данным на 19.10.2026), а о возврате взноса её источники расходятся: по справке взнос за 2 Step Standard возвращается с четвёртым вознаграждением, в условиях — «ALL PAYMENTS ARE FINAL» (по данным на 20.10.2026).",
   "picks": {
     "a": [
       "вы держите позиции на выходных: FundedNext разрешает, FundingPips ограничивает во всех моделях",
-      "вы хотите вернуть взнос: у FundedNext он возвратный во всех оценках Stellar, у FundingPips — только в 2 Step Standard (на четвёртом вознаграждении)",
+      "вы хотите вернуть взнос: у FundedNext он возвратный во всех оценках Stellar, а у FundingPips возврат за 2 Step Standard с четвёртым вознаграждением обещает справка, тогда как условия гласят «ALL PAYMENTS ARE FINAL» (по данным на 20.10.2026)",
       "вам нужна ранняя выплата после одноэтапной оценки: Stellar 1-Step — через 5 дней, FundingPips 1 Step Flex — с 14-го дня"
     ],
     "b": [

@@ -8,13 +8,14 @@
     "content/data/firms.json",
     "content/data/challenges/bright-funded.json (2026-10-20)",
     "content/data/challenges/fundingpips.json (2026-10-20; Zero 2026-10-19)",
-    "branch content/ru-fundingpips-vs-bright-funded @84a2122 (reward routes per help centre 20.10.2026)"
+    "branch content/ru-fundingpips-vs-bright-funded @84a2122 (reward routes per help centre 20.10.2026)",
+    "content/data/challenges/_captures/fundingpips-2026-10-20.json → refundTerms (Prop Firm Tracker, 20.10.2026: справка Get Started и Reward Methods vs Terms «ALL PAYMENTS ARE FINAL»)"
   ],
-  "verdict": "BrightFunded продаёт три CFD-оценки с возвратным взносом и базовой долей 80%, FundingPips — пять моделей, где доля зависит от маршрута выплаты, а взнос возвращается только в 2 Step Standard. За счёт 100K BrightFunded берёт €477–497, FundingPips — $422–566; валюты разные, поэтому цены мы не ранжируем (по данным на 19.10.2026).",
+  "verdict": "BrightFunded продаёт три CFD-оценки с возвратным взносом и базовой долей 80%, FundingPips — пять моделей, где доля зависит от маршрута выплаты, а источники о возврате взноса расходятся: по справке взнос за 2 Step Standard возвращается с четвёртым вознаграждением, в условиях — «ALL PAYMENTS ARE FINAL» (по данным на 20.10.2026). За счёт 100K BrightFunded берёт €477–497, FundingPips — $422–566; валюты разные, поэтому цены мы не ранжируем (по данным на 19.10.2026).",
   "picks": {
     "a": [
       "вы держите позиции на выходных: BrightFunded разрешает, FundingPips ограничивает во всех моделях",
-      "вы хотите вернуть взнос: у BrightFunded он возвратный во всех программах, у FundingPips — только в 2 Step Standard",
+      "вы хотите вернуть взнос: у BrightFunded он возвратный во всех программах, а у FundingPips возврат за 2 Step Standard с четвёртым вознаграждением обещает справка, тогда как условия гласят «ALL PAYMENTS ARE FINAL» (по данным на 20.10.2026)",
       "вам нужна более низкая цель в одноэтапной оценке: BrightFunded 1-Step — 10%, FundingPips 1 Step Flex — 12%"
     ],
     "b": [
