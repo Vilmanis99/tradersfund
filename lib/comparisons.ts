@@ -277,8 +277,8 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
 
   'fundednext-vs-fundingpips': {
     matchupSlug: 'fundednext-vs-fundingpips',
-    reviewedAt: '2026-08-14',
-    challengeReviewedAt: '2026-08-14',
+    reviewedAt: '2026-10-20',
+    challengeReviewedAt: '2026-10-20',
     h1: 'FundedNext vs FundingPips (2026): 4 Paths vs 5 Models',
     metaDescription:
       'FundedNext vs FundingPips using 2026 prices, 9 captured products, base or selectable splits, payout gates, drawdowns, platforms and refund timing.',
