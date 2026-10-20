@@ -48,7 +48,7 @@ globalThis.Date = class extends RealDate {
 const errors = []
 try {
   assert.match(fs.readFileSync(path.join(root, 'app/ru/layout.tsx'), 'utf8'), /export const revalidate = 3600\b/, 'Russian layout must re-run age gates without a deployment')
-  assert.match(fs.readFileSync(path.join(root, 'app/page.tsx'), 'utf8'), /export const revalidate = 3600\b/, 'English homepage must re-run product age gates without a deployment')
+  assert.match(fs.readFileSync(path.join(root, 'app/(home)/page.tsx'), 'utf8'), /export const revalidate = 3600\b/, 'English homepage must re-run product age gates without a deployment')
   const pages = fs.readdirSync(path.join(root, 'app/ru'), { withFileTypes: true })
     .filter(entry => entry.isDirectory() && fs.existsSync(path.join(root, 'app/ru', entry.name, 'page.tsx')))
     .map(entry => entry.name)
@@ -88,7 +88,7 @@ try {
   assert.equal(brightFirm.trustpilotUrl, brightTrustpilotCapture.trustpilotUrl, 'Bright Trustpilot source URL matches its preserved observation')
   assert.match(brightTrustpilotCapture.evidence, /rating is unavailable.*breach.*guidelines/i, 'suppressed aggregate has first-party platform evidence')
   assert.match(
-    fs.readFileSync(path.join(root, 'app/page.tsx'), 'utf8'),
+    fs.readFileSync(path.join(root, 'app/(home)/page.tsx'), 'utf8'),
     /\/go\/bright-funded\?from=home-partners/,
     'English homepage keeps the Bright Funded partner placement',
   )
@@ -156,7 +156,7 @@ try {
     assert(offersHtml.includes('data-russia-status="unclear" data-russia-firm="fundingpips"'), 'promo hub FundingPips CTA carries the unclear Russia-access badge')
     assert(offersHtml.includes('HELLO') && offersHtml.includes('STRTN'), 'promo hub shows the batch 1 codes')
     assert(!offersHtml.includes('SUMMER30') && !offersHtml.includes('SUMMER25') && !offersHtml.includes('SUMMER15'), 'expired Bright codes are not advertised')
-    const EnglishOffers = require(path.join(root, 'app/prop-firm-discount-codes/page.tsx')).default
+    const EnglishOffers = require(path.join(root, 'app/prop-firm-discount-codes/(index)/page.tsx')).default
     const originalClock = clock
     try {
       clock = new RealDate(Math.max(new RealDate(`${latestDealCheck}T12:00:00Z`).getTime() + 31 * 86_400_000, new RealDate(originalClock).getTime())).toISOString()
@@ -1303,7 +1303,7 @@ try {
       assert(globalHtml.includes('No sourced product matches every filter'), 'readability work preserves the expired-source empty state')
       assert(!globalHtml.includes('class="challenge-data-table"'), 'no empty data table replaces the source warning')
     }
-    const EnglishHome = require(path.join(root, 'app/page.tsx')).default
+    const EnglishHome = require(path.join(root, 'app/(home)/page.tsx')).default
     const englishHtml = renderToStaticMarkup(React.createElement(EnglishHome))
     const englishSizes = [...new Set(englishRows.flatMap(row => row.product.tiers.map(tier => tier.sizeUsd)))].sort((a, b) => a - b)
     const englishSize = englishSizes.includes(50000) ? 50000 : englishSizes[0]

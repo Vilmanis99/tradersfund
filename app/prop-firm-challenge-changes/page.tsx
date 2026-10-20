@@ -40,7 +40,9 @@ const DESCRIPTION =
   'Track dated prop-firm challenge price, rule and product-lineup changes with first-party sources, verification status and a plain-English trader impact.'
 
 export const metadata: Metadata = {
-  title: TITLE,
+  // Absolute: this page shares its segment with the section's root layout, so the
+  // site title template would not reach it (see components/EnglishRootLayout.tsx).
+  title: { absolute: `${TITLE} | TFH` },
   description: DESCRIPTION,
   alternates: { canonical: PATH },
   openGraph: {
