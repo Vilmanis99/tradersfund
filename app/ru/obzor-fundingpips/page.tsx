@@ -79,7 +79,7 @@ function fundingPipsRuleFacts() {
   const newest = ruDate(dates[dates.length - 1])
   const oldest = ruDate(dates[0])
   const stale = products.filter(product => product.sourceCapturedAt !== dates[dates.length - 1]).map(product => product.productName)
-  const asOf = newest == null ? null : stale.length ? `${newest} (${stale.join(', ')} — ${oldest})` : newest
+  const asOf = newest == null ? null : stale.length ? `${newest}; ${stale.join(', ')} — ${oldest}` : newest
   return { bySlug, targets, maxLoss, asOf }
 }
 
