@@ -1,8 +1,10 @@
 import Link from 'next/link'
+import { consistencyFields, consistencyRulePhrase, scopedConsistencyRules } from '@/lib/consistencyScope'
 import { ExternalLink } from 'lucide-react'
 import { firmSlug } from '@/lib/firmSlug'
 import type { Challenge, Firm } from '@/lib/firms'
 import { payoutWait } from '@/lib/payoutWait'
+import { possessive } from '@/lib/possessive'
 
 /**
  * Phase 1 preview of the generated compare verdict (design/article-format-spec.md §3.3, C9).
@@ -40,6 +42,8 @@ function best<T>(products: Challenge[], value: (product: Challenge) => T | null,
 }
 
 export type SourcedLine = { text: string; fields: string[] }
+
+export { possessive }
 
 const split = (product: Challenge) => product.profitSplitPct
 // 0 days marks a growth-based gate (instant products), not a day-0 payout.
@@ -108,41 +112,52 @@ export function buildPickLines(a: Side, b: Side) {
     const weekly = myEvals.find(product => product.payoutFrequency === 'weekly' && firstPayout(product) != null && !hasAlternativePayout(product))
     const theirFirst = best(theirEvals, firstPayout, (x, y) => x < y)
     if (weekly && theirFirst && !theirEvals.some(product => product.payoutFrequency === 'weekly')) {
-      add(key, `you want weekly payouts: ${displayName(me.firm, weekly)} pays weekly, with the first claim ${payoutWait(weekly)!.phrase}; ${them.firm.name}'s first claim is ${payoutWait(theirFirst.product)!.phrase.replace(/^from /, '')}`, [`${weekly.productSlug}.payoutFrequency`, `${weekly.productSlug}.payoutFirstDays`, `${theirFirst.product.productSlug}.payoutFirstDays`])
+      add(key, `you want weekly payouts: ${displayName(me.firm, weekly)} pays weekly, with the first claim ${payoutWait(weekly)!.phrase}; ${possessive(them.firm.name)} first claim is ${payoutWait(theirFirst.product)!.phrase.replace(/^from /, '')}`, [`${weekly.productSlug}.payoutFrequency`, `${weekly.productSlug}.payoutFirstDays`, `${theirFirst.product.productSlug}.payoutFirstDays`])
     }
 
     // One-step with a fixed floor (drawdown from the product files).
     const myOne = myEvals.find(product => product.phases === 1 && product.drawdownType === 'static' && product.maxLossPct != null)
     const theirOne = theirEvals.find(product => product.phases === 1 && product.drawdownType && product.drawdownType !== 'static')
     if (myOne && theirOne) {
-      add(key, `you want a one-step with a fixed floor: ${displayName(me.firm, myOne)}'s ${myOne.maxLossPct}% max loss is static; ${displayName(them.firm, theirOne)} ${TRAIL[theirOne.drawdownType!] ?? 'is not static'}`, [`${myOne.productSlug}.drawdownType`, `${myOne.productSlug}.maxLossPct`, `${theirOne.productSlug}.drawdownType`])
+      add(key, `you want a one-step with a fixed floor: ${possessive(displayName(me.firm, myOne))} ${myOne.maxLossPct}% max loss is static; ${displayName(them.firm, theirOne)} ${TRAIL[theirOne.drawdownType!] ?? 'is not static'}`, [`${myOne.productSlug}.drawdownType`, `${myOne.productSlug}.maxLossPct`, `${theirOne.productSlug}.drawdownType`])
+    }
+
+    // Consistency: only when this side has an evaluation explicitly recorded
+    // without a rule and every evaluation on the other side has a scoped rule.
+    const ruleFree = myEvals.find(product => product.consistencyRuleApplies === false)
+    const theirRules = theirEvals.map(product => ({ product, rules: scopedConsistencyRules(product) }))
+    if (ruleFree && theirRules.length && theirRules.every(entry => entry.rules.length)) {
+      const shown = theirRules.slice(0, 2).map(entry => `${shortName(them.firm, entry.product)}: ${entry.rules.map(consistencyRulePhrase).join(', ')}`)
+      add(key, `you'd rather avoid a consistency rule: ${displayName(me.firm, ruleFree)} records none; ${shown.join('; ')}${theirRules.length > 2 ? '; and others' : ''}`, [`${ruleFree.productSlug}.consistencyRuleApplies`, ...theirRules.flatMap(entry => consistencyFields(entry.product))])
     }
 
     // Scale: published maximum allocation; TradingView-style platform fallback.
     const mine = allocation(me.firm), theirs = allocation(them.firm)
     if (mine && theirs && mine > theirs) {
-      add(key, `you plan to scale: ${me.firm.name} lists a ${me.firm.maxAllocation} maximum allocation vs ${them.firm.name}'s ${them.firm.maxAllocation}`, ['firms.json maxAllocation (both firms)'])
+      add(key, `you plan to scale: ${me.firm.name} lists a ${me.firm.maxAllocation} maximum allocation vs ${possessive(them.firm.name)} ${them.firm.maxAllocation}`, ['firms.json maxAllocation (both firms)'])
     }
     {
       const only = (me.firm.platforms ?? []).filter(platform => !(them.firm.platforms ?? []).includes(platform))
       if (only.length) add(key, `you trade on ${only.join(' or ')}: ${me.firm.name} supports ${only.length === 1 ? 'it' : 'them'}; ${them.firm.name} lists ${(them.firm.platforms ?? []).join(', ')}`, ['firms.json platforms (both firms)'])
     }
   }
-  // Further data-only lines, used when the templates above do not fill three slots.
+  // Further data-only line, used when the templates above do not fill three slots.
   const cheapA = cheapest100k(a), cheapB = cheapest100k(b)
   if (cheapA && cheapB && cheapA.currency === cheapB.currency && cheapA.value !== cheapB.value) {
     const key = cheapA.value < cheapB.value ? 'a' : 'b'
     const win = key === 'a' ? cheapA : cheapB, lose = key === 'a' ? cheapB : cheapA
     add(key, `you want the lower $100K fee: ${money(win.value, win.currency)} for ${displayName(sides[key].firm, win.product)} vs ${money(lose.value, lose.currency)} for ${displayName(sides[other(key)].firm, lose.product)}`, [`${win.product.productSlug}.accountSizes[100000].price`, `${lose.product.productSlug}.accountSizes[100000].price`])
   }
+  // Weak differentiators (product count, founding year) only for a side that
+  // has nothing better; product counts include variants and say little.
   if (a.products.length !== b.products.length) {
     const key = a.products.length > b.products.length ? 'a' : 'b'
-    add(key, `you want more paths to choose from: ${sides[key].products.length} captured products vs ${sides[other(key)].products.length}`, ['challenges/*.json product count (fresh captures)'])
+    if (!lines[key].length) add(key, `you want more paths to choose from: ${sides[key].products.length} captured products vs ${sides[other(key)].products.length}`, ['challenges/*.json product count (fresh captures)'])
   }
   const yearA = Number(a.firm.founded), yearB = Number(b.firm.founded)
   if (yearA && yearB && yearA !== yearB) {
     const key = yearA < yearB ? 'a' : 'b'
-    add(key, `operating history matters to you: since ${sides[key].firm.founded} (${sides[other(key)].firm.name}: ${sides[other(key)].firm.founded})`, ['firms.json founded (both firms)'])
+    if (!lines[key].length) add(key, `operating history matters to you: since ${sides[key].firm.founded} (${sides[other(key)].firm.name}: ${sides[other(key)].firm.founded})`, ['firms.json founded (both firms)'])
   }
   return { a: lines.a.slice(0, 3), b: lines.b.slice(0, 3) }
 }
@@ -168,26 +183,44 @@ export function buildSideFacts(side: Side) {
   ]
 }
 
-/** Whether the pick block has anything data-backed to show for this pair. */
-export function comparePickAvailable(a: Side, b: Side, override?: { pickA?: string[]; pickB?: string[] }) {
+type PickOverride = { pickA?: string[]; pickB?: string[] }
+const cleanLines = (lines: string[]) => lines.map(line => line.trim()).filter(line => line && !/^(tbd|todo|n\/a|-+|…|\.\.\.)$/i.test(line))
+
+/**
+ * Lines shown on each side. A writer list in verdict-copy.json wins even when
+ * it is empty (the writer found nothing honest to say); otherwise the data
+ * templates. Stale-data guard: when either firm has no capture inside the
+ * freshness window, nothing is shown, so no claim rests on old data.
+ */
+export function resolvePicks(a: Side, b: Side, override?: PickOverride) {
+  if (!a.products.length || !b.products.length) return { a: [] as string[], b: [] as string[], source: { a: 'stale', b: 'stale' }, stale: true }
   const generated = buildPickLines(a, b)
-  const hasPicks = Boolean(override?.pickA?.length || override?.pickB?.length || generated.a.length || generated.b.length)
-  const factsA = buildSideFacts(a), factsB = buildSideFacts(b)
-  const hasFacts = factsA.some((fact, index) => PRODUCT_FACTS.has(fact.label) && (fact.value || factsB[index].value))
-  return { hasPicks, hasFacts, any: hasPicks || hasFacts }
+  const pick = (writer: string[] | undefined, built: SourcedLine[]) => writer ? cleanLines(writer).slice(0, 3) : built.map(line => line.text)
+  return {
+    a: pick(override?.pickA, generated.a),
+    b: pick(override?.pickB, generated.b),
+    source: { a: override?.pickA ? 'override' : 'generated', b: override?.pickB ? 'override' : 'generated' },
+    stale: false,
+  }
 }
 
-export default function ComparePickVerdict({ a, b, checkedAt, campaign, override, wip = false }: { a: Side; b: Side; checkedAt?: string | null; campaign: string; override?: { pickA?: string[]; pickB?: string[] }; wip?: boolean }) {
-  const generated = buildPickLines(a, b)
-  const picks = {
-    a: override?.pickA?.length ? override.pickA.slice(0, 3) : generated.a.map(line => line.text),
-    b: override?.pickB?.length ? override.pickB.slice(0, 3) : generated.b.map(line => line.text),
-  }
+/** Whether the pick block renders: it needs fresh data on both sides and at least one pick line. */
+export function comparePickAvailable(a: Side, b: Side, override?: PickOverride) {
+  const picks = resolvePicks(a, b, override)
+  const hasPicks = picks.a.length + picks.b.length > 0
+  const factsA = buildSideFacts(a), factsB = buildSideFacts(b)
+  const hasFacts = !picks.stale && factsA.some((fact, index) => PRODUCT_FACTS.has(fact.label) && (fact.value || factsB[index].value))
+  // Both sides thin (no lines at all): hide the whole block rather than show a bare table.
+  return { hasPicks, hasFacts, stale: picks.stale, any: hasPicks }
+}
+
+export default function ComparePickVerdict({ a, b, checkedAt, campaign, override, wip = false }: { a: Side; b: Side; checkedAt?: string | null; campaign: string; override?: PickOverride; wip?: boolean }) {
+  const picks = resolvePicks(a, b, override)
   const factsA = buildSideFacts(a), factsB = buildSideFacts(b)
   const rows = factsA.map((fact, index) => ({ label: fact.label, a: fact.value, b: factsB[index].value })).filter(row => row.a || row.b)
   // Score and platforms alone are not a comparison; show the table only with product facts.
   const showFacts = rows.some(row => PRODUCT_FACTS.has(row.label))
-  if (!picks.a.length && !picks.b.length && !showFacts) return null
+  if (picks.stale || (!picks.a.length && !picks.b.length)) return null
   const currencies = new Set([cheapest100k(a)?.currency, cheapest100k(b)?.currency].filter(Boolean))
   return (
     <section className="compare-pick" aria-labelledby="compare-pick-title" data-compare-pick-verdict>

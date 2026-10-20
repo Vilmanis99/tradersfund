@@ -39,6 +39,7 @@ const DRAWDOWN_TYPES = ['static', 'trailing', 'eod-trailing', 'balance-based']
 const PAYOUT_FREQUENCIES = ['weekly', 'bi-weekly', 'monthly', 'on-demand']
 const ASSET_CLASSES = ['cfd', 'futures', 'crypto', 'prediction-markets']
 const PRICING_MODELS = ['one-off', 'monthly-subscription', 'split-payment']
+const CONSISTENCY_SCOPES = ['evaluation', 'funded', 'both']
 
 const argv = process.argv.slice(2)
 const write = argv.includes('--write')
@@ -192,6 +193,23 @@ function projectProduct(firmSlug, p, capturedAt, problems) {
       problems.push(`${where}: ${field} must be ${field === 'minTradingDays' ? 'a non-negative' : 'a positive'} integer or null`)
     }
   }
+  // Optional consistency scope fields (mirrors lib/consistencyScope.ts); absent fields stay valid.
+  if (p.consistencyScope != null && !CONSISTENCY_SCOPES.includes(p.consistencyScope)) {
+    problems.push(`${where}: consistencyScope must be one of ${CONSISTENCY_SCOPES.join(', ')}`)
+  }
+  if (p.consistencyRules != null) {
+    if (!Array.isArray(p.consistencyRules)) problems.push(`${where}: consistencyRules must be an array`)
+    else p.consistencyRules.forEach((rule, index) => {
+      const percent = typeof rule?.percent === 'number' ? rule.percent : null
+      if (percent === null || !(percent > 0 && percent <= 100)) problems.push(`${where}: consistencyRules[${index}].percent must be above 0 and at most 100`)
+      if (!CONSISTENCY_SCOPES.includes(rule?.scope)) problems.push(`${where}: consistencyRules[${index}].scope must be one of ${CONSISTENCY_SCOPES.join(', ')}`)
+      if (rule?.appliesTo !== undefined && (typeof rule.appliesTo !== 'string' || !rule.appliesTo.trim())) problems.push(`${where}: consistencyRules[${index}].appliesTo must be a non-empty string when present`)
+      if (typeof rule?.sourceUrl !== 'string' || !/^https?:\/\//.test(rule.sourceUrl)) problems.push(`${where}: consistencyRules[${index}].sourceUrl must be an http(s) URL`)
+    })
+    if (p.consistencyRuleApplies === false && Array.isArray(p.consistencyRules) && p.consistencyRules.length) {
+      problems.push(`${where}: no consistency rule cannot also list consistencyRules`)
+    }
+  }
   const consistency = num(p.consistencyRulePct)
   if (consistency !== null && (consistency <= 0 || consistency > 100)) {
     problems.push(`${where}: consistencyRulePct must be above 0 and at most 100; use an explicit rule-absence flag, not 0`)
@@ -221,6 +239,8 @@ function projectProduct(firmSlug, p, capturedAt, problems) {
     ...(p.maxTradingDaysUnlimited !== undefined ? { maxTradingDaysUnlimited: p.maxTradingDaysUnlimited } : {}),
     consistencyRulePct: num(p.consistencyRulePct),
     ...(p.consistencyRuleApplies !== undefined ? { consistencyRuleApplies: p.consistencyRuleApplies } : {}),
+    ...(p.consistencyScope != null ? { consistencyScope: p.consistencyScope } : {}),
+    ...(Array.isArray(p.consistencyRules) ? { consistencyRules: p.consistencyRules.map(rule => ({ percent: rule.percent, scope: rule.scope, ...(rule.appliesTo !== undefined ? { appliesTo: rule.appliesTo } : {}), sourceUrl: rule.sourceUrl })) } : {}),
     profitSplitPct: num(p.profitSplitPct),
     payoutFirstDays: num(p.payoutFirstDays),
     payoutFrequency: enumOrNull(p.payoutFrequency, PAYOUT_FREQUENCIES),

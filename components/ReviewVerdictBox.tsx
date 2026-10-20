@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { consistencyFields, consistencyRulePhrase, scopedConsistencyRules } from '@/lib/consistencyScope'
 import { ExternalLink } from 'lucide-react'
 import FirmLogo from './FirmLogo'
 import TrustpilotRating from './TrustpilotRating'
@@ -103,9 +104,12 @@ export function buildFitLines(firm: Firm, products: Challenge[]) {
   if (staticProduct) best.push({ text: `Traders who want a fixed floor: ${shortName(firm, staticProduct)} max loss is a static ${staticProduct.maxLossPct}%`, fields: [`${staticProduct.productSlug}.drawdownType`, `${staticProduct.productSlug}.maxLossPct`] })
   const refundable = products.find(product => product.accountSizes.length > 0 && product.accountSizes.every(size => size.refundable === true))
   if (refundable) best.push({ text: `Getting your fee back: every ${shortName(firm, refundable)} account size is refundable`, fields: [`${refundable.productSlug}.accountSizes[].refundable`] })
-  // No generated consistency-rule line: the captures do not record where a rule
-  // applies (evaluation, funded stage, a payout route), and an unscoped line misleads.
-  // Scoped wording comes from writer overrides in content/data/verdict-copy.json.
+  // Consistency rules only with a recorded scope (consistencyRules or
+  // consistencyScope); an unscoped percentage misleads, so it stays silent.
+  const scoped = products.map(product => ({ product, rules: scopedConsistencyRules(product) })).find(entry => entry.rules.length)
+  const consistencyLine: SourcedLine | null = scoped
+    ? { text: `Traders who dislike consistency rules: ${shortName(firm, scoped.product)} has a ${scoped.rules.map(consistencyRulePhrase).join(' and a ')}`, fields: consistencyFields(scoped.product) }
+    : null
   const nonRefundable = products.find(product => product.accountSizes.length > 0 && product.accountSizes.every(size => size.refundable === false))
   if (nonRefundable) {
     const range = priceRange(nonRefundable)
@@ -116,6 +120,7 @@ export function buildFitLines(firm: Firm, products: Challenge[]) {
       fields: [`${nonRefundable.productSlug}.accountSizes[].refundable`, ...(range ? [`${nonRefundable.productSlug}.accountSizes[].priceUsd|priceEur`] : [])],
     })
   }
+  if (consistencyLine) avoid.push(consistencyLine)
   if (products.length && products.every(product => product.assetClass === 'cfd')) avoid.push({ text: 'Futures traders: every captured product is a CFD evaluation', fields: ['challenges[].assetClass'] })
   return { best: best.slice(0, 2), avoid: avoid.slice(0, 2) }
 }

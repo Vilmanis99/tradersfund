@@ -46,7 +46,7 @@ try {
   const degraded = { reviews: [], compares: [] }
   const today = new Date().toISOString().slice(0, 10)
   md.push(`# Phase 1 verdict copy drafts`, '', `Generated ${today} by \`scripts/generate-phase1-copy-drafts.mjs\` on branch feat/article-format-phase1-rollout. Every line below is built from firms.json and the fresh challenge captures (\`content/data/challenges/*.json\`, 30-day freshness window). A line is left out when its rule does not apply; nothing is written as filler.`, '')
-  md.push('## How to override copy (single file: `content/data/verdict-copy.json`)', '', 'Writer edits go in this one file; no code change is needed. A key that is absent uses the generated lines. Overrides replace the whole list for that block. Do not add figures that are not in firms.json or the challenge captures.', '', '```json', JSON.stringify({ reviews: { 'ftmo-review': { verdict: 'One sentence shown under the score (null hides the line)', bestFor: ['line 1', 'line 2'], notFor: ['line 1', 'line 2'] } }, compares: { 'ftmo-vs-fundednext': { pickA: ['line for the alphabetically first firm (FTMO)', '…up to 3'], pickB: ['line for the second firm (FundedNext)', '…up to 3'] } } }, null, 2), '```', '', '- `reviews.<post slug>`: `verdict` (string replaces it, `null` hides it; default is the first sentence of the review\'s own "Verdict" section, skipped when it only describes the article, e.g. "This … review covers…"), `bestFor` and `notFor` (arrays; 2 shown).', '- `compares.<canonical matchup slug>` (alphabetical, e.g. `ftmo-vs-fundednext`): `pickA` / `pickB` (arrays; 3 shown). A is the firm named first in the slug.', '- Status markers below: **override** = the page shows writer copy from the JSON; **generated** = the page shows the data-built line.', '')
+  md.push('## How to override copy (single file: `content/data/verdict-copy.json`)', '', 'Writer edits go in this one file; no code change is needed. A key that is absent uses the generated lines. Overrides replace the whole list for that block. Do not add figures that are not in firms.json or the challenge captures.', '', '```json', JSON.stringify({ reviews: { 'ftmo-review': { verdict: 'One sentence shown under the score (null hides the line)', bestFor: ['line 1', 'line 2'], notFor: ['line 1', 'line 2'] } }, compares: { 'ftmo-vs-fundednext': { pickA: ['line for the alphabetically first firm (FTMO)', '…up to 3'], pickB: ['line for the second firm (FundedNext)', '…up to 3'] } } }, null, 2), '```', '', '- `reviews.<post slug>`: `verdict` (string replaces it, `null` hides it; default is the first sentence of the review\'s own "Verdict" section, skipped when it only describes the article, e.g. "This … review covers…"), `bestFor` and `notFor` (arrays; 2 shown).', '- `compares.<canonical matchup slug>` (alphabetical, e.g. `ftmo-vs-fundednext`): `pickA` / `pickB` (arrays; 3 shown). A is the firm named first in the slug. An empty array hides that side\'s list (no generated fallback); an absent key uses the generated lines. When either firm has no fresh capture the whole pick block is hidden, whatever the override says.', '- Consistency rules: generated lines name a rule only when the challenge capture records its scope, via the optional `consistencyRules: [{ percent, scope: \'evaluation\' | \'funded\' | \'both\', appliesTo?, sourceUrl }]` (wins when present) or `consistencyScope` next to `consistencyRulePct`. Wording: "1-Step has a 50% consistency rule during evaluation", "35% consistency rule on On-Demand payouts". No capture has these fields yet (Prop Firm Tracker fills them), so no generated line names a consistency rule today; writer overrides still win.', '- Status markers below: **override** = the page shows writer copy from the JSON; **generated** = the page shows the data-built line.', '')
   md.push('## Reviews', '')
   for (const firm of firms.filter(f => f.reviewUrl?.startsWith('/blog/'))) {
     const slug = firm.reviewUrl.slice('/blog/'.length)
@@ -88,21 +88,28 @@ try {
     const a = { firm: pair.firmA, products: fresh(sa) }, b = { firm: pair.firmB, products: fresh(sb) }
     const copy = getCompareCopy(pair.matchup)
     const picks = compare.buildPickLines(a, b)
+    const shown = compare.resolvePicks(a, b, copy)
     const avail = compare.comparePickAvailable(a, b, copy)
     md.push(`### /compare/${pair.matchup}`, '')
-    for (const [key, side, ov] of [['a', a, copy.pickA], ['b', b, copy.pickB]]) {
+    if (shown.stale) {
+      const staleFirms = [[pair.firmA, a], [pair.firmB, b]].filter(([, side]) => !side.products.length).map(([firm]) => firm.name)
+      md.push(`- Pick block hidden (stale-data guard: no fresh captures for ${staleFirms.join(', ')}); original layout kept`, '')
+      degraded.compares.push(`/compare/${pair.matchup}: stale data for ${staleFirms.join(', ')}; pick block hidden, original evidence block kept expanded`)
+      continue
+    }
+    for (const [key, side] of [['a', a], ['b', b]]) {
       const label = `Pick ${side.firm.name} if`
-      if (ov?.length) md.push(`- ${label} (override): ${ov.map(l => `"${l}"`).join(' · ')}`)
+      if (shown.source[key] === 'override') md.push(shown[key].length ? `- ${label} (override): ${shown[key].map(l => `"${l}"`).join(' · ')}` : `- ${label} (override): _writer found no line; list hidden_`)
       else if (!picks[key].length) md.push(`- ${label}: _no rule applies; hidden_`)
       else for (const line of picks[key]) md.push(`- ${label} (generated): "${line.text}" — fields: ${line.fields.join(', ')}`)
     }
-    md.push(`- Key facts table: ${avail.hasFacts ? 'shown' : '_hidden (no product facts)_'}`, '')
+    md.push(`- Key facts table: ${avail.any && avail.hasFacts ? 'shown' : '_hidden_'}`, '')
     const missing = []
-    if (!avail.any) missing.push('nothing data-backed: pick block hidden, original evidence block kept expanded')
+    if (!avail.any) missing.push('no pick lines on either side: pick block hidden, original evidence block kept expanded')
     else {
       if (!avail.hasFacts) missing.push('key facts hidden')
-      if (!copy.pickA?.length && !picks.a.length) missing.push(`no pick lines for ${pair.firmA.name}`)
-      if (!copy.pickB?.length && !picks.b.length) missing.push(`no pick lines for ${pair.firmB.name}`)
+      if (!shown.a.length) missing.push(`no pick lines for ${pair.firmA.name} (list hidden)`)
+      if (!shown.b.length) missing.push(`no pick lines for ${pair.firmB.name} (list hidden)`)
     }
     if (missing.length) degraded.compares.push(`/compare/${pair.matchup}: ${missing.join('; ')}`)
   }

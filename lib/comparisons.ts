@@ -420,7 +420,17 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
 
 }
 
+/**
+ * Hard off-switch for the hand-written overlays (Phase 1 rollout, 2026-10-20).
+ * Their text contradicts current captures in several places (platform lists,
+ * payout cadence, consistency targets), and the Phase 1 pick block replaces
+ * whenToPickA/B. Re-dating an overlay must not bring it back; it needs a
+ * rewrite and an explicit change here first.
+ */
+export const COMPARISON_OVERLAYS_ENABLED = false
+
 export function getOverlay(matchupSlug: string, now = new Date()): ComparisonOverlay | undefined {
+  if (!COMPARISON_OVERLAYS_ENABLED) return undefined
   const overlay = COMPARISON_OVERLAYS[matchupSlug]
   if (!overlay?.reviewedAt || !overlay.challengeReviewedAt) return undefined
 

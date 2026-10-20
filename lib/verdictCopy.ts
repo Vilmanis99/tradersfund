@@ -20,5 +20,6 @@ export function getReviewCopy(slug: string): ReviewCopy {
 
 export function getCompareCopy(matchup: string): CompareCopy {
   const entry = data.compares?.[matchup] ?? {}
+  // An empty list is kept: the writer found no honest line for that side, so it stays hidden.
   return { pickA: lines(entry.pickA), pickB: lines(entry.pickB) }
 }

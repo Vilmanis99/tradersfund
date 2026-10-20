@@ -364,6 +364,13 @@ export interface Challenge {
   consistencyRulePct: number | null
   /** false explicitly confirms no rule; null/absent does not. See notes for stage scope. */
   consistencyRuleApplies?: boolean | null
+  /**
+   * Where consistencyRulePct applies. Optional; without it (or consistencyRules)
+   * generated copy names no consistency rule. See lib/consistencyScope.ts.
+   */
+  consistencyScope?: ConsistencyScope
+  /** Scoped consistency rules; take precedence over consistencyRulePct + consistencyScope when present. */
+  consistencyRules?: ConsistencyRule[]
   /** Profit split this product pays the trader (0–100). */
   profitSplitPct: number | null
   /** Days until the first payout request can be raised on this product. */
@@ -377,6 +384,18 @@ export interface Challenge {
   sourceCapturedAt: string
   /** Free-form notes — gotchas, fine print, scaling specifics, promo codes. */
   notes?: string[]
+}
+
+export type ConsistencyScope = 'evaluation' | 'funded' | 'both'
+
+export interface ConsistencyRule {
+  /** Cap on one day's share of total profit, 0 < percent <= 100. */
+  percent: number
+  scope: ConsistencyScope
+  /** Optional route or product part, e.g. "On-Demand payouts". */
+  appliesTo?: string
+  /** Official page the rule was read from. */
+  sourceUrl: string
 }
 
 /* ── Loaders ───────────────────────────────────────────────────── */
