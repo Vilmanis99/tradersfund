@@ -5,6 +5,7 @@ import { Star, ExternalLink } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
 import CopyableCodePill from './CopyableCodePill'
 import TrustpilotRating from './TrustpilotRating'
+import { promotableDiscount, unverifiedDiscount } from '@/lib/discountDisplay'
 
 function slugify(name: string) {
   return firmSlug(name)
@@ -46,7 +47,20 @@ export default function FirmCtaCard({ firm, productSpecific = false }: { firm: F
             <span className="score-badge" style={{ fontSize: '0.78rem' }}>
               <Star size={11} aria-hidden="true" /> {firm.score} / 10
             </span>
-            {firm.discountCode && firm.discountPct && (
+            {(() => {
+              const unverified = unverifiedDiscount(firm)
+              return unverified ? (
+                <span
+                  className="discount-unverified"
+                  data-discount-unverified={unverified.code}
+                  title="Seen on the firm's site; the discount was not confirmed at checkout."
+                  style={{ fontSize: '0.75rem', color: 'var(--muted)', border: '1px dashed var(--border)', borderRadius: 999, padding: '2px 8px' }}
+                >
+                  Advertised code {unverified.code}{unverified.pct ? ` (${unverified.pct}% off)` : ''} · unverified
+                </span>
+              ) : null
+            })()}
+            {promotableDiscount(firm) && firm.discountCode && firm.discountPct && (
               <CopyableCodePill
                 code={firm.discountCode}
                 pct={firm.discountPct}

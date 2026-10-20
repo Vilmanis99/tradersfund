@@ -17,7 +17,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, jsonLd, organizationSchema } from '@/lib/schema'
+import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified, russianPublishedHref } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
@@ -34,8 +34,8 @@ const RU_HOME_BASICS = [
   { href: '/ru/obzor-the5ers', title: 'Обзор The5ers', text: 'Условия и доступ для трейдеров из РФ.' },
   { href: '/ru/luchshie-prop-firmy', title: 'Рейтинг проп-компаний', text: 'Сравнение условий и доступ из России.' },
 ]
-const TITLE = 'Проп-фирмы для русскоязычных трейдеров: цены и правила'
-const DESCRIPTION = 'Сравнение глобальных проп-фирм для русскоязычных трейдеров в разных странах: цены, просадки, выплаты, KYC и правила из первичных источников.'
+const TITLE = 'Проп-фирмы 2026: условия и цены для русскоязычных трейдеров'
+const DESCRIPTION = 'Проп-фирмы и проп-компании для русскоязычных трейдеров: цены челленджей, просадка, выплаты и KYC по первичным источникам. Доступ проверяем по стране.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -105,7 +105,6 @@ export default function RussianHomePage() {
 
   return (
     <div className="th-home ru-home ru-home--product-led" data-russian-home-layout="focused">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(organizationSchema()) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(pageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
@@ -211,8 +210,8 @@ export default function RussianHomePage() {
                   <p className="ru-home-partner-country-note" data-russian-partner-country-warning={item.slug} data-russian-partner-country-source-status={item.countryFresh ? 'dated' : 'recapture-required'} data-russian-home-bright-country-conflict={item.slug === 'bright-funded' ? 'help-six-terms-five' : undefined}>
                     {item.slug === 'fundednext'
                       ? item.countryFresh
-                        ? `Доступность для резидентов России не подтверждена: официальные страницы, проверенные ${item.countryCapturedAt}, противоречат друг другу.`
-                        : `Страновые условия требуют новой проверки. В источниках от ${item.countryCapturedAt} были противоречия для резидентов России; это не подтверждает доступ сегодня.`
+                        ? `Недоступно для резидентов России: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026). Резидент РФ рискует отказом в обслуживании или выплате.`
+                        : `Недоступно для резидентов России (подвал fundednext.com, по данным на 20.10.2026); страновые условия требуют новой проверки.`
                       : <>
                         <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="nofollow noopener">Справка BrightFunded</a> от {item.countryCapturedAt} включает Пакистан;{' '}
                         <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {item.brightTermsCapturedAt} его не называют.{' '}

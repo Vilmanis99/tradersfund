@@ -1,0 +1,145 @@
+{
+  "firmSlug": "ftmo",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T10:01:32+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+  "egress": "Box egress is a US IP. Global (non-US) prices were checked against the firm's Global/region-independent price data as described in method; US-only codes are not promoted.",
+  "method": "Headless Chrome render + curl of embedded \"prices\" JSON (EUR prices are region-independent; Global region selector)",
+  "priceSource": "https://ftmo.com/en/2-step-challenge/ and /en/1-step-challenge/ embedded \"prices\" object",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "ftmo-challenge-2-step",
+      "prices": {
+        "10000": "EUR 89",
+        "25000": "EUR 250",
+        "50000": "EUR 345",
+        "100000": "EUR 540",
+        "200000": "EUR 1080"
+      }
+    },
+    {
+      "productSlug": "ftmo-challenge-1-step",
+      "prices": {
+        "10000": "EUR 79",
+        "25000": "EUR 199",
+        "50000": "EUR 319",
+        "100000": "EUR 499",
+        "200000": "EUR 999"
+      }
+    }
+  ],
+  "priceQuotes": [
+    "step_2: \"price\":\"1080\" | \"price\":\"540\",\"discounted\":true,\"discounted_price\":\"439\" | \"price\":\"345\" | \"price\":\"250\" | \"price\":\"89\"",
+    "step_1: \"price\":\"999\" | \"price\":\"499\",\"discounted\":true,\"discounted_price\":\"399\" | \"price\":\"319\" | \"price\":\"199\" | \"price\":\"79\"",
+    "\"discounted_price_tooltip_text\":\"Special Deal! $100,000 FTMO Challenge (FTMO Standard account only) for €439 – only if you don’t already have one active.\""
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 26,
+    "foundVerbatimInLiveText": 16,
+    "notFoundVerbatim": 10,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
+  },
+  "changes": [
+    {
+      "field": "free trial (free-trials.json / firms.json freeTrialPlatforms)",
+      "before": "MT4, MT5, cTrader, TradingView; 1-Step + 2-Step trials",
+      "after": "MT4, MT5, cTrader (TradingView not supported); third Instant Account trial; trial ends if no trade in first 7 days",
+      "sourceUrl": "https://ftmo.com/en/ftmo-free-trial/",
+      "quotes": [
+        "Which trading platforms are available on a Free Trial? Our Free Trial is available on MT4, MT5 and cTrader. TradingView is not supported for a Free Trial.",
+        "Ends when 14 days pass, you meet every Trading Objective, you breach one, or you don't trade in the first 7 days",
+        "Available Free Trials Unlimited (one at a time) Unlimited (one at a time) Unlimited (one at a time)",
+        "Profit Target 5% instead of 10% on product 5% instead of 10% on product None Max Loss 10% static 10% balance-based end of day trailing 10% balance-based intraday trailing Max Daily Loss 5% 3% 3% Min Trading Days 2 instead of 4 on product None None Consistency None 50% 30% Duration 14 days 14 days 14 days"
+      ]
+    },
+    {
+      "field": "paid platforms (unchanged)",
+      "sourceUrl": "https://ftmo.com/en/trading-platforms/",
+      "quotes": [
+        "Execute your FTMO simulated trades directly on TradingView via the OANDA Broker Profile."
+      ]
+    },
+    "firms.json payoutMethods: added \"Visa Direct / Mastercard Send\" (source https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/)",
+    "firms.json payoutFrequency: on-demand -> null (only the day-14 first-Reward wait is published)"
+  ],
+  "notes": [
+    "Paid challenge prices unchanged vs 2026-10-14; $100K special deal (€439 2-Step / €399 1-Step) still live.",
+    "FTMO Instant Account paid prices are present in the same object (2999/1499/749/339/169) but not modelled in challenges/ftmo.json; not added today.",
+    "free-trials.json is being updated by EN Writer on content/en-2026-10-19 (958196a) with the same evidence; this branch does not touch free-trials.json to avoid a conflict."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://ftmo.com/en/2-step-challenge/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:23.263Z"
+    },
+    {
+      "url": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:23.322Z"
+    },
+    {
+      "url": "https://ftmo.com/en/1-step-challenge/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:23.323Z"
+    },
+    {
+      "url": "https://ftmo.com/en/trading-objectives/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:23.381Z"
+    },
+    {
+      "url": "https://promo.ftmo.com/m26b-practice-trading-without-risk/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:23.644Z"
+    },
+    {
+      "url": "https://ftmo.com/faq/why-is-there-a-fee/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:24.994Z"
+    },
+    {
+      "url": "https://ftmo.com/en/ftmo-free-trial/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:30.496Z"
+    },
+    {
+      "url": "https://ftmo.com/en/trading-platforms/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:30.571Z"
+    },
+    {
+      "url": "https://ftmo.com/en/faq/how-about-a-free-trial/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:31.009Z"
+    },
+    {
+      "url": "https://ftmo.com/en/imprint/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:01:32.224Z"
+    }
+  ],
+  "payoutEvidence": {
+    "checkedAt": "2026-10-19T10:25:24+03:00",
+    "sources": [
+      {
+        "url": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+        "quotes": [
+          "Rewards can be paid out via bank wire transfer, instant transfer through Visa Direct / Mastercard Send ( up to $20,000 ), Skrill ( up to $3,000 ), or cryptocurrencies .",
+          "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account."
+        ]
+      },
+      {
+        "url": "https://ftmo.com/en/faq/how-long-does-it-take-to-become-an-ftmo-trader/",
+        "quotes": [
+          "You can request your first Reward 14 days after the first trade is placed, and you become an FTMO Trader once your first Reward is approved."
+        ]
+      }
+    ],
+    "cadenceAfterFirstReward": "UNCONFIRMED (not published on ftmo.com)",
+    "preparedFrom": "/workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md (Prop Firm Tracker), quotes re-fetched by curl from the box"
+  }
+}

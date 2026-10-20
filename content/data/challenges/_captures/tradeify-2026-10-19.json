@@ -1,0 +1,123 @@
+{
+  "firmSlug": "tradeify",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T10:04:20+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/tradeify-2026-10-14.json",
+  "egress": "Box egress is a US IP. Global (non-US) prices were checked against the firm's Global/region-independent price data as described in method; US-only codes are not promoted.",
+  "method": "curl of https://tradeify.co/ pricing widget source + headless Chrome of Help Center",
+  "priceSource": "https://tradeify.co/ pricing widget (name/price/couponCode)",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "growth-evaluation",
+      "prices": {
+        "25000": 99,
+        "50000": 145,
+        "100000": 255,
+        "150000": 369
+      }
+    },
+    {
+      "productSlug": "select-flex",
+      "prices": {
+        "25000": 109,
+        "50000": 165,
+        "100000": 265,
+        "150000": 369
+      }
+    },
+    {
+      "productSlug": "select-daily",
+      "prices": {
+        "25000": 109,
+        "50000": 165,
+        "100000": 265,
+        "150000": 369
+      }
+    },
+    {
+      "productSlug": "lightning-funded",
+      "prices": {
+        "25000": 345,
+        "50000": 492,
+        "100000": 660,
+        "150000": 796
+      }
+    }
+  ],
+  "priceQuotes": [
+    "growth: 25K 99 | 50K 145 | 100K 255 | 150K 369 (subscription: 'one time')",
+    "select: 25K 109 | 50K 165 | 100K 265 | 150K 369",
+    "lightning: 25K 345 | 50K 492 | 100K 660 | 150K 796",
+    "Growth 25K costs $99, and a reset costs $60. Growth 50K costs $145"
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 35,
+    "foundVerbatimInLiveText": 18,
+    "notFoundVerbatim": 17,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
+  },
+  "changes": [],
+  "notes": [
+    "Limited Select 300K ($449, couponCode none) still listed, still not added as a tier. Consistency: \"Select Evaluation with 40% Consistency\" and \"Progressive consistency rule (20% → 25% → 30%)\" re-found."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:08.691Z"
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:14.500Z"
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/10495932-lightning-funded-account-payout-policy",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:14.534Z"
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:14.589Z"
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/10468318-guidelines-for-traders",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:14.622Z"
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:14.649Z"
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:14.729Z"
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:20.154Z"
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:20.155Z"
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/13196343-tradovate-order-entry-copy-trading",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:20.342Z"
+    },
+    {
+      "url": "https://tradeify.co/funded-trader-agreement",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:04:20.589Z"
+    }
+  ]
+}

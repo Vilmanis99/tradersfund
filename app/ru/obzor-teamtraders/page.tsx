@@ -22,6 +22,7 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import evidence from '@/content/data/russian-teamtraders-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-teamtraders'
 const TITLE = 'TeamTraders: отзывы и обзор условий 2026'
@@ -77,8 +78,8 @@ const faqs: RussianFaqItem[] = [
 ]
 
 const globalRoutes = [
-  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
   { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
 ] as const
 
 function rub(value: number) {
@@ -140,7 +141,7 @@ export default function RussianTeamTradersReviewPage() {
   return (
     <article className="ru-review-article" data-russian-teamtraders-article="dated-local-model">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section
@@ -149,7 +150,6 @@ export default function RussianTeamTradersReviewPage() {
         data-russian-local-review-status="verification-only"
       >
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Местные компании</Link> / TeamTraders</div>
           <div className="ru-eyebrow"><SearchCheck size={14} aria-hidden="true" /> TeamTraders отзывы · проверка первичных источников</div>
           <h1>TeamTraders: отзывы и обзор условий 2026 года</h1>
           <p className="ru-lead">

@@ -36,6 +36,11 @@ export interface Deal {
   code?: string
   /** Discount as an integer % (e.g. 10). */
   pct?: number
+  /**
+   * true when `pct` is only the maximum ("up to 33%"), varying by product or
+   * region. Surfaces must then show `amountLabel`, never a flat "{pct}% off" pill.
+   */
+  pctIsUpTo?: boolean
   /** Human label always shown: "10% off", "Up to 30% off", "Free reset". */
   amountLabel: string
   /** What the offer covers: "All challenges", "1-Step only", "First order". */

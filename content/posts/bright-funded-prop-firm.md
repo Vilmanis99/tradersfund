@@ -169,6 +169,8 @@ type: "post"
 
 <p>An Indian swing trader who wants weekend holding, no consistency rule, and a low-cost test should start with the €47 $5K 2-Step Bright. Its 8% and 5% targets, static 8% maximum loss, and 5-day-per-phase rule are easier to model than the 1-Step’s moving floor; confirm the card, crypto, or EUR checkout route before purchase.</p>
 
+<p>A trader who wants to test the 1-Step’s 3% daily and 6% trailing limits before paying can claim BrightFunded’s Free $1K Challenge, a single 10% phase with 5 minimum days that leads to a $1,000 funded account at 80%; eligibility, the per-country daily cap, and how it compares with the FTMO, FundedNext and FundingPips trials are in our <a href="/blog/prop-firm-free-trial">prop firm free trial guide</a> (checked 2026-10-19).</p>
+
 <h2 class="wp-block-heading"><strong>Who should avoid Bright Funded</strong></h2>
 
 <p>A news scalper should avoid the funded 10-minute blackout, and a trader who routinely gives back floating profit should avoid the 1-Step’s real-time 6% trail. Anyone needing a first payout before day 30 without buying an add-on should compare a 14-day or on-demand base cycle elsewhere.</p>
@@ -188,7 +190,7 @@ type: "post"
 <p>The base funded split is 80%. The 90% figure shown in plan marketing requires an add-on, while 100% is reached through the scaling plan rather than granted at account activation.</p>
 
 <h3 class="wp-block-heading"><strong>How soon is the first Bright Funded payout?</strong></h3>
-<p>The standard first request is after 30 days from the first funded trade, followed by 14-day cycles. A 7-day weekly schedule or earlier first cycle is an add-on.</p>
+<p>The standard first request is after 30 days from the first funded trade, followed by 14-day cycles. A 7-day weekly schedule or earlier first cycle is an add-on. Our <a href="/blog/prop-firms-with-weekly-payouts">weekly payouts guide</a> compares that add-on with firms that pay weekly as standard.</p>
 
 <h3 class="wp-block-heading"><strong>Is news trading allowed?</strong></h3>
 <p>Evaluation news trading is allowed, but funded execution is restricted for 5 minutes before and 5 minutes after listed high-impact events. A take profit on a trade opened at least 48 hours earlier is exempt under the published rule.</p>

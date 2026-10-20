@@ -13,7 +13,7 @@ One Vercel Web Analytics **custom event `go_click`** per redirect, with these pr
 | `source_path` | path of the page the click came from (same-site Referer, path only, no query or hash; `unknown` if absent or external) | `/ru/luchshie-prop-firmy` |
 | `lang` | `ru` for `/ru` pages, otherwise `en`; falls back to the `ru-` placement prefix when there is no referer | `ru` |
 
-The same click is also written as one JSON line to the Vercel runtime logs (`affiliate_click`, `official_site_click` or `source_click`, with `firm`, `placement`, `locale`), as before.
+The same click is also written as one JSON line to the Vercel runtime logs, as before: `affiliate_click` and `official_site_click` carry `firm`, `placement` and `locale`; `source_click` carries `firm`, `placement` and `source_product`.
 
 ## Privacy
 - No cookies are set or read. No IP address, user agent, query string or visitor identifier is stored or forwarded.

@@ -1,0 +1,143 @@
+{
+  "purpose": "First-party evidence for free-trial and free-challenge offers cited in /blog/prop-firm-free-trial that are not modelled in free-trials.json (which the audit pins to exactly FTMO and FundedNext). Each section quotes the firm's own domain on the capture date. Not consumed by the renderer.",
+  "capturedAt": "2026-10-19",
+  "sections": [
+    {
+      "firmSlug": "fundingpips",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/45363484760209-Free-Trial",
+      "sourceCapturedAt": "2026-10-19",
+      "offer": "free-trial",
+      "facts": {
+        "models": ["2 Step Standard", "2 Step Pro"],
+        "durationDaysPerPhase": 14,
+        "phases": 2,
+        "standardSizesUsd": [5000, 10000, 25000, 50000, 100000],
+        "proSizesUsd": [5000, 10000, 25000, 50000, 100000, 200000],
+        "standard": { "profitTargetPctPhase1": 8, "profitTargetPctPhase2": 5, "dailyLossPct": 5, "maxLossPct": 10, "minTradingDaysPerPhase": 3 },
+        "pro": { "profitTargetPctPhase1": 6, "profitTargetPctPhase2": 6, "dailyLossPct": 3, "maxLossPct": 6, "minTradingDaysPerPhase": 0 },
+        "platform": "MT5 only (server FundingPips-Trial)",
+        "concurrent": "1 trial at a time, only with no other active accounts",
+        "totalTrialsUnlimited": true,
+        "signup": "name and email; no card or identity documents",
+        "rewardsEligible": false,
+        "convertsToMasterAccount": false
+      },
+      "quotes": [
+        "Each phase expires 14 calendar days after activation.",
+        "The Free Trial can't run at the same time as a paid evaluation, Master, giveaway, or competition accounts.",
+        "The Free Trial cannot be converted into an evaluation account or a Master Account under any circumstances.",
+        "Minimum trading days match the real 2 Step Pro model (0 per phase)."
+      ],
+      "conflicts": [
+        "Resolved 2026-10-19: the trial article's 0 minimum trading days matches Prop Firm Tracker's 2026-10-19 recheck of the 2-Step Pro Model article (\"Reset and new accounts will require 0 minimum trading days.\"; accounts purchased before 26 August 2026 keep 1). No open conflict."
+      ]
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8782664-a-guide-to-the-alpha-capital-group-free-trial-account",
+      "sourceCapturedAt": "2026-10-19",
+      "offer": "free-trial",
+      "facts": {
+        "sizesUsd": [50000, 100000, 200000],
+        "profitTargetPct": 10,
+        "dailyLossPct": 5,
+        "maxLossPct": 10,
+        "minTradingDays": 3,
+        "maxTradingDays": 30,
+        "leverage": "1:100",
+        "eaAllowed": false,
+        "newsTradingAllowed": true,
+        "concurrent": 1,
+        "profitSplit": false,
+        "upgradeAfterPass": false
+      },
+      "quotes": [
+        "Each customer is entitled to one Free Trial account at a time.",
+        "Expert Advisors (EAs) are NOT enabled on Free Trial accounts.",
+        "Upon successfully completing the Free Trial account, an upgrade to an Evaluation/Verification account is not permitted."
+      ]
+    },
+    {
+      "firmSlug": "e8-markets",
+      "sourceUrl": "https://help.e8markets.com/en/articles/5514275-can-i-try-e8-markets-for-free",
+      "sourceCapturedAt": "2026-10-19",
+      "offer": "free-trial",
+      "facts": {
+        "trialsPerWindow": 2,
+        "windowDays": 28,
+        "autoCloseDays": 30,
+        "mirrors": "E8 One (Matchtrader) or E8 One Perpetuals (E8 Terminal)",
+        "futuresTrial": false,
+        "payoutsEligible": false,
+        "matchtraderRequiresVerification": true
+      },
+      "quotes": [
+        "You are eligible for 2 free E8 trials every 28 days.",
+        "Users using a trial account are not eligible to receive any payouts from E8 Markets.",
+        "all trial accounts are automatically closed after 30 days from the date the account was created.",
+        "Right now, there is no option to test Futures challenges with a free trial."
+      ],
+      "conflicts": [
+        "Reconciled 2026-10-19: content/data/challenges/e8-markets.json (e8-one, rechecked 2026-10-19) keeps the configurator default 9% target / 4% daily / 6% dynamic drawdown; the help article's 6% / 3% / 4% preset is the 4% drawdown configuration selectable at checkout. The article quotes the default and names the 4% option."
+      ]
+    },
+    {
+      "firmSlug": "bright-funded",
+      "sourceUrl": "https://help.brightfunded.com/en/articles/15946298-brightfunded-free-1k-challenge-f1kc",
+      "landingUrl": "https://brightfunded.com/free-1k-challenge",
+      "claimUrl": "https://help.brightfunded.com/en/articles/15943346-how-to-claim-your-free-1k-challenge-f1kc",
+      "sourceCapturedAt": "2026-10-19",
+      "offer": "free-challenge",
+      "facts": {
+        "accountSizeUsd": 1000,
+        "phases": 1,
+        "profitTargetPct": 10,
+        "minTradingDays": 5,
+        "dailyLossPct": 3,
+        "dailyLossBase": "higher of equity and balance at start of day",
+        "maxLossPct": 6,
+        "drawdownType": "trailing (real-time high-water mark, locks at initial balance after +6%)",
+        "fundedAccountOnPass": true,
+        "profitSplitPct": 80,
+        "firstRewardAfterDays": 30,
+        "rewardFrequencyDays": 14,
+        "minimumReward": "none",
+        "evaluationProfitBonusEligible": false,
+        "requiresNoActiveAccounts": true,
+        "multipleFreeAccountsAllowed": false,
+        "dailyClaimLimitPerCountry": true,
+        "restrictedCountriesEligible": false,
+        "steps": ["verify email (no + alias or throwaway)", "verify phone (one account per number)", "submit dashboard survey"]
+      },
+      "quotes": [
+        "Complete one single evaluation phase to access your funded account — completely free.",
+        "You can request your first Reward Split after 30 days after you place your first trade on your Funded Account. After your first Reward Split, you can request a Reward Split bi-weekly (14 days).",
+        "The 15% profit share bonus is available exclusively on paid challenge accounts.",
+        "You can only claim the Free $1K Challenge if you have no active accounts.",
+        "Please note: a limited number of Free $1K Challenges can be claimed per country each day."
+      ]
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+      "sourceCapturedAt": "2026-10-19",
+      "offer": "none",
+      "quotes": ["3.2.3 Crypto Fund Trader has disabled free training trials until further notice."]
+    },
+    {
+      "firmSlug": "fxify",
+      "sourceUrl": "https://fxify.com/faqs/all-faqs/how-do-you-start/",
+      "sourceCapturedAt": "2026-10-19",
+      "offer": "none (free monthly competition only)",
+      "quotes": ["In order to start an FXIFY™ challenge, you will need to purchase one from us", "If you are new to trading, you can always try out our monthly competition for free!"]
+    },
+    {
+      "firmSlug": "topstep",
+      "sourceUrl": "https://help.topstep.com/en/articles/8284134-practice-account",
+      "sourceCapturedAt": "2026-10-19",
+      "offer": "practice account (requires paid subscription)",
+      "facts": { "accountSize": "150K", "maxPositionLots": 15, "concurrent": 1, "requiresActiveTradingCombine": true, "freeResetsPerDay": 10 },
+      "quotes": ["The Practice Account is a free 150K simulated account available to any Trader with an active Trading Combine subscription."]
+    }
+  ]
+}

@@ -1,10 +1,12 @@
 ---
-title: "Are Prop Firms Legal in India? RBI and FEMA Checklist (2026)"
+title: "Are Prop Firms Legal in India? RBI & FEMA Checklist (2026)"
+seoTitle: "Are Prop Firms Legal in India? RBI & FEMA Rules (2026)"
 slug: "are-prop-firms-legal-in-india"
 date: "2026-07-28"
 modified: "2026-08-11"
 author: "Edris Derakhshi"
 excerpt: "There is no safe blanket yes: RBI forex, ETP and remittance rules can apply differently to each prop-firm contract. Use this sourced checklist."
+seoDescription: "Are prop firms legal in India? There is no blanket yes: RBI forex and FEMA rules depend on the contract. See what the RBI Alert List means and a checklist."
 categories: ["Prop Firms", "Educational"]
 tags: ["India", "RBI", "FEMA", "Prop Firm"]
 type: "post"

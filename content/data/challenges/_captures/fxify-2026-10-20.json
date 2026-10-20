@@ -1,0 +1,321 @@
+{
+  "firmSlug": "fxify",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T08:21:08+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/fxify-2026-10-14.json",
+  "egress": "Box egress is a US IP. Prices were compared against region-independent first-party price data where the firm publishes it (named in method); codes seen only from the US IP are recorded as regional, never as universal deals.",
+  "method": "curl of the inline pricing-table payload on fxify.com program pages (same global payload on every page) + crypto program size/price list",
+  "priceSource": "https://fxify.com/programs/* inline pricing-table payload",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "one-phase",
+      "prices": {
+        "5000": 59,
+        "10000": 89,
+        "15000": 119,
+        "25000": 199,
+        "50000": 379,
+        "100000": 549,
+        "200000": 1049,
+        "400000": 2950
+      }
+    },
+    {
+      "productSlug": "two-phase-classic",
+      "prices": {
+        "5000": 59,
+        "10000": 89,
+        "15000": 119,
+        "25000": 199,
+        "50000": 379,
+        "100000": 549
+      }
+    },
+    {
+      "productSlug": "two-phase-standard",
+      "prices": {
+        "5000": 59,
+        "10000": 89,
+        "15000": 119,
+        "25000": 199,
+        "50000": 379,
+        "100000": 549,
+        "200000": 1049,
+        "400000": 2950
+      }
+    },
+    {
+      "productSlug": "two-phase-pro",
+      "prices": {
+        "10000": 129,
+        "25000": 225,
+        "50000": 375,
+        "100000": 599,
+        "150000": 849,
+        "200000": 1099,
+        "250000": 1350
+      }
+    },
+    {
+      "productSlug": "three-phase",
+      "prices": {
+        "5000": 39,
+        "10000": 59,
+        "15000": 79,
+        "25000": 149,
+        "50000": 249,
+        "100000": 399,
+        "200000": 799,
+        "400000": 1599
+      }
+    },
+    {
+      "productSlug": "instant-funding-standard",
+      "prices": {
+        "1000": 69,
+        "2500": 119,
+        "5000": 229,
+        "10000": 449,
+        "25000": 899,
+        "50000": 1749,
+        "75000": 2499,
+        "100000": 4249
+      }
+    },
+    {
+      "productSlug": "instant-funding-lite",
+      "prices": {
+        "2500": 19,
+        "5000": 44,
+        "10000": 89,
+        "25000": 169,
+        "50000": 289
+      }
+    },
+    {
+      "productSlug": "lightning-challenge",
+      "prices": {
+        "10000": 59,
+        "25000": 149,
+        "50000": 249,
+        "100000": 399
+      }
+    },
+    {
+      "productSlug": "crypto-standard-1-step",
+      "prices": {
+        "5000": 59,
+        "10000": 99,
+        "25000": 249,
+        "50000": 499,
+        "100000": 999
+      }
+    },
+    {
+      "productSlug": "crypto-instant-funding",
+      "prices": {
+        "5000": 125,
+        "10000": 250,
+        "25000": 525,
+        "50000": 999,
+        "100000": 1999
+      }
+    }
+  ],
+  "priceQuotes": [
+    "\"title\":\"$5k\" ... \"price\":\"$59\" ... \"$10k\" \"$89\" ... \"$15k\" \"$119\" ... \"$25k\" \"$199\" ... \"$50k\" \"$379\" ... \"$100k\" \"$549\" ... \"$200k\" \"$1,049\" ... \"$400k\" \"$2,950\" (1-Phase / 2-Phase Standard)",
+    "2-Phase Pro: $10k $129 | $25k $225 | $50k $375 | $100k $599 | $150k $849 | $200k $1,099 | $250k $1,350",
+    "3-Phase: $5k $39 | $10k $59 | $15k $79 | $25k $149 | $50k $249 | $100k $399 | $200k $799 | $400k $1,599",
+    "Instant Funding: $1k $69 | $2.5k $119 | $5k $229 | $10k $449 | $25k $899 | $50k $1749 | $75K 2499 | $100k \"price\":\"$4249\"; Instant Lite: $2.5k 19 | $5k 44 | $10k 89 | $25k 169 | $50k 289",
+    "Lightning: \"price\":\"$59\" | \"$149\" | \"$249\" | \"$399\"",
+    "Crypto: \"size\":\"$5k\",\"price\":\"$125\" ... \"$100k\",\"price\":\"$1,999\" (Instant) | \"size\":\"$5k\",\"price\":\"$59\" ... \"$100k\",\"price\":\"$999\" (1-Step)"
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 75,
+    "foundVerbatimInLiveText": 16,
+    "notFoundVerbatim": 59,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
+  },
+  "changes": [],
+  "notes": [
+    "All 64 stored prices match. Rules evidence re-read: 1-Phase article (intercom) still says \"Profit Split 80% default, upgradable to 90%.\" (stored quote differs only in spacing).",
+    "https://fxify.com/terms-and-conditions returns 404 today; not used for any stored value.",
+    "firms.json lastUpdated aligned to this capture (was 2026-10-15 from the Trustpilot refresh while products were captured 2026-10-14).",
+    "challenge-watch fxify-current-price-display-conflict-2026-09-14 refreshed from this capture: lastCheckedAt 2026-09-15 -> 2026-10-20; 54 tiers across its 8 products match; Instant Funding Lite tier 3 is $89 in stored data and live payload (entry text said $85). Rendered program-page cards not re-checked, so the entry stays open (status verified)."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://fxify.com/programs/two-phase/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:45.276Z"
+    },
+    {
+      "url": "https://fxify.com/programs/one-phase/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:45.282Z"
+    },
+    {
+      "url": "https://fxify.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:45.440Z"
+    },
+    {
+      "url": "https://fxify.com/programs/three-phase-challenge/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:52.389Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:52.444Z"
+    },
+    {
+      "url": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:52.547Z"
+    },
+    {
+      "url": "https://fxify.com/blog/introducing-fxify-instant-funding-lite/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:52.609Z"
+    },
+    {
+      "url": "https://fxify.com/programs/instant-funding/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:52.613Z"
+    },
+    {
+      "url": "https://fxify.com/programs/lightning-challenge/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:52.645Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/payouts/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:59.287Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/is-copy-trading-allowed/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:59.328Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/do-i-need-to-close-positions-overnight/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:59.395Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/how-do-i-withdraw-my-profits/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:59.468Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/two-phase-pro/2-phase-pro-whats-the-max-and-minimum-trading-days-is-there-a-specific-time-window-to-complete-the-profit-targets/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:59.483Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/how-to-verify-my-account/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:59.541Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/two-phase-pro/2-phase-pro-whats-the-min-days-in-order-to-request-a-payout/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:07.247Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/instant-funded-faq/whats-the-max-and-minimum-trading-days-is-there-a-specific-time-window-to-complete-the-profit-targets/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:07.252Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-can-i-hold-positions-overnight/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:07.410Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/instant-funding-lite-faq/instant-funding-lite-after-purchasing-what-criteria-must-i-achieve-to-request-a-payout/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:07.872Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/instant-funding-lite-faq/instant-funding-lite-whats-the-max-and-minimum-trading-days-is-there-a-specific-time-window-to-complete-the-profit-targets/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:08.089Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-do-i-get-a-refund-alongside-my-first-withdrawal/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:08.130Z"
+    },
+    {
+      "url": "https://fxify.com/terms-and-conditions",
+      "httpStatus": 404,
+      "fetchedAt": "2026-10-20T05:13:15.234Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/crypto-accounts/which-accounts-can-i-trade-crypto-on/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:15.723Z"
+    },
+    {
+      "url": "https://fxify.com/programs/crypto/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:15.814Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-can-i-use-expert-advisors-eas-or-bots-for-trading/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:15.855Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-after-activation-what-criteria-must-i-achieve-to-request-a-payout/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:15.941Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-can-i-hold-positions-over-the-weekend-with-a-crypto-account/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:15.965Z"
+    },
+    {
+      "url": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:21.683Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:22.691Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/can-i-trade-the-news/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:22.768Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-how-does-trailing-drawdown-work-for-crypto-account/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:22.770Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-can-i-copy-trade-from-my-other-fxify-accounts-or-external-accounts/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:22.790Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-do-i-get-a-refund-alongside-my-withdrawal/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:22.811Z"
+    },
+    {
+      "url": "https://fxify.com/faqs/all-faqs/do-i-need-to-close-positions-over-the-weekend/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:29.512Z"
+    }
+  ]
+}

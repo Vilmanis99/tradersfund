@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { ArrowLeft, ArrowRight, Bot, Shield, Zap, Clock, TrendingUp, Newspaper, Calendar, Wallet } from 'lucide-react'
+import { ArrowRight, Bot, Shield, Zap, Clock, TrendingUp, Newspaper, Calendar, Wallet } from 'lucide-react'
 import { FEATURES, getFeatureBySlug, getFirmsForFeature } from '@/lib/features'
 import {
   buildFeatureEvidence,
@@ -13,6 +13,7 @@ import FeatureEvidence from '@/components/FeatureEvidence'
 import FeatureFirmList from '@/components/FeatureFirmList'
 import FeatureFaq from '@/components/FeatureFaq'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 interface Props { params: Promise<{ feature: string }> }
 
@@ -75,16 +76,7 @@ export default async function FeaturePage({ params }: Props) {
     <div style={{ maxWidth: 1200, margin: '0 auto', padding: '3rem 1.5rem' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbsLd) }} />
-
-      <nav
-        aria-label="Breadcrumb"
-        style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--muted)', fontSize: '0.875rem', marginBottom: '2rem' }}
-      >
-        <Link href="/prop-firms" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'inherit', textDecoration: 'none' }}>
-          <ArrowLeft size={14} aria-hidden="true" /> Prop Firm Lists
-        </Link>
-      </nav>
+      <Breadcrumbs ld={crumbsLd} />
 
       <h1 style={{ fontSize: '2.2rem', fontWeight: 900, color: 'var(--text)', marginBottom: '0.75rem', lineHeight: 1.2 }}>
         {feature.h1}

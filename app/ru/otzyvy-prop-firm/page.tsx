@@ -31,10 +31,11 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/otzyvy-prop-firm'
 const TITLE = 'Отзывы о проп-фирмах 2026: как проверить выплаты'
-const DESCRIPTION = 'Отзывы о проп-фирмах на русском: как проверить выплаты, блокировки, KYC и правила; сравнение FundedNext и BrightFunded с датами источников.'
+const DESCRIPTION = 'Отзывы о проп-фирмах на русском: как проверить выплаты, блокировки счёта, KYC и правила до оплаты. Сравнение BrightFunded и FundedNext с датами источников.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -88,8 +89,8 @@ const faqs: RussianFaqItem[] = [
 ]
 
 const featuredRoutes = [
-  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
   { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
 ] as const
 
 const secondaryRoute = {
@@ -220,13 +221,12 @@ export default function RussianPropFirmReviewsPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemListSchema(featuredCards.map(card => ({ ...card.firm, name: card.name, reviewUrl: card.reviewHref })), TITLE)) }} />
       {hasFreshResearch && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-reviews-guide="long-form-source-gated">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Отзывы о проп-фирмах</div>
           <RussianEvidenceFreshnessNotice evidence={[{ label: 'рынок и доступность', capturedAt: marketEvidence.capturedAt }, ...featuredProducts.map(product => ({ label: `${product.firmSlug}: ${product.productName}`, capturedAt: product.sourceCapturedAt }))]} />
           <div className="ru-eyebrow"><FileSearch size={14} aria-hidden="true" /> Проверка кейса до регистрации</div>
           <h1>Отзывы о проп-фирмах: проверка выплат, правил и KYC</h1>
@@ -287,7 +287,7 @@ export default function RussianPropFirmReviewsPage() {
             <div className="ru-notice" data-russian-country-boundary="reviews-not-access">
               <strong><AlertTriangle size={16} aria-hidden="true" /> Русский отзыв не доказывает доступность страны.</strong>{' '}
               Русскоязычный трейдер в Казахстане, Германии, Израиле, Грузии или России проходит разные проверки резидентства, гражданства, KYC и платежа.
-              У FundedNext есть {fundedNextAccess?.sourceUrls.length ?? 4} конфликтующих первичных маршрута по российским резидентам, поэтому до оплаты нужен письменный ответ поддержки; VPN и неверные данные использовать нельзя.
+              FundedNext резидентам России недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026); VPN и неверные данные использовать нельзя.
             </div>
           </div>
         </section>

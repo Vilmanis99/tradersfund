@@ -39,6 +39,9 @@ const fmt = v => v && typeof v === 'object' && !Array.isArray(v) ? fmtUsd(v) : v
 const caps = {}
 for (const f of fs.readdirSync(path.join(ROOT, 'content/data/challenges/_captures'))) {
   const m = f.match(/^(.*)-(\d{4}-\d{2}-\d{2})\.json$/); if (!m) continue
+  // Daily recheck / access-only captures carry no per-product evidence; rules
+  // keep pointing at the latest full product capture.
+  if (!Array.isArray(JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/challenges/_captures', f), 'utf8')).products)) continue
   if (!caps[m[1]] || m[2] > caps[m[1]].date) caps[m[1]] = { date: m[2], file: `content/data/challenges/_captures/${f}` }
 }
 

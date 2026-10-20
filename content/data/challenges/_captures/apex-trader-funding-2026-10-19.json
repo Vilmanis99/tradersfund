@@ -1,0 +1,54 @@
+{
+  "firmSlug": "apex-trader-funding",
+  "captureType": "daily-recheck-access-only",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T10:14:19+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/apex-trader-funding-2026-09-14.json",
+  "egress": "Box egress is a US IP. Only official first-party pages were read.",
+  "method": "Headless Chrome (google-chrome, playwright-core) render of https://apextraderfunding.com/ ; plain request of https://support.apextraderfunding.com/hc/en-us",
+  "accessDataPoints": [
+    {
+      "date": "2026-10-19",
+      "checkedAt": "2026-10-19T10:14:19+03:00",
+      "url": "https://apextraderfunding.com/",
+      "egressRegion": "US",
+      "result": "HTTP 200; page rendered with pricing selector; no geo-block or block page shown"
+    },
+    {
+      "date": "2026-10-19",
+      "checkedAt": "2026-10-19T10:14:13+03:00",
+      "url": "https://support.apextraderfunding.com/hc/en-us",
+      "egressRegion": "US",
+      "result": "HTTP 403 (blocked); help centre not readable"
+    },
+    {
+      "date": "2026-10-19",
+      "url": null,
+      "egressRegion": "non-US",
+      "result": "NOT TESTED: no non-US egress available on the box, so global/non-US access and pricing remain unverified (earlier logs record HTTP 403 for official site + help centre, see content/data/firm-logo-sources.json)"
+    }
+  ],
+  "verificationStatus": "unverified",
+  "keepStale": true,
+  "unverifiedObservations": {
+    "_status": "UNVERIFIED - seen only from a US IP, not checkout-verified, not merged into challenge prices",
+    "sourceUrl": "https://apextraderfunding.com/",
+    "quotes": [
+      "90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW”",
+      "Eval Active for 30 Days.Will expire after 30 days. No Resets.$167.00$16.70- (with Coupon Code)"
+    ],
+    "interpretation": "25K Intraday Trail one-time eval shows $167.00 list and $16.70 with code SAVENOW (stored 2026-09-14 list fee was $199). Embedded productPickerConfig catalog prices are internally inconsistent with the rendered card, so no tier ladder was extracted."
+  },
+  "changes": [
+    "firms.json: regionalDiscountCode SAVENOW / regionalDiscountPct 90 / discountCodeRegion us-only-unconfirmed (US-IP observation only). No price, rule or lastUpdated change; challenge sourceCapturedAt NOT advanced."
+  ],
+  "notes": [
+    "Apex intentionally kept stale: no verified global capture today.",
+    "deals.json not touched (code not checkout-verified)."
+  ],
+  "pagesRead": [
+    "https://apextraderfunding.com/",
+    "https://support.apextraderfunding.com/hc/en-us"
+  ]
+}

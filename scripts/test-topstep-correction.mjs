@@ -12,7 +12,7 @@ assert.equal(products.length, 2)
 assert.deepEqual(products.map(product => product.accountSizes.map(tier => tier.priceUsd)), [[49, 99, 199], [95, 149, 229]])
 assert.deepEqual(products.map(product => product.activationFeeUsd), [149, 0])
 for (const product of products) {
-  assert.equal(product.sourceCapturedAt, '2026-10-06')
+  assert.equal(product.sourceCapturedAt, '2026-10-20')
   assert.equal(product.consistencyRulePct, 55, 'current Combine threshold is distinct from funded 40%')
   assert.equal(product.pricingModel, 'monthly-subscription')
   assert.equal(product.minTradingDays, null, 'Conflicting minimum must not become verified two-day or zero-day permission')
@@ -21,8 +21,8 @@ for (const product of products) {
   assert.equal(product.rules.ea, 'restricted')
   assert.equal(product.rules.copyTrading, 'restricted')
   assert.deepEqual(product.accountSizes.map(tier => tier.maxLossUsd), [2000, 3000, 4500])
-  assert.equal(isChallengeFresh(product, new Date('2026-11-05T12:00:00Z')), true)
-  assert.equal(isChallengeFresh(product, new Date('2026-11-06T12:00:00Z')), false)
+  assert.equal(isChallengeFresh(product, new Date('2026-11-19T12:00:00Z')), true)
+  assert.equal(isChallengeFresh(product, new Date('2026-11-20T12:00:00Z')), false)
   const economics = challengeTierEconomics(product, product.accountSizes[1])
   assert.equal(economics.minimumCost, product.activationFeeUsd + product.accountSizes[1].priceUsd)
   assert.equal(economics.rMultiple, economics.breakEvenProfit / 3000)
@@ -82,7 +82,7 @@ for (const file of downstream) {
   const rows = read(file).split('\n').filter(line => line.includes('data-') && line.includes('topstep:'))
   assert(rows.length)
   for (const row of rows) {
-    assert(row.includes('2026-10-06'), `${file}: Topstep example date`)
+    assert(row.includes(products[0].sourceCapturedAt), `${file}: Topstep example date matches the current capture`)
     assert(!row.includes('null trading days'))
   }
 }

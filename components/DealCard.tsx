@@ -25,6 +25,8 @@ export interface DealCardData {
   pct?: number
   /** Human-readable value of the verified offer. */
   amountLabel: string
+  /** `pct` is a maximum ("up to"), so the code pill must not print it as a flat discount. */
+  pctIsUpTo?: boolean
   scope?: string
   verifiedOn: string
   sourceUrl: string
@@ -80,7 +82,7 @@ export default function DealCard({ deal }: { deal: DealCardData }) {
         <div className="deal-card-pill-row">
           <CopyableCodePill
             code={deal.code}
-            pct={deal.pct}
+            pct={deal.pctIsUpTo ? undefined : deal.pct}
             analyticsFirm={deal.firmSlug}
             analyticsPlacement={`discount-hub-${deal.mechanism}`}
             analyticsOfferType="public_checkout"

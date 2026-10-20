@@ -4,6 +4,7 @@ import FirmLogo from './FirmLogo'
 import { Star, Handshake, Tag, ExternalLink, ArrowRight, ShieldCheck } from 'lucide-react'
 import type { LandingFirm } from '@/lib/landings'
 import TrustpilotRating from '@/components/TrustpilotRating'
+import { promotableDiscount } from '@/lib/discountDisplay'
 
 
 interface Props {
@@ -47,7 +48,7 @@ export default function LandingFirmList({ ranked, fromParam }: Props) {
                     <Handshake size={10} /> Partner
                   </span>
                 )}
-                {firm.discountCode && firm.discountPct && (
+                {promotableDiscount(firm) && (
                   <span className="discount-pill" title={`Use code ${firm.discountCode} for ${firm.discountPct}% off.`}>
                     <Tag size={10} /> {firm.discountPct}% off
                   </span>

@@ -4,6 +4,7 @@ import FirmLogo from './FirmLogo'
 import { Star, ExternalLink, Check, Sparkles } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
 import CopyableCodePill from '@/components/CopyableCodePill'
+import { promotableDiscount } from '@/lib/discountDisplay'
 
 
 /**
@@ -63,7 +64,7 @@ export default function FeaturedFirmSpotlight({
 
             {/* Right: offer + CTA */}
             <div className="featured-spotlight-cta">
-              {firm.discountCode && firm.discountPct ? (
+              {promotableDiscount(firm) && firm.discountCode && firm.discountPct ? (
                 <div className="featured-spotlight-offer">
                   <div className="featured-spotlight-offer-amount">{firm.discountPct}% off</div>
                   <div className="featured-spotlight-offer-label">your first challenge</div>

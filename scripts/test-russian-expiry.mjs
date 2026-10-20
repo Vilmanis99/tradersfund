@@ -66,7 +66,14 @@ try {
   const brightFirm = getAllFirms().find(firm => firm.name === 'BrightFunded')
   assert(brightFirm?.affiliateUrl, 'Bright Funded affiliate destination is configured')
   const [brightTrustpilotCapture] = JSON.parse(fs.readFileSync(path.join(root, 'content/data/trustpilot-captures/2026-10-01/trustpilot-batch1.json'), 'utf8'))
-  assert.equal(brightFirm.trustpilotCapturedAt, brightTrustpilotCapture.capturedAt, 'Bright Trustpilot date matches its preserved observation')
+  // The 2026-10-01 batch is the preserved first-party observation of the
+  // suppressed profile; later rechecks may move the date forward but never back.
+  assert.match(brightFirm.trustpilotCapturedAt ?? '', /^\d{4}-\d{2}-\d{2}$/, 'Bright Trustpilot date is an ISO date')
+  assert(
+    brightFirm.trustpilotCapturedAt >= brightTrustpilotCapture.capturedAt,
+    `Bright Trustpilot date ${brightFirm.trustpilotCapturedAt} is not older than its preserved observation ${brightTrustpilotCapture.capturedAt}`,
+  )
+  assert(brightFirm.trustpilotRatingSuppressed, 'Bright Trustpilot aggregate stays suppressed')
   assert.equal(brightFirm.trustpilotUrl, brightTrustpilotCapture.trustpilotUrl, 'Bright Trustpilot source URL matches its preserved observation')
   assert.match(brightTrustpilotCapture.evidence, /rating is unavailable.*breach.*guidelines/i, 'suppressed aggregate has first-party platform evidence')
   assert.match(
@@ -563,8 +570,8 @@ try {
     && brightAccessAnswer.includes(brightEvidence.sources.countryTerms.sourceCapturedAt)
     && brightAccessAnswer.includes('пять стран без Пакистана')
     && brightAccessAnswer.includes('не подтверждает доступ конкретного трейдера'), 'search-facing Bright access FAQ dates both disagreeing country sources and does not imply permission')
-  assert.equal(BrightModule.metadata.title.absolute, 'BrightFunded: обзор 2026, цены, правила и выплаты', 'Bright search title uses the first-party one-word brand')
-  assert(brightReference.includes('<h1>BrightFunded: обзор 2026, цены, правила и выплаты</h1>'), 'Bright visible H1 matches the exact brand title')
+  assert.equal(BrightModule.metadata.title.absolute, 'BrightFunded: отзывы и обзор 2026 — цены, правила, выплаты', 'Bright search title uses the first-party one-word brand')
+  assert(brightReference.includes('<h1>BrightFunded: отзывы и обзор 2026 — цены, правила, выплаты</h1>'), 'Bright visible H1 matches the exact brand title')
   assert.equal(BrightModule.metadata.openGraph.title, 'Bright Funded: обзор 2026, цены, правила и выплаты', 'previous social-sharing title remains unchanged')
   assert.equal(BrightModule.metadata.twitter.title, BrightModule.metadata.openGraph.title, 'Twitter sharing title remains aligned with preserved Open Graph copy')
   assert(brightReference.includes('data-russian-bright-price-count="18"'))
@@ -638,7 +645,7 @@ try {
   const primaryModule = require(path.join(root, 'app/ru/fundednext-vs-bright-funded/page.tsx'))
   const renderPrimary = () => renderToStaticMarkup(React.createElement(primaryModule.default))
   const primaryReference = renderPrimary()
-  assert.equal(primaryModule.metadata.title.absolute, 'FundedNext или BrightFunded: сравнение 2026', 'Russian comparison search title matches the official one-word BrightFunded brand')
+  assert.equal(primaryModule.metadata.title.absolute, 'FundedNext или BrightFunded: сравнение 2026 и доступ из РФ', 'Russian comparison search title matches the official one-word BrightFunded brand')
   assert(primaryModule.metadata.description.startsWith('FundedNext или BrightFunded:'), 'Russian comparison search description matches the incoming exact-brand links')
   assert(primaryReference.includes('<h1>FundedNext или BrightFunded: что выбрать в 2026 году</h1>'), 'Russian comparison H1 matches the exact-brand search title')
   assert.equal(primaryModule.metadata.openGraph.title, 'FundedNext или Bright Funded: сравнение 2026', 'existing comparison sharing title remains unchanged')
@@ -787,10 +794,10 @@ try {
   }
   const kycGuideModule = require(path.join(root, 'app/ru/prop-firmy-bez-kyc/page.tsx'))
   const kycGuideReference = renderToStaticMarkup(React.createElement(kycGuideModule.default))
-  assert.equal(kycGuideModule.metadata.title.absolute, 'KYC в проп-фирмах 2026: FundedNext и BrightFunded', 'KYC search title uses the verified one-word brand')
+  assert.equal(kycGuideModule.metadata.title.absolute, 'Проп-фирмы без KYC: есть ли они и когда нужна верификация', 'KYC search title uses the verified one-word brand')
   assert(kycGuideModule.metadata.description.includes('FundedNext, BrightFunded и FundingPips'), 'KYC search description matches the brand query')
   assert.equal(kycGuideModule.metadata.openGraph.title, 'KYC в проп-фирмах 2026: FundedNext и Bright Funded', 'KYC sharing title remains unchanged')
-  assert(kycGuideReference.includes('<h1>KYC в проп-фирмах: FundedNext, BrightFunded и проверка документов</h1>'), 'KYC H1 matches the brand query')
+  assert(kycGuideReference.includes('<h1>Проп-фирмы без KYC: когда FundedNext и BrightFunded проверяют документы</h1>'), 'KYC H1 matches the brand query')
   assert.equal(cryptoSchemas(kycGuideReference).find(item => item['@type'] === 'Article')?.headline, kycGuideModule.metadata.title.absolute, 'KYC Article headline matches the search title')
   const kycList = cryptoSchemas(kycGuideReference).find(item => item['@type'] === 'ItemList')
   for (const [name, reviewPath] of [['FundedNext', '/ru/obzor-fundednext'], ['BrightFunded', '/ru/obzor-bright-funded']]) {
@@ -1694,7 +1701,7 @@ try {
           assert(!html.includes('data-russian-crypto-firm="crypto-fund-trader"'), 'A price correction does not automatically qualify CFT for crypto ranking')
           assert(html.includes('/blog/crypto-fund-trader-review'), 'Russian reader can reach the complete existing review')
           assert(html.includes('products=crypto-fund-trader%3Ainstant%2Ccrypto-fund-trader%3Aascend%2Ccrypto-fund-trader%3Abreak#change-ledger'), 'Watch handoff uses the supported product-focus parameter')
-          assert(html.includes('даты полной проверки остаются 27 июля'), 'Conflict date does not replace the older full-product dates')
+          assert(html.includes('Цены Ascend и Break по данным на 14.10.2026'), 'Resolved Ascend and Break prices carry the dated 14.10 capture')
         }
         if (slug === 'forex-prop-firmy') {
           const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')

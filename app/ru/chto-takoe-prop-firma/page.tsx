@@ -18,6 +18,8 @@ import { getAllChallenges, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/chto-takoe-prop-firma'
 const TITLE = 'Что такое проп-фирма: как это работает в 2026 году'
@@ -158,12 +160,11 @@ export default function RussianWhatIsPropFirmPage() {
   return (
     <article data-russian-prop-definition="three-models-not-one-label" data-russian-search-intent="prop-kompanii-eto">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
 
       <section className="ru-hero">
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Что такое проп-фирма</div>
           <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <div className="ru-eyebrow"><CircleHelp size={14} aria-hidden="true" /> Термин без рекламных сокращений</div>
           <h1>Что такое проп-фирма и как она работает</h1>
@@ -321,20 +322,6 @@ export default function RussianWhatIsPropFirmPage() {
           </div>
           <div className="ru-grid">
             <article className="ru-card">
-              <div className="ru-card-head"><h3>FundedNext</h3><span className="ru-score">{fundedNextProducts.length} продукта</span></div>
-              <p className="ru-muted">
-                Stellar 2-Step, 1-Step, Lite и Instant различаются числом фаз, условием возврата взноса,
-                максимальной просадкой и первой датой выплаты. Для резидентов России официальные страницы содержат конфликт,
-            поэтому страница оплаты и поддержка проверяются до оплаты.
-              </p>
-              <div className="ru-actions">
-                <Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-definition-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
-              </div>
-            </article>
-            <article className="ru-card">
               <div className="ru-card-head"><h3>BrightFunded</h3><span className="ru-score">{brightProducts.length} продукта</span></div>
               <p className="ru-muted">
                 1-Step, 2-Step Bright и 2-Step Classic используют EUR-цены, но дают разные дневной/общий лимиты убытка и цели.
@@ -346,6 +333,21 @@ export default function RussianWhatIsPropFirmPage() {
                   Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
                 </RuGoLink>
               </div>
+            </article>
+            <article className="ru-card">
+              <div className="ru-card-head"><h3>FundedNext</h3><span className="ru-score">{fundedNextProducts.length} продукта</span></div>
+              <p className="ru-muted">
+                Stellar 2-Step, 1-Step, Lite и Instant различаются числом фаз, условием возврата взноса,
+                максимальной просадкой и первой датой выплаты. Резидентам России FundedNext недоступна
+            (подвал fundednext.com, по данным на 20.10.2026); в других странах страница оплаты и поддержка проверяются до оплаты.
+              </p>
+              <div className="ru-actions">
+                <Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link>
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-definition-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
+                  Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
+                </RuGoLink>
+              </div>
+              <RuFundedNextAccessCaveat />
             </article>
           </div>
         </div>

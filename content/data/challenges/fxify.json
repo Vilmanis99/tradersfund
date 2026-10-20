@@ -67,7 +67,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/one-phase/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Prices are LIST prices from the site's own inline CMS payload; site-wide coupons HOT20 (20% off) and NEW30 (30% off 2 Phase Pro) are applied at checkout and are NOT reflected here.",
       "Max trading days \"Unlimited\" -> recorded as null.",
@@ -77,7 +77,8 @@
       "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted.",
       "Refundable fee 100%, paid with first withdrawal. \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\"",
       "First payout is on-demand after the first closed trade (min 50 USD, 5 min trading days); thereafter monthly, or bi-weekly with a paid add-on.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
     ]
   },
   {
@@ -139,7 +140,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/two-phase/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload; coupons HOT20 (20% off) / NEW30 (30% off 2 Phase Pro) apply at checkout.",
       "minTradingDays left null: the CMS is self-contradictory for Two Phase - \"Minimum trading days\" appears as both \"4 days\" and \"5 days\", while the attached description says \"5 trading days per stage. Therefore a total of 10 minimum trading days across both stages of the 2 Phase assessment.\"",
@@ -147,7 +148,8 @@
       "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted.",
       "Consistency Rule 25% applies to the Funded stage only (\"N/A\" in Phase 1 and Phase 2).",
       "Fee refundable per site-wide statement: \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\"",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
     ]
   },
   {
@@ -219,7 +221,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/two-phase/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload; coupons HOT20 (20% off) / NEW30 (30% off 2 Phase Pro) apply at checkout.",
       "minTradingDays left null: the CMS is self-contradictory for Two Phase - \"Minimum trading days\" appears as both \"4 days\" and \"5 days\", while the attached description says \"5 trading days per stage. Therefore a total of 10 minimum trading days across both stages of the 2 Phase assessment.\"",
@@ -228,7 +230,8 @@
       "Phase 1 target (10%) is HIGHER than Phase 2 (5%) as published - this is what the table states, not a transcription error.",
       "No consistency rule row shown for this variant -> null.",
       "Refundable Fee row: \"100%\" in Phase 1.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
     ]
   },
   {
@@ -295,7 +298,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload; coupons HOT20 (20% off) / NEW30 (30% off 2 Phase Pro) apply at checkout.",
       "Product-scoped 2 Phase Pro FAQ resolves the generic Two Phase CMS contradiction: 3 profitable trading days per phase, each with at least 0.5% of initial balance profit.",
@@ -305,7 +308,8 @@
       "The current first-party 2-Phase Pro announcement describes the maximum loss limit as static; this product-level source resolves the generic program-page omission.",
       "Target of the NEW30 coupon: \"NEW TRADERS: 30% OFF 2 PHASE PRO\", code NEW30.",
       "Smallest tier is $10k - there is no $5k Pro account.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
     ]
   },
   {
@@ -378,14 +382,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload; HOT20 (20% off) applies at checkout.",
       "minTradingDays is 5 PER STAGE: \"The minimum time to complete the FXIFY™ Challenge is 5 trading days per stage. Therefore a total of 15 minimum trading days across all three stages.\"",
       "Cheapest product on the site: $5k for $39.",
       "Max drawdown equals the daily loss limit (both 5%) - as published.",
       "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
     ]
   },
   {
@@ -454,7 +459,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/instant-funding/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload. NOTE: the HOT20 summer coupon explicitly EXCLUDES Instant Lite - \"SUMMER SALE: 20% OFF (excl. Instant Lite)\".",
       "No evaluation and no profit target - funded from purchase.",
@@ -465,7 +470,8 @@
       "profitSplitPct null: only \"Performance Split\" = \"Up to 90%\" is given, with no stated base split (unlike the phase products, which state 80% standard).",
       "minTradingDays remains null: the product-scoped Standard FAQ says there is no minimum or maximum trading-day requirement; the 14-day first-payout wait is recorded separately.",
       "Tier list runs $1k to $100K; the page headline claims \"Choose account sizes up to $50K\", which conflicts with the $75K and $100K tiers present in the table.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
     ]
   },
   {
@@ -519,7 +525,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/instant-funding/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "PRICE CHANGE 2026-10-14: the live Instant Funding Lite table now lists $10k at 89 (previously $85). Other Lite tiers unchanged (19/44/169/289).",
       "Prices are current undiscounted LIST prices from FXIFY's official checkout ladder at https://trader.fxify.com/purchasechallenge; the program page's generic selected card is not used as a tier quote. NOTE: the CHART30 summer coupon explicitly EXCLUDES Instant Lite - \"30% OFF ALL PROGRAMS (excl. Instant Lite)\".",
@@ -531,7 +537,8 @@
       "The current checkout lists $2.5K/$5K/$10K/$25K/$50K at $19/$44/$85/$169/$289. FXIFY's older February launch article lists six different tiers ($19/$39/$79/$149/$249/$399); it is retained as historical context, not used for the current ladder.",
       "Explicitly excluded from the HOT20 20% summer discount.",
       "Rules (news/weekend/EA) come from the shared Instant Funding feature block - the CMS does not split these per Standard/Lite variant.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
     ]
   },
   {
@@ -582,7 +589,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Prices are LIST prices from the site's inline CMS payload; HOT20 (20% off) applies at checkout.",
       "Smallest Lightning account is $10K - there is NO $5K Lightning tier.",
@@ -594,7 +601,8 @@
       "Official Lightning FAQ confirms a 100% refund alongside the first withdrawal.",
       "Lightning permits overnight holding without restrictions; copy trading is explicitly prohibited.",
       "Platform value reads \"Platform 5\" (apparent CMS typo).",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
     ]
   },
   {
@@ -650,7 +658,7 @@
     },
     "assetClass": "crypto",
     "sourceUrl": "https://fxify.com/programs/crypto/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Crypto-only account on DXTrade; FOREX accounts cannot trade crypto (FAQ).",
       "Funded stage: 7 minimum trading days and 25% consistency before payouts; 100% split available on a monthly cycle instead of 80% bi-weekly.",
@@ -658,7 +666,8 @@
       "payoutFirstDays left null: no first-payout day count stated beyond the funded 7-trading-day minimum.",
       "Overnight is left null (no separate rule; crypto trades 24/7).",
       "Site-wide promos on 2026-10-14: ONESTEP35 (35% off 1-phase, new traders) and REWARD25 (25% off, to 31 Oct 2026); not projected.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
     ]
   },
   {
@@ -712,13 +721,14 @@
     },
     "assetClass": "crypto",
     "sourceUrl": "https://fxify.com/programs/crypto/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "No evaluation. 'Inactivity Period': '7 days'. 'Lock Upon Payout': 'Yes'.",
       "Minimum payout by size: $50/$100/$250/$500/$750 (5K-100K), per the crypto payout-criteria FAQ and the table.",
       "Leverage: '5:1 BTC, ETH and Sol other 2:1'.",
       "Overnight is left null (no separate rule; crypto trades 24/7).",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
     ]
   }
 ]
