@@ -18,6 +18,7 @@ import reviewEvidence from '@/content/data/russian-fundednext-review-evidence.js
 import instantEvidence from '@/content/data/russian-fundednext-instant-evidence.json'
 import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-fundednext'
@@ -231,7 +232,7 @@ export default function RussianFundedNextReviewPage() {
       <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div className="ru-shell">
           <RussianDataFreshnessNotice firmSlugs={['fundednext']} />
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
@@ -245,17 +246,17 @@ export default function RussianFundedNextReviewPage() {
             <span>Автор: Edris Derakhshi</span>
             <span>Обновлено: {lastModified}</span>
           </div>
-          <div className="ru-stats">
+        </div>
+      </section>
+
+      <article className="ru-review-article ru-p1-article" data-russian-fundednext-article="long-form">
+      <RuReviewVerdictBox route={PATH} campaign="fundednext-review" sourcesHref="#sources" terms={<RuCapturedTerms><div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>моделей со свежими данными</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>опубликованных цен</span></div>
             <div className="ru-stat"><strong>{priceRange(pricedTiers.map(item => item.price))}</strong><span>диапазон входа</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
-          </div>
-        </div>
-      </section>
-
-      <article className="ru-review-article" data-russian-fundednext-article="long-form">
-      <section className="ru-section ru-review-opening" data-russian-fundednext-editorial-shell="review-parity">
+          </div></RuCapturedTerms>} />
+        <section className="ru-section ru-review-opening" data-russian-fundednext-editorial-shell="review-parity">
         <div className="ru-shell">
           <div className="ru-notice ru-disclosure ru-review-top-disclosure">
             <strong>Партнёрские ссылки.</strong> Мы можем получить комиссию, если читатель
@@ -346,9 +347,10 @@ export default function RussianFundedNextReviewPage() {
         </div>
       </section>
 
-      <section className="ru-section ru-review-toc-section">
+      <section className="ru-section ru-review-toc-section ru-p1-rail">
         <div className="ru-shell">
-          <nav className="toc ru-review-toc" aria-label="Содержание обзора FundedNext">
+          <RuArticleToc>
+<nav className="toc ru-review-toc" aria-label="Содержание обзора FundedNext">
             <div className="toc-title">Содержание обзора</div>
             <ol>
               <li><a href="#verdict">Краткий вывод</a></li>
@@ -368,6 +370,7 @@ export default function RussianFundedNextReviewPage() {
               <li><a href="#faq">Частые вопросы</a></li>
             </ol>
           </nav>
+</RuArticleToc>
         </div>
       </section>
 

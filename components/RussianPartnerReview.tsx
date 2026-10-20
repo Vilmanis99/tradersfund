@@ -16,6 +16,7 @@ import {
   type RussianRoutePath,
 } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 type RussianPartnerReviewProps = {
@@ -174,7 +175,7 @@ export default function RussianPartnerReview({
       <Breadcrumbs ld={crumbs} locale="ru" />
       {faqSchemaCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div className="ru-shell" data-russian-partner-review={firmSlug}>
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Источник до {latestCapture}</div>
           <h1>{displayHeadline}</h1>
@@ -185,16 +186,16 @@ export default function RussianPartnerReview({
             <span>Обновлено: {lastModified}</span>
             <span>{readTime} минут чтения</span>
           </div>
-          <div className="ru-stats">
+        </div>
+      </section>
+
+      <article className="ru-review-article ru-p1-article" data-russian-partner-article={firmSlug}>
+      <RuReviewVerdictBox route={path} campaign={`${firmSlug}-review`} sourcesHref="#prices" terms={<RuCapturedTerms><div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>свежих продуктов</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>ценовых уровней</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
             <div className="ru-stat"><strong>{latestCapture}</strong><span>дата проверки источников</span></div>
-          </div>
-        </div>
-      </section>
-
-      <article className="ru-review-article" data-russian-partner-article={firmSlug}>
+          </div></RuCapturedTerms>} />
       <section className="ru-section ru-review-opening" data-russian-partner-editorial-shell={firmSlug}>
         <div className="ru-shell">
           <div className="ru-notice ru-disclosure ru-review-top-disclosure">
@@ -250,9 +251,10 @@ export default function RussianPartnerReview({
         </div>
       </section>
 
-      <section className="ru-section ru-review-toc-section">
+      <section className="ru-section ru-review-toc-section ru-p1-rail">
         <div className="ru-shell">
-          <nav className="toc ru-review-toc" aria-label={`Содержание обзора ${firmName}`}>
+          <RuArticleToc>
+<nav className="toc ru-review-toc" aria-label={`Содержание обзора ${firmName}`}>
             <div className="toc-title">Содержание обзора</div>
             <ol>
               <li><a href="#country-check">Страна и KYC</a></li>
@@ -267,6 +269,7 @@ export default function RussianPartnerReview({
               <li><a href="#faq">Частые вопросы</a></li>
             </ol>
           </nav>
+</RuArticleToc>
         </div>
       </section>
 
