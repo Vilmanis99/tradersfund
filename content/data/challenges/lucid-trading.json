@@ -43,6 +43,15 @@
     "minTradingDays": 1,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "Each funded payout cycle",
+        "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -112,6 +121,21 @@
     "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "evaluation",
+        "appliesTo": "LucidFlex evaluation",
+        "sourceUrl": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account"
+      },
+      {
+        "percent": 50,
+        "scope": "evaluation",
+        "appliesTo": "LucidFlex evaluation with the 50% consistency add-on",
+        "sourceUrl": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": 5,
     "payoutFrequency": "on-demand",
@@ -183,6 +207,15 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 20,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 20,
+        "scope": "funded",
+        "appliesTo": "Each payout cycle",
+        "sourceUrl": "https://support.lucidtrading.com/en/articles/12890164-luciddirect-payout-objectives"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -252,6 +285,15 @@
     "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "evaluation",
+        "appliesTo": "LucidDaily evaluation",
+        "sourceUrl": "https://www.lucidtrading.com/"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
@@ -322,6 +364,15 @@
     "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "evaluation",
+        "appliesTo": "LucidDaily evaluation",
+        "sourceUrl": "https://www.lucidtrading.com/"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
@@ -387,6 +438,15 @@
     "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "evaluation",
+        "appliesTo": "LucidDaily evaluation",
+        "sourceUrl": "https://www.lucidtrading.com/"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
@@ -452,6 +512,15 @@
     "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "evaluation",
+        "appliesTo": "LucidDaily evaluation",
+        "sourceUrl": "https://www.lucidtrading.com/"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",

@@ -111,6 +111,15 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
+    "consistencyScope": "both",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "both",
+        "appliesTo": "1-Step Challenge pass and FTMO Account rewards (orders from 12 Oct 2026)",
+        "sourceUrl": "https://ftmo.com/en/trading-objectives/"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": 14,
     "payoutFrequency": "on-demand",

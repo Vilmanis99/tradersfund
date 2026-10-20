@@ -45,6 +45,15 @@
     "minTradingDays": 1,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "On-Demand payouts",
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -193,6 +202,15 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "On-Demand payouts",
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -339,6 +357,15 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "On-Demand payouts",
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -485,6 +512,15 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "On-Demand payouts",
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -558,6 +594,15 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "On-Demand payouts",
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -702,6 +747,15 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 15,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 15,
+        "scope": "funded",
+        "appliesTo": "Alpha Direct payouts",
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",

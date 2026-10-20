@@ -238,6 +238,15 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 20,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 20,
+        "scope": "funded",
+        "appliesTo": "Instant Funding payouts",
+        "sourceUrl": "https://maventrading.com/faqs"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": null,
@@ -300,6 +309,15 @@
     "minTradingDays": null,
     "maxTradingDays": 1,
     "consistencyRulePct": 15,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 15,
+        "scope": "funded",
+        "appliesTo": "Largest winning trade, Instant Mini payout",
+        "sourceUrl": "https://maventrading.com/faqs"
+      }
+    ],
     "profitSplitPct": 70,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
@@ -373,6 +391,15 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 20,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 20,
+        "scope": "funded",
+        "appliesTo": "Simulated Funded payouts",
+        "sourceUrl": "https://maventrading.com/faqs"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",

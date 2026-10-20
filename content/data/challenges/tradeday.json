@@ -42,6 +42,15 @@
     "minTradingDays": 5,
     "maxTradingDays": null,
     "consistencyRulePct": 30,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 30,
+        "scope": "evaluation",
+        "appliesTo": "Evaluation",
+        "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-"
+      }
+    ],
     "profitSplitPct": 50,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
@@ -117,6 +126,15 @@
     "minTradingDays": 5,
     "maxTradingDays": null,
     "consistencyRulePct": 30,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 30,
+        "scope": "evaluation",
+        "appliesTo": "Evaluation",
+        "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-"
+      }
+    ],
     "profitSplitPct": 50,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
@@ -186,6 +204,21 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 45,
+    "consistencyScope": "both",
+    "consistencyRules": [
+      {
+        "percent": 45,
+        "scope": "evaluation",
+        "appliesTo": "Evaluation",
+        "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405229-what-is-fast-pass-"
+      },
+      {
+        "percent": 45,
+        "scope": "funded",
+        "appliesTo": "Funded Sim payouts, accounts opened on or after 26 Jul 2026",
+        "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": 5,
     "payoutFrequency": "on-demand",
