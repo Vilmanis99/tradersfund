@@ -45,7 +45,9 @@
   "changes": [
     "firms.json FTMO payoutFrequencyNote: adds promo.ftmo.com on-demand quote; payoutMethodsCapturedAt 2026-10-19 -> 2026-10-20",
     "challenges/ftmo.json: payout-frequency evidence note on both products (value unchanged)",
-    "firms.json FTMO payoutFrequency null -> on-demand (top-level and rules.payoutFrequency), per editor decision; quotes from promo.ftmo.com and the ftmo.com FAQ"
+    "firms.json FTMO payoutFrequency null -> on-demand (top-level and rules.payoutFrequency), per editor decision; quotes from promo.ftmo.com and the ftmo.com FAQ",
+    "firms.json FTMO drawdownType static -> null (2-Step static, 1-Step end-of-day trailing; rules.drawdownType already product-specific)",
+    "firms.json FTMO minTradingDays 4 -> null (4 applies to 2-Step only; the 1-Step page publishes no minimum)"
   ],
   "notes": [
     "Paid challenge list prices unchanged since 2026-10-14; the $100K special deal (EUR 439 2-Step / EUR 399 1-Step) is still live.",
@@ -128,5 +130,24 @@
       "quote": "Rewards can be paid out via bank wire transfer, instant transfer through Visa Direct / Mastercard Send (up to $20,000), Skrill (up to $3,000), or cryptocurrencies.",
       "verdict": "Visa Direct / Mastercard Send already in firms.json payoutMethods; quote re-read live, payoutMethodsCapturedAt -> 2026-10-20."
     }
+  },
+  "firmLevelRecheck": {
+    "checkedAt": "2026-10-20",
+    "sources": [
+      {
+        "url": "https://ftmo.com/en/2-step-challenge/",
+        "quote": "Min Trading Days 4 Days"
+      },
+      {
+        "url": "https://ftmo.com/en/1-step-challenge/",
+        "quote": "Here are the Trading Objectives for the 1-Step FTMO Challenge. ... Max Loss 10% ... Reward 90% ... Trading Period Unlimited ... Profit Target 10% ... Max Daily Loss 3% ... Best Day Rule 50%",
+        "note": "No minimum trading days row on the 1-Step page"
+      },
+      {
+        "url": "https://ftmo.com/en/trading-objectives/",
+        "quote": "[1-Step] The Maximum Loss rule establishes an end-of-day trailing limit (the Maximum Loss Limit) below which your account equity ... cannot drop.",
+        "capturedAt": "2026-10-15 (firm-rules capture)"
+      }
+    ]
   }
 }

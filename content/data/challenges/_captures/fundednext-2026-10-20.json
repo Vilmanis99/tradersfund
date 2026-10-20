@@ -71,7 +71,8 @@
     "firms.json FundedNext consistencyRule: news-rule text (2026-05-20) -> 40% best-day On-Demand rule (article 15586820)",
     "firms.json FundedNext payoutMethods: + Card, Confirmo, FNmarkets; + payoutMethodsSourceUrl/Quote/CapturedAt/Note (article 8020084, updated 2026-10-02)",
     "firms.json FundedNext russiaStatus available -> restricted; russiaSourceUrl/Quote = fundednext.com footer (ToS 5.3 conflict and Futures restriction recorded here)",
-    "challenges/fundednext.json stellar-lite payoutFrequency: null -> 'bi-weekly' (10 business days; see openConflictResolution)"
+    "challenges/fundednext.json stellar-lite payoutFrequency: null -> 'bi-weekly' (10 business days; see openConflictResolution)",
+    "firms.json FundedNext minTradingDays 0 -> 2 (lowest evaluation minimum; Instant has no evaluation)"
   ],
   "dailyRecheck": {
     "captureType": "daily-recheck",
@@ -408,6 +409,24 @@
           "First Cycle Duration | 10 business days from activation",
           "Subsequent Cycles | 10 business days each"
         ]
+      }
+    ]
+  },
+  "firmMinTradingDaysRecheck": {
+    "checkedAt": "2026-10-20",
+    "reason": "Firm-level 0 came from Stellar Instant (no evaluation); evaluation programmes require 2-5 days. Schema allows a single number only, so the lowest evaluation minimum is used.",
+    "sources": [
+      {
+        "url": "https://fundednext.com/cfds/stellar-1-step",
+        "quote": "Drawdown Type Static Minimum Trading Days 2 Days"
+      },
+      {
+        "url": "https://fundednext.com/cfds/stellar-lite",
+        "quote": "Minimum Trading Days 2 each phase for standard plans (10-day phase) | on-demand (90%) stays at 5 each phase"
+      },
+      {
+        "url": "https://fundednext.com/cfds",
+        "quote": "Stellar 2-Step ... Drawdown Type|Static|Minimum Trading Days|5 Days"
       }
     ]
   }
