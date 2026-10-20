@@ -22,8 +22,8 @@ type: "post"
     <li>FXIFY lists <strong>8 CFD products and 54 product-size prices</strong> (rechecked 2026-10-20 against its program-page pricing data), from $19 Instant Funding Lite to $4,249 Instant Funding Standard.</li>
     <li>There is no firm-wide drawdown shortcut: captured products use 5%, 8%, or 10% static maximum loss, or 4%, 6%, 8%, or 10% trailing maximum loss.</li>
     <li>The 5 phase products publish an 80% base split; Instant Standard, Instant Lite, and Lightning publish only “up to 90%,” so their base split remains unverified.</li>
-    <li>News, weekend, and EA permissions differ by product: the 5 phase products allow all 3, both Instant variants reject all 3, and Lightning allows weekends but rejects news and EAs.</li>
-    <li>The captured restriction list names 35 jurisdictions and does not name India; Indian traders must still confirm checkout, KYC, platform, and payout access before purchase.</li>
+    <li>News, weekend, and EA permissions differ by product: the 5 phase products allow news and weekend holding but allow EAs only with FXIFY’s pre-approval and never on DxTrade; both Instant variants prohibit EAs and weekend holding; Lightning allows weekends but prohibits EAs. Instant Standard, Instant Lite and Lightning block trading 5 minutes before and after high-impact news (checked 2026-10-20).</li>
+    <li>FXIFY’s restriction list names 35 jurisdictions and does not name India (checked 2026-10-20); Indian traders must still confirm checkout, KYC, platform, and payout access before purchase.</li>
     <li>All 54 prices below are undiscounted list prices; temporary checkout coupons are excluded from break-even calculations.</li>
   </ul>
 </div>
@@ -46,7 +46,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>The 54 undiscounted prices across 8 CFD products were first read from FXIFY's official checkout on 2026-09-15 and rechecked on 2026-10-20 against the pricing data embedded in its program pages; the only change since September is Instant Funding Lite $10K, now $89 (was $85). FXIFY's public program pages have also shown a generic $250/$5K card, so the official named ladder is used for tier quotes and that presentation mismatch is called out rather than silently blended into the data. A blank base split means FXIFY did not publish an exact base percentage in the captured material; it does not mean the split is zero.</p>
+<p>The 54 undiscounted prices across 8 CFD products were first read from FXIFY's official checkout on 2026-09-15 and rechecked on 2026-10-20 against the pricing data embedded in its program pages; the only change since September is Instant Funding Lite $10K, now $89 (was $85). FXIFY's five public program pages still show a generic “$250 For $5k account” card (rechecked 2026-10-20), so the official named ladder is used for tier quotes and that presentation mismatch is called out rather than silently blended into the data. A blank base split means FXIFY did not publish an exact base percentage in the captured material; it does not mean the split is zero.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
   <caption class="hidden-caption">FXIFY challenge products</caption>
@@ -119,7 +119,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Tier prices were checked in FXIFY's read-only official checkout on 2026-09-15 and rechecked unchanged (except Instant Lite $10K, now $89) against its program-page pricing data on 2026-10-20; rules were checked against the public program pages and product-scoped FAQs on 2026-09-15. Confirm the final price, Indian card acceptance, KYC availability, add-ons, and any coupon on the routed <a href="/go/fxify">FXIFY checkout</a>; a temporary discount changes the fee but not the captured drawdown math. The older six-tier Instant Lite launch article and generic program-page card remain historical/presentation context, not current checkout quotes.</p>
+<p>Tier prices were checked in FXIFY's read-only official checkout on 2026-09-15 and rechecked unchanged (except Instant Lite $10K, now $89) against its program-page pricing data on 2026-10-20; rules were first checked against the public program pages and product-scoped FAQs on 2026-09-15, and drawdown types, the Two Phase Pro static limit and EA/news permissions were rechecked against FXIFY’s help-centre articles and FAQs on 2026-10-20. Confirm the final price, Indian card acceptance, KYC availability, add-ons, and any coupon on the routed <a href="/go/fxify">FXIFY checkout</a>; a temporary discount changes the fee but not the captured drawdown math. The older six-tier Instant Lite launch article and generic program-page card remain historical/presentation context, not current checkout quotes.</p>
 
 <p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> keeps FXIFY Instant Standard and Instant Lite as 2 separate products because their 8% and 4% trailing maximum-loss caps, prices, and first-payout fields do not match.</p>
 
@@ -127,11 +127,11 @@ type: "post"
 
 <p><strong>Drawdown depends on the product.</strong> One Phase uses a 3% daily and 6% trailing maximum loss; on a $50K account those published percentages correspond to $1,500 daily and $3,000 maximum-loss budgets. Two Phase Standard uses 4% daily and 10% trailing, while Two Phase Classic uses 4% daily and 10% static. Three Phase is stricter in total room at 5% daily and 5% static.</p>
 
-<p><strong>Two Phase Pro uses static drawdown.</strong> Its product-specific announcement, included in the 2026-09-15 capture, identifies an 8% static maximum loss and a 4% daily limit. This resolves the generic program page's omission; read the <a href="/go/fxify?source=two-phase-pro">Two Phase Pro source</a> for the applicable rules. Instant Standard uses 8% daily and 8% trailing; Instant Lite and Lightning each use 3% daily and 4% trailing.</p>
+<p><strong>Two Phase Pro uses static drawdown.</strong> FXIFY’s 2-Phase Pro help article says “The 2-Phase Pro utilizes a Static Drawdown of 8%” (checked 2026-10-20); the product announcement in our 2026-09-15 capture gives a 4% daily limit. This resolves the generic program page's omission; read the <a href="/go/fxify?source=two-phase-pro">Two Phase Pro source</a> for the applicable rules. Instant Standard uses 8% daily and 8% trailing; Instant Lite and Lightning each use 3% daily and 4% trailing.</p>
 
 <p><strong>Three consistency rules need separate treatment.</strong> Two Phase Classic applies a 25% consistency rule only after funding, Instant Lite publishes 20%, and Lightning publishes 30%. Under a 25% cap, a $500 best profitable day requires at least $2,000 total qualifying profit because $500 divided by 25% equals $2,000; products with a null consistency field are not described here as “no rule.”</p>
 
-<p><strong>Permissions split at the product boundary.</strong> The 5 phase products allow news trading, weekend holding, EAs, and overnight positions; Lightning allows weekend and overnight positions but prohibits news trading and EAs. Those 6 paths appear by name in the <a href="/best-swing-trading-prop-firms">product-level swing-trading comparison</a>; neither Instant path is borrowed into it. Copy trading is restricted on One Phase, Two Phase Classic, Two Phase Standard, and Three Phase because external-account copying requires approval and a 30-day named statement; it is prohibited on Two Phase Pro, both Instant products, and Lightning. Overnight holding remains unverified only for the 2 Instant products.</p>
+<p><strong>Permissions split at the product boundary.</strong> The 5 phase products allow news trading, weekend holding and overnight positions, while EAs need pre-approval: FXIFY says EAs are “allowed on the 1, 2 and 3 Phase challenges and their respective funded stage upon review by our support team and pre-approval” and that “EAs are strictly prohibited on the DxTrade platform” (checked 2026-10-20). Lightning allows weekend and overnight positions but prohibits EAs, and its news rule is “Restricted 5 minutes before and after high-impact news releases.” Those 6 paths appear by name in the <a href="/best-swing-trading-prop-firms">product-level swing-trading comparison</a>; neither Instant path is borrowed into it. Copy trading is restricted on One Phase, Two Phase Classic, Two Phase Standard, and Three Phase because external-account copying requires approval and a 30-day named statement; it is prohibited on Two Phase Pro, both Instant products, and Lightning. Overnight holding remains unverified only for the 2 Instant products.</p>
 
 <p><strong>Time limits also vary.</strong> One Phase and Three Phase publish 5 minimum trading days, with Three Phase requiring 5 in each of its 3 stages. Two Phase Pro requires 3 profitable days per phase at 0.5% of initial balance, Instant Lite requires 5 trading days before its first payout can open after 10 calendar days, and Lightning requires 3 days inside a 5-day evaluation cap. Two Phase Classic and Standard remain blank because their shared page still conflicts between 4-day and 5-day values.</p>
 
@@ -237,7 +237,7 @@ type: "post"
 <ul class="wp-block-list">
   <li><strong>54 captured prices</strong> provide account-size choices from $1K to $400K instead of forcing every trader into the same capital band.</li>
   <li><strong>Two Phase Classic uses a 10% static maximum loss</strong>, giving traders an alternative to the trailing drawdown used by One Phase and Two Phase Standard.</li>
-  <li><strong>The 5 phase products allow news, weekend holding, and EAs</strong>, according to their captured product-rule fields.</li>
+  <li><strong>The 5 phase products allow news trading and weekend holding</strong>, and EAs with FXIFY’s pre-approval (never on DxTrade), per its FAQ and help centre checked 2026-10-20.</li>
   <li><strong>The phase-product split is stated as 80%</strong>, so break-even profit can be computed instead of estimated from an “up to” headline.</li>
   <li><strong>The $39 Three Phase 5K tier</strong> has a generated $49 break-even profit at the captured 80% split.</li>
   <li><strong>India is absent from the 35-jurisdiction captured restriction list</strong>, clearing the initial geography screen without implying guaranteed KYC approval.</li>
@@ -256,7 +256,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should pick FXIFY</strong></h2>
 
-<p>An India-based EA or news trader should shortlist the 5 phase products, not Instant or Lightning, because those 5 captured rule sets allow both behaviors. A cautious first comparison is the $5K Three Phase at $39 versus the $5K Two Phase Classic at $59: Three Phase has 3 targets of 5% and a 5% static cap, while Classic has 2 targets, a 10% static cap, and a 25% funded-stage consistency rule.</p>
+<p>An India-based news trader should shortlist the 5 phase products, which allow news trading; Instant Standard, Instant Lite and Lightning block trading 5 minutes before and after high-impact releases. An EA trader is also limited to the 5 phase products, but needs FXIFY’s pre-approval first and cannot run EAs on DxTrade; Instant and Lightning prohibit EAs. A cautious first comparison is the $5K Three Phase at $39 versus the $5K Two Phase Classic at $59: Three Phase has 3 targets of 5% and a 5% static cap, while Classic has 2 targets, a 10% static cap, and a 25% funded-stage consistency rule.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid FXIFY</strong></h2>
 
@@ -271,16 +271,16 @@ type: "post"
 <p>Among products with a verified 80% base split, the $39 Three Phase 5K tier has the lowest generated break-even profit at $49. Instant Lite starts lower at $19, but its base split is not published, so an exact break-even figure would be invented.</p>
 
 <h3 class="wp-block-heading"><strong>Can traders in India use FXIFY?</strong></h3>
-<p>India is not among the 35 restricted jurisdictions in the record checked on 2026-09-15. That is an availability observation, not regulatory advice or guaranteed acceptance; verify Indian card payment, KYC documents, platform access, and the offered payout rail, then compare the evidence gap on our <a href="/best-prop-firms-in-india">India prop-firm shortlist</a>.</p>
+<p>India is not among the 35 restricted jurisdictions in FXIFY’s country FAQ or its site-footer list (checked 2026-10-20); our India checkout and KYC evidence dates from 2026-09-14. That is an availability observation, not regulatory advice or guaranteed acceptance; verify Indian card payment, KYC documents, platform access, and the offered payout rail, then compare the evidence gap on our <a href="/best-prop-firms-in-india">India prop-firm shortlist</a>.</p>
 
 <h3 class="wp-block-heading"><strong>What's the difference between FXIFY's One-Phase and Lightning?</strong></h3>
 <p>Both use 1 evaluation phase, but One Phase has a 10% target, 3% daily loss, 6% trailing cap, and 5 minimum days with no captured maximum. Lightning has a 5% target, 3% daily loss, 4% trailing cap, 3 minimum days, a 5-day maximum, a 30% consistency rule, and no verified base split.</p>
 
 <h3 class="wp-block-heading"><strong>Does FXIFY allow EAs and news trading?</strong></h3>
-<p>The 5 phase products allow both EAs and news trading in the 2026-09-15 capture. Instant Standard, Instant Lite, and Lightning reject EAs; the 2 Instant products and Lightning also reject news trading.</p>
+<p>News trading: yes on the 5 phase products (“Yes, you are able to trade new events on 1,2 and 3-Phase accounts”). Instant Standard, Instant Lite and Lightning do not ban news, but trading is restricted 5 minutes before and 5 minutes after high-impact news releases. EAs: the 5 phase products allow them only after review and pre-approval by FXIFY’s support team, and never on DxTrade; Instant Standard, Instant Lite and Lightning prohibit EAs (checked 2026-10-20).</p>
 
 <h3 class="wp-block-heading"><strong>Is the FXIFY challenge fee refundable?</strong></h3>
 <p>Only on some products. One Phase, Two Phase Standard and Three Phase reimburse the fee with the first eligible payout request, per FXIFY's 14 September 2026 blog. Lightning: 100% of the evaluation fee is refunded with your first payout (FXIFY help centre, updated 6 May 2026; checked 20 Oct 2026). FXIFY's 14 Sep 2026 blog lists Lightning as non-refundable, so confirm with FXIFY before buying. Nothing is refunded if you fail or never get paid out. Two Phase Classic and Two Phase Pro: no fee refund. Both Instant variants are non-refundable.</p>
 
 <h3 class="wp-block-heading"><strong>Which FXIFY products have static drawdown?</strong></h3>
-<p>Two Phase Classic publishes a 10% static maximum loss, Two Phase Pro publishes an 8% static maximum loss, and Three Phase publishes a 5% static maximum loss. One Phase, Two Phase Standard, both Instant variants, and Lightning use trailing limits in the 2026-09-15 capture. The <a href="/go/fxify?source=two-phase-pro">product-specific Pro announcement</a> confirms its static rule.</p>
+<p>Two Phase Classic publishes a 10% static maximum loss, Two Phase Pro publishes an 8% static maximum loss, and Three Phase publishes a 5% static maximum loss. One Phase, Two Phase Standard, both Instant variants, and Lightning use trailing limits, per FXIFY’s help-centre product articles (checked 2026-10-20). The <a href="/go/fxify?source=two-phase-pro">product-specific Pro announcement</a> confirms its static rule.</p>
