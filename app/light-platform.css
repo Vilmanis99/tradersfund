@@ -616,7 +616,11 @@ html .article-table__hint { display: none; position: absolute; right: 2px; botto
 html .article-table[data-overflowing="true"] .article-table__hint { display: block; }
 html .article-table[data-overflowing="true"]::after { content: ""; position: absolute; top: 1px; right: 1px; bottom: 1px; width: 40px; border-radius: 0 10px 10px 0; background: linear-gradient(to right, transparent, var(--bg2)); pointer-events: none; transition: opacity 0.15s; }
 html .article-table[data-at-end="true"]::after { opacity: 0; }
-html :is(.ru-table-wrap, .cm-scroll)[data-overflowing="true"]:not([data-at-end="true"]) { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent); }
+html :is(.ru-table-wrap, .cm-scroll)[data-overflowing="true"]:not([data-at-end="true"]) {
+  --cue-fade: linear-gradient(to right, #000 calc(100% - 40px), transparent);
+  -webkit-mask: var(--cue-fade) 0 0 / 100% var(--table-cue-h, 100%) no-repeat, linear-gradient(#000, #000) 0 var(--table-cue-h, 100%) / 100% 100% no-repeat;
+  mask: var(--cue-fade) 0 0 / 100% var(--table-cue-h, 100%) no-repeat, linear-gradient(#000, #000) 0 var(--table-cue-h, 100%) / 100% 100% no-repeat;
+}
 /* Sticky first column while a table scrolls sideways. */
 html .article-table[data-overflowing="true"] tr > :first-child { position: sticky; left: 0; z-index: 1; box-shadow: 1px 0 0 var(--border); }
 html .ru-table-wrap[data-overflowing="true"] .ru-table tr > :first-child { position: sticky; left: 0; z-index: 1; background: var(--bg2); box-shadow: 1px 0 0 var(--border); }
@@ -645,6 +649,7 @@ html .ru-content .ru-section h3 { font-size: 1.25rem; line-height: 1.4; font-wei
   html .prose, html .ru-content { font-size: 1rem; }
   /* RU: tables with 4+ columns keep a readable scroll width. */
   html .ru-table:has(tr > :nth-child(4)) { min-width: 560px; }
+  html .ru-table:has(tr > :nth-child(5)) { min-width: 720px; }
   /* Wide, labelled tables become stacked key/value cards (labels from the header row). */
   html .article-table[data-layout="cards"] .article-table-scroll { overflow: visible; border: 0; border-radius: 0; background: transparent; }
   html .article-table[data-layout="cards"]::after, html .article-table[data-layout="cards"] .article-table__hint { display: none; }

@@ -13,6 +13,9 @@ function update(el: HTMLElement) {
   const atEnd = !overflowing || el.scrollLeft + el.clientWidth >= el.scrollWidth - 2
   el.dataset.overflowing = String(overflowing)
   el.dataset.atEnd = String(atEnd)
+  // Limit the edge fade to the table itself; some containers also hold a footnote.
+  const table = el.querySelector(':scope > table')
+  if (table instanceof HTMLElement) el.style.setProperty('--table-cue-h', `${table.offsetTop + table.offsetHeight}px`)
   const frame = el.parentElement?.classList.contains('article-table') ? el.parentElement : null
   if (frame) {
     frame.dataset.overflowing = String(overflowing)
