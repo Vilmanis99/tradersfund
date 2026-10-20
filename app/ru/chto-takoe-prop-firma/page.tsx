@@ -22,8 +22,8 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/chto-takoe-prop-firma'
-const TITLE = 'Что такое проп-фирма: как это работает в 2026 году'
-const DESCRIPTION = 'Что означает проп-фирма, чем глобальный челлендж отличается от традиционного проп-деска и российской компании, как проверить цену, просадку, KYC и выплату.'
+const TITLE = 'Что такое проп-фирма (проп-компания) и как она работает'
+const DESCRIPTION = 'Что такое проп-фирма и проп-компания простыми словами: как устроен челлендж, чем он отличается от проп-деска, как проверить цену, просадку, KYC и выплату.'
 
 const FUNDEDNEXT_ACCESS_URL = 'https://fundednext.com/company'
 const FUNDEDNEXT_KYC_URL = 'https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process'

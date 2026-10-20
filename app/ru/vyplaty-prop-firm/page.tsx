@@ -30,8 +30,8 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/vyplaty-prop-firm'
-const TITLE = 'Выплаты проп-фирм 2026: FundedNext и BrightFunded'
-const DESCRIPTION = 'Как вывести прибыль из FundedNext, BrightFunded и FundingPips: первая заявка, USDT/USDC, банк, сроки обработки, комиссии, KYC и ограничения страны.'
+const TITLE = 'Выплаты проп-фирм 2026: как вывести прибыль — сроки и KYC'
+const DESCRIPTION = 'Как вывести прибыль из BrightFunded, FundingPips и FundedNext: первая заявка, USDT/USDC, банк, сроки, комиссии, KYC и ограничения для резидентов РФ.'
 const SOCIAL_TITLE = 'Выплаты проп-фирм 2026: FundedNext и Bright Funded'
 const SOCIAL_DESCRIPTION = 'Как вывести прибыль из FundedNext, Bright Funded и FundingPips: первая заявка, USDT/USDC, банк, сроки обработки, комиссии, KYC и ограничения страны.'
 const fundedNextPayoutEvidence = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundednext')
@@ -246,7 +246,7 @@ export default function RussianPayoutsPage() {
             ...cards.map(card => ({ label: `выплаты ${card.name}`, capturedAt: card.evidence?.sourceCapturedAt ?? '' })),
           ]} />
           <div className="ru-eyebrow"><WalletCards size={14} aria-hidden="true" /> 4 этапа от прибыли до зачисления</div>
-          <h1>Выплаты проп-фирм: FundedNext, BrightFunded и вывод прибыли</h1>
+          <h1>Выплаты проп-фирм: BrightFunded, FundedNext и вывод прибыли</h1>
           <p className="ru-lead">
             Сравнили {cards.length} процесса выплаты по {sourceCount} первичным страницам и {productCount} свежим продуктам.
             FundedNext и BrightFunded — два главных маршрута; FundingPips оставлен как вторичная альтернатива.
