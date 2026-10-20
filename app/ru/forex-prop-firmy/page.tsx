@@ -12,6 +12,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightCountryEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import { isRussiaAccessEvidenceDocumented } from '@/lib/russiaAvailability'
+import { russianGenitiveDate } from '@/lib/russianDates'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
@@ -28,6 +29,12 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: TITLE, description: SOCIAL_DESCRIPTION },
 }
 
+/** Dates shown in copy come from the evidence files, never typed in. */
+const fundedNextForexCheckedOn = russianGenitiveDate(forexEvidence.firms.find(firm => firm.firmSlug === 'fundednext')?.sourceCapturedAt)
+const fundedNextAccessObservedOn = russianGenitiveDate((marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')?.sourceObservations ?? [])
+  .map(item => item.sourceCapturedAt).filter(Boolean).sort().at(-1))
+const asOf = (date: string | null) => date ? ` (по данным на ${date})` : ''
+
 const faqs: RussianFaqItem[] = [
   {
     q: 'Что такое форекс-проп-фирма?',
@@ -39,7 +46,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какое форекс-плечо у FundedNext?',
-    a: 'По справке FundedNext о плече (по данным на 20.10.2026) у Stellar 1-Step — 1:30, у Stellar 2-Step и Stellar Lite — 1:100, причём на оценочном и следующем этапе форекс-плечо одинаковое. Stellar Instant в этой справке не указан — его плечо сверьте в условиях программы. Не переносите условия одного продукта на другой.',
+    a: `По источникам${fundedNextForexCheckedOn ? `, проверенным ${fundedNextForexCheckedOn},` : ' FundedNext'} у Stellar 1-Step и Stellar Instant — 1:30, у Stellar 2-Step и Stellar Lite — 1:100. В таблицах оценочного и следующего этапа Stellar 1-Step указано одинаковое форекс-плечо. Не переносите условия одного продукта на другой.`,
   },
   {
     q: 'Плечо 1:100 лучше, чем 1:30?',
@@ -312,7 +319,7 @@ export default function RussianForexPropFirmsPage() {
           <aside className="ru-notice" data-russian-forex-correction="stellar-1-step-leverage">
             <strong>Исправление от 8 сентября 2026 года.</strong> Ранее мы ошибочно включили Stellar 1-Step
             в группу с плечом 1:100. В <a href={fundedNextEvidence.sourceUrls[1]} target="_blank" rel="nofollow noopener">таблицах FundedNext</a> для
-            оценочного и следующего этапа указано 1:30 (перепроверено, по данным на 20.10.2026). Это исправление нашей записи, а не утверждение,
+            оценочного и следующего этапа указано 1:30{fundedNextForexCheckedOn ? ` (перепроверено, по данным на ${fundedNextForexCheckedOn})` : ''}. Это исправление нашей записи, а не утверждение,
             что фирма изменила правило именно в этот день.
           </aside>
           <p>
@@ -418,7 +425,7 @@ export default function RussianForexPropFirmsPage() {
             для своего профиля и программы. Русская версия сайта предназначена для русскоязычных
             трейдеров в разных странах; она не является обещанием доступности услуг из России.
           </p>
-          <p className="ru-source-line">Резидентам России FundedNext недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026).</p>
+          <p className="ru-source-line">Резидентам России FundedNext недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет{asOf(fundedNextAccessObservedOn)}.</p>
           <div className="ru-notice" data-russian-forex-country-conflict="help-six-terms-five" data-russian-forex-country-status={brightCountryCurrent ? 'dated' : 'recapture-required'}>
             <strong>{brightCountryCurrent ? 'Списки стран BrightFunded расходятся.' : 'В датированном снимке списки стран BrightFunded расходились.'}</strong>{' '}
             По записи от {brightCountry.sourceCapturedAt}{' '}

@@ -93,6 +93,33 @@ export interface ComparisonOverlay {
  *
  * Pages without an entry here render a fully data-driven layout.
  */
+
+/* ── Data-driven overlay facts ─────────────────────────────────── */
+
+const listNames = (names: string[]) => names.length <= 1 ? names.join('')
+  : `${names.slice(0, -1).join(', ')} and ${names.at(-1)}`
+
+/**
+ * Product-specific fee-refund sentence from the captured tier `refundable`
+ * flags: a product counts as refundable (or not) only when every tier agrees;
+ * anything else is reported as unverified rather than guessed.
+ */
+export function feeRefundSummary(firmSlugValue: string, firmName: string): string {
+  const products = getChallengesByFirm(firmSlugValue)
+  const all = (value: boolean) => products
+    .filter(product => product.accountSizes.length > 0 && product.accountSizes.every(tier => tier.refundable === value))
+    .map(product => product.productName)
+  const yes = all(true)
+  const no = all(false)
+  const unverified = products.map(product => product.productName).filter(name => !yes.includes(name) && !no.includes(name))
+  const parts = [
+    yes.length ? `${firmName} lists the fee as refundable on ${listNames(yes)}` : `${firmName} lists no product with a refundable fee`,
+    no.length ? `not on ${listNames(no)}` : '',
+    unverified.length ? `refund terms for ${listNames(unverified)} are unverified` : '',
+  ].filter(Boolean)
+  return `${parts.join('; ')}.`
+}
+
 export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
   'apex-trader-funding-vs-topstep': {
     matchupSlug: 'apex-trader-funding-vs-topstep',
@@ -329,7 +356,7 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
     faqs: [
       { q: 'Do FTMO and FXIFY have the same drawdown rules?', a: 'Both use static drawdown on their flagship plans, which is the forgiving variant — your loss floor is fixed and doesn’t trail your equity high. FXIFY’s Lightning product is the exception, using a trailing rule with a 7-day window, so check the specific product you buy.' },
       { q: 'Can US traders use either firm?', a: 'No. FXIFY explicitly restricts US residents, and FTMO does not accept US clients either. US traders should look at futures firms like Topstep or My Funded Futures.' },
-      { q: 'Which is better value at the $100K tier?', a: 'They price similarly at $100K, and both refund the fee on first payout. FXIFY frequently runs discounts that undercut FTMO at checkout, so the live promo usually decides it — verify the current price before buying.' },
+      { q: 'Which is better value at the $100K tier?', a: `They price similarly at $100K. Refunds depend on the product: ${feeRefundSummary('ftmo', 'FTMO')} ${feeRefundSummary('fxify', 'FXIFY')} FXIFY frequently runs discounts that undercut FTMO at checkout, so the live promo usually decides it — verify the current price before buying.` },
     ],
   },
 

@@ -37,6 +37,7 @@ import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { isProductSetFresh } from '@/lib/reviewFreshness'
 
 const PATH = '/ru/otzyvy-prop-firm'
 const TITLE = 'Отзывы о проп-фирмах 2026: как проверить выплаты'
@@ -206,7 +207,7 @@ export default function RussianPropFirmReviewsPage() {
     && featuredCards.length === featuredRoutes.length
     && featuredRoutes.every(route => {
       const products = challenges.filter(product => product.firmSlug === route.slug)
-      return products.length > 0 && products.every(product => isChallengeFresh(product))
+      return isProductSetFresh(products)
     })
 
   const crumbs = breadcrumbSchema([

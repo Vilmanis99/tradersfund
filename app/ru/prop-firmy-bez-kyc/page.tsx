@@ -25,6 +25,7 @@ import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { isProductSetFresh } from '@/lib/reviewFreshness'
 
 const PATH = '/ru/prop-firmy-bez-kyc'
 const TITLE = 'Проп-фирмы без KYC: есть ли они и когда нужна верификация'
@@ -148,7 +149,7 @@ export default function RussianNoKycPage() {
   const priceCount = partnerCards.reduce((sum, item) => sum + item.priceCount, 0)
   const hasFreshProducts = partnerRoutes.every(route => {
     const products = allChallenges.filter(product => product.firmSlug === route.slug)
-    return products.length > 0 && products.every(product => isChallengeFresh(product))
+    return isProductSetFresh(products)
   })
   const hasFreshResearch = partnerCards.length === partnerRoutes.length && hasFreshProducts
     && isChallengeFresh({ sourceCapturedAt: marketEvidence.capturedAt })

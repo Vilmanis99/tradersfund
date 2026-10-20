@@ -26,6 +26,7 @@ import { RuGoLink } from '@/components/RuGoLink'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
+import { isProductSetFresh } from '@/lib/reviewFreshness'
 
 const PATH = '/ru'
 export const revalidate = 3600
@@ -80,7 +81,7 @@ export default function RussianHomePage() {
   const featuredPartnerCards = featuredPartnerRoutes.map(route => {
     const firm = firms.find(candidate => outboundSlug(candidate.name) === route.slug)
     const products = challenges.filter(product => product.firmSlug === route.slug)
-    const fresh = products.length > 0 && products.every(product => isChallengeFresh(product))
+    const fresh = isProductSetFresh(products)
     // Use the oldest capture so the date does not overstate freshness across products.
     const captureDate = fresh ? products.map(product => product.sourceCapturedAt).sort()[0] : null
     const countryAccess = marketEvidence.firmAccess.find(item => item.firmSlug === route.slug)
