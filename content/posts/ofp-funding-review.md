@@ -281,20 +281,14 @@ To eliminate this warning, add "type": "module" to /workspace/tf-en-b2/package.j
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
-<h3 class="wp-block-heading"><strong>Is OFP Funding legit?</strong></h3>
-<p>OFP publishes its payout process, refund terms and trading rules, and says Rewards are "funded directly by OFP's own capital" while you trade a demo account. The caveats are real: Trustpilot has suppressed its aggregate rating for a guidelines breach, several first-party sources conflict on the consistency rule, and the product lineup changed in October 2026, so check the live terms. Read the current terms and start small before scaling up.</p>
+<h3 class="wp-block-heading"><strong>Is OFP Funding legit, and why does it have no Trustpilot rating?</strong></h3>
+<p>OFP publishes its payout process, refund terms and trading rules, and says Rewards are "funded directly by OFP's own capital" while you trade a demo account. The caveats are real: Trustpilot has suppressed its aggregate rating for a guidelines breach, several first-party sources conflict on the consistency rule, and the product lineup changed in October 2026, so check the live terms. On Trustpilot, the profile shows "This company's rating is unavailable due to a breach of our guidelines" (checked 2026-10-20). Its "Breach of guidelines" notice says only that Trustpilot has "removed a number of fake reviews for this company"; it does not name a specific guideline. The profile also shows a "Merged reviews and profile" notice. Neither is a statement about whether OFP pays out. Read the current terms and start small before scaling up.</p>
 
-<h3 class="wp-block-heading"><strong>How does the OFP Funding payout process work?</strong></h3>
-<p>Pass the review-period checks (drawdown, Inconsistency Score, no prohibited strategies), submit the payout form, let OFP self-bill the invoice, then receive USD by bank transfer, USDC, or Rise for amounts over $500. The first request opens 14 calendar days after your first trade, then every 14 days on Instant Classic and Plus; Instant Lite allows a single reward within its 30-day period.</p>
+<h3 class="wp-block-heading"><strong>How does the OFP Funding payout process work, and how long does it take?</strong></h3>
+<p>Pass the review-period checks (drawdown, Inconsistency Score, no prohibited strategies), submit the payout form, let OFP self-bill the invoice, then receive USD by bank transfer, USDC, or Rise for amounts over $500. The first request opens 14 calendar days after your first trade, then every 14 days on Instant Classic and Plus; Instant Lite allows a single reward within its 30-day period. OFP quotes a 48-hour average on its trading-rules page and 2–3 business days in its help centre, processed Monday to Friday, 9 AM to 5 PM CET. Bank and crypto withdrawals under $500 are fee-free; payouts over $500 through Rise carry a fixed $50 fee.</p>
 
-<h3 class="wp-block-heading"><strong>How long do OFP Funding payouts take, and what do they cost?</strong></h3>
-<p>OFP quotes a 48-hour average on its trading-rules page and 2–3 business days in its help centre, processed Monday to Friday, 9 AM to 5 PM CET. Bank and crypto withdrawals under $500 are fee-free; payouts over $500 through Rise carry a fixed $50 fee.</p>
-
-<h3 class="wp-block-heading"><strong>What does OFP Funding actually cost?</strong></h3>
-<p>Between $35 and $2,500 across 40 priced tiers of 6 instant products, at the 80% profit-split base price (captured 2026-10-14). The cheapest entries are the $5K Instant Classic (3%/6%) and the $10K Instant Lite (3%/5%) at $35 each; the most expensive is the $300K Instant Plus (5%/10%) at $2,500. A 100% split adds roughly 20% to any of them.</p>
-
-<h3 class="wp-block-heading"><strong>Why does OFP have no Trustpilot rating?</strong></h3>
-<p>Trustpilot has suppressed it. The profile shows "This company's rating is unavailable due to a breach of our guidelines" (checked 2026-10-20). Its "Breach of guidelines" notice says only that Trustpilot has "removed a number of fake reviews for this company"; it does not name a specific guideline. The profile also shows a "Merged reviews and profile" notice. Neither is a statement about whether OFP pays out.</p>
+<h3 class="wp-block-heading"><strong>What does OFP Funding actually cost, and is the fee refundable?</strong></h3>
+<p>Between $35 and $2,500 across 40 priced tiers of 6 instant products, at the 80% profit-split base price (captured 2026-10-14). The cheapest entries are the $5K Instant Classic (3%/6%) and the $10K Instant Lite (3%/5%) at $35 each; the most expensive is the $300K Instant Plus (5%/10%) at $2,500. A 100% split adds roughly 20% to any of them. The fee is refundable only within 14 calendar days and only if you have not traded. The terms grant a refund "provided that the account has not been used and no trading activity has occurred" and withdraw it "once any trade has been placed".</p>
 
 <h3 class="wp-block-heading"><strong>Is OFP's drawdown trailing or static?</strong></h3>
 <p>Static. The firm's own wording is "a 'hard' limit based on your initial balance" that "never changes during the challenge". On the funded side the help centre rebases it to your balance after each approved reward, so it steps up between payout cycles but never trails your equity intraday.</p>
@@ -304,9 +298,6 @@ To eliminate this warning, add "type": "module" to /workspace/tf-en-b2/package.j
 
 <h3 class="wp-block-heading"><strong>Can I scale past $300,000 at OFP?</strong></h3>
 <p>No. OFP states "the total manageable accounts are capped at $300,000" and that "account merging is not supported". The scaling path — "20% total profit over three months" for "25% return on your initial deposit" — operates below that ceiling.</p>
-
-<h3 class="wp-block-heading"><strong>Is the OFP fee refundable?</strong></h3>
-<p>Only within 14 calendar days and only if you have not traded. The terms grant a refund "provided that the account has not been used and no trading activity has occurred" and withdraw it "once any trade has been placed".</p>
 
 <h3 class="wp-block-heading"><strong>Can US residents use OFP Funding?</strong></h3>
 <p>OFP states its MetaTrader 5 services are "not intended for U.S. citizens/residents". All OFP accounts are simulated, and the entity is OFP Funding Ltd, registered in St. Lucia as company 2024-00577.</p>
