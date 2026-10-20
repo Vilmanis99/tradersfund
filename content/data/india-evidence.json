@@ -743,7 +743,7 @@
   {
     "firmSlug": "maven",
     "firmName": "Maven",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-20",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Belarus",
@@ -773,6 +773,7 @@
     ],
     "restrictionListComplete": true,
     "payoutRails": [
+      "crypto",
       "rise"
     ],
     "rbiAlert": {
@@ -790,41 +791,40 @@
     },
     "checkout": {
       "status": "partial",
-      "summary": "Maven publishes credit-card and other checkout options and requires the cardholder name to match KYC, but a successful Indian-card purchase is not independently tested.",
+      "summary": "Maven requires a payment card registered in the trader's own name and warns that third-party cards may block KYC or the funded account; the server-readable FAQ no longer lists the checkout methods, and a successful Indian-card purchase is not independently tested.",
       "sourceUrls": [
         "https://maventrading.com/faqs"
       ]
     },
     "kyc": {
       "status": "verified",
-      "summary": "Veriff KYC accepts a passport, driving licence, residence permit, or ID card and requires the personal details and payment card to belong to the trader.",
+      "summary": "KYC accepts a passport, driver's licence, residence permit, or national ID card (Veriff document list linked from the FAQ) and requires the personal details and payment card to belong to the trader.",
       "sourceUrls": [
         "https://maventrading.com/faqs"
       ]
     },
     "payout": {
       "status": "partial",
-      "summary": "Maven explicitly places India in its Rise-or-other-options group rather than the named direct-bank group; the exact Indian Rise cash or crypto route remains untested.",
+      "summary": "Maven places India in its \"other countries\" group: Digital Currencies (USDT-BSC or USDC-ERC20) or Rise Pay; direct bank transfer is listed only for Nigeria, Kenya and Ghana. No Indian crypto or Rise payout is independently tested.",
       "sourceUrls": [
         "https://maventrading.com/faqs"
       ]
     },
     "fees": {
-      "status": "verified",
-      "summary": "Maven publishes a $20 fee for payments through Rise; any charge for an unnamed alternative or INR conversion remains outside the captured claim.",
+      "status": "unknown",
+      "summary": "The $20 Rise payment fee captured on 2026-09-14 is no longer published in the FAQ checked on 2026-10-20; Maven publishes no current payout fee for the crypto or Rise routes.",
       "sourceUrls": [
         "https://maventrading.com/faqs"
       ]
     },
     "currency": {
       "status": "verified",
-      "summary": "Captured Maven account sizes, challenge fees, pay-later amounts, and the $20 Rise fee are published in USD.",
+      "summary": "Captured Maven account sizes, challenge fees, and pay-later amounts are published in USD.",
       "sourceUrls": [
-        "https://maventrading.com/pricing",
-        "https://maventrading.com/faqs"
+        "https://maventrading.com/pricing"
       ]
     },
-    "unresolved": "No completed Indian credit-card checkout, Veriff approval, or Rise payout receipt is independently verified; the exact Rise withdrawal route and any INR conversion cost remain unpublished."
+    "unresolved": "No completed Indian card checkout, KYC approval, or crypto/Rise payout receipt is independently verified; the current payout fee and any INR conversion cost are unpublished."
   },
   {
     "firmSlug": "tradeify",
