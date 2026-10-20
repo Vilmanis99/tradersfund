@@ -4678,7 +4678,10 @@
     "reviewUrl": "/blog/city-traders-imperium-review",
     "officialUrl": "https://citytradersimperium.com/",
     "profitSplitPct": 70,
-    "payoutFrequency": "monthly",
+    "payoutFrequency": null,
+    "payoutFrequencyNote": "Product-specific, so no firm-wide value (checked 2026-10-20): 1-Step and 2-Step publish a first payout \"in as little as 7 days\" with weekly payouts only unlocked at VIP Bronze; Direct Funding is on demand from day 5; Instant Funding publishes no baseline cycle. The earlier firm-level \"monthly\" matched no current product page.",
+    "payoutFrequencySourceUrl": "https://citytradersimperium.com/direct-funding/",
+    "payoutFrequencyQuote": "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.",
     "payoutMethods": [
       "Bank wire",
       "Crypto"
@@ -4899,12 +4902,12 @@
       },
       "payoutFrequency": {
         "value": null,
-        "summary": "Product-specific: weekly on 1-Step Challenge, 2-Step Challenge; not stated on Instant Funding; monthly on Direct Funding",
+        "summary": "Product-specific: not stated after the 7-day first payout on 1-Step Challenge and 2-Step Challenge (weekly is a VIP Bronze unlock); not stated on Instant Funding; on-demand on Direct Funding",
         "byProduct": {
-          "1-step-challenge": "weekly",
-          "2-step-challenge": "weekly",
+          "1-step-challenge": null,
+          "2-step-challenge": null,
           "instant-funding": null,
-          "direct-funding": "monthly"
+          "direct-funding": "on-demand"
         },
         "evidence": [
           {
@@ -4922,6 +4925,14 @@
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
+            "productSlug": "direct-funding"
           }
         ]
       },
