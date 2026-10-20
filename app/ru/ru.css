@@ -1255,7 +1255,7 @@
 }
 .ru-p1-verdict__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
 .ru-p1-verdict__name { margin: 0 0 0.35rem; font-size: 1.15rem; font-weight: 850; color: var(--text); }
-.ru-p1-verdict__score { display: flex; align-items: baseline; gap: 0.15rem; padding: 0.35rem 0.7rem; border-radius: 12px; background: var(--accent-light); color: var(--accent); white-space: nowrap; }
+.ru-p1-verdict__score { display: flex; align-items: baseline; gap: 0.15rem; padding: 0.35rem 0.7rem; border-radius: 12px; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--text); white-space: nowrap; }
 .ru-p1-verdict__score strong { font-size: 1.6rem; line-height: 1; }
 .ru-p1-verdict__score span { font-size: 0.85rem; font-weight: 700; }
 .ru-p1-verdict__line, .ru-p1-pick__line { margin: 0.8rem 0 0; font-size: 1.05rem; font-weight: 650; color: var(--text); line-height: 1.5; }
@@ -1298,3 +1298,5 @@
 .ru-p1-verdict-section .ru-shell { width: min(880px, calc(100% - 2rem)); }
 .ru-p1-article .ru-p1-verdict-section .ru-shell { width: 100%; }
 .ru-review-article:not(.ru-p1-article) > .ru-p1-verdict-section { padding-top: 0.5rem; }
+.ru-section.ru-p1-pick-section { padding: clamp(1rem, 2vw, 1.5rem) 0 clamp(1.5rem, 3vw, 2.25rem); }
+.ru-hero--p1 + .ru-p1-pick-section { border-top: 0; }
