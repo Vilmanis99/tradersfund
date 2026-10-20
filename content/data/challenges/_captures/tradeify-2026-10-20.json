@@ -21,5 +21,22 @@
     ],
     "changeNotStored": "Select 300K (limited release) now reads '$349 (V2; V1 was $449)' (was $449 on 2026-10-19). 300K is still not stored as a tier (limited release, no resets, KYC first).",
     "alsoNoted": "50% Consistency Add-on Select prices 135/205/329/459 (add-on, not stored)."
+  },
+  "resetFeeClarification": {
+    "checkedAtTimestamp": "2026-10-20T12:55+03:00",
+    "question": "EN Writer: is the Select 50K $109 a sale price (second column) or the list price?",
+    "answer": "Neither: the second column of the pricing reference is the Reset Fee, and $109 is the Select 50K reset fee (list, no discount shown). The Select 50K purchase price is $165.",
+    "sources": [
+      {
+        "url": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+        "quote": "Account Size | Price (One-Time) | Reset Fee ... With the standard 40% consistency rule, Select 25K costs $109, and a reset costs $75. Select 50K costs $165, and a reset costs $109."
+      },
+      {
+        "url": "https://tradeify.co/",
+        "quote": "50KEvaluation | $165 | $116 | one time payment | ... | Reset Fee | Allowed up to 10 resets per month | $109",
+        "note": "Homepage (US-IP box): $165 list and $116 with code GEMS ('Save $50 with code GEMS', coupon not checkout-verified); the reset fee shows one figure, $109."
+      }
+    ],
+    "dataChange": "none; tradeify.json already labels $109 as the Select 50K reset fee and $165 as the purchase price."
   }
 }

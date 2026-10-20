@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-09-08",
+  "capturedAt": "2026-10-20",
   "searchDemand": {
     "sourceUrl": "https://a.pr-cy.ru/proptreiding.ru/",
     "sourceType": "third-party Yandex Moscow estimate",
@@ -11,14 +11,15 @@
     "notes": [
       "The figures are a third-party Moscow estimate, not first-party Search Console or Yandex Webmaster data.",
       "The two query frequencies overlap and must not be added into a total audience figure.",
-      "The page must answer forex-specific product questions rather than duplicate the generic Russian ranking."
+      "The page must answer forex-specific product questions rather than duplicate the generic Russian ranking.",
+      "The 2026-10-20 forex-source recheck did not re-read these third-party demand figures; they stay dated by their January 2026 period."
     ]
   },
   "firms": [
     {
       "firmSlug": "fundednext",
       "firmName": "FundedNext",
-      "sourceCapturedAt": "2026-09-08",
+      "sourceCapturedAt": "2026-10-20",
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8224087-fundednext-tradable-assets-what-can-i-trade-on-fundednext-cfd-accounts",
         "https://help.fundednext.com/en/articles/8019669-what-is-the-leverage-of-the-trading-account",
@@ -48,13 +49,15 @@
         "The published symbol list is for FundedNext CFD Stellar accounts and contains 43 unique forex pairs.",
         "The live terminal remains the final source for enabled symbols on a specific account and platform.",
         "The September 8 recheck includes the leverage article's two embedded images: Stellar 1-Step forex is 1:30 in both stages, while Stellar 2-Step and Lite remain 1:100. This corrects our prior grouping; it does not establish a new policy-change date.",
+        "2026-10-20 recheck (12:55 Riga, US-IP box): the tradable-assets article (dated September 8, 2026) still lists the same 43 forex pairs in the same order: \"AUDCAD, AUDCHF, AUDJPY, ... USDZAR, NZDUSD, and USDSEK.\" No symbol changes.",
+        "2026-10-20 recheck: the leverage article's two images still read \"Stellar 1-Step Account | Forex 1:30\" and \"Stellar 2-Step & Lite Account | Forex 1:100\" in both the Challenge Account and FundedNext Account tables; the Stellar Instant article still says \"Forex: 1:30\"; https://fundednext.com/cfds still names MetaTrader 4, MetaTrader 5, cTrader and Match-Trader.",
         "This forex-source recheck does not refresh challenge prices or the separate country-access evidence. No Russia-access promise is allowed."
       ]
     },
     {
       "firmSlug": "bright-funded",
       "firmName": "BrightFunded",
-      "sourceCapturedAt": "2026-09-08",
+      "sourceCapturedAt": "2026-10-20",
       "sourceUrls": [
         "https://help.brightfunded.com/en/articles/9268749-what-trading-assets-instruments-offers-brightfunded",
         "https://help.brightfunded.com/en/articles/9268380-what-is-the-leverage-in-brightfunded-s-simulated-trading-environment",
@@ -80,9 +83,11 @@
         }
       ],
       "notes": [
-        "BrightFunded publishes major, minor and exotic forex coverage and links an instrument sheet. The help page itself has no total; the linked sheet's row count has not been verified in this capture.",
+        "BrightFunded publishes major, minor and exotic forex coverage and links an instrument sheet. The help page itself has no total. On 2026-10-20 the linked Google Sheet's FOREX tab (https://docs.google.com/spreadsheets/d/1dfcTl9UnFGp6n1QbsYqmIAIWlEiGUU5_56mlfvxAOng/edit?gid=26357616) listed 47 FOREX rows, AUD/CAD through ZAR/JPY; the live terminal remains the final source.",
         "The 1:100 forex leverage applies to both Challenge and Funded Account simulated environments.",
-        "Platform eligibility is profile-specific and must be checked before purchasing a product."
+        "Platform eligibility is profile-specific and must be checked before purchasing a product.",
+        "2026-10-20 recheck (12:55 Riga, US-IP box): the instruments article still reads \"Forex: We provide access to major, minor, and exotic forex pairs.\" The leverage article still reads \"Forex (FX): 1:100\" and \"The leverage is the same for Challenges and Funded Accounts.\"",
+        "2026-10-20 platform article: \"we have three platforms ... DXTrade, cTrader and MT5\"; \"If you are citizen, resident, or live in the US or UAE, MT5 will not be available for you due to local regulations. This also applies to restricted countries.\" The cTrader note names the US and adds the same restricted-countries sentence, which is new since the September 8 capture."
       ]
     }
   ]
