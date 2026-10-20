@@ -17,6 +17,7 @@ import {
 } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { isProductSetFresh } from '@/lib/reviewFreshness'
 
 type RussianPartnerReviewProps = {
   path: RussianRoutePath
@@ -153,7 +154,7 @@ export default function RussianPartnerReview({
   ])
   const faq = faqPageSchema(faqs)
   const faqSchemaCurrent = products.length > 0
-    && products.every(product => isChallengeFresh(product))
+    && isProductSetFresh(products)
     && faqSourceDates.length > 0
     && faqSourceDates.every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
   const article = {

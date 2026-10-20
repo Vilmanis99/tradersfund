@@ -1,5 +1,6 @@
 import { firmSlug } from './firmSlug.ts'
 import 'server-only'
+import { isFreshOrNotOnSale } from './reviewFreshness.ts'
 
 import {
   getChallengeWatchEntries,
@@ -8,7 +9,6 @@ import {
 } from '@/lib/challengeWatch'
 import {
   getChallengesByFirm,
-  isChallengeFresh,
   minimumCostToFundedUsd,
   type Challenge,
   type ChallengeProfitTargets,
@@ -127,7 +127,7 @@ export function buildIndiaMatcherFirms(firms: Firm[]): IndiaMatcherFirm[] {
     if (!evidence || !passesIndiaRegulatoryCountryGate(evidence)) return []
 
     const products = getChallengesByFirm(slug)
-      .filter(challenge => isChallengeFresh(challenge))
+      .filter(challenge => isFreshOrNotOnSale(challenge))
       .filter(challenge => passesIndiaProductGate(evidence, challenge.productSlug))
       .map(challenge => {
         const sizeCap = indiaAccountSizeCapUsd(evidence, challenge.productSlug)

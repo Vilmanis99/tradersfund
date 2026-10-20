@@ -19,6 +19,7 @@ import { compareRussianRanking } from '@/lib/russianRanking'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
+import { isProductSetFresh } from '@/lib/reviewFreshness'
 
 const PATH = '/ru/luchshie-prop-firmy'
 // Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
@@ -208,7 +209,7 @@ export default function RussianBestPropFirmsPage() {
       const products = challenges.filter(challenge => challenge.firmSlug === slug)
       return { firm, slug, products }
     })
-    .filter(item => item.products.length > 0 && item.products.every(product => isChallengeFresh(product)))
+    .filter(item => isProductSetFresh(item.products))
     // Editorial pins (content/data/ru-ranking.json) lead only while the pinned
     // firm is open to Russia; then Russia access status, score and name.
     .sort((a, b) => compareRussianRanking(

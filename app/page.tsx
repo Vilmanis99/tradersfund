@@ -19,6 +19,7 @@ import DisclosureNote from '@/components/home/DisclosureNote'
 import Guides from '@/components/home/Guides'
 import HomeFaq from '@/components/home/HomeFaq'
 import { getHomeComparisonRows, getHomeCounters, getVerifiedCode } from '@/components/home/homeData'
+import { isProductSetFresh } from '@/lib/reviewFreshness'
 
 export const revalidate = 3600
 
@@ -80,7 +81,7 @@ export default function Home() {
     const firm = firms.find(candidate => outboundSlug(candidate.name) === partner.slug)
     if (!firm?.affiliateUrl) return []
     const products = challenges.filter(product => product.firmSlug === partner.slug)
-    const fresh = products.length > 0 && products.every(product => isChallengeFresh(product))
+    const fresh = isProductSetFresh(products)
     const cheapest = tableRows.find(row => row.firmSlug === partner.slug)
     return [{
       ...partner,

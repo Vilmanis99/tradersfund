@@ -25,3 +25,18 @@ export function hasNoListedPrice(product: PricedProduct): boolean {
 export function reviewFreshnessBlockers<T extends PricedProduct & Pick<Challenge, 'sourceCapturedAt'>>(products: T[], now = new Date()): T[] {
   return products.filter(product => !hasNoListedPrice(product) && !isChallengeFresh(product, now))
 }
+
+/** Same rule for one product: fresh, or not on sale (no listed fee to go stale). */
+export function isFreshOrNotOnSale(product: PricedProduct & Pick<Challenge, 'sourceCapturedAt'>, now = new Date()): boolean {
+  return hasNoListedPrice(product) || isChallengeFresh(product, now)
+}
+
+/**
+ * Shared firm/product-set freshness gate: at least one product, and no
+ * product that still shows a price is outside the 30-day window. Used by the
+ * review FAQ, the India shortlist and challenge-changes counts, and the other
+ * "every product fresh" gates.
+ */
+export function isProductSetFresh(products: Array<PricedProduct & Pick<Challenge, 'sourceCapturedAt'>>, now = new Date()): boolean {
+  return products.length > 0 && reviewFreshnessBlockers(products, now).length === 0
+}
