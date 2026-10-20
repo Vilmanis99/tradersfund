@@ -669,7 +669,7 @@
     "observedAt": "2026-09-15",
     "lastCheckedAt": "2026-10-20",
     "title": "FXIFY checkout ladders verified; program-page cards still need a presentation fix",
-    "summary": "Checked 2026-10-20: the inline pricing-table data on FXIFY's program pages matches every stored list price for these 8 products (54 tiers). That check read the page data, not the rendered cards, so the earlier generic $250/$5K card display caveat is not confirmed fixed. The older Instant Funding Lite launch article's six-tier ladder remains a historical caveat, not a checkout quote.",
+    "summary": "Checked 2026-10-20: the inline pricing-table data on FXIFY's program pages matches every stored list price for these 8 products (54 tiers). The server-rendered program cards on all five program pages still show the generic \"$250 For $5k account\" One Phase card (rechecked 2026-10-20), so the presentation caveat stays open. The older Instant Funding Lite launch article's six-tier ladder remains a historical caveat, not a checkout quote.",
     "traderImpact": "The structured comparison uses list-price ladders that matched FXIFY's first-party price data again on 2026-10-20: 54 tiers across these 8 FXIFY products, including five Instant Funding Lite tiers at $19/$44/$89/$169/$289. Coupons, add-ons, country eligibility, and the final checkout total are not included in list prices; re-check the routed checkout before paying.",
     "sourceUrls": [
       "https://trader.fxify.com/purchasechallenge",
