@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import Link from '@/components/SafeLink'
-import { ArrowRight, BarChart3, CheckCircle2, Scale, ShieldAlert, ShieldCheck } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Scale, ShieldAlert, ShieldCheck } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
@@ -17,7 +17,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 
 const PATH = '/ru/ftmo-vs-fundednext'
 const TITLE = 'FTMO или FundedNext: что выбрать трейдеру из России в 2026'
-const DESCRIPTION = 'FTMO или FundedNext: сравнение 2-Step и 1-Step, взносов в EUR и USD, просадки, сплита и выплат. FTMO закрыта для резидентов РФ, FundedNext CFD — открыта.'
+const DESCRIPTION = 'FTMO или FundedNext: 2-Step и 1-Step, взносы в EUR и USD, просадка, сплит и выплаты. Обе фирмы закрыты для резидентов РФ — сравнение для других стран.'
 
 // Official pages re-read by the RU Writer on this date (country lists, payment/withdrawal methods, news rule, scaling caps).
 const CHECKED = '20.10.2026'
@@ -27,6 +27,10 @@ const TRACKER_SPLIT = '14.10.2026' // /workspace/ru-data/2026-10-14-the5ers-ftmo
 const TRACKER_FN_PAYMENTS = '14.10.2026' // /workspace/ru-data/2026-10-14-payment-methods.md
 const TRACKER_BRIGHT_COUNTRIES = '19.10.2026'
 const TRACKER_CFT_ACCESS = '14.10.2026'
+// Prop Firm Tracker, branch data/daily-check-2026-10-20 @ 73287b9 (FundedNext footer vs ToS, payout methods, Rise, caps, Futures KZ; FTMO on-demand payouts).
+const TRACKER_0920 = '20.10.2026'
+/** Prop Firm Tracker 41f3c05 (20.10.2026): FundedNext russiaStatus restricted — the fundednext.com footer excludes Russia (treated as operative), ToS §5.3 (CFD) does not name Russia, Futures bans purchases from Russia. */
+const FN_RU_CAVEAT = `Недоступно для РФ: в подвале сайта fundednext.com сказано, что компании FundedNext не оказывают услуги резидентам России; список в условиях (п. 5.3, CFD) Россию не называет, но действующим мы считаем более строгий источник (по данным на ${TRACKER_0920}). Резидент РФ рискует получить отказ в обслуживании или в выплате.`
 
 const SRC = {
   ftmoCountries: 'https://ftmo.com/en/faq/who-can-join-ftmo/',
@@ -46,6 +50,15 @@ const SRC = {
   fnPlatforms: 'https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext',
   fnTwoStep: 'https://fundednext.com/cfds/stellar-2-step',
   brightCountries: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
+  fnSite: 'https://fundednext.com/',
+  fnTerms: 'https://fundednext.com/api_docs/terms-of-service',
+  fnAllocationCap: 'https://help.fundednext.com/en/articles/8027523',
+  fnScaleUp: 'https://help.fundednext.com/en/articles/13349186',
+  fnScaleUpOld: 'https://help.fundednext.com/en/articles/8019659',
+  fnOnDemand: 'https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards',
+  fnInstantConsistency: 'https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account',
+  riseCountries: 'https://help.riseworks.io/en/articles/7198515-unsupported-countries-regions-and-states',
+  ftmoPromoOnDemand: 'https://promo.ftmo.com/m26b-practice-trading-without-risk/',
 }
 
 export const revalidate = 3600
@@ -61,7 +74,7 @@ export const metadata: Metadata = {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Что лучше: FTMO или FundedNext?',
-    a: `Универсального победителя нет. Сначала страна: резидентам России FTMO недоступна, у FundedNext Россия не входит в список ограничений CFD-программ, но ограничена во FundedNext Futures (по данным на ${CHECKED}). Если обе фирмы открыты для вашей страны, сравнивайте конкретный продукт: число этапов, тип просадки, валюту взноса, долю вознаграждения и срок первой выплаты.`,
+    a: `Для резидентов России — ни одна. FTMO Россию прямо ограничивает (по данным на ${CHECKED}). FundedNext резидентам России тоже недоступна: так сказано в подвале её сайта, хотя список в условиях CFD (п. 5.3) Россию не называет; FundedNext Futures запрещает покупку из России (по данным на ${TRACKER_0920}). Из партнёров сайта резидентам РФ мы рекомендуем BrightFunded. Если обе фирмы открыты для вашей страны, сравнивайте конкретный продукт: число этапов, тип просадки, валюту взноса, долю вознаграждения и срок первой выплаты.`,
   },
   {
     q: 'Работает ли FTMO в России?',
@@ -69,7 +82,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Можно ли трейдеру из России пройти FundedNext?',
-    a: `Для CFD-программ Stellar Россия не указана в списке ограничений на ${CHECKED}. FundedNext Futures Россию ограничивает. Проверка личности и способ оплаты — отдельные шаги: регистрация ещё не означает, что пройдёт KYC и сработает ваш платёж. FundedNext прямо пишет, что VPN, прокси, чужие документы или ложные данные о стране ведут к закрытию аккаунта.`,
+    a: `${FN_RU_CAVEAT} FundedNext Futures Россию ограничивает. Поэтому FundedNext мы резидентам РФ не советуем; резидентам России рекомендуем BrightFunded. Проверка личности и способ оплаты — отдельные шаги: регистрация ещё не означает, что пройдёт KYC и сработает ваш платёж. FundedNext прямо пишет, что VPN, прокси, чужие документы или ложные данные о стране ведут к закрытию аккаунта.`,
   },
   {
     q: 'У кого выше сплит?',
@@ -81,7 +94,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Как оплатить FundedNext из России?',
-    a: `FundedNext перечисляет карты (оформленные на ваше имя), PayPal, Skrill, Apple Pay, Google Pay, Binance Pay и криптовалюту (по данным на ${CHECKED}). Ни одна страница фирмы не упоминает «Мир» или карты российских банков, поэтому мы не утверждаем, что они сработают. Выплаты банковским переводом и на карту для России FundedNext не проводит.`,
+    a: `Сначала учтите: FundedNext резидентам РФ недоступна (подвал сайта, по данным на ${TRACKER_0920}), так что оплата из России рискует закончиться отказом в обслуживании или в выплате. FundedNext перечисляет карты (оформленные на ваше имя), PayPal, Skrill, Apple Pay, Google Pay, Binance Pay и криптовалюту (по данным на ${CHECKED}). «Мир» и карты Visa/Mastercard российских банков на кассе FundedNext не подтверждены. Для выплат банковский перевод России недоступен, выплата на карту — России и Беларуси, а Rise резидентов России не обслуживает (по данным на ${TRACKER_0920}).`,
   },
 ]
 
@@ -159,9 +172,9 @@ const STELLAR_LITE_PAYOUT = 'для счетов, купленных или сб
 function payoutLabel(product: Challenge) {
   if (product.firmSlug === 'fundednext' && product.productSlug === 'stellar-lite' && product.payoutFirstDays === 10) return STELLAR_LITE_PAYOUT
   if (product.firmSlug === 'ftmo') {
-    // Tracker 19.10.2026: first claim from day 14 after the first trade; later cadence is not public, so the stored "on-demand" is not shown.
+    // Tracker 20.10.2026: FTMO FAQ "on the 14th or any following day after the first trade"; promo page "on demand after a minimum of 14 days".
     return product.payoutFirstDays === 14
-      ? 'первый запрос — с 14-го дня после первой сделки; график следующих FTMO публично не уточняет'
+      ? 'по запросу, с 14-го дня после первой сделки (по данным на 20.10.2026)'
       : 'срок не подтверждён'
   }
   const scoped = fundedNextOneStepPayoutLabel(product)
@@ -233,16 +246,16 @@ export default function RussianFtmoVsFundedNextPage() {
     {
       field: 'Доступ для резидентов РФ',
       ftmo: <>Закрыта <RuAccessBadge firm="ftmo" /></>,
-      fn: <>CFD — Россия не в списке ограничений <RuAccessBadge firm="fundednext" />; Futures Россию ограничивает</>,
+      fn: <>Закрыта <RuAccessBadge firm="fundednext" />: подвал сайта исключает Россию, список в условиях CFD (п. 5.3) её не называет (по данным на {TRACKER_0920}); Futures Россию тоже ограничивает</>,
     },
     { field: 'Основана / офис', ftmo: corporate(ftmoFirm), fn: corporate(fnFirm, '; договорное лицо FundedNext Ltd зарегистрировано на Коморах') },
     { field: 'Платформы', ftmo: ftmoFirm?.platforms.join(', ') ?? '—', fn: fnFirm?.platforms.join(', ') ?? '—' },
-    { field: 'Потолок капитала', ftmo: `до $2,000,000 через Scaling Plan (+25% каждые 4 месяца при условиях плана; по данным на ${CHECKED})`, fn: `$300K активного капитала; на странице Stellar 2-Step также указан Scale-Up Ceiling до $4,000,000 (по данным на ${CHECKED})` },
+    { field: 'Потолок капитала', ftmo: `до $2,000,000 через Scaling Plan (+25% каждые 4 месяца при условиях плана; по данным на ${CHECKED})`, fn: `$300K — общий лимит капитала на одновременно открытых funded-счетах (у Lite — $200K); $4M — потолок роста одного счёта через Scale-Up, +25% за каждый подходящий цикл (с 12.01.2026), купить такой счёт нельзя. Более старая статья справки говорит о +40% раз в 4 месяца (по данным на ${TRACKER_0920})` },
     { field: 'Программы (свежие записи)', ftmo: productsLabel(ftmoRows), fn: productsLabel(fnRows) },
     { field: 'Валюта и диапазон взноса', ftmo: ftmoRows.map(row => `${row.product.productName.replace('FTMO Challenge: ', '')}: ${row.price}`).join('; ') || '—', fn: fnRows.filter(row => row.product.phases > 0).map(row => `${row.product.productName.replace('Stellar ', '')}: ${row.price}`).join('; ') || '—' },
     { field: 'Размеры счёта', ftmo: ftmoTwo ? sizesLabel(ftmoTwo) : '—', fn: fnTwo ? `${sizesLabel(fnTwo)} (Lite: ${fnLite ? sizesLabel(fnLite) : '—'}; Instant: ${fnInstant ? sizesLabel(fnInstant) : '—'})` : '—' },
     { field: 'Доля вознаграждения', ftmo: `2-Step ${ftmoTwo ? splitLabel(ftmoTwo) : '—'} (90% через Scaling/Premium); 1-Step ${ftmoOne ? splitLabel(ftmoOne) : '—'}`, fn: `Stellar ${fnTwo ? splitLabel(fnTwo) : '—'} (дополнения до 95%); Instant ${fnInstant ? splitLabel(fnInstant) : '—'}` },
-    { field: 'Первая выплата', ftmo: 'с 14-го дня после первой сделки; дальнейший график публично не уточнён', fn: `2-Step: ${fnTwo?.payoutFirstDays ?? '—'} дн., далее 14-дневные циклы; 1-Step: ${fnOne?.payoutFirstDays ?? '—'} раб. дн.; Lite: ${fnLite?.payoutFirstDays === 10 ? '10 раб. дн. для счетов, купленных или сброшенных с 12.10.2026 (у более ранних — 21 день)' : 'срок не подтверждён'}; Instant: по запросу при росте 5%` },
+    { field: 'Первая выплата', ftmo: `по запросу, с 14-го дня после первой сделки (по данным на ${TRACKER_0920})`, fn: `2-Step: ${fnTwo?.payoutFirstDays ?? '—'} дн., далее 14-дневные циклы; 1-Step: ${fnOne?.payoutFirstDays ?? '—'} раб. дн.; Lite: ${fnLite?.payoutFirstDays === 10 ? '10 раб. дн. для счетов, купленных или сброшенных с 12.10.2026 (у более ранних — 21 день)' : 'срок не подтверждён'}; Instant: по запросу при росте 5%` },
     { field: 'Trustpilot', ftmo: trustpilot(ftmoFirm), fn: trustpilot(fnFirm) },
   ]
   const crumbs = breadcrumbSchema([
@@ -275,24 +288,30 @@ export default function RussianFtmoVsFundedNextPage() {
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Сравнение · доступ проверен {CHECKED}</div>
           <h1>FTMO или FundedNext: что выбрать в 2026 году</h1>
           <p className="ru-lead">
-            Если вы живёте в России, выбор решён ещё до сравнения цен: FTMO резидентов РФ не принимает, а CFD-программы
-            FundedNext в списке ограничений Россию не называют. Если вы русскоязычный трейдер в другой стране, ниже — честное
-            сравнение продуктов: этапы, просадка, взносы в EUR и USD, доля вознаграждения и выплаты.
+            Если вы живёте в России, ни одна из этих двух фирм вам не подходит: FTMO резидентов РФ не принимает, а FundedNext в
+            подвале своего сайта исключает резидентов России. Резидентам России мы рекомендуем BrightFunded. Если вы русскоязычный трейдер в другой стране, ниже — честное сравнение продуктов: этапы, просадка,
+            взносы в EUR и USD, доля вознаграждения и выплаты.
           </p>
           <div className="ru-notice" data-russian-access-answer="first-screen">
             <strong>Коротко о доступе (по данным на {CHECKED}):</strong>
             <ul>
               <li>FTMO <RuAccessBadge firm="ftmo" /> — Российская Федерация, Беларусь и Казахстан в официальном списке ограничений.</li>
-              <li>FundedNext CFD <RuAccessBadge firm="fundednext" /> — России и Казахстана в списке ограничений нет, Беларусь есть.</li>
+              <li data-russian-fundednext-access="footer-restricted">FundedNext CFD <RuAccessBadge firm="fundednext" /> — {FN_RU_CAVEAT} Беларусь закрыта в обоих источниках; Казахстана в списке ограничений CFD нет.</li>
               <li>FundedNext Futures ограничивает Россию, Беларусь и Украину.</li>
+              <li>BrightFunded <RuAccessBadge firm="bright-funded" /> — Россия не в списке ограничений BrightFunded (по данным на {TRACKER_BRIGHT_COUNTRIES}).</li>
             </ul>
           </div>
           <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Редакционная проверка: {articleDateModified}. Даты источников указаны у каждого факта.</p>
           <div className="ru-actions">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-comparison-ftmo-fundednext" rel={goLinkRel('fundednext')} className="btn-primary btn-glow">
-              Перейти в FundedNext <ArrowRight size={15} aria-hidden="true" />
+            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-comparison-ftmo-fundednext-bright-funded" rel={goLinkRel('bright-funded')} className="btn-primary btn-glow">
+              Для резидентов РФ: BrightFunded <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
-            <span className="ru-muted">только CFD; FundedNext Futures Россию ограничивает</span>
+          </div>
+          <div className="ru-actions" data-russian-comparison-fundednext-cta="secondary-restricted">
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-comparison-ftmo-fundednext" rel={goLinkRel('fundednext')} className="btn-outline">
+              Сайт FundedNext <ArrowRight size={14} aria-hidden="true" />
+            </RuGoLink>
+            <span className="ru-muted">для резидентов других стран; резидентам РФ FundedNext недоступна</span>
           </div>
           <div className="ru-actions" data-russian-comparison-ftmo-cta="secondary-restricted">
             <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-comparison-ftmo-fundednext" rel={goLinkRel('ftmo')} className="btn-outline">
@@ -313,7 +332,7 @@ export default function RussianFtmoVsFundedNextPage() {
             Решают гражданство, место проживания, проверка личности, способ оплаты и способ выплаты. Не используйте VPN,
             чужие документы или неверный адрес: обе фирмы считают это нарушением, и аккаунт закрывают.
           </div>
-          <p className="ru-source-line">На странице есть партнёрская ссылка FundedNext: после регистрации мы можем получить комиссию. У FTMO партнёрской программы с нами нет — ссылка ведёт на официальный сайт без комиссии.</p>
+          <p className="ru-source-line">На странице есть партнёрские ссылки BrightFunded и FundedNext: после регистрации мы можем получить комиссию. У FTMO партнёрской программы с нами нет — ссылка ведёт на официальный сайт без комиссии.</p>
         </div>
       </section>
 
@@ -321,14 +340,15 @@ export default function RussianFtmoVsFundedNextPage() {
         <div className="ru-shell ru-content ru-review-article" data-russian-comparison-verdict="by-trader-type">
           <h2>Короткий вердикт: для резидентов РФ выбор решает доступ, а не цена</h2>
           <p>
-            <strong>Живёте в России.</strong> FTMO не рассматривайте вовсе: Россия в её списке ограничений, и никакая скидка или
-            удачная цена этого не меняет. Из этой пары остаётся FundedNext, причём только CFD-линейка Stellar. Заранее учтите две
-            вещи: банковский перевод и выплату на карту FundedNext для России не проводит, а «Мир» и карты российских банков фирма
-            нигде не упоминает. Прежде чем платить, разберитесь, каким способом вы будете получать деньги.
+            <strong>Живёте в России.</strong> Из этой пары надёжного варианта нет. FTMO Россию прямо ограничивает, и никакая скидка
+            этого не меняет. FundedNext в подвале сайта пишет, что резидентам России услуги не оказываются, хотя список в условиях
+            CFD Россию не называет. Платить из России — значит рисковать отказом в обслуживании или в выплате.
+            К тому же банковский перевод, выплата на карту и Rise для России недоступны. Мы рекомендуем BrightFunded: Россия не
+            входит в его списки ограничений.
           </p>
           <p>
-            <strong>Живёте в Казахстане или Беларуси.</strong> FTMO закрыта для обеих стран. FundedNext CFD ограничивает Беларусь,
-            а Казахстана в её списке нет.
+            <strong>Живёте в Казахстане или Беларуси.</strong> FTMO закрыта для обеих стран. FundedNext ограничивает Беларусь,
+            а Казахстана в списке CFD нет; во FundedNext Futures Казахстан в списке Live Trading Country Eligibility.
           </p>
           <p>
             <strong>Живёте в стране, открытой для обеих фирм.</strong> FTMO стоит выбрать, если нужны TradingView, возврат
@@ -339,7 +359,7 @@ export default function RussianFtmoVsFundedNextPage() {
           <p>
             <strong>Торгуете на новостях.</strong> У FTMO новостные ограничения действуют только на счёте FTMO с типом Standard,
             а у Swing их нет. У FundedNext на профинансированном счёте прибыль от сделок вокруг важных новостей засчитывается
-            только на 40%.
+            только на 40%; правило лучшего дня 40% — отдельное и действует лишь при выплатах по запросу.
           </p>
         </div>
       </section>
@@ -348,13 +368,20 @@ export default function RussianFtmoVsFundedNextPage() {
         <div className="ru-shell ru-content ru-review-article">
           <h2>Доступ из России, Беларуси и Казахстана: FTMO и FundedNext</h2>
           <p>Таблица собрана по официальным спискам ограничений, проверенным {CHECKED}. «Нет в списке» означает только то, что страна не названа в ограничениях: регистрацию с российскими документами мы не тестировали.</p>
+          <p className="ru-notice" data-russian-fundednext-access-conflict="footer-restricted">
+            <strong>FundedNext и Россия: недоступно.</strong> В подвале fundednext.com: «The FundedNext Entities do not offer
+            services to residents of the following jurisdictions: North Korea (DPRK), Myanmar, Belarus, Iran, and Russia…». В условиях
+            (п. 5.3, CFD) список ограниченных стран Россию не содержит (оба источника — по данным на {TRACKER_0920}). Мы считаем
+            действующим более строгий источник — подвал сайта: для резидентов РФ FundedNext закрыта, а при попытке оплаты есть риск
+            отказа в обслуживании или в выплате.
+          </p>
           <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Доступ по странам">
             <table className="ru-table" data-russian-access-table="ru-by-kz">
               <thead><tr><th>Продукт</th><th>Россия</th><th>Беларусь</th><th>Казахстан</th><th>Источник</th></tr></thead>
               <tbody>
                 <tr><td><strong>FTMO CFDs</strong></td><td>закрыта</td><td>закрыта</td><td>закрыта</td><td><a href={SRC.ftmoCountries} target="_blank" rel="noopener noreferrer">ftmo.com, Who can join FTMO</a></td></tr>
-                <tr><td><strong>FundedNext CFD (Stellar)</strong></td><td>нет в списке</td><td>закрыта</td><td>нет в списке</td><td><a href={SRC.fnCfdCountries} target="_blank" rel="noopener noreferrer">справка FundedNext (CFD)</a></td></tr>
-                <tr><td><strong>FundedNext Futures</strong></td><td>закрыта</td><td>закрыта</td><td>покупка возможна; при переходе к live-торговле фирма отдельно рассматривает случай</td><td><a href={SRC.fnFuturesCountries} target="_blank" rel="noopener noreferrer">справка FundedNext Futures</a></td></tr>
+                <tr><td><strong>FundedNext CFD (Stellar)</strong></td><td>закрыта: подвал сайта исключает Россию; список в условиях (п. 5.3) её не называет</td><td>закрыта</td><td>нет в списке</td><td><a href={SRC.fnCfdCountries} target="_blank" rel="noopener noreferrer">справка FundedNext (CFD)</a>; <a href={SRC.fnTerms} target="_blank" rel="noopener noreferrer">условия, п. 5.3</a>; <a href={SRC.fnSite} target="_blank" rel="noopener noreferrer">подвал fundednext.com</a> ({TRACKER_0920})</td></tr>
+                <tr><td><strong>FundedNext Futures</strong></td><td>закрыта (в списке запрета покупки)</td><td>закрыта</td><td>в списке Live Trading Country Eligibility (статья от 30.09.2026): покупка, торговля и выплаты разрешены; при переходе к live-торговле с трейдером свяжется Risk Desk</td><td><a href={SRC.fnFuturesCountries} target="_blank" rel="noopener noreferrer">справка FundedNext Futures</a></td></tr>
               </tbody>
             </table>
           </div>
@@ -416,7 +443,7 @@ export default function RussianFtmoVsFundedNextPage() {
             </p>
             <p>
               Деньги после оценки: у FTMO базовая доля {splitLabel(ftmoTwo)}, а 90% даёт план масштабирования или Premium
-              (по данным на {TRACKER_SPLIT}). Первый запрос — с 14-го дня после первой сделки. У FundedNext базовая доля {splitLabel(fnTwo)},
+              (по данным на {TRACKER_SPLIT}). Запрос — по требованию, с 14-го дня после первой сделки (по данным на {TRACKER_0920}). У FundedNext базовая доля {splitLabel(fnTwo)},
               первый запрос через {fnTwo.payoutFirstDays ?? '—'} дн., затем каждые 14 дней. Возврат взноса есть у обеих программ,
               у FundedNext — с первым вознаграждением.
             </p>
@@ -475,22 +502,23 @@ export default function RussianFtmoVsFundedNextPage() {
           <h2>Сплит и выплаты</h2>
           <p>
             <strong>FTMO.</strong> 2-Step — 80% по умолчанию, 90% через Scaling Plan или Premium; 1-Step — 90% (по данным на {TRACKER_SPLIT}).
-            Первую выплату можно запросить на 14-й день после первой сделки. График следующих выплат FTMO публично не уточняет
-            (по данным на {TRACKER_FTMO_PAYMENTS}). Способы: банковский перевод, Visa Direct / Mastercard Send (до $20 000),
+            Вознаграждение запрашивается по требованию: на 14-й или любой следующий день после первой сделки (по данным на{' '}
+            {TRACKER_0920}). Способы: банковский перевод, Visa Direct / Mastercard Send (до $20 000),
             Skrill (до $3 000) и криптовалюта. FTMO пишет, что сама комиссию за вывод не берёт; проверка заявки и отправка денег
             занимают обычно по 1–2 рабочих дня.
           </p>
           <p>
             <strong>FundedNext.</strong> Базовая доля Stellar 2-Step, 1-Step и Lite — 80%, с дополнениями до 95%. Stellar Instant
-            стартует с 70% (по данным на 19.10.2026). Способы вывода: USDT (ERC20, TRC20), USDC (ERC20), Confirmo, RiseWorks,
-            банковский перевод, карта и зачисление на FNmarkets. Для России банковский перевод и выплата на карту недоступны —
-            Россия есть в обоих списках исключений. Доступна ли россиянам RiseWorks, мы не подтверждали. Обработку заявки
+            стартует с 70% (по данным на 19.10.2026). Способы вывода по справке (обновлена 02.10.2026): банковский перевод, Rise,
+            криптовалюта (USDT ERC20/TRC20, USDC ERC20), карта, Confirmo и зачисление на FNmarkets. Банковский перевод недоступен
+            для России, выплата на карту — для России и Беларуси, а Rise по собственной справке не обслуживает резидентов России
+            (по данным на {TRACKER_0920}). Обработку заявки
             FundedNext обещает в течение 24 часов (по данным на {CHECKED}). У Stellar Lite для счетов, купленных или сброшенных
             12 октября 2026 года и позже, первая выплата доступна через 10 рабочих дней, следующие — каждые 10 рабочих дней; для
             счетов, купленных или сброшенных раньше, действует прежнее правило: первая выплата через 21 день, далее каждые 14 дней
             (по данным на 20.10.2026, <a href={SRC.fnRewardSchedule} target="_blank" rel="noopener noreferrer">справка FundedNext о графике выплат</a>).
           </p>
-          <p className="ru-source-line">Источники: <a href={SRC.ftmoWithdraw} target="_blank" rel="noopener noreferrer">FTMO: How do I withdraw my reward</a>; <a href={SRC.fnWithdraw} target="_blank" rel="noopener noreferrer">FundedNext: How can I withdraw my profits</a>. Сравнение выплат у других фирм — в разделе <Link href="/ru/vyplaty-prop-firm">выплаты проп-фирм</Link>.</p>
+          <p className="ru-source-line">Источники: <a href={SRC.ftmoWithdraw} target="_blank" rel="noopener noreferrer">FTMO: How do I withdraw my reward</a>; <a href={SRC.fnWithdraw} target="_blank" rel="noopener noreferrer">FundedNext: How can I withdraw my profits</a>; <a href={SRC.riseCountries} target="_blank" rel="noopener noreferrer">Rise: unsupported countries</a>; <a href={SRC.ftmoPromoOnDemand} target="_blank" rel="noopener noreferrer">FTMO: on-demand rewards</a>. Сравнение выплат у других фирм — в разделе <Link href="/ru/vyplaty-prop-firm">выплаты проп-фирм</Link>.</p>
         </div>
       </section>
 
@@ -501,8 +529,9 @@ export default function RussianFtmoVsFundedNextPage() {
             <strong>FundedNext</strong> принимает карты Visa, Mastercard и Amex, оформленные на имя владельца аккаунта: при
             несовпадении имени заказ отменяют. Кроме того — PayPal (комиссия 1%), Skrill (3%), Apple Pay, Google Pay, Binance Pay и
             криптовалюта с комиссией 1%: BTC, ETH, LTC, DOGE, SOL, USDT (TRC20 и ERC20), USDC (ERC20). Данные по оплате — на {TRACKER_FN_PAYMENTS},
-            страница способов оплаты перепроверена {CHECKED}. Российских и СНГ-методов в списке локальных способов нет. «Мир» и карты
-            российских банков FundedNext не упоминает, поэтому мы не утверждаем, что они сработают.
+            страница способов оплаты перепроверена {CHECKED}. Российских и СНГ-методов в списке локальных способов нет. «Мир» и
+            карты Visa/Mastercard российских банков на кассе FundedNext не подтверждены (по данным на {TRACKER_0920}), а резидентам РФ
+            FundedNext недоступна — см. раздел о доступе.
           </p>
           <p>
             <strong>FTMO</strong> для резидентов России закрыта, так что её касса важна только для тех, кто живёт в других странах.
@@ -527,8 +556,10 @@ export default function RussianFtmoVsFundedNextPage() {
             этапе FTMO Account; на оценке их нет, у типа Swing их нет вовсе (по данным на 15.10.2026). У FundedNext сделки за 5 минут
             до и 5 минут после важной новости по связанному инструменту засчитываются только на 40% прибыли. Правило
             применяется на профинансированных счетах Stellar 1-Step, 2-Step и Lite, челленджа оно не касается (по данным на {CHECKED}).
+            Правило стабильности FundedNext — отдельное: лучший день не больше 40% прибыли, и действует оно только при выборе
+            выплат по запросу (On-Demand) у Stellar 2-Step и Lite. У Stellar Instant правил стабильности нет (по данным на {TRACKER_0920}).
           </p>
-          <p className="ru-source-line">Источники: <a href={SRC.ftmoPlatforms} target="_blank" rel="noopener noreferrer">FTMO: platforms</a>; <a href={SRC.ftmoTwoStep} target="_blank" rel="noopener noreferrer">FTMO 2-Step (новости)</a>; <a href={SRC.fnPlatforms} target="_blank" rel="noopener noreferrer">FundedNext: platforms</a>; <a href={SRC.fnNews} target="_blank" rel="noopener noreferrer">FundedNext: news trading</a>.</p>
+          <p className="ru-source-line">Источники: <a href={SRC.ftmoPlatforms} target="_blank" rel="noopener noreferrer">FTMO: platforms</a>; <a href={SRC.ftmoTwoStep} target="_blank" rel="noopener noreferrer">FTMO 2-Step (новости)</a>; <a href={SRC.fnPlatforms} target="_blank" rel="noopener noreferrer">FundedNext: platforms</a>; <a href={SRC.fnNews} target="_blank" rel="noopener noreferrer">FundedNext: news trading</a>; <a href={SRC.fnOnDemand} target="_blank" rel="noopener noreferrer">FundedNext: On-Demand</a>; <a href={SRC.fnInstantConsistency} target="_blank" rel="noopener noreferrer">Stellar Instant: consistency</a>.</p>
         </div>
       </section>
 
@@ -546,15 +577,6 @@ export default function RussianFtmoVsFundedNextPage() {
                 <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-ftmo-vs-fundednext-alt-bright-funded" rel={goLinkRel('bright-funded')} className="btn-primary">Перейти в BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               </div>
             </article>
-            <article className="ru-card" data-russian-alternative="fundednext">
-              <BarChart3 size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>FundedNext CFD <RuAccessBadge firm="fundednext" /></h3>
-              <p className="ru-muted">Участник этого сравнения: CFD-программы Россию в ограничениях не называют, Futures — называют (по данным на {CHECKED}).</p>
-              <p className="ru-source-line"><Link href="/ru/obzor-fundednext">Обзор FundedNext</Link> · <Link href="/ru/fundednext-vs-fundingpips">FundedNext или FundingPips</Link></p>
-              <div className="ru-actions">
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ftmo-vs-fundednext-alt-fundednext" rel={goLinkRel('fundednext')} className="btn-outline">Перейти в FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-              </div>
-            </article>
             <article className="ru-card" data-russian-alternative="crypto-fund-trader">
               <CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Crypto Fund Trader <RuAccessBadge firm="crypto-fund-trader" /></h3>
@@ -565,6 +587,7 @@ export default function RussianFtmoVsFundedNextPage() {
               </div>
             </article>
           </div>
+          <p className="ru-muted" data-russian-alternative-excluded="fundednext">FundedNext в этот список не входит: резидентам РФ она недоступна (подвал сайта; список в условиях п. 5.3 Россию не называет, по данным на {TRACKER_0920}).</p>
           <p className="ru-source-line">Полный рейтинг с отметкой доступа — <Link href="/ru/luchshie-prop-firmy">лучшие проп-фирмы для трейдеров из РФ</Link>.</p>
         </div>
       </section>
@@ -593,6 +616,10 @@ export default function RussianFtmoVsFundedNextPage() {
             <li><a href={SRC.fnFuturesCountries} target="_blank" rel="noopener noreferrer">FundedNext Futures: ограничения по странам</a> — {CHECKED}.</li>
             <li><a href={SRC.fnTwoStep} target="_blank" rel="noopener noreferrer">FundedNext Stellar 2-Step: Allocation Cap</a> — {CHECKED}.</li>
             <li><a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограничения по странам</a> — {TRACKER_BRIGHT_COUNTRIES}.</li>
+            <li><a href={SRC.fnSite} target="_blank" rel="noopener noreferrer">fundednext.com: подвал (Jurisdictional Restrictions)</a> и <a href={SRC.fnTerms} target="_blank" rel="noopener noreferrer">условия FundedNext, п. 5.3</a> — Prop Firm Tracker, {TRACKER_0920}.</li>
+            <li><a href={SRC.fnAllocationCap} target="_blank" rel="noopener noreferrer">FundedNext: лимит капитала $300K</a>, <a href={SRC.fnScaleUp} target="_blank" rel="noopener noreferrer">Scale-Up до $4M (+25%)</a> и <a href={SRC.fnScaleUpOld} target="_blank" rel="noopener noreferrer">старая статья (+40%)</a> — {TRACKER_0920}.</li>
+            <li><a href={SRC.fnWithdraw} target="_blank" rel="noopener noreferrer">FundedNext: способы вывода</a> и <a href={SRC.riseCountries} target="_blank" rel="noopener noreferrer">Rise: неподдерживаемые страны</a> — {TRACKER_0920}.</li>
+            <li><a href={SRC.ftmoWithdraw} target="_blank" rel="noopener noreferrer">FTMO: запрос вознаграждения</a> и <a href={SRC.ftmoPromoOnDemand} target="_blank" rel="noopener noreferrer">FTMO: on demand после 14 дней</a> — {TRACKER_0920}.</li>
           </ul>
           <p>Мы не тестировали регистрацию, KYC и оплату с российскими документами и картами и не получали выплаты по каждому сценарию. Если фирма меняет правила, сравнение нужно повторить перед оплатой.</p>
         </div>
@@ -602,13 +629,14 @@ export default function RussianFtmoVsFundedNextPage() {
         <div className="ru-shell" data-russian-affiliate-disclosure="comparison">
           <div className="ru-notice ru-disclosure">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            У FundedNext, BrightFunded и Crypto Fund Trader ссылки идут через наш маршрут /go. Партнёрская комиссия возможна там, где у нас есть программа (FundedNext, BrightFunded). У FTMO и Crypto Fund Trader партнёрства нет. Комиссия не меняет таблицы, порядок и оценку доступа.
+            У BrightFunded, FundedNext и Crypto Fund Trader ссылки идут через наш маршрут /go. Партнёрская комиссия возможна там, где у нас есть программа (BrightFunded, FundedNext). У FTMO и Crypto Fund Trader партнёрства нет. Комиссия не меняет таблицы, порядок и оценку доступа.
           </div>
           <div className="ru-notice" data-russian-risk-disclaimer="comparison">
             <strong>Риск.</strong> Оценочные программы платные, и при нарушении лимита взнос не возвращается. Прошлые результаты и доля вознаграждения не обещают дохода. Платите только ту сумму, потерю которой готовы принять.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-comparison-ftmo-fundednext-footer" rel={goLinkRel('fundednext')} className="btn-primary btn-glow">Перейти в FundedNext <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-comparison-ftmo-fundednext-footer-bright-funded" rel={goLinkRel('bright-funded')} className="btn-primary btn-glow">Для резидентов РФ: BrightFunded <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-comparison-ftmo-fundednext-footer" rel={goLinkRel('fundednext')} className="btn-outline">Сайт FundedNext — для резидентов других стран <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
             <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-comparison-ftmo-fundednext-footer" rel={goLinkRel('ftmo')} className="btn-outline">Сайт FTMO — для резидентов других стран <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
           </div>
           <p className="ru-source-line"><ShieldAlert size={14} aria-hidden="true" /> Нужна англоязычная версия? <Link href="/compare/ftmo-vs-fundednext" hrefLang="en">Открыть сравнение FTMO и FundedNext на английском</Link>.</p>
