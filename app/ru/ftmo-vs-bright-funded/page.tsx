@@ -15,7 +15,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 const PATH = '/ru/ftmo-vs-bright-funded'
 const TITLE = 'FTMO или BrightFunded: альтернатива FTMO для россиян'
 const H1 = 'FTMO или BrightFunded: альтернатива FTMO для россиян'
-const DESCRIPTION = 'FTMO закрыта для РФ, Беларуси и Казахстана. Сравниваем с BrightFunded цену, просадку, сплит, выплаты, платформы и оплату криптой по данным на 14.10.2026.'
+const DESCRIPTION = 'FTMO закрыта для РФ, Беларуси и Казахстана. Сравниваем с BrightFunded цену, просадку, сплит, выплаты, платформы и оплату криптой по данным на 19.10.2026.'
 
 export const revalidate = 3600
 
@@ -32,6 +32,8 @@ export const metadata: Metadata = {
 const TRACKER_CAPTURE = '2026-10-14'
 /** BrightFunded country sources re-read 2026-10-19: help article (updated 15.09.2026) lists 6 incl. Pakistan; Terms §2 list 5 without Pakistan and reserve further restrictions. */
 const BRIGHT_COUNTRIES_CHECKED = '2026-10-19'
+/** Prices re-read on ftmo.com (2-step-challenge, 1-step-challenge) and brightfunded.com (1-step, 2-step-bright, 2-step-classic) in the 2026-10-19 Tracker daily recheck; identical to the 14.10 capture. */
+const PRICE_CAPTURE = '2026-10-19'
 const RULES_CAPTURE = '2026-10-15'
 const TRUSTPILOT_CAPTURE = '2026-10-15'
 /** /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md (ftmo.com global pages, not FTMO US). */
@@ -137,6 +139,7 @@ export default function RussianFtmoVsBrightFundedPage() {
     && isChallengeFresh({ sourceCapturedAt: TRACKER_CAPTURE })
   const captureDates = [...brightAll, ...ftmoAll].map(product => product.sourceCapturedAt).filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date)).sort()
   const earliestCapture = captureDates[0] ?? TRACKER_CAPTURE
+  const priceCapture = earliestCapture > PRICE_CAPTURE ? earliestCapture : PRICE_CAPTURE
   const dateModified = russianRouteDateModified(PATH)
   const ftmoStatus = russiaStatusFor('ftmo')
   const brightStatus = russiaStatusFor('bright-funded')
@@ -166,7 +169,7 @@ export default function RussianFtmoVsBrightFundedPage() {
       id: 'price', field: 'Взнос за счёт $100K',
       bright: <>2-Step Classic {fee(bfClassic, 100000)} · 2-Step Bright {fee(bfBright, 100000)} · 1-Step {fee(bfOne, 100000)}</>,
       ftmo: <>2-Step {fee(ftmoTwo, 100000)} · 1-Step {fee(ftmoOne, 100000)}</>,
-      date: earliestCapture, source: bfClassic?.sourceUrl ?? SOURCES.ftmoTwoStep,
+      date: priceCapture, source: bfClassic?.sourceUrl ?? SOURCES.ftmoTwoStep,
     },
     {
       id: 'targets', field: 'Цели прибыли',
@@ -345,7 +348,7 @@ export default function RussianFtmoVsBrightFundedPage() {
               </tbody>
             </table>
           </div>
-          <p className="ru-source-line">Цены и параметры программ — из датированных записей по каждой программе (самая ранняя — {ruDate(earliestCapture)}). Доступ по странам и сплит FTMO — проверка {ruDate(TRACKER_CAPTURE)}; списки стран BrightFunded — {ruDate(BRIGHT_COUNTRIES_CHECKED)}; способы оплаты, вывода и график выплат обеих фирм — {ruDate(PAYMENTS_CAPTURE)}, по официальным страницам ftmo.com и справке BrightFunded.</p>
+          <p className="ru-source-line">Цены программ — {asOf(priceCapture)}; параметры — из датированных записей по каждой программе (самая ранняя — {ruDate(earliestCapture)}). Доступ по странам и сплит FTMO — проверка {ruDate(TRACKER_CAPTURE)}; списки стран BrightFunded — {ruDate(BRIGHT_COUNTRIES_CHECKED)}; способы оплаты, вывода и график выплат обеих фирм — {ruDate(PAYMENTS_CAPTURE)}, по официальным страницам ftmo.com и справке BrightFunded.</p>
         </div>
       </section>
 

@@ -118,7 +118,7 @@ export default function RussianBrightFundedReviewPage() {
   const bestPublicDealPct = publicDealPcts.length ? Math.max(...publicDealPcts) : null
   const offerStatusHref = publicBrightDeals.length > 0
     ? '/ru/promokody-prop-firm#bright-funded-promokody'
-    : '/ru/promokody-prop-firm#kody'
+    : '/ru/promokody-prop-firm#bright-offer-status'
   const products = getChallengesByFirm('bright-funded')
   const freshProducts = products.filter(product => freshSource(product))
   const pricedTiers = freshProducts.flatMap(product => product.accountSizes.flatMap(tier =>

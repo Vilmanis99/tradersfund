@@ -277,31 +277,31 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
 
   'fundednext-vs-fundingpips': {
     matchupSlug: 'fundednext-vs-fundingpips',
-    reviewedAt: '2026-08-14',
-    challengeReviewedAt: '2026-08-14',
+    reviewedAt: '2026-10-20',
+    challengeReviewedAt: '2026-10-20',
     h1: 'FundedNext vs FundingPips (2026): 4 Paths vs 5 Models',
     metaDescription:
       'FundedNext vs FundingPips using 2026 prices, 9 captured products, base or selectable splits, payout gates, drawdowns, platforms and refund timing.',
     tlDr:
-      'FundedNext’s 4 paths use an 80% base split on 3 evaluations and 70% on Instant; its 95% share is a paid add-on. FundingPips has 5 models: fixed captured splits of 85% on 1 Step Flex, 80% on 2 Step Pro and 95% on Zero, plus buyer-selected split-and-payout structures on 2 Step Flex and Standard. At $100K, FundedNext Lite lists $399.99 against FundingPips 2 Step Pro at $422, while FundingPips offers the wider 12% static cap on its Flex products. Choose the exact product, not one firm-wide split or payout label.',
+      'FundedNext’s 4 paths use an 80% base split on 3 evaluations and 70% on Instant; its 95% share is a paid add-on. FundingPips has 5 models: captured base splits of 80% on 1 Step Flex and 2 Step Pro and 95% on Zero, plus buyer-selected split-and-payout structures on 2 Step Flex and Standard. At $100K, FundedNext Lite lists $399.99 against FundingPips 2 Step Pro at $422, while FundingPips offers the wider 12% static cap on its Flex products. Choose the exact product, not one firm-wide split or payout label.',
     verdictByCategory: [
-      { category: 'Highest Captured Split Option', winner: 'b', reason: 'FundingPips Standard publishes a 100% monthly choice and Zero records 95%. FundedNext evaluations start at 80%; 95% is a paid add-on.' },
+      { category: 'Highest Captured Split Option', winner: 'b', reason: 'FundingPips Standard publishes a 100% on demand choice and Zero records 95%. FundedNext evaluations start at 80%; 95% is a paid add-on.' },
       { category: 'Cheapest $100K List Fee', winner: 'a', reason: 'FundedNext Stellar Lite lists $399.99. FundingPips 2 Step Pro is its cheapest verified $100K route at $422; the products carry different targets and loss caps.' },
       { category: 'Shortest Numeric First-Payout Gate', winner: 'a', reason: 'FundedNext Stellar 1-Step records 5 days. FundingPips 2 Step Pro records 7 days; its other fixed cycles start at 14 days.' },
       { category: 'Widest Static Maximum Loss', winner: 'b', reason: 'FundingPips 1 Step Flex and 2 Step Flex record 12% static caps. FundedNext’s widest captured static cap is 10% on Stellar 2-Step.' },
       { category: 'Product Choice', winner: 'b', reason: 'FundingPips has 5 captured models against FundedNext’s 4 paths, including selectable payout structures that cannot be flattened into one firm-wide rate.' },
       { category: 'Platform Coverage', winner: 'a', reason: 'Both list MT5, cTrader and Match-Trader; FundedNext additionally lists MT4.' },
-      { category: 'Refund Coverage', winner: 'a', reason: 'FundedNext’s 3 evaluation fees are refundable at the first or third approved reward. FundingPips Standard waits for the fourth reward, 3 products are non-refundable, and 1 Step Flex remains unresolved.' },
+      { category: 'Refund Coverage', winner: 'a', reason: 'FundedNext’s 3 evaluation fees are refundable at the first or third approved reward. FundingPips’ Help Centre refunds Standard at the fourth reward, though its Terms do not confirm this, and the other 4 products are non-refundable.' },
     ],
     whenToPickA:
       'Pick FundedNext if a lower $100K list fee, MT4, or an earlier numeric payout gate matters. Stellar Lite is $399.99 at $100K with an 8% static cap; Stellar 1-Step is $569.99 with a 6% static cap, 2 minimum evaluation days and first payout eligibility after 5 days. All evaluations start at 80%, and new 1-Step or Lite fees wait until the third approved reward. Avoid treating the paid 95% add-on or funded-stage 40% news-profit credit as a default term.',
     whenToPickB:
-      'Pick FundingPips if the chosen split-and-payout structure fits the strategy. 2 Step Pro lists $422 at $100K with 6% and 6% targets, a 6% static cap, 1 minimum day, an 80% split and a 7-day weekly reward cycle. Standard instead offers 60% weekly, 80% bi-weekly, 90% on demand or 100% monthly, each with its own gate. The 12% Flex caps provide more starting room, but their split choices, profitable-day conditions and refund treatment must be read separately.',
+      'Pick FundingPips if the chosen split-and-payout structure fits the strategy. 2 Step Pro lists $422 at $100K with 6% and 6% targets, a 6% static cap, 0 minimum days for new accounts, an 80% split and a 7-day weekly reward cycle. Standard instead offers 60% weekly, 80% bi-weekly or 100% on demand, each with its own gate. The 12% Flex caps provide more starting room, but their split choices and profitable-day conditions must be read separately, and only Standard lists a fee refund (fourth reward, per the Help Centre rather than the Terms).',
     faqs: [
       { q: 'Which is cheaper at the $100K tier?', a: 'FundedNext Stellar Lite is the lowest captured list fee at $399.99. FundingPips 2 Step Pro is $422, Zero is $444, Standard is $544, 2 Step Flex is $555 and 1 Step Flex is $566. Compare targets, split and drawdown before using fee alone.' },
-      { q: 'Which has the higher profit split?', a: 'It depends on the product. FundedNext evaluations start at 80% and Instant at 70%. FundingPips records fixed splits of 85% on 1 Step Flex, 80% on 2 Step Pro and 95% on Zero; Flex and Standard use selectable structures, including Standard’s 100% monthly choice.' },
-      { q: 'Which gets to a first payout sooner?', a: 'The shortest numeric capture is FundedNext Stellar 1-Step at 5 days, followed by FundingPips 2 Step Pro at 7 days. FundedNext 2-Step and Lite record 21 days; FundingPips Flex and Zero products record 14 days.' },
-      { q: 'Do both refund the challenge fee?', a: 'No. FundedNext 2-Step refunds with the first approved reward, while new 1-Step and Lite purchases wait until the third; Instant is non-refundable. FundingPips Standard waits until the fourth reward, 2 Step Flex, Pro and Zero are non-refundable, and 1 Step Flex remains unresolved.' },
+      { q: 'Which has the higher profit split?', a: 'It depends on the product. FundedNext evaluations start at 80% and Instant at 70%. FundingPips records base splits of 80% on 1 Step Flex and 2 Step Pro (each with a conditional 100% on demand alternative) and 95% on Zero; Flex and Standard use selectable structures, including Standard’s 100% on demand choice.' },
+      { q: 'Which gets to a first payout sooner?', a: 'The shortest numeric capture is FundedNext Stellar 1-Step at 5 days, followed by FundingPips 2 Step Pro at 7 days. FundedNext Lite records 10 days and 2-Step 21 days; FundingPips Flex and Zero products record 14 days.' },
+      { q: 'Do both refund the challenge fee?', a: 'No. FundedNext 2-Step refunds with the first approved reward, while new 1-Step and Lite purchases wait until the third; Instant is non-refundable. FundingPips’ Help Centre refunds Standard at the fourth reward, though its Terms state registration fees are not refundable; 1 Step Flex, 2 Step Flex, 2 Step Pro and Zero are non-refundable.' },
       { q: 'Both are affiliate partners—does that decide the winner?', a: 'No. Both outbound routes are disclosed affiliate links. The verdict names product-level trade-offs instead of one overall winner, and it automatically disappears when either firm or product capture becomes newer than this review.' },
     ],
   },

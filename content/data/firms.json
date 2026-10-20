@@ -21,7 +21,7 @@
     "reviewUrl": "/blog/ftmo-review",
     "officialUrl": "https://ftmo.com/",
     "profitSplitPct": 90,
-    "payoutFrequency": null,
+    "payoutFrequency": "on-demand",
     "payoutMethods": [
       "Bank wire",
       "Visa Direct / Mastercard Send",
@@ -268,12 +268,12 @@
         ]
       },
       "payoutFrequency": {
-        "value": null,
-        "summary": "Reward claim on the 14th or any following day after the first trade on the account (not same-day on-demand)",
-        "note": "Previous capture said on-demand; the official FAQ states a 14-day minimum from the first trade.",
+        "value": "on-demand",
+        "summary": "On demand after a minimum of 14 days from the first trade on the account",
+        "note": "Editor decision 2026-10-20: on-demand label backed by promo.ftmo.com; the FAQ gives the 14-day minimum.",
         "byProduct": {
-          "ftmo-challenge-2-step": null,
-          "ftmo-challenge-1-step": null
+          "ftmo-challenge-2-step": "on-demand",
+          "ftmo-challenge-1-step": "on-demand"
         },
         "evidence": [
           {
@@ -282,6 +282,22 @@
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://promo.ftmo.com/m26b-practice-trading-without-risk/",
+            "quote": "Rewards can be requested on demand after a minimum of 14 days from your first demo trade",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-20.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+            "quote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-20.json",
             "productSlug": null
           }
         ]
@@ -383,10 +399,10 @@
     "freeTrialPlatformsCapturedAt": "2026-10-19",
     "payoutMethodsSourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
     "payoutMethodsQuote": "Rewards can be paid out via bank wire transfer, instant transfer through Visa Direct / Mastercard Send (up to $20,000), Skrill (up to $3,000), or cryptocurrencies.",
-    "payoutMethodsCapturedAt": "2026-10-19",
-    "payoutFrequencyNote": "First Reward can be requested from day 14 after the first trade on the account; ftmo.com does not publish the cadence after the first Reward, so no on-demand/bi-weekly label is claimed.",
-    "payoutFrequencySourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
-    "payoutFrequencyQuote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account."
+    "payoutMethodsCapturedAt": "2026-10-20",
+    "payoutFrequencyNote": "On demand once 14 days have passed since the first trade (checked 2026-10-20). promo.ftmo.com: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\". ftmo.com FAQ (https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/): \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\"",
+    "payoutFrequencySourceUrl": "https://promo.ftmo.com/m26b-practice-trading-without-risk/",
+    "payoutFrequencyQuote": "Rewards can be requested on demand after a minimum of 14 days from your first demo trade"
   },
   {
     "name": "FundedNext",
@@ -414,11 +430,18 @@
     "payoutMethods": [
       "Bank wire",
       "Rise",
-      "Crypto"
+      "Crypto",
+      "Card",
+      "Confirmo",
+      "FNmarkets"
     ],
+    "payoutMethodsSourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+    "payoutMethodsQuote": "These options include USDT (ERC20, TRC20), USDC (ERC20), Confirmo, RiseWorks, Bank Transfer, Card and direct deposit to FNmarkets.",
+    "payoutMethodsCapturedAt": "2026-10-20",
+    "payoutMethodsNote": "Crypto = USDT (ERC20/TRC20) and USDC (ERC20). Card payout needs at least one card saved on the account from a purchase. Russia is on FundedNext's bank-transfer exclusion list and the Russian Federation and Belarus are on its card exclusion list (help article updated 2026-10-02). Rise lists the Russian Federation as a restricted country it cannot onboard (help.riseworks.io/en/articles/7198515). Iran: TC Pay only.",
     "drawdownType": "static",
     "minTradingDays": 0,
-    "consistencyRule": "40% profit-retention penalty on positions held during news-window releases (verified 2026-05-20)",
+    "consistencyRule": "Product-specific: 40% best-day rule (best day's profit may not exceed 40% of total profit, checked only when an On-Demand Performance Reward is requested) on Stellar 2-Step and Stellar Lite with the On-Demand payout option; none on Stellar Instant. The 40% news-window profit count is a separate news rule (see newsTradingAllowed / rules.newsTrading), not a consistency rule.",
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
     "eaAllowed": "restricted",
@@ -459,7 +482,9 @@
     "lastUpdated": "2026-10-19",
     "trustpilotUrl": "https://www.trustpilot.com/review/fundednext.com",
     "trustpilotCapturedAt": "2026-10-15",
-    "russiaStatus": "available",
+    "russiaStatus": "restricted",
+    "russiaSourceUrl": "https://fundednext.com/",
+    "russiaSourceQuote": "Jurisdictional Restrictions: The FundedNext Entities do not offer services to residents of the following jurisdictions: North Korea (DPRK), Myanmar, Belarus, Iran, and Russia, including countries on the FATF high-risk and EU/UN sanctions lists, and Vietnam.",
     "legalEntity": "FundedNext Ltd",
     "headquarters": "Wan Chai, Hong Kong",
     "country": "Comoros",
@@ -779,7 +804,7 @@
     "trustpilotScore": 4.5,
     "trustpilotCount": 70514,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/fundingpips.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "unclear",
@@ -913,10 +938,10 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-            "quote": "Request any time with 35% consistency score & min 2% profit.",
+            "quote": "A 35% consistency score must be achieved",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-20.json",
             "productSlug": null
           },
           {
@@ -976,7 +1001,7 @@
       },
       "payoutFrequency": {
         "value": null,
-        "summary": "Product-specific: bi-weekly on 1 Step Flex, 2 Step Flex, FundingPips Zero; weekly on 2 Step Pro; trader-selected (weekly, bi-weekly, monthly or on-demand) on 2 Step Standard",
+        "summary": "Product-specific: bi-weekly on 1 Step Flex, 2 Step Flex, FundingPips Zero (1 Step Flex and 2 Step Flex also offer On Demand 100% with eligibility conditions); weekly on 2 Step Pro; trader-selected (weekly, bi-weekly or on-demand) on 2 Step Standard",
         "byProduct": {
           "1-step-flex": "bi-weekly",
           "2-step-flex": "bi-weekly",
@@ -987,11 +1012,19 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-            "quote": "Flexible reward cycles : Weekly 60%, Bi-Weekly 80%, Monthly 100%, or On Demand 90%.",
+            "quote": "Flexible reward cycles: Weekly 60%, Bi-Weekly 80%, or On Demand 100%.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-20.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-20.json",
+            "productSlug": "2-step-flex"
           }
         ]
       },
@@ -1086,7 +1119,10 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
-    }
+    },
+    "regionalDiscountCode": "FP",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "regionalDiscountPct": 20
   },
   {
     "name": "E8 Markets",
@@ -1468,7 +1504,13 @@
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines."
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
+    "regionalDiscountCode": "E8",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "discountCodeSourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+    "discountCodeCapturedAt": "2026-10-20",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-20; not checkout-verified and may be US-only, so not shown as a universal code. E8 One tiers shown \"30% OFF\" (e.g. \"$100K One phase $488 $342 Save $146 with code E8 on first order\"). First order only; no end date shown.",
+    "regionalDiscountPct": 30
   },
   {
     "name": "Alpha Capital",
@@ -1539,7 +1581,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-06",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -2014,7 +2056,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/brightfunded.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-10-15",
@@ -3176,7 +3218,7 @@
     "trustpilotScore": 4.3,
     "trustpilotCount": 6442,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-15",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/fxify.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -3496,7 +3538,13 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
-    }
+    },
+    "regionalDiscountCode": "ONESTEP35",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "discountCodeSourceUrl": "https://fxify.com/",
+    "discountCodeCapturedAt": "2026-10-20",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-20; not checkout-verified and may be US-only, so not shown as a universal code. \"NEW TRADERS: 35% OFF 1-PHASE Expires: 31st December 2026 ONESTEP35\". Same banner also shows \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) Expires: 3rd November 2026 FUNDED40\" (Instant Funding Standard only).",
+    "regionalDiscountPct": 35
   },
   {
     "name": "Crypto Fund Trader",
@@ -3910,7 +3958,7 @@
     "trustpilotScore": 3.7,
     "trustpilotCount": 14945,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-14",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/topstep.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -4262,7 +4310,7 @@
     "trustpilotScore": 4.9,
     "trustpilotCount": 22408,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-15",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/myfundedfutures.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -4660,7 +4708,7 @@
     "trustpilotScore": 4.2,
     "trustpilotCount": 1631,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-15",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -5702,6 +5750,101 @@
     "overnightAllowed": false,
     "weekendAllowed": false,
     "copyTradingAllowed": "restricted",
+    "countriesRestricted": [
+      "Afghanistan",
+      "Algeria",
+      "Azerbaijan",
+      "Bahrain",
+      "Bangladesh",
+      "Belarus",
+      "Benin",
+      "Brunei",
+      "Burkina Faso",
+      "Burundi",
+      "Cameroon",
+      "Central African Republic",
+      "Chad",
+      "China",
+      "Congo",
+      "Cote DIvoire",
+      "Cuba",
+      "Cyprus",
+      "Egypt",
+      "Eritrea",
+      "Gabon",
+      "Grenada",
+      "Guinea",
+      "Guinea-Bissau",
+      "Haiti",
+      "Iran",
+      "Iraq",
+      "Jersey",
+      "Jordan",
+      "Kazakhstan",
+      "Kenya",
+      "Kuwait",
+      "Latvia",
+      "Lebanon",
+      "Lesotho",
+      "Liberia",
+      "Libya",
+      "Madagascar",
+      "Maldives",
+      "Mauritania",
+      "Mauritius",
+      "Mongolia",
+      "Morocco",
+      "Mozambique",
+      "Myanmar",
+      "Namibia",
+      "Nepal",
+      "New Caledonia",
+      "Nicaragua",
+      "Niger",
+      "Nigeria",
+      "North Korea",
+      "Occupied Palestinian Territory",
+      "Oman",
+      "Pakistan",
+      "Papua New Guinea",
+      "Qatar",
+      "Republic of Moldova",
+      "Republic of the Congo",
+      "Reunion",
+      "Russia",
+      "Rwanda",
+      "Saint Pierre and Miquelon",
+      "Saudi Arabia",
+      "Senegal",
+      "Serbia",
+      "Somalia",
+      "South Africa",
+      "South Sudan",
+      "Sri Lanka",
+      "Sudan",
+      "Syria",
+      "Tanzania",
+      "Togo",
+      "Trinidad and Tobago",
+      "Tunisia",
+      "Turkey",
+      "Uganda",
+      "Ukraine",
+      "Uzbekistan",
+      "Vanuatu",
+      "Venezuela",
+      "Vietnam",
+      "Western Sahara",
+      "Yemen",
+      "Zambia",
+      "Zimbabwe"
+    ],
+    "countriesRestrictedSourceUrl": "https://apextraderfunding.com/help-center/getting-started/restricted-countries/",
+    "countriesRestrictedQuote": "LIST OF COUNTRIES WE ARE NOT ABLE TO SERVICE AT THIS TIME WITH New or Additional ACCOUNTS: Afghanistan, Algeria, Azerbaijan, Bahrain, Bangladesh, Belarus, Benin, Brunei, Burkina Faso, Burundi, Cameroon, Central African Republic, Chad, China, Congo, Cote DIvoire, Cuba, Cyprus, Egypt, Eritrea, Gabon, Grenada, Guinea, Guinea-Bissau, Haiti, Iran, Iraq, Jersey, Jordan, Kazakhstan, Kenya, Kuwait, Latvia, Lebanon, Lesotho, Liberia, Libya, Madagascar, Maldives, Mauritania, Mauritius, Mongolia, Morocco, Mozambique, Myanmar, Namibia, Nepal, New Caledonia, Nicaragua, Niger, Nigeria, North Korea, Occupied Palestinian Territory, Oman, Pakistan, Papua New Guinea, Qatar, Republic of Moldova, Republic of the Congo, Reunion, Russia, Rwanda, Saint Pierre and Miquelon, Saudi Arabia, Senegal, Serbia, Somalia, South Africa, South Sudan, Sri Lanka, Sudan, Syria, Tanzania, Togo, Trinidad and Tobago, Tunisia, Turkey, Uganda, Ukraine, Uzbekistan, Vanuatu, Venezuela, Vietnam, Western Sahara, Yemen, Zambia, Zimbabwe",
+    "countriesRestrictedCapturedAt": "2026-10-20",
+    "countriesRestrictedNote": "Read 2026-10-20 via the WebFetch reader (curl from the box gets Cloudflare 403); page schema dateModified 2026-09-10. Exception on the same page: people originally from a listed country may qualify if they hold a valid ID from a non-restricted country and their residence, mailing address and bank account are in a non-restricted country. Payment methods issued in a listed country are prohibited.",
+    "russiaSourceUrl": "https://apextraderfunding.com/help-center/getting-started/restricted-countries/",
+    "russiaSourceQuote": "LIST OF COUNTRIES WE ARE NOT ABLE TO SERVICE AT THIS TIME WITH New or Additional ACCOUNTS: ... Russia ...",
     "ratings": {
       "conditions": null,
       "support": null,
@@ -5719,8 +5862,8 @@
     "regionalDiscountCode": "SAVENOW",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://apextraderfunding.com/",
-    "discountCodeCapturedAt": "2026-10-19",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-19; not checkout-verified and may be US-only, so not shown as a universal code. \"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW”\"",
+    "discountCodeCapturedAt": "2026-10-20",
+    "discountCodeNote": "Seen only from a US IP (re-seen 2026-10-20, promo expiration \"2026-10-22 23:59\" in the page config); not checkout-verified and may be US-only, so not shown as a universal code. \"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW”\"",
     "regionalDiscountPct": 90
   },
   {

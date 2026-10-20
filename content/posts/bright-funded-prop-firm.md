@@ -190,7 +190,7 @@ type: "post"
 <p>The base funded split is 80%. The 90% figure shown in plan marketing requires an add-on, while 100% is reached through the scaling plan rather than granted at account activation.</p>
 
 <h3 class="wp-block-heading"><strong>How soon is the first Bright Funded payout?</strong></h3>
-<p>The standard first request is after 30 days from the first funded trade, followed by 14-day cycles. A 7-day weekly schedule or earlier first cycle is an add-on.</p>
+<p>The standard first request is after 30 days from the first funded trade, followed by 14-day cycles. A 7-day weekly schedule or earlier first cycle is an add-on. Our <a href="/blog/prop-firms-with-weekly-payouts">weekly payouts guide</a> compares that add-on with firms that pay weekly as standard.</p>
 
 <h3 class="wp-block-heading"><strong>Is news trading allowed?</strong></h3>
 <p>Evaluation news trading is allowed, but funded execution is restricted for 5 minutes before and 5 minutes after listed high-impact events. A take profit on a trade opened at least 48 hours earlier is exempt under the published rule.</p>

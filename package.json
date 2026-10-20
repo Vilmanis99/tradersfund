@@ -42,7 +42,8 @@
     "check:home-release": "node scripts/check-english-home.mjs",
     "check:light-release": "node scripts/check-light-release.mjs",
     "check:duplicates": "node scripts/check-duplicates.mjs",
-    "test:ru-related-links": "node scripts/test-ru-related-links.mjs"
+    "test:ru-related-links": "node scripts/test-ru-related-links.mjs",
+    "test:russian-ranking-pin": "node scripts/test-russian-ranking-pin.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

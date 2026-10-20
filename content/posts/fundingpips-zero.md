@@ -3,7 +3,7 @@ title: "FundingPips Zero Review 2026: Fees, Rules, Payouts"
 seoTitle: "FundingPips Zero Review 2026: Fees, Rules, Payouts"
 slug: "fundingpips-zero"
 date: "2025-10-06 17:46:59"
-modified: "2026-09-29 12:00:00"
+modified: "2026-10-20 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "FundingPips Zero skips evaluation but keeps strict funded-stage gates. Compare all 6 prices, trailing loss, consistency, reward rules, and alternatives."
 seoDescription: "FundingPips Zero review with all 6 current prices, 3% daily and 5% trailing loss rules, 15% consistency, payout gates, and FundedNext comparison."
@@ -168,7 +168,7 @@ type: "post"
 
 <h3>How much does FundingPips Zero cost?</h3>
 
-<p>The 2026-09-29 capture records $60 for $5K, $88 for $10K, $188 for $25K, $244 for $50K, $444 for $100K, and $888 for $200K. All 6 fees are non-refundable.</p>
+<p>The 2026-10-19 capture records $60 for $5K, $88 for $10K, $188 for $25K, $244 for $50K, $444 for $100K, and $888 for $200K. All 6 fees are non-refundable. FundingPips' 4th-reward registration-fee refund applies only to 2 Step Standard; its Reward Methods help article (checked 2026-10-20) says it "does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero."</p>
 
 <h3>When can a FundingPips Zero trader request a reward?</h3>
 
