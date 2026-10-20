@@ -115,7 +115,7 @@ export function RuReviewVerdictBox({ route, campaign, sourcesHref, terms }: { ro
             {firm && <div className="ru-p1-verdict__score" aria-label={`Наша оценка: ${num(firm.score, 1)} из 10`}><strong>{firm.score.toLocaleString('ru-RU', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</strong><span>/10</span></div>}
           </div>
           <p className="ru-p1-verdict__line">{verdict.verdict}</p>
-          {firm && <RuCta firm={firm} from={`ru-${campaign}-verdict`} compact />}
+          {firm && <RuCta firm={firm} from={`ru-${campaign}-verdict-box`} compact />}
           <div className="ru-p1-verdict__fit">
             {verdict.best.length > 0 && <div><p className="ru-p1-verdict__h">Подойдёт, если…</p><ul>{verdict.best.map(line => <li key={line}>{line}</li>)}</ul></div>}
             {verdict.avoid.length > 0 && <div><p className="ru-p1-verdict__h">Не подойдёт, если…</p><ul>{verdict.avoid.map(line => <li key={line}>{line}</li>)}</ul></div>}
@@ -197,7 +197,7 @@ export function RuComparePickVerdict({ route, campaign }: { route: string; campa
           <p className="ru-p1-pick__checked">По данным на {ruDate(verdict.dataAsOf)}</p>
           <p className="ru-p1-pick__line">{verdict.verdict}</p>
           <div className="ru-p1-pick__quick" data-ru-pick-quick>
-            {sides.map(side => <RuCta key={side.key} firm={side.firm!} from={`ru-${campaign}-pick-quick`} compact />)}
+            {sides.map(side => <RuCta key={side.key} firm={side.firm!} from={`ru-pick-quick-${campaign}`} compact />)}
           </div>
           <div className="ru-p1-pick__cols">
             {sides.map(side => (
@@ -205,7 +205,7 @@ export function RuComparePickVerdict({ route, campaign }: { route: string; campa
                 <p className="ru-p1-pick__h">{side.picks.length ? `Выбирайте ${side.name}, если…` : side.name}</p>
                 <RuAccessBadgeView firm={firmSlug(side.name)} status={side.status} />
                 {side.picks.length > 0 && <ul>{side.picks.map(line => <li key={line}>{line}</li>)}</ul>}
-                <RuCta firm={side.firm!} from={`ru-${campaign}-pick`} />
+                <RuCta firm={side.firm!} from={`ru-pick-${campaign}`} />
               </div>
             ))}
           </div>
