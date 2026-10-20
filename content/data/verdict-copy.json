@@ -57,13 +57,13 @@
         "Getting your fee back: every 2-Step account size is refundable"
       ],
       "notFor": [
-        "Traders who win in a few big days: 1-Step has a 50% consistency rule",
+        "Big-day traders: 1-Step won't pass or pay out until best day ≤50%",
         "1-Step buyers hoping for a refund: its €79–€999 fee isn't refundable"
       ]
     },
     "fundednext-review": {
       "bestFor": [
-        "Weekly payouts on a 1-step: Stellar 1-Step pays weekly, first reward after 5 business days",
+        "1-step payouts: weekly, with the first reward after 5 business days",
         "Getting your fee back: Stellar 2-Step, 1-Step and Lite are refundable"
       ],
       "notFor": [
