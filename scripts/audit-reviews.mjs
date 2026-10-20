@@ -9878,7 +9878,7 @@ function checkFundedNextComparisonOverlay() {
         '5 days',
         '7 days',
         '12% static',
-        '100% monthly',
+        '100% on demand',
         '95% on Zero',
         'fourth reward',
       ],
