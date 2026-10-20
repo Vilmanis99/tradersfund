@@ -1221,7 +1221,7 @@ const russianExpectations = new Map([
       'href="/go/crypto-fund-trader?from=ru-review-crypto-fund-trader"',
       'data-russia-status="available" data-russia-firm="crypto-fund-trader"',
       'по данным на 14.10.2026',
-      'Bybit — по правилам Bybit',
+      'Доступ через Match-Trader. Источник:',
       'data-russian-cft-price-conflict="2026-10-06"',
       '$45 / $90 / $225 / $450 / $899 / $1 798',
       'data-russian-cft-cheapest="accelerated-5k"',

@@ -13,7 +13,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 const PATH = '/ru/obzor-crypto-fund-trader'
 const TITLE = 'Crypto Fund Trader: обзор 2026, отзывы и доступ из России'
 const H1 = 'Crypto Fund Trader (CFT): обзор и отзывы 2026'
-const DESCRIPTION = 'Crypto Fund Trader: правила, цены, выплаты и доступ из России. Отзывы трейдеров, 2-Phase, 1-Phase, Instant и Break, платформы Match-Trader, MT5 и Bybit.'
+const DESCRIPTION = 'Crypto Fund Trader: правила, цены, выплаты и доступ из России. Отзывы трейдеров, 2-Phase, 1-Phase, Instant и Break, платформы Match-Trader и MT5.'
 
 export const revalidate = 3600
 
@@ -64,7 +64,7 @@ const percent = (value: number | null | undefined) => (value == null || !Number.
 const faqs: RussianFaqItem[] = [
   {
     q: 'Работает ли Crypto Fund Trader с трейдерами из России?',
-    a: `${asOf(ACCESS_CHECKED)} в FAQ Crypto Fund Trader для Match-Trader указано: «ограничений по странам сейчас нет». MetaTrader 5 закрыт только для резидентов США. Россия на официальных страницах не упоминается ни в одном списке. Для Bybit фирма своих ограничений не добавляет, но нужен личный аккаунт Bybit, и доступность зависит от правил самой Bybit — их мы не проверяли. Проверка личности (KYC) и подписание договора обязательны для всех.`,
+    a: `${asOf(ACCESS_CHECKED)} в FAQ Crypto Fund Trader для Match-Trader указано: «ограничений по странам сейчас нет». MetaTrader 5 закрыт только для резидентов США. Россия на официальных страницах не упоминается ни в одном списке. Проверка личности (KYC) и подписание договора обязательны для всех.`,
   },
   {
     q: 'Сколько стоит челлендж CFT?',
@@ -182,7 +182,7 @@ export default function RussianCryptoFundTraderReviewPage() {
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Программы проверены {ruDate(earliestCapture)} · доступ {ruDate(ACCESS_CHECKED)} · правила {ruDate(RULES_CHECKED)}</div>
           <h1>{H1}</h1>
           <p className="ru-lead">
-            Пять программ, три платформы и ни одной страны в списке запретов для Match-Trader. Crypto Fund Trader (CFT) —
+            Пять программ, несколько платформ и ни одной страны в списке запретов для Match-Trader. Crypto Fund Trader (CFT) —
             одна из немногих проп-фирм, где у трейдера из России вопрос «пустят ли» решается на уровне платформы, а не
             гаданием. Но вход от {usd(CHEAPEST_BUYABLE.priceUsd)} и сбор за активацию у Break, доля 50% у Instant и скрытый рейтинг на
             Trustpilot — это то, что стоит знать до оплаты.
@@ -194,7 +194,7 @@ export default function RussianCryptoFundTraderReviewPage() {
           <div className="ru-stats">
             <div className="ru-stat"><strong>{fresh.length}</strong><span>программ со свежими данными</span></div>
             <div className="ru-stat" data-russian-cft-cheapest="accelerated-5k"><strong>{usd(CHEAPEST_BUYABLE.priceUsd)}</strong><span>самый дешёвый доступный вход ({CHEAPEST_BUYABLE.name}, {ruDate(TRACKER_CHECKED)})</span></div>
-            <div className="ru-stat"><strong>3</strong><span>платформы: Match-Trader, MT5, Bybit</span></div>
+            <div className="ru-stat"><strong>Match-Trader</strong><span>платформа без ограничений по странам (FAQ CFT)</span></div>
             <div className="ru-stat"><strong>{firm?.score != null ? `${firm.score.toFixed(1)}/10` : '—'}</strong><span>редакционный балл</span></div>
           </div>
         </div>
@@ -229,7 +229,7 @@ export default function RussianCryptoFundTraderReviewPage() {
             <div className="ru-notice" data-russian-cft-access="match-trader-no-restrictions">
               <strong>Доступ из России:</strong> <RuAccessBadge firm="crypto-fund-trader" />{' '}
               {asOf(ACCESS_CHECKED)} для Match-Trader CFT пишет «ограничений по странам сейчас нет», MT5 закрыт только для резидентов
-              США, Россия на официальных страницах не упоминается. Bybit — по правилам самой Bybit, мы их не проверяли.
+              США, Россия на официальных страницах не упоминается.
             </div>
             <p>
               CFT стоит рассматривать, если вы торгуете криптовалютой и вам нужна фирма, которая не отсекает Россию и СНГ на входе.
@@ -256,7 +256,7 @@ export default function RussianCryptoFundTraderReviewPage() {
               {cta('ru-review-crypto-fund-trader', 'Открыть Crypto Fund Trader')}
               <Link href="/ru/luchshie-kripto-prop-firmy" className="btn-outline">Сравнить крипто-проп фирмы</Link>
             </div>
-            <p className="ru-source-line">Доступ через Match-Trader; Bybit — по правилам Bybit. Источник: <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ CFT</a>, {asOf(ACCESS_CHECKED)}.</p>
+            <p className="ru-source-line">Доступ через Match-Trader. Источник: <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ CFT</a>, {asOf(ACCESS_CHECKED)}.</p>
           </div>
         </section>
 
@@ -264,8 +264,7 @@ export default function RussianCryptoFundTraderReviewPage() {
           <div className="ru-shell ru-content" data-russian-cft-access-table="platforms">
             <h2>Доступ из России, Беларуси, Казахстана и Украины</h2>
             <p>
-              У CFT правила доступа зависят от платформы, а не только от страны. Это необычно и важно: один и тот же трейдер из
-              Минска может торговать на Match-Trader и не иметь Bybit, если Bybit не обслуживает его страну. Ниже — то, что фирма
+              У CFT правила доступа зависят от платформы, а не только от страны. Ниже — то, что фирма
               пишет в <a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ</a> и на странице{' '}
               <a href={SOURCES.getStarted} target="_blank" rel="nofollow noopener noreferrer">Get Started</a> ({asOf(ACCESS_CHECKED)}).
             </p>
@@ -276,7 +275,6 @@ export default function RussianCryptoFundTraderReviewPage() {
                 <tbody>
                   <tr><td><strong>Match-Trader</strong></td><td>«Ограничений по странам сейчас нет»</td><td>Не ограничены</td></tr>
                   <tr><td><strong>MetaTrader 5</strong></td><td>Недоступен резидентам США; другие страны не названы</td><td>Не названы в ограничениях</td></tr>
-                  <tr><td><strong>Bybit</strong></td><td>Своих ограничений CFT не добавляет; нужен личный аккаунт Bybit и соблюдение её правил</td><td>Зависит от Bybit — не проверяли</td></tr>
                 </tbody>
               </table>
             </div>
@@ -426,12 +424,11 @@ export default function RussianCryptoFundTraderReviewPage() {
 
         <section className="ru-section" id="platforms">
           <div className="ru-shell ru-content">
-            <h2>Платформы: Match-Trader, MT5, Bybit</h2>
+            <h2>Платформы: Match-Trader и MT5</h2>
             <p>
-              {asOf(RULES_CHECKED)} CFT предлагает три платформы: Match-Trader, MetaTrader 5 и Bybit. Для трейдера из России и СНГ
+              {asOf(RULES_CHECKED)} среди платформ CFT — Match-Trader и MetaTrader 5. Для трейдера из России и СНГ
               ключевая — Match-Trader: только по ней фирма прямо пишет, что ограничений по странам нет. MT5 закрыт для резидентов
-              США. Bybit работает через ваш личный аккаунт Bybit — значит, вы отвечаете за соблюдение её правил и юрисдикции; что
-              Bybit разрешает в вашей стране, мы не проверяли и не обещаем.
+              США.
             </p>
           </div>
         </section>
