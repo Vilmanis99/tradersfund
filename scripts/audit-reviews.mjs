@@ -11901,7 +11901,8 @@ function checkRussianAcquisitionPilot() {
       if (
         teamTradersEvidence.affiliateProgram?.status !== 'not-found'
         || teamTradersEvidence.searchIntent?.queries?.length !== 3
-        || teamTradersEvidence.sourceConflicts?.length !== 3
+        || teamTradersEvidence.sourceConflicts?.length !== 5
+        || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 50 && item.legacyValue === 70 && item.recordedAt === '2026-10-20')
         || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 10 && item.legacyValue === 15)
         || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 95 && item.legacyValue === 90)
       ) {
