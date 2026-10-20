@@ -775,7 +775,7 @@
         "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods",
         "https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup"
       ],
-      "sourceCapturedAt": "2026-08-27",
+      "sourceCapturedAt": "2026-10-20",
       "methods": [
         "Card",
         "Crypto",
@@ -790,14 +790,18 @@
       "processing": [
         "FundingPips publishes internal processing of 1 to 3 working days.",
         "The receiving wallet or bank may need an additional 1 to 2 working days.",
-        "Product-level first-reward gates range from 7 to 14 days where a current number is published."
+        "Product-level first-reward gates range from 7 to 14 days where a current number is published.",
+        "Crypto rewards are sent only in USDT/USDC on the ERC20 network."
       ],
       "fees": [
-        "Network, bank or provider costs depend on the selected reward method and must be checked before the request."
+        "Network, bank or provider costs depend on the selected reward method and must be checked before the request.",
+        "Crypto rewards are subject to service fees, exchange rates and network transaction fees deducted during processing, so the amount received may be less than requested.",
+        "Minimum request is 1% of Master Account size for Card and Crypto; Rise and Bank Transfer each require at least $500."
       ],
       "countryBoundary": [
         "Rise requires separate onboarding with the same email used at FundingPips, a government-issued ID and a selfie.",
-        "Crypto and Card methods do not cancel the Master Account KYC and Customer Agreement sequence."
+        "Crypto and Card methods do not cancel the Master Account KYC and Customer Agreement sequence.",
+        "Pay to Card and Bank Transfer list only Belgium, France, Germany, Italy, Netherlands, Spain, Brazil, Colombia, Mexico, Nigeria, South Africa, the UK, Turkey and Indonesia; if Rise is not supported in a country, the reward defaults to Crypto."
       ]
     }
   ]
