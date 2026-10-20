@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { consistencyFields, consistencyRulePhrase, scopedConsistencyRules } from '@/lib/consistencyScope'
+import { consistencyFields, consistencyRulesPhrase, scopedConsistencyRules } from '@/lib/consistencyScope'
 import { ExternalLink } from 'lucide-react'
 import { firmSlug } from '@/lib/firmSlug'
-import type { Challenge, Firm } from '@/lib/firms'
+import { minimumCostToFundedUsd, type Challenge, type Firm } from '@/lib/firms'
 import { payoutWait } from '@/lib/payoutWait'
 import { possessive } from '@/lib/possessive'
 
@@ -21,14 +21,36 @@ function shortName(firm: Firm, product: Challenge) {
 
 const money = (value: number, currency: '$' | '€') => `${currency}${value.toLocaleString('en-US', { maximumFractionDigits: 2 })}`
 
-function cheapest100k(side: Side) {
-  const rows = side.products.flatMap(product => product.accountSizes
-    .filter(size => size.sizeUsd === 100000)
-    .map(size => size.priceUsd != null
-      ? { product, value: size.priceUsd, currency: '$' as const }
-      : size.priceEur != null ? { product, value: size.priceEur, currency: '€' as const } : null)
-    .filter(<T,>(row: T | null): row is T => row != null))
+/**
+ * Lowest cash outlay at $100K: list price plus any mandatory activation fee
+ * and pay-later amount (minimumCostToFundedUsd). Monthly subscriptions are
+ * left out unless oneOffOnly is false: a monthly fee is not a one-off price.
+ */
+function cheapest100k(side: Side, oneOffOnly = true) {
+  const rows = side.products
+    .filter(product => !oneOffOnly || product.pricingModel !== 'monthly-subscription')
+    .flatMap(product => product.accountSizes
+      .filter(size => size.sizeUsd === 100000)
+      .map(size => {
+        if (size.priceUsd != null) {
+          const total = minimumCostToFundedUsd(product, size)
+          return total == null ? null : { product, value: total, base: size.priceUsd, extra: total - size.priceUsd, activation: size.activationFeeUsd ?? product.activationFeeUsd ?? 0, payLater: size.payLaterUsd ?? 0, currency: '$' as const, monthly: product.pricingModel === 'monthly-subscription' }
+        }
+        // EUR fees: no USD activation/pay-later can be added, so skip those tiers.
+        if (size.priceEur != null && !(size.activationFeeUsd ?? product.activationFeeUsd) && !size.payLaterUsd) return { product, value: size.priceEur, base: size.priceEur, extra: 0, activation: 0, payLater: 0, currency: '€' as const, monthly: product.pricingModel === 'monthly-subscription' }
+        return null
+      })
+      .filter(<T,>(row: T | null): row is T => row != null))
   return rows.sort((a, b) => a.value - b.value)[0] ?? null
+}
+
+/** "$528 (Break: $200 plus $328 activation)" when the fee carries mandatory extras. */
+function feeText(row: NonNullable<ReturnType<typeof cheapest100k>>, name: string) {
+  const unit = row.monthly ? '/month' : ''
+  const parts = [row.activation > 0 ? `${money(row.activation, row.currency)} activation` : null, row.payLater > 0 ? `${money(row.payLater, row.currency)} due after passing` : null].filter(Boolean)
+  return parts.length
+    ? `${money(row.value, row.currency)}${unit} (${name}: ${money(row.base, row.currency)} plus ${parts.join(' and ')})`
+    : `${money(row.value, row.currency)}${unit} for ${name}`
 }
 
 function best<T>(products: Challenge[], value: (product: Challenge) => T | null, better: (a: T, b: T) => boolean) {
@@ -110,9 +132,9 @@ export function buildPickLines(a: Side, b: Side) {
 
     // Weekly payouts.
     const weekly = myEvals.find(product => product.payoutFrequency === 'weekly' && firstPayout(product) != null && !hasAlternativePayout(product))
-    const theirFirst = best(theirEvals, firstPayout, (x, y) => x < y)
-    if (weekly && theirFirst && !theirEvals.some(product => product.payoutFrequency === 'weekly')) {
-      add(key, `you want weekly payouts: ${displayName(me.firm, weekly)} pays weekly, with the first claim ${payoutWait(weekly)!.phrase}; ${possessive(them.firm.name)} first claim is ${payoutWait(theirFirst.product)!.phrase.replace(/^from /, '')}`, [`${weekly.productSlug}.payoutFrequency`, `${weekly.productSlug}.payoutFirstDays`, `${theirFirst.product.productSlug}.payoutFirstDays`])
+    const contrast = weekly ? firstPayoutContrast(weekly, them) : null
+    if (weekly && contrast && !them.products.some(product => product.payoutFrequency === 'weekly')) {
+      add(key, `you want weekly payouts: ${displayName(me.firm, weekly)} pays weekly, with the first claim ${payoutWait(weekly)!.phrase}; ${contrast.text}`, [`${weekly.productSlug}.payoutFrequency`, `${weekly.productSlug}.payoutFirstDays`, ...contrast.fields])
     }
 
     // One-step with a fixed floor (drawdown from the product files).
@@ -124,10 +146,10 @@ export function buildPickLines(a: Side, b: Side) {
 
     // Consistency: only when this side has an evaluation explicitly recorded
     // without a rule and every evaluation on the other side has a scoped rule.
-    const ruleFree = myEvals.find(product => product.consistencyRuleApplies === false)
+    const ruleFree = myEvals.find(product => product.consistencyRuleApplies === false && !scopedConsistencyRules(product).length)
     const theirRules = theirEvals.map(product => ({ product, rules: scopedConsistencyRules(product) }))
     if (ruleFree && theirRules.length && theirRules.every(entry => entry.rules.length)) {
-      const shown = theirRules.slice(0, 2).map(entry => `${shortName(them.firm, entry.product)}: ${entry.rules.map(consistencyRulePhrase).join(', ')}`)
+      const shown = theirRules.slice(0, 2).map(entry => `${shortName(them.firm, entry.product)}: ${consistencyRulesPhrase(entry.rules, 60)}`)
       add(key, `you'd rather avoid a consistency rule: ${displayName(me.firm, ruleFree)} records none; ${shown.join('; ')}${theirRules.length > 2 ? '; and others' : ''}`, [`${ruleFree.productSlug}.consistencyRuleApplies`, ...theirRules.flatMap(entry => consistencyFields(entry.product))])
     }
 
@@ -146,7 +168,7 @@ export function buildPickLines(a: Side, b: Side) {
   if (cheapA && cheapB && cheapA.currency === cheapB.currency && cheapA.value !== cheapB.value) {
     const key = cheapA.value < cheapB.value ? 'a' : 'b'
     const win = key === 'a' ? cheapA : cheapB, lose = key === 'a' ? cheapB : cheapA
-    add(key, `you want the lower $100K fee: ${money(win.value, win.currency)} for ${displayName(sides[key].firm, win.product)} vs ${money(lose.value, lose.currency)} for ${displayName(sides[other(key)].firm, lose.product)}`, [`${win.product.productSlug}.accountSizes[100000].price`, `${lose.product.productSlug}.accountSizes[100000].price`])
+    add(key, `you want the lower $100K fee: ${feeText(win, displayName(sides[key].firm, win.product))} vs ${feeText(lose, displayName(sides[other(key)].firm, lose.product))}`, [`${win.product.productSlug}.accountSizes[100000].priceUsd+activationFeeUsd+payLaterUsd`, `${lose.product.productSlug}.accountSizes[100000].priceUsd+activationFeeUsd+payLaterUsd`])
   }
   // Weak differentiators (product count, founding year) only for a side that
   // has nothing better; product counts include variants and say little.
@@ -162,6 +184,35 @@ export function buildPickLines(a: Side, b: Side) {
   return { a: lines.a.slice(0, 3), b: lines.b.slice(0, 3) }
 }
 
+/** Calendar-day bounds for a first payout; n business days count as up to ceil(n*7/5) calendar days. */
+function payoutBounds(product: Challenge) {
+  const days = product.payoutFirstDays
+  if (days == null) return null
+  return /business/.test(payoutWait(product)?.short ?? '') ? { lo: days, hi: Math.ceil(days * 7 / 5) } : { lo: days, hi: days }
+}
+
+/**
+ * First-payout contrast against the other firm, scoped the same way as the
+ * writer copy: the mine-is-earlier claim must beat the other firm's earliest
+ * payout across ALL products (instant and funded included). When an instant
+ * or funded product is faster than their evaluations, the text is scoped to
+ * "evaluations" but the check still uses all products.
+ */
+function firstPayoutContrast(mine: Challenge, them: Side) {
+  const myBounds = payoutBounds(mine)
+  const known = them.products.filter(product => product.payoutFirstDays != null)
+  if (!myBounds || !known.length) return null
+  const bound = (product: Challenge) => payoutBounds(product)!.lo
+  const all = known.reduce((x, y) => bound(y) < bound(x) ? y : x)
+  if (!(myBounds.hi < bound(all))) return null
+  const evals = known.filter(product => product.phases > 0)
+  const ev = evals.length ? evals.reduce((x, y) => bound(y) < bound(x) ? y : x) : null
+  const scoped = ev && bound(all) < bound(ev)
+  const target = scoped ? ev! : all
+  const label = scoped ? `${them.firm.name} evaluations' first claim is` : `${possessive(them.firm.name)} first claim is`
+  return { text: `${label} ${payoutWait(target)!.phrase.replace(/^from /, '')}`, fields: [`${them.firm.name} challenges[].payoutFirstDays (all products)`] }
+}
+
 /** Earliest first-payout wait across products, including "No minimum wait" for day 0. */
 function earliestWait(side: Side) {
   const top = best(side.products, product => product.payoutFirstDays, (x, y) => x < y)
@@ -172,10 +223,10 @@ function earliestWait(side: Side) {
 const PRODUCT_FACTS = new Set(['Lowest $100K fee', 'Base split', 'Max loss', 'Earliest first payout'])
 
 export function buildSideFacts(side: Side) {
-  const cheap = cheapest100k(side)
+  const cheap = cheapest100k(side) ?? cheapest100k(side, false)
   return [
     { label: 'Our score', value: `${side.firm.score}/10` },
-    { label: 'Lowest $100K fee', value: cheap ? `${money(cheap.value, cheap.currency)} (${shortName(side.firm, cheap.product)})` : null },
+    { label: 'Lowest $100K fee', value: cheap ? `${money(cheap.value, cheap.currency)}${cheap.monthly ? '/month' : ''} (${shortName(side.firm, cheap.product)}${cheap.activation > 0 ? `, incl. ${money(cheap.activation, cheap.currency)} activation` : ''}${cheap.payLater > 0 ? `, incl. ${money(cheap.payLater, cheap.currency)} due after passing` : ''})` : null },
     { label: 'Base split', value: range(side.products.map(split).filter((v): v is number => v != null)) },
     { label: 'Max loss', value: range(side.products.map(product => product.maxLossPct).filter((v): v is number => v != null)) },
     { label: 'Earliest first payout', value: earliestWait(side) },

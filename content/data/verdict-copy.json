@@ -198,7 +198,7 @@
     },
     "alpha-capital-vs-crypto-fund-trader": {
       "pickA": [
-        "you want a lower $100K fee: Alpha Pro 6% on-demand lists $397; Crypto Fund Trader's lowest is $619",
+        "you want a lower $100K fee: Alpha Pro 6% on-demand lists $397; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
         "you trade on cTrader: Alpha Capital supports it; Crypto Fund Trader doesn't list it",
         "you plan to scale: Alpha Capital lists a $400,000 maximum allocation; Crypto Fund Trader lists $300,000"
       ],
@@ -529,7 +529,7 @@
     },
     "city-traders-imperium-vs-crypto-fund-trader": {
       "pickA": [
-        "you want a lower $100K fee: CTI 1-Step lists $449; Crypto Fund Trader's lowest is $619",
+        "you want a lower $100K fee: CTI 1-Step lists $449; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
         "you run EAs: City Traders Imperium allows them on CTI 1-Step only; Crypto Fund Trader restricts them everywhere",
         "you want a lower one-phase target: CTI 1-Step asks 8%; Crypto Fund Trader's lowest is 10%"
       ],
@@ -546,7 +546,7 @@
         "operating history matters to you: City Traders Imperium was founded in 2018, E8 Markets in 2021"
       ],
       "pickB": [
-        "you want an early first payout: E8 One allows on-demand requests from day 3 (CTI challenges: day 7)",
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (CTI evaluations: day 7)",
         "you want a lower $100K fee: E8 Signature lists $280; City Traders Imperium's lowest is $449",
         "you trade crypto: E8 Markets lists 2 crypto products; City Traders Imperium lists none"
       ]
@@ -605,14 +605,13 @@
         "you trade on MT5: City Traders Imperium supports it; Lucid Trading doesn't list it"
       ],
       "pickB": [
-        "you want an early first payout: LucidDaily pays on demand from day 1 (CTI challenges: day 7)",
+        "you want an early first payout: LucidDaily pays on demand from day 1 (CTI evaluations: day 7)",
         "you trade futures: every Lucid Trading product is a futures evaluation; City Traders Imperium lists none",
         "you want a higher starting split: LucidPro pays 90%; City Traders Imperium's evaluations top out at 80%"
       ]
     },
     "city-traders-imperium-vs-maven": {
       "pickA": [
-        "you want an early first payout: CTI's 1-Step and 2-Step pay weekly from day 7 (Maven Standard: day 10)",
         "you run EAs: City Traders Imperium allows them on CTI 1-Step only; Maven bars them everywhere",
         "you plan to scale: City Traders Imperium lists a $2,000,000 maximum allocation; Maven lists $1,000,000"
       ],
@@ -628,7 +627,7 @@
         "you trade forex/CFD rather than futures: every My Funded Futures product is futures"
       ],
       "pickB": [
-        "you want an early first payout: MFF Builder allows a request from day 2 (CTI challenges: day 7)",
+        "you want an early first payout: MFF Builder allows a request from day 2 (CTI evaluations: day 7)",
         "you trade futures: every My Funded Futures product is a futures evaluation; City Traders Imperium lists none",
         "you want a higher starting split: MFF Rapid pays 90%; City Traders Imperium's evaluations top out at 80%"
       ]
@@ -650,7 +649,7 @@
         "you trade forex/CFD rather than futures: every Take Profit Trader product is futures"
       ],
       "pickB": [
-        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (CTI challenges: day 7)",
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (CTI evaluations: day 7)",
         "you trade futures: every Take Profit Trader product is a futures evaluation; City Traders Imperium lists none",
         "you want a bigger account: Take Profit Trader goes up to $150,000; City Traders Imperium tops out at $100,000"
       ]
@@ -674,7 +673,7 @@
         "you trade forex/CFD rather than futures: every TradeDay product is futures"
       ],
       "pickB": [
-        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (CTI challenges: day 7)",
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (CTI evaluations: day 7)",
         "you trade futures: every TradeDay product is a futures evaluation; City Traders Imperium lists none",
         "you want a bigger account: TradeDay goes up to $150,000; City Traders Imperium tops out at $100,000"
       ]
@@ -686,7 +685,7 @@
         "you trade forex/CFD rather than futures: every Tradeify product is futures"
       ],
       "pickB": [
-        "you want an early first payout: Tradeify Select Daily pays from day 1 (CTI challenges: day 7)",
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (CTI evaluations: day 7)",
         "you trade futures: every Tradeify product is a futures evaluation; City Traders Imperium lists none",
         "you want a higher starting split: Tradeify Growth Evaluation pays 90%; City Traders Imperium's evaluations top out at 80%"
       ]
@@ -696,7 +695,7 @@
         "you want to skip the evaluation: Crypto Fund Trader sells funded accounts with no evaluation; E8 Markets doesn't"
       ],
       "pickB": [
-        "you want a lower $100K fee: E8 Signature lists $280; Crypto Fund Trader's lowest is $619",
+        "you want a lower $100K fee: E8 Signature lists $280; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
         "you want a bigger account: E8 Markets goes up to $500,000; Crypto Fund Trader tops out at $200,000",
         "you trade on cTrader: E8 Markets supports it; Crypto Fund Trader doesn't list it"
       ]
@@ -720,7 +719,7 @@
         "you want no minimum trading days: CFT's 2-Phase Evaluation lists 0; FundedNext evaluations need 2+"
       ],
       "pickB": [
-        "you want a lower $100K fee: Stellar Lite lists $399.99; Crypto Fund Trader's lowest is $619",
+        "you want a lower $100K fee: Stellar Lite lists $399.99; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
         "you trade on MT4: FundedNext supports it; Crypto Fund Trader doesn't list it"
       ]
     },
@@ -731,7 +730,7 @@
         "you trade the news: Crypto Fund Trader allows it on 4 of its 5 products; FundingPips restricts it everywhere"
       ],
       "pickB": [
-        "you want a lower $100K fee: FundingPips 2 Step Pro lists $422; Crypto Fund Trader's lowest is $619",
+        "you want a lower $100K fee: FundingPips 2 Step Pro lists $422; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
         "you trade on cTrader: FundingPips supports it; Crypto Fund Trader doesn't list it",
         "you plan to scale: FundingPips lists a $2,000,000 maximum allocation; Crypto Fund Trader lists $300,000"
       ]
@@ -741,7 +740,7 @@
         "you trade on Match-Trader: Crypto Fund Trader supports it; FXIFY doesn't list it"
       ],
       "pickB": [
-        "you want a lower $100K fee: FXIFY Three Phase lists $399; Crypto Fund Trader's lowest is $619",
+        "you want a lower $100K fee: FXIFY Three Phase lists $399; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
         "you run EAs: FXIFY allows them on 5 of its 10 products; Crypto Fund Trader restricts them everywhere",
         "you want a bigger account: FXIFY goes up to $400,000; Crypto Fund Trader tops out at $200,000"
       ]
@@ -754,7 +753,7 @@
       ],
       "pickB": [
         "you trade futures: every Lucid Trading product is a futures evaluation; Crypto Fund Trader lists none",
-        "you want a lower $100K fee: LucidFlex lists $293; Crypto Fund Trader's lowest is $619",
+        "you want a lower $100K fee: LucidFlex lists $293; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
         "you run EAs: Lucid Trading allows them on every product; Crypto Fund Trader restricts them everywhere"
       ]
     },
@@ -765,7 +764,7 @@
         "you want a bigger account: Crypto Fund Trader goes up to $200,000; Maven tops out at $100,000"
       ],
       "pickB": [
-        "you want a lower $100K fee: Maven Standard 3-Step lists $299; Crypto Fund Trader's lowest is $619",
+        "you want a lower $100K fee: Maven Standard 3-Step lists $299; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
         "you want a lower one-phase target: Maven Buy Now, Pay Later asks 4%; Crypto Fund Trader's lowest is 10%",
         "you plan to scale: Maven lists a $1,000,000 maximum allocation; Crypto Fund Trader lists $300,000"
       ]
@@ -836,7 +835,7 @@
       ],
       "pickB": [
         "you trade futures: every Tradeify product is a futures evaluation; Crypto Fund Trader lists none",
-        "you want a lower $100K fee: Tradeify Growth Evaluation lists $255; Crypto Fund Trader's lowest is $619",
+        "you want a lower $100K fee: Tradeify Growth Evaluation lists $255; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
         "you trade on TradingView: Tradeify supports it; Crypto Fund Trader doesn't list it"
       ]
     },
@@ -854,7 +853,6 @@
     },
     "e8-markets-vs-fundednext": {
       "pickA": [
-        "you want an early first payout: E8 One allows on-demand requests from day 3 (FundedNext: first reward after 5 business days)",
         "you want a lower $100K fee: E8 Signature lists $280; FundedNext's lowest is $399.99",
         "you trade crypto: E8 Markets lists 2 crypto products; FundedNext lists none"
       ],
@@ -901,7 +899,6 @@
     },
     "e8-markets-vs-maven": {
       "pickA": [
-        "you want an early first payout: E8 One allows on-demand requests from day 3 (Maven Standard: day 10)",
         "you want a lower $100K fee: E8 Signature lists $280; Maven's lowest is $299",
         "you trade crypto: E8 Markets lists 2 crypto products; Maven lists none"
       ],
@@ -1141,14 +1138,12 @@
         "you want a static loss floor: Stellar 2-Step's 10% max loss is static; every Lucid Trading product trails"
       ],
       "pickB": [
-        "you want an early first payout: LucidDaily pays on demand from day 1 (FundedNext: first reward after 5 business days)",
         "you trade futures: every Lucid Trading product is a futures evaluation; FundedNext lists none",
         "you want a higher starting split: LucidPro pays 90%; FundedNext's evaluations top out at 80%"
       ]
     },
     "fundednext-vs-maven": {
       "pickA": [
-        "you want an early first payout: Stellar 1-Step pays weekly, with the first reward after 5 business days (Maven Standard: day 10)",
         "you run EAs: FundedNext allows them with limits on every product; Maven bars them everywhere",
         "you want a bigger account: FundedNext goes up to $200,000; Maven tops out at $100,000"
       ],
@@ -1165,7 +1160,6 @@
         "you want a static loss floor: Stellar 2-Step's 10% max loss is static; every My Funded Futures product trails"
       ],
       "pickB": [
-        "you want an early first payout: MFF Builder allows a request from day 2 (FundedNext: first reward after 5 business days)",
         "you trade futures: every My Funded Futures product is a futures evaluation; FundedNext lists none",
         "you want a higher starting split: MFF Rapid pays 90%; FundedNext's evaluations top out at 80%"
       ]
@@ -1186,7 +1180,6 @@
         "you want the fee back: 3 of 4 FundedNext products are refundable; no Take Profit Trader fee is"
       ],
       "pickB": [
-        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (FundedNext: first reward after 5 business days)",
         "you trade futures: every Take Profit Trader product is a futures evaluation; FundedNext lists none",
         "you trade on TradingView: Take Profit Trader supports it; FundedNext doesn't list it"
       ]
@@ -1210,7 +1203,6 @@
         "you want the fee back: 3 of 4 FundedNext products are refundable; no TradeDay fee is"
       ],
       "pickB": [
-        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (FundedNext: first reward after 5 business days)",
         "you trade futures: every TradeDay product is a futures evaluation; FundedNext lists none",
         "you trade on TradingView: TradeDay supports it; FundedNext doesn't list it"
       ]
@@ -1222,7 +1214,6 @@
         "you want the fee back: 3 of 4 FundedNext products are refundable; no Tradeify fee is"
       ],
       "pickB": [
-        "you want an early first payout: Tradeify Select Daily pays from day 1 (FundedNext: first reward after 5 business days)",
         "you trade futures: every Tradeify product is a futures evaluation; FundedNext lists none",
         "you want a higher starting split: Tradeify Growth Evaluation pays 90%; FundedNext's evaluations top out at 80%"
       ]
@@ -1252,7 +1243,6 @@
     },
     "fundingpips-vs-maven": {
       "pickA": [
-        "you want an early first payout: FundingPips 2 Step Pro pays weekly from day 7 (Maven Standard: day 10)",
         "you run EAs: FundingPips allows them with limits on every product; Maven bars them everywhere",
         "you want a bigger account: FundingPips goes up to $200,000; Maven tops out at $100,000"
       ],
@@ -1346,7 +1336,6 @@
     },
     "fxify-vs-maven": {
       "pickA": [
-        "you want an early first payout: FXIFY Lightning pays from day 7, then every 14 days (Maven Standard: day 10)",
         "you trade crypto: FXIFY lists 2 crypto products; Maven lists none",
         "you run EAs: FXIFY allows them on 5 of its 10 products; Maven bars them everywhere"
       ],
@@ -1426,7 +1415,6 @@
     },
     "lucid-trading-vs-maven": {
       "pickA": [
-        "you want an early first payout: LucidDaily pays on demand from day 1 (Maven Standard: day 10)",
         "you trade futures: every Lucid Trading product is a futures evaluation; Maven lists none",
         "you want a higher starting split: LucidPro pays 90%; Maven's evaluations top out at 80%"
       ],
@@ -1504,7 +1492,6 @@
         "you trade forex/CFD or prediction markets rather than futures: every My Funded Futures product is futures"
       ],
       "pickB": [
-        "you want an early first payout: MFF Builder allows a request from day 2 (Maven Standard: day 10)",
         "you trade futures: every My Funded Futures product is a futures evaluation; Maven lists none",
         "you want a higher starting split: MFF Rapid pays 90%; Maven's evaluations top out at 80%"
       ]
@@ -1527,7 +1514,6 @@
         "you want a static loss floor: Maven Standard 2-Step's 8% max loss is static; every Take Profit Trader product trails"
       ],
       "pickB": [
-        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (Maven Standard: day 10)",
         "you trade futures: every Take Profit Trader product is a futures evaluation; Maven lists none",
         "you want a bigger account: Take Profit Trader goes up to $150,000; Maven tops out at $100,000"
       ]
@@ -1551,7 +1537,6 @@
         "you want the fee back: 8 of 9 Maven products are refundable; no TradeDay fee is"
       ],
       "pickB": [
-        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (Maven Standard: day 10)",
         "you trade futures: every TradeDay product is a futures evaluation; Maven lists none",
         "you run EAs: TradeDay allows them with limits on every product; Maven bars them everywhere"
       ]
@@ -1563,7 +1548,6 @@
         "you want the fee back: 8 of 9 Maven products are refundable; no Tradeify fee is"
       ],
       "pickB": [
-        "you want an early first payout: Tradeify Select Daily pays from day 1 (Maven Standard: day 10)",
         "you trade futures: every Tradeify product is a futures evaluation; Maven lists none",
         "you want a higher starting split: Tradeify Growth Evaluation pays 90%; Maven's evaluations top out at 80%"
       ]
@@ -1686,12 +1670,11 @@
       "pickB": [
         "you run EAs: TradeDay allows them with limits on every product; Take Profit Trader bars them everywhere",
         "you want no activation fee: every TradeDay plan lists $0; TPT The Test charges $130",
-        "you want a cheaper $50K subscription: TradeDay Quick Pay Intraday lists $59/month; Take Profit Trader's lowest is $170"
+        "you want a cheaper $50K subscription: TradeDay Quick Pay Intraday lists {{price:tradeday/quick-pay-intraday@50000|month}}; Take Profit Trader's lowest is {{lowest:take-profit-trader@50000|month}}"
       ]
     },
     "take-profit-trader-vs-tradeify": {
       "pickA": [
-        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (Tradeify: day 1)",
         "operating history matters to you: Take Profit Trader was founded in 2021, Tradeify in 2024"
       ],
       "pickB": [
@@ -1703,7 +1686,7 @@
     "topstep-vs-tradeday": {
       "pickA": [
         "you want a higher starting split: both Topstep paths pay 90%; TradeDay's evaluations top out at 80%",
-        "you want a cheaper $50K subscription: Topstep's Standard Path lists $49/month plus a $149 activation fee; TradeDay's lowest is $59",
+        "you want a cheaper $50K subscription: Topstep's Standard Path lists $49/month plus a $149 activation fee; TradeDay's lowest is {{lowest:tradeday@50000|month}}",
         "operating history matters to you: Topstep was founded in 2012, TradeDay in 2020"
       ],
       "pickB": [
