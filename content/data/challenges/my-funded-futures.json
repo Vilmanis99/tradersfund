@@ -40,6 +40,15 @@
     "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "evaluation",
+        "appliesTo": "Evaluation",
+        "sourceUrl": "https://myfundedfutures.com/plans/rapid"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -96,6 +105,15 @@
     "minTradingDays": 4,
     "maxTradingDays": null,
     "consistencyRulePct": 30,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 30,
+        "scope": "evaluation",
+        "appliesTo": "Evaluation",
+        "sourceUrl": "https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -209,6 +227,15 @@
     "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "evaluation",
+        "appliesTo": "Evaluation",
+        "sourceUrl": "https://myfundedfutures.com/plans/pro"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
@@ -265,6 +292,15 @@
     "maxTradingDays": null,
     "consistencyRulePct": null,
     "consistencyRuleApplies": false,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "funded",
+        "appliesTo": "Sim Funded payouts",
+        "sourceUrl": "https://myfundedfutures.com/plans/builder"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": 2,
     "payoutFrequency": "on-demand",
