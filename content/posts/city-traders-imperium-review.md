@@ -148,7 +148,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p><strong>Evaluation payouts are recorded at 7 days and weekly thereafter.</strong> Both 1-Step and 2-Step carry that structured timing. Direct Funding records a 5-day first-payout field and monthly frequency; Instant Funding records 5 days but leaves the baseline frequency null because weekly and anytime access are published only for later VIP levels.</p>
+<p><strong>Evaluation payouts are recorded at 7 days and weekly thereafter.</strong> Both 1-Step and 2-Step carry that structured timing. Direct Funding records a 5-day first-payout field and monthly frequency; Instant Funding records 5 days but leaves the baseline frequency null because weekly and anytime access are published only for later VIP levels. See how CTI compares with other <a href="/blog/prop-firms-with-weekly-payouts">prop firms with weekly payouts</a>.</p>
 
 <p><strong>Trustpilot is context, not payout proof.</strong> CTI displayed 4.2/5 from 1,633 reviews in the 2026-07-27 aggregate capture. TradersFundHub’s verified-payout badge remains false, so the third-party average cannot establish that a specific 5-day or 7-day request will be approved.</p>
 

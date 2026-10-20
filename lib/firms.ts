@@ -71,6 +71,15 @@ export interface Firm {
   assets: string[]
   maxAllocation: string
   platforms: string[]
+  /**
+   * Platforms offered on the firm's free trial/demo, when they differ from the
+   * paid `platforms` list (e.g. FTMO: TradingView on paid accounts, not on the
+   * Free Trial). Omitted when no first-party trial platform list was captured.
+   */
+  freeTrialPlatforms?: string[] | null
+  freeTrialPlatformsSourceUrl?: string
+  freeTrialPlatformsQuote?: string
+  freeTrialPlatformsCapturedAt?: string
   /** A platform-only check; never refreshes prices, firm terms or individual eligibility. */
   /** Official evidence for the `assets` list (e.g. a newly added asset class). */
   assetsEvidence?: { sourceUrl: string; sourceCapturedAt: string; sourceQuote: string; notes?: string }
@@ -108,6 +117,12 @@ export interface Firm {
   /** Scope/limits of the public code (eligible products, exclusions). */
   discountCodeNote?: string
   /**
+   * false = code seen on the firm's site but the discount was not confirmed at
+   * checkout. Such codes are never promoted as "N% off · code" (see
+   * lib/discountDisplay.ts); where shown, they are labelled unverified.
+   */
+  discountCodeCheckoutVerified?: boolean
+  /**
    * A code seen only from one region (e.g. a US IP). Kept out of `discountCode`
    * so no global or RU surface renders it as a universal code.
    */
@@ -132,6 +147,16 @@ export interface Firm {
   profitSplitPct?: number | null
   payoutFrequency?: PayoutFrequency | null
   payoutMethods?: string[]
+  /** Official page and verbatim quote backing `payoutMethods`. */
+  payoutMethodsSourceUrl?: string
+  payoutMethodsQuote?: string
+  payoutMethodsCapturedAt?: string
+  /** Scope/exclusions for `payoutMethods` (e.g. countries excluded from a method), from the same official pages. */
+  payoutMethodsNote?: string
+  /** Why `payoutFrequency` is null or scoped (e.g. only the first-payout wait is published). */
+  payoutFrequencyNote?: string
+  payoutFrequencySourceUrl?: string
+  payoutFrequencyQuote?: string
   drawdownType?: DrawdownType | null
   minTradingDays?: number | null
   consistencyRule?: string | null

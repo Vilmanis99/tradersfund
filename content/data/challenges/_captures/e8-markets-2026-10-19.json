@@ -1,0 +1,237 @@
+{
+  "firmSlug": "e8-markets",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T10:02:40+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+  "egress": "Box egress is a US IP. Global (non-US) prices were checked against the firm's Global/region-independent price data as described in method; US-only codes are not promoted.",
+  "method": "curl of Nuxt __NUXT_DATA__ configurator payload (global-data.products) + headless Chrome",
+  "priceSource": "https://e8markets.com/e8-one (embedded global-data.products)",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "e8-one",
+      "prices": {
+        "5000": 48,
+        "10000": 88,
+        "25000": 188,
+        "50000": 288,
+        "100000": 488,
+        "200000": 798,
+        "400000": 1598,
+        "500000": 1998
+      }
+    },
+    {
+      "productSlug": "e8-one-perpetuals",
+      "prices": {
+        "5000": 48,
+        "10000": 88,
+        "25000": 188,
+        "50000": 288,
+        "100000": 488,
+        "200000": 798,
+        "400000": 1598,
+        "500000": 1998
+      }
+    },
+    {
+      "productSlug": "e8-pro",
+      "prices": {
+        "5000": 32,
+        "10000": 68,
+        "25000": 148,
+        "50000": 228,
+        "100000": 488,
+        "200000": 998,
+        "400000": 2098,
+        "500000": 2598
+      }
+    },
+    {
+      "productSlug": "e8-pro-perpetuals",
+      "prices": {
+        "5000": 32,
+        "10000": 68,
+        "25000": 148,
+        "50000": 228,
+        "100000": 488,
+        "200000": 998,
+        "400000": 2098,
+        "500000": 2598
+      }
+    },
+    {
+      "productSlug": "e8-signature",
+      "prices": {
+        "25000": 120,
+        "50000": 160,
+        "100000": 280,
+        "150000": 450
+      }
+    }
+  ],
+  "priceQuotes": [
+    "e8one balances 5000:48 10000:88 25000:188 50000:288 100000:488 200000:798 400000:1598 500000:1998",
+    "e8pro_v2 balances 5000:32 10000:68 25000:148 50000:228 100000:488 200000:998 400000:2098 500000:2598",
+    "e8signature_fx balances 25000:120 50000:160 100000:280 150000:450",
+    "E8 One · Account · $100K One phase CONFIGURE ACCOUNT: Drawdown 6% Max Payout 80% $488 ... CHALLENGE RULES Profit Target $9,000 Dynamic Drawdown $6,000 Daily drawdown $4,000"
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 58,
+    "foundVerbatimInLiveText": 14,
+    "notFoundVerbatim": 44,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules (e.g. \"Live ... configurator on 2026-10-14: $5K list $48\") or quotes with formatting differences; each underlying value was re-checked against the live data listed in priceQuotes / changes / notes."
+  },
+  "changes": [
+    "E8 One notes and challenge-watch e8-one-default-parameter-conflict marked resolved (status verified, lastCheckedAt 2026-10-19) per resolution below; no value change.",
+    "E8 One resolution note corrected with per-option values; E8 Pro \"still conflicts\" note replaced (help table matches); watch e8-pro-current-page-vs-help-prices summary refreshed, lastCheckedAt 2026-10-19 (status stays watch: drawdown/payout option conflict remains)."
+  ],
+  "freeTrial": {
+    "sourceUrl": "https://help.e8markets.com/en/articles/5514275-can-i-try-e8-markets-for-free",
+    "quotes": [
+      "You are eligible for 2 free E8 trials every 28 days.",
+      "Users using a trial account are not eligible to receive any payouts from E8 Markets.",
+      "Please note that all trial accounts are automatically closed after 30 days from the date the account was created."
+    ],
+    "note": "Read via WebSearch index of the official article (not re-rendered in the browser); the homepage shows a \"Free Trial\" button and the configurator lists e8trialone products at $0. Candidate for the EN article only."
+  },
+  "resolution": {
+    "item": "E8 One targets conflict (help 6%/3%/4% vs stored 9%/4%/6%)",
+    "authoritative": "https://e8markets.com/e8-one configurator (live product data)",
+    "quotes": [
+      "\"evaluation\":{\"profitTargetFrom\":{\"from\":\"drawdown\",\"multiplier\":1.5},\"drawdown\":6,\"dailyDrawdownFrom\":{\"from\":\"drawdown\",\"multiplier\":0.66}}",
+      "\"settings\":{\"drawdowns\":[4,6,8,10,14]",
+      "Profit Target $9,000 Dynamic Drawdown $6,000 Daily drawdown $4,000 (default $100K configuration)",
+      "Help article https://help.e8markets.com/en/articles/11775980-e8-one (lastUpdatedDate 2026-09-23): \"6% Profit Target ... 3% Daily Drawdown ... 4% Dynamic Drawdown\"",
+      "Configurator bundle https://e8markets.com/_nuxt/DQyMxEnI.js (fetched 2026-10-19 ~11:08 EEST): \"k=_=>Math.round(_*10)/10\" ... \"i=y=>y===4?.75:g\" ... \"dailyLossMin:k(d*i(d)),dailyLossMax:k(n*i(n))\"",
+      "https://help.e8markets.com/en/articles/8880316-what-is-the-custom-account (lastUpdatedDate 2026-10-08): \"Dynamic drawdown: 4%, 6%, 8%, 10%, 14%\" / \"Daily drawdown:  3%, 4%, 5.3%, 6.6%,  9.2% (only adjusted based on Dynamic Drawdown parameter).\" / \"6%, 9%, 12%, 15%, 21%\""
+    ],
+    "conclusion": "E8 One is configurable. Per-option values (drawdown -> target / daily): 4 -> 6 / 3; 6 -> 9 / 4; 8 -> 12 / 5.3; 10 -> 15 / 6.6; 14 -> 21 / 9.2. Configurator code: daily multiplier 0.66 except 0.75 at the 4% option (i=y=>y===4?.75:g), rounded to 0.1 (k=_=>Math.round(_*10)/10). Priced default 6% -> 9% / 4% / 6% (stored). Help article 11775980 describes the 4% option.",
+    "correction": "Earlier today the note implied 0.66x for every option (2.64% at 4%); the configurator uses 0.75x at 4% (= 3%), matching the help article."
+  },
+  "notes": [
+    "All prices unchanged vs 2026-10-14. Refund policy (updated 2026-10-15) still says no fee refund with first payout; unused phase-1 refund within 30 days; no crypto refunds."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://e8pro.e8markets.com/best-simfi-funded-program-e8pro",
+      "httpStatus": 402,
+      "fetchedAt": "2026-10-19T07:02:17.788Z"
+    },
+    {
+      "url": "https://e8markets.com/compare-simfi-funded-accounts",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:20.244Z"
+    },
+    {
+      "url": "https://e8markets.com/e8-signature",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:20.648Z"
+    },
+    {
+      "url": "https://e8markets.com/e8-one",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:20.817Z"
+    },
+    {
+      "url": "https://e8markets.com/e8-pro",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:21.560Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/11775980-e8-one",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:28.286Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/13106558-all-product-overviews-e8-one-vs-e8-zero-vs-e8-pro-vs-e8-signature",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:28.509Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/15272556-everything-about-payouts-when-how-how-fast",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:28.548Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/8880316-what-is-the-custom-account",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:28.548Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/15274219-e8-pro-forex",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:28.681Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/11755943-e8-signature-forex",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:28.769Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/6929927-trading-policies-and-prohibited-trading-strategies",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:34.521Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/5515409-can-i-use-indicators-or-expert-advisors-when-trading-the-e8-account",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:34.559Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:34.596Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/9799834-available-trading-platforms",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:34.681Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:34.722Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/9453469-can-i-copy-trades-or-trade-as-a-team",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:34.809Z"
+    },
+    {
+      "url": "https://e8markets.com/best-simfi-funded-program-e8pro",
+      "httpStatus": 404,
+      "fetchedAt": "2026-10-19T07:02:40.326Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/8811411-refund-policy",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:40.418Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/5514278-accepted-countries",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:40.488Z"
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:40.534Z"
+    },
+    {
+      "url": "https://e8markets.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-19T07:02:40.952Z"
+    }
+  ],
+  "e8ProHelpPriceTable": {
+    "checkedAt": "2026-10-19",
+    "sourceUrl": "https://help.e8markets.com/en/articles/8880316-what-is-the-custom-account",
+    "lastUpdatedDate": "2026-10-08",
+    "quote": "E8 Pro: Account balance $5,000 $10,000 $25,000 $50,000 $100,000 $200,000 $400,000 $500,000 Pre-set pricing $32 $68 $148 $228 $488 $998 $2098 $2598",
+    "matchesStored": true,
+    "note": "help article 15274219-e8-pro-forex (lastUpdatedDate 2026-09-23) has no price table. A live re-render of e8markets.com/e8-one at ~11:05 EEST hit a \"SECURE VERIFICATION\" human check, so the per-option values come from the configurator JS bundle plus the help table, not a rendered click-through."
+  }
+}

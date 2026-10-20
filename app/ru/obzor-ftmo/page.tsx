@@ -27,10 +27,12 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/obzor-ftmo'
-const TITLE = 'FTMO проп: обзор 2026, цены, правила и доступ для русскоязычных'
-const DESCRIPTION = 'FTMO — проп-компания: обзор на русском, 1-Step и 2-Step, 10 цен в EUR, статическая и EOD-trailing просадка, возврат fee, выплаты и ограничение для Российской Федерации.'
+const TITLE = 'FTMO проп: обзор 2026 — цены, правила и доступ из России'
+const DESCRIPTION = 'FTMO проп-компания: обзор на русском — 1-Step и 2-Step, цены в EUR, статическая и EOD-просадка, возврат fee, выплаты и почему FTMO закрыта для резидентов РФ.'
 
 const OFFICIAL_URL = 'https://ftmo.com/'
 const COMPARISON_URL = 'https://ftmo.com/en/comparison-table/'
@@ -129,7 +131,7 @@ export default function RussianFtmoReviewPage() {
     ...freshProducts.map(product => product.sourceUrl),
     ...(accessEvidence?.sourceUrls ?? []),
   ])]
-  const partnerAlternatives = ['fundednext', 'bright-funded'].flatMap(slug => {
+  const partnerAlternatives = ['bright-funded', 'fundednext'].flatMap(slug => {
     const partnerFirm = firms.find(candidate => outboundSlug(candidate.name) === slug)
     if (!partnerFirm?.affiliateUrl) return []
     const partnerProducts = getChallengesByFirm(slug).filter(product => isChallengeFresh(product))
@@ -172,15 +174,14 @@ export default function RussianFtmoReviewPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-ftmo-review="search-to-decision">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / FTMO</div>
           <RussianDataFreshnessNotice firmSlugs={['ftmo']} />
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Условия проверены {latestCapture}</div>
-          <h1>FTMO: обзор 2026 — 2 программы и 10 цен</h1>
+          <h1>FTMO проп: обзор 2026 — программы, цены и правила</h1>
           <p className="ru-lead">
             FTMO 1-Step и 2-Step различаются не только числом фаз. У них разные дневные лимиты, механика максимального убытка,
             правило Best Day, стартовая доля прибыли и возврат взноса. Для русскоязычного читателя первым фильтром остаётся страна,
@@ -449,7 +450,7 @@ export default function RussianFtmoReviewPage() {
             <p>
               Альтернатива должна решать конкретную проблему FTMO, а не просто вести на другой логотип. Для русскоязычного жителя разрешённой страны
               сначала сравниваются валюта взноса, тип просадки, число фаз и выплата; для резидента России отдельно проверяются правила страны каждой фирмы.
-              FundedNext сохраняет конфликт официальных формулировок по России, а отсутствие России в опубликованном списке BrightFunded не заменяет KYC.
+              FundedNext резидентам России недоступна (подвал её сайта, по данным на 20.10.2026), а отсутствие России в опубликованном списке BrightFunded не заменяет KYC.
             </p>
             <div className="ru-grid">
               {partnerAlternatives.map(item => {
@@ -464,12 +465,12 @@ export default function RussianFtmoReviewPage() {
                     </ul>
                     <p>
                       {item.slug === 'fundednext'
-                        ? 'Начните с выбора между Stellar 2-Step, 1-Step, Lite и Instant; официальный конфликт по российским резидентам не позволяет обещать доступ.'
+                        ? `${FUNDEDNEXT_RU_ACCESS_NOTE} Для других стран начните с выбора между Stellar 2-Step, 1-Step, Lite и Instant.`
                         : 'Начните с выбора между 1-Step, 2-Step Bright и 2-Step Classic; взнос публикуется в EUR, а базовую долю нельзя подменять платным или масштабируемым потолком.'}
                     </p>
                     <div className="ru-actions">
                       <Link href={reviewHref} className="btn-outline">Русский обзор</Link>
-                      <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-ftmo-alternative-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
+                      <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-ftmo-alternative-${item.slug}`} rel="sponsored nofollow noopener" className={item.slug === 'fundednext' ? 'btn-outline' : 'btn-primary'}>
                         Проверить {item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name} <ArrowRight size={14} aria-hidden="true" />
                       </RuGoLink>
                     </div>
@@ -478,7 +479,8 @@ export default function RussianFtmoReviewPage() {
               })}
             </div>
             <div className="ru-actions">
-              <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary"><Scale size={15} aria-hidden="true" /> Сравнить FundedNext и BrightFunded</Link>
+              <Link href="/ru/ftmo-vs-bright-funded" className="btn-primary"><Scale size={15} aria-hidden="true" /> Сравнить FTMO и BrightFunded</Link>
+              <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline"><Scale size={15} aria-hidden="true" /> Сравнить FundedNext и BrightFunded</Link>
               <Link href="/ru/promokody-prop-firm" className="btn-outline">Проверить действующие предложения</Link>
             </div>
           </div>

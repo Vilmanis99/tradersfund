@@ -1,12 +1,12 @@
 ---
-title: "FTMO Review 2026: Euro-Priced, 80% on the 2-Step, 90% on the 1-Step"
-seoTitle: "FTMO Review 2026: 1-Step vs 2-Step Fees & Splits"
+title: "FTMO Review 2026: Challenge Fees, Rules and 80–90% Splits"
+seoTitle: "FTMO Review 2026: Challenge Fees from €79, Rules & Splits"
 slug: "ftmo-review"
 date: "2024-08-30 10:30:24"
-modified: "2026-10-06"
+modified: "2026-10-20"
 author: "Edris Derakhshi"
 excerpt: "FTMO publishes per-tier pricing — in euros, not dollars. €89–€1,080 for the refundable 2-Step at 80%, €79–€999 for the non-refundable 1-Step at 90%."
-seoDescription: "FTMO review comparing euro pricing, refundable 2-Step fees, non-refundable 1-Step fees, 80%–90% splits, drawdown rules, and true cost."
+seoDescription: "FTMO challenge review 2026: €79–€1,080 fees in euros, 1-Step 90% vs 2-Step 80% splits, 3% vs 5% daily loss, trailing vs static drawdown and true cost."
 categories: ["Prop Firms"]
 tags: ["FTMO", "Prop Firm"]
 type: "post"
@@ -24,7 +24,7 @@ type: "post"
     <li>2-Step list prices: €1,080 / €540 / €345 / €250 / €89 for the $200K / $100K / $50K / $25K / $10K accounts. 1-Step: €999 / €499 / €319 / €199 / €79.</li>
     <li>Drawdown differs by product. The 2-Step max loss is static at 10% of the initial balance. The 1-Step uses an end-of-day trailing limit that "can only increase, but never decrease."</li>
     <li>The Best Day (consistency) rule — no single day above 50% of your Positive Days' Profit — applies to the <strong>1-Step only</strong>. It is explicitly switched off on the 2-Step.</li>
-    <li>First reward can be claimed on the 14th day or any day after your first placed trade, then on demand.</li>
+    <li>Rewards are on demand: FTMO says they "can be requested on demand after a minimum of 14 days from your first demo trade," so the first claim comes on day 14 or later and there is no fixed cycle after it (checked 2026-10-20).</li>
   </ul>
 </div>
 
@@ -106,7 +106,7 @@ type: "post"
 
 <p><strong>Account ladders vary by currency.</strong> The same fee array applies across all seven denominations, but the balances differ: USD tops out at $200,000, GBP at £140,000, EUR and CHF at 160,000, CAD at $240,000, AUD at $260,000 and CZK at 4,000,000. If you price by balance-per-euro rather than by headline tier, the currency you pick changes the answer.</p>
 
-<p><strong>Scaling.</strong> FTMO's current Scaling Plan page publishes a 25% account-balance increase every 4 months, up to $2,000,000 across all FTMO Accounts. The four gates captured on 2026-09-29 are at least 4 months since the start or last scale-up, at least 10% net simulated profit above the starting balance in the prior 4 months, at least 2 processed Rewards in that period, and a positive balance at scale-up. The scaled 90% Reward applies to 2-Step only; 1-Step already starts at 90%. FTMO also offers a Free Trial; its separate 1-Step and 2-Step practice rules are checked in the <a href="/blog/ftmo-free-trial-explained">current FTMO Free Trial guide</a> rather than mixed into this paid-product table.</p>
+<p><strong>Scaling.</strong> FTMO's current Scaling Plan page publishes a 25% account-balance increase every 4 months, up to $2,000,000 across all FTMO Accounts. The four gates captured on 2026-09-29 are at least 4 months since the start or last scale-up, at least 10% net simulated profit above the starting balance in the prior 4 months, at least 2 processed Rewards in that period, and a positive balance at scale-up. The scaled 90% Reward applies to 2-Step only; 1-Step already starts at 90%. FTMO also offers a Free Trial; its separate 1-Step and 2-Step practice rules are checked in the <a href="/blog/ftmo-free-trial-explained">current FTMO Free Trial guide</a> rather than mixed into this paid-product table; how it compares with the FundedNext, FundingPips, Alpha Capital and E8 trials is in our <a href="/blog/prop-firm-free-trial">prop firm free trial comparison</a>.</p>
 
 <p><strong>FundedNext comparison.</strong> The <a href="/compare/ftmo-vs-fundednext">product-level FTMO vs FundedNext comparison</a> keeps FTMO’s EUR fees separate from FundedNext’s USD fees and contrasts these 2 FTMO paths with 4 FundedNext products using the 2026-09-29 FTMO capture.</p>
 
@@ -181,9 +181,9 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p><strong>First reward: day 14.</strong> FTMO's rule is "You can request a Reward claim in the Account MetriX on the 14th or any following day after the first placed trade on the specific account. All open positions and pending orders must be closed." The clock starts at your first trade, not at account activation, and after that first claim the cycle is on demand rather than a fixed calendar. Both products use the same day-14 mechanism.</p>
+<p><strong>First reward: day 14.</strong> FTMO's rule is "You can request a Reward claim in the Account MetriX on the 14th or any following day after the first placed trade on the specific account. All open positions and pending orders must be closed." The clock starts at your first trade, not at account activation. FTMO's withdrawal FAQ, rechecked on 2026-10-20, states that day-14 rule, and FTMO's own promo page describes the result as on demand: rewards "can be requested on demand after a minimum of 14 days from your first demo trade", provided the account is in profit with no open positions or pending orders. There is no fixed weekly or bi-weekly cycle to wait for. Both products use the same day-14 mechanism.</p>
 
-<p><strong>Processing.</strong> After you submit the request, FTMO reviews the account and notifies you within 1–2 business days, and "the Reward is typically sent within 1–2 business days after the invoice is approved" — so roughly 2–4 business days end to end when nothing is queried. Payout methods are bank wire, Skrill and crypto; we did not capture per-method fee schedules on 2026-09-29, so budget for your own receiving-bank charges rather than a figure we can't source.</p>
+<p><strong>Processing.</strong> After you submit the request, FTMO reviews the account and notifies you within 1–2 business days, and "the Reward is typically sent within 1–2 business days after the invoice is approved" — so roughly 2–4 business days end to end when nothing is queried. Payout methods are bank wire, instant transfer via Visa Direct / Mastercard Send (up to $20,000), Skrill (up to $3,000) and crypto, per FTMO's withdrawal FAQ rechecked on 2026-10-19. FTMO says it charges no extra commission on Reward withdrawals, but sets a minimum closed profit of $20 for bank wire and Visa Direct / Mastercard Send and $50 for crypto; budget for your own receiving-bank charges.</p>
 
 <p><strong>Two product-specific catches.</strong> On the 1-Step, "Rewards cannot be left on the account to grow the balance", and the 50% Best Day rule is applied at withdrawal as well as at passing — a lopsided winning day can block a reward request, not just a pass. On the 2-Step, the refunded fee arrives with that first reward withdrawal, so a trader who passes and then never withdraws never sees it. As a third-party sentiment check, FTMO holds 4.8 from 54,501 reviews on Trustpilot (<a href="https://www.trustpilot.com/review/ftmo.com">verified 2026-10-15</a>).</p>
 

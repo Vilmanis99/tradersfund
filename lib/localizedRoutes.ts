@@ -15,6 +15,8 @@ export const LOCALIZED_ROUTE_PAIRS = [
     en: '/how-prop-firm-challenges-work',
     ru: '/ru/kak-rabotayut-chellendzhi-prop-firm',
   },
+  // Trust page; RU copy in content/data/ru-how-we-make-money.json.
+  { en: '/how-we-make-money', ru: '/ru/kak-my-zarabatyvaem' },
 ] as const
 
 export const RUSSIAN_ONLY_ROUTES = [
@@ -23,6 +25,7 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/forex-prop-firmy',
   '/ru/prop-firmy-s-ctrader',
   '/ru/fundednext-mt5',
+  '/ru/funded-account',
   '/ru/fundednext-stellar-instant',
   '/ru/vyplaty-prop-firm',
   '/ru/prop-firmy-bez-kyc',
@@ -33,6 +36,7 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/obzor-teamtraders',
   '/ru/otzyvy-prop-firm',
   '/ru/ftmo-dlya-rossiyan',
+  '/ru/ftmo-vs-bright-funded',
 ] as const
 
 /**
@@ -67,10 +71,13 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/dlya-russkoyazychnykh-treyderov': '2026-10-14',
   '/ru/forex-prop-firmy': '2026-10-01',
   '/ru/fundednext-mt5': '2026-09-08',
+  '/ru/funded-account': '2026-10-14',
   '/ru/fundednext-stellar-instant': '2026-10-01',
   '/ru/fundednext-vs-bright-funded': '2026-10-01',
   '/ru/ftmo-dlya-rossiyan': '2026-10-14',
+  '/ru/ftmo-vs-bright-funded': '2026-10-19',
   '/ru/fundednext-vs-fundingpips': '2026-09-14',
+  '/ru/kak-my-zarabatyvaem': '2026-10-20',
   '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-08-28',
   '/ru/luchshie-kripto-prop-firmy': '2026-10-14',
   '/ru/luchshie-prop-firmy': '2026-10-14',

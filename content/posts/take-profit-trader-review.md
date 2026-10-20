@@ -1,12 +1,12 @@
 ---
-title: "Take Profit Trader Review 2026: 3-Day New Tests, Day-One Payouts & Drawdown"
-seoTitle: "Take Profit Trader Review 2026: Fees & Drawdown"
+title: "Take Profit Trader Review 2026: Fees, Drawdown & Payouts"
+seoTitle: "Take Profit Trader Review 2026: Test Fees, Funding & Payouts"
 slug: "take-profit-trader-review"
 date: "2026-06-15"
 modified: "2026-09-14 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Take Profit Trader pairs a 3-day path for new tests with day-one payouts — then attaches an end-of-day trailing drawdown and an 80% starting split. Here's the math and who it beats."
-seoDescription: "Take Profit Trader review: current monthly fees, 3-day new Tests, end-of-day drawdown, day-one payouts, 80% split and true cost."
+seoDescription: "Take Profit Trader review 2026: monthly Test fees from $150 (25K) to $360 (150K), 6% target, 3 minimum days, EOD trailing drawdown, 50% consistency, 80% split."
 categories: ["Prop Firms"]
 tags: ["Take Profit Trader", "Prop Firm"]
 type: "post"

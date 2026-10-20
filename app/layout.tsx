@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import './globals.css'
+import { jsonLd, organizationSchema, websiteSchema } from '@/lib/schema'
 import './light-platform.css'
 import './home.css'
 import Header from '@/components/Header'
@@ -69,6 +70,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* RSS autodiscovery — hoisted to <head> by React. Placed here (not in
             metadata.alternates) so per-page canonical overrides can't drop it. */}
         <link rel="alternate" type="application/rss+xml" title="Traders Fund Hub — Reviews & Guides" href="/feed.xml" />
+        {/* Site-wide entities: one Organization and one WebSite node, referenced by @id
+            from Article/Review/WebPage schema on every page (EN and RU). */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(organizationSchema()) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(websiteSchema()) }} />
         <Header />
         <main style={{ flex: 1 }}>
           {children}

@@ -7,13 +7,15 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import { FUNDEDNEXT_RU_ACCESS_CHECKED, FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/dlya-russkoyazychnykh-treyderov'
 const CHECKED = '14.10.2026'
 const CHECKED_ISO = '2026-10-14'
 export const revalidate = 3600
-const TITLE = 'Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ (проверено 10.2026)'
-const DESCRIPTION = 'Какие проп-компании работают с Россией в 2026 году: таблица 15 фирм со статусом для РФ, Беларуси и Казахстана, способами выплаты и ссылками на официальные правила.'
+const TITLE = 'Проп-фирмы для россиян 2026: кто принимает трейдеров из РФ'
+const DESCRIPTION = 'Проп-фирмы для россиян: какие компании работают с РФ в 2026 году. Таблица 15 фирм со статусом для России, Беларуси и Казахстана, оплатой и выплатами.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -48,12 +50,12 @@ const rows: Row[] = [
   { firm: 'Upscale', russia: 'Принимает (ограничений по странам не заявлено)', belarus: 'Принимает', kazakhstan: 'Принимает', payout: 'Оплата криптовалютой; выплаты в USDT на собственный некастодиальный кошелёк; KYC нет', status: 'open', source: 'https://upscale.trade/ru/faq' },
   { firm: 'Crypto Fund Trader', russia: 'На Match-Trader ограничений по странам нет; MT5 закрыт только для резидентов США (по данным на 14.10.2026)', belarus: 'Так же', kazakhstan: 'Так же', payout: 'Оплата: карта, PayPal, Apple Pay, Google Pay, криптовалюта. Выплаты: банк EUR/USD, USDT ERC20/TRC20, BTC, ETH', status: 'open', source: 'https://cryptofundtrader.com/faq/', review: '/blog/crypto-fund-trader-review' },
   { firm: 'BrightFunded', russia: 'Не в списке ограничений', belarus: 'Не в списке', kazakhstan: 'Не в списке', payout: 'Оплата: криптовалюта (BTC вкл. Lightning, USDT TRC20, USDC ERC-20, ETH, LTC, TRX, SOL) или карта. Выплаты: USDC (ERC-20), банковский перевод в EUR', status: 'open', source: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded', review: '/ru/obzor-bright-funded' },
-  { firm: 'FundedNext (CFD)', russia: 'Не в списке ограничений CFD', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Оплата: криптовалюта (1%; Binance Pay, BTC, ETH, LTC, DOGE, SOL, USDT, USDC), PayPal (1%), Skrill (3%), Apple/Google Pay, карты на своё имя. Выплаты: USDT (ERC20/TRC20), USDC, RiseWorks, банк, карта', status: 'open', source: 'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds', review: '/ru/obzor-fundednext' },
+  { firm: 'FundedNext (CFD)', russia: `Ограничена: подвал fundednext.com исключает резидентов России; список в условиях (п. 5.3, CFD) Россию не называет (по данным на ${FUNDEDNEXT_RU_ACCESS_CHECKED})`, belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Оплата: криптовалюта (1%; Binance Pay, BTC, ETH, LTC, DOGE, SOL, USDT, USDC), PayPal (1%), Skrill (3%), Apple/Google Pay, карты на своё имя. Выплаты: USDT (ERC20/TRC20), USDC, RiseWorks, банк, карта', status: 'closed', source: 'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds', review: '/ru/obzor-fundednext' },
   { firm: 'FundedNext Futures', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://fundednext.com/terms-of-service' },
   { firm: 'FundingPips', russia: 'Неясно: Россия прямо не названа, но исключены страны из санкционных списков FATF и ЕС/ООН', belarus: 'Неясно', kazakhstan: 'Не названа', payout: 'Карта, USDT/USDC ERC-20, Rise (Rise требует KYC), банк', status: 'unclear', source: 'https://fundingpips.com/terms-and-conditions', review: '/ru/obzor-fundingpips' },
   { firm: 'Topstep', russia: 'Ограничена: Россия в списке «Countries Ineligible to Trade»; решает страна проживания', belarus: 'Ограничена', kazakhstan: 'Не названа', payout: 'Не проверено', status: 'closed', source: 'https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep' },
   { firm: 'FTMO', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Ограничена', payout: 'Не проверено', status: 'closed', source: 'https://ftmo.com/en/faq/who-can-join-ftmo/', review: '/ru/ftmo-dlya-rossiyan' },
-  { firm: 'The5ers', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://the5ers.com/faq/' },
+  { firm: 'The5ers', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://the5ers.com/terms-and-conditions/' },
   { firm: 'E8 Markets', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не проверено', payout: 'Не проверено', status: 'closed', source: 'https://help.e8markets.com/en/articles/5514278-accepted-countries' },
   { firm: 'FXIFY', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не проверено', payout: 'Не проверено', status: 'closed', source: 'https://fxify.com/faqs/all-faqs/what-countries-are-accepted/' },
   { firm: 'Maven', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://maventrading.com/faq' },
@@ -82,7 +84,7 @@ const localFirms = [
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какие проп-компании работают с Россией в 2026 году?',
-    a: `На ${CHECKED} без оговорок по России работают Upscale (ограничений по странам не заявлено) и Crypto Fund Trader на платформе Match-Trader. BrightFunded и CFD-направление FundedNext не включают Россию в свои списки ограничений. FTMO, The5ers, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Tradeify, Lucid Trading и FundedNext Futures Россию ограничивают.`,
+    a: `На ${CHECKED} без оговорок по России работают Upscale (ограничений по странам не заявлено) и Crypto Fund Trader на платформе Match-Trader. BrightFunded не включает Россию в свои списки ограничений. FundedNext резидентам России недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026). FTMO, The5ers, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Tradeify, Lucid Trading и FundedNext Futures Россию ограничивают.`,
   },
   {
     q: 'Можно ли пройти челлендж FTMO из России?',
@@ -128,12 +130,11 @@ export default function RussiaAvailabilityPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-russia-availability-hub="2026-10">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Проп-фирмы для россиян</div>
           <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Статус для РФ · проверено {CHECKED}</div>
           <h1>Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ</h1>
           <p className="ru-lead">
@@ -209,7 +210,7 @@ export default function RussiaAvailabilityPage() {
 
       <section className="ru-section" id="otkryty">
         <div className="ru-shell">
-          <h2>Четыре проп-фирмы, открытые для России</h2>
+          <h2>Три проп-фирмы, открытые для России, и почему FundedNext теперь закрыта</h2>
           <div className="ru-grid">
             <article className="ru-card" data-russia-open="upscale">
               <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
@@ -243,13 +244,13 @@ export default function RussiaAvailabilityPage() {
                 </RuGoLink>
               </div>
             </article>
-            <article className="ru-card" data-russia-open="fundednext">
+            <article className="ru-card" data-russia-restricted="fundednext">
               <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>FundedNext (только CFD)</h3>
-              <p className="ru-muted">Россия не названа в списке ограничений CFD, но FundedNext Futures её ограничивает — не перепутайте продукт при оплате. Пункт 5.5 условий позволяет фирме блокировать санкционные страны и страны, которые не обслуживают её платёжные провайдеры. Выплаты — USDT, USDC, RiseWorks, банк, карта.</p>
+              <p className="ru-muted">{FUNDEDNEXT_RU_ACCESS_NOTE} FundedNext Futures Россию ограничивает. Пункт 5.5 условий позволяет фирме блокировать санкционные страны и страны, которые не обслуживают её платёжные провайдеры. Выплаты — USDT, USDC, RiseWorks, банк, карта.</p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-outline">
                   Проверить FundedNext CFD <ArrowRight size={14} aria-hidden="true" />
                 </RuGoLink>
               </div>
@@ -342,6 +343,7 @@ export default function RussiaAvailabilityPage() {
           <h2>Что читать дальше</h2>
           <ul>
             <li><Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян: почему недоступно и чем заменить</Link></li>
+            <li><Link href="/ru/ftmo-vs-bright-funded">FTMO или BrightFunded: сравнение правил, цен и оплаты</Link></li>
             <li><Link href="/ru/luchshie-prop-firmy">Рейтинг проп-фирм</Link></li>
             <li><Link href="/ru/vyplaty-prop-firm">Выплаты проп-фирм: USDT, USDC, Rise</Link></li>
             <li><Link href="/ru/promokody-prop-firm">Промокоды проп-фирм</Link></li>

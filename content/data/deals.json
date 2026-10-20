@@ -18,13 +18,14 @@
     "status": "partner",
     "mechanism": "checkout-code",
     "code": "STRTN",
-    "amountLabel": "Up to 33% off",
+    "amountLabel": "Up to 33% off (up to 20% in the US)",
     "scope": "Four smallest Stellar accounts",
     "verifiedOn": "2026-10-16",
     "sourceUrl": "https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer",
     "sourceLabel": "FundedNext Help Center: Stellar October Returns Offer (checked 2026-10-16)",
     "ctaLabel": "Use code STRTN",
     "note": "Live from 12 Oct 2026, 1:00 PM GMT+6; no set end date. Up to 33% off globally (up to 20% in the USA) on Stellar Lite 5K, 2-Step 6K, 1-Step 6K and Instant 2K. Max 5 redemptions per user; not valid on resets.",
-    "pct": 33
+    "pct": 33,
+    "pctIsUpTo": true
   }
 ]

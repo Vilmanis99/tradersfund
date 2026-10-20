@@ -11,6 +11,8 @@ import forexEvidence from '@/content/data/russian-forex-evidence.json'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightCountryEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/forex-prop-firmy'
 const TITLE = 'Форекс проп-фирмы: плечо, цены и правила программ'
@@ -159,12 +161,11 @@ export default function RussianForexPropFirmsPage() {
   return (
     <article className="ru-review-article" data-russian-forex-article="instrument-to-product" data-russian-search-intent="prop-forex">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqItems)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Форекс проп-фирмы</div>
           <div className="ru-eyebrow"><ChartCandlestick size={14} aria-hidden="true" /> От валютной пары к условиям программы</div>
           <h1>Форекс проп-фирмы: цены, плечо и правила для русскоязычных трейдеров</h1>
           <p className="ru-lead">
@@ -265,17 +266,6 @@ export default function RussianForexPropFirmsPage() {
             на FundedNext или BrightFunded. Это не меняет расчёты, ограничения по стране или объяснение неизвестных условий.
           </div>
           <div className="ru-grid">
-            <article className="ru-card" data-russian-forex-featured-partner="fundednext">
-              <h3>FundedNext</h3>
-              <p>{fundedNextFresh
-                ? 'В проверенном списке — 43 валютные пары. Для Stellar 1-Step и Instant указано плечо 1:30; для Stellar 2-Step и Lite — 1:100.'
-                : 'Список инструментов и плечо требуют повторной проверки. Не переносите условия одной программы Stellar на другую.'}</p>
-              <p className="ru-muted">Сравните оценочную программу с отдельной моделью Instant. Доступ к терминалу и разрешение на автоматизацию проверяются отдельно.</p>
-              <div className="ru-actions">
-                <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-              </div>
-            </article>
             <article className="ru-card" data-russian-forex-featured-partner="bright-funded">
               <h3>BrightFunded</h3>
               <p>{brightFresh
@@ -293,6 +283,18 @@ export default function RussianForexPropFirmsPage() {
                 <Link href="/ru/obzor-bright-funded" className="btn-outline">Полный обзор BrightFunded</Link>
                 <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-forex-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               </div>
+            </article>
+            <article className="ru-card" data-russian-forex-featured-partner="fundednext">
+              <h3>FundedNext</h3>
+              <p>{fundedNextFresh
+                ? 'В проверенном списке — 43 валютные пары. Для Stellar 1-Step и Instant указано плечо 1:30; для Stellar 2-Step и Lite — 1:100.'
+                : 'Список инструментов и плечо требуют повторной проверки. Не переносите условия одной программы Stellar на другую.'}</p>
+              <p className="ru-muted">Сравните оценочную программу с отдельной моделью Instant. Доступ к терминалу и разрешение на автоматизацию проверяются отдельно.</p>
+              <div className="ru-actions">
+                <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+              </div>
+              <RuFundedNextAccessCaveat />
             </article>
           </div>
         </div>
@@ -415,7 +417,7 @@ export default function RussianForexPropFirmsPage() {
             для своего профиля и программы. Русская версия сайта предназначена для русскоязычных
             трейдеров в разных странах; она не является обещанием доступности услуг из России.
           </p>
-          <p className="ru-source-line">По проверке от {fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt} официальные страницы FundedNext противоречат друг другу о доступе резидентов России.</p>
+          <p className="ru-source-line">Резидентам России FundedNext недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026).</p>
           <div className="ru-notice" data-russian-forex-country-conflict="help-six-terms-five" data-russian-forex-country-status={brightCountryCurrent ? 'dated' : 'recapture-required'}>
             <strong>{brightCountryCurrent ? 'Списки стран BrightFunded расходятся.' : 'В датированном снимке списки стран BrightFunded расходились.'}</strong>{' '}
             По записи от {brightCountry.sourceCapturedAt}{' '}
@@ -473,8 +475,8 @@ export default function RussianForexPropFirmsPage() {
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="forex-verdict">
             <strong>Если программа подходит после проверки условий:</strong>{' '}
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-verdict-fundednext" rel="sponsored nofollow noopener">проверить предложение FundedNext</RuGoLink> или
-            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-forex-verdict-bright-funded" rel="sponsored nofollow noopener"> предложение BrightFunded</RuGoLink>.
+            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-forex-verdict-bright-funded" rel="sponsored nofollow noopener">проверить предложение BrightFunded</RuGoLink> или
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-verdict-fundednext" rel="sponsored nofollow noopener"> предложение FundedNext</RuGoLink>.
             Мы можем получить комиссию по этим ссылкам. Это не гарантия одобрения счёта или выплаты.
           </div>
         </div>

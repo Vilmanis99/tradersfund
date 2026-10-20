@@ -1,3 +1,4 @@
+import { promotableDiscount } from '@/lib/discountDisplay'
 import Link from 'next/link'
 import { ArrowRight, ArrowUpRight, Handshake, Tag, Star } from 'lucide-react'
 import type { Firm } from '@/lib/firms'
@@ -59,6 +60,9 @@ export default function FirmAlternatives({
       <p style={{ color: 'var(--muted)', fontSize: '0.82rem', margin: '-0.35rem 0 1rem' }}>
         Selected by asset and platform overlap, not partnership. Product counts use current
         first-party captures; open the exact matchup before choosing a product.
+        {ranked.some(firm => Boolean(firm.affiliateUrl)) && (
+          <span data-alternatives-commission-note> Firms marked Partner may pay us a commission if you sign up through their link.</span>
+        )}
       </p>
       <div
         style={{
@@ -105,7 +109,7 @@ export default function FirmAlternatives({
                   <span>· {evidence.sourceCount} first-party {evidence.sourceCount === 1 ? 'source' : 'sources'}</span>
                   <span>· checked {formatCaptureDate(evidence.latestCapture)}</span>
                 </div>
-                {firm.discountCode && firm.discountPct && (
+                {promotableDiscount(firm) && (
                   <div style={{ marginTop: 6 }}>
                     <span className="discount-pill">
                       <Tag size={9} /> {firm.discountPct}% off · code {firm.discountCode}

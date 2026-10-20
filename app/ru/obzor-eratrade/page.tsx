@@ -9,11 +9,12 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-eratrade'
 export const revalidate = 3600
-const TITLE = 'Era Trade: обзор условий и выплат (2026)'
-const DESCRIPTION = 'Era Trade на русском: официальные заявления о 6 000 трейдерах, 70 странах, сплите 80%, правилах челленджа и выплатах до 5 рабочих дней.'
+const TITLE = 'Era Trade: обзор 2026 — правила челленджа, сплит и выплаты'
+const DESCRIPTION = 'Era Trade на русском: заявления о 6 000 трейдерах и 70 странах, сплит 80%, правила 1- и 2-этапного челленджа, выплаты раз в 15 или 30 дней и риски до оплаты.'
 const ERA_HOME = 'https://eratrade.net/'
 const ERA_AFFILIATE = 'https://help.eratrade.club/ru/affiliate-program-overview/'
 const ERA_RULES = 'https://help.eratrade.club/ru/general-trading-limitations/'
@@ -60,8 +61,8 @@ const faqs: RussianFaqItem[] = [
 ]
 
 const globalRoutes = [
-  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
   { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
 ] as const
 
 function SourceLink({ href, children }: { href: string, children: React.ReactNode }) {
@@ -102,12 +103,11 @@ export default function RussianEraTradeReviewPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {faqSourcesCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="era-trade" data-russian-local-review-status="verification-only">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские компании</Link> / Era Trade</div>
           <RussianEvidenceFreshnessNotice evidence={[
             { label: 'общий снимок рынка', capturedAt: marketEvidence.capturedAt },
             { label: 'заявления Era Trade на главной', capturedAt: localSignalCapturedAt },

@@ -15,13 +15,16 @@ import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { compareRussianRanking } from '@/lib/russianRanking'
 import { goLinkRel } from '@/lib/russiaAvailability'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/luchshie-prop-firmy'
 // Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
 export const revalidate = 3600
 const TITLE = 'Проп-компании 2026: рейтинг лучших для трейдеров из РФ'
-const DESCRIPTION = 'Рейтинг проп-компаний 2026: 24 фирмы с отметкой доступа из России, ценами, просадкой и выплатами. BrightFunded, FundedNext, Crypto Fund Trader и другие. Обновлено 14.10.2026.'
+const DESCRIPTION = 'Рейтинг проп-компаний 2026: 24 фирмы с отметкой доступа из России, ценами, просадкой и выплатами. BrightFunded, FundedNext, Crypto Fund Trader и другие.'
 const UPDATED = '14.10.2026'
 const UPDATED_ISO = '2026-10-14'
 
@@ -76,7 +79,7 @@ const faqs = (instantAnswer: string, fundingPipsAccessCurrent: boolean, brightCo
   },
   {
     q: 'Какая проп-фирма работает с резидентами России?',
-    a: `На 14.10.2026 Россию не ограничивают FundedNext (только CFD), BrightFunded, Crypto Fund Trader (Match-Trader) и Upscale; FTMO, Topstep, E8, FXIFY, Maven, Alpha Capital, Apex, Lucid, Tradeify, The5ers, Funded Trading Plus и Goat Funded Trader — ограничивают; у FundingPips и Blue Guardian доступ для РФ не ясен. Это не письменное подтверждение для вашего профиля. ${fundingPipsAccessCurrent ? `по справке FundingPips от ${fundingPipsAccessEvidence.sourceCapturedAt} действуют ограничения по резидентству и санкционным спискам` : `страновая справка FundingPips от ${fundingPipsAccessEvidence.sourceCapturedAt} требует повторной проверки`}; ${brightCountryCurrent ? 'справка и условия BrightFunded расходятся по Пакистану, а отсутствие России в проверенных списках не означает, что фирма примет документы и оплату' : 'страновые источники BrightFunded требуют повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня'}. До покупки получите письменное подтверждение для своего профиля. Компании, работающие с местной биржевой инфраструктурой, разобраны в отдельном списке российских проп-компаний.`,
+    a: `На 14.10.2026 Россию не ограничивают BrightFunded, Crypto Fund Trader (Match-Trader) и Upscale; FTMO, Topstep, E8, FXIFY, Maven, Alpha Capital, Apex, Lucid, Tradeify, The5ers, Funded Trading Plus и Goat Funded Trader — ограничивают; у FundingPips и Blue Guardian доступ для РФ не ясен. ${FUNDEDNEXT_RU_ACCESS_NOTE} Это не письменное подтверждение для вашего профиля. ${fundingPipsAccessCurrent ? `по справке FundingPips от ${fundingPipsAccessEvidence.sourceCapturedAt} действуют ограничения по резидентству и санкционным спискам` : `страновая справка FundingPips от ${fundingPipsAccessEvidence.sourceCapturedAt} требует повторной проверки`}; ${brightCountryCurrent ? 'справка и условия BrightFunded расходятся по Пакистану, а отсутствие России в проверенных списках не означает, что фирма примет документы и оплату' : 'страновые источники BrightFunded требуют повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня'}. До покупки получите письменное подтверждение для своего профиля. Компании, работающие с местной биржевой инфраструктурой, разобраны в отдельном списке российских проп-компаний.`,
   },
   {
     q: 'Есть ли проп-фирмы без челленджа?',
@@ -100,7 +103,7 @@ const partnerGuidance: Record<string, {
 }> = {
   fundednext: {
     start: 'Нужен выбор между 2-Step, 1-Step, Lite и Instant в USD.',
-    country: 'Россия не в списке ограничений CFD (проверено 14.10.2026), но FundedNext Futures её ограничивает. Для других стран проверьте требования к документам и оплате.',
+    country: `${FUNDEDNEXT_RU_ACCESS_NOTE} FundedNext Futures Россию ограничивает. Для других стран проверьте требования к документам и оплате.`,
     payout: 'В профиле указаны банковский перевод, Rise и криптовалюта; пороги и доступность различаются.',
     watch: 'На счёте после оценки действует 10-минутное новостное окно с 40% зачёта прибыли; Instant использует подвижный лимит просадки.',
   },
@@ -207,10 +210,13 @@ export default function RussianBestPropFirmsPage() {
       return { firm, slug, products }
     })
     .filter(item => item.products.length > 0 && item.products.every(product => isChallengeFresh(product)))
-    // BrightFunded (universal firm) first, then other firms open to Russia, then by score.
-    .sort((a, b) => Number(b.slug === 'bright-funded') - Number(a.slug === 'bright-funded')
-      || Number(russiaStatusFor(b.slug) === 'available') - Number(russiaStatusFor(a.slug) === 'available')
-      || b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
+    // Editorial pins (content/data/ru-ranking.json) lead only while the pinned
+    // firm is open to Russia; then Russia access status, score and name.
+    .sort((a, b) => compareRussianRanking(
+      { slug: a.slug, name: a.firm.name, score: a.firm.score },
+      { slug: b.slug, name: b.firm.name, score: b.firm.score },
+      russiaStatusFor,
+    ))
 
   const fundingPipsAccessCurrent = isChallengeFresh({ sourceCapturedAt: fundingPipsAccessEvidence.sourceCapturedAt })
   const brightCountryCurrent = [brightEvidence.sources.countries, brightEvidence.sources.countryTerms]
@@ -309,14 +315,13 @@ export default function RussianBestPropFirmsPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(pageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(list) }} />
       {faqCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Рейтинг</div>
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Для русскоязычных трейдеров в разных странах</div>
           <h1>Проп-компании: рейтинг 2026</h1>
           <p className="ru-source-line" data-russian-ranking-updated={UPDATED_ISO}><strong>Обновлено {UPDATED}</strong> · статус доступа из России проверен {UPDATED}</p>
@@ -329,11 +334,12 @@ export default function RussianBestPropFirmsPage() {
             <Link href="#podbor" className="btn-primary" data-russian-funnel-intent="ranking-finder">Подобрать программу <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="#polnyy-reyting" className="btn-outline">Редакционный рейтинг</Link>
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-luchshie-prop-firmy-hero-1" rel={goLinkRel('bright-funded')} className="btn-primary btn-glow">BrightFunded <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-luchshie-prop-firmy-hero-2" rel={goLinkRel('fundednext')} className="btn-primary">FundedNext <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-luchshie-prop-firmy-hero-2" rel={goLinkRel('fundednext')} className="btn-outline">FundedNext <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
             <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-luchshie-prop-firmy-hero-3" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
             <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор BrightFunded</Link>
             <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор FundedNext</Link>
           </div>
+          <RuFundedNextAccessCaveat />
           <p className="ru-lead ru-lead--intent">
             Если вы ищете проп-компании в России, сначала выберите сценарий: местная биржевая инфраструктура
             или глобальная программа для русскоязычного трейдера за рубежом. Русский язык страницы сам по себе
@@ -444,7 +450,7 @@ export default function RussianBestPropFirmsPage() {
             </table>
           </div>
           <p className="ru-source-line" data-russian-ranking-promos="2026-10-14">
-            Промокоды, проверено 14.10.2026: <strong>STRTN</strong> — до 33% на четыре младших счёта FundedNext Stellar (с 12.10.2026);{' '}
+            Промокоды, проверено 14.10.2026: <strong>STRTN</strong> — до 33% (в США — до 20%) на четыре младших счёта FundedNext Stellar (с 12.10.2026);{' '}
             <strong>HELLO</strong> — 20% на первую покупку FundingPips, кроме счёта $100K. Все коды — на странице{' '}
             <Link href="/ru/promokody-prop-firm">промокоды проп-фирм</Link>.
           </p>
@@ -454,7 +460,7 @@ export default function RussianBestPropFirmsPage() {
       <section className="ru-section" id="bystryy-otvet">
         <div className="ru-shell ru-content">
           <h2>Лучшие проп-фирмы 2026: топ-3 для трейдеров из России и СНГ</h2>
-          <p><strong>Топ-3 для трейдеров из России:</strong> <Link href="/ru/obzor-bright-funded">BrightFunded</Link>, <Link href="/ru/obzor-fundednext">FundedNext (CFD)</Link> и Crypto Fund Trader — на 14.10.2026 они не ограничивают Россию.</p>
+          <p><strong>Для трейдеров из России:</strong> <Link href="/ru/obzor-bright-funded">BrightFunded</Link> и Crypto Fund Trader — на 14.10.2026 они не ограничивают Россию. <Link href="/ru/obzor-fundednext">FundedNext</Link> с 20.10.2026 резидентам РФ недоступна (подвал её сайта).</p>
           <p><strong>Выбирайте программу по правилам, которые сможете соблюдать.</strong> Для начала определите рынок и бюджет. Затем сравните допустимый убыток, ограничения вашей стратегии и срок первой выплаты. Подтвердите гражданство, страну проживания и документы для проверки личности (KYC) до оплаты.</p>
           <p>Для сравнения глобальных программ начните с <Link href="/ru/fundednext-vs-bright-funded">FundedNext и BrightFunded</Link>: у них различаются валюты взноса, этапы оценки и условия просадки. {stellarInstantCurrent
             ? <>Если нужен счёт без оценочного этапа, изучите <Link href="/ru/fundednext-stellar-instant">Stellar Instant</Link> и его ограничения.</>
@@ -573,7 +579,7 @@ export default function RussianBestPropFirmsPage() {
           <div className="ru-grid">
             <article className="ru-card">
               <h3>Резидент России</h3>
-              <p>FundedNext CFD Россию в списке ограничений не называет, а FundedNext Futures — ограничивает; {fundingPipsAccessCurrent ? 'по проверенной справке FundingPips действуют ограничения по резидентству и санкционным спискам' : 'страновая справка FundingPips требует повторной проверки'}. {brightCountryCurrent ? 'Справка и условия BrightFunded расходятся по Пакистану; отсутствие России в проверенных списках не подтверждает возможность покупки.' : 'Страновые источники BrightFunded требуют повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня.'} Уточните условия для своих документов до оплаты.</p>
+              <p>FundedNext резидентам России недоступна (подвал fundednext.com; список в условиях п. 5.3 Россию не называет, по данным на 20.10.2026), FundedNext Futures тоже ограничивает Россию; {fundingPipsAccessCurrent ? 'по проверенной справке FundingPips действуют ограничения по резидентству и санкционным спискам' : 'страновая справка FundingPips требует повторной проверки'}. {brightCountryCurrent ? 'Справка и условия BrightFunded расходятся по Пакистану; отсутствие России в проверенных списках не подтверждает возможность покупки.' : 'Страновые источники BrightFunded требуют повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня.'} Уточните условия для своих документов до оплаты.</p>
               <p><Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Сначала открыть проверку России и местных компаний →</Link></p>
             </article>
             <article className="ru-card">

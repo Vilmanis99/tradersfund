@@ -9,11 +9,12 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-kascapital'
 export const revalidate = 3600
-const TITLE = 'KasCapital: обзор условий и выплат (2026)'
-const DESCRIPTION = 'KasCapital на русском: заявленные 95% прибыли трейдеру, покупательная способность, понедельничные выплаты и проверка публичных условий.'
+const TITLE = 'KasCapital: обзор 2026 — выплаты, плечо и условия компании'
+const DESCRIPTION = 'KasCapital на русском: заявленные до 95% прибыли трейдеру, плечо до 100, выплаты по понедельникам от 10 000 ₽ и что проверить в договоре до регистрации.'
 const KAS_HOME = 'https://kascapital.io/'
 
 export const metadata: Metadata = {
@@ -52,8 +53,8 @@ const faqs: RussianFaqItem[] = [
 ]
 
 const globalRoutes = [
-  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
   { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
 ] as const
 
 function SourceLink({ href, children }: { href: string, children: React.ReactNode }) {
@@ -94,12 +95,11 @@ export default function RussianKasCapitalReviewPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {faqSourcesCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="kascapital" data-russian-local-review-status="verification-only">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские компании</Link> / KasCapital</div>
           <RussianEvidenceFreshnessNotice evidence={[
             { label: 'общий снимок рынка', capturedAt: marketEvidence.capturedAt },
             { label: 'заявления KasCapital на главной', capturedAt: localSignalCapturedAt },

@@ -32,6 +32,7 @@ import RelatedComparisons from '@/components/RelatedComparisons'
 import { getAllFirms } from '@/lib/firms'
 import { isSourceHoldFirm } from '@/lib/reviewStatus'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 interface Props { params: Promise<{ matchup: string }> }
 
@@ -157,7 +158,7 @@ export default async function ComparePage({ params }: Props) {
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbsLd) }} />
+      <Breadcrumbs ld={crumbsLd} />
       {faqLd && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqLd) }} />
       )}
