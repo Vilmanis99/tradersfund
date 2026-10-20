@@ -1,0 +1,41 @@
+{
+  "firmSlug": "proplive",
+  "captureType": "new-firm-research",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T12:00:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousEvidence": "content/data/russian-market-evidence.json communitySignals/localFirmSignals/affiliatePrograms 'PropLive' (sourceCapturedAt 2026-10-01)",
+  "egress": "Box egress is a US IP (ipinfo country US, checked 2026-10-20). Fetched the global Russian-language pages (no /us/ or regional variant exists on these sites); no geo-redirect observed.",
+  "method": "curl of live HTML/PDF with a desktop Chrome user agent, scripts/styles stripped with BeautifulSoup, PDFs via pdftotext -layout; quotes copied verbatim and machine-checked against the saved text. Raw snapshots: /workspace/tradersfundhub/evidence/new-firms-2026-10-20/raw/ (box only).",
+  "verdict": {
+    "evidenced": false,
+    "recordTarget": null,
+    "reason": "Not an evaluation/challenge firm and no programme terms are published: no fee ('Сколько денег необходимо для старта? Нисколько.'), drawdown is individual ('Индивидуальная просадка размер по вашему запросу'), no profit target, no published split (only 'Снижение Pay Out до 5%'), no daily/max loss. The terms PDF cited by /ru/obzor-proplive (https://static.proplive.ru/documents/document-17.pdf) now returns 404.",
+    "russiaStatus": "available (Russian LLC ООО «ЛАЙВ ИНВЕСТ», Krasnodar; Moscow Exchange via Finam; explicitly courts Kazakhstan and Belarus via /nerezidentam-rf). Not added to data."
+  },
+  "facts": {
+    "model": "Мы обучаем трейдеров и предоставляем торговые аккаунты для проведения сделок на Московской бирже через брокера Финам.",
+    "traders": "14 993 трейдеров по всему миру в команде PropLive",
+    "tradersOld": "Более 10700 трейдеров в компании",
+    "fee": "Сколько денег необходимо для старта? Нисколько.",
+    "drawdown": "Индивидуальная просадка размер по вашему запросу",
+    "payout": "Снижение Pay Out до 5% лучшее условие среди пропов",
+    "withdrawals": "Мы делаем выводы в течение 1 рабочего дня и в любой день недели.",
+    "platform": "Терминал для торговли на Московской бирже - CScalp",
+    "eligibility": "Если вам больше 18 лет, вы можете стать трейдером нашей проп-компании. Гражданство РФ не обязательно.",
+    "cis": "Трейдерам из Казахстана, Беларуси, Армении, Узбекистана, Киргизии и других стран ближнего зарубежья",
+    "partnerProgram": "Вы получаете до 50% PayOut — долю от прибыли, которую зарабатывают ваши трейдеры.",
+    "legal": "ООО «ЛАЙВ ИНВЕСТ» ИНН 2 311 318 689 ОГРН 1 212 300 025 420"
+  },
+  "sourceUrls": [
+    "https://www.proplive.ru/",
+    "https://www.proplive.ru/nerezidentam-rf",
+    "https://www.proplive.ru/rekvizity-kompanii",
+    "https://www.proplive.ru/partnyoram"
+  ],
+  "changesVs20261001": [
+    "Partner page unchanged: mentors/schools only, up to 50% PayOut of students' profit.",
+    "Hero trader claim is now 14 993 (2026-10-01 evidence: 13 722); the lower 'Более 10700' line is unchanged.",
+    "https://static.proplive.ru/documents/document-17.pdf (cited on /ru/obzor-proplive) returns 404 on 2026-10-20."
+  ]
+}
