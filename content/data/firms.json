@@ -383,8 +383,8 @@
     "freeTrialPlatformsCapturedAt": "2026-10-19",
     "payoutMethodsSourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
     "payoutMethodsQuote": "Rewards can be paid out via bank wire transfer, instant transfer through Visa Direct / Mastercard Send (up to $20,000), Skrill (up to $3,000), or cryptocurrencies.",
-    "payoutMethodsCapturedAt": "2026-10-19",
-    "payoutFrequencyNote": "First Reward can be requested from day 14 after the first trade on the account; ftmo.com does not publish the cadence after the first Reward, so no on-demand/bi-weekly label is claimed.",
+    "payoutMethodsCapturedAt": "2026-10-20",
+    "payoutFrequencyNote": "First Reward can be requested from day 14 after the first trade on the account (ftmo.com FAQ). FTMO's promo page (promo.ftmo.com/m26b-practice-trading-without-risk/, read 2026-10-20) says: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\". The FAQ gives no cadence after the first Reward, so the firm-level label stays unset until an editor decides whether the promo wording is enough.",
     "payoutFrequencySourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
     "payoutFrequencyQuote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account."
   },
@@ -414,11 +414,18 @@
     "payoutMethods": [
       "Bank wire",
       "Rise",
-      "Crypto"
+      "Crypto",
+      "Card",
+      "Confirmo",
+      "FNmarkets"
     ],
+    "payoutMethodsSourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+    "payoutMethodsQuote": "These options include USDT (ERC20, TRC20), USDC (ERC20), Confirmo, RiseWorks, Bank Transfer, Card and direct deposit to FNmarkets.",
+    "payoutMethodsCapturedAt": "2026-10-20",
+    "payoutMethodsNote": "Crypto = USDT (ERC20/TRC20) and USDC (ERC20). Card payout needs at least one card saved on the account from a purchase. Russia is on FundedNext's bank-transfer exclusion list and the Russian Federation and Belarus are on its card exclusion list (help article updated 2026-10-02). Rise lists the Russian Federation as a restricted country it cannot onboard (help.riseworks.io/en/articles/7198515). Iran: TC Pay only.",
     "drawdownType": "static",
     "minTradingDays": 0,
-    "consistencyRule": "40% profit-retention penalty on positions held during news-window releases (verified 2026-05-20)",
+    "consistencyRule": "Product-specific: 40% best-day rule (best day's profit may not exceed 40% of total profit, checked only when an On-Demand Performance Reward is requested) on Stellar 2-Step and Stellar Lite with the On-Demand payout option; none on Stellar Instant. The 40% news-window profit count is a separate news rule (see newsTradingAllowed / rules.newsTrading), not a consistency rule.",
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
     "eaAllowed": "restricted",
@@ -976,7 +983,7 @@
       },
       "payoutFrequency": {
         "value": null,
-        "summary": "Product-specific: bi-weekly on 1 Step Flex, 2 Step Flex, FundingPips Zero; weekly on 2 Step Pro; trader-selected (weekly, bi-weekly or on-demand) on 2 Step Standard",
+        "summary": "Product-specific: bi-weekly on 1 Step Flex, 2 Step Flex, FundingPips Zero (1 Step Flex and 2 Step Flex also offer On Demand 100% with eligibility conditions); weekly on 2 Step Pro; trader-selected (weekly, bi-weekly or on-demand) on 2 Step Standard",
         "byProduct": {
           "1-step-flex": "bi-weekly",
           "2-step-flex": "bi-weekly",
@@ -992,6 +999,14 @@
             "capturedAt": "2026-10-20",
             "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-20.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-20.json",
+            "productSlug": "2-step-flex"
           }
         ]
       },

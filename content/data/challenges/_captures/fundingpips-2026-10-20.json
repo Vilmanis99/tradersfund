@@ -100,7 +100,8 @@
         "Use Code FP: 20% OFF New Users | 5% OFF Existing Users"
       ],
       "note": "Seen only from the US IP; not checkout-verified; deals.json not touched. The help-centre code HELLO stays as discountCode."
-    }
+    },
+    "2-step-flex: sourceCapturedAt 2026-10-19 -> 2026-10-20, reward-cycle note (Bi-Weekly 80%/95% or On Demand 100%, no Monthly)"
   ],
   "briefAsks": {
     "checkoutMethods": {
@@ -253,5 +254,38 @@
       "httpStatus": 200,
       "fetchedAt": "2026-10-20T05:12:44.099Z"
     }
-  ]
+  ],
+  "twoStepFlexRecapture": {
+    "requestedBy": "EN Writer via Karlis, 2026-10-20",
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "method": "Help Center API /api/v2/help_center/en-us/articles/47835196271249.json (curl, US IP)",
+    "articleUpdatedAt": "2026-10-19T19:27:35Z",
+    "quotes": [
+      "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split).",
+      "There is no Consistency Score on either Bi-Weekly split.",
+      "Bi-Weekly, 80% 80% Every 14 calendar days, no other requirement.",
+      "Bi-Weekly, 95% 95% Every 14 calendar days, plus 3 profitable days per cycle.",
+      "Request a Reward with a 100% split on demand on the Master Account, once the eligibility requirements below are met.",
+      "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit.",
+      "At least 7 profitable days to qualify for a reward, each with 0.5% or more profit of the starting Master Account Size.",
+      "2-phase evaluation : Phase 1 (10%) + Phase 2 (8%) with an 80% split with 1 minimum trading day, or a 95% split with 3 profitable days (≥ 0.5% each)."
+    ],
+    "monthlyRoute": "The word 'Monthly' does not appear on the page.",
+    "verdict": "EN Writer's description confirmed. Stored values unchanged (bi-weekly, 14 days, split null, 10%/8%); sourceCapturedAt 2026-10-19 -> 2026-10-20 with a reward-cycle note.",
+    "watchEntriesRechecked": {
+      "fundingpips-reward-cycles-minimum-days-2026-08-26": {
+        "lastCheckedAt": "2026-10-20",
+        "oneStepFlexQuote": "80% Bi-Weekly or 100% On Demand reward : request a Reward every two weeks, or on demand once the eligibility requirements are met.",
+        "note": "Summary rewritten: 1 Step Flex no longer shows a 95% route."
+      },
+      "fundingpips-standard-legacy-reset-split": {
+        "lastCheckedAt": "2026-10-20",
+        "quotes": [
+          "Achieve an 8% profit target during Phase 1.",
+          "Existing 2 Step Standard accounts with a 10% profit target will reset as 2 Step Flex with 85% profit split"
+        ],
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard"
+      }
+    }
+  }
 }

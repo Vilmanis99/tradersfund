@@ -116,14 +116,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Current first-party page changed the evaluation target to 10% then 8%; the older 10% then 6% value is retired.",
       "Reward choice is conditional: 80% with 1 minimum trading day or 95% with 3 profitable days; the schema keeps split null because there is no single universal percentage.",
+      "Reward cycles (official page, updated 2026-10-19, read 2026-10-20): \"Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split).\" The stored bi-weekly / 14-day value is the Bi-Weekly route; On Demand 100% needs a 35% consistency score, 7 profitable days at 0.5%+ and the Striking System. No Monthly route is listed.",
       "New and reset accounts require the current minimum-day conditions; older accounts may retain legacy terms.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change to this product, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json"
+      "Recaptured 2026-10-20 from the live help page (EN Writer request): reward-cycle note added; prices, targets (10%/8%), 4% daily and 12% max loss unchanged; log: content/data/challenges/_captures/fundingpips-2026-10-20.json (twoStepFlexRecapture)"
     ]
   },
   {

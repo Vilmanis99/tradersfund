@@ -143,7 +143,8 @@
   "notes": [
     "All 64 stored prices match. Rules evidence re-read: 1-Phase article (intercom) still says \"Profit Split 80% default, upgradable to 90%.\" (stored quote differs only in spacing).",
     "https://fxify.com/terms-and-conditions returns 404 today; not used for any stored value.",
-    "firms.json lastUpdated aligned to this capture (was 2026-10-15 from the Trustpilot refresh while products were captured 2026-10-14)."
+    "firms.json lastUpdated aligned to this capture (was 2026-10-15 from the Trustpilot refresh while products were captured 2026-10-14).",
+    "challenge-watch fxify-current-price-display-conflict-2026-09-14 refreshed from this capture: lastCheckedAt 2026-09-15 -> 2026-10-20; 54 tiers across its 8 products match; Instant Funding Lite tier 3 is $89 in stored data and live payload (entry text said $85). Rendered program-page cards not re-checked, so the entry stays open (status verified)."
   ],
   "pagesRead": [
     {

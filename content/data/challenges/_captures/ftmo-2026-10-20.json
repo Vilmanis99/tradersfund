@@ -42,7 +42,10 @@
     "notFoundVerbatim": 0,
     "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
   },
-  "changes": [],
+  "changes": [
+    "firms.json FTMO payoutFrequencyNote: adds promo.ftmo.com on-demand quote; payoutMethodsCapturedAt 2026-10-19 -> 2026-10-20",
+    "challenges/ftmo.json: payout-frequency evidence note on both products (value unchanged)"
+  ],
   "notes": [
     "Paid challenge list prices unchanged since 2026-10-14; the $100K special deal (EUR 439 2-Step / EUR 399 1-Step) is still live.",
     "https://ftmo.com/en/payment-methods/ returns 404; checkout methods stay as recorded in /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md.",
@@ -104,5 +107,25 @@
       "httpStatus": 404,
       "fetchedAt": "2026-10-20T05:11:49.071Z"
     }
-  ]
+  ],
+  "ruWriterCheck": {
+    "capturedAtTimestamp": "2026-10-20T05:30:18Z",
+    "requestedBy": "RU Writer via Karlis, 2026-10-20",
+    "payoutFrequency": {
+      "faq": {
+        "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+        "quote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account."
+      },
+      "promo": {
+        "sourceUrl": "https://promo.ftmo.com/m26b-practice-trading-without-risk/",
+        "quote": "Rewards can be requested on demand after a minimum of 14 days from your first demo trade"
+      },
+      "verdict": "An official FTMO page does use 'on demand', so challenges/ftmo.json keeps 'on-demand' + payoutFirstDays 14 (now with the quote in notes). firms.json payoutFrequency stays null (FAQ gives no cadence after the first Reward); the two records disagree pending an editor decision."
+    },
+    "payoutMethods": {
+      "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+      "quote": "Rewards can be paid out via bank wire transfer, instant transfer through Visa Direct / Mastercard Send (up to $20,000), Skrill (up to $3,000), or cryptocurrencies.",
+      "verdict": "Visa Direct / Mastercard Send already in firms.json payoutMethods; quote re-read live, payoutMethodsCapturedAt -> 2026-10-20."
+    }
+  }
 }

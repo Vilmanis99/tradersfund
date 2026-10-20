@@ -61,7 +61,8 @@
     "sourceCapturedAt": "2026-10-19",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ftmo-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ftmo-2026-10-20.json",
+      "Payout frequency evidence (2026-10-20): 'on-demand' + payoutFirstDays 14 is backed by promo.ftmo.com/m26b-practice-trading-without-risk/: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\"; the ftmo.com FAQ (how-do-i-withdraw-my-profits) only says \"This can be done on the 14th or any following day after the first trade is placed on the specific account.\" firms.json keeps payoutFrequency null pending an editor decision; see _captures/ftmo-2026-10-20.json ruWriterCheck."
     ]
   },
   {
@@ -125,7 +126,8 @@
     "sourceCapturedAt": "2026-10-19",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ftmo-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ftmo-2026-10-20.json",
+      "Payout frequency evidence (2026-10-20): 'on-demand' + payoutFirstDays 14 is backed by promo.ftmo.com/m26b-practice-trading-without-risk/: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\"; the ftmo.com FAQ (how-do-i-withdraw-my-profits) only says \"This can be done on the 14th or any following day after the first trade is placed on the specific account.\" firms.json keeps payoutFrequency null pending an editor decision; see _captures/ftmo-2026-10-20.json ruWriterCheck."
     ]
   }
 ]
