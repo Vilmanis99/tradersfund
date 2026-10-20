@@ -82,8 +82,8 @@ const faqs: RussianFaqItem[] = [
 ]
 
 const partnerRoutes = [
-  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext', featured: true },
   { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded', featured: true },
+  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext', featured: true },
   { slug: 'fundingpips', name: 'FundingPips', reviewHref: '/ru/obzor-fundingpips', featured: false },
 ] as const
 
