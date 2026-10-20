@@ -131,14 +131,14 @@
     "riskBreachOutcome": "evaluation failed; a new paid evaluation is required"
   },
   "fundedDemo": {
-    "profitSharePct": 70,
+    "profitSharePct": 50,
     "profitTargetAndCapPct": 10,
     "dailyLossPct": 2,
     "maximumLossPct": 4,
     "payoutRequestMinimumPublished": null,
     "payoutMethodPublished": null,
     "realAccountTransition": "normally after withdrawing 10% of the starting balance; earlier transfer is discretionary",
-    "profitSharePctNote": "2026-10-20: the /faq now says 50% ('Доля трейдера на финансируемом демо-счёте составляет 50% от полученной прибыли.'). profitSharePct still holds the 2026-10-01 value of 70 until the RU copy, which hard-codes 70%, is updated.",
+    "profitSharePctNote": "2026-10-20: set to 50 from the /faq ('Доля трейдера на финансируемом демо-счёте составляет 50% от полученной прибыли.'). It was 70 on 2026-10-01. The RU copy was updated to match (content/ru-fix-local-firms-2026-10-20 @ fcac4e2).",
     "payoutRequestRuleNote": "2026-10-20: the /faq adds weekly withdrawal requests of up to 50% of currently available profit; the remainder stays on the account as risk capital."
   },
   "realAccount": {
@@ -211,7 +211,7 @@
       "currentValue": 50,
       "legacyValue": 70,
       "recordedAt": "2026-10-20",
-      "resolution": "/faq on 2026-10-20 says 50%; 70% was the 2026-10-01 FAQ value. fundedDemo.profitSharePct and the RU page still say 70% pending the RU copy update."
+      "resolution": "/faq on 2026-10-20 says 50%; 70% was the 2026-10-01 FAQ value. fundedDemo.profitSharePct was updated to 50 on 2026-10-20 to match the current /faq."
     },
     {
       "field": "payout request frequency and limit",

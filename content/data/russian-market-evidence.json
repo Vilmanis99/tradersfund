@@ -310,13 +310,13 @@
       "sourceUrl": "https://www.proplive.ru/",
       "sourceCapturedAt": "2026-10-20",
       "claims": {
-        "traders": 13722,
+        "traders": 14993,
         "market": "Moscow Exchange via Finam"
       },
       "notes": [
-        "The current hero claims 13,722 traders worldwide, while a lower section still says more than 10,700.",
+        "On 2026-10-01 the hero claimed 13,722 traders worldwide, while a lower section said more than 10,700.",
         "The operator describes real-market trading on the Moscow Exchange rather than the standard online challenge model used by global evaluation firms.",
-        "2026-10-20 recheck: the hero counter now says 14,993 traders (13,722 on 2026-10-01); the lower section still says more than 10,700. claims.traders still holds the 2026-10-01 figure pending an RU copy decision. See content/data/challenges/_captures/proplive-2026-10-20.json.",
+        "2026-10-20 recheck: the hero counter now says 14,993 traders (13,722 on 2026-10-01); the lower section still says more than 10,700. claims.traders updated to 14993 on 2026-10-20. See content/data/challenges/_captures/proplive-2026-10-20.json.",
         "2026-10-20: https://static.proplive.ru/documents/document-17.pdf (linked from /ru/obzor-proplive as the contract) returns 404 (dead link); the Moscow Exchange via Finam description is unchanged."
       ]
     },
@@ -362,7 +362,7 @@
         "minimumTradingSessions": 10,
         "dailyLossLimitPct": 2,
         "maximumLossPct": 4,
-        "fundedDemoProfitSharePct": 70,
+        "fundedDemoProfitSharePct": 50,
         "fundedDemoProfitCapPct": 10,
         "profitSharePct": 95,
         "maximumCapitalRub": 2000000,
@@ -372,11 +372,11 @@
       },
       "notes": [
         "Current homepage and FAQ terms were rechecked on 2026-10-01; the historical 2026-08-28 /docs/ archive says 15 sessions and a 90% split, while current pages say 10 days and 95% on the real account.",
-        "The current FAQ inserts a funded-demo stage with a 70% share and a 10% profit cap before the normal move to a real account.",
+        "The FAQ inserts a funded-demo stage with a 10% profit cap before the normal move to a real account; its trader share was 70% on 2026-10-01 and 50% on 2026-10-20.",
         "Overnight positions are prohibited; selection-stage daily or maximum-risk breaches fail the selection under the current FAQ.",
         "The separately linked prop-trading offer is currently unavailable; the live public training offer is not a substitute for programme-specific purchase terms.",
         "2026-10-20 recheck: prices, 6% per step, 2%/4% risk, 10 sessions, 95% real-account share and the Finam/MOEX relationship are unchanged. See content/data/challenges/_captures/teamtraders-2026-10-20.json and russian-teamtraders-evidence.json.",
-        "2026-10-20: the FAQ now gives the funded-demo trader share as 50% (70% on 2026-10-01); claims.fundedDemoProfitSharePct still holds 70 pending the RU copy update.",
+        "2026-10-20: the FAQ now gives the funded-demo trader share as 50% (70% on 2026-10-01); claims.fundedDemoProfitSharePct updated to 50.",
         "2026-10-20: payout-frequency conflict on official pages: /faq says withdrawal requests weekly, up to 50% of currently available profit (funded demo and real account); the homepage still says requests daily with no limit."
       ]
     },
