@@ -28,8 +28,8 @@
       "Skrill",
       "Crypto"
     ],
-    "drawdownType": "static",
-    "minTradingDays": 4,
+    "drawdownType": null,
+    "minTradingDays": null,
     "consistencyRule": "Product-specific: 50% on FTMO Challenge: 1-Step; no consistency percentage on the remaining product.",
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
@@ -123,7 +123,7 @@
     "trustpilotScore": 4.8,
     "trustpilotCount": 54501,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/ftmo.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -440,7 +440,7 @@
     "payoutMethodsCapturedAt": "2026-10-20",
     "payoutMethodsNote": "Crypto = USDT (ERC20/TRC20) and USDC (ERC20). Card payout needs at least one card saved on the account from a purchase. Russia is on FundedNext's bank-transfer exclusion list and the Russian Federation and Belarus are on its card exclusion list (help article updated 2026-10-02). Rise lists the Russian Federation as a restricted country it cannot onboard (help.riseworks.io/en/articles/7198515). Iran: TC Pay only.",
     "drawdownType": "static",
-    "minTradingDays": 0,
+    "minTradingDays": 2,
     "consistencyRule": "Product-specific: 40% best-day rule (best day's profit may not exceed 40% of total profit, checked only when an On-Demand Performance Reward is requested) on Stellar 2-Step and Stellar Lite with the On-Demand payout option; none on Stellar Instant. The 40% news-window profit count is a separate news rule (see newsTradingAllowed / rules.newsTrading), not a consistency rule.",
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
@@ -1206,7 +1206,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/e8markets.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-10-15",
@@ -2015,7 +2015,7 @@
     ],
     "platformEvidence": {
       "sourceUrl": "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
-      "sourceCapturedAt": "2026-09-08",
+      "sourceCapturedAt": "2026-10-20",
       "sourceQuote": "DXTrade, cTrader and MT5",
       "notes": "Firm-wide platform list only. The source restricts MT5 for U.S./UAE citizenship, residency or location and cTrader for the U.S. profile. Confirm the specific programme, account size and country before payment. This check does not refresh prices or other firm terms."
     },
@@ -2059,7 +2059,8 @@
     "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/brightfunded.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-20",
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"Breach of guidelines. We've removed a number of fake reviews for this company.\"",
     "russiaStatus": "available",
     "legalEntity": "BrightFunded Ltd",
     "headquarters": "Suite 5, Place Creole Building, Rodney Bay, Gros-Islet, Saint Lucia",
@@ -2369,7 +2370,6 @@
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-16.json"
     },
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
     "assetsEvidence": {
       "sourceUrl": "https://brightfunded.com/futures-waitlist",
       "sourceCapturedAt": "2026-10-16",
@@ -2431,7 +2431,8 @@
     "lastUpdated": "2026-10-19",
     "trustpilotUrl": "https://www.trustpilot.com/review/ofpfunding.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-20",
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"Breach of guidelines. We've removed a number of fake reviews for this company.\"",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "rules": {
@@ -2717,7 +2718,6 @@
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
     "countriesRestrictedSourceUrl": "https://help.ofpfunding.com/country-restrictions/",
     "russiaSourceUrl": "https://help.ofpfunding.com/country-restrictions/",
     "russiaSourceQuote": "We cannot provide services to, or accept registrations from, individuals who are nationals of, currently residing in, or legal entities established in the following countries: ... Russia"
@@ -3167,7 +3167,7 @@
     "consistencyRule": "Product-specific: 20% on Instant Funding Lite; 25% on Two Phase Classic, Crypto Instant Funding; 30% on Lightning Challenge; no consistency percentage on the other 6 products.",
     "scalingPlan": true,
     "newsTradingAllowed": true,
-    "eaAllowed": true,
+    "eaAllowed": "restricted",
     "overnightAllowed": null,
     "weekendAllowed": true,
     "copyTradingAllowed": "restricted",
@@ -3209,6 +3209,10 @@
       "Ghana",
       "Haiti"
     ],
+    "countriesRestrictedSourceUrl": "https://fxify.com/faqs/all-faqs/what-countries-are-accepted/",
+    "countriesRestrictedQuote": "The following countries are prohibited from trading with FXIFY™: Zimbabwe, Iran, Iraq, North Korea, Somalia, Vietnam, Belarus, Burundi, Central African Republic, Ivory Coast, Liberia, Libya, Sudan, Cuba, Syria, Afghanistan, Yemen, Palestine, Myanmar, Nicaragua, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Papua New Guinea, South Sudan, Vanuatu, Venezuela, Algeria, Russia, Kenya, Ghana, and Haiti. Please note that this list may change due to political situations and internal policies.",
+    "countriesRestrictedCapturedAt": "2026-10-20",
+    "countriesRestrictedNote": "Rechecked 2026-10-20 from a US IP. The list is the union of two current official FXIFY lists, and Haiti stays. (1) The FAQ \"What Countries are not accepted?\" (schema dateModified 2026-02-12, live 2026-10-20) names 35 countries including Haiti, but not the United States. (2) The site-wide footer, live on every fxify.com page incl. FAQs, Terms of Use (last updated March 2025) and the client agreement, reads \"Restricted Jurisdictions: We do not establish accounts to residents of certain jurisdictions including the United States, Zimbabwe, ... Russia, Belarus, Kenya and Ghana\". That is 35 entries including the United States, but not Haiti. The footer may be the US-region variant, because the site has USA/UK/EU/Canada/AU switches; not verified from a non-US IP. Haiti is also missing from the checkout country selector at https://trader.fxify.com/purchasechallenge (read 2026-10-20), along with every other FAQ-listed country, which supports the FAQ. FXIFY General Terms and Conditions (dated September 29, 2026), clause 1.4, defer to \"countries determined as such by the Provider and published on the Website\". History: Haiti was added 2026-10-17 per the FAQ; footer-only readers count 35 without it.",
     "ratings": {
       "conditions": null,
       "support": null,
@@ -3430,16 +3434,16 @@
       },
       "newsTrading": {
         "value": null,
-        "summary": "Product-specific: allowed on One Phase, Two Phase Classic, Two Phase Standard, Two Phase Pro, Three Phase; not allowed on Instant Funding Standard, Instant Funding Lite, Lightning Challenge; restricted on Crypto Standard (1 Step), Crypto Instant Funding",
+        "summary": "Product-specific: allowed on One Phase, Two Phase Classic, Two Phase Standard, Two Phase Pro, Three Phase; restricted on Instant Funding Standard, Instant Funding Lite, Lightning Challenge, Crypto Standard (1 Step), Crypto Instant Funding",
         "byProduct": {
           "one-phase": true,
           "two-phase-classic": true,
           "two-phase-standard": true,
           "two-phase-pro": true,
           "three-phase": true,
-          "instant-funding-standard": false,
-          "instant-funding-lite": false,
-          "lightning-challenge": false,
+          "instant-funding-standard": "restricted",
+          "instant-funding-lite": "restricted",
+          "lightning-challenge": "restricted",
           "crypto-standard-1-step": "restricted",
           "crypto-instant-funding": "restricted"
         },
@@ -4678,7 +4682,10 @@
     "reviewUrl": "/blog/city-traders-imperium-review",
     "officialUrl": "https://citytradersimperium.com/",
     "profitSplitPct": 70,
-    "payoutFrequency": "monthly",
+    "payoutFrequency": null,
+    "payoutFrequencyNote": "Product-specific, so no firm-wide value (checked 2026-10-20): 1-Step and 2-Step publish a first payout \"in as little as 7 days\" with weekly payouts only unlocked at VIP Bronze; Direct Funding is on demand from day 5; Instant Funding publishes no baseline cycle. The earlier firm-level \"monthly\" matched no current product page.",
+    "payoutFrequencySourceUrl": "https://citytradersimperium.com/direct-funding/",
+    "payoutFrequencyQuote": "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.",
     "payoutMethods": [
       "Bank wire",
       "Crypto"
@@ -4706,11 +4713,11 @@
       "platform": null
     },
     "trustpilotScore": 4.2,
-    "trustpilotCount": 1631,
+    "trustpilotCount": 1633,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "restricted",
     "legalEntity": "City Traders Imperium Limited",
     "headquarters": "San José, Costa Rica",
@@ -4899,12 +4906,12 @@
       },
       "payoutFrequency": {
         "value": null,
-        "summary": "Product-specific: weekly on 1-Step Challenge, 2-Step Challenge; not stated on Instant Funding; monthly on Direct Funding",
+        "summary": "Product-specific: not stated after the 7-day first payout on 1-Step Challenge and 2-Step Challenge (weekly is a VIP Bronze unlock); not stated on Instant Funding; on-demand on Direct Funding",
         "byProduct": {
-          "1-step-challenge": "weekly",
-          "2-step-challenge": "weekly",
+          "1-step-challenge": null,
+          "2-step-challenge": null,
           "instant-funding": null,
-          "direct-funding": "monthly"
+          "direct-funding": "on-demand"
         },
         "evidence": [
           {
@@ -4922,6 +4929,14 @@
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
+            "productSlug": "direct-funding"
           }
         ]
       },
@@ -6000,7 +6015,7 @@
     "trustpilotScore": 4.4,
     "trustpilotCount": 7032,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/lucidtrading.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -6450,7 +6465,7 @@
     "trustpilotScore": 4.5,
     "trustpilotCount": 5369,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeify.co",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",

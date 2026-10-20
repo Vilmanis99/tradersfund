@@ -40,6 +40,15 @@
     "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "On-Demand 100% payouts",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
@@ -104,6 +113,15 @@
     "minTradingDays": 1,
     "maxTradingDays": null,
     "consistencyRulePct": null,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "On-Demand 100% payouts",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex"
+      }
+    ],
     "profitSplitPct": null,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
@@ -180,6 +198,15 @@
     "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "On-Demand 100% payouts",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": 7,
     "payoutFrequency": "weekly",
@@ -251,6 +278,15 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 35,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "On-Demand 100% payouts",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard"
+      }
+    ],
     "profitSplitPct": null,
     "payoutFirstDays": null,
     "payoutFrequency": null,
@@ -319,6 +355,15 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 15,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 15,
+        "scope": "funded",
+        "appliesTo": "Reward requests",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero"
+      }
+    ],
     "profitSplitPct": 95,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",

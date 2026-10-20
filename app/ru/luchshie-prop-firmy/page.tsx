@@ -15,10 +15,12 @@ import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
-import { compareRussianRanking } from '@/lib/russianRanking'
+import { compareRussianRanking, RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
+import { isProductSetFresh } from '@/lib/reviewFreshness'
 
 const PATH = '/ru/luchshie-prop-firmy'
 // Re-evaluate source age at runtime; regeneration does not re-verify firm terms.
@@ -208,7 +210,7 @@ export default function RussianBestPropFirmsPage() {
       const products = challenges.filter(challenge => challenge.firmSlug === slug)
       return { firm, slug, products }
     })
-    .filter(item => item.products.length > 0 && item.products.every(product => isChallengeFresh(product)))
+    .filter(item => isProductSetFresh(item.products))
     // Editorial pins (content/data/ru-ranking.json) lead only while the pinned
     // firm is open to Russia; then Russia access status, score and name.
     .sort((a, b) => compareRussianRanking(
@@ -410,7 +412,7 @@ export default function RussianBestPropFirmsPage() {
           </p>
           <h3>Проп-трейдинг компании: глобальные и российские</h3>
           <p>
-            Проп-трейдинг компании делятся на глобальные челлендж-фирмы (FundedNext, BrightFunded, FundingPips, FTMO) и российские
+            Проп-трейдинг компании делятся на глобальные челлендж-фирмы (BrightFunded, FundingPips, FTMO, FundedNext; FundedNext резидентам РФ недоступна) и российские
             компании с договором и биржевыми инструментами (Era Trade, PropLive, KasCapital, TeamTraders). Их правила нельзя
             сравнивать в одной таблице — российские разобраны в <Link href="#rossiyskie-firmy">отдельном блоке</Link>.
           </p>
@@ -461,8 +463,8 @@ export default function RussianBestPropFirmsPage() {
           <h2>Лучшие проп-фирмы 2026: топ-3 для трейдеров из России и СНГ</h2>
           <p><strong>Для трейдеров из России:</strong> <Link href="/ru/obzor-bright-funded">BrightFunded</Link> и Crypto Fund Trader — на 14.10.2026 они не ограничивают Россию. <Link href="/ru/obzor-fundednext">FundedNext</Link> с 20.10.2026 резидентам РФ недоступна (подвал её сайта).</p>
           <p><strong>Выбирайте программу по правилам, которые сможете соблюдать.</strong> Для начала определите рынок и бюджет. Затем сравните допустимый убыток, ограничения вашей стратегии и срок первой выплаты. Подтвердите гражданство, страну проживания и документы для проверки личности (KYC) до оплаты.</p>
-          <p>Для сравнения глобальных программ начните с <Link href="/ru/fundednext-vs-bright-funded">FundedNext и BrightFunded</Link>: у них различаются валюты взноса, этапы оценки и условия просадки. {stellarInstantCurrent
-            ? <>Если нужен счёт без оценочного этапа, изучите <Link href="/ru/fundednext-stellar-instant">Stellar Instant</Link> и его ограничения.</>
+          <p>Для сравнения глобальных программ откройте <Link href="/ru/fundednext-vs-bright-funded">BrightFunded и FundedNext</Link> (FundedNext — только для трейдеров вне России): у них различаются валюты взноса, этапы оценки и условия просадки. {stellarInstantCurrent
+            ? <>Если нужен счёт без оценочного этапа, изучите <Link href="/ru/fundednext-stellar-instant">Stellar Instant</Link> и его ограничения (FundedNext, не для резидентов РФ).</>
             : <>Если нужен счёт без оценочного этапа, проверьте <Link href="/ru/prop-firmy-bez-chelendzha">актуальные программы без челленджа</Link> и их ограничения.</>}{' '}Для торговли через местную биржевую инфраструктуру откройте отдельный список российских компаний выше.</p>
           <div className="ru-notice" data-russian-country-boundary="ranking-not-access">
             <strong>Это не рейтинг доступности в России.</strong>{' '}
@@ -477,16 +479,16 @@ export default function RussianBestPropFirmsPage() {
         <div className="ru-shell" data-russian-ranking-primary-partners="fundednext-bright-funded" data-russian-ranking-partners="single-section">
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ranking-primary-partners">
             <strong>Партнёрские ссылки.</strong>{' '}
-            FundedNext и BrightFunded — основные партнёры сайта; FundingPips — дополнительный партнёр. Мы можем получить комиссию при покупке по нашей ссылке.
+            BrightFunded и FundedNext — основные партнёры сайта (FundedNext резидентам России недоступна); FundingPips — дополнительный партнёр. Мы можем получить комиссию при покупке по нашей ссылке.
             Партнёрство не добавляет баллы в рейтинге. Перед оплатой подтвердите доступность программы для своей страны и документов.
           </div>
-          <h2>FundedNext или BrightFunded: с чего начать сравнение</h2>
+          <h2>BrightFunded или FundedNext: с чего начать сравнение</h2>
           <p className="ru-muted">
             Сопоставьте валюту взноса, число этапов, торговую платформу, механизм просадки и способ получения прибыли.
             Подробный обзор объясняет ограничения каждой программы.
           </p>
           <div className="ru-grid ru-ranking-partner-grid">
-            {partnerProfiles.map(item => {
+            {[...partnerProfiles].sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)]).map(item => {
               const isFundedNext = item.slug === 'fundednext'
               const secondary = item.slug === 'fundingpips'
               const partnerName = item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name
@@ -496,7 +498,7 @@ export default function RussianBestPropFirmsPage() {
                 <article className={`ru-card${secondary ? ' ru-ranking-secondary' : ''}`} key={item.slug} data-russian-ranking-primary-partner={secondary ? undefined : item.slug} data-russian-partner={item.slug}>
                   <div className="ru-card-head">
                     <h3>{partnerName}</h3>
-                    <span className="ru-score">{secondary ? 'Дополнительный партнёр' : 'Основной партнёр'}</span>
+                    {russiaStatusFor(item.slug) === 'restricted' ? <RuAccessBadgeView firm={item.slug} status="restricted" hint={false} /> : <span className="ru-score">{secondary ? 'Дополнительный партнёр' : 'Основной партнёр'}</span>}
                   </div>
                   <p>
                     {item.products.length > 0 ? item.guidance.start : 'Источники требуют повторной проверки. До обновления не используйте прежние цены и правила для выбора программы.'}
@@ -521,13 +523,14 @@ export default function RussianBestPropFirmsPage() {
                       ? 'Ограничение касается резидентов ОАЭ и Вьетнама; индивидуальный доступ в других странах не подтверждён.'
                       : 'Условия требуют повторной проверки; прежний список не подтверждает доступ сегодня.'}
                   </p>}
+                  {russiaStatusFor(item.slug) === 'restricted' && <p className="ru-source-line" data-russian-restricted-partner-note={item.slug}><strong>Резидентам России недоступна.</strong> Карточка — для русскоязычных трейдеров из других стран; резидентам России мы рекомендуем BrightFunded.</p>}
                   <p className="ru-source-line">Самая ранняя проверка источников: {item.products.map(product => product.sourceCapturedAt).sort()[0] ?? 'обновление ожидается'}.</p>
                   <div className="ru-actions">
                     <Link href={reviewHref} className="btn-outline">{item.slug === 'bright-funded' ? 'Обзор BrightFunded' : 'Русский обзор'}</Link>
                     <RuGoLink firm={item.slug}
                       href={`/go/${item.slug}?from=ru-ranking-primary-${item.slug}`}
                       rel={goLinkRel(item.slug)}
-                      className="btn-primary"
+                      className={russiaStatusFor(item.slug) === 'restricted' ? 'btn-outline' : 'btn-primary'}
                     >
                       {`Проверить ${partnerName} `}<ArrowRight size={14} aria-hidden="true" />
                     </RuGoLink>
@@ -593,7 +596,7 @@ export default function RussianBestPropFirmsPage() {
             </article>
             <article className="ru-card">
               <h3>ОАЭ</h3>
-              <p>{fundingPipsAccessCurrent ? 'По справке FundingPips резиденты ОАЭ ограничены, поэтому русскоязычному трейдеру с таким резидентством этот путь не подходит.' : `По справке от ${fundingPipsAccessEvidence.sourceCapturedAt} резиденты ОАЭ были ограничены; текущую политику нужно проверить заново.`} FundedNext и BrightFunded всё равно требуют отдельной проверки конкретного профиля и способа выплаты.</p>
+              <p>{fundingPipsAccessCurrent ? 'По справке FundingPips резиденты ОАЭ ограничены, поэтому русскоязычному трейдеру с таким резидентством этот путь не подходит.' : `По справке от ${fundingPipsAccessEvidence.sourceCapturedAt} резиденты ОАЭ были ограничены; текущую политику нужно проверить заново.`} BrightFunded всё равно требует отдельной проверки конкретного профиля и способа выплаты, а FundedNext резидентам России недоступна.</p>
               <p><a href={fundingPipsAccessEvidence.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">Справка FundingPips</a> от {fundingPipsAccessEvidence.sourceCapturedAt} · <Link href="/ru/obzor-fundingpips">русский обзор →</Link></p>
             </article>
           </div>

@@ -11,6 +11,9 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-eratrade'
@@ -20,10 +23,12 @@ const DESCRIPTION = 'Era Trade на русском: заявления о 6 000 
 const ERA_HOME = 'https://eratrade.net/'
 const ERA_AFFILIATE = 'https://help.eratrade.club/ru/affiliate-program-overview/'
 const ERA_RULES = 'https://help.eratrade.club/ru/general-trading-limitations/'
-const ERA_PAYOUT = 'https://help.eratrade.club/ru/how-to-request-a-payout/'
 const ERA_PAYOUT_SYSTEM = 'https://help.eratrade.club/ru/funded-account-payout-system-how-it-works/'
 const ERA_PROFITABLE_DAYS = 'https://help.eratrade.club/ru/minimum-number-of-profitable-days/'
-const ERA_SPLIT = 'https://help.eratrade.club/ru/profit-split-payment-methods/'
+const ERA_TERMS = 'https://eratrade.net/s/Era_Trade_Terms_of_Service.pdf'
+// Prop Firm Tracker recheck (data/new-firms-2026-10-20 @4f9a20d, _captures/eratrade-2026-10-20.json): the former payout-request
+// and split pages now 301 to ERA_PAYOUT_SYSTEM; homepage vs price list vs help-centre contradictions are shown side by side.
+const ERA_RECHECK = '20.10.2026'
 const ERA_TWO_STAGE = 'https://help.eratrade.club/ru/2-stage-challenge-how-it-works/'
 const ERA_ONE_STAGE = 'https://help.eratrade.club/ru/1-stage-challenge-how-it-works/'
 
@@ -46,7 +51,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Как Era Trade описывает выплаты?',
-    a: 'Страница запроса выплаты указывает минимум 3 прибыльных дня, минимум 1% от стартового баланса, максимум 10% за период выплаты и обработку в течение 5 рабочих дней. Там же перечислены USDT, BTC, ETH и LTC; способ, сеть и KYC нужно перепроверить перед запросом.',
+    a: 'Справка о системе выплат указывает минимум 3 прибыльных дня, минимум 1% от стартового баланса, максимум 10% за период выплаты и обработку до 5 рабочих дней. На главной при этом написано, что выплаты обычно обрабатываются в течение 72 часов: по данным на 20.10.2026 эти два срока расходятся. Способы выплаты — USDT, BTC, ETH и LTC; способ, сеть и KYC нужно перепроверить перед запросом.',
   },
   {
     q: 'Есть ли у Era Trade партнёрская программа?',
@@ -84,8 +89,8 @@ export default function RussianEraTradeReviewPage() {
     const products = freshChallenges.filter(product => product.firmSlug === route.slug)
     return { ...route, firm, products }
   }).filter(item => item.firm?.affiliateUrl)
-    // Russia-open firms first (firms.json russiaStatus); the array order breaks ties, so BrightFunded leads.
-    .sort((x, y) => Number(y.firm?.russiaStatus === 'available') - Number(x.firm?.russiaStatus === 'available'))
+    // Russia-open firms first (BrightFunded), restricted (FundedNext) last; stable for equal status.
+    .sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)])
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -138,14 +143,14 @@ export default function RussianEraTradeReviewPage() {
 
       <section className="ru-section" id="facts">
         <div className="ru-shell">
-          <div className="ru-notice" data-russian-country-boundary="local-review-not-access"><strong>Русский язык не равен доступу из России.</strong> Era Trade указывает международную модель и юридическое лицо в Дубае. Гражданство, резидентство, KYC, санкционные ограничения, способ оплаты и доступный продукт нужно подтвердить до покупки.</div>
+          <div className="ru-notice" data-russian-country-boundary="local-review-not-access"><strong>Русский язык не равен доступу из России.</strong> Era Trade указывает международную модель и юридическое лицо в Дубае. По данным на {ERA_RECHECK} <SourceLink href={ERA_TERMS}>условия использования</SourceLink> (редакция от 10.07.2026) исключают только юрисдикции под всеобъемлющими санкциями или запрещённые («comprehensively sanctioned or prohibited jurisdiction») и не называют ни одной страны. Поэтому доступ из России остаётся неясным. Гражданство, резидентство, KYC, способ оплаты и доступный продукт нужно подтвердить до покупки.</div>
           <h2>Что опубликовано на официальных страницах</h2>
           <div className="ru-table-wrap">
             <table className="ru-table" data-russian-local-review-facts="era-trade">
               <thead><tr><th>Пункт</th><th>Опубликованное условие</th><th>Редакционный статус</th><th>Источник</th></tr></thead>
               <tbody>
                 <tr><td>Масштаб</td><td>{Number(localSignal?.claims.traders).toLocaleString('ru-RU')}+ трейдеров, {localSignal?.claims.countries} стран, более ${Number(localSignal?.claims.payoutsUsd).toLocaleString('en-US')} выплат</td><td>Заявление оператора, не независимый аудит</td><td><SourceLink href={ERA_HOME}>Era Trade</SourceLink></td></tr>
-                <tr><td>Сплит</td><td>{localSignal?.claims.baseProfitSplitPct}% в пользу трейдера</td><td>Условие зависит от продукта и правил выплаты</td><td><SourceLink href={ERA_SPLIT}>Справка о сплите</SourceLink></td></tr>
+                <tr><td>Сплит</td><td>{localSignal?.claims.baseProfitSplitPct}% в пользу трейдера</td><td>Условие зависит от продукта и правил выплаты</td><td><SourceLink href={ERA_PAYOUT_SYSTEM}>Система выплат (сплит)</SourceLink></td></tr>
                 <tr><td>2 этапа</td><td>Цель 8%, дневной лимит 5%, общий лимит 10%</td><td>Отдельный продукт; не переносим на 1-этапный</td><td><SourceLink href={ERA_TWO_STAGE}>Правила 2 этапов</SourceLink></td></tr>
                 <tr><td>1 этап</td><td>Цель 11%, дневной лимит 4%, общий лимит 8%</td><td>Отдельный продукт; проверяйте актуальную версию</td><td><SourceLink href={ERA_ONE_STAGE}>Правила 1 этапа</SourceLink></td></tr>
                 <tr><td>Платформы</td><td>Bybit, MT5 и TradeLocker указаны в витрине; продукт и доступный терминал нужно выбирать отдельно</td><td>Платформа меняет технические и страновые ограничения</td><td><SourceLink href={ERA_HOME}>Витрина Era Trade</SourceLink></td></tr>
@@ -154,6 +159,19 @@ export default function RussianEraTradeReviewPage() {
               </tbody>
             </table>
           </div>
+          <h3>Где официальные страницы противоречат друг другу</h3>
+          <div className="ru-table-wrap">
+            <table className="ru-table" data-russian-eratrade-conflicts="three">
+              <caption className="sr-only">Era Trade: расхождения между главной, прайсом и справкой, по данным на {ERA_RECHECK}</caption>
+              <thead><tr><th>Пункт</th><th>Одна страница</th><th>Другая страница</th></tr></thead>
+              <tbody>
+                <tr><td>Минимальный вход</td><td>«начать всего с $59» — FAQ на <SourceLink href={ERA_HOME}>главной</SourceLink></td><td>самый дешёвый тариф в прайсе на той же главной — $99 (2 этапа, счёт 10 000)</td></tr>
+                <tr><td>Срок выплаты</td><td>«обычно в течение 72 часов» — <SourceLink href={ERA_HOME}>главная</SourceLink></td><td>«до 5 рабочих дней» — <SourceLink href={ERA_PAYOUT_SYSTEM}>справка о выплатах</SourceLink></td></tr>
+                <tr><td>Максимальный счёт</td><td>«До $300K размер аккаунта» — <SourceLink href={ERA_HOME}>главная</SourceLink></td><td>самый крупный размер в прайсе — $200 000</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="ru-muted">Расхождения показаны по данным на {ERA_RECHECK}. Какая цифра действует для вашей покупки, уточните у Era Trade письменно до оплаты.</p>
           <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Общий снимок источников: {marketEvidence.capturedAt}; показатели на главной: {localSignalCapturedAt || 'дата не подтверждена'}; партнёрская программа: {affiliateCapturedAt || 'дата не подтверждена'}. Остальные правила нужно перепроверить перед покупкой. Все суммы, проценты и сроки выше — заявления Era Trade, а не независимая проверка.</p>
         </div>
       </section>
@@ -163,7 +181,7 @@ export default function RussianEraTradeReviewPage() {
           <h2>Риски, которые нельзя пропустить</h2>
           <div className="ru-grid">
             <article className="ru-card"><Scale size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Лимит идеи</h3><p className="ru-muted">Общие торговые ограничения указывают максимум 2% совокупного убытка на одну торговую идею. Дробление ордеров для обхода лимита запрещено.</p><SourceLink href={ERA_RULES}>Правила торговли</SourceLink></article>
-            <article className="ru-card"><FileCheck2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Период выплаты</h3><p className="ru-muted">Для запроса нужны 3 прибыльных дня; минимальная сумма — 1% стартового баланса, а обработка заявлена до 5 рабочих дней. Проверьте сеть и кошелёк.</p><SourceLink href={ERA_PAYOUT}>Порядок выплаты</SourceLink></article>
+            <article className="ru-card"><FileCheck2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Период выплаты</h3><p className="ru-muted">Для запроса нужны 3 прибыльных дня; минимальная сумма — 1% стартового баланса, а обработка заявлена до 5 рабочих дней. Проверьте сеть и кошелёк.</p><SourceLink href={ERA_PAYOUT_SYSTEM}>Система выплат</SourceLink></article>
             <article className="ru-card"><WalletCards size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Партнёрская модель</h3><p className="ru-muted">5% — стандартный уровень, а 60% — верхняя опубликованная ступень при объёме рефералов. Размер комиссии не доказывает качество продукта.</p><SourceLink href={ERA_AFFILIATE}>Партнёрская программа</SourceLink></article>
           </div>
           <div className="ru-notice" data-russian-local-affiliate="public-not-activated"><strong>Партнёрство Era Trade не активировано на этом сайте.</strong> Мы не создаём локальный /go/ маршрут без согласованной ссылки и завершённой проверки продукта, юридического лица, выплат и страновых ограничений.</div>
@@ -208,18 +226,19 @@ export default function RussianEraTradeReviewPage() {
 
       <section className="ru-section">
         <div className="ru-shell" data-russian-local-global-funnel="era-trade">
-          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="eratrade-global-options"><strong>BrightFunded и FundedNext — два глобальных партнёра сайта; доступ для РФ у каждого показан бейджем рядом с кнопкой.</strong> Они коммерчески выделены для отдельного онлайн-сравнения, а не объявлены победителями над Era Trade. Дата захвата определяет, можно ли цитировать продуктовые цифры; при просрочке откройте текущую страницу оплаты. Партнёрская комиссия возможна после регистрации, но не меняет порядок проверки страны, KYC и правил.</div>
+          <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="eratrade-global-options"><strong>BrightFunded — основной глобальный маршрут для резидентов России; FundedNext резидентам РФ недоступна и показана только для трейдеров из других стран.</strong> Они коммерчески выделены для отдельного онлайн-сравнения, а не объявлены победителями над Era Trade. Дата захвата определяет, можно ли цитировать продуктовые цифры; при просрочке откройте текущую страницу оплаты. Партнёрская комиссия возможна после регистрации, но не меняет порядок проверки страны, KYC и правил.</div>
           <h2>Глобальные альтернативы для русскоязычных трейдеров</h2>
           <div className="ru-grid">
             {globalCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-local-global-partner={item.slug}>
-                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Главный партнёр</span></div>
+                <div className="ru-card-head"><h3>{item.name}</h3>{russiaStatusFor(item.slug) === 'restricted' ? <RuAccessBadgeView firm={item.slug} status="restricted" hint={false} /> : <span className="ru-score">Главный партнёр</span>}</div>
+                {russiaStatusFor(item.slug) === 'restricted' && <p className="ru-source-line" data-russian-restricted-partner-note={item.slug}><strong>Резидентам России недоступна.</strong> Карточка — для русскоязычных трейдеров из других стран.</p>}
                 <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; для сравнения с Era Trade проверьте первую выплату, прибыльные дни, страну и KYC.</p>
-                <div className="ru-actions"><Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link><RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-eratrade-global-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить условия <ArrowRight size={14} aria-hidden="true" /></RuGoLink></div>
+                <div className="ru-actions"><Link href={item.reviewHref} className="btn-outline">Открыть обзор</Link><RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-eratrade-global-${item.slug}`} rel="sponsored nofollow noopener" className={russiaStatusFor(item.slug) === 'restricted' ? 'btn-outline' : 'btn-primary'}>Проверить условия <ArrowRight size={14} aria-hidden="true" /></RuGoLink></div>
               </article>
             ))}
           </div>
-          <p className="ru-source-line">Локальные примеры: <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">исследование российских проп-компаний</Link>; глобальная развилка: <Link href="/ru/fundednext-vs-bright-funded">сравнение FundedNext и BrightFunded</Link>; отдельная локальная проверка: <Link href="/ru/obzor-proplive">PropLive</Link>.</p>
+          <p className="ru-source-line">Локальные примеры: <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">исследование российских проп-компаний</Link>; глобальное сравнение: <Link href="/ru/fundednext-vs-bright-funded">BrightFunded и FundedNext</Link> (FundedNext недоступна для РФ); отдельная локальная проверка: <Link href="/ru/obzor-proplive">PropLive</Link>.</p>
         </div>
       </section>
 

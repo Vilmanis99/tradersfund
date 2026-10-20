@@ -541,7 +541,7 @@ export default function RussianBrightFundedReviewPage() {
             <p>Сравнивайте альтернативы по тому условию, которое вам не подходит: просадке, сроку выплаты, проверке документов или валюте оплаты. Следующие 6 материалов помогают разобрать эти различия до регистрации.</p>
             <ul className="ru-review-related-links">
               <li><Link href="/ru/fundednext-vs-bright-funded">BrightFunded или FundedNext</Link> — сравнение {comparisonProductCount} программ и {comparisonPriceCount} цен в USD/EUR: просадка, окупаемость взноса, выплаты и ограничения по стране.</li>
-              <li><Link href="/ru/ftmo-vs-bright-funded">BrightFunded или FTMO</Link> — 14 различий по данным на 14–19.10.2026: доступ из СНГ, цена на $100K, тип просадки, сплит, выплаты, платформы и способы оплаты.</li>
+              <li><Link href="/ru/ftmo-vs-bright-funded">BrightFunded или FTMO</Link> — 14 различий по данным на 14–20.10.2026: доступ из СНГ, цена на $100K, тип просадки, сплит, выплаты, платформы и способы оплаты.</li>
               <li><Link href="/ru/obzor-fundednext">Обзор FundedNext</Link> — другая конфигурация цены, просадки и условий запроса выплаты. Число программ со свежими данными: {fundedNextProducts.length}; цен в USD: {fundedNextPricedTierCount}.</li>
               <li><Link href="/ru/vyplaty-prop-firm">Сравнение выплат проп-фирм</Link> — способы получения денег, календарь запросов и комиссии банка или сети.</li>
               <li><Link href="/ru/prop-firmy-bez-kyc">Проверка KYC и страны</Link> — гражданство, резидентство, документы и имя владельца платежа; отсутствие страны в запрете не равно персональному одобрению.</li>

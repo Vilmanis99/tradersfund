@@ -35,7 +35,7 @@ import {
   type RuleAvailability,
 } from './firms'
 import { getChallengeWatchEntries, type ChallengeWatchEntry } from './challengeWatch'
-import { minimumTradingDaysLabel, maximumTradingDaysLabel, consistencyRuleLabel } from './challengeRuleLabels'
+import { minimumTradingDaysLabel, maximumTradingDaysLabel, consistencyRuleLabel, firstPayoutDaysLabel } from './challengeRuleLabels'
 
 export type MatchupSide = 'a' | 'b'
 
@@ -387,7 +387,7 @@ const RULE_DEFS: RuleDef[] = [
   { label: 'Min trading days', get: c => minimumTradingDaysLabel(c.minTradingDays) },
   { label: 'Max trading days', get: c => maximumTradingDaysLabel(c) },
   { label: 'Consistency rule', get: c => consistencyRuleLabel(c) },
-  { label: 'First payout after', get: c => (c.payoutFirstDays == null ? 'Not published' : `${c.payoutFirstDays} days`) },
+  { label: 'First payout after', get: c => firstPayoutDaysLabel(c) },
   { label: 'Payout frequency', get: c => formatFrequency(c.payoutFrequency) },
   { label: 'News trading', get: c => formatRule(c.rules.news) },
   { label: 'Weekend holding', get: c => formatRule(c.rules.weekend) },

@@ -24,8 +24,8 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/obzor-fundednext'
-const TITLE = 'FundedNext проп: отзывы и обзор 2026, цены и правила'
-const DESCRIPTION = 'FundedNext проп-компания: обзор на русском — цены программ Stellar, просадка, условия выплат, копирование сделок, отзывы и проверка доступа из своей страны.'
+const TITLE = 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила'
+const DESCRIPTION = 'FundedNext (Funded Next) проп-компания: обзор и отзывы на русском — цены Stellar, просадка, выплаты. Резидентам РФ недоступна, альтернатива — BrightFunded.'
 // Preserve existing sharing copy until its separate update is approved.
 const SOCIAL_DESCRIPTION = 'Отзывы о FundedNext и обзор на русском: 4 модели Stellar, 22 цены, просадка, выплаты, Free Trial и проверка ограничений по стране.'
 export const revalidate = 3600

@@ -187,7 +187,7 @@
     "consistencyRulePct": null,
     "profitSplitPct": 80,
     "payoutFirstDays": 10,
-    "payoutFrequency": null,
+    "payoutFrequency": "bi-weekly",
     "rules": {
       "news": "restricted",
       "weekend": true,
@@ -199,13 +199,15 @@
     "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
     "sourceCapturedAt": "2026-10-19",
     "notes": [
+      "UNIT (2026-10-20): payoutFirstDays 10 and the 10-day subsequent cycle are BUSINESS days, not calendar days. https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward: \"First Performance Reward is available after 10 business days. Subsequent rewards are available every 10 business days.\" https://help.fundednext.com/en/articles/17253939-stellar-lite-account: \"First Cycle Duration | 10 business days\". About two calendar weeks; legacy accounts bought before 12 Oct 2026 keep 21 calendar days then every 14 days. The schema has no unit field, so any UI that prints \"10 days\" should say \"10 business days\".",
       "Standard global USD list prices; promotions and optional add-ons are excluded.",
       "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
-      "Global page (2026-10-15): 2 minimum trading days per phase on standard plans (the 90% on-demand option stays at 5), first reward after 10 days; subsequent cycle shown as both 10 days and bi-weekly, so payoutFrequency is null.",
+      "Global page (2026-10-15): 2 minimum trading days per phase on standard plans (the 90% on-demand option stays at 5), first reward after 10 days; subsequent cycle shown as both 10 days and bi-weekly (payoutFrequency was null until the 2026-10-20 help-centre recheck below).",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-10-15.json",
       "First-payout recheck 2026-10-20 (official https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward): \"First Performance Reward is available after 10 business days. Subsequent rewards are available every 10 business days.\" Applies to accounts purchased or reset on or after 12 Oct 2026; older accounts keep the previous rule (\"first payout after 21 days, and subsequent payouts every 14 days\"). Evidence: content/data/challenges/_captures/fundednext-2026-10-20.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/fundednext-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/fundednext-2026-10-20.json",
+      "payoutFrequency \"bi-weekly\" (set 2026-10-20) is the closest enum value to the official Standard cadence of 10 business days (about two calendar weeks). https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward (checked 2026-10-20): \"First Performance Reward is available after 10 business days. Subsequent rewards are available every 10 business days.\" This applies to accounts purchased or reset on or after 12 Oct 2026; older accounts: \"first payout after 21 days, and subsequent payouts every 14 days\". https://help.fundednext.com/en/articles/17253939-stellar-lite-account (checked 2026-10-20) 10-Days Cycle table: \"First Cycle Duration | 10 business days from activation\", \"Subsequent Cycles | 10 business days each\". The optional 3-Day (60%) and On-Demand (90%) payout options chosen at checkout are not covered by this field."
     ]
   },
   {

@@ -320,8 +320,11 @@ function decisionTiers(product: IndiaMatcherProduct, accountSize: string) {
 
 function entryValue(product: IndiaMatcherProduct, accountSize: string) {
   const tiers = decisionTiers(product, accountSize)
-  const usd = tiers.flatMap(tier => tier.price.currency === 'USD' ? [tier.price.amount] : [])
-  const eur = tiers.flatMap(tier => tier.price.currency === 'EUR' ? [tier.price.amount] : [])
+  // Rank on price plus mandatory after-pass/activation fees (minimumCostToFundedUsd).
+  const usd = tiers.flatMap(tier => tier.price.currency === 'USD'
+    ? [tier.costToFundedUsd != null && tier.costToFundedUsd > 0 ? tier.costToFundedUsd : tier.price.amount] : [])
+  const eur = tiers.flatMap(tier => tier.price.currency === 'EUR'
+    ? [tier.costToFundedEur != null && tier.costToFundedEur > 0 ? tier.costToFundedEur : tier.price.amount] : [])
   if (usd.length && !eur.length) return { amount: Math.min(...usd), currency: 'USD' as const }
   if (eur.length && !usd.length) return { amount: Math.min(...eur), currency: 'EUR' as const }
   return null
@@ -426,8 +429,8 @@ function outcomeForPriority(
       } the lowest published entry`,
       `${compactMoney(result.value!, currency)} is lowest across ${sizeLabel}.`,
       accountSize === 'all'
-        ? 'Minimum fees may represent different account sizes and exclude card FX markup, taxes, resets, rebills, and activation fees.'
-        : 'This excludes card FX markup, taxes, resets, rebills, and any later activation fee.',
+        ? 'Entry includes any mandatory after-pass or activation fee. Minimum fees may represent different account sizes and exclude card FX markup, taxes, resets and rebills.'
+        : 'Entry includes any mandatory after-pass or activation fee. This excludes card FX markup, taxes, resets and rebills.',
       result.winners,
     )
   }

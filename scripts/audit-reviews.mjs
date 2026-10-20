@@ -70,6 +70,7 @@ import {
   postBodyCampaign,
 } from '../lib/postOutboundLinks.ts'
 import { rankRelatedPosts, relatedPostScore } from '../lib/relatedPosts.ts'
+import { CLOSED_FIRMS_ROUTE_PAIR, RU_CLOSED_FIRMS_PATH } from '../lib/localizedRoutes.ts'
 import { russianPartnerMatcherDecision } from '../lib/russianPartnerMatcher.ts'
 import {
   getRussianDiasporaCountryRows,
@@ -2823,6 +2824,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/chto-takoe-prop-firma', 'russian_education'],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', 'russian_education'],
     ['/ru/otzyvy-prop-firm', 'russian_review'],
+    [RU_CLOSED_FIRMS_PATH, 'russian_education'],
   ])
   for (const [pathname, expected] of stageFixtures) {
     const actual = journeyStage(pathname)
@@ -11245,7 +11247,42 @@ function checkRussianAcquisitionPilot() {
   const indexNowPaths = getRussianIndexNowUrls('https://tradersfundhub.com')
     .map(url => new URL(url).pathname)
     .sort()
-  const expectedIndexNowPaths = [...russianRouteFiles.keys()].sort()
+  const closedFirmsJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.json'), 'utf8'))
+  const closedFirmsRuJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.ru.json'), 'utf8'))
+  const closedFirmsPublished = closedFirmsJson.published === true
+  // The RU closed-firms page is flag-gated (same flag as /prop-firms/closed), not an acquisition-pilot route.
+  const expectedIndexNowPaths = [...russianRouteFiles.keys(), ...(closedFirmsPublished ? [RU_CLOSED_FIRMS_PATH] : [])].sort()
+  {
+    const ruClosedFile = path.join(ROOT, `app${RU_CLOSED_FIRMS_PATH}/page.tsx`)
+    const ruClosedSource = fs.existsSync(ruClosedFile) ? fs.readFileSync(ruClosedFile, 'utf8') : ''
+    if (!ruClosedSource) rows.push(`${RU_CLOSED_FIRMS_PATH}: page folder must match RU_CLOSED_FIRMS_PATH in lib/localizedRoutes.ts`)
+    for (const token of [
+      'CLOSED_FIRMS_PUBLISHED ? undefined : { index: false',
+      'closedFirmsLanguageAlternates()',
+      "getClosedFirmViews('ru'",
+      '<ClosedFirmsList locale="ru"',
+      "inLanguage: 'ru'",
+    ]) {
+      if (ruClosedSource && !ruClosedSource.includes(token)) rows.push(`${RU_CLOSED_FIRMS_PATH}: missing ${token}`)
+    }
+    if (/\/go\/|RuGoLink/.test(ruClosedSource)) rows.push(`${RU_CLOSED_FIRMS_PATH}: closed firms must not carry sign-up CTAs`)
+    const title = ruClosedSource.match(/const TITLE = '([^']+)'/)?.[1] ?? ''
+    const description = ruClosedSource.match(/const DESCRIPTION = '([^']+)'/)?.[1] ?? ''
+    if (!title || title.length > 60) rows.push(`${RU_CLOSED_FIRMS_PATH}: Russian SEO title is missing or over 60 characters`)
+    if (description.length < 120 || description.length > 160) rows.push(`${RU_CLOSED_FIRMS_PATH}: Russian SEO description is ${description.length} characters, expected 120–160`)
+    const enSlugs = closedFirmsJson.firms.map(firm => firm.slug).sort()
+    const ruSlugs = Object.keys(closedFirmsRuJson.firms).sort()
+    if (JSON.stringify(enSlugs) !== JSON.stringify(ruSlugs)) {
+      rows.push(`closed-firms.ru.json slugs [${ruSlugs}] must match closed-firms.json [${enSlugs}] (section ids/anchors are shared)`)
+    }
+    if (CLOSED_FIRMS_ROUTE_PAIR.ru !== RU_CLOSED_FIRMS_PATH) rows.push('closed-firms route pair must use RU_CLOSED_FIRMS_PATH')
+    // Inlinks and the footer link must be gated by the same flag.
+    for (const file of ['app/ru/page.tsx', 'app/ru/otzyvy-prop-firm/page.tsx', 'app/ru/vyplaty-prop-firm/page.tsx', 'app/ru/chto-takoe-prop-firma/page.tsx', 'components/Footer.tsx']) {
+      const source = fs.readFileSync(path.join(ROOT, file), 'utf8')
+      if (!source.includes('ruClosedFirmsHref()')) rows.push(`${file}: RU closed-firms link must go through ruClosedFirmsHref()`)
+      if (source.includes(`'${RU_CLOSED_FIRMS_PATH}'`)) rows.push(`${file}: hard-coded ${RU_CLOSED_FIRMS_PATH} bypasses the publish flag`)
+    }
+  }
   if (JSON.stringify(indexNowPaths) !== JSON.stringify(expectedIndexNowPaths)) {
     rows.push('Russian IndexNow inventory disagrees with the route source inventory')
   }
@@ -11681,10 +11718,10 @@ function checkRussianAcquisitionPilot() {
         rows.push('Era Trade operator-claim fixtures are missing from Russian evidence')
       }
       if (
-        localSignals.get('PropLive')?.claims?.traders !== 13_722
+        localSignals.get('PropLive')?.claims?.traders !== 14_993
         || !localSignals.get('PropLive')?.notes?.some(note => note.includes('10,700'))
       ) {
-        rows.push('PropLive 13,722/10,700 first-party conflict is not preserved')
+        rows.push('PropLive 14,993/10,700 first-party conflict is not preserved')
       }
       if (
         localSignals.get('KasCapital')?.claims?.maximumProfitSharePct !== 95
@@ -11708,7 +11745,7 @@ function checkRussianAcquisitionPilot() {
         || localSignals.get('TeamTraders')?.claims?.minimumTradingSessions !== 10
         || localSignals.get('TeamTraders')?.claims?.dailyLossLimitPct !== 2
         || localSignals.get('TeamTraders')?.claims?.maximumLossPct !== 4
-        || localSignals.get('TeamTraders')?.claims?.fundedDemoProfitSharePct !== 70
+        || localSignals.get('TeamTraders')?.claims?.fundedDemoProfitSharePct !== 50
         || localSignals.get('TeamTraders')?.claims?.profitSharePct !== 95
         || localSignals.get('TeamTraders')?.claims?.maximumCapitalRub !== 2_000_000
         || localSignals.get('TeamTraders')?.sourceCapturedAt !== scopedTeamTradersEvidence?.capturedAt
@@ -11778,8 +11815,8 @@ function checkRussianAcquisitionPilot() {
         rows.push('FTMO Russian Federation restriction evidence is incomplete')
       }
       if (
-        firmAccess.get('fundednext')?.status !== 'conflicting'
-        || firmAccess.get('fundednext')?.sourceUrls?.length !== 4
+        firmAccess.get('fundednext')?.status !== 'restricted'
+        || firmAccess.get('fundednext')?.sourceUrls?.length !== 6
         || !validScopedCapture(firmAccess.get('fundednext')?.sourceCapturedAt)
         || !hasScopedObservations(firmAccess.get('fundednext'))
         || !firmAccess.get('fundednext')?.notes?.some(note => note.includes('card-transfer restrictions'))
@@ -11893,7 +11930,7 @@ function checkRussianAcquisitionPilot() {
         || teamTradersEvidence.evaluation?.minimumTradingDaysTotal !== 10
         || teamTradersEvidence.evaluation?.dailyLossPct !== 2
         || teamTradersEvidence.evaluation?.maximumLossPct !== 4
-        || teamTradersEvidence.fundedDemo?.profitSharePct !== 70
+        || teamTradersEvidence.fundedDemo?.profitSharePct !== 50
         || teamTradersEvidence.fundedDemo?.profitTargetAndCapPct !== 10
         || teamTradersEvidence.realAccount?.profitSharePct !== 95
         || teamTradersEvidence.realAccount?.dailyLossExcessPenaltyPct !== 20
@@ -11903,7 +11940,8 @@ function checkRussianAcquisitionPilot() {
       if (
         teamTradersEvidence.affiliateProgram?.status !== 'not-found'
         || teamTradersEvidence.searchIntent?.queries?.length !== 3
-        || teamTradersEvidence.sourceConflicts?.length !== 3
+        || teamTradersEvidence.sourceConflicts?.length !== 5
+        || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 50 && item.legacyValue === 70 && item.recordedAt === '2026-10-20')
         || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 10 && item.legacyValue === 15)
         || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 95 && item.legacyValue === 90)
       ) {
@@ -13073,7 +13111,7 @@ function checkRussianAcquisitionPilot() {
     'PROP_LIVE_ABOUT',
     'PROP_LIVE_REQUISITES',
     'PROP_LIVE_PARTNERS',
-    'PROP_LIVE_CONTRACT',
+    'data-russian-proplive-contract="unavailable"',
     'ru-proplive-global-',
     'rel="sponsored nofollow noopener"',
   ]) {
@@ -13097,7 +13135,7 @@ function checkRussianAcquisitionPilot() {
     'ERA_PAYOUT',
     'ERA_PAYOUT_SYSTEM',
     'ERA_PROFITABLE_DAYS',
-    'ERA_SPLIT',
+    'data-russian-eratrade-conflicts="three"',
     'ERA_TWO_STAGE',
     'ERA_ONE_STAGE',
     'ru-eratrade-global-',
@@ -13137,7 +13175,7 @@ function checkRussianAcquisitionPilot() {
     'data-russian-teamtraders-pricing="three-rub-tiers"',
     'data-russian-teamtraders-process="five-stages"',
     'data-russian-teamtraders-rules="manual-intraday"',
-    'data-russian-teamtraders-payouts="demo-70-real-95"',
+    'data-russian-teamtraders-payouts="demo-50-real-95"',
     'data-russian-teamtraders-source-conflict="current-vs-legacy"',
     'data-russian-teamtraders-legal="prop-offer-unavailable"',
     'data-russian-affiliate-disclosure="teamtraders-global-options"',

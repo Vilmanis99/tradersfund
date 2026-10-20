@@ -1,0 +1,37 @@
+{
+  "firmSlug": "kascapital",
+  "captureType": "new-firm-research",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T12:00:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousEvidence": "content/data/russian-market-evidence.json localFirmSignals 'KasCapital' (sourceCapturedAt 2026-10-01)",
+  "egress": "Box egress is a US IP (ipinfo country US, checked 2026-10-20). Fetched the global Russian-language pages (no /us/ or regional variant exists on these sites); no geo-redirect observed.",
+  "method": "curl of live HTML/PDF with a desktop Chrome user agent, scripts/styles stripped with BeautifulSoup, PDFs via pdftotext -layout; quotes copied verbatim and machine-checked against the saved text. Raw snapshots: /workspace/tradersfundhub/evidence/new-firms-2026-10-20/raw/ (box only).",
+  "verdict": {
+    "evidenced": false,
+    "recordTarget": null,
+    "reason": "Not an evaluation/challenge firm and no programme rules are published: the trader funds a deposit and gets x100 leverage on shares; no challenge price, profit target, daily or max loss, drawdown type or platform is stated on public pages. Footer 'Регламент' and 'Условия выплат' links only jump to the homepage FAQ; the only public document (Oferta.pdf) sells access to information materials for 12 990 ₽, not the trading programme. Split is self-contradictory ('до 95%' vs 'Компания получает максимум 20%').",
+    "russiaStatus": "available (inferred: ООО registered in Leningrad Oblast, RUB amounts; not added to data)"
+  },
+  "facts": {
+    "model": "Например, при депозите 50 000 ₽ покупательская способность — до 5 000 000 ₽ .",
+    "leverage": "Торгуете на нашем капитале с плечом до 100",
+    "splitA": "Забираете прибыль — до 95%",
+    "splitB": "Компания получает максимум 20% прибыли. Остальное — ваше.",
+    "payouts": "Выплаты осуществляются еженедельно по понедельникам.",
+    "payoutLimits": "Минимальная сумма для одной заявки составляет 10 000 рублей, максимальная — 2 000 000 рублей.",
+    "bonus": "Получаете 500 ₽ на счёт при регистрации",
+    "legal": "ООО \"КАС КЭПИТАЛ\"",
+    "ogrn": "1234700002085",
+    "inn": "4705098948",
+    "offerScope": "Вознаграждение Общества по Договору составляет 12 990 руб. , в том числе НДС 2 342 руб.",
+    "affiliate": "No content-affiliate terms found (unchanged from 2026-10-01)."
+  },
+  "sourceUrls": [
+    "https://kascapital.io/",
+    "https://kascapital.io/documents/Oferta.pdf"
+  ],
+  "changesVs20261001": [
+    "Claims re-verified unchanged: up to 95% share, Monday weekly payouts, 10 000-2 000 000 RUB request range. Counters on the homepage render as 0 without JS ('0+ активных трейдеров'), so no trader count is quotable."
+  ]
+}

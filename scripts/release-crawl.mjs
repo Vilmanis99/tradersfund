@@ -49,6 +49,9 @@ import {
   LOCALIZED_ROUTE_PAIRS,
   RUSSIAN_ROUTE_EDITORIAL_DATES,
   RUSSIAN_ONLY_ROUTES,
+  CLOSED_FIRMS_ROUTE_PAIR,
+  RU_CLOSED_FIRMS_EDITORIAL_DATE,
+  RU_CLOSED_FIRMS_PATH,
 } from '../lib/localizedRoutes.ts'
 import {
   INDEXNOW_KEY,
@@ -57,6 +60,9 @@ import {
 } from '../lib/indexNow.ts'
 
 const args = process.argv.slice(2)
+// /prop-firms/closed and its RU page share one publish flag; the RU page joins the RU inventory only while it is true.
+const closedFirmsData = JSON.parse(readFileSync(new URL('../content/data/closed-firms.json', import.meta.url), 'utf8'))
+const closedFirmsPublished = closedFirmsData.published === true
 const baseArg = args.find(value => !value.startsWith('--'))
 const VERBOSE = args.includes('--verbose')
 const STRICT_LENGTHS = args.includes('--strict-lengths')
@@ -719,6 +725,8 @@ for (const source of [
 }
 
 const russianRoutePairs = [...LOCALIZED_ROUTE_PAIRS]
+// Flag-gated pair (same publish flag as /prop-firms/closed).
+if (closedFirmsPublished) russianRoutePairs.push(CLOSED_FIRMS_ROUTE_PAIR)
 const russianOnlyPaths = [...RUSSIAN_ONLY_ROUTES]
 const russianPaths = [
   ...russianRoutePairs.map(pair => pair.ru),
@@ -754,6 +762,7 @@ for (const path of russianPaths) {
 
   const actualLastModified = firstMatch(entry, /<lastmod>([\s\S]*?)<\/lastmod>/i)
   const editorialLastModified = RUSSIAN_ROUTE_EDITORIAL_DATES[path]
+    ?? (path === RU_CLOSED_FIRMS_PATH ? RU_CLOSED_FIRMS_EDITORIAL_DATE : undefined)
   const actualTime = new Date(actualLastModified).getTime()
   const editorialTime = new Date(`${editorialLastModified}T00:00:00Z`).getTime()
   if (!actualLastModified || !Number.isFinite(actualTime)) {
@@ -948,7 +957,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/promokody-prop-firm', {
-    title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded, FundedNext',
+    title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded для РФ',
     h1: 'Промокоды проп-фирм — октябрь 2026',
     markers: [
       'id="kody"',
@@ -1029,8 +1038,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/vyplaty-prop-firm', {
-    title: 'Выплаты проп-фирм 2026: FundedNext и BrightFunded',
-    h1: 'Выплаты проп-фирм: FundedNext, BrightFunded и вывод прибыли',
+    title: 'Выплаты проп-фирм 2026: как вывести прибыль — сроки и KYC',
+    h1: 'Выплаты проп-фирм: BrightFunded, FundedNext и вывод прибыли',
     markers: [
       'data-russian-payout-guide="long-form-source-gated"',
       'data-russian-payout-partner-count="3"',
@@ -1104,7 +1113,7 @@ const russianExpectations = new Map([
       'data-russian-ranking-primary-partners="fundednext-bright-funded"',
       'data-russian-ranking-primary-partner="fundednext"',
       'data-russian-ranking-primary-partner="bright-funded"',
-      'FundedNext или BrightFunded: с чего начать сравнение',
+      'BrightFunded или FundedNext: с чего начать сравнение',
       'Проверить BrightFunded',
       'data-russian-affiliate-disclosure="ranking-primary-partners"',
       'data-russian-funnel-intent="ranking-finder"',
@@ -1134,8 +1143,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/luchshie-kripto-prop-firmy', {
-    title: 'Крипто-проп-фирмы 2026: цены, инструменты и правила',
-    h1: 'Крипто-проп-фирмы 2026: цены, инструменты и правила',
+    title: 'Крипто проп-компании 2026: проп-трейдинг криптовалют',
+    h1: 'Крипто проп-компании 2026: проп-трейдинг криптовалют',
     markers: [
       'data-russian-crypto-article="long-form"',
       'data-russian-crypto-hero="search-and-product-evidence"',
@@ -1181,8 +1190,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-fundednext', {
-    title: 'FundedNext проп: отзывы и обзор 2026, цены и правила',
-    h1: 'FundedNext проп: отзывы и обзор 2026, цены и правила',
+    title: 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила',
+    h1: 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила',
     markers: [
       'data-russian-fundednext-article="long-form"',
       'data-russian-fundednext-editorial-shell="review-parity"',
@@ -1267,7 +1276,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/chto-takoe-prop-firma', {
-    title: 'Что такое проп-фирма: как это работает в 2026 году',
+    title: 'Что такое проп-фирма (проп-компания) и как она работает',
     h1: 'Что такое проп-фирма и как она работает',
     markers: [
       'data-russian-prop-definition="three-models-not-one-label"',
@@ -1285,7 +1294,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/forex-prop-firmy', {
-    title: 'Форекс проп-фирмы: плечо, цены и правила программ',
+    title: 'Форекс проп-фирмы и проп-компании 2026: плечо, цены, правила',
     h1: 'Форекс проп-фирмы: цены, плечо и правила для русскоязычных трейдеров',
     markers: [
       'data-russian-forex-article="instrument-to-product"',
@@ -1317,7 +1326,7 @@ const russianExpectations = new Map([
   }],
   ['/ru/prop-firmy-s-ctrader', {
     title: 'Проп-фирмы с cTrader 2026: цены, лимиты и правила cBot',
-    h1: 'Проп-фирмы с cTrader: FundedNext или BrightFunded',
+    h1: 'Проп-фирмы с cTrader: BrightFunded и FundedNext (не для РФ)',
     markers: [
       'data-russian-ctrader-article="platform-to-firm-rule"',
       'data-russian-platform-intent="ctrader-prop-firms"',
@@ -1526,7 +1535,7 @@ const russianExpectations = new Map([
       'data-russian-teamtraders-pricing="three-rub-tiers"',
       'data-russian-teamtraders-process="five-stages"',
       'data-russian-teamtraders-rules="manual-intraday"',
-      'data-russian-teamtraders-payouts="demo-70-real-95"',
+      'data-russian-teamtraders-payouts="demo-50-real-95"',
       'data-russian-teamtraders-source-conflict="current-vs-legacy"',
       'data-russian-teamtraders-legal="prop-offer-unavailable"',
       'data-russian-teamtraders-legal-availability="prop-offer-unavailable"',
@@ -1539,7 +1548,7 @@ const russianExpectations = new Map([
       'https://teamtraders.ru/faq',
       'https://teamtraders.ru/rules',
       '10 торговых дней',
-      '70%',
+      '50%',
       '95%',
     ],
   }],
@@ -1566,6 +1575,20 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-reviews-guide-bright-funded',
     ],
   }],
+  ...(closedFirmsPublished ? [[RU_CLOSED_FIRMS_PATH, {
+    title: 'Закрытые проп-фирмы: даты, заявления и источники',
+    h1: 'Закрытые проп-фирмы',
+    markers: [
+      'data-trust-page="ru-closed-firms"',
+      'data-ru-closed-firms-risk',
+      'data-ru-closed-firms-updated=',
+      'data-status-as-of=',
+      'data-quote-translation',
+      'href="/ru/luchshie-prop-firmy"',
+      'href="/ru/otzyvy-prop-firm"',
+      ...closedFirmsData.firms.map(firm => `id="${firm.slug}"`),
+    ],
+  }]] : []),
 ])
 
 const russianCampaignSources = new Map()
@@ -1806,6 +1829,30 @@ for (const [path, expectation] of russianExpectations) {
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
 const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
+  + (closedFirmsPublished ? 1 : 0)
+
+// Outreach links to #<slug> on both closed-firms pages, so the EN and RU anchor sets must match.
+// While unpublished, the RU page must stay noindex, without hreflang, and unlinked.
+{
+  const closedIds = html => [...html.matchAll(/<article\b[^>]*\bid="([^"]+)"[^>]*data-closed-firm=/g)].map(match => match[1]).sort()
+  const [closedEn, closedRu] = await Promise.all([
+    fetchPage(new URL(CLOSED_FIRMS_ROUTE_PAIR.en, BASE)),
+    fetchPage(new URL(RU_CLOSED_FIRMS_PATH, BASE)),
+  ])
+  const enIds = closedIds(closedEn.html)
+  const ruIds = closedIds(closedRu.html)
+  const dataIds = closedFirmsData.firms.map(firm => firm.slug).sort()
+  if (closedRu.status !== 200) errors.push(`${RU_CLOSED_FIRMS_PATH}: RU closed-firms page returned ${closedRu.status}`)
+  if (JSON.stringify(enIds) !== JSON.stringify(dataIds) || JSON.stringify(ruIds) !== JSON.stringify(dataIds)) {
+    errors.push(`closed firms: EN anchors [${enIds}] and RU anchors [${ruIds}] must both equal closed-firms.json slugs [${dataIds}]`)
+  }
+  if (!closedFirmsPublished) {
+    if (!/<meta[^>]+name="robots"[^>]+noindex/i.test(closedRu.html)) errors.push(`${RU_CLOSED_FIRMS_PATH}: must be noindex while closed-firms.json is unpublished`)
+    if (/hreflang=/i.test(firstMatch(closedRu.html, /<head[^>]*>([\s\S]*?)<\/head>/i) ?? '')) errors.push(`${RU_CLOSED_FIRMS_PATH}: hreflang must stay off while unpublished`)
+    const linking = pages.filter(page => page.html?.includes(`href="${RU_CLOSED_FIRMS_PATH}`)).map(page => new URL(page.productionUrl).pathname)
+    if (linking.length) errors.push(`${RU_CLOSED_FIRMS_PATH}: linked while unpublished from ${linking.join(', ')}`)
+  }
+}
 if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
   errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}`)
 }
