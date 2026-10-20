@@ -5,14 +5,13 @@
   "b": "Crypto Fund Trader",
   "dataAsOf": "2026-10-19",
   "sources": [
-    "content/data/firms.json (data/article-slots-2026-10-20 @1dc16ef: assets, maxAllocation, platforms; Russia copy only via russiaStatus, CFT pages name no restriction for RU — Terms/FAQ «Match-Trader: no country restrictions»; Russian cards, KYC and bank payouts unverified, not mentioned)",
-    "content/data/challenges/bright-funded.json (2026-10-20, origin/daily/2026-10-20b)",
-    "content/data/challenges/crypto-fund-trader.json (data/article-slots-2026-10-20 @1dc16ef: 2-Phase, 1-Phase, Instant 2026-10-20; Break 2026-10-19, conflict watch $199 vs $200 open; Ascend not purchasable 2026-10-20)",
-    "/workspace/tradersfundhub/evidence/article-slots-2026-10-20/cft (home 'Break LAST DAY', Break page 'LIMITED TIME ONLY', store-hidden-items, refund policy; 20.10.2026)",
-    "data/expiring-recheck-2026-10-20 @5b511c5 firms.json#BrightFunded assets + assetsEvidence (help article 9268229, 20.10.2026: «over 48 cryptocurrency pairs»)",
-    "news: crypto-fund-trader.json rules.news=true (2-Phase/1-Phase/Instant 2026-10-20, Break 2026-10-19); bright-funded.json rules.news=restricted (2026-10-20)"
+    "content/data/firms.json (origin/daily/2026-10-20b @f4e547d: CFT maxAllocation $300,000, assets, platforms; lastUpdated 2026-10-19; Russia copy only via russiaStatus)",
+    "content/data/challenges/bright-funded.json (origin/daily/2026-10-20b, 2026-10-20: refundable, split 80%, minTradingDays 5, news restricted)",
+    "content/data/challenges/crypto-fund-trader.json (origin/daily/2026-10-20b, 2026-10-19: models, news/min-days rules, Break activation fee + on-demand + 40% funded consistency + $3,000 trailing at 100K, Instant 50% start split, refund note, Break 'Verify availability at checkout')",
+    "data/expiring-recheck-2026-10-20 @5b511c5 firms.json#BrightFunded assets (crypto, help article 9268229, 20.10.2026)",
+    "No CFT prices or 20.10 dates in copy: they depend on data/article-slots-2026-10-20 @1dc16ef (held); prices are left to the data-driven tables"
   ],
-  "verdict": "BrightFunded продаёт три CFD-оценки с возвратным взносом и долей 80%, Crypto Fund Trader — двух- и одноэтапную оценку, Instant и Break, причём криптовалюту в списке активов указывают обе фирмы; за счёт 100K BrightFunded берёт €477–497, CFT — $619–660, валюты разные, поэтому цены мы не ранжируем (по данным на 20.10.2026). Break продаётся как предложение на ограниченное время: за 100K — $200 плюс $328 за активацию, при этом на главной указано $199, а в условиях и магазине — $200 (по данным на 19.10.2026).",
+  "verdict": "BrightFunded продаёт три CFD-оценки с возвратным взносом и долей 80% и указывает цены в евро, Crypto Fund Trader — в долларах несколько моделей: двух- и одноэтапную оценку, Instant без оценки и Break с отдельной платой за активацию после прохождения; криптовалюту в списке активов указывают обе фирмы, а цены по размерам счёта смотрите в таблицах ниже (по данным на 19.10.2026). Наличие Break перед покупкой проверьте на кассе: на странице Break часть блоков помечена как распроданная, хотя магазин показывает товары в наличии.",
   "picks": {
     "a": [
       "вы хотите вернуть взнос: у BrightFunded он возвратный во всех программах, у CFT возврат после прохождения не подтверждён — её политика возврата касается отказа в течение 14 дней до начала торговли",
@@ -22,8 +21,8 @@
     "b": [
       "вы торгуете на новостях: в 2-Phase, 1-Phase, Instant и Break CFT это разрешает, BrightFunded ограничивает во всех трёх программах",
       "вам не нужен минимум торговых дней: в 2-Phase и 1-Phase у CFT его нет, у BrightFunded — 5 дней",
-      "вам нужны выплаты по запросу: в Break они по запросу на финансируемом этапе с правилом стабильности 40%, без дневного лимита и с трейлинговой просадкой $3 000 на 100K, но Break предлагается ограниченное время",
-      "вы хотите начать без оценки: CFT Instant — до $10 000 за $475, доля от 50%; у BrightFunded такой модели нет"
+      "вам нужны выплаты по запросу: в Break они по запросу, на финальном этапе действует правило стабильности 40%, без дневного лимита и с трейлинговой просадкой $3 000 на 100K",
+      "вы хотите начать без оценки: у CFT есть Instant со стартовой долей 50%, у BrightFunded такой модели нет"
     ]
   },
   "russiaPick": {
