@@ -226,7 +226,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
     ? `рейтинг скрыт Trustpilot из-за нарушения правил площадки (по данным на ${ruDate(bfFirm.trustpilotCapturedAt!)})`
     : 'требует повторной проверки'
   const fpTrustpilot = fpFirm && fpFirm.trustpilotScore != null && fpFirm.trustpilotCount != null && freshDate(fpFirm.trustpilotCapturedAt)
-    ? `${fpFirm.trustpilotScore} / ${fpFirm.trustpilotCount.toLocaleString('ru-RU')} отзывов (по данным на ${ruDate(fpFirm.trustpilotCapturedAt!)})`
+    ? `оценка ${fpFirm.trustpilotScore}, отзывов: ${fpFirm.trustpilotCount.toLocaleString('ru-RU')} (по данным на ${ruDate(fpFirm.trustpilotCapturedAt!)})`
     : 'требует повторной проверки'
   const keyFields: Array<{ field: string; bf: ReactNode; fp: ReactNode }> = [
     {
