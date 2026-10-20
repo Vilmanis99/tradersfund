@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
-import { AlertTriangle, ArrowRight, Bitcoin, CheckCircle2, Database, ShieldCheck } from 'lucide-react'
+import { AlertTriangle, ArrowRight, CheckCircle2, Database, ShieldCheck } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { RuAccessBadge, RuGoLink } from '@/components/RuGoLink'
@@ -249,7 +249,7 @@ export default function RussianCryptoFundTraderReviewPage() {
             </p>
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="crypto-fund-trader-review">
               <strong>Раскрытие.</strong> Ссылка на Crypto Fund Trader на этой странице обычная: партнёрской программы с CFT у сайта
-              нет. Ссылки на BrightFunded и FundedNext в блоке альтернатив — партнёрские, по ним мы можем получить комиссию.
+              нет. Ссылка на BrightFunded в блоке альтернатив — партнёрская, по ней мы можем получить комиссию.
               Русский язык страницы не означает, что фирма доступна именно вашему профилю.
             </div>
             <div className="ru-actions" data-russian-cft-cta="summary">
@@ -497,7 +497,7 @@ export default function RussianCryptoFundTraderReviewPage() {
         <section className="ru-section" id="alternatives">
           <div className="ru-shell ru-content" data-russian-cft-alternatives="bright-funded-first">
             <h2>Альтернативы Crypto Fund Trader</h2>
-            <p>Если вам важнее форекс и индексы, чем крипта, или нужна оплата в евро, сравните BrightFunded и FundedNext. Доступ для РФ у каждой фирмы показан бейджем рядом с кнопкой — он берётся из нашей последней проверки.</p>
+            <p>Если вам важнее форекс и индексы, чем крипта, или нужна оплата в евро, начните с BrightFunded. Доступ для РФ показан бейджем рядом с кнопкой — он берётся из нашей последней проверки.</p>
             <div className="ru-grid">
               <article className="ru-card" data-russian-cft-alternative="bright-funded">
                 <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
@@ -506,15 +506,6 @@ export default function RussianCryptoFundTraderReviewPage() {
                 <div className="ru-actions">
                   <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор</Link>
                   <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-cft-alternative-bright-funded" rel={goLinkRel('bright-funded')} className="btn-primary">Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-                </div>
-              </article>
-              <article className="ru-card" data-russian-cft-alternative="fundednext">
-                <Bitcoin size={22} color="var(--accent-light)" aria-hidden="true" />
-                <h3>FundedNext (CFD)</h3>
-                <p className="ru-muted">CFD-программы Stellar. Выплаты в USDT и USDC; доступ для РФ — по бейджу рядом с кнопкой.</p>
-                <div className="ru-actions">
-                  <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор</Link>
-                  <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-cft-alternative-fundednext" rel={goLinkRel('fundednext')} className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
                 </div>
               </article>
             </div>
