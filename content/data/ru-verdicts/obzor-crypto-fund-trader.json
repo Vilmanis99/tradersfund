@@ -1,0 +1,45 @@
+{
+  "route": "/ru/obzor-crypto-fund-trader",
+  "type": "review",
+  "firm": "Crypto Fund Trader",
+  "dataAsOf": "2026-10-19",
+  "sources": [
+    "content/data/firms.json#Crypto Fund Trader",
+    "content/data/challenges/crypto-fund-trader.json (sourceCapturedAt 2026-10-19)",
+    "app/ru/obzor-crypto-fund-trader (branch content/ru-obzor-crypto-fund-trader @74181b9; access 14.10, rules 15.10, Tracker 19.10)"
+  ],
+  "verdict": "Crypto Fund Trader — крипто-ориентированная фирма: двухэтапная Evaluation (цели 8% + 5%, статичный лимит 10%) стоит $660 за счёт 100K, доля в Evaluation и Accelerated — 80%. Новости, ночь и выходные FAQ разрешает; цены Ascend и Break на официальных страницах расходятся (по данным на 19.10.2026).",
+  "best": [
+    "криптовалюта — ваш основной рынок: CFT указывает криптовалюту, форекс и индексы",
+    "вы торгуете на новостях и держите позиции через ночь и выходные: по FAQ это разрешено (кроме окна новостей в Ascend)",
+    "вам не нужен минимум торговых дней: в Evaluation и Accelerated он не установлен"
+  ],
+  "avoid": [
+    "вам нужна статичная просадка в одноэтапной оценке: в Accelerated лимит 6% трейлинговый",
+    "вы рассчитываете на долю 80% в Instant: там она 50%",
+    "вам нужна независимая проверка выплат: у нас её по CFT нет, а партнёрского договора с фирмой у сайта тоже нет"
+  ],
+  "russiaAccess": {
+    "statusFrom": "russiaStatus",
+    "firm": "Crypto Fund Trader",
+    "byStatus": {
+      "available": {
+        "list": "best",
+        "text": "вы резидент РФ: статус доступа {firm} — «{badge}» (по нашей последней проверке); страну, KYC и способ оплаты всё равно сверьте на официальном сайте до покупки"
+      },
+      "restricted": {
+        "list": "avoid",
+        "text": "вы резидент РФ: статус {firm} — «{badge}», регистрация и выплата под риском отказа. Альтернатива со статусом «Открыта для РФ» — BrightFunded."
+      },
+      "unclear": {
+        "list": "avoid",
+        "text": "вы резидент РФ и не готовы рисковать взносом: статус {firm} — «{badge}», официальные источники не дают однозначного ответа. Альтернатива со статусом «Открыта для РФ» — BrightFunded."
+      },
+      "unverified": {
+        "list": "avoid",
+        "text": "вы резидент РФ и хотите подтверждённый доступ: статус {firm} — «{badge}»; запросите у оператора письменное подтверждение до оплаты"
+      }
+    }
+  },
+  "firmInFirmsJson": true
+}
