@@ -322,6 +322,19 @@ export default function RussianWhatIsPropFirmPage() {
           </div>
           <div className="ru-grid">
             <article className="ru-card">
+              <div className="ru-card-head"><h3>BrightFunded</h3><span className="ru-score">{brightProducts.length} продукта</span></div>
+              <p className="ru-muted">
+                1-Step, 2-Step Bright и 2-Step Classic используют EUR-цены, но дают разные дневной/общий лимиты убытка и цели.
+                SumSub KYC и проверка безопасности остаются отдельными этапами после успешной оценки.
+              </p>
+              <div className="ru-actions">
+                <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link>
+                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-prop-definition-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">
+                  Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
+                </RuGoLink>
+              </div>
+            </article>
+            <article className="ru-card">
               <div className="ru-card-head"><h3>FundedNext</h3><span className="ru-score">{fundedNextProducts.length} продукта</span></div>
               <p className="ru-muted">
                 Stellar 2-Step, 1-Step, Lite и Instant различаются числом фаз, условием возврата взноса,
@@ -335,19 +348,6 @@ export default function RussianWhatIsPropFirmPage() {
                 </RuGoLink>
               </div>
               <RuFundedNextAccessCaveat />
-            </article>
-            <article className="ru-card">
-              <div className="ru-card-head"><h3>BrightFunded</h3><span className="ru-score">{brightProducts.length} продукта</span></div>
-              <p className="ru-muted">
-                1-Step, 2-Step Bright и 2-Step Classic используют EUR-цены, но дают разные дневной/общий лимиты убытка и цели.
-                SumSub KYC и проверка безопасности остаются отдельными этапами после успешной оценки.
-              </p>
-              <div className="ru-actions">
-                <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link>
-                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-prop-definition-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
-              </div>
             </article>
           </div>
         </div>

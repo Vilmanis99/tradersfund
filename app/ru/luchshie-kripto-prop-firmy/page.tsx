@@ -443,9 +443,9 @@ export default function RussianCryptoPropFirmsPage() {
               по данным на 19.10.2026; на странице Get Started и в условиях названы только карта и криптовалюта). Работают ли карты, выпущенные в России, фирма не сообщает; криптовалюта — способ, который от карты не зависит. Полная таблица доступа — на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для россиян</Link>.
             </p>
             <div className="ru-actions">
-              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-crypto-russia-access-1" rel={goLinkRel('fundednext')} className="btn-outline">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-              <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-crypto-russia-access-2" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-              <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-crypto-russia-access-3" rel={goLinkRel('fundingpips')} className="btn-outline">FundingPips</RuGoLink>
+              <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-crypto-russia-access-1" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+              <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-crypto-russia-access-2" rel={goLinkRel('fundingpips')} className="btn-outline">FundingPips</RuGoLink>
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-crypto-russia-access-3" rel={goLinkRel('fundednext')} className="btn-outline">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-crypto-russia-access-4" rel={goLinkRel('ftmo')} className="btn-outline">FTMO</RuGoLink>
             </div>
             <RuFundedNextAccessCaveat />

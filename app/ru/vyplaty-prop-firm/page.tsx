@@ -89,18 +89,18 @@ const faqs: RussianFaqItem[] = [
 
 const partnerRoutes = [
   {
-    slug: 'fundednext',
-    name: 'FundedNext',
-    reviewHref: '/ru/obzor-fundednext',
-    featured: true,
-    fit: 'Нужен выбор между challenge и instant-моделью, а также USDT/USDC или RiseWorks.',
-  },
-  {
     slug: 'bright-funded',
     name: 'BrightFunded',
     reviewHref: '/ru/obzor-bright-funded',
     featured: true,
     fit: 'Нужен простой выбор между USDC ERC-20 и банковским переводом в EUR.',
+  },
+  {
+    slug: 'fundednext',
+    name: 'FundedNext',
+    reviewHref: '/ru/obzor-fundednext',
+    featured: true,
+    fit: 'Нужен выбор между challenge и instant-моделью, а также USDT/USDC или RiseWorks.',
   },
   {
     slug: 'fundingpips',
@@ -271,11 +271,11 @@ export default function RussianPayoutsPage() {
             Комиссия не меняет цену пользователя и не превращает метод выплаты в гарантию доступности.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-payouts-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
-              Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
-            </RuGoLink>
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-payouts-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" />
+            </RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-payouts-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
+              Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
             <Link href="#sravnenie" className="btn-outline">Сначала сравнить выплаты</Link>
           </div>

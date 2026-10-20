@@ -339,6 +339,42 @@ export default function RussianInstantPropFirmsPage() {
           </div>
         </section>
 
+        <section className="ru-section" id="bright-alternative">
+          <div className="ru-shell" data-russian-instant-bright={brightEvaluationOnly ? 'challenge-alternative-only' : brightPhaseZero.length > 0 ? 'phase-zero-listed' : 'recapture-required'}>
+            <h2>BrightFunded: проверка оценочного этапа</h2>
+            <div className="ru-notice">
+              {brightEvaluationOnly ? (
+                <><strong>Не включаем BrightFunded в таблицу фазы 0.</strong>{' '}
+                  Снимок от {brightOldestCapture}: оценочных программ — {brightProducts.length}; опубликованных EUR-цен — {brightPriceCount}. Ни у одной нет подтверждённой фазы 0.</>
+              ) : brightPhaseZero.length > 0 ? (
+                <><strong>Программы без оценки включены в таблицу ниже.</strong>{' '}
+                  По снимку от {brightOldestCapture} число таких программ — {brightPhaseZero.length}; остальные модели проверяйте отдельно.</>
+              ) : (
+                <><strong>Нужна повторная проверка BrightFunded.</strong>{' '}
+                  Последний продуктовый снимок от {brightOldestCapture ?? 'неизвестной даты'} не подтверждает текущую линейку, число программ или цены. Сверьте этапы на сайте фирмы до оплаты.</>
+              )}
+            </div>
+            {brightEvaluationOnly ? (
+              <p>
+                Проверенные программы требуют оценки. Сравните допустимую просадку, дату первой заявки на вознаграждение и KYC
+                в <Link href="/ru/obzor-bright-funded">обзоре BrightFunded</Link>, затем подтвердите условия выбранного заказа.
+              </p>
+            ) : null}
+            <p>
+              Переход к BrightFunded может принести нам комиссию. Партнёрский статус не подтверждает отсутствие оценки,
+              доступность продукта или право на покупку в вашей стране. Если отсутствие оценки обязательно, сверяйте только свежие строки таблицы выше.
+            </p>
+            <div className="ru-actions">
+              <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
+              {brightFirm?.affiliateUrl ? (
+                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-instant-bright-alternative" rel="sponsored nofollow noopener" className="btn-primary">
+                  Проверить программы BrightFunded <ArrowRight size={14} aria-hidden="true" />
+                </RuGoLink>
+              ) : null}
+            </div>
+          </div>
+        </section>
+
         <section className="ru-section" id="partner-instant">
           <div className="ru-shell" data-russian-instant-featured-partners="fundednext-fundingpips">
             <h2>FundedNext Instant или FundingPips Zero: прямое сравнение</h2>
@@ -374,6 +410,44 @@ export default function RussianInstantPropFirmsPage() {
               </table>
             </div> : <p className="ru-muted">Сейчас нет свежих партнёрских записей для сравнения. Проверьте официальные страницы программ и вернитесь к таблице после обновления данных.</p>}
             <p className="ru-source-line">Текущие продуктовые записи: {partnerCards.length ? partnerCards.map(card => `${card.name} — ${card.product!.sourceCapturedAt}`).join('; ') : 'нет'}. Акции и дополнительные опции не смешиваются с базовой ценой.</p>
+          </div>
+        </section>
+
+        <section className="ru-section" id="fundingpips-zero">
+          <div className="ru-shell" data-russian-instant-partner="fundingpips">
+            <div className="ru-card-head"><h2>FundingPips Zero: цена и правила</h2><span className="ru-score">Партнёрская программа</span></div>
+            {fundingPipsCard ? <>
+            <div className="ru-grid">
+              <article className="ru-card">
+                <h3>Цена и размер</h3>
+                <p className="ru-muted">Проверенные базовые цены: {fundingPipsCard.product!.accountSizes.map(tier => `${tier.sizeUsd == null ? 'размер не указан' : formatPrice(tier.sizeUsd, 'USD')} — ${tier.priceUsd == null ? 'не опубликована' : formatPrice(tier.priceUsd, 'USD')}`).join('; ')}. Взнос не возвращается.</p>
+              </article>
+              <article className="ru-card">
+                <h3>Плавающий убыток и открытый риск</h3>
+                <p className="ru-muted">Лимит убытка 5% следует за пиковым значением equity и фиксируется на стартовом балансе после первого достижения прибыли 5%. Совокупный плавающий открытый риск ограничен 1%.</p>
+              </article>
+              <article className="ru-card">
+                <h3>Условие выплаты</h3>
+                <p className="ru-muted">Нужны правило 15%, защитный буфер 3%, наибольший убыток не больше наибольшей прибыли и минимум 7 прибыльных дней по 0,25% в скользящем 30-дневном периоде.</p>
+              </article>
+            </div>
+            <p>
+              Первая заявка возможна через 14 дней, а доля 95% не отменяет эти условия. Нарушение новостного окна и удержание позиций на выходных считаются жёстким нарушением.
+              Сброс со скидкой 20% доступен только в течение 7 календарных дней после нарушения; его стоимость и право нужно проверить в кабинете до решения.
+            </p>
+            <p className="ru-source-line">
+              <a href={FUNDINGPIPS_ZERO_URL} target="_blank" rel="noopener noreferrer">Официальные правила Zero</a>{' · '}
+              <a href={FUNDINGPIPS_COMPARE_URL} target="_blank" rel="noopener noreferrer">Сравнение моделей и цен</a>
+            </p>
+            </> : <div className="ru-notice" data-russian-instant-fundingpips-status="recapture-required">
+              Продуктовая запись FundingPips Zero вышла за 30-дневное окно. Прежние суммы, просадку и условия выплаты нужно повторно проверить по <a href={FUNDINGPIPS_ZERO_URL} target="_blank" rel="noopener noreferrer">официальным правилам</a> до оплаты.
+            </div>}
+            <div className="ru-actions">
+              <Link href="/ru/obzor-fundingpips" className="btn-outline">Полный обзор FundingPips</Link>
+              <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-instant-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">
+                Проверить программы FundingPips <ArrowRight size={14} aria-hidden="true" />
+              </RuGoLink>
+            </div>
           </div>
         </section>
 
@@ -419,44 +493,6 @@ export default function RussianInstantPropFirmsPage() {
               </RuGoLink>
             </div>
             <RuFundedNextAccessCaveat />
-          </div>
-        </section>
-
-        <section className="ru-section" id="fundingpips-zero">
-          <div className="ru-shell" data-russian-instant-partner="fundingpips">
-            <div className="ru-card-head"><h2>FundingPips Zero: цена и правила</h2><span className="ru-score">Партнёрская программа</span></div>
-            {fundingPipsCard ? <>
-            <div className="ru-grid">
-              <article className="ru-card">
-                <h3>Цена и размер</h3>
-                <p className="ru-muted">Проверенные базовые цены: {fundingPipsCard.product!.accountSizes.map(tier => `${tier.sizeUsd == null ? 'размер не указан' : formatPrice(tier.sizeUsd, 'USD')} — ${tier.priceUsd == null ? 'не опубликована' : formatPrice(tier.priceUsd, 'USD')}`).join('; ')}. Взнос не возвращается.</p>
-              </article>
-              <article className="ru-card">
-                <h3>Плавающий убыток и открытый риск</h3>
-                <p className="ru-muted">Лимит убытка 5% следует за пиковым значением equity и фиксируется на стартовом балансе после первого достижения прибыли 5%. Совокупный плавающий открытый риск ограничен 1%.</p>
-              </article>
-              <article className="ru-card">
-                <h3>Условие выплаты</h3>
-                <p className="ru-muted">Нужны правило 15%, защитный буфер 3%, наибольший убыток не больше наибольшей прибыли и минимум 7 прибыльных дней по 0,25% в скользящем 30-дневном периоде.</p>
-              </article>
-            </div>
-            <p>
-              Первая заявка возможна через 14 дней, а доля 95% не отменяет эти условия. Нарушение новостного окна и удержание позиций на выходных считаются жёстким нарушением.
-              Сброс со скидкой 20% доступен только в течение 7 календарных дней после нарушения; его стоимость и право нужно проверить в кабинете до решения.
-            </p>
-            <p className="ru-source-line">
-              <a href={FUNDINGPIPS_ZERO_URL} target="_blank" rel="noopener noreferrer">Официальные правила Zero</a>{' · '}
-              <a href={FUNDINGPIPS_COMPARE_URL} target="_blank" rel="noopener noreferrer">Сравнение моделей и цен</a>
-            </p>
-            </> : <div className="ru-notice" data-russian-instant-fundingpips-status="recapture-required">
-              Продуктовая запись FundingPips Zero вышла за 30-дневное окно. Прежние суммы, просадку и условия выплаты нужно повторно проверить по <a href={FUNDINGPIPS_ZERO_URL} target="_blank" rel="noopener noreferrer">официальным правилам</a> до оплаты.
-            </div>}
-            <div className="ru-actions">
-              <Link href="/ru/obzor-fundingpips" className="btn-outline">Полный обзор FundingPips</Link>
-              <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-instant-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">
-                Проверить программы FundingPips <ArrowRight size={14} aria-hidden="true" />
-              </RuGoLink>
-            </div>
           </div>
         </section>
 
@@ -553,42 +589,6 @@ export default function RussianInstantPropFirmsPage() {
               До покупки всё равно зафиксируйте 5 полей: первоначальную цену, тип и размер просадки, правило распределения прибыли,
               условие первой заявки и возврат взноса. Если хотя бы одно поле относится к другому продукту, сравнение недействительно.
             </p>
-          </div>
-        </section>
-
-        <section className="ru-section" id="bright-alternative">
-          <div className="ru-shell" data-russian-instant-bright={brightEvaluationOnly ? 'challenge-alternative-only' : brightPhaseZero.length > 0 ? 'phase-zero-listed' : 'recapture-required'}>
-            <h2>BrightFunded: проверка оценочного этапа</h2>
-            <div className="ru-notice">
-              {brightEvaluationOnly ? (
-                <><strong>Не включаем BrightFunded в таблицу фазы 0.</strong>{' '}
-                  Снимок от {brightOldestCapture}: оценочных программ — {brightProducts.length}; опубликованных EUR-цен — {brightPriceCount}. Ни у одной нет подтверждённой фазы 0.</>
-              ) : brightPhaseZero.length > 0 ? (
-                <><strong>Программы без оценки включены в таблицу выше.</strong>{' '}
-                  По снимку от {brightOldestCapture} число таких программ — {brightPhaseZero.length}; остальные модели проверяйте отдельно.</>
-              ) : (
-                <><strong>Нужна повторная проверка BrightFunded.</strong>{' '}
-                  Последний продуктовый снимок от {brightOldestCapture ?? 'неизвестной даты'} не подтверждает текущую линейку, число программ или цены. Сверьте этапы на сайте фирмы до оплаты.</>
-              )}
-            </div>
-            {brightEvaluationOnly ? (
-              <p>
-                Проверенные программы требуют оценки. Сравните допустимую просадку, дату первой заявки на вознаграждение и KYC
-                в <Link href="/ru/obzor-bright-funded">обзоре BrightFunded</Link>, затем подтвердите условия выбранного заказа.
-              </p>
-            ) : null}
-            <p>
-              Переход к BrightFunded может принести нам комиссию. Партнёрский статус не подтверждает отсутствие оценки,
-              доступность продукта или право на покупку в вашей стране. Если отсутствие оценки обязательно, сверяйте только свежие строки таблицы выше.
-            </p>
-            <div className="ru-actions">
-              <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
-              {brightFirm?.affiliateUrl ? (
-                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-instant-bright-alternative" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить программы BrightFunded <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
-              ) : null}
-            </div>
           </div>
         </section>
 

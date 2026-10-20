@@ -266,18 +266,6 @@ export default function RussianForexPropFirmsPage() {
             на FundedNext или BrightFunded. Это не меняет расчёты, ограничения по стране или объяснение неизвестных условий.
           </div>
           <div className="ru-grid">
-            <article className="ru-card" data-russian-forex-featured-partner="fundednext">
-              <h3>FundedNext</h3>
-              <p>{fundedNextFresh
-                ? 'В проверенном списке — 43 валютные пары. Для Stellar 1-Step и Instant указано плечо 1:30; для Stellar 2-Step и Lite — 1:100.'
-                : 'Список инструментов и плечо требуют повторной проверки. Не переносите условия одной программы Stellar на другую.'}</p>
-              <p className="ru-muted">Сравните оценочную программу с отдельной моделью Instant. Доступ к терминалу и разрешение на автоматизацию проверяются отдельно.</p>
-              <div className="ru-actions">
-                <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-              </div>
-              <RuFundedNextAccessCaveat />
-            </article>
             <article className="ru-card" data-russian-forex-featured-partner="bright-funded">
               <h3>BrightFunded</h3>
               <p>{brightFresh
@@ -295,6 +283,18 @@ export default function RussianForexPropFirmsPage() {
                 <Link href="/ru/obzor-bright-funded" className="btn-outline">Полный обзор BrightFunded</Link>
                 <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-forex-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               </div>
+            </article>
+            <article className="ru-card" data-russian-forex-featured-partner="fundednext">
+              <h3>FundedNext</h3>
+              <p>{fundedNextFresh
+                ? 'В проверенном списке — 43 валютные пары. Для Stellar 1-Step и Instant указано плечо 1:30; для Stellar 2-Step и Lite — 1:100.'
+                : 'Список инструментов и плечо требуют повторной проверки. Не переносите условия одной программы Stellar на другую.'}</p>
+              <p className="ru-muted">Сравните оценочную программу с отдельной моделью Instant. Доступ к терминалу и разрешение на автоматизацию проверяются отдельно.</p>
+              <div className="ru-actions">
+                <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+              </div>
+              <RuFundedNextAccessCaveat />
             </article>
           </div>
         </div>
@@ -475,8 +475,8 @@ export default function RussianForexPropFirmsPage() {
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="forex-verdict">
             <strong>Если программа подходит после проверки условий:</strong>{' '}
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-verdict-fundednext" rel="sponsored nofollow noopener">проверить предложение FundedNext</RuGoLink> или
-            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-forex-verdict-bright-funded" rel="sponsored nofollow noopener"> предложение BrightFunded</RuGoLink>.
+            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-forex-verdict-bright-funded" rel="sponsored nofollow noopener">проверить предложение BrightFunded</RuGoLink> или
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-verdict-fundednext" rel="sponsored nofollow noopener"> предложение FundedNext</RuGoLink>.
             Мы можем получить комиссию по этим ссылкам. Это не гарантия одобрения счёта или выплаты.
           </div>
         </div>
