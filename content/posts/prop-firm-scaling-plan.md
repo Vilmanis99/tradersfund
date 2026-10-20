@@ -81,7 +81,7 @@ type: "post"
 
 <p>A scaling page may use “consistency” for a best-day percentage, a minimum number of profitable days, or an internal review with no published formula. Those are different gates. Ask which profit base is measured, whether the rule applies before every payout, and whether one outsized day can delay the next scaling review.</p>
 
-<p>Do not assume a challenge consistency rule automatically becomes a scaling rule. FXIFY Lightning records a 30% evaluation consistency percentage, while FundedNext’s current challenge products have no numeric consistency field; FundedNext’s funded news-window adjustment is instead a 40% eligible-profit credit. The <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> shows how to keep those calculations separate.</p>
+<p>Do not assume a challenge consistency rule automatically becomes a scaling rule. FXIFY Lightning records a 30% evaluation consistency percentage, while FundedNext’s challenge products have no numeric consistency field and apply a 40% best-day rule only to On-Demand reward requests on Stellar 2-Step and Lite; FundedNext’s funded news-window adjustment is instead a 40% eligible-profit credit. The <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> shows how to keep those calculations separate.</p>
 
 <h2>Risk controls for a larger account label</h2>
 
