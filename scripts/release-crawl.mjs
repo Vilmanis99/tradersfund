@@ -947,6 +947,43 @@ const russianExpectations = new Map([
       '/ru/ftmo-dlya-rossiyan',
     ],
   }],
+  ['/ru/ftmo-vs-fundingpips', {
+    title: 'FTMO или FundingPips: сравнение 2026 и доступ из России',
+    h1: 'FTMO или FundingPips: что выбрать в 2026 году',
+    markers: [
+      'data-russian-partner-comparison="ftmo-fundingpips"',
+      'data-russian-access-answer="first-screen"',
+      'data-russian-access-table="ru-by-kz-ae"',
+      'data-russia-status="restricted" data-russia-firm="ftmo"',
+      'data-russian-comparison-key-fields="11"',
+      'data-russian-comparison-product-count="7"',
+      'data-russian-comparison-verdict="by-trader-type"',
+      'data-russian-comparison-pair="two-step-standard"',
+      'data-russian-comparison-pair="two-step-flex-pro"',
+      'data-russian-comparison-pair="one-step"',
+      'data-russian-comparison-pair="zero-only-fundingpips"',
+      'data-russian-fundingpips-refund-conflict="help-vs-terms"',
+      'data-russian-fundingpips-consistency="on-demand-35-all-four"',
+      'data-russian-fundingpips-payout-methods="reward-methods"',
+      'data-russian-fundingpips-payout-countries="pay-to-card-bank-14"',
+      'data-russian-ftmo-payout-methods="visa-direct-mastercard-send"',
+      'data-russian-comparison-trustpilot="data-driven"',
+      'data-russian-comparison-cta="bright-funded-first"',
+      'data-russian-alternatives="bright-funded-first"',
+      'data-russian-alternative="crypto-fund-trader"',
+      'data-russian-country-boundary="comparison-not-access"',
+      'data-russian-affiliate-disclosure="comparison"',
+      'data-russian-risk-disclaimer="comparison"',
+      '/go/bright-funded?from=ru-comparison-ftmo-fundingpips-bright-funded',
+      '/go/fundingpips?from=ru-comparison-ftmo-fundingpips',
+      '/go/ftmo?from=ru-comparison-ftmo-fundingpips',
+      'https://ftmo.com/en/faq/who-can-join-ftmo/',
+      'https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods',
+      'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started',
+      'Автор: редакция Traders Fund Hub',
+      '/ru/ftmo-dlya-rossiyan',
+    ],
+  }],
   ['/ru/promokody-prop-firm', {
     title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded, FundedNext',
     h1: 'Промокоды проп-фирм — октябрь 2026',
@@ -1804,7 +1841,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'ftmo-vs-fundingpips']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
 if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
   errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}`)
@@ -1922,6 +1959,21 @@ const russianFtmoPage = pages.find(page =>
     errors.push('/ru/ftmo-vs-bright-funded: BrightFunded CTA must render before any FTMO CTA')
   }
 }
+{
+  const comparisonHtml = pages.find(page => new URL(page.productionUrl).pathname === '/ru/ftmo-vs-fundingpips')?.html ?? ''
+  const ftmoTags = [...comparisonHtml.matchAll(/<a\b[^>]*>/gi)].map(match => match[0]).filter(tag => tag.includes('/go/ftmo?from=ru-comparison-ftmo-fundingpips'))
+  if (ftmoTags.length !== 1 || ftmoTags.some(tag => tag.includes('sponsored') || !tag.includes('rel="nofollow noopener"'))) {
+    errors.push('/ru/ftmo-vs-fundingpips: FTMO official CTA is missing or falsely labelled as sponsored')
+  }
+  const firstBright = comparisonHtml.indexOf('/go/bright-funded?from=ru-comparison-ftmo-fundingpips-bright-funded')
+  const firstOther = Math.min(...['/go/ftmo?from=', '/go/fundingpips?from='].map(href => comparisonHtml.indexOf(href)).filter(index => index >= 0))
+  if (firstBright < 0 || !Number.isFinite(firstOther) || firstBright > firstOther) {
+    errors.push('/ru/ftmo-vs-fundingpips: BrightFunded CTA must render before any FTMO or FundingPips CTA')
+  }
+  if (/\/go\/fundednext\?/.test(comparisonHtml)) {
+    errors.push('/ru/ftmo-vs-fundingpips: FundedNext is restricted for Russia and must not have a CTA here')
+  }
+}
 // Every /go/ CTA on /ru pages carries a Russia-access badge matching firms.json russiaStatus.
 {
   const statusBySlug = new Map(firmRecords.map(firm => [outboundSlug(firm.name), firm.russiaStatus ?? 'unverified']))
@@ -1983,6 +2035,8 @@ for (const [path, href] of [
   ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-verdict'],
   ['/ru/ftmo-vs-bright-funded', '/go/fundednext?from=ru-ftmo-vs-bright-fundednext'],
   ['/ru/ftmo-vs-bright-funded', '/go/fundingpips?from=ru-ftmo-vs-bright-fundingpips'],
+  ['/ru/ftmo-vs-fundingpips', '/go/bright-funded?from=ru-comparison-ftmo-fundingpips-bright-funded'],
+  ['/ru/ftmo-vs-fundingpips', '/go/fundingpips?from=ru-comparison-ftmo-fundingpips'],
   ['/ru/obzor-proplive', '/go/fundednext?from=ru-proplive-global-fundednext'],
   ['/ru/obzor-proplive', '/go/bright-funded?from=ru-proplive-global-bright-funded'],
   ['/ru/obzor-eratrade', '/go/fundednext?from=ru-eratrade-global-fundednext'],

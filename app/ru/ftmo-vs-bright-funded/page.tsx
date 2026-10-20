@@ -443,6 +443,7 @@ export default function RussianFtmoVsBrightFundedPage() {
           <p className="ru-source-line">
             Другие пары: <Link href="/ru/fundednext-vs-bright-funded">FundedNext или BrightFunded</Link> ·{' '}
             <Link href="/ru/fundednext-vs-fundingpips">FundedNext или FundingPips</Link> ·{' '}
+            <Link href="/ru/ftmo-vs-fundingpips">сравнение FTMO и FundingPips</Link> ·{' '}
             <Link href="/ru/luchshie-prop-firmy">рейтинг проп-фирм</Link> ·{' '}
             <Link href="/ru/promokody-prop-firm">промокоды</Link>.
           </p>

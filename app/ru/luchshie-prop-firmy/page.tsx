@@ -610,6 +610,7 @@ export default function RussianBestPropFirmsPage() {
               <h3>Минимальный бюджет в USD</h3>
               <p>Среди проверенных программ минимальный взнос FundingPips — {fundingPipsProfile?.entry ?? 'не подтверждён'}, а FundedNext — {fundedNextProfile?.entry ?? 'не подтверждён'}. При сравнении учитывайте размер счёта, этапы, просадку, ограничения на прибыль за день и возврат взноса.</p>
               <p><Link href="/ru/fundednext-vs-fundingpips">Сравнить FundedNext и FundingPips по продуктам →</Link></p>
+              <p><Link href="/ru/ftmo-vs-fundingpips">FundingPips в USD или FTMO в EUR: сравнение →</Link></p>
             </article>
             <article className="ru-card">
               <h3>Цена в EUR</h3>

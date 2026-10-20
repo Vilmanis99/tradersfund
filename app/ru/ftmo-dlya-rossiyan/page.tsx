@@ -188,6 +188,7 @@ export default function FtmoForRussiansPage() {
           <p>
             Пошаговое сравнение правил FTMO с ближайшей по механике альтернативой — в разборе{' '}
             <Link href="/ru/ftmo-vs-bright-funded">«FTMO или BrightFunded»</Link>: цена, просадка, сплит, срок выплаты и оплата криптой.
+            Если выбираете между FTMO и FundingPips, откройте <Link href="/ru/ftmo-vs-fundingpips">разбор FTMO и FundingPips по программам</Link>.
             Полная таблица 15 фирм — на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">«Проп-фирмы для россиян в 2026»</Link>.
             Если вы живёте вне СНГ и FTMO вам доступна, читайте <Link href="/ru/obzor-ftmo">обзор FTMO</Link>; общий
             рейтинг — в разделе <Link href="/ru/luchshie-prop-firmy">лучшие проп-фирмы</Link>.
