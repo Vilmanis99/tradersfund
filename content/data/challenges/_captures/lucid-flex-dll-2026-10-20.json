@@ -1,0 +1,85 @@
+{
+  "captureType": "key-facts-recheck",
+  "capturedAt": "2026-10-20",
+  "timezone": "Europe/Riga",
+  "firm": "lucid-trading",
+  "productsRechecked": ["lucidflex"],
+  "fieldsRechecked": ["dailyLossPct", "accountSizes[].dailyLossUsd", "accountSizes[].priceUsd", "notes (DLL, price setup, payout cadence)"],
+  "egress": "Box egress is a US IP. Lucid's product picker carries one global price table (LucidPricingConfig, no region switch); no US-only code is used or stored.",
+  "result": "The old note 'no DLL in evaluation or funded' was wrong: the LucidFlex DLL is optional, chosen at checkout, and applies to evaluation and funded when on. The DLL is a dollar amount ($600 / $1,200 / $1,800 / $2,700), so dailyLossPct stays null. The stored $146 for $50K is the DLL OFF price ($136 product + $10 no-dll add-on); DLL ON is the $136 product price. Prices unchanged.",
+  "sources": [
+    {
+      "url": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account",
+      "method": "curl server HTML about 12:23 Riga",
+      "lastUpdatedDate": "2026-10-19T00:22:28Z",
+      "rawFile": "/workspace/tradersfundhub/evidence/key-facts-2026-10-20/lucid-dll/flex-eval-12945790.html",
+      "quotes": [
+        "Customize at checkout: Daily Loss Limit On or Off, and 40% or 50% consistency (see LucidFlex Customization)",
+        "$50,000 | $3,000 | $2,000 | 40% (50% with add-on) | 4 mini or 40 micros",
+        "Pass in as few as 3 days with 40% consistency, or 2 days with the 50% consistency add-on"
+      ]
+    },
+    {
+      "url": "https://support.lucidtrading.com/en/articles/16226050-lucidflex-customization",
+      "method": "curl server HTML about 12:23 Riga",
+      "lastUpdatedDate": "2026-10-19T16:21:56Z",
+      "rawFile": "/workspace/tradersfundhub/evidence/key-facts-2026-10-20/lucid-dll/flex-customization-16226050.html",
+      "quotes": [
+        "LucidFlex gives traders the ability to customize their account at the time of purchase.",
+        "Daily Loss Limit: On or Off",
+        "The DLL is a soft breach, so if you hit it you will simply be locked out until the next trading session.",
+        "Daily Loss Limit On: A Daily Loss Limit is enforced on both evaluation and funded accounts. Results in a lower evaluation purchase price. Your funded account gets On Demand Payouts",
+        "Daily Loss Limit Off: No Daily Loss Limit is applied during either the evaluation or funded phase. Results in a higher evaluation purchase price. Payouts follow the regular end-of-day schedule",
+        "Option 1: Daily Loss Limit ON + 40% Consistency ... Cheapest version of LucidFlex",
+        "Option 4: Daily Loss Limit OFF + 50% Consistency ... Highest pricing version of LucidFlex",
+        "Once selected, these settings cannot be changed for an active account."
+      ],
+      "note": "The article publishes no DLL dollar or percent amount."
+    },
+    {
+      "url": "https://www.lucidtrading.com/",
+      "method": "Headless Google Chrome --dump-dom (curl gets 403) about 12:24 Riga, plus Playwright render of the LucidFlex tab 12:27-12:30 Riga",
+      "rawFiles": [
+        "/workspace/tradersfundhub/evidence/key-facts-2026-10-20/lucid-dll/home-dom.html",
+        "/workspace/tradersfundhub/evidence/key-facts-2026-10-20/lucid-dll/LucidPricingConfig.json",
+        "/workspace/tradersfundhub/evidence/key-facts-2026-10-20/lucid-dll/pricing-cards.js",
+        "/workspace/tradersfundhub/evidence/key-facts-2026-10-20/lucid-dll/flex-cards-rendered.txt"
+      ],
+      "quotes": [
+        "LucidFlex front spec: {\"id\":\"dll\",\"label\":\"DLL\",\"kind\":\"money\",\"cells\":{\"s25k\":\"$600\",\"s50k\":\"$1,200\",\"s100k\":\"$1,800\",\"s150k\":\"$2,700\"}}",
+        "LucidFlex addon: {\"slug\":\"no-dll\",\"label\":\"Daily Loss Limit\",\"onLabel\":\"ON\",\"offLabel\":\"OFF\",\"valueCells\":{\"s25k\":\"$600\",\"s50k\":\"$1,200\",\"s100k\":\"$1,800\",\"s150k\":\"$2,700\"},\"mirrorSpecId\":\"dll_below_initial_trail\",\"mirrorOffValue\":\"NONE\"}",
+        "LucidFlex funded spec: {\"id\":\"dll_below_initial_trail\",\"label\":\"DLL (Below Initial Trail)\",\"cells\":{\"s25k\":\"$600\",\"s50k\":\"$1,200\",\"s100k\":\"$1,800\",\"s150k\":\"$2,700\"}}",
+        "LucidFlex one_time_fee cells {\"s25k\":\"204751\",\"s50k\":\"204746\",\"s100k\":\"204747\",\"s150k\":\"204745\"}; productPrices \"204751\":\"79\",\"204746\":\"136\",\"204747\":\"258\",\"204745\":\"372\"; addonFees \"204751\":10,\"204746\":10,\"204747\":35,\"204745\":35; addonPromos \"204751\":5,\"204746\":5,\"204747\":10,\"204745\":10",
+        "pricing-cards.js: fee = (addonChoice === false && productId) ? addonFees[productId] : 0; struck = amount + fee; payable = amount * (1 - discountPct/100) + fee",
+        "pricing-cards.js price panel: old struck = price + addonFee; when addonChoice === true: 'Limited time — Savings total ' + (addonFee + addonPromo), promo price = couponPrice - addonPromo",
+        "Rendered 50K FLEX EVAL card, DLL toggle on $1,200: 'One Time Fee $146 $105.20 Limited time — Savings total $15 $90.20 w/ coupon at checkout Reset Fee $90'",
+        "Rendered 50K FLEX EVAL card after clicking DLL OFF: Reset Fee $105 (vs $90 with DLL on); the One Time Fee row keeps $146 struck / $105.20 with coupon and drops the savings line",
+        "Rendered default cards: '25K FLEX EVAL ... One Time Fee $89 $65.30 ... $50.30', '100K FLEX EVAL ... $293 $215.60 ... Savings total $45 $170.60', '150K FLEX EVAL ... $407 $295.40 ... $250.40'"
+      ]
+    }
+  ],
+  "priceSetupAnswer": {
+    "storedPriceUsd50k": 146,
+    "storedPriceSetup": "DLL OFF (product $136 + no-dll add-on $10)",
+    "dllOnListPriceUsd": {"25000": 79, "50000": 136, "100000": 258, "150000": 372},
+    "dllOffListPriceUsd": {"25000": 89, "50000": 146, "100000": 293, "150000": 407},
+    "limitedTimeDllOnPromoUsd": {"25000": 5, "50000": 5, "100000": 10, "150000": 10},
+    "couponPricesNotStored": {
+      "code": "VAULT (30%, not checkout-verified)",
+      "dllOff": {"25000": 65.30, "50000": 105.20, "100000": 215.60, "150000": 295.40},
+      "dllOn": {"25000": 50.30, "50000": 90.20, "100000": 170.60, "150000": 250.40}
+    },
+    "caveat": "The page never shows a DLL-ON price without the coupon. $136 is the product price in the picker's price table; with the limited-time $5 promo, the page's 'Savings total $15' off $146 implies $131 before coupon at $50K. Checkout was not reached (sign-up wall), so neither figure is checkout-verified."
+  },
+  "openQuestions": [
+    "The rendered LucidFlex cards show 'Consistency 50%' while article 12945790 lists '40% (50% with add-on)' and the stored consistencyRulePct is 40. consistencyAddon.fees in the picker config is empty, so the 50% add-on price is not public.",
+    "minTradingDays is stored as 2, which the article ties to the 50% add-on ('Pass in as few as 3 days with 40% consistency, or 2 days with the 50% consistency add-on'). Not changed here.",
+    "LucidPro's picker also has a no-dll add-on (DLL $600 on 25K) while stored LucidPro 25K has no dailyLossUsd. Not in scope; flagged for the next Lucid refresh."
+  ],
+  "dataChanges": [
+    "lucidflex note 'RISK: no DLL in evaluation or funded' replaced with the optional-DLL note and quotes",
+    "lucidflex notes added: price vs DLL setup; payout cadence depends on DLL",
+    "lucidflex sourceCapturedAt 2026-10-19 -> 2026-10-20 (prices re-read live, unchanged)",
+    "dailyLossPct stays null (DLL is published only as dollar amounts); no dailyLossUsd added because stored prices are the DLL OFF configuration"
+  ]
+}
