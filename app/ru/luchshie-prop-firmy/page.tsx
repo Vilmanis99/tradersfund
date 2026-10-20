@@ -15,6 +15,7 @@ import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { compareRussianRanking } from '@/lib/russianRanking'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
@@ -207,10 +208,13 @@ export default function RussianBestPropFirmsPage() {
       return { firm, slug, products }
     })
     .filter(item => item.products.length > 0 && item.products.every(product => isChallengeFresh(product)))
-    // BrightFunded (universal firm) first, then other firms open to Russia, then by score.
-    .sort((a, b) => Number(b.slug === 'bright-funded') - Number(a.slug === 'bright-funded')
-      || Number(russiaStatusFor(b.slug) === 'available') - Number(russiaStatusFor(a.slug) === 'available')
-      || b.firm.score - a.firm.score || a.firm.name.localeCompare(b.firm.name))
+    // Editorial pins (content/data/ru-ranking.json) lead only while the pinned
+    // firm is open to Russia; then Russia access status, score and name.
+    .sort((a, b) => compareRussianRanking(
+      { slug: a.slug, name: a.firm.name, score: a.firm.score },
+      { slug: b.slug, name: b.firm.name, score: b.firm.score },
+      russiaStatusFor,
+    ))
 
   const fundingPipsAccessCurrent = isChallengeFresh({ sourceCapturedAt: fundingPipsAccessEvidence.sourceCapturedAt })
   const brightCountryCurrent = [brightEvidence.sources.countries, brightEvidence.sources.countryTerms]
