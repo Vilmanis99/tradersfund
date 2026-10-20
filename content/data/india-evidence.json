@@ -560,7 +560,7 @@
   {
     "firmSlug": "e8-markets",
     "firmName": "E8 Markets",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-20",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Albania",
@@ -614,7 +614,7 @@
       "accountSizeCapsUsd": {
         "e8-one": 200000
       },
-      "summary": "Indian profiles may purchase E8 Pro and E8 Signature at all published sizes, plus E8 One up to $200,000.",
+      "summary": "Indian profiles may purchase E8 Pro and E8 Signature at all published sizes, plus E8 One up to $200,000. Since the 2026-09-14 capture E8 also lists E8 Zero (all sizes) for India; E8 Zero has no structured product record here, so it stays outside this screen.",
       "sourceUrls": [
         "https://help.e8markets.com/en/articles/5514278-accepted-countries"
       ]
@@ -627,14 +627,14 @@
     },
     "country": {
       "status": "verified",
-      "summary": "E8 publishes India as a limited-product country: E8 Pro and E8 Signature at all sizes, and E8 One up to $200,000; eligibility follows the verification document rather than current location.",
+      "summary": "E8 publishes India as an allocation-limited country: E8 Pro, E8 Signature and E8 Zero at all sizes, and E8 One up to $200,000; eligibility follows the verification document rather than current location. India is on neither the Classic/Perpetuals nor the Futures restricted list.",
       "sourceUrls": [
         "https://help.e8markets.com/en/articles/5514278-accepted-countries"
       ]
     },
     "checkout": {
       "status": "partial",
-      "summary": "E8 publishes major credit and debit cards plus cryptocurrency checkout, but a successful Indian card or crypto purchase is not independently tested.",
+      "summary": "E8 publishes major credit and debit cards plus cryptocurrency checkout (Apple Pay, Google Pay, crypto via Confirmo, card via Nuvei), but a successful Indian card or crypto purchase is not independently tested.",
       "sourceUrls": [
         "https://help.e8markets.com/en/articles/5515027-how-to-pay-for-our-challenge-accounts"
       ]
