@@ -8,6 +8,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/prop-trejding'
 const UPDATED = '14.10.2026'
@@ -54,7 +55,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какие проп-фирмы доступны трейдерам из России?',
-    a: `На ${UPDATED} Россию не ограничивают BrightFunded, FundedNext (только CFD) и Crypto Fund Trader (на Match-Trader). FTMO, Topstep, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Lucid и Tradeify Россию ограничивают; у FundingPips доступ для РФ не ясен.`,
+    a: `На ${UPDATED} Россию не ограничивают BrightFunded и Crypto Fund Trader (на Match-Trader). FTMO, Topstep, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Lucid и Tradeify Россию ограничивают; у FundingPips доступ для РФ не ясен. ${FUNDEDNEXT_RU_ACCESS_NOTE}`,
   },
   {
     q: 'Сколько зарабатывает проп-трейдер?',
@@ -284,7 +285,7 @@ export default function RussianPropTradingPage() {
             <li><strong>Проверьте доступ из своей страны</strong> по <Link href="/ru/dlya-russkoyazychnykh-treyderov">таблице для россиян</Link>.</li>
             <li><strong>Протестируйте стратегию на демо</strong> с теми же лимитами, что у выбранной программы.</li>
             <li><strong>Купите самый маленький счёт</strong> и пройдите оценку, прежде чем масштабироваться.</li>
-            <li><strong>Получите первую выплату</strong> — только она подтверждает, что модель работает для вас. У BrightFunded первая выплата — через 30 дней, у FundedNext Stellar Lite — через 21 день.</li>
+            <li><strong>Получите первую выплату</strong> — только она подтверждает, что модель работает для вас. У BrightFunded первая выплата — через 30 дней, у FundedNext Stellar Lite — через 10 рабочих дней для счетов, купленных или сброшенных с 12.10.2026, и 21 день для более ранних (по данным на 20.10.2026).</li>
           </ol>
           <p>
             Главные ошибки: торговля без учёта дневного лимита, удержание позиций через выходные там, где это запрещено, и VPN вместо
@@ -320,9 +321,9 @@ export default function RussianPropTradingPage() {
         <div className="ru-shell ru-content">
           <h2>Проп-трейдинг из других стран: ЕС, Казахстан, Израиль</h2>
           <p>
-            Русскоязычные трейдеры живут по всему миру, а доступ определяется страной проживания и документом KYC, а не языком. BrightFunded,
-            FundedNext (CFD) и Crypto Fund Trader не ограничивают Россию — и, по нашим данным, не называют в ограничениях и большинство
-            стран ЕС. Казахстан ограничивают FTMO и Lucid Trading; у FundedNext CFD и BrightFunded он не в списке ограничений. Для Израиля
+            Русскоязычные трейдеры живут по всему миру, а доступ определяется страной проживания и документом KYC, а не языком. BrightFunded
+            и Crypto Fund Trader не ограничивают Россию — и, по нашим данным, не называют в ограничениях и большинство стран ЕС; у
+            FundedNext Россию теперь исключает (см. ниже). Казахстан ограничивают FTMO и Lucid Trading; у FundedNext CFD и BrightFunded он не в списке ограничений. Для Израиля
             и других стран проверьте список ограничений выбранной фирмы. Полная таблица — <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для россиян</Link>.
           </p>
         </div>
@@ -347,10 +348,11 @@ export default function RussianPropTradingPage() {
       <section className="ru-section" id="nachat">
         <div className="ru-shell">
           <h2>С чего начать</h2>
-          <p className="ru-muted">Универсальные фирмы — открыты и для России, и для большинства других стран. Сначала прочитайте обзоры: <Link href="/ru/obzor-bright-funded">BrightFunded</Link>, <Link href="/ru/obzor-fundednext">FundedNext</Link>.</p>
+          <p className="ru-muted">Универсальные фирмы — BrightFunded и Crypto Fund Trader открыты и для России, и для большинства других стран. Сначала прочитайте обзоры: <Link href="/ru/obzor-bright-funded">BrightFunded</Link>, <Link href="/ru/obzor-fundednext">FundedNext</Link>.</p>
+          <RuFundedNextAccessCaveat />
           <div className="ru-actions">
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-prop-trejding-start-1" rel={goLinkRel('bright-funded')} className="btn-primary">BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-trejding-start-2" rel={goLinkRel('fundednext')} className="btn-primary">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-trejding-start-2" rel={goLinkRel('fundednext')} className="btn-outline">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
             <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-prop-trejding-start-3" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
             <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Рейтинг проп-компаний</Link>
           </div>

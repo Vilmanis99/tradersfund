@@ -63,8 +63,8 @@ const faqs: RussianFaqItem[] = [
 ]
 
 const globalRoutes = [
-  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
   { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
 ] as const
 
 function SourceLink({ href, children }: { href: string, children: React.ReactNode }) {

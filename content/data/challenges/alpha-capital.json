@@ -59,7 +59,7 @@
     "activationFeeUsd": 0,
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
       "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
@@ -69,7 +69,8 @@
       "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
       "The live selector showed One 6% and 12% choices, whereas the September 21 pricing article says they are unavailable for new purchases. This record covers only the explicitly selected 10% variant. A source-conflict watch records the other variants; no availability conclusion is inferred.",
       "The live One 10% checkout showed On Demand and a disabled Bi-Weekly control. The 6% trailing limit follows maximum account balance and locks at the initial balance after 6% growth; it does not trail equity forever.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/alpha-capital-2026-10-20.json"
     ]
   },
   {
@@ -133,7 +134,7 @@
     "activationFeeUsd": 0,
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
       "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
@@ -141,7 +142,8 @@
       "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
       "Bi-weekly: first request after 14 calendar days and five qualifying trading days, with $100 gross minimum. The 40% best-day rule is documented for on-demand; bi-weekly consistency remains unverified, not an absence claim. https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
       "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/alpha-capital-2026-10-20.json"
     ]
   },
   {
@@ -205,7 +207,7 @@
     "activationFeeUsd": 0,
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
       "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
@@ -213,7 +215,8 @@
       "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
       "On-demand evaluation routes require 2% gross profit and a 40% best-day share; Direct instead requires a retained 3% buffer plus 1% additional profit and a 15% best-day share. No fixed first-payout day is verified. https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
       "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/alpha-capital-2026-10-20.json"
     ]
   },
   {
@@ -277,7 +280,7 @@
     "activationFeeUsd": 0,
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
       "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
@@ -285,7 +288,8 @@
       "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
       "Bi-weekly: first request after 14 calendar days and five qualifying trading days, with $100 gross minimum. The 40% best-day rule is documented for on-demand; bi-weekly consistency remains unverified, not an absence claim. https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
       "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/alpha-capital-2026-10-20.json"
     ]
   },
   {
@@ -349,7 +353,7 @@
     "activationFeeUsd": 0,
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
       "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
@@ -357,7 +361,8 @@
       "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
       "On-demand evaluation routes require 2% gross profit and a 40% best-day share; Direct instead requires a retained 3% buffer plus 1% additional profit and a 15% best-day share. No fixed first-payout day is verified. https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
       "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/alpha-capital-2026-10-20.json"
     ]
   },
   {
@@ -421,7 +426,7 @@
     "activationFeeUsd": 0,
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
       "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
@@ -429,7 +434,8 @@
       "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
       "Bi-weekly: first request after 14 calendar days and five qualifying trading days, with $100 gross minimum. The 40% best-day rule is documented for on-demand; bi-weekly consistency remains unverified, not an absence claim. https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
       "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/alpha-capital-2026-10-20.json"
     ]
   },
   {
@@ -493,7 +499,7 @@
     "activationFeeUsd": 0,
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
       "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
@@ -501,7 +507,8 @@
       "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
       "On-demand evaluation routes require 2% gross profit and a 40% best-day share; Direct instead requires a retained 3% buffer plus 1% additional profit and a 15% best-day share. No fixed first-payout day is verified. https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
       "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/alpha-capital-2026-10-20.json"
     ]
   },
   {
@@ -565,7 +572,7 @@
     "activationFeeUsd": 0,
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
       "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
@@ -573,7 +580,8 @@
       "EAs: pre-approved risk management/trade assistance on MT5 only; fully automated execution prohibited. Direct EAs disabled. Copy trading requires own-account verification and is unavailable on cTrader, DXtrade and TradeLocker.",
       "On-demand evaluation routes require 2% gross profit and a 40% best-day share; Direct instead requires a retained 3% buffer plus 1% additional profit and a 15% best-day share. No fixed first-payout day is verified. https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
       "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/alpha-capital-2026-10-20.json"
     ]
   },
   {
@@ -632,7 +640,7 @@
     "pricingModel": "one-off",
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026. Discounts, swap-free and optional 90% split add-ons are excluded.",
       "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
@@ -641,7 +649,8 @@
       "Bi-weekly: first request after 14 calendar days and five qualifying trading days, with $100 gross minimum. The 40% best-day rule is documented for on-demand; bi-weekly consistency remains unverified, not an absence claim. https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
       "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
       "Mixed-scope correction: published prices and rules were read again on October 6, but current purchase availability remains unsettled. The cost article still lists fees, while the firm review calls Three unavailable and the live product selector has no three-step choice. Preserve the September 14 product date and prior archive; do not describe this as a current purchase offer.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/alpha-capital-2026-10-20.json"
     ]
   },
   {
@@ -707,7 +716,7 @@
     "activationFeeUsd": 0,
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update. Discounts, swap-free and optional 90% split add-ons are excluded.",
       "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
@@ -716,7 +725,8 @@
       "On-demand evaluation routes require 2% gross profit and a 40% best-day share; Direct instead requires a retained 3% buffer plus 1% additional profit and a 15% best-day share. No fixed first-payout day is verified. https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
       "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
       "Direct Max Risk Rule: 1% maximum open drawdown per asset. Losing positions on the same asset combine; profitable positions do not offset losses. Same-direction reopening within ten minutes combines losses. The retained 3% payout buffer is separate from fee-recovery profit.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/alpha-capital-2026-10-20.json"
     ]
   }
 ]

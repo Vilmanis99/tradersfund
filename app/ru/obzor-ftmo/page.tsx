@@ -30,6 +30,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/obzor-ftmo'
 const TITLE = 'FTMO проп: обзор 2026 — цены, правила и доступ из России'
@@ -132,7 +133,7 @@ export default function RussianFtmoReviewPage() {
     ...freshProducts.map(product => product.sourceUrl),
     ...(accessEvidence?.sourceUrls ?? []),
   ])]
-  const partnerAlternatives = ['fundednext', 'bright-funded'].flatMap(slug => {
+  const partnerAlternatives = ['bright-funded', 'fundednext'].flatMap(slug => {
     const partnerFirm = firms.find(candidate => outboundSlug(candidate.name) === slug)
     if (!partnerFirm?.affiliateUrl) return []
     const partnerProducts = getChallengesByFirm(slug).filter(product => isChallengeFresh(product))
@@ -453,7 +454,7 @@ export default function RussianFtmoReviewPage() {
             <p>
               Альтернатива должна решать конкретную проблему FTMO, а не просто вести на другой логотип. Для русскоязычного жителя разрешённой страны
               сначала сравниваются валюта взноса, тип просадки, число фаз и выплата; для резидента России отдельно проверяются правила страны каждой фирмы.
-              FundedNext сохраняет конфликт официальных формулировок по России, а отсутствие России в опубликованном списке BrightFunded не заменяет KYC.
+              FundedNext резидентам России недоступна (подвал её сайта, по данным на 20.10.2026), а отсутствие России в опубликованном списке BrightFunded не заменяет KYC.
             </p>
             <div className="ru-grid">
               {partnerAlternatives.map(item => {
@@ -468,12 +469,12 @@ export default function RussianFtmoReviewPage() {
                     </ul>
                     <p>
                       {item.slug === 'fundednext'
-                        ? 'Начните с выбора между Stellar 2-Step, 1-Step, Lite и Instant; официальный конфликт по российским резидентам не позволяет обещать доступ.'
+                        ? `${FUNDEDNEXT_RU_ACCESS_NOTE} Для других стран начните с выбора между Stellar 2-Step, 1-Step, Lite и Instant.`
                         : 'Начните с выбора между 1-Step, 2-Step Bright и 2-Step Classic; взнос публикуется в EUR, а базовую долю нельзя подменять платным или масштабируемым потолком.'}
                     </p>
                     <div className="ru-actions">
                       <Link href={reviewHref} className="btn-outline">Русский обзор</Link>
-                      <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-ftmo-alternative-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
+                      <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-ftmo-alternative-${item.slug}`} rel="sponsored nofollow noopener" className={item.slug === 'fundednext' ? 'btn-outline' : 'btn-primary'}>
                         Проверить {item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name} <ArrowRight size={14} aria-hidden="true" />
                       </RuGoLink>
                     </div>
