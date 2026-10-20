@@ -1099,6 +1099,26 @@ try {
     brightEvidence.sources.countryTerms.sourceCapturedAt = homeTermsDate
     clock = homeFixtureClock
   }
+  const { russiaStatusFor } = require(path.join(root, 'lib/russiaAvailability.ts'))
+  const { RU_ACCESS_BADGE } = require(path.join(root, 'components/RuAccessBadgeView.tsx'))
+  const assertRussiaCtaBadgesAndOrder = (html, label) => {
+    const ctas = [...html.matchAll(/<a\b[^>]*href="\/go\/([a-z0-9-]+)[?"][^>]*>[\s\S]*?<\/a>/g)]
+      .map(match => ({ firm: match[1], status: russiaStatusFor(match[1]), end: match.index + match[0].length, start: match.index }))
+    assert(ctas.length > 0, `${label}: renders sign-up CTAs`)
+    for (const cta of ctas.filter(item => item.status !== 'available')) {
+      const badge = RU_ACCESS_BADGE[cta.status]
+      const after = html.slice(cta.end, cta.end + 400).match(/^\s*<span class="ru-access"><span class="ru-badge ru-badge--([a-z]+)" data-russia-status="([a-z]+)" data-russia-firm="([a-z0-9-]+)">([^<]+)<\/span>/)
+      assert(after, `${label}: ${cta.firm} CTA (${cta.status}) is followed by its Russia-access badge`)
+      assert.deepEqual(after.slice(1, 5), [badge.modifier, cta.status, cta.firm, badge.label], `${label}: ${cta.firm} badge reads ${badge.label} from firms.json russiaStatus`)
+    }
+    const firstCta = new Map()
+    for (const cta of ctas) if (!firstCta.has(cta.firm)) firstCta.set(cta.firm, cta)
+    const openPositions = [...firstCta.values()].filter(cta => cta.status === 'available').map(cta => cta.start)
+    for (const cta of [...firstCta.values()].filter(item => item.status !== 'available')) {
+      assert(openPositions.every(position => position < cta.start), `${label}: ${cta.firm} (${cta.status}) is not ranked above a Russia-open firm`)
+    }
+    return ctas
+  }
   const { russianDiasporaEvidence } = require(path.join(root, 'lib/russianDiasporaEvidence.ts'))
   // Week 1 rewrite (2026-10-14): diaspora page merges the former local-firms directory (#rossiyskie).
   {
@@ -1106,7 +1126,10 @@ try {
     const html = renderToStaticMarkup(React.createElement(RussianDiasporaPage))
     assert(html.includes('id="rossiyskie"'), 'merged local-firm section keeps the #rossiyskie redirect target')
     assert(/ru-badge ru-badge--(open|unclear|closed)/.test(html), 'availability matrix uses status badges')
-    assert(!/href="\/go\/(ftmo|the5ers|e8-markets|fxify|maven|alpha-capital|lucid-trading|apex-trader-funding|tradeify|fundingpips|topstep)[?"]/.test(html), 'diaspora page has no sign-up links for firms closed or unclear for Russia')
+    // Standing rule (RuGoLink, 2026-10-14): every firm keeps its sign-up CTA with a
+    // Russia-access badge. A CTA for a firm that is not 'available' must carry the
+    // badge for its firms.json russiaStatus and never outrank a Russia-open firm.
+    assertRussiaCtaBadgesAndOrder(html, 'diaspora page')
   }
   const localFaqOperators = {
     'obzor-proplive': 'PropLive',
