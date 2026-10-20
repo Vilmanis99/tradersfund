@@ -16,7 +16,7 @@ import {
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
 import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, RUSSIAN_ROUTE_EDITORIAL_DATES, russianRouteDateModified } from '@/lib/localizedRoutes'
 import topstepRecheck from '@/content/data/challenges/_captures/topstep-2026-10-20.json'
 
 const PATH = '/ru/obzor-topstep'
@@ -199,7 +199,7 @@ export default function RussianTopstepReviewPage() {
     description: SEARCH_DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
-    datePublished: '2026-10-26',
+    datePublished: RUSSIAN_ROUTE_EDITORIAL_DATES[PATH],
     dateModified,
     author: authorSchema('Traders Fund Hub'),
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
@@ -228,7 +228,6 @@ export default function RussianTopstepReviewPage() {
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
             <span>Автор: редакция Traders Fund Hub</span>
             <span>Обновлено: {ruDate(dateModified)}</span>
-            <span>12 минут чтения</span>
           </div>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>пути оплаты с проверенными ценами</span></div>

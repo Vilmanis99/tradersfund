@@ -19,7 +19,7 @@ Brief: /workspace/ru-seo/briefs/2026-10-26.md (supersedes briefs/new-obzor-topst
 | /ru/otzyvy-prop-firm | «Topstep отзывы и Trustpilot» | RuRelatedLinks |
 | /ru/dlya-russkoyazychnykh-treyderov | «Topstep: обзор и альтернативы для РФ» | RuPendingLink, body |
 | /ru/prop-trejding | «фьючерсного пропа Topstep» | RuPendingLink, body (минусы) |
-| /ru/funded-account | «топстеп: Express Funded Account на фьючерсах» | RuPendingLink, «Дальше» line |
+| /ru/funded-account | «Топстеп: Express Funded Account на фьючерсах» | RuPendingLink, «Дальше» line |
 
 ## Outlinks
 obzor-bright-funded (A, first) · obzor-crypto-fund-trader (A, RuPendingLink until 24.10 merge) · obzor-hash-hedge (RuPendingLink, text only) ·
@@ -41,3 +41,10 @@ XFA-only (no Live) list includes Germany. Kazakhstan is not named anywhere on th
 5. TopstepX EA "with conditions" specifics and which news releases count as "major" are not captured.
 6. Non-US pricing (VAT/taxes for CIS/EU visitors) not captured; page says only "taxes may be added".
 7. Minimum-days conflict (help "as few as two days" vs product page "no minimum") still open.
+
+## SEO review 20.10 (review-2026-10-26-topstep.md) — follow-ups
+- Done: datePublished from RUSSIAN_ROUTE_EDITORIAL_DATES; reading-time line removed; funded-account anchor capitalised («Топстеп»).
+- Waiting on Tracker (due Sun 25.10 15:00): dated 20.10+ capture of 8284116 (must-fix 1). Access block left untouched until then;
+  fallback = date it to the 08.09 observation and drop the Germany XFA-only and travel sentences.
+- Waiting on Tracker: firms.json payoutMethods + source/date; then drop the «В карточке фирмы у нас…» sentence.
+- 26.10: Hash Hedge firms.json entry → optional third RuGoLink card; Phase 2 RuArticleLayout → move related links into the R slot.
