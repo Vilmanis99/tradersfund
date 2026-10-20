@@ -91,7 +91,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>The paid comparison uses FTMO’s structured challenge capture dated 2026-07-27 and keeps prices in euros. A passed trial does not refund, discount, or replace either €499 1-Step or €540 2-Step at $100K; compare the full fee-recovery math in the <a href="/blog/ftmo-review">FTMO review</a> and <a href="/true-cost-of-prop-firm-challenges">True-Cost guide</a>.</p>
+<p>The paid comparison uses FTMO’s structured challenge capture dated 2026-07-27 and keeps prices in euros. A passed trial does not refund, discount, or replace either €499 1-Step or €540 2-Step at $100K; compare the full fee-recovery math in the <a href="/blog/ftmo-review">FTMO review</a> and <a href="/true-cost-of-prop-firm-challenges">True-Cost guide</a>. FTMO's conditional $100K price cuts, which need no code, are covered in our <a href="/blog/ftmo-discount-code">FTMO discount code check</a>.</p>
 
 <h2>A 14-day test plan that produces a decision</h2>
 
