@@ -320,6 +320,7 @@ export default function RussianFundingPipsReviewPage() {
       ]}
       relatedLinks={[
         { href: getRussianReviewFinderHref('fundingpips'), label: 'Сравнить двухэтапные программы в подборе', body: 'начните с FundingPips и FundedNext на одном размере счёта; затем измените фильтры под свою стратегию' },
+        { href: '/ru/fundingpips-vs-bright-funded', label: 'FundingPips или BrightFunded', body: 'сравнение программ, доступа из РФ и циклов выплат' },
         { href: '/ru/fundednext-vs-fundingpips', label: 'FundedNext или FundingPips', body: 'сравнение программ по цене, просадке и циклу выплат' },
         { href: '/ru/prop-firmy-bez-chelendzha', label: 'Проп-фирмы без челленджа', body: 'FundingPips Zero рядом с FundedNext Stellar Instant и другими продуктами без оценочной фазы' },
         { href: '/ru/vyplaty-prop-firm', label: 'Выплаты проп-фирм', body: 'отдельная проверка первой даты, криптовалюты, банка и условий запроса' },

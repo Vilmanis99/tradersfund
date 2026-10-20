@@ -326,6 +326,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/ru/vyplaty-prop-firm', russianPayoutLastModified],
     ['/ru/prop-firmy-bez-kyc', russianKycLastModified],
     ['/ru/otzyvy-prop-firm', russianReviewsLastModified],
+    ['/ru/fundingpips-vs-bright-funded', russianOldestChallengeLastModified('bright-funded', 'fundingpips')],
     // The instant guide's Article uses its editorial date; product rows show
     // their own captures separately. Evaluation-only rechecks must not redate it.
   ])

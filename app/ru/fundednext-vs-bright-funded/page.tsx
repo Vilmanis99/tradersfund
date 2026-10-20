@@ -585,7 +585,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             </p>
             <p>
               Если ни одна фирма письменно не подтверждает вашу страну, документы или способ выплаты, не оплачивайте участие до выяснения условий.
-              <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"> Локальные модели</Link> и <Link href="/ru/luchshie-prop-firmy">полный рейтинг</Link> используют другие наборы продуктов.
+              <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"> Локальные модели</Link> и <Link href="/ru/luchshie-prop-firmy">полный рейтинг</Link> используют другие наборы продуктов. BrightFunded в паре с ещё одной фирмой — в сравнении <Link href="/ru/fundingpips-vs-bright-funded">BrightFunded или FundingPips</Link>.
             </p>
           </div>
         </section>
