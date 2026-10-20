@@ -38,6 +38,22 @@ export function russiaStatusFor(slugOrName: string): RussiaStatus {
   return EXTRA_RESTRICTED[key] ?? STATUS_BY_SLUG[key] ?? 'unverified'
 }
 
+/**
+ * Dated Russia-access evidence (`firmAccess[].status` in
+ * content/data/russian-market-evidence.json) that the /ru pages can stand
+ * behind. 'restricted' must agree with the firm's `russiaStatus` (the badge
+ * source); 'conflicting' is the pre-2026-10-20 FundedNext record, still
+ * accepted because it never describes the firm as available. Anything else,
+ * including 'available' or a missing record, is not a documented boundary.
+ */
+export function isRussiaAccessEvidenceDocumented(
+  slugOrName: string,
+  evidenceStatus: string | null | undefined,
+): boolean {
+  if (evidenceStatus === 'restricted') return russiaStatusFor(slugOrName) === 'restricted'
+  return evidenceStatus === 'conflicting'
+}
+
 const AFFILIATE_SLUGS = new Set(
   (firms as Array<{ name: string; affiliateUrl?: string | null }>)
     .filter((firm) => Boolean(firm.affiliateUrl))
