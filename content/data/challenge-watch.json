@@ -207,7 +207,7 @@
     "kind": "rule-change",
     "status": "verified",
     "observedAt": "2026-09-08",
-    "lastCheckedAt": "2026-10-20",
+    "lastCheckedAt": "2026-09-08",
     "title": "Correction: Stellar 1-Step forex leverage is 1:30, not 1:100",
     "summary": "Our August 28 Russian forex capture incorrectly grouped Stellar 1-Step with the 1:100 evaluations. The official leverage article's image tables show 1:30 for Stellar 1-Step in both Challenge and FundedNext Accounts. September 8 records our correction, not a newly established policy-change date.",
     "traderImpact": "Do not size a Stellar 1-Step position using the 1:100 figure for Stellar 2-Step or Lite. Recheck required margin for the exact programme; leverage does not increase its loss limits. This rule check did not refresh product prices.",
