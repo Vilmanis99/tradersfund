@@ -1,5 +1,7 @@
 # /ru/ftmo-vs-fundingpips: RU Writer notes (draft 20.10.2026, slot Fri 23.10.2026)
 
+Updated 20.10 against the full brief (briefs/2026-10-23.md): FAQ 4–6 per brief §5, verdict adds CFT and UAE, hero access notes on FP/FTMO CTAs, final CTA BrightFunded → Crypto Fund Trader, BF help-6/terms-5 conflict, CFT MT5-US line, consistency and min-days rows, dlya-russkoyazychnykh-treyderov and fundingpips-pravila (pending) links, breadcrumb «Рейтинг проп-фирм». lib/ruRelatedLinks.ts, scripts/audit-ru-links.mjs and scripts/test-ru-related-links.mjs named in the brief do not exist on daily 20b.
+
 Built from the brief stub /workspace/ru-seo/briefs/2026-10-23.md; the full brief is due Thu 22.10 — adjust then.
 Branch content/ru-ftmo-vs-fundingpips off origin/daily/2026-10-20b @ f4e547d.
 
@@ -17,7 +19,8 @@ Branch content/ru-ftmo-vs-fundingpips off origin/daily/2026-10-20b @ f4e547d.
 ## Data gaps / conflicts
 1. **Verdict JSON b1bfa5a overnight pick is inaccurate**: «FundingPips разрешает это во всех моделях, FTMO ограничивает». Data says FundingPips allows overnight/weekend on Evaluation only; Master needs the Swing add-on; Zero treats weekend holding as a hard breach. FTMO restricts only the Standard account type on the FTMO Account (Swing: none; Evaluation: none). The page states this neutrally; the verdict JSON should be fixed by its owner.
 2. **FTMO max allocation $2,000,000** is in firms.json without a capture date; not shown as a number. FundingPips «до $2M» Prime (invite-only) is dated 20.10.
-3. **FTMO checkout methods**: newest capture with them is 2026-08-28 (>30 days); section says to check the FTMO checkout.
+3. **FTMO checkout methods**: per the full brief, taken from Prop Firm Tracker /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md §1 (19.10). That file is not on a data branch; the repo's newest capture with them is 2026-08-28.
+10. **FundingPips checkout methods**: the brief says «not captured», but _captures/fundingpips-2026-10-20.json → briefAsks.checkoutMethods has them (Get Started, 20.10, «Not checkout-tested»). Kept, with the note that the list is from the help page and wasn't checkout-tested. RU SEO Lead may want the brief's §3.9/§9.2 updated.
 4. **FundingPips refund**: help centre (4th reward, 2 Step Standard) vs Terms «ALL PAYMENTS ARE FINAL» — shown as a conflict.
 5. **FTMO EA / copy-trading rules**: no fresh capture; text says to check the programme rules.
 6. FundingPips $2.5K tier price (Pro, Standard) is null in data; excluded.

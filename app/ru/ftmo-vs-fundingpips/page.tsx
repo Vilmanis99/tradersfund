@@ -39,6 +39,12 @@ const RULES_1510 = '15.10.2026'
 /** content/data/challenges/_captures/ftmo-2026-10-19.json (TradingView via OANDA). */
 const FTMO_PLATFORMS = '19.10.2026'
 const BRIGHT_COUNTRIES = '20.10.2026'
+/** content/data/russian-bright-funded-evidence.json → sources.countries / countryTerms (help list of 6 vs Terms §2 list of 5). */
+const BRIGHT_CONFLICT = '19.10.2026'
+/** Prop Firm Tracker, /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md §1 (ftmo.com payment-methods FAQ, checked 2026-10-19). */
+const FTMO_CHECKOUT = '19.10.2026'
+/** content/data/challenges/_captures/crypto-fund-trader-2026-10-19.json (MT5 is the only platform CFT says is unavailable to US residents). */
+const CFT_MT5 = '19.10.2026'
 const CFT_ACCESS = '20.10.2026'
 
 /** content/data/russian-fundingpips-access-evidence.json (Get Started, FATF and EU/UN sanctions wording); hidden once older than 30 days. */
@@ -53,6 +59,8 @@ const SRC = {
   ftmoObjectives: 'https://ftmo.com/en/trading-objectives/',
   ftmoTwoStep: 'https://ftmo.com/en/2-step-challenge/',
   ftmoPromoOnDemand: 'https://promo.ftmo.com/m26b-practice-trading-without-risk/',
+  ftmoPayments: 'https://ftmo.com/en/faq/what-payment-methods-are-available/',
+  brightTerms: 'https://brightfunded.com/terms-and-conditions',
   fpGetStarted: 'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started',
   fpRewardMethods: 'https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods',
   fpWorkspace: 'https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace',
@@ -79,23 +87,23 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Работает ли FTMO в России?',
-    a: `Нет. Российская Федерация входит в официальный список стран, резидентам которых FTMO не оказывает услуги; в том же списке Беларусь, Казахстан, Киргизия, Таджикистан и Узбекистан (по данным на ${COUNTRIES_CHECKED}).`,
+    a: `Нет. Российская Федерация входит в официальный список стран, резидентам которых FTMO не оказывает услуги; в том же списке Беларусь, Казахстан, Киргизия, Таджикистан и Узбекистан (по данным на ${COUNTRIES_CHECKED}). Подробно — на странице «FTMO для россиян».`,
   },
   {
     q: 'Работает ли FundingPips в России?',
     a: `Не подтверждено. FundingPips не принимает резидентов Ирана, Вьетнама и ОАЭ, Россию не называет (по данным на ${COUNTRIES_CHECKED}); при этом есть ${FP_FATF}. Регистрацию, KYC и оплату с российскими документами мы не проверяли — сначала получите письменный ответ поддержки.`,
   },
   {
-    q: 'Возвращают ли взнос за челлендж?',
-    a: `У FTMO 2-Step взнос возвращается с первой выплатой вознаграждения, у FTMO 1-Step — нет (по данным на ${FTMO_1410}). У FundingPips источники расходятся: справка обещает вернуть взнос за 2 Step Standard с четвёртым вознаграждением на мастер-счёте, а условия говорят «ALL PAYMENTS ARE FINAL» (по данным на ${TRACKER_FP}).`,
+    q: 'Какую проп-фирму выбрать резиденту РФ вместо них?',
+    a: `Начните с BrightFunded: Россия не названа в её списке ограничений (по данным на ${BRIGHT_COUNTRIES}). Второй вариант — Crypto Fund Trader: на Match-Trader фирма ограничений по странам не указывает (по данным на ${CFT_ACCESS}). Ни один из списков не означает индивидуального одобрения: проверка личности и способ оплаты — отдельные шаги.`,
   },
   {
-    q: 'У кого выше доля вознаграждения?',
-    a: `FTMO: 2-Step — 80% (90% через Scaling Plan или Premium), 1-Step — 90% (по данным на ${FTMO_1410}). FundingPips: 80% в 1 Step Flex и 2 Step Pro, 80% или 95% в 2 Step Flex, 60% или 80% в 2 Step Standard, 95% в Zero; у всех моделей, кроме Zero, есть выплата 100% по запросу при правиле стабильности 35% (по данным на ${CONSISTENCY_CHECKED}).`,
+    q: 'Чем отличается FTMO 1-Step от FundingPips 1 Step Flex?',
+    a: `У FTMO 1-Step цель 10%, дневной лимит 3% и общий 10%, который подтягивается по итогам дня; доля 90%, а лучший день не должен давать больше 50% общей прибыли (для заказов с 12.10.2026). У 1 Step Flex цель 12%, лимиты 3% и 12% статично, доля 80% раз в две недели или 100% по запросу при правиле стабильности 35% (по данным на ${CONSISTENCY_CHECKED}). Подвижный лимит строже после прибыли, статический прощает откаты, но цель выше.`,
   },
   {
-    q: 'Что такое правило стабильности 35% у FundingPips?',
-    a: `Это условие допуска к выплате 100% по запросу (On Demand): ни один торговый день не должен давать больше 35% общей прибыли. По данным на ${CONSISTENCY_CHECKED} оно указано для всех четырёх оценочных моделей — 1 Step Flex, 2 Step Flex, 2 Step Pro и 2 Step Standard. На прохождение оценки и на обычные циклы выплат оно не влияет. У Zero своё правило — 15%.`,
+    q: 'Есть ли у FTMO аналог FundingPips Zero?',
+    a: 'В наших данных нет: у FTMO только оценки 2-Step и 1-Step. FundingPips Zero стартует сразу на мастер-счёте с дневным лимитом 3%, подвижным общим 5% и долей 95% (по данным на 19.10.2026).',
   },
 ]
 
@@ -262,6 +270,12 @@ export default function RussianFtmoVsFundingPipsPage() {
     { field: 'Рынки', ftmo: ftmoFirm?.assets.includes('Stocks') ? 'форекс, индексы, сырьё, криптовалюта и акции' : 'форекс, индексы, сырьё, криптовалюта', fp: fpFirm?.assets.includes('Stocks') ? 'включая акции' : 'форекс, индексы, сырьё, криптовалюта; акций нет' },
     { field: 'Программы (свежие записи)', ftmo: ftmoRows.map(row => short(row.product)).join(', ') || '—', fp: fpRows.map(row => short(row.product)).join(', ') || '—' },
     { field: 'Валюта и диапазон взноса', ftmo: ftmoRows.map(row => `${short(row.product)}: ${row.price}`).join('; ') || '—', fp: fpRows.map(row => `${short(row.product)}: ${row.price}`).join('; ') || '—' },
+    { field: 'Минимум торговых дней', ftmo: ftmoRows.map(row => `${short(row.product)}: ${daysLabel(row.product)}`).join('; ') || '—', fp: fpRows.map(row => `${short(row.product)}: ${daysLabel(row.product)}`).join('; ') || '—' },
+    {
+      field: 'Правило стабильности',
+      ftmo: ftmoOneConsistency ? `1-Step: ${ftmoOneConsistency.percent}% общей прибыли на лучший день, для заказов с 12.10.2026 (по данным на ${CONSISTENCY_CHECKED})` : 'требует повторной проверки',
+      fp: fpConsistencyAll ? `35% — только для выплаты 100% по запросу, во всех четырёх оценках; Zero — ${fpZero?.consistencyRulePct ?? 15}% (по данным на ${CONSISTENCY_CHECKED})` : 'требует повторной проверки',
+    },
     { field: 'Доля вознаграждения', ftmo: `2-Step ${ftmoTwo ? splitLabel(ftmoTwo) : '—'} (90% через Scaling Plan или Premium); 1-Step ${ftmoOne ? splitLabel(ftmoOne) : '—'} (по данным на ${FTMO_1410})`, fp: `1 Step Flex и 2 Step Pro — 80%; 2 Step Flex — 80% или 95%; 2 Step Standard — 60% или 80%; у всех, кроме Zero, — 100% по запросу при условиях; Zero — 95%` },
     { field: 'Первая выплата', ftmo: `по запросу, с 14-го дня после первой сделки (по данным на ${FTMO_PAYOUTS})`, fp: fpRows.map(row => `${short(row.product)}: ${payoutLabel(row.product)}`).join('; ') || '—' },
     {
@@ -274,7 +288,7 @@ export default function RussianFtmoVsFundingPipsPage() {
   ]
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
-    { name: 'Рейтинг проп-компаний', url: '/ru/luchshie-prop-firmy' },
+    { name: 'Рейтинг проп-фирм', url: '/ru/luchshie-prop-firmy' },
     { name: 'FTMO или FundingPips' },
   ])
   const faq = faqPageSchema(faqs)
@@ -325,9 +339,13 @@ export default function RussianFtmoVsFundingPipsPage() {
             <RuGoLink firm="fundingpips" href={`/go/fundingpips?from=${FROM}`} rel={goLinkRel('fundingpips')} className="btn-outline">
               Перейти в FundingPips <ArrowRight size={14} aria-hidden="true" />
             </RuGoLink>
+            <span className="ru-muted">доступ для резидентов РФ не подтверждён; резидентам ОАЭ недоступно</span>
+          </div>
+          <div className="ru-actions" data-russian-comparison-ftmo-cta="secondary-restricted">
             <RuGoLink firm="ftmo" href={`/go/ftmo?from=${FROM}`} rel={goLinkRel('ftmo')} className="btn-outline">
               Сайт FTMO <ArrowRight size={14} aria-hidden="true" />
             </RuGoLink>
+            <span className="ru-muted">резидентов России FTMO не принимает</span>
           </div>
           <nav className="ru-review-toc" aria-label="Содержание сравнения">
             <Link href="#verdikt">Вердикт</Link> · <Link href="#dostup">Доступ</Link> · <Link href="#programmy">Программы</Link> · <Link href="#dva-etapa">Два этапа</Link> · <Link href="#odin-etap">Один этап</Link> · <Link href="#bez-ocenki">Без оценки</Link> · <Link href="#stoimost">Стоимость</Link> · <Link href="#vyplaty">Выплаты</Link> · <Link href="#platformy">Платформы</Link> · <Link href="#otzyvy">Отзывы</Link> · <Link href="#alternativy">Альтернативы</Link> · <Link href="#sources">Источники</Link>
@@ -352,7 +370,11 @@ export default function RussianFtmoVsFundingPipsPage() {
           <p>
             <strong>Живёте в России.</strong> Из этой пары подтверждённого варианта нет. FTMO Россию прямо ограничивает, у
             FundingPips статус неясен: Россия не названа, но есть {FP_FATF}. Платить за челлендж FundingPips без письменного
-            «да» от поддержки мы бы не стали. Альтернатива с открытым статусом — <Link href="/ru/obzor-bright-funded">BrightFunded</Link>.
+            «да» от поддержки мы бы не стали. Из России смотрите <Link href="/ru/obzor-bright-funded">BrightFunded</Link> или
+            Crypto Fund Trader — в этом порядке.
+          </p>
+          <p>
+            <strong>Живёте в ОАЭ.</strong> FundingPips для вас закрыта, хотя её офис в Дубае. FTMO эмираты в списке ограничений не называет.
           </p>
           <p>
             <strong>Живёте в стране, открытой для обеих.</strong> В классической модели FTMO 2-Step и FundingPips 2 Step Standard
@@ -401,7 +423,9 @@ export default function RussianFtmoVsFundingPipsPage() {
           <p>
             FTMO также закрыта для Киргизии, Таджикистана и Узбекистана, а по Украине ограничивает только Крым, Севастополь,
             Донецкую, Херсонскую, Луганскую и Запорожскую области. Полный разбор — на странице{' '}
-            <Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян</Link>.
+            <Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян</Link>, а сводка по другим фирмам — на странице{' '}
+            <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для русскоязычных трейдеров</Link>. VPN, чужие документы или неверный адрес
+            — основание для отказа в выплате или закрытия счёта.
           </p>
           <p className="ru-source-line">
             Источники: <a href={SRC.ftmoCountries} target="_blank" rel="noopener noreferrer">FTMO: Who can join FTMO</a>; <a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips: Get Started</a> ({COUNTRIES_CHECKED}).
@@ -442,7 +466,7 @@ export default function RussianFtmoVsFundingPipsPage() {
             </table>
           </div>
           {!productRows.length && <p className="ru-notice">Нет программ с актуальной проверкой. Цены временно скрыты.</p>}
-          <p className="ru-source-line">Самая ранняя проверка программ: {ruDate(latestCapture)}. Цены — без акций и промокодов. Правила каждой фирмы подробно — в <Link href="/ru/obzor-ftmo">обзоре FTMO</Link> и <Link href="/ru/obzor-fundingpips">обзоре FundingPips</Link>.</p>
+          <p className="ru-source-line">Самая ранняя проверка программ: {ruDate(latestCapture)}. Цены — без акций и промокодов. Правила каждой фирмы подробно — в <Link href="/ru/obzor-ftmo">обзоре FTMO</Link> и <Link href="/ru/obzor-fundingpips">обзоре FundingPips</Link>; <RuPendingLink href="/ru/fundingpips-pravila">правила FundingPips на русском</RuPendingLink>.</p>
         </div>
       </section>
 
@@ -579,14 +603,15 @@ export default function RussianFtmoVsFundingPipsPage() {
           <h2>Оплата челленджа</h2>
           <p>
             <strong>FundingPips</strong> перечисляет карты Visa и Mastercard (только на ваше имя), Google Pay и Apple Pay, PayPal, Neteller, Skrill,
-            Paysafe Card и криптовалюту. Фирма предупреждает, что набор способов и комиссии зависят от региона (по данным на {TRACKER_FP}).
+            Paysafe Card и криптовалюту. Фирма предупреждает, что набор способов и комиссии зависят от региона (по данным на {TRACKER_FP}). Список взят со справочной страницы, на кассе его не проверяли.
           </p>
           <p>
-            <strong>FTMO</strong> для резидентов России закрыта. Свежей проверки её кассы за последние 30 дней в наших данных нет, поэтому
-            список способов оплаты мы здесь не приводим — сверьте его на кассе FTMO.
+            <strong>FTMO</strong> для резидентов России закрыта, так что её касса важна только тем, кто живёт в других странах. Бесплатно:
+            карта (Visa, Mastercard, Diners Club, Discover), Apple Pay, Google Pay, Revolut Pay. С комиссией 3%: PayPal, Skrill и криптовалюта.
+            Банковский перевод — только в EUR/CZK, 2–5 рабочих дней (по данным на {FTMO_CHECKOUT}).
           </p>
           <p>Ни одна из фирм не упоминает «Мир» или карты российских банков, поэтому мы не утверждаем, что они сработают.</p>
-          <p className="ru-source-line">Источник: <a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips Get Started</a> ({TRACKER_FP}).</p>
+          <p className="ru-source-line">Источники: <a href={SRC.ftmoPayments} target="_blank" rel="noopener noreferrer">FTMO: payment methods</a> ({FTMO_CHECKOUT}); <a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips Get Started</a> ({TRACKER_FP}).</p>
         </div>
       </section>
 
@@ -634,6 +659,7 @@ export default function RussianFtmoVsFundingPipsPage() {
               <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>BrightFunded <RuAccessBadge firm="bright-funded" /></h3>
               <p className="ru-muted">Россия не названа в списке ограничений BrightFunded (по данным на {BRIGHT_COUNTRIES}). Взносы в EUR, как у FTMO.</p>
+              <p className="ru-muted" data-russian-bright-country-conflict="help-six-terms-five">Списки расходятся: справка называет шесть стран, включая Пакистан, а п. 2 условий — пять, без Пакистана; Россию не называет ни один (по данным на {BRIGHT_CONFLICT}).</p>
               <p className="ru-source-line"><Link href="/ru/obzor-bright-funded">Обзор BrightFunded</Link> · <Link href="/ru/ftmo-vs-bright-funded">FTMO или BrightFunded</Link> · <RuPendingLink href="/ru/fundingpips-vs-bright-funded">FundingPips или BrightFunded</RuPendingLink></p>
               <div className="ru-actions">
                 <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-ftmo-vs-fundingpips-alt-bright-funded" rel={goLinkRel('bright-funded')} className="btn-primary">Перейти в BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
@@ -642,7 +668,7 @@ export default function RussianFtmoVsFundingPipsPage() {
             <article className="ru-card" data-russian-alternative="crypto-fund-trader">
               <CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Crypto Fund Trader <RuAccessBadge firm="crypto-fund-trader" /></h3>
-              <p className="ru-muted">На Match-Trader фирма ограничений по странам не указывает (по данным на {CFT_ACCESS}). Подходит, если нужен упор на криптовалюту.</p>
+              <p className="ru-muted">На Match-Trader фирма ограничений по странам не указывает (по данным на {CFT_ACCESS}); MT5 закрыт только для резидентов США (по данным на {CFT_MT5}). Подходит, если нужен упор на криптовалюту.</p>
               <p className="ru-source-line"><RuPendingLink href="/ru/obzor-crypto-fund-trader">Обзор Crypto Fund Trader</RuPendingLink> · <Link href="/ru/luchshie-kripto-prop-firmy">крипто проп компании</Link></p>
               <div className="ru-actions">
                 <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-ftmo-vs-fundingpips-alt-cft" rel={goLinkRel('crypto-fund-trader')} className="btn-outline">Перейти в Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
@@ -676,12 +702,13 @@ export default function RussianFtmoVsFundingPipsPage() {
           <ul>
             {relevantProducts.map(product => <li key={`${product.firmSlug}:${product.productSlug}`}><a href={product.sourceUrl} target="_blank" rel="noopener noreferrer">{product.productName}: официальные условия</a> — {validCaptureDate(product.sourceCapturedAt) ? ruDate(product.sourceCapturedAt) : 'дата не подтверждена'}.</li>)}
             <li><a href={SRC.ftmoCountries} target="_blank" rel="noopener noreferrer">FTMO: кто может участвовать</a> — {COUNTRIES_CHECKED}.</li>
+            <li><a href={SRC.ftmoPayments} target="_blank" rel="noopener noreferrer">FTMO: способы оплаты</a> — Prop Firm Tracker, {FTMO_CHECKOUT}.</li>
             <li><a href={SRC.ftmoWithdraw} target="_blank" rel="noopener noreferrer">FTMO: запрос вознаграждения и способы выплаты</a> — {FTMO_PAYOUTS}.</li>
             <li><a href={SRC.ftmoObjectives} target="_blank" rel="noopener noreferrer">FTMO: Trading Objectives (правило стабильности 1-Step)</a> — {CONSISTENCY_CHECKED}.</li>
             <li><a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips: Get Started (страны, оплата, возврат взноса)</a> — {TRACKER_FP}.</li>
             <li><a href={SRC.fpRewardMethods} target="_blank" rel="noopener noreferrer">FundingPips: Reward Methods (способы, минимумы и сроки выплат, страны Pay to Card и банковского перевода)</a> — {FP_REWARD_METHODS}.</li>
             <li><a href={SRC.fpTerms} target="_blank" rel="noopener noreferrer">FundingPips: условия (ALL PAYMENTS ARE FINAL)</a> — {TRACKER_FP}.</li>
-            <li><a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограничения по странам</a> — {BRIGHT_COUNTRIES}; <a href={SRC.cftFaq} target="_blank" rel="noopener noreferrer">Crypto Fund Trader: FAQ</a> — {CFT_ACCESS}.</li>
+            <li><a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограничения по странам</a> — {BRIGHT_COUNTRIES}; <a href={SRC.brightTerms} target="_blank" rel="noopener noreferrer">условия BrightFunded, п. 2</a> — {BRIGHT_CONFLICT}; <a href={SRC.cftFaq} target="_blank" rel="noopener noreferrer">Crypto Fund Trader: FAQ</a> — {CFT_ACCESS}.</li>
           </ul>
           <p>Мы не тестировали регистрацию, KYC и оплату с российскими документами и картами. Если фирма меняет правила, сравнение нужно повторить перед оплатой.</p>
         </div>
@@ -701,7 +728,7 @@ export default function RussianFtmoVsFundingPipsPage() {
           </div>
           <div className="ru-actions">
             <RuGoLink firm="bright-funded" href={`/go/bright-funded?from=${FROM}-footer`} rel={goLinkRel('bright-funded')} className="btn-primary btn-glow">Перейти в BrightFunded <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
-            <RuGoLink firm="fundingpips" href={`/go/fundingpips?from=${FROM}-footer`} rel={goLinkRel('fundingpips')} className="btn-outline">Перейти в FundingPips <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="crypto-fund-trader" href={`/go/crypto-fund-trader?from=${FROM}-footer-cft`} rel={goLinkRel('crypto-fund-trader')} className="btn-outline">Перейти в Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
           </div>
         </div>
       </section>
