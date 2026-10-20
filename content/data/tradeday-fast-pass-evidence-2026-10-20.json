@@ -1,0 +1,36 @@
+{
+  "firmSlug": "tradeday",
+  "capturedAt": "2026-10-20",
+  "scope": "Rule and source-conflict recheck for the Fast Pass watch entries only. Rendered with headless Chrome ~11:45 Europe/Riga (US-IP box): homepage pricing toggled to 'PASS IN 3 DAYS' and each Fast Pass 'Funded Rules' panel opened. No product field or price is changed here; TradeDay product captures stay 2026-10-14 (prices are handled on data/key-facts-2026-10-20).",
+  "homepageCards": {
+    "sourceUrl": "https://www.tradeday.com/",
+    "sourceCapturedAt": "2026-10-20",
+    "productSlugs": [
+      "fast-pass-end-of-day"
+    ],
+    "quote": "End of Day 100k $350 $175 per month Profit Target $6,000 Trailing Max Drawdown $3,000 (calculated End of Day) ... Consistency 45% Min trading days 3",
+    "fundedRulesQuote": "Consistency: 45% | Min Days to Payout: 5 | ... | Max Payout Request Per Cycle: $1,875 | Profit split: 80/20 Funded Sim, 90/10 Funded Live",
+    "faqQuote": "Fast Pass is built for traders who want to get funded faster - pass in 3 days with no minimum trading day requirement"
+  },
+  "whatIsFastPass": {
+    "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405229-what-is-fast-pass-",
+    "sourceCapturedAt": "2026-10-20",
+    "productSlugs": [
+      "fast-pass-end-of-day"
+    ],
+    "quote": "There are no minimum trading days in the evaluation, if you can hit the target while staying disciplined and consistent, you can pass in 3 days.",
+    "capQuote": "For accounts opened on and after July 26 2026, the payout caps are as below: $1,500 on a 50K, $1,850 on a 100K $2,250 on a 150K."
+  },
+  "payoutPolicy": {
+    "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+    "sourceCapturedAt": "2026-10-20",
+    "productSlugs": [
+      "fast-pass-end-of-day"
+    ],
+    "quote": "For accounts opened on and after July 26 2026, accounts must satisfy the consistency objective: no single day can make up more than 45% of your total gross profits (gross profits being current profits + payouts) For accounts opened before July 26 2026, there is no consistency objective in the Funded Sim account.",
+    "capQuote": "For accounts opened on and after July 26 2026, the payout caps are as below: $750 on a 25K $1,500 on a 50K, $1,875 on a 100K $2,250 on a 150K."
+  },
+  "pricingObservation": {
+    "note": "Same session, for reference only (not applied): Quick Pay Intraday $100/$131/$240/$360 list -> $45/$59/$108/$162; Quick Pay EOD $120/$175/$285/$400 -> $54/$79/$129/$180; Fast Pass $130/$189/$350/$530 -> $65/$95/$175/$265 (50% OFF); 'For best pricing USE CODE \"TDNEW\"'."
+  }
+}
