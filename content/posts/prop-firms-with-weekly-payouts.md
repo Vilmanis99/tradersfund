@@ -50,7 +50,7 @@ type: "post"
 
 <p>FundedNext's Stellar 1-Step page says you "keep up to 95% of your performance reward, paid every 5 business days." The base share is 80%; the 95% needs paid add-ons. Five business days is a calendar week if no public holiday gets in the way, and it's the only weekly cycle on this list that comes standard with a one-phase challenge. The account needs 2 minimum trading days, and the $100K tier lists at $569.99.</p>
 
-<p><strong>The gotcha:</strong> the fast cycle doesn't speed up your fee refund. On new 1-Step accounts the refund comes with the third reward, not the first. If you're comparing it with Stellar 2-Step, which refunds the fee with the first reward but makes you wait 21 days and then pays every 14, you're trading cash-flow speed for a faster refund. Stellar Lite sits in between: on accounts bought or reset from 12 Oct 2026, the first reward is available after 10 business days.</p>
+<p><strong>The gotcha:</strong> the fast cycle doesn't speed up your fee refund. On new 1-Step accounts the refund comes with the third reward, not the first. If you're comparing it with Stellar 2-Step, which refunds the fee with the first reward but makes you wait 21 days and then pays every 14, you're trading cash-flow speed for a faster refund. Stellar Lite sits in between: on accounts bought or reset from 12 Oct 2026, the first reward is available after 10 business days and then every 10 business days (older accounts: 21 days, then every 14; FundedNext help center, checked 2026-10-20).</p>
 
 <h2 class="wp-block-heading"><strong>FundingPips: weekly at 80% on Pro, weekly at 60% on Standard</strong></h2>
 
