@@ -36,7 +36,7 @@ export default function AffiliateDisclosure({
       {hasAffiliate ? (
         <>
           We may earn a commission if you sign up via eligible links on this page,
-          at no cost to you. Our reviews are independent and not influenced by partners.{' '}
+          at no cost to you. Partnerships never change our scores; partner placements are labelled.{' '}
         </>
       ) : (
         <>

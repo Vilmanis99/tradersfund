@@ -5,7 +5,7 @@ import { getAllFirms } from '@/lib/firms'
 import { firmSlug } from '@/lib/firmSlug'
 import { REVIEWED_OUTBOUND_DESTINATIONS } from '@/lib/outboundDestinations'
 
-import { HOW_WE_MAKE_MONEY_UPDATED as PAGE_UPDATED } from '@/lib/trustPages'
+import { HOW_WE_MAKE_MONEY_UPDATED as PAGE_UPDATED, PARTNERSHIP_POLICY } from '@/lib/trustPages'
 
 // Partner lists below are read from content/data/firms.json and
 // lib/outboundDestinations.ts at build time.
@@ -14,7 +14,7 @@ const PATH = '/how-we-make-money'
 export const metadata: Metadata = {
   title: 'How We Make Money: Affiliate Links and Partners',
   description:
-    'Which prop firms pay Traders Fund Hub a commission, how our /go links work, and why a partnership never changes a firm’s score or position.',
+    'Which prop firms pay Traders Fund Hub a commission, how our /go links work, and why a partnership never changes a firm’s score.',
   alternates: { canonical: PATH },
   openGraph: { title: 'How We Make Money', url: PATH, type: 'article' },
 }
@@ -90,16 +90,17 @@ export default function HowWeMakeMoneyPage() {
             <li>The <code>/go</code> redirects are excluded from search indexing.</li>
           </ul>
 
-          <h2>What a partnership can’t buy</h2>
+          <h2>What a partnership can and can’t buy</h2>
+          <p data-partnership-policy>{PARTNERSHIP_POLICY.en}</p>
           <ul>
             <li><strong>Scores.</strong> An affiliate link adds 0 points to a firm’s 0–10 score. The score is based on published rules, payout terms, operating history and rule transparency. <Link href="/methodology">See how we score firms</Link>.</li>
             <li><strong>Product data.</strong> Prices, drawdown limits, profit splits and payout rules come from each firm’s own public pages, with the capture date shown. Partners and non-partners go through the same 30-day freshness check.</li>
-            <li><strong>Labelled placements.</strong> Some pages feature partners in a highlighted slot, such as a partner spotlight or a partner shortlist. Those slots are labelled as partner placements. They are not ranking positions, and they don’t change any score.</li>
+            <li><strong>Placement, labelled.</strong> A partner can appear in a highlighted slot, such as a partner spotlight or a partner shortlist, and its sign-up button can be more prominent. Those slots are labelled as partner placements, and they don’t change any score.</li>
             <li><strong>Discount codes.</strong> We only show a code that appears on the firm’s own material or that we have checked, with the date. We never make up codes.</li>
           </ul>
 
           <h2>Partner status next to score</h2>
-          <p>All {firms.length} tracked firms by current editorial score, so you can check for yourself whether partners get an edge:</p>
+          <p>All {firms.length} tracked firms by current editorial score, so you can check for yourself whether partners score higher:</p>
           <table className="tf-trust__table" data-score-vs-partner>
             <caption className="hidden-caption">Tracked prop firms by editorial score with affiliate status</caption>
             <thead><tr><th scope="col">Firm</th><th scope="col">Score</th><th scope="col">Pays us?</th></tr></thead>
