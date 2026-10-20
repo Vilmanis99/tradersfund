@@ -1305,3 +1305,25 @@
 .ru-p1-verdict__line { margin-top: 0.6rem; }
 .ru-hero.ru-hero--p1 h1 { font-size: clamp(1.8rem, 3.6vw, 2.35rem); }
 .ru-p1-verdict__line { font-size: 1rem; }
+/* RU Phase 2, mobile: sign-up CTA inside the first screen (390x844 / 360x780). Ordering and spacing only. */
+@media (max-width: 640px) {
+  .ru-hero.ru-hero--p1 { padding-top: 0.75rem; padding-bottom: 0.5rem; }
+  .ru-hero--p1 .ru-source-line { font-size: 0.72rem; line-height: 1.35; margin-bottom: 0.35rem; }
+  .ru-hero--p1 .ru-source-line .ru-source-details summary { font-size: 0.72rem; }
+  .ru-hero--p1 .ru-eyebrow { margin-bottom: 0.35rem; font-size: 0.7rem; }
+  .ru-hero.ru-hero--p1 h1 { font-size: 1.6rem; line-height: 1.15; margin-bottom: 0.45rem; }
+  .ru-hero--p1 .ru-lead { font-size: 0.95rem; line-height: 1.5; margin-bottom: 0.3rem; }
+  .ru-hero--p1 .ru-review-meta { margin-top: 0.25rem; font-size: 0.78rem; }
+  .ru-p1-article { padding-top: 0.5rem; }
+  .ru-p1-verdict { display: flex; flex-direction: column; padding: 0.9rem; }
+  .ru-p1-verdict > * { order: 5; }
+  .ru-p1-verdict > .ru-p1-verdict__head { order: 0; }
+  .ru-p1-verdict > .ru-p1-cta { order: 1; margin-top: 0.6rem; }
+  .ru-p1-verdict > .ru-p1-verdict__line { order: 2; }
+  .ru-p1-verdict__head > div:first-child { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.5rem; }
+  .ru-p1-verdict__name { margin: 0; }
+}
+@media (max-width: 380px) {
+  .ru-hero.ru-hero--p1 h1 { font-size: 1.5rem; }
+  .ru-hero--p1 .ru-lead { font-size: 0.92rem; line-height: 1.45; }
+}
