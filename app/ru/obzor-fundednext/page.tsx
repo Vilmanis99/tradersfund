@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { fundedNextOneStepPayoutLabel } from '@/lib/fundedNextPayout'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import Image from 'next/image'
@@ -802,6 +803,7 @@ export default function RussianFundedNextReviewPage() {
           <RussianFaq items={pageFaqs} />
         </div>
       </section>
+        <RuRelatedBlock path={PATH} />
       </article>
     </>
   )

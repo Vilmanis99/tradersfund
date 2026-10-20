@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import Link from '@/components/SafeLink'
 import {
   AlertTriangle,
@@ -477,6 +478,7 @@ export default function RussianTeamTradersReviewPage() {
           <RussianFaq items={datedFaqs} />
         </div>
       </section>
+      <RuRelatedBlock path={PATH} />
     </article>
   )
 }

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import FirmLogo from './FirmLogo'
 import Link from './SafeLink'
@@ -424,6 +425,7 @@ export default function RussianPartnerReview({
           <RussianFaq items={faqs} />
         </div>
       </section>
+      <RuRelatedBlock path={path} />
       </article>
     </>
   )

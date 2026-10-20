@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import type { ReactNode } from 'react'
 import Link from '@/components/SafeLink'
 import { ArrowRight, Scale, ShieldAlert, ShieldCheck } from 'lucide-react'
@@ -488,6 +489,7 @@ export default function RussianFtmoVsBrightFundedPage() {
           <RussianFaq items={faqs} />
         </div>
       </section>
+      <RuRelatedBlock path={PATH} />
     </>
   )
 }
