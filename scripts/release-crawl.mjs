@@ -1206,6 +1206,7 @@ const russianExpectations = new Map([
     title: 'Crypto Fund Trader: обзор 2026, отзывы и доступ из России',
     h1: 'Crypto Fund Trader (CFT): обзор и отзывы 2026',
     markers: [
+      'Автор: редакция Traders Fund Hub',
       'data-russian-review="crypto-fund-trader"',
       'data-russian-cft-verdict="summary"',
       'data-russian-cft-access="match-trader-no-restrictions"',

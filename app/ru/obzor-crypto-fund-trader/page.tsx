@@ -7,7 +7,7 @@ import { RuAccessBadge, RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
 import { getAllFirms, getChallengesByFirm, isChallengeFresh, minimumCostToFundedUsd, type Challenge } from '@/lib/firms'
 import { firmSlug } from '@/lib/firmSlug'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import cftCapture from '@/content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json'
 
@@ -164,7 +164,7 @@ export default function RussianCryptoFundTraderReviewPage() {
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
     dateModified,
-    author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
+    author: authorSchema('Traders Fund Hub'),
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
   const cta = (from: string, label: string, primary = true) => (
@@ -191,7 +191,7 @@ export default function RussianCryptoFundTraderReviewPage() {
             сбор за активацию у Break, доля 50% у Instant и скрытый рейтинг на Trustpilot — это то, что стоит знать до оплаты.
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
-            <span>Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link></span>
+            <span>Автор: редакция Traders Fund Hub</span>
             <span>Обновлено: {ruDate(dateModified)}</span>
           </div>
           <div className="ru-stats">
