@@ -9867,6 +9867,7 @@ function checkFundedNextComparisonOverlay() {
     {
       slug: 'fundednext-vs-fundingpips',
       nextSlug: 'ftmo-vs-fxify',
+      reviewedAt: '2026-10-20',
       categoryCount: 7,
       faqCount: 5,
       expected: [
@@ -9888,6 +9889,9 @@ function checkFundedNextComparisonOverlay() {
         'zero minimum trading days',
         'FundingPips imposes 5',
         'FundingPips treats news-window profit normally',
+        '85% on 1 Step Flex',
+        '3 products are non-refundable',
+        '100% monthly',
       ],
     },
     {
@@ -9930,8 +9934,8 @@ function checkFundedNextComparisonOverlay() {
       continue
     }
     if (
-      !block.includes("reviewedAt: '2026-08-14'") ||
-      !block.includes("challengeReviewedAt: '2026-08-14'")
+      !block.includes(`reviewedAt: '${spec.reviewedAt ?? '2026-08-14'}'`) ||
+      !block.includes(`challengeReviewedAt: '${spec.reviewedAt ?? '2026-08-14'}'`)
     ) {
       rows.push(`${spec.slug} review dates are not current`)
     }
