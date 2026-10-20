@@ -137,7 +137,7 @@ export default function RussianForexPropFirmsPage() {
     { label: 'условия BrightFunded: ограничения по стране', capturedAt: brightTerms.sourceCapturedAt },
   ]
   const hasFreshEvidence = allProducts.length > 0 && products.length === allProducts.length
-    && fundedNextAccess?.status === 'conflicting'
+    && fundedNextAccess?.status === 'restricted'
     && evidenceDates.every(item => isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
   const updatedAt = russianRouteDateModified(PATH, forexEvidence.capturedAt)
 
