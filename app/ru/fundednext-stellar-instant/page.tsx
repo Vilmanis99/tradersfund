@@ -30,6 +30,7 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/fundednext-stellar-instant'
 const TITLE = 'FundedNext Stellar Instant: правила и выплаты (2026)'
@@ -154,7 +155,7 @@ export default function RussianFundedNextInstantPage() {
     },
     {
       q: 'Подходит ли Stellar Instant русскоязычному трейдеру?',
-      a: 'Язык сам по себе не определяет доступность. Проверяются гражданство, проживание, документы, место подключения, способы оплаты и получения денег. Для пользователей из США опубликована отдельная конфигурация с Match-Trader. Проверка источников по России выявила противоречие, поэтому доступ резидентам РФ здесь не обещается: до оплаты нужен письменный ответ фирмы по конкретному профилю.',
+      a: 'Язык сам по себе не определяет доступность. Проверяются гражданство, проживание, документы, место подключения, способы оплаты и получения денег. Для пользователей из США опубликована отдельная конфигурация с Match-Trader. Резидентам России FundedNext недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026).',
     },
   ]
 
@@ -207,16 +208,17 @@ export default function RussianFundedNextInstantPage() {
           </div>
           <div className="ru-actions" data-russian-affiliate-disclosure="fundednext-instant-hero">
             {fundedNext?.affiliateUrl ? (
-              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-hero" rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-hero" rel="sponsored nofollow noopener" className="btn-outline">
                 Проверить Stellar Instant <ArrowRight size={15} aria-hidden="true" />
               </RuGoLink>
             ) : null}
             <Link href="#risk" className="btn-outline">Как работает просадка</Link>
             <Link href={instantFinderHref} className="btn-outline">Сравнить программы без челленджа</Link>
           </div>
+          <RuFundedNextAccessCaveat />
           <div className="ru-notice">
             <strong><Globe2 size={16} aria-hidden="true" /> Русская статья не подтверждает доступ по стране.</strong>{' '}
-            Для пользователей из США опубликована конфигурация с Match-Trader. По резидентам России источники дают противоречивые сведения. Для русскоязычных в других странах также нужно проверить гражданство, проживание, документы и способы перевода денег.
+            Для пользователей из США опубликована конфигурация с Match-Trader. Резидентам России FundedNext недоступна (подвал fundednext.com, по данным на 20.10.2026). Для русскоязычных в других странах также нужно проверить гражданство, проживание, документы и способы перевода денег.
           </div>
         </div>
       </section>
@@ -267,7 +269,7 @@ export default function RussianFundedNextInstantPage() {
                   <tr><td><strong>Запрос при росте на 5%</strong></td><td>Проверка в конце дня</td><td>Новая сделка отключает перевод до следующей проверки</td></tr>
                   <tr><td><strong>Запрос через 14 дней</strong></td><td>Рост от {instantEvidence.rewardEligibility.biWeeklyMinimumGrowthPct}% до менее 5%</td><td>Срок считается от начала цикла</td></tr>
                   <tr><td><strong>Лимит новых покупок</strong></td><td>{money(instantEvidence.purchaseAllocation.maximumUsd)}</td><td>Счета нельзя объединять</td></tr>
-                  <tr><td><strong>Россия / США</strong></td><td>конфликт / Match-Trader</td><td>Проверка профиля до оплаты</td></tr>
+                  <tr><td><strong>Россия / США</strong></td><td>недоступно / Match-Trader</td><td>Проверка профиля до оплаты</td></tr>
                 </tbody>
               </table>
             </div>
@@ -305,7 +307,7 @@ export default function RussianFundedNextInstantPage() {
             </div>
             <div className="ru-actions">
               {currentDeal ? (
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-free-trial" rel="sponsored nofollow noopener" className="btn-primary">
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-free-trial" rel="sponsored nofollow noopener" className="btn-outline">
                   Условия скидки {currentDeal.pct}% после Free Trial <ArrowRight size={14} aria-hidden="true" />
                 </RuGoLink>
               ) : null}
@@ -377,7 +379,7 @@ export default function RussianFundedNextInstantPage() {
             </p>
             <p className="ru-source-line">Способы вывода Stellar Instant выборочно проверены {instantEvidence.withdrawal.sourceCapturedAt}; остальные правила программы сохраняют собственные даты проверки.</p>
             <div className="ru-actions" data-russian-affiliate-disclosure="fundednext-instant-payout">
-              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-payout" rel="sponsored nofollow noopener" className="btn-primary">Проверить Stellar Instant <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-payout" rel="sponsored nofollow noopener" className="btn-outline">Проверить Stellar Instant <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               <Link href="/ru/vyplaty-prop-firm" className="btn-outline">Сравнить способы выплаты</Link>
               <a href={instantEvidence.postWithdrawalLossFloor.sourceUrl} target="_blank" rel="nofollow noopener" className="btn-outline">Лимит убытка после вывода</a>
             </div>
@@ -497,8 +499,8 @@ export default function RussianFundedNextInstantPage() {
               </p>
             </div>
             <div className="ru-notice">
-              <strong>Резидентам России нельзя обещать доступ.</strong>{' '}
-              По выборочной проверке ограничений от {accessCapturedAt} справка CFD не называет Россию, но раскрытие информации компании говорит, что российские резиденты не обслуживаются. Общая справка о выплатах отдельно ограничивает банковский перевод в Россию и относит Российскую Федерацию к списку ограничений для карт. Это не подтверждает доступ к Stellar Instant или конкретному способу вывода. Общий снимок рынка от {marketEvidence.capturedAt} остаётся старым; до оплаты нужен письменный ответ поддержки по конкретному профилю.
+              <strong>Резидентам России FundedNext недоступна.</strong>{' '}
+              Подвал fundednext.com и раскрытие информации компании говорят, что российские резиденты не обслуживаются (по данным на 20.10.2026); справка CFD по проверке от {accessCapturedAt} Россию не называет, но действующим мы считаем более строгий источник. Резидент РФ рискует получить отказ в обслуживании или в выплате. Общая справка о выплатах отдельно ограничивает банковский перевод в Россию и относит Российскую Федерацию к списку ограничений для карт. Общий снимок рынка от {marketEvidence.capturedAt} остаётся старым.
             </div>
             <div className="ru-actions">
               {accessEvidence?.sourceUrls.map((url, index) => <a key={url} href={url} target="_blank" rel="nofollow noopener" className="btn-outline">Источник доступа {index + 1}</a>)}
@@ -522,7 +524,7 @@ export default function RussianFundedNextInstantPage() {
                 <h3>FundedNext Stellar Instant</h3>
                 <p>{hasFreshProduct ? `Сравните ${pricedTiers.length} размера счёта по ценам от ${instant!.sourceCapturedAt}` : 'Цены требуют повторной проверки'}. До оплаты проверьте не только взнос, но и оба варианта запроса выплаты, платформу и доступность для своего профиля.</p>
                 <div className="ru-actions">
-                  <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-verdict" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+                  <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-verdict" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
                   <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор</Link>
                 </div>
               </article>

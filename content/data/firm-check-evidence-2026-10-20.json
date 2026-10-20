@@ -1,0 +1,229 @@
+{
+  "checkType": "daily-firm-check",
+  "checkedAt": "2026-10-20T09:19:00+03:00",
+  "timezone": "Europe/Riga",
+  "egress": "Box egress is a US IP. Only official first-party pages were read. Prices were not changed from any US-only page; codes seen only from the US IP are stored as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
+  "relatedBranch": "origin/data/daily-check-2026-10-20 (7fbd846) already carries today's Prop Firm Tracker recaptures for 11 firms (FTMO, FundedNext, FundingPips, BrightFunded, Alpha Capital, FXIFY, Maven, MFF, CTI, OFP, Apex access log). This file only adds what that branch does not cover.",
+  "changes": [
+    {
+      "firm": "Apex Trader Funding",
+      "field": "countriesRestricted",
+      "oldValue": null,
+      "newValue": [
+        "Afghanistan",
+        "Algeria",
+        "Azerbaijan",
+        "Bahrain",
+        "Bangladesh",
+        "Belarus",
+        "Benin",
+        "Brunei",
+        "Burkina Faso",
+        "Burundi",
+        "Cameroon",
+        "Central African Republic",
+        "Chad",
+        "China",
+        "Congo",
+        "Cote DIvoire",
+        "Cuba",
+        "Cyprus",
+        "Egypt",
+        "Eritrea",
+        "Gabon",
+        "Grenada",
+        "Guinea",
+        "Guinea-Bissau",
+        "Haiti",
+        "Iran",
+        "Iraq",
+        "Jersey",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kuwait",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
+        "Liberia",
+        "Libya",
+        "Madagascar",
+        "Maldives",
+        "Mauritania",
+        "Mauritius",
+        "Mongolia",
+        "Morocco",
+        "Mozambique",
+        "Myanmar",
+        "Namibia",
+        "Nepal",
+        "New Caledonia",
+        "Nicaragua",
+        "Niger",
+        "Nigeria",
+        "North Korea",
+        "Occupied Palestinian Territory",
+        "Oman",
+        "Pakistan",
+        "Papua New Guinea",
+        "Qatar",
+        "Republic of Moldova",
+        "Republic of the Congo",
+        "Reunion",
+        "Russia",
+        "Rwanda",
+        "Saint Pierre and Miquelon",
+        "Saudi Arabia",
+        "Senegal",
+        "Serbia",
+        "Somalia",
+        "South Africa",
+        "South Sudan",
+        "Sri Lanka",
+        "Sudan",
+        "Syria",
+        "Tanzania",
+        "Togo",
+        "Trinidad and Tobago",
+        "Tunisia",
+        "Turkey",
+        "Uganda",
+        "Ukraine",
+        "Uzbekistan",
+        "Vanuatu",
+        "Venezuela",
+        "Vietnam",
+        "Western Sahara",
+        "Yemen",
+        "Zambia",
+        "Zimbabwe"
+      ],
+      "sourceUrl": "https://apextraderfunding.com/help-center/getting-started/restricted-countries/",
+      "quote": "LIST OF COUNTRIES WE ARE NOT ABLE TO SERVICE AT THIS TIME WITH New or Additional ACCOUNTS: Afghanistan, Algeria, Azerbaijan, Bahrain, Bangladesh, Belarus, Benin, Brunei, Burkina Faso, Burundi, Cameroon, Central African Republic, Chad, China, Congo, Cote DIvoire, Cuba, Cyprus, Egypt, Eritrea, Gabon, Grenada, Guinea, Guinea-Bissau, Haiti, Iran, Iraq, Jersey, Jordan, Kazakhstan, Kenya, Kuwait, Latvia, Lebanon, Lesotho, Liberia, Libya, Madagascar, Maldives, Mauritania, Mauritius, Mongolia, Morocco, Mozambique, Myanmar, Namibia, Nepal, New Caledonia, Nicaragua, Niger, Nigeria, North Korea, Occupied Palestinian Territory, Oman, Pakistan, Papua New Guinea, Qatar, Republic of Moldova, Republic of the Congo, Reunion, Russia, Rwanda, Saint Pierre and Miquelon, Saudi Arabia, Senegal, Serbia, Somalia, South Africa, South Sudan, Sri Lanka, Sudan, Syria, Tanzania, Togo, Trinidad and Tobago, Tunisia, Turkey, Uganda, Ukraine, Uzbekistan, Vanuatu, Venezuela, Vietnam, Western Sahara, Yemen, Zambia, Zimbabwe",
+      "evidenceDate": "2026-10-20",
+      "method": "WebFetch reader (curl from box: HTTP 403 Cloudflare); JSON-LD dateModified 2026-09-10T21:25:00+00:00"
+    },
+    {
+      "firm": "E8 Markets",
+      "field": "regionalDiscountCode",
+      "oldValue": null,
+      "newValue": "E8 (30%, us-only-unconfirmed)",
+      "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+      "quote": "$100K One phase $488 $342 Save $146 with code E8 on first order",
+      "evidenceDate": "2026-10-20"
+    },
+    {
+      "firm": "FXIFY",
+      "field": "regionalDiscountCode",
+      "oldValue": null,
+      "newValue": "ONESTEP35 (35%, us-only-unconfirmed)",
+      "sourceUrl": "https://fxify.com/",
+      "quote": "NEW TRADERS: 35% OFF 1-PHASE Expires: 31st December 2026 ONESTEP35",
+      "evidenceDate": "2026-10-20",
+      "alsoSeen": "FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) Expires: 3rd November 2026 FUNDED40"
+    }
+  ],
+  "observationsNotApplied": [
+    {
+      "firm": "Maven",
+      "code": "ETERNAL",
+      "sourceUrl": "https://maventrading.com/",
+      "quote": "Trade Gold Eternal. 10% off with code CODE: ETERNAL",
+      "reason": "Product-specific code (Gold Eternal, not in our Maven dataset); firms.json has a single regional-code slot. Seen only from US IP."
+    },
+    {
+      "firm": "My Funded Futures",
+      "sourceUrl": "https://myfundedfutures.com/",
+      "quote": "New to MFFU? Get 50% off your first eval.",
+      "reason": "No code shown; CLUB (40%) still on banner: \"Save 40% On Any Plan With Code CLUB.\""
+    }
+  ],
+  "unchangedConfirmed": {
+    "restrictedCountries": {
+      "FTMO": "https://ftmo.com/en/faq/who-can-join-ftmo/ (Russian Federation listed; 75 entries all present)",
+      "FundedNext CFD list": "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds (20 entries unchanged, article dated August 27, 2026; Russia not named there, but fundednext.com footer names Russia - see data/daily-check-2026-10-20 41f3c05)",
+      "FundingPips": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started (WebFetch; \"FundingPips does not accept traders resident in Iran, Vietnam, or the United Arab Emirates (UAE).\")",
+      "BrightFunded": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded (Cuba Iran North Korea Syria Vietnam Pakistan)",
+      "E8 Markets": "https://help.e8markets.com/en/articles/5514278-accepted-countries (CFD list incl. Russia)",
+      "Alpha Capital": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+      "OFP Funding": "https://help.ofpfunding.com/country-restrictions/",
+      "Maven": "https://maventrading.com/faq",
+      "FXIFY": "https://fxify.com/faqs/all-faqs/what-countries-are-accepted/",
+      "Crypto Fund Trader": "https://cryptofundtrader.com/faq/ (\"There are currently no country restrictions for traders using Match-Trader.\")",
+      "Topstep": "https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep (33 ineligible incl. Russia)",
+      "My Funded Futures": "https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
+      "City Traders Imperium": "https://citytradersimperium.com/ footer (\"...North Korea (DPRK), Iran, Syria, Cuba, Russia...\")",
+      "TradeDay": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000123294-prohibited-countries (Modified on Thu, 1 Oct)",
+      "Lucid Trading": "https://support.lucidtrading.com/en/articles/11404636-restricted-countries",
+      "Tradeify": "https://help.tradeify.co/en/articles/10495888-rules-restricted-countries (WebFetch; 65 entries identical)",
+      "Take Profit Trader": "no restricted-country page found; russiaStatus stays unverified"
+    },
+    "prices": {
+      "Topstep": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions \"50K $49/month $95/month 100K $99/month $149/month 150K $199/month $229/month\" (matches challenges/topstep.json)",
+      "TradeDay": "https://www.tradeday.com/ all 12 tiers match (e.g. \"Intraday 25k $ 100 $ 45 per month\"); US-served page, no change recorded",
+      "E8 Markets": "https://e8markets.com/compare-simfi-funded-accounts E8 One list prices $48/$88/$188/$288/$488/$798/$1,598/$1,998 match"
+    },
+    "promos": {
+      "FundedNext": "STRTN still live, no end date: https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer",
+      "FundingPips": "HELLO still live: \"Apply the code HELLO to get 20% OFF your first purchase. This coupon excludes $100K accounts.\"",
+      "BrightFunded": "DOUBLE25 still on homepage: \"Double Up Offer: 25% Off + 15% Evaluation Profit Reward + Free Account Upon Payout Code: DOUBLE25\" (not checkout-verified)",
+      "Maven": "OMO still on homepage: \"40% OFF Omo Challenges with code CODE: OMO\"",
+      "My Funded Futures": "CLUB still (US IP)",
+      "Take Profit Trader": "NOFEE40 still (US IP): \"Get 40% Off For Life + Never Pay An Activation Fee! ... Use Code: NOFEE40\"",
+      "TradeDay": "TDNEW still (US IP): \"USE CODE \\\"TDNEW\\\"\" / \"Now up to 55% OFF!\""
+    }
+  },
+  "accessDataPoints": [
+    {
+      "url": "https://apextraderfunding.com/",
+      "method": "curl",
+      "httpStatus": 403,
+      "result": "Cloudflare block"
+    },
+    {
+      "url": "https://apextraderfunding.com/help-center/getting-started/restricted-countries/",
+      "method": "curl",
+      "httpStatus": 403,
+      "result": "Cloudflare block; readable via WebFetch reader"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+      "method": "curl",
+      "httpStatus": 403,
+      "result": "blocked; readable via WebFetch reader"
+    },
+    {
+      "url": "https://fundingpips.com/terms-and-conditions",
+      "method": "curl",
+      "httpStatus": 429,
+      "result": "rate-limited"
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/10495888-rules-restricted-countries",
+      "method": "curl",
+      "httpStatus": 403,
+      "result": "blocked; readable via WebFetch reader"
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "method": "curl",
+      "httpStatus": 403,
+      "result": "blocked; not re-read"
+    },
+    {
+      "url": "https://www.lucidtrading.com/",
+      "method": "curl",
+      "httpStatus": 403,
+      "result": "blocked"
+    },
+    {
+      "url": "https://help.blueguardianfutures.com/en/articles/10022321-restricted-countries-policy",
+      "method": "curl",
+      "httpStatus": 404,
+      "result": "not found (Blue Guardian is not in firms.json)"
+    }
+  ],
+  "stale": {
+    "apex-trader-funding": "challenge prices still captured 2026-09-14 (16 tiers, 1 priced); stays STALE. Only the restricted-country list was verified today."
+  }
+}

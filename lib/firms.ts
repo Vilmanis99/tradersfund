@@ -151,6 +151,8 @@ export interface Firm {
   payoutMethodsSourceUrl?: string
   payoutMethodsQuote?: string
   payoutMethodsCapturedAt?: string
+  /** Scope/exclusions for `payoutMethods` (e.g. countries excluded from a method), from the same official pages. */
+  payoutMethodsNote?: string
   /** Why `payoutFrequency` is null or scoped (e.g. only the first-payout wait is published). */
   payoutFrequencyNote?: string
   payoutFrequencySourceUrl?: string

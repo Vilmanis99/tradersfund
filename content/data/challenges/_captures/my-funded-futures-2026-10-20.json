@@ -1,0 +1,133 @@
+{
+  "firmSlug": "my-funded-futures",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T08:21:08+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
+  "egress": "Box egress is a US IP. Prices were compared against region-independent first-party price data where the firm publishes it (named in method); codes seen only from the US IP are recorded as regional, never as universal deals.",
+  "method": "Headless Chrome render of official plan and help pages",
+  "priceSource": "https://myfundedfutures.com/plans/* (rendered text)",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "rapid",
+      "prices": {
+        "25000": 145,
+        "50000": 209,
+        "100000": 356,
+        "150000": 463
+      }
+    },
+    {
+      "productSlug": "rapid-eod",
+      "prices": {
+        "25000": null,
+        "50000": 157
+      }
+    },
+    {
+      "productSlug": "flex",
+      "prices": {
+        "25000": null,
+        "50000": null
+      }
+    },
+    {
+      "productSlug": "pro",
+      "prices": {
+        "50000": 265,
+        "100000": 401,
+        "150000": 557
+      }
+    },
+    {
+      "productSlug": "builder",
+      "prices": {
+        "25000": 105,
+        "50000": 153
+      }
+    }
+  ],
+  "priceQuotes": [
+    "Every stored price was found in the live first-party page text (price-presence check across the pages listed in pagesRead); values unchanged."
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 33,
+    "foundVerbatimInLiveText": 9,
+    "notFoundVerbatim": 24,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
+  },
+  "changes": [],
+  "notes": [
+    "Price-presence check only. Rule table quotes not found verbatim are pipe-table transcriptions of the plan pages (formatting only).",
+    "Regional code CLUB not re-observed today; unchanged."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://myfundedfutures.com/plans/rapid",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:58.014Z"
+    },
+    {
+      "url": "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:58.428Z"
+    },
+    {
+      "url": "https://myfundedfutures.com/plans/pro",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:58.564Z"
+    },
+    {
+      "url": "https://myfundedfutures.com/plans/builder",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:58.578Z"
+    },
+    {
+      "url": "https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:13:58.734Z"
+    },
+    {
+      "url": "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:04.409Z"
+    },
+    {
+      "url": "https://marketing.myfundedfutures.com/terms",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:04.414Z"
+    },
+    {
+      "url": "https://help.myfundedfutures.com/en/articles/16727601-rapid-eod-25k-a-comprehensive-look",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:04.520Z"
+    },
+    {
+      "url": "https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:04.564Z"
+    },
+    {
+      "url": "https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:04.647Z"
+    },
+    {
+      "url": "https://myfundedfutures.com/blog/myfundedfutures-mffu-flex-plan",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:05.405Z"
+    },
+    {
+      "url": "https://myfundedfutures.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:10.924Z"
+    },
+    {
+      "url": "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:11.054Z"
+    }
+  ]
+}

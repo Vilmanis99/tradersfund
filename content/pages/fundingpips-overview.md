@@ -132,14 +132,14 @@ type: "page"
 <li data-start="2346" data-end="2382"><strong data-start="2346" data-end="2358">Minimum Profit:</strong> 1% of initial balance</li>
 <li data-start="2385" data-end="2407"><strong data-start="2385" data-end="2405">Splits by Model:</strong>
 <ul>
-<li data-start="2412" data-end="2489"><strong data-start="2412" data-end="2432">1-Step & 2-Step:</strong> 60% weekly, 80% bi-weekly, 90% On-Demand, 100% monthly</li>
-<li data-start="2494" data-end="2515"><strong data-start="2494" data-end="2502">Pro:</strong> 80% weekly</li>
+<li data-start="2412" data-end="2489"><strong data-start="2412" data-end="2432">2 Step Standard:</strong> 60% weekly, 80% bi-weekly or 100% On-Demand; <strong>1 Step Flex:</strong> 80% bi-weekly or 100% On-Demand; <strong>2 Step Flex:</strong> 80% or 95% bi-weekly, or 100% On-Demand (checked 2026-10-20; the former 90% On-Demand and 100% monthly routes were removed)</li>
+<li data-start="2494" data-end="2515"><strong data-start="2494" data-end="2502">Pro:</strong> 80% weekly or 100% On-Demand</li>
 <li data-start="2520" data-end="2545"><strong data-start="2520" data-end="2529">Zero:</strong> 95% bi-weekly</li>
 <li data-start="2550" data-end="2590"><strong data-start="2550" data-end="2573">Scaling (Hot Seat):</strong> 100% On-Demand</li>
 </ul>
 </li>
 </ul>
-<p data-start="2592" data-end="2737">To qualify for the <strong data-start="2607" data-end="2631">On-Demand 90% payout</strong> (1-Step & 2-Step), traders need a 35% consistency score (no single day exceeding 35% of total profits).</p>		
+<p data-start="2592" data-end="2737">To qualify for the <strong data-start="2607" data-end="2631">On-Demand 100% payout</strong>, traders need a 35% consistency score (no single day exceeding 35% of total profits) and at least 7 profitable days of 0.5% or more, and the account is placed under a 1% Striking System trigger.</p>		
 		<p>For more details about this prop firm, you can check out our full <a href="/blog/funding-pips-review">FundingPips review</a>.</p>		
 					<a href="/go/fundingpips" target="_blank" rel="nofollow">
 									Visit FundingPips

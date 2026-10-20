@@ -1,5 +1,5 @@
 {
-  "_note": "Researched 2026-10-14 from official sources. Same schema as firms.json. NOT loaded by the site: adding to firms.json auto-generates compare/OG pages and requires editorial score, logo and reviewUrl (null score breaks the build). Fill those, then move entries into firms.json. The5ers moved to firms.json on 2026-10-19 (re-research capture: content/data/challenges/_captures/the5ers-2026-10-19.json).",
+  "_note": "Researched 2026-10-14 from official sources. Same schema as firms.json. NOT loaded by the site: adding to firms.json auto-generates compare/OG pages and requires editorial score, logo and reviewUrl (null score breaks the build). Fill those, then move entries into firms.json. The5ers moved to firms.json on 2026-10-20 (data/the5ers-firms-2026-10-20; captures content/data/challenges/_captures/the5ers-2026-10-19.json and the5ers-2026-10-20.json).",
   "firms": [
     {
       "name": "Funded Trading Plus",

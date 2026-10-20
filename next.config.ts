@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next'
 import { getAllPosts, getAllPages } from './lib/mdx'
 import { RETIRED_POST_REDIRECTS } from './lib/retiredContent'
+import { AUTHORS } from './lib/authors'
 
 /**
  * WordPress legacy: every blog post used to live at the site root
@@ -119,7 +120,16 @@ function legacyRedirects() {
     { source: '/feed', destination: '/feed.xml', permanent: true },
     { source: '/comments/feed', destination: '/feed.xml', permanent: true },
     // WP author/tag archives → closest live hub.
+    // WP author archives: a known author goes straight to their /authors page
+    // in one hop (previously every /author/* URL landed on the /authors index).
+    // Unknown author slugs still fall back to the index.
+    ...AUTHORS.flatMap(author => [
+      { source: `/author/${author.slug}`, destination: `/authors/${author.slug}`, permanent: true },
+      { source: `/author/${author.slug}/:rest*`, destination: `/authors/${author.slug}`, permanent: true },
+    ]),
     { source: '/author/:slug*', destination: '/authors', permanent: true },
+    // Common disclosure URL; the affiliate model and partner list live here.
+    { source: '/affiliate-disclosure', destination: '/how-we-make-money', permanent: true },
     { source: '/tag/:slug*', destination: '/blog', permanent: true },
     // WP blog pagination (/page/2, /page/3 …) → blog index.
     { source: '/page/:n*', destination: '/blog', permanent: true },
