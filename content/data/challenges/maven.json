@@ -511,11 +511,12 @@
     },
     "assetClass": "prediction-markets",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-20",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
-      "Key-facts recheck 2026-10-20: the earlier max-loss conflict is resolved. /faqs now reads \"One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded\" and the /pricing $100k card reads \"Max loss Phase 1 5% Funded 8%\"; maxLossPct 5 (evaluation), fundedMaxLossPct 8. /faqs also states \"No daily drawdown limits\", so dailyLossPct stays null (the schema has no 'none' value). Log: content/data/challenges/_captures/maven-key-facts-2026-10-20.json"
+      "Key-facts recheck 2026-10-20: the earlier max-loss conflict is resolved. /faqs now reads \"One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded\" and the /pricing $100k card reads \"Max loss Phase 1 5% Funded 8%\"; maxLossPct 5 (evaluation), fundedMaxLossPct 8. /faqs also states \"No daily drawdown limits\", so dailyLossPct stays null (the schema has no 'none' value). Log: content/data/challenges/_captures/maven-key-facts-2026-10-20.json",
+      "sourceCapturedAt stays 2026-10-19 (the full Maven capture date shared by all 9 products, which the passing-rules audit requires); only maxLossPct/fundedMaxLossPct were rechecked on 2026-10-20, see _captures/maven-key-facts-2026-10-20.json."
     ]
   },
   {
@@ -572,11 +573,12 @@
     },
     "assetClass": "prediction-markets",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-20",
+    "sourceCapturedAt": "2026-10-19",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
-      "Key-facts recheck 2026-10-20: the earlier max-loss conflict is resolved. /faqs now reads \"One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded\" and the /pricing $100k card reads \"Max loss Phase 1 5% Funded 8%\"; maxLossPct 5 (evaluation), fundedMaxLossPct 8. /faqs also states \"No daily drawdown limits\", so dailyLossPct stays null (the schema has no 'none' value). Log: content/data/challenges/_captures/maven-key-facts-2026-10-20.json"
+      "Key-facts recheck 2026-10-20: the earlier max-loss conflict is resolved. /faqs now reads \"One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded\" and the /pricing $100k card reads \"Max loss Phase 1 5% Funded 8%\"; maxLossPct 5 (evaluation), fundedMaxLossPct 8. /faqs also states \"No daily drawdown limits\", so dailyLossPct stays null (the schema has no 'none' value). Log: content/data/challenges/_captures/maven-key-facts-2026-10-20.json",
+      "sourceCapturedAt stays 2026-10-19 (the full Maven capture date shared by all 9 products, which the passing-rules audit requires); only maxLossPct/fundedMaxLossPct were rechecked on 2026-10-20, see _captures/maven-key-facts-2026-10-20.json."
     ]
   }
 ]
