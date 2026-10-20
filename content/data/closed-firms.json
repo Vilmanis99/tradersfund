@@ -1,0 +1,74 @@
+{
+  "_note": "Source: /workspace/tradersfundhub/research/closed-firms-evidence.md (captured 2026-10-20). Only firms that file recommends are listed. Quotes marked basis 'secondary' come from trade press, not the firm. Keep 'published' false until editorial sign-off; while false the page is noindex and left out of the sitemap.",
+  "published": false,
+  "capturedAt": "2026-10-20",
+  "firms": [
+    {
+      "slug": "true-forex-funds",
+      "name": "True Forex Funds",
+      "section": "closed",
+      "status": "Closed (insolvency)",
+      "dateLabel": "Notice live by May 13, 2024 (the notice itself is undated)",
+      "date": "2024-05-13",
+      "quote": "We regret to inform you that True Forex Funds has ceased all operations and will be closing permanently due to financial insolvency.",
+      "quoteBasis": "primary",
+      "primarySource": "https://trueforexfunds.com/",
+      "archivedSource": "https://web.archive.org/web/20240513160250/https://trueforexfunds.com/",
+      "note": "The firm's own site still showed the notice on October 20, 2026."
+    },
+    {
+      "slug": "funded-engineer",
+      "name": "Funded Engineer",
+      "section": "closed",
+      "status": "Closed (said it would file for bankruptcy)",
+      "dateLabel": "Notice live by July 19, 2024 (the notice itself is undated)",
+      "date": "2024-07-19",
+      "quote": "It is with deep regret and a heavy heart that we announce the permanent closure of Funded Engineer.",
+      "quoteBasis": "primary",
+      "primarySource": "https://www.fundedengineer.com/",
+      "archivedSource": "https://web.archive.org/web/20240719090227/https://www.fundedengineer.com/",
+      "note": "The live domain is now parked; the archived copy shows the notice. We found no bankruptcy filing."
+    },
+    {
+      "slug": "surgetrader",
+      "name": "SurgeTrader",
+      "section": "closed",
+      "status": "Closed",
+      "dateLabel": "May 24, 2024 (the date given in its notice)",
+      "date": "2024-05-24",
+      "quote": "It is with deep regret that we announce that as of today, Friday, May 24, 2024, SurgeTrader has closed and ceased all operations.",
+      "quoteBasis": "secondary",
+      "quoteVia": "https://fxnewsgroup.com/forex-news/retail-forex/exclusive-prop-firm-surgetrader-closes/",
+      "primarySource": "https://x.com/SurgeTraderPro/status/1794124368248758608",
+      "archivedSource": "https://web.archive.org/web/20260610030832/https://fxnewsgroup.com/forex-news/retail-forex/exclusive-prop-firm-surgetrader-closes/",
+      "note": "No archived copy of the firm's own notice exists. The wording is quoted from FX News Group; SurgeTrader's own post that day is a bare link."
+    },
+    {
+      "slug": "myfundedfx-seacrestfunded",
+      "name": "MyFundedFX (later SeacrestFunded)",
+      "section": "closed",
+      "status": "Rebranded February 2025; prop trading closed February 2026",
+      "dateLabel": "Closure announced February 4, 2026",
+      "date": "2026-02-04",
+      "quote": "Only the Prop arm of the operations is closing, the CFD Brokerage remains open.",
+      "quoteBasis": "primary",
+      "primarySource": "https://x.com/seacrestmarkets/status/2019053758877942119",
+      "archivedSource": "https://web.archive.org/web/20260517232812/https://seacrestmarkets.io/closed",
+      "note": "myfundedfx.com now redirects to seacrestmarkets.io/closed, which says Seacrest Markets is no longer operating (undated). The February 2025 rebrand date comes from trade press. MyFundedFutures is a separate brand and is still operating."
+    },
+    {
+      "slug": "the-funded-trader",
+      "name": "The Funded Trader",
+      "section": "offline",
+      "status": "Offline since September–October 2026, no official statement",
+      "dateLabel": "Sites returning HTTP 402 since at least October 14, 2026",
+      "date": "2026-10-14",
+      "quote": "Payment required DEPLOYMENT_DISABLED",
+      "quoteBasis": "primary",
+      "primarySource": "https://www.thefundedtraderprogram.com/",
+      "archivedSource": "https://web.archive.org/web/20260615114059/https://www.thefundedtraderprogram.com/",
+      "note": "That quote is the error both official domains returned on October 20, 2026. The firm has not said it is closed; the last archived copy (June 2026) shows it still selling challenges. We delisted it on October 14, 2026.",
+      "quoteLabel": "What the official sites return"
+    }
+  ]
+}
