@@ -5,7 +5,8 @@
   "dataAsOf": "2026-10-20",
   "sources": [
     "content/data/firms.json#BrightFunded",
-    "content/data/challenges/bright-funded.json (sourceCapturedAt 2026-10-20)"
+    "content/data/challenges/bright-funded.json (sourceCapturedAt 2026-10-20)",
+    "https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded (официальная справка BrightFunded «Which Crypto Instruments can you trade at BrightFunded?», дата статьи 25.05.2026, «over 48 cryptocurrency pairs», проверено 20.10.2026)"
   ],
   "verdict": "BrightFunded — CFD-фирма с тремя оценками (1-Step, 2-Step Bright, 2-Step Classic), где взнос возвращается на каждом размере счёта. За счёт 100K она берёт €477–497, базовая доля трейдера — 80%, первая выплата — с 30-го дня, дальше раз в две недели (по данным на 20.10.2026).",
   "best": [
@@ -14,7 +15,7 @@
     "вы хотите вернуть взнос: по всем размерам и программам он отмечен как возвратный"
   ],
   "avoid": [
-    "вы торгуете криптовалютой или фьючерсами: в firms.json у BrightFunded только форекс, индексы и сырьё, все оценки — CFD",
+    "вы торгуете фьючерсами: все оценки BrightFunded — CFD; криптовалюта при этом есть в виде криптопар (более 48, по данным справки BrightFunded, проверка 20.10.2026)",
     "вам нужна быстрая первая выплата: первый запрос — не раньше 30-го дня",
     "вам нужна независимая оценка отзывов: средний рейтинг Trustpilot по BrightFunded мы сейчас не показываем"
   ],
