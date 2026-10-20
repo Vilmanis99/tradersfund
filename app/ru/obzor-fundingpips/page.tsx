@@ -138,7 +138,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           <h2>FundingPips: отзывы трейдеров</h2>
           {trustpilot ? (
             <p data-russian-fundingpips-trustpilot-date={trustpilot.date ?? ''}>
-              На <a href={TRUSTPILOT_URL} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> у FundingPips оценка {trustpilot.score}, отзывов: {trustpilot.count}
+              На <a href={TRUSTPILOT_URL} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> у FundingPips оценка {trustpilot.score}, отзывов: {trustpilot.count}{' '}
               (по данным на {trustpilot.date}). Высокая оценка при таком объёме говорит о массовой аудитории, но не о том, что
               ваша выплата пройдёт: отзывы не проверяют KYC и страну автора.
             </p>
