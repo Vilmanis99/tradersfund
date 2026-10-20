@@ -38,7 +38,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какое форекс-плечо у FundedNext?',
-    a: 'По источникам, проверенным 8 сентября 2026 года, у Stellar 1-Step и Stellar Instant — 1:30, у Stellar 2-Step и Stellar Lite — 1:100. В таблицах оценочного и следующего этапа Stellar 1-Step указано одинаковое форекс-плечо. Не переносите условия одного продукта на другой.',
+    a: 'По справке FundedNext о плече (по данным на 20.10.2026) у Stellar 1-Step — 1:30, у Stellar 2-Step и Stellar Lite — 1:100, причём на оценочном и следующем этапе форекс-плечо одинаковое. Stellar Instant в этой справке не указан — его плечо сверьте в условиях программы. Не переносите условия одного продукта на другой.',
   },
   {
     q: 'Плечо 1:100 лучше, чем 1:30?',
@@ -137,7 +137,7 @@ export default function RussianForexPropFirmsPage() {
     { label: 'условия BrightFunded: ограничения по стране', capturedAt: brightTerms.sourceCapturedAt },
   ]
   const hasFreshEvidence = allProducts.length > 0 && products.length === allProducts.length
-    && fundedNextAccess?.status === 'conflicting'
+    && fundedNextAccess?.status === 'restricted'
     && evidenceDates.every(item => isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
   const updatedAt = russianRouteDateModified(PATH, forexEvidence.capturedAt)
 
@@ -311,7 +311,7 @@ export default function RussianForexPropFirmsPage() {
           <aside className="ru-notice" data-russian-forex-correction="stellar-1-step-leverage">
             <strong>Исправление от 8 сентября 2026 года.</strong> Ранее мы ошибочно включили Stellar 1-Step
             в группу с плечом 1:100. В <a href={fundedNextEvidence.sourceUrls[1]} target="_blank" rel="nofollow noopener">таблицах FundedNext</a> для
-            оценочного и следующего этапа указано 1:30. Это исправление нашей записи, а не утверждение,
+            оценочного и следующего этапа указано 1:30 (перепроверено, по данным на 20.10.2026). Это исправление нашей записи, а не утверждение,
             что фирма изменила правило именно в этот день.
           </aside>
           <p>
