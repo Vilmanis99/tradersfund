@@ -6609,5 +6609,68 @@
       "lossLimitUnit": "usd",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     }
+  },
+  {
+    "name": "Hash Hedge",
+    "founded": null,
+    "assets": [
+      "Crypto",
+      "Indices",
+      "Commodities",
+      "Stocks"
+    ],
+    "maxAllocation": null,
+    "platforms": [
+      "Hash Hedge web terminal"
+    ],
+    "score": 7.0,
+    "logo": "/images/firms/hash-hedge.png",
+    "reviewUrl": "/ru/obzor-hash-hedge",
+    "officialUrl": "https://hashhedge.com/",
+    "affiliateStatus": "none",
+    "profitSplitPct": 80,
+    "payoutFrequency": "bi-weekly",
+    "payoutMethods": [
+      "Crypto"
+    ],
+    "drawdownType": null,
+    "minTradingDays": null,
+    "consistencyRule": null,
+    "scalingPlan": null,
+    "newsTradingAllowed": true,
+    "eaAllowed": false,
+    "overnightAllowed": "restricted",
+    "weekendAllowed": "restricted",
+    "copyTradingAllowed": null,
+    "countriesRestricted": [
+      "Cuba",
+      "Iran",
+      "North Korea",
+      "Syria",
+      "Yemen"
+    ],
+    "countriesRestrictedSourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+    "russiaStatus": "available",
+    "russiaSourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+    "russiaSourceQuote": "…residents, citizens, or entities located in or incorporated under the laws of any country, territory, or jurisdiction that is subject to an embargo, has been designated as a terrorist-supporting country, or is otherwise under comprehensive economic sanctions by the United Nations, the European Union, the UK Treasury, or the U.S. Government. This includes, but is not limited to, countries and regions such as Cuba, Iran, North Korea, Syria, Yemen.",
+    "legalEntity": "Empower Academy Ltd",
+    "headquarters": "Ras Al Khaimah, United Arab Emirates",
+    "country": "United Arab Emirates",
+    "regulation": null,
+    "corporateNote": "Empower Academy Ltd (UAE, reg. 01010596) operates the platform and evaluations; FinSmart Solution Ltd (Seychelles, reg. 246832) owes profit allocation and payouts under the Commercial Terms. Ras Al Khaimah address is from the company-written Trustpilot profile, not hashhedge.com. hashhedge.ru says it is not the official site.",
+    "corporateSourceUrl": "https://www.hashhedge.com/commercial-terms",
+    "corporateCapturedAt": "2026-10-19",
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": 4.5,
+    "trustpilotCount": 116,
+    "trustpilotUrl": "https://www.trustpilot.com/review/hashhedge.com",
+    "trustpilotCapturedAt": "2026-10-19",
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-10-19"
   }
 ]

@@ -1,5 +1,5 @@
 {
-  "_note": "Researched 2026-10-14 from official sources. Same schema as firms.json. NOT loaded by the site: adding to firms.json auto-generates compare/OG pages and requires editorial score, logo and reviewUrl (null score breaks the build). Fill those, then move entries into firms.json. The5ers re-researched 2026-10-19 (see captureFile). Hash Hedge added 2026-10-19 (see captureFile; slug hash-hedge, challenges/hash-hedge.json).",
+  "_note": "Researched 2026-10-14 from official sources. Same schema as firms.json. NOT loaded by the site: adding to firms.json auto-generates compare/OG pages and requires editorial score, logo and reviewUrl (null score breaks the build). Fill those, then move entries into firms.json. The5ers re-researched 2026-10-19 (see captureFile). Hash Hedge moved to firms.json on 2026-10-20 (capture: content/data/challenges/_captures/hash-hedge-2026-10-19.json; slug hash-hedge, challenges/hash-hedge.json).",
   "firms": [
     {
       "name": "The5ers",
@@ -279,76 +279,6 @@
       "trustpilotUrl": "https://www.trustpilot.com/review/blueguardian.com",
       "trustpilotCapturedAt": null,
       "russiaStatus": "unclear"
-    },
-    {
-      "name": "Hash Hedge",
-      "founded": null,
-      "assets": [
-        "Crypto",
-        "Indices",
-        "Commodities",
-        "Stocks"
-      ],
-      "maxAllocation": null,
-      "platforms": [
-        "Hash Hedge web terminal"
-      ],
-      "score": null,
-      "logo": "/images/firms/hash-hedge.png",
-      "reviewUrl": null,
-      "officialUrl": "https://hashhedge.com/",
-      "affiliateStatus": "none",
-      "affiliateUrl": "",
-      "profitSplitPct": 80,
-      "payoutFrequency": "bi-weekly",
-      "payoutMethods": [
-        "Crypto"
-      ],
-      "drawdownType": null,
-      "minTradingDays": null,
-      "consistencyRule": null,
-      "scalingPlan": null,
-      "newsTradingAllowed": true,
-      "eaAllowed": false,
-      "overnightAllowed": "restricted",
-      "weekendAllowed": "restricted",
-      "copyTradingAllowed": null,
-      "countriesRestricted": [
-        "Cuba",
-        "Iran",
-        "North Korea",
-        "Syria",
-        "Yemen"
-      ],
-      "countriesRestrictedSourceUrl": "https://www.hashhedge.com/terms-and-conditions",
-      "russiaStatus": "available",
-      "russiaSourceUrl": "https://www.hashhedge.com/terms-and-conditions",
-      "russiaSourceQuote": "…residents, citizens, or entities located in or incorporated under the laws of any country, territory, or jurisdiction that is subject to an embargo, has been designated as a terrorist-supporting country, or is otherwise under comprehensive economic sanctions by the United Nations, the European Union, the UK Treasury, or the U.S. Government. This includes, but is not limited to, countries and regions such as Cuba, Iran, North Korea, Syria, Yemen.",
-      "_russiaNote": "Russia is not named in the restricted-countries list (Terms and Conditions 4.3: Cuba, Iran, North Korea, Syria, Yemen; 'not limited to'). Belarus, Ukraine, Kazakhstan and EU states are not named either. Section 4.3 excludes sanctioned individuals and comprehensively sanctioned jurisdictions; Russia is not under comprehensive UN/EU/UK/US sanctions. Supporting, not eligibility evidence: official RU/UA/KZ site versions and the firm's own Moscow 2026 events (hashhedge.com). Not tested by signup. Terms last updated October 8, 2026; checked 2026-10-19.",
-      "legalEntity": "Empower Academy Ltd",
-      "headquarters": "Ras Al Khaimah, United Arab Emirates",
-      "country": "United Arab Emirates",
-      "regulation": null,
-      "corporateNote": "Empower Academy Ltd (UAE, reg. 01010596) operates the platform and evaluations; FinSmart Solution Ltd (Seychelles, reg. 246832) owes profit allocation and payouts under the Commercial Terms. Ras Al Khaimah address is from the company-written Trustpilot profile, not hashhedge.com. hashhedge.ru says it is not the official site.",
-      "corporateSourceUrl": "https://www.hashhedge.com/commercial-terms",
-      "corporateCapturedAt": "2026-10-19",
-      "ratings": {
-        "conditions": null,
-        "support": null,
-        "payouts": null,
-        "platform": null
-      },
-      "trustpilotScore": 4.5,
-      "trustpilotCount": 116,
-      "trustpilotUrl": "https://www.trustpilot.com/review/hashhedge.com",
-      "trustpilotCapturedAt": "2026-10-19",
-      "verifiedPayoutBadge": false,
-      "lastUpdated": "2026-10-19",
-      "_maxAllocationNote": "Left null: official pages conflict. hashhedge.com homepage and the user guide say up to $200,000 (largest tier on sale: Two-stage $200K at $1,393); the Commercial Terms footer says 'up to $150,000' and the affiliate page '$5,000 to $150,000'. Fill once Hash Hedge publishes one figure. Checked 2026-10-19.",
-      "_drawdownNote": "Left null: the guide expresses Max Total Loss as a % of the starting balance (static), while the homepage table labels Max Overall Drawdown 'Peak-to-trough loss limit across the full challenge' (trailing). Limits themselves: Two-stage 5% daily / 10% total (8% in Stage 2 and funded); One-stage 3% / 6%. Checked 2026-10-19.",
-      "captureFile": "content/data/challenges/_captures/hash-hedge-2026-10-19.json",
-      "pendingBlockers": "score (editorial) and reviewUrl (/ru/obzor-hash-hedge; RU review not on main) are required by the Firm type before this record can move into firms.json. Drop the '_' note keys on the move. Simulated move on 2026-10-19 added 4 audit errors: reviewUrl must be /blog/<slug> (RU-only review) plus 3 Apex source-hold comparison knock-ons.",
-      "_pendingNote": "Researched 2026-10-19. Evidence: content/data/challenges/_captures/hash-hedge-2026-10-19.json. Blocked from firms.json until Editorial sets score (rubric) and reviewUrl (/ru/obzor-hash-hedge); logo /images/firms/hash-hedge.png is the official hashhedge.com icon (SVG favicon, rendered to 192x192 PNG). Slug: hash-hedge (firmSlug('Hash Hedge')); challenge file challenges/hash-hedge.json. Drop the underscore note keys when moving to firms.json. countriesRestricted lists only the five jurisdictions the Terms name; the clause is 'not limited to'. overnight/weekend are 'restricted' because US Stocks accounts close daily; Crypto + TradFi allows both. Min trading days 3 (One-stage) / 5 per stage (Two-stage)."
     }
   ]
 }
