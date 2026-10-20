@@ -27,7 +27,8 @@ import {
   russianRouteDateModified,
 } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
-import { goLinkRel } from '@/lib/russiaAvailability'
+import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
@@ -153,7 +154,9 @@ export default function RussianCryptoPropFirmsPage() {
   ).sort((a, b) => {
     const aKey = (a.evidence.marketModel === 'crypto-native' ? 100 : 0) + a.firm.score
     const bKey = (b.evidence.marketModel === 'crypto-native' ? 100 : 0) + b.firm.score
-    return bKey - aKey || a.firm.name.localeCompare(b.firm.name)
+    // Russia access first (open, then unclear, then restricted), as on the other /ru rankings.
+    return RUSSIA_STATUS_ORDER[russiaStatusFor(a.evidence.firmSlug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.evidence.firmSlug)]
+      || bKey - aKey || a.firm.name.localeCompare(b.firm.name)
   })
   const payoutEvidence = cryptoMarketEvidence.payoutAlternative
   const evidenceDates = [
