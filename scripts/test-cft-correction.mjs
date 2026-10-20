@@ -11,8 +11,8 @@ assert.equal(products.length, 5, 'Retain unresolved programmes instead of deleti
 const date = new Date('2026-10-19T12:00:00Z')
 const freshAtCorrection = products.filter(product => isChallengeFresh(product, date))
 assert.deepEqual(freshAtCorrection.map(product => product.productSlug), ['evaluation', 'ascend', 'accelerated', 'instant', 'break'])
-assert.equal(freshAtCorrection.reduce((total, product) => total + product.accountSizes.filter(tier => tier.priceUsd > 0).length, 0), 24)
-assert.equal(products.reduce((total, product) => total + product.accountSizes.filter(tier => tier.priceUsd > 0).length, 0), 24)
+assert.equal(freshAtCorrection.reduce((total, product) => total + product.accountSizes.filter(tier => tier.priceUsd > 0).length, 0), 18)
+assert.equal(products.reduce((total, product) => total + product.accountSizes.filter(tier => tier.priceUsd > 0).length, 0), 18, 'Ascend is not purchasable (store API 2026-10-20), so its six terms fees are not priced tiers')
 for (const slug of ['evaluation', 'accelerated', 'instant']) {
   const product = bySlug[slug]
   assert.equal(product.sourceCapturedAt, '2026-10-19')
@@ -28,9 +28,9 @@ assert.equal(bySlug.ascend.profitSplitPct, null, 'Fixed award cannot become an 8
 for (const slug of ['ascend', 'break']) {
   assert.equal(bySlug[slug].sourceCapturedAt, '2026-10-19')
 }
-assert.deepEqual(bySlug.ascend.accountSizes.map(tier => tier.priceUsd), [39, 78, 195, 390, 780, 1560])
+assert.deepEqual(bySlug.ascend.accountSizes.map(tier => tier.priceUsd), [null, null, null, null, null, null], 'Not purchasable on 2026-10-20; terms ladder kept in notes')
 assert.deepEqual(bySlug.break.accountSizes.map(tier => tier.priceUsd), [70, 140, 200])
-assert.deepEqual(bySlug.ascend.accountSizes.map(tier => minimumCostToFundedUsd(bySlug.ascend, tier)), [39, 78, 195, 390, 780, 1560])
+assert.deepEqual(bySlug.ascend.accountSizes.map(tier => minimumCostToFundedUsd(bySlug.ascend, tier)), [null, null, null, null, null, null])
 assert.deepEqual(bySlug.break.accountSizes.map(tier => minimumCostToFundedUsd(bySlug.break, tier)), [208, 338, 528])
 assert.deepEqual(bySlug.break.accountSizes.map(tier => tier.activationFeeUsd), [138, 198, 328])
 const instantTier = bySlug.instant.accountSizes.find(tier => tier.sizeUsd === 10000)

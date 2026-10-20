@@ -265,32 +265,32 @@
       {
         "sizeUsd": 2000,
         "priceUsd": 17,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 5000,
         "priceUsd": 22,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 10000,
         "priceUsd": 44,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 20000,
         "priceUsd": 88,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 50000,
         "priceUsd": 220,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 100000,
         "priceUsd": 440,
-        "refundable": null
+        "refundable": false
       }
     ],
     "profitTargets": null,
@@ -315,7 +315,8 @@
     "sourceCapturedAt": "2026-10-19",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
+      "Rechecked 2026-10-20 (https://maventrading.com/faqs, FAQPage data). maxTradingDays 1 is kept: \"You have 24 hours to trade on your Instant Mini Funding Account. The timer starts when you place your first trade. You must meet the payout requirements and submit your withdrawal request within the 24-hour period.\" (24 hours from the first trade, so it can span two calendar dates). refundable null -> false: \"Your initial challenge fee is refunded after your third reward from your Simulated Funded Account. ... The refund policy applies to the following programs: 1 Step Simulated Funded Account, 2 Step Simulated Funded Account, 2 Step OMO Simulated Funded Account, 3 Step Simulated Funded Account, Buy Now, Pay Later Simulated Funded Account, Instant Funding\" (Mini is not listed), and Mini is a single-payout model (\"Only one - it's a single payout model. After your first withdrawal, your account will be closed.\"), so a third reward cannot occur. The Mini pricing card (https://maventrading.com/challenges/mini) shows no \"Refundable\" line."
     ]
   },
   {

@@ -90,32 +90,32 @@
       {
         "sizeUsd": 5000,
         "priceUsd": 59,
-        "refundable": true
+        "refundable": false
       },
       {
         "sizeUsd": 10000,
         "priceUsd": 89,
-        "refundable": true
+        "refundable": false
       },
       {
         "sizeUsd": 15000,
         "priceUsd": 119,
-        "refundable": true
+        "refundable": false
       },
       {
         "sizeUsd": 25000,
         "priceUsd": 199,
-        "refundable": true
+        "refundable": false
       },
       {
         "sizeUsd": 50000,
         "priceUsd": 379,
-        "refundable": true
+        "refundable": false
       },
       {
         "sizeUsd": 100000,
         "priceUsd": 549,
-        "refundable": true
+        "refundable": false
       }
     ],
     "profitTargets": {
@@ -147,9 +147,9 @@
       "Profit split headline value renders as \"up to 100%\" but its own description says \"Performance split is 80% to the trader as standard. Or upgrade at the checkout for a 90% split\" - recorded 80 per the description; the 100% figure is unexplained.",
       "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted.",
       "Consistency Rule 25% applies to the Funded stage only (\"N/A\" in Phase 1 and Phase 2).",
-      "Fee refundable per site-wide statement: \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\"",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json",
+      "Refundable true -> false (checked 2026-10-20). Official FXIFY blog https://fxify.com/blog/cheapest-path-funded-50k-fxify/ (published September 14, 2026): \"Is the evaluation fee refunded on all FXIFY programs? No. We reimburse the purchase fee with the first eligible payout request for One Phase, Two Phase Standard, and Three Phase programs, subject to their payout conditions. Lightning Challenge, Two Phase Classic, and Instant Funding do not use this structure.\" Its table lists \"Two Phase Classic | $379 | No\". The generic program-page sentence \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\" does not separate Classic from Standard; the blog does."
     ]
   },
   {
@@ -550,22 +550,22 @@
       {
         "sizeUsd": 10000,
         "priceUsd": 59,
-        "refundable": true
+        "refundable": false
       },
       {
         "sizeUsd": 25000,
         "priceUsd": 149,
-        "refundable": true
+        "refundable": false
       },
       {
         "sizeUsd": 50000,
         "priceUsd": 249,
-        "refundable": true
+        "refundable": false
       },
       {
         "sizeUsd": 100000,
         "priceUsd": 399,
-        "refundable": true
+        "refundable": false
       }
     ],
     "profitTargets": {
@@ -598,11 +598,11 @@
       "Leverage \"Up to 30:1\" - lower than the 50:1 available on the phase products.",
       "profitSplitPct null: only \"Performance Split\" = \"Up to 90%\" given, no stated base split.",
       "First Lightning payout is available 7 days after the first trade; subsequent withdrawals are every 14 days (bi-weekly).",
-      "Official Lightning FAQ confirms a 100% refund alongside the first withdrawal.",
       "Lightning permits overnight holding without restrictions; copy trading is explicitly prohibited.",
       "Platform value reads \"Platform 5\" (apparent CMS typo).",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json",
+      "Refundable true -> false (checked 2026-10-20). Official FXIFY blog https://fxify.com/blog/cheapest-path-funded-50k-fxify/ (published September 14, 2026): \"Is the evaluation fee refunded on all FXIFY programs? No. We reimburse the purchase fee with the first eligible payout request for One Phase, Two Phase Standard, and Three Phase programs, subject to their payout conditions. Lightning Challenge, Two Phase Classic, and Instant Funding do not use this structure.\" Its table lists \"Lightning Challenge | $249 | No\". Conflicting older product FAQ (https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-do-i-get-a-refund-alongside-my-first-withdrawal/, undated, still live 2026-10-20): \"Yes, you will receive a 100% refund alongside your first withdrawal\". The dated, more specific blog is used and the fee is treated as non-refundable (the conservative reading for true cost); confirm at checkout."
     ]
   },
   {

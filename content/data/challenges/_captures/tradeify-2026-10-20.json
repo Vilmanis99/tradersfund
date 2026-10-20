@@ -1,0 +1,25 @@
+{
+  "firmSlug": "tradeify",
+  "capturedAt": "2026-10-20",
+  "timezone": "Europe/Riga",
+  "egress": "Box egress is a US IP; prices recorded are the global list prices shown.",
+  "productDateMove": {
+    "checkedAtTimestamp": "2026-10-20T11:10+03:00",
+    "products": [
+      "growth-evaluation",
+      "select-flex",
+      "select-daily",
+      "lightning-funded"
+    ],
+    "result": "stored prices unchanged; sourceCapturedAt 2026-10-19 -> 2026-10-20",
+    "source": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference (article header: 'Updated today')",
+    "quotes": [
+      "Growth 25K $99 $60 Growth 50K $145 $95 Growth 100K $255 $169 Growth 150K $369 $229",
+      "Select 25K $109 $75 Select 50K $165 $109 Select 100K $265 $169 Select 150K $369 $239",
+      "Lightning 25K $345 Lightning 50K $492 Lightning 100K $660 Lightning 150K $796",
+      "All plans are one-time purchases with no recurring billing."
+    ],
+    "changeNotStored": "Select 300K (limited release) now reads '$349 (V2; V1 was $449)' (was $449 on 2026-10-19). 300K is still not stored as a tier (limited release, no resets, KYC first).",
+    "alsoNoted": "50% Consistency Add-on Select prices 135/205/329/459 (add-on, not stored)."
+  }
+}
