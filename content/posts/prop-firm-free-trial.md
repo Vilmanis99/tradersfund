@@ -46,7 +46,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>FTMO: three trials, halved targets, one new inactivity trap</strong></h2>
 
-<p>FTMO updated its trial page on 2026-10-16, according to the page's own modified date. You now pick a 1-Step, 2-Step or Instant Account trial, and each runs 14 days. The 2-Step trial halves the Phase 1 target from 10% to 5% and cuts minimum days from 4 to 2, while keeping the 5% daily loss and 10% static maximum loss. The 1-Step trial also halves the target to 5% but keeps the 3% daily loss, the 10% end-of-day trailing maximum loss and the 50% Best Day rule. The Instant trial has no target, a 3% daily loss, a 10% intraday trailing maximum loss and 30% consistency.</p>
+<p>FTMO updated its trial page on 2026-10-16, according to the page's own modified date. You now pick a 1-Step, 2-Step or Instant Account trial, and each runs 14 days. The 2-Step trial halves the Phase 1 target from 10% to 5% and cuts minimum days from 4 to 2, while keeping the 5% daily loss and 10% static maximum loss. The 1-Step trial also halves the target to 5% but keeps the 3% daily loss, the 10% end-of-day trailing maximum loss and the 50% consistency rule (on paid 1-Step accounts from 12 Oct 2026, measured against total profit). The Instant trial has no target, a 3% daily loss, a 10% intraday trailing maximum loss and 30% consistency.</p>
 
 <p><strong>The gotcha:</strong> FTMO's comparison table says each trial ends if "you don't trade in the first 7 days". If you open a trial on Friday and plan to start "next week", you can lose it before you've placed a trade. Also, the trial runs on MT4, MT5 and cTrader only. FTMO's FAQ now says TradingView isn't supported on a Free Trial, even though paid accounts offer it.</p>
 

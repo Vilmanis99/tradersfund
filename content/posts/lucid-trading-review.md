@@ -3,7 +3,7 @@ title: "Lucid Trading Review 2026: Pro, Flex & Direct Fees Checked"
 seoTitle: "Lucid Trading Review 2026: Fees from $89, Rules & Payouts"
 slug: "lucid-trading-review"
 date: "2026-07-28"
-modified: "2026-10-19 12:00:00"
+modified: "2026-10-20 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "LucidPro costs $123–$410, LucidFlex $89–$407 and LucidDirect $329–$836, all one-time; only the 16 LucidDaily tiers remain unpriced, and Daily's holding rules are unverified."
 seoDescription: "Lucid Trading review 2026: one-time fees from $89 (Flex), $123 (Pro) and $329 (Direct), EOD drawdown, 90% split, payout gates and the unpriced LucidDaily tiers."
@@ -87,7 +87,7 @@ type: "post"
 
 <p><strong>The DLL is a soft stop, not extra drawdown.</strong> LucidPro has no daily limit at $25K and uses $1,200, $1,800 and $2,700 caps at $50K, $100K and $150K. LucidDaily lets the buyer choose those same fixed caps or no DLL; reaching a DLL pauses trading until the next session, while reaching the MLL breaches the account.</p>
 
-<p><strong>Consistency depends on the product and stage.</strong> LucidFlex and LucidDaily evaluations use largest-day profit ÷ total profit ≤ 50%; a $1,500 best day against $3,000 total is exactly 50%. LucidPro applies 40% only during funded payout cycles, while LucidDirect applies a stricter 20%; a $500 best day on $3,000 total is 16.7% and passes that gate.</p>
+<p><strong>Consistency depends on the product and stage.</strong> Every evaluation measures largest-day profit ÷ total profit. LucidFlex evaluations now default to 40%, with 50% sold as a checkout add-on (Lucid's help article, updated 2026-10-19 and read 2026-10-20), so a $1,200 best day against $3,000 total is exactly 40%. LucidDaily evaluations use 50%, where a $1,500 best day on $3,000 is the limit. LucidPro applies 40% only during funded payout cycles, while LucidDirect applies a stricter 20%; a $500 best day on $3,000 total is 16.7% and passes that gate.</p>
 
 <p><strong>News trading changes on LucidDaily, but Lucid's own scope wording conflicts.</strong> The general Permitted Activities rule allows scheduled and unscheduled news trades on Pro, Flex and Direct, while a general Daily page broadly restricts red-folder events. The product-specific Daily funded rule narrows the 1-minute-before through 1-minute-after hard-breach window to releases that are both U.S. high-impact and USD. We retain <em>restricted</em> and follow the product-specific scope, but traders should confirm the exact calendar definition before trading news.</p>
 
@@ -148,7 +148,7 @@ type: "post"
 <ul class="wp-block-list">
   <li>12 of 28 tiers have verified one-time fees, from $89 (LucidFlex $25K) to $836 (LucidDirect $150K), with no monthly rebilling.</li>
 <li>All 7 documented paths use a 90% trader split; 6 paths publish a $0 activation fee, while LucidDirect's activation fee remains unverified.</li>
-  <li>LucidFlex has no DLL in evaluation or funded stages and uses a 50% evaluation consistency rule.</li>
+  <li>LucidFlex has no DLL in evaluation or funded stages and uses a 40% evaluation consistency rule by default, or 50% as a paid add-on.</li>
   <li>LucidDaily removes funded consistency entirely and permits day-1 requests after its buffer gate.</li>
   <li>The $25K-$150K lineup exposes both EOD and intraday evaluation drawdown choices.</li>
   <li>Lucid lists 12 supported platforms across CQG and Rithmic connections.</li>

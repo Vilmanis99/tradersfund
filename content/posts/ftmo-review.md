@@ -23,7 +23,7 @@ type: "post"
     <li>Fees are denominated in <strong>euros</strong> even though accounts are sized in dollars. The $100,000 tier's own promo tooltip reads "Special Deal! $100,000 FTMO Challenge for €439". We do not convert these to USD — FTMO publishes no USD fee.</li>
     <li>2-Step list prices: €1,080 / €540 / €345 / €250 / €89 for the $200K / $100K / $50K / $25K / $10K accounts. 1-Step: €999 / €499 / €319 / €199 / €79.</li>
     <li>Drawdown differs by product. The 2-Step max loss is static at 10% of the initial balance. The 1-Step uses an end-of-day trailing limit that "can only increase, but never decrease."</li>
-    <li>The Best Day (consistency) rule — no single day above 50% of your Positive Days' Profit — applies to the <strong>1-Step only</strong>. It is explicitly switched off on the 2-Step.</li>
+    <li>The 50% Consistency rule (no single day above 50% of your total profit, for orders from 12 Oct 2026) applies to the <strong>1-Step only</strong>. Going over it is not a breach, but you can't pass or withdraw until your best day is back at 50% or less. The 2-Step has no such rule.</li>
     <li>Rewards are on demand: FTMO says they "can be requested on demand after a minimum of 14 days from your first demo trade," so the first claim comes on day 14 or later and there is no fixed cycle after it (checked 2026-10-20).</li>
   </ul>
 </div>
@@ -84,7 +84,7 @@ type: "post"
       <th style="padding: 8px 12px; text-align: left;">Profit target</th>
       <th style="padding: 8px 12px; text-align: left;">Daily loss</th>
       <th style="padding: 8px 12px; text-align: left;">Max loss</th>
-      <th style="padding: 8px 12px; text-align: left;">Best Day rule</th>
+      <th style="padding: 8px 12px; text-align: left;">Consistency rule</th>
       <th style="padding: 8px 12px; text-align: left;">Split</th>
       <th style="padding: 8px 12px; text-align: left;">Fee refunded?</th>
     </tr>
@@ -118,7 +118,7 @@ type: "post"
 
 <p><strong>Daily loss differs too.</strong> The 2-Step allows 5% of the initial balance, computed as "Account balance at midnight CE(S)T minus 5% of the initial account balance" — $5,000 on a $100,000 account, anchored at the day open rather than at your intraday high. The 1-Step tightens this to 3% of the initial simulated capital, recalculated daily at 00:00 CE(S)T: $3,000 on a $100,000 account. The 1-Step's higher split is partly paid for with 40% less daily room.</p>
 
-<p><strong>Best Day (consistency) rule — 1-Step only.</strong> On the 1-Step, "Your most profitable trading day ('Best Day') must not account for more than 50% of your Positive Days' Profit." Worked example: if your winning days total $10,000 in closed profit, no single day may contribute more than $5,000; a $7,000 day means you must keep trading until the winning-day total reaches $14,000 so that day falls back to 50%. It is evaluated at 00:00 CE(S)T and applies to reward withdrawals, not just to passing. On the 2-Step this objective is switched off — FTMO's own 2-Step page ships the Best Day objective hidden, and the trading-objectives page lists it under the 1-Step only.</p>
+<p><strong>Consistency rule — 1-Step only.</strong> For accounts from orders created on or after 12 Oct 2026, or merged on or after that date, FTMO's Consistency rule replaces the old Best Day Rule: "To pass the FTMO Challenge: 1-Step or to be eligible for a Reward on an FTMO Account, the Consistency rule requires that your Best Day does not represent more than 50% of your total profit." Total profit is the sum of closed profits <em>and losses</em> across all trading days, so a losing day now raises the bar. FTMO's worked example: days of +$6,000, −$2,000, +$4,000 and +$2,000 give $10,000 total, the $6,000 best day is 60%, and total profit must reach $12,000 if that day stays the best. Going over the limit "is not treated as a rule breach": the account stays open, but you must keep trading until your best day is 50% or less before you pass or request a reward. Accounts from orders created before 12 Oct 2026 keep the legacy Best Day Rule, which measured the best day against Positive Days' Profit (winning days only). The 2-Step has neither rule; FTMO's <a href="/go/ftmo">trading objectives</a> list no consistency objective for it (checked 2026-10-20).</p>
 
 <p><strong>Minimum trading days.</strong> The 2-Step requires at least one position opened on 4 separate days, in each phase. FTMO publishes no minimum trading days for the 1-Step — the objective is hidden on that product page — so we record it as unstated rather than assume the 2-Step's 4 days carry across. Neither product has a time limit; the trading period is listed as unlimited for both.</p>
 
@@ -185,7 +185,7 @@ type: "post"
 
 <p><strong>Processing.</strong> After you submit the request, FTMO reviews the account and notifies you within 1–2 business days, and "the Reward is typically sent within 1–2 business days after the invoice is approved" — so roughly 2–4 business days end to end when nothing is queried. Payout methods are bank wire, instant transfer via Visa Direct / Mastercard Send (up to $20,000), Skrill (up to $3,000) and crypto, per FTMO's withdrawal FAQ rechecked on 2026-10-19. FTMO says it charges no extra commission on Reward withdrawals, but sets a minimum closed profit of $20 for bank wire and Visa Direct / Mastercard Send and $50 for crypto; budget for your own receiving-bank charges.</p>
 
-<p><strong>Two product-specific catches.</strong> On the 1-Step, "Rewards cannot be left on the account to grow the balance", and the 50% Best Day rule is applied at withdrawal as well as at passing — a lopsided winning day can block a reward request, not just a pass. On the 2-Step, the refunded fee arrives with that first reward withdrawal, so a trader who passes and then never withdraws never sees it. As a third-party sentiment check, FTMO holds 4.8 from 54,501 reviews on Trustpilot (<a href="https://www.trustpilot.com/review/ftmo.com">verified 2026-10-15</a>).</p>
+<p><strong>Two product-specific catches.</strong> On the 1-Step, "Rewards cannot be left on the account to grow the balance", and the 50% Consistency rule is applied at withdrawal as well as at passing. It isn't a breach, but a lopsided winning day can hold up a reward request, not just a pass. On the 2-Step, the refunded fee arrives with that first reward withdrawal, so a trader who passes and then never withdraws never sees it. As a third-party sentiment check, FTMO holds 4.8 from 54,501 reviews on Trustpilot (<a href="https://www.trustpilot.com/review/ftmo.com">verified 2026-10-15</a>).</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
@@ -193,7 +193,7 @@ type: "post"
   <li><strong>Per-tier pricing is published and stable.</strong> The current first-party pricing page showed the same list prices on 2026-09-29, with no login or geo-block required to review the offer. You can verify what you'll be charged before you reach checkout.</li>
   <li><strong>The 2-Step fee comes back.</strong> €540 on the $100,000 tier is refunded with your first reward withdrawal, which makes the effective cost of a successful attempt zero and turns the €675 break-even figure into a ceiling rather than a target.</li>
   <li><strong>Static 10% drawdown on the 2-Step.</strong> The $90,000 floor on a $100,000 account is fixed for the life of the account and does not tighten after a winning run — unlike the trailing models at Topstep and My Funded Futures.</li>
-  <li><strong>No Best Day rule on the 2-Step.</strong> The 50% consistency constraint is switched off on that product, so a single outsized winning day cannot block a pass or a withdrawal the way it can on the 1-Step.</li>
+  <li><strong>No consistency rule on the 2-Step.</strong> The 50% constraint applies to the 1-Step only, so a single outsized winning day cannot hold up a pass or a withdrawal the way it can on the 1-Step.</li>
   <li><strong>News trading is unrestricted during evaluation</strong> on both account types, and remains unrestricted on funded Swing accounts. The ±2-minute window applies only to funded Standard accounts.</li>
   <li><strong>No time limit on either product.</strong> The trading period is listed as unlimited for the 2-Step and the 1-Step, so a slow month costs you nothing but time — there is no expiry to trade against.</li>
   <li><strong>11 years of continuous operation</strong> since 2015, with a 4.8 Trustpilot score across 54,501 reviews as of 2026-10-15. A sample of 54,501 is large enough that the aggregate moves slowly, which makes it harder to manipulate in either direction.</li>
@@ -213,11 +213,11 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should pick FTMO</strong></h2>
 
-<p>The 2-Step at the $25,000 or $50,000 tier — €250 or €345, refundable — fits a part-time CFD trader running a small number of setups a day who wants a fixed loss floor to plan against. The static 10% drawdown means your risk model does not change as equity rises, the absence of a Best Day rule means one good day cannot cost you the pass, and 4 trading days per phase is a low bar. Budget €313 or €431 of gross profit as the notional cost of the attempt at the 80% base split. Treat 90% as a later-stage outcome, not the starting assumption: the Scaling Plan requires 4 months, 10% net simulated profit above starting balance, 2 processed Rewards, and a positive balance at scale-up.</p>
+<p>The 2-Step at the $25,000 or $50,000 tier — €250 or €345, refundable — fits a part-time CFD trader running a small number of setups a day who wants a fixed loss floor to plan against. The static 10% drawdown means your risk model does not change as equity rises, the absence of a consistency rule means one good day cannot hold up the pass, and 4 trading days per phase is a low bar. Budget €313 or €431 of gross profit as the notional cost of the attempt at the 80% base split. Treat 90% as a later-stage outcome, not the starting assumption: the Scaling Plan requires 4 months, 10% net simulated profit above starting balance, 2 processed Rewards, and a positive balance at scale-up.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid FTMO</strong></h2>
 
-<p>A trader whose edge concentrates into a few large days should avoid the 1-Step specifically: the 50% Best Day rule plus a 3% daily limit and an end-of-day trailing floor punish exactly that profile, and the €499 fee on the $100,000 tier is gone whether you pass or not. Anyone comparing headline splits should model FundedNext’s 80% base versus its paid 95% add-on and FundingPips’ conditional 100% scaling path instead of treating those ceilings as standard. Futures-only traders have no product here at all — FTMO sells CFD evaluations, so Topstep or My Funded Futures are the relevant comparisons.</p>
+<p>A trader whose edge concentrates into a few large days should avoid the 1-Step specifically: the 50% Consistency rule plus a 3% daily limit and an end-of-day trailing floor punish exactly that profile, and the €499 fee on the $100,000 tier is gone whether you pass or not. Anyone comparing headline splits should model FundedNext’s 80% base versus its paid 95% add-on and FundingPips’ conditional 100% scaling path instead of treating those ceilings as standard. Futures-only traders have no product here at all — FTMO sells CFD evaluations, so Topstep or My Funded Futures are the relevant comparisons.</p>
 
 <p><strong>US traders: check before you pay.</strong> ftmo.com declares an <code>hreflang="en-US"</code> alternate pointing at ftmo.oanda.com — a different domain and a different entity for the US market — and its region switcher routes "United States" there. We deliberately did not capture pricing or terms from that domain, so nothing in this review — none of the 10 euro prices, neither drawdown model, neither profit split — can be assumed to apply to a US-based trader. Verify on the storefront you are actually routed to.</p>
 
@@ -237,11 +237,11 @@ type: "post"
 
 <h3 class="wp-block-heading"><strong>What is the difference between the FTMO 1-Step and 2-Step Challenge?</strong></h3>
 
-<p>Beyond phase count: the 2-Step targets 10% then 5% with a 5% daily limit and a static 10% max loss, pays 80%, requires 4 trading days per phase, and refunds the fee. The 1-Step targets 10% once with a 3% daily limit and an end-of-day trailing 10% max loss, pays 90%, adds the 50% Best Day rule, and keeps the fee.</p>
+<p>Beyond phase count: the 2-Step targets 10% then 5% with a 5% daily limit and a static 10% max loss, pays 80%, requires 4 trading days per phase, and refunds the fee. The 1-Step targets 10% once with a 3% daily limit and an end-of-day trailing 10% max loss, pays 90%, adds the 50% Consistency rule (measured against total profit for orders from 12 Oct 2026), and keeps the fee.</p>
 
-<h3 class="wp-block-heading"><strong>How does the FTMO Best Day rule work?</strong></h3>
+<h3 class="wp-block-heading"><strong>How does the FTMO Consistency rule work?</strong></h3>
 
-<p>On the 1-Step only, your single most profitable day must not exceed 50% of your Positive Days' Profit. If winning days total $10,000, no day may contribute more than $5,000; exceed it and you must keep trading until the ratio falls back under half. It is checked at 00:00 CE(S)T and applies to reward withdrawals as well as to passing. The 2-Step has this objective disabled.</p>
+<p>On the 1-Step only, for orders from 12 Oct 2026, your single most profitable day must not exceed 50% of your total profit, which includes losing days. If total profit is $10,000, no day may contribute more than $5,000. Going over is not a rule breach: you keep trading until the ratio falls back to half or less. It is checked at 00:00 CE(S)T and applies to reward withdrawals as well as to passing. It replaced the Best Day Rule, which counted only winning days and still applies to accounts from orders placed before 12 Oct 2026. The 2-Step has no consistency objective.</p>
 
 <h3 class="wp-block-heading"><strong>How much profit do I need to break even on the fee?</strong></h3>
 

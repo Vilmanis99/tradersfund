@@ -17,7 +17,7 @@ type: "post"
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul class="wp-block-list">
-    <li>Weekly by default, with no split cut: FundedNext Stellar 1-Step (every 5 business days), FundingPips 2-Step Pro (weekly at 80%) and City Traders Imperium's 1-Step and 2-Step (first payout after 7 days, then weekly).</li>
+    <li>Weekly by default, with no split cut: FundedNext Stellar 1-Step (pays weekly, with the first reward after 5 business days), FundingPips 2-Step Pro (weekly at 80%) and City Traders Imperium's 1-Step and 2-Step (first payout after 7 days, then weekly).</li>
     <li>Weekly only if you pay: BrightFunded sells a Weekly add-on (payouts every 7 days) at checkout, and Crypto Fund Trader sells a Weekly Scholarship Request add-on listed at +20%.</li>
     <li>Weekly at a lower split: FundingPips 2-Step Standard pays weekly at 60%, against 80% bi-weekly and 100% on demand (which needs a 35% consistency score and 7 profitable days).</li>
     <li>Futures firms such as Take Profit Trader, TradeDay, Lucid, Tradeify and My Funded Futures go further: daily or on-demand requests once you meet their conditions. E8 Markets does the same on forex, and FTMO pays on demand after a 14-day first wait.</li>
@@ -117,7 +117,7 @@ type: "post"
 
 <ul class="wp-block-list">
   <li><strong>Lowest entry fee for a weekly 80% cycle:</strong> FundingPips 2-Step Pro, $422 for $100K, first request after 7 days.</li>
-  <li><strong>Weekly on a one-phase challenge:</strong> FundedNext Stellar 1-Step, every 5 business days, if you can wait until the third reward for the fee refund.</li>
+  <li><strong>Weekly on a one-phase challenge:</strong> FundedNext Stellar 1-Step, which pays weekly, with the first reward after 5 business days, if you can wait until the third reward for the fee refund.</li>
   <li><strong>Weekly from day 7 with a split that can grow:</strong> City Traders Imperium 1-Step or 2-Step, starting at 80%.</li>
   <li><strong>Weekly without a consistency rule, with Russia access:</strong> BrightFunded with the Weekly add-on. Confirm the first-payout date at checkout.</li>
   <li><strong>Skip:</strong> FundingPips 2-Step Standard's weekly 60% route, unless getting paid this week matters more than 40% of your profit. If your days are even, the 100% on-demand route pays more and has no fixed wait.</li>
@@ -128,7 +128,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>Which prop firms offer weekly payouts in 2026?</strong></h3>
-<p>FundedNext (Stellar 1-Step, every 5 business days), FundingPips (2-Step Pro at 80%, 2-Step Standard at 60%) and City Traders Imperium (1-Step and 2-Step) offer a weekly cycle without an add-on. BrightFunded and Crypto Fund Trader offer weekly cycles as paid add-ons. All were checked between 2026-10-14 and 2026-10-20.</p>
+<p>FundedNext (Stellar 1-Step pays weekly, with the first reward after 5 business days), FundingPips (2-Step Pro at 80%, 2-Step Standard at 60%) and City Traders Imperium (1-Step and 2-Step) offer a weekly cycle without an add-on. BrightFunded and Crypto Fund Trader offer weekly cycles as paid add-ons. All were checked between 2026-10-14 and 2026-10-20.</p>
 
 <h3 class="wp-block-heading"><strong>Which prop firm pays out the fastest?</strong></h3>
 <p>On request timing, the daily and on-demand firms: Take Profit Trader's PRO accounts, TradeDay Quick Pay, Lucid, Tradeify Select Daily, MFF Rapid, E8 Markets and FTMO (on demand once 14 days have passed since your first trade). Faster requests usually come with stricter conditions or, at TradeDay Quick Pay, a 50% split.</p>
