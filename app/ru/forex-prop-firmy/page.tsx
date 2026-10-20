@@ -46,7 +46,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какое форекс-плечо у FundedNext?',
-    a: `По справке FundedNext о плече${asOf(fundedNextForexCheckedOn)} у Stellar 1-Step — 1:30, у Stellar 2-Step и Stellar Lite — 1:100, причём на оценочном и следующем этапе форекс-плечо одинаковое. Stellar Instant в этой справке не указан — его плечо сверьте в условиях программы. Не переносите условия одного продукта на другой.`,
+    a: `По источникам${fundedNextForexCheckedOn ? `, проверенным ${fundedNextForexCheckedOn},` : ' FundedNext'} у Stellar 1-Step и Stellar Instant — 1:30, у Stellar 2-Step и Stellar Lite — 1:100. В таблицах оценочного и следующего этапа Stellar 1-Step указано одинаковое форекс-плечо. Не переносите условия одного продукта на другой.`,
   },
   {
     q: 'Плечо 1:100 лучше, чем 1:30?',
