@@ -30,8 +30,8 @@ import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-ftmo'
-const TITLE = 'FTMO проп: обзор 2026, цены, правила и доступ для русскоязычных'
-const DESCRIPTION = 'FTMO — проп-компания: обзор на русском, 1-Step и 2-Step, 10 цен в EUR, статическая и EOD-trailing просадка, возврат fee, выплаты и ограничение для Российской Федерации.'
+const TITLE = 'FTMO проп: обзор 2026 — цены, правила и доступ из России'
+const DESCRIPTION = 'FTMO проп-компания: обзор на русском — 1-Step и 2-Step, цены в EUR, статическая и EOD-просадка, возврат fee, выплаты и почему FTMO закрыта для резидентов РФ.'
 
 const OFFICIAL_URL = 'https://ftmo.com/'
 const COMPARISON_URL = 'https://ftmo.com/en/comparison-table/'
@@ -180,7 +180,7 @@ export default function RussianFtmoReviewPage() {
         <div className="ru-shell" data-russian-ftmo-review="search-to-decision">
           <RussianDataFreshnessNotice firmSlugs={['ftmo']} />
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Условия проверены {latestCapture}</div>
-          <h1>FTMO: обзор 2026 — 2 программы и 10 цен</h1>
+          <h1>FTMO проп: обзор 2026 — программы, цены и правила</h1>
           <p className="ru-lead">
             FTMO 1-Step и 2-Step различаются не только числом фаз. У них разные дневные лимиты, механика максимального убытка,
             правило Best Day, стартовая доля прибыли и возврат взноса. Для русскоязычного читателя первым фильтром остаётся страна,
@@ -478,7 +478,8 @@ export default function RussianFtmoReviewPage() {
               })}
             </div>
             <div className="ru-actions">
-              <Link href="/ru/fundednext-vs-bright-funded" className="btn-primary"><Scale size={15} aria-hidden="true" /> Сравнить FundedNext и BrightFunded</Link>
+              <Link href="/ru/ftmo-vs-bright-funded" className="btn-primary"><Scale size={15} aria-hidden="true" /> Сравнить FTMO и BrightFunded</Link>
+              <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline"><Scale size={15} aria-hidden="true" /> Сравнить FundedNext и BrightFunded</Link>
               <Link href="/ru/promokody-prop-firm" className="btn-outline">Проверить действующие предложения</Link>
             </div>
           </div>
