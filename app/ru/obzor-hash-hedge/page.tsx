@@ -195,8 +195,8 @@ export default function RussianHashHedgeReviewPage() {
             </p>
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="hash-hedge-review">
               <strong>Раскрытие.</strong> Ссылка на Hash Hedge на этой странице обычная: у сайта нет партнёрского договора с Hash
-              Hedge, хотя партнёрская программа у фирмы есть. Ссылки на BrightFunded и FundedNext в блоке альтернатив —
-              партнёрские, по ним мы можем получить комиссию.
+              Hedge, хотя партнёрская программа у фирмы есть. Ссылка на BrightFunded в блоке альтернатив —
+              партнёрская, по ней мы можем получить комиссию; ссылка на Crypto Fund Trader — обычная.
             </div>
             {officialCta('summary', 'Официальный сайт Hash Hedge')}
           </div>
@@ -418,15 +418,6 @@ export default function RussianHashHedgeReviewPage() {
                 <div className="ru-actions">
                   <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор</Link>
                   <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-hash-hedge-alternative-bright-funded" rel={goLinkRel('bright-funded')} className="btn-primary">Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-                </div>
-              </article>
-              <article className="ru-card" data-russian-hh-alternative="fundednext">
-                <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
-                <h3>FundedNext (CFD)</h3>
-                <p className="ru-muted">CFD-программы Stellar. Выплаты в USDT и USDC; доступ для РФ — по бейджу рядом с кнопкой.</p>
-                <div className="ru-actions">
-                  <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор</Link>
-                  <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-hash-hedge-alternative-fundednext" rel={goLinkRel('fundednext')} className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
                 </div>
               </article>
               <article className="ru-card" data-russian-hh-alternative="crypto-fund-trader">
