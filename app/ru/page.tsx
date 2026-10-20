@@ -102,7 +102,7 @@ export default function RussianHomePage() {
   const tableRows = getHomeComparisonRows('ru')
   const counters = getHomeCounters()
   const watchCount = getChallengeWatchEntries().length
-  const money = (row: (typeof tableRows)[number]) => new Intl.NumberFormat('ru-RU', { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
+  const money = (row: (typeof tableRows)[number]) => row.priceBreakdown ?? new Intl.NumberFormat('ru-RU', { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
 
   return (
     <div className="th-home ru-home ru-home--product-led" data-russian-home-layout="focused">
