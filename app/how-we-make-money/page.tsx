@@ -4,6 +4,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import { getAllFirms } from '@/lib/firms'
 import { firmSlug } from '@/lib/firmSlug'
 import { REVIEWED_OUTBOUND_DESTINATIONS } from '@/lib/outboundDestinations'
+import { getLanguageAlternates } from '@/lib/localizedRoutes'
 
 import { HOW_WE_MAKE_MONEY_UPDATED as PAGE_UPDATED, PARTNERSHIP_POLICY } from '@/lib/trustPages'
 
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   title: 'How We Make Money: Affiliate Links and Partners',
   description:
     'Which prop firms pay Traders Fund Hub a commission, how our /go links work, and why a partnership never changes a firm’s score.',
-  alternates: { canonical: PATH },
+  alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
   openGraph: { title: 'How We Make Money', url: PATH, type: 'article' },
 }
 
@@ -86,7 +87,7 @@ export default function HowWeMakeMoneyPage() {
           <ul>
             <li>Firm sign-up links go through one redirect, <code>/go/&lt;firm&gt;</code>. For a partner it opens our affiliate link, tagged <code>utm_source=tradersfundhub</code>, <code>utm_medium=affiliate</code> and the page placement, so the firm can credit the click. For every other firm it opens the official website without any tracking code. A few tables also link straight to a non-partner’s official site; those links are not tracked either.</li>
             <li>Partner links carry <code>rel=&quot;sponsored&quot;</code>, and pages that contain them carry an affiliate disclosure. Links to non-partners are not marked as sponsored.</li>
-            <li>For each click we record only the firm, the page placement and the language. That click record contains no IP address, browser details or referrer.</li>
+            <li>For each <code>/go</code> click we record only the firm, the click type (partner link, official site or source page), the button placement, the page language, and the path of the page on our site the click came from. That path is read from the browser’s Referer header, without any query string, and is recorded as unknown when the click came from another site or the header is missing. We don’t record IP addresses, browser details, cookies or other personal data.</li>
             <li>The <code>/go</code> redirects are excluded from search indexing.</li>
           </ul>
 
@@ -95,7 +96,7 @@ export default function HowWeMakeMoneyPage() {
           <ul>
             <li><strong>Scores.</strong> An affiliate link adds 0 points to a firm’s 0–10 score. The score is based on published rules, payout terms, operating history and rule transparency. <Link href="/methodology">See how we score firms</Link>.</li>
             <li><strong>Product data.</strong> Prices, drawdown limits, profit splits and payout rules come from each firm’s own public pages, with the capture date shown. Partners and non-partners go through the same 30-day freshness check.</li>
-            <li><strong>Placement, labelled.</strong> A partner can appear in a highlighted slot, such as a partner spotlight or a partner shortlist, and its sign-up button can be more prominent. Those slots are labelled as partner placements, and they don’t change any score.</li>
+            <li><strong>Placement.</strong> A partner can appear in a highlighted slot, such as a partner spotlight or a partner shortlist, and its sign-up button can be more prominent. Many of these slots carry a Partner label; every partner link is tagged <code>rel=&quot;sponsored&quot;</code>, and the page says we may earn a commission. None of this changes any score.</li>
             <li><strong>Discount codes.</strong> We only show a code that appears on the firm’s own material or that we have checked, with the date. We never make up codes.</li>
           </ul>
 
