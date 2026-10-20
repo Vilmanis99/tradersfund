@@ -74,18 +74,37 @@ export function buildVerdictFacts(firm: Firm, products: Challenge[]) {
   return facts
 }
 
-/** Short best-for / not-for lines derived only from captured product terms. */
+function priceRange(product: Challenge) {
+  const eur = product.accountSizes.map(size => size.priceEur).filter((v): v is number => v != null)
+  const usd = product.accountSizes.map(size => size.priceUsd).filter((v): v is number => v != null)
+  // One currency only; never mix EUR and USD in a range.
+  const [values, symbol] = eur.length && !usd.length ? [eur, '€'] : usd.length && !eur.length ? [usd, '$'] : [[], '']
+  if (!values.length) return null
+  const fmt = (v: number) => `${symbol}${v.toLocaleString('en-US', { maximumFractionDigits: 2 })}`
+  const lo = Math.min(...values), hi = Math.max(...values)
+  return lo === hi ? fmt(lo) : `${fmt(lo)}–${fmt(hi)}`
+}
+
+/**
+ * Best-for / not-for lines: EN Writer's copy as templates, every figure read
+ * from the product captures (drawdown from the product files, not the firm-level field).
+ */
 export function buildFitLines(firm: Firm, products: Challenge[]) {
   const best: string[] = []
   const avoid: string[] = []
   const staticProduct = products.find(product => product.drawdownType === 'static' && product.maxLossPct != null)
-  if (staticProduct) best.push(`A fixed loss floor: ${shortName(firm, staticProduct)} max loss is static at ${staticProduct.maxLossPct}%`)
+  if (staticProduct) best.push(`Traders who want a fixed floor: ${shortName(firm, staticProduct)} max loss is a static ${staticProduct.maxLossPct}%`)
   const refundable = products.find(product => product.accountSizes.length > 0 && product.accountSizes.every(size => size.refundable === true))
-  if (refundable) best.push(`Getting the fee back: the ${shortName(firm, refundable)} fee is refundable`)
+  if (refundable) best.push(`Getting your fee back: every ${shortName(firm, refundable)} account size is refundable`)
   const consistency = products.find(product => product.consistencyRulePct != null)
-  if (consistency) avoid.push(`Traders whose profit comes from a few big days: ${shortName(firm, consistency)} has a ${consistency.consistencyRulePct}% consistency rule`)
+  if (consistency) avoid.push(`Traders who win in a few big days: ${shortName(firm, consistency)} has a ${consistency.consistencyRulePct}% consistency rule`)
   const nonRefundable = products.find(product => product.accountSizes.length > 0 && product.accountSizes.every(size => size.refundable === false))
-  if (nonRefundable) avoid.push(`Anyone who wants the fee back on ${shortName(firm, nonRefundable)}: it is not refundable`)
+  if (nonRefundable) {
+    const range = priceRange(nonRefundable)
+    avoid.push(range
+      ? `${shortName(firm, nonRefundable)} buyers hoping for a refund: its ${range} fee isn't refundable`
+      : `${shortName(firm, nonRefundable)} buyers hoping for a refund: its fee isn't refundable`)
+  }
   if (products.length && products.every(product => product.assetClass === 'cfd')) avoid.push('Futures traders: every captured product is a CFD evaluation')
   return { best: best.slice(0, 2), avoid: avoid.slice(0, 2) }
 }
@@ -142,6 +161,20 @@ export default function ReviewVerdictBox({
 
       {verdict && <p className="review-verdict__line">{verdict}</p>}
 
+      <div className="review-verdict__quick">
+        <Link
+          href={`/go/${slug}?from=review-cta`}
+          prefetch={false}
+          rel={hasAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}
+          target="_blank"
+          className={hasAffiliate ? 'btn-primary btn-glow' : 'btn-primary'}
+          data-verdict-cta
+        >
+          {hasAffiliate ? `Visit ${firm.name}` : 'View official plans'} <ExternalLink size={14} aria-hidden="true" />
+        </Link>
+        <span className="review-verdict__quick-note">{hasAffiliate ? 'Partner link' : 'Official site · no affiliate deal'}</span>
+      </div>
+
       {(fit.best.length > 0 || fit.avoid.length > 0) && (
         <div className="review-verdict__fit">
           {fit.best.length > 0 && (
@@ -168,15 +201,6 @@ export default function ReviewVerdictBox({
       )}
 
       <div className="review-verdict__cta">
-        <Link
-          href={`/go/${slug}?from=review-cta`}
-          prefetch={false}
-          rel={hasAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}
-          target="_blank"
-          className={hasAffiliate ? 'btn-primary btn-glow' : 'btn-primary'}
-        >
-          {hasAffiliate ? `Visit ${firm.name}` : 'View official plans'} <ExternalLink size={14} aria-hidden="true" />
-        </Link>
         {compare && <Link href={compare.href} className="btn-outline">{compare.label}</Link>}
         {checked && (
           <a href={sourcesHref} className="review-verdict__checked">✓ Data checked {formatDate(checked)}</a>

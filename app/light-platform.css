@@ -766,3 +766,22 @@ html .p1-collapsible--wide { max-width: none; margin-top: 1.25rem; }
   html .compare-pick__facts { font-size: 0.85rem; }
   html .compare-pick__facts :is(th, td) { padding: 8px 9px; }
 }
+html .review-verdict__quick { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 14px; }
+html .review-verdict__quick .btn-primary { min-height: 44px; }
+html .review-verdict__quick-note, html .compare-pick__cta span { font-size: 0.8rem; color: var(--muted); }
+html .compare-pick__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 10px; }
+html .compare-pick__cta .btn-primary { min-height: 40px; padding-block: 0.45rem; font-size: 0.9rem; }
+/* Key facts fit the column at 360–390: fixed layout, narrow label column, wrapping values. */
+html .compare-pick__facts { table-layout: fixed; }
+html .compare-pick__facts :is(th, td) { overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  html .compare-pick__facts thead th { font-size: 0.8rem; }
+  html .compare-pick__facts tbody th { width: 30%; font-size: 0.78rem; }
+  html .compare-pick__facts :is(th, td) { padding: 7px 7px; }
+  html .compare-pick__facts td { font-size: 0.82rem; }
+  html .review-verdict__line { margin: 12px 0 10px; }
+  html .review-verdict__quick { margin-bottom: 12px; }
+  html .review-verdict__quick .btn-primary { flex: 0 0 auto; }
+}
+html .compare-pick__facts tr > :first-child { width: 32%; }
+@media (max-width: 640px) { html .compare-pick__facts tr > :first-child { width: 30%; } }

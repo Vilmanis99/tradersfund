@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import { ExternalLink } from 'lucide-react'
+import { firmSlug } from '@/lib/firmSlug'
 import type { Challenge, Firm } from '@/lib/firms'
 
 /**
@@ -46,54 +49,78 @@ function range(values: number[], suffix = '%') {
   return lo === hi ? `${lo}${suffix}` : `${lo}–${hi}${suffix}`
 }
 
+function displayName(firm: Firm, product: Challenge) {
+  return product.productName.toLowerCase().startsWith(firm.name.toLowerCase()) ? `${firm.name} ${shortName(firm, product)}` : product.productName
+}
+
+const CADENCE: Record<string, string> = { weekly: 'weekly', 'bi-weekly': 'every 14 days', monthly: 'monthly', 'on-demand': 'on demand' }
+const TRAIL: Record<string, string> = { 'eod-trailing': 'trails at end of day', trailing: 'trails', 'balance-based': 'is balance-based' }
+
+function allocation(firm: Firm) {
+  const n = Number(String(firm.maxAllocation ?? '').replace(/[^0-9.]/g, ''))
+  return Number.isFinite(n) && n > 0 ? n : null
+}
+
+/**
+ * "Pick A if / Pick B if" lines. EN Writer's copy is the template; each line is
+ * emitted only when the current captures support it, with every number read
+ * from the data. No cross-currency price comparisons.
+ */
 export function buildPickLines(a: Side, b: Side) {
-  const lines: Record<'a' | 'b', string[]> = { a: [], b: [] }
   const sides = { a, b }
-  const other = (key: 'a' | 'b') => (key === 'a' ? 'b' : 'a')
-
-  const splitA = best(a.products, split, (x, y) => x > y), splitB = best(b.products, split, (x, y) => x > y)
-  if (splitA && splitB && splitA.value !== splitB.value) {
-    const key = splitA.value > splitB.value ? 'a' : 'b'
-    const win = key === 'a' ? splitA : splitB, lose = key === 'a' ? splitB : splitA
-    lines[key].push(`you want the higher base split: ${win.value}% on ${shortName(sides[key].firm, win.product)} (${sides[other(key)].firm.name} tops out at ${lose.value}%)`)
-  }
-
-  const payA = best(a.products, firstPayout, (x, y) => x < y), payB = best(b.products, firstPayout, (x, y) => x < y)
-  if (payA && payB && payA.value !== payB.value) {
-    const key = payA.value < payB.value ? 'a' : 'b'
-    const win = key === 'a' ? payA : payB, lose = key === 'a' ? payB : payA
-    lines[key].push(`you want an earlier first payout: day ${win.value} on ${shortName(sides[key].firm, win.product)} (${sides[other(key)].firm.name}: day ${lose.value})`)
-  }
-
-  const allStatic = (side: Side) => evaluations(side).length > 0 && evaluations(side).every(product => product.drawdownType === 'static')
-  if (allStatic(a) !== allStatic(b)) {
-    const key = allStatic(a) ? 'a' : 'b'
-    const trailing = evaluations(sides[other(key)]).filter(product => product.drawdownType !== 'static')
-    lines[key].push(`you want a static max loss on every evaluation (${sides[other(key)].firm.name} ${trailing.map(product => shortName(sides[other(key)].firm, product)).join(', ')} ${trailing.length === 1 ? 'trails' : 'trail'})`)
-  }
-
-  const cheapA = cheapest100k(a), cheapB = cheapest100k(b)
-  if (cheapA && cheapB && cheapA.currency === cheapB.currency && cheapA.value !== cheapB.value) {
-    const key = cheapA.value < cheapB.value ? 'a' : 'b'
-    const win = key === 'a' ? cheapA : cheapB, lose = key === 'a' ? cheapB : cheapA
-    lines[key].push(`you want the lower $100K fee: ${money(win.value, win.currency)} vs ${money(lose.value, lose.currency)}`)
-  }
-
-  if (a.products.length !== b.products.length) {
-    const key = a.products.length > b.products.length ? 'a' : 'b'
-    lines[key].push(`you want more paths to choose from: ${sides[key].products.length} captured products vs ${sides[other(key)].products.length}`)
-  }
+  const lines: Record<'a' | 'b', string[]> = { a: [], b: [] }
+  const other = (key: 'a' | 'b') => (key === 'a' ? 'b' : 'a') as 'a' | 'b'
 
   for (const key of ['a', 'b'] as const) {
-    const mine = sides[key].firm.platforms ?? [], theirs = new Set(sides[other(key)].firm.platforms ?? [])
-    const only = mine.filter(platform => !theirs.has(platform))
-    if (only.length) lines[key].push(`you trade on ${only.join(' or ')} (not listed by ${sides[other(key)].firm.name})`)
-  }
+    const me = sides[key], them = sides[other(key)]
+    const myEvals = evaluations(me), theirEvals = evaluations(them)
 
-  const yearA = Number(a.firm.founded), yearB = Number(b.firm.founded)
-  if (yearA && yearB && yearA !== yearB) {
-    const key = yearA < yearB ? 'a' : 'b'
-    lines[key].push(`operating history matters to you: since ${sides[key].firm.founded} (${sides[other(key)].firm.name}: ${sides[other(key)].firm.founded})`)
+    // Rewards on demand vs a fixed cadence on the same number of phases.
+    const onDemand = myEvals.find(product => product.payoutFrequency === 'on-demand' && firstPayout(product) != null)
+    const peer = onDemand && theirEvals.find(product => product.phases === onDemand.phases && product.payoutFrequency && product.payoutFrequency !== 'on-demand' && firstPayout(product) != null)
+    if (onDemand && peer) {
+      lines[key].push(`you want rewards on demand: claim from day ${firstPayout(onDemand)}; ${displayName(them.firm, peer)} waits ${firstPayout(peer)} days, then pays ${CADENCE[peer.payoutFrequency!]}`)
+    }
+
+    // Higher split from day one.
+    const top = best(myEvals, split, (x, y) => x > y)
+    const theirSplits = theirEvals.map(split).filter((v): v is number => v != null)
+    if (top && theirSplits.length === theirEvals.length && theirSplits.length && theirSplits.every(v => v < top.value)) {
+      const same = theirSplits.every(v => v === theirSplits[0])
+      lines[key].push(same
+        ? `you want a ${top.value}% split from day one: ${displayName(me.firm, top.product)} pays ${top.value}%; every ${them.firm.name} challenge starts at ${theirSplits[0]}%`
+        : `you want a ${top.value}% split from day one: ${displayName(me.firm, top.product)} pays ${top.value}%; ${them.firm.name} challenges start at ${Math.max(...theirSplits)}% or less`)
+    }
+
+    // Overnight and weekend holding, product by product.
+    const allows = (side: Side, rule: 'overnight' | 'weekend') => side.products.length > 0 && side.products.every(product => product.rules?.[rule] === true)
+    const restricts = (side: Side, rule: 'overnight' | 'weekend') => side.products.length > 0 && side.products.every(product => product.rules?.[rule] === 'restricted' || product.rules?.[rule] === false)
+    if (allows(me, 'overnight') && allows(me, 'weekend') && restricts(them, 'overnight') && restricts(them, 'weekend')) {
+      lines[key].push(`you hold trades overnight or over the weekend: ${me.firm.name} allows both; ${them.firm.name} restricts both`)
+    }
+
+    // Weekly payouts.
+    const weekly = myEvals.find(product => product.payoutFrequency === 'weekly' && firstPayout(product) != null)
+    const theirFirst = best(theirEvals, firstPayout, (x, y) => x < y)
+    if (weekly && theirFirst && !theirEvals.some(product => product.payoutFrequency === 'weekly')) {
+      lines[key].push(`you want weekly payouts: ${displayName(me.firm, weekly)} pays weekly, with the first claim from day ${firstPayout(weekly)}; ${them.firm.name}'s first claim is day ${theirFirst.value}`)
+    }
+
+    // One-step with a fixed floor (drawdown from the product files).
+    const myOne = myEvals.find(product => product.phases === 1 && product.drawdownType === 'static' && product.maxLossPct != null)
+    const theirOne = theirEvals.find(product => product.phases === 1 && product.drawdownType && product.drawdownType !== 'static')
+    if (myOne && theirOne) {
+      lines[key].push(`you want a one-step with a fixed floor: ${displayName(me.firm, myOne)}'s ${myOne.maxLossPct}% max loss is static; ${displayName(them.firm, theirOne)} ${TRAIL[theirOne.drawdownType!] ?? 'is not static'}`)
+    }
+
+    // Scale: published maximum allocation; TradingView-style platform fallback.
+    const mine = allocation(me.firm), theirs = allocation(them.firm)
+    if (mine && theirs && mine > theirs) {
+      lines[key].push(`you plan to scale: ${me.firm.name} lists a ${me.firm.maxAllocation} maximum allocation vs ${them.firm.name}'s ${them.firm.maxAllocation}`)
+    } else if (!mine || !theirs) {
+      const only = (me.firm.platforms ?? []).filter(platform => !(them.firm.platforms ?? []).includes(platform))
+      if (only.length) lines[key].push(`you trade on ${only.join(' or ')}: ${me.firm.name} supports it; ${them.firm.name} lists ${(them.firm.platforms ?? []).join(', ')}`)
+    }
   }
   return { a: lines.a.slice(0, 3), b: lines.b.slice(0, 3) }
 }
@@ -111,7 +138,7 @@ export function buildSideFacts(side: Side) {
   ]
 }
 
-export default function ComparePickVerdict({ a, b, checkedAt }: { a: Side; b: Side; checkedAt?: string | null }) {
+export default function ComparePickVerdict({ a, b, checkedAt, campaign }: { a: Side; b: Side; checkedAt?: string | null; campaign: string }) {
   const picks = buildPickLines(a, b)
   const factsA = buildSideFacts(a), factsB = buildSideFacts(b)
   const rows = factsA.map((fact, index) => ({ label: fact.label, a: fact.value, b: factsB[index].value })).filter(row => row.a || row.b)
@@ -130,6 +157,19 @@ export default function ComparePickVerdict({ a, b, checkedAt }: { a: Side; b: Si
               {picks[key].length
                 ? <ul>{picks[key].map(line => <li key={line}>{line}</li>)}</ul>
                 : <p className="compare-pick__none">No captured field favours {side.firm.name} on its own.</p>}
+              <div className="compare-pick__cta">
+                <Link
+                  href={`/go/${firmSlug(side.firm.name)}?from=compare-${campaign}`}
+                  prefetch={false}
+                  rel={side.firm.affiliateUrl ? 'sponsored nofollow noopener' : 'nofollow noopener'}
+                  target="_blank"
+                  className="btn-primary"
+                  data-pick-cta={firmSlug(side.firm.name)}
+                >
+                  Visit {side.firm.name} <ExternalLink size={13} aria-hidden="true" />
+                </Link>
+                <span>{side.firm.affiliateUrl ? 'Partner link' : 'Official site · no affiliate deal'}</span>
+              </div>
             </div>
           )
         })}

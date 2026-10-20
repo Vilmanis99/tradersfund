@@ -221,14 +221,16 @@ export default async function ComparePage({ params }: Props) {
       {/* ═══════════════════════════════ BODY ═══════════════════════════════ */}
       <section className="home-section" style={{ paddingTop: '2.5rem' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 1.5rem' }}>
+          {phase1Preview && <AffiliateDisclosure />}
           {phase1Preview && (
             <ComparePickVerdict
+              campaign={canonical}
               a={{ firm: firmA, products: getChallengesByFirm(firmSlug(firmA.name)).filter(product => isChallengeFresh(product)) }}
               b={{ firm: firmB, products: getChallengesByFirm(firmSlug(firmB.name)).filter(product => isChallengeFresh(product)) }}
               checkedAt={comparisonCheckedAt ? formatCheckedDate(comparisonCheckedAt) : null}
             />
           )}
-          <AffiliateDisclosure />
+          {!phase1Preview && <AffiliateDisclosure />}
 
           <ComparisonHero
             firmA={firmA}
