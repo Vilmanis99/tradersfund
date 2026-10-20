@@ -48,7 +48,9 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>All 22 fees below are list prices from the5ers.com program pages, captured 2026-10-19. None is a coupon price. The homepage carried a "$100K For $149" Summer plan banner on the same day; we could not confirm it at checkout, so it is not in this table. Check the live price on the <a href="/go/the5ers">official The5ers site</a> before you pay.</p>
+<p>All 22 fees below are list prices from the5ers.com program pages, captured 2026-10-19. None is a coupon price. The limited-time Summer Plan is not in this table either, because its price is unverified (see below). Check the live price on the <a href="/go/the5ers">official The5ers site</a> before you pay.</p>
+
+<p><strong>The Summer Plan price is unverified.</strong> On 2026-10-20 The5ers' homepage advertised "Industry's Lowest $100K For $149", and its Summer Plan page headlined "$100K Only $149 – Limited Time Only" with no end date. On the same page, the 1-Step $100K table lists "Price $249" and the rules say "One-time Fee: $249". The page's FAQ puts the $149 figure on a 2-Step 10%/5% version, with an 8%/5% version at $179, and we could not match either to a price table. Checkout sits behind a sign-in wall, so we could not see what it charges. Treat the checkout price as unverified until you see it yourself (checked 2026-10-20).</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
   <caption class="hidden-caption">The5ers programs, account sizes and fees</caption>
@@ -108,6 +110,22 @@ type: "post"
 <h3 class="wp-block-heading"><strong>Bootcamp</strong></h3>
 
 <p>Bootcamp swaps one fee for two. You pay a small entry fee, pass three 6% steps with a 5% maximum loss and no daily limit, and then pay a second fee to activate the funded account. On the $100K plan that is $95 now and $205 later, $300 in total if you pass. The funded stage then tightens to a 4% maximum loss and a 3% daily pause, with a 5% target. The Bootcamp table also says each active account must use a different strategy.</p>
+
+<h3 class="wp-block-heading"><strong>Summer Plan 1-Step (limited time)</strong></h3>
+
+<p>The Summer Plan page (checked 2026-10-20) lists different rules from High Stakes. The 1-Step $100K account has:</p>
+
+<ul class="wp-block-list">
+  <li>a 10% target</li>
+  <li>a 6% maximum loss on the initial balance</li>
+  <li>a 3% daily loss, set at the end of each day from the higher of equity or balance</li>
+  <li>a 50% consistency rule</li>
+  <li>1:100 leverage</li>
+  <li>a 75% split after passing</li>
+  <li>a limit of 2 active accounts</li>
+</ul>
+
+<p>The same rules carry over to the funded account. On $100K, the 50% rule means a single $5,000 day needs $10,000 of total profit before a payout. Hitting the daily loss terminates the account permanently. The page also lets you copy trades between your own Summer Plan accounts, an exception to the general copy-trading ban below.</p>
 
 <h3 class="wp-block-heading"><strong>Rules that apply across programs</strong></h3>
 
@@ -218,6 +236,9 @@ type: "post"
 
 <h3 class="wp-block-heading"><strong>Is The5ers available in India?</strong></h3>
 <p>India is not among the 31 forbidden territories in The5ers' Terms (checked 2026-10-19). We have not verified an Indian checkout, KYC or payout, so confirm with support before you pay.</p>
+
+<h3 class="wp-block-heading"><strong>Is the The5ers $100K Summer Plan $149?</strong></h3>
+<p>Not confirmed. The homepage advertises $149, but the Summer Plan page's 1-Step $100K table lists $249. The page's FAQ links $149 to a 2-Step version, and we could not see the checkout price behind the sign-in wall (checked 2026-10-20).</p>
 
 <h3 class="wp-block-heading"><strong>Does The5ers refund the challenge fee?</strong></h3>
 <p>Unclear. The High Stakes table shows "Refund" at the Pro Trader stage, but the Terms say evaluation fees are non-refundable once trading starts. Get the condition from The5ers in writing before you count on it.</p>
