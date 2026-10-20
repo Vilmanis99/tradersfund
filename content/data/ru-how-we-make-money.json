@@ -1,0 +1,11 @@
+{
+  "_note": "Copy for /ru/kak-my-zarabatyvaem, supplied by RU Writer. Until 'published' is true AND title, description, h1 and at least one section are filled in, the route returns 404 and the RU footer links to the EN /how-we-make-money. Flipping 'published' to true (with copy present) is the only switch needed. The partner list and the partnership policy sentence come from firms.json and lib/trustPages.ts, not from this file.",
+  "published": false,
+  "updated": null,
+  "title": "",
+  "description": "",
+  "h1": "",
+  "lead": "",
+  "partnersHeading": "",
+  "sections": []
+}

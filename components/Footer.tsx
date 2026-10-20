@@ -6,6 +6,7 @@ import { TrendingUp } from 'lucide-react'
 import NewsletterForm from './NewsletterForm'
 import AnalyticsPreferencesButton from './AnalyticsPreferencesButton'
 import { PARTNERSHIP_POLICY } from '@/lib/trustPages'
+import { ruDisclosureHref } from '@/lib/ruDisclosure'
 
 type FooterProps = {
   firmCount: number
@@ -60,7 +61,7 @@ export default function Footer({
     { title: 'О сайте', links: [
       { label: 'О нас', href: '/about' },
       { label: 'Как оцениваем фирмы', href: '/methodology' },
-      { label: 'Как мы зарабатываем', href: '/how-we-make-money' },
+      { label: 'Как мы зарабатываем', href: ruDisclosureHref() },
       { label: 'Исправления', href: '/corrections' },
       { label: 'Авторы', href: '/authors' },
       { label: 'Контакты', href: '/contact' },
