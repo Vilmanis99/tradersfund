@@ -401,7 +401,7 @@ export default function RussianHashHedgeReviewPage() {
                 <thead><tr><th></th><th>BrightFunded</th><th>Hash Hedge</th><th>Crypto Fund Trader</th></tr></thead>
                 <tbody>
                   <tr><th scope="row">Рынки</th><td>Форекс, индексы, сырьё</td><td>Крипто и TradFi-фьючерсы, акции США</td><td>Крипто, форекс, индексы</td></tr>
-                  <tr><th scope="row">Платформы</th><td>MT5, DXTrade, cTrader</td><td>Свой веб-терминал</td><td>Match-Trader, MT5, Bybit</td></tr>
+                  <tr><th scope="row">Платформы</th><td>MT5, DXTrade, cTrader</td><td>Свой веб-терминал</td><td>Match-Trader, MT5</td></tr>
                   <tr><th scope="row">Доля</th><td>{brightSplit != null ? `${brightSplit}%` : 'требует проверки'}</td><td>80% (90% с опцией)</td><td>80% в оценочных программах</td></tr>
                   <tr><th scope="row">Цикл выплат</th><td>{brightFrequency ? frequencyRu[brightFrequency] ?? brightFrequency : 'требует проверки'}</td><td>раз в 14 дней</td><td>после 15 торговых или раз в 30 календарных дней</td></tr>
                   <tr><th scope="row">Оплата</th><td>Крипта и карта</td><td>Только крипта</td><td>Карта, PayPal, Apple/Google Pay, крипта</td></tr>
