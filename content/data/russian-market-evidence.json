@@ -465,13 +465,15 @@
     },
     {
       "firmSlug": "fundednext",
-      "status": "conflicting",
+      "status": "restricted",
       "sourceCapturedAt": "2026-10-01",
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
         "https://fundednext.com/company",
         "https://helpfutures.fundednext.com/en/articles/14274473-are-any-countries-restricted-on-fundednext-futures",
-        "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits"
+        "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+        "https://fundednext.com/",
+        "https://fundednext.com/api_docs/terms-of-service"
       ],
       "sourceObservations": [
         {
@@ -498,13 +500,24 @@
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
           "sourceCapturedAt": "2026-10-01",
           "quote": "Lao People's Democratic Republic | Russian Federation | Zambia"
+        },
+        {
+          "sourceUrl": "https://fundednext.com/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Jurisdictional Restrictions: The FundedNext Entities do not offer services to residents of the following jurisdictions: North Korea (DPRK), Myanmar, Belarus, Iran, and Russia, including countries on the FATF high-risk and EU/UN sanctions lists, and Vietnam."
+        },
+        {
+          "sourceUrl": "https://fundednext.com/api_docs/terms-of-service",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "5.3. Without prejudice to other restrictions set forth in these Terms, for CFD Services, at the time of publication of these Terms, the Provider does not make the Services available to residents and citizens of the following countries/territories: Bangladesh, Myanmar, Belarus, North Korea, Syria, Grenada, Chad, Malaysia, Belize, Antigua and Barbuda, Cape Verde, Tuvalu, Vietnam, Bouvet Island, Burundi, Cook Islands, Eritrea, Comoros, Sri Lanka and Fiji (\"Restricted Countries – CFDs\")."
         }
       ],
       "notes": [
         "The CFD restriction article does not list Russia, while the company disclosure says FundedNext Ltd does not serve Russian residents.",
         "FundedNext Futures explicitly restricts Russian Federation account purchases.",
         "FundedNext lists Russia for bank-transfer restrictions and Russian Federation for card-transfer restrictions on performance rewards.",
-        "Until the first-party conflict is resolved at checkout and by support, the site must not describe FundedNext as available to Russian residents."
+        "Until the first-party conflict is resolved at checkout and by support, the site must not describe FundedNext as available to Russian residents.",
+        "2026-10-20: status set to restricted to match firms.json (commit 41f3c05). Basis: the site-wide fundednext.com footer (also on the Terms of Service page) says the FundedNext Entities do not offer services to residents of Russia; ToS 5.3 (CFD list) omits Russia and the footer is treated as operative. The four 2026-10-01 observations keep their own dates."
       ]
     }
   ],
