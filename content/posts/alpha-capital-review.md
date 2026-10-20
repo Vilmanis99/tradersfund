@@ -3,7 +3,7 @@ title: "Alpha Capital Review 2026: Pro Fees by Target and Payout Schedule"
 seoTitle: "Alpha Capital Review 2026: Fees, EA Rules & Payouts"
 slug: "alpha-capital-review"
 date: "2025-07-23 09:44:31"
-modified: "2026-10-06"
+modified: "2026-10-20"
 author: "Tara Mohseni"
 excerpt: "Pro 6% starts at $27 on-demand or $30 bi-weekly. Compare Alpha Capital's 10 captured configurations, payout gates, and unresolved availability conflicts."
 seoDescription: "Alpha Capital review: does it allow EAs? Only pre-approved assist EAs on MT5. Plus 60 fees across 10 configurations, Pro payout choices and loss rules."
@@ -21,7 +21,7 @@ type: "post"
 <li><strong>One 10% is a distinct record:</strong> $47 at $5K, a 10% evaluation target, 4% daily loss and a 6% trailing maximum loss.</li>
 <li><strong>Direct is instant-qualified:</strong> $30 at $2.5K, a 90% base split, a 3% payout buffer and a 15% best-day rule. It is not a $27 evaluation.</li>
 <li><strong>Consistency is stage- and schedule-specific:</strong> the 40% best-day rule is an on-demand payout gate, not an evaluation target or a verified bi-weekly requirement.</li>
-<li><strong>Availability is unsettled:</strong> the live selector and articles disagree on One 6%/12%, Swing access and Three purchases. Three keeps its older source date.</li>
+<li><strong>Alpha Three is not currently on sale (as of 20 Oct 2026):</strong> the firm states “Alpha Three is not currently offered for new purchases” (alphacapitalgroup.uk/resources/alpha-capital-country-availability-2026, read 2026-10-20). Separately, the live selector and articles still disagree on One 6%/12% and Swing access.</li>
 <li><strong>No refundable fee:</strong> the published all-sales-final policy supplies no automatic fee-back reward after passing.</li>
 </ul></div>
 
@@ -30,7 +30,7 @@ type: "post"
   <caption class="hidden-caption">Alpha Capital at a glance</caption>
   <tbody><tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Founded</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2021, according to the firm’s own review</td></tr>
 <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Captured configurations</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10 records: One 10%, 6 Pro target/schedule combinations, Swing, Three and Direct</td></tr>
-<tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Fee coverage</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">60 published product-size rows; 55 in the October 6 refresh and 5 retained Three rows</td></tr>
+<tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Fee coverage</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">60 product-size rows; 55 priced in the October 6 refresh and 5 Three rows not currently on sale (as of 20 Oct 2026)</td></tr>
 <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Lowest evaluation entry</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$27 for Pro 6% on-demand at $5,000</td></tr>
 <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Direct entry</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$30 for the $2,500 instant-qualified account</td></tr>
 <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Maximum allocation</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$400,000 shared across the named plan families</td></tr>
@@ -39,11 +39,11 @@ type: "post"
 <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payout choice</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Pro bi-weekly or on-demand, selected and priced separately</td></tr>
 <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Fee refund</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No fee-back promise; the published policy says all sales are final</td></tr>
 <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Capture dates</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-06 for 9 records; Three retains 2026-09-14</td></tr>
-<tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Availability limits</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Open source conflicts for One variants, Swing selector access and Three new purchases</td></tr></tbody>
+<tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Availability limits</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Alpha Three not currently on sale (as of 20 Oct 2026); open source conflicts for One variants and Swing selector access</td></tr></tbody>
 </table>
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
-<p>The table contains 10 captured configurations and 60 product-size rows. Six are Pro combinations: each 6%, 8% or 10% target has its own bi-weekly and on-demand fee ladder. One is the explicitly selected 10% on-demand variant. Swing is captured on-demand, Direct is instant-qualified, and Three is retained as an availability-unverified reference rather than presented as a confirmed new-purchase offer.</p>
+<p>The table contains 10 captured configurations and 60 product-size rows. Six are Pro combinations: each 6%, 8% or 10% target has its own bi-weekly and on-demand fee ladder. One is the explicitly selected 10% on-demand variant. Swing is captured on-demand, Direct is instant-qualified, and Three is kept for its documented rules only: it is not currently on sale (as of 20 Oct 2026), so its rows show the last-published price in brackets for reference.</p>
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
   <caption class="hidden-caption">Alpha Capital: 60 published fee rows across 10 captured configurations</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Configuration</th><th style="padding: 8px 12px; text-align: left;">Phases</th><th style="padding: 8px 12px; text-align: left;">Account</th><th style="padding: 8px 12px; text-align: left;">List fee</th><th style="padding: 8px 12px; text-align: left;">Targets</th><th style="padding: 8px 12px; text-align: left;">Daily / Max loss</th><th style="padding: 8px 12px; text-align: left;">Base split</th><th style="padding: 8px 12px; text-align: left;">Evaluation days</th></tr></thead>
@@ -96,11 +96,11 @@ type: "post"
     <tr><td>Alpha Swing (on-demand)</td><td>2</td><td>$50,000</td><td>$357</td><td>10% / 5%</td><td>5% / 10% static</td><td>80%</td><td>3</td></tr>
     <tr><td>Alpha Swing (on-demand)</td><td>2</td><td>$100,000</td><td>$577</td><td>10% / 5%</td><td>5% / 10% static</td><td>80%</td><td>3</td></tr>
     <tr><td>Alpha Swing (on-demand)</td><td>2</td><td>$200,000</td><td>$1,097</td><td>10% / 5%</td><td>5% / 10% static</td><td>80%</td><td>3</td></tr>
-    <tr><td>Alpha Three (availability unverified)</td><td>3</td><td>$10,000</td><td>$67</td><td>8% / 4% / 4%</td><td>4% / 6% static</td><td>80%</td><td>3</td></tr>
-    <tr><td>Alpha Three (availability unverified)</td><td>3</td><td>$25,000</td><td>$157</td><td>8% / 4% / 4%</td><td>4% / 6% static</td><td>80%</td><td>3</td></tr>
-    <tr><td>Alpha Three (availability unverified)</td><td>3</td><td>$50,000</td><td>$247</td><td>8% / 4% / 4%</td><td>4% / 6% static</td><td>80%</td><td>3</td></tr>
-    <tr><td>Alpha Three (availability unverified)</td><td>3</td><td>$100,000</td><td>$397</td><td>8% / 4% / 4%</td><td>4% / 6% static</td><td>80%</td><td>3</td></tr>
-    <tr><td>Alpha Three (availability unverified)</td><td>3</td><td>$200,000</td><td>$697</td><td>8% / 4% / 4%</td><td>4% / 6% static</td><td>80%</td><td>3</td></tr>
+    <tr><td>Alpha Three (availability unverified)</td><td>3</td><td>$10,000</td><td>Not currently on sale (as of 20 Oct 2026) (last-published price: $67)</td><td>8% / 4% / 4%</td><td>4% / 6% static</td><td>80%</td><td>3</td></tr>
+    <tr><td>Alpha Three (availability unverified)</td><td>3</td><td>$25,000</td><td>Not currently on sale (as of 20 Oct 2026) (last-published price: $157)</td><td>8% / 4% / 4%</td><td>4% / 6% static</td><td>80%</td><td>3</td></tr>
+    <tr><td>Alpha Three (availability unverified)</td><td>3</td><td>$50,000</td><td>Not currently on sale (as of 20 Oct 2026) (last-published price: $247)</td><td>8% / 4% / 4%</td><td>4% / 6% static</td><td>80%</td><td>3</td></tr>
+    <tr><td>Alpha Three (availability unverified)</td><td>3</td><td>$100,000</td><td>Not currently on sale (as of 20 Oct 2026) (last-published price: $397)</td><td>8% / 4% / 4%</td><td>4% / 6% static</td><td>80%</td><td>3</td></tr>
+    <tr><td>Alpha Three (availability unverified)</td><td>3</td><td>$200,000</td><td>Not currently on sale (as of 20 Oct 2026) (last-published price: $697)</td><td>8% / 4% / 4%</td><td>4% / 6% static</td><td>80%</td><td>3</td></tr>
     <tr><td>Alpha Direct</td><td>0</td><td>$2,500</td><td>$30</td><td>No evaluation</td><td>3% / 5% trailing</td><td>90%</td><td>Unverified</td></tr>
     <tr><td>Alpha Direct</td><td>0</td><td>$5,000</td><td>$67</td><td>No evaluation</td><td>3% / 5% trailing</td><td>90%</td><td>Unverified</td></tr>
     <tr><td>Alpha Direct</td><td>0</td><td>$10,000</td><td>$97</td><td>No evaluation</td><td>3% / 5% trailing</td><td>90%</td><td>Unverified</td></tr>
@@ -110,10 +110,10 @@ type: "post"
     <tr><td>Alpha Direct</td><td>0</td><td>$200,000</td><td>$897</td><td>No evaluation</td><td>3% / 5% trailing</td><td>90%</td><td>Unverified</td></tr>
   </tbody>
 </table>
-<p>Published list prices and rules were recaptured on <strong>2026-10-06</strong> for 9 records. The 5 Three rows retain <strong>2026-09-14</strong>: its published prices were observed again, but purchase availability could not be reconciled. The firm’s pricing update identifies September 21 as its own checkout-verification date; that is distinct from our October 6 observation. Our read-only selector checks confirmed One 10% prices, Pro 6%/8% on-demand ladders, the Pro 6% bi-weekly $5K fee and Direct fees, without submitting an order.</p>
+<p>Published list prices and rules were recaptured on <strong>2026-10-06</strong> for 9 records. The 5 Three rows retain <strong>2026-09-14</strong> for their rules; on 2026-10-20 the firm’s country-availability page said “Alpha Three is not currently offered for new purchases” (alphacapitalgroup.uk/resources/alpha-capital-country-availability-2026, read 2026-10-20) and the live checkout catalogue listed no Alpha Three items, so those rows show no current price. The firm’s pricing update identifies September 21 as its own checkout-verification date; that is distinct from our October 6 observation. Our read-only selector checks confirmed One 10% prices, Pro 6%/8% on-demand ladders, the Pro 6% bi-weekly $5K fee and Direct fees, without submitting an order.</p>
 <p><strong>Select the exact payout schedule.</strong> At $25K, Pro 6% is $127 bi-weekly or $117 on-demand; Pro 8% and Pro 10% are each $197 bi-weekly or $177 on-demand. The older firm review still quotes a generic Pro $25K at $197 without a target or schedule. That quote can match some combinations but cannot price Pro 6%. The <a href="/prop-firm-challenge-changes#alpha-capital-25k-pro-price-conflict">dated Pro pricing watch</a> preserves that distinction.</p>
 <p><strong>One availability is not fully reconciled.</strong> The September 21 article says One 6% and 12% are unavailable for new purchases, while the October 6 selector showed both alongside One 10%. Their 4% and 8% trailing caps differ from One 10%’s 6% cap. We capture only One 10% here and retain the <a href="/prop-firm-challenge-changes#alpha-one-variant-price-mapping">variant availability watch</a>; a selectable label alone does not establish completed checkout access.</p>
-<p><strong>Three and Swing need an availability check.</strong> Three’s cost article still lists $67–$697, but the firm review describes it as unavailable for new purchases, and the observed selector had no three-step choice. Swing’s pricing update lists $70–$1,097, yet that session exposed Pro as its two-step account type without a Swing choice. Read the <a href="/prop-firm-challenge-changes#alpha-three-purchase-availability-conflict">Three watch</a> and <a href="/prop-firm-challenge-changes#alpha-swing-selector-availability-conflict">Swing watch</a> before treating either ladder as a purchasable offer.</p>
+<p><strong>Three is off sale; Swing needs an availability check.</strong> Alpha Three is not currently on sale (as of 20 Oct 2026): the firm states “Alpha Three is not currently offered for new purchases” (alphacapitalgroup.uk/resources/alpha-capital-country-availability-2026, read 2026-10-20). Its last-published list prices ($67–$697, from the firm’s evaluation-cost article, alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026, read 2026-10-20) are historical, not an offer. Swing’s pricing update lists $70–$1,097, yet that session exposed Pro as its two-step account type without a Swing choice. Read the <a href="/prop-firm-challenge-changes#alpha-three-purchase-availability-conflict">Three watch</a> and <a href="/prop-firm-challenge-changes#alpha-swing-selector-availability-conflict">Swing watch</a> before treating either ladder as a purchasable offer.</p>
 <p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> keeps Direct separate from evaluation routes: its 7 published tiers start at $30, with a 90% base split and funded-stage buffer, consistency and risk gates.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
@@ -130,7 +130,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 <p>These 10 tables use each configuration’s captured list fee, base split and loss cap. Fee-recovery profit divides the fee by the split; its R-multiple compares that profit with the modelled maximum-loss allowance. The day count is a standardised growth scenario, not an evaluation completion time or first-payout date. The <a href="/true-cost-of-prop-firm-challenges">true-cost methodology</a> explains these assumptions.</p>
-<p>The base calculations use 80% for evaluation configurations and 90% for Direct. Optional 90% evaluation split add-ons, swap-free fees and temporary coupons are excluded. Pro’s bi-weekly and on-demand tables remain separate because their fees differ even when targets and drawdown are the same. Three’s table uses its retained September 14 prices and is a historical cost reference, not confirmation that a new account can be bought.</p>
+<p>The base calculations use 80% for evaluation configurations and 90% for Direct. Optional 90% evaluation split add-ons, swap-free fees and temporary coupons are excluded. Pro’s bi-weekly and on-demand tables remain separate because their fees differ even when targets and drawdown are the same. Alpha Three has no table: it is not currently on sale (as of 20 Oct 2026), so there is no current fee to recover.</p>
 
 <!-- Alpha One (10%, on-demand) — generated by scripts/gen-truecost.mjs -->
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
@@ -244,19 +244,6 @@ type: "post"
   </tbody>
 </table>
 
-<!-- Alpha Three (availability unverified) — generated by scripts/gen-truecost.mjs -->
-<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-  <caption class="hidden-caption">Alpha Three (availability unverified) true-cost projection</caption>
-  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 6% max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day (4% daily cap)</th></tr></thead>
-  <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$67</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$84</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.14</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$157</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$196</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.13</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$247</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$309</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.10</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$397</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$496</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.08</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px;">$200K</td><td style="padding: 8px 12px;">$697</td><td style="padding: 8px 12px;">$871</td><td style="padding: 8px 12px;">0.07</td><td style="padding: 8px 12px;">1</td></tr>
-  </tbody>
-</table>
-
 <!-- Alpha Direct — generated by scripts/gen-truecost.mjs -->
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
   <caption class="hidden-caption">Alpha Direct true-cost projection</caption>
@@ -296,7 +283,7 @@ type: "post"
 <li><strong>On-demand has a 40% best-day gate and 2% minimum</strong>, which are separate from evaluation targets.</li>
 <li><strong>Direct requires a retained 3% buffer and a 15% best-day share</strong>, plus its separate 1% per-asset risk cap.</li>
 <li><strong>Bi-weekly Pro requires both 14 calendar days and 5 qualifying trading days</strong> for the first request.</li>
-<li><strong>One 6%/12%, Swing and Three availability are unsettled</strong> across the current articles and observed selector.</li>
+<li><strong>Alpha Three is not currently on sale (as of 20 Oct 2026)</strong>, and One 6%/12% and Swing availability remain unsettled across the current articles and observed selector.</li>
 <li><strong>A generic Pro $25K at $197 is insufficient</strong> to identify the selected target or payout schedule.</li>
 <li><strong>Fully automated EAs are prohibited</strong>, and Direct EAs are disabled.</li>
 <li><strong>The $400,000 allocation is shared across plan families</strong>, rather than repeated for each configuration.</li>
@@ -306,7 +293,7 @@ type: "post"
 <p>A trader who can select a precise static-loss and reward configuration should start with Pro’s 3 targets. Pro 6% on-demand at $117 for $25K trades a lower entry fee for the 2% gross-profit and 40% best-day gates; its bi-weekly counterpart is $127 and has the 14-day and 5-trading-day reward requirements. A trader who needs a single-phase route and Qualified-stage weekend holds can examine One 10%, while accepting its 6% balance-based trailing floor and withdrawal-buffer implications.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid Alpha Capital</strong></h2>
-<p>Traders needing a refundable fee, fully automated execution or more than the documented $400,000 shared allocation should exclude these captured configurations. Direct buyers should also exclude a plan that is incompatible with the 1% per-asset risk rule or retained 3% payout buffer. A trader relying on Swing or Three for a new account should first resolve purchase availability with the firm; published fees and existing-account help pages do not settle that question.</p>
+<p>Traders needing a refundable fee, fully automated execution or more than the documented $400,000 shared allocation should exclude these captured configurations. Direct buyers should also exclude a plan that is incompatible with the 1% per-asset risk rule or retained 3% payout buffer. Alpha Three cannot be bought new at present (as of 20 Oct 2026). A trader relying on Swing for a new account should first resolve purchase availability with the firm; published fees and existing-account help pages do not settle that question.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 <h3 class="wp-block-heading"><strong>What is the cheapest Alpha Capital evaluation?</strong></h3>
@@ -320,6 +307,6 @@ type: "post"
 <h3 class="wp-block-heading"><strong>When can I request the first Alpha Capital payout, and does the 40% rule apply during the evaluation?</strong></h3>
 <p>Bi-weekly Pro requires 14 calendar days from the initial Qualified trade and 5 qualifying trading days. Captured on-demand evaluation routes instead require 2% gross profit and 40% best-day compliance. Direct requires a retained 3% buffer, at least 1% additional profit and a 15% best-day share. The cited 40% Best Day Rule is documented for on-demand Qualified-account rewards, alongside that 2% minimum gross profit; it does not establish a best-day limit on a Pro Phase 1 evaluation target. Bi-weekly consistency remains unverified in the structured data.</p>
 <h3 class="wp-block-heading"><strong>Can I still buy Alpha Three or the other Alpha One variants?</strong></h3>
-<p>Current purchase availability is unresolved. Three has 5 published price rows but no choice in the observed selector, while the firm review calls it unavailable for new purchases. One 6%/12% were visible in that selector despite the pricing article’s unavailability statement; only the One 10% configuration is captured here.</p>
+<p>Not Alpha Three: it is not currently on sale (as of 20 Oct 2026). The firm states “Alpha Three is not currently offered for new purchases” (alphacapitalgroup.uk/resources/alpha-capital-country-availability-2026, read 2026-10-20), and its live checkout catalogue listed no Alpha Three items when read on 2026-10-20. Its last-published prices ($67–$697) are for reference only. One 6%/12% were visible in that selector despite the pricing article’s unavailability statement; only the One 10% configuration is captured here.</p>
 <h3 class="wp-block-heading"><strong>Which Alpha Capital product has the most maximum-loss room?</strong></h3>
 <p>Pro 10% and documented Swing terms both publish a 10% static maximum loss and 5% daily loss. Pro 6% is tighter at 6% static and 3% daily. Swing’s new-purchase availability remains unsettled, so equal published caps do not establish equal checkout access; confirm current terms through <a href="/go/alpha-capital">Alpha Capital’s official plans</a>.</p>

@@ -189,7 +189,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>How much does a Tradeify account cost?</strong></h3>
-<p>Growth list fees are $99, $145, $255 and $369; Select fees are $109, $165, $265 and $369; Lightning fees are $345, $492, $660 and $796 for $25K-$150K tiers. These are base purchase prices before temporary promotions, rechecked on 2026-10-20; the separately published Select $50K reset fee was $109.</p>
+<p>Growth list fees are $99, $145, $255 and $369; Select fees are $109, $165, $265 and $369; Lightning fees are $345, $492, $660 and $796 for $25K-$150K tiers. These are base purchase prices before temporary promotions, rechecked on 2026-10-20; the Select $50K reset fee is $109 (Tradeify pricing reference, help.tradeify.co/en/articles/14369021, read 2026-10-20), separate from its $165 purchase price.</p>
 
 <h3 class="wp-block-heading"><strong>Does Tradeify charge monthly or activation fees?</strong></h3>
 <p>No. The current Pricing Reference describes all 3 account types as one-time purchases with 0 recurring subscription charges, and Growth or Select activates the simulated funded stage for $0.</p>
