@@ -32,6 +32,7 @@ const RU_HOME_BASICS = [
   { href: '/ru/prop-kompanii-v-rossii', title: 'Проп-компании в России', text: 'Какие фирмы работают с РФ и как платят.' },
   { href: '/ru/prop-kompanii-otzyvy', title: 'Отзывы о проп-компаниях', text: 'Красные флаги и доказательства выплат.' },
   { href: '/ru/obzor-the5ers', title: 'Обзор The5ers', text: 'Условия и доступ для трейдеров из РФ.' },
+  { href: '/ru/obzor-topstep', title: 'Обзор Topstep', text: 'Фьючерсный проп: подписка, правила и доступ из РФ.' },
   { href: '/ru/luchshie-prop-firmy', title: 'Рейтинг проп-компаний', text: 'Сравнение условий и доступ из России.' },
 ]
 const TITLE = 'Проп-фирмы 2026: условия и цены для русскоязычных трейдеров'

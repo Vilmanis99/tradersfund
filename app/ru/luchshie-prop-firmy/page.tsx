@@ -9,7 +9,7 @@ import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianPublishedHref } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
@@ -131,6 +131,7 @@ const russianReviewRoutes: Record<string, string> = {
   kascapital: '/ru/obzor-kascapital',
   proplive: '/ru/obzor-proplive',
   teamtraders: '/ru/obzor-teamtraders',
+  ...(russianPublishedHref('/ru/obzor-topstep') ? { topstep: '/ru/obzor-topstep' } : {}),
 }
 
 function formatMoney(value: number, currency: 'USD' | 'EUR') {

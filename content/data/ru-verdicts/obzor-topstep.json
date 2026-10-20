@@ -1,0 +1,53 @@
+{
+  "route": "/ru/obzor-topstep",
+  "type": "review",
+  "firm": "Topstep",
+  "dataAsOf": "2026-10-20",
+  "sources": [
+    "content/data/firms.json#Topstep (profitSplitPct, platforms, payoutMethods, countriesRestricted, russiaStatus)",
+    "content/data/challenges/topstep.json (sourceCapturedAt 2026-10-20: prices, activation fee, maxLossUsd tiers, target 6%, consistency 55%)",
+    "content/data/challenges/_captures/topstep-2026-10-20.json (Prop Firm Tracker recheck 20.10.2026: MLL mechanics, payout routes, transfer rails, trading hours)",
+    "https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep (RU Writer read 20.10.2026; page dated 04.09.2026)"
+  ],
+  "verdict": "Topstep — фьючерсный проп с одной фазой оценки: цель 6%, единственное жёсткое правило — Maximum Loss Limit $2,000 / $3,000 / $4,500 с подтяжкой по балансу на конец дня, доля трейдера 90%. Оценка оплачивается ежемесячной подпиской: Standard $49–199 в месяц плюс $149 за активацию или No Activation Fee $95–229 в месяц, поэтому медленное прохождение стоит дороже (по данным на 20.10.2026).",
+  "best": [
+    "вы торгуете фьючерсы CME внутри дня: все позиции закрываются до 15:10 по Чикаго, а дневного лимита в Trading Combine нет",
+    "вам нужен один понятный лимит убытка в долларах, а не несколько процентных правил",
+    "вы рассчитываете пройти быстро: подписка No Activation Fee без платы за активацию выгоднее при коротком прохождении"
+  ],
+  "avoid": [
+    "вы держите позиции через ночь или выходные: Topstep это запрещает",
+    "вы делаете прибыль одним крупным днём: лучший день не может превышать 55% цели, иначе цель растёт",
+    "вам нужны выплаты в криптовалюте: в наших данных у Topstep только банковские переводы, вне США — SWIFT за $30"
+  ],
+  "russiaAccess": {
+    "statusFrom": "russiaStatus",
+    "firm": "Topstep",
+    "alternatives": [
+      "BrightFunded",
+      "Crypto Fund Trader"
+    ],
+    "byStatus": {
+      "available": {
+        "list": "best",
+        "text": "вы резидент РФ: статус доступа {firm} — «{badge}» (по нашей последней проверке); страну, гражданство, KYC и способ выплаты всё равно сверьте на официальном сайте до покупки"
+      },
+      "restricted": {
+        "list": "avoid",
+        "text": "вы резидент РФ: статус {firm} — «{badge}», Topstep учитывает и гражданство, и место жительства, VPN не помогает.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}, но это CFD или криптовалюта, а не фьючерсы CME."
+      },
+      "unclear": {
+        "list": "avoid",
+        "text": "вы резидент РФ и не готовы рисковать подпиской: статус {firm} — «{badge}», официальные источники не дают однозначного ответа.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}, но это CFD или криптовалюта, а не фьючерсы CME."
+      },
+      "unverified": {
+        "list": "avoid",
+        "text": "вы резидент РФ и хотите подтверждённый доступ: статус {firm} — «{badge}»; запросите у Topstep письменное подтверждение до оплаты",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}, но это CFD или криптовалюта, а не фьючерсы CME."
+      }
+    }
+  },
+  "firmInFirmsJson": true
+}

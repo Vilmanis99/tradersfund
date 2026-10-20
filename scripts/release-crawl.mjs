@@ -1152,6 +1152,31 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-crypto-ranking-payout-alternative',
     ],
   }],
+  ['/ru/obzor-topstep', {
+    title: 'Topstep: обзор 2026 — фьючерсный проп и доступ из России',
+    h1: 'Topstep: обзор и отзывы 2026',
+    markers: [
+      'data-russian-topstep-review="restricted-info-only"',
+      'data-russian-topstep-article="long-form-source-first"',
+      'data-russian-country-boundary="topstep-russia-restricted"',
+      'data-russian-access-answer="first-screen"',
+      'data-russian-topstep-access="restricted"',
+      'data-russian-topstep-price-count="6"',
+      'data-russian-topstep-pricing-product="trading-combine-standard-path"',
+      'data-russian-topstep-pricing-product="trading-combine-no-activation-fee-path"',
+      'data-russian-topstep-risk="usd-mll-eod"',
+      'data-russian-topstep-payout="on-demand-usd-rails"',
+      'data-russian-alternatives="bright-funded-first"',
+      'data-russian-topstep-alternative="bright-funded"',
+      'data-russian-topstep-alternative="crypto-fund-trader"',
+      'data-russian-topstep-futures-open="0"',
+      'data-russian-affiliate-disclosure="topstep-alternatives"',
+      'data-russian-risk-disclaimer="topstep"',
+      '/go/bright-funded?from=ru-topstep-alternative-bright-funded',
+      'https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep',
+      'Автор: редакция Traders Fund Hub',
+    ],
+  }],
   ['/ru/obzor-ftmo', {
     title: 'FTMO проп: обзор 2026 — цены, правила и доступ из России',
     h1: 'FTMO проп: обзор 2026 — программы, цены и правила',
@@ -1804,7 +1829,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'obzor-topstep']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
 if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
   errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}`)
@@ -1909,6 +1934,24 @@ const russianFtmoPage = pages.find(page =>
     errors.push('/ru/obzor-ftmo: FTMO CTA is missing its closed Russia-access badge')
   }
 }
+// Topstep restricts Russia and has no affiliate: official link stays nofollow (not sponsored), badge closed,
+// and it never precedes the BrightFunded alternative action.
+{
+  const topstepHtml = pages.find(page => new URL(page.productionUrl).pathname === '/ru/obzor-topstep')?.html ?? ''
+  if (topstepHtml) {
+    const topstepCta = [...topstepHtml.matchAll(/<a\b[^>]*>/gi)].map(match => match[0])
+      .find(tag => tag.includes('/go/topstep?from=ru-review-topstep')) || ''
+    if (!topstepCta || !topstepCta.includes('rel="nofollow noopener"') || topstepCta.includes('sponsored')) {
+      errors.push('/ru/obzor-topstep: Topstep official CTA is missing or falsely labelled as sponsored')
+    }
+    if (!topstepHtml.includes('data-russia-status="restricted" data-russia-firm="topstep"')) {
+      errors.push('/ru/obzor-topstep: Topstep CTA is missing its closed Russia-access badge')
+    }
+    if (topstepHtml.includes('/go/fundednext')) {
+      errors.push('/ru/obzor-topstep: FundedNext must not be offered as an alternative for Russia')
+    }
+  }
+}
 {
   const comparisonHtml = pages.find(page => new URL(page.productionUrl).pathname === '/ru/ftmo-vs-bright-funded')?.html ?? ''
   const comparisonTags = [...comparisonHtml.matchAll(/<a\b[^>]*>/gi)].map(match => match[0])
@@ -1954,6 +1997,7 @@ const russianFtmoPage = pages.find(page =>
 for (const [path, href] of [
   ['/ru/obzor-ftmo', '/go/fundednext?from=ru-ftmo-alternative-fundednext'],
   ['/ru/obzor-ftmo', '/go/bright-funded?from=ru-ftmo-alternative-bright-funded'],
+  ['/ru/obzor-topstep', '/go/bright-funded?from=ru-topstep-alternative-bright-funded'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-summary'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-verdict'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],
