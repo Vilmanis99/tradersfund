@@ -199,6 +199,7 @@
     "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
     "sourceCapturedAt": "2026-10-19",
     "notes": [
+      "UNIT (2026-10-20): payoutFirstDays 10 and the 10-day subsequent cycle are BUSINESS days, not calendar days. https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward: \"First Performance Reward is available after 10 business days. Subsequent rewards are available every 10 business days.\" https://help.fundednext.com/en/articles/17253939-stellar-lite-account: \"First Cycle Duration | 10 business days\". About two calendar weeks; legacy accounts bought before 12 Oct 2026 keep 21 calendar days then every 14 days. The schema has no unit field, so any UI that prints \"10 days\" should say \"10 business days\".",
       "Standard global USD list prices; promotions and optional add-ons are excluded.",
       "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",

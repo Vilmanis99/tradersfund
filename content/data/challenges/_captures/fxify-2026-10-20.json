@@ -139,7 +139,9 @@
     "notFoundVerbatim": 59,
     "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
   },
-  "changes": [],
+  "changes": [
+    "lightning-challenge and two-phase-classic accountSizes[].refundable true -> false (FXIFY blog 2026-09-14 fee-refund table/FAQ; Lightning FAQ still says 100% refund - conflict noted). one-phase, two-phase-standard, three-phase stay refundable; two-phase-pro unchanged (not covered by the blog)."
+  ],
   "notes": [
     "All 64 stored prices match. Rules evidence re-read: 1-Phase article (intercom) still says \"Profit Split 80% default, upgradable to 90%.\" (stored quote differs only in spacing).",
     "https://fxify.com/terms-and-conditions returns 404 today; not used for any stored value.",
@@ -317,5 +319,35 @@
       "httpStatus": 200,
       "fetchedAt": "2026-10-20T05:13:29.512Z"
     }
-  ]
+  ],
+  "refundRecheck": {
+    "checkedAtTimestamp": "2026-10-20T12:05+03:00",
+    "requestedBy": "Dev",
+    "sources": [
+      {
+        "url": "https://fxify.com/blog/cheapest-path-funded-50k-fxify/",
+        "published": "2026-09-14",
+        "quotes": [
+          "We reimburse the purchase fee for One Phase, Two Phase Standard, and Three Phase programs when their payout conditions are met.",
+          "Two Phase Classic | $379 | No | $379",
+          "Lightning Challenge | $249 | No | $249",
+          "Lightning Challenge, Two Phase Classic, and Instant Funding do not use this structure."
+        ]
+      },
+      {
+        "url": "https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-do-i-get-a-refund-alongside-my-first-withdrawal/",
+        "published": null,
+        "quotes": [
+          "Yes, you will receive a 100% refund alongside your first withdrawal"
+        ]
+      },
+      {
+        "url": "https://fxify.com/programs/one-phase/",
+        "quotes": [
+          "Refundable Fee 100%",
+          "Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans."
+        ]
+      }
+    ]
+  }
 }

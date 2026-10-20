@@ -72,7 +72,8 @@
     "firms.json FundedNext payoutMethods: + Card, Confirmo, FNmarkets; + payoutMethodsSourceUrl/Quote/CapturedAt/Note (article 8020084, updated 2026-10-02)",
     "firms.json FundedNext russiaStatus available -> restricted; russiaSourceUrl/Quote = fundednext.com footer (ToS 5.3 conflict and Futures restriction recorded here)",
     "challenges/fundednext.json stellar-lite payoutFrequency: null -> 'bi-weekly' (10 business days; see openConflictResolution)",
-    "firms.json FundedNext minTradingDays 0 -> 2 (lowest evaluation minimum; Instant has no evaluation)"
+    "firms.json FundedNext minTradingDays 0 -> 2 (lowest evaluation minimum; Instant has no evaluation)",
+    "stellar-lite: explicit UNIT note added - payoutFirstDays 10 = 10 business days (help 10701585, 17253939); requested by Dev."
   ],
   "dailyRecheck": {
     "captureType": "daily-recheck",
