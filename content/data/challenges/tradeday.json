@@ -7,25 +7,25 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": 45,
+        "priceUsd": 100,
         "maxLossUsd": 1000,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": 59,
+        "priceUsd": 131,
         "maxLossUsd": 2000,
         "refundable": false
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": 108,
+        "priceUsd": 240,
         "maxLossUsd": 3000,
         "refundable": false
       },
       {
         "sizeUsd": 150000,
-        "priceUsd": 162,
+        "priceUsd": 360,
         "maxLossUsd": 4500,
         "refundable": false
       }
@@ -80,7 +80,8 @@
       "COPY TRADING NOW VERIFIED WITH CONDITIONS: the public FAQ permits copying from a personal account and across eligible TradeDay accounts, but bars simultaneous/copy trading between Funded Live and Funded Sim and limits linked Funded Sim copying to 2 or 3 accounts. This supports restricted instead of the prior null.",
       "INDIA ELIGIBILITY EVIDENCE: India is absent from TradeDay's current named prohibited-country list. The list applies to both citizenship and residence, while Funded Live is limited for Germany and Canada outside Ontario. No Indian checkout or funded onboarding was performed.",
       "KYC AND PAYOUT RAILS: funded onboarding requires KYC/AML through TradeDay's broker, clearing firm and Rise, with a government-issued ID plus bank statement or utility bill. Rise supports bank wire and crypto; international bank wire is stated as $15, L1 crypto as $2.50 plus gas, and L2 crypto as free. Indian bank acceptance and INR settlement remain unverified.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeday-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeday-2026-10-14.json",
+      "PRICE = LIST PRICE (rechecked 2026-10-20 about 11:55 Riga, https://www.tradeday.com/ server HTML): priceUsd now holds the crossed-out monthly list price on each card, not the TDNEW promo price. 25K/50K/100K/150K list → promo: $100 → $45, $131 → $59, $240 → $108, $360 → $162. The page reads \"Now up to 55% OFF! Accounts from just $45!\" and \"For best pricing USE CODE \\\"TDNEW\\\"\". The promo is not stored as a price; TDNEW is not checkout-verified, so it is not in deals.json. CONFLICT: the support article \"What are the differences between each account size?\" (freshdesk 103000304248, \"Modified on Tue, 1 Sep\") lists $100 / $125 / $230 / $350. The live homepage is used because it is the price the promo is cut from. Only prices were rechecked, so sourceCapturedAt is unchanged. Log: content/data/challenges/_captures/key-facts-tradeday-price-recheck-2026-10-20.json"
     ]
   },
   {
@@ -91,25 +92,25 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": 54,
+        "priceUsd": 120,
         "maxLossUsd": 1000,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": 79,
+        "priceUsd": 175,
         "maxLossUsd": 2000,
         "refundable": false
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": 129,
+        "priceUsd": 285,
         "maxLossUsd": 3000,
         "refundable": false
       },
       {
         "sizeUsd": 150000,
-        "priceUsd": 180,
+        "priceUsd": 400,
         "maxLossUsd": 4500,
         "refundable": false
       }
@@ -158,7 +159,8 @@
       "EOD EVALUATION TO INTRADAY FUNDED: evaluation drawdown updates from end-of-day realized balance; all Quick Pay Funded Sim accounts switch to intraday trailing drawdown after passing.",
       "COPY TRADING NOW VERIFIED WITH CONDITIONS: the public FAQ supports restricted instead of the prior null.",
       "India is absent from the named prohibited-country list, but checkout, KYC success, Indian bank acceptance, and INR settlement were not tested. KYC requires government ID and proof of address; Rise payout methods are bank wire and crypto.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeday-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeday-2026-10-14.json",
+      "PRICE = LIST PRICE (rechecked 2026-10-20 about 11:55 Riga, https://www.tradeday.com/ server HTML): priceUsd now holds the crossed-out monthly list price on each card, not the TDNEW promo price. 25K/50K/100K/150K list → promo: $120 → $54, $175 → $79, $285 → $129, $400 → $180. The page reads \"Now up to 55% OFF! Accounts from just $45!\" and \"For best pricing USE CODE \\\"TDNEW\\\"\". The promo is not stored as a price; TDNEW is not checkout-verified, so it is not in deals.json. CONFLICT: the support article \"What are the differences between each account size?\" (freshdesk 103000304248, \"Modified on Tue, 1 Sep\") lists $120 / $175 / $285 / $395. The live homepage is used because it is the price the promo is cut from. Only prices were rechecked, so sourceCapturedAt is unchanged. Log: content/data/challenges/_captures/key-facts-tradeday-price-recheck-2026-10-20.json"
     ]
   },
   {
@@ -169,25 +171,25 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": 65,
+        "priceUsd": 130,
         "maxLossUsd": 1000,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": 95,
+        "priceUsd": 189,
         "maxLossUsd": 2000,
         "refundable": false
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": 175,
+        "priceUsd": 350,
         "maxLossUsd": 3000,
         "refundable": false
       },
       {
         "sizeUsd": 150000,
-        "priceUsd": 265,
+        "priceUsd": 530,
         "maxLossUsd": 4500,
         "refundable": false
       }
@@ -246,7 +248,8 @@
       "FUNDED DRAWDOWN: Fast Pass Funded Sim remains EOD trailing. On the first payout, a line below starting balance moves up to starting balance and then stays fixed.",
       "COPY TRADING NOW VERIFIED WITH CONDITIONS: the public FAQ supports restricted instead of the prior null.",
       "India is absent from the named prohibited-country list, but checkout, KYC success, Indian bank acceptance, and INR settlement were not tested. KYC requires government ID and proof of address; Rise payout methods are bank wire and crypto.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeday-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeday-2026-10-14.json",
+      "PRICE = LIST PRICE (rechecked 2026-10-20 about 11:55 Riga, https://www.tradeday.com/ server HTML): priceUsd now holds the crossed-out monthly list price on each card, not the TDNEW promo price. 25K/50K/100K/150K list → promo: $130 → $65, $189 → $95, $350 → $175, $530 → $265. The page reads \"Now up to 55% OFF! Accounts from just $45!\" and \"For best pricing USE CODE \\\"TDNEW\\\"\". The promo is not stored as a price; TDNEW is not checkout-verified, so it is not in deals.json. CONFLICT: the support article \"What are the differences between each account size?\" (freshdesk 103000304248, \"Modified on Tue, 1 Sep\") lists $130 / $180 / $320 / $480. The live homepage is used because it is the price the promo is cut from. Only prices were rechecked, so sourceCapturedAt is unchanged. Log: content/data/challenges/_captures/key-facts-tradeday-price-recheck-2026-10-20.json"
     ]
   }
 ]
