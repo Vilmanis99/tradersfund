@@ -38,7 +38,7 @@ type: "post"
 <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Trustpilot</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Rating hidden by Trustpilot for a guidelines breach; 1,102 reviews shown under a “removed a number of fake reviews” banner (2026-10-19)</td></tr>
 <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Refund on passing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Not verified; the withdrawal-before-trading policy is a different condition</td></tr>
 </tbody></table>
-<p>The 24 rechecked fees below are base selections, not a universal quote for every platform, country or optional add-on. The FAQ distinguishes multi-asset instruments on MetaTrader 5 and Match-Trader from Bybit's crypto route. Our previous suggestion that CFT only offers crypto pairs was too broad. Confirm the actual symbol, commission schedule and platform for the programme you intend to use.</p>
+<p>The 18 purchasable fees below (Ascend's six terms-listed fees can't be bought) are base selections, not a universal quote for every platform, country or optional add-on. The FAQ distinguishes multi-asset instruments on MetaTrader 5 and Match-Trader from Bybit's crypto route. Our previous suggestion that CFT only offers crypto pairs was too broad. Confirm the actual symbol, commission schedule and platform for the programme you intend to use.</p>
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 <p>The table retains all 5 programmes previously covered. The 2-Phase and 1-Phase products each have six priced tiers; Instant has three; Break has three current fee tiers plus tier-specific activation charges. Every product row was rechecked on 2026-10-19. Ascend stays in the table for its rules, but its six sizes show no buyable price: the terms still list fees, while CFT's store marked every Ascend item as not purchasable on 2026-10-19 and 2026-10-20.</p>
@@ -158,7 +158,7 @@ type: "post"
 <ul class="wp-block-list">
 <li>The standard 2-Phase programme has a 10% static overall limit, giving a clearly defined initial floor for the comparison.</li>
 <li>The 1-Phase and 2-Phase selector offers six sizes each, so a same-size comparison need not mix different account tiers.</li>
-<li>The 24 current base-price selections are supported by first-party pages rather than competitor quote tables.</li>
+<li>The 18 purchasable base-price selections are supported by first-party pages rather than competitor quote tables.</li>
 <li>The general FAQ permits overnight and weekend holding, subject to the applicable instrument schedule and trading rules.</li>
 <li>The 1-Phase and 2-Phase evaluation descriptions specify no minimum trading days and no maximum completion period; reward-request timing remains separate.</li>
 </ul>
