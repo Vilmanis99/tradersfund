@@ -29,7 +29,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
   const [chip, setChip] = useState<Chip>('all')
   const chips: Chip[] = locale === 'ru' ? ['all', 'open', 'cfd', 'futures', 'one', 'two'] : ['all', 'cfd', 'futures', 'one', 'two']
   const visible = rows.filter(row => matches(row, chip))
-  const money = (row: ComparisonRow) => new Intl.NumberFormat(t.locale, { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
+  const money = (row: ComparisonRow) => row.priceBreakdown ?? new Intl.NumberFormat(t.locale, { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
   const na = <span className="th-na" title={t.notPublished}><span aria-hidden="true">—</span><span className="sr-only">{t.notPublished}</span></span>
   const pct = (value: number | null) => value == null ? na : `${value}%`
   const visit = (row: ComparisonRow, className: string, layout: 'table' | 'cards') => row.goHref

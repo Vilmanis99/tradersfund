@@ -169,7 +169,7 @@ export default function Home() {
                   code={getVerifiedCode(partner.slug)}
                   data={{ 'data-english-home-partner': partner.slug, 'data-source-status': partner.fresh ? 'fresh' : 'recapture-required' }}
                   facts={[
-                    ...(partner.cheapest ? [{ label: 'Fee from ($50k)', value: new Intl.NumberFormat('en-US', { style: 'currency', currency: partner.cheapest.currency, maximumFractionDigits: 0 }).format(partner.cheapest.price) }] : []),
+                    ...(partner.cheapest ? [{ label: 'Fee from ($50k)', value: partner.cheapest.priceBreakdown ?? new Intl.NumberFormat('en-US', { style: 'currency', currency: partner.cheapest.currency, maximumFractionDigits: 0 }).format(partner.cheapest.price) }] : []),
                     ...(partner.firm.maxAllocation ? [{ label: 'Max allocation', value: partner.firm.maxAllocation.split(/[;(]| per /)[0].trim() }] : []),
                   ]}
                   primary={<Link href={partner.href} prefetch={false} rel="sponsored nofollow noopener" target="_blank" className="th-btn th-btn--amber">Check {partner.firm.name} terms</Link>}
