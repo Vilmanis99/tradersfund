@@ -674,7 +674,7 @@
   {
     "firmSlug": "city-traders-imperium",
     "firmName": "City Traders Imperium",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-20",
     "restrictedJurisdictions": [
       "North Korea",
       "Iran",
@@ -718,14 +718,15 @@
     },
     "payout": {
       "status": "partial",
-      "summary": "CTI publishes bank transfer and direct cryptocurrency wallet payouts, with requests processed after KYC and rule review; delivery to an Indian bank or wallet remains untested.",
+      "summary": "CTI publishes bank transfer and direct cryptocurrency wallet payouts, with requests processed after KYC and rule review; its VIP payout page also names PayPal. Delivery to an Indian bank, wallet or PayPal account remains untested.",
       "sourceUrls": [
-        "https://citytradersimperium.com/cti-payout-proof/"
+        "https://citytradersimperium.com/cti-payout-proof/",
+        "https://citytradersimperium.com/vip-program-payout/"
       ]
     },
     "fees": {
       "status": "partial",
-      "summary": "CTI publishes fee-free bank transfers while cryptocurrency can carry service or network charges, but it does not publish an India-specific crypto or INR conversion total.",
+      "summary": "CTI publishes fee-free bank transfers while PayPal and cryptocurrency can carry service or network charges, but it does not publish an India-specific crypto or INR conversion total.",
       "sourceUrls": [
         "https://citytradersimperium.com/vip-program-payout/"
       ]
