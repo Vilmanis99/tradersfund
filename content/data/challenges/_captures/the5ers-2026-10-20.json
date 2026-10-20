@@ -286,5 +286,15 @@
     "quote": "“Forbidden Territory” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen.",
     "secondQuote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”).",
     "note": "Definitions clause lists 31 territories incl. Bosnia and Herzegovina; the notice paragraph lists 30 (omits Bosnia). Both include Russia. Operator: FIVE PERCENT ONLINE LTD, England and Wales company 12553363."
+  },
+  "summerPlanPlacement": {
+    "decision": "Code Reviewer, 2026-10-20: Summer Plan products are excluded from comparisons, homepage cards and the challenge finder; they stay on the EN review page (content/posts/the5ers-review.md) as advertised list prices with the dated source and a 'checkout not verified' note.",
+    "mechanism": "No exclusion flag exists in lib/, components/ or app/ (every consumer reads content/data/challenges/<firm>.json and filters only by isChallengeFresh). The only existing mechanism is presence in that file, so the three Summer products were removed from challenges/the5ers.json in this commit; their verified rows (removed in full from 60e941e) remain here under fields[summerPlan] and in git history.",
+    "removedProducts": [
+      "summer-plan-1-step",
+      "summer-plan-2-step-10-5",
+      "summer-plan-2-step-8-5"
+    ],
+    "restoreFrom": "git show 60e941e:content/data/challenges/the5ers.json"
   }
 }
