@@ -2005,7 +2005,8 @@
     "assets": [
       "Forex",
       "Indices",
-      "Commodities"
+      "Commodities",
+      "Crypto"
     ],
     "maxAllocation": "$400,000",
     "platforms": [
@@ -2371,10 +2372,10 @@
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-16.json"
     },
     "assetsEvidence": {
-      "sourceUrl": "https://brightfunded.com/futures-waitlist",
-      "sourceCapturedAt": "2026-10-16",
-      "sourceQuote": "The futures simulated trading and evaluation services featured on www.brightfunded.com are offered solely by BrightFunded LLC, which is the contracting party for those services.",
-      "notes": "Futures NOT added as an offered asset: on 2026-10-16 the homepage nav shows 'Futures New' and the legal footer names BrightFunded LLC for futures, but futures is waitlist-only (https://brightfunded.com/futures-waitlist). Quote is from the brightfunded.com homepage legal footer."
+      "sourceUrl": "https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded",
+      "sourceCapturedAt": "2026-10-20",
+      "sourceQuote": "At BrightFunded, we offer a wide range of cryptocurrency trading pairs. We currently have over 48 cryptocurrency pairs",
+      "notes": "Crypto added 2026-10-20 (Prop Firm Tracker, US-IP box). Article dated May 25, 2026 lists pairs such as BTC/USD and ETH/USD; the assets article https://help.brightfunded.com/en/articles/9268749-what-trading-assets-instruments-offers-brightfunded (dated February 3, 2026) lists 'Cryptocurrencies: In addition to traditional assets, we offer a wide range of the most popular and latest cryptocurrency instruments.' and the leverage article 9268380 lists 'Crypto: 1:5'. Our earlier list omitted crypto. Futures still NOT added: on 2026-10-16 futures was waitlist-only (https://brightfunded.com/futures-waitlist; footer quote: 'The futures simulated trading and evaluation services featured on www.brightfunded.com are offered solely by BrightFunded LLC, which is the contracting party for those services.')."
     }
   },
   {

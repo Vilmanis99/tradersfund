@@ -590,29 +590,30 @@
         "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
         "https://help.brightfunded.com/en/articles/9973224-how-does-the-kyc-process-work"
       ],
-      "sourceCapturedAt": "2026-09-29",
+      "sourceCapturedAt": "2026-10-20",
       "sourceObservations": [
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-20",
           "quote": "through our partner SumSub"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-20",
           "quote": "1–2 business days (Mon–Fri)"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-20",
           "quote": "Up to 4 business days"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9973224-how-does-the-kyc-process-work",
-          "sourceCapturedAt": "2026-09-29",
+          "sourceCapturedAt": "2026-10-20",
           "quote": "proof of identity (e.g., a government-issued ID) and a proof of address"
         }
       ],
+      "recheckNote": "Prop Firm Tracker recheck 2026-10-20 (US-IP box): both help articles re-read; provider, documents, Security Check timing and post-KYC steps unchanged. 9268287 (dated March 26, 2026) also: \"Trader Contract is sent automatically and instantly\" and \"Funded Account is activated instantly\"; 9973224 (dated April 23, 2025): \"Specific documentation may vary based on the customer’s country of residence\".",
       "required": true,
       "trigger": "After passing the final evaluation stage and before the funded-account contract",
       "provider": "SumSub",

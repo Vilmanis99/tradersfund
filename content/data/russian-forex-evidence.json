@@ -1,5 +1,6 @@
 {
   "capturedAt": "2026-10-20",
+  "recheckNote": "Prop Firm Tracker recheck 2026-10-20 (US-IP box): all four FundedNext and three BrightFunded sources re-read. FundedNext 8224087 still lists all 43 forex symbols stored here (machine-checked, none missing); the two leverage images on 8019669 are byte-identical to the 2026-10-20 copies (Stellar 1-Step Forex 1:30 in Challenge and FundedNext Account; Stellar 2-Step & Lite 1:100); 11641369 \"ranging from 1:30 for forex to 1:1 for crypto\"; fundednext.com/cfds \"MetaTrader 4, MetaTrader 5, cTrader, and Match-Trader\". BrightFunded 9268749 \"We provide access to major, minor, and exotic forex pairs\"; 9268380 \"Forex (FX): 1:100\" and \"The leverage is the same for Challenges and Funded Accounts\"; 10855521 \"three platforms ... DXTrade, cTrader and MT5\" and MT5 unavailable for US or UAE citizens/residents. The searchDemand block is a separate third-party snapshot (period 2026-01) and is not refreshed by this recheck. Raw copies: /workspace/tradersfundhub/evidence/expiring-recheck-2026-10-20/raw/ (box only).",
   "searchDemand": {
     "sourceUrl": "https://a.pr-cy.ru/proptreiding.ru/",
     "sourceType": "third-party Yandex Moscow estimate",
@@ -51,7 +52,8 @@
         "The September 8 recheck includes the leverage article's two embedded images: Stellar 1-Step forex is 1:30 in both stages, while Stellar 2-Step and Lite remain 1:100. This corrects our prior grouping; it does not establish a new policy-change date.",
         "2026-10-20 recheck (12:55 Riga, US-IP box): the tradable-assets article (dated September 8, 2026) still lists the same 43 forex pairs in the same order: \"AUDCAD, AUDCHF, AUDJPY, ... USDZAR, NZDUSD, and USDSEK.\" No symbol changes.",
         "2026-10-20 recheck: the leverage article's two images still read \"Stellar 1-Step Account | Forex 1:30\" and \"Stellar 2-Step & Lite Account | Forex 1:100\" in both the Challenge Account and FundedNext Account tables; the Stellar Instant article still says \"Forex: 1:30\"; https://fundednext.com/cfds still names MetaTrader 4, MetaTrader 5, cTrader and Match-Trader.",
-        "This forex-source recheck does not refresh challenge prices or the separate country-access evidence. No Russia-access promise is allowed."
+        "This forex-source recheck does not refresh challenge prices or the separate country-access evidence. No Russia-access promise is allowed.",
+        "Rechecked 2026-10-20: symbol list, leverage tables and platform list unchanged."
       ]
     },
     {
