@@ -27,24 +27,31 @@ kak-rabotayut-chellendzhi-prop-firm «как работают челленджи
 otzyvy-prop-firm «отзывы о проп-фирмах» (R) · prop-kompanii-otzyvy (RuPendingLink) · dlya-russkoyazychnykh-treyderov ·
 vyplaty-prop-firm «как платят проп-компании» · prop-trejding «что такое проп-трейдинг» · funded-account «funded account» · /blog/topstep-review (hreflang en).
 
-## Access source read by RU Writer
-https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep — read 2026-10-20 (curl, page dateModified 2026-09-04T15:26:29Z).
-"Countries Ineligible to Trade — Citizens of these countries can't trade or receive payouts: … Belarus … Russia … Ukraine … Crimea (incl. Donetsk, Luhansk, Kherson, Zaporizhzhia) …"
-"Citizen of an ineligible country but living in an eligible one — can I trade? Possibly. Submit a government-issued photo ID proving permanent residency in the eligible country, plus a bank statement from that country. Topstep's Trust team reviews it."
-XFA-only (no Live) list includes Germany. Kazakhstan is not named anywhere on the page.
+## Tracker data (merged 921518c, data/topstep-ru-gaps-2026-10-20, checked 2026-10-20)
+The branch now depends on 921518c (content/data/challenges/_captures/topstep-ru-gaps-2026-10-20.json, challenges/topstep.json, firms.json).
+Evidence: /workspace/tradersfundhub/evidence/topstep-ru-gaps-2026-10-20.md. Page copy checked sentence by sentence against it.
+- Access block: ACCESS_SOURCE now reads url/capturedAt/pageDated from the capture (page dateModified 2026-09-04, checked 2026-10-20).
+  Germany XFA-only comes from `eligibility.xfaOnly`; travel rule quoted («Don't trade while there»); Kazakhstan: not named on the
+  page (`kazakhstanNamed: false`), copy says this does not confirm access, and §1 no longer names Kazakhstan/EU/Israel as allowed.
+- Payout methods (§5 + FAQ + verdict/cons): Prop-to-Brokerage and Aeropay (US only), Wise (China, Canada, UK only), ACH (US banks, $30),
+  Wire/SWIFT (international, 5–10 business days, $30); no crypto, no Rise; own-name account only. «В карточке фирмы у нас…» sentence removed.
+- Entity: TopstepTrader, LLC, subsidiary of Topstep LLC, Chicago; size «до $150,000 на счёт, до 5 активных XFA». No $500K anywhere.
+- TopstepX evidence dated 20.10 (firms.json platformEvidence); copier Combine/XFA only; no TradingView connection.
+- Automation: bots via TopstepX/ProjectX API ($29/month), no HFT, VPS/VPN banned, no API on Live.
+- News: Tier 1 (CPI, FOMC, NFP, PPI) ±5 min — no new opening positions in index/metal minis, micros size-capped.
+- Taxes: prices are base; VAT/GST/sales tax added at checkout by country; amounts not observed.
+- Minimum days: no formal minimum, two trading days in practice (55% rule); conflict wording replaced.
+- XFA Consistency: ≥3 trading days with ≥1 trade, best day ≤40% of total net profit, ≤50% of balance per payout,
+  caps $3,000 / $4,000 / $6,000 (50K/100K/150K), $125 minimum.
 
-## Data gaps for Prop Firm Tracker
-1. firms.json `payoutMethods` = ACH, Bank wire, with no source/date; the 20.10 capture lists Prop-to-Brokerage, Aeropay, Wise (CN/CA/UK), ACH, Wire/SWIFT.
-2. Access note in challenges/topstep.json is still the 08.09 observation; please store the 20.10 read above (and the citizenship rule + XFA-only list) in Tracker data.
-3. Legal entity / HQ / maxAllocation ($500,000) have no dated source: not printed.
-4. platformEvidence (TopstepX) is 08.09; page uses rules.platforms evidence (15.10) for Quantower.
-5. TopstepX EA "with conditions" specifics and which news releases count as "major" are not captured.
-6. Non-US pricing (VAT/taxes for CIS/EU visitors) not captured; page says only "taxes may be added".
-7. Minimum-days conflict (help "as few as two days" vs product page "no minimum") still open.
+## Remaining data gaps (from Tracker's capture)
+1. Non-US checkout tax amounts not observed (US IP, no checkout).
+2. Kazakhstan eligibility: not named either way.
+3. TopstepTrader, LLC state of formation not stated.
+4. challenge-watch topstep-minimum-days-source-conflict-2026-09-08 stays 'watch' (flip needs Dev/Code Reviewer with the pinned counts).
+5. lib/comparisons.ts (lines 202, 208, 351) still says "Topstep caps at $500K" — EN/shared file, for Dev / EN Writer.
 
 ## SEO review 20.10 (review-2026-10-26-topstep.md) — follow-ups
 - Done: datePublished from RUSSIAN_ROUTE_EDITORIAL_DATES; reading-time line removed; funded-account anchor capitalised («Топстеп»).
-- Waiting on Tracker (due Sun 25.10 15:00): dated 20.10+ capture of 8284116 (must-fix 1). Access block left untouched until then;
-  fallback = date it to the 08.09 observation and drop the Germany XFA-only and travel sentences.
-- Waiting on Tracker: firms.json payoutMethods + source/date; then drop the «В карточке фирмы у нас…» sentence.
+- Resolved 20.10: Tracker's dated capture of 8284116 (921518c) — access block sourced to it; «В карточке фирмы у нас…» sentence dropped.
 - 26.10: Hash Hedge firms.json entry → optional third RuGoLink card; Phase 2 RuArticleLayout → move related links into the R slot.

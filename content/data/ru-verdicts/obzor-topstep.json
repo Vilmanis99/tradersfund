@@ -4,12 +4,12 @@
   "firm": "Topstep",
   "dataAsOf": "2026-10-20",
   "sources": [
-    "content/data/firms.json#Topstep (profitSplitPct, platforms, payoutMethods, countriesRestricted, russiaStatus)",
+    "content/data/firms.json#Topstep (profitSplitPct, platforms, payoutMethods + payoutMethodsCapturedAt 2026-10-20, legalEntity, maxAllocation, countriesRestricted, russiaStatus)",
     "content/data/challenges/topstep.json (sourceCapturedAt 2026-10-20: prices, activation fee, maxLossUsd tiers, target 6%, consistency 55%)",
     "content/data/challenges/_captures/topstep-2026-10-20.json (Prop Firm Tracker recheck 20.10.2026: MLL mechanics, payout routes, transfer rails, trading hours)",
-    "https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep (RU Writer read 20.10.2026; page dated 04.09.2026)"
+    "content/data/challenges/_captures/topstep-ru-gaps-2026-10-20.json (Prop Firm Tracker 20.10.2026: eligibility page 8284116 dated 04.09.2026, payout methods, legal entity, TopstepX, API/automation, Tier 1 news, checkout taxes, minimum days, XFA Consistency route)"
   ],
-  "verdict": "Topstep — фьючерсный проп с одной фазой оценки: цель 6%, единственное жёсткое правило — Maximum Loss Limit $2,000 / $3,000 / $4,500 с подтяжкой по балансу на конец дня, доля трейдера 90%. Оценка оплачивается ежемесячной подпиской: Standard $49–199 в месяц плюс $149 за активацию или No Activation Fee $95–229 в месяц, поэтому медленное прохождение стоит дороже (по данным на 20.10.2026).",
+  "verdict": "Topstep — фьючерсный проп с одной фазой оценки: цель 6%, единственное жёсткое правило — Maximum Loss Limit $2,000 / $3,000 / $4,500 с подтяжкой по балансу на конец дня, доля трейдера 90%. Оценка оплачивается ежемесячной подпиской: Standard $49–199 в месяц плюс $149 за активацию или No Activation Fee $95–229 в месяц, цены без налогов, поэтому медленное прохождение стоит дороже (по данным на 20.10.2026).",
   "best": [
     "вы торгуете фьючерсы CME внутри дня: все позиции закрываются до 15:10 по Чикаго, а дневного лимита в Trading Combine нет",
     "вам нужен один понятный лимит убытка в долларах, а не несколько процентных правил",
@@ -18,7 +18,7 @@
   "avoid": [
     "вы держите позиции через ночь или выходные: Topstep это запрещает",
     "вы делаете прибыль одним крупным днём: лучший день не может превышать 55% цели, иначе цель растёт",
-    "вам нужны выплаты в криптовалюте: в наших данных у Topstep только банковские переводы, вне США — SWIFT за $30"
+    "вам нужны выплаты в криптовалюте или через Rise: у Topstep их нет, а вне США, Китая, Канады и Великобритании выплата идёт только через Wire/SWIFT за $30"
   ],
   "russiaAccess": {
     "statusFrom": "russiaStatus",
@@ -34,7 +34,7 @@
       },
       "restricted": {
         "list": "avoid",
-        "text": "вы резидент РФ: статус {firm} — «{badge}», Topstep учитывает и гражданство, и место жительства, VPN не помогает.",
+        "text": "вы резидент РФ: статус {firm} — «{badge}», Topstep учитывает и гражданство, и место жительства, торговать нельзя даже в поездке в страну из списка, VPN не помогает.",
         "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}, но это CFD или криптовалюта, а не фьючерсы CME."
       },
       "unclear": {

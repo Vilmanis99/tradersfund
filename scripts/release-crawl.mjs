@@ -1166,6 +1166,10 @@ const russianExpectations = new Map([
       'data-russian-topstep-pricing-product="trading-combine-no-activation-fee-path"',
       'data-russian-topstep-risk="usd-mll-eod"',
       'data-russian-topstep-payout="on-demand-usd-rails"',
+      'data-russian-topstep-payout-methods="official-list"',
+      'data-russian-topstep-entity="topsteptrader-llc"',
+      'data-russian-topstep-tax="checkout"',
+      'data-russian-topstep-min-days="two-day-practical"',
       'data-russian-alternatives="bright-funded-first"',
       'data-russian-topstep-alternative="bright-funded"',
       'data-russian-topstep-alternative="crypto-fund-trader"',
@@ -1946,6 +1950,9 @@ const russianFtmoPage = pages.find(page =>
     }
     if (!topstepHtml.includes('data-russia-status="restricted" data-russia-firm="topstep"')) {
       errors.push('/ru/obzor-topstep: Topstep CTA is missing its closed Russia-access badge')
+    }
+    for (const stale of ['ACH, Bank wire', '$500,000', '$500K', 'В карточке фирмы у нас', 'источники расходятся']) {
+      if (topstepHtml.includes(stale)) errors.push(`/ru/obzor-topstep: stale pre-921518c copy found: ${stale}`)
     }
     if (topstepHtml.includes('/go/fundednext')) {
       errors.push('/ru/obzor-topstep: FundedNext must not be offered as an alternative for Russia')

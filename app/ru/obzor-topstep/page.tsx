@@ -18,19 +18,22 @@ import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
 import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, RUSSIAN_ROUTE_EDITORIAL_DATES, russianRouteDateModified } from '@/lib/localizedRoutes'
 import topstepRecheck from '@/content/data/challenges/_captures/topstep-2026-10-20.json'
+import topstepGaps from '@/content/data/challenges/_captures/topstep-ru-gaps-2026-10-20.json'
 
 const PATH = '/ru/obzor-topstep'
 const TITLE = 'Topstep: обзор 2026 — фьючерсный проп и доступ из России'
 const H1 = 'Topstep: обзор и отзывы 2026'
 
 // Every fact below that is not read from firms.json or challenges/topstep.json
-// comes from Prop Firm Tracker's 2026-10-20 recheck (topstep-2026-10-20.json)
-// or from the official eligibility page read by RU Writer on the same day.
+// comes from Prop Firm Tracker's 2026-10-20 captures: the core recheck
+// (topstep-2026-10-20.json) and the RU gap capture (topstep-ru-gaps-2026-10-20.json:
+// eligibility, payout methods, entity, TopstepX, automation, news, taxes, minimum days).
 const RECHECK_DATE = topstepRecheck.capturedAt
+const GAPS_DATE = topstepGaps.capturedAt
 const ACCESS_SOURCE = {
-  url: 'https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep',
-  capturedAt: '2026-10-20',
-  pageDated: '2026-09-04',
+  url: topstepGaps.eligibility.sourceUrl,
+  capturedAt: topstepGaps.capturedAt,
+  pageDated: topstepGaps.eligibility.dateModified.slice(0, 10),
   quote: 'Citizens of these countries can\'t trade or receive payouts: … Belarus … Russia … Ukraine … Crimea (incl. Donetsk, Luhansk, Kherson, Zaporizhzhia)',
 }
 const PRICING_URL = 'https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions'
@@ -43,6 +46,9 @@ const PROHIBITED_URL = 'https://help.topstep.com/en/articles/10305426-prohibited
 const TOPSTEPX_URL = 'https://help.topstep.com/en/articles/14434175-topstepx'
 const QUANTOWER_URL = 'https://help.topstep.com/en/articles/8284179-quantower-connection-instructions'
 const PROP_URL = 'https://www.topstep.com/topstep-prop'
+const TERMS_URL = 'https://www.topstep.com/terms-of-use'
+const API_URL = 'https://help.topstep.com/en/articles/11187768-topstepx-api-access'
+const NEWS_URL = 'https://help.topstep.com/en/articles/13613539-risk-adjustments-high-risk-high-volatility'
 
 const CIS_COUNTRIES: Array<[string, string]> = [
   ['Russia', 'Россия'],
@@ -124,6 +130,8 @@ export default function RussianTopstepReviewPage() {
   const cisListed = CIS_COUNTRIES.filter(([en]) => restricted.includes(en))
   const cisNotListed = CIS_COUNTRIES.filter(([en]) => !restricted.includes(en))
   const kazakhstanListed = restricted.includes('Kazakhstan')
+  const kazakhstanNamed = kazakhstanListed || topstepGaps.eligibility.kazakhstanNamed
+  const germanyXfaOnly = topstepGaps.eligibility.xfaOnly.includes('Germany')
   const split = firm.profitSplitPct
   const consistency = reference?.consistencyRulePct ?? null
   const target = reference?.profitTargets?.phase1 ?? null
@@ -135,7 +143,7 @@ export default function RussianTopstepReviewPage() {
     ? product.accountSizes.map(tier => usd(tier.priceUsd)).join(' / ')
     : 'требует повторной проверки'
   const activationFee = standard?.activationFeeUsd ?? null
-  const payoutMethods = firm.payoutMethods ?? []
+  const payoutDate = firm.payoutMethodsCapturedAt ?? GAPS_DATE
   const platforms = firm.platforms ?? []
   const futuresFirms = firms
     .filter(candidate => candidate.assets?.includes('Futures'))
@@ -159,14 +167,25 @@ export default function RussianTopstepReviewPage() {
     })
     : []
 
+  const sourcePages = [
+    ...topstepRecheck.pagesRead.map(page => ({ url: page.url, date: RECHECK_DATE })),
+    { url: ACCESS_SOURCE.url, date: ACCESS_SOURCE.capturedAt },
+    ...topstepGaps.pagesRead.map(page => ({ url: page.url, date: GAPS_DATE })),
+  ].reduce<Array<{ url: string; date: string }>>((list, page) => {
+    const existing = list.find(item => item.url === page.url)
+    if (!existing) list.push(page)
+    else if (page.date > existing.date) existing.date = page.date
+    return list
+  }, [])
+
   const faqs: RussianFaqItem[] = [
     {
       q: 'Можно ли пройти Topstep из России?',
-      a: isRestricted ? `Нет. Россия есть в списке стран, гражданам и жителям которых Topstep не даёт торговать и получать выплаты (по данным на ${ruDate(ACCESS_SOURCE.capturedAt)}); там же Беларусь, Украина и Крым. Topstep смотрит и на гражданство, и на постоянное место жительства. VPN, чужой адрес или неверные данные в KYC ведут к проверке и закрытию счёта, а не к допуску.` : 'Статус России в наших данных изменился; сверьте актуальный список стран Topstep до оплаты.',
+      a: isRestricted ? `Нет. Россия есть в списке стран, гражданам и жителям которых Topstep не даёт торговать и получать выплаты (по данным на ${ruDate(ACCESS_SOURCE.capturedAt)}); там же Беларусь, Украина и Крым. Topstep смотрит и на гражданство, и на постоянное место жительства. Торговать нельзя и во время поездки в страну из списка: Topstep пишет «не торгуйте, пока вы там». VPN, чужой адрес или неверные данные в KYC ведут к проверке и закрытию счёта, а не к допуску.` : 'Статус России в наших данных изменился; сверьте актуальный список стран Topstep до оплаты.',
     },
     {
       q: 'Сколько стоит Trading Combine?',
-      a: `Это ежемесячная подписка, а не разовый взнос. Путь Standard стоит ${priceLine(standard)} в месяц за счета ${sizesLine} плюс разовая активация ${usd(activationFee)} за каждый полученный Express Funded Account. Путь No Activation Fee стоит ${priceLine(noActivation)} в месяц без активации. Путь нельзя сменить после покупки, к цене могут добавиться налоги (по данным на ${ruDate(latestCapture)}).`,
+      a: `Это ежемесячная подписка, а не разовый взнос. Путь Standard стоит ${priceLine(standard)} в месяц за счета ${sizesLine} плюс разовая активация ${usd(activationFee)} за каждый полученный Express Funded Account. Путь No Activation Fee стоит ${priceLine(noActivation)} в месяц без активации. Путь нельзя сменить после покупки (по данным на ${ruDate(latestCapture)}). Это базовые цены без налогов: НДС, GST или sales tax Topstep добавляет при оформлении в зависимости от страны; суммы для стран СНГ и ЕС мы не видели (по данным на ${ruDate(GAPS_DATE)}).`,
     },
     {
       q: 'Что такое Maximum Loss Limit в Topstep?',
@@ -174,11 +193,11 @@ export default function RussianTopstepReviewPage() {
     },
     {
       q: 'Какой сплит и как выводить прибыль?',
-      a: `Трейдер получает ${split ?? '—'}% прибыли, заявку можно подать по требованию в часы работы биржи CME после выполнения условий выплаты. Для международных переводов Topstep указывает Wire/SWIFT: 5–10 рабочих дней и $30 за перевод; Wise доступен только для Китая, Канады и Великобритании, ACH и Aeropay — только для банков США (по данным на ${ruDate(RECHECK_DATE)}). Криптовалютных выплат в наших данных нет.`,
+      a: `Трейдер получает ${split ?? '—'}% прибыли, заявку можно подать по требованию в часы работы биржи CME после выполнения условий выплаты. Способы выплаты: Prop-to-Brokerage и Aeropay — только США; Wise — только Китай, Канада и Великобритания; ACH — банки США, $30; Wire/SWIFT — международный перевод, 5–10 рабочих дней, $30. Криптовалюты и Rise в списке нет, выплата идёт только на счёт на ваше имя (по данным на ${ruDate(payoutDate)}).`,
     },
     {
       q: 'Есть ли у Topstep правило консистентности?',
-      a: `Да. В Trading Combine лучший день не должен превышать ${consistency ?? '—'}% цели по прибыли, иначе цель растёт. На Express Funded Account маршрут XFA Consistency требует 3 торговых дня и лучший день не выше 40% чистой прибыли (по данным на ${ruDate(RECHECK_DATE)}).`,
+      a: `Да. В Trading Combine лучший день не должен превышать ${consistency ?? '—'}% цели по прибыли, иначе цель растёт. На Express Funded Account маршрут XFA Consistency требует не меньше 3 торговых дней хотя бы с одной сделкой в каждый, а лучший день — не больше 40% общей чистой прибыли; за раз можно вывести до 50% баланса, но не больше $3,000 / $4,000 / $6,000 для счетов 50K / 100K / 150K, минимум $125 (по данным на ${ruDate(GAPS_DATE)}).`,
     },
     {
       q: 'Чем заменить Topstep трейдеру из РФ?',
@@ -270,29 +289,33 @@ export default function RussianTopstepReviewPage() {
               В официальном списке стран, где Topstep не даёт торговать и получать выплаты, названы{' '}
               {cisListed.map(([, ru]) => ru).join(', ') || 'страны не указаны'} (по данным на {ruDate(ACCESS_SOURCE.capturedAt)}).
               VPN, чужой адрес или неверные данные в KYC не превращают запрет в допуск: это нарушение правил, после которого счёт
-              проверяет команда безопасности.
+              проверяет команда Trust.
             </div>
             <p>
               Topstep оценивает допуск по двум признакам сразу — гражданству и постоянному месту жительства. Если вы живёте в стране
               из списка ограничений, торговать нельзя при любом паспорте. Если у вас гражданство страны из списка, но вы постоянно живёте
               в разрешённой стране, Topstep пишет «возможно»: нужно отправить документ о постоянном проживании и банковскую выписку из
-              этой страны, решение принимает команда Trust. Это рассмотрение, а не гарантия. Торговать даже во время короткой поездки
-              в страну из списка Topstep не рекомендует: это может запустить проверку счёта.
+              этой страны, решение принимает команда Trust. Это рассмотрение, а не гарантия. Торговать нельзя и во время поездки
+              в страну из списка: Topstep пишет «не торгуйте, пока вы там», а сделка оттуда, даже разовая, может запустить проверку команды Trust.
             </p>
             <p>
               {kazakhstanListed
                 ? 'Казахстан в нашем списке ограничений Topstep есть.'
-                : 'Казахстан в списке ограничений Topstep на дату проверки не назван.'}{' '}
-              Не названы также: {cisNotListed.filter(([en]) => en !== 'Kazakhstan').map(([, ru]) => ru).join(', ')}.
+                : kazakhstanNamed
+                  ? 'Казахстан упомянут на странице допуска Topstep — сверьте, в каком списке.'
+                  : 'Казахстан на странице допуска Topstep не назван ни в одном списке — ни среди запрещённых, ни среди стран «только XFA». Это не значит, что Казахстан открыт: допуск оттуда мы не подтверждаем.'}{' '}
+              Среди запрещённых не названы также: {cisNotListed.filter(([en]) => en !== 'Kazakhstan').map(([, ru]) => ru).join(', ')}.
               Отсутствие страны в списке — ещё не подтверждение допуска: Topstep предупреждает, что список может меняться в любой момент.
-              Отдельно есть страны, где доступен только Express Funded Account без перехода на Live-счёт; среди них, например, Германия.
-              Для русскоязычных трейдеров, живущих в Казахстане, ЕС, Израиле или другой разрешённой стране, обзор ниже применим —
-              но страну, документы и способ выплаты нужно сверить с Topstep до оплаты. Общий разбор — в гиде{' '}
+              {germanyXfaOnly
+                ? ' Отдельно есть страны, где доступен только Express Funded Account без перехода на Live-счёт; среди них Германия.'
+                : ' Отдельно есть страны, где доступен только Express Funded Account без перехода на Live-счёт.'}{' '}
+              Если вы живёте в стране, которую Topstep допускает, обзор ниже применим — но страну, документы и способ выплаты нужно
+              сверить с Topstep до оплаты. Общий разбор — в гиде{' '}
               <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для русскоязычных трейдеров</Link>.
             </p>
             <p className="ru-source-line">
               Источник: <a href={ACCESS_SOURCE.url} target="_blank" rel="noopener noreferrer">Am I Eligible to Trade with Topstep?</a>{' '}
-              (страница от {ruDate(ACCESS_SOURCE.pageDated)}, прочитана {ruDate(ACCESS_SOURCE.capturedAt)}).
+              (страница от {ruDate(ACCESS_SOURCE.pageDated)}; проверка Prop Firm Tracker по данным на {ruDate(ACCESS_SOURCE.capturedAt)}).
               {!accessFresh && ' Проверка старше 30 дней: перед оплатой откройте список заново.'}
             </p>
           </div>
@@ -304,13 +327,13 @@ export default function RussianTopstepReviewPage() {
             <p>
               Topstep — понятный выбор для дневного трейдера фьючерсами, который живёт в разрешённой стране. Правило по сути одно:
               Maximum Loss Limit в долларах ({mllLine}), который подтягивается по балансу на конец дня. Дневного лимита в Combine нет,
-              минимальный срок не задан однозначно, а прибыль делится {split ?? '—'}/{split != null ? 100 - split : '—'}. Цена — подписка, поэтому медленное
+              формального минимума дней тоже нет (на практике — два торговых дня), а прибыль делится {split ?? '—'}/{split != null ? 100 - split : '—'}. Цена — подписка, поэтому медленное
               прохождение стоит дороже: каждый месяц списывается заново, пока вы не пройдёте оценку или не отмените подписку.
             </p>
             <p>
               Слабые места тоже конкретные. Все позиции нужно закрыть до 15:10 по Чикаго, переносить сделки через ночь и выходные
-              нельзя, а консистентность {consistency ?? '—'}% мешает пройти оценку одним удачным днём. Выплаты для стран вне США идут в основном
-              банковским переводом SWIFT с комиссией $30. Для резидента России вывод проще: Topstep {isRestricted ? 'недоступен' : 'требует отдельной проверки страны'}, а фьючерсной
+              нельзя, а консистентность {consistency ?? '—'}% мешает пройти оценку одним удачным днём. Вне США, Китая, Канады и Великобритании
+              единственный способ выплаты — Wire/SWIFT с комиссией $30. Для резидента России вывод проще: Topstep {isRestricted ? 'недоступен' : 'требует отдельной проверки страны'}, а фьючерсной
               замены, открытой для РФ, в наших данных {openFutures.length === 0 ? 'нет' : `немного: ${openFutures.map(item => item.name).join(', ')}`}. Если вы готовы перейти на CFD или криптовалюту, смотрите{' '}
               <a href="#alternativy">альтернативы</a> — сначала BrightFunded, затем Crypto Fund Trader.
             </p>
@@ -346,6 +369,11 @@ export default function RussianTopstepReviewPage() {
                 По данным самой Topstep за 2025 год, на Live позвали 0,71% трейдеров XFA.
               </li>
             </ol>
+            <p data-russian-topstep-entity="topsteptrader-llc">
+              Trading Combine и XFA ведёт компания TopstepTrader, LLC — дочерняя компания Topstep LLC из Чикаго (по{' '}
+              <a href={TERMS_URL} target="_blank" rel="noopener noreferrer">условиям использования</a> и подвалу сайта Topstep, по данным на {ruDate(GAPS_DATE)}).
+              Размер — до $150,000 на один счёт, одновременно можно держать до 5 активных XFA.
+            </p>
             <p>
               Та же статистика Topstep за 2025 год: успешно завершено 16,8% начатых Trading Combine, хотя бы раз дошли до следующего этапа
               51,8% участников, выплату получили 33,3% трейдеров с финансированием. Это данные фирмы по прошлым когортам, а не наш
@@ -361,7 +389,7 @@ export default function RussianTopstepReviewPage() {
             <h2>Цены: подписка Standard и No Activation Fee</h2>
             <p>
               Trading Combine продаётся как ежемесячная подписка. Она продлевается, пока вы не пройдёте оценку или не отмените её.
-              Путь выбирается при покупке и потом не меняется; к цене могут добавиться налоги. Цены в USD, по данным на {ruDate(latestCapture)}:
+              Путь выбирается при покупке и потом не меняется. Цены в USD, по данным на {ruDate(latestCapture)}:
             </p>
             {freshProducts.length > 0 ? (
               <div className="ru-table-wrap">
@@ -384,6 +412,10 @@ export default function RussianTopstepReviewPage() {
             ) : (
               <p className="ru-notice">Цены Topstep проверялись больше 30 дней назад и скрыты до повторной проверки.</p>
             )}
+            <p data-russian-topstep-tax="checkout">
+              Это базовые цены без налогов. В зависимости от страны Topstep добавляет НДС, GST или sales tax и показывает сумму при
+              оформлении заказа. Суммы для стран СНГ и ЕС мы не видели: проверка шла без оформления заказа (по данным на {ruDate(GAPS_DATE)}).
+            </p>
             <p>
               На пути Standard после прохождения нужно заплатить активацию {usd(activationFee)} — один раз за каждый полученный XFA.
               На пути No Activation Fee активации нет, но месячная цена выше. Topstep также даёт скидку на No Activation Fee
@@ -462,11 +494,11 @@ export default function RussianTopstepReviewPage() {
               сами, и тогда торговля останавливается до следующей сессии.{' '}
               <a href={CONSISTENCY_URL} target="_blank" rel="noopener noreferrer">Правило консистентности</a>.
             </p>
-            <h3>Минимальный срок: источники расходятся</h3>
-            <p>
-              Справка о параметрах Combine пишет, что пройти можно «всего за два дня», а продуктовая страница — что минимального срока
-              нет. Оба утверждения были на сайтах Topstep на {ruDate(RECHECK_DATE)}. Мы не выбираем одно из них и не обещаем прохождение
-              за один день. <a href={PARAMETERS_URL} target="_blank" rel="noopener noreferrer">Параметры Trading Combine</a>{' · '}
+            <h3>Минимальный срок: формально нет, на практике два дня</h3>
+            <p data-russian-topstep-min-days="two-day-practical">
+              Обязательного минимума торговых дней у Topstep нет. Но из-за правила консистентности лучший день не может превышать
+              {' '}{consistency ?? '—'}% прибыли, поэтому за один день оценку не пройти: справка и продуктовая страница одинаково пишут,
+              что пройти можно «всего за два дня» (по данным на {ruDate(GAPS_DATE)}). <a href={PARAMETERS_URL} target="_blank" rel="noopener noreferrer">Параметры Trading Combine</a>{' · '}
               <a href={MLL_URL} target="_blank" rel="noopener noreferrer">Maximum Loss Limit</a>.
             </p>
           </div>
@@ -481,19 +513,24 @@ export default function RussianTopstepReviewPage() {
             </p>
             <ul>
               <li><strong>XFA Standard</strong> — 5 выигрышных торговых дней с прибылью от $150 и положительный результат с прошлой выплаты (для первой выплаты последнее не требуется).</li>
-              <li><strong>XFA Consistency</strong> — 3 торговых дня хотя бы с одной сделкой, лучший день не выше 40% чистой прибыли.</li>
+              <li><strong>XFA Consistency</strong> — не меньше 3 торговых дней хотя бы с одной сделкой в каждый, лучший день — не больше 40% общей чистой прибыли.</li>
             </ul>
+            <p>Маршрут выбирают при активации XFA.</p>
             <p>
               Минимальная заявка — $125, максимальная — 50% баланса, но не больше потолка: на XFA Standard $2,000 / $3,000 / $5,000,
               на XFA Consistency $3,000 / $4,000 / $6,000 для счетов 50K / 100K / 150K. Одобрение может занять 1–3 рабочих дня, и это отдельно от срока самого перевода.
             </p>
+            <p data-russian-topstep-payout-methods="official-list">Способы выплаты по политике выплат Topstep (по данным на {ruDate(payoutDate)}):</p>
+            <ul>
+              <li><strong>Prop-to-Brokerage</strong> и <strong>Aeropay</strong> — только США.</li>
+              <li><strong>Wise</strong> — только Китай, Канада и Великобритания.</li>
+              <li><strong>ACH</strong> — банки США, $30.</li>
+              <li><strong>Wire/SWIFT</strong> — международный перевод, 5–10 рабочих дней, $30.</li>
+            </ul>
             <p>
-              В карточке фирмы у нас указаны способы выплаты: {payoutMethods.join(', ') || 'не указаны'}. Справка Topstep от{' '}
-              {ruDate(RECHECK_DATE)} уточняет географию каждого способа: Prop-to-Brokerage, Aeropay и ACH — только для США, Wise — только
-              для Китая, Канады и Великобритании, а международный способ — Wire/SWIFT: 5–10 рабочих дней и $30 за перевод, плюс
-              возможные комиссии банков-посредников. Криптовалютных выплат в наших данных нет. Для русскоязычного трейдера из
-              разрешённой страны СНГ это значит, что получать деньги придётся банковским переводом SWIFT; проверьте заранее, примет ли
-              его ваш банк. Как другие фирмы решают этот вопрос — в разборе{' '}
+              Криптовалюты и Rise в списке нет, а выплата приходит только на банковский счёт на ваше имя. Для трейдера из допущенной
+              страны вне США, Китая, Канады и Великобритании это значит, что получать деньги придётся переводом Wire/SWIFT; проверьте
+              заранее, примет ли его ваш банк. Как другие фирмы решают этот вопрос — в разборе{' '}
               <Link href="/ru/vyplaty-prop-firm">как платят проп-компании</Link>.
             </p>
             <p className="ru-source-line"><a href={PAYOUT_URL} target="_blank" rel="noopener noreferrer">Политика выплат Topstep</a>.</p>
@@ -505,11 +542,11 @@ export default function RussianTopstepReviewPage() {
             <h2>Платформы: {platforms.join(' и ') || 'не указаны'}</h2>
             <p>
               TopstepX — торговая платформа самой Topstep, через неё подключаются счета Combine и XFA. Quantower подключается через TopstepX и доступен только на Trading Combine
-              и XFA, не на Live-счёте (по данным на {ruDate(firm.rules?.platforms?.evidence?.[0]?.capturedAt ?? null)}). Совместимость других
-              сторонних платформ в нашей проверке не подтверждена.
+              и XFA, не на Live-счёте. График TopstepX не подключается к внешним платформам вроде TradingView (по данным на{' '}
+              {ruDate(firm.platformEvidence?.sourceCapturedAt ?? GAPS_DATE)}). Совместимость других сторонних платформ в нашей проверке не подтверждена.
             </p>
             <p>
-              Встроенный копировщик сделок в TopstepX работает на Combine и XFA, но не на Live. Ведущий счёт в группе должен иметь самый
+              Встроенный копировщик сделок в TopstepX работает только на Combine и XFA, не на Live. Ведущий счёт в группе должен иметь самый
               маленький максимальный размер позиции, а разница в правилах масштабирования может отключить копирование. Поэтому
               копирование в наших данных отмечено как «ограничено», а не как свободно разрешённое.{' '}
               <a href={TOPSTEPX_URL} target="_blank" rel="noopener noreferrer">TopstepX</a>{' · '}
@@ -525,10 +562,10 @@ export default function RussianTopstepReviewPage() {
               <table className="ru-table">
                 <thead><tr><th>Правило</th><th>Статус</th><th>Что именно сказано</th></tr></thead>
                 <tbody>
-                  <tr><td>Торговля на новостях</td><td>{reference?.rules?.news === 'restricted' ? 'ограничена' : reference?.rules?.news ?? '—'}</td><td>Запрещено намеренно входить максимальным размером позиции прямо в запланированную важную новость.</td></tr>
+                  <tr><td>Торговля на новостях</td><td>{reference?.rules?.news === 'restricted' ? 'ограничена' : reference?.rules?.news ?? '—'}</td><td>Для новостей Tier 1 (CPI, FOMC, NFP, PPI) с 5 минут до выхода и до 5 минут после нельзя открывать новые позиции в мини-контрактах на индексы и металлы, а по микроконтрактам действует лимит размера; открытые позиции держать можно. Отдельно запрещено входить максимальным размером позиции прямо в запланированную важную новость.</td></tr>
                   <tr><td>Перенос через ночь</td><td>{reference?.rules?.overnight === false ? 'нельзя' : '—'}</td><td>Все позиции закрываются до 15:10 по Чикаго в будни, торговля возобновляется в 17:00. Свинг-трейдинга нет.</td></tr>
                   <tr><td>Перенос через выходные</td><td>{reference?.rules?.weekend === false ? 'нельзя' : '—'}</td><td>В пятницу счёт должен быть без позиций до открытия в воскресенье.</td></tr>
-                  <tr><td>Советники и алгоритмы</td><td>{reference?.rules?.ea === 'restricted' ? 'ограничены' : reference?.rules?.ea ?? '—'}</td><td>Автоматические стратегии разрешены «с условиями»; исключений при сбое алгоритма нет.</td></tr>
+                  <tr><td>Советники и алгоритмы</td><td>{reference?.rules?.ea === 'restricted' ? 'ограничены' : reference?.rules?.ea ?? '—'}</td><td>Боты разрешены через API TopstepX/ProjectX ($29 в месяц), кроме высокочастотной торговли (HFT). VPS и VPN запрещены, на Live-счёте API нет; при сбое алгоритма исключений не делают.</td></tr>
                   <tr><td>Копирование сделок</td><td>{reference?.rules?.copyTrading === 'restricted' ? 'ограничено' : reference?.rules?.copyTrading ?? '—'}</td><td>Только Combine и XFA, ведущий счёт с наименьшим лимитом позиции.</td></tr>
                 </tbody>
               </table>
@@ -538,7 +575,9 @@ export default function RussianTopstepReviewPage() {
               валютные и криптовалютные фьючерсы — не то же самое, что спот-валюта или спот-криптовалюта. Отдельно Topstep запрещает
               использование несправедливых технологий и эксплуатацию особенностей симулятора.{' '}
               <a href={HOURS_URL} target="_blank" rel="noopener noreferrer">Часы и инструменты</a>{' · '}
-              <a href={PROHIBITED_URL} target="_blank" rel="noopener noreferrer">Запрещённые стратегии</a>.
+              <a href={PROHIBITED_URL} target="_blank" rel="noopener noreferrer">Запрещённые стратегии</a>{' · '}
+              <a href={NEWS_URL} target="_blank" rel="noopener noreferrer">Новости Tier 1</a>{' · '}
+              <a href={API_URL} target="_blank" rel="noopener noreferrer">API TopstepX</a> (по данным на {ruDate(GAPS_DATE)}).
             </p>
           </div>
         </section>
@@ -658,7 +697,7 @@ export default function RussianTopstepReviewPage() {
                   <li>Подписка продлевается каждый месяц, пока вы не пройдёте оценку или не отмените её.</li>
                   <li>MLL контролируется внутри дня по незакрытым позициям.</li>
                   <li>Нельзя держать позиции через ночь и выходные.</li>
-                  <li>Вне США выплата в основном через SWIFT с комиссией $30 и сроком 5–10 рабочих дней.</li>
+                  <li>Вне США, Китая, Канады и Великобритании выплата только через Wire/SWIFT: $30 и 5–10 рабочих дней.</li>
                 </ul>
               </article>
             </div>
@@ -671,16 +710,15 @@ export default function RussianTopstepReviewPage() {
             <p>
               Цены, цели, MLL, доля и правила взяты из карточки фирмы и записей программ Topstep в нашей базе, проверенных Prop Firm
               Tracker {ruDate(latestCapture)}. Условия выплат, часы торговли и ограничения сверены с официальной справкой в ту же дату.
-              Список стран — с официальной страницы допуска, прочитанной {ruDate(ACCESS_SOURCE.capturedAt)}.
+              Список стран, способы выплаты, компания, API, новости, налоги и минимальный срок — по дополнительной проверке Prop Firm Tracker
+              {' '}{ruDate(GAPS_DATE)}; страница допуска Topstep датирована {ruDate(ACCESS_SOURCE.pageDated)}.
               {trustpilotFresh && ` Оценка Trustpilot — на ${ruDate(firm.trustpilotCapturedAt)}.`}
             </p>
             {!recheckFresh && <p className="ru-notice">Детальная проверка правил старше 30 дней: условия выплат и ограничения ниже требуют повторной сверки.</p>}
             <ul>
-              {topstepRecheck.pagesRead.map(page => (
-                <li key={page.url}><a href={page.url} target="_blank" rel="noopener noreferrer">{new URL(page.url).pathname.split('/').pop()?.replace(/^\d+-/, '').replace(/-/g, ' ') || page.url}</a> — проверено {ruDate(RECHECK_DATE)}</li>
+              {sourcePages.map(page => (
+                <li key={page.url}><a href={page.url} target="_blank" rel="noopener noreferrer">{new URL(page.url).pathname.split('/').pop()?.replace(/^\d+-/, '').replace(/-/g, ' ') || page.url}</a> — проверено {ruDate(page.date)}</li>
               ))}
-              <li><a href={ACCESS_SOURCE.url} target="_blank" rel="noopener noreferrer">am i eligible to trade with topstep</a> — проверено {ruDate(ACCESS_SOURCE.capturedAt)}</li>
-              <li><a href={QUANTOWER_URL} target="_blank" rel="noopener noreferrer">quantower connection instructions</a> — проверено {ruDate(firm.rules?.platforms?.evidence?.[0]?.capturedAt ?? null)}</li>
             </ul>
             <p className="ru-source-line">Англоязычная версия: <Link href="/blog/topstep-review" hrefLang="en">Topstep review</Link>. Официальный сайт: <a href={PROP_URL} target="_blank" rel="noopener noreferrer">topstep.com</a>.</p>
             <div className="ru-notice" data-russian-risk-disclaimer="topstep">
