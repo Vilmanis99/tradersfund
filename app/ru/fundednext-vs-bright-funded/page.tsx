@@ -305,16 +305,16 @@ export default function FundedNextVsBrightFundedRussianPage() {
           </div>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="fundednext-bright-comparison">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            FundedNext и BrightFunded — два главных коммерческих партнёра русской версии. Мы можем получить комиссию после
+            BrightFunded и FundedNext — два главных коммерческих партнёра русской версии. Мы можем получить комиссию после
             покупки по партнёрской ссылке. Комиссия не меняет правила сравнения и не добавляет фирме баллы.
             Для обеих фирм доступны подробный обзор и ссылка на проверку условий.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fn-vs-bright-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
-              Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
-            </RuGoLink>
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-fn-vs-bright-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" />
+            </RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fn-vs-bright-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
+              Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
             <Link href="#verdict" className="btn-outline">Сначала увидеть различия</Link>
           </div>
