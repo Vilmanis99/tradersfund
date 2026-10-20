@@ -8,27 +8,27 @@
       {
         "sizeUsd": 5000,
         "priceUsd": 59,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 10000,
         "priceUsd": 99,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 25000,
         "priceUsd": 210,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 50000,
         "priceUsd": 322,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 100000,
         "priceUsd": 566,
-        "refundable": null
+        "refundable": false
       }
     ],
     "profitTargets": {
@@ -57,9 +57,9 @@
       "The stored 80% split and 14-day cycle represent the current Bi-Weekly route; the alternative is now On Demand 100% with eligibility conditions (35% consistency score plus 7 profitable days at 0.5%+), replacing the former Monthly 100% route (official 1 Step Flex page, 2026-10-20: \"80% Bi-Weekly or 100% On Demand reward\").",
       "The current page shows a 2% or 3% daily-loss configuration; this record retains 3% for the captured base route and does not imply both configurations are identical.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
-      "Refundability remains unresolved because the official refund wording does not clearly name current 1 Step Flex.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json",
+      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\""
     ]
   },
   {
@@ -124,7 +124,8 @@
       "New and reset accounts require the current minimum-day conditions; older accounts may retain legacy terms.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Recaptured 2026-10-20 from the live help page (EN Writer request): reward-cycle note added; prices, targets (10%/8%), 4% daily and 12% max loss unchanged; log: content/data/challenges/_captures/fundingpips-2026-10-20.json (twoStepFlexRecapture)"
+      "Recaptured 2026-10-20 from the live help page (EN Writer request): reward-cycle note added; prices, targets (10%/8%), 4% daily and 12% max loss unchanged; log: content/data/challenges/_captures/fundingpips-2026-10-20.json (twoStepFlexRecapture)",
+      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\""
     ]
   },
   {
@@ -199,7 +200,8 @@
       "The $2.5K availability conflict remains unresolved and priceUsd stays null.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json",
+      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\" The $2.5K tier stays null because its availability is unresolved."
     ]
   },
   {
@@ -269,7 +271,8 @@
       "The $2.5K availability conflict remains unresolved and priceUsd stays null.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json",
+      "Refund (2026-10-20): refundable = true means the registration fee is refunded at the 4th reward on the Master Account (Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\"). FundingPips' Terms (effective 15 May 2026) say \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\" and do not mention the 4th-reward refund; conflict recorded in _captures/fundingpips-2026-10-20.json. The $2.5K tier stays null because its availability is unresolved."
     ]
   },
   {
@@ -334,7 +337,8 @@
       "At least 7 profitable days of 0.25% or more are required in every rolling 30-day period; this is not a minimum trading-day field.",
       "News-window and weekend holding violations are hard breaches; the account is simulated and begins directly at Master.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change to this product, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change to this product, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json",
+      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\""
     ]
   }
 ]

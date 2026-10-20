@@ -101,7 +101,8 @@
       ],
       "note": "Seen only from the US IP; not checkout-verified; deals.json not touched. The help-centre code HELLO stays as discountCode."
     },
-    "2-step-flex: sourceCapturedAt 2026-10-19 -> 2026-10-20, reward-cycle note (Bi-Weekly 80%/95% or On Demand 100%, no Monthly)"
+    "2-step-flex: sourceCapturedAt 2026-10-19 -> 2026-10-20, reward-cycle note (Bi-Weekly 80%/95% or On Demand 100%, no Monthly)",
+    "1-step-flex refundable null -> false on all 5 tiers (Get Started / Reward Methods exclusion); refund notes with quotes on all 5 products"
   ],
   "briefAsks": {
     "checkoutMethods": {
@@ -287,5 +288,47 @@
         "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard"
       }
     }
+  },
+  "refundTerms": {
+    "requestedBy": "Web Designer & Developer via Karlis, 2026-10-20",
+    "method": "Help Center API (curl) for help articles; headless Chrome for fundingpips.com/terms-and-conditions (curl returns 429)",
+    "sources": [
+      {
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+        "articleUpdatedAt": "2026-09-24T09:41:29Z",
+        "quotes": [
+          "Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.",
+          "Will my registration fee be refunded? Yes, on the 2 Step Standard models. When you reach your 4th reward on the Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero."
+        ]
+      },
+      {
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods",
+        "articleUpdatedAt": "2026-09-28T13:01:01Z",
+        "quotes": [
+          "When you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee you paid for the challenge is refunded. The 4th-reward refund does not apply on 1 Step Flex , 2 Step Pro , 2 Step Flex , or FundingPips Zero .",
+          "These models have always been excluded from the registration fee refund."
+        ],
+        "oddity": "Section subtitle reads \"A milestone perk on the 1 Step and 2 Step Standard models\" while the body excludes 1 Step Flex; the legacy '1 Step Model' article (48982278587665) and Legacy Rules (51307058233361) say nothing about refunds."
+      },
+      {
+        "sourceUrl": "https://fundingpips.com/terms-and-conditions",
+        "effective": "May 15, 2026",
+        "quotes": [
+          "ALL PAYMENTS ARE FINAL AND FOR EVALUATION PURPOSES ONLY.",
+          "The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.",
+          "These fees are non-refundable once paid, except where required by applicable law"
+        ],
+        "note": "The Terms do not mention the 4th-reward refund."
+      }
+    ],
+    "productPages": "The five product help articles (34501697434385, 34501809112081, 47835196271249, 34502027344017, 34502157694865; all updated 2026-10-19) contain no refund wording.",
+    "verdicts": {
+      "1-step-flex": "false (explicitly excluded); was null",
+      "2-step-standard": "true = refunded at 4th Master reward per help centre; conflicts with Terms; $2.5K tier null",
+      "2-step-flex": "false (unchanged)",
+      "2-step-pro": "false (unchanged; $2.5K tier null)",
+      "zero": "false (unchanged)"
+    },
+    "firmsJson": "firms.json has no refund field for any firm (schema has refundable only per challenge tier), so nothing was changed there."
   }
 }
