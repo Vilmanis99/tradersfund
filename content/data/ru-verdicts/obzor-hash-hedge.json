@@ -3,11 +3,8 @@
   "type": "review",
   "firm": "Hash Hedge",
   "dataAsOf": "2026-10-19",
-  "russiaStatusFallback": "available",
-  "russiaStatusFallbackNote": "Temporary: Hash Hedge is not in firms.json on main/daily yet (Tracker branch data/hash-hedge-firms-v2-2026-10-20 @e95dff1 adds it with russiaStatus 'available'). Use the fallback only while russiaStatusFor('Hash Hedge') returns 'unverified' because the entry is missing; delete it after that branch merges.",
   "sources": [
-    "app/ru/obzor-hash-hedge (branch content/ru-obzor-hash-hedge @e6e2e5b; official pages checked 19.10.2026, terms dated 08.10.2026)",
-    "data/hash-hedge-firms-v2-2026-10-20 firms.json entry"
+    "app/ru/obzor-hash-hedge (branch content/ru-obzor-hash-hedge @e6e2e5b; official pages checked 19.10.2026, terms dated 08.10.2026)"
   ],
   "verdict": "Hash Hedge — крипто-проп со своим веб-терминалом: Two-stage стоит от $79 за $5K до $1,393 за $200K, цели 5% и 6%, минимум 5 торговых дней на этап. Оплата только криптовалютой, выплаты — только в USDT, не чаще раза в 14 дней и не больше $10 000 за период на счёт (по данным на 19.10.2026).",
   "best": [
@@ -24,6 +21,9 @@
   "russiaAccess": {
     "statusFrom": "russiaStatus",
     "firm": "Hash Hedge",
+    "alternatives": [
+      "BrightFunded"
+    ],
     "byStatus": {
       "available": {
         "list": "best",
@@ -31,17 +31,20 @@
       },
       "restricted": {
         "list": "avoid",
-        "text": "вы резидент РФ: статус {firm} — «{badge}», регистрация и выплата под риском отказа. Альтернатива со статусом «Открыта для РФ» — BrightFunded."
+        "text": "вы резидент РФ: статус {firm} — «{badge}», регистрация и выплата под риском отказа.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
       },
       "unclear": {
         "list": "avoid",
-        "text": "вы резидент РФ и не готовы рисковать взносом: статус {firm} — «{badge}», официальные источники не дают однозначного ответа. Альтернатива со статусом «Открыта для РФ» — BrightFunded."
+        "text": "вы резидент РФ и не готовы рисковать взносом: статус {firm} — «{badge}», официальные источники не дают однозначного ответа.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
       },
       "unverified": {
         "list": "avoid",
-        "text": "вы резидент РФ и хотите подтверждённый доступ: статус {firm} — «{badge}»; запросите у оператора письменное подтверждение до оплаты"
+        "text": "вы резидент РФ и хотите подтверждённый доступ: статус {firm} — «{badge}»; запросите у оператора письменное подтверждение до оплаты",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
       }
     }
   },
-  "firmInFirmsJson": true
+  "firmInFirmsJson": false
 }
