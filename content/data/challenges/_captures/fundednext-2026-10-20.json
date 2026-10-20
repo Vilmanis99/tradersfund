@@ -67,5 +67,157 @@
     }
   ],
   "openConflict": "Subsequent cycle: help centre says every 10 business days; the product page shows both \"Subsequent Withdrawal 10 Days\" and \"Subsequent Rewards Bi-weekly\". payoutFrequency stays null.",
-  "changes": []
+  "changes": [],
+  "dailyRecheck": {
+    "captureType": "daily-recheck",
+    "capturedAtTimestamp": "2026-10-20T08:21:08+03:00",
+    "egress": "Box egress is a US IP. Prices were compared against region-independent first-party price data where the firm publishes it (named in method); codes seen only from the US IP are recorded as regional, never as universal deals.",
+    "method": "curl of schema.org Offer data on the four global /cfds/ product pages",
+    "priceSource": "https://fundednext.com/cfds/stellar-2-step, /stellar-1-step, /stellar-lite, /stellar-instant schema.org Offer data",
+    "pricesMatchStored": true,
+    "storedPricesChecked": [
+      {
+        "productSlug": "stellar-2-step",
+        "prices": {
+          "6000": 59.99,
+          "15000": 119.99,
+          "25000": 199.99,
+          "50000": 299.99,
+          "100000": 549.99,
+          "200000": 1099.99
+        }
+      },
+      {
+        "productSlug": "stellar-1-step",
+        "prices": {
+          "6000": 65.99,
+          "15000": 129.99,
+          "25000": 219.99,
+          "50000": 329.99,
+          "100000": 569.99,
+          "200000": 1099.99
+        }
+      },
+      {
+        "productSlug": "stellar-lite",
+        "prices": {
+          "5000": 32.99,
+          "10000": 59.99,
+          "25000": 139.99,
+          "50000": 229.99,
+          "100000": 399.99,
+          "200000": 798.99
+        }
+      },
+      {
+        "productSlug": "stellar-instant",
+        "prices": {
+          "2000": 59.99,
+          "5000": 149.99,
+          "10000": 299.99,
+          "20000": 599.99
+        }
+      }
+    ],
+    "priceQuotes": [
+      "Stellar 2-Step $6K=59.99 $15K=119.99 $25K=199.99 $50K=299.99 $100K=549.99 $200K=1099.99",
+      "Stellar 1-Step $6K=65.99 $15K=129.99 $25K=219.99 $50K=329.99 $100K=569.99 $200K=1099.99",
+      "Stellar Lite $5K=32.99 $10K=59.99 $25K=139.99 $50K=229.99 $100K=399.99 $200K=798.99",
+      "Stellar Instant $2K=59.99 $5K=149.99 $10K=299.99 $20K=599.99"
+    ],
+    "quoteRecheck": {
+      "storedEvidenceStrings": 19,
+      "foundVerbatimInLiveText": 8,
+      "notFoundVerbatim": 11,
+      "notFoundExplanation": "Formatting differences (e.g. isolate characters around numbers) or editor summaries; values re-checked against live pages."
+    },
+    "usIpCodeObservation": {
+      "code": "STRTN",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+      "quote": "Stellar Lite $5K $29.99 $32.99 SAVE UP TO 9% WITH CODE STRTN",
+      "note": "Seen from the US IP. The same code is published globally by FundedNext Help Center (https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer: \"Pricing: Global (Up to 33% Discount) ... Stellar Lite 5K $32.99 $29.99 ... Pricing: USA (Up to 20% Discount) ... Stellar Lite 5K $32.99 $29.99\"), so it is already stored as the global discountCode and in deals.json; not added as a regional code."
+    },
+    "changes": [],
+    "notes": [
+      "All 22 stored prices match.",
+      "No change found, so product sourceCapturedAt and firms.json lastUpdated stay at 2026-10-19 (dates cited in published posts remain valid)."
+    ],
+    "pagesRead": [
+      {
+        "url": "https://fundednext.com/cfds/stellar-1-step",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:25.677Z"
+      },
+      {
+        "url": "https://fundednext.com/cfds/stellar-2-step",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:25.631Z"
+      },
+      {
+        "url": "https://fundednext.com/cfds",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:07.736Z"
+      },
+      {
+        "url": "https://help.fundednext.com/en/articles/8020768-how-much-is-the-reward-share-in-fundednext",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:13.955Z"
+      },
+      {
+        "url": "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:13.960Z"
+      },
+      {
+        "url": "https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:13.979Z"
+      },
+      {
+        "url": "https://fundednext.com/general-rules/cfds/trading-objectives",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:13.990Z"
+      },
+      {
+        "url": "https://fundednext.com/cfds/stellar-lite",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:25.716Z"
+      },
+      {
+        "url": "https://fundednext.com/cfds/stellar-instant",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:25.734Z"
+      },
+      {
+        "url": "https://help.fundednext.com/en/articles/8902893-fundednext-free-trial-rules",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:19.826Z"
+      },
+      {
+        "url": "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:19.666Z"
+      },
+      {
+        "url": "https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:19.694Z"
+      },
+      {
+        "url": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:19.712Z"
+      },
+      {
+        "url": "https://fundednext.com/company",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:19.873Z"
+      },
+      {
+        "url": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
+        "httpStatus": 200,
+        "fetchedAt": "2026-10-20T05:12:25.524Z"
+      }
+    ]
+  }
 }

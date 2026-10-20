@@ -1,0 +1,108 @@
+{
+  "firmSlug": "ftmo",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T08:21:08+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/ftmo-2026-10-19.json",
+  "egress": "Box egress is a US IP. Prices were compared against region-independent first-party price data where the firm publishes it (named in method); codes seen only from the US IP are recorded as regional, never as universal deals.",
+  "method": "curl of the embedded \"prices\" object on https://ftmo.com/en/2-step-challenge/ and /en/1-step-challenge/ (EUR prices are region-independent)",
+  "priceSource": "ftmo.com challenge pages, embedded \"prices\" object",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "ftmo-challenge-2-step",
+      "prices": {
+        "200000": "EUR 1080",
+        "100000": "EUR 540",
+        "50000": "EUR 345",
+        "25000": "EUR 250",
+        "10000": "EUR 89"
+      }
+    },
+    {
+      "productSlug": "ftmo-challenge-1-step",
+      "prices": {
+        "200000": "EUR 999",
+        "100000": "EUR 499",
+        "50000": "EUR 319",
+        "25000": "EUR 199",
+        "10000": "EUR 79"
+      }
+    }
+  ],
+  "priceQuotes": [
+    "step_2: \"price\":\"1080\" | \"price\":\"540\" (discounted_price \"439\") | \"price\":\"345\" | \"price\":\"250\" | \"price\":\"89\"",
+    "step_1: \"price\":\"999\" | \"price\":\"499\" (discounted_price \"399\") | \"price\":\"319\" | \"price\":\"199\" | \"price\":\"79\"",
+    "\"discounted_price_tooltip_text\":\"Special Deal! $100,000 FTMO Challenge (FTMO Standard account only) for \\u20ac439 \\u2013 only if you don\\u2019t already have one active.\""
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 18,
+    "foundVerbatimInLiveText": 18,
+    "notFoundVerbatim": 0,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
+  },
+  "changes": [],
+  "notes": [
+    "Paid challenge list prices unchanged since 2026-10-14; the $100K special deal (EUR 439 2-Step / EUR 399 1-Step) is still live.",
+    "https://ftmo.com/en/payment-methods/ returns 404; checkout methods stay as recorded in /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md.",
+    "No change found, so product sourceCapturedAt and firms.json lastUpdated stay at 2026-10-19 (dates cited in published posts remain valid)."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://ftmo.com/en/trading-objectives/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:35.577Z"
+    },
+    {
+      "url": "https://ftmo.com/faq/why-is-there-a-fee/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:35.621Z"
+    },
+    {
+      "url": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:49.073Z"
+    },
+    {
+      "url": "https://ftmo.com/en/2-step-challenge/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:48.991Z"
+    },
+    {
+      "url": "https://ftmo.com/en/1-step-challenge/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:49.076Z"
+    },
+    {
+      "url": "https://promo.ftmo.com/m26b-practice-trading-without-risk/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:36.026Z"
+    },
+    {
+      "url": "https://ftmo.com/en/imprint/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:41.327Z"
+    },
+    {
+      "url": "https://ftmo.com/en/trading-platforms/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:41.428Z"
+    },
+    {
+      "url": "https://ftmo.com/en/faq/how-about-a-free-trial/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:41.579Z"
+    },
+    {
+      "url": "https://ftmo.com/en/ftmo-free-trial/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:11:43.606Z"
+    },
+    {
+      "url": "https://ftmo.com/en/payment-methods/",
+      "httpStatus": 404,
+      "fetchedAt": "2026-10-20T05:11:49.071Z"
+    }
+  ]
+}

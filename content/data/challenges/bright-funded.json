@@ -63,7 +63,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://brightfunded.com/1-step",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "All fees are EUR list prices; current anniversary and checkout promotions are excluded.",
       "The 6% maximum drawdown trails the highest equity in real time and locks at the original balance after 6% growth.",
@@ -71,7 +71,7 @@
       "The payout article contains both a standard 30-day first request and a bi-weekly add-on description; the conflict remains unresolved.",
       "The separately advertised 100% challenge-fee refund is an add-on; the refundable flag records the standard unused-account refund within 30 days.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/bright-funded-2026-10-14.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/bright-funded-2026-10-19.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/bright-funded-2026-10-20.json"
     ]
   },
   {
@@ -139,7 +139,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://brightfunded.com/2-step-bright",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "All fees are EUR list prices; current anniversary and checkout promotions are excluded.",
       "The 8% maximum drawdown is static; daily loss is 4% and both phases require 5 trading days each.",
@@ -147,7 +147,7 @@
       "The payout article contains both a standard 30-day first request and a bi-weekly add-on description; the conflict remains unresolved.",
       "The separately advertised 100% challenge-fee refund is an add-on; the refundable flag records the standard unused-account refund within 30 days.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/bright-funded-2026-10-14.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/bright-funded-2026-10-19.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/bright-funded-2026-10-20.json"
     ]
   },
   {
@@ -215,7 +215,7 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://brightfunded.com/2-step-classic",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "All fees are EUR list prices; current anniversary and checkout promotions are excluded.",
       "The 10% maximum drawdown is static; daily loss is 5% and both phases require 5 trading days each.",
@@ -223,7 +223,7 @@
       "The payout article contains both a standard 30-day first request and a bi-weekly add-on description; the conflict remains unresolved.",
       "The separately advertised 100% challenge-fee refund is an add-on; the refundable flag records the standard unused-account refund within 30 days.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/bright-funded-2026-10-14.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/bright-funded-2026-10-19.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/bright-funded-2026-10-20.json"
     ]
   }
 ]
