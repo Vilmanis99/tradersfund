@@ -2059,7 +2059,8 @@
     "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/brightfunded.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-20",
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"Breach of guidelines. We've removed a number of fake reviews for this company.\"",
     "russiaStatus": "available",
     "legalEntity": "BrightFunded Ltd",
     "headquarters": "Suite 5, Place Creole Building, Rodney Bay, Gros-Islet, Saint Lucia",
@@ -2369,7 +2370,6 @@
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-16.json"
     },
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
     "assetsEvidence": {
       "sourceUrl": "https://brightfunded.com/futures-waitlist",
       "sourceCapturedAt": "2026-10-16",
@@ -2431,7 +2431,8 @@
     "lastUpdated": "2026-10-19",
     "trustpilotUrl": "https://www.trustpilot.com/review/ofpfunding.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-20",
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"Breach of guidelines. We've removed a number of fake reviews for this company.\"",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "rules": {
@@ -2717,7 +2718,6 @@
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
     "countriesRestrictedSourceUrl": "https://help.ofpfunding.com/country-restrictions/",
     "russiaSourceUrl": "https://help.ofpfunding.com/country-restrictions/",
     "russiaSourceQuote": "We cannot provide services to, or accept registrations from, individuals who are nationals of, currently residing in, or legal entities established in the following countries: ... Russia"
@@ -4709,11 +4709,11 @@
       "platform": null
     },
     "trustpilotScore": 4.2,
-    "trustpilotCount": 1631,
+    "trustpilotCount": 1633,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "restricted",
     "legalEntity": "City Traders Imperium Limited",
     "headquarters": "San José, Costa Rica",

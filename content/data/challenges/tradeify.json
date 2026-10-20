@@ -46,6 +46,15 @@
     "minTradingDays": 1,
     "maxTradingDays": null,
     "consistencyRulePct": 35,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "Growth Sim Funded payouts",
+        "sourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": 5,
     "payoutFrequency": "on-demand",
@@ -125,6 +134,21 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "evaluation",
+        "appliesTo": "Select evaluation",
+        "sourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule"
+      },
+      {
+        "percent": 50,
+        "scope": "evaluation",
+        "appliesTo": "Select evaluation with the 50% consistency add-on",
+        "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": 5,
     "payoutFrequency": "on-demand",
@@ -202,6 +226,21 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "evaluation",
+        "appliesTo": "Select evaluation",
+        "sourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule"
+      },
+      {
+        "percent": 50,
+        "scope": "evaluation",
+        "appliesTo": "Select evaluation with the 50% consistency add-on",
+        "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
@@ -281,6 +320,27 @@
     "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": 20,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 20,
+        "scope": "funded",
+        "appliesTo": "Payout 1",
+        "sourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule"
+      },
+      {
+        "percent": 25,
+        "scope": "funded",
+        "appliesTo": "Payout 2",
+        "sourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule"
+      },
+      {
+        "percent": 30,
+        "scope": "funded",
+        "appliesTo": "Payout 3 onwards",
+        "sourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",

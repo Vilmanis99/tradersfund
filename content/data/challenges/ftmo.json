@@ -111,6 +111,15 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
+    "consistencyScope": "both",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "both",
+        "appliesTo": "1-Step Challenge pass and FTMO Account rewards (orders from 12 Oct 2026)",
+        "sourceUrl": "https://ftmo.com/en/trading-objectives/"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": 14,
     "payoutFrequency": "on-demand",
@@ -127,7 +136,8 @@
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-20.json",
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ftmo-2026-10-20.json",
-      "Payout frequency (2026-10-20): 'on-demand' with payoutFirstDays 14. promo.ftmo.com/m26b-practice-trading-without-risk/: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\"; ftmo.com FAQ: \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\" firms.json uses the same label; see _captures/ftmo-2026-10-20.json ruWriterCheck."
+      "Payout frequency (2026-10-20): 'on-demand' with payoutFirstDays 14. promo.ftmo.com/m26b-practice-trading-without-risk/: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\"; ftmo.com FAQ: \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\" firms.json uses the same label; see _captures/ftmo-2026-10-20.json ruWriterCheck.",
+      "CONSISTENCY (rechecked 2026-10-20, https://ftmo.com/en/trading-objectives/): \"Consistency replaces the Best Day Rule\" and is \"Applicable to accounts initiated from orders created on or after 12 Oct 2026, or any accounts merged on or after this date\". Quote: \"To pass the FTMO Challenge: 1-Step or to be eligible for a Reward on an FTMO Account, the Consistency rule requires that your Best Day does not represent more than 50% of your total profit. The total profit is the cumulative sum of closed profits and losses across all trading days\", with the Best Day measured \"on FTMO Challenge: 1-Step or FTMO Account (1-Step)\". \"Exceeding the Consistency limit is not treated as a rule breach.\" consistencyRulePct 50 is unchanged. The basis is now total profit (net of losing days), not the old Best Day Rule's \"Positive Days' Profit\", which still applies to accounts from orders before 12 Oct 2026. sourceCapturedAt is unchanged (only this rule was rechecked)."
     ]
   }
 ]

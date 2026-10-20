@@ -55,6 +55,15 @@
     "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "Performance account payouts",
+        "sourceUrl": "https://help.e8markets.com/en/articles/11775980-e8-one"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": 3,
     "payoutFrequency": "on-demand",
@@ -356,6 +365,15 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 35,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "Performance account payouts",
+        "sourceUrl": "https://help.e8markets.com/en/articles/11755943-e8-signature-forex"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": 3,
     "payoutFrequency": "on-demand",
