@@ -1206,6 +1206,7 @@ const russianExpectations = new Map([
     title: 'Hash Hedge: отзывы и обзор крипто-проп-компании 2026',
     h1: 'Hash Hedge: обзор и отзывы 2026',
     markers: [
+      'Автор: редакция Traders Fund Hub',
       'data-russian-review="hash-hedge"',
       'data-russian-hh-verdict="summary"',
       'data-russian-hh-access="not-in-restricted-list"',

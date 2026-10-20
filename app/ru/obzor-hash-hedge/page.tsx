@@ -7,7 +7,7 @@ import { RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
 import { getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
 
 const PATH = '/ru/obzor-hash-hedge'
@@ -111,7 +111,7 @@ export default function RussianHashHedgeReviewPage() {
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
     dateModified,
-    author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
+    author: authorSchema('Traders Fund Hub'),
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
   }
   const officialCta = (placement: string, label: string) => (
@@ -142,7 +142,7 @@ export default function RussianHashHedgeReviewPage() {
           </p>
           {!fresh && <p className="ru-notice" data-russian-hh-evidence-status="recapture-required">Данные проверки от {ruDate(CHECKED)} старше 30 дней. Сверьте цены и условия на официальном сайте.</p>}
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
-            <span>Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link></span>
+            <span>Автор: редакция Traders Fund Hub</span>
             <span>Обновлено: {ruDate(dateModified)}</span>
           </div>
           <div className="ru-stats">
