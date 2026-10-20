@@ -170,7 +170,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p><strong>Cycle timing differs by product.</strong> Stellar 1-Step uses 5-business-day reward cycles. Stellar 2-Step and Lite allow the first standard request after 21 days and later requests every 14 days. Stellar Instant can request on demand after 5% growth at an end-of-day check, or after 14 days when growth is at least 1% but below 5%. FundedNext's Stellar Instant page, rechecked on 2026-10-19, says: "You can request your first reward on-demand once you reach 5% growth, or bi-weekly when your account is at ≥1% growth."</p>
+<p><strong>Cycle timing differs by product.</strong> Stellar 1-Step uses 5-business-day reward cycles, the only standard weekly cycle in FundedNext's CFD lineup. Stellar 2-Step allows the first standard request after 21 days and later requests every 14 days. Stellar Lite accounts bought or reset on or after 12 Oct 2026 get the first reward after 10 business days and then every 10 business days; older Lite accounts keep 21 days, then every 14 (FundedNext help center, checked 2026-10-20). Stellar Instant can request on demand after 5% growth at an end-of-day check, or after 14 days when growth is at least 1% but below 5%. FundedNext's Stellar Instant page, rechecked on 2026-10-19, says: "You can request your first reward on-demand once you reach 5% growth, or bi-weekly when your account is at ≥1% growth."</p>
 
 <p><strong>Refund timing differs too.</strong> Stellar 2-Step’s registration fee can be requested with the first approved Performance Reward; its product page, rechecked on 2026-10-19, says "Challenge fee refunded with your 1st reward". New Stellar 1-Step and Lite purchases wait until the third approved reward. Stellar Instant’s $59.99–$599.99 purchase is non-refundable because there is no evaluation pass milestone.</p>
 
@@ -229,7 +229,7 @@ type: "post"
 <p>Stellar 2-Step can request it with the first approved payout; new 1-Step and Lite purchases wait until the third. Stellar Instant has no refundable fee.</p>
 
 <h3 class="wp-block-heading"><strong>When can I request my first FundedNext payout?</strong></h3>
-<p>Stellar 1-Step uses a 5-business-day reward cycle; Stellar 2-Step and Lite allow the first standard request after 21 days. Stellar Instant’s on-demand route requires 5% growth and an end-of-day check, with a separate 14-day route for growth of at least 1% but below 5%. Eligibility and approval are separate from transfer time, and KYC must be Approved before a request.</p>
+<p>Stellar 1-Step uses a 5-business-day reward cycle; Stellar 2-Step allows the first standard request after 21 days, and Stellar Lite after 10 business days on accounts bought or reset from 12 Oct 2026 (21 days on older accounts). Stellar Instant’s on-demand route requires 5% growth and an end-of-day check, with a separate 14-day route for growth of at least 1% but below 5%. Eligibility and approval are separate from transfer time, and KYC must be Approved before a request.</p>
 
 <h3 class="wp-block-heading"><strong>Can traders in India use FundedNext?</strong></h3>
 <p>India was not among FundedNext’s 20 restricted CFD countries in the 2026-07-27 country check. That dated access evidence is separate from regulatory approval, payment availability and KYC: the cardholder and account names must match, and Local Payment requires dashboard support for the country. Use the <a href="/best-prop-firms-in-india">India comparison’s current country and payment checks</a> before purchasing.</p>

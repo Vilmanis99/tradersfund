@@ -112,4 +112,4 @@ type: "post"
 <p>Usually one at a time. FTMO and FundingPips allow unlimited trials in a row, E8 caps you at 2 every 28 days, and BrightFunded allows a single free account per phone number. FundingPips and BrightFunded also require you to have no other active account with them.</p>
 
 <h3 class="wp-block-heading"><strong>Does Topstep have a free trial?</strong></h3>
-<p>Topstep's Help Center describes a free 150K Practice Account, but it's only available with an active Trading Combine subscription, so you pay for the Combine first. For Topstep's paid rules, see our <a href="/blog/topstep-review">Topstep review</a>.</p>
+<p>Topstep's Help Center describes a free 150K Practice Account, but it's only available with an active Trading Combine subscription, so you pay for the Combine first. For Topstep's paid rules, see our <a href="/blog/topstep-review">Topstep review</a>. If payout speed matters more than a free start, compare the <a href="/blog/prop-firms-with-weekly-payouts">prop firms with weekly payouts</a>.</p>

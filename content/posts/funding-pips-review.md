@@ -151,7 +151,7 @@ type: "post"
 
 <p>1 Step Flex offers 80% bi-weekly or 100% monthly. 2 Step Flex offers 80% or 95% bi-weekly plus 100% monthly. 2 Step Pro offers 80% weekly or 100% monthly, while Zero remains 95% bi-weekly.</p>
 
-<p>2 Step Standard offers 4 distinct choices: 90% on demand with a 35% consistency score and 2% minimum profit, 60% weekly after 7 days, 80% bi-weekly after 14 days, or 100% monthly after 30 days with 35% consistency and 7 profitable days at 0.5%. Quoting one “FundingPips split” would erase the payout-speed and eligibility trade-off.</p>
+<p>2 Step Standard offers 4 distinct choices: 90% on demand with a 35% consistency score and 2% minimum profit, 60% weekly after 7 days, 80% bi-weekly after 14 days, or 100% monthly after 30 days with 35% consistency and 7 profitable days at 0.5%. Quoting one “FundingPips split” would erase the payout-speed and eligibility trade-off. Our <a href="/blog/prop-firms-with-weekly-payouts">weekly payouts comparison</a> puts the 60% weekly route next to FundedNext, City Traders Imperium and BrightFunded.</p>
 
 <p>The first-party India capture covers country restrictions, checkout methods, KYC, and payout caveats, but it does not prove that an Indian buyer can complete both purchase and withdrawal. Do not assume every aggregate payout method will appear after verification.</p>
 
