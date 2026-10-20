@@ -49,6 +49,9 @@ import {
   LOCALIZED_ROUTE_PAIRS,
   RUSSIAN_ROUTE_EDITORIAL_DATES,
   RUSSIAN_ONLY_ROUTES,
+  CLOSED_FIRMS_ROUTE_PAIR,
+  RU_CLOSED_FIRMS_EDITORIAL_DATE,
+  RU_CLOSED_FIRMS_PATH,
 } from '../lib/localizedRoutes.ts'
 import {
   INDEXNOW_KEY,
@@ -57,6 +60,9 @@ import {
 } from '../lib/indexNow.ts'
 
 const args = process.argv.slice(2)
+// /prop-firms/closed and its RU page share one publish flag; the RU page joins the RU inventory only while it is true.
+const closedFirmsData = JSON.parse(readFileSync(new URL('../content/data/closed-firms.json', import.meta.url), 'utf8'))
+const closedFirmsPublished = closedFirmsData.published === true
 const baseArg = args.find(value => !value.startsWith('--'))
 const VERBOSE = args.includes('--verbose')
 const STRICT_LENGTHS = args.includes('--strict-lengths')
@@ -719,6 +725,8 @@ for (const source of [
 }
 
 const russianRoutePairs = [...LOCALIZED_ROUTE_PAIRS]
+// Flag-gated pair (same publish flag as /prop-firms/closed).
+if (closedFirmsPublished) russianRoutePairs.push(CLOSED_FIRMS_ROUTE_PAIR)
 const russianOnlyPaths = [...RUSSIAN_ONLY_ROUTES]
 const russianPaths = [
   ...russianRoutePairs.map(pair => pair.ru),
@@ -754,6 +762,7 @@ for (const path of russianPaths) {
 
   const actualLastModified = firstMatch(entry, /<lastmod>([\s\S]*?)<\/lastmod>/i)
   const editorialLastModified = RUSSIAN_ROUTE_EDITORIAL_DATES[path]
+    ?? (path === RU_CLOSED_FIRMS_PATH ? RU_CLOSED_FIRMS_EDITORIAL_DATE : undefined)
   const actualTime = new Date(actualLastModified).getTime()
   const editorialTime = new Date(`${editorialLastModified}T00:00:00Z`).getTime()
   if (!actualLastModified || !Number.isFinite(actualTime)) {
@@ -1566,6 +1575,20 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-reviews-guide-bright-funded',
     ],
   }],
+  ...(closedFirmsPublished ? [[RU_CLOSED_FIRMS_PATH, {
+    title: 'Закрытые проп-фирмы: даты, заявления и источники',
+    h1: 'Закрытые проп-фирмы',
+    markers: [
+      'data-trust-page="ru-closed-firms"',
+      'data-ru-closed-firms-risk',
+      'data-ru-closed-firms-updated=',
+      'data-status-as-of=',
+      'data-quote-translation',
+      'href="/ru/luchshie-prop-firmy"',
+      'href="/ru/otzyvy-prop-firm"',
+      ...closedFirmsData.firms.map(firm => `id="${firm.slug}"`),
+    ],
+  }]] : []),
 ])
 
 const russianCampaignSources = new Map()
@@ -1806,6 +1829,30 @@ for (const [path, expectation] of russianExpectations) {
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
 const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
+  + (closedFirmsPublished ? 1 : 0)
+
+// Outreach links to #<slug> on both closed-firms pages, so the EN and RU anchor sets must match.
+// While unpublished, the RU page must stay noindex, without hreflang, and unlinked.
+{
+  const closedIds = html => [...html.matchAll(/<article\b[^>]*\bid="([^"]+)"[^>]*data-closed-firm=/g)].map(match => match[1]).sort()
+  const [closedEn, closedRu] = await Promise.all([
+    fetchPage(new URL(CLOSED_FIRMS_ROUTE_PAIR.en, BASE)),
+    fetchPage(new URL(RU_CLOSED_FIRMS_PATH, BASE)),
+  ])
+  const enIds = closedIds(closedEn.html)
+  const ruIds = closedIds(closedRu.html)
+  const dataIds = closedFirmsData.firms.map(firm => firm.slug).sort()
+  if (closedRu.status !== 200) errors.push(`${RU_CLOSED_FIRMS_PATH}: RU closed-firms page returned ${closedRu.status}`)
+  if (JSON.stringify(enIds) !== JSON.stringify(dataIds) || JSON.stringify(ruIds) !== JSON.stringify(dataIds)) {
+    errors.push(`closed firms: EN anchors [${enIds}] and RU anchors [${ruIds}] must both equal closed-firms.json slugs [${dataIds}]`)
+  }
+  if (!closedFirmsPublished) {
+    if (!/<meta[^>]+name="robots"[^>]+noindex/i.test(closedRu.html)) errors.push(`${RU_CLOSED_FIRMS_PATH}: must be noindex while closed-firms.json is unpublished`)
+    if (/hreflang=/i.test(firstMatch(closedRu.html, /<head[^>]*>([\s\S]*?)<\/head>/i) ?? '')) errors.push(`${RU_CLOSED_FIRMS_PATH}: hreflang must stay off while unpublished`)
+    const linking = pages.filter(page => page.html?.includes(`href="${RU_CLOSED_FIRMS_PATH}`)).map(page => new URL(page.productionUrl).pathname)
+    if (linking.length) errors.push(`${RU_CLOSED_FIRMS_PATH}: linked while unpublished from ${linking.join(', ')}`)
+  }
+}
 if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
   errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}`)
 }

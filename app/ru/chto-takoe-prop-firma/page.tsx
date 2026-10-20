@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
+import { ruClosedFirmsHref } from '@/lib/closedFirms'
 import { RuRelatedLinks } from '@/components/RuPendingLink'
 import {
   ArrowRight,
@@ -431,6 +432,12 @@ export default function RussianWhatIsPropFirmPage() {
             а повторная покупка не совершается автоматически. Если такой исход нарушает личный бюджет,
             продукт не подходит независимо от рекламной доли 80%, 90% или «до 95%».
           </p>
+          {ruClosedFirmsHref() && (
+            <p data-russian-closed-firms-inlink="education">
+              Проп-фирмы и закрываются: <Link href={ruClosedFirmsHref() as string}>закрытые проп-компании</Link> собраны на отдельной странице
+              с датой и источником по каждой.
+            </p>
+          )}
         </div>
       </section>
 

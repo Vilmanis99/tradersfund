@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import RuAllReviews from '@/components/RuAllReviews'
 import Link from '@/components/SafeLink'
+import { ruClosedFirmsHref } from '@/lib/closedFirms'
 import { ArrowRight, Globe2 } from 'lucide-react'
 import type { RussianFaqItem } from '@/components/RussianFaq'
 import HeroBlock from '@/components/home/HeroBlock'
@@ -38,6 +39,10 @@ const RU_HOME_BASICS = [
   { href: '/ru/obzor-the5ers', title: 'Обзор The5ers', text: 'Условия и доступ для трейдеров из РФ.' },
   { href: '/ru/luchshie-prop-firmy', title: 'Рейтинг проп-компаний', text: 'Сравнение условий и доступ из России.' },
 ]
+// Gated by the closed-firms publish flag (lib/closedFirms.ts), not by route registration.
+const RU_HOME_CLOSED_FIRMS = ruClosedFirmsHref()
+  ? [{ href: ruClosedFirmsHref() as string, title: 'Какие проп-фирмы закрылись', text: 'Даты, заявления фирм и архивные копии источников.' }]
+  : []
 const TITLE = 'Проп-фирмы 2026: условия и цены для русскоязычных трейдеров'
 const DESCRIPTION = 'Проп-фирмы и проп-компании для русскоязычных трейдеров: цены челленджей, просадка, выплаты и KYC по первичным источникам. Доступ проверяем по стране.'
 
@@ -173,7 +178,7 @@ export default function RussianHomePage() {
         <div className="ru-shell" data-russian-home-basics="osnovy">
           <h2>Основы</h2>
           <div className="ru-home-guide-list">
-            {RU_HOME_BASICS.filter(item => russianPublishedHref(item.href)).map(item => (
+            {[...RU_HOME_BASICS.filter(item => russianPublishedHref(item.href)), ...RU_HOME_CLOSED_FIRMS].map(item => (
               <Link key={item.href} href={item.href}><span><strong>{item.title}</strong><span>{item.text}</span></span><ArrowRight size={20} aria-hidden="true" /></Link>
             ))}
           </div>
