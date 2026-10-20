@@ -21,7 +21,7 @@
     "reviewUrl": "/blog/ftmo-review",
     "officialUrl": "https://ftmo.com/",
     "profitSplitPct": 90,
-    "payoutFrequency": null,
+    "payoutFrequency": "on-demand",
     "payoutMethods": [
       "Bank wire",
       "Visa Direct / Mastercard Send",
@@ -268,12 +268,12 @@
         ]
       },
       "payoutFrequency": {
-        "value": null,
-        "summary": "Reward claim on the 14th or any following day after the first trade on the account (not same-day on-demand)",
-        "note": "Previous capture said on-demand; the official FAQ states a 14-day minimum from the first trade.",
+        "value": "on-demand",
+        "summary": "On demand after a minimum of 14 days from the first trade on the account",
+        "note": "Editor decision 2026-10-20: on-demand label backed by promo.ftmo.com; the FAQ gives the 14-day minimum.",
         "byProduct": {
-          "ftmo-challenge-2-step": null,
-          "ftmo-challenge-1-step": null
+          "ftmo-challenge-2-step": "on-demand",
+          "ftmo-challenge-1-step": "on-demand"
         },
         "evidence": [
           {
@@ -282,6 +282,22 @@
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://promo.ftmo.com/m26b-practice-trading-without-risk/",
+            "quote": "Rewards can be requested on demand after a minimum of 14 days from your first demo trade",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-20.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+            "quote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/ftmo-2026-10-20.json",
             "productSlug": null
           }
         ]
@@ -384,9 +400,9 @@
     "payoutMethodsSourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
     "payoutMethodsQuote": "Rewards can be paid out via bank wire transfer, instant transfer through Visa Direct / Mastercard Send (up to $20,000), Skrill (up to $3,000), or cryptocurrencies.",
     "payoutMethodsCapturedAt": "2026-10-20",
-    "payoutFrequencyNote": "First Reward can be requested from day 14 after the first trade on the account (ftmo.com FAQ). FTMO's promo page (promo.ftmo.com/m26b-practice-trading-without-risk/, read 2026-10-20) says: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\". The FAQ gives no cadence after the first Reward, so the firm-level label stays unset until an editor decides whether the promo wording is enough.",
-    "payoutFrequencySourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
-    "payoutFrequencyQuote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account."
+    "payoutFrequencyNote": "On demand once 14 days have passed since the first trade (checked 2026-10-20). promo.ftmo.com: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\". ftmo.com FAQ (https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/): \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\"",
+    "payoutFrequencySourceUrl": "https://promo.ftmo.com/m26b-practice-trading-without-risk/",
+    "payoutFrequencyQuote": "Rewards can be requested on demand after a minimum of 14 days from your first demo trade"
   },
   {
     "name": "FundedNext",

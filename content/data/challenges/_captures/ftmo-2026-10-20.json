@@ -44,7 +44,8 @@
   },
   "changes": [
     "firms.json FTMO payoutFrequencyNote: adds promo.ftmo.com on-demand quote; payoutMethodsCapturedAt 2026-10-19 -> 2026-10-20",
-    "challenges/ftmo.json: payout-frequency evidence note on both products (value unchanged)"
+    "challenges/ftmo.json: payout-frequency evidence note on both products (value unchanged)",
+    "firms.json FTMO payoutFrequency null -> on-demand (top-level and rules.payoutFrequency), per editor decision; quotes from promo.ftmo.com and the ftmo.com FAQ"
   ],
   "notes": [
     "Paid challenge list prices unchanged since 2026-10-14; the $100K special deal (EUR 439 2-Step / EUR 399 1-Step) is still live.",
@@ -120,7 +121,7 @@
         "sourceUrl": "https://promo.ftmo.com/m26b-practice-trading-without-risk/",
         "quote": "Rewards can be requested on demand after a minimum of 14 days from your first demo trade"
       },
-      "verdict": "An official FTMO page does use 'on demand', so challenges/ftmo.json keeps 'on-demand' + payoutFirstDays 14 (now with the quote in notes). firms.json payoutFrequency stays null (FAQ gives no cadence after the first Reward); the two records disagree pending an editor decision."
+      "verdict": "Editor decision 2026-10-20: firms.json and challenges/ftmo.json both 'on-demand' (payoutFirstDays 14), citing the promo and FAQ quotes above."
     },
     "payoutMethods": {
       "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
