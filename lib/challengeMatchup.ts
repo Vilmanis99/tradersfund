@@ -22,6 +22,7 @@
  * different billing model) the "cheaper" call is withheld with a reason.
  */
 
+import { possessive } from '@/lib/possessive'
 import {
   challengeCurrency,
   challengeTierEconomics,
@@ -684,7 +685,7 @@ export function describeMatchup(matchup: ChallengeMatchup): string[] {
       .map(g => `${g.display.toLowerCase()} on ${g.products.join(' and ')}`)
       .join(', versus ')
     paragraphs.push(
-      `${side.name}'s own products disagree on ${matchup.intraFirmSplits.length} `
+      `${possessive(side.name)} own products disagree on ${matchup.intraFirmSplits.length} `
       + `${matchup.intraFirmSplits.length === 1 ? 'term' : 'terms'}. On ${row.label.toLowerCase()} it is ${detail}. `
       + `Which product you buy decides that rule, not which firm you sign with — a firm-level table cannot show this.`,
     )

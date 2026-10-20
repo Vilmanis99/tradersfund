@@ -25,11 +25,13 @@ import ChallengeMatchup from '@/components/ChallengeMatchup'
 import ComparisonHero from '@/components/ComparisonHero'
 import ComparisonTable from '@/components/ComparisonTable'
 import ComparisonVerdict from '@/components/ComparisonVerdict'
+import ComparePickVerdict, { comparePickAvailable } from '@/components/ComparePickVerdict'
+import { getCompareCopy } from '@/lib/verdictCopy'
 import FeatureFaq from '@/components/FeatureFaq'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import { TrustpilotPanel } from '@/components/TrustpilotRating'
 import RelatedComparisons from '@/components/RelatedComparisons'
-import { getAllFirms } from '@/lib/firms'
+import { getAllFirms, getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
 import { isSourceHoldFirm } from '@/lib/reviewStatus'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import Breadcrumbs from '@/components/Breadcrumbs'
@@ -128,6 +130,14 @@ export default async function ComparePage({ params }: Props) {
     { name: firmB.name, slug: firmSlug(firmB.name) },
   )
   const isFtmoFundedNext = canonical === 'ftmo-vs-fundednext'
+  // Article format Phase 1 (spec §3.3 C9): generated pick verdict first on every comparison.
+  const pickSides = {
+    a: { firm: firmA, products: getChallengesByFirm(firmSlug(firmA.name)).filter(product => isChallengeFresh(product)) },
+    b: { firm: firmB, products: getChallengesByFirm(firmSlug(firmB.name)).filter(product => isChallengeFresh(product)) },
+  }
+  const compareCopy = getCompareCopy(canonical)
+  // Pages with nothing data-backed to pick from keep the original evidence block, expanded.
+  const phase1Preview = comparePickAvailable(pickSides.a, pickSides.b, compareCopy).any
   const matchupProse = describeMatchup(challengeMatchup)
   const currentProductCount = challengeMatchup.a.productCount + challengeMatchup.b.productCount
   const currentSourceCount = challengeMatchup.sources.length
@@ -164,7 +174,7 @@ export default async function ComparePage({ params }: Props) {
       )}
 
       {/* ═══════════════════════════════ HERO ═══════════════════════════════ */}
-      <section className="blog-hero">
+      <section className={phase1Preview ? 'blog-hero blog-hero--p1' : 'blog-hero'}>
         <div className="aurora-orb aurora-orb--1" aria-hidden />
         <div className="aurora-orb aurora-orb--2" aria-hidden />
         <div className="aurora-grid" aria-hidden />
@@ -218,7 +228,17 @@ export default async function ComparePage({ params }: Props) {
       {/* ═══════════════════════════════ BODY ═══════════════════════════════ */}
       <section className="home-section" style={{ paddingTop: '2.5rem' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 1.5rem' }}>
-          <AffiliateDisclosure />
+          {phase1Preview && <AffiliateDisclosure />}
+          {phase1Preview && (
+            <ComparePickVerdict
+              campaign={canonical}
+              a={pickSides.a}
+              b={pickSides.b}
+              override={compareCopy}
+              checkedAt={comparisonCheckedAt ? formatCheckedDate(comparisonCheckedAt) : null}
+            />
+          )}
+          {!phase1Preview && <AffiliateDisclosure />}
 
           <ComparisonHero
             firmA={firmA}
@@ -228,6 +248,19 @@ export default async function ComparePage({ params }: Props) {
             summaryB={challengeMatchup.b.productCount ? challengeMatchup.b : undefined}
           />
 
+          {phase1Preview ? (
+            <details className="p1-collapsible p1-collapsible--wide">
+              <summary>{overlay ? 'Our verdict' : 'Evidence summary'}</summary>
+              <ComparisonVerdict
+                firmA={firmA}
+                firmB={firmB}
+                tlDr={tlDr}
+                categoryCalls={overlay?.verdictByCategory}
+                title={overlay ? 'Our verdict' : 'Evidence summary'}
+                caption={overlay ? `Editorial verdict · checked ${formatCheckedDate(comparisonCheckedAt)}` : comparisonCheckedAt ? `Available product sources · earliest check ${formatCheckedDate(comparisonCheckedAt)}` : 'No current product source checks available'}
+              />
+            </details>
+          ) : (
           <ComparisonVerdict
             firmA={firmA}
             firmB={firmB}
@@ -236,6 +269,7 @@ export default async function ComparePage({ params }: Props) {
             title={overlay ? 'Our verdict' : 'Evidence summary'}
             caption={overlay ? `Editorial verdict · checked ${formatCheckedDate(comparisonCheckedAt)}` : comparisonCheckedAt ? `Available product sources · earliest check ${formatCheckedDate(comparisonCheckedAt)}` : 'No current product source checks available'}
           />
+          )}
 
           <ChallengeMatchup matchup={challengeMatchup} prose={matchupProse} />
 
@@ -375,3 +409,4 @@ export default async function ComparePage({ params }: Props) {
     </div>
   )
 }
+

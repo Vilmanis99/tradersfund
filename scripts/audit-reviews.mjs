@@ -4768,7 +4768,8 @@ function checkOvertradingGuide() {
       return
     }
     for (const fragment of fragments) {
-      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+      // An array lists accepted phrasings (FTMO 1-Step: Best Day Rule before 12 Oct 2026, Consistency rule after).
+      if (Array.isArray(fragment) ? !fragment.some(option => text.includes(option)) : !text.includes(fragment)) rows.push(`${label} is missing "${Array.isArray(fragment) ? fragment.join('" or "') : fragment}"`)
     }
   }
   const money = value => `$${value.toLocaleString('en-US')}`
@@ -4857,7 +4858,7 @@ function checkOvertradingGuide() {
         `€${ftmoTier.priceEur}`,
         `${ftmo.dailyLossPct}% daily loss`,
         `${ftmo.maxLossPct}% balance-based end-of-day trailing maximum loss`,
-        `${ftmo.consistencyRulePct}% Best Day rule`,
+        [`${ftmo.consistencyRulePct}% Best Day rule`, `${ftmo.consistencyRulePct}% consistency rule`, `${ftmo.consistencyRulePct}% Consistency rule`],
         ftmo.sourceCapturedAt,
       ],
     )
@@ -5603,7 +5604,8 @@ function checkConsistencyGuide() {
       return
     }
     for (const fragment of fragments) {
-      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+      // An array lists accepted phrasings (FTMO 1-Step: Best Day Rule before 12 Oct 2026, Consistency rule after).
+      if (Array.isArray(fragment) ? !fragment.some(option => text.includes(option)) : !text.includes(fragment)) rows.push(`${label} is missing "${Array.isArray(fragment) ? fragment.join('" or "') : fragment}"`)
     }
   }
   const money = value => `$${value.toLocaleString('en-US')}`
@@ -5655,7 +5657,7 @@ function checkConsistencyGuide() {
   expectFragments('consistency definition', stripTags(content), [
     'A prop-firm consistency rule measures whether too much of an account\'s result came from its best trading day',
     'The percentage alone is incomplete',
-    'Positive Days\' Profit',
+    ['Positive Days\' Profit', 'more than 50% of your total profit'],
     'fixed Profit Target',
     'There is no safe firm-wide shortcut',
   ])
@@ -5701,9 +5703,9 @@ function checkConsistencyGuide() {
       attributedText('tr', 'data-consistency-example', 'ftmo:ftmo-challenge-1-step'),
       [
         'FTMO 1-Step',
-        `${ftmoOneStep.consistencyRulePct}% Best Day rule`,
+        [`${ftmoOneStep.consistencyRulePct}% Best Day rule`, `${ftmoOneStep.consistencyRulePct}% consistency rule`, `${ftmoOneStep.consistencyRulePct}% Consistency rule`],
         'Challenge and reward',
-        'Positive Days\' Profit',
+        ['Positive Days\' Profit', 'total profit'],
         'Continue earning profit until no single day exceeds 50%',
         ftmoOneStep.sourceCapturedAt,
       ],

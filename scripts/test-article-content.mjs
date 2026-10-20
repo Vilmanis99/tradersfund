@@ -48,8 +48,12 @@ try {
 
   const table = '<table style="font-size:0.8rem"><caption>Verified fees</caption><tr><th>Fee</th><td>$123.45 &amp; EUR</td></tr></table>'
   const tables = html => [...html.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/gi)].map(match => match[0])
+  // Phase 0 (article-format-spec C4): inline styles are stripped so the theme
+  // controls tables; every cell, caption and figure must survive unchanged.
+  const tableText = html => tables(html).map(markup => markup.replace(/<[^>]+>/g, '|').replace(/\|+/g, '|'))
   const enhancedTable = prepareArticleContent(`<h2>Costs &amp; fees</h2>${table}${table}`)
-  assert.deepEqual(tables(enhancedTable.html), [table, table], 'table cells, captions, figures and source markup remain byte-identical')
+  assert.deepEqual(tableText(enhancedTable.html), tableText(`${table}${table}`), 'table cells, captions and figures remain identical')
+  assert(!tables(enhancedTable.html).some(markup => /\sstyle=/i.test(markup)), 'inline table styles are stripped')
   assert.equal((enhancedTable.html.match(/class="article-table-scroll" tabindex="0" role="region"/g) ?? []).length, 2)
   assert(enhancedTable.html.includes('Table 2: Costs &amp; fees. Scroll horizontally to see all columns.'))
 
@@ -58,7 +62,8 @@ try {
   let tableCount = 0
   for (const post of posts) {
     const result = prepareArticleContent(post.content)
-    assert.deepEqual(tables(result.html), tables(post.content), `${post.slug}: all original table content is preserved`)
+    assert.deepEqual(tableText(result.html), tableText(post.content), `${post.slug}: all original table content is preserved`)
+    assert(!tables(result.html).some(markup => /<(?:table|thead|tbody|tr|th|td|caption)\b[^>]*\sstyle=/i.test(markup)), `${post.slug}: no inline table styles reach the page`)
     const headingTags = [...result.html.matchAll(/<h2\b([^>]*)>/gi)]
     const ids = headingTags.flatMap(match => [...match[1].matchAll(/\sid="([^"]+)"/g)].map(id => id[1]))
     assert.equal(new Set(ids).size, ids.length, `${post.slug}: no duplicate heading anchors`)

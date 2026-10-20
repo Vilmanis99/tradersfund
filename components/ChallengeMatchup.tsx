@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { possessive } from '@/lib/possessive'
 import {
   BadgeCheck,
   CircleAlert,
@@ -45,7 +46,7 @@ function costGap(group: MatchupCostGroup): string | null {
   const gap = rival.minimumCost - winner.minimumCost
   if (gap <= 0) return null
   const pct = Math.round((gap / rival.minimumCost) * 100)
-  return `${formatMoney(gap, winner.currency)} less than ${rival.firmName}'s cheapest route at this tier (${rival.productName}, ${formatMoney(rival.minimumCost, rival.currency)}) — ${pct}% cheaper.`
+  return `${formatMoney(gap, winner.currency)} less than ${possessive(rival.firmName)} cheapest route at this tier (${rival.productName}, ${formatMoney(rival.minimumCost, rival.currency)}) — ${pct}% cheaper.`
 }
 
 function ValueCell({ groups, uniform }: { groups: RuleValueGroup[]; uniform: boolean }) {
