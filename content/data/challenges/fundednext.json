@@ -204,7 +204,8 @@
       "Country, KYC, payment and payout availability must be checked for the trader's actual profile before purchase.",
       "Global page (2026-10-15): 2 minimum trading days per phase on standard plans (the 90% on-demand option stays at 5), first reward after 10 days; subsequent cycle shown as both 10 days and bi-weekly, so payoutFrequency is null.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundednext-2026-10-15.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundednext-2026-10-19.json"
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundednext-2026-10-19.json",
+      "First-payout recheck 2026-10-20 (official https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward): \"First Performance Reward is available after 10 business days. Subsequent rewards are available every 10 business days.\" Applies to accounts purchased or reset on or after 12 Oct 2026; older accounts keep the previous rule (\"first payout after 21 days, and subsequent payouts every 14 days\"). Evidence: content/data/challenges/_captures/fundednext-2026-10-20.json"
     ]
   },
   {

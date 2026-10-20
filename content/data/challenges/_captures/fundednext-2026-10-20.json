@@ -1,0 +1,71 @@
+{
+  "firmSlug": "fundednext",
+  "captureType": "targeted-recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T08:05:49+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/fundednext-2026-10-19.json",
+  "question": "Stellar Lite first Performance Reward: 10 days (challenges/fundednext.json) or 21 days (/blog/fundednext-review row)? Audit backlog D1 group 1.",
+  "egress": "Box egress is a US IP; fetched the global /cfds/stellar-lite page (not /usa/) and the global help centre.",
+  "method": "curl of live HTML, scripts stripped, text searched for reward-timing strings; quotes copied verbatim.",
+  "verdict": {
+    "payoutFirstDays": 10,
+    "unit": "business days (help centre); product page says \"10 Days\"",
+    "appliesTo": "Stellar Lite accounts purchased or reset on or after 2026-10-12, Standard (default) payout option",
+    "legacyRule": "Accounts purchased or reset before 2026-10-12: first payout after 21 days, then every 14 days, 5 minimum trading days per phase",
+    "storedValueChanged": false,
+    "reviewRowFix": "/blog/fundednext-review Stellar Lite fit row (content/posts/fundednext-review.md line 27) says \"21 days\"; current rule is 10 (business) days. 21 days is the Stellar 2-Step value, and the legacy Lite value."
+  },
+  "sources": [
+    {
+      "url": "https://fundednext.com/cfds/stellar-lite",
+      "type": "official product page",
+      "quotes": [
+        "Reward Share 80% First Withdrawal 10 Days Subsequent Withdrawal 10 Days Refundable Fee At 3rd Reward",
+        "Stellar Lite Key Features ... First Reward Eligibility 10 Days Subsequent Rewards Bi-weekly Challenge Fee Refund With 3rd reward",
+        "First Reward Eligibility 21 days 5 business days 10 Days On-demand at 5% growth, or bi-weekly at ≥1% growth (comparison table columns: Stellar 2-Step | Stellar 1-Step | Stellar Lite | Stellar Instant)"
+      ]
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
+      "type": "official help article",
+      "dated": "Updated this week (as shown 2026-10-20)",
+      "quotes": [
+        "You can request your first Performance Reward 10 business days after starting trading, with subsequent Performance Rewards made every 10 business days thereafter.",
+        "Standard (default) First Performance Reward is available after 10 business days. Subsequent rewards are available every 10 business days. Reward share: 80% . No minimum trading day conditions.",
+        "Important: Accounts purchased or reset on or after October 12, 2026 the trading cycle will be 10 business days. Accounts purchased or reset before this date will continue to follow the previous rules: 5 minimum trading days per phase, first payout after 21 days, and subsequent payouts every 14 days."
+      ]
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/17253939-stellar-lite-account",
+      "type": "official help article",
+      "dated": "Updated this week (as shown 2026-10-20)",
+      "quotes": [
+        "10-Days Cycle Requirement Value First Cycle Duration 10 business days from activation Subsequent Cycles 10 business days each",
+        "Important: Accounts purchased or reset on or after October 12, 2026 the trading cycle will be 10 days. Accounts purchased or reset before this date will continue to follow the previous rules: 5 minimum trading days per phase, first payout after 21 days, and subsequent payouts every 14 days."
+      ]
+    }
+  ],
+  "staleOfficialSources": [
+    {
+      "url": "https://help.fundednext.com/en/articles/9428112-what-is-the-trading-cycle-count-in-my-stellar-lite-fundednext-account",
+      "dated": "September 10, 2026",
+      "quote": "First Trading Cycle: Duration: 21 calendar days Performance Reward will be available for withdrawal after 21 days, provided profit has been made.",
+      "why": "Dated before the 2026-10-12 change; describes the legacy rule."
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/9428077-is-there-a-minimum-trading-day-requirement-and-profit-target-in-the-fundednext-phase-of-the-stellar-lite-model",
+      "dated": "September 10, 2026",
+      "quote": "your first Performance Reward is available after 21 days, then every 14 days.",
+      "why": "Dated before the 2026-10-12 change; legacy rule."
+    },
+    {
+      "url": "https://fundednext.com/cfds/stellar-lite",
+      "dated": "live 2026-10-20 (schema.org FAQ JSON-LD)",
+      "quote": "Your first performance reward is available after 21 days, and subsequent rewards follow a bi-weekly cycle.",
+      "why": "Structured-data FAQ not updated; visible page and newer help articles say 10 days."
+    }
+  ],
+  "openConflict": "Subsequent cycle: help centre says every 10 business days; the product page shows both \"Subsequent Withdrawal 10 Days\" and \"Subsequent Rewards Bi-weekly\". payoutFrequency stays null.",
+  "changes": []
+}
