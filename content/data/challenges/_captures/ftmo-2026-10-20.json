@@ -149,5 +149,20 @@
         "capturedAt": "2026-10-15 (firm-rules capture)"
       }
     ]
+  },
+  "productDateMove": {
+    "checkedAtTimestamp": "2026-10-20T11:05+03:00",
+    "products": [
+      "ftmo-challenge-2-step",
+      "ftmo-challenge-1-step"
+    ],
+    "result": "unchanged; sourceCapturedAt 2026-10-19 -> 2026-10-20",
+    "pagesRead": [
+      "https://ftmo.com/en/2-step-challenge/",
+      "https://ftmo.com/en/1-step-challenge/",
+      "https://ftmo.com/en/trading-objectives/"
+    ],
+    "priceCheck": "2-Step EUR 1080/540/345/250/89 and 1-Step EUR 999/499/319/199/79 all present on today's pages and equal to stored values.",
+    "reason": "Aligns product capture dates with firms.json lastUpdated 2026-10-20 (task A1)."
   }
 }
