@@ -20,7 +20,7 @@ type: "post"
     <li>Weekly by default, with no split cut: FundedNext Stellar 1-Step (every 5 business days), FundingPips 2-Step Pro (weekly at 80%) and City Traders Imperium's 1-Step and 2-Step (first payout after 7 days, then weekly).</li>
     <li>Weekly only if you pay: BrightFunded sells a Weekly add-on (payouts every 7 days) at checkout, and Crypto Fund Trader sells a Weekly Scholarship Request add-on listed at +20%.</li>
     <li>Weekly at a lower split: FundingPips 2-Step Standard pays weekly at 60%, against 80% bi-weekly and 100% on demand (which needs a 35% consistency score and 7 profitable days).</li>
-    <li>Futures firms such as Take Profit Trader, TradeDay, Lucid, Tradeify and My Funded Futures go further: daily or on-demand requests once you meet their conditions. E8 Markets does the same on forex.</li>
+    <li>Futures firms such as Take Profit Trader, TradeDay, Lucid, Tradeify and My Funded Futures go further: daily or on-demand requests once you meet their conditions. E8 Markets does the same on forex, and FTMO pays on demand after a 14-day first wait.</li>
     <li>"Weekly" is when you can <em>request</em> a payout, not when cash lands. Every firm still runs a review, KYC and its own processing time first.</li>
   </ul>
 </div>
@@ -43,7 +43,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Not on the list: Apex Trader Funding advertises weekly payouts, but our last verified Apex capture is from 2026-09-14, outside our 30-day rule, so we don't quote it here. FTMO publishes only the first reward (day 14 after your first trade) and not the cycle after it, so we can't call it weekly either.</p>
+<p>Not on the list: Apex Trader Funding advertises weekly payouts, but our last verified Apex capture is from 2026-09-14, outside our 30-day rule, so we don't quote it here. FTMO isn't on it either, because it has no weekly cycle: rewards are on demand after a 14-day wait (see the on-demand section below).</p>
 
 <h2 class="wp-block-heading"><strong>FundedNext Stellar 1-Step: weekly by default, refund later</strong></h2>
 
@@ -99,6 +99,7 @@ type: "post"
 <p>If weekly is the goal because you want money sooner, several firms already beat it. They mostly trade futures, and their speed comes with tighter payout conditions such as winning-day counts, buffers and consistency caps.</p>
 
 <ul class="wp-block-list">
+  <li><strong>FTMO (forex):</strong> FTMO's promo page says rewards "can be requested on demand after a minimum of 14 days from your first demo trade," and its withdrawal FAQ allows a claim "on the 14th or any following day after the first trade" (both checked 2026-10-20). The catch is that 14-day first wait, twice as long as the 7-day first request at FundingPips Pro or CTI, and all positions must be closed when you claim. The split is 80% on 2-Step (90% on 1-Step). See the <a href="/blog/ftmo-review">FTMO review</a>.</li>
   <li><strong>E8 Markets (forex):</strong> E8's help center says "Payout frequency: You can request every day!" on E8 Pro, and our 2026-10-19 data lists on-demand payouts on all five E8 products. See the <a href="/blog/e8-markets-review">E8 Markets review</a> for the drawdown options that come with each.</li>
   <li><strong>Take Profit Trader (futures):</strong> after you pass, the PRO account is "eligible for day-one and daily payouts." The <a href="/blog/take-profit-trader-review">Take Profit Trader review</a> covers the buffer you need first.</li>
   <li><strong>TradeDay Quick Pay (futures):</strong> you can request "after just one day of trading," but Quick Pay plans start at a 50% split, so speed costs you half the profit.</li>
@@ -130,7 +131,7 @@ type: "post"
 <p>FundedNext (Stellar 1-Step, every 5 business days), FundingPips (2-Step Pro at 80%, 2-Step Standard at 60%), City Traders Imperium (1-Step and 2-Step) pay weekly as standard. BrightFunded and Crypto Fund Trader offer weekly cycles as paid add-ons. All were checked between 2026-10-14 and 2026-10-20.</p>
 
 <h3 class="wp-block-heading"><strong>Which prop firm pays out the fastest?</strong></h3>
-<p>On request timing, the daily and on-demand firms: Take Profit Trader's PRO accounts, TradeDay Quick Pay, Lucid, Tradeify Select Daily, MFF Rapid and E8 Markets. Faster requests usually come with stricter conditions or, at TradeDay Quick Pay, a 50% split.</p>
+<p>On request timing, the daily and on-demand firms: Take Profit Trader's PRO accounts, TradeDay Quick Pay, Lucid, Tradeify Select Daily, MFF Rapid, E8 Markets and FTMO (on demand once 14 days have passed since your first trade). Faster requests usually come with stricter conditions or, at TradeDay Quick Pay, a 50% split.</p>
 
 <h3 class="wp-block-heading"><strong>Do weekly payouts cost extra?</strong></h3>
 <p>Sometimes. FundedNext Stellar 1-Step, FundingPips 2-Step Pro and CTI include them at an 80% split. FundingPips 2-Step Standard drops you to 60% on the weekly cycle (100% is only available on demand, with consistency conditions), and BrightFunded and Crypto Fund Trader charge for a weekly add-on.</p>
@@ -139,7 +140,7 @@ type: "post"
 <p>Not always. FundingPips 2-Step Pro and CTI allow the first request after 7 days, and FundedNext Stellar 1-Step after 5 business days. BrightFunded's standard first payout comes after 30 days, and its help article doesn't say whether the Weekly add-on shortens that.</p>
 
 <h3 class="wp-block-heading"><strong>Does FTMO pay weekly?</strong></h3>
-<p>FTMO says you can request your first reward on day 14 or any later day after your first trade, but it doesn't publish the cycle after that, so we don't list it as weekly. See the <a href="/blog/ftmo-review">FTMO review</a> for its current rules.</p>
+<p>No. It pays on demand instead: FTMO says rewards "can be requested on demand after a minimum of 14 days from your first demo trade" (checked 2026-10-20). Your first claim comes on day 14 or later, and after that there is no fixed cycle to wait for. See the <a href="/blog/ftmo-review">FTMO review</a> for its current rules.</p>
 
 <h3 class="wp-block-heading"><strong>Is there a free way to test a weekly payout firm?</strong></h3>
 <p>BrightFunded's Free $1K Challenge can lead to a funded account with an 80% split, and FundedNext and FundingPips run free practice trials. Our <a href="/blog/prop-firm-free-trial">prop firm free trial guide</a> lists what each one allows.</p>

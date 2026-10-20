@@ -3,7 +3,7 @@ title: "FTMO Review 2026: Challenge Fees, Rules and 80–90% Splits"
 seoTitle: "FTMO Review 2026: Challenge Fees from €79, Rules & Splits"
 slug: "ftmo-review"
 date: "2024-08-30 10:30:24"
-modified: "2026-10-06"
+modified: "2026-10-20"
 author: "Edris Derakhshi"
 excerpt: "FTMO publishes per-tier pricing — in euros, not dollars. €89–€1,080 for the refundable 2-Step at 80%, €79–€999 for the non-refundable 1-Step at 90%."
 seoDescription: "FTMO challenge review 2026: €79–€1,080 fees in euros, 1-Step 90% vs 2-Step 80% splits, 3% vs 5% daily loss, trailing vs static drawdown and true cost."
@@ -24,7 +24,7 @@ type: "post"
     <li>2-Step list prices: €1,080 / €540 / €345 / €250 / €89 for the $200K / $100K / $50K / $25K / $10K accounts. 1-Step: €999 / €499 / €319 / €199 / €79.</li>
     <li>Drawdown differs by product. The 2-Step max loss is static at 10% of the initial balance. The 1-Step uses an end-of-day trailing limit that "can only increase, but never decrease."</li>
     <li>The Best Day (consistency) rule — no single day above 50% of your Positive Days' Profit — applies to the <strong>1-Step only</strong>. It is explicitly switched off on the 2-Step.</li>
-    <li>First reward can be claimed on the 14th day or any following day after your first placed trade; FTMO publishes no fixed cadence after that first claim.</li>
+    <li>Rewards are on demand: FTMO says they "can be requested on demand after a minimum of 14 days from your first demo trade," so the first claim comes on day 14 or later and there is no fixed cycle after it (checked 2026-10-20).</li>
   </ul>
 </div>
 
@@ -181,7 +181,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p><strong>First reward: day 14.</strong> FTMO's rule is "You can request a Reward claim in the Account MetriX on the 14th or any following day after the first placed trade on the specific account. All open positions and pending orders must be closed." The clock starts at your first trade, not at account activation. FTMO's withdrawal FAQ (rechecked 2026-10-19) publishes only that first-claim rule, not a stated cadence for later claims. Both products use the same day-14 mechanism.</p>
+<p><strong>First reward: day 14.</strong> FTMO's rule is "You can request a Reward claim in the Account MetriX on the 14th or any following day after the first placed trade on the specific account. All open positions and pending orders must be closed." The clock starts at your first trade, not at account activation. FTMO's withdrawal FAQ, rechecked on 2026-10-20, states that day-14 rule, and FTMO's own promo page describes the result as on demand: rewards "can be requested on demand after a minimum of 14 days from your first demo trade", provided the account is in profit with no open positions or pending orders. There is no fixed weekly or bi-weekly cycle to wait for. Both products use the same day-14 mechanism.</p>
 
 <p><strong>Processing.</strong> After you submit the request, FTMO reviews the account and notifies you within 1–2 business days, and "the Reward is typically sent within 1–2 business days after the invoice is approved" — so roughly 2–4 business days end to end when nothing is queried. Payout methods are bank wire, instant transfer via Visa Direct / Mastercard Send (up to $20,000), Skrill (up to $3,000) and crypto, per FTMO's withdrawal FAQ rechecked on 2026-10-19. FTMO says it charges no extra commission on Reward withdrawals, but sets a minimum closed profit of $20 for bank wire and Visa Direct / Mastercard Send and $50 for crypto; budget for your own receiving-bank charges.</p>
 

@@ -3,7 +3,7 @@ title: "No Hidden Rules Prop Firms: Which Firms Disclose Every Rule (2026)"
 seoTitle: "No Hidden Rules Prop Firms: Who Discloses What (2026)"
 slug: "no-hidden-rules-prop-firms"
 date: "2026-10-14 12:00:00"
-modified: "2026-10-14 12:00:00"
+modified: "2026-10-20 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Every prop firm has rules; the problem is the ones that only show up when you trade or request a payout. Here is what counts as hidden and who publishes it."
 seoDescription: "Looking for a no hidden rules prop firm? See the 6 rules that most often surprise traders and which of 8 firms publish consistency, news and weekend rules."
@@ -59,10 +59,10 @@ type: "post"
     <tr><td><a href="/blog/bright-funded-prop-firm">Bright Funded</a> (2026-09-29)</td><td>None published</td><td>Restricted</td><td>Allowed</td><td>Allowed</td><td>Restricted</td><td>Restricted</td></tr>
     <tr><td><a href="/blog/city-traders-imperium-review">City Traders Imperium</a> (2026-10-14)</td><td>No percentage published; Direct Funding says "No Consistency Rules"</td><td>Allowed</td><td>Allowed</td><td>Allowed</td><td>Allowed on 1-Step; restricted on others</td><td>Not published</td></tr>
     <tr><td><a href="/blog/ftmo-review">FTMO</a> (2026-09-29)</td><td>50% on 1-Step</td><td>Restricted</td><td>Restricted</td><td>Restricted</td><td>Restricted</td><td>Not published</td></tr>
-    <tr><td><a href="/blog/fundednext-review">FundedNext</a> (2026-09-29)</td><td>None published on Stellar products</td><td>Restricted</td><td>Allowed</td><td>Allowed</td><td>Restricted</td><td>Restricted</td></tr>
-    <tr><td><a href="/blog/funding-pips-review">FundingPips</a> (2026-09-29)</td><td>35% on the On Demand 100% route (2 Step Standard, Pro and Flex; rechecked 2026-10-20); 15% on Zero</td><td>Restricted (Zero: not allowed)</td><td>Allowed</td><td>Restricted (Zero: not allowed)</td><td>Restricted</td><td>Restricted</td></tr>
+    <tr><td><a href="/blog/fundednext-review">FundedNext</a> (2026-10-19)</td><td>40% best-day rule on Stellar 2-Step and Lite only with the On-Demand payout option; none on Instant or standard cycles</td><td>Restricted</td><td>Allowed</td><td>Allowed</td><td>Restricted</td><td>Restricted</td></tr>
+    <tr><td><a href="/blog/funding-pips-review">FundingPips</a> (2026-10-20; Zero 2026-10-19)</td><td>35% on the On Demand 100% route (2 Step Standard, Pro and Flex; rechecked 2026-10-20); 15% on Zero</td><td>Restricted (Zero: not allowed)</td><td>Allowed</td><td>Restricted (Zero: not allowed)</td><td>Restricted</td><td>Restricted</td></tr>
     <tr><td><a href="/blog/maven-prop-firm-review">Maven</a> (2026-10-14)</td><td>20% on Instant and Buy Now Pay Later; 15% on Mini</td><td>Restricted (allowed on Instant, Buy Now Pay Later and Prediction Markets)</td><td>Not published</td><td>Allowed</td><td>Not allowed</td><td>Not allowed</td></tr>
-    <tr><td><a href="/blog/topstep-review">Topstep</a> (2026-10-06)</td><td>55% Combine target; 40% on XFA Consistency</td><td>Restricted</td><td>Not allowed</td><td>Not allowed</td><td>Restricted</td><td>Restricted</td></tr>
+    <tr><td><a href="/blog/topstep-review">Topstep</a> (2026-10-20)</td><td>55% Combine target; 40% on XFA Consistency</td><td>Restricted</td><td>Not allowed</td><td>Not allowed</td><td>Restricted</td><td>Restricted</td></tr>
   </tbody>
 </table>
 
