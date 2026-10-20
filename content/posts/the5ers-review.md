@@ -43,6 +43,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Static on every program</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">First at 14 days, then every 2 weeks; $150 minimum; Rise, crypto or bank transfer at 3.5%</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Starting split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% on High Stakes; 75% on Pro Growth and Hyper Growth</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Country access</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Terms (updated 12 Oct 2026, read 2026-10-20) bar residents or citizens of 31 named territories, including Russia and Belarus; for Ukraine only Crimea is named</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Trustpilot</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4.7 from 40,175 reviews, no warning banner (checked 2026-10-20)</td></tr>
     <tr><td style="padding: 8px 12px;"><strong>India evidence</strong></td><td style="padding: 8px 12px;">Not on the forbidden list; Indian checkout, KYC and payout not tested</td></tr>
   </tbody>
@@ -240,7 +241,7 @@ type: "post"
   <li><strong>Pro Growth, Hyper Growth and Bootcamp fees are non-refundable</strong>, and refunds under the Terms end once you trade.</li>
   <li><strong>US clients are limited to TradingView.</strong></li>
   <li><strong>The consistency rule is unclear</strong>: none is listed on the program pages, but the FAQ says some accounts carry 30% or 50%.</li>
-  <li><strong>31 forbidden territories</strong>, including Russia and Belarus. Israel is listed in the Terms too.</li>
+  <li><strong>31 forbidden territories</strong> in the Terms (updated 12 Oct 2026, read 2026-10-20), including Russia and Belarus, closed to their "residents or citizens". Israel is listed too. Crypto payments sent from exchanges or payment providers established in Russia "will be automatically placed on hold by the payment processor". For Ukraine, only Crimea is named. Kazakhstan isn't named at all, which is not a confirmation that it's accepted. The list says "including but not limited to", so check with support if your country is missing from it.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Who should pick The5ers</strong></h2>
@@ -251,7 +252,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should avoid The5ers</strong></h2>
 
-<p>Skip The5ers if you need weekly or on-demand payouts, fee-free withdrawals or a refund once you have traded. Skip it too if you trade news on High Stakes, since the 2-minute ban covers both sides of every high-impact release. Residents of the 31 listed territories cannot use it at all.</p>
+<p>Skip The5ers if you need weekly or on-demand payouts, fee-free withdrawals or a refund once you have traded. Skip it too if you trade news on High Stakes, since the 2-minute ban covers both sides of every high-impact release. Residents or citizens of the 31 listed territories cannot use it at all.</p>
 
 <p>Traders in India should note that India isn't on the forbidden list and three international payout rails are published, but we have not tested an Indian checkout, KYC or payout. The5ers is not on our <a href="/best-prop-firms-in-india">India shortlist</a> for now. If price is your main filter, start with our <a href="/cheapest-prop-firms">cheapest prop firms</a> list and the <a href="/blog/ftmo-review">FTMO review</a> for comparison.</p>
 
