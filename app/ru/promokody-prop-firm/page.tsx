@@ -42,12 +42,16 @@ type HubFirm = {
   review: string | null
   russiaNote: string
   external?: string
+  /** Stable anchor for deep links from reviews (e.g. obzor-bright-funded → #bright-offer-status). */
+  anchor?: string
+  /** Anchor on the verified-deal block, present only while a checked code is live. */
+  dealAnchor?: string
 }
 
 // Только фирмы, открытые для РФ на 14.10.2026 (ru-availability.csv). Коды подтягиваются из content/data/deals.json;
 // пока там нет проверенного кода, карточка показывает плейсхолдер «код ожидается».
 const hubFirms: HubFirm[] = [
-  { slug: 'bright-funded', name: 'BrightFunded', review: '/ru/obzor-bright-funded', russiaNote: 'Россия не в списке ограничений; исключены лица из санкционных списков.' },
+  { slug: 'bright-funded', name: 'BrightFunded', review: '/ru/obzor-bright-funded', anchor: 'bright-offer-status', dealAnchor: 'bright-funded-promokody', russiaNote: 'Россия не в списке ограничений; исключены лица из санкционных списков.' },
   { slug: 'fundednext', name: 'FundedNext (CFD)', review: '/ru/obzor-fundednext', russiaNote: 'Россия не в списке ограничений CFD; FundedNext Futures Россию ограничивает.' },
   { slug: 'upscale', name: 'Upscale', review: null, russiaNote: 'Ограничений по странам не заявлено, KYC нет, выплаты в USDT.', external: 'https://upscale.trade/ru/' },
   { slug: 'fundingpips', name: 'FundingPips', review: '/ru/obzor-fundingpips', russiaNote: 'Доступ для РФ не ясен (проверено 14.10.2026).' },
@@ -133,14 +137,14 @@ export default function RussianPromoHubPage() {
               const deal = dealFor(firm.slug, deals)
               const from = `ru-promokody-prop-firm-card-${index + 1}`
               return (
-                <article className="ru-card" key={firm.slug} data-russian-promo-firm={firm.slug} data-russian-promo-status={deal ? 'verified' : 'pending'}>
+                <article className="ru-card" key={firm.slug} id={firm.anchor} data-russian-promo-firm={firm.slug} data-russian-promo-status={deal ? 'verified' : 'pending'}>
                   <div className="ru-card-head">
                     <h3><BadgePercent size={18} aria-hidden="true" /> {firm.name}</h3>
                     {/* access badge rendered next to the CTA by RuGoLink (PR #6) */}
                   </div>
                   <p className="ru-muted">{firm.russiaNote}</p>
                   {deal ? (
-                    <>
+                    <div id={firm.dealAnchor}>
                       {deal.code ? <CopyableCodePill code={deal.code} pct={deal.pctIsUpTo ? undefined : deal.pct} locale="ru" analyticsFirm={firm.slug} /> : <p><strong>Скидка применяется по ссылке, код вводить не нужно.</strong></p>}
                       <p><strong>{deal.amountLabel}</strong>{deal.scope ? ` · ${deal.scope}` : ''}</p>
                       <p className="ru-source-line">
@@ -148,7 +152,7 @@ export default function RussianPromoHubPage() {
                         <a href={deal.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">{deal.sourceLabel}</a>
                       </p>
                       {deal.note ? <p className="ru-muted">{deal.note}</p> : null}
-                    </>
+                    </div>
                   ) : (
                     <div className="ru-notice" data-russian-promo-placeholder={firm.slug}>
                       {/* TODO(Karlis): получить код у аффилиат-менеджера, проверить на кассе и добавить в content/data/deals.json */}
