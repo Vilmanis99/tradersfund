@@ -24,8 +24,8 @@ import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/prop-firmy-bez-kyc'
-const TITLE = 'KYC в проп-фирмах 2026: FundedNext и BrightFunded'
-const DESCRIPTION = 'KYC в проп-фирмах: когда FundedNext, BrightFunded и FundingPips проверяют документы, адрес и личность до funded-счёта или выплаты.'
+const TITLE = 'Проп-фирмы без KYC: есть ли они и когда нужна верификация'
+const DESCRIPTION = 'Проп-фирмы без KYC: бывают ли они и когда FundedNext, BrightFunded и FundingPips проверяют документы, адрес и личность — до funded-счёта или до выплаты.'
 const SOCIAL_TITLE = 'KYC в проп-фирмах 2026: FundedNext и Bright Funded'
 const SOCIAL_DESCRIPTION = 'KYC в проп-фирмах: когда FundedNext, Bright Funded и FundingPips проверяют документы, адрес и личность до funded-счёта или выплаты.'
 const BRIGHT_REWARD_URL = 'https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account'
@@ -202,7 +202,7 @@ export default function RussianNoKycPage() {
             ...partnerCards.map(card => ({ label: `KYC ${card.name}`, capturedAt: card.evidence?.sourceCapturedAt ?? '' })),
           ]} />
           <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> «Без KYC» не означает «без проверки»</div>
-          <h1>KYC в проп-фирмах: FundedNext, BrightFunded и проверка документов</h1>
+          <h1>Проп-фирмы без KYC: когда FundedNext и BrightFunded проверяют документы</h1>
           <p className="ru-lead">
             Сопоставили {partnerCards.length} партнёрские KYC-процедуры по {sourceCount} официальным страницам: когда фирма запрашивает документ,
             кто сверяет адрес, сколько длится проверка и почему криптовыплата не отменяет проверку личности.

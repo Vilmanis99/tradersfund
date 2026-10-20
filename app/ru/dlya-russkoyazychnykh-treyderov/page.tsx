@@ -13,8 +13,8 @@ const PATH = '/ru/dlya-russkoyazychnykh-treyderov'
 const CHECKED = '14.10.2026'
 const CHECKED_ISO = '2026-10-14'
 export const revalidate = 3600
-const TITLE = 'Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ (проверено 10.2026)'
-const DESCRIPTION = 'Какие проп-компании работают с Россией в 2026 году: таблица 15 фирм со статусом для РФ, Беларуси и Казахстана, способами выплаты и ссылками на официальные правила.'
+const TITLE = 'Проп-фирмы для россиян 2026: кто принимает трейдеров из РФ'
+const DESCRIPTION = 'Проп-фирмы для россиян: какие компании работают с РФ в 2026 году. Таблица 15 фирм со статусом для России, Беларуси и Казахстана, оплатой и выплатами.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -338,6 +338,7 @@ export default function RussiaAvailabilityPage() {
           <h2>Что читать дальше</h2>
           <ul>
             <li><Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян: почему недоступно и чем заменить</Link></li>
+            <li><Link href="/ru/ftmo-vs-bright-funded">FTMO или BrightFunded: сравнение правил, цен и оплаты</Link></li>
             <li><Link href="/ru/luchshie-prop-firmy">Рейтинг проп-фирм</Link></li>
             <li><Link href="/ru/vyplaty-prop-firm">Выплаты проп-фирм: USDT, USDC, Rise</Link></li>
             <li><Link href="/ru/promokody-prop-firm">Промокоды проп-фирм</Link></li>

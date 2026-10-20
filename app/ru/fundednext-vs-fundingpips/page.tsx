@@ -13,8 +13,9 @@ import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/fundednext-vs-fundingpips'
-const TITLE = 'FundedNext или FundingPips: сравнение 2026'
-const DESCRIPTION = 'Сравнение FundedNext и FundingPips на русском: продукты, цены, просадка, сплиты, выплаты и проверка доступности страны перед регистрацией.'
+const TITLE = 'FundedNext или FundingPips: сравнение 2026 и доступ из РФ'
+const DESCRIPTION = 'FundedNext или FundingPips: продукты, цены, просадка, сплиты и выплаты на русском. Россия не в списке ограничений FundedNext CFD, у FundingPips статус неясен.'
+const SOCIAL_DESCRIPTION = 'Сравнение FundedNext и FundingPips на русском: продукты, цены, просадка, сплиты, выплаты и проверка доступности страны перед регистрацией.'
 
 export const revalidate = 3600
 
@@ -22,8 +23,8 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
+  openGraph: { title: TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
+  twitter: { card: 'summary_large_image', title: TITLE, description: SOCIAL_DESCRIPTION },
 }
 
 const faqs: RussianFaqItem[] = [
@@ -434,7 +435,8 @@ export default function RussianFundedNextVsFundingPipsPage() {
           <p className="ru-source-line">
             Партнёрские ссылки не заменяют проверку профиля. Если рассматриваете взнос в EUR, откройте{' '}
             <Link href="/ru/obzor-bright-funded">обзор BrightFunded</Link> и{' '}
-            <Link href="/ru/fundednext-vs-bright-funded">его сравнение с FundedNext</Link>. Валюта оплаты — отдельный критерий, не доказательство доступности.
+            <Link href="/ru/fundednext-vs-bright-funded">его сравнение с FundedNext</Link> или{' '}
+            <Link href="/ru/ftmo-vs-bright-funded">с FTMO</Link>. Валюта оплаты — отдельный критерий, не доказательство доступности.
           </p>
         </div>
       </section>

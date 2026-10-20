@@ -17,8 +17,8 @@ const PATH = '/ru/promokody-prop-firm'
 const MONTH_LABEL = 'октябрь 2026'
 const CHECKED = '14.10.2026'
 const CHECKED_ISO = '2026-10-14'
-const TITLE = 'Промокоды проп-фирм — октябрь 2026: FundedNext, Upscale, BrightFunded'
-const DESCRIPTION = 'Промокоды проп-фирм на октябрь 2026: FundedNext, Upscale, BrightFunded и Crypto Fund Trader — для трейдеров из России. Дата проверки у каждого кода, как применить скидку, и почему нет промокода FTMO.'
+const TITLE = 'Промокоды проп-фирм — октябрь 2026: BrightFunded, FundedNext'
+const DESCRIPTION = 'Промокоды проп-фирм на октябрь 2026 для трейдеров из России: BrightFunded, FundedNext, Upscale и Crypto Fund Trader. Дата проверки кода и почему нет FTMO.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
