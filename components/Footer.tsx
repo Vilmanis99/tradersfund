@@ -100,6 +100,7 @@ export default function Footer({
       { label: 'How we score firms', href: '/methodology' },
       { label: 'How we make money', href: '/how-we-make-money' },
       { label: 'Corrections', href: '/corrections' },
+      { label: 'Closed prop firms', href: '/prop-firms/closed' },
       { label: 'Authors', href: '/authors' },
       { label: 'Contact', href: '/contact' },
     ] },
