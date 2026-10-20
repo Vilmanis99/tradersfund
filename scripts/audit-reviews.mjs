@@ -9211,7 +9211,7 @@ function checkCopyTradingGuide() {
     ],
   )
   if (
-    fxify.length !== 8 ||
+    fxify.length !== 10 ||
     fxifyDates.size < 1 ||
     !fxifyRestricted.every(challenge =>
       challenge.notes.some(note =>
@@ -9673,8 +9673,8 @@ function checkScalingPlanGuide() {
     {
       slug: 'fxify',
       name: 'FXIFY',
-      splitFragments: ['80%', '5 phase products', 'unstated on 3 products'],
-      countFragments: [[80, 5]],
+      splitFragments: ['80%', '7 products (5 phase, 2 crypto)', 'unstated on 3 products'],
+      countFragments: [[80, 7]],
       nullCount: 3,
     },
   ]
