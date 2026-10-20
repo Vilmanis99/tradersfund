@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 import { getAllPosts, getAllPages, getAllCategories, getPostsByCategory } from '@/lib/mdx'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { FEATURES } from '@/lib/features'
-import { getIndexableCanonicalPairs, COMPARISON_EDITORIAL_DATE } from '@/lib/comparisons'
+import { getAllCanonicalPairs, COMPARISON_EDITORIAL_DATE } from '@/lib/comparisons'
 import { LANDINGS, buildLandingPayload, getLandingSourceLastModified } from '@/lib/landings'
 import { buildIndiaMatcherFirms } from '@/lib/indiaMatcher'
 import { AUTHORS } from '@/lib/authors'
@@ -11,7 +11,7 @@ import { getAllDeals } from '@/lib/deals'
 import { INDIA_EVIDENCE } from '@/lib/india'
 import { INDIA_MATCHUPS, indiaMatchupPath } from '@/lib/indiaMatchups'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
-import { isSourceHoldReview } from '@/lib/reviewStatus'
+import { isSourceHoldReview, isSourceHoldFirm } from '@/lib/reviewStatus'
 import {
   LOCALIZED_ROUTE_PAIRS,
   RUSSIAN_ROUTE_EDITORIAL_DATES,
@@ -160,8 +160,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Preserve existing URLs; substantive template edits and the pair's own
   // source captures can update lastmod. Never use the current request date.
-  // Exactly the indexable pairs: the same rule drives the page's robots meta.
-  const compareRoutes: MetadataRoute.Sitemap = getIndexableCanonicalPairs()
+  const compareRoutes: MetadataRoute.Sitemap = getAllCanonicalPairs()
+    .filter(p => {
+      const [aSlug, bSlug] = p.matchup.split('-vs-')
+      return !isSourceHoldFirm(aSlug) && !isSourceHoldFirm(bSlug)
+    })
     .map(p => {
     const [aSlug, bSlug] = p.matchup.split('-vs-')
     const aDate = firmDateBySlug.get(aSlug)
