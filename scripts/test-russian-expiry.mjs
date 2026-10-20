@@ -235,8 +235,8 @@ try {
   const fundedNextAccessEvidence = marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')
   assert.equal(marketEvidence.capturedAt, '2026-08-27', 'a scoped FundedNext check does not refresh the wider market snapshot')
   assert.equal(marketEvidence.snapshotStatus, 'historical', 'the broad market capture is explicitly historical rather than silently redated')
-  assert(marketEvidence.localFirmSignals.every(item => item.sourceCapturedAt === '2026-10-01'), 'all six local-firm claims carry their own first-party recheck date')
-  assert(marketEvidence.affiliatePrograms.every(item => item.sourceCapturedAt === '2026-10-01'), 'all six local partner statuses carry their own public-page check date')
+  assert(marketEvidence.localFirmSignals.every(item => item.sourceCapturedAt === '2026-10-20'), 'all six local-firm claims carry their own first-party recheck date')
+  assert(marketEvidence.affiliatePrograms.every(item => item.sourceCapturedAt === '2026-10-20'), 'all six local partner statuses carry their own public-page check date')
   assert.equal(marketEvidence.affiliatePrograms.find(item => item.operator === 'Trade System')?.status, 'described-no-terms', 'Trade System mentor share is neither a missing program nor a verified publisher commission')
   assert.equal(fundedNextAccessEvidence?.status, 'restricted', 'FundedNext is not marked accessible to Russian residents (footer: no services to residents of Russia; matches firms.json)')
   assert.equal(fundedNextAccessEvidence?.sourceCapturedAt, '2026-10-01', 'FundedNext access uses its oldest first-party observation date')
@@ -1102,8 +1102,8 @@ try {
   const localFaqClock = clock
   const broadMarketCapture = marketEvidence.capturedAt
   try {
-    clock = '2026-10-01T12:00:00Z'
-    marketEvidence.capturedAt = '2026-10-01'
+    clock = '2026-10-20T12:00:00Z'
+    marketEvidence.capturedAt = '2026-10-20'
     for (const slug of localFaqSlugs) {
       const Page = require(path.join(root, 'app/ru', slug, 'page.tsx')).default
       const html = renderToStaticMarkup(React.createElement(Page))
@@ -1120,8 +1120,8 @@ try {
         const EraPage = require(path.join(root, 'app/ru/obzor-eratrade/page.tsx')).default
         const html = renderToStaticMarkup(React.createElement(EraPage))
         assert(html.includes('data-russian-local-faq-status="recapture-required"') && !cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), 'each scoped Era source independently expires its FAQ schema')
-        assert(html.includes('Как минимум один источник требует повторной проверки') && !html.includes('Общий снимок рынка от 2026-10-01 требует повторной проверки'), 'scoped expiry cannot mislabel a fresh broad snapshot')
-        source.sourceCapturedAt = '2026-10-01'
+        assert(html.includes('Как минимум один источник требует повторной проверки') && !html.includes('Общий снимок рынка от 2026-10-20 требует повторной проверки'), 'scoped expiry cannot mislabel a fresh broad snapshot')
+        source.sourceCapturedAt = '2026-10-20'
       }
     } finally {
       eraSignal.sourceCapturedAt = eraSignalDate

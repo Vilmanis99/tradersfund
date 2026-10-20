@@ -11679,10 +11679,10 @@ function checkRussianAcquisitionPilot() {
         rows.push('Era Trade operator-claim fixtures are missing from Russian evidence')
       }
       if (
-        localSignals.get('PropLive')?.claims?.traders !== 13_722
+        localSignals.get('PropLive')?.claims?.traders !== 14_993
         || !localSignals.get('PropLive')?.notes?.some(note => note.includes('10,700'))
       ) {
-        rows.push('PropLive 13,722/10,700 first-party conflict is not preserved')
+        rows.push('PropLive 14,993/10,700 first-party conflict is not preserved')
       }
       if (
         localSignals.get('KasCapital')?.claims?.maximumProfitSharePct !== 95
@@ -11706,7 +11706,7 @@ function checkRussianAcquisitionPilot() {
         || localSignals.get('TeamTraders')?.claims?.minimumTradingSessions !== 10
         || localSignals.get('TeamTraders')?.claims?.dailyLossLimitPct !== 2
         || localSignals.get('TeamTraders')?.claims?.maximumLossPct !== 4
-        || localSignals.get('TeamTraders')?.claims?.fundedDemoProfitSharePct !== 70
+        || localSignals.get('TeamTraders')?.claims?.fundedDemoProfitSharePct !== 50
         || localSignals.get('TeamTraders')?.claims?.profitSharePct !== 95
         || localSignals.get('TeamTraders')?.claims?.maximumCapitalRub !== 2_000_000
         || localSignals.get('TeamTraders')?.sourceCapturedAt !== scopedTeamTradersEvidence?.capturedAt
@@ -11891,7 +11891,7 @@ function checkRussianAcquisitionPilot() {
         || teamTradersEvidence.evaluation?.minimumTradingDaysTotal !== 10
         || teamTradersEvidence.evaluation?.dailyLossPct !== 2
         || teamTradersEvidence.evaluation?.maximumLossPct !== 4
-        || teamTradersEvidence.fundedDemo?.profitSharePct !== 70
+        || teamTradersEvidence.fundedDemo?.profitSharePct !== 50
         || teamTradersEvidence.fundedDemo?.profitTargetAndCapPct !== 10
         || teamTradersEvidence.realAccount?.profitSharePct !== 95
         || teamTradersEvidence.realAccount?.dailyLossExcessPenaltyPct !== 20
@@ -11901,7 +11901,8 @@ function checkRussianAcquisitionPilot() {
       if (
         teamTradersEvidence.affiliateProgram?.status !== 'not-found'
         || teamTradersEvidence.searchIntent?.queries?.length !== 3
-        || teamTradersEvidence.sourceConflicts?.length !== 3
+        || teamTradersEvidence.sourceConflicts?.length !== 5
+        || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 50 && item.legacyValue === 70 && item.recordedAt === '2026-10-20')
         || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 10 && item.legacyValue === 15)
         || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 95 && item.legacyValue === 90)
       ) {

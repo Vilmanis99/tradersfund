@@ -1,0 +1,236 @@
+{
+  "firmSlug": "eratrade",
+  "captureType": "new-firm-research",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T12:00:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": null,
+  "previousEvidence": "content/data/russian-market-evidence.json localFirmSignals/affiliatePrograms 'Era Trade' (sourceCapturedAt 2026-10-01)",
+  "question": "RU Writer: Era Trade has no firms.json entry and its RU evidence expires 31.10. Recheck official sources and capture the firms.json schema fields.",
+  "egress": "Box egress is a US IP (ipinfo country US, checked 2026-10-20). Fetched the global Russian-language pages (no /us/ or regional variant exists on these sites); no geo-redirect observed.",
+  "method": "curl of live HTML/PDF with a desktop Chrome user agent, scripts/styles stripped with BeautifulSoup, PDFs via pdftotext -layout; quotes copied verbatim and machine-checked against the saved text. Raw snapshots: /workspace/tradersfundhub/evidence/new-firms-2026-10-20/raw/ (box only).",
+  "verdict": {
+    "evidenced": true,
+    "recordTarget": "content/data/firms-pending.json (not firms.json; see firms-pending _note: firms.json needs an editorial score, logo and an EN reviewUrl and auto-generates EN compare/OG pages)",
+    "russiaStatus": "unclear",
+    "russiaReason": "ToS names no country list; it excludes only 'comprehensively sanctioned or prohibited' jurisdictions and reserves the right to restrict any country or payment method. No statement that Russian residents are accepted or excluded."
+  },
+  "legal": {
+    "entity": "NEVERA CORE GLOBAL - FZCO",
+    "jurisdiction": "Dubai Silicon Oasis, UAE",
+    "licence": "License Number 89779 | Registration Number 83014",
+    "sourceUrl": "https://eratrade.net/s/Era_Trade_Terms_of_Service.pdf",
+    "quote": "Operated by NEVERA CORE GLOBAL - FZCO Building A1, Dubai Digital Park, Dubai Silicon Oasis, Dubai, United Arab Emirates License Number 89779 | Registration Number 83014",
+    "tosLastUpdated": "2026-07-10"
+  },
+  "products": {
+    "2-step": {
+      "pricesUsd": {
+        "10000": 99,
+        "25000": 225,
+        "50000": 399,
+        "100000": 599,
+        "200000": 1099
+      },
+      "strikethroughUsd": {
+        "100000": 699
+      },
+      "profitTargetPct": [
+        8,
+        5
+      ],
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "minTradingDays": null,
+      "timeLimit": "none",
+      "profitSplitPct": 80,
+      "sourceUrl": "https://eratrade.net/",
+      "priceNote": "Prices are in the homepage pricing script (data['2stage'].cards). The MT5/TradeLocker/ByBit tabs do not change the price data. Seen from a US IP; the site has no regional variant.",
+      "quotes": [
+        "{ account: \"$100.000\", per1000: \"$5.9\", monthly: \"Ср. выплата\", monthlyRange: \"$4.000–6.400\", price: \"$599\", oldPrice: \"$699\", badge: \"Pro\", highlighted: true }",
+        "На этап 1 нужно достичь профит-таргета 8%, при этом не уходя в просадку больше 5% за день и 10% за всё время и не нарушая других правил.",
+        "Здесь нужно достичь профит-таргета 5%, не уходя в просадку больше 5% за день и 10% за всё время и не нарушая других правил."
+      ],
+      "rulesUrl": "https://help.eratrade.club/ru/2-stage-challenge-how-it-works/"
+    },
+    "1-step": {
+      "pricesUsd": {
+        "10000": 149,
+        "25000": 349,
+        "50000": 599,
+        "100000": 749,
+        "200000": 1399
+      },
+      "strikethroughUsd": {
+        "100000": 849
+      },
+      "profitTargetPct": [
+        11
+      ],
+      "dailyLossPct": 4,
+      "maxLossPct": 8,
+      "minTradingDays": 6,
+      "profitSplitPct": 80,
+      "sourceUrl": "https://eratrade.net/",
+      "quotes": [
+        "{ account: \"$100.000\", per1000: \"$7.5\", monthly: \"Ср. выплата\", monthlyRange: \"$4.000–6.400\", price: \"$749\", oldPrice: \"$849\", badge: \"Pro\", highlighted: true }",
+        "На этапе 1 нужно достичь профит-таргета 11%, не уходя в просадку больше 4% за день и 8% за всё время и не нарушая других правил. Также должно быть минимум 6 торговых дней."
+      ],
+      "rulesUrl": "https://help.eratrade.club/ru/1-stage-challenge-how-it-works/"
+    },
+    "instant": {
+      "pricesUsd": {
+        "5000": 229,
+        "10000": 399,
+        "25000": 849,
+        "50000": 1499
+      },
+      "profitTargetPct": null,
+      "dailyLossPct": 3,
+      "maxLossPct": 5,
+      "consistencyPct": 25,
+      "minTradingDays": 10,
+      "minProfitableDays": 7,
+      "profitSplitPct": 80,
+      "sourceUrl": "https://help.eratrade.club/ru/instant-accounts-how-it-works/",
+      "quotes": [
+        "{ account: \"$50.000\", per1000: \"$29.9\", monthly: \"Ср. выплата\", monthlyRange: \"$3.000–6.000\", price: \"$1.499\", oldPrice: null, badge: \"Pro\", highlighted: true }",
+        "Оно означает, что самый прибыльный торговый день не должен составлять больше 25% от общей прибыли, которая рассматривается для выплаты."
+      ],
+      "note": "No $100K Instant size is offered (sizes $5K-$50K)."
+    }
+  },
+  "rules": {
+    "drawdownType": {
+      "value": "static",
+      "quote": "Правило устанавливается как % от стартового размера аккаунта для каждой модели.",
+      "sourceUrl": "https://help.eratrade.club/ru/how-overall-max-loss-is-calculated/"
+    },
+    "dailyLossBasis": {
+      "quote": "Для целей этого правила берётся большее из двух значений: эквити или баланс. Лимит установлен на уровне 5% (для 2-стадийного челленджа) и 4% (для 1-стадийного) от стартового капитала или баланса на каждый день.",
+      "resetsAt": "00:00 UTC+0",
+      "sourceUrl": "https://help.eratrade.club/ru/maximum-daily-loss-limit/"
+    },
+    "riskPerIdeaPct": {
+      "value": 2,
+      "quote": "Максимальный суммарный убыток на одну торговую идею — 2% от стартового баланса аккаунта , включая плавающий и зафиксированный убыток.",
+      "sourceUrl": "https://help.eratrade.club/ru/general-trading-limitations/"
+    },
+    "consistency": {
+      "value": "Instant only: best day ≤25% of payout-eligible profit; no consistency rule published for 1-step/2-step",
+      "sourceUrl": "https://help.eratrade.club/ru/instant-accounts-how-it-works/",
+      "quote": "Правило консистентности действует только для Instant-счетов."
+    },
+    "newsTrading": {
+      "value": "restricted",
+      "quote": "На этапе челленджа новостная торговля разрешена, если она не нарушает другие правила Era Trade. На funded-аккаунте запрещено открывать или закрывать сделки за 15 минут до и 15 минут после красных новостей по затронутому инструменту.",
+      "sourceUrl": "https://help.eratrade.club/ru/general-trading-limitations/"
+    },
+    "eaAndCopy": {
+      "eaAllowed": false,
+      "copyTradingAllowed": false,
+      "quote": "Торговые роботы, советники, EA (Expert Advisors), сигнальные боты, копировщики сделок и сервисы автоматического управления сделками запрещены.",
+      "sourceUrl": "https://help.eratrade.club/ru/general-trading-limitations/",
+      "note": "The homepage also markets separate 'Копитрейдинг на Vantage' (copy-trading product), which is not trade copying on challenge/funded accounts."
+    },
+    "weekendHolding": {
+      "value": "restricted",
+      "quote": "По умолчанию удержание позиций через выходные запрещено. Для Forex, Metals, Indices и Commodities правило действует и на этапе челленджа, и на funded-аккаунте.",
+      "note": "Crypto/Bybit may hold over weekends.",
+      "sourceUrl": "https://help.eratrade.club/ru/general-trading-limitations/"
+    },
+    "platforms": {
+      "value": [
+        "MT5",
+        "TradeLocker",
+        "Bybit"
+      ],
+      "quote": "BYBIT · MT5 · TradeLocker · Vantage",
+      "note": "Vantage is listed for copy-trading, not as a challenge terminal; trading-platforms help page describes Bybit, MetaTrader 5 and TradeLocker.",
+      "sourceUrl": "https://help.eratrade.club/ru/trading-platforms/"
+    }
+  },
+  "payouts": {
+    "profitSplitPct": 80,
+    "splitQuote": "Базовое распределение прибыли: 80% — трейдеру; 20% — компании.",
+    "frequency": "bi-weekly or monthly (trader's choice: every 15 or 30 days)",
+    "schemaValue": "bi-weekly",
+    "frequencyQuote": "Запрашивать выплату можно каждые 15 или 30 дней — на выбор трейдера . Отсчёт начинается с первой завершённой сделки на Funded-аккаунте",
+    "firstPayout": "15 days after the first completed trade on the funded account (or 30 if chosen), plus min 3 profitable days (≥0.5% each) in the period; processing up to 5 business days",
+    "profitableDaysQuote": "В текущем расчётном периоде — payout period — должно быть минимум 3 прибыльных дня .",
+    "limits": "Максимальная сумма выплаты трейдеру — 10% от стартового баланса аккаунта за один расчётный период.",
+    "methods": [
+      "USDT (TRC20, ERC20, BEP20)",
+      "BTC",
+      "ETH",
+      "LTC"
+    ],
+    "methodsQuote": "Запросить выплату можно в следующих криптовалютах: USDT — сети TRC20, ERC20 или BEP20 ; BTC ; ETH ; LTC .",
+    "processing": "Проверка и обработка выплаты занимают до 5 рабочих дней .",
+    "sourceUrl": "https://help.eratrade.club/ru/funded-account-payout-system-how-it-works/",
+    "redirectNote": "https://help.eratrade.club/ru/how-to-request-a-payout/ and /ru/profit-split-payment-methods/ (both cited by /ru/obzor-eratrade) now 301 to this page."
+  },
+  "refund": {
+    "value": "fee refunded with the 3rd successful payout",
+    "quote": "Трейдеры, успешно прошедшие челлендж, могут запросить возврат регистрационного взноса вместе с третьей успешной выплатой .",
+    "sourceUrl": "https://help.eratrade.club/ru/refund-policy-challenge-fee/"
+  },
+  "paymentMethods": {
+    "value": null,
+    "note": "ToS lists possible methods only ('may accept'); the actual checkout is behind login at app.eratrade.net and was not opened.",
+    "quote": "Era Trade may accept payment by card, bank transfer, cryptocurrency, stablecoins or",
+    "sourceUrl": "https://eratrade.net/s/Era_Trade_Terms_of_Service.pdf"
+  },
+  "discountCodes": {
+    "public": null,
+    "note": "No public discount code on the official homepage or help centre on 2026-10-20. The $100K strikethrough prices ($699→$599, $849→$749) are list-price reductions, not codes. Nothing for deals.json."
+  },
+  "countryAccess": {
+    "russia": "unclear",
+    "belarus": "unclear",
+    "ukraine": "unclear",
+    "kazakhstan": "unclear",
+    "quote": "you are not located, resident or established in a comprehensively sanctioned or prohibited jurisdiction;",
+    "quote2": "Мы готовы предоставлять услуги всем талантливым трейдерам.",
+    "sourceUrl": "https://eratrade.net/s/Era_Trade_Terms_of_Service.pdf",
+    "note": "No named restricted-country list in the ToS (last updated 10 July 2026) or help centre. Signals of a Russian-speaking audience (Moscow offline tournament ended 10 April 2026, t.me/eratrade_cis) are not access evidence."
+  },
+  "conflicts": [
+    {
+      "field": "profit split",
+      "values": [
+        "80% (payout rules, product cards)",
+        "'До 90% профита' (homepage comparison block)"
+      ],
+      "resolution": "use 80% base split from the payout rules; 90% is an upgrade the operator 'may' grant"
+    },
+    {
+      "field": "cheapest entry",
+      "values": [
+        "'вы можете начать всего с $59' (homepage FAQ)",
+        "cheapest card is $99 (2-step $10K) / Instant $5K $229"
+      ],
+      "resolution": "no $59 product is on the current pricing cards; do not cite $59"
+    },
+    {
+      "field": "payout processing",
+      "values": [
+        "'Обычно выплаты обрабатываются в течение 72 часов' (homepage FAQ)",
+        "'до 5 рабочих дней' (payout rules)"
+      ],
+      "resolution": "cite the help-centre rule (up to 5 business days)"
+    },
+    {
+      "field": "max account",
+      "values": [
+        "'До $300K размер аккаунта' (homepage hero)",
+        "largest purchasable size $200K"
+      ],
+      "resolution": "$200K per account purchase; $300K is a marketing ceiling not tied to a product card"
+    }
+  ],
+  "changesVs20261001": [
+    "Era RU review's payout-request and split URLs now redirect to /ru/funded-account-payout-system-how-it-works/ (same rules: 15/30 days, 3 profitable days, 1% min, 10% max, 5 business days)",
+    "Homepage claims unchanged: 6000+ traders, 70+ countries, $2M+ paid, 80% split"
+  ]
+}

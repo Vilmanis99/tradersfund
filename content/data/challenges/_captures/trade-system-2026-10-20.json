@@ -1,0 +1,35 @@
+{
+  "firmSlug": "trade-system",
+  "captureType": "local-firm-recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T12:00:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousEvidence": "content/data/russian-market-evidence.json localFirmSignals/affiliatePrograms 'Trade System' (sourceCapturedAt 2026-10-01)",
+  "egress": "Box egress is a US IP (ipinfo country US, checked 2026-10-20). Fetched the global Russian-language pages (no /us/ or regional variant exists on these sites); no geo-redirect observed. Note: tsystem.pro geo-redirects a US IP to /en/ (302, sets cookie lang=en); the Russian page was fetched with cookie lang=ru, which is what the site's own RU language switch sets.",
+  "method": "curl of live HTML/PDF with a desktop Chrome user agent, scripts/styles stripped with BeautifulSoup, PDFs via pdftotext -layout; quotes copied verbatim and machine-checked against the saved text. Raw snapshots: /workspace/tradersfundhub/evidence/new-firms-2026-10-20/raw/ (box only).",
+  "verdict": {
+    "claimsUnchanged": true,
+    "firmsJson": "not proposed: no published fee, split schedule or loss limits"
+  },
+  "facts": {
+    "split": "Вы торгуете и соблюдаете риск-менеджмент, мы даем капитал, инфраструктуру и 95% прибыли трейдеру",
+    "splitUpTo": "До 95% прибыли — трейдеру",
+    "market": "Основное направление — Московская биржа и криптовалютный рынок .",
+    "mentorShare": "Наставники и партнеры помогают трейдерам развиваться и за это получают долю от их прибыли.",
+    "disclaimer": "Компания не предоставляет гарантий заработка на бирже в какой бы то ни было форме.",
+    "legal": "ООО Торговая Система ИНН 0273945361",
+    "office": "Москва, стремянный пер. 2, пом. 31",
+    "englishVersionStats": "5 321 Traders in the System 2 137 Completed Training",
+    "affiliate": "Homepage still describes a mentor/partner profit share without a percentage or publisher terms. The earlier blog-post referral mention was not re-located on 2026-10-20."
+  },
+  "sourceUrls": [
+    "https://tsystem.pro/",
+    "https://tsystem.pro/otvety-na-voprosy/",
+    "https://tsystem.pro/en/"
+  ],
+  "changesVs20261001": [
+    "Unchanged: 'до 95%' trader share, MOEX (plus crypto) market, mentor/partner share with no published percentage, no-earnings-guarantee disclaimer.",
+    "Hero now reads '95% прибыли трейдеру' (no 'до') while the payout block still says 'До 95%'; the directory value maximumProfitSharePct 95 stays correct.",
+    "US visitors are redirected to the English site (/en/)."
+  ]
+}
