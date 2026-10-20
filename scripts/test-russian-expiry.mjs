@@ -1227,7 +1227,14 @@ try {
       }
       const affiliate = card.match(new RegExp(`<a\\b[^>]*href="/go/${slug}\\?from=${campaign}"[^>]*>`))?.[0]
       assert(affiliate?.includes('rel="sponsored nofollow noopener"') && affiliate.includes('target="_blank"'), 'existing affiliate attribution and link disclosure are preserved')
-      assert(!card.includes('% off') && !card.includes('split'), 'no uncaptured aggregate discounts or profit splits on partner cards')
+      // The only discount a partner card may show is a current, dated, verified
+      // deals.json checkout code, rendered from that record in its code box.
+      const deal = require(path.join(root, 'lib/deals.ts')).getAllDeals().find(item => item.firmSlug === slug && item.mechanism === 'checkout-code' && item.code)
+      const codeBox = card.match(/<div class="th-code" data-home-offer-code="[^"]+">[\s\S]*?<\/button>/)?.[0]
+      assert.equal(Boolean(codeBox), Boolean(deal), 'a partner code box renders only for a current deals.json code')
+      if (deal) assert(codeBox.includes(`<code>${deal.code}</code>`) && codeBox.includes(deal.amountLabel), 'partner discount text is read from its deals.json record')
+      const cardWithoutCode = codeBox ? card.replace(codeBox, '') : card
+      assert(!cardWithoutCode.includes('% off') && !card.includes('split'), 'no uncaptured aggregate discounts or profit splits on partner cards')
     }
     for (const match of englishHtml.matchAll(/href="(\/prop-firm-challenges\?[^"#]+)#challenge-shortlist-heading"/g)) {
       const url = new URL(match[1].replace(/&amp;/g, '&'), 'https://tradersfundhub.com')
