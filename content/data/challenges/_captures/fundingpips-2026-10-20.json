@@ -100,7 +100,9 @@
         "Use Code FP: 20% OFF New Users | 5% OFF Existing Users"
       ],
       "note": "Seen only from the US IP; not checkout-verified; deals.json not touched. The help-centre code HELLO stays as discountCode."
-    }
+    },
+    "2-step-flex: sourceCapturedAt 2026-10-19 -> 2026-10-20, reward-cycle note (Bi-Weekly 80%/95% or On Demand 100%, no Monthly)",
+    "1-step-flex refundable null -> false on all 5 tiers (Get Started / Reward Methods exclusion); refund notes with quotes on all 5 products"
   ],
   "briefAsks": {
     "checkoutMethods": {
@@ -253,5 +255,80 @@
       "httpStatus": 200,
       "fetchedAt": "2026-10-20T05:12:44.099Z"
     }
-  ]
+  ],
+  "twoStepFlexRecapture": {
+    "requestedBy": "EN Writer via Karlis, 2026-10-20",
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "method": "Help Center API /api/v2/help_center/en-us/articles/47835196271249.json (curl, US IP)",
+    "articleUpdatedAt": "2026-10-19T19:27:35Z",
+    "quotes": [
+      "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split).",
+      "There is no Consistency Score on either Bi-Weekly split.",
+      "Bi-Weekly, 80% 80% Every 14 calendar days, no other requirement.",
+      "Bi-Weekly, 95% 95% Every 14 calendar days, plus 3 profitable days per cycle.",
+      "Request a Reward with a 100% split on demand on the Master Account, once the eligibility requirements below are met.",
+      "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit.",
+      "At least 7 profitable days to qualify for a reward, each with 0.5% or more profit of the starting Master Account Size.",
+      "2-phase evaluation : Phase 1 (10%) + Phase 2 (8%) with an 80% split with 1 minimum trading day, or a 95% split with 3 profitable days (≥ 0.5% each)."
+    ],
+    "monthlyRoute": "The word 'Monthly' does not appear on the page.",
+    "verdict": "EN Writer's description confirmed. Stored values unchanged (bi-weekly, 14 days, split null, 10%/8%); sourceCapturedAt 2026-10-19 -> 2026-10-20 with a reward-cycle note.",
+    "watchEntriesRechecked": {
+      "fundingpips-reward-cycles-minimum-days-2026-08-26": {
+        "lastCheckedAt": "2026-10-20",
+        "oneStepFlexQuote": "80% Bi-Weekly or 100% On Demand reward : request a Reward every two weeks, or on demand once the eligibility requirements are met.",
+        "note": "Summary rewritten: 1 Step Flex no longer shows a 95% route."
+      },
+      "fundingpips-standard-legacy-reset-split": {
+        "lastCheckedAt": "2026-10-20",
+        "quotes": [
+          "Achieve an 8% profit target during Phase 1.",
+          "Existing 2 Step Standard accounts with a 10% profit target will reset as 2 Step Flex with 85% profit split"
+        ],
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard"
+      }
+    }
+  },
+  "refundTerms": {
+    "requestedBy": "Web Designer & Developer via Karlis, 2026-10-20",
+    "method": "Help Center API (curl) for help articles; headless Chrome for fundingpips.com/terms-and-conditions (curl returns 429)",
+    "sources": [
+      {
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+        "articleUpdatedAt": "2026-09-24T09:41:29Z",
+        "quotes": [
+          "Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.",
+          "Will my registration fee be refunded? Yes, on the 2 Step Standard models. When you reach your 4th reward on the Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero."
+        ]
+      },
+      {
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods",
+        "articleUpdatedAt": "2026-09-28T13:01:01Z",
+        "quotes": [
+          "When you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee you paid for the challenge is refunded. The 4th-reward refund does not apply on 1 Step Flex , 2 Step Pro , 2 Step Flex , or FundingPips Zero .",
+          "These models have always been excluded from the registration fee refund."
+        ],
+        "oddity": "Section subtitle reads \"A milestone perk on the 1 Step and 2 Step Standard models\" while the body excludes 1 Step Flex; the legacy '1 Step Model' article (48982278587665) and Legacy Rules (51307058233361) say nothing about refunds."
+      },
+      {
+        "sourceUrl": "https://fundingpips.com/terms-and-conditions",
+        "effective": "May 15, 2026",
+        "quotes": [
+          "ALL PAYMENTS ARE FINAL AND FOR EVALUATION PURPOSES ONLY.",
+          "The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.",
+          "These fees are non-refundable once paid, except where required by applicable law"
+        ],
+        "note": "The Terms do not mention the 4th-reward refund."
+      }
+    ],
+    "productPages": "The five product help articles (34501697434385, 34501809112081, 47835196271249, 34502027344017, 34502157694865; all updated 2026-10-19) contain no refund wording.",
+    "verdicts": {
+      "1-step-flex": "false (explicitly excluded); was null",
+      "2-step-standard": "true = refunded at 4th Master reward per help centre; conflicts with Terms; $2.5K tier null",
+      "2-step-flex": "false (unchanged)",
+      "2-step-pro": "false (unchanged; $2.5K tier null)",
+      "zero": "false (unchanged)"
+    },
+    "firmsJson": "firms.json has no refund field for any firm (schema has refundable only per challenge tier), so nothing was changed there."
+  }
 }
