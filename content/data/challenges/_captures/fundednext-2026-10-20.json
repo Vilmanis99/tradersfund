@@ -69,7 +69,8 @@
   "openConflict": "Subsequent cycle: help centre says every 10 business days; the product page shows both \"Subsequent Withdrawal 10 Days\" and \"Subsequent Rewards Bi-weekly\". payoutFrequency stays null.",
   "changes": [
     "firms.json FundedNext consistencyRule: news-rule text (2026-05-20) -> 40% best-day On-Demand rule (article 15586820)",
-    "firms.json FundedNext payoutMethods: + Card, Confirmo, FNmarkets; + payoutMethodsSourceUrl/Quote/CapturedAt/Note (article 8020084, updated 2026-10-02)"
+    "firms.json FundedNext payoutMethods: + Card, Confirmo, FNmarkets; + payoutMethodsSourceUrl/Quote/CapturedAt/Note (article 8020084, updated 2026-10-02)",
+    "firms.json FundedNext russiaStatus available -> restricted; russiaSourceUrl/Quote = fundednext.com footer (ToS 5.3 conflict and Futures restriction recorded here)"
   ],
   "dailyRecheck": {
     "captureType": "daily-recheck",
@@ -325,7 +326,22 @@
         "clause": "5.3",
         "quote": "for CFD Services, at the time of publication of these Terms, the Provider does not make the Services available to residents and citizens of the following countries/territories: Bangladesh, Myanmar, Belarus, North Korea, Syria, Grenada, Chad, Malaysia, Belize, Antigua and Barbuda, Cape Verde, Tuvalu, Vietnam, Bouvet Island, Burundi, Cook Islands, Eritrea, Comoros, Sri Lanka and Fiji (\"Restricted Countries – CFDs\")."
       },
-      "verdict": "ToS 5.3 CFD list omits Russia, but the site-wide footer says FundedNext Entities do not offer services to residents of Russia. firms.json russiaStatus is 'available' with no russiaSourceUrl."
+      "verdict": "ToS 5.3 CFD list omits Russia, but the site-wide footer says FundedNext Entities do not offer services to residents of Russia; footer treated as operative (see decision).",
+      "futures": {
+        "sourceUrl": "https://helpfutures.fundednext.com/en/articles/17228971",
+        "dateModified": "2026-09-30T10:50:02Z",
+        "quote": "What are the restricted countries to purchase accounts with FundedNext Futures?",
+        "listIncludes": [
+          "Russian Federation"
+        ],
+        "tosClause": "5.4 (Restricted Countries – Futures) also names the Russian Federation"
+      },
+      "decision": {
+        "date": "2026-10-20",
+        "russiaStatus": "available -> restricted",
+        "reason": "Editor decision relayed via parent agent: the fundednext.com footer is treated as operative over ToS 5.3 (CFD list without Russia). Schema has no 'conflicting' value; 'restricted' is the most restrictive valid value.",
+        "russiaSourceUrl": "https://fundednext.com/"
+      }
     },
     "allocation": {
       "cap300k": {
