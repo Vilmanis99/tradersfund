@@ -30,12 +30,12 @@ export const metadata: Metadata = {
  * Facts: Prop Firm Tracker verdicts /workspace/ru-data/2026-10-19-hashhedge-cft.md (section B) and
  * capture content/data/challenges/_captures/hash-hedge-2026-10-19.json (data branch 331b985, not merged).
  * Hash Hedge is not in firms.json until 26.10.2026, so there is no /go route: the CTA is a plain,
- * non-affiliate link to the official site and the Russia badge uses a static status (Tracker russiaStatus = available).
+ * non-affiliate link to the official site. The Russia badge reads firms.json russiaStatus via russiaStatusFor('hash-hedge'):
+ * without a firms.json entry it renders 'unverified' («РФ: не проверено»); copy only states what the dated terms say.
  * All official URLs below returned 200 on 2026-10-19. Unofficial mirror sites are never cited.
  */
 const CHECKED = '2026-10-19'
 const TERMS_DATED = '2026-10-08'
-const HH_RUSSIA_STATUS = 'available' as const
 
 const SOURCES = {
   home: 'https://hashhedge.com/',
@@ -69,7 +69,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Работает ли Hash Hedge с трейдерами из России?',
-    a: `Россия не названа в списке ограничений. В п. 4.3 условий от 08.10.2026 перечислены только Куба, Иран, КНДР, Сирия и Йемен («но не только»), а также лица и юрисдикции под всеобъемлющими санкциями. Регистрацию и оплату из России мы не проверяли. У фирмы есть официальная русская версия сайта.`,
+    a: `Подтверждённого ответа у нас нет. В п. 4.3 условий от 08.10.2026 Россия не названа: перечислены Куба, Иран, КНДР, Сирия и Йемен («но не только»), а также лица и юрисдикции под всеобъемлющими санкциями. Регистрацию, оплату и выплату из России мы не проверяли. У фирмы есть официальная русская версия сайта, но это не подтверждение доступа.`,
   },
   {
     q: 'Как оплатить челлендж Hash Hedge?',
@@ -90,6 +90,7 @@ const faqs: RussianFaqItem[] = [
 ]
 
 export default function RussianHashHedgeReviewPage() {
+  const hhRussiaStatus = russiaStatusFor('hash-hedge')
   const fresh = isChallengeFresh({ sourceCapturedAt: CHECKED })
   const dateModified = russianRouteDateModified(PATH)
   const bright = getChallengesByFirm('bright-funded').filter(product => isChallengeFresh(product))
@@ -118,7 +119,7 @@ export default function RussianHashHedgeReviewPage() {
       <a href={SOURCES.home} target="_blank" rel="nofollow noopener" className="btn-primary" data-russian-hh-official="non-affiliate">
         {label} <ExternalLink size={14} aria-hidden="true" />
       </a>{' '}
-      <RuAccessBadgeView firm="hash-hedge" status={HH_RUSSIA_STATUS} />
+      <RuAccessBadgeView firm="hash-hedge" status={hhRussiaStatus} />
     </span>
   )
 
@@ -129,7 +130,7 @@ export default function RussianHashHedgeReviewPage() {
       {fresh && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
-        <div className="ru-shell" data-russian-review="hash-hedge" data-russia-status-hash-hedge={HH_RUSSIA_STATUS}>
+        <div className="ru-shell" data-russian-review="hash-hedge" data-russia-status-hash-hedge={hhRussiaStatus}>
           <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / Обзор Hash Hedge</div>
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Официальные страницы проверены {ruDate(CHECKED)} · условия от {ruDate(TERMS_DATED)}</div>
           <h1>{H1}</h1>
@@ -179,9 +180,9 @@ export default function RussianHashHedgeReviewPage() {
           <div className="ru-shell ru-content" data-russian-hh-verdict="summary">
             <h2>Коротко: что такое Hash Hedge и кому подходит</h2>
             <div className="ru-notice" data-russian-hh-access="not-in-restricted-list">
-              <strong>Доступ из России:</strong> <RuAccessBadgeView firm="hash-hedge" status={HH_RUSSIA_STATUS} />{' '}
-              Россия не в списке ограничений: в условиях от {ruDate(TERMS_DATED)} запрещены только Куба, Иран, КНДР, Сирия, Йемен и
-              санкционные лица. Регистрацию и оплату из России мы не проверяли.
+              <strong>Доступ из России:</strong> <RuAccessBadgeView firm="hash-hedge" status={hhRussiaStatus} />{' '}
+              Россия не названа в списке ограничений условий от {ruDate(TERMS_DATED)}: там перечислены Куба, Иран, КНДР, Сирия, Йемен
+              («но не только») и санкционные лица. Регистрацию, оплату и выплату из России мы не проверяли.
             </div>
             <p>
               Hash Hedge подходит трейдеру, который торгует криптовалютой вручную в браузере и готов платить в USDT. Two-stage
@@ -404,7 +405,7 @@ export default function RussianHashHedgeReviewPage() {
                   <tr><th scope="row">Доля</th><td>{brightSplit != null ? `${brightSplit}%` : 'требует проверки'}</td><td>80% (90% с опцией)</td><td>80% в оценочных программах</td></tr>
                   <tr><th scope="row">Цикл выплат</th><td>{brightFrequency ? frequencyRu[brightFrequency] ?? brightFrequency : 'требует проверки'}</td><td>раз в 14 дней</td><td>после 15 торговых или раз в 30 календарных дней</td></tr>
                   <tr><th scope="row">Оплата</th><td>Крипта и карта</td><td>Только крипта</td><td>Карта, PayPal, Apple/Google Pay, крипта</td></tr>
-                  <tr><th scope="row">Доступ для РФ</th><td><RuAccessBadgeView firm="bright-funded" status={russiaStatusFor('bright-funded')} /></td><td><RuAccessBadgeView firm="hash-hedge" status={HH_RUSSIA_STATUS} /></td><td><RuAccessBadgeView firm="crypto-fund-trader" status={russiaStatusFor('crypto-fund-trader')} /></td></tr>
+                  <tr><th scope="row">Доступ для РФ</th><td><RuAccessBadgeView firm="bright-funded" status={russiaStatusFor('bright-funded')} /></td><td><RuAccessBadgeView firm="hash-hedge" status={hhRussiaStatus} /></td><td><RuAccessBadgeView firm="crypto-fund-trader" status={russiaStatusFor('crypto-fund-trader')} /></td></tr>
                 </tbody>
               </table>
             </div>
@@ -453,7 +454,7 @@ export default function RussianHashHedgeReviewPage() {
                   <li><strong>Гарантия 72 часа</strong> записана в коммерческих условиях.</li>
                   <li><strong>Невысокие цели</strong> Two-stage: 5% и 6%.</li>
                   <li><strong>Нет срока</strong> на прохождение.</li>
-                  <li><strong>Россия не в списке ограничений</strong>, есть русская версия сайта.</li>
+                  <li><strong>Русская версия сайта</strong> и русскоязычная поддержка (доступ из России мы не проверяли).</li>
                   <li><strong>Новости и выходные</strong> без ограничений (кроме US Stocks).</li>
                 </ul>
               </article>
