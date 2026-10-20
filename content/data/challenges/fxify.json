@@ -62,7 +62,7 @@
       "news": true,
       "weekend": true,
       "overnight": true,
-      "ea": true,
+      "ea": "restricted",
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
@@ -78,7 +78,9 @@
       "Refundable fee 100%, paid with first withdrawal. \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\"",
       "First payout is on-demand after the first closed trade (min 50 USD, 5 min trading days); thereafter monthly, or bi-weekly with a paid add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json",
+      "Rules recheck 2026-10-20 (EN review claims previously cited to 2026-09-15): drawdown trailing 6% confirmed by FXIFY help-centre article https://intercom.help/fxify/en/articles/14834059-the-1-phase-account (dateModified 2026-05-06): \"Max Drawdown 6% (Trailing High Water Mark)\".",
+      "EA true -> \"restricted\" (2026-10-20), consistent with copyTrading \"restricted\" for approval-gated permissions: help article https://intercom.help/fxify/en/articles/14834059-the-1-phase-account (2026-05-06) \"Automation (EAs) : Allowed with prior approval. Note: EAs are strictly prohibited on the DxTrade platform.\"; FAQ https://fxify.com/faqs/all-faqs/can-i-use-an-expert-advisor-for-mt-for-the-challenge-accounts/ (dateModified 2026-06-18) \"The use of an Expert Advisor, an EA, is allowed on the 1, 2 and 3 Phase challenges and their respective funded stage upon review by our support team and pre-approval.\" News allowed: https://fxify.com/faqs/all-faqs/can-i-trade-the-news/ (dateModified 2025-06-26) \"Yes, you are able to trade new events on 1,2 and 3-Phase accounts.\" and help article \"News Trading and Weekend Holding are fully permitted.\""
     ]
   },
   {
@@ -135,7 +137,7 @@
       "news": true,
       "weekend": true,
       "overnight": true,
-      "ea": true,
+      "ea": "restricted",
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
@@ -149,7 +151,9 @@
       "Consistency Rule 25% applies to the Funded stage only (\"N/A\" in Phase 1 and Phase 2).",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json",
-      "Not refundable (rechecked 2026-10-20; sourceConflicts id fxify-two-phase-classic-fee-refund in content/data/challenges/_captures/fxify-2026-10-20.json). FXIFY help-centre comparison https://intercom.help/fxify/en/articles/12130186-2-phase-account-types (dateModified 2026-05-07): \"Refund No Refund | Yes, alongside with the first Payout request | No Refund\" for Classic | Standard | PRO. FAQ https://fxify.com/faqs/all-faqs/2-phase-static-accounts-do-i-get-a-refund-alongside-my-withdrawal/ (dateModified 2025-09-01): \"No Refunds are not issued with withdrawals for the Static Two-Phase account type.\" The blog https://fxify.com/blog/cheapest-path-funded-50k-fxify/ (2026-09-14) agrees: \"Two Phase Classic | $379 | No\". The generic program-page sentence \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\" does not separate Classic from Standard; the product-specific sources do. History: refundable was true until commit 96f6102 (2026-10-20)."
+      "Not refundable (rechecked 2026-10-20; sourceConflicts id fxify-two-phase-classic-fee-refund in content/data/challenges/_captures/fxify-2026-10-20.json). FXIFY help-centre comparison https://intercom.help/fxify/en/articles/12130186-2-phase-account-types (dateModified 2026-05-07): \"Refund No Refund | Yes, alongside with the first Payout request | No Refund\" for Classic | Standard | PRO. FAQ https://fxify.com/faqs/all-faqs/2-phase-static-accounts-do-i-get-a-refund-alongside-my-withdrawal/ (dateModified 2025-09-01): \"No Refunds are not issued with withdrawals for the Static Two-Phase account type.\" The blog https://fxify.com/blog/cheapest-path-funded-50k-fxify/ (2026-09-14) agrees: \"Two Phase Classic | $379 | No\". The generic program-page sentence \"Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans.\" does not separate Classic from Standard; the product-specific sources do. History: refundable was true until commit 96f6102 (2026-10-20).",
+      "Rules recheck 2026-10-20 (EN review claims previously cited to 2026-09-15): drawdown static 10% confirmed by FXIFY help-centre article https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account (dateModified 2026-05-06): \"Max Drawdown 10% (Static)\".",
+      "EA true -> \"restricted\" (2026-10-20), consistent with copyTrading \"restricted\" for approval-gated permissions: help article https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account (2026-05-06) \"Automation (EAs) : Allowed with prior approval. Note: EAs are strictly prohibited on the DxTrade platform.\"; FAQ https://fxify.com/faqs/all-faqs/can-i-use-an-expert-advisor-for-mt-for-the-challenge-accounts/ (dateModified 2026-06-18) \"The use of an Expert Advisor, an EA, is allowed on the 1, 2 and 3 Phase challenges and their respective funded stage upon review by our support team and pre-approval.\" News allowed: https://fxify.com/faqs/all-faqs/can-i-trade-the-news/ (dateModified 2025-06-26) \"Yes, you are able to trade new events on 1,2 and 3-Phase accounts.\" and help article \"News Trading and Weekend Holding are fully permitted.\""
     ]
   },
   {
@@ -216,7 +220,7 @@
       "news": true,
       "weekend": true,
       "overnight": true,
-      "ea": true,
+      "ea": "restricted",
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
@@ -231,7 +235,9 @@
       "No consistency rule row shown for this variant -> null.",
       "Refundable Fee row: \"100%\" in Phase 1.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json",
+      "Rules recheck 2026-10-20 (EN review claims previously cited to 2026-09-15): drawdown trailing 10% confirmed by FXIFY help-centre article https://intercom.help/fxify/en/articles/14834571-the-2-phase-standard-account (dateModified 2026-05-06): \"Max Drawdown 10% (Trailing High Water Mark)\".",
+      "EA true -> \"restricted\" (2026-10-20), consistent with copyTrading \"restricted\" for approval-gated permissions: help article https://intercom.help/fxify/en/articles/14834571-the-2-phase-standard-account (2026-05-06) \"Automation (EAs) : Allowed with prior approval. Note: EAs are strictly prohibited on the DxTrade platform.\"; FAQ https://fxify.com/faqs/all-faqs/can-i-use-an-expert-advisor-for-mt-for-the-challenge-accounts/ (dateModified 2026-06-18) \"The use of an Expert Advisor, an EA, is allowed on the 1, 2 and 3 Phase challenges and their respective funded stage upon review by our support team and pre-approval.\" News allowed: https://fxify.com/faqs/all-faqs/can-i-trade-the-news/ (dateModified 2025-06-26) \"Yes, you are able to trade new events on 1,2 and 3-Phase accounts.\" and help article \"News Trading and Weekend Holding are fully permitted.\""
     ]
   },
   {
@@ -293,7 +299,7 @@
       "news": true,
       "weekend": true,
       "overnight": true,
-      "ea": true,
+      "ea": "restricted",
       "copyTrading": false
     },
     "assetClass": "cfd",
@@ -310,7 +316,9 @@
       "Smallest tier is $10k - there is no $5k Pro account.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json",
-      "Not refundable (corrected true -> false 2026-10-20; sourceConflicts id fxify-two-phase-pro-fee-refund in content/data/challenges/_captures/fxify-2026-10-20.json). FXIFY help-centre article https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account (dateModified 2026-05-15): \"Refund No refund of fee\". 2 Phase Pro FAQ https://fxify.com/faqs/all-faqs/two-phase-pro/2-phase-pro-do-i-get-refund-alongside-my-withdrawal/ (dateModified 2026-04-29): \"No, the 2 Phase Pro plan does not include a refund of your initial evaluation fee alongside your withdrawals.\" Help comparison https://intercom.help/fxify/en/articles/12130186-2-phase-account-types (2026-05-07) also lists PRO as \"No Refund\". The earlier true value relied only on the generic \"1,2 and 3 Phase plans\" program-page sentence."
+      "Not refundable (corrected true -> false 2026-10-20; sourceConflicts id fxify-two-phase-pro-fee-refund in content/data/challenges/_captures/fxify-2026-10-20.json). FXIFY help-centre article https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account (dateModified 2026-05-15): \"Refund No refund of fee\". 2 Phase Pro FAQ https://fxify.com/faqs/all-faqs/two-phase-pro/2-phase-pro-do-i-get-refund-alongside-my-withdrawal/ (dateModified 2026-04-29): \"No, the 2 Phase Pro plan does not include a refund of your initial evaluation fee alongside your withdrawals.\" Help comparison https://intercom.help/fxify/en/articles/12130186-2-phase-account-types (2026-05-07) also lists PRO as \"No Refund\". The earlier true value relied only on the generic \"1,2 and 3 Phase plans\" program-page sentence.",
+      "Rules recheck 2026-10-20 (EN review claims previously cited to 2026-09-15): drawdown static 8% confirmed by FXIFY help-centre article https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account (dateModified 2026-05-15): \"Max Drawdown 8% (Static)\".",
+      "EA true -> \"restricted\" (2026-10-20): help article https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account (2026-05-15) \"Automation (EAs): Allowed with prior approval. Note: EAs are strictly prohibited on the DxTrade platform.\" The Pro strategies FAQ https://fxify.com/faqs/all-faqs/two-phase-pro/2-phase-pro-what-strategies-are-allowed-or-prohibited/ (dateModified 2026-09-15) says \"Expert Advisors (EAs) and trading bots are allowed.\" without the approval condition; the help article's condition is kept (higher tier). News allowed: https://fxify.com/faqs/all-faqs/two-phase-pro/2-phase-pro-can-i-trade-news-on-2-phase-pro/ (dateModified 2026-09-10) \"Yes, you are able to trade new events on the 2 Phase Pro account.\""
     ]
   },
   {
@@ -378,7 +386,7 @@
       "news": true,
       "weekend": true,
       "overnight": true,
-      "ea": true,
+      "ea": "restricted",
       "copyTrading": "restricted"
     },
     "assetClass": "cfd",
@@ -391,7 +399,9 @@
       "Max drawdown equals the daily loss limit (both 5%) - as published.",
       "Overnight holding is allowed on 1, 2 and 3 Phase accounts. Copying between a trader's own FXIFY accounts is allowed; copying from an external account requires per-account approval and a 30-day named trading statement -> restricted.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json",
+      "Rules recheck 2026-10-20 (EN review claims previously cited to 2026-09-15): drawdown static 5% confirmed by FXIFY help-centre article https://intercom.help/fxify/en/articles/14835023-the-3-phase-account (dateModified 2026-05-06): \"Max Drawdown 5% (Static)\".",
+      "EA true -> \"restricted\" (2026-10-20), consistent with copyTrading \"restricted\" for approval-gated permissions: help article https://intercom.help/fxify/en/articles/14835023-the-3-phase-account (2026-05-06) \"Automation (EAs) : Allowed with prior approval. Note: EAs are strictly prohibited on the DxTrade platform.\"; FAQ https://fxify.com/faqs/all-faqs/can-i-use-an-expert-advisor-for-mt-for-the-challenge-accounts/ (dateModified 2026-06-18) \"The use of an Expert Advisor, an EA, is allowed on the 1, 2 and 3 Phase challenges and their respective funded stage upon review by our support team and pre-approval.\" News allowed: https://fxify.com/faqs/all-faqs/can-i-trade-the-news/ (dateModified 2025-06-26) \"Yes, you are able to trade new events on 1,2 and 3-Phase accounts.\" and help article \"News Trading and Weekend Holding are fully permitted.\""
     ]
   },
   {
@@ -452,7 +462,7 @@
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": false,
+      "news": "restricted",
       "weekend": false,
       "overnight": null,
       "ea": false,
@@ -472,7 +482,9 @@
       "minTradingDays remains null: the product-scoped Standard FAQ says there is no minimum or maximum trading-day requirement; the 14-day first-payout wait is recorded separately.",
       "Tier list runs $1k to $100K; the page headline claims \"Choose account sizes up to $50K\", which conflicts with the $75K and $100K tiers present in the table.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json",
+      "Rules recheck 2026-10-20 (EN review claims previously cited to 2026-09-15): drawdown trailing 8% confirmed by FXIFY help-centre article https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account (dateModified 2026-05-06): \"Max Drawdown 8% (Trailing High Water Mark)\".",
+      "News false -> \"restricted\" (2026-10-20): a 5-minute high-impact blackout, not a ban (same coding as the crypto products' \"No 5min before/after\"). Help article https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account (2026-05-06): \"News Trading Restricted: Trading is prohibited 5 minutes before and 5 minutes after high-impact news releases.\" EA stays false: help article \"Automation (EAs): Strictly prohibited\"; https://fxify.com/faqs/all-faqs/instant-funded-faq/can-i-use-expert-advisors-eas-or-bots-for-trading/ (dateModified 2024-12-10) \"No, on Instant Funded accounts, the use of EA’s, bots and copy traders is prohibited\"."
     ]
   },
   {
@@ -518,7 +530,7 @@
     "payoutFirstDays": 10,
     "payoutFrequency": null,
     "rules": {
-      "news": false,
+      "news": "restricted",
       "weekend": false,
       "overnight": null,
       "ea": false,
@@ -539,7 +551,9 @@
       "Explicitly excluded from the HOT20 20% summer discount.",
       "Rules (news/weekend/EA) come from the shared Instant Funding feature block - the CMS does not split these per Standard/Lite variant.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json",
+      "Rules recheck 2026-10-20 (EN review claims previously cited to 2026-09-15): drawdown trailing 4% confirmed by FXIFY help-centre article https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account (dateModified 2026-05-06): \"Max Drawdown 4% (Trailing to Initial Balance)\".",
+      "News false -> \"restricted\" (2026-10-20): a 5-minute high-impact blackout, not a ban (same coding as the crypto products' \"No 5min before/after\"). Help article https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account (2026-05-06): \"News Trading: Prohibited 5 minutes before and after high-impact news releases.\" EA stays false: help article \"Automation (EAs): Strictly prohibited\"; https://fxify.com/faqs/all-faqs/instant-funding-lite-faq/instant-funding-lite-can-i-use-expert-advisors-eas-or-bots-for-trading/ (no schema date) \"EAs, Bots or any type of software for automatic trading is not allowed.\"."
     ]
   },
   {
@@ -582,7 +596,7 @@
     "payoutFirstDays": 7,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": false,
+      "news": "restricted",
       "weekend": true,
       "overnight": true,
       "ea": false,
@@ -603,7 +617,9 @@
       "Platform value reads \"Platform 5\" (apparent CMS typo).",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json",
-      "Refund source conflict resolved 2026-10-20 (sourceConflicts id fxify-lightning-fee-refund-conflict in content/data/challenges/_captures/fxify-2026-10-20.json): refundable restored to true. The dated FXIFY help-centre article https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account (dateModified 2026-05-06) lists \"Refund 100% Fee Refund with 1st Payout\" and \"Fee Refund 100% refund of your evaluation fee with your first payout.\"; the Lightning FAQ https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-do-i-get-a-refund-alongside-my-first-withdrawal/ (dateModified 2025-03-18) says \"Yes, you will receive a 100% refund alongside your first withdrawal\". FXIFY's General Terms and Conditions (dated September 29, 2026) contain no product refund clause, and the Lightning program page and checkout add-on list do not mention a refund (no paid refund add-on exists). FXIFY's blog https://fxify.com/blog/cheapest-path-funded-50k-fxify/ (published 2026-09-14) table says \"Lightning Challenge | $249 | No\"; per the source order (Terms > dated help article > product/checkout > FAQ > blog) the help article prevails. Commit 96f6102 had set false from the blog; that is reverted here. The refund is paid only with the first payout, so failed attempts and accounts that never pay out get nothing back."
+      "Refund source conflict resolved 2026-10-20 (sourceConflicts id fxify-lightning-fee-refund-conflict in content/data/challenges/_captures/fxify-2026-10-20.json): refundable restored to true. The dated FXIFY help-centre article https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account (dateModified 2026-05-06) lists \"Refund 100% Fee Refund with 1st Payout\" and \"Fee Refund 100% refund of your evaluation fee with your first payout.\"; the Lightning FAQ https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-do-i-get-a-refund-alongside-my-first-withdrawal/ (dateModified 2025-03-18) says \"Yes, you will receive a 100% refund alongside your first withdrawal\". FXIFY's General Terms and Conditions (dated September 29, 2026) contain no product refund clause, and the Lightning program page and checkout add-on list do not mention a refund (no paid refund add-on exists). FXIFY's blog https://fxify.com/blog/cheapest-path-funded-50k-fxify/ (published 2026-09-14) table says \"Lightning Challenge | $249 | No\"; per the source order (Terms > dated help article > product/checkout > FAQ > blog) the help article prevails. Commit 96f6102 had set false from the blog; that is reverted here. The refund is paid only with the first payout, so failed attempts and accounts that never pay out get nothing back.",
+      "Rules recheck 2026-10-20 (EN review claims previously cited to 2026-09-15): drawdown trailing 4% confirmed by FXIFY help-centre article https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account (dateModified 2026-05-06): \"Max Drawdown 4% (Trailing to Initial Balance)\".",
+      "News false -> \"restricted\" (2026-10-20): a 5-minute high-impact blackout, not a ban (same coding as the crypto products' \"No 5min before/after\"). Help article https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account (2026-05-06): \"News Trading: Restricted 5 minutes before and after high-impact news releases.\" EA stays false: help article \"Automation (EAs): Strictly prohibited\"; https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-are-expert-advisors-eas-or-bots-allowed-in-the-lightning-plan/ (dateModified 2025-03-18) \"No, the use of Expert Advisors (EAs) or bots is not allowed in the Lightning Plan.\"."
     ]
   },
   {

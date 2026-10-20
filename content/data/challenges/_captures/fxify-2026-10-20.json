@@ -141,7 +141,8 @@
   },
   "changes": [
     "lightning-challenge and two-phase-classic accountSizes[].refundable true -> false (FXIFY blog 2026-09-14 fee-refund table/FAQ; Lightning FAQ still says 100% refund - conflict noted). one-phase, two-phase-standard, three-phase stay refundable; two-phase-pro unchanged (not covered by the blog).",
-    "Refund conflict resolved 2026-10-20 (Terms > dated help article > product/checkout > FAQ > blog): lightning-challenge accountSizes[].refundable false -> true (help-centre article dated 2026-05-06 and Lightning FAQ say 100% refund with first payout; Terms silent; blog 2026-09-14 outranked). two-phase-classic stays false (now backed by the help-centre comparison and the static two-phase FAQ). two-phase-pro accountSizes[].refundable true -> false (help-centre article 2026-05-15 and Pro FAQ 2026-04-29 both say no refund)."
+    "Refund conflict resolved 2026-10-20 (Terms > dated help article > product/checkout > FAQ > blog): lightning-challenge accountSizes[].refundable false -> true (help-centre article dated 2026-05-06 and Lightning FAQ say 100% refund with first payout; Terms silent; blog 2026-09-14 outranked). two-phase-classic stays false (now backed by the help-centre comparison and the static two-phase FAQ). two-phase-pro accountSizes[].refundable true -> false (help-centre article 2026-05-15 and Pro FAQ 2026-04-29 both say no refund).",
+    "Claim recheck 2026-10-20 (see claimRecheck): Pro 8% static, India not restricted, drawdown type by product and the $250/$5K card confirmed; EA true -> \"restricted\" on the 5 phase products and news false -> \"restricted\" on Instant Standard/Lite and Lightning."
   ],
   "notes": [
     "All 64 stored prices match. Rules evidence re-read: 1-Phase article (intercom) still says \"Profit Split 80% default, upgradable to 90%.\" (stored quote differs only in spacing).",
@@ -449,5 +450,177 @@
       ],
       "resolution": "Not refundable (false), checked 2026-10-20. Stored true was based only on the generic program-page sentence."
     }
-  ]
+  ],
+  "claimRecheck": {
+    "checkedAt": "2026-10-20",
+    "egress": "US IP (box)",
+    "requestedBy": "EN Writer (FXIFY review claims previously cited to 2026-09-15)",
+    "claims": [
+      {
+        "id": "two-phase-pro-8pct-static",
+        "result": "confirmed",
+        "productSlugs": [
+          "two-phase-pro"
+        ],
+        "sources": [
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+            "pageDate": "2026-05-15",
+            "quote": "The 2-Phase Pro utilizes a Static Drawdown of 8% ."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/12130186-2-phase-account-types",
+            "pageDate": "2026-05-07",
+            "quote": "8% of initial account balance (Static)"
+          },
+          {
+            "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
+            "pageDate": "2026-09-18",
+            "quote": "Static drawdown. The maximum loss level is fixed at the start of the evaluation and remains unchanged."
+          }
+        ]
+      },
+      {
+        "id": "india-not-restricted",
+        "result": "confirmed",
+        "sources": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-countries-are-accepted/",
+            "pageDate": "2026-02-12",
+            "quote": "The following countries are prohibited from trading with FXIFY™: Zimbabwe, Iran, Iraq, North Korea, Somalia, Vietnam, Belarus, Burundi, Central African Republic, Ivory Coast, Liberia, Libya, Sudan, Cuba, Syria, Afghanistan, Yemen, Palestine, Myanmar, Nicaragua, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Papua New Guinea, South Sudan, Vanuatu, Venezuela, Algeria, Russia, Kenya, Ghana, and Haiti."
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/",
+            "pageDate": "site-wide footer",
+            "quote": "Restricted Jurisdictions: We do not establish accounts to residents of certain jurisdictions including the United States, Zimbabwe, ... Russia, Belarus, Kenya and Ghana"
+          },
+          {
+            "sourceUrl": "https://trader.fxify.com/purchasechallenge",
+            "observation": "India is selectable in the checkout country list (read 2026-10-20)."
+          }
+        ],
+        "note": "Both lists have 35 entries and neither names India; the FAQ includes Haiti (not the US), the footer includes the US (not Haiti). content/data/india-evidence.json fxify.capturedAt (2026-09-14) is not redated here because its checkout/KYC/RBI fields were not rechecked; its checkout source https://fxify.com/terms-and-conditions now returns 404 (current Terms: https://fxify.com/wp-content/uploads/2026/10/GENERAL-TERMS-AND-CONDITIONS-FXIFY-2026.pdf)."
+      },
+      {
+        "id": "ea-and-news-permissions",
+        "result": "corrected",
+        "sources": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/can-i-use-an-expert-advisor-for-mt-for-the-challenge-accounts/",
+            "pageDate": "2026-06-18",
+            "quote": "The use of an Expert Advisor, an EA, is allowed on the 1, 2 and 3 Phase challenges and their respective funded stage upon review by our support team and pre-approval."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+            "pageDate": "2026-05-06",
+            "quote": "Automation (EAs) : Allowed with prior approval. Note: EAs are strictly prohibited on the DxTrade platform."
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/can-i-trade-the-news/",
+            "pageDate": "2025-06-26",
+            "quote": "Yes, you are able to trade new events on 1,2 and 3-Phase accounts."
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/two-phase-pro/2-phase-pro-what-strategies-are-allowed-or-prohibited/",
+            "pageDate": "2026-09-15",
+            "quote": "Expert Advisors (EAs) and trading bots are allowed."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "pageDate": "2026-05-06",
+            "quote": "News Trading Restricted: Trading is prohibited 5 minutes before and 5 minutes after high-impact news releases."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+            "pageDate": "2026-05-06",
+            "quote": "News Trading: Restricted 5 minutes before and after high-impact news releases. ... Automation (EAs): Strictly prohibited"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "pageDate": "2026-05-06",
+            "quote": "News Trading: Prohibited 5 minutes before and after high-impact news releases."
+          }
+        ],
+        "change": "rules.ea true -> \"restricted\" on one-phase, two-phase-classic, two-phase-standard, two-phase-pro, three-phase (pre-approval required; EAs banned on DxTrade). rules.news false -> \"restricted\" on instant-funding-standard, instant-funding-lite, lightning-challenge (5-minute high-impact blackout, same coding as the crypto products). EA stays false on the two Instant products and Lightning; news stays true on the five phase products."
+      },
+      {
+        "id": "drawdown-type-by-product",
+        "result": "confirmed",
+        "sources": [
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 6% (Trailing High Water Mark)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 10% (Static)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834571-the-2-phase-standard-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 10% (Trailing High Water Mark)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+            "pageDate": "2026-05-15",
+            "quote": "Max Drawdown 8% (Static)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14835023-the-3-phase-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 5% (Static)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 8% (Trailing High Water Mark)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 4% (Trailing to Initial Balance)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 4% (Trailing to Initial Balance)"
+          }
+        ]
+      },
+      {
+        "id": "generic-250-5k-program-card",
+        "result": "confirmed (still displayed)",
+        "sources": [
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "pageDate": "2025-03-25",
+            "quote": "One Phase, 3 phases $250 For $5k account Start trading The $5k One Phase account includes:"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/two-phase/",
+            "pageDate": "2025-03-25",
+            "quote": "$250 For $5k account"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
+            "pageDate": "2025-03-25",
+            "quote": "$250 For $5k account"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/instant-funding/",
+            "pageDate": "2025-03-25",
+            "quote": "$250 For $5k account"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+            "pageDate": "2025-03-25",
+            "quote": "$250 For $5k account"
+          }
+        ],
+        "note": "Cards redated to 2026-10-20 in content/data/fxify-price-conflict-evidence.json; the card is not used for any stored tier price."
+      }
+    ]
+  }
 }
