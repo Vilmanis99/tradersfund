@@ -1300,3 +1300,6 @@
 .ru-review-article:not(.ru-p1-article) > .ru-p1-verdict-section { padding-top: 0.5rem; }
 .ru-section.ru-p1-pick-section { padding: clamp(1rem, 2vw, 1.5rem) 0 clamp(1.5rem, 3vw, 2.25rem); }
 .ru-hero--p1 + .ru-p1-pick-section { border-top: 0; }
+.ru-hero.ru-hero--p1 { padding-bottom: 0.75rem; }
+.ru-p1-article { padding-top: 0.75rem; }
+.ru-p1-verdict__line { margin-top: 0.6rem; }
