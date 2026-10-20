@@ -7,7 +7,7 @@ import { getAllDeals, type Deal } from '@/lib/deals'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
-import { goLinkRel } from '@/lib/russiaAvailability'
+import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
@@ -51,12 +51,13 @@ type HubFirm = {
 
 // Фирмы, открытые для РФ на 14.10.2026 (ru-availability.csv); FundedNext с 20.10.2026 — недоступна для РФ (подвал сайта; firms.json russiaStatus restricted). Коды подтягиваются из content/data/deals.json;
 // пока там нет проверенного кода, карточка показывает плейсхолдер «код ожидается».
+// Порядок: открытые для РФ → доступ неясен → недоступна (FundedNext), BrightFunded первым.
 const hubFirms: HubFirm[] = [
   { slug: 'bright-funded', name: 'BrightFunded', review: '/ru/obzor-bright-funded', anchor: 'bright-offer-status', dealAnchor: 'bright-funded-promokody', russiaNote: 'Россия не в списке ограничений; исключены лица из санкционных списков.' },
-  { slug: 'fundednext', name: 'FundedNext (CFD)', review: '/ru/obzor-fundednext', russiaNote: FUNDEDNEXT_RU_ACCESS_NOTE },
   { slug: 'upscale', name: 'Upscale', review: null, russiaNote: 'Ограничений по странам не заявлено, KYC нет, выплаты в USDT.', external: 'https://upscale.trade/ru/' },
-  { slug: 'fundingpips', name: 'FundingPips', review: '/ru/obzor-fundingpips', russiaNote: 'Доступ для РФ не ясен (проверено 14.10.2026).' },
   { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', review: '/blog/crypto-fund-trader-review', russiaNote: 'На Match-Trader ограничений по странам нет. Оплата: карта, PayPal, Apple/Google Pay, криптовалюта (по данным на 14.10.2026).' },
+  { slug: 'fundingpips', name: 'FundingPips', review: '/ru/obzor-fundingpips', russiaNote: 'Доступ для РФ не ясен (проверено 14.10.2026).' },
+  { slug: 'fundednext', name: 'FundedNext (CFD)', review: '/ru/obzor-fundednext', russiaNote: FUNDEDNEXT_RU_ACCESS_NOTE },
 ]
 
 const faqs: RussianFaqItem[] = [
@@ -124,7 +125,7 @@ export default function RussianPromoHubPage() {
             Скидку даёт только действующий механизм фирмы; партнёрская ссылка сама по себе цену не снижает.
           </div>
           <div className="ru-stats">
-            <div className="ru-stat"><strong>{hubFirms.length}</strong><span>фирмы, открытые для РФ</span></div>
+            <div className="ru-stat"><strong>{hubFirms.filter(firm => russiaStatusFor(firm.slug) !== 'restricted').length}</strong><span>фирмы, открытые для РФ</span></div>
             <div className="ru-stat"><strong>{liveCount}</strong><span>проверенных кодов в этом месяце</span></div>
           </div>
         </div>

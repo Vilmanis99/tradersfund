@@ -957,7 +957,7 @@ const russianExpectations = new Map([
       'ru-badge ru-badge--open',
       'ru-badge ru-badge--closed',
       '/go/bright-funded?from=ru-promokody-prop-firm-card-1',
-      '/go/fundednext?from=ru-promokody-prop-firm-card-2',
+      '/go/fundednext?from=ru-promokody-prop-firm-card-5',
     ],
   }],
   // Batch 1/2 new pages: expectations apply only once app/ru/<slug>/page.tsx exists.
