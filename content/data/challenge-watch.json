@@ -297,7 +297,7 @@
     "observedAt": "2026-07-28",
     "lastCheckedAt": "2026-10-20",
     "title": "LucidDaily launched with 4 configurable evaluation paths",
-    "summary": "Lucid's help centre documents 4 Daily variants, and since October the homepage picker includes a LucidDaily tab with one-time list prices ($104-$267 Intraday, $118-$375 EOD; no 150K Intraday option). A general page broadly restricts red-folder news, while the funded-product page narrows the hard-breach window to U.S. high-impact USD events.",
+    "summary": "Lucid's help centre documents 4 Daily variants, and since October the homepage picker includes a LucidDaily tab with one-time list prices ($104-$313 Intraday, $118-$375 EOD for 25K-150K; rechecked 2026-10-20 12:49 Riga). A general page broadly restricts red-folder news, while the funded-product page narrows the hard-breach window to U.S. high-impact USD events.",
     "traderImpact": "Confirm the exact DLL, drawdown, price, overnight, weekend, and news-calendar scope at checkout; the stored Daily prices are list prices, not the coupon or limited-time totals.",
     "sourceUrls": [
       "https://support.lucidtrading.com/en/collections/19692910-luciddaily",
@@ -829,8 +829,8 @@
     "observedAt": "2026-10-06",
     "lastCheckedAt": "2026-10-20",
     "title": "Alpha Three has published prices but unsettled purchase availability",
-    "summary": "The cost article still lists Three fees, while the firm review says Three is unavailable for new purchases. The observed live selector offered Direct, 1 Step and 2 Step, with no Three choice.",
-    "traderImpact": "Treat the retained September 14 Three record as a historical pricing/rule reference. Confirm availability before budgeting for a new account; this observation does not refresh product prices.",
+    "summary": "The cost article still lists Three fees ($67-$697), while Alpha's own review and country-availability pages say Three is not currently offered for new purchases, and on 2026-10-20 the live checkout catalogue had no Alpha Three items. Our Three prices are now null (last published fees kept in the product notes) until checkout offers it again.",
+    "traderImpact": "Treat the retained September 14 Three record as a historical rule reference only; it has no current price. Confirm availability before budgeting for a new account; this observation does not refresh the product capture.",
     "sourceUrls": [
       "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
       "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
