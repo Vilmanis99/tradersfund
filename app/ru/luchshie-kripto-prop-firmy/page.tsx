@@ -107,10 +107,14 @@ function ruDate(iso: string) {
 // Tracker can empty the watch list; keep its row shape typed even when the JSON array is empty.
 const cryptoWatch = cryptoMarketEvidence.watch as Array<{ firmSlug: string; firmName: string; status: string; sourceUrl: string; sourceCapturedAt: string; nextStepRu?: string }>
 
-const EVIDENCE_TEXT_OVERRIDES: Record<string, { evidenceRu: string; scopeNoteRu: string }> = {
+// OFP: Tracker c9915bb records open gaps (Classic/Plus crypto leverage, symbol list, checkout prices); the RU copy states them as unpublished, never as numbers.
+const EVIDENCE_TEXT_OVERRIDES: Record<string, { evidenceRu?: string; scopeNoteRu?: string }> = {
   'crypto-fund-trader': {
     evidenceRu: 'По FAQ CFT (cryptofundtrader.com/faq/), на Match-Trader и MetaTrader 5 доступно более 720 инструментов, из них 556 криптовалют; плечо по криптовалютам на счетах Advanced — 1:100. Вознаграждение — банковским переводом (EUR или USD) или на кошелёк в USDT (ERC20/TRC20), BTC или ETH.',
     scopeNoteRu: 'Привязаны Evaluation, Accelerated и Instant. Ascend исключён (в магазине недоступен к покупке, проверенной цены нет), Break тоже (открытое расхождение цен и надпись «sold out»). На MT5 и Match-Trader те же программы дают также форекс, индексы, сырьё и акции.',
+  },
+  'ofp-funding': {
+    scopeNoteRu: 'Привязаны все 6 программ Instant из наших данных: все счета OFP работают на одной платформе OFP (Sirix). Плечо по криптовалютам OFP публикует только для Instant Lite (правила торговли: «Crypto 1:1/2», динамическое); для Instant Classic и Instant Plus оно не опубликовано. Список криптосимволов OFP не публикует. Цены OFP — с главной страницы ofpfunding.com, в корзине не подтверждены (для оформления нужен вход в аккаунт); открытое расхождение источников по отображению тарифов остаётся.',
   },
 }
 
@@ -234,6 +238,8 @@ export default function RussianCryptoPropFirmsPage() {
       || bKey - aKey || a.firm.name.localeCompare(b.firm.name)
   })
   const payoutEvidence = cryptoMarketEvidence.payoutAlternative
+  const ofpEvidence = cryptoMarketEvidence.ranked.find(item => item.firmSlug === 'ofp-funding') as { priceRecheck?: { sourceUrl: string; sourceCapturedAt: string } } | undefined
+  const ofpPriceRecheck = ofpEvidence?.priceRecheck && freshIso(ofpEvidence.priceRecheck.sourceCapturedAt) ? ofpEvidence.priceRecheck : undefined
   const firmCheckDate = firmCheckEvidence.checkedAt.slice(0, 10)
   const firmCheckFresh = freshIso(firmCheckDate)
   const brightFirm = firms.find(candidate => candidate.name === 'BrightFunded')
@@ -481,6 +487,11 @@ export default function RussianCryptoPropFirmsPage() {
                 </tbody>
               </table>
             </div>}
+            {ofpPriceRecheck && snapshots.some(item => item.evidence.firmSlug === 'ofp-funding') && (
+              <p className="ru-source-line" data-russian-crypto-ofp-prices="homepage-not-checkout">
+                Цены OFP — с <a href={ofpPriceRecheck.sourceUrl} target="_blank" rel="nofollow noopener">главной страницы ofpfunding.com</a> (по данным на {ruDate(ofpPriceRecheck.sourceCapturedAt)}); в корзине они не подтверждены, потому что оформление доступно только после входа в аккаунт.
+              </p>
+            )}
           </div>
         </section>
 
