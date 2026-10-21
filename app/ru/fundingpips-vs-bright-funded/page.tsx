@@ -30,6 +30,9 @@ const TRACKER_BRIGHT = '19.10.2026'
 const FP_REWARD_METHODS = '20.10.2026'
 const FP_PAYOUT_COUNTRIES = 'Бельгия, Франция, Германия, Италия, Нидерланды, Испания, Бразилия, Колумбия, Мексика, Нигерия, ЮАР, Великобритания, Турция и Индонезия'
 const TRACKER_CFT_ACCESS = '14.10.2026'
+// BrightFunded help article 9268229 (page dated 25.05.2026: «over 48 cryptocurrency pairs»), re-read by RU Writer on this date:
+// /workspace/tradersfundhub/evidence/bf-crypto-2026-10-21/help-9268229-en.html.
+const BF_CRYPTO_PAIRS_CHECKED = '21.10.2026'
 const FN_ACCESS = '20.10.2026'
 
 const SRC = {
@@ -38,6 +41,7 @@ const SRC = {
   brightReward: 'https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account',
   brightPayouts: 'https://help.brightfunded.com/en/articles/9241681-how-can-i-get-paid',
   brightCrypto: 'https://help.brightfunded.com/en/articles/9286623-can-i-pay-for-my-challenge-with-crypto',
+  brightCryptoPairs: 'https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded',
   brightPlatforms: 'https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer',
   brightNews: 'https://help.brightfunded.com/en/articles/9241694-can-i-trade-news',
   fpGetStarted: 'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started',
@@ -88,6 +92,19 @@ const faqs: RussianFaqItem[] = [
 
 type Firm = 'BrightFunded' | 'FundingPips'
 type ProductRow = { firm: Firm; product: Challenge; price: string }
+
+const ASSET_LABELS_RU: Record<string, string> = {
+  Forex: 'форекс',
+  Indices: 'индексы',
+  Commodities: 'сырьё',
+  Crypto: 'криптовалюты',
+  Stocks: 'акции',
+  Futures: 'фьючерсы',
+}
+
+function assetsRu(assets: string[] | undefined) {
+  return assets?.length ? assets.map(asset => ASSET_LABELS_RU[asset] ?? asset).join(', ') : '—'
+}
 
 function ruDate(iso: string) {
   return /^\d{4}-\d{2}-\d{2}$/.test(iso) ? `${iso.slice(8, 10)}.${iso.slice(5, 7)}.${iso.slice(0, 4)}` : iso
@@ -241,6 +258,11 @@ export default function RussianFundingPipsVsBrightFundedPage() {
     },
     { field: 'Основана / юрлицо', bf: corporate(bfFirm, 'Сент-Люсия'), fp: corporate(fpFirm, 'Коморы; адрес в Дубае') },
     { field: 'Платформы', bf: bfFirm?.platforms.join(', ') ?? '—', fp: fpFirm?.platforms.join(', ') ?? '—' },
+    {
+      field: 'Рынки для торговли',
+      bf: <span data-russian-bright-funded-assets="firms-json">{assetsRu(bfFirm?.assets)}{bfFirm?.assets?.includes('Crypto') ? `; криптопар более 48 (справка BrightFunded, проверка ${BF_CRYPTO_PAIRS_CHECKED})` : ''}</span>,
+      fp: assetsRu(fpFirm?.assets),
+    },
     { field: 'Программы (свежие записи)', bf: bfRows.map(row => short(row.product)).join(', ') || '—', fp: fpRows.map(row => short(row.product)).join(', ') || '—' },
     { field: 'Валюта и диапазон взноса', bf: bfRows.map(row => `${short(row.product)}: ${row.price}`).join('; ') || '—', fp: fpRows.map(row => `${short(row.product)}: ${row.price}`).join('; ') || '—' },
     { field: 'Минимум торговых дней', bf: bfRows.map(row => `${short(row.product)}: ${daysLabel(row.product)}`).join('; ') || '—', fp: fpRows.map(row => `${short(row.product)}: ${daysLabel(row.product)}`).join('; ') || '—' },
@@ -538,7 +560,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
         <div className="ru-shell ru-content ru-review-article">
           <h2>Оплата челленджа</h2>
           <p>
-            <strong>BrightFunded</strong> принимает криптовалюту: BTC (сети Bitcoin и Lightning), USDT (TRC20), USDC (ERC-20), ETH (ERC-20), LTC, TRX и SOL.
+            <strong>BrightFunded</strong> принимает оплату челленджа в криптовалюте: BTC (сети Bitcoin и Lightning), USDT (TRC20), USDC (ERC-20), ETH (ERC-20), LTC, TRX и SOL.
             Оплата картой подтверждена, но сети карт фирма не называет. На главной странице показан Revolut Pay. PayPal, Apple Pay и Google Pay
             официально не подтверждены (по данным на {TRACKER_BRIGHT}).
           </p>
@@ -547,6 +569,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             Paysafe Card и криптовалюту. Фирма предупреждает, что набор способов зависит от региона (по данным на {CHECKED}).
           </p>
           <p>Ни одна из фирм не упоминает «Мир» или карты российских банков, поэтому мы не утверждаем, что они сработают.</p>
+          <p>Речь здесь только об оплате. Торговля криптопарами — отдельная тема, она описана в разделе о платформах и рынках ниже.</p>
           <p className="ru-source-line">Источники: <a href={SRC.brightCrypto} target="_blank" rel="noopener noreferrer">BrightFunded: crypto payment</a>; <a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips Get Started</a>.</p>
         </div>
       </section>
@@ -562,13 +585,18 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             со счёта FundingPips на внешний можно, а копировать во FundingPips со стороннего источника или сигнального сервиса нельзя (по данным на 20.10.2026).
             Точные условия BrightFunded смотрите в правилах выбранного продукта.
           </p>
+          <p data-russian-bright-funded-crypto-trading="help-9268229">
+            Рынки. Кроме форекса, индексов и сырья, BrightFunded предлагает торговлю криптовалютами: в справке указано более 48 криптопар
+            к доллару, в том числе BTC/USD и ETH/USD (по данным справки BrightFunded, проверка {BF_CRYPTO_PAIRS_CHECKED}). Это торговля на счёте
+            и не связано с оплатой челленджа в криптовалюте, о которой написано выше.
+          </p>
           <p>
             Новости. У BrightFunded сделки за 5 минут до и 5 минут после важной новости запрещены: прибыль от них вычитается, но счёт не закрывают
             (по данным на {CHECKED}). У FundingPips 2 Step Pro на оценке новостных ограничений нет, а на мастер-счёте прибыль от сделок в окне
             ±5 минут может быть вычтена. Позиции, открытые за 5 часов и раньше, это правило не затрагивает (по данным на {CHECKED}). Перенос через выходные у FundingPips разрешён на оценке, а на мастер-счёте нужна опция Swing; у BrightFunded
             условия переноса сверяйте в правилах выбранной программы.
           </p>
-          <p className="ru-source-line">Источники: <a href={SRC.brightPlatforms} target="_blank" rel="noopener noreferrer">BrightFunded: platforms</a>; <a href={SRC.brightNews} target="_blank" rel="noopener noreferrer">BrightFunded: news</a>; <a href={SRC.fpPro} target="_blank" rel="noopener noreferrer">FundingPips 2 Step Pro</a>.</p>
+          <p className="ru-source-line">Источники: <a href={SRC.brightPlatforms} target="_blank" rel="noopener noreferrer">BrightFunded: platforms</a>; <a href={SRC.brightCryptoPairs} target="_blank" rel="noopener noreferrer">BrightFunded: crypto instruments</a> ({BF_CRYPTO_PAIRS_CHECKED}); <a href={SRC.brightNews} target="_blank" rel="noopener noreferrer">BrightFunded: news</a>; <a href={SRC.fpPro} target="_blank" rel="noopener noreferrer">FundingPips 2 Step Pro</a>.</p>
         </div>
       </section>
 
@@ -591,7 +619,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             <article className="ru-card" data-russian-alternative="bright-funded">
               <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>BrightFunded <RuAccessBadge firm="bright-funded" /></h3>
-              <p className="ru-muted">Россия не названа ни в справке, ни в условиях (по данным на {CHECKED}). Взносы в EUR.</p>
+              <p className="ru-muted">Россия не названа ни в справке, ни в условиях (по данным на {CHECKED}). Взносы в EUR. Есть торговля криптопарами — более 48 (справка BrightFunded, проверка {BF_CRYPTO_PAIRS_CHECKED}).</p>
               <p className="ru-source-line"><Link href="/ru/obzor-bright-funded">Обзор BrightFunded</Link> · <Link href="/ru/fundednext-vs-bright-funded">FundedNext или BrightFunded</Link> · <RuPendingLink href="/ru/ftmo-vs-bright-funded">FTMO или BrightFunded</RuPendingLink></p>
               <div className="ru-actions">
                 <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-fundingpips-vs-bright-alt-bright-funded" rel={goLinkRel('bright-funded')} className="btn-primary">Перейти в BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
@@ -633,6 +661,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             {relevantProducts.map(product => <li key={`${product.firmSlug}:${product.productSlug}`}><a href={product.sourceUrl} target="_blank" rel="noopener noreferrer">{product.productName}: официальные условия</a> — {validCaptureDate(product.sourceCapturedAt) ? ruDate(product.sourceCapturedAt) : 'дата не подтверждена'}.</li>)}
             <li><a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограничения по странам (справка)</a> — {CHECKED}.</li>
             <li><a href={SRC.brightTerms} target="_blank" rel="noopener noreferrer">BrightFunded: условия, п. 2</a> — {CHECKED}.</li>
+            <li><a href={SRC.brightCryptoPairs} target="_blank" rel="noopener noreferrer">BrightFunded: какие криптопары можно торговать (справка, статья от 25.05.2026)</a> — {BF_CRYPTO_PAIRS_CHECKED}.</li>
             <li><a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips: Get Started (страны, оплата, HELLO)</a> — {CHECKED}.</li>
             <li><a href={SRC.fpRewardMethods} target="_blank" rel="noopener noreferrer">FundingPips: Reward Methods (способы, минимумы и сроки выплат, страны Pay to Card и банковского перевода)</a> — Prop Firm Tracker, {FP_REWARD_METHODS}.</li>
             <li><a href={SRC.fpStandard} target="_blank" rel="noopener noreferrer">FundingPips: 2 Step Standard (циклы выплат)</a>, <a href={SRC.fpConduct} target="_blank" rel="noopener noreferrer">правила советников и копирования</a> и <a href={SRC.fpPrime} target="_blank" rel="noopener noreferrer">счёт Prime</a> — Prop Firm Tracker, {TRACKER_FP}.</li>
