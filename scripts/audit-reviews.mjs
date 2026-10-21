@@ -7125,9 +7125,12 @@ function checkCryptoLandingCluster() {
     }
   }
 
-  if (ranked.length !== 3 || watch.length !== 7 || mappedProducts.size !== 12) {
+  // Tripwire, deliberately literal: the 2026-10-21 market recheck (crypto-market-evidence.json) ranks 10 firms
+  // (BrightFunded, CFT, FTMO, CTI, OFP added), empties the watch list and maps 34 products. Any change to the
+  // evidence file must update this line on purpose.
+  if (ranked.length !== 10 || watch.length !== 0 || mappedProducts.size !== 34) {
     rows.push(
-      `crypto fixture expects 3 current ranked firms, 7 watch firms and 12 mapped products; received ${ranked.length}, ${watch.length} and ${mappedProducts.size}`,
+      `crypto fixture expects 10 current ranked firms, 0 watch firms and 34 mapped products; received ${ranked.length}, ${watch.length} and ${mappedProducts.size}`,
     )
   }
   if (!String(evidenceData.methodology ?? '').includes('Payment or payout by crypto does not qualify')) {
