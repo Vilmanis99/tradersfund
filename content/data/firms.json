@@ -6804,7 +6804,8 @@
       "Forex",
       "Indices",
       "Commodities",
-      "Crypto"
+      "Crypto",
+      "Futures"
     ],
     "maxAllocation": null,
     "platforms": [
@@ -6933,6 +6934,12 @@
       }
     ],
     "russiaNote": "Conflict on Russian citizens living outside Russia, recorded and not resolved (checked 2026-10-21, US IP; Terms 'Last update – Oct. 20th 2026'). The numbered Terms test residence only: section 1 'Eligibility' item 3 ('(iv) do not reside in any Forbidden Territory'), item 9 ('You declare that you do not reside in a prohibited jurisdiction or one subject to sanctions') and item 10 (closure if you 'are a resident of a forbidden/sanctioned territory'). The unnumbered 'Website disclaimers' footer on the same page says services are 'not available to residents or citizens' of the Forbidden Territories, Russia included, and that 'Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited'. Residents of Russia: restricted under both texts. Russian citizens resident elsewhere: eligible under the numbered Terms, excluded under the footer disclaimer, so no access claim either way; the page should say 'ask The5ers in writing before paying'. Being in Russia while trading: prohibited by the footer's 'from a Forbidden Territory' sentence; VPN use is a 'fundamental breach' (item 9). The footer list has 30 names and omits Bosnia and Herzegovina, which the Forbidden Territory definition (31 names) includes. Evidence: /workspace/tradersfundhub/evidence/the5ers-2026-10-21b/ (terms.html, terms-eligibility.png).",
-    "russiaNoteCapturedAt": "2026-10-21"
+    "russiaNoteCapturedAt": "2026-10-21",
+    "assetsEvidence": {
+      "sourceUrl": "https://the5ers.com/futures/",
+      "sourceCapturedAt": "2026-10-21",
+      "sourceQuote": "Enjoy Futures With Confidence, Together The5ers Futures",
+      "notes": "CME futures programme (Day Trade and Swing, $25K/$50K, from $59) sold alongside the CFD programmes; Terms 'Last update – Oct. 20th 2026': 'These services include but are not limited to proprietary trading on Contract for Difference and Futures Contract.' Products: challenges/the5ers.json futures-day-trade, futures-swing."
+    }
   }
 ]
