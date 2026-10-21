@@ -126,6 +126,8 @@ export default function RussianFtmoReviewPage() {
   const freshProducts = products.filter(product => isChallengeFresh(product))
   const twoStep = freshProducts.find(product => product.productSlug === 'ftmo-challenge-2-step')
   const oneStep = freshProducts.find(product => product.productSlug === 'ftmo-challenge-1-step')
+  const instant = freshProducts.find(product => product.productSlug === 'ftmo-instant-account')
+  const verdictProductCount = [twoStep, oneStep, instant].filter(Boolean).length
   const pricedTiers = freshProducts.flatMap(product => product.accountSizes.flatMap(tier =>
     tier.priceEur != null && tier.priceEur > 0 ? [{ product, tier, price: tier.priceEur }] : []))
   const latestCapture = freshProducts.map(product => product.sourceCapturedAt).sort().at(-1)
@@ -157,6 +159,11 @@ export default function RussianFtmoReviewPage() {
   const oneStep100kEconomics = oneStep && oneStep100k
     ? challengeTierEconomics(oneStep, oneStep100k)
     : null
+  const instant100k = account100k(instant)
+  const instant100kEconomics = instant && instant100k
+    ? challengeTierEconomics(instant, instant100k)
+    : null
+  const instantCapturedRu = instant?.sourceCapturedAt?.split('-').reverse().join('.')
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -256,7 +263,7 @@ export default function RussianFtmoReviewPage() {
 
         <section className="ru-section">
           <div className="ru-shell ru-content" id="verdict" data-russian-ftmo-verdict="two-products-not-one-brand">
-            <h2>Краткий вывод: выбирать нужно между 2 наборами ограничений</h2>
+            <h2>Краткий вывод: выбирать нужно между {verdictProductCount} наборами ограничений</h2>
             <p>
               2-Step логичнее для трейдера, которому важны статическая граница 10%, дневной лимит 5% и возврат 100% взноса после первой
               выплаты вознаграждения. Цена $100K-счёта составляет {eur(twoStep100k?.priceEur)}, базовая доля — {twoStep?.profitSplitPct ?? '—'}%,
@@ -268,6 +275,15 @@ export default function RussianFtmoReviewPage() {
               Взнос {eur(oneStep100k?.priceEur)} на $100K не возвращается, а для его компенсации при доле {oneStep?.profitSplitPct ?? '—'}%
               нужна валовая прибыль {eur(oneStep100kEconomics?.breakEvenProfit)}. Поэтому более низкая цена не означает более низкую полную стоимость решения.
             </p>
+            {instant && (
+              <p data-russian-ftmo-verdict-instant={instant.sourceCapturedAt}>
+                Instant Account обходится без оценки: доля {instant.profitSplitPct ?? '—'}% с первого счёта, дневной лимит {instant.dailyLossPct ?? '—'}%
+                от начального баланса, общий лимит {instant.maxLossPct ?? '—'}% трейлингует внутри дня от максимального баланса, а Best Day ограничен
+                {' '}{instant.consistencyRulePct ?? '—'}% общей прибыли. Взнос {eur(instant100k?.priceEur)} на $100K невозвратный; для его компенсации при доле
+                {' '}{instant.profitSplitPct ?? '—'}% нужна валовая прибыль {eur(instant100kEconomics?.breakEvenProfit)}. Срок первой выплаты, правила
+                для новостей и советников на странице Instant Account не опубликованы (по данным на {instantCapturedRu}).
+              </p>
+            )}
             <div className="ru-actions">
               <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-ftmo-review-verdict" rel="nofollow noopener" className="btn-outline">
                 Открыть официальный сайт FTMO <ExternalLink size={14} aria-hidden="true" />
@@ -288,7 +304,7 @@ export default function RussianFtmoReviewPage() {
               Похожее название, русский интерфейс или логотип не подтверждают связь сайта с FTMO.
             </p>
             <p>
-              Перед вводом карты проверьте 3 элемента: адрес начинается с ftmo.com, продукт называется FTMO Challenge: 1-Step или 2-Step,
+              Перед вводом карты проверьте 3 элемента: адрес начинается с ftmo.com, продукт называется FTMO Challenge: 1-Step, 2-Step или FTMO Instant Account,
               а цена и валюта совпадают с выбранной страницей оплаты. Для США FTMO публикует отдельный переход на ftmo.oanda.com; цифры глобальной версии нельзя
               автоматически переносить на другую сущность или региональный storefront.
             </p>
