@@ -12,7 +12,7 @@ import {
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
-import cryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'
+import { cryptoMarketEvidence } from '@/lib/cryptoMarketEvidence'
 import {
   getAllFirms,
   getChallengesByFirm,
@@ -57,18 +57,6 @@ export const metadata: Metadata = {
   openGraph: { title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: SOCIAL_TITLE, description: SOCIAL_DESCRIPTION },
 }
-
-// Typed explicitly: when the evidence file's watch list is empty, the JSON import
-// infers never[] and the watch table no longer type-checks.
-type CryptoWatchItem = {
-  firmSlug: string
-  firmName: string
-  status: string
-  sourceUrl: string
-  sourceCapturedAt: string
-  nextStepRu?: string
-}
-const cryptoWatch = cryptoMarketEvidence.watch as CryptoWatchItem[]
 
 function freshEvidence(evidence: { sourceCapturedAt: string }) {
   const date = evidence.sourceCapturedAt
@@ -249,7 +237,7 @@ export default function RussianCryptoPropFirmsPage() {
             <div className="ru-stat"><strong>{snapshots.length}</strong><span>фирм с актуальными источниками в сравнении</span></div>
             <div className="ru-stat"><strong>{productCount}</strong><span>программ с известными ценами</span></div>
             <div className="ru-stat"><strong>{partnerCount} из {snapshots.length}</strong><span>партнёрские фирмы; порядок не меняется</span></div>
-            <div className="ru-stat"><strong>{cryptoWatch.length}</strong><span>незавершённых проверок других фирм</span></div>
+            <div className="ru-stat"><strong>{cryptoMarketEvidence.watch.length}</strong><span>незавершённых проверок других фирм</span></div>
           </div>
           <div className="ru-actions">
             <Link href="#ranking" className="btn-primary">Открыть сравнение <ArrowRight size={15} aria-hidden="true" /></Link>
@@ -426,7 +414,7 @@ export default function RussianCryptoPropFirmsPage() {
         </section>
 
         <section className="ru-section" id="evidence-watch">
-          <div className="ru-shell" data-russian-crypto-watch-count={cryptoWatch.length}>
+          <div className="ru-shell" data-russian-crypto-watch-count={cryptoMarketEvidence.watch.length}>
             <div className="ru-content">
               <h2>Какие проверки ещё не завершены</h2>
               <p>Для перечисленных ниже фирм не хватает проверки отдельных криптопрограмм либо актуальных сведений об инструментах и условиях. Это не обвинение фирмы, не подтверждение отсутствия криптоторговли и не вывод о закрытии услуги. Причина указана отдельно для каждого случая.</p>
@@ -435,7 +423,7 @@ export default function RussianCryptoPropFirmsPage() {
               <table className="ru-table">
                 <thead><tr><th>Фирма</th><th>Статус</th><th>Источник по рынкам</th><th>Что требуется</th></tr></thead>
                 <tbody>
-                  {cryptoWatch.map(item => (
+                  {cryptoMarketEvidence.watch.map(item => (
                     <tr key={item.firmSlug}>
                       <td><strong>{item.firmName}</strong></td>
                       <td>{item.status === 'product-capture-needed' ? 'нужна проверка отдельных криптопрограмм' : 'нужно обновить рынок или продукты'}</td>

@@ -19,7 +19,11 @@ import {
   type IndiaFirmEvidence,
 } from './india'
 import rawUsAccessEvidence from '@/content/data/us-access-evidence.json'
-import rawCryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'
+import {
+  cryptoMarketEvidence as typedCryptoMarketEvidence,
+  type CryptoMarketEvidence,
+  type CryptoMarketWatch,
+} from '@/lib/cryptoMarketEvidence'
 import rawUkAccessEvidence from '@/content/data/uk-access-evidence.json'
 import { isProductSetFresh } from './reviewFreshness.ts'
 
@@ -140,29 +144,6 @@ interface UkAccessEvidence {
   decisionNote: string
 }
 
-interface CryptoMarketEvidence {
-  firmSlug: string
-  firmName: string
-  marketModel: 'crypto-native' | 'multi-asset-cfd'
-  productSlugs: string[]
-  sourceUrl: string
-  sourceCapturedAt: string
-  evidence: string
-  evidenceRu?: string
-  scopeNote: string
-  scopeNoteRu?: string
-}
-
-interface CryptoMarketWatch {
-  firmSlug: string
-  firmName: string
-  status: 'product-capture-needed' | 'market-and-product-refresh-needed'
-  sourceUrl: string
-  sourceCapturedAt: string
-  evidence: string
-  nextStep: string
-}
-
 const US_ACCESS_EVIDENCE = rawUsAccessEvidence.firms as UsAccessEvidence[]
 const US_ACCESS_EVIDENCE_BY_SLUG = new Map(
   US_ACCESS_EVIDENCE.map(evidence => [
@@ -176,11 +157,11 @@ const UK_ACCESS_EVIDENCE_BY_SLUG = new Map(
   UK_ACCESS_EVIDENCE.map(evidence => [evidence.firmSlug, evidence]),
 )
 
-const CRYPTO_MARKET_EVIDENCE = rawCryptoMarketEvidence.ranked as CryptoMarketEvidence[]
+const CRYPTO_MARKET_EVIDENCE: CryptoMarketEvidence[] = typedCryptoMarketEvidence.ranked
 const CRYPTO_MARKET_EVIDENCE_BY_SLUG = new Map(
   CRYPTO_MARKET_EVIDENCE.map(evidence => [evidence.firmSlug, evidence]),
 )
-const CRYPTO_MARKET_WATCH = rawCryptoMarketEvidence.watch as CryptoMarketWatch[]
+const CRYPTO_MARKET_WATCH: CryptoMarketWatch[] = typedCryptoMarketEvidence.watch
 
 function isAccessEvidenceFresh(sourceCapturedAt: string) {
   const captured = new Date(`${sourceCapturedAt}T00:00:00Z`)
