@@ -61,9 +61,9 @@ const OPEN_NAMES = namesWithStatus(ACCESS_LIST_SLUGS, ACCESS_LIST_NAMES, true)
 const CLOSED_NAMES = namesWithStatus([...ACCESS_LIST_SLUGS, 'fundednext'], { ...ACCESS_LIST_NAMES, fundednext: 'FundedNext' }, false)
 // Literal for the SEO audit; release-crawl checks the built length (140–160) and that these statuses still match firms.json.
 const DESCRIPTION = 'Крипто проп-компании 2026: BrightFunded и Crypto Fund Trader открыты для РФ, FTMO, CTI, OFP и FundedNext — нет. Криптопары, плечо, комиссии, цены и выплаты.'
-// Preserve existing sharing-preview text until the separate sharing update is approved.
-const SOCIAL_TITLE = 'Крипто-проп-фирмы 2026: 3 проверенных варианта'
-const SOCIAL_DESCRIPTION = 'Проп трейдинг криптовалют: сравниваем 3 крипто-проп фирмы и 12 подтверждённых продуктов по цене, просадке, плечу, KYC и выплатам.'
+// Sharing title/description approved 21.10.2026 (no fixed firm/product counts).
+const SOCIAL_TITLE = 'Крипто-проп-фирмы 2026: кто открыт для РФ, а кто нет'
+const SOCIAL_DESCRIPTION = 'Проп трейдинг криптовалют: BrightFunded, Crypto Fund Trader, FTMO, CTI, OFP и другие — криптопары, плечо, цены, доступ из РФ и выплаты.'
 export const revalidate = 3600
 
 export const metadata: Metadata = {

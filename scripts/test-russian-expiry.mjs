@@ -421,8 +421,13 @@ try {
   assert.deepEqual(cryptoCards(cryptoReference), cryptoSlugs, 'current crypto fixture includes every independently sourced firm')
   assert(cryptoSchemas(cryptoReference).some(item => item['@type'] === 'FAQPage'))
   assert.doesNotMatch(`${cryptoModule.metadata.title.absolute} ${cryptoModule.metadata.description}`, /3 проверенных|3 крипто|12 подтверждённых/, 'search metadata does not promise a fixed live inventory')
-  assert.equal(cryptoModule.metadata.openGraph.title, 'Крипто-проп-фирмы 2026: 3 проверенных варианта', 'sharing metadata is preserved pending separate approval')
-  assert.equal(cryptoModule.metadata.twitter.description, 'Проп трейдинг криптовалют: сравниваем 3 крипто-проп фирмы и 12 подтверждённых продуктов по цене, просадке, плечу, KYC и выплатам.')
+  const cryptoSocialTitle = 'Крипто-проп-фирмы 2026: кто открыт для РФ, а кто нет'
+  const cryptoSocialDescription = 'Проп трейдинг криптовалют: BrightFunded, Crypto Fund Trader, FTMO, CTI, OFP и другие — криптопары, плечо, цены, доступ из РФ и выплаты.'
+  assert.equal(cryptoModule.metadata.openGraph.title, cryptoSocialTitle, 'approved sharing title')
+  assert.equal(cryptoModule.metadata.openGraph.description, cryptoSocialDescription, 'approved sharing description')
+  assert.equal(cryptoModule.metadata.twitter.title, cryptoSocialTitle, 'twitter title matches the approved sharing title')
+  assert.equal(cryptoModule.metadata.twitter.description, cryptoSocialDescription, 'twitter description matches the approved sharing description')
+  assert.doesNotMatch(`${cryptoSocialTitle} ${cryptoSocialDescription}`, /3 проверенных|3 крипто|12 подтверждённых/, 'sharing metadata does not promise a fixed live inventory')
   const assertCryptoArchive = html => {
     assert(html.includes('data-russian-crypto-article="long-form"') && html.includes('id="sources"'), 'expiry preserves the substantive article and dated sources')
     assert(html.includes('data-russian-crypto-cft-correction="2026-09-08"'), 'unresolved CFT correction survives unrelated evidence expiry')
