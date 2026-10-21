@@ -11,6 +11,7 @@ import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
 import { challengeTierEconomics, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 
 const PATH = '/ru/ftmo-vs-bright-funded'
 const TITLE = 'FTMO или BrightFunded: альтернатива FTMO для россиян'
@@ -262,6 +263,7 @@ export default function RussianFtmoVsBrightFundedPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <RuMobileStickyCTA firms={['ftmo', 'bright-funded']} from="ru-ftmo-vs-bright-mobile-sticky" />
       {complete && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero ru-hero--p1">

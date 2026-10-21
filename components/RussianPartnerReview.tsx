@@ -20,6 +20,7 @@ import { RuGoLink } from '@/components/RuGoLink'
 import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 
 type RussianPartnerReviewProps = {
   path: RussianRoutePath
@@ -175,6 +176,7 @@ export default function RussianPartnerReview({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
+      <RuMobileStickyCTA firms={[affiliateSlug]} from={`ru-${affiliateSlug}-review-mobile-sticky`} />
       {faqSchemaCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero ru-hero--p1">

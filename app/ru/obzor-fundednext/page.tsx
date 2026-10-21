@@ -23,6 +23,7 @@ import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { formatRuDate } from '@/lib/ruDate'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 
 const PATH = '/ru/obzor-fundednext'
 const TITLE = 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила'
@@ -233,6 +234,7 @@ export default function RussianFundedNextReviewPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
+      <RuMobileStickyCTA firms={['fundednext']} from="ru-obzor-fundednext-mobile-sticky" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero ru-hero--p1">

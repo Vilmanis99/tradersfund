@@ -43,6 +43,7 @@ import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 import RuFundedNextRussiaRedirect from '@/components/RuFundedNextRussiaRedirect'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 
 const PATH = '/ru/fundednext-vs-bright-funded'
 const TITLE = 'FundedNext или BrightFunded: сравнение 2026 и доступ из РФ'
@@ -271,6 +272,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
+      <RuMobileStickyCTA firms={['fundednext', 'bright-funded']} from="ru-fn-vs-bright-mobile-sticky" />
       {completeEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero ru-hero--p1">
