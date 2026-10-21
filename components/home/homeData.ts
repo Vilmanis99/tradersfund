@@ -5,6 +5,7 @@ import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { russiaStatusFor, type RussiaStatus } from '@/lib/russiaAvailability'
 import { getAllDeals } from '@/lib/deals'
+import { ruPublishedReviewHref } from '@/lib/ruRelatedLinks'
 import type { ComparisonRow } from './types'
 
 /** Preferred comparison size. Falls back to the closest published tier. */
@@ -40,7 +41,8 @@ export function getHomeComparisonRows(locale: 'en' | 'ru', now = new Date()): Co
       firmSlug: row.firm.slug,
       firmName: (locale === 'ru' ? RU_DISPLAY_NAME[row.firm.slug] : undefined) ?? row.firm.name,
       logo: row.firm.logo,
-      reviewUrl: row.firm.reviewUrl,
+      // RU: The5ers points to /ru/obzor-the5ers once that route is registered; EN review until then.
+      reviewUrl: (locale === 'ru' && row.firm.slug === 'the5ers' ? ruPublishedReviewHref('the5ers') : null) ?? row.firm.reviewUrl,
       score: row.firm.score,
       trustpilot: firm && !firm.trustpilotRatingSuppressed ? firm.trustpilotScore ?? null : null,
       product: row.product.name,

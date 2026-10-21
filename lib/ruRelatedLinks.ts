@@ -261,6 +261,16 @@ export function ruReviewFirmFor(path: string) {
   return RU_REVIEW_FIRMS.find(item => item.path === path)
 }
 
+/**
+ * RU review route for a firms.json slug, but only once that route is
+ * registered in lib/localizedRoutes.ts; null until then, so callers keep their
+ * current link (usually the EN review) and no 404 link ships.
+ */
+export function ruPublishedReviewHref(firm: string): string | null {
+  const item = RU_REVIEW_FIRMS.find(entry => entry.firm === firm)
+  return item && isRuRegisteredPath(item.path) ? item.path : null
+}
+
 export type RuStatusLike = 'available' | 'restricted' | 'unclear' | 'unverified'
 
 /**

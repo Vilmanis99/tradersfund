@@ -17,6 +17,7 @@ import { RuGoLink } from '@/components/RuGoLink'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { compareRussianRanking, RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { ruPublishedReviewHref } from '@/lib/ruRelatedLinks'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
@@ -124,6 +125,8 @@ const partnerGuidance: Record<string, {
 
 const slugify = (name: string) => firmSlug(name.replace(/&/g, 'and'))
 
+const THE5ERS_RU_REVIEW = ruPublishedReviewHref('the5ers')
+
 const russianReviewRoutes: Record<string, string> = {
   'bright-funded': '/ru/obzor-bright-funded',
   'era-trade': '/ru/obzor-eratrade',
@@ -133,6 +136,8 @@ const russianReviewRoutes: Record<string, string> = {
   kascapital: '/ru/obzor-kascapital',
   proplive: '/ru/obzor-proplive',
   teamtraders: '/ru/obzor-teamtraders',
+  // Planned RU review: joins the map only once /ru/obzor-the5ers is registered; until then the EN review stays.
+  ...(THE5ERS_RU_REVIEW ? { the5ers: THE5ERS_RU_REVIEW } : {}),
 }
 
 function formatMoney(value: number, currency: 'USD' | 'EUR') {

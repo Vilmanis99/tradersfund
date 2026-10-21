@@ -7,6 +7,7 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { RuGoLink } from '@/components/RuGoLink'
+import { ruPublishedReviewHref } from '@/lib/ruRelatedLinks'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { FUNDEDNEXT_RU_ACCESS_CHECKED, FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
@@ -55,7 +56,7 @@ const rows: Row[] = [
   { firm: 'FundedNext Futures', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://fundednext.com/terms-of-service' },
   { firm: 'Topstep', russia: 'Ограничена: Россия в списке «Countries Ineligible to Trade»; решает страна проживания', belarus: 'Ограничена', kazakhstan: 'Не названа', payout: 'Не проверено', status: 'closed', source: 'https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep' },
   { firm: 'FTMO', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Ограничена', payout: 'Не проверено', status: 'closed', source: 'https://ftmo.com/en/faq/who-can-join-ftmo/', review: '/ru/ftmo-dlya-rossiyan' },
-  { firm: 'The5ers', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://the5ers.com/terms-and-conditions/' },
+  { firm: 'The5ers', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://the5ers.com/terms-and-conditions/', review: ruPublishedReviewHref('the5ers') ?? undefined },
   { firm: 'E8 Markets', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не проверено', payout: 'Не проверено', status: 'closed', source: 'https://help.e8markets.com/en/articles/5514278-accepted-countries' },
   { firm: 'FXIFY', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не проверено', payout: 'Не проверено', status: 'closed', source: 'https://fxify.com/faqs/all-faqs/what-countries-are-accepted/' },
   { firm: 'Maven', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://maventrading.com/faq' },
