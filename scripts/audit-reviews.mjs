@@ -37,6 +37,7 @@ import {
 } from '../lib/challengeChangeFocus.ts'
 import { isIndiaCampaign } from '../lib/affiliateCampaign.ts'
 import { challengeTierEconomics, computeTrueCost } from '../lib/firms.ts'
+import { hasNoListedPrice } from '../lib/reviewFreshness.ts'
 import { rankCurrentFirmAlternatives } from '../lib/firmAlternatives.ts'
 import { isSourceHoldFirm } from '../lib/reviewStatus.ts'
 import {
@@ -494,7 +495,7 @@ function loadChallenges(firmSlug) {
   return JSON.parse(fs.readFileSync(file, 'utf-8'))
 }
 
-function checkSourceFreshness(challenges, errors, warnings, allowStale = false) {
+function checkSourceFreshness(challenges, errors, warnings, allowStale = false, { exemptNoListedPrice = false } = {}) {
   const seen = new Map()
   const badUrls = new Set()
   for (const c of challenges) {
@@ -513,6 +514,9 @@ function checkSourceFreshness(challenges, errors, warnings, allowStale = false) 
       errors.push(`challenge "${c.productName}" has no sourceCapturedAt`)
       continue
     }
+    // Same exemption as the rendered surface (lib/reviewFreshness.ts): a product
+    // with no listed price at all (not on sale) shows no price that can go stale.
+    if (exemptNoListedPrice && hasNoListedPrice(c)) continue
     const age = Math.floor((TODAY - new Date(c.sourceCapturedAt)) / 86400000)
     if (age > STALE_DAYS && !seen.has(c.sourceCapturedAt)) {
       seen.set(c.sourceCapturedAt, true)
@@ -2725,7 +2729,9 @@ function checkIndiaEvidence() {
       }
 
       const freshnessErrors = []
-      checkSourceFreshness(challenges, freshnessErrors)
+      // /best-prop-firms-in-india lists not-on-sale products (lib/indiaMatcher.ts:
+      // isChallengeFresh || hasNoListedPrice), so the audit applies the same exemption.
+      checkSourceFreshness(challenges, freshnessErrors, [], false, { exemptNoListedPrice: true })
       for (const error of freshnessErrors) rows.push(`${slug}: ${error}`)
     }
   }
