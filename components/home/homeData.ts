@@ -1,5 +1,6 @@
 import { getAllChallenges, getAllFirms } from '@/lib/firms'
 import { buildChallengeComparisonRows } from '@/lib/challengeComparisonData'
+import { priceBreakdownLabel, tierPriceParts, tierTotalPrice } from '@/lib/challengeComparison'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { russiaStatusFor, type RussiaStatus } from '@/lib/russiaAvailability'
@@ -20,14 +21,21 @@ export function getHomeComparisonRows(locale: 'en' | 'ru', now = new Date()): Co
   const firms = getAllFirms()
   const rows = buildChallengeComparisonRows(getAllChallenges(), firms, getChallengeWatchEntries(), now)
   const best = new Map<string, ComparisonRow>()
+  const bestTotal = new Map<string, number>()
   for (const row of rows) {
     const tier = row.product.tiers.find(t => t.sizeUsd === TABLE_SIZE)
     if (!tier) continue
     const price = tier.priceUsd ?? tier.priceEur
     if (price == null || price <= 0) continue
+    const currency = tier.priceUsd != null ? 'USD' : 'EUR'
+    // "Cheapest" means price plus mandatory after-pass and activation fees.
+    const total = tierTotalPrice(tier, currency)
+    if (total == null) continue
     const firm = firms.find(f => outboundSlug(f.name) === row.firm.slug)
-    const current = best.get(row.firm.slug)
-    if (current && current.price <= price) continue
+    const currentTotal = bestTotal.get(row.firm.slug)
+    if (currentTotal != null && currentTotal <= total) continue
+    bestTotal.set(row.firm.slug, total)
+    const parts = currency === 'USD' ? tierPriceParts(tier) : null
     best.set(row.firm.slug, {
       firmSlug: row.firm.slug,
       firmName: (locale === 'ru' ? RU_DISPLAY_NAME[row.firm.slug] : undefined) ?? row.firm.name,
@@ -39,7 +47,10 @@ export function getHomeComparisonRows(locale: 'en' | 'ru', now = new Date()): Co
       phases: row.product.phases,
       assetClass: row.product.assetClass,
       price,
-      currency: tier.priceUsd != null ? 'USD' : 'EUR',
+      currency,
+      priceBreakdown: parts
+        ? priceBreakdownLabel(parts, locale, value => new Intl.NumberFormat(locale === 'ru' ? 'ru-RU' : 'en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value))
+        : null,
       pricingModel: row.product.pricingModel,
       profitTarget: row.product.profitTargets?.phase1 ?? null,
       dailyLossPct: row.product.dailyLossPct,

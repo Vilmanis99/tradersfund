@@ -11,11 +11,14 @@ import forexEvidence from '@/content/data/russian-forex-evidence.json'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightCountryEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { isRussiaAccessEvidenceDocumented } from '@/lib/russiaAvailability'
+import { russianGenitiveDate } from '@/lib/russianDates'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/forex-prop-firmy'
-const TITLE = 'Форекс проп-фирмы: плечо, цены и правила программ'
-const DESCRIPTION = 'Разбор форекс-программ FundedNext и BrightFunded: валютные пары, плечо, цены в USD и EUR, лимиты убытка, платформы и проверка доступа по стране.'
+const TITLE = 'Форекс проп-фирмы и проп-компании 2026: плечо, цены, правила'
+const DESCRIPTION = 'Форекс проп-компании и проп-фирмы: программы BrightFunded и FundedNext — валютные пары, плечо, цены в EUR и USD, лимиты убытка, платформы и доступ из РФ.'
 const SOCIAL_DESCRIPTION = 'Разбор форекс-программ FundedNext и Bright Funded: валютные пары, плечо, цены в USD и EUR, лимиты убытка, платформы и проверка доступа по стране.'
 
 export const metadata: Metadata = {
@@ -25,6 +28,12 @@ export const metadata: Metadata = {
   openGraph: { title: TITLE, description: SOCIAL_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: SOCIAL_DESCRIPTION },
 }
+
+/** Dates shown in copy come from the evidence files, never typed in. */
+const fundedNextForexCheckedOn = russianGenitiveDate(forexEvidence.firms.find(firm => firm.firmSlug === 'fundednext')?.sourceCapturedAt)
+const fundedNextAccessObservedOn = russianGenitiveDate((marketEvidence.firmAccess.find(item => item.firmSlug === 'fundednext')?.sourceObservations ?? [])
+  .map(item => item.sourceCapturedAt).filter(Boolean).sort().at(-1))
+const asOf = (date: string | null) => date ? ` (по данным на ${date})` : ''
 
 const faqs: RussianFaqItem[] = [
   {
@@ -37,7 +46,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какое форекс-плечо у FundedNext?',
-    a: 'По источникам, проверенным 8 сентября 2026 года, у Stellar 1-Step и Stellar Instant — 1:30, у Stellar 2-Step и Stellar Lite — 1:100. В таблицах оценочного и следующего этапа Stellar 1-Step указано одинаковое форекс-плечо. Не переносите условия одного продукта на другой.',
+    a: `По источникам${fundedNextForexCheckedOn ? `, проверенным ${fundedNextForexCheckedOn},` : ' FundedNext'} у Stellar 1-Step и Stellar Instant — 1:30, у Stellar 2-Step и Stellar Lite — 1:100. В таблицах оценочного и следующего этапа Stellar 1-Step указано одинаковое форекс-плечо. Не переносите условия одного продукта на другой.`,
   },
   {
     q: 'Плечо 1:100 лучше, чем 1:30?',
@@ -136,7 +145,7 @@ export default function RussianForexPropFirmsPage() {
     { label: 'условия BrightFunded: ограничения по стране', capturedAt: brightTerms.sourceCapturedAt },
   ]
   const hasFreshEvidence = allProducts.length > 0 && products.length === allProducts.length
-    && fundedNextAccess?.status === 'conflicting'
+    && isRussiaAccessEvidenceDocumented('fundednext', fundedNextAccess)
     && evidenceDates.every(item => isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
   const updatedAt = russianRouteDateModified(PATH, forexEvidence.capturedAt)
 
@@ -265,17 +274,6 @@ export default function RussianForexPropFirmsPage() {
             на FundedNext или BrightFunded. Это не меняет расчёты, ограничения по стране или объяснение неизвестных условий.
           </div>
           <div className="ru-grid">
-            <article className="ru-card" data-russian-forex-featured-partner="fundednext">
-              <h3>FundedNext</h3>
-              <p>{fundedNextFresh
-                ? 'В проверенном списке — 43 валютные пары. Для Stellar 1-Step и Instant указано плечо 1:30; для Stellar 2-Step и Lite — 1:100.'
-                : 'Список инструментов и плечо требуют повторной проверки. Не переносите условия одной программы Stellar на другую.'}</p>
-              <p className="ru-muted">Сравните оценочную программу с отдельной моделью Instant. Доступ к терминалу и разрешение на автоматизацию проверяются отдельно.</p>
-              <div className="ru-actions">
-                <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-              </div>
-            </article>
             <article className="ru-card" data-russian-forex-featured-partner="bright-funded">
               <h3>BrightFunded</h3>
               <p>{brightFresh
@@ -294,6 +292,18 @@ export default function RussianForexPropFirmsPage() {
                 <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-forex-shortlist-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               </div>
             </article>
+            <article className="ru-card" data-russian-forex-featured-partner="fundednext">
+              <h3>FundedNext</h3>
+              <p>{fundedNextFresh
+                ? 'В проверенном списке — 43 валютные пары. Для Stellar 1-Step и Instant указано плечо 1:30; для Stellar 2-Step и Lite — 1:100.'
+                : 'Список инструментов и плечо требуют повторной проверки. Не переносите условия одной программы Stellar на другую.'}</p>
+              <p className="ru-muted">Сравните оценочную программу с отдельной моделью Instant. Доступ к терминалу и разрешение на автоматизацию проверяются отдельно.</p>
+              <div className="ru-actions">
+                <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор FundedNext</Link>
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-shortlist-fundednext" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+              </div>
+              <RuFundedNextAccessCaveat />
+            </article>
           </div>
         </div>
       </section>
@@ -309,7 +319,7 @@ export default function RussianForexPropFirmsPage() {
           <aside className="ru-notice" data-russian-forex-correction="stellar-1-step-leverage">
             <strong>Исправление от 8 сентября 2026 года.</strong> Ранее мы ошибочно включили Stellar 1-Step
             в группу с плечом 1:100. В <a href={fundedNextEvidence.sourceUrls[1]} target="_blank" rel="nofollow noopener">таблицах FundedNext</a> для
-            оценочного и следующего этапа указано 1:30. Это исправление нашей записи, а не утверждение,
+            оценочного и следующего этапа указано 1:30{fundedNextForexCheckedOn ? ` (перепроверено, по данным на ${fundedNextForexCheckedOn})` : ''}. Это исправление нашей записи, а не утверждение,
             что фирма изменила правило именно в этот день.
           </aside>
           <p>
@@ -415,7 +425,7 @@ export default function RussianForexPropFirmsPage() {
             для своего профиля и программы. Русская версия сайта предназначена для русскоязычных
             трейдеров в разных странах; она не является обещанием доступности услуг из России.
           </p>
-          <p className="ru-source-line">По проверке от {fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt} официальные страницы FundedNext противоречат друг другу о доступе резидентов России.</p>
+          <p className="ru-source-line">Резидентам России FundedNext недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет{asOf(fundedNextAccessObservedOn)}.</p>
           <div className="ru-notice" data-russian-forex-country-conflict="help-six-terms-five" data-russian-forex-country-status={brightCountryCurrent ? 'dated' : 'recapture-required'}>
             <strong>{brightCountryCurrent ? 'Списки стран BrightFunded расходятся.' : 'В датированном снимке списки стран BrightFunded расходились.'}</strong>{' '}
             По записи от {brightCountry.sourceCapturedAt}{' '}
@@ -473,8 +483,8 @@ export default function RussianForexPropFirmsPage() {
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="forex-verdict">
             <strong>Если программа подходит после проверки условий:</strong>{' '}
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-verdict-fundednext" rel="sponsored nofollow noopener">проверить предложение FundedNext</RuGoLink> или
-            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-forex-verdict-bright-funded" rel="sponsored nofollow noopener"> предложение BrightFunded</RuGoLink>.
+            <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-forex-verdict-bright-funded" rel="sponsored nofollow noopener">проверить предложение BrightFunded</RuGoLink> или
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-forex-verdict-fundednext" rel="sponsored nofollow noopener"> предложение FundedNext</RuGoLink>.
             Мы можем получить комиссию по этим ссылкам. Это не гарантия одобрения счёта или выплаты.
           </div>
         </div>

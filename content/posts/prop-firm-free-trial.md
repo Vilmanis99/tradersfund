@@ -3,7 +3,7 @@ title: "Prop Firms With a Free Trial (2026): 6 Offers Checked"
 seoTitle: "Prop Firm Free Trial 2026: 6 Firms, Limits & Rules"
 slug: "prop-firm-free-trial"
 date: "2026-10-19 12:00:00"
-modified: "2026-10-19 12:00:00"
+modified: "2026-10-20 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Six prop firms let you trade for free right now, and five of them will never pay you for it. Here are the limits, the gotchas and how each trial converts to a paid account."
 seoDescription: "Prop firm free trial list for 2026: FTMO, FundedNext, FundingPips, Alpha Capital, E8 and BrightFunded's free $1K challenge, with limits and how to convert."
@@ -30,7 +30,7 @@ type: "post"
 <p>"Free trial" covers three different things in this industry: a practice account that copies a paid rule set, a free challenge that can actually fund you, and a "practice" account that only comes with a paid subscription. The table keeps them apart. Each row is sourced from the firm's own help center or landing page, and the captures sit in <code>content/data/free-trials.json</code> and <code>content/data/free-trial-offers-evidence.json</code>.</p>
 
 <table data-free-trial-index="2026-10-19" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
-  <caption class="hidden-caption">Prop firm free trials and free challenges checked on 2026-10-19</caption>
+  <caption class="hidden-caption">Prop firm free trials and free challenges checked on 2026-10-19 (FTMO rechecked on 2026-10-20)</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 10px; text-align: left;">Firm</th><th style="padding: 8px 10px; text-align: left;">What you get</th><th style="padding: 8px 10px; text-align: left;">Time limit</th><th style="padding: 8px 10px; text-align: left;">How many</th><th style="padding: 8px 10px; text-align: left;">Can it pay?</th></tr></thead>
   <tbody>
     <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong><a href="/go/bright-funded" data-affiliate-placement="free-trial-table">BrightFunded</a></strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Free $1K Challenge: 1 phase, 10% target, then a $1,000 funded account</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">No time limit stated; 5 minimum trading days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">1 free account; only with no active accounts</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Yes, 80% of simulated profit once funded</td></tr>
@@ -46,7 +46,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>FTMO: three trials, halved targets, one new inactivity trap</strong></h2>
 
-<p>FTMO updated its trial page on 2026-10-16, according to the page's own modified date. You now pick a 1-Step, 2-Step or Instant Account trial, and each runs 14 days. The 2-Step trial halves the Phase 1 target from 10% to 5% and cuts minimum days from 4 to 2, while keeping the 5% daily loss and 10% static maximum loss. The 1-Step trial also halves the target to 5% but keeps the 3% daily loss, the 10% end-of-day trailing maximum loss and the 50% Best Day rule. The Instant trial has no target, a 3% daily loss, a 10% intraday trailing maximum loss and 30% consistency.</p>
+<p>FTMO updated its trial page on 2026-10-16, according to the page's own modified date. You now pick a 1-Step, 2-Step or Instant Account trial, and each runs 14 days. The 2-Step trial halves the Phase 1 target from 10% to 5% and cuts minimum days from 4 to 2, while keeping the 5% daily loss and 10% static maximum loss. The 1-Step trial also halves the target to 5% but keeps the 3% daily loss, the 10% end-of-day trailing maximum loss and the 50% consistency rule (on paid 1-Step accounts from 12 Oct 2026, measured against total profit). The Instant trial has no target, a 3% daily loss, a 10% intraday trailing maximum loss and 30% consistency.</p>
 
 <p><strong>The gotcha:</strong> FTMO's comparison table says each trial ends if "you don't trade in the first 7 days". If you open a trial on Friday and plan to start "next week", you can lose it before you've placed a trade. Also, the trial runs on MT4, MT5 and cTrader only. FTMO's FAQ now says TradingView isn't supported on a Free Trial, even though paid accounts offer it.</p>
 
@@ -62,7 +62,7 @@ type: "post"
 
 <p>FundingPips copies its paid 2 Step Standard and 2 Step Pro models "exactly", and it's the only trial here with a Phase 2. Standard means 8% then 5% targets, a 5% daily loss and a 10% maximum loss, on $5K–$100K. Pro means 6% in both phases, a 3% daily loss and a 6% maximum loss, on $5K–$200K. Each phase gets 14 calendar days from activation (weekends count), and the timer can't be paused or extended. Sign-up takes a name and an email, with no card and no ID.</p>
 
-<p><strong>The gotcha:</strong> the trial "can't run at the same time as a paid evaluation, Master, giveaway, or competition accounts". If you already hold a funded FundingPips account, you can't use the trial to test a second model alongside it. The trial's 0 minimum trading days per phase matches the paid model: FundingPips' 2-Step Pro article, rechecked on 2026-10-19, says 2 Step Pro has 0 minimum trading days for new and reset accounts, while accounts bought before 26 Aug 2026 keep 1 day.</p>
+<p><strong>The gotcha:</strong> the trial "can't run at the same time as a paid evaluation, Master, giveaway, or competition accounts". If you already hold a funded FundingPips account, you can't use the trial to test a second model alongside it. The trial's 0 minimum trading days per phase matches the paid model: FundingPips' 2-Step Pro article, rechecked on 2026-10-20, says 2 Step Pro has 0 minimum trading days for new and reset accounts, while accounts bought before 26 Aug 2026 keep 1 day.</p>
 
 <p><strong>Converting:</strong> FundingPips says the trial "cannot be converted into an evaluation account or a Master Account under any circumstances". Our capture prices the $100K 2 Step Standard at $544 and the $100K 2 Step Pro at $422. Details are in the <a href="/blog/funding-pips-review">FundingPips review</a>.</p>
 
@@ -100,7 +100,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>Which prop firms offer a free trial in 2026?</strong></h3>
-<p>On 2026-10-19 we verified free trials at FTMO, FundedNext, FundingPips, Alpha Capital and E8 Markets on their own sites, plus BrightFunded's Free $1K Challenge. Crypto Fund Trader has disabled its trials, and FXIFY offers only a free monthly competition.</p>
+<p>On 2026-10-19 we verified free trials at FTMO, FundedNext, FundingPips, Alpha Capital and E8 Markets on their own sites, plus BrightFunded's Free $1K Challenge, and rechecked FTMO's Free Trial page and FAQ on 2026-10-20. Crypto Fund Trader has disabled its trials, and FXIFY offers only a free monthly competition.</p>
 
 <h3 class="wp-block-heading"><strong>Can a free trial prop firm account get me funded?</strong></h3>
 <p>Not at FTMO, FundedNext, FundingPips, Alpha Capital or E8, which all say trial results don't count toward funding or payouts. BrightFunded's Free $1K Challenge is the exception: pass its single 10% phase and a $1,000 funded account activates with an 80% split.</p>
@@ -112,4 +112,4 @@ type: "post"
 <p>Usually one at a time. FTMO and FundingPips allow unlimited trials in a row, E8 caps you at 2 every 28 days, and BrightFunded allows a single free account per phone number. FundingPips and BrightFunded also require you to have no other active account with them.</p>
 
 <h3 class="wp-block-heading"><strong>Does Topstep have a free trial?</strong></h3>
-<p>Topstep's Help Center describes a free 150K Practice Account, but it's only available with an active Trading Combine subscription, so you pay for the Combine first. For Topstep's paid rules, see our <a href="/blog/topstep-review">Topstep review</a>.</p>
+<p>Topstep's Help Center describes a free 150K Practice Account, but it's only available with an active Trading Combine subscription, so you pay for the Combine first. For Topstep's paid rules, see our <a href="/blog/topstep-review">Topstep review</a>. If payout speed matters more than a free start, compare the <a href="/blog/prop-firms-with-weekly-payouts">prop firms with weekly payouts</a>.</p>

@@ -1,0 +1,397 @@
+{
+  "firmSlug": "fundingpips",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T08:21:08+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/fundingpips-2026-10-19.json",
+  "egress": "Box egress is a US IP. Prices were compared against region-independent first-party price data where the firm publishes it (named in method); codes seen only from the US IP are recorded as regional, never as universal deals.",
+  "method": "Help Center API body of Compare Account Models (article updated 2026-10-19T19:28:00Z, embedded price table) + headless Chrome render of the model articles, Get Started, Trading Conduct and Rewards articles + fundingpips.com homepage (US IP)",
+  "priceSource": "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models embedded price table",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "1-step-flex",
+      "prices": {
+        "5000": 59,
+        "10000": 99,
+        "25000": 210,
+        "50000": 322,
+        "100000": 566
+      }
+    },
+    {
+      "productSlug": "2-step-flex",
+      "prices": {
+        "5000": 32,
+        "10000": 59,
+        "25000": 159,
+        "50000": 269,
+        "100000": 555
+      }
+    },
+    {
+      "productSlug": "2-step-pro",
+      "prices": {
+        "2500": null,
+        "5000": 29,
+        "10000": 55,
+        "25000": 134,
+        "50000": 224,
+        "100000": 422,
+        "200000": 844
+      }
+    },
+    {
+      "productSlug": "2-step-standard",
+      "prices": {
+        "2500": null,
+        "5000": 36,
+        "10000": 66,
+        "25000": 177,
+        "50000": 299,
+        "100000": 544
+      }
+    },
+    {
+      "productSlug": "zero",
+      "prices": {
+        "5000": 60,
+        "10000": 88,
+        "25000": 188,
+        "50000": 244,
+        "100000": 444,
+        "200000": 888
+      }
+    }
+  ],
+  "priceQuotes": [
+    "'1step': {5:59,10:99,25:210,50:322,100:566,200:null}",
+    "'2std8': {5:36,10:66,25:177,50:299,100:544,200:null}",
+    "'2pro':  {5:29,10:55,25:134,50:224,100:422,200:844}",
+    "'2flex': {5:32,10:59,25:159,50:269,100:555,200:null}",
+    "'zero':  {5:60,10:88,25:188,50:244,100:444,200:888}"
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 20,
+    "foundVerbatimInLiveText": 16,
+    "notFoundVerbatim": 4,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
+  },
+  "changes": [
+    {
+      "field": "reward routes (product notes; firms.json rules.payoutFrequency summary/quote, rules.consistencyPct quote)",
+      "before": "Weekly 60%, Bi-Weekly 80%, Monthly 100%, or On Demand 90% (2 Step Standard); Monthly 100% alternative on 1 Step Flex and 2 Step Pro",
+      "after": "Weekly 60%, Bi-Weekly 80%, or On Demand 100% (2 Step Standard); On Demand 100% alternative on 1 Step Flex and 2 Step Pro; no Monthly route",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "quotes": [
+        "Flexible reward cycles: Weekly 60%, Bi-Weekly 80%, or On Demand 100%.",
+        "On Demand100% Split Request a Reward with a 100% split on demand on the Master Account, once the eligibility requirements below are met.",
+        "Eligibility Requirements A 35% consistency score must be achieved",
+        "80% Bi-Weekly or 100% On Demand reward: request a Reward every two weeks, or on demand once the eligibility requirements are met. (1 Step Flex)",
+        "rewards:ul(['Weekly 80%', 'On Demand 100% ' ...]) (2 Step Pro, Compare Account Models)"
+      ],
+      "storedFieldValuesChanged": "none (payoutFrequency values stay bi-weekly / weekly / null)"
+    },
+    {
+      "field": "firms.json regionalDiscountCode FP (20%, discountCodeRegion us-only-unconfirmed)",
+      "sourceUrl": "https://fundingpips.com/",
+      "quotes": [
+        "Use Code FP: 20% OFF New Users | 5% OFF Existing Users"
+      ],
+      "note": "Seen only from the US IP; not checkout-verified; deals.json not touched. The help-centre code HELLO stays as discountCode."
+    },
+    "2-step-flex: sourceCapturedAt 2026-10-19 -> 2026-10-20, reward-cycle note (Bi-Weekly 80%/95% or On Demand 100%, no Monthly)",
+    "1-step-flex refundable null -> false on all 5 tiers (Get Started / Reward Methods exclusion); refund notes with quotes on all 5 products"
+  ],
+  "briefAsks": {
+    "checkoutMethods": {
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+      "quote": "Payment Methods Credit / Debit Card Visa and Mastercard accepted. Card must be registered in your own name. ... Google & Apple Pay Digital wallet payments via mobile, smartwatch, or computer. ... Neteller & Skrill Select at checkout and you will be redirected to log in and authorize. ... Paysafe Card Prepaid voucher with a unique PIN. ... Cryptocurrency Always select the correct network. ... PayPal Select PayPal at checkout and you will be redirected to log in and authorize. ... Payment methods available may differ depending on your region or country. Fees may also vary depending on the payment method and your financial institution.",
+      "summary": "Visa/Mastercard, Google Pay, Apple Pay, Neteller, Skrill, Paysafecard, crypto, PayPal; availability varies by country. Not checkout-tested."
+    },
+    "twoStepStandard": {
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "quotes": [
+        "Phase 1 Achieve an 8% profit target during Phase 1. Complete a minimum of 3 trading days to pass. No minimum trading days when the 3% daily loss add-on is selected.",
+        "Phase 2 Achieve a 5% profit target during Phase 2.",
+        "Daily Loss Limit 3% or 5% (based on the configuration you purchased) of the higher value between the opening balance or opening equity for that day.",
+        "10% Profit Target: No Longer Offered, effective 24 July 2026 at 06:00 Server Time (UTC+3)."
+      ],
+      "summary": "Target 8% / 5%; daily loss 5% default or 3% configuration (stored 5); unchanged."
+    },
+    "zeroDailyLimit": {
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+      "quotes": [
+        "DAILY LOSS LIMIT 3% Max daily loss from the higher of opening balance or equity.",
+        "MAX TRAILING LOSS LIMIT 5% Trails the highest recorded equity. Locks at breakeven once 5% in profit."
+      ],
+      "summary": "3% daily (hard breach), 5% trailing max; unchanged."
+    },
+    "ea": {
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34505029138449-Trading-Conduct-and-Security-Standards",
+      "quotes": [
+        "Default rule (third-party EAs): permitted only when used strictly as a trade or risk manager. Any other use of a third-party EA will result in denial of the evaluation or reward and closure of the account.",
+        "Personal EA Exception: Full Automation with Proof of Ownership If the EA is your own, developed by you, full automation is permitted with proof of ownership.",
+        "1K Instant Account: third-party EAs and trade copiers are permitted, including for full automation.",
+        "Monthly Competition: all EAs are prohibited, including personal EAs with proof of ownership."
+      ],
+      "summary": "eaAllowed stays \"restricted\"."
+    },
+    "copyTrading": {
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34505029138449-Trading-Conduct-and-Security-Standards",
+      "quotes": [
+        "Permitted Personal Accounts: Copying trades between your own FundingPips accounts registered under the same individual. External Master: Using your FundingPips account as the master to copy trades to an external account (as slave). Prohibited Copying trades between FundingPips accounts owned by different users.",
+        "Copying trades into your FundingPips account from an external source, including signal providers or trade copier services used as the slave account, is prohibited."
+      ],
+      "summary": "copyTradingAllowed stays \"restricted\" (own accounts / outbound only)."
+    },
+    "scaling": {
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34447308895889",
+      "quotes": [
+        "How the Prime Account is reached By FundingPips invite only",
+        "3% Soft Daily Loss Limit 8% Max Loss Limit",
+        "80% Daily reward split"
+      ],
+      "homepageQuote": "Scaling Plan Scale PRIME Capital Trade your way from challenge to $2M PRIME capital, with daily rewards and investor capital access.",
+      "summary": "scalingPlan stays true; scaling is via the invite-only Prime Account (up to $2M per homepage)."
+    },
+    "payoutMethods": {
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Your-Rewards-Your-Way",
+      "quote": "Traditional Rewards: Receive your reward via Card, Crypto, Rise, or Bank Transfer.",
+      "summary": "unchanged (Card, Bank wire, Rise, Crypto); Tradin transfer and Buy a Challenge are extra options."
+    }
+  },
+  "observations": [
+    {
+      "item": "US-IP homepage price cards differ from the help-centre table for $5K (Standard \"Buy for $39\", Flex \"Buy for $35\", Pro \"Buy for $29\" vs table 36/32/29). Kept the help-centre table (global, updated 2026-10-19); homepage figures not adopted.",
+      "sourceUrl": "https://fundingpips.com/",
+      "quote": "Standard Biggest Daily Loss Target P1 8% | P2 5% Daily Loss 3% 5% Max Loss (Static) 10% Min Days 3 Days Split Up to 100% Buy for $39 FLEX Biggest Max Loss Target P1 10% | P2 8% Daily Loss 4% Max Loss (Static) 12% Min Days 1 Split Up to 100% Buy for $35 Pro Lowest Profit Target Target P1 6% | P2 6% Daily Loss 3% Max Loss (Static) 6% Min Days 0 Split Up to 100% Buy for $29"
+    }
+  ],
+  "notes": [
+    "All stored prices match the help-centre table.",
+    "FundingPips help-centre search returns 403 to plain requests; articles were rendered in headless Chrome.",
+    "sourceCapturedAt advanced to 2026-10-20 only for 1 Step Flex, 2 Step Pro and 2 Step Standard (reward-route notes changed); 2 Step Flex and Zero keep 2026-10-19 (no change)."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:25.891Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:31.699Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:31.712Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:31.804Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:31.826Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:31.841Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:31.915Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34505029138449-Trading-Conduct-and-Security-Standards",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:37.391Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:37.427Z"
+    },
+    {
+      "url": "https://fundingpips.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:37.763Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34447233911953",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:37.764Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Your-Rewards-Your-Way",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:37.888Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34447107645841",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:38.011Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34504137479441-News-Trading-and-Holding-Trades-Over-the-Weekend",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:43.984Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/34447308895889",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:44.044Z"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Types",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:12:44.099Z"
+    }
+  ],
+  "twoStepFlexRecapture": {
+    "requestedBy": "EN Writer via Karlis, 2026-10-20",
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "method": "Help Center API /api/v2/help_center/en-us/articles/47835196271249.json (curl, US IP)",
+    "articleUpdatedAt": "2026-10-19T19:27:35Z",
+    "quotes": [
+      "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split).",
+      "There is no Consistency Score on either Bi-Weekly split.",
+      "Bi-Weekly, 80% 80% Every 14 calendar days, no other requirement.",
+      "Bi-Weekly, 95% 95% Every 14 calendar days, plus 3 profitable days per cycle.",
+      "Request a Reward with a 100% split on demand on the Master Account, once the eligibility requirements below are met.",
+      "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit.",
+      "At least 7 profitable days to qualify for a reward, each with 0.5% or more profit of the starting Master Account Size.",
+      "2-phase evaluation : Phase 1 (10%) + Phase 2 (8%) with an 80% split with 1 minimum trading day, or a 95% split with 3 profitable days (≥ 0.5% each)."
+    ],
+    "monthlyRoute": "The word 'Monthly' does not appear on the page.",
+    "verdict": "EN Writer's description confirmed. Stored values unchanged (bi-weekly, 14 days, split null, 10%/8%); sourceCapturedAt 2026-10-19 -> 2026-10-20 with a reward-cycle note.",
+    "watchEntriesRechecked": {
+      "fundingpips-reward-cycles-minimum-days-2026-08-26": {
+        "lastCheckedAt": "2026-10-20",
+        "oneStepFlexQuote": "80% Bi-Weekly or 100% On Demand reward : request a Reward every two weeks, or on demand once the eligibility requirements are met.",
+        "note": "Summary rewritten: 1 Step Flex no longer shows a 95% route."
+      },
+      "fundingpips-standard-legacy-reset-split": {
+        "lastCheckedAt": "2026-10-20",
+        "quotes": [
+          "Achieve an 8% profit target during Phase 1.",
+          "Existing 2 Step Standard accounts with a 10% profit target will reset as 2 Step Flex with 85% profit split"
+        ],
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard"
+      }
+    }
+  },
+  "refundTerms": {
+    "requestedBy": "Web Designer & Developer via Karlis, 2026-10-20",
+    "method": "Help Center API (curl) for help articles; headless Chrome for fundingpips.com/terms-and-conditions (curl returns 429)",
+    "sources": [
+      {
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+        "articleUpdatedAt": "2026-09-24T09:41:29Z",
+        "quotes": [
+          "Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.",
+          "Will my registration fee be refunded? Yes, on the 2 Step Standard models. When you reach your 4th reward on the Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero."
+        ]
+      },
+      {
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods",
+        "articleUpdatedAt": "2026-09-28T13:01:01Z",
+        "quotes": [
+          "When you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee you paid for the challenge is refunded. The 4th-reward refund does not apply on 1 Step Flex , 2 Step Pro , 2 Step Flex , or FundingPips Zero .",
+          "These models have always been excluded from the registration fee refund."
+        ],
+        "oddity": "Section subtitle reads \"A milestone perk on the 1 Step and 2 Step Standard models\" while the body excludes 1 Step Flex; the legacy '1 Step Model' article (48982278587665) and Legacy Rules (51307058233361) say nothing about refunds."
+      },
+      {
+        "sourceUrl": "https://fundingpips.com/terms-and-conditions",
+        "effective": "May 15, 2026",
+        "quotes": [
+          "ALL PAYMENTS ARE FINAL AND FOR EVALUATION PURPOSES ONLY.",
+          "The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.",
+          "These fees are non-refundable once paid, except where required by applicable law"
+        ],
+        "note": "The Terms do not mention the 4th-reward refund."
+      }
+    ],
+    "productPages": "The five product help articles (34501697434385, 34501809112081, 47835196271249, 34502027344017, 34502157694865; all updated 2026-10-19) contain no refund wording.",
+    "verdicts": {
+      "1-step-flex": "false (explicitly excluded); was null",
+      "2-step-standard": "true = refunded at 4th Master reward per help centre; conflicts with Terms; $2.5K tier null",
+      "2-step-flex": "false (unchanged)",
+      "2-step-pro": "false (unchanged; $2.5K tier null)",
+      "zero": "false (unchanged)"
+    },
+    "firmsJson": "firms.json has no refund field for any firm (schema has refundable only per challenge tier), so nothing was changed there."
+  },
+  "rewardMethods": {
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods",
+    "capturedAt": "2026-10-20",
+    "capturedAtTimestamp": "2026-10-20T12:02:26+03:00",
+    "method": "Zendesk Help Center API body (api/v2/help_center/en-us/articles/34504564970385.json) + headless Chrome render of the public article (US IP); every quote below found verbatim (whitespace-normalised) in both. Plain curl of the public URL returned HTTP 403 (bot check); not a geo block.",
+    "articleUpdatedAt": "2026-09-28T13:01:01Z",
+    "articleUpdatedAtNote": "Help Center API updated_at/edited_at; the rendered page shows no visible last-updated date. Unchanged since before the 2026-09-30 page constant capture.",
+    "egress": "US IP. Page wording has no region gating for methods; Pay to Card and Bank Transfer carry an explicit supported-country list (below), not IP-dependent copy.",
+    "methods": [
+      "Card",
+      "Crypto",
+      "Rise",
+      "Bank Transfer"
+    ],
+    "alternativeAllocations": [
+      "Buy a Challenge",
+      "Tradin Transfer (+30% credit)"
+    ],
+    "quotes": [
+      "Traditional Rewards: Receive your reward via Card, Crypto, Rise, or Bank Transfer.",
+      "Visa / Mastercard · Standard or Pay to Card · selected regions",
+      "USDT/USDC · ERC20",
+      "Crypto rewards are only sent in USDT/USDC on the ERC20 network.",
+      "Rewards are subject to service fees, exchange rates, and network transaction fees, all deducted during processing. The final amount received may be less than the initial value.",
+      "Rise is a financial services provider specializing in managing rewards through cryptocurrency or bank transfer. A minimum reward amount of $500 is required.",
+      "If Rise is not supported in your country, your reward will automatically default to Crypto.",
+      "The email address used with Rise must match your FundingPips account email.",
+      "Request your reward through a direct Bank Transfer to your local account. A minimum reward amount of $500 is required.",
+      "Bank transfers may not be available in all countries or regions.",
+      "The minimum reward request is 1% of your Master Account Size including FundingPips' split. This 1% minimum applies to Card, Crypto, and Tradin Transfer. Rise and Bank Transfer both require a minimum of $500.",
+      "Requests are processed within 1-3 working days (excluding weekends).",
+      "Allow an additional 1-2 working days for funds to reflect in your wallet or bank.",
+      "Wait at least 15 minutes after closing your last trade before requesting your reward.",
+      "Rewards can only be sent to accounts (e.g., card, wallet) registered in your own name."
+    ],
+    "supportedRegionsPayToCardAndBank": [
+      "BE",
+      "FR",
+      "DE",
+      "IT",
+      "NL",
+      "ES",
+      "BR",
+      "CO",
+      "MX",
+      "NG",
+      "ZA",
+      "UK",
+      "TR",
+      "ID"
+    ],
+    "secondarySource": {
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup",
+      "capturedAt": "2026-10-20",
+      "articleUpdatedAt": "2026-08-28T10:06:40Z",
+      "note": "Fetched via Help Center API; still reachable, KYC/onboarding content only, no reward-method changes."
+    },
+    "changesVsRepo": [
+      "russian-market-evidence.json payoutEvidence[fundingpips].sourceCapturedAt 2026-08-27 -> 2026-10-20 (methods unchanged: Card, Crypto, Rise, Bank Transfer).",
+      "Added verified crypto network (USDT/USDC ERC20), crypto fee wording, $500 Rise/Bank minimums and the Pay to Card/Bank region list to payoutEvidence.",
+      "firms.json payoutMethods [Card, Bank wire, Rise, Crypto] already matches; no change."
+    ]
+  }
+}

@@ -48,8 +48,12 @@ try {
 
   const table = '<table style="font-size:0.8rem"><caption>Verified fees</caption><tr><th>Fee</th><td>$123.45 &amp; EUR</td></tr></table>'
   const tables = html => [...html.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/gi)].map(match => match[0])
+  // Phase 0 (article-format-spec C4): inline styles are stripped so the theme
+  // controls tables; every cell, caption and figure must survive unchanged.
+  const tableText = html => tables(html).map(markup => markup.replace(/<[^>]+>/g, '|').replace(/\|+/g, '|'))
   const enhancedTable = prepareArticleContent(`<h2>Costs &amp; fees</h2>${table}${table}`)
-  assert.deepEqual(tables(enhancedTable.html), [table, table], 'table cells, captions, figures and source markup remain byte-identical')
+  assert.deepEqual(tableText(enhancedTable.html), tableText(`${table}${table}`), 'table cells, captions and figures remain identical')
+  assert(!tables(enhancedTable.html).some(markup => /\sstyle=/i.test(markup)), 'inline table styles are stripped')
   assert.equal((enhancedTable.html.match(/class="article-table-scroll" tabindex="0" role="region"/g) ?? []).length, 2)
   assert(enhancedTable.html.includes('Table 2: Costs &amp; fees. Scroll horizontally to see all columns.'))
 
@@ -58,7 +62,8 @@ try {
   let tableCount = 0
   for (const post of posts) {
     const result = prepareArticleContent(post.content)
-    assert.deepEqual(tables(result.html), tables(post.content), `${post.slug}: all original table content is preserved`)
+    assert.deepEqual(tableText(result.html), tableText(post.content), `${post.slug}: all original table content is preserved`)
+    assert(!tables(result.html).some(markup => /<(?:table|thead|tbody|tr|th|td|caption)\b[^>]*\sstyle=/i.test(markup)), `${post.slug}: no inline table styles reach the page`)
     const headingTags = [...result.html.matchAll(/<h2\b([^>]*)>/gi)]
     const ids = headingTags.flatMap(match => [...match[1].matchAll(/\sid="([^"]+)"/g)].map(id => id[1]))
     assert.equal(new Set(ids).size, ids.length, `${post.slug}: no duplicate heading anchors`)
@@ -85,10 +90,27 @@ try {
     assert.equal((html.match(/class="article-table-scroll"/g) ?? []).length, tables(post.content).length)
     if (slug === 'fundednext-review') assert(html.includes('/go/fundednext?from=review-cta') && html.includes('sponsored nofollow noopener'), 'partner attribution and disclosure remain in the actual review')
   }
-  const staleReviewHtml = renderToStaticMarkup(await BlogPage({ params: Promise.resolve({ slug: 'ofp-funding-review' }) }))
+  // Freshness fixtures run under a clock derived from each firm's own captures, so a
+  // recapture (OFP was recaptured 2026-10-19) or the passage of time cannot flip them.
+  const { getChallengesByFirm } = require(path.join(root, 'lib/firms.ts'))
+  const RealDate = Date
+  const renderAt = async (slug, clock) => {
+    globalThis.Date = class extends RealDate {
+      constructor(...args) { super(...(args.length ? args : [clock])) }
+      static now() { return new RealDate(clock).getTime() }
+    }
+    try { return renderToStaticMarkup(await BlogPage({ params: Promise.resolve({ slug }) })) } finally { globalThis.Date = RealDate }
+  }
+  const newestCapture = firm => getChallengesByFirm(firm).map(product => product.sourceCapturedAt).sort().at(-1)
+  const oldestCapture = firm => getChallengesByFirm(firm).map(product => product.sourceCapturedAt).sort()[0]
+  const dayAfter = (date, days) => new RealDate(new RealDate(`${date}T12:00:00Z`).getTime() + days * 86_400_000).toISOString()
+  const staleReviewHtml = await renderAt('ofp-funding-review', dayAfter(oldestCapture('ofp-funding'), 31))
   assert(staleReviewHtml.includes('data-review-source-status="recapture-required"'), 'stale firm review shows a source recheck warning')
-  const freshReviewHtml = renderToStaticMarkup(await BlogPage({ params: Promise.resolve({ slug: 'fundednext-review' }) }))
+  const freshReviewHtml = await renderAt('fundednext-review', dayAfter(newestCapture('fundednext'), 0))
   assert(!freshReviewHtml.includes('data-review-source-status="recapture-required"'), 'fresh partner review does not show a stale warning')
+  const ofpSpanDays = (new RealDate(newestCapture('ofp-funding')) - new RealDate(oldestCapture('ofp-funding'))) / 86_400_000
+  const freshOfpHtml = ofpSpanDays <= 30 && await renderAt('ofp-funding-review', dayAfter(newestCapture('ofp-funding'), 0))
+  if (freshOfpHtml) assert(!freshOfpHtml.includes('data-review-source-status="recapture-required"'), 'the same review drops the warning once every product is recaptured')
   const css = fs.readFileSync(path.join(root, 'app/light-platform.css'), 'utf8')
   assert(css.includes('font-size: 1.125rem') && css.includes('html .post-prose > :is(p, ul, ol, h2, h3, h4, blockquote) { max-width: 68ch; }'))
   assert(css.includes('.article-table-scroll { max-width: 100%; overflow-x: auto;'))

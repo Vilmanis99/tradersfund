@@ -1,0 +1,139 @@
+{
+  "_note": "Source: /workspace/tradersfundhub/research/closed-firms-evidence.md (captured 2026-10-20). Only firms that file recommends are listed. status, dateLabel, quote and each reported[] item carry sourceType: 'primary' (firm, regulator or court) or 'secondary' (trade press only; must set reportedBy). Secondary items render as 'Reported by <source>' with a link, never as fact. Keep 'published' false until editorial sign-off; while false the page is noindex and left out of the sitemap.",
+  "published": true,
+  "capturedAt": "2026-10-20",
+  "firms": [
+    {
+      "slug": "true-forex-funds",
+      "name": "True Forex Funds",
+      "section": "closed",
+      "date": "2024-05-13",
+      "status": {
+        "text": "Closed (insolvency)",
+        "sourceType": "primary"
+      },
+      "dateLabel": {
+        "text": "Notice live by May 13, 2024 (the notice itself is undated)",
+        "sourceType": "primary"
+      },
+      "quote": {
+        "text": "We regret to inform you that True Forex Funds has ceased all operations and will be closing permanently due to financial insolvency.",
+        "sourceType": "primary"
+      },
+      "reported": [],
+      "note": "The firm's own site still showed the notice on October 20, 2026.",
+      "primarySource": "https://trueforexfunds.com/",
+      "archivedSource": "https://web.archive.org/web/20240513160250/https://trueforexfunds.com/"
+    },
+    {
+      "slug": "funded-engineer",
+      "name": "Funded Engineer",
+      "section": "closed",
+      "date": "2024-07-19",
+      "status": {
+        "text": "Closed (said it would file for bankruptcy)",
+        "sourceType": "primary"
+      },
+      "dateLabel": {
+        "text": "Notice live by July 19, 2024 (the notice itself is undated)",
+        "sourceType": "primary"
+      },
+      "quote": {
+        "text": "It is with deep regret and a heavy heart that we announce the permanent closure of Funded Engineer.",
+        "sourceType": "primary"
+      },
+      "reported": [],
+      "note": "The live domain is now parked; the archived copy shows the notice. We found no bankruptcy filing.",
+      "primarySource": "https://www.fundedengineer.com/",
+      "archivedSource": "https://web.archive.org/web/20240719090227/https://www.fundedengineer.com/"
+    },
+    {
+      "slug": "surgetrader",
+      "name": "SurgeTrader",
+      "section": "closed",
+      "date": "2024-05-24",
+      "status": {
+        "text": "Closed",
+        "sourceType": "secondary",
+        "reportedBy": {
+          "name": "FX News Group",
+          "url": "https://fxnewsgroup.com/forex-news/retail-forex/exclusive-prop-firm-surgetrader-closes/"
+        }
+      },
+      "dateLabel": {
+        "text": "May 24, 2024",
+        "sourceType": "secondary",
+        "reportedBy": {
+          "name": "FX News Group",
+          "url": "https://fxnewsgroup.com/forex-news/retail-forex/exclusive-prop-firm-surgetrader-closes/"
+        }
+      },
+      "quote": {
+        "text": "It is with deep regret that we announce that as of today, Friday, May 24, 2024, SurgeTrader has closed and ceased all operations.",
+        "sourceType": "secondary",
+        "reportedBy": {
+          "name": "FX News Group",
+          "url": "https://fxnewsgroup.com/forex-news/retail-forex/exclusive-prop-firm-surgetrader-closes/"
+        }
+      },
+      "reported": [],
+      "note": "No archived copy of SurgeTrader's own notice exists. SurgeTrader's own X post that day is a bare link, so the status, date and wording above rest on FX News Group's report.",
+      "primarySource": "https://x.com/SurgeTraderPro/status/1794124368248758608",
+      "archivedSource": "https://web.archive.org/web/20260610030832/https://fxnewsgroup.com/forex-news/retail-forex/exclusive-prop-firm-surgetrader-closes/"
+    },
+    {
+      "slug": "myfundedfx-seacrestfunded",
+      "name": "MyFundedFX",
+      "section": "closed",
+      "date": "2026-02-04",
+      "status": {
+        "text": "Prop trading closed (announced February 4, 2026)",
+        "sourceType": "primary"
+      },
+      "dateLabel": {
+        "text": "Closure announced February 4, 2026",
+        "sourceType": "primary"
+      },
+      "quote": {
+        "text": "Only the Prop arm of the operations is closing, the CFD Brokerage remains open.",
+        "sourceType": "primary"
+      },
+      "reported": [
+        {
+          "text": "Rebranded from MyFundedFX to SeacrestFunded around February 11, 2025.",
+          "sourceType": "secondary",
+          "reportedBy": {
+            "name": "FX News Group",
+            "url": "https://fxnewsgroup.com/forex-news/retail-forex/prop-firm-myfundedfx-rebrands-as-seacrestfunded-restricts-us-customers/"
+          }
+        }
+      ],
+      "note": "myfundedfx.com now redirects to seacrestmarkets.io/closed, which says Seacrest Markets is no longer operating (undated). MyFundedFutures is a separate brand and is still operating.",
+      "primarySource": "https://x.com/seacrestmarkets/status/2019053758877942119",
+      "archivedSource": "https://web.archive.org/web/20260517232812/https://seacrestmarkets.io/closed"
+    },
+    {
+      "slug": "the-funded-trader",
+      "name": "The Funded Trader",
+      "section": "offline",
+      "date": "2026-10-14",
+      "status": {
+        "text": "Offline since September–October 2026, no official statement",
+        "sourceType": "primary"
+      },
+      "dateLabel": {
+        "text": "Sites returning HTTP 402 since at least October 14, 2026",
+        "sourceType": "primary"
+      },
+      "quote": {
+        "text": "Payment required DEPLOYMENT_DISABLED",
+        "sourceType": "primary"
+      },
+      "quoteLabel": "What the official sites return",
+      "reported": [],
+      "note": "That quote is the error both official domains returned on October 20, 2026. The firm has not said it is closed; the last archived copy (June 2026) shows it still selling challenges. We delisted it on October 14, 2026.",
+      "primarySource": "https://www.thefundedtraderprogram.com/",
+      "archivedSource": "https://web.archive.org/web/20260615114059/https://www.thefundedtraderprogram.com/"
+    }
+  ]
+}

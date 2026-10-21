@@ -1,0 +1,44 @@
+{
+  "_note": "RU text for /ru/zakrytye-prop-firmy, keyed by the slug in closed-firms.json. Translation only: every string renders a claim from closed-firms.json and keeps that claim's sourceType and reportedBy (set there, never here). Source: /workspace/tradersfundhub/research/closed-firms-evidence.md (captured 2026-10-20). quote: null keeps the original wording only (e.g. a server error string). lib/closedFirms.ts rejects unknown slugs and mismatched reported[] counts.",
+  "capturedAt": "2026-10-20",
+  "firms": {
+    "true-forex-funds": {
+      "status": "Закрыта (неплатёжеспособность)",
+      "dateLabel": "Уведомление было на сайте не позднее 13 мая 2024 г. (само уведомление без даты)",
+      "quote": "С сожалением сообщаем, что True Forex Funds прекратила всю деятельность и закрывается навсегда из-за финансовой неплатёжеспособности.",
+      "reported": [],
+      "note": "Собственный сайт фирмы всё ещё показывал это уведомление 20 октября 2026 г."
+    },
+    "funded-engineer": {
+      "status": "Закрыта (фирма заявила, что подаст на банкротство)",
+      "dateLabel": "Уведомление было на сайте не позднее 19 июля 2024 г. (само уведомление без даты)",
+      "quote": "С глубоким сожалением и тяжёлым сердцем объявляем об окончательном закрытии Funded Engineer.",
+      "reported": [],
+      "note": "Сейчас домен припаркован; уведомление видно в архивной копии. Заявления о банкротстве мы не нашли."
+    },
+    "surgetrader": {
+      "status": "Закрыта",
+      "dateLabel": "24 мая 2024 г.",
+      "quote": "С глубоким сожалением сообщаем, что сегодня, в пятницу, 24 мая 2024 г., SurgeTrader закрылась и прекратила всю деятельность.",
+      "reported": [],
+      "note": "Архивной копии собственного уведомления SurgeTrader нет. Пост SurgeTrader в X в тот день содержит только ссылку, поэтому статус, дата и формулировка выше опираются на сообщение FX News Group."
+    },
+    "myfundedfx-seacrestfunded": {
+      "status": "Проп-трейдинг закрыт (объявлено 4 февраля 2026 г.)",
+      "dateLabel": "О закрытии объявлено 4 февраля 2026 г.",
+      "quote": "Закрывается только проп-направление, CFD-брокер продолжает работу.",
+      "reported": [
+        "Сменила название с MyFundedFX на SeacrestFunded примерно 11 февраля 2025 г."
+      ],
+      "note": "Сейчас myfundedfx.com перенаправляет на seacrestmarkets.io/closed, где сказано, что Seacrest Markets больше не работает (страница без даты). MyFundedFutures — отдельный бренд, он продолжает работу."
+    },
+    "the-funded-trader": {
+      "status": "Не работает с сентября–октября 2026 г., официального заявления нет",
+      "dateLabel": "Сайты отвечают ошибкой HTTP 402 как минимум с 14 октября 2026 г.",
+      "quote": null,
+      "quoteLabel": "Что отвечают официальные сайты",
+      "reported": [],
+      "note": "Это ошибка, которую оба официальных домена вернули 20 октября 2026 г. Фирма не заявляла о закрытии; последняя архивная копия (июнь 2026 г.) показывает, что она ещё продавала челленджи. Мы убрали её из каталога 14 октября 2026 г."
+    }
+  }
+}

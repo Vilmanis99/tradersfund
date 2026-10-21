@@ -6112,3 +6112,33 @@ a.bento-tile:hover,
 .tf-crumbs [aria-current='page'] { color: var(--text); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: min(60ch, 100%); }
 .tf-crumbs__sep { flex: none; opacity: 0.6; }
 @media (max-width: 640px) { .tf-crumbs { padding: 0.625rem 1rem; font-size: 0.78rem; } }
+
+/* ── Trust pages (/how-we-make-money, /corrections, /about) ── */
+.tf-trust { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+.tf-trust h2 { font-size: clamp(1.25rem, 2.4vw, 1.6rem); font-weight: 800; color: var(--text); margin: 2.25rem 0 0.75rem; }
+.tf-trust p, .tf-trust li { color: var(--text); line-height: 1.7; }
+.tf-trust ul { padding-left: 1.25rem; }
+.tf-trust a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.tf-trust a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.tf-trust__table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem; }
+.tf-trust__table th, .tf-trust__table td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+.tf-trust__table th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+.tf-trust__facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin: 1.25rem 0; padding: 0; list-style: none; }
+.tf-trust__facts li { border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1rem; background: var(--bg2); }
+.tf-trust__facts strong { display: block; font-size: 1.35rem; color: var(--text); }
+.tf-trust__facts span { font-size: 0.85rem; color: var(--muted); }
+.tf-correction { border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; margin: 1rem 0; background: var(--bg2); }
+.tf-correction h3 { margin: 0 0 0.5rem; font-size: 1.05rem; color: var(--text); }
+.tf-correction dl { display: grid; grid-template-columns: 9rem 1fr; gap: 0.4rem 1rem; margin: 0; }
+.tf-correction dt { font-weight: 700; color: var(--muted); font-size: 0.85rem; }
+.tf-correction dd { margin: 0; color: var(--text); line-height: 1.6; overflow-wrap: anywhere; }
+.tf-expert { display: flex; gap: 1rem; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; margin: 2rem auto; max-width: 720px; }
+.tf-expert__photo { border-radius: 50%; flex: none; }
+.tf-expert__name { margin: 0; font-size: 1.2rem; }
+.tf-expert__role { color: var(--muted); margin: 0.2rem 0 0.75rem; }
+@media (max-width: 640px) {
+  .tf-correction dl { grid-template-columns: 1fr; }
+  .tf-correction dt { margin-top: 0.4rem; }
+  .tf-trust__table { font-size: 0.88rem; }
+  .tf-trust__table th, .tf-trust__table td { padding: 0.5rem 0.4rem; }
+}

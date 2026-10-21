@@ -33,6 +33,21 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 55,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 55,
+        "scope": "evaluation",
+        "appliesTo": "Trading Combine",
+        "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
+      },
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "XFA Consistency payout path",
+        "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -47,7 +62,7 @@
     "activationFeeUsd": 149,
     "assetClass": "futures",
     "sourceUrl": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
-    "sourceCapturedAt": "2026-10-06",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "PRICING: https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions. Base USD monthly subscriptions: Standard 49/99/199 and No Activation Fee 95/149/229 at 50K/100K/150K. Standard activation 149 once per earned XFA; other path zero. Paths cannot be changed after purchase. Taxes may be added. https://www.topstep.com/topstep-prop confirms rebilling until passing or cancellation.",
       "RISK: https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit. Tier maxLossUsd is 2000/3000/4500, not a uniform percentage: maxLossPct stays null. End-of-day trailing, locks at starting balance, monitored intraday including unrealised P&L; touching the limit is a breach. XFA starts at zero and first payout sets MLL to zero. Dollar tier limits allow the shared true-cost helper to compute a tier-specific risk multiple.",
@@ -65,7 +80,7 @@
       "BACK2FUNDED: https://help.topstep.com/en/articles/12060405-back2funded-rules-guidelines-and-how-it-works. 599/699/829 USD base reactivation fees, up to two per eligible XFA before first payout; 50 USD DLL discount conditional. The dedicated article explicitly dates the 7-to-30-calendar-day window change to 2026-05-29, corroborated by https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions. Older 7-day wording is superseded for this specified programme, not an unresolved equal-weight rule.",
       "HISTORICAL STATISTICS: https://www.topstep.com/topstep-prop. Firm-published 2025 results still show 16.8% of Combines completed, 51.8% of participants advanced at least once, 33.3% of funded participants received payout, 0.71% of XFA traders called to Live. Historical cohorts, not our forecasts or independently audited outcomes.",
       "Historical September 8 observation, not refreshed by this core product check: ACCESS: https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep. Both citizenship and permanent residency matter. Russia is listed as ineligible; eligible-country permanent residency plus local bank statement can be submitted for Trust-team review by citizens of ineligible countries, not automatic approval. Residence or trading in an ineligible country remains disallowed. This capture does not refresh regional access datasets or Trustpilot.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/topstep-2026-10-06.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/topstep-2026-10-06.json; 2026-10-20 recheck: content/data/challenges/_captures/topstep-2026-10-20.json"
     ]
   },
   {
@@ -102,6 +117,21 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 55,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 55,
+        "scope": "evaluation",
+        "appliesTo": "Trading Combine",
+        "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
+      },
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "XFA Consistency payout path",
+        "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -116,7 +146,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
-    "sourceCapturedAt": "2026-10-06",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "PRICING: https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions. Base USD monthly subscriptions: Standard 49/99/199 and No Activation Fee 95/149/229 at 50K/100K/150K. Standard activation 149 once per earned XFA; other path zero. Paths cannot be changed after purchase. Taxes may be added. https://www.topstep.com/topstep-prop confirms rebilling until passing or cancellation.",
       "RISK: https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit. Tier maxLossUsd is 2000/3000/4500, not a uniform percentage: maxLossPct stays null. End-of-day trailing, locks at starting balance, monitored intraday including unrealised P&L; touching the limit is a breach. XFA starts at zero and first payout sets MLL to zero. Dollar tier limits allow the shared true-cost helper to compute a tier-specific risk multiple.",
@@ -134,7 +164,7 @@
       "BACK2FUNDED: https://help.topstep.com/en/articles/12060405-back2funded-rules-guidelines-and-how-it-works. 599/699/829 USD base reactivation fees, up to two per eligible XFA before first payout; 50 USD DLL discount conditional. The dedicated article explicitly dates the 7-to-30-calendar-day window change to 2026-05-29, corroborated by https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions. Older 7-day wording is superseded for this specified programme, not an unresolved equal-weight rule.",
       "HISTORICAL STATISTICS: https://www.topstep.com/topstep-prop. Firm-published 2025 results still show 16.8% of Combines completed, 51.8% of participants advanced at least once, 33.3% of funded participants received payout, 0.71% of XFA traders called to Live. Historical cohorts, not our forecasts or independently audited outcomes.",
       "Historical September 8 observation, not refreshed by this core product check: ACCESS: https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep. Both citizenship and permanent residency matter. Russia is listed as ineligible; eligible-country permanent residency plus local bank statement can be submitted for Trust-team review by citizens of ineligible countries, not automatic approval. Residence or trading in an ineligible country remains disallowed. This capture does not refresh regional access datasets or Trustpilot.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/topstep-2026-10-06.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/topstep-2026-10-06.json; 2026-10-20 recheck: content/data/challenges/_captures/topstep-2026-10-20.json"
     ]
   }
 ]

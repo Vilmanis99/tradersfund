@@ -1,0 +1,28 @@
+{
+  "firmSlug": "a-lab",
+  "captureType": "local-firm-recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T12:00:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousEvidence": "content/data/russian-market-evidence.json localFirmSignals/affiliatePrograms 'А-Лаб Групп' (sourceCapturedAt 2026-10-01)",
+  "egress": "Box egress is a US IP (ipinfo country US, checked 2026-10-20). Fetched the global Russian-language pages (no /us/ or regional variant exists on these sites); no geo-redirect observed.",
+  "method": "curl of live HTML/PDF with a desktop Chrome user agent, scripts/styles stripped with BeautifulSoup, PDFs via pdftotext -layout; quotes copied verbatim and machine-checked against the saved text. Raw snapshots: /workspace/tradersfundhub/evidence/new-firms-2026-10-20/raw/ (box only).",
+  "verdict": {
+    "claimsUnchanged": true,
+    "firmsJson": "not proposed: contract-based MOEX intraday prop with no published fee, split or loss limits"
+  },
+  "facts": {
+    "headline": "1 триллион+ Оборот компании за квартал 800 000+ Количество сделок за месяц 12 563 379 Р Рекорд трейдера за одну сессию 500+ Трейдеров в команде",
+    "market": "Мы работаем на фондовом, срочном и валютном рынках Московской биржи.",
+    "rub": "Все коммуникации проходят на русском языке. График работы соответствует графику Московской биржи. Все расчеты безналичные в российском рубле.",
+    "contracts": "Надежность: работаем с 2008 года и заключаем договоры",
+    "legal": "ООО А-Лаб Групп (Российская Федерация, 350002, г. Краснодар, Северная 476)",
+    "affiliate": "No 'партн…' or 'реферал' text anywhere on the homepage on 2026-10-20: no content-affiliate programme (unchanged)."
+  },
+  "sourceUrls": [
+    "https://www.a-lab.name/"
+  ],
+  "changesVs20261001": [
+    "None: 1 trillion+ quarterly turnover, 800 000+ monthly trades, 12 563 379 ₽ single-session record, 500+ traders, MOEX stock/derivatives/FX markets, RUB settlement and Russian-language communication are all still published."
+  ]
+}

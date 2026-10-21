@@ -1,0 +1,50 @@
+{
+  "route": "/ru/obzor-fundednext",
+  "type": "review",
+  "firm": "FundedNext",
+  "dataAsOf": "2026-10-19",
+  "sources": [
+    "content/data/firms.json#FundedNext (russiaStatus from Tracker 41f3c05)",
+    "content/data/challenges/fundednext.json (sourceCapturedAt 2026-10-19)"
+  ],
+  "verdict": "FundedNext продаёт четыре модели Stellar: 2-Step, 1-Step, Lite и Instant без оценки; во всех оценках доля 80%, лимит убытка статичный. За счёт 100K — от $399,99 (Lite) до $569,99 (1-Step), взнос за оценки возвратный, за Instant — нет (по данным на 19.10.2026).",
+  "best": [
+    "вам нужна ранняя первая выплата: в Stellar 1-Step первый запрос — через 5 дней, дальше еженедельно",
+    "вы держите сделки через ночь и выходные: FundedNext это разрешает во всех моделях Stellar",
+    "вы торгуете на MT4, MT5, cTrader или Match-Trader: FundedNext указывает все четыре платформы"
+  ],
+  "avoid": [
+    "вы берёте выплату по запросу и делаете прибыль в один-два дня: для On-Demand в 2-Step и Lite действует правило лучшего дня 40%",
+    "вы хотите Instant без риска потерять взнос: Stellar Instant невозвратный, доля 70%, просадка 6% трейлинговая",
+    "вы планируете счёт больше $300 000: это максимальная аллокация FundedNext в нашей базе"
+  ],
+  "russiaAccess": {
+    "statusFrom": "russiaStatus",
+    "firm": "FundedNext",
+    "alternatives": [
+      "BrightFunded"
+    ],
+    "byStatus": {
+      "available": {
+        "list": "best",
+        "text": "вы резидент РФ: статус доступа {firm} — «{badge}» (по нашей последней проверке); страну, KYC и способ оплаты всё равно сверьте на официальном сайте до покупки"
+      },
+      "restricted": {
+        "list": "avoid",
+        "text": "вы резидент РФ: статус {firm} — «{badge}», регистрация и выплата под риском отказа.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+      },
+      "unclear": {
+        "list": "avoid",
+        "text": "вы резидент РФ и не готовы рисковать взносом: статус {firm} — «{badge}», официальные источники не дают однозначного ответа.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+      },
+      "unverified": {
+        "list": "avoid",
+        "text": "вы резидент РФ и хотите подтверждённый доступ: статус {firm} — «{badge}»; запросите у оператора письменное подтверждение до оплаты",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+      }
+    }
+  },
+  "firmInFirmsJson": true
+}

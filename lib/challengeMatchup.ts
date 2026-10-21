@@ -22,6 +22,7 @@
  * different billing model) the "cheaper" call is withheld with a reason.
  */
 
+import { possessive } from '@/lib/possessive'
 import {
   challengeCurrency,
   challengeTierEconomics,
@@ -34,7 +35,7 @@ import {
   type RuleAvailability,
 } from './firms'
 import { getChallengeWatchEntries, type ChallengeWatchEntry } from './challengeWatch'
-import { minimumTradingDaysLabel, maximumTradingDaysLabel, consistencyRuleLabel } from './challengeRuleLabels'
+import { minimumTradingDaysLabel, maximumTradingDaysLabel, consistencyRuleLabel, firstPayoutDaysLabel } from './challengeRuleLabels'
 
 export type MatchupSide = 'a' | 'b'
 
@@ -386,7 +387,7 @@ const RULE_DEFS: RuleDef[] = [
   { label: 'Min trading days', get: c => minimumTradingDaysLabel(c.minTradingDays) },
   { label: 'Max trading days', get: c => maximumTradingDaysLabel(c) },
   { label: 'Consistency rule', get: c => consistencyRuleLabel(c) },
-  { label: 'First payout after', get: c => (c.payoutFirstDays == null ? 'Not published' : `${c.payoutFirstDays} days`) },
+  { label: 'First payout after', get: c => firstPayoutDaysLabel(c) },
   { label: 'Payout frequency', get: c => formatFrequency(c.payoutFrequency) },
   { label: 'News trading', get: c => formatRule(c.rules.news) },
   { label: 'Weekend holding', get: c => formatRule(c.rules.weekend) },
@@ -684,7 +685,7 @@ export function describeMatchup(matchup: ChallengeMatchup): string[] {
       .map(g => `${g.display.toLowerCase()} on ${g.products.join(' and ')}`)
       .join(', versus ')
     paragraphs.push(
-      `${side.name}'s own products disagree on ${matchup.intraFirmSplits.length} `
+      `${possessive(side.name)} own products disagree on ${matchup.intraFirmSplits.length} `
       + `${matchup.intraFirmSplits.length === 1 ? 'term' : 'terms'}. On ${row.label.toLowerCase()} it is ${detail}. `
       + `Which product you buy decides that rule, not which firm you sign with — a firm-level table cannot show this.`,
     )

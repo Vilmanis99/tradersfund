@@ -123,7 +123,7 @@ const teamTradersText = teamTraders.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' '
 assert(teamTraders.includes('class="ru-review-article"') && teamTraders.includes('data-russian-teamtraders-article="dated-local-model"'))
 assert(teamTraders.includes('У нас нет проверенной истории выплат'))
 for (const id of ['tarify', 'etapy', 'pravila', 'vyplaty', 'raskhozhdeniya', 'oferta', 'istochniki', 'global-options']) assert(teamTraders.includes(`id="${id}"`), `TeamTraders section ${id}`)
-assert(teamTraders.includes(getRussianReviewFinderHref('fundednext').replace(/&/g, '&amp;')), 'TeamTraders global comparison handoff')
+assert(teamTraders.includes(getRussianReviewFinderHref('bright-funded').replace(/&/g, '&amp;')), 'TeamTraders global comparison handoff (BrightFunded-first preset)')
 assert(teamTradersText.includes(`Обновлено ${RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/obzor-teamtraders']}`), 'visible TeamTraders update date matches its sitemap date')
 const teamTradersSitemap = sitemap.split('<url>').find(entry => entry.includes(`<loc>${production}/ru/obzor-teamtraders</loc>`))
 assert(teamTradersSitemap?.includes(RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/obzor-teamtraders']), 'TeamTraders editorial lastmod')

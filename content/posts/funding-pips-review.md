@@ -3,7 +3,7 @@ title: "FundingPips Review 2026: 5 Models and 27 Verified Fees"
 seoTitle: "FundingPips Review 2026: Fees, Models & Rules"
 slug: "funding-pips-review"
 date: "2025-05-08 18:09:27"
-modified: "2026-09-29"
+modified: "2026-10-20"
 author: "Tara Mohseni"
 excerpt: "FundingPips has 27 first-party fees across 5 models. Compare true cost, drawdowns, payout cycles, the 2 unresolved $2.5K tiers, and India caveats."
 seoDescription: "FundingPips review comparing 27 verified fees across 5 models, true cost, drawdown, payout cycles, two unresolved $2.5K tiers, and India access."
@@ -22,7 +22,7 @@ type: "post"
     <li>The 2026-09-29 capture contains 5 products and 29 product-size combinations, not a single 2-Step challenge.</li>
     <li>FundingPips publishes 27 USD fees in its first-party comparison table; only the disputed $2.5K Pro and Standard rows remain unpriced.</li>
     <li>Static maximum-loss limits range from 6% to 12% on the 4 evaluation products; FundingPips Zero instead uses a 5% trailing limit.</li>
-    <li>The shorter captured cycles pay 80% on 1 Step Flex, 80% on 2 Step Pro, and 95% on Zero; eligible 1 Step Flex, 2 Step Flex, 2 Step Pro, and Standard accounts also publish 100% monthly routes with added conditions.</li>
+    <li>The standard cycles pay 80% bi-weekly on 1 Step Flex, 80% weekly on 2 Step Pro, and 95% bi-weekly on Zero. As of our 2026-10-20 check, 1 Step Flex, 2 Step Flex, 2 Step Pro and 2 Step Standard offer 100% only on demand, with added conditions; the old monthly 100% and on-demand 90% routes are gone.</li>
     <li>New 2 Step Flex accounts require 1 minimum day on the 80% route. 2 Step Pro has 0 minimum trading days for new and reset accounts; accounts bought before 26 Aug 2026 keep 1 day.</li>
     <li>FundingPips is not on our India shortlist because the captured country, checkout, KYC, and payout evidence still does not prove an end-to-end Indian purchase and withdrawal.</li>
   </ul>
@@ -50,23 +50,23 @@ type: "post"
   <caption class="hidden-caption">FundingPips products and account sizes</caption>
   <thead><tr style="background: var(--bg3);"><th>Product</th><th>Phases</th><th>Account</th><th>Fee</th><th>Targets</th><th>Daily / Max DD</th><th>Reward routes</th></tr></thead>
   <tbody>
-    <tr><td>1 Step Flex</td><td>1</td><td>$5K</td><td>$59</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% monthly</td></tr>
-    <tr><td>1 Step Flex</td><td>1</td><td>$10K</td><td>$99</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% monthly</td></tr>
-    <tr><td>1 Step Flex</td><td>1</td><td>$25K</td><td>$210</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% monthly</td></tr>
-    <tr><td>1 Step Flex</td><td>1</td><td>$50K</td><td>$322</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% monthly</td></tr>
-    <tr><td>1 Step Flex</td><td>1</td><td>$100K</td><td>$566</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% monthly</td></tr>
-    <tr><td>2 Step Flex</td><td>2</td><td>$5K</td><td>$32</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% monthly</td></tr>
-    <tr><td>2 Step Flex</td><td>2</td><td>$10K</td><td>$59</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% monthly</td></tr>
-    <tr><td>2 Step Flex</td><td>2</td><td>$25K</td><td>$159</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% monthly</td></tr>
-    <tr><td>2 Step Flex</td><td>2</td><td>$50K</td><td>$269</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% monthly</td></tr>
-    <tr><td>2 Step Flex</td><td>2</td><td>$100K</td><td>$555</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% monthly</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$2.5K</td><td>—</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% monthly</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$5K</td><td>$29</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% monthly</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$10K</td><td>$55</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% monthly</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$25K</td><td>$134</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% monthly</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$50K</td><td>$224</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% monthly</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$100K</td><td>$422</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% monthly</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$200K</td><td>$844</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% monthly</td></tr>
+    <tr><td>1 Step Flex</td><td>1</td><td>$5K</td><td>$59</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
+    <tr><td>1 Step Flex</td><td>1</td><td>$10K</td><td>$99</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
+    <tr><td>1 Step Flex</td><td>1</td><td>$25K</td><td>$210</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
+    <tr><td>1 Step Flex</td><td>1</td><td>$50K</td><td>$322</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
+    <tr><td>1 Step Flex</td><td>1</td><td>$100K</td><td>$566</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Flex</td><td>2</td><td>$5K</td><td>$32</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Flex</td><td>2</td><td>$10K</td><td>$59</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Flex</td><td>2</td><td>$25K</td><td>$159</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Flex</td><td>2</td><td>$50K</td><td>$269</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Flex</td><td>2</td><td>$100K</td><td>$555</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Pro</td><td>2</td><td>$2.5K</td><td>—</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Pro</td><td>2</td><td>$5K</td><td>$29</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Pro</td><td>2</td><td>$10K</td><td>$55</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Pro</td><td>2</td><td>$25K</td><td>$134</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Pro</td><td>2</td><td>$50K</td><td>$224</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Pro</td><td>2</td><td>$100K</td><td>$422</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Pro</td><td>2</td><td>$200K</td><td>$844</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
     <tr><td>2 Step Standard</td><td>2</td><td>$2.5K</td><td>—</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
     <tr><td>2 Step Standard</td><td>2</td><td>$5K</td><td>$36</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
     <tr><td>2 Step Standard</td><td>2</td><td>$10K</td><td>$66</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
@@ -90,11 +90,11 @@ type: "post"
 
 <p><strong>1 Step Flex:</strong> the 12% static maximum loss stays anchored to starting balance while the daily cap is 3%. On a $100K account, those percentages represent $12,000 total room and $3,000 in one day; a 12% target means the target and total loss allowance are equal.</p>
 
-<p><strong>2 Step Flex:</strong> the targets are 10% and 8% against a 4% daily and 12% static maximum loss. New 80% accounts require 1 minimum trading day per phase; the 95% route requires 3 profitable days of at least 0.5%. Eligible Master Accounts can instead use a 100% monthly cycle with 35% consistency, 7 profitable days at 0.5%, and a 1% Striking System trigger.</p>
+<p><strong>2 Step Flex:</strong> the targets are 10% and 8% against a 4% daily and 12% static maximum loss. New 80% accounts require 1 minimum trading day per phase; the 95% route requires 3 profitable days of at least 0.5%. Master Accounts can instead use a 100% on-demand route that needs a 35% consistency score, 7 profitable days of at least 0.5% and a 1% Striking System trigger. The 80% or 95% bi-weekly choice is locked at purchase.</p>
 
-<p><strong>2 Step Pro:</strong> both phases target 6%, the daily cap is 3%, and the static maximum loss is 6%. Per FundingPips' 2-Step Pro article rechecked on 2026-10-19, 2 Step Pro has 0 minimum trading days for new and reset accounts; accounts bought before 26 Aug 2026 keep 1 day. The 80% weekly route remains available, while an eligible 100% monthly route adds 35% consistency, 7 profitable days at 0.5%, and a 1% Striking System trigger.</p>
+<p><strong>2 Step Pro:</strong> both phases target 6%, the daily cap is 3%, and the static maximum loss is 6%. Per FundingPips' 2-Step Pro article rechecked on 2026-10-20, 2 Step Pro has 0 minimum trading days for new and reset accounts; accounts bought before 26 Aug 2026 keep 1 day. The 80% weekly route (every 7 calendar days) remains available; the alternative is now a 100% on-demand route that needs a 35% consistency score, 7 profitable days of at least 0.5% and a 1% Striking System trigger, replacing the former monthly 100% route.</p>
 
-<p><strong>2 Step Standard:</strong> targets are 8% then 5%, with a 5% daily and 10% static maximum loss plus 3 minimum trading days. Its 35% consistency rule applies to the 90% on-demand and 100% monthly routes; the monthly route also requires 7 profitable days at 0.5% and changes the Striking System trigger to 1%.</p>
+<p><strong>2 Step Standard:</strong> targets are 8% then 5%, with a 5% daily and 10% static maximum loss plus 3 minimum trading days. Its reward cycles are now Weekly 60%, Bi-Weekly 80% or On Demand 100% (FundingPips help center, checked 2026-10-20). The 35% consistency score applies only to the on-demand route, which also needs 7 profitable days at 0.5% and puts the account under a 1% Striking System trigger; weekly and bi-weekly rewards have no consistency score.</p>
 
 <p><strong><a href="/blog/fundingpips-zero">FundingPips Zero</a>:</strong> there is no evaluation target, but the funded account uses a 3% daily and 5% trailing maximum loss. The first 3% profit is a safety cushion, reward eligibility needs 7 profitable days of at least 0.25% in a rolling 30-day period, and the largest losing day cannot exceed the largest winning day.</p>
 
@@ -145,13 +145,13 @@ type: "post"
   </tbody>
 </table>
 
-<p>2 Step Flex and 2 Step Standard are not forced into one break-even table because each has multiple selectable splits. The 1 Step Flex and 2 Step Pro tables use the shorter bi-weekly 80% and weekly 80% routes; choosing monthly 100% changes the payout gate rather than the verified list fee.</p>
+<p>2 Step Flex and 2 Step Standard are not forced into one break-even table because each has multiple selectable splits. The 1 Step Flex and 2 Step Pro tables use the shorter bi-weekly 80% and weekly 80% routes; choosing on-demand 100% changes the payout gate rather than the verified list fee.</p>
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p>1 Step Flex offers 80% bi-weekly or 100% monthly. 2 Step Flex offers 80% or 95% bi-weekly plus 100% monthly. 2 Step Pro offers 80% weekly or 100% monthly, while Zero remains 95% bi-weekly.</p>
+<p>1 Step Flex offers 80% bi-weekly or 100% on demand. 2 Step Flex offers 80% or 95% bi-weekly (chosen at purchase) or 100% on demand. 2 Step Pro offers 80% weekly or 100% on demand, while Zero remains 95% bi-weekly. FundingPips replaced its monthly 100% routes with these on-demand 100% routes; we rechecked the help-center pages on 2026-10-20.</p>
 
-<p>2 Step Standard offers 4 distinct choices: 90% on demand with a 35% consistency score and 2% minimum profit, 60% weekly after 7 days, 80% bi-weekly after 14 days, or 100% monthly after 30 days with 35% consistency and 7 profitable days at 0.5%. Quoting one “FundingPips split” would erase the payout-speed and eligibility trade-off.</p>
+<p>2 Step Standard now offers 3 choices: 60% weekly from 7 days after the first Master trade, 80% bi-weekly every 14 calendar days, or 100% on demand once you meet a 35% consistency score and 7 profitable days at 0.5%. The former 90% on-demand and 100% monthly routes were removed (checked 2026-10-20). Quoting one “FundingPips split” would erase the payout-speed and eligibility trade-off. Our <a href="/blog/prop-firms-with-weekly-payouts">weekly payouts comparison</a> puts the 60% weekly route next to FundedNext, City Traders Imperium and BrightFunded.</p>
 
 <p>The first-party India capture covers country restrictions, checkout methods, KYC, and payout caveats, but it does not prove that an Indian buyer can complete both purchase and withdrawal. Do not assume every aggregate payout method will appear after verification.</p>
 
@@ -162,9 +162,9 @@ type: "post"
 <ul class="wp-block-list">
   <li><strong>5 current models</strong> cover 0-, 1-, and 2-phase paths instead of one stale 2-Step offer.</li>
   <li><strong>2 Step Flex provides a 12% static maximum loss</strong>, the widest captured loss allowance in the lineup.</li>
-  <li><strong>2 Step Pro offers 80% weekly after 7 days</strong>, while its 100% monthly alternative exposes the added consistency and profitable-day gates.</li>
-  <li><strong>2 Step Standard exposes 4 payout choices</strong> from 60% weekly to 100% monthly.</li>
-  <li><strong>1 Step Flex retains an 80% bi-weekly route</strong> without the monthly route’s 35% consistency and 7-day gate.</li>
+  <li><strong>2 Step Pro offers 80% weekly after 7 days</strong>, while its 100% on-demand alternative adds consistency and profitable-day gates.</li>
+  <li><strong>2 Step Standard exposes 3 payout choices</strong>: 60% weekly, 80% bi-weekly or 100% on demand.</li>
+  <li><strong>1 Step Flex retains an 80% bi-weekly route</strong> without the on-demand route’s 35% consistency score and 7 profitable days.</li>
   <li><strong>FundingPips Zero starts at 95%</strong> without an evaluation phase.</li>
 </ul>
 
@@ -174,7 +174,7 @@ type: "post"
   <li><strong>2 of 29 fee rows remain unresolved</strong>: FundingPips’ current Pro and Standard pages omit $2.5K while an older first-party article still calls it a paid-evaluation size.</li>
   <li><strong>Zero’s 5% trailing cap</strong> is materially tighter than the 12% static limits on both Flex products.</li>
   <li><strong>Zero requires 7 profitable days in a rolling 30-day period</strong> plus a 15% consistency score and 3% safety cushion.</li>
-  <li><strong>100% monthly is not a free upgrade</strong>: eligible evaluation products add 35% consistency, 7 profitable days at 0.5%, and a 1% Striking System trigger.</li>
+  <li><strong>100% on demand is not a free upgrade</strong>: it adds a 35% consistency score, 7 profitable days at 0.5%, and a 1% Striking System trigger.</li>
   <li><strong>All 5 products restrict at least 3 trading behaviors</strong>, so an EA, news, or holding strategy needs product-specific confirmation.</li>
   <li><strong>India access remains unproven</strong>: the captured country, checkout, KYC, and payout evidence does not establish one completed Indian purchase-and-withdrawal path.</li>
 </ul>
@@ -183,7 +183,7 @@ type: "post"
 
 <p>A rule-first CFD trader should compare the verified $29 fee on a $5K 2 Step Pro—with 6% and 6% targets, 6% static maximum loss, 0 minimum days per phase for new and reset accounts, and an 80% weekly route—against the $32 2 Step Flex fee, wider 12% loss room, and 80%, 95%, or 100% route conditions.</p>
 
-<p>Before paying for 2 Step Standard or 2 Step Pro, either model can be rehearsed on FundingPips’ free MT5 trial, which runs both phases for 14 calendar days each but cannot run alongside any other FundingPips account; our <a href="/blog/prop-firm-free-trial">prop firm free trial comparison</a> lists its limits next to FTMO, FundedNext and Alpha Capital (checked 2026-10-19).</p>
+<p>Before paying for 2 Step Standard or 2 Step Pro, either model can be rehearsed on FundingPips’ free MT5 trial, which runs both phases for 14 calendar days each but cannot run alongside any other FundingPips account; our <a href="/blog/prop-firm-free-trial">prop firm free trial comparison</a> lists its limits next to FTMO, FundedNext and Alpha Capital (checked 2026-10-19; FTMO rechecked 2026-10-20).</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid FundingPips</strong></h2>
 
@@ -198,7 +198,7 @@ type: "post"
 <p>The cheapest verified fee is $29 for the $5K 2 Step Pro. The $2.5K Pro and Standard rows remain unpriced because FundingPips’ current product pages conflict with an older first-party reference, so $29 is the cheapest verified fee, not a claim about an unresolved tier.</p>
 
 <h3 class="wp-block-heading"><strong>Does FundingPips pay a 100% split?</strong></h3>
-<p>Eligible 1 Step Flex, 2 Step Flex, 2 Step Pro, and Standard Master Accounts publish 100% monthly routes. These add a 35% consistency score, 7 profitable days at 0.5%, and product-specific Striking System conditions, so 100% is not a universal starting split.</p>
+<p>Only on demand, and only with conditions. As of our 2026-10-20 check, 1 Step Flex, 2 Step Flex, 2 Step Pro and 2 Step Standard Master Accounts can choose a 100% on-demand route (the old monthly 100% route is gone). It needs a 35% consistency score and 7 profitable days at 0.5%, and puts the account under a 1% Striking System trigger, so 100% is not a universal starting split.</p>
 
 <h3 class="wp-block-heading"><strong>Which FundingPips model has the widest drawdown?</strong></h3>
 <p>1 Step Flex and 2 Step Flex each publish a 12% static maximum loss. Their daily caps differ at 3% and 4%, while Zero is the tightest total rule at 5% trailing.</p>

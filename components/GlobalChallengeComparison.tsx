@@ -27,6 +27,7 @@ import type {
   DrawdownType,
   RuleAvailability,
 } from '@/lib/firms'
+import { minimumTierTotalUsd, tierPriceParts, tierTotalPrice } from '@/lib/challengeComparison'
 import type { GlobalChallengeRow, GlobalChallengeTier } from '@/lib/challengeComparison'
 export type { GlobalChallengeRow, GlobalChallengeTier } from '@/lib/challengeComparison'
 
@@ -149,6 +150,19 @@ function numberRange(values: number[], currency: 'USD' | 'EUR') {
 }
 
 function priceRange(tiers: GlobalChallengeTier[]) {
+  // Checkout amount alone understates split-payment and activation-fee products.
+  const parts = tiers.flatMap(tier => { const value = tierPriceParts(tier); return value ? [value] : [] })
+  if (parts.length) {
+    const usdTiers = tiers.filter(tier => tier.priceUsd != null && tier.priceUsd > 0)
+    const after = numberRange(usdTiers.flatMap(tier => (tier.payLaterUsd ?? 0) > 0 ? [tier.payLaterUsd!] : []), 'USD')
+    const activation = numberRange(usdTiers.flatMap(tier => (tier.activationFeeUsd ?? 0) > 0 ? [tier.activationFeeUsd!] : []), 'USD')
+    const now = numberRange(usdTiers.map(tier => tier.priceUsd!), 'USD')
+    return [
+      `${now}${after ? ' now' : ''}`,
+      after ? `${after} after passing` : null,
+      activation ? `${activation} activation` : null,
+    ].filter(Boolean).join(' + ')
+  }
   const usd = numberRange(
     tiers.flatMap(tier => tier.priceUsd != null && tier.priceUsd > 0 ? [tier.priceUsd] : []),
     'USD',
@@ -259,9 +273,11 @@ function ruleColor(value: RuleAvailability) {
 
 function minimumTierValue(
   product: GlobalChallengeRow['product'],
-  field: 'priceUsd' | 'costToFundedUsd',
+  field: 'entryTotalUsd' | 'costToFundedUsd',
   accountSize: number | null = null,
 ) {
+  // "Lowest entry" ranks by price plus mandatory after-pass/activation fees.
+  if (field === 'entryTotalUsd') return minimumTierTotalUsd(product, accountSize)
   const tiers = accountSize == null
     ? product.tiers
     : product.tiers.filter(tier => tier.sizeUsd === accountSize)
@@ -307,12 +323,18 @@ function decisionMoney(
   const tiers = accountSize === 'all'
     ? row.product.tiers
     : row.product.tiers.filter(tier => tier.sizeUsd === Number(accountSize))
-  const usdField = field === 'entry' ? 'priceUsd' : 'costToFundedUsd'
-  const eurField = field === 'entry' ? 'priceEur' : 'costToFundedEur'
-  const usd = tiers.flatMap(tier =>
-    tier[usdField] != null && tier[usdField]! > 0 ? [tier[usdField]!] : [])
-  const eur = tiers.flatMap(tier =>
-    tier[eurField] != null && tier[eurField]! > 0 ? [tier[eurField]!] : [])
+  // Entry ranks on the total (price plus mandatory pay-later/activation fees).
+  const valueOf = (tier: GlobalChallengeTier, currency: 'USD' | 'EUR') => field === 'entry'
+    ? tierTotalPrice(tier, currency)
+    : currency === 'USD' ? tier.costToFundedUsd : tier.costToFundedEur
+  const usd = tiers.flatMap(tier => {
+    const value = valueOf(tier, 'USD')
+    return value != null && value > 0 ? [value] : []
+  })
+  const eur = tiers.flatMap(tier => {
+    const value = valueOf(tier, 'EUR')
+    return value != null && value > 0 ? [value] : []
+  })
   if (usd.length && !eur.length) return { value: Math.min(...usd), currency: 'USD' as const }
   if (eur.length && !usd.length) return { value: Math.min(...eur), currency: 'EUR' as const }
   return null
@@ -324,6 +346,10 @@ function decisionMoneyLabel(
   accountSize: string,
 ) {
   const money = decisionMoney(row, field, accountSize)
+  if (money && field === 'entry' && accountSize !== 'all') {
+    const tiers = row.product.tiers.filter(tier => tier.sizeUsd === Number(accountSize))
+    if (tiers.some(tier => tierPriceParts(tier))) return `${priceRange(tiers)} (${compactMoney(money.value, money.currency)} total)`
+  }
   if (money) return compactMoney(money.value, money.currency)
   return accountSize === 'all'
     ? 'No comparable published value'
@@ -400,8 +426,8 @@ function decisionOutcome(
       reason: `${compactMoney(best, currency)} is lowest across ${sizeLabel}.`,
       caveat: field === 'entry'
         ? accountSize === 'all'
-          ? 'Minimum fees may represent different account sizes; a low fee does not offset stricter drawdown, reset, consistency, or payout rules.'
-          : 'A low fee does not offset stricter drawdown, reset, consistency, or payout rules.'
+          ? 'Entry includes any mandatory after-pass or activation fee. Minimum fees may represent different account sizes; a low fee does not offset stricter drawdown, reset, consistency, or payout rules.'
+          : 'Entry includes any mandatory after-pass or activation fee. A low fee does not offset stricter drawdown, reset, consistency, or payout rules.'
         : accountSize === 'all'
           ? 'Minimum floors may represent different account sizes and exclude later rebills, resets, taxes, and payment fees.'
           : 'The floor assumes a first-cycle pass and excludes later rebills, resets, taxes, and payment fees.',
@@ -730,8 +756,8 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
       .sort((a, b) => {
         if (sort === 'entry-price') {
           return compareNullable(
-            minimumTierValue(a.product, 'priceUsd', selectedSize),
-            minimumTierValue(b.product, 'priceUsd', selectedSize),
+            minimumTierValue(a.product, 'entryTotalUsd', selectedSize),
+            minimumTierValue(b.product, 'entryTotalUsd', selectedSize),
             'asc',
           ) || a.product.name.localeCompare(b.product.name)
         }
