@@ -140,5 +140,79 @@
       "Payout frequency (2026-10-20): 'on-demand' with payoutFirstDays 14. promo.ftmo.com/m26b-practice-trading-without-risk/: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\"; ftmo.com FAQ: \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\" firms.json uses the same label; see _captures/ftmo-2026-10-20.json ruWriterCheck.",
       "CONSISTENCY (rechecked 2026-10-20, https://ftmo.com/en/trading-objectives/): \"Consistency replaces the Best Day Rule\" and is \"Applicable to accounts initiated from orders created on or after 12 Oct 2026, or any accounts merged on or after this date\". Quote: \"To pass the FTMO Challenge: 1-Step or to be eligible for a Reward on an FTMO Account, the Consistency rule requires that your Best Day does not represent more than 50% of your total profit. The total profit is the cumulative sum of closed profits and losses across all trading days\", with the Best Day measured \"on FTMO Challenge: 1-Step or FTMO Account (1-Step)\". \"Exceeding the Consistency limit is not treated as a rule breach.\" consistencyRulePct 50 is unchanged. The basis is now total profit (net of losing days), not the old Best Day Rule's \"Positive Days' Profit\", which still applies to accounts from orders before 12 Oct 2026. sourceCapturedAt is unchanged (only this rule was rechecked)."
     ]
+  },
+  {
+    "firmSlug": "ftmo",
+    "productName": "FTMO Instant Account",
+    "productSlug": "ftmo-instant-account",
+    "phases": 0,
+    "accountSizes": [
+      {
+        "sizeUsd": 100000,
+        "priceUsd": null,
+        "priceEur": 2999,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": null,
+        "priceEur": 1499,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 25000,
+        "priceUsd": null,
+        "priceEur": 749,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 10000,
+        "priceUsd": null,
+        "priceEur": 339,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 5000,
+        "priceUsd": null,
+        "priceEur": 169,
+        "refundable": false
+      }
+    ],
+    "profitTargets": null,
+    "dailyLossPct": 3,
+    "maxLossPct": 10,
+    "drawdownType": "trailing",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "consistencyRulePct": 30,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 30,
+        "scope": "funded",
+        "appliesTo": "FTMO Instant Account: best day capped at 30% of total profit",
+        "sourceUrl": "https://ftmo.com/en/instant-account/"
+      }
+    ],
+    "profitSplitPct": 90,
+    "payoutFirstDays": null,
+    "payoutFrequency": null,
+    "rules": {
+      "news": null,
+      "weekend": "restricted",
+      "overnight": "restricted",
+      "ea": null,
+      "copyTrading": null
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://ftmo.com/en/instant-account/",
+    "sourceCapturedAt": "2026-10-21",
+    "notes": [
+      "Captured 2026-10-21 from https://ftmo.com/en/instant-account/ (WordPress modified 2026-10-12), English site, US-IP box, no VPN. The rendered price table is the global EUR table (the same page source carries 2-Step €1080 and 1-Step €999 for $200K, matching the stored global prices); US clients are redirected to ftmo.oanda.com, so no US price table was read. Quote: 'Account $100,000 Start now One-time fee (non-refundable) €2,999 Max Loss 10% Max Daily Loss 3% Trading Period Unlimited Consistency 30% Leverage Up to 1:100 Rewards 90%'. Other tiers: $50,000 €1,499; $25,000 €749; $10,000 €339; $5,000 €169. Price is a non-refundable one-time fee.",
+      "Max loss: 'The Maximum Loss on the FTMO Instant Account is a balance-based, intraday trailing limit. It stays a fixed 10% of your Initial Simulated Capital below your highest balance.' The page does not say whether it stops trailing at the initial balance. Daily: 'Maximum Daily Loss is set as 3% from the initial balance (initial simulated capital).'",
+      "Consistency: 'Consistency on the FTMO Instant Account caps your most profitable day (\"Best Day\") at 30% of your total profit.' Rewards: 'The rewards on the FTMO Instant Account are set at 90% of the simulated profits you generate.' Leverage: 'The maximum leverage on the FTMO Instant Account is set at 1:100.' Trading period unlimited.",
+      "Not eligible for the Premium Programme: Premium page (modified 2026-10-12) says it is 'available to FTMO Traders whose FTMO Account was initiated from the 1-Step or 2-Step FTMO Challenge, not from the FTMO Instant Account.'",
+      "Weekend/overnight: page FAQ says 'Overnight and weekend position restrictions apply only to the Standard account type. The Swing account type does not have any restrictions' (whether Swing is offered on Instant is not stated). First-reward timing, reward frequency, news and EA rules are not on the Instant page and are left null pending a source."
+    ]
   }
 ]
