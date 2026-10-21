@@ -6180,9 +6180,10 @@ function checkUkLandingCluster() {
     }
   }
 
-  if (entries.length !== 8 || mappedProducts.size !== 39) {
+  // 44 = every structured product of the 8 UK firms after FTMO Instant Account (2026-10-21).
+  if (entries.length !== 8 || mappedProducts.size !== 44) {
     rows.push(
-      `UK fixture expects 8 firms and 39 mapped products; received ${entries.length} and ${mappedProducts.size}`,
+      `UK fixture expects 8 firms and 44 mapped products; received ${entries.length} and ${mappedProducts.size}`,
     )
   }
 
@@ -9674,8 +9675,9 @@ function checkScalingPlanGuide() {
     {
       slug: 'ftmo',
       name: 'FTMO',
-      splitFragments: ['80%', '2-Step', '90%', '1-Step'],
-      countFragments: [[80, 1], [90, 1]],
+      // FTMO Instant Account (captured 2026-10-21) is the second product at 90%.
+      splitFragments: ['80%', '2-Step', '90%', '1-Step', 'Instant Account'],
+      countFragments: [[80, 1], [90, 2]],
       nullCount: 0,
     },
     {
@@ -9843,7 +9845,8 @@ function checkFundedNextComparisonOverlay() {
     }
 
     const expectedFragments = [
-      `${ftmo.length} evaluation products`,
+      // Instant Account (phases 0) is not an evaluation product; the overlay counts evaluations only.
+      `${ftmo.filter(challenge => challenge.phases > 0).length} evaluation products`,
       `${fundedNext.length} product paths`,
       `${ftmoOneStep.profitSplitPct}%`,
       `${stellarInstant.profitSplitPct}%`,
@@ -13317,8 +13320,13 @@ function checkRussianAcquisitionPilot() {
     })
   const currentFtmoPriceCount = currentFtmoProducts.reduce((sum, product) => sum
     + product.accountSizes.filter(tier => tier.priceEur != null && tier.priceEur > 0).length, 0)
-  if (currentFtmoProducts.length !== 2 || currentFtmoPriceCount !== 10) {
-    rows.push(`Russian FTMO fixture expects 2 products and 10 EUR prices; received ${currentFtmoProducts.length} and ${currentFtmoPriceCount}`)
+  // FTMO Instant Account (2026-10-21, 5 EUR tiers) joins 2-Step and 1-Step. The page renders every fresh product's
+  // EUR table, so its price-count heading must come from pricedTiers rather than a literal.
+  if (currentFtmoProducts.length !== 3 || currentFtmoPriceCount !== 15) {
+    rows.push(`Russian FTMO fixture expects 3 products and 15 EUR prices; received ${currentFtmoProducts.length} and ${currentFtmoPriceCount}`)
+  }
+  if (!ftmoRussianPage.includes('Все {pricedTiers.length} цен FTMO') || /Все \d+ цен FTMO/.test(ftmoRussianPage)) {
+    rows.push('Russian FTMO price heading must count pricedTiers, not a fixed number')
   }
   if (!fs.existsSync(path.join(CHALLENGES, '_captures', 'ftmo-2026-08-28.json'))) {
     rows.push('Russian FTMO review is missing its 2026-08-28 first-party capture provenance')
