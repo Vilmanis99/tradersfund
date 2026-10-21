@@ -23,9 +23,11 @@ const DESCRIPTION = 'FTMO или FundedNext: 2-Step и 1-Step, взносы в E
 // platforms, Scaling Plan, FTMO Instant Account). Saved copies: /workspace/tradersfundhub/evidence/ftmo-vs-fundednext-2026-10-21/.
 const CHECKED = '21.10.2026'
 // Prop Firm Tracker data on main (27715b0).
-const TRACKER_SPLIT = '14.10.2026' // FTMO 2-Step 90% via Scaling Plan / Premium (firm-rules capture); Scaling Plan page re-read 21.10.2026
+// Tracker data/ftmo-fundednext-fresh-2026-10-21 @a3cd62c: withdrawal FAQ (modified 13.10.2026) «If the Scaling Plan or Premium Programme
+// conditions are met, the Reward Ratio is increased to 90%» — 2-Step FTMO Accounts only, not Instant; Premium page 12.10, Scaling Plan 14.10.
+const TRACKER_SPLIT = '21.10.2026'
 const TRACKER_BRIGHT_COUNTRIES = '20.10.2026' // content/data/russian-bright-funded-evidence.json → sources.countries
-const TRACKER_CFT_ACCESS = '14.10.2026' // firms.json Crypto Fund Trader russiaSourceUrl/Quote (FAQ: Match-Trader has no country restrictions)
+const TRACKER_CFT_ACCESS = '21.10.2026' // firms.json Crypto Fund Trader russiaSourceUrl/Quote/CapturedAt (a3cd62c; FAQ: «no country restrictions for traders using Match-Trader»)
 // content/data/challenges/_captures/fundednext-2026-10-20.json (FundedNext footer vs ToS 5.3, payout methods, Rise, $300K/$4M caps, Futures KZ)
 // and challenges/ftmo.json + firms.json FTMO payoutFrequencyNote (on-demand from day 14), all 2026-10-20.
 const TRACKER_0920 = '20.10.2026'
@@ -588,7 +590,7 @@ export default function RussianFtmoVsFundedNextPage() {
             <article className="ru-card" data-russian-alternative="crypto-fund-trader">
               <CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Crypto Fund Trader <RuAccessBadge firm="crypto-fund-trader" /></h3>
-              <p className="ru-muted">Официальные страницы CFT ограничений для России не называют: в FAQ сказано, что для Match-Trader ограничений по странам нет, а MT5 недоступен резидентам США (по данным на {TRACKER_CFT_ACCESS}). Российские карты, KYC и банковские выплаты мы не проверяли.</p>
+              <p className="ru-muted">В FAQ Crypto Fund Trader сказано, что для Match-Trader ограничений по странам сейчас нет, а MT5 недоступен резидентам США (по данным на {TRACKER_CFT_ACCESS}). Российские карты, KYC и банковские выплаты мы не проверяли.</p>
               <p className="ru-source-line"><RuPendingLink href="/ru/obzor-crypto-fund-trader">Обзор Crypto Fund Trader</RuPendingLink></p>
               <div className="ru-actions">
                 <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-ftmo-vs-fundednext-alt-cft" rel={goLinkRel('crypto-fund-trader')} className="btn-outline">Перейти в Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
