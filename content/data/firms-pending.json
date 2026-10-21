@@ -354,6 +354,141 @@
       "affiliateStatus": "none",
       "captureFile": "content/data/challenges/_captures/teamtraders-2026-10-20.json",
       "pendingBlockers": "score (editorial), logo and an EN reviewUrl are required before firms.json. Prices are RUB monthly subscriptions (500K ₽ 2 590 ₽, 1M ₽ 4 890 ₽, 2M ₽ 8 990 ₽) with no USD price or $100K size, so the challenges/<slug>.json USD schema does not fit without an editorial decision."
+    },
+    {
+      "name": "Spice Prop",
+      "slug": "spice-prop",
+      "founded": null,
+      "assets": [],
+      "maxAllocation": "€2,000,000 (simulated)",
+      "maxAllocationSourceUrl": "https://spiceprop.com/",
+      "maxAllocationQuote": "Up to €2M simulated funding.",
+      "maxAllocationCapturedAt": "2026-10-21",
+      "platforms": [
+        "MT5"
+      ],
+      "platformEvidence": {
+        "sourceUrl": "https://spiceprop.com/",
+        "sourceCapturedAt": "2026-10-21",
+        "sourceQuote": "We would like to inform traders about upcoming changes to the tick size settings for several cryptocurrency symbols available on our MT5 servers.",
+        "notes": "Homepage news item; the footer says 'Download the MetaTrader trading platform or use the web terminal'. No other platform named on the pages checked."
+      },
+      "score": null,
+      "logo": null,
+      "reviewUrl": null,
+      "officialUrl": "https://spiceprop.com/",
+      "profitSplitPct": null,
+      "payoutFrequency": null,
+      "payoutMethods": [],
+      "drawdownType": null,
+      "minTradingDays": null,
+      "consistencyRule": null,
+      "scalingPlan": null,
+      "newsTradingAllowed": null,
+      "eaAllowed": null,
+      "overnightAllowed": null,
+      "weekendAllowed": null,
+      "copyTradingAllowed": null,
+      "countriesRestricted": [
+        "USA",
+        "North Korea",
+        "Eritrea",
+        "Iran",
+        "Iraq",
+        "Liberia",
+        "Libya",
+        "Somalia",
+        "Sudan",
+        "Syria",
+        "Japan",
+        "Canada",
+        "Puerto Rico",
+        "Indonesia"
+      ],
+      "countriesRestrictedSourceUrl": "https://spiceprop.com/",
+      "countriesRestrictedQuote": "To avoid potential regulatory issues, even if no trading is occurring, we cannot register citizens from the following countries: USA North Korea Eritrea Iran Iraq Liberia Libya Somalia Sudan Syria Japan Canada Puerto Rico Indonesia",
+      "countriesRestrictedCapturedAt": "2026-10-21",
+      "countriesRestrictedNote": "Site-wide footer (same list on https://spiceprop.com/, /qa and /ru, where it reads 'мы не можем регистрировать клиентов из следующих стран'). Russia, Belarus, Ukraine and Kazakhstan are not named. The list is not exhaustive for eligibility: Terms 2.2 also excludes 'restricted or sanctioned countries' and 9.4 persons on EU/UN/UK/OFAC lists (see russiaStatusNote).",
+      "ratings": {
+        "conditions": null,
+        "support": null,
+        "payouts": null,
+        "platform": null
+      },
+      "trustpilotScore": null,
+      "trustpilotCount": null,
+      "verifiedPayoutBadge": false,
+      "lastUpdated": "2026-10-21",
+      "trustpilotUrl": "https://www.trustpilot.com/review/spiceprop.com",
+      "trustpilotCapturedAt": null,
+      "russiaStatus": "unclear",
+      "russiaStatusNote": "Russia is not on the footer list, but the Terms (General Terms of Service, 'Effective Date: 16 October 2025', checked 2026-10-21) exclude sanctioned countries without naming them: 2.2 'Citizens, residents, or persons located in restricted or sanctioned countries are not eligible.' and 9.4 'Services are unavailable to residents of restricted/sanctioned regions; Persons on EU, UN, UK, or OFAC sanctions lists'. Governing law is Czech (11.3) and payments run through a Prague s.r.o. and a Hong Kong company. No primary source says Russia is accepted or excluded, so 'unclear', not 'available'. 2.2 tests citizenship, residence and location; 9.6 requires KYC and trading from IT infrastructure 'consistent with their actual geolocation' (VPN/VPS only if approved).",
+      "russiaSourceUrl": "https://spiceprop.com/terms-conditions",
+      "russiaSourceQuote": "Citizens, residents, or persons located in restricted or sanctioned countries are not eligible.",
+      "russiaSourceCapturedAt": "2026-10-21",
+      "termsEvidence": [
+        {
+          "clause": "2.2 Eligibility",
+          "sourceUrl": "https://spiceprop.com/terms-conditions",
+          "quote": "Reside in a country where our Services are legally available (restricted regions are listed on our website);"
+        },
+        {
+          "clause": "2.2 Eligibility",
+          "sourceUrl": "https://spiceprop.com/terms-conditions",
+          "quote": "Citizens, residents, or persons located in restricted or sanctioned countries are not eligible."
+        },
+        {
+          "clause": "9.4 AML & Sanctions",
+          "sourceUrl": "https://spiceprop.com/terms-conditions",
+          "quote": "Services are unavailable to residents of restricted/sanctioned regions; Persons on EU, UN, UK, or OFAC sanctions lists; and Users attempting to disguise illegal activity."
+        },
+        {
+          "clause": "9.6 VPN/VPS and Location Rules",
+          "sourceUrl": "https://spiceprop.com/terms-conditions",
+          "quote": "Users must ensure that their KYC verification and trading activities are conducted using IT infrastructure consistent with their actual geolocation."
+        },
+        {
+          "clause": "11.3 Governing Law",
+          "sourceUrl": "https://spiceprop.com/terms-conditions",
+          "quote": "These Terms are governed by Czech law. Exclusive jurisdiction lies with the courts of the Czech Republic, competent for the registered office of SpiceProp SRO."
+        },
+        {
+          "clause": "1 Introduction & Acceptance ('Who we are')",
+          "sourceUrl": "https://spiceprop.com/terms-conditions",
+          "quote": "SpiceProp is operated by SpiceProp SL LTD and its affiliates, including SpiceProp HK Limited and SpiceProp SRO."
+        },
+        {
+          "clause": "Site footer disclaimer (unnumbered)",
+          "sourceUrl": "https://spiceprop.com/",
+          "quote": "This website is operated by SPICEPROP SL LTD, Rodney Court Building, Rodney Bay, Gros Islet, Saint Lucia. Payment facilitators: SPICEPROP HK LIMITED, Flat/Rm 01-02, Austin Tower, 152 Austin Road, Tsim Sha Tsui CORP, Hong Kong; and SPICEPROP SRO, 158 00, Prague, Czech Republic, Bucharova 2657/12."
+        }
+      ],
+      "termsEffectiveDate": "2025-10-16",
+      "termsCapturedAt": "2026-10-21",
+      "legalEntity": "SPICEPROP SL LTD (Saint Lucia)",
+      "headquarters": "Rodney Court Building, Rodney Bay, Gros Islet, Saint Lucia",
+      "country": "Saint Lucia",
+      "regulation": null,
+      "corporateNote": "Payment facilitators SPICEPROP HK LIMITED (Hong Kong) and SPICEPROP SRO (Bucharova 2657/12, 158 00 Prague, Czech Republic). Footer: the company 'does not operate under the supervision of financial regulatory authorities'.",
+      "corporateSourceUrl": "https://spiceprop.com/",
+      "corporateCapturedAt": "2026-10-21",
+      "regulatorWarnings": [
+        {
+          "regulator": "National Securities and Stock Market Commission of Ukraine (НКЦПФР / NSSMC)",
+          "sourceUrl": "https://www.nssmc.gov.ua/activity/insha-diialnist/zakhyst-investoriv/",
+          "sourceCapturedAt": "2026-10-21",
+          "quote": "SpiceProp https://spiceprop.com/ №10/21/2485/К04 від 24.06.2025",
+          "listHeading": "Назва проєкту/Project Name | Адреса вебсайту проєкту/Project Website Link | Реквізити розпорядження Комісії/Details of the Commission's Order",
+          "listDescriptionQuote": "в цьому розділі Комісія розміщує інформацію про сумнівні інвестиційні проєкти, які за результатами аналізу відомостей відповідають одній або декільком ознакам сумнівності та/або недобросовісного залучення коштів",
+          "announcementUrl": "https://www.nssmc.gov.ua/budte-obachni-nktspfr-vyiavyla-4-novi-scam-proiekty/",
+          "announcementDate": "2025-06-25",
+          "announcementQuote": "Цього разу перелік доповнили такими SCAM-проєктами: • BRAINVEST – https://www.brainvest.com.ua/ • ONE1PERCENT.CLUB – https://one1percent.club/investor • SpiceProp – https://spiceprop.com/ • Thaurus Guru – https://www.thaurusguru.com/",
+          "note": "Official NSSMC list of suspicious investment projects, still listing SpiceProp on 2026-10-21 (order of 24.06.2025; news item 25.06.2025). The official entry is for https://spiceprop.com/, not /uk (the /uk URL comes from IOSCO I-SCAN and third-party sites). Not verified: a court case 'Компанія Spiceprop s.r.o.' v НКЦПФР, Kyiv District Administrative Court No. 320/3369/26 ('про визнання протиправним та скасування розпорядження', registered 21.01.2026, stage 'Розглянуто' 03.07.2026) appears only on the third-party aggregator data-ua.com; outcome unknown, and the official court register (reyestr.court.gov.ua) was not checked. The NSSMC page shows no exclusion note for SpiceProp (it has such notes for Bitbon, Metadoro and Gonzo Invest)."
+        }
+      ],
+      "affiliateStatus": "none",
+      "captureFile": "content/data/challenges/_captures/spice-prop-2026-10-21.json",
+      "pendingBlockers": "score (editorial), logo, EN reviewUrl, programme prices (EUR; 'Very Scary Promo' runs until 23 Oct 2026 23:59 CET, so capture list prices after the promo) and a written Russia answer from support@spiceprop.com before firms.json."
     }
   ]
 }
