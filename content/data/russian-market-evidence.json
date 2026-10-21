@@ -470,6 +470,71 @@
   ],
   "firmAccess": [
     {
+      "firmSlug": "the5ers",
+      "status": "restricted",
+      "sourceCapturedAt": "2026-10-20",
+      "sourceUrls": [
+        "https://the5ers.com/terms-and-conditions/"
+      ],
+      "sourceObservations": [
+        {
+          "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”). Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited."
+        },
+        {
+          "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "“ Forbidden Territory ” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea,"
+        },
+        {
+          "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "(iv) do not reside in any Forbidden Territory;"
+        },
+        {
+          "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Payments sent from crypto exchanges or service providers established in Russia, or from platforms, exchanges, or payment agents listed under EU restrictive measures (including Annex XLV to Regulation (EU) No 833/2014, as amended from time to time), or any other sanctioned entities, cannot be processed and will be automatically placed on hold by the payment processor."
+        }
+      ],
+      "countries": {
+        "russia": {
+          "status": "restricted",
+          "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”). Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited.",
+          "note": "Named in both Forbidden Territory lists; applies to residents or citizens. Separately, crypto payments from Russian-established exchanges/payment agents are held by the processor."
+        },
+        "belarus": {
+          "status": "restricted",
+          "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”). Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited.",
+          "note": "Named in both Forbidden Territory lists; residents or citizens."
+        },
+        "ukraine": {
+          "status": "product-specific",
+          "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "“ Forbidden Territory ” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea,",
+          "note": "Only Crimea is named. Ukraine as a country and the Donetsk, Luhansk, Kherson and Zaporizhzhia regions are not named; the Sanctions Regime clause (OFAC/EU/UK) may still reach other occupied areas, which was not confirmed."
+        },
+        "kazakhstan": {
+          "status": "not-named",
+          "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”). Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited.",
+          "note": "Kazakhstan does not appear in either list or anywhere in the Terms (text search 2026-10-20). Not-named is not a positive availability statement; checkout/KYC not tested."
+        }
+      },
+      "notes": [
+        "Terms page header: 'Last update – Oct. 12th 2026'; read 2026-10-20 ~11:30 Riga from a US IP. Raw: /workspace/tradersfundhub/evidence/the5ers-2026-10-20/terms-and-conditions.txt (box). Matches firms.json russiaStatus 'restricted'.",
+        "Both lists say 'including but not limited to', and the Terms add that services are unavailable 'where prohibited by a Sanctions Regime or by Our policy as updated from time to time', so absence from the list is not a guarantee.",
+        "Operator per Terms: FIVE PERCENT ONLINE LTD, UK company number 12553363."
+      ]
+    },
+    {
       "firmSlug": "ftmo",
       "status": "restricted",
       "sourceUrls": [
