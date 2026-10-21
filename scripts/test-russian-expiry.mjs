@@ -417,6 +417,11 @@ try {
   const originalByFirm = firmsModule.getChallengesByFirm
   const cryptoReference = renderCrypto()
   assert.deepEqual(cryptoCards(cryptoReference), cryptoSlugs, 'current crypto fixture includes every independently sourced firm')
+  const { russiaStatusFor: cryptoRussiaStatus } = require(path.join(root, 'lib/russiaAvailability.ts'))
+  for (const slug of cryptoSlugs) {
+    const card = cryptoReference.match(new RegExp(`<article\\b[^>]*data-russian-crypto-firm="${slug}"[^>]*>[\\s\\S]*?</article>`))?.[0] ?? ''
+    assert(card.includes(`data-russia-status="${cryptoRussiaStatus(slug)}" data-russia-firm="${slug}"`), `${slug}: every ranked crypto card shows its russiaStatus badge, with or without an affiliate link`)
+  }
   assert(cryptoSchemas(cryptoReference).some(item => item['@type'] === 'FAQPage'))
   assert.doesNotMatch(`${cryptoModule.metadata.title.absolute} ${cryptoModule.metadata.description}`, /3 проверенных|3 крипто|12 подтверждённых/, 'search metadata does not promise a fixed live inventory')
   assert.equal(cryptoModule.metadata.openGraph.title, 'Крипто-проп-фирмы 2026: 3 проверенных варианта', 'sharing metadata is preserved pending separate approval')

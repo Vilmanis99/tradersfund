@@ -27,7 +27,7 @@ import {
   getLocalizedRoutePair,
   russianRouteDateModified,
 } from '@/lib/localizedRoutes'
-import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadge, RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
@@ -322,7 +322,10 @@ export default function RussianCryptoPropFirmsPage() {
                         <RuGoLink firm={evidence.firmSlug} href={`/go/${evidence.firmSlug}?from=ru-crypto-ranking`} rel="sponsored nofollow noopener" className="btn-primary">
                           Проверить текущие условия <ArrowRight size={14} aria-hidden="true" />
                         </RuGoLink>
-                      ) : null}
+                      ) : (
+                        // No affiliate CTA: the Russia-access badge (firms.json russiaStatus) still renders on the ranked card.
+                        <RuAccessBadge firm={evidence.firmSlug} />
+                      )}
                     </div>
                   </article>
                 )
