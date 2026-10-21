@@ -571,8 +571,8 @@ export default function FundedNextVsBrightFundedRussianPage() {
           <div className="ru-shell ru-content">
             <h2>Отзывы: оценка платформы и подтверждение выплаты — разные вещи</h2>
             <p>
-              На снимке Trustpilot от {fundedNext?.trustpilotCapturedAt ?? 'неуказанной даты'} FundedNext имел
-              {fundedNext?.trustpilotScore ?? '—'}/5 при {fundedNext?.trustpilotCount?.toLocaleString('en-US') ?? '—'} отзывах.
+              На снимке Trustpilot от {fundedNext?.trustpilotCapturedAt ?? 'неуказанной даты'} у FundedNext была оценка
+              {' '}{fundedNext?.trustpilotScore ?? '—'}/5, отзывов: {fundedNext?.trustpilotCount?.toLocaleString('ru-RU') ?? '—'}.
               Это сводка пользовательских отзывов, а не проверка каждой выплаты.
               {' '}{brightFunded?.trustpilotRatingSuppressed ? `У BrightFunded в записи от ${brightFunded.trustpilotCapturedAt ?? 'неподтверждённой даты'} отмечено снятие общей оценки за нарушение правил платформы; это не нулевая оценка.` : 'Статус общей оценки BrightFunded нужно уточнить в его обзоре.'}
             </p>
