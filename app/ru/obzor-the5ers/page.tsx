@@ -36,6 +36,7 @@ const CFT_ACCESS = '20.10.2026'
 // The5ers Futures: figures read on https://the5ers.com/futures/ on this date (Tracker e47c653, evidence
 // /workspace/tradersfundhub/evidence/the5ers-2026-10-21b/futures-tabs.pw.txt). Hard-coded on purpose: e47c653 may be dropped.
 // SHIP-DAY CHECK: the Swing tab is labelled «Summer Plan»; re-read the Swing $25K/$50K prices on 23.10 before release.
+// Swing price status is contradictory at the source (summer-plan: limited-time «through the end of summer», no end date; futures FAQ 23.07.2026: «permanent price drops») — Tracker 02128ad. Keep the page wording neutral.
 const FUTURES_CHECKED = '21.10.2026'
 
 const SRC = {
@@ -54,6 +55,9 @@ const SRC = {
   bootcampFaq: 'https://the5ers.com/faqs/how-does-the-bootcamp-program-work/',
   futures: 'https://the5ers.com/futures/',
   consistency: 'https://the5ers.com/faqs/what-is-constancy-rule/',
+  summerPlan: 'https://the5ers.com/summer-plan/',
+  futuresSummerFaq: 'https://the5ers.com/futures-faqs/what-do-i-get-with-the-futures-summer-plan-2/',
+  futuresConsistency: 'https://the5ers.com/futures-faqs/what-is-the-consistency-rule/',
   brightCountries: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
   cftTerms: 'https://cryptofundtrader.com/terms-and-conditions/',
   trustpilot: 'https://www.trustpilot.com/review/the5ers.com',
@@ -206,7 +210,7 @@ export default function RussianThe5ersReviewPage() {
     },
     {
       q: 'Какая просадка в The5ers?',
-      a: `High Stakes: 5% в день и 10% от начального баланса, на счетах $50K и $100K — 4% и 8%. Pro Growth и Hyper Growth: уровень закрытия 6% ниже начального баланса и лимит 3% в день. Bootcamp: статическая просадка 5% на этапах оценки — граница закрытия считается от начального баланса и не поднимается вслед за прибылью (по данным на ${CHECKED}). Фьючерсы: 4% с пересчётом по закрытию дня (EOD), по данным the5ers.com/futures на ${FUTURES_CHECKED}.`,
+      a: `High Stakes: 5% в день и 10% от начального баланса, на счетах $50K и $100K — 4% и 8%. Pro Growth и Hyper Growth: уровень закрытия 6% ниже начального баланса и 3% в день; в Pro Growth дневной убыток 3% закрывает счёт, в Hyper Growth это пауза до конца дня. Bootcamp: статическая просадка 5% на этапах оценки — граница закрытия считается от начального баланса и не поднимается вслед за прибылью (по данным на ${CHECKED}). Фьючерсы: 4% с пересчётом по закрытию дня (EOD), по данным the5ers.com/futures на ${FUTURES_CHECKED}.`,
     },
     {
       q: 'Какие альтернативы The5ers для трейдеров из России?',
@@ -274,7 +278,7 @@ export default function RussianThe5ersReviewPage() {
             {minPriceTier ? ` ${minPriceTier.product.productName} ${sizeLabel(minPriceTier.tier.sizeUsd)}` : ' минимальный счёт'}. У всех CFD-программ нет
             срока на прохождение, а максимальный убыток считается от начального баланса, а не от пика счёта. Слабые места тоже конкретные:
             3,5% с каждой выплаты, первая выплата только через 14 дней после финансирования, окно новостей в High Stakes и правило
-            согласованности, которое фирма применяет «в зависимости от типа счёта или региона», не называя программы.
+            согласованности: для CFD-программ оно не опубликовано, но общий FAQ допускает 30% или 50% «в зависимости от типа счёта или региона».
           </p>
           <p>
             Наша оценка в базе — {firm?.score ?? '—'}/10.{' '}
@@ -440,7 +444,7 @@ export default function RussianThe5ersReviewPage() {
           <ul>
             <li><strong>Pro Growth.</strong> Дешевле ({usd(proGrowth?.accountSizes[0]?.priceUsd)} за {proGrowth?.accountSizes[0] ? sizeLabel(proGrowth.accountSizes[0].sizeUsd) : '—'}), требует 3 прибыльных дня, есть счёт $50K. Можно держать до 4 счетов, по одному каждого размера.</li>
             <li><strong>Hyper Growth.</strong> Заметно дороже ({usd(hyper?.accountSizes[0]?.priceUsd)} за {hyper?.accountSizes[0] ? sizeLabel(hyper.accountSizes[0].sizeUsd) : '—'}), зато без минимума дней: этап засчитывается сразу при достижении цели. Счёта $50K нет, а суммарный стартовый капитал на оценке — не больше $40 000. Счёт удваивается на каждой цели, рост — до $4 млн.</li>
-            <li><strong>Дневной лимит работает по-разному.</strong> В Hyper Growth 3% — это «пауза»: торговля отключается до 00:00 по серверу MT5, счёт не закрывается. Для Pro Growth FAQ фирмы пишет, что достижение 3% дневного убытка ведёт к закрытию счёта, хотя в шапке страницы Growth стоит «No daily stop-loss». Пока фирма не устранит расхождение, считайте 3% в Pro Growth жёстким лимитом.</li>
+            <li><strong>Дневной лимит работает по-разному.</strong> В Pro Growth дневной убыток 3% считается от большего из стартового эквити и стартового баланса дня (по серверу MT5), и его достижение закрывает счёт (<S href={SRC.pgDrawdown}>FAQ</S>, обновлён 30.07.2026). В Hyper Growth 3% — это «пауза»: торговля отключается до 00:00 по серверу MT5, счёт не закрывается; закрывает его уровень 6% ниже начального баланса (<S href={SRC.hyperFaq}>FAQ</S>, 10.08.2026). Пометка «No daily stop-loss» в шапке страницы Growth относится к Hyper Growth. Стоп-лосс на каждую сделку не требуется ни в одной программе.</li>
             <li><strong>Новости.</strong> Разрешены, кроме стратегий-«вилок» вокруг новостей и практик из условий.</li>
           </ul>
           <p className="ru-source-line">
@@ -475,13 +479,15 @@ export default function RussianThe5ersReviewPage() {
           <h2>The5ers Futures: фьючерсы CME</h2>
           <p>
             Кроме CFD-программ, The5ers продаёт отдельный фьючерсный продукт на контрактах CME с двумя вариантами. Day Trade: $25K — $59,
-            $50K — $100; позиции нужно закрывать до конца сессии. Swing: $25K — $69, $50K — $120 (на странице вкладка с пометкой Summer Plan);
-            можно держать через ночь 1 мини- или 10 микроконтрактов. Это цены со страницы программы, на кассе мы их не проверяли.
+            $50K — $100; позиции нужно закрывать до конца сессии. Swing: $25K — $69, $50K — $120 (текущая цена по данным на {FUTURES_CHECKED});
+            можно держать через ночь 1 мини- или 10 микроконтрактов. Статус цены Swing фирма описывает по-разному: <S href={SRC.summerPlan}>страница Summer Plan</S> называет
+            её ограниченным предложением «до конца лета» без даты окончания, а <S href={SRC.futuresSummerFaq}>FAQ</S> (23.07.2026) — постоянным снижением. На кассе цены мы не проверяли.
           </p>
           <p>
             Правила у обоих вариантов общие: цель 6% на оценке и 4% на финансируемом счёте, максимальный убыток 4% с пересчётом по закрытию дня
-            (EOD: от наибольшего баланса или эквити на полночь, то есть граница подтягивается за прибылью), правило согласованности 40% на позицию, доля 80/20. Взнос возвращается после
-            третьей выплаты. Перенос через выходные запрещён, алгоритмическая и высокочастотная торговля — тоже. Ограничение для России
+            (EOD: от наибольшего баланса или эквити на полночь, то есть граница подтягивается за прибылью), доля 80/20. Правило согласованности: одна сделка не может дать больше 40% общей прибыли, на оценке и на финансируемом счёте; нарушением это
+            не считается, но мешает выплате (<S href={SRC.futuresConsistency}>FAQ</S>, 20.07.2026). Взнос возвращается после
+            третьей выплаты в обоих вариантах. Перенос через выходные запрещён, алгоритмическая и высокочастотная торговля — тоже. Ограничение для России
             действует и здесь: условия The5ers общие для всех услуг. <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} hint={false} />
           </p>
           <p className="ru-source-line">Источники: <S href={SRC.futures}>the5ers.com/futures</S>, <S href="https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/">общие правила фьючерсной программы</S> — по данным the5ers.com/futures, {FUTURES_CHECKED}.</p>
@@ -520,7 +526,7 @@ export default function RussianThe5ersReviewPage() {
             <ul>
               <li><strong>KYC и интервью.</strong> На любом этапе проверки The5ers может запросить документы и видеоинтервью; на него нужно записаться и прийти с email, привязанным к счёту, а назначить и пройти его — в течение 5 рабочих дней (<S href={SRC.terms}>условия</S>).</li>
               <li><strong>Крупные суммы.</strong> Если выплата превышает лимит на одну транзакцию, который устанавливает фирма, её переводят частями по $10 000 в неделю (<S href={SRC.terms}>условия</S>).</li>
-              <li><strong>Согласованность.</strong> Для части счетов лучший день не должен превышать 30%, 50% или другой процент общей прибыли — иначе выплату придётся отложить (<S href={SRC.consistency}>FAQ</S>).</li>
+              <li><strong>Согласованность.</strong> Для High Stakes, Pro Growth, Hyper Growth и Bootcamp правило не опубликовано, но общий <S href={SRC.consistency}>FAQ</S> (обновлён 19.10.2026) пишет, что на части счетов, в зависимости от типа счёта или региона, лучший день не должен превышать 30%, 50% или другой процент общей прибыли — иначе выплату придётся отложить. Во фьючерсах — 40% на сделку (см. раздел о фьючерсах).</li>
               <li><strong>Новости в High Stakes.</strong> Сделки за 2 минуты до и после важных новостей запрещены (<S href={SRC.highStakes}>High Stakes</S>).</li>
               <li><strong>Страна.</strong> Если при KYC выяснится проживание в запрещённой стране или обход через VPN, счёт закрывают без возврата взносов и с аннулированием прибыли (<S href={SRC.terms}>условия</S>).</li>
             </ul>
@@ -538,7 +544,7 @@ export default function RussianThe5ersReviewPage() {
             <li><strong>Советники (EA).</strong> Ограничены: условия запрещают, например, советники, которые скальпируют на ночном ролловере, и сторонние советники, уже используемые другими трейдерами.</li>
             <li><strong>Перенос позиций.</strong> Через ночь и выходные разрешён во всех CFD-программах; за удержание индексов на выходных фирма предупреждает о высоком свопе.</li>
             <li><strong>Неактивность.</strong> Счёт без сделок больше 30 дней подряд закрывается или истекает.</li>
-            <li><strong>Правило согласованности.</strong> На страницах программ его нет, но в FAQ The5ers сказано, что процент зависит от типа счёта или региона — 30%, 50% или другой. Лучший день не должен превышать этот процент от общей прибыли при запросе выплаты или роста счёта. Какие счета затронуты, фирма не уточняет: спросите поддержку для своего счёта.</li>
+            <li><strong>Правило согласованности.</strong> Для High Stakes, Pro Growth, Hyper Growth и Bootcamp правило не опубликовано, но в FAQ The5ers (19.10.2026) сказано, что на части счетов процент зависит от типа счёта или региона — 30%, 50% или другой. Лучший день не должен превышать этот процент от общей прибыли при запросе выплаты или роста счёта. Какие счета затронуты, фирма не уточняет: спросите поддержку для своего счёта.</li>
           </ul>
           <p className="ru-source-line">
             Источники: <a href={SRC.platforms} target="_blank" rel="nofollow noopener noreferrer">платформы для CFD</a>, <a href={SRC.terms} target="_blank" rel="nofollow noopener noreferrer">условия</a>, <a href={SRC.consistency} target="_blank" rel="nofollow noopener noreferrer">правило согласованности</a> — по данным на {CHECKED}.
@@ -560,8 +566,8 @@ export default function RussianThe5ersReviewPage() {
           <ul>
             <li>3,5% удерживается с каждой выплаты, у банковского перевода — ещё и комиссия банка.</li>
             <li>Первая выплата — только через 14 дней после финансирования, и отсчёт сбрасывается после каждого роста счёта.</li>
-            <li>Правило согласованности может действовать в зависимости от счёта или региона, но на страницах программ его нет.</li>
-            <li>Дневное правило Pro Growth описано противоречиво: в FAQ — закрытие счёта, на странице — «No daily stop-loss».</li>
+            <li>Правило согласованности для CFD-программ не опубликовано, хотя FAQ допускает 30% или 50% в зависимости от счёта или региона.</li>
+            <li>В Pro Growth дневной убыток 3% закрывает счёт, а пометка «No daily stop-loss» на странице Growth относится только к Hyper Growth — их легко перепутать.</li>
           </ul>
           <p className="ru-source-line">Источники: <S href={SRC.highStakes}>High Stakes</S>, <S href={SRC.growth}>Growth</S>, <S href={SRC.bootcamp}>Bootcamp</S>, <S href={SRC.withdrawals}>FAQ о выплатах</S>, <S href={SRC.consistency}>правило согласованности</S>, <S href={SRC.pgDrawdown}>просадка Pro Growth</S>, <S href={SRC.drawdown}>как считается просадка</S> — по данным на {CHECKED}.</p>
         </div>
@@ -622,6 +628,7 @@ export default function RussianThe5ersReviewPage() {
             <li><a href={SRC.highStakes} target="_blank" rel="nofollow noopener noreferrer">High Stakes</a>, <a href={SRC.growth} target="_blank" rel="nofollow noopener noreferrer">Growth</a>, <a href={SRC.bootcamp} target="_blank" rel="nofollow noopener noreferrer">Bootcamp</a> — {CHECKED}</li>
             <li><a href={SRC.withdrawals} target="_blank" rel="nofollow noopener noreferrer">FAQ: выплаты</a>, <a href={SRC.minWithdrawal} target="_blank" rel="nofollow noopener noreferrer">минимумы</a>, <a href={SRC.hsPayout} target="_blank" rel="nofollow noopener noreferrer">Hub Credit в High Stakes</a> — {CHECKED}</li>
             <li><a href={SRC.drawdown} target="_blank" rel="nofollow noopener noreferrer">FAQ: просадка</a>, <a href={SRC.hsDrawdown} target="_blank" rel="nofollow noopener noreferrer">High Stakes</a>, <a href={SRC.pgDrawdown} target="_blank" rel="nofollow noopener noreferrer">Pro Growth</a>, <a href={SRC.consistency} target="_blank" rel="nofollow noopener noreferrer">правило согласованности</a>, <a href={SRC.platforms} target="_blank" rel="nofollow noopener noreferrer">платформы</a> — {CHECKED}</li>
+            <li><a href={SRC.futures} target="_blank" rel="nofollow noopener noreferrer">The5ers Futures</a>, <a href={SRC.futuresConsistency} target="_blank" rel="nofollow noopener noreferrer">правило согласованности фьючерсов</a>, <a href={SRC.futuresSummerFaq} target="_blank" rel="nofollow noopener noreferrer">FAQ о Summer Plan для фьючерсов</a>, <a href={SRC.summerPlan} target="_blank" rel="nofollow noopener noreferrer">Summer Plan</a>, <a href={SRC.hyperFaq} target="_blank" rel="nofollow noopener noreferrer">Hyper Growth FAQ</a> — {FUTURES_CHECKED}</li>
             <li><a href={SRC.brightCountries} target="_blank" rel="nofollow noopener noreferrer">BrightFunded: ограниченные страны</a> — {CHECKED}</li>
           </ul>
         </div>
