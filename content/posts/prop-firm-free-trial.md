@@ -30,7 +30,7 @@ type: "post"
 <p>"Free trial" covers three different things in this industry: a practice account that copies a paid rule set, a free challenge that can actually fund you, and a "practice" account that only comes with a paid subscription. The table keeps them apart. Each row is sourced from the firm's own help center or landing page, and the captures sit in <code>content/data/free-trials.json</code> and <code>content/data/free-trial-offers-evidence.json</code>.</p>
 
 <table data-free-trial-index="2026-10-19" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
-  <caption class="hidden-caption">Prop firm free trials and free challenges checked on 2026-10-19</caption>
+  <caption class="hidden-caption">Prop firm free trials and free challenges checked on 2026-10-19 (FTMO rechecked on 2026-10-20)</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 10px; text-align: left;">Firm</th><th style="padding: 8px 10px; text-align: left;">What you get</th><th style="padding: 8px 10px; text-align: left;">Time limit</th><th style="padding: 8px 10px; text-align: left;">How many</th><th style="padding: 8px 10px; text-align: left;">Can it pay?</th></tr></thead>
   <tbody>
     <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong><a href="/go/bright-funded" data-affiliate-placement="free-trial-table">BrightFunded</a></strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Free $1K Challenge: 1 phase, 10% target, then a $1,000 funded account</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">No time limit stated; 5 minimum trading days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">1 free account; only with no active accounts</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Yes, 80% of simulated profit once funded</td></tr>
@@ -46,7 +46,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>FTMO: three trials, halved targets, one new inactivity trap</strong></h2>
 
-<p>FTMO updated its trial page on 2026-10-16, according to the page's own modified date. You now pick a 1-Step, 2-Step or Instant Account trial, and each runs 14 days. The 2-Step trial halves the Phase 1 target from 10% to 5% and cuts minimum days from 4 to 2, while keeping the 5% daily loss and 10% static maximum loss. The 1-Step trial also halves the target to 5% but keeps the 3% daily loss, the 10% end-of-day trailing maximum loss and the 50% Best Day rule. The Instant trial has no target, a 3% daily loss, a 10% intraday trailing maximum loss and 30% consistency.</p>
+<p>FTMO updated its trial page on 2026-10-16, according to the page's own modified date. You now pick a 1-Step, 2-Step or Instant Account trial, and each runs 14 days. The 2-Step trial halves the Phase 1 target from 10% to 5% and cuts minimum days from 4 to 2, while keeping the 5% daily loss and 10% static maximum loss. The 1-Step trial also halves the target to 5% but keeps the 3% daily loss, the 10% end-of-day trailing maximum loss and the 50% consistency rule (on paid 1-Step accounts from 12 Oct 2026, measured against total profit). The Instant trial has no target, a 3% daily loss, a 10% intraday trailing maximum loss and 30% consistency.</p>
 
 <p><strong>The gotcha:</strong> FTMO's comparison table says each trial ends if "you don't trade in the first 7 days". If you open a trial on Friday and plan to start "next week", you can lose it before you've placed a trade. Also, the trial runs on MT4, MT5 and cTrader only. FTMO's FAQ now says TradingView isn't supported on a Free Trial, even though paid accounts offer it.</p>
 
@@ -100,7 +100,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>Which prop firms offer a free trial in 2026?</strong></h3>
-<p>On 2026-10-19 we verified free trials at FTMO, FundedNext, FundingPips, Alpha Capital and E8 Markets on their own sites, plus BrightFunded's Free $1K Challenge. Crypto Fund Trader has disabled its trials, and FXIFY offers only a free monthly competition.</p>
+<p>On 2026-10-19 we verified free trials at FTMO, FundedNext, FundingPips, Alpha Capital and E8 Markets on their own sites, plus BrightFunded's Free $1K Challenge, and rechecked FTMO's Free Trial page and FAQ on 2026-10-20. Crypto Fund Trader has disabled its trials, and FXIFY offers only a free monthly competition.</p>
 
 <h3 class="wp-block-heading"><strong>Can a free trial prop firm account get me funded?</strong></h3>
 <p>Not at FTMO, FundedNext, FundingPips, Alpha Capital or E8, which all say trial results don't count toward funding or payouts. BrightFunded's Free $1K Challenge is the exception: pass its single 10% phase and a $1,000 funded account activates with an 80% split.</p>

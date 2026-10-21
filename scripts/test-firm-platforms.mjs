@@ -59,6 +59,8 @@ const FirmTable = load('components/FirmTable.tsx').default
 const { directoryPlatformNames, firmPlatformEvidenceStatus } = load('lib/firmPlatforms.ts')
 const allFirms = JSON.parse(readFileSync(new URL('../content/data/firms.json', import.meta.url), 'utf8'))
 const bright = allFirms.find(firm => firm.name === 'BrightFunded')
+const brightCapturedMs = Date.parse(`${bright.platformEvidence.sourceCapturedAt}T00:00:00Z`)
+clock = new Date(brightCapturedMs + 12 * 3_600_000).toISOString()
 assert.deepEqual(bright.platforms, ['MT5', 'DXTrade', 'cTrader'])
 assert.equal(bright.platformEvidence.sourceUrl, 'https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer')
 const legacy = { ...bright, name: 'Legacy fixture', affiliateUrl: '', platformEvidence: undefined, platforms: ['TradeLocker'] }
@@ -115,9 +117,9 @@ try {
     assert(!nodes(cell).some(node => node.type === 'a'), 'invalid source cannot remain a clickable citation')
   }
 } finally { Object.assign(bright, JSON.parse(original)) }
-clock = '2026-10-08T12:00:00Z'
+clock = new Date(brightCapturedMs + 30 * 86_400_000 + 12 * 3_600_000).toISOString()
 assert.equal(firmPlatformEvidenceStatus(bright), 'fresh', 'day 30 inclusive')
-clock = '2026-10-09T00:00:00Z'
+clock = new Date(brightCapturedMs + 31 * 86_400_000).toISOString()
 assert.equal(firmPlatformEvidenceStatus(bright), 'recapture-required', 'day 31 requires recapture')
 assert.equal(firmPlatformEvidenceStatus(legacy), 'uncaptured', 'legacy platform names are not promoted to verified evidence')
 assert.equal(JSON.stringify(bright), original, 'all source fixtures restored')

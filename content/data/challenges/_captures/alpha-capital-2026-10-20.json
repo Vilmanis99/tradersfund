@@ -231,5 +231,192 @@
       "httpStatus": 200,
       "fetchedAt": "2026-10-20T05:13:46.282Z"
     }
-  ]
+  ],
+  "articleSlotRecapture": {
+    "captureType": "full-recapture (article slot: RU review /ru/obzor-alpha-capital, RU SEO Lead brief 2026-10-24.md section 10)",
+    "capturedAt": "2026-10-20",
+    "capturedAtTimestamp": "2026-10-20T12:40:00+03:00",
+    "timezone": "Europe/Riga",
+    "egress": "Box egress is a US IP. Alpha prices in USD worldwide (availability resource: \"Simulated accounts and pricing are in USD worldwide\"); the rendered checkout shows the same ladder as the 21 Sep pricing article. No VPN/proxy. Promo codes seen from the US IP are not treated as global deals.",
+    "method": "curl --compressed of help-centre articles (Intercom, server-rendered) and resource pages; headless Chrome render of / and /product (checkout catalogue window.__CHECKOUT_BOOT__ parsed); headless Chrome for Trustpilot. No order, personal data or payment submitted. Raw files: /workspace/tradersfundhub/evidence/article-slots-2026-10-20/alpha/",
+    "pagesRead": [
+      "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+      "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account",
+      "https://help.alphacapitalgroup.uk/en/articles/6933755-how-do-i-get-paid-performance-fees",
+      "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+      "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+      "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
+      "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+      "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+      "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+      "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+      "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+      "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+      "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+      "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+      "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
+      "https://help.alphacapitalgroup.uk/en/articles/6934210-what-are-the-daily-risk-limits-and-how-do-they-work",
+      "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+      "https://alphacapitalgroup.uk/",
+      "https://alphacapitalgroup.uk/product",
+      "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+      "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
+      "https://alphacapitalgroup.uk/resources/alpha-capital-country-availability-2026",
+      "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+      "https://www.trustpilot.com/review/alphacapitalgroup.uk"
+    ],
+    "quoteRecheck": "190 of 254 quotes stored in alpha-capital-2026-10-14.json found verbatim in today's text; the 64 misses are pipe-separated table cells (pricing-update/cost-article tables) whose values appear in the live text in plain form, plus the Swing \"2-step evaluation\" label (page still lists Phase 1 10% / Phase 2 5%). All stored prices for the 9 purchasable products match the 21 Sep pricing article and the rendered checkout.",
+    "keyFacts100k": {
+      "alpha-pro-6 (bi-weekly)": {
+        "priceUsd": 427,
+        "targets": "6% / 6%",
+        "dailyLossPct": 3,
+        "maxLossPct": 6,
+        "drawdown": "static",
+        "split": 80,
+        "firstPayout": "14 days after first Qualified trade + 5 trading days, $100 min"
+      },
+      "alpha-pro-6-on-demand": {
+        "priceUsd": 397,
+        "consistency": "40% best day (funded payouts)"
+      },
+      "alpha-pro-8 bi-weekly / on-demand": {
+        "priceUsd": "577 / 527",
+        "targets": "8% / 5%",
+        "dailyLossPct": 4,
+        "maxLossPct": 8
+      },
+      "alpha-pro-10 bi-weekly / on-demand": {
+        "priceUsd": "497 / 447",
+        "targets": "10% / 5%",
+        "dailyLossPct": 5,
+        "maxLossPct": 10
+      },
+      "alpha-one (10%, on-demand)": {
+        "priceUsd": 477,
+        "target": "10%",
+        "dailyLossPct": 4,
+        "maxLossPct": 6,
+        "drawdown": "trailing (high-water mark)",
+        "consistency": "40%"
+      },
+      "alpha-swing": {
+        "priceUsd": 577,
+        "targets": "10% / 5%",
+        "dailyLossPct": 5,
+        "maxLossPct": 10,
+        "drawdown": "static"
+      },
+      "alpha-direct": {
+        "priceUsd": 457,
+        "dailyLossPct": 3,
+        "maxLossPct": 5,
+        "drawdown": "trailing",
+        "split": 90,
+        "consistency": "15%"
+      },
+      "alpha-three": {
+        "priceUsd": null,
+        "note": "not purchasable, see threeAvailability"
+      },
+      "evidence": [
+        {
+          "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+          "quote": "$100,000 $427 / $397 $577 / $527 $497 / $447"
+        },
+        {
+          "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+          "quote": "Alpha Pro 6% 6% 6% 3% 6% Alpha Pro 8% 8% 5% 4% 8% Alpha Pro 10% 10% 5% 5% 10%"
+        }
+      ]
+    },
+    "countryAccess": {
+      "clause": {
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+        "articleDate": "July 6, 2026",
+        "quote": "Please note that Alpha Capital Group does not provide services to persons who are nationals of, or residents in, the following countries: Afghanistan Belarus ... Russia ... Sanctioned areas of Ukraine* Republic of Congo * Currently: Donetsk Luhansk Crimea Kherson Zaporizhzhia"
+      },
+      "kyc": {
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account",
+        "articleDate": "July 23, 2026",
+        "quote": "If a trader is from a restricted country but is living in a non-restricted country and holds a government-issued document from that non-restricted country, they can be onboarded. If a trader is from a restricted country and living in a restricted country, they cannot be onboarded, even if they hold a passport from another country."
+      },
+      "checkoutDropdown": "Rendered /product country dropdown has no Russia or Belarus; Kazakhstan and Ukraine are present.",
+      "answers": {
+        "citizenshipAndResidency": "Yes: \"nationals of, or residents in\". The KYC article softens it for nationals living in a non-restricted country with that country's ID.",
+        "kazakhstan": "Not named; selectable at checkout.",
+        "ukraineSanctionedAreas": "Still listed: Donetsk, Luhansk, Crimea, Kherson, Zaporizhzhia."
+      }
+    },
+    "threeAvailability": {
+      "answer": "Not buyable today.",
+      "checkoutCatalogue": "window.__CHECKOUT_BOOT__.catalog[\"Alpha Three\"] = [] (0 items; Alpha Pro 18, Swing 6, Alpha Direct 7, Alpha One 10% 6); section data-checkout-three-hidden=\"1\"",
+      "firstParty": {
+        "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-country-availability-2026",
+        "quote": "Alpha Three is not currently offered for new purchases."
+      },
+      "data": "challenges/alpha-capital.json alpha-three prices NOT changed (retained 67/157/247/397/697 per the alpha-three-purchase-availability-conflict watch); availability observation added to the product notes. Recommendation for EN Writer/Code Reviewer: decide whether to null Three prices; doing so breaks the alpha-capital-review True-Cost rows ($25K/$50K/$200K) in the audit."
+    },
+    "consistencyBiWeekly": {
+      "answer": "Still unverified. Neither the bi-weekly help article nor the product page names a best-day rule for bi-weekly, but neither says there is none.",
+      "biweekly": {
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+        "quote": "The minimum performance fee amount is $100 ($100 gross, $80 net). To qualify for a withdrawal, a minimum profit of $100 must be realised on the account. For your first performance fee request, a minimum of 5 trading days using the same trading strategy is required."
+      },
+      "productPage": {
+        "sourceUrl": "https://alphacapitalgroup.uk/product",
+        "quote": "Consistency Plan-specific One/Pro/Swing On-Demand: 40% best day + 2% min. Direct: 15% Best Day Rule + 1% Minimum profit."
+      }
+    },
+    "payouts": {
+      "methods": {
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933755-how-do-i-get-paid-performance-fees",
+        "quote": "We offer multiple methods to pay your performance fees: Rise Wise Bank Transfer (WIRE / ACH / SWIFT) Cryptocurrency We do not facilitate withdrawals directly through cryptocurrency due to its lack of regulatory oversight, which contravenes our compliance standards. However, you may make cryptocurrency withdrawals through Rise, one of our authorised third-party payment service providers."
+      },
+      "processing": {
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933755-how-do-i-get-paid-performance-fees",
+        "quote": "All performance fee requests are processed and paid within 2 business days ."
+      },
+      "minimums": "Bi-weekly $100 gross; on-demand 2% of gross profit (Pro/Swing/One/Three), Direct 3% buffer + 1%."
+    },
+    "addOns": {
+      "ninetySplit": {
+        "sourceUrl": "https://alphacapitalgroup.uk/product",
+        "quote": "90% add-on +~10% plan price All Alpha One plans, and Alpha Pro On-Demand only (not Bi-Weekly). Not on Swing; Direct is 90% base. ... Keep 80% standard, or add 90% PFS (+10% on the On-Demand price)."
+      },
+      "swapFree": {
+        "sourceUrl": "https://alphacapitalgroup.uk/product",
+        "quote": "3. Swap Free (add-on) Optional. Turn off overnight swap/rollover fees on your account (adds ~10% to the price)."
+      }
+    },
+    "platforms": {
+      "value": [
+        "MT5",
+        "cTrader",
+        "DXTrade",
+        "TradeLocker"
+      ],
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
+      "quote": "Our platform currently offers exclusive access to MetaTrader 5, cTrader, DX Trade, and TradeLocker. Please note that for U.S. residents, the available platforms are cTrader*, DX Trade, and TradeLocker.",
+      "change": "firms.json had MT5, cTrader only."
+    },
+    "trustpilot": {
+      "url": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
+      "ratingSuppressed": true,
+      "quote": "This company’s rating is unavailable due to a breach of our guidelines . ... We’ve removed a number of fake reviews for this company. All reviews ( 22,005 ) 8,187 reviews in the last 12 months",
+      "note": "trustpilotCount stays null while suppressed."
+    },
+    "corporate": {
+      "sourceUrl": "https://alphacapitalgroup.uk/product",
+      "quote": "ALPHA CAPITAL GROUP LIMITED Company number 13719951 Registered office: 1 Allied Business Centre, Coldharbour Lane, Harpenden, England, AL5 4UT",
+      "note": "Unchanged entity and Harpenden registered office."
+    },
+    "promoCodes": {
+      "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "quote": "10KFOR40 — $10K evaluation for $40 (campaign page: /10kfor40 ) DIRECT50 — 50% off Instant Funding (Alpha Direct) ALPHA30 — 30% off all accounts",
+      "banner": "10K Evaluation for $40 · Use code 10KFOR40",
+      "handling": "Seen from a US-IP box only, not checkout-verified: firms.json regionalDiscountCode ALPHA30 (30%) with discountCodeRegion us-only-unconfirmed; nothing in deals.json."
+    }
+  }
 }

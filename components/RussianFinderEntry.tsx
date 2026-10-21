@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { DEFAULT_FINDER_FILTERS, challengeKey, filterChallengeRows, finderTier, finderAccountSizes, resolveFinderSize, serializeFinderState, type ChallengeFinderFilters, type GlobalChallengeRow } from '@/lib/challengeComparison'
+import { DEFAULT_FINDER_FILTERS, challengeKey, filterChallengeRows, finderTier, finderAccountSizes, priceBreakdownLabel, tierPriceParts, resolveFinderSize, serializeFinderState, type ChallengeFinderFilters, type GlobalChallengeRow } from '@/lib/challengeComparison'
 import { trackSiteEvent } from '@/lib/clientAnalytics'
 
 export default function RussianFinderEntry({ rows }: { rows: GlobalChallengeRow[] }) {
@@ -32,7 +32,11 @@ export default function RussianFinderEntry({ rows }: { rows: GlobalChallengeRow[
   const fee = (row: GlobalChallengeRow) => {
     const tier = finderTier(row, size)!
     const amounts = [
-      tier.priceUsd != null && tier.priceUsd > 0 ? new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(tier.priceUsd) : null,
+      tier.priceUsd != null && tier.priceUsd > 0 ? (() => {
+        const format = (amount: number) => new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(amount)
+        const parts = tierPriceParts(tier)
+        return parts ? priceBreakdownLabel(parts, 'ru', format) : format(tier.priceUsd)
+      })() : null,
       tier.priceEur != null && tier.priceEur > 0 ? new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 }).format(tier.priceEur) : null,
     ].filter(Boolean)
     return amounts.length ? amounts.join(' / ') : 'Цена не подтверждена'

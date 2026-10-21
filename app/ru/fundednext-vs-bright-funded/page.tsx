@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
+import { RuComparePickVerdict } from '@/components/RuVerdict'
 import { fundedNextOneStepPayoutLabel, fundedNextPayoutSource, isFundedNextPayoutSourceFresh } from '@/lib/fundedNextPayout'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
@@ -35,8 +37,12 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
+import { isRussiaAccessEvidenceDocumented } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import RuFundedNextRussiaRedirect from '@/components/RuFundedNextRussiaRedirect'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
 
 const PATH = '/ru/fundednext-vs-bright-funded'
 const TITLE = 'FundedNext или BrightFunded: сравнение 2026 и доступ из РФ'
@@ -66,7 +72,7 @@ export const metadata: Metadata = {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Что лучше: FundedNext или BrightFunded?',
-    a: 'Единого победителя нет. Сначала выберите программу с оценкой или без неё, допустимую просадку и валюту взноса. Затем сравните условия запроса вознаграждения и доступность платформы для своего профиля. Ни партнёрская ссылка, ни число программ сами по себе не делают фирму подходящей.',
+    a: 'Единого победителя нет. Сначала выберите программу с оценкой или без неё, допустимую просадку и валюту взноса. Затем сравните условия запроса вознаграждения и доступность платформы для своего профиля. Ни партнёрская ссылка, ни число программ сами по себе не делают фирму подходящей. Резидентам России FundedNext недоступна, поэтому для них вопрос решается в пользу BrightFunded.',
   },
   {
     q: 'У кого дешевле челлендж?',
@@ -90,7 +96,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какая фирма удобнее русскоязычному трейдеру за рубежом?',
-    a: 'Язык не определяет доступ. Резидент ЕС с EUR-счётом может предпочесть BrightFunded, а пользователь разрешённой юрисдикции с подходящим кошельком — один из криптомаршрутов FundedNext. Проверяются фактические гражданство, резидентство, адрес, платёж и KYC.',
+    a: 'Язык не определяет доступ. Резидент ЕС с EUR-счётом может предпочесть BrightFunded, а пользователь разрешённой юрисдикции (не России) с подходящим кошельком — один из криптомаршрутов FundedNext. Резиденту России подходит только BrightFunded. Проверяются фактические гражданство, резидентство, адрес, платёж и KYC.',
   },
 ]
 
@@ -220,7 +226,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
   const completeEvidence = relevantProducts.length > 0 && products.length === relevantProducts.length
     && [oneStepFn, oneStepBright, twoStepFn, liteFn, instantFn, twoStepBright, classicBright].every(Boolean)
     && ['fundednext', 'bright-funded'].every(slug => payoutEvidence.has(slug) && kycEvidence.has(slug))
-    && accessEvidence?.status === 'conflicting' && accessEvidence.sourceUrls.length === 4
+    && isRussiaAccessEvidenceDocumented('fundednext', accessEvidence)
     && products.every(product => pricedTiers(product).length > 0)
     && evidenceDates.every(source => freshCapture(source.capturedAt)) && isFundedNextPayoutSourceFresh()
   const sourceUrls = [...new Set([...relevantProducts.map(product => product.sourceUrl), fundedNextPayoutSource.sourceUrl, ...ruleSources.map(source => source.sourceUrl), ...[...payoutEvidence.values(), ...kycEvidence.values()].filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).flatMap(source => source.sourceUrls), ...(accessEvidence?.sourceUrls ?? [])])]
@@ -267,7 +273,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
       <Breadcrumbs ld={crumbs} locale="ru" />
       {completeEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div
           className="ru-shell"
           data-russian-primary-comparison="fundednext-bright-funded"
@@ -278,6 +284,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
           <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Два главных партнёра · победитель зависит от продукта</div>
           <h1>FundedNext или BrightFunded: что выбрать в 2026 году</h1>
+          <RuFundedNextRussiaRedirect alternativeHref="#bright-funded-choice" />
           <p className="ru-lead">
             Сравниваем конкретные программы, а не рекламные максимумы двух фирм. В таблице — {products.length} программ
             и {priceCount} цен с актуальной проверкой источников. Разбираем валюту взноса, механику просадки,
@@ -305,22 +312,24 @@ export default function FundedNextVsBrightFundedRussianPage() {
           </div>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="fundednext-bright-comparison">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            FundedNext и BrightFunded — два главных коммерческих партнёра русской версии. Мы можем получить комиссию после
+            BrightFunded и FundedNext — два главных коммерческих партнёра русской версии; FundedNext резидентам России недоступна. Мы можем получить комиссию после
             покупки по партнёрской ссылке. Комиссия не меняет правила сравнения и не добавляет фирме баллы.
             Для обеих фирм доступны подробный обзор и ссылка на проверку условий.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fn-vs-bright-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
-              Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
-            </RuGoLink>
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-fn-vs-bright-bright-funded" rel="sponsored nofollow noopener" className="btn-outline">
               Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" />
+            </RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fn-vs-bright-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
+              Проверить FundedNext <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
             <Link href="#verdict" className="btn-outline">Сначала увидеть различия</Link>
           </div>
           <RuFundedNextAccessCaveat />
         </div>
       </section>
+
+      <RuComparePickVerdict route={PATH} campaign="fn-vs-bright" />
 
       <article className="ru-review-article" data-russian-primary-comparison-article="product-before-brand">
         <section className="ru-section" id="verdict">
@@ -606,15 +615,15 @@ export default function FundedNextVsBrightFundedRussianPage() {
               <li><strong>Источник.</strong> Сохраните условия своего заказа и повторно откройте официальные правила перед оплатой.</li>
             </ol>
             <div className="ru-grid">
-              <article className="ru-card" data-russian-primary-comparison-cta="fundednext">
-                <div className="ru-card-head"><h3>Выбрать FundedNext</h3><span className="ru-score">Партнёр</span></div>
-                <p className="ru-muted">Начните с нужной модели Stellar: оценка или Instant, взнос в USD, отдельные правила просадки и запроса вознаграждения. Подтвердите программу и профиль до покупки.</p>
-                <div className="ru-actions"><Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link><RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fn-vs-bright-verdict-fundednext" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink></div>
-              </article>
-              <article className="ru-card" data-russian-primary-comparison-cta="bright-funded">
+              <article className="ru-card" id="bright-funded-choice" data-russian-primary-comparison-cta="bright-funded">
                 <div className="ru-card-head"><h3>Выбрать BrightFunded</h3><span className="ru-score">Партнёр</span></div>
                 <p className="ru-muted">Сопоставьте взнос в EUR, выбранную одно- или двухэтапную модель, доступную платформу и способ выплаты. Уточните базовый цикл и платные дополнения.</p>
                 <div className="ru-actions"><Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link><RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-fn-vs-bright-verdict-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink></div>
+              </article>
+              <article className="ru-card" data-russian-primary-comparison-cta="fundednext">
+                <div className="ru-card-head"><h3>Выбрать FundedNext</h3>{russiaStatusFor('fundednext') === 'restricted' ? <RuAccessBadgeView firm="fundednext" status="restricted" hint={false} /> : <span className="ru-score">Партнёр</span>}</div>
+                <p className="ru-muted">{russiaStatusFor('fundednext') === 'restricted' ? <><strong>Резидентам России недоступна.</strong> Для трейдеров из других стран.{' '}</> : null}Начните с нужной модели Stellar: оценка или Instant, взнос в USD, отдельные правила просадки и запроса вознаграждения. Подтвердите программу и профиль до покупки.</p>
+                <div className="ru-actions"><Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link><RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fn-vs-bright-verdict-fundednext" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink></div>
               </article>
             </div>
             <p className="ru-source-line"><Database size={14} aria-hidden="true" /> {products.length} программ · {priceCount} цен · {sourceCount} официальных страниц программ. Самая ранняя проверка — {latestCapture}.</p>
@@ -631,6 +640,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             <RussianFaq items={pageFaqs} />
           </div>
         </section>
+        <RuRelatedBlock path={PATH} />
       </article>
     </>
   )

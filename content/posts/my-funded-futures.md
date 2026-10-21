@@ -29,14 +29,14 @@ sourceUrls:
 
 <div data-mff-review-evidence="2026-09-14" style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
   <strong>Evidence boundary</strong>
-  <p style="margin: 0.45rem 0 0;">This page uses a 14 September 2026 first-party capture. New Rapid, Rapid EOD, Builder and Pro purchases are described as one-time payments; Flex is retained only as a legacy subscription record. The client-rendered plan selector exposed only three unambiguous current tier prices, so all other current prices are shown as “—” instead of carrying forward stale monthly figures.</p>
+  <p style="margin: 0.45rem 0 0;">This page was first built from a 14 September 2026 first-party capture; prices, rules and source pages were rechecked against the plan pages on 20 October 2026. New Rapid, Rapid EOD, Builder and Pro purchases are described as one-time payments; Flex is retained only as a legacy subscription record. The plan pages now embed size-mapped prices for every Rapid, Pro and Builder tier; Rapid EOD 25K still has no published price and legacy Flex prices are no longer published, so those cells show “—” instead of carrying forward old figures.</p>
 </div>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul>
     <li>Current new-purchase families are Rapid, Rapid EOD, Builder and Pro; Flex is marked legacy by MFFU.</li>
-    <li>Visible first-party prices in this capture are Rapid 50K at $209, Rapid EOD 50K at $157 and Pro 50K at $265; other current selector prices remain unverified.</li>
+    <li>One-time list prices (rechecked 2026-10-20): Rapid $145/$209/$356/$463 for 25K–150K, Rapid EOD 50K $157, Pro $265/$401/$557 for 50K–150K and Builder $105/$153 for 25K/50K.</li>
     <li>Rapid uses a 2-day evaluation, 90% split and intraday funded trailing drawdown; Rapid EOD keeps EOD drawdown funded but needs 4 days and 30% evaluation consistency.</li>
     <li>Builder needs 1 evaluation day and five simulated payouts before the documented live transition; Pro needs 14 calendar days before its first payout and has a $100,000 cycle cap.</li>
     <li>Russia is explicitly listed as restricted, so a Russian resident should not click through expecting a new MFFU account.</li>
@@ -62,27 +62,27 @@ sourceUrls:
 <table class="general-table" data-mff-plan-decision="binding-rule" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;"><caption class="hidden-caption">My Funded Futures plan decision matrix</caption><thead><tr style="background: var(--bg3);"><th>Plan</th><th>Choose it for</th><th>Binding rule to price first</th></tr></thead><tbody><tr><td>Rapid</td><td>2-day evaluation and daily requests</td><td>Real-time trailing drawdown after funding plus the size-specific payout buffer</td></tr><tr><td>Rapid EOD</td><td>EOD funded drawdown</td><td>4 evaluation days and 30% consistency</td></tr><tr><td>Builder</td><td>1-day evaluation and five-rung ladder</td><td>50% funded consistency and $1,000/$2,000 payout cap</td></tr><tr><td>Pro</td><td>$100,000 cycle ceiling</td><td>14 calendar days plus buffer before first request</td></tr></tbody></table>
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
-<p>The table records 13 product-size rows. A dash means the 14 September first-party page did not expose a stable size-mapped price in server-readable text; it is not a zero fee.</p>
+<p>The table records 13 product-size rows. A dash means no current first-party price is published for that row (rechecked 2026-10-20); it is not a zero fee.</p>
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.84rem;">
   <caption class="hidden-caption">My Funded Futures product and size comparison</caption>
   <thead><tr style="background: var(--bg3);"><th>Product</th><th>Stage</th><th>Account</th><th>Price</th><th>Target</th><th>Max loss</th><th>Split</th></tr></thead>
   <tbody>
-    <tr><td>Rapid</td><td>1 phase</td><td>$25K</td><td>—</td><td>6%</td><td>$1,000</td><td>90%</td></tr>
+    <tr><td>Rapid</td><td>1 phase</td><td>$25K</td><td>$145</td><td>6%</td><td>$1,000</td><td>90%</td></tr>
     <tr><td>Rapid</td><td>1 phase</td><td>$50K</td><td>$209</td><td>6%</td><td>$2,000</td><td>90%</td></tr>
-    <tr><td>Rapid</td><td>1 phase</td><td>$100K</td><td>—</td><td>6%</td><td>$3,000</td><td>90%</td></tr>
-    <tr><td>Rapid</td><td>1 phase</td><td>$150K</td><td>—</td><td>6%</td><td>$4,500</td><td>90%</td></tr>
+    <tr><td>Rapid</td><td>1 phase</td><td>$100K</td><td>$356</td><td>6%</td><td>$3,000</td><td>90%</td></tr>
+    <tr><td>Rapid</td><td>1 phase</td><td>$150K</td><td>$463</td><td>6%</td><td>$4,500</td><td>90%</td></tr>
     <tr><td>Rapid EOD</td><td>1 phase</td><td>$25K</td><td>—</td><td>6%</td><td>$1,000</td><td>90%</td></tr>
     <tr><td>Rapid EOD</td><td>1 phase</td><td>$50K</td><td>$157</td><td>6%</td><td>$2,000</td><td>90%</td></tr>
-    <tr><td>Flex <em>(legacy)</em></td><td>1 phase</td><td>$25K</td><td>$95 / month</td><td>6%</td><td>$1,000</td><td>80%</td></tr>
-    <tr><td>Flex <em>(legacy)</em></td><td>1 phase</td><td>$50K</td><td>$153 / month</td><td>6%</td><td>$2,000</td><td>80%</td></tr>
+    <tr><td>Flex <em>(legacy)</em></td><td>1 phase</td><td>$25K</td><td>—</td><td>6%</td><td>$1,000</td><td>80%</td></tr>
+    <tr><td>Flex <em>(legacy)</em></td><td>1 phase</td><td>$50K</td><td>—</td><td>6%</td><td>$2,000</td><td>80%</td></tr>
     <tr><td>Pro</td><td>1 phase</td><td>$50K</td><td>$265</td><td>6%</td><td>$2,000</td><td>80%</td></tr>
-    <tr><td>Pro</td><td>1 phase</td><td>$100K</td><td>—</td><td>6%</td><td>$3,000</td><td>80%</td></tr>
-    <tr><td>Pro</td><td>1 phase</td><td>$150K</td><td>—</td><td>6%</td><td>$4,500</td><td>80%</td></tr>
-    <tr><td>Builder</td><td>1 phase</td><td>$25K</td><td>—</td><td>6%</td><td>$1,000</td><td>80%</td></tr>
-    <tr><td>Builder</td><td>1 phase</td><td>$50K</td><td>—</td><td>6%</td><td>$2,000</td><td>80%</td></tr>
+    <tr><td>Pro</td><td>1 phase</td><td>$100K</td><td>$401</td><td>6%</td><td>$3,000</td><td>80%</td></tr>
+    <tr><td>Pro</td><td>1 phase</td><td>$150K</td><td>$557</td><td>6%</td><td>$4,500</td><td>80%</td></tr>
+    <tr><td>Builder</td><td>1 phase</td><td>$25K</td><td>$105</td><td>6%</td><td>$1,000</td><td>80%</td></tr>
+    <tr><td>Builder</td><td>1 phase</td><td>$50K</td><td>$153</td><td>6%</td><td>$2,000</td><td>80%</td></tr>
   </tbody>
 </table>
-<p>Prices and rule fields are current as of 2026-09-14. Rapid, Rapid EOD, Builder and Pro are described as one-time plans in their current pages and in the terms; Flex prices describe legacy subscriptions only. The <a href="/go/my-funded-futures">firm checkout</a> controls the final amount, add-ons and eligibility.</p>
+<p>Prices and rule fields were rechecked against MFFU’s plan and help pages on 2026-10-20. Prices are one-time list prices before the site-wide coupon. Rapid, Rapid EOD, Builder and Pro are described as one-time plans in their current pages and in the terms; Flex is a legacy subscription whose prices MFFU no longer publishes. The <a href="/go/my-funded-futures">firm checkout</a> controls the final amount, add-ons and eligibility.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 <p><strong>Rapid:</strong> the evaluation uses an end-of-day trailing line and a 6% target, then the Sim Funded stage switches to intraday trailing. The current rules table gives a $2,000 maximum loss and 5 mini/50 micro contracts for 50K; the floor locks at +$100 once the buffer is secured.</p>
@@ -95,10 +95,10 @@ sourceUrls:
 <p>The <a href="/blog/balance-based-drawdown-vs-equity-based-drawdown">drawdown guide</a> explains why Rapid's funded intraday trail and Rapid EOD's funded EOD trail are different risk surfaces. The <a href="/blog/what-is-prop-firm-consistency-rule">consistency guide</a> shows the 50% and 30% calculations with examples.</p>
 
 <h3 class="wp-block-heading"><strong>How an MFF funded account works</strong></h3>
-<p>An MFF funded account (MFFU calls it Sim Funded) is the simulated stage after the evaluation, and each current plan treats it differently. The table below sets out what a funded trader actually faces on each plan, using the 14 September first-party pages.</p>
+<p>An MFF funded account (MFFU calls it Sim Funded) is the simulated stage after the evaluation, and each current plan treats it differently. The table below sets out what a funded trader actually faces on each plan, using MFFU’s first-party pages (rechecked 20 October 2026).</p>
 
 <table data-mff-funded-account="2026-09-14" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-  <caption class="hidden-caption">My Funded Futures funded account rules by plan, captured 14 September 2026</caption>
+  <caption class="hidden-caption">My Funded Futures funded account rules by plan, rechecked 20 October 2026</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Plan</th><th style="padding: 8px 12px; text-align: left;">Funded drawdown</th><th style="padding: 8px 12px; text-align: left;">First payout</th><th style="padding: 8px 12px; text-align: left;">Minimum request</th></tr></thead>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Rapid</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Real-time trailing drawdown, plus a size-specific payout buffer</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Daily requests once the buffer is met</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$500</td></tr>
@@ -109,16 +109,49 @@ sourceUrls:
 </table>
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
-<p>These tables are generated from <a href="/true-cost-of-prop-firm-challenges"><code>computeTrueCost()</code></a>. A dash means the current first-party capture did not provide a price, so no break-even number is manufactured. Flex's rows are labelled legacy because its $95 and $153 figures are recurring historical terms.</p>
+<p>These tables are generated from <a href="/true-cost-of-prop-firm-challenges"><code>computeTrueCost()</code></a>. Rapid EOD 25K and legacy Flex have no current published price, so no break-even number is manufactured for them.</p>
 
 <!-- Rapid — generated by scripts/gen-truecost.mjs -->
-<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;"><caption class="hidden-caption">Rapid true-cost projection</caption><thead><tr style="background: var(--bg3);"><th>Tier</th><th>Fee</th><th>Break-even profit (90% split)</th><th>Max loss</th><th>R-multiple</th><th>Days @ 1%/day</th></tr></thead><tbody><tr><td>$50K</td><td>$209</td><td>$232</td><td>$2,000</td><td>0.12</td><td>—</td></tr></tbody></table>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Rapid true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (90% split)</th><th style="padding: 8px 12px; text-align: left;">Max loss</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs tier max loss</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$145</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$161</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.16</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$209</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$232</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.12</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$356</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$396</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$3,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.13</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td></tr>
+    <tr><td style="padding: 8px 12px;">$150K</td><td style="padding: 8px 12px;">$463</td><td style="padding: 8px 12px;">$514</td><td style="padding: 8px 12px;">$4,500</td><td style="padding: 8px 12px;">0.11</td><td style="padding: 8px 12px;">—</td></tr>
+  </tbody>
+</table>
+
 <!-- Rapid EOD — generated by scripts/gen-truecost.mjs -->
-<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;"><caption class="hidden-caption">Rapid EOD true-cost projection</caption><thead><tr style="background: var(--bg3);"><th>Tier</th><th>Fee</th><th>Break-even profit (90% split)</th><th>Max loss</th><th>R-multiple</th><th>Days @ 1%/day</th></tr></thead><tbody><tr><td>$50K</td><td>$157</td><td>$174</td><td>$2,000</td><td>0.09</td><td>—</td></tr></tbody></table>
-<!-- Flex — generated by scripts/gen-truecost.mjs -->
-<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;"><caption class="hidden-caption">Legacy Flex true-cost projection</caption><thead><tr style="background: var(--bg3);"><th>Tier</th><th>Cost to funded (1 mo)</th><th>Break-even profit (80% split)</th><th>Max loss</th><th>R-multiple</th><th>Days @ 1%/day</th></tr></thead><tbody><tr><td>$25K</td><td>$95</td><td>$119</td><td>$1,000</td><td>0.12</td><td>—</td></tr><tr><td>$50K</td><td>$153</td><td>$191</td><td>$2,000</td><td>0.10</td><td>—</td></tr></tbody></table>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Rapid EOD true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (90% split)</th><th style="padding: 8px 12px; text-align: left;">Max loss</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs tier max loss</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px;">$50K</td><td style="padding: 8px 12px;">$157</td><td style="padding: 8px 12px;">$174</td><td style="padding: 8px 12px;">$2,000</td><td style="padding: 8px 12px;">0.09</td><td style="padding: 8px 12px;">—</td></tr>
+  </tbody>
+</table>
+
 <!-- Pro — generated by scripts/gen-truecost.mjs -->
-<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;"><caption class="hidden-caption">Pro true-cost projection</caption><thead><tr style="background: var(--bg3);"><th>Tier</th><th>Fee</th><th>Break-even profit (80% split)</th><th>Max loss</th><th>R-multiple</th><th>Days @ 1%/day</th></tr></thead><tbody><tr><td>$50K</td><td>$265</td><td>$331</td><td>$2,000</td><td>0.17</td><td>—</td></tr></tbody></table>
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Pro true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">Max loss</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs tier max loss</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$265</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$331</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.17</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$401</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$501</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$3,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.17</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td></tr>
+    <tr><td style="padding: 8px 12px;">$150K</td><td style="padding: 8px 12px;">$557</td><td style="padding: 8px 12px;">$696</td><td style="padding: 8px 12px;">$4,500</td><td style="padding: 8px 12px;">0.15</td><td style="padding: 8px 12px;">—</td></tr>
+  </tbody>
+</table>
+
+<!-- Builder — generated by scripts/gen-truecost.mjs -->
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Builder true-cost projection</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">Max loss</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs tier max loss</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$105</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$131</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.13</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td></tr>
+    <tr><td style="padding: 8px 12px;">$50K</td><td style="padding: 8px 12px;">$153</td><td style="padding: 8px 12px;">$191</td><td style="padding: 8px 12px;">$2,000</td><td style="padding: 8px 12px;">0.10</td><td style="padding: 8px 12px;">—</td></tr>
+  </tbody>
+</table>
 <p>An R-multiple below 1 means the fee is smaller than the captured maximum-loss distance, not that a payout is likely. A one-time price still becomes sunk cost after a breach; the model does not predict pass rates or payout approval.</p>
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
@@ -143,23 +176,23 @@ sourceUrls:
   <li>Rapid EOD needs 4 evaluation days and a 30% consistency cap.</li>
   <li>Builder funded payouts use a 50% consistency rule and a $1,000/$2,000 cycle cap.</li>
   <li>Pro delays the first payout until 14 calendar days plus buffer clearance.</li>
-  <li>Six of the current tier prices are unverified in this capture and must be checked at checkout.</li>
+  <li>Rapid EOD 25K has no published price, and the list prices exclude the site-wide coupon, so confirm the final amount at checkout.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Who should pick My Funded Futures</strong></h2>
-<p>A non-restricted, intraday futures trader who can build a $2,100 buffer should compare the Rapid 50K one-time $209 figure with Rapid EOD 50K at $157. Choose Rapid for intraday funded trailing and daily requests, Rapid EOD for the EOD-funded line, Builder for the 1-day evaluation and five-rung ladder, or Pro for a 14-day window and a $100,000 cycle cap.</p>
+<p>A non-restricted, intraday futures trader who can build a $2,100 buffer should compare Rapid 50K at a one-time $209 with Rapid EOD 50K at $157. Choose Rapid for intraday funded trailing and daily requests, Rapid EOD for the EOD-funded line, Builder for the 1-day evaluation and five-rung ladder, or Pro for a 14-day window and a $100,000 cycle cap.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid My Funded Futures</strong></h2>
-<p>A Russian resident, a swing trader who needs overnight positions, or a trader who cannot verify the checkout price should avoid a new MFFU purchase. A trader needing open overnight rules should compare a product whose first-party record says overnight allowed, and a trader needing a fixed current fee should wait for a mapped price rather than rely on a promotion or an old Flex subscription figure.</p>
+<p>A Russian resident, a swing trader who needs overnight positions, or a trader who cannot verify the checkout price should avoid a new MFFU purchase. A trader needing open overnight rules should compare a product whose first-party record says overnight allowed, and a trader comparing fees should use the current list price for the chosen size rather than a promotion or an old Flex subscription figure.</p>
 
 <p data-mff-comparison-journey="futures-alternatives">For a two-brand decision, use the <a href="/compare/my-funded-futures-vs-topstep">My Funded Futures vs Topstep comparison</a>, then read the <a href="/blog/topstep-review">Topstep</a>, <a href="/blog/take-profit-trader-review">Take Profit Trader</a> and <a href="/blog/apex-trader-funding-review">Apex</a> reviews. The futures directory at <a href="/best-futures-prop-firms">/best-futures-prop-firms</a> keeps product-level billing and capture dates visible.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 <div class="wp-block-rank-math-faq-block" data-mff-faq="current-plans">
-  <div class="rank-math-faq-item"><h3 class="rank-math-question">Which MFFU plans are current in September 2026?</h3><div class="rank-math-answer">Rapid, Rapid EOD, Builder and Pro are the current new-purchase families. Flex is labelled legacy by MFFU and should not be treated as a new checkout option.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Which MFFU plans are current in October 2026?</h3><div class="rank-math-answer">Rapid, Rapid EOD, Builder and Pro are the current new-purchase families (rechecked 2026-10-20). Flex is labelled legacy by MFFU and should not be treated as a new checkout option.</div></div>
   <div class="rank-math-faq-item"><h3 class="rank-math-question">Are MFFU evaluations monthly subscriptions?</h3><div class="rank-math-answer">New Rapid, Rapid EOD, Builder and Pro pages say one-time payment with no renewals. Terms published by MFFU keep recurring billing for legacy subscriptions purchased before 20 August 2026.</div></div>
   <div class="rank-math-faq-item"><h3 class="rank-math-question">Can someone in Russia buy a new MFFU account?</h3><div class="rank-math-answer">No. Russia appears in MFFU's current restricted-country list, so a Russian resident cannot purchase or reset a new account while located there.</div></div>
   <div class="rank-math-faq-item"><h3 class="rank-math-question">Which plan pays first?</h3><div class="rank-math-answer">Rapid and Rapid EOD use daily opportunities after their buffers; Builder describes a 48-hour cycle after 2 qualifying days, and Pro uses 14 calendar days from the first funded trade plus buffer clearance.</div></div>
   <div class="rank-math-faq-item"><h3 class="rank-math-question">Does Rapid use intraday or EOD drawdown?</h3><div class="rank-math-answer">Rapid evaluates with an EOD line but switches to intraday trailing in Sim Funded until the +$100 lock condition. Rapid EOD keeps EOD trailing in both stages.</div></div>
-  <div class="rank-math-faq-item"><h3 class="rank-math-question">Why are some current prices shown as a dash?</h3><div class="rank-math-answer">The current plan pages are client-rendered and exposed only selected size prices in server-readable text. This review shows Rapid 50K at $209, Rapid EOD 50K at $157 and Pro 50K at $265; verify every other size in the checkout before paying.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Why are some current prices shown as a dash?</h3><div class="rank-math-answer">Only where MFFU publishes no current price. On 2026-10-20 the plan pages listed every Rapid, Pro and Builder size, but Rapid EOD 25K had no published price and legacy Flex prices are no longer published. Verify the final amount in the checkout before paying.</div></div>
 </div>

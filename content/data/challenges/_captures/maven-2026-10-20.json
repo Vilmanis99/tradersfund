@@ -117,7 +117,10 @@
     "notFoundVerbatim": 5,
     "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
   },
-  "changes": [],
+  "changes": [
+    "mini accountSizes[].refundable null -> false (FAQ refund policy program list excludes Instant Mini; single-payout model)",
+    "mini maxTradingDays 1 confirmed (24-hour trading window from the first trade)"
+  ],
   "notes": [
     "Price-presence check only; missing rule quotes are formatting differences.",
     "No change found, so product sourceCapturedAt and firms.json lastUpdated stay at 2026-10-19 (dates cited in published posts remain valid)."
@@ -183,5 +186,28 @@
       "httpStatus": 200,
       "fetchedAt": "2026-10-20T05:14:22.796Z"
     }
-  ]
+  ],
+  "miniRecheck": {
+    "checkedAtTimestamp": "2026-10-20T11:30+03:00",
+    "requestedBy": "EN Writer via Prop Firm Tracker",
+    "sources": [
+      {
+        "url": "https://maventrading.com/faqs",
+        "quotes": [
+          "You have 24 hours to trade on your Instant Mini Funding Account. The timer starts when you place your first trade.",
+          "You must meet the payout requirements and submit your withdrawal request within the 24-hour period.",
+          "Your initial challenge fee is refunded after your third reward from your Simulated Funded Account. The refund is processed and sent separately from your rewards.",
+          "The refund policy applies to the following programs: 1 Step Simulated Funded Account2 Step Simulated Funded Account2 Step OMO Simulated Funded Account3 Step Simulated Funded AccountBuy Now, Pay Later Simulated Funded AccountInstant Funding"
+        ]
+      },
+      {
+        "url": "https://maventrading.com/challenges/mini",
+        "quotes": [
+          "Mini $2k account $17",
+          "Payout frequency Funded 24 hours"
+        ],
+        "note": "No refundable line on any Mini card; prices 17/22/44/88/220/440 unchanged"
+      }
+    ]
+  }
 }
