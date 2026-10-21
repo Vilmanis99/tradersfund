@@ -73,8 +73,8 @@
       "sourceQuote": "You can trade all the instruments and assets that are available in your trading platform (Forex, Indices, Commodities, Stocks, Crypto,…).",
       "evidence": "FTMO's FAQ (modified 30 September 2026) names Crypto among the tradable assets for the FTMO Challenge, FTMO Account and FTMO Instant Account. FTMO's own symbols feed listed 30 active Crypto CFDs on 21 October 2026, including BTCUSD and ETHUSD, at 1:3.33 leverage on Standard and 1:1 on Swing. Rewards can be withdrawn by bank wire, Visa Direct / Mastercard Send, Skrill or cryptocurrencies.",
       "evidenceRu": "FAQ FTMO (изменён 30.09.2026) называет криптовалюты среди доступных активов для FTMO Challenge, FTMO Account и FTMO Instant Account. В собственном списке символов FTMO на 21.10.2026 — 30 активных крипто-CFD, включая BTCUSD и ETHUSD, с плечом 1:3,33 на Standard и 1:1 на Swing. Вознаграждение выводится банковским переводом, через Visa Direct / Mastercard Send, Skrill или в криптовалюте.",
-      "scopeNote": "Both current challenges (2-Step and 1-Step) are mapped. Prices are in EUR. FTMO Instant Account is not a stored product and is not mapped.",
-      "scopeNoteRu": "Привязаны оба текущих челленджа (2-Step и 1-Step). Цены указаны в EUR. FTMO Instant Account в наших данных не хранится и не привязан.",
+      "scopeNote": "Both current challenges (2-Step and 1-Step) are mapped. Prices are in EUR. The FTMO Instant Account (stored separately as ftmo-instant-account, checked 21 October 2026) is not mapped in this crypto ranking because it is a direct-funded account, not a challenge.",
+      "scopeNoteRu": "Привязаны оба текущих челленджа (2-Step и 1-Step). Цены указаны в EUR. FTMO Instant Account (хранится отдельно как ftmo-instant-account, проверено 21.10.2026) в этот крипторейтинг не включён, так как это счёт с прямым финансированием, а не челлендж.",
       "productScope": {
         "sourceUrl": "https://ftmo.com/wp-json/ftmo/symbols",
         "sourceCapturedAt": "2026-10-21",
