@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { ArrowRight, Check, Link2, Plus, Scale, SlidersHorizontal, X } from 'lucide-react'
 import {
   challengeKey, DEFAULT_FINDER_FILTERS, filterChallengeRows, finderTier, parseFinderState,
-  serializeFinderState, tierCurrency, tierPrice, finderAccountSizes,
+  serializeFinderState, tierCurrency, tierPrice, tierPriceParts, priceBreakdownLabel, finderAccountSizes,
   type ChallengeFinderFilters, type GlobalChallengeRow, type GlobalChallengeTier,
 } from '@/lib/challengeComparison'
 import { trackSiteEvent } from '@/lib/clientAnalytics'
@@ -39,7 +39,15 @@ function payoutLabel(row: GlobalChallengeRow) {
 function priceLabel(tier: GlobalChallengeTier | undefined) {
   if (!tier) return 'Этот размер не представлен'
   const currency = tierCurrency(tier)
+  const parts = currency === 'USD' ? tierPriceParts(tier) : null
+  // «$5 сейчас + $589 после прохождения», «$200 + $328 активация»
+  if (parts) return priceBreakdownLabel(parts, 'ru', value => money(value, 'USD'))
   return currency ? money(tierPrice(tier, currency), currency) : UNKNOWN
+}
+function priceCaption(row: GlobalChallengeRow, tier: GlobalChallengeTier) {
+  const parts = tierCurrency(tier) === 'USD' ? tierPriceParts(tier) : null
+  if (parts) return `всего обязательных платежей: ${money(parts.total, 'USD')}`
+  return `базовый взнос${row.product.pricingModel === 'monthly-subscription' ? ' за месяц' : ''}`
 }
 function fundedCostLabel(tier: GlobalChallengeTier | undefined) {
   if (!tier) return 'Этот размер не представлен'
@@ -163,11 +171,11 @@ export default function RussianChallengeFinder({ initialRows, brightCountrySourc
           <label>Размер счёта в USD<select value={filters.size} onChange={event => change('size', Number(event.target.value))}>{sizes.map(size => <option key={size} value={size}>{accountLabel(size)}</option>)}</select></label>
           <label>Оценочные этапы<select value={filters.phases} onChange={event => change('phases', event.target.value as ChallengeFinderFilters['phases'])}><option value="all">Все варианты</option><option value="0">Без челленджа</option><option value="1">1 этап</option><option value="2">2 этапа</option><option value="3">3 этапа</option></select></label>
           <label>Валюта взноса<select value={filters.currency} onChange={event => change('currency', event.target.value as ChallengeFinderFilters['currency'])}><option value="all">USD и EUR отдельно</option><option value="USD">USD — доллары</option><option value="EUR">EUR — евро</option></select></label>
-          <label>Бюджет на взнос {filters.currency !== 'all' ? `(${filters.currency})` : ''}<input type="number" min="1" step="any" inputMode="decimal" disabled={filters.currency === 'all'} value={filters.budget ?? ''} placeholder={filters.currency === 'all' ? 'Сначала выберите валюту' : 'Без ограничения'} onChange={event => { const value = Number(event.target.value); change('budget', Number.isFinite(value) && value > 0 ? value : null) }} /></label>
+          <label>Бюджет с обязательными доплатами {filters.currency !== 'all' ? `(${filters.currency})` : ''}<input type="number" min="1" step="any" inputMode="decimal" disabled={filters.currency === 'all'} value={filters.budget ?? ''} placeholder={filters.currency === 'all' ? 'Сначала выберите валюту' : 'Без ограничения'} onChange={event => { const value = Number(event.target.value); change('budget', Number.isFinite(value) && value > 0 ? value : null) }} /></label>
         </div>
         <details className="ru-finder-advanced"><summary><SlidersHorizontal size={16} aria-hidden="true" /> Просадка и сортировка</summary><div className="ru-finder-filters">
           <label>Тип общей просадки<select value={filters.drawdown} onChange={event => change('drawdown', event.target.value as ChallengeFinderFilters['drawdown'])}><option value="all">Все способы расчёта</option><option value="static">Статическая</option><option value="trailing">Трейлинг</option><option value="eod-trailing">Трейлинг по итогам дня</option><option value="balance-based">По балансу</option></select></label>
-          <label>Порядок результатов<select value={filters.sort} onChange={event => change('sort', event.target.value as ChallengeFinderFilters['sort'])}><option value="name">По названию фирмы</option><option value="fee" disabled={filters.currency === 'all'}>По цене в выбранной валюте</option><option value="payout">По сроку запроса: рабочие дни отдельно</option></select></label>
+          <label>Порядок результатов<select value={filters.sort} onChange={event => change('sort', event.target.value as ChallengeFinderFilters['sort'])}><option value="name">По названию фирмы</option><option value="fee" disabled={filters.currency === 'all'}>По цене с обязательными доплатами</option><option value="payout">По сроку запроса: рабочие дни отдельно</option></select></label>
         </div><p>Платформу уточняйте для выбранной программы и своей страны: общий список платформ фирмы не гарантирует доступность на каждом счёте.</p></details>
         <div className="ru-finder-toolbar">
           <p role="status" aria-live="polite">Найдено программ: <strong>{rows.length}</strong> · размер {accountLabel(filters.size)}</p>
@@ -175,7 +183,7 @@ export default function RussianChallengeFinder({ initialRows, brightCountrySourc
           <button type="button" onClick={copy}><Link2 size={15} aria-hidden="true" />{copyState === 'copied' ? 'Ссылка скопирована' : 'Поделиться подбором'}</button>
         </div>
         {copyState === 'failed' && <p role="status">Не удалось скопировать автоматически. Скопируйте адрес этой страницы: выбранные параметры уже сохранены в нём.</p>}
-        <p className="ru-source-line">Базовые взносы по датированным источникам, без временных скидок и дополнительных опций. Цены в разных валютах не пересчитываем. Размер счёта — номинал, а не доступная для вывода сумма.</p>
+        <p className="ru-source-line">Базовые взносы по датированным источникам, без временных скидок и дополнительных опций. Сортировка по цене и бюджет учитывают обязательную доплату после прохождения и активацию. Цены в разных валютах не пересчитываем. Размер счёта — номинал, а не доступная для вывода сумма.</p>
         <div className="ru-finder-selection" aria-label="Выбор для сравнения">
           <p role="status">{compared.length === 0 ? 'Нажмите «Сравнить» на 2–3 программах: таблица покажет различия в цене, просадке и выплатах.' : `Выбрано: ${compared.length}/3. ${compared.length === 1 ? 'Добавьте ещё одну программу.' : 'Можно открыть таблицу отличий.'}`}</p>
           {compared.length > 0 && <><ul>{compared.map(row => <li key={challengeKey(row)}><span>{firmLabel(row)} · {productLabel(row)}</span><button type="button" aria-label={`Убрать из подборки ${firmLabel(row)} ${productLabel(row)}`} onClick={() => toggle(row)}><X size={15} aria-hidden="true" /></button></li>)}</ul><button type="button" onClick={openComparison}>Открыть таблицу сравнения <ArrowRight size={15} aria-hidden="true" /></button></>}
@@ -188,7 +196,7 @@ export default function RussianChallengeFinder({ initialRows, brightCountrySourc
             const isSelected = selected.includes(key)
             return <article className={`ru-finder-card${isSelected ? ' ru-finder-card--selected' : ''}`} key={key} data-finder-product={key}>
               <header><FirmLogo name={firmLabel(row)} src={row.firm.logo} size={38} /><div><span>{firmLabel(row)}</span><h3>{productLabel(row)}</h3></div><span className="ru-finder-phase">{phaseLabel(row.product.phases)}</span></header>
-              <div className="ru-finder-price"><strong>{priceLabel(tier)}</strong><span>базовый взнос{row.product.pricingModel === 'monthly-subscription' ? ' за месяц' : ''}</span></div>
+              <div className="ru-finder-price"><strong>{priceLabel(tier)}</strong><span>{priceCaption(row, tier)}</span></div>
               <dl className="ru-finder-facts"><div><dt>Цель оценки</dt><dd>{targets(row)}</dd></div><div><dt>Общий лимит убытка</dt><dd>{percent(row.product.maxLossPct)} · {drawdownLabel(row.product.drawdownType)}</dd></div><div><dt>Дневной лимит</dt><dd>{percent(row.product.dailyLossPct)}</dd></div><div><dt>Доля трейдера</dt><dd>{percent(row.product.profitSplitPct)}</dd></div></dl>
               <p className="ru-finder-payout"><strong>Первый запрос выплаты:</strong> {payoutLabel(row)}. Дополнительные условия и проверка правил сохраняются.</p>
               <details className="ru-finder-details"><summary>Важные ограничения и полная стоимость</summary>

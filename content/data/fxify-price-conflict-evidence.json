@@ -1,40 +1,45 @@
 {
   "firmSlug": "fxify",
-  "scope": "Archived FXIFY program-page price-display conflict observed on 2026-09-14 and resolved for structured purchase data by the official checkout ladder captured on 2026-09-15. The legacy sections below preserve the conflicting server-rendered cards; they are not used as current tier quotes.",
+  "scope": "Archived FXIFY program-page price-display conflict observed on 2026-09-14 and resolved for structured purchase data by the official checkout ladder captured on 2026-09-15. The legacy sections below preserve the conflicting server-rendered cards; they are not used as current tier quotes. Rechecked 2026-10-20 (US IP): every one of the 5 program pages still server-renders the same generic card text \"One Phase, 3 phases $250 For $5k account ... The $5k One Phase account includes:\", so each card is redated to 2026-10-20 (firstObservedAt keeps the original date). Stored $5K list prices are One Phase $59, Two Phase Classic/Standard $59, Three Phase $39, Instant Standard $229, Instant Lite $44 and match the 2026-10-20 inline pricing payload; the $250 card is not used for any tier.",
   "onePhaseCard": {
     "sourceUrl": "https://fxify.com/programs/one-phase/",
-    "sourceCapturedAt": "2026-09-15",
+    "sourceCapturedAt": "2026-10-20",
     "productSlugs": ["one-phase"],
     "quote": "$250; For $5k account",
-    "observation": "The current One Phase page's server-readable selected card shows $250 for a $5K account, while the same page's public FAQ says a first payout can be requested after five minimum trading days and the older structured ladder is not exposed in the rendered card."
+    "observation": "The current One Phase page's server-readable selected card shows $250 for a $5K account, while the same page's public FAQ says a first payout can be requested after five minimum trading days and the older structured ladder is not exposed in the rendered card.",
+    "firstObservedAt": "2026-09-15"
   },
   "twoPhaseCard": {
     "sourceUrl": "https://fxify.com/programs/two-phase/",
-    "sourceCapturedAt": "2026-09-15",
+    "sourceCapturedAt": "2026-10-20",
     "productSlugs": ["two-phase-classic", "two-phase-standard"],
     "quote": "$250; For $5k account",
-    "observation": "The current Two Phase page repeats a generic $5K selected-card display while its URL-specific program contains multiple Two Phase variants. It does not provide a stable full ladder for Classic and Standard in the server-readable output; the separate first-party 2-Phase Pro announcement is used for that product's complete ladder."
+    "observation": "The current Two Phase page repeats a generic $5K selected-card display while its URL-specific program contains multiple Two Phase variants. It does not provide a stable full ladder for Classic and Standard in the server-readable output; the separate first-party 2-Phase Pro announcement is used for that product's complete ladder.",
+    "firstObservedAt": "2026-09-15"
   },
   "threePhaseCard": {
     "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
-    "sourceCapturedAt": "2026-09-15",
+    "sourceCapturedAt": "2026-10-20",
     "productSlugs": ["three-phase"],
     "quote": "$250; For $5k account",
-    "observation": "The current Three Phase page also exposes a generic selected card rather than a complete tier-by-tier price ladder in the server-readable output."
+    "observation": "The current Three Phase page also exposes a generic selected card rather than a complete tier-by-tier price ladder in the server-readable output.",
+    "firstObservedAt": "2026-09-15"
   },
   "instantCard": {
     "sourceUrl": "https://fxify.com/programs/instant-funding/",
-    "sourceCapturedAt": "2026-09-15",
+    "sourceCapturedAt": "2026-10-20",
     "productSlugs": ["instant-funding-standard"],
     "quote": "$250; For $5k account",
-    "observation": "The current Instant Funding page's generic selected card does not expose a stable Standard versus Lite price ladder in the server-readable output."
+    "observation": "The current Instant Funding page's generic selected card does not expose a stable Standard versus Lite price ladder in the server-readable output.",
+    "firstObservedAt": "2026-09-15"
   },
   "lightningCard": {
     "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
-    "sourceCapturedAt": "2026-09-15",
+    "sourceCapturedAt": "2026-10-20",
     "productSlugs": ["lightning-challenge"],
     "quote": "$250; For $5k account",
-    "observation": "The current Lightning page's generic selected card conflicts with the programme's public starting-price statement and does not expose every tier in the server-readable output."
+    "observation": "The current Lightning page's generic selected card conflicts with the programme's public starting-price statement and does not expose every tier in the server-readable output.",
+    "firstObservedAt": "2026-09-15"
   },
   "officialRanges": {
     "sourceUrl": "https://fxify.com/blog/how-much-money-start-trading/",

@@ -6,7 +6,7 @@ export const HOME_COPY = {
     visit: 'Visit', review: 'Review', official: 'Official site', score: 'Score', swipe: 'Swipe for more firms', empty: 'No source-checked programme matches this filter.',
     payout: { 'on-demand': 'On demand', weekly: 'Weekly', 'bi-weekly': 'Bi-weekly', monthly: 'Monthly' } as Record<string, string>,
     subscription: 'per month', copy: 'Copy', copied: 'Copied', copyFailed: 'Copy manually:', code: 'Code',
-    sponsored: 'Sponsored', feeFrom: 'Fee from', split: 'Profit split', maxAlloc: 'Max allocation', filterLabel: 'Filter programmes',
+    partner: 'Partner', partnerTitle: 'We have an affiliate link with this firm', sponsored: 'Sponsored', feeFrom: 'Fee from', split: 'Profit split', maxAlloc: 'Max allocation', filterLabel: 'Filter programmes',
     notPublished: 'Not published by the firm', tableLabel: 'Programme comparison; scroll horizontally to see all columns', locale: 'en-US',
   },
   ru: {
@@ -15,7 +15,7 @@ export const HOME_COPY = {
     visit: 'Перейти', review: 'Обзор', official: 'Сайт фирмы', score: 'Оценка', swipe: 'Листайте, чтобы увидеть другие фирмы', empty: 'Нет программ с проверенными источниками для этого фильтра.',
     payout: { 'on-demand': 'По запросу', weekly: 'Раз в неделю', 'bi-weekly': 'Раз в 2 недели', monthly: 'Раз в месяц' } as Record<string, string>,
     subscription: 'в месяц', copy: 'Копировать', copied: 'Скопировано', copyFailed: 'Скопируйте вручную:', code: 'Код',
-    sponsored: 'Реклама', feeFrom: 'Взнос от', split: 'Доля прибыли', maxAlloc: 'Макс. капитал', filterLabel: 'Фильтр программ',
+    partner: 'Партнёр', partnerTitle: 'У нас партнёрская ссылка с этой фирмой', sponsored: 'Реклама', feeFrom: 'Взнос от', split: 'Доля прибыли', maxAlloc: 'Макс. капитал', filterLabel: 'Фильтр программ',
     notPublished: 'Фирма не публикует', tableLabel: 'Сравнение программ; прокрутите горизонтально, чтобы увидеть все столбцы', locale: 'ru-RU',
   },
 } as const

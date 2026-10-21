@@ -10,13 +10,13 @@ import accessEvidence from '@/content/data/russian-fundingpips-access-evidence.j
 
 const PATH = '/ru/obzor-fundingpips'
 export const revalidate = 3600
-const TITLE = 'FundingPips: отзывы, обзор 2026 и доступ из России'
-const DESCRIPTION = 'FundingPips (Funding Pips): отзывы трейдеров, цены и правила 2026, промокод и статус доступа из России. Проверено 14.10.2026.'
+const TITLE = 'FundingPips (Funding Pips): отзывы, обзор 2026, доступ из РФ'
+const DESCRIPTION = 'FundingPips (Фандинг Пипс): отзывы и обзор 2026 — 1 Step, 2 Step и Zero, цены в USD, просадка, сплит и выплаты, промокод и статус доступа из России.'
 const RU_CHECKED = '14.10.2026'
 const TRUSTPILOT_URL = 'https://www.trustpilot.com/review/fundingpips.com'
 const TERMS_URL = 'https://fundingpips.com/terms-and-conditions'
 const REWARD_METHODS_URL = 'https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods'
-const REWARD_METHODS_CAPTURED_AT = '2026-09-30'
+const REWARD_METHODS_CAPTURED_AT = '2026-10-20'
 const GET_STARTED_URL = accessEvidence.sourceUrl
 const RESPONSIBLE_TRADING_URL = 'https://help.fundingpips.com/hc/en-us/articles/47328410434065-Responsible-Trading-Policy'
 const WORKSPACE_URL = 'https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace'
@@ -30,7 +30,24 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
+// 2 Step Pro minimum trading days for new and reset accounts: one value for body, rules list, cards and FAQ (+ FAQ JSON-LD).
+// Source: challenges/fundingpips.json 2-step-pro.minTradingDays (sourceCapturedAt), Prop Firm Tracker capture
+// content/data/challenges/_captures/fundingpips-2026-10-20.json (Compare Account Models "Pro … Min Days 0") and the 2 Step Pro
+// help article ("Reset and new accounts will require 0 minimum trading days."; accounts bought before 26.08.2026 keep 1).
+function proMinDaysFacts() {
+  const pro = getChallengesByFirm('fundingpips').find(product => product.productSlug === '2-step-pro' && isChallengeFresh(product))
+  const days = pro?.minTradingDays
+  const date = pro?.sourceCapturedAt ? pro.sourceCapturedAt.split('-').reverse().join('.') : null
+  const text = days === 0
+    ? 'минимума торговых дней на фазу нет'
+    : days == null ? 'минимум торговых дней в наших свежих данных не подтверждён' : `минимум — ${days} торг. дн. на фазу`
+  const short = days === 0 ? 'без минимума торговых дней' : days == null ? 'минимум дней не подтверждён' : `минимум ${days} торг. дн. на фазу`
+  const dated = date ? ` (по данным на ${date})` : ''
+  return { days, date, text, short, dated }
+}
+
 function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
+  const proDays = proMinDaysFacts()
   const products = getChallengesByFirm('fundingpips').filter(product => isChallengeFresh(product))
   const oneStep = products.find(product => product.productSlug === '1-step-flex')
   const twoStepFlex = products.find(product => product.productSlug === '2-step-flex')
@@ -71,7 +88,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           <p>
             {'Кнопка FundingPips на странице помечена бейджем «Доступ для РФ не ясен»: если вы резидент России, до оплаты получите письменный ответ поддержки. '}
             Фирмы, которые на{' '}
-            {RU_CHECKED} Россию не ограничивают: FundedNext (CFD), BrightFunded, Crypto Fund Trader — таблица на странице{' '}
+            {RU_CHECKED} Россию не ограничивают: BrightFunded, Crypto Fund Trader (FundedNext с 20.10.2026 резидентам РФ недоступна) — таблица на странице{' '}
             <Link href="/ru/dlya-russkoyazychnykh-treyderov">«Проп-фирмы для россиян»</Link>. VPN и неверные данные не решают проблему, а создают новую на этапе KYC.
           </p>
         </div>
@@ -97,22 +114,22 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
       <section className="ru-section" id="reward-routes">
         <div className="ru-shell" data-russian-fundingpips-deep-dive="reward-routes">
           <div className="ru-content">
-            <h2>100% ежемесячно или более быстрая выплата: условия различаются</h2>
-          <p>FundingPips добавил ежемесячные маршруты для подходящих мастер-счетов, купленных с 15 августа 2026 года. Число 100% выглядит выше, но вместе с ним появляются правило стабильности 35%, семь прибыльных дней минимум по 0,5% и Striking System с порогом 1%. Поэтому максимальную долю нельзя сравнивать без календаря и дополнительных ограничений.</p>
+            <h2>100% по запросу (On Demand) или регулярная выплата: условия различаются</h2>
+          <p>FundingPips заменил прежний ежемесячный маршрут 100% на выплату 100% по запросу (On Demand) для подходящих мастер-счетов. Для 2 Step Standard фирма перечисляет три цикла — еженедельно 60%, раз в две недели 80% или по запросу 100% (по данным на 20.10.2026; <a href="https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard" target="_blank" rel="noopener noreferrer">страница 2 Step Standard</a>). Число 100% выглядит выше, но вместе с ним появляются правило стабильности 35%, семь прибыльных дней минимум по 0,5% и Striking System с порогом 1%. Поэтому максимальную долю нельзя сравнивать без условий допуска и дополнительных ограничений.</p>
           </div>
           <div className="ru-table-wrap">
             <table className="ru-table" data-russian-fundingpips-reward-routes="five-products">
-              <thead><tr><th>Продукт</th><th>Более быстрый маршрут</th><th>100% ежемесячно</th><th>Что меняется</th></tr></thead>
+              <thead><tr><th>Продукт</th><th>Более быстрый маршрут</th><th>100% по запросу (On Demand)</th><th>Что меняется</th></tr></thead>
               <tbody>
-                <tr><td>1 Step Flex</td><td>80% раз в 14 дней</td><td>30 дней</td><td>Правило стабильности 35%, 7 дней по 0,5%; Striking 1% уже действует</td></tr>
-                <tr><td>2 Step Flex</td><td>80% или 95% раз в 14 дней</td><td>30 дней</td><td>95% требует 3 дней по 0,5%; ежемесячно — 35%, 7 дней и Striking 1%</td></tr>
-                <tr><td>2 Step Pro</td><td>80% каждые 7 дней</td><td>30 дней</td><td>Ежемесячный маршрут добавляет 35%, 7 дней по 0,5% и Striking 1%</td></tr>
-                <tr><td>2 Step Standard</td><td>60% еженедельно, 80% раз в 2 недели или 90% по запросу</td><td>30 дней</td><td>Выплата по запросу требует 35% и 2% прибыли; ежемесячно — 35%, 7 дней и Striking 1%</td></tr>
+                <tr><td>1 Step Flex</td><td>80% раз в 14 дней</td><td>по запросу после выполнения условий</td><td>Правило стабильности 35%, 7 дней по 0,5%; Striking 1% уже действует</td></tr>
+                <tr><td>2 Step Flex</td><td>80% или 95% раз в 14 дней</td><td>по запросу после выполнения условий</td><td>95% требует 3 дней по 0,5%; по запросу — 35%, 7 дней и Striking 1%</td></tr>
+                <tr><td>2 Step Pro</td><td>80% каждые 7 дней</td><td>по запросу после выполнения условий</td><td>Маршрут по запросу добавляет 35%, 7 дней по 0,5% и Striking 1%</td></tr>
+                <tr><td>2 Step Standard</td><td>60% еженедельно или 80% раз в 2 недели</td><td>по запросу после выполнения условий</td><td>Правило стабильности 35% действует только для маршрута 100% по запросу; прежние 90% по запросу и 100% ежемесячно больше не предлагаются</td></tr>
                 <tr><td>FundingPips Zero</td><td>95% раз в 14 дней</td><td>не опубликован</td><td>Правило стабильности 15%, 7 дней по 0,25%, защитный запас 3%</td></tr>
               </tbody>
             </table>
           </div>
-          <p className="ru-muted">Для новых счетов 2 Step Flex по маршруту 80% действует минимум {twoStepFlex?.minTradingDays ?? '—'} торговый день на фазу; 2 Step Pro требует {pro?.minTradingDays ?? '—'} дня на фазу. Старые счета до 26 августа могут сохранить прежний минимум, поэтому дата создания аккаунта влияет на правило.</p>
+          <p className="ru-muted">Для новых счетов 2 Step Flex по маршруту 80% действует минимум {twoStepFlex?.minTradingDays ?? '—'} торговый день на фазу; у новых и сброшенных счетов 2 Step Pro {proDays.text}{proDays.dated}. Старые счета до 26 августа могут сохранить прежний минимум, поэтому дата создания аккаунта влияет на правило.</p>
         </div>
       </section>
 
@@ -174,7 +191,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
               </tbody>
             </table>
           </div>
-          <p className="ru-muted">Расчёт описывает одну покупку и не прогнозирует прохождение или выплату. Ежемесячная доля 100% уменьшает математический порог, но добавляет 30-дневный цикл, правило стабильности, прибыльные дни и продуктовую систему Striking.</p>
+          <p className="ru-muted">Расчёт описывает одну покупку и не прогнозирует прохождение или выплату. Доля 100% по запросу уменьшает математический порог, но добавляет правило стабильности, прибыльные дни и продуктовую систему Striking.</p>
         </div>
       </section>
 
@@ -191,10 +208,10 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           <h2 className="ru-review-secondary-heading">Ограничения и причины отказаться</h2>
           <ul>
             <li>Для двух вариантов на $2.5K цена не подтверждена. Это не означает, что счёт бесплатный или доступен для покупки.</li>
-            <li>100% ежемесячно добавляет 30-дневный календарь, правило стабильности 35%, 7 прибыльных дней и Striking System — это не стандартная доля без условий.</li>
+            <li>100% по запросу (On Demand) добавляет правило стабильности 35%, 7 прибыльных дней и Striking System — это не стандартная доля без условий.</li>
             <li>Удержание позиций через выходные ограничено у всех 5 продуктов, а для Zero становится серьёзным нарушением вместе с запрещённым окном новостей.</li>
             <li>ОАЭ и Вьетнам прямо ограничены, дополнительно действуют списки FATF и санкционные списки ЕС/ООН; VPN или чужой адрес не создают допустимый профиль.</li>
-            <li>Возврат подтверждён только для 2 Step Standard после четвёртой выплаты; для 1 Step Flex вопрос не решён, а Pro, Flex и Zero возврат не получают.</li>
+            <li>Возврат комиссии указан только для 2 Step Standard после четвёртой выплаты — так пишет Help Centre, но Условия (Terms) этого не подтверждают; 1 Step Flex, 2 Step Flex, 2 Step Pro и Zero возврат не получают.</li>
           </ul>
         </div>
       </section>
@@ -221,7 +238,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
             <li><strong>Новости:</strong> торговля ограничена; у Zero окно новостей запрещено.</li>
             <li><strong>Перенос позиций:</strong> через ночь в будни разрешён; на этапе оценки 2 Step Standard перенос через выходные разрешён, а на мастер-счёте требует опции Swing; у Zero удержание через выходные — серьёзное нарушение.</li>
             <li><strong>Советники (EA) и копирование сделок:</strong> ограничены. Точные условия смотрите в правилах выбранного продукта.</li>
-            <li><strong>Минимальные дни:</strong> 2 Step Flex — {twoStepFlex?.minTradingDays ?? '—'} день на фазу (маршрут 80%), 2 Step Pro — {pro?.minTradingDays ?? '—'} дня на фазу.</li>
+            <li data-russian-fundingpips-pro-min-days={proDays.days ?? 'unconfirmed'}><strong>Минимальные дни:</strong> 2 Step Flex — {twoStepFlex?.minTradingDays ?? '—'} день на фазу (маршрут 80%), 2 Step Pro — {proDays.short} для новых и сброшенных счетов{proDays.dated}; купленные до 26.08.2026 сохраняют 1 день.</li>
             <li><strong>Масштабирование:</strong> план масштабирования есть; условия зависят от продукта.</li>
             <li><strong>Платформы:</strong> MT5, cTrader, Match-Trader; MT5 недоступен в США и Канаде.</li>
           </ul>
@@ -269,6 +286,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
 export default function RussianFundingPipsReviewPage() {
   const payoutEvidenceDate = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundingpips')?.sourceCapturedAt ?? ''
   const accessCurrent = isChallengeFresh({ sourceCapturedAt: accessEvidence.sourceCapturedAt })
+  const proDays = proMinDaysFacts()
   return (
     <RussianPartnerReview
       path={PATH}
@@ -288,21 +306,21 @@ export default function RussianFundingPipsReviewPage() {
           : 'ранее справка ограничивала резидентов ОАЭ и Вьетнама. Страновые условия требуют повторной проверки; этот старый список не подтверждает доступ сегодня. До оплаты уточните резидентство, KYC и выплату напрямую у фирмы.'}
       </span>}
       verdict={[
-        { title: '1 Step Flex', body: <>Цель 12%, дневной лимит 3% и статический максимум 12%. Маршрут 80% работает раз в 14 дней; ежемесячные 100% добавляют правило стабильности 35% и семь дней минимум по 0,5%.</> },
-        { title: '2 Step Flex', body: <>Цели 10% и 8%, дневной лимит 4%, статический максимум 12%. Вариант с долей 80% требует один день на фазу, 95% — три прибыльных дня. Ежемесячная выплата с долей 100% добавляет отдельные условия допуска.</> },
-        { title: '2 Step Pro', body: <>Цели 6% и 6%, дневной лимит 3% и статический максимум 6%. Новые счета требуют два дня на фазу; можно сравнить 80% еженедельно с более медленными 100% ежемесячно.</> },
+        { title: '1 Step Flex', body: <>Цель 12%, дневной лимит 3% и статический максимум 12%. Маршрут 80% работает раз в 14 дней; 100% по запросу (On Demand) добавляют правило стабильности 35% и семь дней минимум по 0,5%.</> },
+        { title: '2 Step Flex', body: <>Цели 10% и 8%, дневной лимит 4%, статический максимум 12%. Вариант с долей 80% требует один день на фазу, 95% — три прибыльных дня. Выплата 100% по запросу добавляет отдельные условия допуска (по данным на 20.10.2026).</> },
+        { title: '2 Step Pro', body: <>Цели 6% и 6%, дневной лимит 3% и статический максимум 6%. У новых и сброшенных счетов {proDays.text}{proDays.dated}; можно сравнить 80% еженедельно с 100% по запросу (On Demand) при выполнении условий.</> },
       ]}
       editorialNotes={[
-        'Возврат комиссии для 1 Step Flex не подтверждён: страница вознаграждений и описание прежней модели 1 Step конфликтуют, поэтому поле возврата оставлено неопределённым.',
-        'У 2 Step Standard нет одной доли или единой частоты: по запросу 90%, еженедельно 60%, раз в 2 недели 80% и ежемесячно 100% имеют разные сроки и условия.',
+        'Комиссия за 1 Step Flex не возвращается: Help Centre (Get Started) прямо исключает этот продукт из возврата после четвёртой выплаты.',
+        'У 2 Step Standard нет одной доли или единой частоты: еженедельно 60%, раз в 2 недели 80% и 100% по запросу (On Demand) имеют разные сроки и условия.',
         'Цены и правила повторно проверены 29 сентября 2026 года после обновления официальных страниц. Две цены для счетов $2.5K не указаны: источники противоречат друг другу.',
       ]}
       decisionGuide={{
         title: 'Как читать линейку FundingPips без ловушки одного сплита',
         intro: <>У FundingPips пять разных моделей, поэтому вопрос «какой процент?» недостаточен. Для решения сначала выберите риск-механику и способ запроса вознаграждения, а уже потом сравнивайте цену и доступность страны.</>,
         items: [
-          { title: 'Flex и Pro — разные компромиссы', body: <>2 Step Flex за $32 на $5K даёт 12% статического запаса и минимум один день на фазу по маршруту 80%. 2 Step Pro за $29 сокращает запас до 6% и требует два дня на фазу, но предлагает 80% еженедельно.</> },
-          { title: '100% меняет календарь', body: <>Ежемесячные 100% требуют правила стабильности 35%, семь прибыльных дней минимум по 0,5% и Striking System 1%. Сравнивайте реальную доступность выплаты, а не только процент после одобрения.</> },
+          { title: 'Flex и Pro — разные компромиссы', body: <>2 Step Flex за $32 на $5K даёт 12% статического запаса и минимум один день на фазу по маршруту 80%. 2 Step Pro за $29 сокращает запас до 6%, а у новых и сброшенных счетов {proDays.text}{proDays.dated}; выплаты — 80% еженедельно.</> },
+          { title: '100% меняет условия', body: <>100% по запросу требуют правила стабильности 35%, прибыльных дней и Striking System 1% (по данным на 20.10.2026). Сравнивайте реальную доступность выплаты, а не только процент после одобрения.</> },
           { title: 'Zero — не режим без правил', body: <>FundingPips Zero не имеет оценочного этапа, но сочетает плавающий лимит 5%, максимальный открытый риск 1%, минимум 7 прибыльных дней и правило стабильности до 15%. Такой маршрут нужно сравнивать с вашей статистикой, а не с ценой обычного челленджа.</> },
         ],
       }}
@@ -335,11 +353,11 @@ export default function RussianFundingPipsReviewPage() {
         },
         {
           q: 'У FundingPips теперь всегда сплит 100%?',
-          a: 'Нет. 100% — месячный маршрут для подходящих мастер-счетов, купленных с 15 августа 2026 года. Он требует правила стабильности 35%, семь прибыльных дней минимум по 0,5% и продуктовые условия Striking System. Более быстрые циклы используют другие доли.',
+          a: 'Нет. Ежемесячного маршрута больше нет: 100% дают выплаты по запросу (On Demand), например у 2 Step Standard — еженедельно 60%, раз в две недели 80% или по запросу 100% (по данным на 20.10.2026). Для 100% нужны правило стабильности 35%, прибыльные дни и условия Striking System. Регулярные циклы используют другие доли.',
         },
         {
           q: 'Сколько минимальных дней у 2 Step Flex и Pro?',
-          a: 'Новые или сброшенные 2 Step Flex счета по маршруту 80% требуют один торговый день на фазу; маршрут 95% требует три прибыльных дня по 0,5%. Новые или сброшенные 2 Step Pro счета требуют два торговых дня на фазу. Старые счета до 26 августа 2026 года могут сохранить прежнее правило.',
+          a: `Новые или сброшенные 2 Step Flex счета по маршруту 80% требуют один торговый день на фазу; маршрут 95% требует три прибыльных дня по 0,5%. У новых или сброшенных 2 Step Pro счетов ${proDays.text}${proDays.dated}. Существующие счета 2 Step Pro, купленные до 26 августа 2026 года, сохраняют минимум один торговый день. У 2 Step Flex старые счета до 26 августа 2026 года также могут сохранить прежнее правило.`,
         },
         {
           q: 'Можно ли использовать FundingPips из ОАЭ?',

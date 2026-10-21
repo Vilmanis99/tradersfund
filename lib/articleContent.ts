@@ -166,3 +166,15 @@ export function prepareArticleContent(source: string): { html: string; headings:
   })
   return { html, headings }
 }
+
+/** First sentence of the review's own "Verdict" section, unchanged. */
+export function firstVerdictSentence(content: string) {
+  const match = content.match(/<h2\b[^>]*>\s*(?:<strong>)?\s*Verdict\s*(?:<\/strong>)?\s*<\/h2>\s*<p\b[^>]*>([\s\S]*?)<\/p>/i)
+  if (!match) return null
+  const text = articlePlainText(match[1])
+  const sentence = text.match(/^[\s\S]+?[.!?](?=\s+[A-Z]|$)/)
+  const first = (sentence ? sentence[0] : text).trim()
+  // A sentence that describes the article ("This X review covers…") is not a verdict.
+  if (!first || /^this\b[^.]*\breview\b/i.test(first)) return null
+  return first
+}

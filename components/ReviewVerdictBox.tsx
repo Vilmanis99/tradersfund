@@ -1,10 +1,12 @@
 import Link from 'next/link'
+import { consistencyFields, consistencyRulesPhrase, scopedConsistencyRules } from '@/lib/consistencyScope'
 import { ExternalLink } from 'lucide-react'
 import FirmLogo from './FirmLogo'
 import TrustpilotRating from './TrustpilotRating'
 import AffiliateDisclosure from './AffiliateDisclosure'
 import { firmSlug } from '@/lib/firmSlug'
 import type { Challenge, DrawdownType, Firm, FirmRatings } from '@/lib/firms'
+import { payoutWait } from '@/lib/payoutWait'
 
 /**
  * Phase 1 preview of the review VerdictBox (design/article-format-spec.md §3.2, C3).
@@ -36,9 +38,16 @@ function formatDate(iso: string) {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
 }
 
-function price(size: Challenge['accountSizes'][number] | undefined) {
+function price(size: Challenge['accountSizes'][number] | undefined, product?: Challenge) {
   if (!size) return null
-  if (size.priceUsd != null) return `$${size.priceUsd.toLocaleString('en-US')}`
+  const activation = size.activationFeeUsd ?? product?.activationFeeUsd ?? 0
+  const later = size.payLaterUsd ?? 0
+  const monthly = product?.pricingModel === 'monthly-subscription' ? '/month' : ''
+  if (size.priceUsd != null && (activation > 0 || later > 0)) {
+    const extras = [activation > 0 ? `$${activation.toLocaleString('en-US')} activation` : null, later > 0 ? `$${later.toLocaleString('en-US')} after passing` : null].filter(Boolean).join(' + ')
+    return `$${size.priceUsd.toLocaleString('en-US')}${monthly} + ${extras}`
+  }
+  if (size.priceUsd != null) return `$${size.priceUsd.toLocaleString('en-US')}${monthly}`
   if (size.priceEur != null) return `€${size.priceEur.toLocaleString('en-US')}`
   return null
 }
@@ -52,6 +61,23 @@ function perProduct(firm: Firm, products: Challenge[], value: (product: Challeng
   return rows.map(row => `${row.value} (${row.name})`).join(' · ')
 }
 
+/**
+ * Like perProduct, but products sharing a value are grouped and a product
+ * without a value is listed as "not captured" instead of hiding the row
+ * (shown only when at least one product has a value).
+ */
+function groupedPerProduct(firm: Firm, products: Challenge[], value: (product: Challenge) => string | null) {
+  const groups = new Map<string, string[]>()
+  for (const product of products) {
+    const key = value(product) ?? 'not captured'
+    groups.set(key, [...(groups.get(key) ?? []), shortName(firm, product)])
+  }
+  const known = [...groups.keys()].filter(key => key !== 'not captured')
+  if (!known.length) return null
+  if (groups.size === 1) return known[0]
+  return [...known, ...(groups.has('not captured') ? ['not captured'] : [])].map(key => `${key} (${groups.get(key)!.join(', ')})`).join(' · ')
+}
+
 function targets(product: Challenge) {
   const t = product.profitTargets
   if (!t) return null
@@ -59,18 +85,24 @@ function targets(product: Challenge) {
   return steps.length ? steps.map(v => `${v}%`).join(' → ') : null
 }
 
+export type SourcedLine = { text: string; fields: string[] }
+
 export function buildVerdictFacts(firm: Firm, products: Challenge[]) {
-  const facts: Array<{ label: string; value: string }> = []
-  const add = (label: string, value: string | null) => { if (value) facts.push({ label, value }) }
-  add('Price at $100K', perProduct(firm, products, product => price(product.accountSizes.find(size => size.sizeUsd === 100000))))
-  add('Profit target', perProduct(firm, products, targets))
+  const facts: Array<{ label: string; value: string; fields: string[] }> = []
+  const add = (label: string, value: string | null, fields: string[]) => { if (value) facts.push({ label, value, fields }) }
+  if (!products.length) {
+    add('Platforms', firm.platforms?.length ? firm.platforms.join(' · ') : null, ['firms.json platforms'])
+    return facts
+  }
+  add('Price at $100K', perProduct(firm, products, product => price(product.accountSizes.find(size => size.sizeUsd === 100000), product)), ['challenges accountSizes[sizeUsd=100000].priceUsd|priceEur'])
+  add('Profit target', perProduct(firm, products, targets), ['challenges profitTargets'])
   add('Daily / max loss', perProduct(firm, products, product =>
     product.dailyLossPct != null && product.maxLossPct != null
       ? `${product.dailyLossPct}% / ${product.maxLossPct}%${product.drawdownType ? ` ${DRAWDOWN_LABEL[product.drawdownType]}` : ''}`
-      : null))
-  add('Profit split', perProduct(firm, products, product => product.profitSplitPct != null ? `${product.profitSplitPct}%` : null))
-  add('First payout', perProduct(firm, products, product => product.payoutFirstDays != null ? `Day ${product.payoutFirstDays}` : null))
-  add('Platforms', firm.platforms?.length ? firm.platforms.join(' · ') : null)
+      : null), ['challenges dailyLossPct', 'maxLossPct', 'drawdownType'])
+  add('Profit split', perProduct(firm, products, product => product.profitSplitPct != null ? `${product.profitSplitPct}%` : null), ['challenges profitSplitPct'])
+  add('First payout', groupedPerProduct(firm, products, product => payoutWait(product)?.short ?? null), ['challenges payoutFirstDays', 'notes (business days)'])
+  add('Platforms', firm.platforms?.length ? firm.platforms.join(' · ') : null, ['firms.json platforms'])
   return facts
 }
 
@@ -90,22 +122,30 @@ function priceRange(product: Challenge) {
  * from the product captures (drawdown from the product files, not the firm-level field).
  */
 export function buildFitLines(firm: Firm, products: Challenge[]) {
-  const best: string[] = []
-  const avoid: string[] = []
-  const staticProduct = products.find(product => product.drawdownType === 'static' && product.maxLossPct != null)
-  if (staticProduct) best.push(`Traders who want a fixed floor: ${shortName(firm, staticProduct)} max loss is a static ${staticProduct.maxLossPct}%`)
+  const best: SourcedLine[] = []
+  const avoid: SourcedLine[] = []
+  const staticProduct = products.find(product => product.phases > 0 && product.drawdownType === 'static' && product.maxLossPct != null)
+  if (staticProduct) best.push({ text: `Traders who want a fixed floor: ${shortName(firm, staticProduct)} max loss is a static ${staticProduct.maxLossPct}%`, fields: [`${staticProduct.productSlug}.drawdownType`, `${staticProduct.productSlug}.maxLossPct`] })
   const refundable = products.find(product => product.accountSizes.length > 0 && product.accountSizes.every(size => size.refundable === true))
-  if (refundable) best.push(`Getting your fee back: every ${shortName(firm, refundable)} account size is refundable`)
-  const consistency = products.find(product => product.consistencyRulePct != null)
-  if (consistency) avoid.push(`Traders who win in a few big days: ${shortName(firm, consistency)} has a ${consistency.consistencyRulePct}% consistency rule`)
+  if (refundable) best.push({ text: `Getting your fee back: every ${shortName(firm, refundable)} account size is refundable`, fields: [`${refundable.productSlug}.accountSizes[].refundable`] })
+  // Consistency rules only with a recorded scope (consistencyRules or
+  // consistencyScope); an unscoped percentage misleads, so it stays silent.
+  const scoped = products.map(product => ({ product, rules: scopedConsistencyRules(product) })).find(entry => entry.rules.length)
+  const consistencyLine: SourcedLine | null = scoped
+    ? { text: `Traders who dislike consistency rules: ${shortName(firm, scoped.product)} has a ${consistencyRulesPhrase(scoped.rules)}`, fields: consistencyFields(scoped.product) }
+    : null
   const nonRefundable = products.find(product => product.accountSizes.length > 0 && product.accountSizes.every(size => size.refundable === false))
   if (nonRefundable) {
     const range = priceRange(nonRefundable)
-    avoid.push(range
-      ? `${shortName(firm, nonRefundable)} buyers hoping for a refund: its ${range} fee isn't refundable`
-      : `${shortName(firm, nonRefundable)} buyers hoping for a refund: its fee isn't refundable`)
+    avoid.push({
+      text: range
+        ? `${shortName(firm, nonRefundable)} buyers hoping for a refund: its ${range} fee isn't refundable`
+        : `${shortName(firm, nonRefundable)} buyers hoping for a refund: its fee isn't refundable`,
+      fields: [`${nonRefundable.productSlug}.accountSizes[].refundable`, ...(range ? [`${nonRefundable.productSlug}.accountSizes[].priceUsd|priceEur`] : [])],
+    })
   }
-  if (products.length && products.every(product => product.assetClass === 'cfd')) avoid.push('Futures traders: every captured product is a CFD evaluation')
+  if (consistencyLine) avoid.push(consistencyLine)
+  if (products.length && products.every(product => product.assetClass === 'cfd')) avoid.push({ text: 'Futures traders: every captured product is a CFD evaluation', fields: ['challenges[].assetClass'] })
   return { best: best.slice(0, 2), avoid: avoid.slice(0, 2) }
 }
 
@@ -115,6 +155,9 @@ export default function ReviewVerdictBox({
   verdict,
   compare,
   sourcesHref,
+  bestForOverride,
+  notForOverride,
+  wip = false,
 }: {
   firm: Firm
   products: Challenge[]
@@ -122,18 +165,27 @@ export default function ReviewVerdictBox({
   verdict: string | null
   compare?: { href: string; label: string }
   sourcesHref: string
+  /** Writer overrides from content/data/verdict-copy.json. */
+  bestForOverride?: string[]
+  notForOverride?: string[]
+  /** Show the 'Preview, work in progress' tag. */
+  wip?: boolean
 }) {
   const slug = firmSlug(firm.name)
   const hasAffiliate = Boolean(firm.affiliateUrl)
   const facts = buildVerdictFacts(firm, products)
-  const fit = buildFitLines(firm, products)
+  const generated = buildFitLines(firm, products)
+  const fit = {
+    best: bestForOverride?.length ? bestForOverride.slice(0, 2) : generated.best.map(line => line.text),
+    avoid: notForOverride?.length ? notForOverride.slice(0, 2) : generated.avoid.map(line => line.text),
+  }
   const checked = products.map(product => product.sourceCapturedAt).filter(Boolean).sort()[0]
   const ratings = firm.ratings
   const showBars = Boolean(ratings) && RATING_LABELS.every(([key]) => typeof ratings?.[key] === 'number')
 
   return (
     <section className="review-verdict" aria-labelledby="review-verdict-title" data-review-verdict={slug}>
-      <span className="review-verdict__wip">Preview, work in progress</span>
+      {wip && <span className="review-verdict__wip">Preview, work in progress</span>}
       <div className="review-verdict__head">
         <FirmLogo name={firm.name} src={firm.logo} size={52} />
         <div className="review-verdict__id">
@@ -172,7 +224,7 @@ export default function ReviewVerdictBox({
         >
           {hasAffiliate ? `Visit ${firm.name}` : 'View official plans'} <ExternalLink size={14} aria-hidden="true" />
         </Link>
-        <span className="review-verdict__quick-note">{hasAffiliate ? 'Partner link' : 'Official site · no affiliate deal'}</span>
+        <span className="review-verdict__quick-note">{hasAffiliate ? 'Partner link · we may earn a commission' : 'Official site · no affiliate deal'}</span>
       </div>
 
       {(fit.best.length > 0 || fit.avoid.length > 0) && (

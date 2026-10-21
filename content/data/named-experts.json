@@ -1,0 +1,14 @@
+{
+  "_note": "Named-expert blocks are OFF until every field below is filled from material the person supplied and consentConfirmedAt records their written consent (YYYY-MM-DD). While displayName, bio or consentConfirmedAt is empty, nothing renders and no name is shown. Never invent a bio, credentials or a photo.",
+  "experts": [
+    {
+      "authorSlug": "edris-derakhshi",
+      "displayName": "",
+      "role": "",
+      "bio": "",
+      "credentials": [],
+      "photoUrl": null,
+      "consentConfirmedAt": null
+    }
+  ]
+}

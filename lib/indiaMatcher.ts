@@ -1,5 +1,6 @@
 import { firmSlug } from './firmSlug.ts'
 import 'server-only'
+import { hasNoListedPrice } from './reviewFreshness.ts'
 
 import {
   getChallengeWatchEntries,
@@ -127,7 +128,8 @@ export function buildIndiaMatcherFirms(firms: Firm[]): IndiaMatcherFirm[] {
     if (!evidence || !passesIndiaRegulatoryCountryGate(evidence)) return []
 
     const products = getChallengesByFirm(slug)
-      .filter(challenge => isChallengeFresh(challenge))
+      // A not-on-sale product (no listed fee) is kept; see lib/reviewFreshness.
+      .filter(challenge => isChallengeFresh(challenge) || hasNoListedPrice(challenge))
       .filter(challenge => passesIndiaProductGate(evidence, challenge.productSlug))
       .map(challenge => {
         const sizeCap = indiaAccountSizeCapUsd(evidence, challenge.productSlug)

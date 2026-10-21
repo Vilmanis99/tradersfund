@@ -1,0 +1,134 @@
+{
+  "firmSlug": "topstep",
+  "captureType": "recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T09:47:33+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/topstep-2026-10-06.json",
+  "requestedBy": "Homepage 'Understand the challenge' cards (feat/home-understand-challenge-2026-10-20) showed oldest check 06.10 from Topstep",
+  "egress": "US IP (box); curl of official pages; dateModified from Intercom JSON-LD",
+  "method": "Every stored value and note claim for both products re-read against the live pages below.",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "trading-combine-standard-path",
+      "prices": {
+        "50000": 49,
+        "100000": 99,
+        "150000": 199
+      },
+      "activationFeeUsd": 149
+    },
+    {
+      "productSlug": "trading-combine-no-activation-fee-path",
+      "prices": {
+        "50000": 95,
+        "100000": 149,
+        "150000": 229
+      },
+      "activationFeeUsd": 0
+    }
+  ],
+  "pagesRead": [
+    {
+      "url": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
+      "dateModified": "2026-10-15T22:44:35Z",
+      "quotes": [
+        "Trading Combine Account Size Standard Path No Activation Fee Path 50K $49/month $95/month 100K $99/month $149/month 150K $199/month $229/month",
+        "Standard Path — $149, charged once per XFA earned. No Activation Fee Path — $0.",
+        "Reset Pricing Account Size Standard Path No Activation Fee Path 50K $49 $95 100K $99 $149 150K $199 $229",
+        "Reactivation fees: $50K XFA — $599 $100K XFA — $699 $150K XFA — $829",
+        "Reactivation window: 30 calendar days from account closure.",
+        "No Activation Fee Trading Combine Back2Funded Reactivation $10 off → 50K $20 off → 100K $30 off → 150K $50 off Reactivation Fees"
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+      "dateModified": "2026-09-18T18:51:37Z",
+      "quotes": [
+        "Account Size Maximum Loss Limit $50K $2,000 $100K $3,000 $150K $4,500",
+        "The MLL is a trailing limit. It rises as your end-of-day balance grows, but never moves down. Once it reaches your starting balance, it locks permanently.",
+        "If your balance hits it at any point during the trading day, including on unrealized P&L, your account is liquidated immediately.",
+        "After your first Payout: Your MLL is set to $0 regardless of where it was before."
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+      "dateModified": "2026-09-24T20:21:06Z",
+      "quotes": [
+        "You can pass in as few as two days, but keep your best day below 55% of your Profit Target.",
+        "If your purchase was made within the last 28 days and your account has had no trading activity, contact Trader Support to review your account for a refund so you can purchase the correct size.",
+        "Can I use automated trading strategies? Yes, with conditions."
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+      "dateModified": "2026-09-17T14:21:11Z",
+      "quotes": [
+        "Your single best day of profit must stay at or below 55% of your Profit Target. If it exceeds that, your Profit Target increases.",
+        "55% is a hard line. It is not rounded, and there is no buffer.",
+        "Express Funded Account Consistency — Consistency Objective (40%)"
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+      "dateModified": "2026-10-13T14:26:14Z",
+      "quotes": [
+        "Minimum Payout: $125 90/10 profit split — you keep 90%",
+        "5 winning days of $150+ 3 days with 40% consistency target",
+        "Account Size XFA Standard XFA Consistency $50K $2,000 $3,000 $100K $3,000 $4,000 $150K $5,000 $6,000",
+        "Note for traders who joined the new Topstep dashboard before January 12, 2026: You receive 100% of your first $10,000 in lifetime profits.",
+        "If I add a DLL at checkout during Express Funded Account activation or Reactivation, will I still get the increased Payout cap? No.",
+        "Prop-to-Brokerage Payouts US only Same day* No Fee Aeropay US banks only Instant after approval No Topstep fee** Wise China, Canada, UK 1-3 business days No Topstep fee** ACH US banks only 1-3 business days $30 Wire/SWIFT International 5-10 business days $30"
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade",
+      "dateModified": "2026-07-13T21:22:30Z",
+      "quotes": [
+        "All positions must be closed by 3:10 PM CT every weekday. You can resume trading at 5:00 PM CT. No swing trading. No Forex."
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep",
+      "dateModified": "2026-06-10T14:02:45Z",
+      "quotes": [
+        "Purposefully trading your full Maximum Position Size directly into a scheduled major news event."
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/14434175-topstepx",
+      "dateModified": "2026-09-25T22:00:44Z",
+      "quotes": [
+        "The Lead account must have the lowest Maximum Position Size (MPS) of all accounts in the group."
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/12060405-back2funded-rules-guidelines-and-how-it-works",
+      "dateModified": "2026-09-29T20:43:51Z",
+      "quotes": [
+        "How many times can I Reactivate? Up to 2 Reactivations per Express Funded Account.",
+        "On May 29th, 2026, the Reactivation window increased from 7 days to 30 days!"
+      ]
+    },
+    {
+      "url": "https://www.topstep.com/topstep-prop",
+      "dateModified": null,
+      "quotes": [
+        "Profit Target: $3,000 Consistency Target: 55% Max Loss Limit (One Rule): $2,000",
+        "Profit Target: $9,000 Consistency Target: 55% Max Loss Limit (One Rule): $4,500",
+        "There’s no minimum time requirement to pass the Trading Combine® and become a funded trader.",
+        "From January through December 2025, (a) 16.8% of all Trading Combines initiated were successfully completed"
+      ]
+    }
+  ],
+  "changes": [
+    "topstep.json both products: sourceCapturedAt 2026-10-06 -> 2026-10-20 (all values unchanged)",
+    "firms.json Topstep lastUpdated 2026-10-14 -> 2026-10-20",
+    "challenge-watch: 3 Topstep entries lastCheckedAt 2026-10-06 -> 2026-10-20 (summaries re-verified; minimum-days conflict still present)"
+  ],
+  "notRefreshed": [
+    "Access/eligibility note (8284116) stays a historical 2026-09-08 observation, as before.",
+    "Two pages changed after the last capture (pricing 2026-10-15, payout policy 2026-10-13); stored values still match them."
+  ]
+}

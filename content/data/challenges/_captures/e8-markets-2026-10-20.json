@@ -1,0 +1,19 @@
+{
+  "firmSlug": "e8-markets",
+  "capturedAt": "2026-10-20",
+  "timezone": "Europe/Riga",
+  "egress": "Box egress is a US IP; prices recorded are the global list prices shown.",
+  "productDateMove": {
+    "checkedAtTimestamp": "2026-10-20T11:10+03:00",
+    "products": [
+      "e8-signature"
+    ],
+    "result": "Signature list prices unchanged; e8-signature sourceCapturedAt 2026-10-19 -> 2026-10-20. One/Pro classic list prices also matched today (quotes below) but stay 2026-10-19 because their open watch entries (e8-one-default-parameter-conflict, e8-pro-current-page-vs-help-prices) are pinned to 2026-10-19 product captures; perpetual tabs were not toggled.",
+    "quotes": {
+      "https://e8markets.com/e8-signature": "50% OFF $25K $120 $60 50% OFF $50K $160 $80 50% OFF $100K Recommended $280 $140 50% OFF $150K $450 $225 ... Save $140 with code E8 on first order",
+      "https://e8markets.com/e8-one": "Classic Markets Perpetual 30% OFF $5K $48 $34 30% OFF $10K $88 $62 30% OFF $25K $188 $132 30% OFF $50K $288 $202 30% OFF $100K Recommended $488 $342 30% OFF $200K $798 $559 30% OFF $400K $1,598 $1,119",
+      "https://e8markets.com/e8-pro": "Classic Markets Perpetual 30% OFF $5K $32 $23 30% OFF $10K $68 $48 30% OFF $25K $148 $104 30% OFF $50K $228 $160 30% OFF $100K Recommended $488 $342 30% OFF $200K $998 $699 30% OFF $400K $2,098 $1,469"
+    },
+    "note": "Crossed-out list prices are stored; the displayed discounts (Signature 50% with code E8, One/Pro 30%) are promotional and were not checkout-verified, so nothing goes to deals.json."
+  }
+}

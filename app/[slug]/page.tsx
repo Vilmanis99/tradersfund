@@ -10,6 +10,8 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { extractArticleFaq, prepareArticleContent } from '@/lib/articleContent'
 import TableOfContents from '@/components/TableOfContents'
 import { getAuthorByName } from '@/lib/authors'
+import AboutFacts from '@/components/AboutFacts'
+import NamedExpertBlock from '@/components/NamedExpertBlock'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -230,6 +232,9 @@ export default async function DynamicPage({ params }: Props) {
             {prepared && <TableOfContents headings={prepared.headings} />}
             <div className="prose" style={{ maxWidth: '100%' }}
               dangerouslySetInnerHTML={{ __html: prepared?.html ?? page.content }} />
+            {slug === 'about' && <AboutFacts />}
+            {/* Gated: renders nothing until content/data/named-experts.json has a name, bio and consent date. */}
+            {slug === 'about' && <NamedExpertBlock />}
           </article>
         </div>
       </section>

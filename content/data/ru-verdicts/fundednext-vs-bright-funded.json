@@ -8,7 +8,7 @@
     "content/data/firms.json",
     "content/data/challenges/bright-funded.json (2026-10-20)",
     "content/data/challenges/fundednext.json (2026-10-19)",
-    "data/expiring-recheck-2026-10-20 @5b511c5 firms.json#BrightFunded assets + assetsEvidence (help article 9268229, 20.10.2026: «over 48 cryptocurrency pairs») — крипто-пункт убран: криптовалюту указывают обе фирмы"
+    "https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded (официальная справка BrightFunded «Which Crypto Instruments can you trade at BrightFunded?», дата статьи 25.05.2026, «over 48 cryptocurrency pairs», проверено 20.10.2026)"
   ],
   "verdict": "Обе фирмы продают CFD-оценки с долей 80% и возвратным взносом, но BrightFunded считает цены в евро (€477–497 за счёт 100K), а FundedNext — в долларах ($399,99–569,99). Главные различия — одноэтапная модель, срок первой выплаты и Instant без оценки, который есть только у FundedNext (по данным на 19.10.2026).",
   "picks": {

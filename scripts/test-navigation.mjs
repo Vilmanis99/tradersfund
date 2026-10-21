@@ -45,6 +45,9 @@ function load(file) {
       if (specifier === 'next/navigation') return { usePathname: () => pathname }
       if (specifier === './navLinks') return load('components/navLinks.ts')
       if (specifier === '@/lib/localizedRoutes') return load('lib/localizedRoutes.ts')
+      if (specifier === '@/lib/closedFirms') return load('lib/closedFirms.ts')
+      if (specifier === './localizedRoutes') return load('lib/localizedRoutes.ts')
+      if (specifier.startsWith('../content/data/')) return require(`../${specifier.slice(3)}`)
       return require(specifier)
     },
   }, { filename: file })
@@ -92,9 +95,15 @@ for (const href of [...previousDestinations, '/']) assert(hrefs(mobileTree).has(
 assert(hrefs(render({ path: '/ru/obzor-fundednext' })).has('/blog/fundednext-review'), 'Russian review keeps its paired English destination')
 assert(hrefs(render({ path: '/blog/fundednext-review' })).has('/ru/obzor-fundednext'), 'English review keeps its paired Russian destination')
 const russianMobile = render({ path: '/ru', mobile: true })
-for (const href of ['/ru', '/ru/obzor-fundednext', '/ru/obzor-bright-funded', '/ru/luchshie-prop-firmy', '/ru/rossiyskie-prop-kompanii']) {
+// /ru/rossiyskie-prop-kompanii was merged into the Russia hub and now 301s
+// (next.config.ts). Navigation must link the redirect target, never the redirecting URL.
+const localFirmsRedirect = readFileSync(new URL('../next.config.ts', import.meta.url), 'utf8')
+  .match(/source: '\/ru\/rossiyskie-prop-kompanii', destination: '([^']+)'/)?.[1]
+assert(localFirmsRedirect, 'local-firms redirect target is declared in next.config.ts')
+for (const href of ['/ru', '/ru/obzor-fundednext', '/ru/obzor-bright-funded', '/ru/luchshie-prop-firmy', localFirmsRedirect]) {
   assert(hrefs(russianMobile).has(href), `Russian mobile entry retained: ${href}`)
 }
+assert(!hrefs(russianMobile).has('/ru/rossiyskie-prop-kompanii'), 'Russian mobile navigation does not link a redirecting URL')
 for (const tree of [russianMobile, render({ path: '/ru', dropdown: 'Обзоры' })]) {
   assert(nodes(tree).some(node => node.type === 'a' && node.props.href === '/ru/obzor-bright-funded' && node.props.children === 'BrightFunded'), 'Russian navigation uses the first-party BrightFunded spelling')
 }

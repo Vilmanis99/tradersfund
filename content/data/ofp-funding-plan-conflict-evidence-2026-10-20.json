@@ -1,0 +1,47 @@
+{
+  "firmSlug": "ofp-funding",
+  "capturedAt": "2026-10-20",
+  "scope": "Recheck of watch ofp-current-plan-display-conflict-2026-09-14, 2026-10-20 ~11:10 Europe/Riga (headless Chrome default render; terms PDF via curl + pdftotext). Product scope is the six OFP products currently stored; the former slugs instant-prime, instant-pro, one-phase-challenge and two-phase-challenge are not stored products and were removed from the entry.",
+  "homepageSelector": {
+    "sourceUrl": "https://ofpfunding.com/",
+    "sourceCapturedAt": "2026-10-20",
+    "productSlugs": [
+      "instant-classic-3-daily-6-max-drawdown",
+      "instant-classic-5-daily-10-max-drawdown",
+      "instant-lite",
+      "instant-lite-5-daily-10-max-drawdown",
+      "instant-plus-3-daily-5-max-drawdown",
+      "instant-plus-5-daily-10-max-drawdown"
+    ],
+    "quote": "Choose Your Perfect Funding Plan ... Lite Best Seller Classic Plus ... Funded 80% 5% 1:100* 3% 5% Yes 5% 5 28 Days Yes Monthly No Select Account Size $10,000 $25,000 $50,000 $100,000 $200,000 $300,000 ... $35 Account Price $10,000 - Lite Account",
+    "observation": "The default selector now renders a $10,000 Lite account at $35 with 1:100* leverage; one configuration at a time, so no complete ladder is visible without interaction."
+  },
+  "termsSchedule": {
+    "sourceUrl": "https://ofpfunding.com/terms-and-conditions",
+    "sourceCapturedAt": "2026-10-20",
+    "productSlugs": [
+      "instant-classic-3-daily-6-max-drawdown",
+      "instant-classic-5-daily-10-max-drawdown",
+      "instant-lite",
+      "instant-lite-5-daily-10-max-drawdown",
+      "instant-plus-3-daily-5-max-drawdown",
+      "instant-plus-5-daily-10-max-drawdown"
+    ],
+    "quote": "Schedule A - Available OFP Account Plans Release Date: February 9, 2026 ... 1.1 Instant Lite Account Size $50,000 $100,000 $200,000 Profit Split 100% 100% 100% Leverage 1:30 1:30 1:30 ... 1.2 Instant Classic ... Leverage 1:100 ... Consistency Rule Yes (25%)",
+    "observation": "Terms list Lite only at $50K-$200K with 1:30 leverage, while the homepage offers a $10K Lite at 1:100*. No price ladder in the terms."
+  },
+  "termsPdf": {
+    "sourceUrl": "https://my.ofpfunding.com/files/Terms-and-Conditions-of-Business.pdf",
+    "sourceCapturedAt": "2026-10-20",
+    "productSlugs": [
+      "instant-classic-3-daily-6-max-drawdown",
+      "instant-classic-5-daily-10-max-drawdown",
+      "instant-lite",
+      "instant-lite-5-daily-10-max-drawdown",
+      "instant-plus-3-daily-5-max-drawdown",
+      "instant-plus-5-daily-10-max-drawdown"
+    ],
+    "quote": "Schedule A \"Available OFP Account Plans\" Release Date: February 9, 2026 ... 1.1 Instant Lite Account Size $50,000 $100,000 $200,000 Profit Split 80-100% ... Leverage 1:30 1:30 1:30",
+    "observation": "PDF still differs from the web terms on Lite split (80-100% vs 100%) and agrees on 1:30 leverage."
+  }
+}

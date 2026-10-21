@@ -8,27 +8,27 @@
       {
         "sizeUsd": 5000,
         "priceUsd": 59,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 10000,
         "priceUsd": 99,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 25000,
         "priceUsd": 210,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 50000,
         "priceUsd": 322,
-        "refundable": null
+        "refundable": false
       },
       {
         "sizeUsd": 100000,
         "priceUsd": 566,
-        "refundable": null
+        "refundable": false
       }
     ],
     "profitTargets": {
@@ -40,6 +40,15 @@
     "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "On-Demand 100% payouts",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
@@ -52,14 +61,14 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "The stored 80% split and 14-day cycle represent the current Bi-Weekly route; a Monthly 100% route has additional eligibility conditions.",
+      "The stored 80% split and 14-day cycle represent the current Bi-Weekly route; the alternative is now On Demand 100% with eligibility conditions (35% consistency score plus 7 profitable days at 0.5%+), replacing the former Monthly 100% route (official 1 Step Flex page, 2026-10-20: \"80% Bi-Weekly or 100% On Demand reward\").",
       "The current page shows a 2% or 3% daily-loss configuration; this record retains 3% for the captured base route and does not imply both configurations are identical.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
-      "Refundability remains unresolved because the official refund wording does not clearly name current 1 Step Flex.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-19.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json",
+      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\""
     ]
   },
   {
@@ -104,6 +113,15 @@
     "minTradingDays": 1,
     "maxTradingDays": null,
     "consistencyRulePct": null,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "On-Demand 100% payouts",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex"
+      }
+    ],
     "profitSplitPct": null,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
@@ -116,14 +134,16 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Current first-party page changed the evaluation target to 10% then 8%; the older 10% then 6% value is retired.",
       "Reward choice is conditional: 80% with 1 minimum trading day or 95% with 3 profitable days; the schema keeps split null because there is no single universal percentage.",
+      "Reward cycles (official page, updated 2026-10-19, read 2026-10-20): \"Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split).\" The stored bi-weekly / 14-day value is the Bi-Weekly route; On Demand 100% needs a 35% consistency score, 7 profitable days at 0.5%+ and the Striking System. No Monthly route is listed.",
       "New and reset accounts require the current minimum-day conditions; older accounts may retain legacy terms.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-19.json"
+      "Recaptured 2026-10-20 from the live help page (EN Writer request): reward-cycle note added; prices, targets (10%/8%), 4% daily and 12% max loss unchanged; log: content/data/challenges/_captures/fundingpips-2026-10-20.json (twoStepFlexRecapture)",
+      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\""
     ]
   },
   {
@@ -178,6 +198,15 @@
     "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "On-Demand 100% payouts",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": 7,
     "payoutFrequency": "weekly",
@@ -190,15 +219,16 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "Weekly 80% is the stored shorter route; eligible Master Accounts may choose Monthly 100% with extra conditions.",
+      "Weekly 80% is the stored route; the alternative is now On Demand 100% with eligibility conditions, replacing the former Monthly 100% route (official Compare Account Models table, updated 2026-10-19: rewards \"Weekly 80%\", \"On Demand 100%\").",
       "Minimum reward request is 1% of Master Account size, including FundingPips' split, under the current 2 Step Pro page.",
       "Minimum trading days is 0 per phase for new and reset accounts (\"Reset and new accounts will require 0 minimum trading days.\"); existing Phase 1/2 accounts bought before 26 August 2026 keep 1.",
       "The $2.5K availability conflict remains unresolved and priceUsd stays null.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-19.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json",
+      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\" The $2.5K tier stays null because its availability is unresolved."
     ]
   },
   {
@@ -248,6 +278,15 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 35,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "On-Demand 100% payouts",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard"
+      }
+    ],
     "profitSplitPct": null,
     "payoutFirstDays": null,
     "payoutFrequency": null,
@@ -260,15 +299,16 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "No single split or frequency: current first-party page lists Weekly 60%, Bi-Weekly 80%, Monthly 100%, or On Demand 90% with separate conditions.",
-      "The 35% consistency score applies to On Demand and Monthly routes, not every evaluation path.",
+      "No single split or frequency: the official 2 Step Standard page (2026-10-20) lists \"Flexible reward cycles: Weekly 60%, Bi-Weekly 80%, or On Demand 100%.\" The former Monthly 100% and On Demand 90% routes are no longer listed.",
+      "The 35% consistency score applies to the On Demand 100% route only (\"A 35% consistency score must be achieved\"), not to Weekly or Bi-Weekly rewards.",
       "The current 8%-target Standard replaces the former 10%-target product.",
       "The $2.5K availability conflict remains unresolved and priceUsd stays null.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-19.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json",
+      "Refund (2026-10-20): refundable = true means the registration fee is refunded at the 4th reward on the Master Account (Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\"). FundingPips' Terms (effective 15 May 2026) say \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\" and do not mention the 4th-reward refund; conflict recorded in _captures/fundingpips-2026-10-20.json. The $2.5K tier stays null because its availability is unresolved."
     ]
   },
   {
@@ -315,6 +355,15 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 15,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 15,
+        "scope": "funded",
+        "appliesTo": "Reward requests",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero"
+      }
+    ],
     "profitSplitPct": 95,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
@@ -333,7 +382,8 @@
       "At least 7 profitable days of 0.25% or more are required in every rolling 30-day period; this is not a minimum trading-day field.",
       "News-window and weekend holding violations are hard breaches; the account is simulated and begins directly at Master.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-19.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change to this product, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json",
+      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\""
     ]
   }
 ]

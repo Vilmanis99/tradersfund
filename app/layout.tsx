@@ -92,6 +92,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AnalyticsProvider
             gaMeasurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
             clarityProjectId={process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID}
+            yandexMetricaId={process.env.NEXT_PUBLIC_YANDEX_METRICA_ID}
+            yandexMetricaWebvisor={process.env.NEXT_PUBLIC_YANDEX_METRICA_WEBVISOR === 'true'}
             outboundRelationships={outboundRelationships}
           />
         </Suspense>

@@ -8,7 +8,7 @@
     "content/data/firms.json",
     "content/data/challenges/bright-funded.json (2026-10-20)",
     "content/data/challenges/ftmo.json (2026-10-19)",
-    "data/expiring-recheck-2026-10-20 @5b511c5 firms.json#BrightFunded assets + assetsEvidence (help article 9268229, 20.10.2026: «over 48 cryptocurrency pairs»)"
+    "https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded (официальная справка BrightFunded «Which Crypto Instruments can you trade at BrightFunded?», дата статьи 25.05.2026, «over 48 cryptocurrency pairs», проверено 20.10.2026)"
   ],
   "verdict": "В двухэтапной модели BrightFunded 2-Step Classic и FTMO 2-Step почти совпадают: цели 10% + 5%, лимиты 5% в день и 10% статично. За счёт 100K BrightFunded берёт €497, FTMO — €540; различаются срок выплаты, удержание позиций и одноэтапные модели (по данным на 19.10.2026).",
   "picks": {
@@ -20,7 +20,7 @@
     "b": [
       "вам нужна выплата пораньше: в FTMO первый запрос по требованию — с 14-го дня, в BrightFunded — с 30-го, дальше раз в две недели",
       "вам нужна доля 90% сразу: FTMO 1-Step платит 90%, базовая доля BrightFunded — 80%",
-      "вы торгуете акциями либо на TradingView и MT4: их указывает FTMO, у BrightFunded — форекс, индексы, сырьё и криптовалюта на MT5, DXTrade и cTrader",
+      "вы торгуете акциями либо на TradingView и MT4: их указывает FTMO, у BrightFunded — форекс, индексы, сырьё и MT5, DXTrade, cTrader; криптопары BrightFunded также предлагает (более 48, по данным справки BrightFunded, проверка 20.10.2026)",
       "вы планируете крупный счёт: максимальная аллокация FTMO — $2 000 000, BrightFunded — $400 000"
     ]
   },

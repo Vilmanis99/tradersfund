@@ -5,13 +5,13 @@
   "b": "Crypto Fund Trader",
   "dataAsOf": "2026-10-19",
   "sources": [
-    "content/data/firms.json (origin/daily/2026-10-20b @f4e547d: CFT maxAllocation $300,000, assets, platforms; lastUpdated 2026-10-19; Russia copy only via russiaStatus)",
-    "content/data/challenges/bright-funded.json (origin/daily/2026-10-20b, 2026-10-20: refundable, split 80%, minTradingDays 5, news restricted)",
-    "content/data/challenges/crypto-fund-trader.json (origin/daily/2026-10-20b, 2026-10-19: models, news/min-days rules, Break activation fee + on-demand + 40% funded consistency + $3,000 trailing at 100K, Instant 50% start split, refund note, Break 'Verify availability at checkout')",
-    "data/expiring-recheck-2026-10-20 @5b511c5 firms.json#BrightFunded assets (crypto, help article 9268229, 20.10.2026)",
-    "No CFT prices or 20.10 dates in copy: they depend on data/article-slots-2026-10-20 @1dc16ef (held); prices are left to the data-driven tables"
+    "content/data/firms.json (#32 head 7652929: BrightFunded assets incl. Crypto, maxAllocation $400,000, MT5/DXTrade/cTrader; CFT maxAllocation $300,000, Match-Trader/MT5; lastUpdated 2026-10-20; Russia copy only via russiaStatus)",
+    "content/data/challenges/bright-funded.json (7652929, 2026-10-20: refundable, minTradingDays 5, news restricted)",
+    "content/data/challenges/crypto-fund-trader.json (7652929: 2-Phase/1-Phase/Instant 2026-10-20, Break 2026-10-19 — models, news/min-days rules, Break activation fee + on-demand + 40% funded consistency + $3,000 trailing at 100K, Instant 50% start split, refund note; Break note 2026-10-20 'LIMITED TIME ONLY' / 'Break LAST DAY')",
+    "https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded (официальная справка BrightFunded «Which Crypto Instruments can you trade at BrightFunded?», дата статьи 25.05.2026, «over 48 cryptocurrency pairs», проверено 20.10.2026)",
+    "No CFT prices in copy: prices are left to the data-driven tables"
   ],
-  "verdict": "BrightFunded продаёт три CFD-оценки с возвратным взносом и долей 80% и указывает цены в евро, Crypto Fund Trader — в долларах несколько моделей: двух- и одноэтапную оценку, Instant без оценки и Break с отдельной платой за активацию после прохождения; криптовалюту в списке активов указывают обе фирмы, а цены по размерам счёта смотрите в таблицах ниже (по данным на 19.10.2026). Наличие Break перед покупкой проверьте на кассе: на странице Break часть блоков помечена как распроданная, хотя магазин показывает товары в наличии.",
+  "verdict": "BrightFunded продаёт три CFD-оценки с возвратным взносом и долей 80% и указывает цены в евро, Crypto Fund Trader — в долларах несколько моделей: двух- и одноэтапную оценку, Instant без оценки и Break с отдельной платой за активацию после прохождения; криптовалюту в списке активов указывают обе фирмы, а цены по размерам счёта смотрите в таблицах ниже (по данным на 19.10.2026). Break продаётся как предложение на ограниченное время, поэтому перед покупкой проверьте, что он ещё доступен (по данным на 20.10.2026).",
   "picks": {
     "a": [
       "вы хотите вернуть взнос: у BrightFunded он возвратный во всех программах, у CFT возврат после прохождения не подтверждён — её политика возврата касается отказа в течение 14 дней до начала торговли",
