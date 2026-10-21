@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import Link from '@/components/SafeLink'
 import {
   AlertTriangle,
@@ -26,15 +27,40 @@ import {
   getLocalizedRoutePair,
   russianRouteDateModified,
 } from '@/lib/localizedRoutes'
-import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadge, RuGoLink } from '@/components/RuGoLink'
+import RuPendingLink from '@/components/RuPendingLink'
+import russianMarketEvidence from '@/content/data/russian-market-evidence.json'
+import firmCheckEvidence from '@/content/data/firm-check-evidence-2026-10-20.json'
 import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_CHECKED } from '@/components/RuFundedNextAccessCaveat'
+import fpAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 
 const PATH = '/ru/luchshie-kripto-prop-firmy'
-const TITLE = 'Крипто проп-компании 2026: проп-трейдинг криптовалют'
-const DESCRIPTION = 'Проп-компании и проп-трейдинг криптовалют: сравнение крипто-проп фирм по датированным источникам — комиссии, плечо, просадка, выплаты и доступ из России.'
+const TITLE = 'Крипто проп-компании 2026: открытые и закрытые для РФ'
+// Firm names per Russia status come from firms.json russiaStatus (russiaStatusFor), never hard-coded.
+// Restricted firms keep a CTA per the RU rule, after every open firm; FundedNext goes last.
+const RESTRICTED_ACCESS_CTAS = ['ftmo', 'city-traders-imperium', 'ofp-funding', 'fundednext'] as const
+const RESTRICTED_CTA_NAMES: Record<(typeof RESTRICTED_ACCESS_CTAS)[number], string> = { ftmo: 'FTMO', 'city-traders-imperium': 'CTI', 'ofp-funding': 'OFP', fundednext: 'FundedNext' }
+const ACCESS_LIST_SLUGS = ['bright-funded', 'crypto-fund-trader', 'ftmo', 'city-traders-imperium', 'ofp-funding'] as const
+const ACCESS_LIST_NAMES: Record<(typeof ACCESS_LIST_SLUGS)[number], string> = {
+  'bright-funded': 'BrightFunded',
+  'crypto-fund-trader': 'Crypto Fund Trader',
+  ftmo: 'FTMO',
+  'city-traders-imperium': 'CTI',
+  'ofp-funding': 'OFP',
+}
+function namesWithStatus(slugs: readonly string[], names: Record<string, string>, open: boolean) {
+  return slugs.filter(slug => (russiaStatusFor(slug) === 'available') === open && (open || russiaStatusFor(slug) === 'restricted')).map(slug => names[slug])
+}
+function ruJoin(items: string[]) {
+  return items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} и ${items.at(-1)}`
+}
+const OPEN_NAMES = namesWithStatus(ACCESS_LIST_SLUGS, ACCESS_LIST_NAMES, true)
+const CLOSED_NAMES = namesWithStatus([...ACCESS_LIST_SLUGS, 'fundednext'], { ...ACCESS_LIST_NAMES, fundednext: 'FundedNext' }, false)
+// Literal for the SEO audit; release-crawl checks the built length (140–160) and that these statuses still match firms.json.
+const DESCRIPTION = 'Крипто проп-компании 2026: BrightFunded и Crypto Fund Trader открыты для РФ, FTMO, CTI, OFP и FundedNext — нет. Криптопары, плечо, комиссии, цены и выплаты.'
 // Preserve existing sharing-preview text until the separate sharing update is approved.
 const SOCIAL_TITLE = 'Крипто-проп-фирмы 2026: 3 проверенных варианта'
 const SOCIAL_DESCRIPTION = 'Проп трейдинг криптовалют: сравниваем 3 крипто-проп фирмы и 12 подтверждённых продуктов по цене, просадке, плечу, KYC и выплатам.'
@@ -64,6 +90,35 @@ function freshEvidence(evidence: { sourceCapturedAt: string }) {
     && Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === date
     && isChallengeFresh(evidence)
 }
+
+/** ISO date ≤30 days old (same window as isChallengeFresh). */
+function freshIso(date: string | null | undefined, now = new Date()) {
+  if (!date || !/^\d{4}-\d{2}-\d{2}/.test(date)) return false
+  const day = date.slice(0, 10)
+  const age = Math.floor((now.getTime() - new Date(`${day}T00:00:00Z`).getTime()) / 86_400_000)
+  return age >= 0 && age <= 30
+}
+
+function ruDate(iso: string) {
+  return `${iso.slice(8, 10)}.${iso.slice(5, 7)}.${iso.slice(0, 4)}`
+}
+
+// Official pages read by the RU Writer on 2026-10-21 (no Prop Firm Tracker crypto record yet for these firms).
+const EDITORIAL_READ = '2026-10-21'
+const OFFICIAL_CRYPTO = {
+  ftmo: {
+    url: 'https://ftmo.com/en/symbols/',
+    textRu: 'страница инструментов FTMO включает криптовалюты и предупреждает, что часы торговли криптой на выходных зависят от платформы (страница обновлена 08.10.2026)',
+  },
+  'city-traders-imperium': {
+    url: 'https://citytradersimperium.com/challenge-free-trial/',
+    textRu: 'CTI пишет, что на одном счёте можно торговать форексом, сырьём, индексами и криптовалютой; платформы — MT5 и Match-Trader',
+  },
+  'ofp-funding': {
+    url: 'https://help.ofpfunding.com/trading-commissions-fee-structure/',
+    textRu: 'комиссия OFP на криптовалюты — $200 за миллион долларов оборота против $25 на форексе, индексах и сырье (статья обновлена 20.05.2026)',
+  },
+} as const
 
 const drawdownLabels: Record<string, string> = {
   static: 'статическая',
@@ -113,7 +168,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Почему выплата в USDC не делает фирму крипто-проп-компанией?',
-    a: 'Потому что способ получения денег не определяет торговый инструмент. В проверенной справке BrightFunded указан перевод в USDC по сети ERC-20. Здесь фирма рассматривается отдельно как вариант выплаты в криптовалюте: подтверждённой связки её программ с криптоинструментами для этого рейтинга пока нет.',
+    a: 'Потому что способ получения денег не определяет торговый инструмент. У BrightFunded есть и то и другое, но по разным источникам: справка о криптоинструментах называет более 48 криптовалютных пар (по данным на 20.10.2026), а справка о выплатах — перевод в USDC по сети ERC-20 и банковский перевод в EUR (по данным на 14.10.2026). Фирма, которая только платит в USDC, крипто-проп-компанией от этого не становится.',
   },
   {
     q: 'Можно ли держать криптопозиции на выходных?',
@@ -121,7 +176,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Можно ли зарегистрироваться из России?',
-    a: 'По языку статьи этого определить нельзя. До оплаты проверьте ограничения фирмы и платформы по гражданству и проживанию, документы для KYC, способ платежа и будущей выплаты. Наличие криптокошелька не заменяет эти проверки; при неясных условиях получите письменный ответ фирмы.',
+    a: `Не во всех фирмах на этой странице. Мы показываем и открытые, и закрытые для РФ фирмы, чтобы было видно, почему известное имя не подходит. Россию в своих ограничениях не называют ${ruJoin(OPEN_NAMES)}; ${ruJoin(CLOSED_NAMES)} резидентов России не обслуживают (по данным на 20.10.2026). У FundingPips статус неясен. Даже у открытой фирмы до оплаты проверьте платформу, документы для KYC, способ платежа и будущей выплаты; при неясных условиях получите письменный ответ фирмы.`,
   },
   {
     q: 'Подходит ли FundingPips для криптотрейдинга?',
@@ -159,6 +214,50 @@ export default function RussianCryptoPropFirmsPage() {
       || bKey - aKey || a.firm.name.localeCompare(b.firm.name)
   })
   const payoutEvidence = cryptoMarketEvidence.payoutAlternative
+  const firmCheckDate = firmCheckEvidence.checkedAt.slice(0, 10)
+  const firmCheckFresh = freshIso(firmCheckDate)
+  const brightFirm = firms.find(candidate => candidate.name === 'BrightFunded')
+  const brightCrypto = (brightFirm as (typeof brightFirm & { assetsEvidence?: { sourceUrl: string; sourceCapturedAt: string } }) | undefined)?.assetsEvidence
+  const brightCryptoFresh = Boolean(brightCrypto && freshIso(brightCrypto.sourceCapturedAt) && brightFirm?.assets.includes('Crypto'))
+  const cftAccess = russianMarketEvidence.firmAccess.find(item => item.firmSlug === 'crypto-fund-trader')
+  const cftAccessObservation = cftAccess && 'sourceObservations' in cftAccess
+    ? (cftAccess.sourceObservations as Array<{ sourceUrl: string; sourceCapturedAt: string; quote: string }>).find(item => item.quote.startsWith('Match-Trader:'))
+    : undefined
+  const cftWatch = cryptoMarketEvidence.watch.find(item => item.firmSlug === 'crypto-fund-trader')
+  const editorialFresh = freshIso(EDITORIAL_READ)
+  const shortlist = ACCESS_LIST_SLUGS
+    .map((slug, index) => ({ slug, index, status: russiaStatusFor(slug) }))
+    .sort((a, b) => RUSSIA_STATUS_ORDER[a.status] - RUSSIA_STATUS_ORDER[b.status] || a.index - b.index)
+  const shortlistCrypto = (slug: (typeof ACCESS_LIST_SLUGS)[number]) => {
+    if (slug === 'bright-funded') {
+      return brightCryptoFresh && brightCrypto
+        ? <>справка BrightFunded: «более 48 криптовалютных пар», среди них BTC/USD и ETH/USD; плечо на криптовалюте 1:5 (по данным на {ruDate(brightCrypto.sourceCapturedAt)}). <a href={brightCrypto.sourceUrl} target="_blank" rel="nofollow noopener">Источник</a></>
+        : <>данные о криптоинструментах требуют повторной проверки.</>
+    }
+    if (slug === 'crypto-fund-trader') {
+      return <>какие криптоинструменты доступны в каждой программе и на каждой платформе CFT, Prop Firm Tracker ещё не перепроверил: последняя запись — от {cftWatch ? ruDate(cftWatch.sourceCapturedAt) : 'неизвестной даты'}, она старше 30 дней. Поэтому список инструментов CFT здесь не приводим.</>
+    }
+    const official = OFFICIAL_CRYPTO[slug]
+    return editorialFresh
+      ? <>{official.textRu} (проверено редакцией {ruDate(EDITORIAL_READ)}). <a href={official.url} target="_blank" rel="nofollow noopener">Источник</a></>
+      : <>данные о криптоинструментах требуют повторной проверки.</>
+  }
+  const shortlistAccess = (slug: (typeof ACCESS_LIST_SLUGS)[number], status: string) => {
+    if (slug === 'crypto-fund-trader' && cftAccessObservation && freshIso(cftAccessObservation.sourceCapturedAt)) {
+      return `на Match-Trader ограничений по странам нет; MT5 недоступен жителям США (по данным на ${ruDate(cftAccessObservation.sourceCapturedAt)})`
+    }
+    if (!firmCheckFresh) return 'список ограничений требует повторной проверки'
+    return status === 'restricted'
+      ? `Россия в официальном списке ограничений (по данным на ${ruDate(firmCheckDate)})`
+      : `Россия не названа в официальном списке ограничений (по данным на ${ruDate(firmCheckDate)})`
+  }
+  const shortlistReview: Record<(typeof ACCESS_LIST_SLUGS)[number], ReactNode> = {
+    'bright-funded': <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор</Link>,
+    'crypto-fund-trader': <><RuPendingLink href="/ru/obzor-crypto-fund-trader" className="btn-outline">Русский обзор</RuPendingLink> <Link href="/blog/crypto-fund-trader-review" hrefLang="en" className="btn-outline">Обзор на английском</Link></>,
+    ftmo: <Link href="/ru/obzor-ftmo" className="btn-outline">Русский обзор</Link>,
+    'city-traders-imperium': <Link href="/blog/city-traders-imperium-review" hrefLang="en" className="btn-outline">Обзор на английском</Link>,
+    'ofp-funding': <Link href="/blog/ofp-funding-review" hrefLang="en" className="btn-outline">Обзор на английском</Link>,
+  }
   const evidenceDates = [
     ...mapped.flatMap(({ evidence, products }) => [
       { label: `инструменты ${evidence.firmName}`, capturedAt: evidence.sourceCapturedAt },
@@ -205,6 +304,7 @@ export default function RussianCryptoPropFirmsPage() {
             Сравниваем программы для торговли криптоинструментами: стоимость участия, комиссии, кредитное плечо
             и ограничения риска. Отдельно разбираем выплаты в криптовалюте и доступ из своей страны — это разные вопросы.
           </p>
+          <p className="ru-source-line" data-russian-crypto-access-pointer="top">Кто из этих фирм открыт для резидентов РФ, а кто закрыт, — в разделе <a href="#dostup-iz-rossii">«Крипто проп-компании и Россия»</a>.</p>
           <div className="ru-review-meta" aria-label="Редакционные данные рейтинга крипто-проп-фирм">
             <span>Автор: Edris Derakhshi</span>
             <span>Обновлено: {lastModified}</span>
@@ -229,11 +329,12 @@ export default function RussianCryptoPropFirmsPage() {
             <div className="ru-notice ru-disclosure ru-review-top-disclosure" data-russian-affiliate-disclosure="crypto-ranking">
               <strong>Партнёрские ссылки.</strong> Мы можем получить комиссию при переходе к партнёру.
               Она даёт <strong>0 баллов</strong> в сравнении и не подтверждает условия программы.
-              Коммерческий статус указан возле каждой фирмы; BrightFunded рассматривается отдельно от крипторейтинга.
+              Коммерческий статус указан возле каждой фирмы. Фирмы, закрытые для резидентов РФ, идут последними, с бейджем доступа и пометкой «резидентам РФ недоступна»: резидентам России мы их не рекомендуем.
             </div>
             <nav className="toc ru-review-toc" aria-label="Содержание рейтинга крипто-проп-фирм">
               <div className="toc-title">Содержание</div>
               <ol>
+                <li><a href="#crypto-shortlist">Открытые для РФ сначала</a></li>
                 <li><a href="#country-check">Страна и KYC</a></li>
                 <li><a href="#ranking">Фирмы с актуальными источниками</a></li>
                 <li><a href="#comparison">Цены и условия программ</a></li>
@@ -241,11 +342,47 @@ export default function RussianCryptoPropFirmsPage() {
                 <li><a href="#crypto-risk">Комиссия, плечо и выходные</a></li>
                 <li><a href="#payout-boundary">Торговля против USDC-выплаты</a></li>
                 <li><a href="#evidence-watch">Незавершённые проверки</a></li>
+                <li><a href="#dostup-iz-rossii">Доступ из России</a></li>
                 <li><a href="#sources">Первичные источники</a></li>
                 <li><a href="#alternatives">Следующий шаг</a></li>
                 <li><a href="#faq">Частые вопросы</a></li>
               </ol>
             </nav>
+          </div>
+        </section>
+
+        <section className="ru-section" id="crypto-shortlist">
+          <div className="ru-shell" data-russian-crypto-shortlist="russia-access-first">
+            <div className="ru-content">
+              <h2>Крипто-проп-фирмы: сначала открытые для РФ, затем закрытые</h2>
+              <p>Порядок — по доступу для резидентов России (бейдж берётся из нашей базы), затем редакционный. Закрытые фирмы мы оставили в списке, потому что их часто ищут: бейдж показывает, почему они не подходят трейдеру из РФ. Ссылок на регистрацию у них нет.</p>
+            </div>
+            <div className="ru-grid">
+              {shortlist.map(({ slug, status }, position) => (
+                <article className="ru-card" key={slug} data-russian-crypto-shortlist-firm={slug} data-russia-status={status}>
+                  <div className="ru-card-head">
+                    <div>
+                      <span className="ru-pill">#{position + 1}</span>
+                      <h3>{ACCESS_LIST_NAMES[slug] === 'CTI' ? 'City Traders Imperium (CTI)' : ACCESS_LIST_NAMES[slug] === 'OFP' ? 'OFP Funding' : ACCESS_LIST_NAMES[slug]} <RuAccessBadge firm={slug} /></h3>
+                    </div>
+                  </div>
+                  <ul className="ru-facts">
+                    <li><Database size={14} aria-hidden="true" /> Криптовалюта: {shortlistCrypto(slug)}</li>
+                    <li><ShieldCheck size={14} aria-hidden="true" /> Доступ: {shortlistAccess(slug, status)}</li>
+                  </ul>
+                  <div className="ru-actions">
+                    {shortlistReview[slug]}
+                    {status === 'restricted' ? (
+                      <>
+                        <RuGoLink firm={slug} href={`/go/${slug}?from=ru-crypto-top-${slug}`} rel={goLinkRel(slug)} className="btn-outline">Сайт {ACCESS_LIST_NAMES[slug]} <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+                        <span className="ru-muted" data-russian-crypto-restricted-cta={slug}>для резидентов других стран; резидентам РФ {ACCESS_LIST_NAMES[slug]} недоступна</span>
+                      </>
+                    ) : <RuGoLink firm={slug} href={`/go/${slug}?from=ru-crypto-top-${slug}`} rel={goLinkRel(slug)} className="btn-primary">Перейти в {ACCESS_LIST_NAMES[slug]} <ArrowRight size={14} aria-hidden="true" /></RuGoLink>}
+                  </div>
+                </article>
+              ))}
+            </div>
+            <p className="ru-source-line">BrightFunded и Crypto Fund Trader пока не попали в таблицу программ ниже: для неё Prop Firm Tracker должен связать криптоинструменты с конкретными программами и ценами. Сведения FTMO, CTI и OFP о криптовалюте — с официальных страниц, проверенных редакцией; это не проверка цен и правил их программ.</p>
           </div>
         </section>
 
@@ -264,8 +401,8 @@ export default function RussianCryptoPropFirmsPage() {
         <section className="ru-section" id="ranking">
           <div className="ru-shell" data-russian-crypto-ranking="source-gated" data-russian-crypto-product-count={productCount} data-russian-crypto-partner-count={partnerCount}>
             <div className="ru-content">
-              <h2>Фирмы с актуальными источниками по криптопрограммам</h2>
-              <p>Для включения нужны два подтверждения: фирма публикует криптоинструменты для рассматриваемых программ, а цены и правила каждой из них проверены в пределах 30 дней. Сейчас в выборке: фирм — {snapshots.length}, программ — {productCount}. Это не проверка надёжности будущей выплаты и не разрешение зарегистрироваться из любой страны.</p>
+              <h2>Криптопрограммы с проверенными ценами — включая фирмы, закрытые для РФ</h2>
+              <p>Для включения нужны два подтверждения: фирма публикует криптоинструменты для рассматриваемых программ, а цены и правила каждой из них проверены в пределах 30 дней. Сейчас в выборке: фирм — {snapshots.length}, программ — {productCount}. Это не проверка надёжности будущей выплаты и не разрешение зарегистрироваться из любой страны: у каждой фирмы стоит бейдж доступа для резидентов РФ, а закрытые для РФ фирмы стоят последними и резидентам России не рекомендуются.</p>
               {!snapshots.length && <p className="ru-notice" data-russian-crypto-empty="recapture-required">Сейчас нет полной выборки со свежими источниками и известными ценами. Ниже сохранён датированный разбор правил; актуальные числовые карточки появятся после повторной проверки. <Link href="/ru/luchshie-prop-firmy#podbor">Открыть общий подбор программ →</Link></p>}
             </div>
             <div className="ru-grid">
@@ -280,7 +417,7 @@ export default function RussianCryptoPropFirmsPage() {
                     <div className="ru-card-head">
                       <div>
                         <span className="ru-pill">#{index + 1} · {affiliate ? 'партнёр' : 'без партнёрской ссылки'}</span>
-                        <h2>{firm.name}</h2>
+                        <h2>{firm.name} <RuAccessBadge firm={evidence.firmSlug} /></h2>
                       </div>
                       <span className="ru-score">TFH {firm.score.toFixed(1)}/10</span>
                     </div>
@@ -296,10 +433,11 @@ export default function RussianCryptoPropFirmsPage() {
                       <Link href={reviewHref} className="btn-outline">{reviewHref.startsWith('/ru/') ? 'Русский обзор' : 'Английский обзор'}</Link>
                       <a href={evidence.sourceUrl} target="_blank" rel="nofollow noopener" className="btn-outline">Источник <ExternalLink size={13} aria-hidden="true" /></a>
                       {affiliate ? (
-                        <RuGoLink firm={evidence.firmSlug} href={`/go/${evidence.firmSlug}?from=ru-crypto-ranking`} rel="sponsored nofollow noopener" className="btn-primary">
+                        <RuGoLink firm={evidence.firmSlug} href={`/go/${evidence.firmSlug}?from=ru-crypto-ranking`} rel="sponsored nofollow noopener" className={russiaStatusFor(evidence.firmSlug) === 'restricted' ? 'btn-outline' : 'btn-primary'}>
                           Проверить текущие условия <ArrowRight size={14} aria-hidden="true" />
                         </RuGoLink>
                       ) : null}
+                      {affiliate && russiaStatusFor(evidence.firmSlug) === 'restricted' ? <span className="ru-muted" data-russian-crypto-restricted-cta={evidence.firmSlug}>для резидентов других стран; резидентам РФ {firm.name} недоступна</span> : null}
                     </div>
                   </article>
                 )
@@ -370,12 +508,12 @@ export default function RussianCryptoPropFirmsPage() {
         </section>
 
         <section className="ru-section" id="payout-boundary">
-          <div className="ru-shell ru-content" data-russian-crypto-payout-boundary="bright-funded-not-ranked">
+          <div className="ru-shell ru-content" data-russian-crypto-payout-boundary="bright-funded-crypto-and-usdc">
             <h2>Торговля криптовалютой и выплата в USDC — разные маршруты</h2>
-            <p>Для BrightFunded мы отдельно проверили способы вознаграждения, а не торговлю криптоинструментами. В справке перечислены USDC по сети ERC-20 и банковский перевод в EUR. Пока точная связка программы и криптоинструмента не подтверждена, этот способ перевода не даёт фирме место в таблице криптопрограмм.</p>
+            <p>У BrightFunded это два отдельных факта из двух справок. Торговля: {brightCryptoFresh && brightCrypto ? <>более 48 криптовалютных пар (по данным на {ruDate(brightCrypto.sourceCapturedAt)})</> : 'список криптоинструментов требует повторной проверки'}. Выплата: USDC по сети ERC-20 или банковский перевод в EUR. Сама по себе выплата в USDC фирму крипто-проп-компанией не делает: место в списке выше BrightFunded получила за криптопары, а не за способ перевода.</p>
             <p className="ru-source-line" data-russian-crypto-payout-status={freshEvidence(payoutEvidence) ? 'dated' : 'recapture-required'}>Источник по способам выплаты: {payoutEvidence.sourceCapturedAt || 'дата не подтверждена'}. {!freshEvidence(payoutEvidence) && 'Проверка устарела или дата недостоверна: описание выше является датированным разбором, а не подтверждением действующих способов перевода.'}</p>
             <div className="ru-notice ru-disclosure">
-              <strong>Партнёрская ссылка.</strong> Переход ниже может принести нам комиссию. Это не добавляет BrightFunded в крипторейтинг и не подтверждает возможность получить USDC в каждой стране. До оплаты проверьте доступность метода для своих документов и места проживания.
+              <strong>Партнёрская ссылка.</strong> Переход ниже может принести нам комиссию. Это не подтверждает возможность получить USDC в каждой стране. До оплаты проверьте доступность метода для своих документов и места проживания.
             </div>
             <div className="ru-actions">
               <Link href="/ru/obzor-bright-funded" className="btn-outline">Русский обзор BrightFunded</Link>
@@ -425,31 +563,59 @@ export default function RussianCryptoPropFirmsPage() {
         </section>
 
         <section className="ru-section" id="dostup-iz-rossii">
-          <div className="ru-shell ru-content" data-russian-crypto-russia-access="2026-10-14">
-            <h2>Проп-компании криптовалюты: что доступно трейдерам из России</h2>
+          <div className="ru-shell ru-content" data-russian-crypto-russia-access="open-and-closed">
+            <h2>Крипто проп-компании и Россия: кто открыт, а кто закрыт</h2>
             <p>
-              Этот блок — не рейтинг, а ответ на вопрос «куда можно зайти из РФ». На 14.10.2026 криптоинструменты есть в профилях
-              FundedNext, Crypto Fund Trader, FundingPips, FTMO, E8 Markets и ряда других фирм, но Россию из них не ограничивает только
-              Crypto Fund Trader (на Match-Trader); FundedNext с 20.10.2026 резидентам РФ недоступна (подвал её сайта). Ещё один вариант вне нашего рейтинга — Upscale: ограничений по
-              странам не заявлено, KYC нет, выплаты в USDT на собственный кошелёк.
+              На этой странице есть и фирмы, закрытые для резидентов России: мы их не прячем, но и регистрироваться не предлагаем.
+              Россию в своих ограничениях не называют {ruJoin(OPEN_NAMES)}. Закрыты для РФ {ruJoin(CLOSED_NAMES)} (по данным на 20.10.2026).
+              У FundingPips статус неясен — подробности в таблице.
             </p>
-            <h3>Проп-компании для трейдеров криптовалют: что проверить</h3>
+            <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Доступ крипто-проп-фирм для резидентов РФ">
+              <table className="ru-table" data-russian-crypto-access-table="open-and-closed">
+                <thead><tr><th>Фирма</th><th>Доступ для РФ</th><th>Что известно</th></tr></thead>
+                <tbody>
+                  {shortlist.map(({ slug, status }) => (
+                    <tr key={slug} data-russian-crypto-access-row={slug}>
+                      <td><strong>{ACCESS_LIST_NAMES[slug] === 'CTI' ? 'City Traders Imperium' : ACCESS_LIST_NAMES[slug] === 'OFP' ? 'OFP Funding' : ACCESS_LIST_NAMES[slug]}</strong></td>
+                      <td><RuAccessBadge firm={slug} /></td>
+                      <td>{shortlistAccess(slug, status)}</td>
+                    </tr>
+                  ))}
+                  <tr data-russian-crypto-access-row="fundednext">
+                    <td><strong>FundedNext</strong></td>
+                    <td><RuAccessBadge firm="fundednext" /></td>
+                    <td>подвал сайта fundednext.com исключает резидентов России (по данным на {FUNDEDNEXT_RU_ACCESS_CHECKED}); резидентам РФ не рекомендуем</td>
+                  </tr>
+                  <tr data-russian-crypto-access-row="fundingpips">
+                    <td><strong>FundingPips</strong></td>
+                    <td><RuAccessBadge firm="fundingpips" /></td>
+                    <td>Россия не названа{freshIso(fpAccessEvidence.sourceCapturedAt) ? `, но фирма ссылается на санкционные списки FATF и ЕС/ООН (по данным на ${ruDate(fpAccessEvidence.sourceCapturedAt)})` : ''}; до оплаты получите письменный ответ поддержки</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h3>Проп-компании для трейдеров криптовалют из РФ: что проверить</h3>
             <ul>
-              <li><strong>Платформа.</strong> У Crypto Fund Trader на Match-Trader ограничений по странам нет, а MT5 закрыт только для резидентов США (по данным на 14.10.2026).</li>
-              <li><strong>Цена входа.</strong> Crypto Fund Trader Evaluation на $10 000 — $110, на $100 000 — $660 (по данным на 14.10.2026).</li>
+              <li><strong>Платформа.</strong> У Crypto Fund Trader ограничений по странам нет только на Match-Trader, а MT5 закрыт для жителей США{cftAccessObservation && freshIso(cftAccessObservation.sourceCapturedAt) ? ` (по данным на ${ruDate(cftAccessObservation.sourceCapturedAt)})` : ''}.</li>
+              <li><strong>Цена входа.</strong> Crypto Fund Trader Evaluation на $10 000 — $110, на $100 000 — $660 (по данным на 20.10.2026).</li>
               <li><strong>Доля.</strong> 80% в оценочных программах Crypto Fund Trader, но 50% в Instant — подробнее в блоке выше.</li>
-              <li><strong>Выплата.</strong> Crypto Fund Trader платит в USDT (ERC20/TRC20), BTC, ETH или банковским переводом; FundedNext — в USDT и USDC.</li>
+              <li><strong>Выплата.</strong> BrightFunded платит в USDC (ERC-20) или банковским переводом в EUR (по данным на {ruDate(payoutEvidence.sourceCapturedAt)}). Crypto Fund Trader платит в USDT (ERC20/TRC20), BTC, ETH или банковским переводом в EUR или USD (по данным на 20.10.2026).</li>
             </ul>
             <h3>Крипта в проп-трейдинге: оплата из России</h3>
             <p>
               Crypto Fund Trader принимает карту, PayPal, Apple Pay, Google Pay и криптовалюту (<a href="https://cryptofundtrader.com/faq/" target="_blank" rel="nofollow noopener noreferrer">FAQ CFT</a>,
               по данным на 19.10.2026; на странице Get Started и в условиях названы только карта и криптовалюта). Работают ли карты, выпущенные в России, фирма не сообщает; криптовалюта — способ, который от карты не зависит. Полная таблица доступа — на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для россиян</Link>.
             </p>
-            <div className="ru-actions">
-              <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-crypto-russia-access-1" rel={goLinkRel('crypto-fund-trader')} className="btn-primary">Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+            <div className="ru-actions" data-russian-crypto-access-ctas="open-first-restricted-last">
+              <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-crypto-russia-access-bright-funded" rel={goLinkRel('bright-funded')} className="btn-primary">BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+              <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-crypto-russia-access-1" rel={goLinkRel('crypto-fund-trader')} className="btn-outline">Crypto Fund Trader <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-crypto-russia-access-2" rel={goLinkRel('fundingpips')} className="btn-outline">FundingPips</RuGoLink>
-              <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-crypto-russia-access-3" rel={goLinkRel('fundednext')} className="btn-outline">FundedNext CFD <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-              <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-crypto-russia-access-4" rel={goLinkRel('ftmo')} className="btn-outline">FTMO</RuGoLink>
+            </div>
+            <div className="ru-actions" data-russian-crypto-access-ctas="restricted-last">
+              {RESTRICTED_ACCESS_CTAS.filter(slug => russiaStatusFor(slug) === 'restricted').map(slug => (
+                <RuGoLink key={slug} firm={slug} href={`/go/${slug}?from=ru-crypto-russia-access-${slug}`} rel={goLinkRel(slug)} className="btn-outline">{RESTRICTED_CTA_NAMES[slug]}</RuGoLink>
+              ))}
+              <span className="ru-muted" data-russian-crypto-restricted-cta="russia-access">для резидентов других стран; резидентам РФ эти фирмы недоступны</span>
             </div>
             <RuFundedNextAccessCaveat />
           </div>

@@ -1171,8 +1171,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/luchshie-kripto-prop-firmy', {
-    title: 'Крипто проп-компании 2026: проп-трейдинг криптовалют',
-    h1: 'Крипто проп-компании 2026: проп-трейдинг криптовалют',
+    title: 'Крипто проп-компании 2026: открытые и закрытые для РФ',
+    h1: 'Крипто проп-компании 2026: открытые и закрытые для РФ',
     markers: [
       'data-russian-crypto-article="long-form"',
       'data-russian-crypto-hero="search-and-product-evidence"',
@@ -1183,9 +1183,28 @@ const russianExpectations = new Map([
       'data-russian-crypto-partner-count="2"',
       'data-russian-crypto-comparison="current-source-mapped-products"',
       'data-russian-crypto-decision-guide="product-not-logo"',
-      'data-russian-crypto-payout-boundary="bright-funded-not-ranked"',
+      'data-russian-crypto-payout-boundary="bright-funded-crypto-and-usdc"',
       'data-russian-crypto-watch-count="7"',
+      'data-russian-crypto-access-pointer="top"',
+      'data-russian-crypto-shortlist="russia-access-first"',
+      'data-russian-crypto-shortlist-firm="bright-funded"',
+      'data-russian-crypto-shortlist-firm="crypto-fund-trader"',
+      'data-russian-crypto-shortlist-firm="ftmo"',
+      'data-russian-crypto-shortlist-firm="city-traders-imperium"',
+      'data-russian-crypto-shortlist-firm="ofp-funding"',
+      'data-russian-crypto-restricted-cta="fundednext"',
+      'data-russian-crypto-access-ctas="restricted-last"',
       '/go/fundednext?from=ru-crypto-ranking',
+      '/go/fundednext?from=ru-crypto-russia-access-fundednext',
+      'data-russian-crypto-access-table="open-and-closed"',
+      'data-russia-status="restricted" data-russia-firm="ftmo"',
+      'data-russia-status="restricted" data-russia-firm="city-traders-imperium"',
+      'data-russia-status="restricted" data-russia-firm="ofp-funding"',
+      'data-russia-status="restricted" data-russia-firm="fundednext"',
+      'https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded',
+      '/go/bright-funded?from=ru-crypto-top-bright-funded',
+      '/go/crypto-fund-trader?from=ru-crypto-top-crypto-fund-trader',
+      '/go/fundingpips?from=ru-crypto-ranking',
       '/go/bright-funded?from=ru-crypto-ranking-payout-alternative',
     ],
   }],
@@ -1997,6 +2016,29 @@ const russianFtmoPage = pages.find(page =>
     errors.push('/ru/ftmo-vs-bright-funded: BrightFunded CTA must render before any FTMO CTA')
   }
 }
+{
+  const cryptoHtml = pages.find(page => new URL(page.productionUrl).pathname === '/ru/luchshie-kripto-prop-firmy')?.html ?? ''
+  // RU rule: restricted firms keep a CTA with badge and a "not for RF residents" label, after every open firm's CTA.
+  const lastOpenCta = Math.max(...['bright-funded', 'crypto-fund-trader', 'fundingpips'].map(slug => cryptoHtml.indexOf(`/go/${slug}?from=ru-crypto-russia-access-`)))
+  for (const slug of ['ftmo', 'city-traders-imperium', 'ofp-funding', 'fundednext']) {
+    const at = cryptoHtml.indexOf(`/go/${slug}?from=ru-crypto-russia-access-${slug}`)
+    if (at < 0 || at < lastOpenCta) errors.push(`/ru/luchshie-kripto-prop-firmy: restricted ${slug} CTA must be present and come after every open firm in the access block`)
+  }
+  const fundedNextAccess = cryptoHtml.indexOf('/go/fundednext?from=ru-crypto-russia-access-fundednext')
+  if (['ftmo', 'city-traders-imperium', 'ofp-funding'].some(slug => cryptoHtml.indexOf(`/go/${slug}?from=ru-crypto-russia-access-${slug}`) > fundedNextAccess)) {
+    errors.push('/ru/luchshie-kripto-prop-firmy: FundedNext CTA must be last in the access block')
+  }
+  const firstBrightTop = cryptoHtml.indexOf('/go/bright-funded?from=ru-crypto-top-bright-funded')
+  const firstFundedNext = cryptoHtml.indexOf('/go/fundednext?')
+  if (firstBrightTop < 0 || (firstFundedNext >= 0 && firstFundedNext < firstBrightTop)) errors.push('/ru/luchshie-kripto-prop-firmy: BrightFunded CTA must render before any FundedNext CTA')
+  const firstShortlist = cryptoHtml.indexOf('data-russian-crypto-shortlist-firm=')
+  if (firstShortlist < 0 || cryptoHtml.indexOf('data-russian-crypto-shortlist-firm="bright-funded"') !== firstShortlist) {
+    errors.push('/ru/luchshie-kripto-prop-firmy: BrightFunded must be the first firm in the crypto shortlist')
+  }
+  const description = cryptoHtml.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? ''
+  const descriptionLength = [...description.replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&#x27;/g, "'")].length
+  if (descriptionLength < 140 || descriptionLength > 160) errors.push(`/ru/luchshie-kripto-prop-firmy: meta description is ${descriptionLength} characters, expected 140–160`)
+}
 // Every /go/ CTA on /ru pages carries a Russia-access badge matching firms.json russiaStatus.
 {
   const statusBySlug = new Map(firmRecords.map(firm => [outboundSlug(firm.name), firm.russiaStatus ?? 'unverified']))
@@ -2031,7 +2073,10 @@ for (const [path, href] of [
   ['/ru/obzor-ftmo', '/go/bright-funded?from=ru-ftmo-alternative-bright-funded'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-summary'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-verdict'],
+  ['/ru/luchshie-kripto-prop-firmy', '/go/fundingpips?from=ru-crypto-ranking'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],
+  ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-russia-access-fundednext'],
+  ['/ru/luchshie-kripto-prop-firmy', '/go/bright-funded?from=ru-crypto-top-bright-funded'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/bright-funded?from=ru-crypto-ranking-payout-alternative'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards'],
