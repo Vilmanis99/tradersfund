@@ -150,6 +150,10 @@
 }
 @media (prefers-reduced-motion: reduce) { .th-btn, .th-guide { transition: none; } .th-btn--amber:hover, .th-guide:hover { transform: none; } }
 .th-row-badge { margin-top: var(--space-2); text-align: right; }
+/* RU: the Russia-access badge follows the CTA in the DOM (read right after it) but still shows on its own line below the actions. */
+.th-row-actions[data-row-badge="after-cta"] { flex-wrap: wrap; row-gap: var(--space-2); }
+.th-row-actions[data-row-badge="after-cta"] > .ru-access { order: 3; flex-basis: 100%; text-align: right; }
+.th-row-actions[data-row-badge="after-cta"] .ru-badge { white-space: nowrap; }
 @media (max-width: 380px) {
   .th-wrap { padding: 0 1rem; }
   .th-cards { margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; }
